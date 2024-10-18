@@ -1,8 +1,8 @@
-import type {ChangeEvent, MouseEventHandler} from 'react';
-import {ToolbarButton} from './ToolbarButton';
-import {ToolbarOptions} from './ToolbarOptions';
-import type {MenuOptionProps} from '../Menu';
-import styles from './toolbar.module.css';
+import type { ChangeEvent, MouseEventHandler } from "react";
+import { ToolbarButton } from "./ToolbarButton";
+import { ToolbarOptions } from "./ToolbarOptions";
+import type { MenuOptionProps } from "../Menu";
+import styles from "./toolbar.module.css";
 
 export interface ToolbarFilterProps {
   removable?: boolean;
@@ -26,8 +26,27 @@ export const ToolbarFilter = ({
   onChange,
   onRemove,
 }: ToolbarFilterProps) => {
-  const selectedLabels = items?.filter((item) => value?.includes(item?.value)).map((item) => item?.label);
-  const valueLabel = selectedLabels?.length && selectedLabels?.join(', ');
+  const selectedLabels = items
+    ?.filter((item) => value?.includes(item?.value))
+    .map((item) => item?.label);
+
+  let valueLabel;
+
+  if (selectedLabels?.length > 2) {
+    valueLabel = selectedLabels?.length + " ting";
+  } else {
+    valueLabel = selectedLabels?.length && selectedLabels?.join(", ");
+  }
+
+  const getSelectedLabel = ({
+    selectedItems = [],
+    items = [],
+  }: {
+    selectedItems: MenuOptionProps;
+    items: MenuOptionProps;
+  }) => {
+    return selectedItems.map((item) => item.label).join(", ");
+  };
 
   return (
     <div>
@@ -35,13 +54,21 @@ export const ToolbarFilter = ({
         as="div"
         type="select"
         removable={removable}
-        active={Array.isArray(value) ? value.length > 0 : typeof value !== 'undefined'}
+        active={
+          Array.isArray(value) ? value.length > 0 : typeof value !== "undefined"
+        }
         onRemove={onRemove}
       >
         {valueLabel || label}
       </ToolbarButton>
       <div className={styles.dropdown}>
-        <ToolbarOptions name={name} value={value} items={items} multiple={multiple} onChange={onChange} />
+        <ToolbarOptions
+          name={name}
+          value={value}
+          items={items}
+          multiple={multiple}
+          onChange={onChange}
+        />
       </div>
     </div>
   );
