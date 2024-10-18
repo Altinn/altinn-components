@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 1rem;
+  padding: 1rem;
+}
+
+/* theme */
+
+.header[data-color="light"] {
+  background-color: var(--global-background-default);
+}
+
+.header[data-color="dark"] {
+  background-color: var(--global-base-default);
+  color: #fff;
+}

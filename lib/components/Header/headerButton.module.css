@@ -1,0 +1,35 @@
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.625rem;
+  background-color: var(--global-base-default);
+  color: white;
+  padding: 0.625rem;
+  border-radius: 4px;
+}
+
+.label {
+  font-size: 1.125rem;
+  font-weight: 500;
+  padding: 0.25rem;
+}
+
+.icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  font-size: 1.5rem;
+}
+
+.loginIcon {
+  background-color: white;
+  color: black;
+}
+
+.closeIcon {
+  border: 1px solid white;
+}

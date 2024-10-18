@@ -1,0 +1,60 @@
+import type { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
+
+import { AccountMenu } from "./AccountMenu";
+
+const meta = {
+  title: "Header/AccountMenu",
+  component: AccountMenu,
+  tags: ["autodocs"],
+  parameters: {},
+  args: {
+    items: [
+      {
+        size: "lg",
+        icon: "inbox",
+        label: "Innboks",
+      },
+      {
+        size: "lg",
+        icon: "settings",
+        label: "Settings",
+      },
+    ],
+  },
+} satisfies Meta<typeof AccountMenu>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {},
+};
+
+export const Person: Story = {
+  args: {
+    account: {
+      type: "person",
+      name: "Aurora Mikalsen",
+    },
+  },
+};
+
+export const Company: Story = {
+  args: {
+    account: {
+      type: "company",
+      name: "Bergen bar",
+    },
+  },
+};
+
+export const Open: Story = {
+  args: {
+    open: true,
+    account: {
+      type: "company",
+      name: "Bergen bar",
+    },
+  },
+};

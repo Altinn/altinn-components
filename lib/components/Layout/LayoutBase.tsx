@@ -1,0 +1,30 @@
+import { ReactNode } from "react";
+import styles from "./layout.module.css";
+
+export type LayoutTheme = "global" | "neutral" | "company" | "person";
+
+export interface LayoutProps {
+  theme?: LayoutTheme;
+  children?: ReactNode;
+}
+
+/**
+ * Base layout container where you can set the application theme colors.
+ *
+ * Anatomy of a layout:
+ * - LayoutBase
+ * - - Header
+ * - - LayoutBody
+ * - - - LayoutSidebar
+ * - - - LayoutContent
+ * - - Footer
+ *
+ */
+
+export const LayoutBase = ({ theme, children }: LayoutProps) => {
+  return (
+    <div className={styles.base} data-theme={theme}>
+      {children}
+    </div>
+  );
+};
