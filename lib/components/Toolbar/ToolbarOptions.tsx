@@ -1,28 +1,19 @@
-import { ChangeEvent } from "react";
-import { MenuBase, MenuGroup, MenuOption, MenuOptionProps } from "../Menu";
+import type { ChangeEventHandler} from "react";
+import {MenuBase, MenuGroup, MenuOption, type MenuOptionProps} from "../Menu";
 
 export interface ToolbarOptionsProps {
-  name?: string;
-  value?: string | number | (string | number)[];
-  label?: string;
-  multiple?: boolean;
-  items?: MenuOptionProps[];
-  onChange?: ChangeEvent;
+  options: MenuOptionProps[];
+  onChange?: ChangeEventHandler;
 }
 
-export const ToolbarOptions = ({
-  name = "filter",
-  value,
-  items,
-  multiple,
-  onChange,
-}: ToolbarOptionsProps) => {
-  const groups = items.reduce((acc, item) => {
-    const group = item.group;
+export const ToolbarOptions = ({  options, onChange }: ToolbarOptionsProps) => {
+  const groups: { [key: string]: MenuOptionProps[] } = options.reduce<{ [key: string]: MenuOptionProps[] }>((acc, option) => {
+    const group = option.group;
+
     if (!acc[group]) {
       acc[group] = [];
     }
-    acc[group].push(item);
+    acc[group].push(option);
     return acc;
   }, {});
 
@@ -34,14 +25,7 @@ export const ToolbarOptions = ({
             {groups[key]?.map((item, index) => {
               return (
                 <MenuOption
-                  key={"filter-item" + index}
-                  name={name}
-                  type={multiple ? "checkbox" : "radio"}
-                  selected={
-                    Array.isArray(value)
-                      ? value.includes(item.value)
-                      : value === item.value
-                  }
+                  key={'filter-item' + index}
                   onChange={onChange}
                   {...item}
                 />

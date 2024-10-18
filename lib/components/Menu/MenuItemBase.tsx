@@ -1,4 +1,4 @@
-import { ReactNode, ElementType } from 'react';
+import type { ReactNode, ElementType } from 'react';
 import { ButtonBase } from '../Button';
 import { Badge } from '../Badge';
 import { Icon } from '../Icon';
@@ -11,8 +11,8 @@ export interface MenuItemBaseProps {
   as?: ElementType;
   children?: ReactNode;
   size?: MenuItemSize;
-  linkIcon: string;
-  badge?: string | number;
+  linkIcon?: string;
+  badge?: string | number | undefined;
   collapsible?: boolean;
   expanded?: boolean;
   selected?: boolean;
@@ -32,7 +32,7 @@ export const MenuItemBase = ({
   className,
   children,
   ...rest
-}) => {
+}: MenuItemBaseProps) => {
   if (collapsible && expanded) {
     linkIcon = 'chevron-up';
   } else if (collapsible) {

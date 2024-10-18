@@ -1,18 +1,19 @@
-import type { ChangeEvent, MouseEventHandler } from "react";
-import { ToolbarButton } from "./ToolbarButton";
-import { ToolbarOptions } from "./ToolbarOptions";
-import type { MenuOptionProps } from "../Menu";
+import type {ChangeEventHandler, MouseEventHandler} from "react";
+import {ToolbarButton} from "./ToolbarButton";
+import {ToolbarOptions} from "./ToolbarOptions";
+import type {MenuOptionProps, MenuOptionType} from "../Menu";
 import styles from "./toolbar.module.css";
 
 export interface ToolbarFilterProps {
   removable?: boolean;
   name?: string;
   value?: string | number | (string | number)[];
-  items?: MenuOptionProps[];
+  items: MenuOptionProps[];
   label?: string;
+  getSelectedLabel?: (options: MenuOptionProps[]) => string;
   multiple?: boolean;
   className?: string;
-  onChange?: ChangeEvent;
+  onChange?: ChangeEventHandler;
   onRemove?: MouseEventHandler;
 }
 
@@ -25,28 +26,24 @@ export const ToolbarFilter = ({
   multiple,
   onChange,
   onRemove,
+  getSelectedLabel,
 }: ToolbarFilterProps) => {
-  const selectedLabels = items
-    ?.filter((item) => value?.includes(item?.value))
-    .map((item) => item?.label);
-
-  let valueLabel;
-
-  if (selectedLabels?.length > 2) {
-    valueLabel = selectedLabels?.length + " ting";
-  } else {
-    valueLabel = selectedLabels?.length && selectedLabels?.join(", ");
-  }
-
-  const getSelectedLabel = ({
-    selectedItems = [],
-    items = [],
-  }: {
-    selectedItems: MenuOptionProps;
-    items: MenuOptionProps;
-  }) => {
-    return selectedItems.map((item) => item.label).join(", ");
+  const defaultGetSelectedValue = (options: MenuOptionProps[] = []) => {
+    return options
+      .filter((item) => item.checked)
+      .map((item) => item.label)
+      .join(', ');
   };
+
+  const options = (items ?? []).map(
+    (item): MenuOptionProps => ({
+      ...item,
+      name,
+      type: multiple ? 'checkbox' : ('radio' as MenuOptionType),
+      checked: Array.isArray(value) ? value.includes(item.value) : item.value === value,
+    }),
+  );
+  const valueLabel = getSelectedLabel?.(options) || defaultGetSelectedValue(options);
 
   return (
     <div>
@@ -54,21 +51,13 @@ export const ToolbarFilter = ({
         as="div"
         type="select"
         removable={removable}
-        active={
-          Array.isArray(value) ? value.length > 0 : typeof value !== "undefined"
-        }
+        active={Array.isArray(value) ? value.length > 0 : typeof value !== 'undefined'}
         onRemove={onRemove}
       >
         {valueLabel || label}
       </ToolbarButton>
       <div className={styles.dropdown}>
-        <ToolbarOptions
-          name={name}
-          value={value}
-          items={items}
-          multiple={multiple}
-          onChange={onChange}
-        />
+        <ToolbarOptions options={options} onChange={onChange} />
       </div>
     </div>
   );
