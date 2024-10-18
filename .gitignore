@@ -400,5 +400,4 @@ FodyWeavers.xsd
 *storybook.log
 
 .idea/
-.storybook/
 dist/
