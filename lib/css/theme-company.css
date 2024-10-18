@@ -1,0 +1,15 @@
+[data-theme="company"] {
+  --theme-background-default: var(--company-background-default);
+  --theme-background-subtle: var(--company-background-subtle);
+  --theme-base-active: var(--company-base-active);
+  --theme-base-default: var(--company-base-default);
+  --theme-base-hover: var(--company-base-hover);
+  --theme-border-default: var(--company-border-default);
+  --theme-border-strong: var(--company-border-strong);
+  --theme-border-subtle: var(--company-border-subtle);
+  --theme-surface-active: var(--company-surface-active);
+  --theme-surface-default: var(--company-surface-default);
+  --theme-surface-hover: var(--company-surface-hover);
+  --theme-text-default: var(--company-text-default);
+  --theme-text-subtle: var(--company-text-subtle);
+}

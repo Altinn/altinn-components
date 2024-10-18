@@ -1,0 +1,121 @@
+.item {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+  border: 0;
+  user-select: none;
+  cursor: pointer;
+}
+
+.item:hover {
+  background-color: var(--theme-surface-default);
+}
+
+.item[aria-selected="true"] {
+  background-color: var(--theme-background-default);
+}
+
+.item[aria-disabled="true"] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* size */
+
+.item[data-size="sm"] {
+  min-height: 44px;
+}
+
+/* content */
+
+.content {
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+  padding: 6px;
+}
+
+.media {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5%;
+  width: 2rem;
+  height: 2rem;
+}
+
+.media[data-size="lg"] {
+  width: 44px;
+  height: 44px;
+}
+
+.icon {
+  font-size: 1.5rem;
+}
+
+/* label */
+
+.label {
+  display: flex;
+  flex-direction: column;
+  padding: 0 0.25rem;
+}
+
+.label[data-size="sm"] {
+}
+
+.label[data-size="lg"] {
+}
+
+/* title */
+
+.title[data-size="lg"] {
+  font-size: 1.125rem;
+  line-height: 1.25;
+  font-weight: 500;
+}
+
+.title[data-size="sm"] {
+  font-size: 1rem;
+  line-height: 1.25;
+  font-weight: 500;
+}
+
+.description {
+  font-size: 14px;
+  color: var(--theme-text-subtle);
+}
+
+/* theme colors */
+
+[data-theme="global"] .media[data-bg="true"],
+[data-theme="neutral"] .media[data-bg="true"],
+[data-theme="person"] .media[data-bg="true"],
+[data-theme="company"] .media[data-bg="true"] {
+  background-color: var(--theme-background-default);
+  color: var(--theme-text-default);
+}
+
+[data-theme="person"] .media[data-bg="true"][data-size="lg"],
+[data-theme="company"] .media[data-bg="true"][data-size="lg"] {
+  background-color: var(--theme-base-hover);
+  color: var(--theme-background-default);
+}
+
+/* subtle */
+
+[data-theme="global"][data-color="subtle"] .media[data-bg="true"],
+[data-theme="person"][data-color="subtle"] .media[data-bg="true"],
+[data-theme="company"][data-color="subtle"] .media[data-bg="true"] {
+  background-color: var(--theme-surface-default);
+  color: var(--theme-text-default);
+}
+
+[data-theme="global"][data-color="subtle"] .item[aria-selected="true"],
+[data-theme="person"][data-color="subtle"] .item[aria-selected="true"],
+[data-theme="company"][data-color="subtle"] .item[aria-selected="true"] {
+  background-color: var(--theme-surface-default);
+  color: var(--theme-text-default);
+}

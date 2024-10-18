@@ -1,0 +1,16 @@
+.menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+.group + .group {
+  border-top: 1px solid;
+  border-color: var(--theme-border-subtle);
+}

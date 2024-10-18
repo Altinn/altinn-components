@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@navikt/aksel-icons':
+        specifier: ^7.2.1
+        version: 7.2.1
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
@@ -528,6 +531,9 @@ packages:
     peerDependencies:
       '@types/react': '>=16'
       react: '>=16'
+
+  '@navikt/aksel-icons@7.2.1':
+    resolution: {integrity: sha512-AQNR2ld5Kjx1A8LA7TnRxztbNf27UFMFt9vitSIlHGVHvWppSzIrxRhBESsldUDRxMQUjJrFY72o53whF0lhxQ==}
 
   '@rollup/pluginutils@5.1.2':
     resolution: {integrity: sha512-/FIdS3PyZ39bjZlwqFnWqCOVnW7o963LtKMwQOD0NhQqw22gSr2YY1afu3FxRip4ZCZNsD5jq6Aaz6QV3D/Njw==}
@@ -2394,6 +2400,8 @@ snapshots:
       '@types/mdx': 2.0.13
       '@types/react': 18.3.11
       react: 18.3.1
+
+  '@navikt/aksel-icons@7.2.1': {}
 
   '@rollup/pluginutils@5.1.2(rollup@4.24.0)':
     dependencies:

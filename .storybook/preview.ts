@@ -1,4 +1,4 @@
-import 'altinn-components/lib/css/global.css';
+import "../lib/css/global.css";
 
 /** @type { import('@storybook/react').Preview } */
 const preview = {
