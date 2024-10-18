@@ -12,12 +12,13 @@ export interface LayoutProps {
  * Base layout container where you can set the application theme colors.
  *
  * Anatomy of a layout:
+ *
  * - LayoutBase
- * - - Header
- * - - LayoutBody
- * - - - LayoutSidebar
- * - - - LayoutContent
- * - - Footer
+ *  - Header
+ *  - LayoutBody
+ *    - LayoutSidebar
+ *    - LayoutContent
+ *  - Footer
  *
  */
 
