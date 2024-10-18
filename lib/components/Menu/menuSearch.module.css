@@ -1,0 +1,29 @@
+.input {
+  width: 100%;
+  font-size: 0.875rem;
+  line-height: 1rem;
+  font-weight: normal;
+  padding: 9px;
+  border-radius: 2px;
+  border: 1px solid;
+  border-color: var(--theme-border-default);
+}
+
+.button[aria-selected="true"] {
+  background-color: var(--theme-background-subtle);
+  color: var(--theme-text-default);
+}
+
+.close {
+  padding: 6px 0;
+}
+
+.icon {
+  border-left: 1px solid;
+  border-color: var(--theme-background-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  padding: 0 6px;
+}

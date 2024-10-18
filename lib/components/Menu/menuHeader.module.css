@@ -1,0 +1,12 @@
+.header {
+  padding: 0.75rem 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.title {
+  font-size: 0.875rem;
+  font-weight: normal;
+  line-height: 1.25rem;
+  color: var(--theme-text-subtle);
+  margin: 0;
+}

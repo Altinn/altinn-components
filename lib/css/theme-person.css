@@ -1,0 +1,15 @@
+[data-theme="person"] {
+  --theme-background-default: var(--person-background-default);
+  --theme-background-subtle: var(--person-background-subtle);
+  --theme-base-active: var(--person-base-active);
+  --theme-base-default: var(--person-base-default);
+  --theme-base-hover: var(--person-base-hover);
+  --theme-border-default: var(--person-border-default);
+  --theme-border-strong: var(--person-border-strong);
+  --theme-border-subtle: var(--person-border-subtle);
+  --theme-surface-active: var(--person-surface-active);
+  --theme-surface-default: var(--person-surface-default);
+  --theme-surface-hover: var(--person-surface-hover);
+  --theme-text-default: var(--person-text-default);
+  --theme-text-subtle: var(--person-text-subtle);
+}
