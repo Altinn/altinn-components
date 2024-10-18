@@ -1,24 +1,30 @@
-import { useState, useEffect } from 'react';
-import { ToolbarBase } from './ToolbarBase';
-import { ToolbarItem, ToolbarItemProps } from './ToolbarItem';
-import { ToolbarAdd } from './ToolbarAdd';
-import { getQueryParams } from './query';
+import { useState, useEffect } from "react";
+import { ToolbarBase } from "./ToolbarBase";
+import { ToolbarItem, ToolbarItemProps } from "./ToolbarItem";
+import { ToolbarAdd } from "./ToolbarAdd";
+import { getQueryParams } from "./query";
 
 export interface ToolbarProps {
   items?: ToolbarItemProps[];
 }
 
 export const Toolbar = ({ items, onQuery }: ToolbarProps) => {
+  const [openId, setOpenId] = useState(null);
   const [byId, setById] = useState({});
 
   useEffect(() => {
     items?.map((item, index) => {
-      const id = item?.name || ['filter', index].join('-');
+      const id = item?.name || ["toolbar", index].join("-");
 
       setById((prevState) => {
         return {
           ...prevState,
-          [id]: { ...item, id, order: index + 1, expanded: item?.expanded },
+          [id]: {
+            ...item,
+            id,
+            hidden: item.hidden ? true : false,
+            order: index + 1,
+          },
         };
       });
     });
@@ -44,7 +50,7 @@ export const Toolbar = ({ items, onQuery }: ToolbarProps) => {
 
     setById((prevState) => {
       const prevValue = prevState[name]?.value || [];
-      const nextValue = type === 'checkbox' ? [...prevValue, value] : value;
+      const nextValue = type === "checkbox" ? [...prevValue, value] : value;
       return {
         ...prevState,
         [name]: {
@@ -61,7 +67,8 @@ export const Toolbar = ({ items, onQuery }: ToolbarProps) => {
     const value = event?.target?.value;
     setById((prevState) => {
       const prevValue = prevState[name]?.value || [];
-      const nextValue = type === 'checkbox' ? prevValue?.filter((v) => v !== value) : null;
+      const nextValue =
+        type === "checkbox" ? prevValue?.filter((v) => v !== value) : null;
       return {
         ...prevState,
         [name]: {
@@ -80,6 +87,15 @@ export const Toolbar = ({ items, onQuery }: ToolbarProps) => {
     }
   };
 
+  const onToggle = ({ id }) => {
+    setOpenId((prevState) => {
+      if (prevState === id) {
+        return null;
+      }
+      return id;
+    });
+  };
+
   const onAdd = ({ id }) => {
     setById((prevState) => {
       const keys = Object.values(prevState)?.filter((item) => item.expanded);
@@ -87,12 +103,13 @@ export const Toolbar = ({ items, onQuery }: ToolbarProps) => {
         ...prevState,
         [id]: {
           ...prevState[id],
+          hidden: false,
           removable: true,
-          expanded: true,
           order: keys?.length + 1,
         },
       };
     });
+    setOpenId(id);
   };
 
   const onRemove = ({ id }) => {
@@ -101,7 +118,7 @@ export const Toolbar = ({ items, onQuery }: ToolbarProps) => {
         ...prevState,
         [id]: {
           ...prevState[id],
-          expanded: false,
+          hidden: true,
           value: null,
           order: null,
         },
@@ -109,25 +126,40 @@ export const Toolbar = ({ items, onQuery }: ToolbarProps) => {
     });
   };
 
-  const expandedItems = Object.values(byId)?.filter((item) => item.expanded);
+  const visibleItems = Object.values(byId)?.filter((item) => !item.hidden);
 
-  const collapsedItems = Object.values(byId)
-    ?.filter((item) => !item.expanded)
+  const hiddenItems = Object.values(byId)
+    ?.filter((item) => item.hidden)
     ?.map((item) => {
       return {
         ...item,
-        onChange: onChange,
         onClick: () => onAdd(item),
-        onRemove: () => onRemove(item),
       };
     });
 
   return (
     <ToolbarBase>
-      {expandedItems?.map((item, index) => {
-        return <ToolbarItem {...item} onChange={onChange} />;
+      {visibleItems?.map((item, index) => {
+        return (
+          <ToolbarItem
+            key={item.id}
+            expanded={item?.id === openId}
+            onToggle={() => onToggle(item)}
+            onRemove={() => onRemove(item)}
+            onChange={onChange}
+            {...item}
+          />
+        );
       })}
-      {collapsedItems?.length ? <ToolbarAdd items={collapsedItems} /> : ''}
+      {hiddenItems?.length ? (
+        <ToolbarAdd
+          expanded={openId === "add"}
+          onToggle={() => onToggle({ id: "add" })}
+          items={hiddenItems}
+        />
+      ) : (
+        ""
+      )}
     </ToolbarBase>
   );
 };

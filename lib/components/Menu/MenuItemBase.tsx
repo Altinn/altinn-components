@@ -1,11 +1,11 @@
-import type { ReactNode, ElementType } from 'react';
-import { ButtonBase } from '../Button';
-import { Badge } from '../Badge';
-import { Icon } from '../Icon';
-import styles from './menuItem.module.css';
-import cx from 'classnames';
+import type { ReactNode, ElementType } from "react";
+import { ButtonBase } from "../Button";
+import { Badge } from "../Badge";
+import { Icon } from "../Icon";
+import styles from "./menuItem.module.css";
+import cx from "classnames";
 
-export type MenuItemSize = 'sm' | 'md' | 'lg';
+export type MenuItemSize = "sm" | "md" | "lg";
 
 export interface MenuItemBaseProps {
   as?: ElementType;
@@ -21,7 +21,7 @@ export interface MenuItemBaseProps {
 }
 
 export const MenuItemBase = ({
-  as = 'a',
+  as = "a",
   size,
   linkIcon,
   badge,
@@ -34,11 +34,11 @@ export const MenuItemBase = ({
   ...rest
 }: MenuItemBaseProps) => {
   if (collapsible && expanded) {
-    linkIcon = 'chevron-up';
+    linkIcon = "chevron-up";
   } else if (collapsible) {
-    linkIcon = 'chevron-down';
+    linkIcon = "chevron-down";
   } else if (linkIcon) {
-    linkIcon = 'chevron-right';
+    linkIcon = "chevron-right";
   }
 
   return (
@@ -50,10 +50,17 @@ export const MenuItemBase = ({
       className={cx(styles?.item, className)}
       {...rest}
     >
-      <div className={styles.content}>{children}</div>
+      <div className={styles.content}>
+        {children}
+
+        {badge ? <Badge>{badge}</Badge> : ""}
+      </div>
       <div className={styles?.action}>
-        {badge ? <Badge>{badge}</Badge> : ''}
-        {linkIcon ? <Icon name={linkIcon} className={styles?.actionIcon} /> : ''}
+        {linkIcon ? (
+          <Icon name={linkIcon} className={styles?.actionIcon} />
+        ) : (
+          ""
+        )}
       </div>
     </ButtonBase>
   );

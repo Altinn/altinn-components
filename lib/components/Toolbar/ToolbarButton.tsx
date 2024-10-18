@@ -1,8 +1,8 @@
-import type {ElementType, MouseEventHandler, ReactNode} from 'react';
-import {Button, ComboButton} from '../Button';
-import styles from './toolbarButton.module.css';
+import type { ElementType, MouseEventHandler, ReactNode } from "react";
+import { Button, ComboButton } from "../Button";
+import styles from "./toolbarButton.module.css";
 
-export type ToolbarButtonType = 'add' | 'select' | 'switch';
+export type ToolbarButtonType = "add" | "select" | "switch";
 
 export interface ToolbarButtonProps {
   as?: ElementType;
@@ -13,31 +13,31 @@ export interface ToolbarButtonProps {
   label?: string;
   active?: boolean;
   children?: ReactNode;
-  onClick?: MouseEventHandler;
+  onToggle?: MouseEventHandler;
   onRemove?: MouseEventHandler;
 }
 
 export const ToolbarButton = ({
-  type = 'select',
+  type = "select",
   selected = false,
   removable = false,
   label,
   active,
   children,
-  onClick,
+  onToggle,
   onRemove,
 }: ToolbarButtonProps) => {
   if (removable) {
     return (
       <ComboButton
         className={styles.remove}
-        variant={active ? 'solid' : 'outline'}
+        variant={active ? "solid" : "outline"}
         color="primary"
         size="sm"
         icon="x-mark"
         label={label}
         selected={selected}
-        onLabelClick={onClick}
+        onLabelClick={onToggle}
         onIconClick={onRemove}
       >
         {children || label}
@@ -45,7 +45,7 @@ export const ToolbarButton = ({
     );
   }
 
-  if (type === 'add') {
+  if (type === "add") {
     return (
       <Button
         reverse
@@ -55,7 +55,7 @@ export const ToolbarButton = ({
         icon="plus"
         label={label}
         selected={selected}
-        onClick={onClick}
+        onClick={onToggle}
       >
         {children || label}
       </Button>
@@ -64,13 +64,13 @@ export const ToolbarButton = ({
 
   return (
     <Button
-      variant={active ? 'solid' : 'outline'}
+      variant={active ? "solid" : "outline"}
       color="primary"
       size="sm"
       icon="chevron-up-down"
       label={label}
       selected={selected}
-      onClick={onClick}
+      onClick={onToggle}
     >
       {children || label}
     </Button>

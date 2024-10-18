@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import type { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 
-import { Toolbar } from './Toolbar';
+import { Toolbar } from "./Toolbar";
 
 const meta = {
-  title: 'Toolbar/Toolbar',
+  title: "Toolbar/Toolbar",
   component: Toolbar,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   parameters: {},
   args: {},
 } satisfies Meta<typeof Toolbar>;
@@ -18,93 +18,99 @@ export const Default: Story = {
   args: {
     items: [
       {
-        expanded: true,
-        label: 'Ola Nordmann',
-        value: 'ola',
+        type: "menu",
+        label: "Ola Nordmann",
+        value: "ola",
         items: [
           {
             avatar: {
-              name: 'Ola Nordmann',
+              name: "Ola Nordmann",
             },
-            label: 'Ola Nordmann',
+            label: "Ola Nordmann",
           },
           {
             avatar: {
-              name: 'Kari Nordmann',
+              name: "Kari Nordmann",
             },
-            label: 'Kari Nordmann',
+            label: "Kari Nordmann",
           },
         ],
       },
       {
-        name: 'from',
-        type: 'filter',
-        label: 'Velg avsender',
+        hidden: true,
+        removable: true,
+        name: "from",
+        type: "filter",
+        label: "Velg avsender",
         multiple: true,
         items: [
           {
-            value: 'skatt',
-            label: 'Skatteetaten',
+            value: "skatt",
+            label: "Skatteetaten",
           },
           {
-            value: 'brreg',
-            label: 'Brønnøysund',
+            value: "brreg",
+            label: "Brønnøysund",
           },
           {
-            value: 'nav',
-            label: 'NAV',
+            value: "nav",
+            label: "NAV",
           },
           {
-            value: 'oslo',
-            label: 'Oslo kommune',
+            value: "oslo",
+            label: "Oslo kommune",
           },
         ],
       },
       {
-        name: 'to',
-        type: 'filter',
-        label: 'Velg mottaker',
+        hidden: true,
+        removable: true,
+        name: "to",
+        type: "filter",
+        label: "Velg mottaker",
         items: [
           {
-            value: 'ola',
-            label: 'Ola Nordmann',
+            value: "ola",
+            label: "Ola Nordmann",
           },
           {
-            value: 'kari',
-            label: 'Kari Nordmann',
+            value: "kari",
+            label: "Kari Nordmann",
           },
         ],
       },
       {
-        name: 'status',
-        type: 'filter',
-        label: 'Velg status',
+        hidden: true,
+        removable: true,
+        name: "status",
+        type: "filter",
+        label: "Velg status",
         multiple: true,
         items: [
           {
             group: 1,
-            value: 'draft',
-            label: 'Utkast',
+            value: "draft",
+            label: "Utkast",
           },
           {
             group: 1,
-            value: 'sent',
-            label: 'Sendt',
+            value: "sent",
+            label: "Sendt",
           },
           {
             group: 2,
-            value: 'in-progress',
-            label: 'Under arbeid',
+            value: "in-progress",
+            label: "Under arbeid",
           },
           {
             group: 2,
-            value: 'requires-attention',
-            label: 'Krever handling',
+            value: "requires-attention",
+            label: "Krever handling",
           },
           {
             group: 2,
-            value: 'completed',
-            label: 'Avsluttet',
+            value: "completed",
+            label: "Avsluttet",
           },
         ],
       },
@@ -112,58 +118,91 @@ export const Default: Story = {
   },
 };
 
-export const ExpandedFilters: Story = {
+export const OpenFilters: Story = {
   args: {
     items: Default?.args?.items?.map((item) => {
       return {
         ...item,
-        expanded: true,
+        hidden: false,
       };
     }),
   },
 };
+
+export const StaticFilters: Story = {
+  args: {
+    items: Default?.args?.items?.map((item) => {
+      return {
+        ...item,
+        removable: false,
+        hidden: false,
+      };
+    }),
+  },
+};
+
+export const FiltersSearch: Story = {
+  args: {
+    items: [
+      ...Default?.args?.items?.map((item) => {
+        return {
+          ...item,
+          removable: false,
+          hidden: false,
+        };
+      }),
+      {
+        type: "search",
+      },
+    ],
+  },
+};
+
+/*
 
 export const ExpandedSearch: Story = {
   args: {
     items: [
       {
         expanded: true,
-        name: 'status',
-        type: 'filter',
-        label: 'Velg status',
+        name: "status",
+        type: "filter",
+        label: "Velg status",
         multiple: true,
         items: [
           {
             group: 1,
-            value: 'draft',
-            label: 'Utkast',
+            value: "draft",
+            label: "Utkast",
           },
           {
             group: 1,
-            value: 'sent',
-            label: 'Sendt',
+            value: "sent",
+            label: "Sendt",
           },
           {
             group: 2,
-            value: 'in-progress',
-            label: 'Under arbeid',
+            value: "in-progress",
+            label: "Under arbeid",
           },
           {
             group: 2,
-            value: 'requires-attention',
-            label: 'Krever handling',
+            value: "requires-attention",
+            label: "Krever handling",
           },
           {
             group: 2,
-            value: 'completed',
-            label: 'Avsluttet',
+            value: "completed",
+            label: "Avsluttet",
           },
         ],
       },
       {
-        type: 'search',
+        type: "search",
         expanded: true,
       },
     ],
   },
 };
+
+*/
