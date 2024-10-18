@@ -1,11 +1,11 @@
-import { ChangeEvent } from "react";
-import { MenuItemBase, MenuItemSize } from "./MenuItemBase";
-import { MenuItemLabel } from "./MenuItemLabel";
-import { CheckboxIcon } from "../Icon";
-import styles from "./menuOption.module.css";
+import { ChangeEvent } from 'react';
+import { MenuItemBase, MenuItemSize } from './MenuItemBase';
+import { MenuItemLabel } from './MenuItemLabel';
+import { CheckboxIcon } from '../Icon';
+import styles from './menuOption.module.css';
 
 export interface MenuOptionProps {
-  type?: "checkbox" | "radio";
+  type?: 'checkbox' | 'radio';
   size?: MenuItemSize;
   name?: string;
   value?: string | number;
@@ -18,8 +18,8 @@ export interface MenuOptionProps {
 }
 
 export const MenuOption = ({
-  type = "checkbox",
-  size = "sm",
+  type = 'checkbox',
+  size = 'sm',
   name,
   value,
   label,
@@ -30,13 +30,7 @@ export const MenuOption = ({
   onChange,
 }) => {
   return (
-    <MenuItemBase
-      className={styles?.label}
-      disabled={disabled}
-      selected={selected}
-      size={size}
-      as="label"
-    >
+    <MenuItemBase className={styles?.label} disabled={disabled} selected={selected} size={size} as="label">
       <input
         className={styles?.input}
         name={name}

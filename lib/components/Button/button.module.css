@@ -5,6 +5,10 @@
   border-color: var(--link-base-default);
 }
 
+.button:focus {
+  border-color: var(--link-base-active);
+}
+
 .button:hover {
   border-color: var(--link-base-hover);
 }

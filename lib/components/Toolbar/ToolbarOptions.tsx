@@ -1,5 +1,5 @@
-import { ChangeEvent } from "react";
-import { MenuBase, MenuGroup, MenuOption, MenuOptionProps } from "../Menu";
+import { ChangeEvent } from 'react';
+import { MenuBase, MenuGroup, MenuOption, MenuOptionProps } from '../Menu';
 
 export interface ToolbarOptionsProps {
   name?: string;
@@ -10,13 +10,7 @@ export interface ToolbarOptionsProps {
   onChange?: ChangeEvent;
 }
 
-export const ToolbarOptions = ({
-  name = "filter",
-  value,
-  items,
-  multiple,
-  onChange,
-}: ToolbarOptionsProps) => {
+export const ToolbarOptions = ({ name = 'filter', value, items, multiple, onChange }: ToolbarOptionsProps) => {
   const groups = items.reduce((acc, item) => {
     const group = item.group;
     if (!acc[group]) {
@@ -35,10 +29,10 @@ export const ToolbarOptions = ({
               <MenuOption
                 {...item}
                 name={name}
-                type={multiple ? "checkbox" : "radio"}
+                type={multiple ? 'checkbox' : 'radio'}
                 selected={value?.includes(item?.value) ? true : false}
                 onChange={onChange}
-                key={"filter-item" + index}
+                key={'filter-item' + index}
               ></MenuOption>
             ))}
           </MenuGroup>

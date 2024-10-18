@@ -6,6 +6,8 @@
   align-items: center;
   justify-content: center;
   color: var(--theme-base-default);
+  height: 1em;
+  width: 1em;
 }
 
 .checkbox[data-checked="true"] {

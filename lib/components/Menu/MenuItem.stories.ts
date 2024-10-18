@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 
-import { MenuItem } from "./MenuItem";
+import { MenuItem } from './MenuItem';
 
 const meta = {
-  title: "Menu/MenuItem",
+  title: 'Menu/MenuItem',
   component: MenuItem,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
   args: {},
 } satisfies Meta<typeof MenuItem>;
@@ -16,36 +16,36 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    icon: "inbox",
-    title: "Innboks",
+    icon: 'inbox',
+    title: 'Innboks',
   },
 };
 
 export const Account: Story = {
   args: {
-    size: "lg",
+    size: 'lg',
     avatar: {
-      type: "person",
-      name: "Eirik Horneland",
+      type: 'person',
+      name: 'Eirik Horneland',
     },
-    title: "Eirik Horneland",
-    description: "Født: XX.XX.XXXX",
+    title: 'Eirik Horneland',
+    description: 'Født: XX.XX.XXXX',
   },
 };
 
 export const Section: Story = {
   args: {
-    size: "lg",
-    icon: "inbox",
-    title: "Innboks",
+    size: 'lg',
+    icon: 'inbox',
+    title: 'Innboks',
   },
 };
 
 export const SectionBadge: Story = {
   args: {
-    size: "lg",
-    icon: "inbox",
-    title: "Innboks",
+    size: 'lg',
+    icon: 'inbox',
+    title: 'Innboks',
     badge: 4,
   },
 };

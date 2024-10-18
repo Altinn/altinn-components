@@ -1,14 +1,17 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { ComboButton } from "./ComboButton";
+import { ComboButton } from './ComboButton';
 
 const meta = {
-  title: "Button/ComboButton",
+  title: 'Button/ComboButton',
   component: ComboButton,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
-  args: {},
+  args: {
+    children: 'ComboButton',
+    icon: 'chevron-down',
+    size: 'sm',
+  },
 } satisfies Meta<typeof ComboButton>;
 
 export default meta;
@@ -20,18 +23,24 @@ export const Default: Story = {
 
 export const Solid: Story = {
   args: {
-    variant: "solid",
+    variant: 'solid',
   },
 };
 
 export const Outline: Story = {
   args: {
-    variant: "outline",
+    variant: 'outline',
   },
 };
 
 export const Text: Story = {
   args: {
-    variant: "text",
+    variant: 'text',
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    disabled: true,
   },
 };

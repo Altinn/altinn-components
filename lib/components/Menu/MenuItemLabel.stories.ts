@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 
-import { MenuItemLabel } from "./MenuItemLabel";
+import { MenuItemLabel } from './MenuItemLabel';
 
 const meta = {
-  title: "Menu/MenuItemLabel",
+  title: 'Menu/MenuItemLabel',
   component: MenuItemLabel,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
   args: {},
 } satisfies Meta<typeof MenuItemLabel>;
@@ -16,13 +16,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Icon: Story = {
   args: {
-    title: "Innboks",
+    title: 'Innboks',
   },
 };
 
 export const TitleDescription: Story = {
   args: {
-    title: "Ola Nordmann",
-    description: "Født: XX.XX.XXXX",
+    title: 'Ola Nordmann',
+    description: 'Født: XX.XX.XXXX',
   },
 };

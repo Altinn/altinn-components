@@ -1,63 +1,40 @@
-import { ReactNode, MouseEventHandler } from "react";
-import {
-  ButtonBase,
-  type ButtonColor,
-  type ButtonSize,
-  type ButtonVariant,
-} from "./ButtonBase";
-import { Icon } from "../Icon";
-import cx from "classnames";
+import cx from 'classnames';
+import {ButtonBase, type ButtonBaseProps} from './ButtonBase';
+import {Icon} from '../Icon';
 
-import styles from "./button.module.css";
+import styles from './button.module.css';
 
-export interface ButtonProps {
-  size?: ButtonSize;
-  variant?: ButtonVariant;
-  color?: ButtonColor;
-  reverse?: boolean;
-  selected?: boolean;
-  href?: string;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
-  icon?: string;
+export interface ButtonProps extends ButtonBaseProps {
   label?: string;
-  children?: ReactNode;
+  icon?: string;
+  reverse?: boolean;
 }
 
 export const Button = ({
-  size = "md",
-  variant,
-  color,
+  size = 'md',
   reverse = false,
   selected = false,
   icon,
-  label = "Label",
+  label,
   href,
-  onClick,
   children,
+  ...rest
 }: ButtonProps) => {
   return (
     <ButtonBase
       size={size}
-      variant={variant}
-      color={color}
       selected={selected}
       href={href}
-      onClick={onClick}
-      className={cx(
-        styles.button,
-        reverse ? styles.reverse : "",
-        styles[variant]
-      )}
+      className={cx(styles.button, { [styles.reverse]: reverse })}
+      {...rest}
     >
       <span className={styles.label} data-size={size}>
         {children || label}
       </span>
-      {icon ? (
+      {icon && (
         <span className={styles.icon} data-size={size}>
           <Icon name={icon} />
         </span>
-      ) : (
-        ""
       )}
     </ButtonBase>
   );

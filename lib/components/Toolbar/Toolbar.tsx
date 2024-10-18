@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { ToolbarBase } from "./ToolbarBase";
-import { ToolbarItem, ToolbarItemProps } from "./ToolbarItem";
-import { ToolbarAdd } from "./ToolbarAdd";
-import { getQueryParams } from "./query";
+import { useState, useEffect } from 'react';
+import { ToolbarBase } from './ToolbarBase';
+import { ToolbarItem, ToolbarItemProps } from './ToolbarItem';
+import { ToolbarAdd } from './ToolbarAdd';
+import { getQueryParams } from './query';
 
 export interface ToolbarProps {
   items?: ToolbarItemProps[];
@@ -13,7 +13,7 @@ export const Toolbar = ({ items, onQuery }: ToolbarProps) => {
 
   useEffect(() => {
     items?.map((item, index) => {
-      const id = item?.name || ["filter", index].join("-");
+      const id = item?.name || ['filter', index].join('-');
 
       setById((prevState) => {
         return {
@@ -44,7 +44,7 @@ export const Toolbar = ({ items, onQuery }: ToolbarProps) => {
 
     setById((prevState) => {
       const prevValue = prevState[name]?.value || [];
-      const nextValue = type === "checkbox" ? [...prevValue, value] : value;
+      const nextValue = type === 'checkbox' ? [...prevValue, value] : value;
       return {
         ...prevState,
         [name]: {
@@ -61,8 +61,7 @@ export const Toolbar = ({ items, onQuery }: ToolbarProps) => {
     const value = event?.target?.value;
     setById((prevState) => {
       const prevValue = prevState[name]?.value || [];
-      const nextValue =
-        type === "checkbox" ? prevValue?.filter((v) => v !== value) : null;
+      const nextValue = type === 'checkbox' ? prevValue?.filter((v) => v !== value) : null;
       return {
         ...prevState,
         [name]: {
@@ -128,7 +127,7 @@ export const Toolbar = ({ items, onQuery }: ToolbarProps) => {
       {expandedItems?.map((item, index) => {
         return <ToolbarItem {...item} onChange={onChange} />;
       })}
-      {collapsedItems?.length ? <ToolbarAdd items={collapsedItems} /> : ""}
+      {collapsedItems?.length ? <ToolbarAdd items={collapsedItems} /> : ''}
     </ToolbarBase>
   );
 };

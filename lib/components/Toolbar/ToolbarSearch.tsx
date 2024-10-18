@@ -1,10 +1,10 @@
-import styles from "./toolbarSearch.module.css";
+import styles from './toolbarSearch.module.css';
 
 export const ToolbarSearch = ({
   value,
   name,
-  placeholder = "Søk",
-  title = "Skriv inn søkekriterier",
+  placeholder = 'Søk',
+  title = 'Skriv inn søkekriterier',
   onChange,
 }: ToolbarSearch) => {
   return (

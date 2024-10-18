@@ -1,6 +1,6 @@
-import type { SVGAttributes } from "react";
-import { isValidElement, cloneElement } from "react";
-import type React from "react";
+import type { SVGAttributes } from 'react';
+import { isValidElement, cloneElement } from 'react';
+import type React from 'react';
 
 export type IconComponentProps = {
   svgIconComponent: React.ReactNode;
@@ -15,4 +15,4 @@ export const SvgIcon = ({ svgIconComponent, ...rest }: SvgIconProps) => {
   return null;
 };
 
-SvgIcon.displayName = "SvgIcon";
+SvgIcon.displayName = 'SvgIcon';

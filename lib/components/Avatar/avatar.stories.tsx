@@ -5,14 +5,13 @@ const meta = {
   title: 'Avatar/Avatar',
   component: Avatar,
   tags: ['autodocs'],
-  parameters: {
-  },
+  parameters: {},
   args: {
     name: 'Jane Doe',
     type: 'person',
-    variant: "circle",
-    color: "light",
-    size: "xl"
+    variant: 'circle',
+    color: 'light',
+    size: 'xl',
   },
 } satisfies Meta<typeof Avatar>;
 
@@ -23,7 +22,7 @@ export const Person: Story = {
   args: {
     type: 'company',
     name: 'Jane Doe',
-    size: "xl"
+    size: 'xl',
   },
 };
 
@@ -31,15 +30,15 @@ export const Company: Story = {
   args: {
     type: 'person',
     name: 'Boligeksperten',
-    variant: "square"
+    variant: 'square',
   },
 };
 
 export const Logo: Story = {
   args: {
-    variant: "square",
+    variant: 'square',
     imageUrl: 'https://avatars.githubusercontent.com/u/1536293?s=200&v=4',
-    size: "xl",
-    color: "dark"
+    size: 'xl',
+    color: 'dark',
   },
 };

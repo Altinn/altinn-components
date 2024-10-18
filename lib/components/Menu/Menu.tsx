@@ -1,9 +1,9 @@
-import { MenuBase } from "./MenuBase";
-import { MenuGroup } from "./MenuGroup";
-import { MenuItem, MenuItemProps } from "./MenuItem";
+import { MenuBase } from './MenuBase';
+import { MenuGroup } from './MenuGroup';
+import { MenuItem, MenuItemProps } from './MenuItem';
 
-export type MenuTheme = "global" | "neutral" | "company" | "person";
-export type MenuColor = "accent" | "subtle";
+export type MenuTheme = 'global' | 'neutral' | 'company' | 'person';
+export type MenuColor = 'accent' | 'subtle';
 
 export interface MenuProps {
   theme?: MenuTheme;
@@ -27,7 +27,7 @@ export const Menu = ({ theme, color, items }: MenuProps) => {
         return (
           <MenuGroup key={key}>
             {groups[key]?.map((item, index) => (
-              <MenuItem {...item} key={"menu-item" + index}></MenuItem>
+              <MenuItem {...item} key={'menu-item' + index}></MenuItem>
             ))}
           </MenuGroup>
         );

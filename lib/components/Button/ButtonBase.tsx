@@ -1,12 +1,13 @@
-import { ReactNode, ElementType, forwardRef } from "react";
-import styles from "./buttonBase.module.css";
-import cx from "classnames";
+import type { ElementType, ReactNode } from 'react';
+import cx from 'classnames';
 
-export type ButtonVariant = "solid" | "outline" | "dotted" | "text";
-export type ButtonSize = "sm" | "md" | "lg";
-export type ButtonColor = "sm" | "md" | "lg";
+import styles from './buttonBase.module.css';
 
-export interface ButtonBaseProps {
+export type ButtonVariant = 'solid' | 'outline' | 'dotted' | 'text';
+export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonColor = 'primary' | 'link';
+
+export interface ButtonBaseProps extends React.HTMLAttributes<HTMLButtonElement> {
   /**
    * Change the default rendered element for the one passed as a child, merging their props and behavior.
    * @default false
@@ -17,37 +18,35 @@ export interface ButtonBaseProps {
   color?: ButtonColor;
   selected?: boolean;
   disabled?: boolean;
-  children?: ReactNode;
+  href?: string;
   className?: string;
+  children?: ReactNode;
 }
 
-export const ButtonBase = forwardRef(function ButtonBase(
-  {
-    as,
-    className = "",
-    children,
-    variant,
-    size,
-    color,
-    selected,
-    disabled,
-    ...rest
-  },
-  ref
-) {
-  const Component = as || "button";
+export const ButtonBase = ({
+  as,
+  color,
+  className,
+  children,
+  disabled = false,
+  size,
+  selected,
+  variant,
+  ...rest
+}: ButtonBaseProps) => {
+  const Component = as || 'button';
   return (
     <Component
-      ref={ref}
       data-size={size}
       data-variant={variant}
       data-color={color}
       aria-selected={selected}
       aria-disabled={disabled}
+      disabled={disabled}
       className={cx(styles.button, className)}
       {...rest}
     >
       {children}
     </Component>
   );
-});
+};

@@ -1,14 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { Button } from "./Button";
+import { Button } from './Button';
 
 const meta = {
-  title: "Button/Button",
+  title: 'Button/Button',
   component: Button,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
-  args: {},
+  args: {
+    children: 'Button',
+  },
 } satisfies Meta<typeof Button>;
 
 export default meta;
@@ -20,18 +21,24 @@ export const Default: Story = {
 
 export const Solid: Story = {
   args: {
-    variant: "solid",
+    variant: 'solid',
   },
 };
 
 export const Outline: Story = {
   args: {
-    variant: "outline",
+    variant: 'outline',
   },
 };
 
 export const Text: Story = {
   args: {
-    variant: "text",
+    variant: 'text',
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    disabled: true
   },
 };

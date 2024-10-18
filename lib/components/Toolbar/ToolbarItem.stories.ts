@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 
-import { ToolbarItem } from "./ToolbarItem";
+import { ToolbarItem } from './ToolbarItem';
 
 const meta = {
-  title: "Toolbar/ToolbarItem",
+  title: 'Toolbar/ToolbarItem',
   component: ToolbarItem,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
   args: {},
 } satisfies Meta<typeof ToolbarItem>;
@@ -18,7 +18,7 @@ export const Default: Story = {
   args: {
     items: [
       {
-        label: "Velg dato",
+        label: 'Velg dato',
       },
     ],
   },

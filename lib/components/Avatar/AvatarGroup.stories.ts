@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
-import { AvatarGroup } from "./AvatarGroup";
+import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
+import { AvatarGroup } from './AvatarGroup';
 
 const meta = {
-  title: "Avatar/AvatarGroup",
+  title: 'Avatar/AvatarGroup',
   component: AvatarGroup,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
     //    layout: 'fullscreen',
@@ -21,16 +21,16 @@ export const People: Story = {
   args: {
     items: [
       {
-        type: "person",
-        name: "Albert Åberg",
+        type: 'person',
+        name: 'Albert Åberg',
       },
       {
-        type: "person",
-        name: "Birger Meling",
+        type: 'person',
+        name: 'Birger Meling',
       },
       {
-        type: "person",
-        name: "Celine Dion",
+        type: 'person',
+        name: 'Celine Dion',
       },
     ],
   },

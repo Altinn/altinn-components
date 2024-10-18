@@ -1,48 +1,43 @@
-import { MouseEventHandler, ElementType, ReactNode } from "react";
-import { Button, ComboButton } from "../Button";
-import styles from "./toolbarButton.module.css";
-export type ToolbarButtonType = "add" | "select" | "switch";
+import type {ElementType, MouseEventHandler, ReactNode} from 'react';
+import {Button, ComboButton} from '../Button';
+import styles from './toolbarButton.module.css';
+
+export type ToolbarButtonType = 'add' | 'select' | 'switch';
 
 export interface ToolbarButtonProps {
   as?: ElementType;
   type?: ToolbarButtonType;
   removable?: boolean;
-  expanded?: boolean;
   selected?: boolean;
   icon?: string;
   label?: string;
-  value?: string | number;
+  active?: boolean;
   children?: ReactNode;
   onClick?: MouseEventHandler;
   onRemove?: MouseEventHandler;
 }
 
 export const ToolbarButton = ({
-  type = "select",
-  expanded = false,
+  type = 'select',
   selected = false,
   removable = false,
-  icon,
-  label = "Label",
-  value,
+  label,
+  active,
   children,
   onClick,
   onRemove,
 }: ToolbarButtonProps) => {
-  // remove
-
   if (removable) {
     return (
       <ComboButton
         className={styles.remove}
-        variant={value ? "solid" : "outline"}
+        variant={active ? 'solid' : 'outline'}
         color="primary"
         size="sm"
         icon="x-mark"
         label={label}
-        expanded={expanded}
         selected={selected}
-        onClick={onClick}
+        onLabelClick={onClick}
         onIconClick={onRemove}
       >
         {children || label}
@@ -50,9 +45,7 @@ export const ToolbarButton = ({
     );
   }
 
-  // add
-
-  if (type === "add") {
+  if (type === 'add') {
     return (
       <Button
         reverse
@@ -61,7 +54,6 @@ export const ToolbarButton = ({
         size="sm"
         icon="plus"
         label={label}
-        expanded={expanded}
         selected={selected}
         onClick={onClick}
       >
@@ -72,12 +64,11 @@ export const ToolbarButton = ({
 
   return (
     <Button
-      variant={value ? "solid" : "outline"}
+      variant={active ? 'solid' : 'outline'}
       color="primary"
       size="sm"
       icon="chevron-up-down"
       label={label}
-      expanded={expanded}
       selected={selected}
       onClick={onClick}
     >

@@ -1,23 +1,16 @@
-import styles from "./checkboxIcon.module.css";
-import cx from "classnames";
+import cx from 'classnames';
+import styles from './checkboxIcon.module.css';
 
 export type CheckboxIconProps = {
-  width?: string;
-  height?: string;
-  checked?: boolean;
+  checked: boolean;
+  title?: string;
   className?: string;
 };
 
 /**
  * Checkbox for lists and list items
  */
-
-export const CheckboxIcon = ({
-  width = "1em",
-  height = "1em",
-  checked,
-  className,
-}: CheckboxIconProps) => {
+export const CheckboxIcon = ({ checked, title, className }: CheckboxIconProps) => {
   return (
     <div data-checked={checked} className={cx(styles.checkbox, className)}>
       <svg
@@ -27,14 +20,9 @@ export const CheckboxIcon = ({
         strokeWidth={2.5}
         stroke="currentColor"
         className={styles.icon}
-        width={width}
-        height={height}
       >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M4.5 12.75l6 6 9-13.5"
-        />
+        <title>{title}</title>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
       </svg>
     </div>
   );

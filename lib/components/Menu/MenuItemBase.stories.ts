@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 
-import { MenuItemBase } from "./MenuItemBase";
+import { MenuItemBase } from './MenuItemBase';
 
 const meta = {
-  title: "Menu/MenuItemBase",
+  title: 'Menu/MenuItemBase',
   component: MenuItemBase,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
   args: {},
 } satisfies Meta<typeof MenuItemBase>;
@@ -16,6 +16,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    children: "Children",
+    children: 'Children',
   },
 };

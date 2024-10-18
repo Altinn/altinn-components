@@ -1,4 +1,4 @@
-"use client"
+'use client';
 import cx from 'classnames';
 import { useState } from 'react';
 import { fromStringToColor } from './color';
@@ -8,7 +8,6 @@ type AvatarType = 'company' | 'person' | 'custom';
 type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 type AvatarVariant = 'square' | 'circle';
 type AvatarColor = 'dark' | 'light';
-
 
 /**
  * Props for the Avatar component.

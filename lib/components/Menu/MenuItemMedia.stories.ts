@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 
-import { MenuItemMedia } from "./MenuItemMedia";
+import { MenuItemMedia } from './MenuItemMedia';
 
 const meta = {
-  title: "Menu/MenuItemMedia",
+  title: 'Menu/MenuItemMedia',
   component: MenuItemMedia,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
   args: {},
 } satisfies Meta<typeof MenuItemMedia>;
@@ -16,15 +16,15 @@ type Story = StoryObj<typeof meta>;
 
 export const Icon: Story = {
   args: {
-    icon: "inbox",
+    icon: 'inbox',
   },
 };
 
 export const Avatar: Story = {
   args: {
     avatar: {
-      type: "company",
-      name: "Bergen Bar",
+      type: 'company',
+      name: 'Bergen Bar',
     },
   },
 };
@@ -34,16 +34,16 @@ export const AvatarGroup: Story = {
     avatarGroup: {
       items: [
         {
-          type: "company",
-          name: "Bergen Bar",
+          type: 'company',
+          name: 'Bergen Bar',
         },
         {
-          type: "company",
-          name: "Oslolosens landhandleri",
+          type: 'company',
+          name: 'Oslolosens landhandleri',
         },
         {
-          type: "company",
-          name: "Drammens Teater",
+          type: 'company',
+          name: 'Drammens Teater',
         },
       ],
     },

@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import styles from "./toolbar.module.css";
+import { ReactNode } from 'react';
+import styles from './toolbar.module.css';
 
 export interface PageToolbarProps {
   children: ReactNode;

@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 
-import { ToolbarSearch } from "./ToolbarSearch";
+import { ToolbarSearch } from './ToolbarSearch';
 
 const meta = {
-  title: "Toolbar/ToolbarSearch",
+  title: 'Toolbar/ToolbarSearch',
   component: ToolbarSearch,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
   args: {},
 } satisfies Meta<typeof ToolbarSearch>;

@@ -1,6 +1,6 @@
-import { ToolbarButton } from "./ToolbarButton";
-import { Menu, MenuItemProps } from "../Menu";
-import styles from "./toolbar.module.css";
+import { ToolbarButton } from './ToolbarButton';
+import { Menu, type MenuItemProps } from '../Menu';
+import styles from './toolbar.module.css';
 
 export interface FilterMenuProps {
   label: string;
@@ -9,18 +9,13 @@ export interface FilterMenuProps {
   className: string;
 }
 
-export const ToolbarAdd = ({
-  label = "Legg til",
-  value,
-  anchor = "bottom start",
-  items,
-}: FilterMenuProps) => {
+export const ToolbarAdd = ({ label = 'Legg til', value, items }: FilterMenuProps) => {
   return (
     <div>
       <ToolbarButton as="div" type="add" value={value}>
         {label}
       </ToolbarButton>
-      <div className={styles?.dropdown} anchor={anchor}>
+      <div className={styles?.dropdown}>
         <Menu theme="global" color="subtle" items={items} />
       </div>
     </div>

@@ -24,6 +24,12 @@
 
   /* user select none */
   user-select: none;
+  cursor: pointer;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 /* solid */
