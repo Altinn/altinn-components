@@ -1,23 +1,21 @@
-import {ToolbarSearch} from './ToolbarSearch';
-import {ToolbarFilter} from './ToolbarFilter';
-import {ToolbarMenu} from './ToolbarMenu';
-import {ToolbarButton} from "./ToolbarButton.tsx";
+import {ToolbarSearch, type ToolbarSearchProps} from './ToolbarSearch';
+import {ToolbarFilter, type ToolbarFilterProps} from './ToolbarFilter';
+import {ToolbarMenu, type ToolbarMenuProps} from './ToolbarMenu';
 
-export type ToolbarItemType = 'search' | 'filter' | 'menu';
-
-export interface ToolbarItemProps {
-  type?: ToolbarItemType;
-}
+export type ToolbarItemProps =
+  | ({ type: 'filter', id: string } & ToolbarFilterProps)
+  | ({ type: 'menu', id: string } & ToolbarMenuProps)
+  | ({ type: 'search', id: string } & ToolbarSearchProps);
 
 export const ToolbarItem = ({ type, ...rest }: ToolbarItemProps) => {
   switch (type) {
     case 'search':
-      return <ToolbarSearch {...rest} />;
+      return <ToolbarSearch {...(rest as ToolbarSearchProps)} />;
     case 'filter':
-      return <ToolbarFilter {...rest} />;
+      return <ToolbarFilter {...(rest as ToolbarFilterProps)} />;
     case 'menu':
-      return <ToolbarMenu {...rest} />;
+      return <ToolbarMenu {...(rest as ToolbarMenuProps)} />;
     default:
-      return <ToolbarButton {...rest} />;
+      return <ToolbarMenu {...(rest as ToolbarMenuProps)} />;
   }
 };

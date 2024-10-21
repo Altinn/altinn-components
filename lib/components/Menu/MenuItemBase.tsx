@@ -1,17 +1,17 @@
-import type { ReactNode, ElementType } from "react";
-import { ButtonBase } from "../Button";
-import { Badge } from "../Badge";
-import { Icon } from "../Icon";
-import styles from "./menuItem.module.css";
-import cx from "classnames";
+import type {ElementType, ReactNode} from 'react';
+import {ButtonBase} from '../Button';
+import {Badge} from '../Badge';
+import {Icon, type iconsMap} from '../Icon';
+import styles from './menuItem.module.css';
+import cx from 'classnames';
 
-export type MenuItemSize = "sm" | "md" | "lg";
+export type MenuItemSize = 'sm' | 'md' | 'lg';
 
 export interface MenuItemBaseProps {
   as?: ElementType;
   children?: ReactNode;
   size?: MenuItemSize;
-  linkIcon?: string;
+  linkIcon?: keyof typeof iconsMap;
   badge?: string | number | undefined;
   collapsible?: boolean;
   expanded?: boolean;
@@ -21,7 +21,7 @@ export interface MenuItemBaseProps {
 }
 
 export const MenuItemBase = ({
-  as = "a",
+  as = 'a',
   size,
   linkIcon,
   badge,
@@ -33,13 +33,8 @@ export const MenuItemBase = ({
   children,
   ...rest
 }: MenuItemBaseProps) => {
-  if (collapsible && expanded) {
-    linkIcon = "chevron-up";
-  } else if (collapsible) {
-    linkIcon = "chevron-down";
-  } else if (linkIcon) {
-    linkIcon = "chevron-right";
-  }
+  const applicableIcon =
+    collapsible && expanded ? 'chevron-up' : collapsible ? 'chevron-down' : linkIcon ? 'chevron-right' : linkIcon;
 
   return (
     <ButtonBase
@@ -52,15 +47,10 @@ export const MenuItemBase = ({
     >
       <div className={styles.content}>
         {children}
-
-        {badge ? <Badge>{badge}</Badge> : ""}
+        {badge && <Badge>{badge}</Badge>}
       </div>
       <div className={styles?.action}>
-        {linkIcon ? (
-          <Icon name={linkIcon} className={styles?.actionIcon} />
-        ) : (
-          ""
-        )}
+        {applicableIcon && <Icon name={applicableIcon} className={styles?.actionIcon} />}
       </div>
     </ButtonBase>
   );

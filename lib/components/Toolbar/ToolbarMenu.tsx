@@ -1,15 +1,15 @@
-import { MouseEventHandler } from "react";
+import type { MouseEventHandler } from "react";
 import { ToolbarButton } from "./ToolbarButton";
 import { Menu, type MenuItemProps } from "../Menu";
 import styles from "./toolbar.module.css";
 
 export interface ToolbarMenuProps {
-  expanded: boolean;
   onToggle?: MouseEventHandler;
   label: string;
   value: string | number;
   items: MenuItemProps[];
-  className: string;
+  expanded?: boolean;
+  className?: string;
 }
 
 export const ToolbarMenu = ({
@@ -25,7 +25,7 @@ export const ToolbarMenu = ({
         as="div"
         type="switch"
         onToggle={onToggle}
-        active={value ? true : false}
+        active={!!value}
       >
         {label}
       </ToolbarButton>

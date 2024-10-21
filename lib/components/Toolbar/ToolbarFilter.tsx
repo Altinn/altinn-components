@@ -1,7 +1,7 @@
 import type { ChangeEventHandler, MouseEventHandler } from "react";
 import { ToolbarButton } from "./ToolbarButton";
 import { ToolbarOptions } from "./ToolbarOptions";
-import type { MenuOptionProps, MenuOptionType } from "../Menu";
+import type { MenuOptionProps } from "../Menu";
 import styles from "./toolbar.module.css";
 
 export interface ToolbarFilterProps {
@@ -43,12 +43,12 @@ export const ToolbarFilter = ({
     (item): MenuOptionProps => ({
       ...item,
       name,
-      type: multiple ? "checkbox" : ("radio" as MenuOptionType),
       checked: Array.isArray(value)
         ? value.includes(item.value)
         : item.value === value,
     })
   );
+
   const valueLabel =
     getSelectedLabel?.(options) || defaultGetSelectedValue(options);
 
@@ -67,7 +67,7 @@ export const ToolbarFilter = ({
         {valueLabel || label}
       </ToolbarButton>
       <div className={styles.dropdown} aria-expanded={expanded}>
-        <ToolbarOptions options={options} onChange={onChange} />
+        <ToolbarOptions options={options} onChange={onChange} multiple={multiple} />
       </div>
     </div>
   );

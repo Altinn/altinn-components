@@ -1,6 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
-
 import { ToolbarOptions } from "./ToolbarOptions";
 
 const meta = {
@@ -62,9 +60,12 @@ export const Radio: Story = {
 
 export const RadioCheckbox: Story = {
   args: {
-    groups: {
+    optionGroups: {
+      a: {
+        title: "Gruppens tittel A",
+      },
       b: {
-        title: "Gruppens tittel",
+        title: "Gruppens tittel B",
       },
     },
     options: [

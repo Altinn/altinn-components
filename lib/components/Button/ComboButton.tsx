@@ -7,7 +7,6 @@ import styles from './comboButton.module.css';
 
 export interface ComboButtonProps extends Omit<ButtonBaseProps, 'onClick'> {
   icon: string;
-  label?: string;
   onIconClick?: MouseEventHandler<HTMLButtonElement>;
   onLabelClick?: MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
@@ -18,7 +17,6 @@ export const ComboButton = ({
   variant = 'solid',
   color,
   selected = false,
-  label,
   icon,
   children,
   className,
@@ -39,7 +37,7 @@ export const ComboButton = ({
       </ButtonBase>
       <span data-size={size} className={styles.divider} />
       <ButtonBase size={size} onClick={onLabelClick} className={styles.label}>
-        {children || label}
+        {children}
       </ButtonBase>
     </ButtonBase>
   );

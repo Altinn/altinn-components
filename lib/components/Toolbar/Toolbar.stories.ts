@@ -1,6 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
-
 import { Toolbar } from "./Toolbar";
 
 const meta = {
@@ -19,6 +17,7 @@ export const Default: Story = {
     items: [
       {
         type: "menu",
+        id: "actor",
         label: "Ola Nordmann",
         value: "ola",
         items: [
@@ -37,9 +36,9 @@ export const Default: Story = {
         ],
       },
       {
-        hidden: true,
         removable: true,
         name: "from",
+        id: "sender",
         type: "filter",
         label: "Velg avsender",
         multiple: true,
@@ -63,10 +62,10 @@ export const Default: Story = {
         ],
       },
       {
-        hidden: true,
         removable: true,
         name: "to",
         type: "filter",
+        id: "receiver",
         label: "Velg mottaker",
         items: [
           {
@@ -80,35 +79,35 @@ export const Default: Story = {
         ],
       },
       {
-        hidden: true,
         removable: true,
         name: "status",
         type: "filter",
+        id: "status",
         label: "Velg status",
         multiple: true,
         items: [
           {
-            group: 1,
+            group: "1",
             value: "draft",
             label: "Utkast",
           },
           {
-            group: 1,
+            group: "1",
             value: "sent",
             label: "Sendt",
           },
           {
-            group: 2,
+            group: "2",
             value: "in-progress",
             label: "Under arbeid",
           },
           {
-            group: 2,
+            group: "2",
             value: "requires-attention",
             label: "Krever handling",
           },
           {
-            group: 2,
+            group: "2",
             value: "completed",
             label: "Avsluttet",
           },
@@ -148,7 +147,6 @@ export const FiltersSearch: Story = {
         return {
           ...item,
           removable: false,
-          hidden: false,
         };
       }),
       {

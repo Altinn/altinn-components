@@ -1,7 +1,6 @@
-import { ReactNode, ElementType, forwardRef } from 'react';
-import { AvatarProps } from '../Avatar';
-import { AvatarGroupProps } from '../AvatarGroup';
-import { MenuItemBase, MenuItemSize } from './MenuItemBase';
+import type { ReactNode, ElementType } from 'react';
+import type { AvatarGroupProps, AvatarProps } from '../Avatar';
+import { MenuItemBase, type MenuItemSize } from './MenuItemBase';
 import { MenuItemMedia } from './MenuItemMedia';
 import { MenuItemLabel } from './MenuItemLabel';
 
@@ -17,7 +16,6 @@ export interface MenuItemProps {
   label?: string;
   badge?: string;
   icon?: string;
-  badge?: string;
   avatar?: AvatarProps;
   avatarGroup?: AvatarGroupProps;
   children?: ReactNode;
@@ -26,7 +24,6 @@ export interface MenuItemProps {
 export const MenuItem = ({
   as = 'a',
   children,
-  href,
   selected,
   disabled,
   size = 'sm',
@@ -38,9 +35,9 @@ export const MenuItem = ({
   title,
   description,
   ...rest
-}) => {
+}: MenuItemProps) => {
   return (
-    <MenuItemBase as={as} href={href} size={size} badge={badge} selected={selected} disabled={disabled} {...rest}>
+    <MenuItemBase as={as} size={size} badge={badge} selected={selected} disabled={disabled} {...rest}>
       <MenuItemMedia size={size} icon={icon} avatar={avatar} avatarGroup={avatarGroup} />
       <MenuItemLabel title={title} description={description} size={size}>
         {label || children}

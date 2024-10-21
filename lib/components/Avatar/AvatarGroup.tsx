@@ -13,7 +13,7 @@ export interface AvatarGroupProps {
 export const AvatarGroup = ({ items, maxItems = 4, type, size = 'sm', className }: AvatarGroupProps) => {
   const slicedItems = items?.slice(0, maxItems);
 
-  if (items.length === 0) {
+  if (items?.length === 0) {
     return <div className={styles.avatarGroup} />;
   }
 

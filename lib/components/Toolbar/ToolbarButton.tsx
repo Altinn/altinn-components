@@ -10,7 +10,6 @@ export interface ToolbarButtonProps {
   removable?: boolean;
   selected?: boolean;
   icon?: string;
-  label?: string;
   active?: boolean;
   children?: ReactNode;
   onToggle?: MouseEventHandler;
@@ -21,12 +20,12 @@ export const ToolbarButton = ({
   type = "select",
   selected = false,
   removable = false,
-  label,
   active,
   children,
   onToggle,
   onRemove,
 }: ToolbarButtonProps) => {
+
   if (removable) {
     return (
       <ComboButton
@@ -35,12 +34,11 @@ export const ToolbarButton = ({
         color="primary"
         size="sm"
         icon="x-mark"
-        label={label}
         selected={selected}
         onLabelClick={onToggle}
         onIconClick={onRemove}
       >
-        {children || label}
+        {children}
       </ComboButton>
     );
   }
@@ -53,11 +51,10 @@ export const ToolbarButton = ({
         color="primary"
         size="sm"
         icon="plus"
-        label={label}
         selected={selected}
         onClick={onToggle}
       >
-        {children || label}
+        {children}
       </Button>
     );
   }
@@ -68,11 +65,10 @@ export const ToolbarButton = ({
       color="primary"
       size="sm"
       icon="chevron-up-down"
-      label={label}
       selected={selected}
       onClick={onToggle}
     >
-      {children || label}
+      {children}
     </Button>
   );
 };

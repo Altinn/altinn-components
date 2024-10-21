@@ -19,7 +19,7 @@ export const GlobalMenu: Story = {
     theme: "global",
     items: [
       {
-        group: 0,
+        group: "0",
         size: "lg",
         avatar: {
           name: "Herman Friele",
@@ -28,25 +28,25 @@ export const GlobalMenu: Story = {
         description: "Fødselsnr: XX.XX.XXXX",
       },
       {
-        group: 1,
+        group: "1",
         size: "lg",
         icon: "inbox",
         title: "Innboks",
       },
       {
-        group: 1,
+        group: "1",
         size: "lg",
         icon: "bookmark",
         title: "Tilganger",
       },
       {
-        group: 1,
+        group: "1",
         size: "lg",
         icon: "menu-grid",
         title: "Alle skjema",
       },
       {
-        group: 2,
+        group: "2",
         icon: "settings",
         title: "Innstillinger",
       },

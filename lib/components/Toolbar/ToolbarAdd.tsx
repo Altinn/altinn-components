@@ -1,14 +1,14 @@
-import { MouseEventHandler } from "react";
+import type { MouseEventHandler } from "react";
 import { ToolbarButton } from "./ToolbarButton";
 import { Menu, type MenuItemProps } from "../Menu";
 import styles from "./toolbar.module.css";
 
 export interface FilterMenuProps {
-  label: string;
   items: MenuItemProps[];
   expanded: boolean;
   onToggle?: MouseEventHandler;
-  className: string;
+  label?: string;
+  className?: string;
 }
 
 export const ToolbarAdd = ({

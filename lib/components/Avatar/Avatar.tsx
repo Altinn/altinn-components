@@ -4,15 +4,15 @@ import { useState } from 'react';
 import { fromStringToColor } from './color';
 import styles from './avatar.module.css';
 
-type AvatarType = 'company' | 'person' | 'custom';
-type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-type AvatarVariant = 'square' | 'circle';
-type AvatarColor = 'dark' | 'light';
+export type AvatarType = 'company' | 'person' | 'custom';
+export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type AvatarVariant = 'square' | 'circle';
+export type AvatarColor = 'dark' | 'light';
 
 /**
  * Props for the Avatar component.
  */
-interface AvatarProps {
+export interface AvatarProps {
   /** The name to display in the avatar. */
   name: string;
   /** The type of avatar. */

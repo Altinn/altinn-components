@@ -5,7 +5,6 @@ import {Icon} from '../Icon';
 import styles from './button.module.css';
 
 export interface ButtonProps extends ButtonBaseProps {
-  label?: string;
   icon?: string;
   reverse?: boolean;
 }
@@ -15,7 +14,6 @@ export const Button = ({
   reverse = false,
   selected = false,
   icon,
-  label,
   href,
   children,
   ...rest
@@ -29,7 +27,7 @@ export const Button = ({
       {...rest}
     >
       <span className={styles.label} data-size={size}>
-        {children || label}
+        {children}
       </span>
       {icon && (
         <span className={styles.icon} data-size={size}>

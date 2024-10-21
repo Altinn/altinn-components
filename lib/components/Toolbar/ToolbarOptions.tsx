@@ -1,57 +1,53 @@
-import type { ChangeEventHandler } from "react";
+import type {ChangeEventHandler} from "react";
 import {
-  MenuBase,
-  MenuGroup,
-  MenuOption,
-  type MenuOptionProps,
-  MenuHeader,
-  type MenuHeaderProps,
-  MenuSearch,
-  type MenuSearchProps,
+    MenuBase,
+    MenuGroup,
+    MenuHeader,
+    type MenuHeaderProps,
+    MenuOption,
+    type MenuOptionProps,
+    MenuSearch,
+    type MenuSearchProps,
 } from "../Menu";
 
 export interface ToolbarOptionsProps {
-  search?: MenuSearchProps;
-  groups: MenuHeaderProps[];
   options: MenuOptionProps[];
   onChange?: ChangeEventHandler;
+  search?: MenuSearchProps;
+  multiple?: boolean;
+  optionGroups?: { [key: string]: MenuHeaderProps };
 }
 
-export const ToolbarOptions = ({
-  search,
-  groups,
-  options,
-  onChange,
-}: ToolbarOptionsProps) => {
-  const sections: { [key: string]: MenuOptionProps[] } = options.reduce<{
-    [key: string]: MenuOptionProps[];
-  }>((acc, option) => {
-    const group = option.group;
+export const ToolbarOptions = ({ search, optionGroups, options, onChange, multiple = false }: ToolbarOptionsProps) => {
+  const sections = options.reduce(
+    (acc, option) => {
+      const group = option.group || '';
+      acc[group] = acc[group] || [];
+      acc[group].push(option);
+      return acc;
+    },
+    {} as Record<string, MenuOptionProps[]>,
+  );
 
-    if (!acc[group]) {
-      acc[group] = [];
-    }
-    acc[group].push(option);
-    return acc;
-  }, {});
+  const optionType = multiple ? 'checkbox' : 'radio';
 
   return (
     <MenuBase theme="global" color="subtle">
-      {search ? <MenuSearch {...search} /> : ""}
+      {search && <MenuSearch {...search} />}
       {Object.keys(sections)?.map((key) => {
-        const header = groups[key];
+        const headerTitle = optionGroups?.[key]?.title;
         return (
           <MenuGroup key={key}>
-            {header ? <MenuHeader {...header} /> : ""}
-            {sections[key]?.map((item, index) => {
-              return (
-                <MenuOption
-                  key={"filter-item" + item.value}
-                  onChange={onChange}
-                  {...item}
-                />
-              );
-            })}
+            {headerTitle && <MenuHeader title={headerTitle} />}
+            {sections[key]?.map((item) => (
+              <MenuOption
+                key={item.value}
+                onChange={onChange}
+                label={item.label}
+                type={optionType}
+                value={item.value}
+              />
+            ))}
           </MenuGroup>
         );
       })}
