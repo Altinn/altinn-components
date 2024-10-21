@@ -62,19 +62,18 @@ export const Radio: Story = {
 
 export const RadioCheckbox: Story = {
   args: {
-    groups: [
-      {
-        id: "b",
+    groups: {
+      b: {
         title: "Gruppens tittel",
       },
-    ],
+    },
     options: [
       {
         group: "a",
         name: "animal",
         type: "radio",
         label: "Katt",
-        value: "1",
+        value: "cat",
         checked: true,
       },
       {
@@ -82,20 +81,20 @@ export const RadioCheckbox: Story = {
         name: "animal",
         type: "radio",
         label: "Mus",
-        value: "1",
+        value: "mouse",
       },
       {
         group: "b",
         type: "checkbox",
         label: "Digdir",
-        value: "2",
+        value: "digdir",
       },
       {
         group: "b",
         type: "checkbox",
         checked: true,
         label: "Helstilsynet",
-        value: "3",
+        value: "helse",
       },
     ],
   },

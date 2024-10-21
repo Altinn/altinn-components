@@ -1,5 +1,6 @@
 import { MenuBase } from "./MenuBase";
 import { MenuGroup } from "./MenuGroup";
+import { MenuSearch, type MenuSearchProps } from "./MenuSearch";
 import { MenuHeader, type MenuHeaderProps } from "./MenuHeader";
 import { MenuItem, type MenuItemProps } from "./MenuItem";
 
@@ -9,11 +10,12 @@ export type MenuColor = "accent" | "subtle";
 export interface MenuProps {
   theme?: MenuTheme;
   color?: MenuColor;
-  groups: MenuHeaderProps[];
+  search?: MenuSearchProps;
+  groups?: MenuHeaderProps[];
   items?: MenuItemProps[];
 }
 
-export const Menu = ({ theme, color, groups, items }: MenuProps) => {
+export const Menu = ({ theme, color, search, groups, items }: MenuProps) => {
   const sections = items.reduce((acc, item) => {
     const group = item.group;
     if (!acc[group]) {
@@ -25,8 +27,9 @@ export const Menu = ({ theme, color, groups, items }: MenuProps) => {
 
   return (
     <MenuBase theme={theme} color={color}>
+      {search ? <MenuSearch {...search} /> : ""}
       {Object.keys(sections)?.map((key) => {
-        const header = groups?.find((item) => item.id === key);
+        const header = groups[key];
         return (
           <MenuGroup key={key}>
             {header ? <MenuHeader {...header} /> : ""}

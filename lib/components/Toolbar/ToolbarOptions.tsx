@@ -6,15 +6,19 @@ import {
   type MenuOptionProps,
   MenuHeader,
   type MenuHeaderProps,
+  MenuSearch,
+  type MenuSearchProps,
 } from "../Menu";
 
 export interface ToolbarOptionsProps {
+  search?: MenuSearchProps;
   groups: MenuHeaderProps[];
   options: MenuOptionProps[];
   onChange?: ChangeEventHandler;
 }
 
 export const ToolbarOptions = ({
+  search,
   groups,
   options,
   onChange,
@@ -33,15 +37,16 @@ export const ToolbarOptions = ({
 
   return (
     <MenuBase theme="global" color="subtle">
+      {search ? <MenuSearch {...search} /> : ""}
       {Object.keys(sections)?.map((key) => {
-        const header = groups?.find((item) => item.id === key);
+        const header = groups[key];
         return (
           <MenuGroup key={key}>
             {header ? <MenuHeader {...header} /> : ""}
             {sections[key]?.map((item, index) => {
               return (
                 <MenuOption
-                  key={"filter-item" + index}
+                  key={"filter-item" + item.value}
                   onChange={onChange}
                   {...item}
                 />

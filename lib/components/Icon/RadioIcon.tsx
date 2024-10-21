@@ -10,7 +10,7 @@ export type RadioIconProps = {
 /**
  * Radio icon for lists and list items
  */
-export const RadioIcon = ({ checked, title, className }: CheckboxIconProps) => {
+export const RadioIcon = ({ checked, title, className }: RadioIconProps) => {
   return (
     <div data-checked={checked} className={cx(styles.radio, className)}>
       <svg

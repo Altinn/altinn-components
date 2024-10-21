@@ -31,6 +31,10 @@ export const MenuOption = ({
   disabled,
   onChange,
 }: MenuOptionProps) => {
+  console.log("TYYYY", type);
+  console.log("TYYYY", value);
+  console.log("TYYYY", label);
+
   return (
     <MenuItemBase
       className={styles?.label}

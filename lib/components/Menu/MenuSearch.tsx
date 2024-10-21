@@ -1,19 +1,19 @@
 import type { ChangeEventHandler } from "react";
-import styles from "./toolbarSearch.module.css";
+import styles from "./menuSearch.module.css";
 
-export interface ToolbarSearchProps {
+export interface MenuSearchProps {
   placeholder?: string;
   name: string;
   value: string;
   onChange: ChangeEventHandler;
 }
 
-export const ToolbarSearch = ({
+export const MenuSearch = ({
   value,
   name,
   placeholder = "Søk",
   onChange,
-}: ToolbarSearchProps) => {
+}: MenuSearchProps) => {
   return (
     <div className={styles.field}>
       <input

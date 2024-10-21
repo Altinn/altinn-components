@@ -137,12 +137,11 @@ export const InboxMenu: Story = {
 
 export const InboxMenuWithShortcuts = {
   args: {
-    groups: [
-      {
-        id: "shortcuts",
+    groups: {
+      shortcuts: {
         title: "Snarveier",
       },
-    ],
+    },
     items: [
       ...InboxMenu.args?.items,
       {
@@ -225,9 +224,19 @@ export const CompanyMenu: Story = {
 export const AccountMenu: Story = {
   args: {
     theme: "global",
+    groups: [
+      {
+        id: "you",
+        title: "Deg selv, favoritter og grupper",
+      },
+      {
+        id: "companies",
+        title: "Andre kontoer",
+      },
+    ],
     items: [
       {
-        group: 1,
+        group: "you",
         avatar: {
           type: "person",
           name: "Dolly Duck",
@@ -236,7 +245,7 @@ export const AccountMenu: Story = {
         badge: 15,
       },
       {
-        group: 2,
+        group: "favourites",
         avatar: {
           type: "company",
           name: "Bergen Bar",
@@ -245,7 +254,7 @@ export const AccountMenu: Story = {
         badge: 21,
       },
       {
-        group: 2,
+        group: "favourites",
         avatar: {
           type: "company",
           name: "Sportsklubben Brann",
@@ -254,7 +263,7 @@ export const AccountMenu: Story = {
         badge: 4,
       },
       {
-        group: 3,
+        group: "groups",
         avatarGroup: {
           type: "company",
           items: [
@@ -268,6 +277,40 @@ export const AccountMenu: Story = {
         },
         title: "Alle virksomheter",
       },
+      {
+        group: "companies",
+        avatar: {
+          type: "company",
+          name: "Jensens Laks",
+        },
+        title: "Jensens laks",
+      },
+      {
+        group: "companies",
+        avatar: {
+          type: "company",
+          name: "Haralds gym",
+        },
+        title: "Haralds gym",
+      },
+
+      {
+        group: "companies",
+        avatar: {
+          type: "company",
+          name: "Trim og tran",
+        },
+        title: "Trim og tran",
+      },
     ],
+  },
+};
+
+export const AccountMenuWithSearch: Story = {
+  args: {
+    ...AccountMenu.args,
+    search: {
+      placeholder: "Søk i kontoer",
+    },
   },
 };
