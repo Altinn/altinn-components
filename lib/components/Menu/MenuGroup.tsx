@@ -1,6 +1,5 @@
-import { ReactNode } from 'react';
-
-import styles from './menu.module.css';
+import { ReactNode } from "react";
+import styles from "./menu.module.css";
 
 export interface MenuGroupProps {
   children?: ReactNode;

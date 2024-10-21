@@ -14,6 +14,7 @@ import {
   ChevronUpIcon,
   ClockDashedIcon,
   ClockIcon,
+  CogIcon,
   DocPencilFillIcon,
   DocPencilIcon,
   EyeClosedIcon,
@@ -27,6 +28,7 @@ import {
   MenuElipsisHorizontalIcon,
   MenuGridIcon,
   MinusIcon,
+  PersonGroupIcon,
   PadlockLockedIcon,
   PadlockUnlockedIcon,
   PaperclipIcon,
@@ -36,7 +38,7 @@ import {
   TrashIcon,
   TruckIcon,
   XMarkIcon,
-} from '@navikt/aksel-icons';
+} from "@navikt/aksel-icons";
 
 interface IconsMap {
   [key: string]: JSX.Element | { outline: JSX.Element; solid: JSX.Element };
@@ -50,32 +52,32 @@ export const iconsMap: IconsMap = {
   minus: <MinusIcon />,
 
   // arrows
-  'arrow-redo': <ArrowRedoIcon />,
-  'arrow-left': <ArrowLeftIcon />,
-  'arrow-right': <ArrowRightIcon />,
-  'padlock-locked': <PadlockLockedIcon />,
-  'padlock-unlocked': <PadlockUnlockedIcon />,
+  "arrow-redo": <ArrowRedoIcon />,
+  "arrow-left": <ArrowLeftIcon />,
+  "arrow-right": <ArrowRightIcon />,
+  "padlock-locked": <PadlockLockedIcon />,
+  "padlock-unlocked": <PadlockUnlockedIcon />,
 
   // meta
   clock: <ClockIcon />,
-  'clock-dashed': <ClockDashedIcon />,
+  "clock-dashed": <ClockDashedIcon />,
   paperclip: <PaperclipIcon />,
   eye: <EyeIcon />,
-  'eye-closed': <EyeClosedIcon />,
+  "eye-closed": <EyeClosedIcon />,
 
   // x-mark
-  'x-mark': <XMarkIcon />,
+  "x-mark": <XMarkIcon />,
 
   // chevron
-  'chevron-left': <ChevronLeftIcon />,
-  'chevron-right': <ChevronRightIcon />,
-  'chevron-down': <ChevronDownIcon />,
-  'chevron-up': <ChevronUpIcon />,
-  'chevron-up-down': <ChevronUpDownIcon />,
+  "chevron-left": <ChevronLeftIcon />,
+  "chevron-right": <ChevronRightIcon />,
+  "chevron-down": <ChevronDownIcon />,
+  "chevron-up": <ChevronUpIcon />,
+  "chevron-up-down": <ChevronUpDownIcon />,
 
   // menu
-  'menu-grid': <MenuGridIcon />,
-  'menu-ellipsis': <MenuElipsisHorizontalIcon />,
+  "menu-grid": <MenuGridIcon />,
+  "menu-ellipsis": <MenuElipsisHorizontalIcon />,
 
   // document
   file: <FileIcon />,
@@ -83,18 +85,23 @@ export const iconsMap: IconsMap = {
   // categories
   truck: <TruckIcon />,
   hospital: <HospitalIcon />,
-  'teddy-bear': <TeddyBearIcon />,
+  "teddy-bear": <TeddyBearIcon />,
+
+  // settings
+
+  cog: <CogIcon />,
+  "person-group": <PersonGroupIcon />,
 
   // inbox
   inbox: {
     outline: <InboxIcon />,
     solid: <InboxFillIcon />,
   },
-  'doc-pencil': {
+  "doc-pencil": {
     outline: <DocPencilIcon />,
     solid: <DocPencilFillIcon />,
   },
-  'file-checkmark': {
+  "file-checkmark": {
     outline: <FileCheckmarkIcon />,
     solid: <FileCheckmarkFillIcon />,
   },

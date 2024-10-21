@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import type { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 
-import { Menu } from './Menu';
+import { Menu } from "./Menu";
 
 const meta = {
-  title: 'Menu/Menu',
+  title: "Menu/Menu",
   component: Menu,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   parameters: {},
   args: {},
 } satisfies Meta<typeof Menu>;
@@ -16,39 +16,39 @@ type Story = StoryObj<typeof meta>;
 
 export const GlobalMenu: Story = {
   args: {
-    theme: 'global',
+    theme: "global",
     items: [
       {
         group: 0,
-        size: 'lg',
+        size: "lg",
         avatar: {
-          name: 'Herman Friele',
+          name: "Herman Friele",
         },
-        title: 'Herman Friele',
-        description: 'Fødselsnr: XX.XX.XXXX',
+        title: "Herman Friele",
+        description: "Fødselsnr: XX.XX.XXXX",
       },
       {
         group: 1,
-        size: 'lg',
-        icon: 'inbox',
-        title: 'Innboks',
+        size: "lg",
+        icon: "inbox",
+        title: "Innboks",
       },
       {
         group: 1,
-        size: 'lg',
-        icon: 'bookmark',
-        title: 'Tilganger',
+        size: "lg",
+        icon: "bookmark",
+        title: "Tilganger",
       },
       {
         group: 1,
-        size: 'lg',
-        icon: 'menu-grid',
-        title: 'Alle skjema',
+        size: "lg",
+        icon: "menu-grid",
+        title: "Alle skjema",
       },
       {
         group: 2,
-        icon: 'settings',
-        title: 'Innstillinger',
+        icon: "settings",
+        title: "Innstillinger",
       },
     ],
   },
@@ -56,36 +56,36 @@ export const GlobalMenu: Story = {
 
 export const DrilldownMenu: Story = {
   args: {
-    theme: 'company',
-    color: 'subtle',
+    theme: "company",
+    color: "subtle",
     items: [
       {
         group: 1,
-        name: 'people',
-        size: 'lg',
-        icon: 'menu-grid',
-        title: 'Alle skjema',
+        name: "people",
+        size: "lg",
+        icon: "menu-grid",
+        title: "Alle skjema",
       },
       {
         group: 2,
-        name: 'tema',
-        icon: 'teddy-bear',
-        title: 'Tema',
+        name: "tema",
+        icon: "teddy-bear",
+        title: "Tema",
       },
       {
         group: 3,
-        name: 'c1',
-        title: 'Kategori 1',
+        name: "c1",
+        title: "Kategori 1",
       },
       {
         group: 3,
-        name: 'c2',
-        title: 'Kategori 2',
+        name: "c2",
+        title: "Kategori 2",
       },
       {
         group: 3,
-        name: 'c3',
-        title: 'Kategori 3',
+        name: "c3",
+        title: "Kategori 3",
       },
     ],
   },
@@ -93,43 +93,67 @@ export const DrilldownMenu: Story = {
 
 export const InboxMenu: Story = {
   args: {
-    theme: 'person',
+    theme: "person",
     items: [
       {
         group: 1,
-        size: 'lg',
-        icon: 'inbox',
-        title: 'Innboks',
+        size: "lg",
+        icon: "inbox",
+        title: "Innboks",
         badge: 4,
       },
       {
         group: 2,
-        icon: 'doc-pencil',
-        title: 'Utkast',
+        icon: "doc-pencil",
+        title: "Utkast",
       },
       {
         group: 2,
-        icon: 'file-checkmark',
+        icon: "file-checkmark",
         selected: true,
-        title: 'Sendt',
+        title: "Sendt",
         badge: 2,
       },
       {
         group: 3,
-        icon: 'bookmark',
-        title: 'Lagrede søk',
+        icon: "bookmark",
+        title: "Lagrede søk",
         badge: 11,
       },
       {
         group: 4,
-        icon: 'archive',
-        title: 'Arkivert',
+        icon: "archive",
+        title: "Arkivert",
       },
       {
         group: 4,
         disabled: true,
-        icon: 'trash',
-        title: 'Papirkurv',
+        icon: "trash",
+        title: "Papirkurv",
+      },
+    ],
+  },
+};
+
+export const InboxMenuWithShortcuts = {
+  args: {
+    groups: [
+      {
+        id: "shortcuts",
+        title: "Snarveier",
+      },
+    ],
+    items: [
+      ...InboxMenu.args?.items,
+      {
+        group: "shortcuts",
+        icon: "person-group",
+        title: "Brukere",
+      },
+      {
+        group: "shortcuts",
+        icon: "cog",
+        title: "Innstillinger",
       },
     ],
   },
@@ -137,30 +161,30 @@ export const InboxMenu: Story = {
 
 export const PersonMenu: Story = {
   args: {
-    theme: 'neutral',
+    theme: "neutral",
     items: [
       {
         group: 1,
-        size: 'lg',
+        size: "lg",
         avatar: {
-          name: 'Per Person',
+          name: "Per Person",
         },
-        title: 'Innboks',
+        title: "Innboks",
       },
       {
         group: 3,
-        icon: 'bookmark',
-        title: 'Lagrede søk',
+        icon: "bookmark",
+        title: "Lagrede søk",
       },
       {
         group: 4,
-        icon: 'archive',
-        title: 'Arkivert',
+        icon: "archive",
+        title: "Arkivert",
       },
       {
         group: 4,
-        icon: 'trash',
-        title: 'Papirkurv',
+        icon: "trash",
+        title: "Papirkurv",
       },
     ],
   },
@@ -168,31 +192,31 @@ export const PersonMenu: Story = {
 
 export const CompanyMenu: Story = {
   args: {
-    theme: 'neutral',
+    theme: "neutral",
     items: [
       {
         group: 1,
-        size: 'lg',
+        size: "lg",
         avatar: {
-          type: 'company',
-          name: 'Bergen Bar',
+          type: "company",
+          name: "Bergen Bar",
         },
-        title: 'Innboks',
+        title: "Innboks",
       },
       {
         group: 3,
-        icon: 'bookmark',
-        title: 'Lagrede søk',
+        icon: "bookmark",
+        title: "Lagrede søk",
       },
       {
         group: 4,
-        icon: 'archive',
-        title: 'Arkivert',
+        icon: "archive",
+        title: "Arkivert",
       },
       {
         group: 4,
-        icon: 'trash',
-        title: 'Papirkurv',
+        icon: "trash",
+        title: "Papirkurv",
       },
     ],
   },
@@ -200,49 +224,49 @@ export const CompanyMenu: Story = {
 
 export const AccountMenu: Story = {
   args: {
-    theme: 'global',
+    theme: "global",
     items: [
       {
         group: 1,
         avatar: {
-          type: 'person',
-          name: 'Dolly Duck',
+          type: "person",
+          name: "Dolly Duck",
         },
-        title: 'Dolly Duck',
+        title: "Dolly Duck",
         badge: 15,
       },
       {
         group: 2,
         avatar: {
-          type: 'company',
-          name: 'Bergen Bar',
+          type: "company",
+          name: "Bergen Bar",
         },
-        title: 'Bergen Bar',
+        title: "Bergen Bar",
         badge: 21,
       },
       {
         group: 2,
         avatar: {
-          type: 'company',
-          name: 'Sportsklubben Brann',
+          type: "company",
+          name: "Sportsklubben Brann",
         },
-        title: 'Sportsklubben Brann',
+        title: "Sportsklubben Brann",
         badge: 4,
       },
       {
         group: 3,
         avatarGroup: {
-          type: 'company',
+          type: "company",
           items: [
             {
-              name: 'Sportsklubben Brann',
+              name: "Sportsklubben Brann",
             },
             {
-              name: 'Bergen Bar',
+              name: "Bergen Bar",
             },
           ],
         },
-        title: 'Alle virksomheter',
+        title: "Alle virksomheter",
       },
     ],
   },
