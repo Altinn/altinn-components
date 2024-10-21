@@ -1,10 +1,10 @@
-import type {ChangeEventHandler} from "react";
-import {MenuItemBase, type MenuItemSize} from "./MenuItemBase";
-import {MenuItemLabel} from "./MenuItemLabel";
-import {CheckboxIcon} from "../Icon";
+import type { ChangeEventHandler } from "react";
+import { MenuItemBase, type MenuItemSize } from "./MenuItemBase";
+import { MenuItemLabel } from "./MenuItemLabel";
+import { CheckboxIcon, RadioIcon } from "../Icon";
 import styles from "./menuOption.module.css";
 
-export type MenuOptionType = 'checkbox' | 'radio';
+export type MenuOptionType = "checkbox" | "radio";
 export interface MenuOptionProps {
   type: MenuOptionType;
   value: string | number;
@@ -20,7 +20,7 @@ export interface MenuOptionProps {
 }
 
 export const MenuOption = ({
-  size = 'sm',
+  size = "sm",
   type,
   name,
   value,
@@ -32,9 +32,26 @@ export const MenuOption = ({
   onChange,
 }: MenuOptionProps) => {
   return (
-    <MenuItemBase className={styles?.label} disabled={disabled} selected={checked} size={size} as="label">
-      <input className={styles?.input} name={name} value={value} type={type} checked={checked} onChange={onChange} />
-      <CheckboxIcon checked={checked} className={styles.icon} />
+    <MenuItemBase
+      className={styles?.label}
+      disabled={disabled}
+      selected={checked}
+      size={size}
+      as="label"
+    >
+      <input
+        className={styles?.input}
+        name={name}
+        value={value}
+        type={type}
+        checked={checked}
+        onChange={onChange}
+      />
+      {type === "checkbox" ? (
+        <CheckboxIcon checked={checked} className={styles.icon} />
+      ) : (
+        <RadioIcon checked={checked} className={styles.icon} />
+      )}
       <MenuItemLabel title={title} description={description} size={size}>
         {label}
       </MenuItemLabel>

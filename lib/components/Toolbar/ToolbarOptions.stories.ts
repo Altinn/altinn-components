@@ -2,13 +2,19 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
 import { ToolbarOptions } from "./ToolbarOptions";
-import { MenuOptionType } from "../Menu";
 
 const meta = {
   title: "Toolbar/ToolbarOptions",
   component: ToolbarOptions,
   tags: ["autodocs"],
   parameters: {},
+  args: {},
+} satisfies Meta<typeof ToolbarOptions>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Checkboxes: Story = {
   args: {
     options: [
       {
@@ -29,17 +35,39 @@ const meta = {
       },
     ],
   },
-} satisfies Meta<typeof ToolbarOptions>;
+};
 
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Single: Story = {
-  args: {},
+export const Radio: Story = {
+  args: {
+    options: [
+      {
+        type: "radio",
+        label: "Skatteetaten",
+        value: "1",
+      },
+      {
+        type: "radio",
+        label: "Digdir",
+        value: "2",
+      },
+      {
+        type: "radio",
+        checked: true,
+        label: "Helstilsynet",
+        value: "3",
+      },
+    ],
+  },
 };
 
 export const RadioCheckbox: Story = {
   args: {
+    groups: [
+      {
+        id: "b",
+        title: "Gruppens tittel",
+      },
+    ],
     options: [
       {
         group: "a",
