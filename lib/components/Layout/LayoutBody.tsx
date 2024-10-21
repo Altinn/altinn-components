@@ -2,7 +2,7 @@ import styles from "./layout.module.css";
 import { LayoutProps } from "./LayoutBase";
 
 /**
- * Body layout container. Should be a child og LayoutBase.
+ * Body layout container. Should be a child of LayoutBase.
  * Defines a max-width for the application body.
  *
  */

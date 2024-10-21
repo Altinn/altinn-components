@@ -2,7 +2,7 @@ import styles from "./layout.module.css";
 import { type LayoutProps } from "./LayoutBase";
 
 /**
- * Content layout container. Should be a child og LayoutBody.
+ * Content layout container. Should be a child of LayoutBody.
  *
  *
  */

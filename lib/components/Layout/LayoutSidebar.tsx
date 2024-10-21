@@ -2,7 +2,7 @@ import styles from "./layout.module.css";
 import { type LayoutProps } from "./LayoutBase";
 
 /**
- * Sidebar layout container. Should be a child og LayoutBody.
+ * Sidebar layout container. Should be a child of LayoutBody.
  *
  * Will be hidden on small screens.
  */
