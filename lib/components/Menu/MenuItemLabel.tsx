@@ -1,6 +1,6 @@
-import { ReactNode, MouseEventHandler } from 'react';
+import type { ReactNode  } from 'react';
 import styles from './menuItem.module.css';
-import { MenuItemSize } from './MenuItemBase';
+import type { MenuItemSize } from './MenuItemBase';
 
 export interface MenuItemLabelProps {
   size?: MenuItemSize;

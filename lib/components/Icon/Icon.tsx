@@ -1,12 +1,12 @@
 import cx from "classnames";
 import styles from "./icon.module.css";
 import { SvgIcon } from "./SvgIcon";
-import { iconsMap } from "./";
+import {type IconName , iconsMap} from "./";
 
 export type IconVariant = "solid" | "outline";
 
 interface IconProps {
-  name: keyof typeof iconsMap;
+  name: IconName;
   variant?: IconVariant;
   className?: string;
 }

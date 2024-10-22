@@ -11,28 +11,31 @@ export interface MenuProps {
   theme?: MenuTheme;
   color?: MenuColor;
   search?: MenuSearchProps;
-  groups?: MenuHeaderProps[];
+  groups?: Record<string, MenuHeaderProps>;
   items?: MenuItemProps[];
 }
 
 export const Menu = ({ theme, color, search, groups, items = [] }: MenuProps) => {
-  const sections: Record<string, MenuItemProps[]> = items?.reduce((acc: Record<string, MenuItemProps[]>, item: MenuItemProps) => {
-    const group = item.group || '';
-    if (!acc[group]) {
-      acc[group] = [];
-    }
-    acc[group].push(item);
-    return acc;
-  }, {} as Record<string, MenuItemProps[]>);
+  const sections: Record<string, MenuItemProps[]> = items?.reduce(
+    (acc: Record<string, MenuItemProps[]>, item: MenuItemProps) => {
+      const group = item.group || '';
+      if (!acc[group]) {
+        acc[group] = [];
+      }
+      acc[group].push(item);
+      return acc;
+    },
+    {} as Record<string, MenuItemProps[]>,
+  );
 
   return (
     <MenuBase theme={theme} color={color}>
       {search ? <MenuSearch {...search} /> : ''}
       {Object.entries(sections)?.map(([key, options]) => {
-        const header = groups?.[key];
+        const menuHeaderProps = groups?.[key];
         return (
           <MenuGroup key={key}>
-            {header ? <MenuHeader {...header} /> : ''}
+            {menuHeaderProps && <MenuHeader {...menuHeaderProps} />}
             {(options ?? []).map((option, index) => (
               <MenuItem {...option} key={'menu-item' + index} />
             ))}
