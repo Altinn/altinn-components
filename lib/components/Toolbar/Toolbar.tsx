@@ -1,4 +1,4 @@
-import {useMemo, useRef, useState} from "react";
+import {useMemo, useState} from "react";
 import {ToolbarBase} from "./ToolbarBase";
 import {ToolbarAdd} from "./ToolbarAdd";
 import {ToolbarFilter, type ToolbarFilterProps} from "./ToolbarFilter.tsx";
@@ -6,21 +6,22 @@ import {ToolbarSearch, type ToolbarSearchProps} from "./ToolbarSearch.tsx";
 import {ToolbarMenu, type ToolbarMenuProps} from "./ToolbarMenu.tsx";
 import type {ToolbarOptionType} from "./ToolbarOptions.tsx";
 
-export interface ToolbarProps {
-  filters?: ToolbarFilterProps[];
-  search?: ToolbarSearchProps;
-  menu?: ToolbarMenuProps;
-  filterState?: Record<string, ToolbarFilterProps['value']>;
-  getFilterLabel?: (name: string, value: ToolbarFilterProps['value']) => string;
-  onFilterStateChange?: (state: Record<string, ToolbarFilterProps['value']>) => void;
-}
-
+export type FilterState = Record<string, ToolbarFilterProps['value']>;
 type ExpandedItemType = 'filter' | 'menu' | 'add-filter';
 
 type ExpandedItem = {
   name: string;
   type: ExpandedItemType;
 } | null;
+
+export interface ToolbarProps {
+  filters?: ToolbarFilterProps[];
+  search?: ToolbarSearchProps;
+  menu?: ToolbarMenuProps;
+  filterState?: FilterState;
+  getFilterLabel?: (name: string, value: ToolbarFilterProps['value']) => string;
+  onFilterStateChange?: (state: FilterState) => void;
+}
 
 export const Toolbar = ({
   filters = [],
@@ -30,13 +31,11 @@ export const Toolbar = ({
   menu,
   getFilterLabel,
 }: ToolbarProps) => {
-  const ref = useRef<HTMLDivElement>(null);
-  // current expanded item by unique
   const [expandedItem, setExpandedItem] = useState<ExpandedItem>(null);
-  // fallback to local state if no filterState is not provided (change between controlled/uncontrolled)
   const [localFilterState, setLocalFilterState] = useState<Record<string, ToolbarFilterProps['value']>>(
     filterState ?? {},
   );
+  const changeFilterState = typeof onFilterStateChange === 'function' ? onFilterStateChange : setLocalFilterState;
   const applicableFilterState = filterState || localFilterState;
   const [hiddenFilterNames, setHiddenFilterNames] = useState<string[]>(
     filters
@@ -61,7 +60,6 @@ export const Toolbar = ({
     }
   };
 
-  const changeFilterState = typeof onFilterStateChange === 'function' ? onFilterStateChange : setLocalFilterState;
   const onFilterChange = (name: string, value: ToolbarFilterProps['value'], optionType: ToolbarOptionType) => {
     if (optionType === 'radio') {
       changeFilterState({
@@ -83,7 +81,6 @@ export const Toolbar = ({
 
   const onFilterRemove = (name: string) => {
     setHiddenFilterNames((prevState) => [...prevState, name]);
-    const changeFilterState = typeof onFilterStateChange === 'function' ? onFilterStateChange : setLocalFilterState;
     changeFilterState({
       ...applicableFilterState,
       [name]: undefined,
