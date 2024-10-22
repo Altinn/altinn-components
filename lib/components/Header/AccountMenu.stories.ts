@@ -7,15 +7,19 @@ const meta = {
   title: "Header/AccountMenu",
   component: AccountMenu,
   tags: ["autodocs"],
-  parameters: {},
+  parameters: {
+    layout: "centered",
+  },
   args: {
     items: [
       {
+        group: "apps",
         size: "lg",
         icon: "inbox",
         label: "Innboks",
       },
       {
+        group: "apps",
         size: "lg",
         icon: "settings",
         label: "Settings",
@@ -49,9 +53,9 @@ export const Company: Story = {
   },
 };
 
-export const Open: Story = {
+export const Expanded: Story = {
   args: {
-    open: true,
+    expanded: true,
     account: {
       type: "company",
       name: "Bergen bar",

@@ -7,7 +7,9 @@ const meta = {
   title: "Header/HeaderButton",
   component: HeaderButton,
   tags: ["autodocs"],
-  parameters: {},
+  parameters: {
+    layout: "centered",
+  },
   args: {},
 } satisfies Meta<typeof HeaderButton>;
 
