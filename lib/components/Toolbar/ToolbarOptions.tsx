@@ -10,15 +10,17 @@ import {
     type MenuSearchProps,
 } from "../Menu";
 
+export type ToolbarOptionType = 'checkbox' | 'radio';
+
 export interface ToolbarOptionsProps {
   options: MenuOptionProps[];
   onChange?: ChangeEventHandler;
   search?: MenuSearchProps;
-  multiple?: boolean;
+  optionType: ToolbarOptionType;
   optionGroups?: { [key: string]: MenuHeaderProps };
 }
 
-export const ToolbarOptions = ({ search, optionGroups, options, onChange, multiple = false }: ToolbarOptionsProps) => {
+export const ToolbarOptions = ({ search, optionGroups, options, onChange, optionType}: ToolbarOptionsProps) => {
   const sections = options.reduce(
     (acc, option) => {
       const group = option.group || '';
@@ -29,7 +31,6 @@ export const ToolbarOptions = ({ search, optionGroups, options, onChange, multip
     {} as Record<string, MenuOptionProps[]>,
   );
 
-  const optionType = multiple ? 'checkbox' : 'radio';
 
   return (
     <MenuBase theme="global" color="subtle">
@@ -46,6 +47,7 @@ export const ToolbarOptions = ({ search, optionGroups, options, onChange, multip
                 label={item.label}
                 type={optionType}
                 value={item.value}
+                checked={item.checked}
               />
             ))}
           </MenuGroup>

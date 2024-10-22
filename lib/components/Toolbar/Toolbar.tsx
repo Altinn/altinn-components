@@ -1,46 +1,136 @@
-import {useState, useEffect } from "react";
-import { ToolbarBase } from "./ToolbarBase";
-import { ToolbarItem, type ToolbarItemProps } from "./ToolbarItem";
-import { ToolbarAdd } from "./ToolbarAdd";
+import {useMemo, useState} from "react";
+import {ToolbarBase} from "./ToolbarBase";
+import {ToolbarAdd} from "./ToolbarAdd";
+import {ToolbarFilter, type ToolbarFilterProps} from "./ToolbarFilter.tsx";
+import {ToolbarSearch, type ToolbarSearchProps} from "./ToolbarSearch.tsx";
+import {ToolbarMenu, type ToolbarMenuProps} from "./ToolbarMenu.tsx";
+import type {ToolbarOptionType} from "./ToolbarOptions.tsx";
 
 export interface ToolbarProps {
-  items?: ToolbarItemProps[];
+  filters?: ToolbarFilterProps[];
+  search?: ToolbarSearchProps;
+  menu?: ToolbarMenuProps;
+  filterState?: Record<string, ToolbarFilterProps['value']>;
+  getFilterLabel?: (name: string, value: ToolbarFilterProps['value']) => string;
+  onFilterStateChange?: (state: Record<string, ToolbarFilterProps['value']>) => void;
   values?: Record<string, string>;
 }
 
-export const Toolbar = ({ items }: ToolbarProps) => {
-  const [openId, setOpenId] = useState<string>('');
-  const [expandedId, setExpandedId] = useState<string>('');
-  const [hiddenItems, setHiddenItems] = useState<ToolbarItemProps[]>(items?.filter((item) => item.hidden) || []);
-  const [visibleItems, setVisibleItems] = useState<ToolbarItemProps[]>(items?.filter((item) => !item.hidden) || []);
-  const [isAdding, setIsAdding] = useState<boolean>(false);
+type ExpandedItemType = 'filter' | 'menu' | 'add-filter';
 
-  const onToggle = (id: string) => {
-    setExpandedId((prevState) => (prevState === id ? "" : id));
+type ExpandedItem = {
+  name: string;
+  type: ExpandedItemType;
+} | null;
+
+export const Toolbar = ({ filters = [], filterState, onFilterStateChange, search, menu, getFilterLabel }: ToolbarProps) => {
+  // current expanded item by unique
+  const [expandedItem, setExpandedItem] = useState<ExpandedItem>(null);
+  // fallback to local state if no filterState is not provided (change between controlled/uncontrolled)
+  const [localFilterState, setLocalFilterState] = useState<Record<string, ToolbarFilterProps['value']>>(
+    filterState ?? {},
+  );
+  const applicableFilterState = filterState || localFilterState;
+  const [hiddenFilterNames, setHiddenFilterNames] = useState<string[]>(
+    filters
+      ?.filter((item) => item.removable && typeof applicableFilterState[item.name] === 'undefined')
+      .map((item) => item.name) ?? [],
+  );
+
+  const visibleFilters = useMemo(
+    () => filters.filter((item) => !hiddenFilterNames.includes(item.name)),
+    [filters, hiddenFilterNames],
+  );
+  const hiddenFilters = useMemo(
+    () => filters.filter((item) => hiddenFilterNames.includes(item.name)),
+    [filters, hiddenFilterNames],
+  );
+
+  const onToggle = (type: ExpandedItemType, name: string) => {
+    if (expandedItem?.name === name && expandedItem.type === type) {
+      setExpandedItem(null);
+    } else {
+      setExpandedItem({ name, type });
+    }
+  };
+
+  const changeFilterState = typeof onFilterStateChange === 'function' ? onFilterStateChange : setLocalFilterState;
+  const onFilterChange = (name: string, value: ToolbarFilterProps['value'], optionType: ToolbarOptionType) => {
+    if (optionType === 'radio') {
+      changeFilterState({
+        ...applicableFilterState,
+        [name]: value,
+      });
+      onToggle('filter', name);
+    } else {
+      // @ts-ignore
+      changeFilterState({
+        ...applicableFilterState,
+        [name]: Array.isArray(applicableFilterState[name]) && applicableFilterState[name].includes(value)
+            ? applicableFilterState[name].filter((v: string | number) => v !== value)
+            : Array.isArray(applicableFilterState[name]) ? [...applicableFilterState[name], value] : [value],
+      });
+    }
+  }
+
+  const onFilterRemove = (name: string) => {
+    setHiddenFilterNames((prevState) => [...prevState, name]);
+    const changeFilterState = typeof onFilterStateChange === 'function' ? onFilterStateChange : setLocalFilterState;
+    changeFilterState({
+      ...applicableFilterState,
+      [name]: undefined,
+    });
+  }
+
+  const onFilterAdd = (name: string) => {
+    onToggle('filter', name);
+    setHiddenFilterNames((prevState) => prevState.filter((prevName) => prevName !== name));
   }
 
   return (
-    <ToolbarBase>
-      {visibleItems.map((item, index) => {
-        return (
-          <ToolbarItem
-            key={index}
-            onToggle={() => onToggle(item.id)}
-            expanded={expandedId === item.id}
-            onRemove={() => {}}
-            onChange={() => {}}
-            {...item}
+    <>
+      <ToolbarBase>
+        {menu && (
+          <ToolbarMenu onToggle={() => onToggle('menu', '')} expanded={expandedItem?.type === 'menu'} {...menu} />
+        )}
+        {visibleFilters.map((item) => {
+          return (
+            <ToolbarFilter
+              key={item.name}
+              onToggle={() => onToggle('filter', item.name)}
+              expanded={item.name === expandedItem?.name && expandedItem?.type === 'filter'}
+              onRemove={() => {
+                onFilterRemove(item.name);
+              }}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                onFilterChange(item.name, event.target.value, item.optionType);
+              }}
+              name={item.name}
+              options={item.options}
+              label={item.label}
+              value={applicableFilterState[item.name]}
+              optionType={item.optionType}
+              removable={item.removable}
+              getSelectedLabel={getFilterLabel}
+            />
+          );
+        })}
+        {hiddenFilters?.length > 0 && (
+          <ToolbarAdd
+            expanded={expandedItem?.type === 'add-filter'}
+            onToggle={() => onToggle('add-filter', '')}
+            items={hiddenFilters.map((item) => ({
+              label: item.label,
+              name: item.name,
+              onClick: () => {
+                onFilterAdd(item.name);
+              }
+            }))}
           />
-        );
-      })}
-      {hiddenItems?.length > 0 && (
-        <ToolbarAdd
-          expanded={isAdding}
-          onToggle={() => setIsAdding((prevState) => !prevState)}
-          items={hiddenItems}
-        />
-      )}
-    </ToolbarBase>
+        )}
+        {search && <ToolbarSearch {...search} />}
+      </ToolbarBase>
+      <h2>{JSON.stringify(applicableFilterState)}</h2>
+    </>
   );
 };
-

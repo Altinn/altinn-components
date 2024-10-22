@@ -30,7 +30,6 @@ export const Menu = ({ theme, color, search, groups, items = [] }: MenuProps) =>
       {search ? <MenuSearch {...search} /> : ''}
       {Object.entries(sections)?.map(([key, options]) => {
         const header = groups?.[key];
-        console.log(options);
         return (
           <MenuGroup key={key}>
             {header ? <MenuHeader {...header} /> : ''}

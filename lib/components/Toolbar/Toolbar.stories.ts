@@ -14,35 +14,31 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    items: [
-      {
-        type: "menu",
-        id: "actor",
-        label: "Ola Nordmann",
-        value: "ola",
-        items: [
-          {
-            avatar: {
-              name: "Ola Nordmann",
-            },
-            label: "Ola Nordmann",
+    menu: {
+      label: "Ola Nordmann",
+      value: "ola",
+      items: [
+        {
+          avatar: {
+            name: "Ola Nordmann",
           },
-          {
-            avatar: {
-              name: "Kari Nordmann",
-            },
-            label: "Kari Nordmann",
+          label: "Ola Nordmann",
+        },
+        {
+          avatar: {
+            name: "Kari Nordmann",
           },
-        ],
-      },
+          label: "Kari Nordmann",
+        },
+      ],
+    },
+    filters: [
       {
         removable: true,
         name: "from",
-        id: "sender",
-        type: "filter",
+        optionType: "checkbox",
         label: "Velg avsender",
-        multiple: true,
-        items: [
+        options: [
           {
             value: "skatt",
             label: "Skatteetaten",
@@ -64,10 +60,9 @@ export const Default: Story = {
       {
         removable: true,
         name: "to",
-        type: "filter",
-        id: "receiver",
+        optionType: "radio",
         label: "Velg mottaker",
-        items: [
+        options: [
           {
             value: "ola",
             label: "Ola Nordmann",
@@ -81,11 +76,9 @@ export const Default: Story = {
       {
         removable: true,
         name: "status",
-        type: "filter",
-        id: "status",
+        optionType: "radio",
         label: "Velg status",
-        multiple: true,
-        items: [
+        options: [
           {
             group: "1",
             value: "draft",
@@ -117,9 +110,18 @@ export const Default: Story = {
   },
 };
 
+export const CustomFilterLabel: Story = {
+  args: {
+    ...Default.args,
+    getFilterLabel: (name, value) => {
+      return Array.isArray(value) && value.length > 1 ? `${value.length} selected` : value;
+    }
+  }
+}
+
 export const OpenFilters: Story = {
   args: {
-    items: Default?.args?.items?.map((item) => {
+    filters: Default?.args?.items?.map((item) => {
       return {
         ...item,
         hidden: false,
@@ -130,7 +132,7 @@ export const OpenFilters: Story = {
 
 export const StaticFilters: Story = {
   args: {
-    items: Default?.args?.items?.map((item) => {
+    filters: Default?.args?.filters?.map((item) => {
       return {
         ...item,
         removable: false,
@@ -142,16 +144,16 @@ export const StaticFilters: Story = {
 
 export const FiltersSearch: Story = {
   args: {
-    items: [
-      ...Default?.args?.items?.map((item) => {
+    search: {
+        placeholder: "Søk etter filter",
+    },
+    filters: [
+      ...Default?.args?.filters?.map((item) => {
         return {
           ...item,
           removable: false,
         };
       }),
-      {
-        type: "search",
-      },
     ],
   },
 };
