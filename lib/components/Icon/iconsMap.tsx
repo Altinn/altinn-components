@@ -901,9 +901,12 @@ import {
   ZoomPlusIcon,
 } from "@navikt/aksel-icons";
 
-interface IconsMap {
+
+export interface IconsMap {
   [key: string]: JSX.Element | { outline: JSX.Element; solid: JSX.Element };
 }
+
+export type IconName = keyof typeof iconsMap;
 
 export const iconsMap = {
   airplane: { solid: <AirplaneFillIcon />, outline: <AirplaneIcon /> },
