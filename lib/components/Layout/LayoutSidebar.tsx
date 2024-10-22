@@ -1,5 +1,5 @@
 import styles from "./layout.module.css";
-import { type LayoutProps } from "./LayoutBase";
+import type { LayoutBaseProps } from "./LayoutBase";
 
 /**
  * Sidebar layout container. Should be a child of LayoutBody.
@@ -7,7 +7,7 @@ import { type LayoutProps } from "./LayoutBase";
  * Will be hidden on small screens.
  */
 
-export const LayoutSidebar = ({ theme, children }: LayoutProps) => {
+export const LayoutSidebar = ({ theme, children }: LayoutBaseProps) => {
   return (
     <aside className={styles.sidebar} data-theme={theme}>
       {children}

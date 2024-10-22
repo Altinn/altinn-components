@@ -2,8 +2,10 @@ import { MouseEventHandler, ElementType } from "react";
 import { ButtonBase } from "../Button";
 import { DigdirSymbol } from "./DigdirSymbol";
 import styles from "./headerLogo.module.css";
+import cx from "classnames";
 
-export interface LogoProps {
+export interface HeaderLogoProps {
+  className: string;
   as?: ElementType;
   href?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
@@ -11,12 +13,13 @@ export interface LogoProps {
 }
 
 export const HeaderLogo = ({
+  className,
   as = "a",
   title = "Altinn",
   href = "/",
-}: LogoProps) => {
+}: HeaderLogoProps) => {
   return (
-    <ButtonBase as={as} className={styles.logo} href={href}>
+    <ButtonBase as={as} className={cx(styles.logo, className)} href={href}>
       <DigdirSymbol className={styles.symbol} />
       <span className={styles.text}>{title}</span>
     </ButtonBase>

@@ -7,6 +7,7 @@ import cx from "classnames";
 import styles from "./headerButton.module.css";
 
 export interface HeaderButtonProps {
+  className: string;
   as?: ElementType;
   expanded?: boolean;
   label?: string;
@@ -15,6 +16,7 @@ export interface HeaderButtonProps {
 }
 
 export const HeaderButton = ({
+  className,
   as = "button",
   avatar,
   icon = "padlock-locked",
@@ -25,7 +27,7 @@ export const HeaderButton = ({
 }: HeaderButtonProps) => {
   if (expanded) {
     return (
-      <ButtonBase {...rest} as={as} className={styles.button}>
+      <ButtonBase {...rest} as={as} className={cx(styles.button, className)}>
         <span className={styles.label}>{label}</span>
         <span className={cx(styles.icon, styles.closeIcon)}>
           <Icon name={"x-mark"} />
@@ -36,7 +38,7 @@ export const HeaderButton = ({
 
   if (avatar) {
     return (
-      <ButtonBase {...rest} as={as} className={styles.button}>
+      <ButtonBase {...rest} as={as} className={cx(styles.button, className)}>
         <span className={styles.label}>{label}</span>
         <Avatar type={avatar?.type} name={avatar?.name} size="lg" />
       </ButtonBase>
@@ -44,7 +46,7 @@ export const HeaderButton = ({
   }
 
   return (
-    <ButtonBase {...rest} as={as} className={styles.button}>
+    <ButtonBase {...rest} as={as} className={cx(styles.button, className)}>
       <span className={styles.label}>{label}</span>
       <span className={cx(styles.icon, styles.loginIcon)}>
         <Icon name={icon} />

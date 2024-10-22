@@ -8,7 +8,11 @@ const meta = {
   component: Header,
   tags: ["autodocs"],
   parameters: {},
-  args: {},
+  args: {
+    search: {
+      placeholder: "Søk i Altinn",
+    },
+  },
 } satisfies Meta<typeof Header>;
 
 export default meta;

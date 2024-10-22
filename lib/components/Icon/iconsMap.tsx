@@ -25,6 +25,7 @@ import {
   HospitalIcon,
   InboxFillIcon,
   InboxIcon,
+  MagnifyingGlassIcon,
   MenuElipsisHorizontalIcon,
   MenuGridIcon,
   MinusIcon,
@@ -46,6 +47,9 @@ interface IconsMap {
 
 export const iconsMap: IconsMap = {
   checkmark: <CheckmarkIcon />,
+
+  // search
+  search: <MagnifyingGlassIcon />,
 
   // plus
   plus: <PlusIcon />,

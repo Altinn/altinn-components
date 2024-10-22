@@ -1,5 +1,18 @@
 .button {
+  position: relative;
   display: inline-block;
+}
+
+.dropdown {
+  display: none;
+}
+
+.dropdown[aria-expanded="true"] {
+  display: block;
+  position: absolute;
+  min-width: 256px;
+  right: 0;
+  z-index: 2;
 }
 
 .dropdown {

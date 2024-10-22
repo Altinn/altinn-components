@@ -1,32 +1,67 @@
 import styles from "./header.module.css";
-import { ReactNode } from "react";
+import { type ReactNode, useState } from "react";
 import { HeaderLogo } from "./HeaderLogo";
 import { HeaderButton } from "./HeaderButton";
+import { HeaderSearch, HeaderSearchProps } from "./HeaderSearch";
+import { AccountMenu } from "./AccountMenu";
 
-export interface HeaderApp {
-  logo?: string;
-  name?: string;
-}
-export interface HeaderAccount {
+export type HeaderColor = "default" | "dark" | "light";
+
+export interface HeaderAccountProps {
   type?: string;
   name?: string;
 }
 
-export type HeaderColor = "default" | "dark" | "light";
+type ExpandedType = "search" | "account";
 
 export interface HeaderProps {
-  app?: HeaderApp;
   color?: HeaderColor;
-  account?: HeaderAccount;
+  account?: HeaderAccountProps;
+  search?: HeaderSearchProps;
   children?: ReactNode;
 }
 
-export const Header = ({ app, color, account, children }: HeaderProps) => {
+export const Header = ({ account, search }: HeaderProps) => {
+  const [expandedType, setExpandedType] = useState<ExpandedType>(null);
+
+  const onToggle = (type: ExpandedType) => {
+    if (expandedType === type) {
+      setExpandedType(null);
+    } else {
+      setExpandedType(type);
+    }
+  };
+
+  const onSearchFocus = () => {
+    setExpandedType("search");
+  };
+
+  const onSearchBlur = () => {
+    setExpandedType(null);
+  };
+
   return (
-    <header className={styles.header} data-color={color}>
-      <HeaderLogo logo={app?.logo} text={app?.name} />
-      {children}
-      <HeaderButton avatar={account}></HeaderButton>
+    <header className={styles.header}>
+      <HeaderLogo className={styles?.logo} />
+      {account ? (
+        <AccountMenu
+          className={styles?.button}
+          account={account}
+          expanded={expandedType === "account"}
+          onToggle={() => onToggle("account")}
+        ></AccountMenu>
+      ) : (
+        <HeaderButton className={styles?.button}></HeaderButton>
+      )}
+      {search && (
+        <HeaderSearch
+          {...search}
+          className={styles?.search}
+          expanded={expandedType === "search"}
+          onBlur={onSearchBlur}
+          onFocus={onSearchFocus}
+        />
+      )}
     </header>
   );
 };

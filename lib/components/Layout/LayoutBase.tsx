@@ -3,7 +3,7 @@ import styles from "./layout.module.css";
 
 export type LayoutTheme = "global" | "neutral" | "company" | "person";
 
-export interface LayoutProps {
+export interface LayoutBaseProps {
   theme?: LayoutTheme;
   children?: ReactNode;
 }
@@ -22,7 +22,7 @@ export interface LayoutProps {
  *
  */
 
-export const LayoutBase = ({ theme, children }: LayoutProps) => {
+export const LayoutBase = ({ theme, children }: LayoutBaseProps) => {
   return (
     <div className={styles.base} data-theme={theme}>
       {children}

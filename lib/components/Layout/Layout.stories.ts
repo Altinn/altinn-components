@@ -7,44 +7,55 @@ const meta = {
   tags: ["autodocs"],
   parameters: {},
   args: {
-    menu: [
-      {
-        group: 1,
-        size: "lg",
-        icon: "inbox",
-        title: "Innboks",
-        badge: 4,
+    header: {
+      search: {
+        placeholder: "Søk i Altinn",
       },
-      {
-        group: 2,
-        icon: "doc-pencil",
-        title: "Utkast",
+      account: {
+        type: "person",
+        name: "Dirk Digdir",
       },
-      {
-        group: 2,
-        icon: "file-checkmark",
-        selected: true,
-        title: "Sendt",
-        badge: 2,
-      },
-      {
-        group: 3,
-        icon: "bookmark",
-        title: "Lagrede søk",
-        badge: 11,
-      },
-      {
-        group: 4,
-        icon: "archive",
-        title: "Arkivert",
-      },
-      {
-        group: 4,
-        disabled: true,
-        icon: "trash",
-        title: "Papirkurv",
-      },
-    ],
+    },
+    sidebar: {
+      menu: [
+        {
+          group: 1,
+          size: "lg",
+          icon: "inbox",
+          title: "Innboks",
+          badge: 4,
+        },
+        {
+          group: 2,
+          icon: "doc-pencil",
+          title: "Utkast",
+        },
+        {
+          group: 2,
+          icon: "file-checkmark",
+          selected: true,
+          title: "Sendt",
+          badge: 2,
+        },
+        {
+          group: 3,
+          icon: "bookmark",
+          title: "Lagrede søk",
+          badge: 11,
+        },
+        {
+          group: 4,
+          icon: "archive",
+          title: "Arkivert",
+        },
+        {
+          group: 4,
+          disabled: true,
+          icon: "trash",
+          title: "Papirkurv",
+        },
+      ],
+    },
     toolbar: {
       filters: [
         {

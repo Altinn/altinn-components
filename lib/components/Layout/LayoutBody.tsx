@@ -1,5 +1,5 @@
 import styles from "./layout.module.css";
-import type { LayoutProps } from "./LayoutBase";
+import type { LayoutBaseProps } from "./LayoutBase";
 
 /**
  * Body layout container. Should be a child of LayoutBase.
@@ -7,7 +7,7 @@ import type { LayoutProps } from "./LayoutBase";
  *
  */
 
-export const LayoutBody = ({ theme, children }: LayoutProps) => {
+export const LayoutBody = ({ theme, children }: LayoutBaseProps) => {
   return (
     <div className={styles.body} data-theme={theme}>
       {children}
