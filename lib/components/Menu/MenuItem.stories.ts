@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import type { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 
-import { MenuItem } from './MenuItem';
+import { MenuItem } from "./MenuItem";
 
 const meta = {
-  title: 'Menu/MenuItem',
+  title: "Menu/MenuItem",
   component: MenuItem,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   parameters: {},
   args: {},
 } satisfies Meta<typeof MenuItem>;
@@ -16,36 +16,92 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    icon: 'inbox',
-    title: 'Innboks',
+    icon: "inbox",
+    title: "Innboks",
   },
 };
 
-export const Account: Story = {
+export const DefaultBadge: Story = {
   args: {
-    size: 'lg',
-    avatar: {
-      type: 'person',
-      name: 'Eirik Horneland',
-    },
-    title: 'Eirik Horneland',
-    description: 'Født: XX.XX.XXXX',
-  },
-};
-
-export const Section: Story = {
-  args: {
-    size: 'lg',
-    icon: 'inbox',
-    title: 'Innboks',
-  },
-};
-
-export const SectionBadge: Story = {
-  args: {
-    size: 'lg',
-    icon: 'inbox',
-    title: 'Innboks',
+    icon: "inbox",
+    title: "Innboks",
     badge: 4,
+  },
+};
+
+export const Large: Story = {
+  args: {
+    size: "lg",
+    icon: "inbox",
+    title: "Innboks",
+  },
+};
+
+export const LargeBadge: Story = {
+  args: {
+    size: "lg",
+    icon: "inbox",
+    title: "Innboks",
+    badge: 4,
+  },
+};
+
+export const Person: Story = {
+  args: {
+    avatar: {
+      type: "person",
+      name: "Eirik Horneland",
+    },
+    title: "Eirik Horneland",
+  },
+};
+
+export const PersonGroup: Story = {
+  args: {
+    avatarGroup: {
+      items: [
+        {
+          type: "person",
+          name: "Eirik Horneland",
+        },
+        {
+          type: "person",
+          name: "Japhet Sery Larsen",
+        },
+        {
+          type: "person",
+          name: "Aune Heggebø",
+        },
+      ],
+    },
+    title: "3 personer",
+  },
+};
+
+export const CompanyGroup: Story = {
+  args: {
+    avatarGroup: {
+      type: "company",
+      items: [
+        {
+          name: "Sportsklubben Brann",
+        },
+        {
+          name: "Bergen Næringsråd",
+        },
+        {
+          name: "Bergen bar",
+        },
+      ],
+    },
+    title: "3 personer",
+  },
+};
+
+export const PersonAccount: Story = {
+  args: {
+    ...Person.args,
+    size: "lg",
+    description: "Født: XX.XX.XXXX",
   },
 };

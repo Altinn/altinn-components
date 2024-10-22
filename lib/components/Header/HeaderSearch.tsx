@@ -36,7 +36,7 @@ export const HeaderSearch = ({
           className={styles?.input}
           type="search"
         />
-        <Icon name="search" className={styles.icon} />
+        <Icon name="magnifying-glass" className={styles.icon} />
       </div>
     </div>
   );

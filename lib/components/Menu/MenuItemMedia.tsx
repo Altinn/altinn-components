@@ -11,6 +11,7 @@ import styles from "./menuItem.module.css";
 
 interface MenuItemMediaProps {
   size?: MenuItemSize;
+  selected?: boolean;
   icon?: string;
   avatar?: AvatarProps;
   avatarGroup?: AvatarGroupProps;
@@ -32,6 +33,7 @@ const sizeMap = {
 
 export const MenuItemMedia = ({
   size = "sm",
+  selected,
   icon,
   avatar,
   avatarGroup,
@@ -50,7 +52,8 @@ export const MenuItemMedia = ({
       {icon ? (
         <Icon
           name={icon}
-          variant={size === "lg" ? "solid" : "outline"}
+          variant={selected || size === "lg" ? "solid" : "outline"}
+          //          variant={size === "lg" ? "solid" : "outline"}
           className={styles?.icon}
         />
       ) : (

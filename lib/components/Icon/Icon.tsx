@@ -14,7 +14,7 @@ interface IconProps {
 export const Icon = ({ name, variant = "outline", className }: IconProps) => {
   const svgIcon: JSX.Element | undefined =
     (iconsMap[name] as { [key in IconVariant]: JSX.Element })?.[variant] ??
-    iconsMap[name];
+    iconsMap[name]?.outline;
 
   if (!svgIcon) {
     return <span className={cx([styles.icon], className)}>{name}</span>;

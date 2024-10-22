@@ -47,7 +47,7 @@ export const GlobalMenu: Story = {
       },
       {
         group: "2",
-        icon: "settings",
+        icon: "cog",
         title: "Innstillinger",
       },
     ],

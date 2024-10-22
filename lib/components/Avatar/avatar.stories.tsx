@@ -20,7 +20,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Person: Story = {
   args: {
-    type: "company",
+    type: "person",
     name: "Jane Doe",
     size: "xl",
   },
@@ -28,7 +28,7 @@ export const Person: Story = {
 
 export const Company: Story = {
   args: {
-    type: "person",
+    type: "company",
     name: "Boligeksperten",
     variant: "square",
   },
