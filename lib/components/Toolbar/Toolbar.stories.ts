@@ -114,19 +114,10 @@ export const CustomFilterLabel: Story = {
   args: {
     ...Default.args,
     getFilterLabel: (name, value) => {
-      return Array.isArray(value) && value.length > 1 ? `${value.length} selected` : value;
-    }
-  }
-}
-
-export const OpenFilters: Story = {
-  args: {
-    filters: Default?.args?.items?.map((item) => {
-      return {
-        ...item,
-        hidden: false,
-      };
-    }),
+      return Array.isArray(value) && value.length > 1
+        ? `${value.length} selected`
+        : value;
+    },
   },
 };
 
@@ -136,24 +127,49 @@ export const StaticFilters: Story = {
       return {
         ...item,
         removable: false,
-        hidden: false,
       };
     }),
   },
 };
 
-export const FiltersSearch: Story = {
+export const FilterAndSearch: Story = {
   args: {
     search: {
-        placeholder: "Søk etter filter",
+      placeholder: "Søk etter filter",
     },
     filters: [
-      ...Default?.args?.filters?.map((item) => {
-        return {
-          ...item,
-          removable: false,
-        };
-      }),
+      {
+        name: "status",
+        optionType: "checkbox",
+        label: "Velg status",
+        options: [
+          {
+            group: "1",
+            value: "draft",
+            label: "Utkast",
+          },
+          {
+            group: "1",
+            value: "sent",
+            label: "Sendt",
+          },
+          {
+            group: "2",
+            value: "in-progress",
+            label: "Under arbeid",
+          },
+          {
+            group: "2",
+            value: "requires-attention",
+            label: "Krever handling",
+          },
+          {
+            group: "2",
+            value: "completed",
+            label: "Avsluttet",
+          },
+        ],
+      },
     ],
   },
 };
