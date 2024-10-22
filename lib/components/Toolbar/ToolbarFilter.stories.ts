@@ -9,18 +9,19 @@ const meta = {
   tags: ["autodocs"],
   parameters: {},
   args: {
-    items: [
+    label: "Velg avsender",
+    options: [
       {
         label: "Skatteetaten",
-        value: "1",
+        value: "skatt",
       },
       {
         label: "Digdir",
-        value: "2",
+        value: "digdir",
       },
       {
         label: "Helstilsynet",
-        value: "3",
+        value: "helse",
       },
     ],
   },
@@ -31,29 +32,35 @@ type Story = StoryObj<typeof meta>;
 
 export const Single: Story = {
   args: {
-    label: "Single",
+    optionType: "radio",
+  },
+};
+
+export const SingleExpanded: Story = {
+  args: {
+    ...Single.args,
+    expanded: true,
   },
 };
 
 export const SingleValue: Story = {
   args: {
-    multiple: true,
-    label: "Multiple",
-    value: "1",
+    optionType: "radio",
+    value: "helse",
   },
 };
 
 export const Multiple: Story = {
   args: {
-    multiple: true,
-    label: "Multiple",
+    optionType: "checkbox",
+    value: ["skatt", "digdir"],
   },
 };
 
-export const MultipleValue: Story = {
+export const MultipleExpanded: Story = {
   args: {
-    multiple: true,
-    label: "Multiple",
-    value: ["1", "2"],
+    optionType: "checkbox",
+    value: ["skatt", "digdir"],
+    expanded: true,
   },
 };

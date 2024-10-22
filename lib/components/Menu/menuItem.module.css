@@ -88,9 +88,8 @@
   color: var(--theme-text-subtle);
 }
 
-/* theme colors */
+/* default colors */
 
-[data-theme="global"] .media[data-bg="true"],
 [data-theme="neutral"] .media[data-bg="true"],
 [data-theme="person"] .media[data-bg="true"],
 [data-theme="company"] .media[data-bg="true"] {
@@ -104,18 +103,18 @@
   color: var(--theme-background-default);
 }
 
-/* subtle */
+/* global */
 
-[data-theme="global"][data-color="subtle"] .media[data-bg="true"],
-[data-theme="person"][data-color="subtle"] .media[data-bg="true"],
-[data-theme="company"][data-color="subtle"] .media[data-bg="true"] {
+[data-theme="global"] [data-theme="neutral"] .media[data-bg="true"],
+[data-theme="global"] [data-theme="company"] .media[data-bg="true"],
+[data-theme="global"] [data-theme="person"] .media[data-bg="true"] {
   background-color: var(--theme-surface-default);
   color: var(--theme-text-default);
 }
 
-[data-theme="global"][data-color="subtle"] .item[aria-selected="true"],
-[data-theme="person"][data-color="subtle"] .item[aria-selected="true"],
-[data-theme="company"][data-color="subtle"] .item[aria-selected="true"] {
+[data-theme="global"] [data-theme="neutral"] .item[aria-selected="true"],
+[data-theme="global"] [data-theme="company"] .item[aria-selected="true"],
+[data-theme="global"] [data-theme="person"] .item[aria-selected="true"] {
   background-color: var(--theme-surface-default);
   color: var(--theme-text-default);
 }

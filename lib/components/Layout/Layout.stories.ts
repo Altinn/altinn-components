@@ -81,26 +81,37 @@ export const Default: Story = {
   args: {},
 };
 
-export const CompanyMenuColor: Story = {
+export const GlobalNeutral: Story = {
   args: {
-    menuTheme: "company",
-    menuColor: "subtle",
+    sidebarTheme: "neutral",
   },
 };
 
-export const NeutralTheme: Story = {
+export const GlobalCompany: Story = {
+  args: {
+    sidebarTheme: "company",
+  },
+};
+
+export const GlobalPerson: Story = {
+  args: {
+    sidebarTheme: "person",
+  },
+};
+
+export const Neutral: Story = {
   args: {
     theme: "neutral",
   },
 };
 
-export const CompanyTheme: Story = {
+export const Company: Story = {
   args: {
     theme: "company",
   },
 };
 
-export const PersonTheme: Story = {
+export const Person: Story = {
   args: {
     theme: "person",
   },

@@ -4,20 +4,20 @@ import { Menu } from "../Menu";
 import { Toolbar } from "../Toolbar";
 
 export const Layout = ({
-  theme,
+  theme = "global",
   menu = [],
-  menuTheme,
-  menuColor,
+  sidebarTheme,
+  contentTheme,
   toolbar = {},
 }: LayoutProps) => {
   return (
     <LayoutBase theme={theme}>
       <Header />
       <LayoutBody>
-        <LayoutSidebar>
-          <Menu items={menu} theme={menuTheme} color={menuColor} />
+        <LayoutSidebar theme={sidebarTheme}>
+          <Menu items={menu} />
         </LayoutSidebar>
-        <LayoutContent>
+        <LayoutContent theme={contentTheme}>
           <Toolbar menu={toolbar?.menu} filters={toolbar?.filters} />
         </LayoutContent>
       </LayoutBody>
