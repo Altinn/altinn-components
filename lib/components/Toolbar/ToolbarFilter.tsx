@@ -4,7 +4,7 @@ import {ToolbarOptions} from "./ToolbarOptions";
 import type {MenuOptionProps} from "../Menu";
 import styles from "./toolbar.module.css";
 
-type ToolbarFilterValue = string | number | (string | number)[];
+type ToolbarFilterValue = (string | number)[];
 export interface ToolbarFilterProps {
   name: string;
   options: MenuOptionProps[];

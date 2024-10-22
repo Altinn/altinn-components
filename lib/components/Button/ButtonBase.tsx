@@ -37,6 +37,7 @@ export const ButtonBase = ({
   const Component = as || 'button';
   return (
     <Component
+      tabIndex={0}
       data-size={size}
       data-variant={variant}
       data-color={color}
