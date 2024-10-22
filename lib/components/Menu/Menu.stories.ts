@@ -22,6 +22,7 @@ export const GlobalMenu: Story = {
         group: "0",
         size: "lg",
         avatar: {
+          type: "person",
           name: "Herman Friele",
         },
         title: "Herman Friele",
@@ -137,6 +138,7 @@ export const InboxMenu: Story = {
 
 export const InboxMenuWithShortcuts = {
   args: {
+    theme: "company",
     groups: {
       shortcuts: {
         title: "Snarveier",
@@ -166,9 +168,10 @@ export const PersonMenu: Story = {
         group: 1,
         size: "lg",
         avatar: {
-          name: "Per Person",
+          type: "person",
+          name: "Erik Huseklepp",
         },
-        title: "Innboks",
+        title: "Erik Huseklepp",
       },
       {
         group: 3,
@@ -200,7 +203,7 @@ export const CompanyMenu: Story = {
           type: "company",
           name: "Bergen Bar",
         },
-        title: "Innboks",
+        title: "Bergen Bar",
       },
       {
         group: 3,

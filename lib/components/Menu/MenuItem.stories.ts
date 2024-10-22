@@ -78,6 +78,16 @@ export const PersonGroup: Story = {
   },
 };
 
+export const Company: Story = {
+  args: {
+    avatar: {
+      type: "company",
+      name: "Sportsklubben Brann",
+    },
+    title: "Sportsklubben Brann",
+  },
+};
+
 export const CompanyGroup: Story = {
   args: {
     avatarGroup: {
@@ -94,7 +104,7 @@ export const CompanyGroup: Story = {
         },
       ],
     },
-    title: "3 personer",
+    title: "3 virksomheter",
   },
 };
 
@@ -103,5 +113,13 @@ export const PersonAccount: Story = {
     ...Person.args,
     size: "lg",
     description: "Født: XX.XX.XXXX",
+  },
+};
+
+export const CompanyAccount: Story = {
+  args: {
+    ...Company.args,
+    size: "lg",
+    description: "Org nr.: XX.XX.XXXX",
   },
 };
