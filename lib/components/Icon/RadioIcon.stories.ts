@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { CheckboxIcon } from "./CheckboxIcon";
+import { RadioIcon } from "./RadioIcon";
 import { fn } from "@storybook/test";
 
 const meta = {
-  title: "Icon/CheckboxIcon",
-  component: CheckboxIcon,
+  title: "Icon/RadioIcon",
+  component: RadioIcon,
   tags: ["autodocs"],
   parameters: {},
   args: {},
-} satisfies Meta<typeof CheckboxIcon>;
+} satisfies Meta<typeof RadioIcon>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

@@ -1,24 +1,25 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { CheckboxIcon } from "./CheckboxIcon";
+import { Icon } from "./Icon";
+import { iconsMap } from "./iconsMap";
 import { fn } from "@storybook/test";
 
 const meta = {
-  title: "Icon/CheckboxIcon",
-  component: CheckboxIcon,
+  title: "Icon/Icon",
+  component: Icon,
   tags: ["autodocs"],
   parameters: {},
-  args: {},
-} satisfies Meta<typeof CheckboxIcon>;
+  argTypes: {
+    name: Object.keys(iconsMap),
+  },
+  args: {
+    name: "inbox",
+    variant: "outline",
+  },
+} satisfies Meta<typeof Icon>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {},
-};
-
-export const Checked: Story = {
-  args: {
-    checked: true,
-  },
 };
