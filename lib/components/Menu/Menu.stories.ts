@@ -97,50 +97,6 @@ export const InboxMenu: Story = {
   },
 };
 
-export const GlobalMenuWithInbox: Story = {
-  args: {
-    theme: "global",
-    items: [
-      {
-        group: "0",
-        size: "lg",
-        avatar: {
-          type: "person",
-          name: "Herman Friele",
-        },
-        title: "Herman Friele",
-        description: "Fødselsnr: XX.XX.XXXX",
-      },
-      {
-        collapsible: true,
-        expanded: true,
-        group: "1",
-        size: "lg",
-        icon: "inbox",
-        title: "Innboks",
-        items: InboxMenu?.args.items,
-      },
-      {
-        group: "1",
-        size: "lg",
-        icon: "bookmark",
-        title: "Tilganger",
-      },
-      {
-        group: "1",
-        size: "lg",
-        icon: "menu-grid",
-        title: "Alle skjema",
-      },
-      {
-        group: "2",
-        icon: "cog",
-        title: "Innstillinger",
-      },
-    ],
-  },
-};
-
 export const DrilldownMenu: Story = {
   args: {
     theme: "company",
