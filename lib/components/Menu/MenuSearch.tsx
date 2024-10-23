@@ -23,6 +23,7 @@ export const MenuSearch = ({
         placeholder={placeholder}
         className={styles.input}
         onChange={onChange}
+        autoComplete="off"
       />
     </div>
   );

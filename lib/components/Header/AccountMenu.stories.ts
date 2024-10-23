@@ -29,7 +29,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-
 export const Person: Story = {
   args: {
     accounts: [
@@ -37,7 +36,7 @@ export const Person: Story = {
         type: "person",
         name: "Aurora Mikalsen",
         selected: true,
-      }
+      },
     ],
   },
 };
@@ -49,7 +48,7 @@ export const Company: Story = {
         type: "company",
         name: "Bergen bar",
         selected: true,
-      }
+      },
     ],
   },
 };
@@ -62,7 +61,7 @@ export const Expanded: Story = {
         type: "company",
         name: "Bergen bar",
         selected: true,
-      }
+      },
     ],
   },
 };
@@ -75,7 +74,7 @@ export const CustomLabel: Story = {
         type: "person",
         name: "Aurora Mikalsen",
         selected: true,
-      }
+      },
     ],
   },
 };
@@ -84,17 +83,64 @@ export const Accounts: Story = {
   args: {
     label: "Meny",
     expanded: true,
+    getAccountSearchLabel: (hits = 0) => {
+      if (hits) {
+        return hits + " treff";
+      } else {
+        return "Ingen treff";
+      }
+    },
+    accountGroups: {
+      primary: {
+        title: "Deg selv og favoritter",
+      },
+      secondary: {
+        title: "Andre kontoer",
+      },
+    },
     accounts: [
       {
+        group: "primary",
         type: "person",
         name: "Aurora Mikalsen",
         selected: true,
       },
       {
+        group: "favourites",
         type: "person",
         name: "Rakel Engelsvik",
         selected: false,
-      }
+      },
+      {
+        group: "favourites",
+        type: "company",
+        name: "Auroras keeperskole",
+        selected: false,
+      },
+      {
+        group: "secondary",
+        type: "company",
+        name: "Keeperhansker AS",
+        selected: false,
+      },
+      {
+        group: "secondary",
+        type: "company",
+        name: "Stadion drift AS",
+        selected: false,
+      },
+      {
+        group: "secondary",
+        type: "company",
+        name: "Sportsklubben Brann",
+        selected: false,
+      },
+      {
+        group: "secondary",
+        type: "company",
+        name: "Landslaget",
+        selected: false,
+      },
     ],
   },
 };

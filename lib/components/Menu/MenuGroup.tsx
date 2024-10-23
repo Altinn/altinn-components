@@ -2,9 +2,14 @@ import type { ReactNode } from "react";
 import styles from "./menu.module.css";
 
 export interface MenuGroupProps {
+  divider: boolean;
   children?: ReactNode;
 }
 
-export const MenuGroup = ({ children }: MenuGroupProps) => {
-  return <section className={styles.group}>{children}</section>;
+export const MenuGroup = ({ divider, children }: MenuGroupProps) => {
+  return (
+    <section data-divider={divider} className={styles.group}>
+      {children}
+    </section>
+  );
 };
