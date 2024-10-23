@@ -53,43 +53,6 @@ export const GlobalMenu: Story = {
   },
 };
 
-export const DrilldownMenu: Story = {
-  args: {
-    theme: "company",
-    color: "subtle",
-    items: [
-      {
-        group: 1,
-        name: "people",
-        size: "lg",
-        icon: "menu-grid",
-        title: "Alle skjema",
-      },
-      {
-        group: 2,
-        name: "tema",
-        icon: "teddy-bear",
-        title: "Tema",
-      },
-      {
-        group: 3,
-        name: "c1",
-        title: "Kategori 1",
-      },
-      {
-        group: 3,
-        name: "c2",
-        title: "Kategori 2",
-      },
-      {
-        group: 3,
-        name: "c3",
-        title: "Kategori 3",
-      },
-    ],
-  },
-};
-
 export const InboxMenu: Story = {
   args: {
     theme: "person",
@@ -129,6 +92,87 @@ export const InboxMenu: Story = {
         disabled: true,
         icon: "trash",
         title: "Papirkurv",
+      },
+    ],
+  },
+};
+
+export const GlobalMenuWithInbox: Story = {
+  args: {
+    theme: "global",
+    items: [
+      {
+        group: "0",
+        size: "lg",
+        avatar: {
+          type: "person",
+          name: "Herman Friele",
+        },
+        title: "Herman Friele",
+        description: "Fødselsnr: XX.XX.XXXX",
+      },
+      {
+        collapsible: true,
+        expanded: true,
+        group: "1",
+        size: "lg",
+        icon: "inbox",
+        title: "Innboks",
+        items: InboxMenu?.args.items,
+      },
+      {
+        group: "1",
+        size: "lg",
+        icon: "bookmark",
+        title: "Tilganger",
+      },
+      {
+        group: "1",
+        size: "lg",
+        icon: "menu-grid",
+        title: "Alle skjema",
+      },
+      {
+        group: "2",
+        icon: "cog",
+        title: "Innstillinger",
+      },
+    ],
+  },
+};
+
+export const DrilldownMenu: Story = {
+  args: {
+    theme: "company",
+    color: "subtle",
+    items: [
+      {
+        group: 1,
+        name: "people",
+        size: "lg",
+        icon: "menu-grid",
+        title: "Alle skjema",
+      },
+      {
+        group: 2,
+        name: "tema",
+        icon: "teddy-bear",
+        title: "Tema",
+      },
+      {
+        group: 3,
+        name: "c1",
+        title: "Kategori 1",
+      },
+      {
+        group: 3,
+        name: "c2",
+        title: "Kategori 2",
+      },
+      {
+        group: 3,
+        name: "c3",
+        title: "Kategori 3",
       },
     ],
   },

@@ -3,7 +3,7 @@ import { type ReactNode, useState } from "react";
 import { HeaderLogo } from "./HeaderLogo";
 import { HeaderButton } from "./HeaderButton";
 import { HeaderSearch, type HeaderSearchProps } from "./HeaderSearch";
-import {Account, GlobalMenu} from "./GlobalMenu.tsx";
+import { Account, GlobalMenu } from "./GlobalMenu.tsx";
 
 export type HeaderColor = "default" | "dark" | "light";
 
@@ -34,7 +34,7 @@ export const Header = ({ account, search, headerLabel }: HeaderProps) => {
   };
 
   const onSearchFocus = () => {
-    setExpandedType('search');
+    setExpandedType("search");
   };
 
   const onSearchBlur = () => {
@@ -51,9 +51,10 @@ export const Header = ({ account, search, headerLabel }: HeaderProps) => {
           onToggle={() => onToggle("account")}
           className={styles?.button}
           menu={[]}
-          menuLabel={headerLabel}/>
+          menuLabel={headerLabel}
+        />
       ) : (
-        <HeaderButton className={styles?.button} label={headerLabel}/>
+        <HeaderButton className={styles?.button} label={headerLabel} />
       )}
       {search && (
         <HeaderSearch
