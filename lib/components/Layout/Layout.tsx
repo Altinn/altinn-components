@@ -33,13 +33,17 @@ export const Layout = ({
   content,
   children,
 }: LayoutProps) => {
+
+  const { menu, ...sidebarProps } = sidebar;
+  const sideMenuItems = menu ? [menu] : [];
+
   return (
     <LayoutBase theme={theme}>
-      {header && <Header account={header?.account} search={header?.search} />}
+      {header && <Header search={header?.search} {...header} />}
       <LayoutBody>
         {sidebar && (
-          <LayoutSidebar theme={sidebar?.theme}>
-            <Menu items={sidebar?.menu} />
+          <LayoutSidebar theme={sidebar?.theme} {...sidebarProps}>
+            <Menu items={sideMenuItems} />
           </LayoutSidebar>
         )}
         <LayoutContent theme={content?.theme}>{children}</LayoutContent>

@@ -1,11 +1,11 @@
 import cx from 'classnames';
 import {ButtonBase, type ButtonBaseProps} from './ButtonBase';
-import {Icon} from '../Icon';
+import {Icon, type IconName} from '../Icon';
 
 import styles from './button.module.css';
 
-export interface ButtonProps extends ButtonBaseProps {
-  icon?: string;
+export interface ButtonProps extends Partial<ButtonBaseProps> {
+  icon?: IconName;
   reverse?: boolean;
 }
 

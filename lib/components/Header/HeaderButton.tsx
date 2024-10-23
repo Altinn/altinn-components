@@ -1,18 +1,18 @@
-import { ElementType } from "react";
-import { ButtonBase } from "../Button";
-import { Avatar, AvatarProps } from "../Avatar";
-import { Icon } from "../Icon";
+import type { ElementType } from "react";
+import {ButtonBase, type ButtonProps} from "../Button";
+import { Avatar, type AvatarProps } from "../Avatar";
+import {Icon, type IconName} from "../Icon";
 import cx from "classnames";
 
 import styles from "./headerButton.module.css";
 
-export interface HeaderButtonProps {
-  className: string;
-  as?: ElementType;
-  expanded?: boolean;
-  label?: string;
-  icon?: string;
+export interface HeaderButtonProps extends ButtonProps{
+  label: string;
   avatar?: AvatarProps;
+  as?: ElementType;
+  className?: string;
+  expanded?: boolean;
+  icon?: IconName;
 }
 
 export const HeaderButton = ({
@@ -21,13 +21,12 @@ export const HeaderButton = ({
   avatar,
   icon = "padlock-locked",
   expanded,
-  children,
-  label = "Meny",
-  ...rest
+  label,
+  ...buttonProps
 }: HeaderButtonProps) => {
   if (expanded) {
     return (
-      <ButtonBase {...rest} as={as} className={cx(styles.button, className)}>
+      <ButtonBase {...buttonProps} as={as} className={cx(styles.button, className)}>
         <span className={styles.label}>{label}</span>
         <span className={cx(styles.icon, styles.closeIcon)}>
           <Icon name={"x-mark"} />
@@ -38,7 +37,7 @@ export const HeaderButton = ({
 
   if (avatar) {
     return (
-      <ButtonBase {...rest} as={as} className={cx(styles.button, className)}>
+      <ButtonBase {...buttonProps} as={as} className={cx(styles.button, className)}>
         <span className={styles.label}>{label}</span>
         <Avatar type={avatar?.type} name={avatar?.name} size="lg" />
       </ButtonBase>
@@ -46,7 +45,7 @@ export const HeaderButton = ({
   }
 
   return (
-    <ButtonBase {...rest} as={as} className={cx(styles.button, className)}>
+    <ButtonBase {...buttonProps} as={as} className={cx(styles.button, className)}>
       <span className={styles.label}>{label}</span>
       <span className={cx(styles.icon, styles.loginIcon)}>
         <Icon name={icon} />

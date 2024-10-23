@@ -1,7 +1,7 @@
-import type { FocusEventHandler, ChangeEventHandler } from "react";
-import { Icon } from "../Icon";
-import styles from "./headerSearch.module.css";
-import cx from "classnames";
+import type {ChangeEventHandler, FocusEventHandler} from 'react';
+import {Icon} from '../Icon';
+import styles from './headerSearch.module.css';
+import cx from 'classnames';
 
 export interface HeaderSearchProps {
   className?: string;
@@ -9,20 +9,21 @@ export interface HeaderSearchProps {
   placeholder?: string;
   name: string;
   value?: string;
-  onChange?: FocusEventHandler;
+  onFocus?: FocusEventHandler;
+  onBlur?: FocusEventHandler;
   onChange?: ChangeEventHandler;
 }
 
 export const HeaderSearch = ({
   className,
   expanded = false,
-  name = "q",
+  name = 'q',
   value,
-  placeholder = "Søk",
+  placeholder = 'Søk',
   onFocus,
   onBlur,
   onChange,
-}: ToolbarSearchProps) => {
+}: HeaderSearchProps) => {
   return (
     <div className={cx(styles.form, className)} aria-expanded={expanded}>
       <div className={styles.field}>

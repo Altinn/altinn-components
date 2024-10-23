@@ -1,12 +1,12 @@
 import cx from 'classnames';
 import type {MouseEventHandler} from 'react';
 import {ButtonBase, type ButtonBaseProps} from './ButtonBase';
-import {Icon} from '../Icon';
+import {Icon, type IconName} from '../Icon';
 
 import styles from './comboButton.module.css';
 
 export interface ComboButtonProps extends Omit<ButtonBaseProps, 'onClick'> {
-  icon: string;
+  icon: IconName;
   onIconClick?: MouseEventHandler<HTMLButtonElement>;
   onLabelClick?: MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;

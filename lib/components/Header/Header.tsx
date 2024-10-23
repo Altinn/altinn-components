@@ -2,8 +2,8 @@ import styles from "./header.module.css";
 import { type ReactNode, useState } from "react";
 import { HeaderLogo } from "./HeaderLogo";
 import { HeaderButton } from "./HeaderButton";
-import { HeaderSearch, HeaderSearchProps } from "./HeaderSearch";
-import { AccountMenu } from "./AccountMenu";
+import { HeaderSearch, type HeaderSearchProps } from "./HeaderSearch";
+import {Account, AccountMenu} from "./AccountMenu";
 
 export type HeaderColor = "default" | "dark" | "light";
 
@@ -15,14 +15,15 @@ export interface HeaderAccountProps {
 type ExpandedType = "search" | "account";
 
 export interface HeaderProps {
+  headerLabel: string;
   color?: HeaderColor;
-  account?: HeaderAccountProps;
+  account?: Account;
   search?: HeaderSearchProps;
   children?: ReactNode;
 }
 
-export const Header = ({ account, search }: HeaderProps) => {
-  const [expandedType, setExpandedType] = useState<ExpandedType>(null);
+export const Header = ({ account, search, headerLabel }: HeaderProps) => {
+  const [expandedType, setExpandedType] = useState<ExpandedType | null>(null);
 
   const onToggle = (type: ExpandedType) => {
     if (expandedType === type) {
@@ -33,7 +34,7 @@ export const Header = ({ account, search }: HeaderProps) => {
   };
 
   const onSearchFocus = () => {
-    setExpandedType("search");
+    setExpandedType('search');
   };
 
   const onSearchBlur = () => {
@@ -45,13 +46,14 @@ export const Header = ({ account, search }: HeaderProps) => {
       <HeaderLogo className={styles?.logo} />
       {account ? (
         <AccountMenu
-          className={styles?.button}
           account={account}
           expanded={expandedType === "account"}
           onToggle={() => onToggle("account")}
-        ></AccountMenu>
+          className={styles?.button}
+          items={[]}
+          label={headerLabel}/>
       ) : (
-        <HeaderButton className={styles?.button}></HeaderButton>
+        <HeaderButton className={styles?.button} label={headerLabel}/>
       )}
       {search && (
         <HeaderSearch

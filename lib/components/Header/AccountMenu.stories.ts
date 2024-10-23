@@ -1,6 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
-
 import { AccountMenu } from "./AccountMenu";
 
 const meta = {
@@ -31,9 +29,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  args: {},
-};
 
 export const Person: Story = {
   args: {
@@ -59,6 +54,16 @@ export const Expanded: Story = {
     account: {
       type: "company",
       name: "Bergen bar",
+    },
+  },
+};
+
+export const CustomLabel: Story = {
+  args: {
+    label: "Meny",
+    account: {
+      type: "person",
+      name: "Aurora Mikalsen",
     },
   },
 };

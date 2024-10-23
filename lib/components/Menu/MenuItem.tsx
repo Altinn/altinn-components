@@ -1,8 +1,9 @@
-import type { ReactNode, ElementType } from "react";
-import type { AvatarGroupProps, AvatarProps } from "../Avatar";
-import { MenuItemBase, type MenuItemSize } from "./MenuItemBase";
-import { MenuItemMedia } from "./MenuItemMedia";
-import { MenuItemLabel } from "./MenuItemLabel";
+import type {ElementType, ReactNode} from "react";
+import type {AvatarGroupProps, AvatarProps} from "../Avatar";
+import {MenuItemBase, type MenuItemSize} from "./MenuItemBase";
+import {MenuItemMedia} from "./MenuItemMedia";
+import {MenuItemLabel} from "./MenuItemLabel";
+import type {IconName} from "../Icon";
 
 export interface MenuItemProps {
   as?: ElementType;
@@ -15,18 +16,18 @@ export interface MenuItemProps {
   description?: string;
   label?: string;
   badge?: string;
-  icon?: string;
+  icon?: IconName;
   avatar?: AvatarProps;
   avatarGroup?: AvatarGroupProps;
   children?: ReactNode;
 }
 
 export const MenuItem = ({
-  as = "a",
+  as = 'a',
   children,
   selected,
   disabled,
-  size = "sm",
+  size = 'sm',
   icon,
   avatar,
   avatarGroup,
@@ -37,21 +38,8 @@ export const MenuItem = ({
   ...rest
 }: MenuItemProps) => {
   return (
-    <MenuItemBase
-      as={as}
-      size={size}
-      badge={badge}
-      selected={selected}
-      disabled={disabled}
-      {...rest}
-    >
-      <MenuItemMedia
-        size={size}
-        selected={selected}
-        icon={icon}
-        avatar={avatar}
-        avatarGroup={avatarGroup}
-      />
+    <MenuItemBase as={as} size={size} badge={badge} selected={selected} disabled={disabled} {...rest}>
+      <MenuItemMedia size={size} selected={selected} icon={icon} avatar={avatar} avatarGroup={avatarGroup} />
       <MenuItemLabel title={title} description={description} size={size}>
         {label || children}
       </MenuItemLabel>

@@ -18,5 +18,6 @@
     "allowSyntheticDefaultImports": true
   },
   "include": ["./lib/**/*.ts", "./lib/**/*.tsx", "./**/*.d.ts"],
+  "exclude": ["./lib/**/*.stories.tsx", "./lib/**/*.stories.ts", "./lib/components/Icon/__AkselIcon.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

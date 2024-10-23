@@ -1,11 +1,12 @@
 import type { MouseEventHandler } from "react";
 import { HeaderButton } from "./HeaderButton";
-import { Menu, MenuItemProps } from "../Menu";
+import { Menu, type MenuItemProps } from "../Menu";
 import styles from "./accountMenu.module.css";
 import cx from "classnames";
+import type { AvatarType } from "../Avatar";
 
 export type Account = {
-  type: string;
+  type: AvatarType;
   name: string;
 };
 
@@ -14,8 +15,8 @@ export interface AccountMenuProps {
   expanded: boolean;
   onToggle: MouseEventHandler;
   account: Account;
+  label: string;
   items: MenuItemProps[];
-  className: string;
 }
 
 export const AccountMenu = ({
@@ -24,17 +25,21 @@ export const AccountMenu = ({
   onToggle,
   account,
   items,
+  label = 'Menu'
 }: AccountMenuProps) => {
-  const accountMenuItem = {
+
+  const { name, type } = account;
+
+  const accountMenuItem: MenuItemProps = {
     size: "lg",
-    title: account?.name,
+    title: name,
     avatar: {
-      type: account?.type,
-      name: account?.name,
+      type,
+      name,
     },
   };
 
-  const accountMenu = items ? [accountMenuItem, ...items] : [accountMenuItem];
+  const accountMenu = [accountMenuItem, ...items];
 
   return (
     <div className={cx(styles.button, className)}>
@@ -43,7 +48,8 @@ export const AccountMenu = ({
         avatar={account}
         onClick={onToggle}
         expanded={expanded}
-      ></HeaderButton>
+        label={label}
+      />
       <div className={styles?.dropdown} aria-expanded={expanded}>
         <Menu theme="global" items={accountMenu} />
       </div>
