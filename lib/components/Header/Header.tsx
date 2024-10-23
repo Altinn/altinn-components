@@ -3,7 +3,7 @@ import { type ReactNode, useState } from "react";
 import { HeaderLogo } from "./HeaderLogo";
 import { HeaderButton } from "./HeaderButton";
 import { HeaderSearch, type HeaderSearchProps } from "./HeaderSearch";
-import {Account, AccountMenu} from "./AccountMenu";
+import {Account, GlobalMenu} from "./GlobalMenu.tsx";
 
 export type HeaderColor = "default" | "dark" | "light";
 
@@ -45,13 +45,13 @@ export const Header = ({ account, search, headerLabel }: HeaderProps) => {
     <header className={styles.header}>
       <HeaderLogo className={styles?.logo} />
       {account ? (
-        <AccountMenu
+        <GlobalMenu
           account={account}
           expanded={expandedType === "account"}
           onToggle={() => onToggle("account")}
           className={styles?.button}
           menu={[]}
-          label={headerLabel}/>
+          menuLabel={headerLabel}/>
       ) : (
         <HeaderButton className={styles?.button} label={headerLabel}/>
       )}
