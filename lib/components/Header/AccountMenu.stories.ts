@@ -9,7 +9,7 @@ const meta = {
     layout: "centered",
   },
   args: {
-    items: [
+    menu: [
       {
         group: "apps",
         size: "lg",
@@ -19,7 +19,7 @@ const meta = {
       {
         group: "apps",
         size: "lg",
-        icon: "settings",
+        icon: "cog",
         label: "Settings",
       },
     ],
@@ -32,38 +32,69 @@ type Story = StoryObj<typeof meta>;
 
 export const Person: Story = {
   args: {
-    account: {
-      type: "person",
-      name: "Aurora Mikalsen",
-    },
+    accounts: [
+      {
+        type: "person",
+        name: "Aurora Mikalsen",
+        selected: true,
+      }
+    ],
   },
 };
 
 export const Company: Story = {
   args: {
-    account: {
-      type: "company",
-      name: "Bergen bar",
-    },
+    accounts: [
+      {
+        type: "company",
+        name: "Bergen bar",
+        selected: true,
+      }
+    ],
   },
 };
 
 export const Expanded: Story = {
   args: {
     expanded: true,
-    account: {
-      type: "company",
-      name: "Bergen bar",
-    },
+    accounts: [
+      {
+        type: "company",
+        name: "Bergen bar",
+        selected: true,
+      }
+    ],
   },
 };
 
 export const CustomLabel: Story = {
   args: {
     label: "Meny",
-    account: {
-      type: "person",
-      name: "Aurora Mikalsen",
-    },
+    accounts: [
+      {
+        type: "person",
+        name: "Aurora Mikalsen",
+        selected: true,
+      }
+    ],
+  },
+};
+
+export const Accounts: Story = {
+  args: {
+    label: "Meny",
+    expanded: true,
+    accounts: [
+      {
+        type: "person",
+        name: "Aurora Mikalsen",
+        selected: true,
+      },
+      {
+        type: "person",
+        name: "Rakel Engelsvik",
+        selected: false,
+      }
+    ],
   },
 };

@@ -50,7 +50,7 @@ export const Header = ({ account, search, headerLabel }: HeaderProps) => {
           expanded={expandedType === "account"}
           onToggle={() => onToggle("account")}
           className={styles?.button}
-          items={[]}
+          menu={[]}
           label={headerLabel}/>
       ) : (
         <HeaderButton className={styles?.button} label={headerLabel}/>

@@ -17,7 +17,7 @@ export const Icon = ({ name, variant = "outline", className }: IconProps) => {
     iconsMap[name]?.outline;
 
   if (!svgIcon) {
-    return <span className={cx([styles.icon], className)}>{name}</span>;
+    return <span className={cx([styles.icon], className)}/>
   }
 
   return (
