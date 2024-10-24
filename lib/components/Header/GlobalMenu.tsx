@@ -21,8 +21,8 @@ export type AccountSearch = {
 export interface GlobalMenuProps {
   expanded: boolean;
   onToggle: MouseEventHandler;
-  menu: MenuItemProps[];
-  menuGroups?: Record<string, MenuHeaderProps>;
+  items: MenuItemProps[];
+  groups?: Record<string, MenuHeaderProps>;
   accounts?: Account[];
   accountGroups?: Record<string, MenuHeaderProps>;
   menuLabel?: string;
@@ -40,8 +40,8 @@ export const GlobalMenu = ({
   accounts = [],
   accountGroups = {},
   accountSearch,
-  menu = [],
-  menuGroups,
+  items = [],
+  groups,
   menuLabel = "Menu",
   backLabel = "Back",
 }: GlobalMenuProps) => {
@@ -70,7 +70,7 @@ export const GlobalMenu = ({
     onClick: onToggleAccounts,
   };
 
-  const globalMenu = selectedAccount ? [accountMenuItem, ...menu] : menu;
+  const globalMenu = selectedAccount ? [accountMenuItem, ...items] : items;
 
   const filteredAccountMenu = filterString
     ? accountMenu
@@ -132,7 +132,7 @@ export const GlobalMenu = ({
             items={accountSwitcher}
           />
         ) : (
-          <Menu theme="global" groups={menuGroups} items={globalMenu} />
+          <Menu theme="global" groups={groups} items={globalMenu} />
         )}
       </div>
     </div>

@@ -10,7 +10,7 @@ const meta = {
     layout: "centered",
   },
   args: {
-    menu: [
+    items: [
       {
         group: "apps",
         size: "lg",
@@ -33,7 +33,7 @@ type Story = StoryObj<typeof meta>;
 export const Login: Story = {
   args: {
     expanded: true,
-    menu: [
+    items: [
       {
         size: "lg",
         icon: "padlock-locked",
@@ -55,6 +55,7 @@ export const ControlledStateLogin = () => {
       {...Login.args}
       expanded={expanded}
       onToggle={() => setExpanded((prevState) => !prevState)}
+      items={Login.args.items ?? []}
     />
   );
 };

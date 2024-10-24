@@ -16,11 +16,11 @@ type ExpandedType = "search" | "account";
 
 export interface HeaderProps {
   color?: HeaderColor;
-  globalMenu: GlobalMenuProps;
+  menu: GlobalMenuProps;
   search?: HeaderSearchProps;
 }
 
-export const Header = ({ color, search, globalMenu }: HeaderProps) => {
+export const Header = ({ color, search, menu }: HeaderProps) => {
   const [expandedType, setExpandedType] = useState<ExpandedType | null>(null);
 
   const onToggle = (type: ExpandedType) => {
@@ -40,11 +40,11 @@ export const Header = ({ color, search, globalMenu }: HeaderProps) => {
   };
 
   return (
-    <header className={styles.header}>
+    <header className={styles.header} data-color={color}>
       <HeaderLogo className={styles?.logo} />
-      {globalMenu && (
+      {menu && (
         <GlobalMenu
-          {...globalMenu}
+          {...menu}
           expanded={expandedType === "account"}
           onToggle={() => onToggle("account")}
           className={styles?.button}

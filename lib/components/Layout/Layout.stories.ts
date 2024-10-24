@@ -1,44 +1,48 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Layout } from "./Layout";
+import type {MenuProps} from "../Menu";
 
-const menu = [
-  {
-    group: 1,
-    size: "lg",
-    icon: "inbox",
-    title: "Innboks",
-    badge: 4,
-  },
-  {
-    group: 2,
-    icon: "doc-pencil",
-    title: "Utkast",
-  },
-  {
-    group: 2,
-    icon: "file-checkmark",
-    selected: true,
-    title: "Sendt",
-    badge: 2,
-  },
-  {
-    group: 3,
-    icon: "bookmark",
-    title: "Lagrede søk",
-    badge: 11,
-  },
-  {
-    group: 4,
-    icon: "archive",
-    title: "Arkivert",
-  },
-  {
-    group: 4,
-    disabled: true,
-    icon: "trash",
-    title: "Papirkurv",
-  },
-];
+const menu: MenuProps = {
+  groups: {},
+  items: [
+    {
+      group: 1,
+      size: "lg",
+      icon: "inbox",
+      title: "Innboks",
+      badge: "4",
+    },
+    {
+      group: 2,
+      icon: "doc-pencil",
+      title: "Utkast",
+    },
+    {
+      group: 2,
+      icon: "file-checkmark",
+      selected: true,
+      title: "Sendt",
+      badge: "2",
+    },
+    {
+      group: 3,
+      icon: "bookmark",
+      title: "Lagrede søk",
+      badge: "11",
+    },
+    {
+      group: 4,
+      icon: "archive",
+      title: "Arkivert",
+    },
+    {
+      group: 4,
+      disabled: true,
+      icon: "trash",
+      title: "Papirkurv",
+    },
+  ]
+}
 
 const meta = {
   title: "Layout/Layout",
@@ -49,13 +53,19 @@ const meta = {
   },
   args: {
     header: {
-      search: {
-        placeholder: "Søk i Altinn",
-      },
-      account: {
-        type: "person",
-        name: "Dirk Digdir",
-      },
+      menu: {
+        search: {
+          name: "search",
+          placeholder: "Søk i Altinn",
+        },
+        accounts: [
+          {
+            type: "person",
+            name: "Aurora Mikalsen",
+            selected: true,
+          },
+        ],
+      }
     },
     sidebar: {
       menu,

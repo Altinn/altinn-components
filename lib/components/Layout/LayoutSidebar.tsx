@@ -9,7 +9,7 @@ import type { LayoutBaseProps } from "./LayoutBase";
 
 export const LayoutSidebar = ({ theme, children }: LayoutBaseProps) => {
   return (
-    <aside className={styles.sidebar} data-theme={theme}>
+    <aside className={styles.sidebar} data-theme={theme} aria-expanded="true">
       {children}
     </aside>
   );
