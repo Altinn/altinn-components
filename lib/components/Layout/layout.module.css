@@ -63,7 +63,11 @@ base
 
 @media (min-width: 1024px) {
   .sidebar {
+    display: none;
     width: 224px;
+  }
+
+  .sidebar[aria-expanded="true"] {
     display: flex;
     flex-direction: column;
   }

@@ -8,50 +8,80 @@ const meta = {
   component: Header,
   tags: ["autodocs"],
   parameters: {},
-  args: {
-    search: {
-      placeholder: "Søk i Altinn",
-    },
-  },
+  args: {},
 } satisfies Meta<typeof Header>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {
-    accounts: [{
-      type: "person",
-      name: "Aurora Mikalsen",
-    }],
-  },
+  args: {},
 };
 
 export const Person: Story = {
   args: {
     expanded: true,
-    accounts: [{
-      type: "person",
-      name: "Aurora Mikalsen",
-    }],
+    globalMenu: {
+      accounts: [
+        {
+          type: "person",
+          name: "Aurora Mikalsen",
+          selected: true,
+        },
+      ],
+      menu: [
+        {
+          icon: "airplane",
+          size: "lg",
+          label: "Section 1",
+        },
+        {
+          icon: "briefcase",
+          size: "lg",
+          label: "Section 2",
+        },
+        {
+          size: "lg",
+          label: "Section 3",
+          icon: "camera",
+        },
+      ],
+    },
   },
 };
 
 export const Company: Story = {
   args: {
-    accounts: [{
-      type: "company",
-      name: "Bergen bar",
-    }],
+    globalMenu: {
+      accounts: [
+        {
+          type: "company",
+          name: "Bergen bar",
+          selected: true,
+        },
+        {
+          type: "person",
+          name: "Aurora Mikalsen",
+        },
+      ],
+    },
   },
 };
 
-export const Dark: Story = {
+export const CompanyAndMenu: Story = {
   args: {
-    color: "dark",
-    accounts: [{
-      type: "company",
-      name: "Bergen bar",
-    }],
+    globalMenu: {
+      accounts: [
+        {
+          type: "company",
+          name: "Bergen bar",
+          selected: true,
+        },
+        {
+          type: "person",
+          name: "Aurora Mikalsen",
+        },
+      ],
+    },
   },
 };

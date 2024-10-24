@@ -40,13 +40,13 @@ export const GlobalMenu = ({
   accounts = [],
   accountGroups = {},
   accountSearch,
-  menu,
+  menu = [],
   menuGroups,
   menuLabel = "Menu",
   backLabel = "Back",
 }: GlobalMenuProps) => {
   const accountMenu: MenuItemProps[] = accounts.map((account) => ({
-    group: account.group,
+    group: account.group || "search",
     selected: account.selected,
     title: account.name,
     avatar: {

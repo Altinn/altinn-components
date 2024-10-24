@@ -3,7 +3,7 @@ import { type ReactNode, useState } from "react";
 import { HeaderLogo } from "./HeaderLogo";
 import { HeaderButton } from "./HeaderButton";
 import { HeaderSearch, type HeaderSearchProps } from "./HeaderSearch";
-import { type Account, GlobalMenu } from "./GlobalMenu";
+import { GlobalMenu, type GlobalMenuProps } from "./GlobalMenu";
 
 export type HeaderColor = "default" | "dark" | "light";
 
@@ -15,14 +15,12 @@ export interface HeaderAccountProps {
 type ExpandedType = "search" | "account";
 
 export interface HeaderProps {
-  headerLabel: string;
   color?: HeaderColor;
-  accounts?: Account[];
+  globalMenu: GlobalMenuProps;
   search?: HeaderSearchProps;
-  children?: ReactNode;
 }
 
-export const Header = ({ accounts = [], search, headerLabel }: HeaderProps) => {
+export const Header = ({ color, search, globalMenu }: HeaderProps) => {
   const [expandedType, setExpandedType] = useState<ExpandedType | null>(null);
 
   const onToggle = (type: ExpandedType) => {
@@ -44,17 +42,13 @@ export const Header = ({ accounts = [], search, headerLabel }: HeaderProps) => {
   return (
     <header className={styles.header}>
       <HeaderLogo className={styles?.logo} />
-      {accounts.length > 0 ? (
+      {globalMenu && (
         <GlobalMenu
-          accounts={accounts}
+          {...globalMenu}
           expanded={expandedType === "account"}
           onToggle={() => onToggle("account")}
           className={styles?.button}
-          menu={[]}
-          menuLabel={headerLabel}
         />
-      ) : (
-        <HeaderButton className={styles?.button} label={headerLabel} />
       )}
       {search && (
         <HeaderSearch
