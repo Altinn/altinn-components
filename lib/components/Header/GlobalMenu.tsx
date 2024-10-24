@@ -22,7 +22,7 @@ export interface GlobalMenuProps {
   expanded: boolean;
   onToggle: MouseEventHandler;
   menu: MenuItemProps[];
-  menuGroups: Record<string, MenuHeaderProps>;
+  menuGroups?: Record<string, MenuHeaderProps>;
   accounts?: Account[];
   accountGroups?: Record<string, MenuHeaderProps>;
   menuLabel?: string;

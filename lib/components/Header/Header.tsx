@@ -3,7 +3,7 @@ import { type ReactNode, useState } from "react";
 import { HeaderLogo } from "./HeaderLogo";
 import { HeaderButton } from "./HeaderButton";
 import { HeaderSearch, type HeaderSearchProps } from "./HeaderSearch";
-import { Account, GlobalMenu } from "./GlobalMenu.tsx";
+import { type Account, GlobalMenu } from "./GlobalMenu";
 
 export type HeaderColor = "default" | "dark" | "light";
 
@@ -17,12 +17,12 @@ type ExpandedType = "search" | "account";
 export interface HeaderProps {
   headerLabel: string;
   color?: HeaderColor;
-  account?: Account;
+  accounts?: Account[];
   search?: HeaderSearchProps;
   children?: ReactNode;
 }
 
-export const Header = ({ account, search, headerLabel }: HeaderProps) => {
+export const Header = ({ accounts = [], search, headerLabel }: HeaderProps) => {
   const [expandedType, setExpandedType] = useState<ExpandedType | null>(null);
 
   const onToggle = (type: ExpandedType) => {
@@ -44,9 +44,9 @@ export const Header = ({ account, search, headerLabel }: HeaderProps) => {
   return (
     <header className={styles.header}>
       <HeaderLogo className={styles?.logo} />
-      {account ? (
+      {accounts.length > 0 ? (
         <GlobalMenu
-          account={account}
+          accounts={accounts}
           expanded={expandedType === "account"}
           onToggle={() => onToggle("account")}
           className={styles?.button}

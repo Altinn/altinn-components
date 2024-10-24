@@ -19,33 +19,39 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    accounts: [{
+      type: "person",
+      name: "Aurora Mikalsen",
+    }],
+  },
 };
 
 export const Person: Story = {
   args: {
-    account: {
+    expanded: true,
+    accounts: [{
       type: "person",
       name: "Aurora Mikalsen",
-    },
+    }],
   },
 };
 
 export const Company: Story = {
   args: {
-    account: {
+    accounts: [{
       type: "company",
       name: "Bergen bar",
-    },
+    }],
   },
 };
 
 export const Dark: Story = {
   args: {
     color: "dark",
-    account: {
+    accounts: [{
       type: "company",
       name: "Bergen bar",
-    },
+    }],
   },
 };
