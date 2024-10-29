@@ -1,0 +1,12 @@
+@import "https://altinncdn.no/fonts/inter/inter.css";
+@import "./colors.css";
+@import "./theme-global.css";
+@import "./theme-neutral.css";
+@import "./theme-company.css";
+@import "./theme-person.css";
+@import "./theme.css";
+
+* {
+  font-family: "Inter", sans-serif;
+  box-sizing: border-box;
+}

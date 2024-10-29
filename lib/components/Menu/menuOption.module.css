@@ -1,0 +1,29 @@
+.label {
+  padding-left: 6px;
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+}
+
+.icon {
+  font-size: 1rem;
+  border: 2px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon > svg {
+  color: transparent;
+}
+
+.label:hover .icon > svg {
+  color: var(--theme-base-default);
+}
+
+.icon[data-checked="true"] > svg,
+.label:hover .icon[data-checked="true"] > svg {
+  color: var(--theme-background-subtle);
+}

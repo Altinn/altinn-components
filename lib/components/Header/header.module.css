@@ -1,0 +1,39 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* color */
+
+.header[data-color="light"] {
+  background-color: var(--global-background-default);
+}
+
+.header[data-color="dark"] {
+  background-color: var(--global-base-default);
+  color: #fff;
+}
+
+/* search */
+
+.search {
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .search {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    max-width: 320px;
+  }
+
+  .search[aria-expanded="true"] {
+    max-width: 640px;
+  }
+}
