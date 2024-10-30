@@ -8,21 +8,23 @@ import {
   type DialogRecipientProps,
 } from "./DialogHeadings";
 import { DialogTitle } from "./DialogTitle";
+import { DialogMetadata } from "./DialogMetadata";
+import type { DialogActivityLogProps } from "./DialogActivityLog";
 
 import { DialogAttachments } from "./DialogAttachments";
 import type { AttachmentLinkProps } from "../Attachment";
 
 import { DialogHistory } from "./DialogHistory";
-import type { HistoryItemProps } from "../History";
+import type { HistoryItemProps } from "../History/HistoryItem";
 
 import { DialogAction, type DialogButtonProps } from "./DialogAction";
-import { DialogUpdated } from "./DialogUpdated";
 import { DialogNav, type DialogBackButtonProps } from "./DialogNav";
-import { MetaListBase, MetaItem } from "../Meta";
 import { Typography, Markdown } from "../Typography";
 import { DialogStatusProps } from "./DialogStatus";
 
 export interface DialogProps {
+  /** Back button */
+  backButton?: DialogBackButtonProps;
   /** Dialog status */
   status?: DialogStatusProps;
   /** Updated date time */
@@ -48,11 +50,11 @@ export interface DialogProps {
   /** Dialog is seen by the user */
   seenByUser?: boolean;
   /** Dialog is seen by others (count) */
-  seenByOthers?: number;
-  /** Back button */
-  backButton?: DialogBackButtonProps;
+  seenByOthersCount?: number;
   /** History */
   history?: HistoryItemProps[];
+  /** Activity Log */
+  activityLog?: DialogActivityLogProps[];
 }
 
 /**
@@ -72,11 +74,15 @@ export const Dialog = ({
   body,
   action,
   attachments,
-  seenByUser = true,
   history,
+  seenByUser = true,
+  seenByOthersCount,
+  activityLog = {
+    label: "Aktivitetslogg",
+  },
 }: DialogProps) => {
   return (
-    <DialogBase status={status}>
+    <DialogBase>
       <DialogNav status={status} dueAt={dueAt} backButton={backButton} />
       <DialogArticle>
         <DialogHeader>
@@ -85,11 +91,11 @@ export const Dialog = ({
         </DialogHeader>
         <DialogBody>
           <section>
-            <DialogUpdated
+            <DialogMetadata
               updatedByName={updatedByName}
               updatedAt={updatedAt}
-              size="xs"
-            />
+            ></DialogMetadata>
+
             <Typography size="lg">
               <p>{summary}</p>
               {body ? <Markdown>{body}</Markdown> : ""}
@@ -104,14 +110,11 @@ export const Dialog = ({
           )}
           {action && <DialogAction items={action} />}
 
-          <MetaListBase size="xs">
-            <MetaItem size="xs" icon="eye">
-              Sett av deg
-            </MetaItem>
-            <MetaItem size="xs" icon="clock-dashed">
-              Aktivitetslogg
-            </MetaItem>
-          </MetaListBase>
+          <DialogMetadata
+            seenByUser={seenByUser}
+            seenByOthersCount={seenByOthersCount}
+            activityLog={activityLog}
+          ></DialogMetadata>
         </DialogBody>
 
         {history && <DialogHistory title={"Hva har skjedd?"} items={history} />}

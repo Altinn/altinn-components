@@ -1,9 +1,12 @@
-import { ReactNode } from "react";
+import ReactMarkdown from "react-markdown";
 
 export interface MarkdownProps {
-  children?: ReactNode;
+  children?: string;
 }
 
 export const Markdown = ({ children }: MarkdownProps) => {
-  return children;
+  if (!children) {
+    return false;
+  }
+  return <ReactMarkdown>{children}</ReactMarkdown>;
 };

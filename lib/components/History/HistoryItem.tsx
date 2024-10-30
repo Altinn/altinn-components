@@ -1,5 +1,6 @@
-import { MetaItem, MetaTimestamp } from "../Meta";
 import { Avatar } from "../Avatar/";
+import { MetaBase, MetaTimestamp, MetaItem } from "../Meta/";
+import { HistoryBorder } from "./HistoryBorder";
 import styles from "./historyItem.module.css";
 import { AttachmentList, type AttachmentLinkProps } from "../Attachment";
 import { Typography } from "../Typography";
@@ -28,32 +29,36 @@ export const HistoryItem = ({
   const title = attachments?.length + " vedlegg";
 
   return (
-    <article className={styles.item}>
-      <header className={styles?.header}>
-        <div className={styles?.createdBy}>
-          <Avatar
-            type={createdBy.type || "person"}
-            imageUrl={createdBy?.imageUrl}
-            name={createdBy.name || "Unknown name"}
-            size="sm"
-          />
-          <strong className={styles?.createdByName}>{createdBy?.name}</strong>
-        </div>
-        <MetaTimestamp datetime={createdAt} size="xs">
-          {createdAt}
-        </MetaTimestamp>
+    <section className={styles.item}>
+      <header className={styles.header}>
+        <Avatar
+          type={createdBy.type || "person"}
+          imageUrl={createdBy?.imageUrl}
+          name={createdBy.name || "Unknown name"}
+          size="sm"
+        />
       </header>
-      <Typography size="lg" className={styles.body} data-seen={true}>
-        <p>{summary}</p>
-        {attachments ? (
-          <section>
-            <MetaItem size="xs">{title}</MetaItem>
-            <AttachmentList items={attachments} />
-          </section>
-        ) : (
-          ""
-        )}
-      </Typography>
-    </article>
+      <HistoryBorder className={styles.border}>
+        <article className={styles.body}>
+          <MetaBase>
+            <MetaTimestamp datetime={createdAt} size="xs">
+              {createdBy?.name + ", "}
+              {createdAt}
+            </MetaTimestamp>
+          </MetaBase>
+          <Typography size="lg">
+            <p>{summary}</p>
+            {attachments ? (
+              <section>
+                <MetaItem size="xs">{title}</MetaItem>
+                <AttachmentList items={attachments} />
+              </section>
+            ) : (
+              ""
+            )}
+          </Typography>
+        </article>
+      </HistoryBorder>
+    </section>
   );
 };

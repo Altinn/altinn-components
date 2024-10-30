@@ -1,8 +1,9 @@
-import { MetaListBase } from "./MetaListBase";
+import { MetaBase } from "./MetaBase";
 import type { MetaItemBaseProps, MetaItemSize } from "./MetaItemBase";
 import { MetaItem } from "./MetaItem";
 import { MetaProgress } from "./MetaProgress";
 import { MetaTimestamp } from "./MetaTimestamp";
+import styles from "./metaList.module.css";
 
 export type MetaListItemType = "default" | "progress" | "timestamp";
 
@@ -35,10 +36,14 @@ export const MetaListItem = ({
 
 export const MetaList = ({ size = "xs", items = [] }: MetaListProps) => {
   return (
-    <MetaListBase size={size}>
-      {items?.map((item, index) => (
-        <MetaListItem {...item} key={"meta-" + index} />
-      ))}
-    </MetaListBase>
+    <MetaBase size={size}>
+      <ul className={styles?.list}>
+        {items?.map((item, index) => (
+          <li className={styles?.item} key={"meta-" + index}>
+            <MetaListItem {...item} />
+          </li>
+        ))}
+      </ul>
+    </MetaBase>
   );
 };

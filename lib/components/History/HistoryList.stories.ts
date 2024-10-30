@@ -1,15 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
-import { History } from "./History";
+import { HistoryList } from "./HistoryList";
 
 const meta = {
-  title: "History/History",
-  component: History,
+  title: "History/HistoryList",
+  component: HistoryList,
   tags: ["autodocs"],
-  parameters: {
-    layout: "fullscreen",
-  },
+  parameters: {},
   args: {
     items: [
       {
@@ -50,7 +48,7 @@ const meta = {
       },
     ],
   },
-} satisfies Meta<typeof History>;
+} satisfies Meta<typeof HistoryList>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

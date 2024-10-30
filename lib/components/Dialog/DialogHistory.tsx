@@ -1,4 +1,4 @@
-import { History, HistoryItemProps } from "../History/";
+import { HistoryList, type HistoryItemProps } from "../History/";
 import styles from "./dialogHistory.module.css";
 
 export interface DialogHistoryProps {
@@ -17,7 +17,7 @@ export const DialogHistory = ({
   return (
     <section className={styles?.section}>
       <h2 className={styles?.title}>{title}</h2>
-      <History items={items} className={styles?.list} />
+      <HistoryList items={items} />
     </section>
   );
 };

@@ -1,5 +1,23 @@
+.toggle {
+  position: relative;
+}
+
 .button {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  width: 2.75rem;
+  padding: 0.625rem;
+  border-radius: 50%;
+}
+
+.button:hover {
+  background-color: var(--theme-text-default);
+}
+
+.icon {
+  font-size: 1.5rem;
 }
 
 .dropdown {
@@ -9,6 +27,7 @@
 .dropdown[aria-expanded="true"] {
   display: block;
   position: absolute;
+  right: 0;
   z-index: 2;
 }
 

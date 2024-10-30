@@ -9,3 +9,7 @@
   flex-wrap: wrap;
   column-gap: 0.5rem;
 }
+
+.item {
+  margin: 0;
+}

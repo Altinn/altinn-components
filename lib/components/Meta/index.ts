@@ -1,4 +1,4 @@
-export * from "./MetaListBase";
+export * from "./MetaBase";
 export * from "./MetaList";
 export * from "./MetaItemBase";
 export * from "./MetaItem";
