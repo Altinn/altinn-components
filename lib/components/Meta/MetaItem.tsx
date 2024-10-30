@@ -5,25 +5,18 @@ import { MetaItemLabel } from "./MetaItemLabel";
 import { Icon, type IconName } from "../Icon";
 import styles from "./metaItem.module.css";
 
-export interface MetaTimestampProps {
+export interface MetaItemProps {
   /** Meta size */
   size?: MetaItemSize;
-  /** Datetime in ISO format */
-  datetime: string;
   /** Icon name */
   icon?: IconName;
   /** Label */
   children?: ReactNode;
 }
 
-export const MetaTimestamp = ({
-  size = "sm",
-  datetime,
-  icon,
-  children,
-}: MetaTimestampProps) => {
+export const MetaItem = ({ size = "sm", icon, children }: MetaItemProps) => {
   return (
-    <MetaItemBase as="time" dateTime={datetime} size={size}>
+    <MetaItemBase size={size}>
       {icon ? <Icon name={icon} className={styles.icon} /> : ""}
       <MetaItemLabel size={size}>{children}</MetaItemLabel>
     </MetaItemBase>

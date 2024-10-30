@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
-import { MetaLabel } from "./MetaLabel";
+import { MetaItem } from "./MetaItem";
 
 const meta = {
-  title: "Atoms/Meta/MetaLabel",
-  component: MetaLabel,
+  title: "Atoms/Meta/MetaItem",
+  component: MetaItem,
   tags: ["autodocs"],
   parameters: {
     layout: "centered",
@@ -13,7 +13,7 @@ const meta = {
   args: {
     children: "Label",
   },
-} satisfies Meta<typeof MetaLabel>;
+} satisfies Meta<typeof MetaItem>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
