@@ -1,5 +1,6 @@
 .button {
-  border: none;
+  border: 1px solid;
+  border-color: transparent;
   margin: 0;
   padding: 0;
   width: auto;
@@ -32,25 +33,37 @@
   pointer-events: none;
 }
 
+.button:focus {
+  border-color: var(--link-base-active);
+}
+
+.button:hover {
+  border-color: var(--link-base-hover);
+}
+
+.button:active {
+  border-color: var(--link-base-active);
+}
+
 /* solid */
 
 .button[data-variant="solid"] {
-  border-color: var(--theme-base-hover);
-  background-color: var(--theme-base-hover);
+  border-color: var(--link-base-hover);
+  background-color: var(--link-base-hover);
   color: white;
 }
 
 /* outline */
 
 .button[data-variant="outline"] {
-  border-color: var(--theme-base-hover);
+  border-color: var(--link-base-hover);
   border-style: solid;
 }
 
 /* dotted */
 
 .button[data-variant="dotted"] {
-  border-color: var(--theme-base-hover);
+  border-color: var(--link-base-hover);
   border-style: dotted;
 }
 
@@ -60,18 +73,19 @@
   border-color: transparent;
 }
 
-/* solid + link
-
-.button[data-color="link"][data-variant="solid"] {
-  background-color: var(--link-base-default);
-  color: white;
+.button[aria-selected="true"] {
+  background-color: var(--link-background-subtle);
+  color: var(--link-text-default);
 }
 
-.button[data-color="link"][data-variant="solid"]:hover {
-  background-color: var(--link-base-hover);
+/* primary color */
+
+.button[data-color="primary"] {
+  border-color: var(--theme-base-hover);
 }
 
-.button[data-color="link"][data-variant="active"]:hover {
-  background-color: var(--link-base-active);
+.button[data-variant="solid"][data-color="primary"],
+.button[data-variant="solid"][data-color="primary"] {
+  border-color: var(--theme-base-hover);
+  background-color: var(--theme-base-hover);
 }
- */
