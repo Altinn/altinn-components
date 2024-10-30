@@ -15,7 +15,7 @@ export const DialogHistory = ({
   }
 
   return (
-    <section className={styles?.section}>
+    <section className={styles?.section} data-theme="article">
       <h2 className={styles?.title}>{title}</h2>
       <HistoryList items={items} />
     </section>

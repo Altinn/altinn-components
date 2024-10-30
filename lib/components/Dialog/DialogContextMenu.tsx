@@ -22,7 +22,7 @@ export const DialogContextMenu = ({
 }: DialogContextMenuProps) => {
   return (
     <div className={styles.toggle}>
-      <ButtonBase className={styles.button} as="button" onClick={onToggle}>
+      <ButtonBase className={styles.button} as="button" color="secondary">
         <Icon className={styles.icon} name="menu-elipsis-horizontal" />
       </ButtonBase>
       <div className={styles.dropdown} aria-expanded={expanded}>
