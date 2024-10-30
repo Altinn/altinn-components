@@ -8,8 +8,12 @@ import {
   type DialogRecipientProps,
 } from "./DialogHeadings";
 import { DialogTitle } from "./DialogTitle";
+
 import { DialogAttachments } from "./DialogAttachments";
 import type { AttachmentLinkProps } from "../Attachment";
+
+import { DialogHistory } from "./DialogHistory";
+import type { HistoryItemProps } from "../History";
 
 import { DialogAction, type DialogButtonProps } from "./DialogAction";
 import { DialogUpdated } from "./DialogUpdated";
@@ -47,6 +51,8 @@ export interface DialogProps {
   seenByOthers?: number;
   /** Back button */
   backButton?: DialogBackButtonProps;
+  /** History */
+  history?: HistoryItemProps[];
 }
 
 /**
@@ -67,6 +73,7 @@ export const Dialog = ({
   action,
   attachments,
   seenByUser = true,
+  history,
 }: DialogProps) => {
   return (
     <DialogBase status={status}>
@@ -89,15 +96,13 @@ export const Dialog = ({
             </Typography>
           </section>
 
-          {attachments ? (
+          {attachments && (
             <DialogAttachments
               title={attachments?.length + " vedlegg"}
               items={attachments}
             />
-          ) : (
-            ""
           )}
-          {action ? <DialogAction items={action} /> : ""}
+          {action && <DialogAction items={action} />}
 
           <MetaListBase size="xs">
             <MetaItem size="xs" icon="eye">
@@ -108,6 +113,8 @@ export const Dialog = ({
             </MetaItem>
           </MetaListBase>
         </DialogBody>
+
+        {history && <DialogHistory title={"Hva har skjedd?"} items={history} />}
       </DialogArticle>
     </DialogBase>
   );
