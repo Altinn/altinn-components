@@ -33,7 +33,7 @@ a.item:hover {
 
 .item[data-size="xs"] {
   font-size: 0.875rem;
-  line-height: 1.5rem;
+  height: 1.5rem;
 }
 
 .item[data-size="sm"] {
