@@ -12,10 +12,6 @@
   border-radius: 50%;
 }
 
-.button:hover {
-  background-color: var(--theme-text-default);
-}
-
 .icon {
   font-size: 1.5rem;
 }
