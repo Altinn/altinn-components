@@ -7,9 +7,7 @@ const meta = {
   title: "Dialog/Dialog",
   component: Dialog,
   tags: ["autodocs"],
-  parameters: {
-    layout: "fullscreen",
-  },
+  parameters: {},
   argTypes: { body: { control: "text" } },
   args: {
     updatedAt: "1999-05-26",
