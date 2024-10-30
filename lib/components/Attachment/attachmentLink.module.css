@@ -1,6 +1,6 @@
 .link {
   display: inline-flex;
-  align-items: center;
+  align-items: start;
   column-gap: 0.25em;
   color: var(--link-base-default);
 }

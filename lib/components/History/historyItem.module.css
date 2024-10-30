@@ -1,43 +1,19 @@
 .item {
   display: flex;
   flex-direction: column;
-  row-gap: 1rem;
 }
 
 .header {
-  font-weight: 500;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25em;
+  margin: 0.375em;
 }
 
-.createdBy {
-  font-weight: 500;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5em;
-}
-
-.createdByName {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--neutral-text-strong);
-  display: inline-flex;
-  align-items: center;
-  height: 1.5rem;
-  gap: 0.25em;
-  white-space: nowrap;
-}
-
-.body {
-  border-left: 0.25em solid;
-  border-color: var(--theme-surface-hover);
-  margin-left: 0.625rem;
-  padding-left: 1rem;
-  padding-top: 0rem;
+.border {
+  padding-left: 1.5rem;
+  padding-top: 0;
+  margin-left: 1rem;
   padding-bottom: 1.5rem;
 }
 
-.body[data-seen="true"] {
-  border-color: var(--neutral-surface-default);
+.body {
+  margin-top: -1.875rem;
 }

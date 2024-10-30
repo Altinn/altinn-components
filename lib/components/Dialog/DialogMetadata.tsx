@@ -2,7 +2,11 @@ import { DialogStatus, type DialogStatusProps } from "./DialogStatus";
 import { DialogUpdated } from "./DialogUpdated";
 import { DialogDue } from "./DialogDue";
 import { DialogSeenBy } from "./DialogSeenBy";
-import { MetaListBase, MetaItem } from "../Meta";
+import {
+  DialogActivityLog,
+  type DialogActivityLogProps,
+} from "./DialogActivityLog";
+import { MetaBase, MetaItem } from "../Meta";
 
 export type DialogMetadataProps = {
   /** Dialog status */
@@ -19,6 +23,8 @@ export type DialogMetadataProps = {
   seenByOthersCount?: number;
   /** Number of attachments */
   attachmentsCount?: number;
+  /** ActivityLog */
+  activityLog?: DialogActivityLogProps;
 };
 
 /**
@@ -33,9 +39,10 @@ export const DialogMetadata = ({
   seenByUser = false,
   seenByOthersCount = 0,
   attachmentsCount,
+  activityLog,
 }: DialogMetadataProps) => {
   return (
-    <MetaListBase size="xs">
+    <MetaBase size="xs">
       {status ? (
         <DialogStatus
           size="xs"
@@ -71,6 +78,7 @@ export const DialogMetadata = ({
       ) : (
         ""
       )}
-    </MetaListBase>
+      {activityLog ? <DialogActivityLog {...activityLog} size="xs" /> : ""}
+    </MetaBase>
   );
 };

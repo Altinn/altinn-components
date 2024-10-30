@@ -1,12 +1,12 @@
 import { HistoryItem, HistoryItemProps } from "./HistoryItem";
-import styles from "./history.module.css";
+import styles from "./historyList.module.css";
 import cx from "classnames";
 export interface HistoryProps {
   items?: HistoryItemProps[];
   className?: string;
 }
 
-export const History = ({ items, className }: HistoryProps) => {
+export const HistoryList = ({ items, className }: HistoryProps) => {
   if (!items?.length) {
     return null;
   }
