@@ -1,5 +1,5 @@
 import cx from "classnames";
-import styles from "./dialogProgress.module.css";
+import styles from "./progressIcon.module.css";
 export interface ProgressIconsProps {
   value?: number;
   total?: number;
@@ -33,12 +33,14 @@ export const ProgressIcon = ({
     );
   }
 
+  const progressStyle = {
+    "--progress": percentage + "%",
+  };
+
   return (
     <div
       className={cx(styles.progress, className)}
-      style={{
-        "--progress": percentage + "%",
-      }}
+      style={progressStyle}
       data-value={`${percentage}%`}
     />
   );

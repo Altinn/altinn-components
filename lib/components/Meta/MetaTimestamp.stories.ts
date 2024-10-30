@@ -4,7 +4,7 @@ import { fn } from "@storybook/test";
 import { MetaTimestamp } from "./MetaTimestamp";
 
 const meta = {
-  title: "Atoms/Meta/MetaTimestamp",
+  title: "Meta/MetaTimestamp",
   component: MetaTimestamp,
   tags: ["autodocs"],
   parameters: {

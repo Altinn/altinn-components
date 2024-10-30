@@ -2,19 +2,28 @@ import type { ElementType, ReactNode } from "react";
 import styles from "./metaItem.module.css";
 import cx from "classnames";
 
+export type MetaItemVariant = "solid" | "outline" | "dotted" | "text";
 export type MetaItemSize = "xs" | "sm" | "md";
+export type MetaItemColor = "subtle";
 
 export interface MetaItemBaseProps {
   as?: ElementType;
+  variant?: MetaItemVariant;
   size?: MetaItemSize;
-  dateTime?: string;
+  color?: MetaItemColor;
+  datetime?: string;
+  progress?: number;
   className?: string;
   children?: ReactNode;
 }
 
 export const MetaItemBase = ({
   as,
+  variant = "text",
   size,
+  color,
+  progress,
+  datetime,
   className,
   children,
   ...rest
@@ -24,6 +33,10 @@ export const MetaItemBase = ({
   return (
     <Component
       data-size={size}
+      data-color={color}
+      data-variant={variant}
+      data-progress={progress}
+      dateTime={datetime}
       className={cx(styles?.item, className)}
       {...rest}
     >

@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-
 import {
   MetaItemBase,
   type MetaItemSize,
@@ -7,28 +6,27 @@ import {
 } from "./MetaItemBase";
 import { MetaItemLabel } from "./MetaItemLabel";
 import { MetaItemMedia } from "./MetaItemMedia";
-import type { IconName } from "../Icon";
 
-export interface MetaItemProps {
+export interface MetaProgressProps {
   /** Meta size */
   size?: MetaItemSize;
   /** Variant */
   variant?: MetaItemVariant;
-  /** Icon name */
-  icon?: IconName;
+  /** Progress of 100 */
+  progress?: number;
   /** Label */
   children?: ReactNode;
 }
 
-export const MetaItem = ({
+export const MetaProgress = ({
   size = "xs",
   variant = "text",
-  icon,
+  progress = 0,
   children,
-}: MetaItemProps) => {
+}: MetaProgressProps) => {
   return (
     <MetaItemBase variant={variant} size={size}>
-      {icon ? <MetaItemMedia icon={icon} size={size} /> : ""}
+      <MetaItemMedia size={size} progress={progress} />
       <MetaItemLabel variant={variant} size={size}>
         {children}
       </MetaItemLabel>

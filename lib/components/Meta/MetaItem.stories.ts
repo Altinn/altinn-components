@@ -4,7 +4,7 @@ import { fn } from "@storybook/test";
 import { MetaItem } from "./MetaItem";
 
 const meta = {
-  title: "Atoms/Meta/MetaItem",
+  title: "Meta/MetaItem",
   component: MetaItem,
   tags: ["autodocs"],
   parameters: {
