@@ -1,24 +1,27 @@
 import { MetaItem } from "../Meta";
-import { AttachmentsList, AttachmentLinkProps } from "../Attachments/";
-import styles from "./dialogAttachments.module.css";
+import { AttachmentList, AttachmentLinkProps } from "../Attachment";
+import { Typography } from "../Typography";
+import styles from "./dialog.module.css";
 
 export interface DialogAttachmentsProps {
   title?: string;
-  attachments?: AttachmentLinkProps[];
+  items?: AttachmentLinkProps[];
 }
 
 export const DialogAttachments = ({
   title = "Vedlegg",
-  attachments,
+  items,
 }: DialogAttachmentsProps) => {
-  if (!attachments?.length) {
+  if (!items?.length) {
     return null;
   }
 
   return (
     <section className={styles?.list}>
       <MetaItem size="xs">{title}</MetaItem>
-      <AttachmentsList size="lg" items={attachments} />
+      <Typography size="lg">
+        <AttachmentList size="lg" items={items} />
+      </Typography>
     </section>
   );
 };

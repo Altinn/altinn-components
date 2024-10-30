@@ -1,36 +1,30 @@
 import { DialogBase } from "./DialogBase";
 import { DialogArticle } from "./DialogArticle";
+import { DialogHeader } from "./DialogHeader";
+import { DialogBody } from "./DialogBody";
 import {
   DialogHeadings,
   type DialogSenderProps,
   type DialogRecipientProps,
 } from "./DialogHeadings";
-import { DialogBody } from "./DialogBody";
-import { DialogBorder } from "./DialogBorder";
-import { DialogHistory } from "./DialogHistory";
-import { DialogContact, type ContactLink } from "./DialogContact";
-import type { AttachmentProps } from "../Attachments";
+import { DialogTitle } from "./DialogTitle";
 import { DialogAttachments } from "./DialogAttachments";
+import type { AttachmentLinkProps } from "../Attachment";
 
-import { DialogDrafts } from "./DialogDrafts";
 import { DialogAction, type DialogButtonProps } from "./DialogAction";
 import { DialogUpdated } from "./DialogUpdated";
 import { DialogNav, type DialogBackButtonProps } from "./DialogNav";
-import { MetaBase, MetaItem } from "../Meta";
-import { Typography } from "../Typography";
-import { HistoryItemProps } from "../History";
-
-export type UpdatedBy = {
-  name: string;
-};
+import { MetaListBase, MetaItem } from "../Meta";
+import { Typography, Markdown } from "../Typography";
+import { DialogStatusProps } from "./DialogStatus";
 
 export interface DialogProps {
   /** Dialog status */
-  status?: string;
+  status?: DialogStatusProps;
   /** Updated date time */
   updatedAt?: string;
-  /** Latest updated by */
-  updatedBy?: UpdatedBy;
+  /** Latest updated by name */
+  updatedByName?: string;
   /** Due date */
   dueAt?: string;
   /** Sender */
@@ -45,23 +39,14 @@ export interface DialogProps {
   body?: string;
   /** List of action (buttons) */
   action?: DialogButtonProps[];
-  /** List of attachments */
-  attachments?: AttachmentProps[];
-  /** Additional info (supports markdown) */
-  additionalInfo?: string;
+  /** Dialog attachments */
+  attachments?: AttachmentLinkProps[];
   /** Dialog is seen by the user */
   seenByUser?: boolean;
   /** Dialog is seen by others (count) */
   seenByOthers?: number;
-  /** History */
-  history?: HistoryItemProps[];
-  /** Contact info (supports markdown) */
-  contactInfo?: string;
-  /** Contact links */
-  contactLinks?: ContactLink[];
   /** Back button */
   backButton?: DialogBackButtonProps;
-  //  onBack?: MouseEventHandler<HTMLButtonElement>;
 }
 
 /**
@@ -71,7 +56,7 @@ export interface DialogProps {
 export const Dialog = ({
   backButton,
   updatedAt,
-  updatedBy,
+  updatedByName,
   dueAt,
   status,
   title,
@@ -79,76 +64,50 @@ export const Dialog = ({
   recipient,
   summary = "Summary.",
   body,
-  additionalInfo,
   action,
   attachments,
   seenByUser = true,
-  history,
-  contactInfo,
-  contactLinks,
-  ...props
 }: DialogProps) => {
   return (
     <DialogBase status={status}>
       <DialogNav status={status} dueAt={dueAt} backButton={backButton} />
       <DialogArticle>
-        <header className={styles.header}>
-          <h1 className={styles.title} data-size="xl">
-            {title}
-          </h1>
+        <DialogHeader>
+          <DialogTitle size="xl">{title}</DialogTitle>
           <DialogHeadings size="lg" sender={sender} recipient={recipient} />
-        </header>
-
+        </DialogHeader>
         <DialogBody>
-          {props?.drafts && <DialogDrafts items={props.drafts} />}
-
-          <DialogBorder status={status} unseen={!seenByUser} size="lg">
-            <section>
-              <DialogUpdated
-                updatedBy={updatedBy}
-                updatedAt={updatedAt}
-                size="xs"
-              />
-              <Typography size="lg">
-                <p>{summary}</p>
-                {body ? <Markdown>{body}</Markdown> : ""}
-              </Typography>
-            </section>
-
-            <DialogAttachments attachments={attachments} />
-            <DialogAction items={action} />
-
-            <MetaBase size="xs">
-              <MetaItem size="xs" icon="eye">
-                Sett av deg
-              </MetaItem>
-              <MetaItem size="xs" icon="clock-dashed">
-                Aktivitetslogg
-              </MetaItem>
-            </MetaBase>
-          </DialogBorder>
-
-          {additionalInfo ? (
+          <section>
+            <DialogUpdated
+              updatedByName={updatedByName}
+              updatedAt={updatedAt}
+              size="xs"
+            />
             <Typography size="lg">
-              <Markdown>{additionalInfo}</Markdown>
+              <p>{summary}</p>
+              {body ? <Markdown>{body}</Markdown> : ""}
             </Typography>
+          </section>
+
+          {attachments ? (
+            <DialogAttachments
+              title={attachments?.length + " vedlegg"}
+              items={attachments}
+            />
           ) : (
             ""
           )}
-        </DialogBody>
+          {action ? <DialogAction items={action} /> : ""}
 
-        {history?.length ? (
-          <DialogHistory title="Hva har skjedd?" items={history} />
-        ) : (
-          ""
-        )}
-        {contactInfo ? (
-          <DialogContact title="Kontakt oss" items={contactLinks}>
-            {contactInfo}
-          </DialogContact>
-        ) : (
-          ""
-        )}
+          <MetaListBase size="xs">
+            <MetaItem size="xs" icon="eye">
+              Sett av deg
+            </MetaItem>
+            <MetaItem size="xs" icon="clock-dashed">
+              Aktivitetslogg
+            </MetaItem>
+          </MetaListBase>
+        </DialogBody>
       </DialogArticle>
     </DialogBase>
   );

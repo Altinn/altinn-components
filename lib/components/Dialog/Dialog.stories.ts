@@ -10,15 +10,9 @@ const meta = {
   parameters: {
     layout: "fullscreen",
   },
-  args: {},
-} satisfies Meta<typeof Dialog>;
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Default: Story = {
   argTypes: { body: { control: "text" } },
   args: {
+    updatedAt: "1999-05-26",
     title: "Title",
     summary: "Summary",
     body:
@@ -29,6 +23,14 @@ export const Default: Story = {
       "- List 1\n" +
       "- List 2\n" +
       "- List 3\n",
+  },
+} satisfies Meta<typeof Dialog>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
     attachments: [
       {
         label: "Dokument 1.pdf",

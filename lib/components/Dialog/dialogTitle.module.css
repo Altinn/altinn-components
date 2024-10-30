@@ -12,6 +12,12 @@
   text-overflow: ellipsis;
 }
 
+.title[data-size="xl"] {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
 .title[data-variant="seen"] {
   font-weight: 400;
 }
