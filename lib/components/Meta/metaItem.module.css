@@ -25,6 +25,17 @@ a.item:hover {
   height: 1.5rem;
 }
 
+.item {
+  line-height: 1;
+}
+
+/* xs = 24, sm = 30, md = 36? */
+
+.item[data-size="xs"] {
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+}
+
 .item[data-size="sm"] {
   font-size: 1rem;
 }
