@@ -1,0 +1,27 @@
+.item {
+  color: var(--neutral-text-subtle);
+  display: inline-flex;
+  align-items: center;
+  height: 1.5rem;
+  gap: 0.25em;
+  white-space: nowrap;
+}
+
+.item[data-size="sm"] {
+  font-size: 1rem;
+}
+
+.item[data-size="xs"] {
+  font-size: 0.875rem;
+}
+
+.icon[data-size="sm"] {
+  font-size: 1.25rem;
+}
+
+.icon[data-size="xs"] {
+  font-size: 1rem;
+}
+
+.label {
+}
