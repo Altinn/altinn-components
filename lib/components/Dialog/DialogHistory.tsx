@@ -10,7 +10,7 @@ export const DialogHistory = ({
   title = "Hva har skjedd?",
   items,
 }: DialogHistoryProps) => {
-  if (!items?.length) {
+  if (!items) {
     return null;
   }
 
