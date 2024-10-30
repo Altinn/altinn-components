@@ -17,33 +17,35 @@ export interface DialogStatusProps {
 export const DialogStatus = ({
   size = "xs",
   value = "new",
-  label = "New",
+  label,
 }: DialogStatusProps) => {
   switch (value) {
+    case "new":
+      return "";
     case "draft":
       return (
         <MetaItem size={size} variant="dotted">
-          {label}
+          {label || value}
         </MetaItem>
       );
     case "requires-attention":
-      return <MetaItem variant="solid">{label}</MetaItem>;
+      return <MetaItem variant="solid"> {label || value}</MetaItem>;
     case "in-progress":
       return (
         <MetaProgress size={size} variant="outline" progress={75}>
-          {label}
+          {label || value}
         </MetaProgress>
       );
     case "completed":
       return (
         <MetaProgress size={size} variant="outline" progress={100}>
-          {label}
+          {label || value}
         </MetaProgress>
       );
     default:
       return (
         <MetaItem size={size} variant="outline">
-          {label}
+          {label || value}
         </MetaItem>
       );
   }
