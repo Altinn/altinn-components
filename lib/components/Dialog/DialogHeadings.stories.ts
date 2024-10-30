@@ -26,6 +26,12 @@ export const Default: Story = {
   args: {},
 };
 
+export const Company: Story = {
+  args: {
+    grouped: true,
+  },
+};
+
 export const Grouped: Story = {
   args: {
     grouped: true,
