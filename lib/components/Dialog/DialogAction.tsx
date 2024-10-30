@@ -33,13 +33,13 @@ export const DialogAction = ({ items, maxItems = 2 }: DialogActionProps) => {
   }
 
   return (
-    <div className={styles?.action}>
+    <div className={styles?.action} data-theme="article">
       {items?.map((item, index) => {
         return (
           <Button
             key={"button" + index}
             onClick={item?.onClick}
-            color="link"
+            color="primary"
             variant={index ? "outline" : "solid"}
             size="lg"
           >
