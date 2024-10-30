@@ -6,10 +6,12 @@
   border-radius: 2px;
 }
 
+/*
 .button[aria-selected="true"] {
   background-color: var(--theme-background-subtle);
   color: var(--theme-text-default);
 }
+  */
 
 .label {
   line-height: 1rem;
@@ -40,7 +42,7 @@
 
 .label[data-size="sm"] {
   font-size: 0.875rem;
-  padding: 9px 10px;
+  padding: 8px 10px;
 }
 
 .divider[data-size="sm"] {
@@ -49,7 +51,7 @@
 
 .icon[data-size="sm"] {
   font-size: 1.25rem;
-  padding: 7px 5px;
+  padding: 6px 5px;
 }
 
 /* md 44px */

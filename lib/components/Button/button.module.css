@@ -1,29 +1,10 @@
 .button {
   display: inline-flex;
   align-items: center;
-  border: 1px solid;
-  border-color: var(--link-base-default);
-}
-
-.button:focus {
-  border-color: var(--link-base-active);
-}
-
-.button:hover {
-  border-color: var(--link-base-hover);
-}
-
-.button:active {
-  border-color: var(--link-base-active);
 }
 
 .reverse {
   flex-direction: row-reverse;
-}
-
-.button[aria-selected="true"] {
-  background-color: var(--theme-background-subtle);
-  color: var(--theme-text-default);
 }
 
 .label {

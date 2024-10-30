@@ -13,12 +13,10 @@ html {
   --theme-text-default: var(--global-text-default);
   --theme-text-subtle: var(--global-text-subtle);
 }
-
 html[data-theme] {
   background: var(--theme-background-subtle);
   color: var(--neutral-text-default);
 }
-
 body {
   background-color: inherit;
 }

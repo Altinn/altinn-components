@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { Avatar, AvatarGroup, type AvatarGroupProps, type AvatarProps, type AvatarSize } from '../Avatar';
 import { Icon, type IconName } from '../Icon';
 import type { MenuItemColor, MenuItemSize } from './MenuItemBase';
-import styles from './menuItem.module.css';
+import styles from './menuItemMedia.module.css';
 
 interface MenuItemMediaProps {
   color?: MenuItemColor;

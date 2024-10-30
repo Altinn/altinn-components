@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react';
-
 import type { IconName } from '../Icon';
 import { MetaItemBase, type MetaItemSize, type MetaItemVariant } from './MetaItemBase';
 import { MetaItemLabel } from './MetaItemLabel';

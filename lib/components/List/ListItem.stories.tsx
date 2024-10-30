@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
 import { Fragment, useState } from 'react';
 
 import { MetaItem } from '../Meta';
@@ -13,6 +12,7 @@ const meta = {
   tags: ['autodocs'],
   parameters: {},
   args: {
+    id: 'id',
     title: 'Title',
     description: 'Description',
     size: 'md',
