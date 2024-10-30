@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { CheckboxIcon } from "./CheckboxIcon";
+import type { Meta, StoryObj } from '@storybook/react';
+import { CheckboxIcon } from './CheckboxIcon';
 
 const meta = {
-  title: "Atoms/Icon/CheckboxIcon",
+  title: 'Atoms/Icon/CheckboxIcon',
   component: CheckboxIcon,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
   args: {},
 } satisfies Meta<typeof CheckboxIcon>;

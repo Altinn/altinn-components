@@ -1,13 +1,13 @@
-"use client";
-import cx from "classnames";
-import { useState } from "react";
-import { fromStringToColor } from "./color";
-import styles from "./avatar.module.css";
+'use client';
+import cx from 'classnames';
+import { useState } from 'react';
+import styles from './avatar.module.css';
+import { fromStringToColor } from './color';
 
-export type AvatarType = "company" | "person" | "custom";
-export type AvatarSize = "xs" | "sm" | "md" | "lg" | "xl";
-export type AvatarVariant = "square" | "circle";
-export type AvatarColor = "dark" | "light";
+export type AvatarType = 'company' | 'person' | 'custom';
+export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type AvatarVariant = 'square' | 'circle';
+export type AvatarColor = 'dark' | 'light';
 
 /**
  * Props for the Avatar component.
@@ -40,10 +40,10 @@ export interface AvatarProps {
  */
 export const Avatar = ({
   type,
-  size = "sm",
+  size = 'sm',
   variant,
   color,
-  name = "Avatar",
+  name = 'Avatar',
   outline = false,
   imageUrl,
   imageUrlAlt,
@@ -52,16 +52,13 @@ export const Avatar = ({
 }: AvatarProps): JSX.Element => {
   const [hasImageError, setHasImageError] = useState<boolean>(false);
 
-  const defaultVariant = type === "person" ? "circle" : "square";
-  const defaultColor = type === "person" ? "light" : "dark";
+  const defaultVariant = type === 'person' ? 'circle' : 'square';
+  const defaultColor = type === 'person' ? 'light' : 'dark';
   const appliedVariant = variant || defaultVariant;
   const appliedColor = color || defaultColor;
 
-  const { backgroundColor, foregroundColor } = fromStringToColor(
-    name,
-    appliedColor
-  );
-  const initials = (name[0] ?? "").toUpperCase();
+  const { backgroundColor, foregroundColor } = fromStringToColor(name, appliedColor);
+  const initials = (name[0] ?? '').toUpperCase();
   const usingImageUrl = imageUrl && !hasImageError;
 
   const inlineStyles = !usingImageUrl
@@ -73,13 +70,7 @@ export const Avatar = ({
 
   return (
     <div
-      className={cx(
-        styles.avatar,
-        styles[appliedVariant],
-        styles[size],
-        { [styles.outline]: outline },
-        className
-      )}
+      className={cx(styles.avatar, styles[appliedVariant], styles[size], { [styles.outline]: outline }, className)}
       style={inlineStyles}
       aria-hidden
     >

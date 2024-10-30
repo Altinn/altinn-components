@@ -1,5 +1,5 @@
-import cx from "classnames";
-import styles from "./radioIcon.module.css";
+import cx from 'classnames';
+import styles from './radioIcon.module.css';
 
 export type RadioIconProps = {
   checked: boolean;

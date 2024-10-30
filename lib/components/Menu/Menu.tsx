@@ -1,14 +1,14 @@
-import { MenuBase } from "./MenuBase";
-import { MenuGroup } from "./MenuGroup";
-import { MenuSearch, type MenuSearchProps } from "./MenuSearch";
-import { MenuHeader } from "./MenuHeader";
+import { MenuBase } from './MenuBase';
+import { MenuGroup } from './MenuGroup';
+import { MenuHeader } from './MenuHeader';
+import { MenuSearch, type MenuSearchProps } from './MenuSearch';
 
-import type { MenuItemSize, MenuItemColor } from "./MenuItemBase";
+import type { MenuItemColor, MenuItemSize } from './MenuItemBase';
 
-import { MenuItem, type MenuItemProps } from "./MenuItem";
-import styles from "./menu.module.css";
+import { MenuItem, type MenuItemProps } from './MenuItem';
+import styles from './menu.module.css';
 
-export type MenuTheme = "global" | "neutral" | "company" | "person";
+export type MenuTheme = 'global' | 'neutral' | 'company' | 'person';
 
 interface MenuItemsGroupProps {
   title?: string;
@@ -31,14 +31,14 @@ export interface MenuProps {
 const groupMenuItems = (items: MenuItemProps[]) => {
   const groups: Record<string, MenuItemProps[]> = items?.reduce(
     (acc: Record<string, MenuItemProps[]>, item: MenuItemProps) => {
-      const group = item?.group || "";
+      const group = item?.group || '';
       if (!acc[group]) {
         acc[group] = [];
       }
       acc[group].push(item);
       return acc;
     },
-    {} as Record<string, MenuItemProps[]>
+    {} as Record<string, MenuItemProps[]>,
   );
 
   return groups;
@@ -71,25 +71,13 @@ export const MenuItems = ({
           .map((option, index) => {
             if (option.expanded && option.items) {
               return (
-                <li
-                  className={styles.item}
-                  aria-expanded="true"
-                  key={"item" + index}
-                >
+                <li className={styles.item} aria-expanded="true" key={'item' + index}>
                   <MenuItem
                     {...option}
                     className={styles.menuItem}
-                    color={
-                      option?.color ||
-                      groupProps?.defaultItemColor ||
-                      defaultItemColor
-                    }
-                    size={
-                      option?.size ||
-                      groupProps?.defaultItemSize ||
-                      defaultItemSize
-                    }
-                    key={"menu-item" + index}
+                    color={option?.color || groupProps?.defaultItemColor || defaultItemColor}
+                    size={option?.size || groupProps?.defaultItemSize || defaultItemSize}
+                    key={'menu-item' + index}
                   />
                   <MenuItems
                     groups={groups}
@@ -102,21 +90,13 @@ export const MenuItems = ({
             }
 
             return (
-              <li className={styles.item} key={"item" + index}>
+              <li className={styles.item} key={'item' + index}>
                 <MenuItem
                   {...option}
                   className={styles.menuItem}
-                  color={
-                    option?.color ||
-                    groupProps?.defaultItemColor ||
-                    defaultItemColor
-                  }
-                  size={
-                    option?.size ||
-                    groupProps?.defaultItemSize ||
-                    defaultItemSize
-                  }
-                  key={"menu-item" + index}
+                  color={option?.color || groupProps?.defaultItemColor || defaultItemColor}
+                  size={option?.size || groupProps?.defaultItemSize || defaultItemSize}
+                  key={'menu-item' + index}
                 />
               </li>
             );
@@ -128,8 +108,8 @@ export const MenuItems = ({
 
 export const Menu = ({
   theme,
-  defaultItemColor = "subtle",
-  defaultItemSize = "sm",
+  defaultItemColor = 'subtle',
+  defaultItemSize = 'sm',
   groups,
   items = [],
   search,
@@ -137,12 +117,7 @@ export const Menu = ({
   return (
     <MenuBase theme={theme}>
       {search && <MenuSearch {...search} />}
-      <MenuItems
-        items={items}
-        groups={groups}
-        defaultItemColor={defaultItemColor}
-        defaultItemSize={defaultItemSize}
-      />
+      <MenuItems items={items} groups={groups} defaultItemColor={defaultItemColor} defaultItemSize={defaultItemSize} />
     </MenuBase>
   );
 };

@@ -1,16 +1,11 @@
-import type { ElementType, ReactNode } from "react";
-import { Badge } from "../Badge";
-import { Icon, type IconName } from "../Icon";
-import styles from "./menuItem.module.css";
-import cx from "classnames";
+import cx from 'classnames';
+import type { ElementType, ReactNode } from 'react';
+import { Badge } from '../Badge';
+import { Icon, type IconName } from '../Icon';
+import styles from './menuItem.module.css';
 
-export type MenuItemColor =
-  | "default"
-  | "subtle"
-  | "strong"
-  | "company"
-  | "person";
-export type MenuItemSize = "sm" | "md" | "lg";
+export type MenuItemColor = 'default' | 'subtle' | 'strong' | 'company' | 'person';
+export type MenuItemSize = 'sm' | 'md' | 'lg';
 
 export interface MenuItemBaseProps {
   as?: ElementType;
@@ -40,16 +35,10 @@ export const MenuItemBase = ({
   children,
   ...rest
 }: MenuItemBaseProps) => {
-  const Component = as || "a";
+  const Component = as || 'a';
 
   const applicableIcon =
-    collapsible && expanded
-      ? "chevron-up"
-      : collapsible
-      ? "chevron-down"
-      : linkIcon
-      ? "chevron-right"
-      : linkIcon;
+    collapsible && expanded ? 'chevron-up' : collapsible ? 'chevron-down' : linkIcon ? 'chevron-right' : linkIcon;
 
   return (
     <Component
@@ -66,9 +55,7 @@ export const MenuItemBase = ({
         {badge && <Badge>{badge}</Badge>}
       </div>
       <div className={styles?.action}>
-        {applicableIcon && (
-          <Icon name={applicableIcon} className={styles?.actionIcon} />
-        )}
+        {applicableIcon && <Icon name={applicableIcon} className={styles?.actionIcon} />}
       </div>
     </Component>
   );
