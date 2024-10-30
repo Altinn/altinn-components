@@ -1,6 +1,6 @@
-import type { ReactNode  } from 'react';
-import styles from './menuItem.module.css';
+import type { ReactNode } from 'react';
 import type { MenuItemSize } from './MenuItemBase';
+import styles from './menuItem.module.css';
 
 export interface MenuItemLabelProps {
   size?: MenuItemSize;

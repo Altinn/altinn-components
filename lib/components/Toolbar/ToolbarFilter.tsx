@@ -1,8 +1,8 @@
-import type { ChangeEventHandler, MouseEventHandler } from "react";
-import { ToolbarButton } from "./ToolbarButton";
-import { ToolbarOptions } from "./ToolbarOptions";
-import type { MenuOptionProps } from "../Menu";
-import styles from "./toolbar.module.css";
+import type { ChangeEventHandler, MouseEventHandler } from 'react';
+import type { MenuOptionProps } from '../Menu';
+import { ToolbarButton } from './ToolbarButton';
+import { ToolbarOptions } from './ToolbarOptions';
+import styles from './toolbar.module.css';
 
 type ToolbarFilterValue = (string | number)[];
 export interface ToolbarFilterProps {
@@ -10,7 +10,7 @@ export interface ToolbarFilterProps {
   options: MenuOptionProps[];
   label: string;
   value?: ToolbarFilterValue;
-  optionType: "checkbox" | "radio";
+  optionType: 'checkbox' | 'radio';
   expanded?: boolean;
   removable?: boolean;
   getSelectedLabel?: (name: string, value?: ToolbarFilterValue) => string;
@@ -22,7 +22,7 @@ export interface ToolbarFilterProps {
 
 const defaultGetSelectedLabel = (_: string, value?: ToolbarFilterValue) => {
   if (Array.isArray(value)) {
-    return value.join(", ");
+    return value.join(', ');
   }
   return value;
 };
@@ -44,14 +44,11 @@ export const ToolbarFilter = ({
     (item): MenuOptionProps => ({
       ...item,
       name,
-      checked: Array.isArray(value)
-        ? value.includes(item.value)
-        : item.value === value,
-    })
+      checked: Array.isArray(value) ? value.includes(item.value) : item.value === value,
+    }),
   );
 
-  const valueLabel =
-    getSelectedLabel?.(name, value) ?? defaultGetSelectedLabel(name, value);
+  const valueLabel = getSelectedLabel?.(name, value) ?? defaultGetSelectedLabel(name, value);
 
   return (
     <div className={styles.toggle}>
@@ -59,20 +56,14 @@ export const ToolbarFilter = ({
         as="div"
         type="select"
         removable={removable}
-        active={
-          Array.isArray(value) ? value.length > 0 : typeof value !== "undefined"
-        }
+        active={Array.isArray(value) ? value.length > 0 : typeof value !== 'undefined'}
         onToggle={onToggle}
         onRemove={onRemove}
       >
         {valueLabel || label}
       </ToolbarButton>
       <div className={styles.dropdown} aria-expanded={expanded}>
-        <ToolbarOptions
-          options={filterOptions}
-          onChange={onChange}
-          optionType={optionType}
-        />
+        <ToolbarOptions options={filterOptions} onChange={onChange} optionType={optionType} />
       </div>
     </div>
   );

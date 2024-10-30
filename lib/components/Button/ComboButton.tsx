@@ -1,7 +1,7 @@
 import cx from 'classnames';
-import type {MouseEventHandler} from 'react';
-import {ButtonBase, type ButtonBaseProps} from './ButtonBase';
-import {Icon, type IconName} from '../Icon';
+import type { MouseEventHandler } from 'react';
+import { Icon, type IconName } from '../Icon';
+import { ButtonBase, type ButtonBaseProps } from './ButtonBase';
 
 import styles from './comboButton.module.css';
 

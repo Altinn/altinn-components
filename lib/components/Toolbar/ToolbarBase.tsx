@@ -1,8 +1,8 @@
-"use client";
-import { type ReactNode, useRef } from "react";
-import styles from "./toolbar.module.css";
-import { useClickOutside } from "../Menu/useClickOutside.ts";
-import { useEscapeKey } from "../Menu/useEscapeKey.ts";
+'use client';
+import { type ReactNode, useRef } from 'react';
+import { useClickOutside } from '../Menu/useClickOutside.ts';
+import { useEscapeKey } from '../Menu/useEscapeKey.ts';
+import styles from './toolbar.module.css';
 export interface ToolbarBaseProps {
   children?: ReactNode;
   onClose?: () => void;

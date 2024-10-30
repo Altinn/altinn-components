@@ -899,8 +899,7 @@ import {
   ZoomMinusIcon,
   ZoomPlusFillIcon,
   ZoomPlusIcon,
-} from "@navikt/aksel-icons";
-
+} from '@navikt/aksel-icons';
 
 export interface IconsMap {
   [key: string]: JSX.Element | { outline: JSX.Element; solid: JSX.Element };
@@ -910,59 +909,59 @@ export type IconName = keyof typeof iconsMap;
 
 export const iconsMap = {
   airplane: { solid: <AirplaneFillIcon />, outline: <AirplaneIcon /> },
-  "align-bottom": {
+  'align-bottom': {
     solid: <AlignBottomFillIcon />,
     outline: <AlignBottomIcon />,
   },
-  "align-center": {
+  'align-center': {
     solid: <AlignCenterFillIcon />,
     outline: <AlignCenterIcon />,
   },
-  "align-left": {
+  'align-left': {
     solid: <AlignLeftFillIcon />,
     outline: <AlignLeftIcon />,
   },
-  "align-middle": {
+  'align-middle': {
     solid: <AlignMiddleFillIcon />,
     outline: <AlignMiddleIcon />,
   },
-  "align-right": {
+  'align-right': {
     solid: <AlignRightFillIcon />,
     outline: <AlignRightIcon />,
   },
-  "align-top": { solid: <AlignTopFillIcon />, outline: <AlignTopIcon /> },
+  'align-top': { solid: <AlignTopFillIcon />, outline: <AlignTopIcon /> },
   allergens: { solid: <AllergensFillIcon />, outline: <AllergensIcon /> },
   angle: { outline: <AngleIcon /> },
-  "angle-ruler-circle": {
+  'angle-ruler-circle': {
     solid: <AngleRulerCircleFillIcon />,
     outline: <AngleRulerCircleIcon />,
   },
-  "angle-ruler-triangle": {
+  'angle-ruler-triangle': {
     solid: <AngleRulerTriangleFillIcon />,
     outline: <AngleRulerTriangleIcon />,
   },
   archive: { solid: <ArchiveFillIcon />, outline: <ArchiveIcon /> },
-  "area-chart": {
+  'area-chart': {
     solid: <AreaChartFillIcon />,
     outline: <AreaChartIcon />,
   },
-  "arrow-circlepath": { outline: <ArrowCirclepathIcon /> },
-  "arrow-down": { outline: <ArrowDownIcon /> },
-  "arrow-down-right": { outline: <ArrowDownRightIcon /> },
-  "arrow-forward": {
+  'arrow-circlepath': { outline: <ArrowCirclepathIcon /> },
+  'arrow-down': { outline: <ArrowDownIcon /> },
+  'arrow-down-right': { outline: <ArrowDownRightIcon /> },
+  'arrow-forward': {
     solid: <ArrowForwardFillIcon />,
     outline: <ArrowForwardIcon />,
   },
-  "arrow-left": { outline: <ArrowLeftIcon /> },
-  "arrow-redo": { outline: <ArrowRedoIcon /> },
-  "arrow-right": { outline: <ArrowRightIcon /> },
-  "arrow-right-left": { outline: <ArrowRightLeftIcon /> },
-  "arrow-undo": { outline: <ArrowUndoIcon /> },
-  "arrow-up": { outline: <ArrowUpIcon /> },
-  "arrows-circlepath": { outline: <ArrowsCirclepathIcon /> },
-  "arrows-squarepath": { outline: <ArrowsSquarepathIcon /> },
-  "arrows-up-down": { outline: <ArrowsUpDownIcon /> },
-  "baby-wrapped": {
+  'arrow-left': { outline: <ArrowLeftIcon /> },
+  'arrow-redo': { outline: <ArrowRedoIcon /> },
+  'arrow-right': { outline: <ArrowRightIcon /> },
+  'arrow-right-left': { outline: <ArrowRightLeftIcon /> },
+  'arrow-undo': { outline: <ArrowUndoIcon /> },
+  'arrow-up': { outline: <ArrowUpIcon /> },
+  'arrows-circlepath': { outline: <ArrowsCirclepathIcon /> },
+  'arrows-squarepath': { outline: <ArrowsSquarepathIcon /> },
+  'arrows-up-down': { outline: <ArrowsUpDownIcon /> },
+  'baby-wrapped': {
     solid: <BabyWrappedFillIcon />,
     outline: <BabyWrappedIcon />,
   },
@@ -972,42 +971,42 @@ export const iconsMap = {
   bagde: { solid: <BagdeFillIcon />, outline: <BagdeIcon /> },
   baggage: { solid: <BaggageFillIcon />, outline: <BaggageIcon /> },
   bandage: { solid: <BandageFillIcon />, outline: <BandageIcon /> },
-  "bank-note": { solid: <BankNoteFillIcon />, outline: <BankNoteIcon /> },
-  "bar-chart": { solid: <BarChartFillIcon />, outline: <BarChartIcon /> },
+  'bank-note': { solid: <BankNoteFillIcon />, outline: <BankNoteIcon /> },
+  'bar-chart': { solid: <BarChartFillIcon />, outline: <BarChartIcon /> },
   bed: { solid: <BedFillIcon />, outline: <BedIcon /> },
-  "bell-dot": { solid: <BellDotFillIcon />, outline: <BellDotIcon /> },
+  'bell-dot': { solid: <BellDotFillIcon />, outline: <BellDotIcon /> },
   bell: { solid: <BellFillIcon />, outline: <BellIcon /> },
   bicycle: { outline: <BicycleIcon /> },
   boat: { solid: <BoatFillIcon />, outline: <BoatIcon /> },
-  "bone-broken": { outline: <BoneBrokenIcon /> },
+  'bone-broken': { outline: <BoneBrokenIcon /> },
   bone: { solid: <BoneFillIcon />, outline: <BoneIcon /> },
   book: { solid: <BookFillIcon />, outline: <BookIcon /> },
-  "bookmark-dash": { outline: <BookmarkDashIcon /> },
+  'bookmark-dash': { outline: <BookmarkDashIcon /> },
   bookmark: { solid: <BookmarkFillIcon />, outline: <BookmarkIcon /> },
   books: { solid: <BooksFillIcon />, outline: <BooksIcon /> },
   bowl: { solid: <BowlFillIcon />, outline: <BowlIcon /> },
   braille: { solid: <BrailleFillIcon />, outline: <BrailleIcon /> },
   branching: { outline: <BranchingIcon /> },
-  "briefcase-clock": {
+  'briefcase-clock': {
     solid: <BriefcaseClockFillIcon />,
     outline: <BriefcaseClockIcon />,
   },
   briefcase: { solid: <BriefcaseFillIcon />, outline: <BriefcaseIcon /> },
   broadcast: { outline: <BroadcastIcon /> },
-  "broadcast-minus-circle": {
+  'broadcast-minus-circle': {
     solid: <BroadcastMinusCircleFillIcon />,
     outline: <BroadcastMinusCircleIcon />,
   },
-  "broadcast-plus-circle": {
+  'broadcast-plus-circle': {
     solid: <BroadcastPlusCircleFillIcon />,
     outline: <BroadcastPlusCircleIcon />,
   },
-  "bubble-chart": {
+  'bubble-chart': {
     solid: <BubbleChartFillIcon />,
     outline: <BubbleChartIcon />,
   },
   bucket: { solid: <BucketFillIcon />, outline: <BucketIcon /> },
-  "bucket-mop": {
+  'bucket-mop': {
     solid: <BucketMopFillIcon />,
     outline: <BucketMopIcon />,
   },
@@ -1020,7 +1019,7 @@ export const iconsMap = {
     solid: <Buildings3FillIcon />,
     outline: <Buildings3Icon />,
   },
-  "bullet-list": { outline: <BulletListIcon /> },
+  'bullet-list': { outline: <BulletListIcon /> },
   bus: { solid: <BusFillIcon />, outline: <BusIcon /> },
   calculator: {
     solid: <CalculatorFillIcon />,
@@ -1028,7 +1027,7 @@ export const iconsMap = {
   },
   calendar: { solid: <CalendarFillIcon />, outline: <CalendarIcon /> },
   camera: { solid: <CameraFillIcon />, outline: <CameraIcon /> },
-  "camera-triangle": {
+  'camera-triangle': {
     solid: <CameraTriangleFillIcon />,
     outline: <CameraTriangleIcon />,
   },
@@ -1036,169 +1035,169 @@ export const iconsMap = {
   captions: { solid: <CaptionsFillIcon />, outline: <CaptionsIcon /> },
   car: { solid: <CarFillIcon />, outline: <CarIcon /> },
   card: { solid: <CardFillIcon />, outline: <CardIcon /> },
-  "caret-down-circle": {
+  'caret-down-circle': {
     solid: <CaretDownCircleFillIcon />,
     outline: <CaretDownCircleIcon />,
   },
-  "caret-down": {
+  'caret-down': {
     solid: <CaretDownFillIcon />,
     outline: <CaretDownIcon />,
   },
-  "caret-left-circle": {
+  'caret-left-circle': {
     solid: <CaretLeftCircleFillIcon />,
     outline: <CaretLeftCircleIcon />,
   },
-  "caret-left": {
+  'caret-left': {
     solid: <CaretLeftFillIcon />,
     outline: <CaretLeftIcon />,
   },
-  "caret-left-right": {
+  'caret-left-right': {
     solid: <CaretLeftRightFillIcon />,
     outline: <CaretLeftRightIcon />,
   },
-  "caret-right-circle": {
+  'caret-right-circle': {
     solid: <CaretRightCircleFillIcon />,
     outline: <CaretRightCircleIcon />,
   },
-  "caret-right": {
+  'caret-right': {
     solid: <CaretRightFillIcon />,
     outline: <CaretRightIcon />,
   },
-  "caret-up-circle": {
+  'caret-up-circle': {
     solid: <CaretUpCircleFillIcon />,
     outline: <CaretUpCircleIcon />,
   },
-  "caret-up-down": {
+  'caret-up-down': {
     solid: <CaretUpDownFillIcon />,
     outline: <CaretUpDownIcon />,
   },
-  "caret-up-down-filled-down": { outline: <CaretUpDownFilledDownIcon /> },
-  "caret-up-down-filled-up": { outline: <CaretUpDownFilledUpIcon /> },
-  "caret-up": { solid: <CaretUpFillIcon />, outline: <CaretUpIcon /> },
-  "changing-room": {
+  'caret-up-down-filled-down': { outline: <CaretUpDownFilledDownIcon /> },
+  'caret-up-down-filled-up': { outline: <CaretUpDownFilledUpIcon /> },
+  'caret-up': { solid: <CaretUpFillIcon />, outline: <CaretUpIcon /> },
+  'changing-room': {
     solid: <ChangingRoomFillIcon />,
     outline: <ChangingRoomIcon />,
   },
   chat2: { solid: <Chat2FillIcon />, outline: <Chat2Icon /> },
-  "chat-checkmark": {
+  'chat-checkmark': {
     solid: <ChatCheckmarkFillIcon />,
     outline: <ChatCheckmarkIcon />,
   },
-  "chat-elipsis": {
+  'chat-elipsis': {
     solid: <ChatElipsisFillIcon />,
     outline: <ChatElipsisIcon />,
   },
-  "chat-exclamationmark": {
+  'chat-exclamationmark': {
     solid: <ChatExclamationmarkFillIcon />,
     outline: <ChatExclamationmarkIcon />,
   },
   chat: { solid: <ChatFillIcon />, outline: <ChatIcon /> },
-  "checkmark-circle": {
+  'checkmark-circle': {
     solid: <CheckmarkCircleFillIcon />,
     outline: <CheckmarkCircleIcon />,
   },
   checkmark: { outline: <CheckmarkIcon /> },
-  "chef-hat": { solid: <ChefHatFillIcon />, outline: <ChefHatIcon /> },
-  "chevron-down-circle": {
+  'chef-hat': { solid: <ChefHatFillIcon />, outline: <ChefHatIcon /> },
+  'chevron-down-circle': {
     solid: <ChevronDownCircleFillIcon />,
     outline: <ChevronDownCircleIcon />,
   },
-  "chevron-down-double-circle": {
+  'chevron-down-double-circle': {
     solid: <ChevronDownDoubleCircleFillIcon />,
     outline: <ChevronDownDoubleCircleIcon />,
   },
-  "chevron-down-double": { outline: <ChevronDownDoubleIcon /> },
-  "chevron-down": { outline: <ChevronDownIcon /> },
-  "chevron-down-up": { outline: <ChevronDownUpIcon /> },
-  "chevron-left-circle": {
+  'chevron-down-double': { outline: <ChevronDownDoubleIcon /> },
+  'chevron-down': { outline: <ChevronDownIcon /> },
+  'chevron-down-up': { outline: <ChevronDownUpIcon /> },
+  'chevron-left-circle': {
     solid: <ChevronLeftCircleFillIcon />,
     outline: <ChevronLeftCircleIcon />,
   },
-  "chevron-left-double-circle": {
+  'chevron-left-double-circle': {
     solid: <ChevronLeftDoubleCircleFillIcon />,
     outline: <ChevronLeftDoubleCircleIcon />,
   },
-  "chevron-left-double": { outline: <ChevronLeftDoubleIcon /> },
-  "chevron-left-first-circle": {
+  'chevron-left-double': { outline: <ChevronLeftDoubleIcon /> },
+  'chevron-left-first-circle': {
     solid: <ChevronLeftFirstCircleFillIcon />,
     outline: <ChevronLeftFirstCircleIcon />,
   },
-  "chevron-left-first": { outline: <ChevronLeftFirstIcon /> },
-  "chevron-left": { outline: <ChevronLeftIcon /> },
-  "chevron-right-circle": {
+  'chevron-left-first': { outline: <ChevronLeftFirstIcon /> },
+  'chevron-left': { outline: <ChevronLeftIcon /> },
+  'chevron-right-circle': {
     solid: <ChevronRightCircleFillIcon />,
     outline: <ChevronRightCircleIcon />,
   },
-  "chevron-right-double-circle": {
+  'chevron-right-double-circle': {
     solid: <ChevronRightDoubleCircleFillIcon />,
     outline: <ChevronRightDoubleCircleIcon />,
   },
-  "chevron-right-double": { outline: <ChevronRightDoubleIcon /> },
-  "chevron-right": { outline: <ChevronRightIcon /> },
-  "chevron-right-last-circle": {
+  'chevron-right-double': { outline: <ChevronRightDoubleIcon /> },
+  'chevron-right': { outline: <ChevronRightIcon /> },
+  'chevron-right-last-circle': {
     solid: <ChevronRightLastCircleFillIcon />,
     outline: <ChevronRightLastCircleIcon />,
   },
-  "chevron-right-last": { outline: <ChevronRightLastIcon /> },
-  "chevron-up-circle": {
+  'chevron-right-last': { outline: <ChevronRightLastIcon /> },
+  'chevron-up-circle': {
     solid: <ChevronUpCircleFillIcon />,
     outline: <ChevronUpCircleIcon />,
   },
-  "chevron-up-double-circle": {
+  'chevron-up-double-circle': {
     solid: <ChevronUpDoubleCircleFillIcon />,
     outline: <ChevronUpDoubleCircleIcon />,
   },
-  "chevron-up-double": { outline: <ChevronUpDoubleIcon /> },
-  "chevron-up-down": { outline: <ChevronUpDownIcon /> },
-  "chevron-up": { outline: <ChevronUpIcon /> },
-  "child-eyes": {
+  'chevron-up-double': { outline: <ChevronUpDoubleIcon /> },
+  'chevron-up-down': { outline: <ChevronUpDownIcon /> },
+  'chevron-up': { outline: <ChevronUpIcon /> },
+  'child-eyes': {
     solid: <ChildEyesFillIcon />,
     outline: <ChildEyesIcon />,
   },
-  "child-hair-eyes": {
+  'child-hair-eyes': {
     solid: <ChildHairEyesFillIcon />,
     outline: <ChildHairEyesIcon />,
   },
   cigarette: { solid: <CigaretteFillIcon />, outline: <CigaretteIcon /> },
-  "circle-broken": { outline: <CircleBrokenIcon /> },
+  'circle-broken': { outline: <CircleBrokenIcon /> },
   circle: { solid: <CircleFillIcon />, outline: <CircleIcon /> },
-  "circle-slash": {
+  'circle-slash': {
     solid: <CircleSlashFillIcon />,
     outline: <CircleSlashIcon />,
   },
-  "clipboard-checkmark": {
+  'clipboard-checkmark': {
     solid: <ClipboardCheckmarkFillIcon />,
     outline: <ClipboardCheckmarkIcon />,
   },
   clipboard: { solid: <ClipboardFillIcon />, outline: <ClipboardIcon /> },
-  "clipboard-link": {
+  'clipboard-link': {
     solid: <ClipboardLinkFillIcon />,
     outline: <ClipboardLinkIcon />,
   },
-  "clipboard-x-mark": {
+  'clipboard-x-mark': {
     solid: <ClipboardXMarkFillIcon />,
     outline: <ClipboardXMarkIcon />,
   },
-  "clock-dashed": { outline: <ClockDashedIcon /> },
+  'clock-dashed': { outline: <ClockDashedIcon /> },
   clock: { solid: <ClockFillIcon />, outline: <ClockIcon /> },
-  "clothing-hanger": {
+  'clothing-hanger': {
     solid: <ClothingHangerFillIcon />,
     outline: <ClothingHangerIcon />,
   },
-  "cloud-down": {
+  'cloud-down': {
     solid: <CloudDownFillIcon />,
     outline: <CloudDownIcon />,
   },
   cloud: { solid: <CloudFillIcon />, outline: <CloudIcon /> },
-  "cloud-slash": {
+  'cloud-slash': {
     solid: <CloudSlashFillIcon />,
     outline: <CloudSlashIcon />,
   },
-  "cloud-up": { solid: <CloudUpFillIcon />, outline: <CloudUpIcon /> },
+  'cloud-up': { solid: <CloudUpFillIcon />, outline: <CloudUpIcon /> },
   code: { outline: <CodeIcon /> },
   coffee: { solid: <CoffeeFillIcon />, outline: <CoffeeIcon /> },
   cog: { solid: <CogFillIcon />, outline: <CogIcon /> },
-  "cog-rotation": {
+  'cog-rotation': {
     solid: <CogRotationFillIcon />,
     outline: <CogRotationIcon />,
   },
@@ -1212,7 +1211,7 @@ export const iconsMap = {
   },
   compass: { solid: <CompassFillIcon />, outline: <CompassIcon /> },
   component: { solid: <ComponentFillIcon />, outline: <ComponentIcon /> },
-  "currency-exchange": { outline: <CurrencyExchangeIcon /> },
+  'currency-exchange': { outline: <CurrencyExchangeIcon /> },
   cutlery: { solid: <CutleryFillIcon />, outline: <CutleryIcon /> },
   database: { solid: <DatabaseFillIcon />, outline: <DatabaseIcon /> },
   density1: { solid: <Density1FillIcon />, outline: <Density1Icon /> },
@@ -1224,39 +1223,39 @@ export const iconsMap = {
     outline: <DishwasherIcon />,
   },
   divide: { outline: <DivideIcon /> },
-  "doc-pencil": {
+  'doc-pencil': {
     solid: <DocPencilFillIcon />,
     outline: <DocPencilIcon />,
   },
   dog: { solid: <DogFillIcon />, outline: <DogIcon /> },
-  "dog-harness": {
+  'dog-harness': {
     solid: <DogHarnessFillIcon />,
     outline: <DogHarnessIcon />,
   },
-  "donut-chart": {
+  'donut-chart': {
     solid: <DonutChartFillIcon />,
     outline: <DonutChartIcon />,
   },
   donuts: { solid: <DonutsFillIcon />, outline: <DonutsIcon /> },
   door: { solid: <DoorFillIcon />, outline: <DoorIcon /> },
-  "door-open": { solid: <DoorOpenFillIcon />, outline: <DoorOpenIcon /> },
+  'door-open': { solid: <DoorOpenFillIcon />, outline: <DoorOpenIcon /> },
   download: { outline: <DownloadIcon /> },
-  "drag-horizontal": { outline: <DragHorizontalIcon /> },
-  "drag-vertical": { outline: <DragVerticalIcon /> },
+  'drag-horizontal': { outline: <DragHorizontalIcon /> },
+  'drag-vertical': { outline: <DragVerticalIcon /> },
   ear: { solid: <EarFillIcon />, outline: <EarIcon /> },
-  "ear-slash": { solid: <EarSlashFillIcon />, outline: <EarSlashIcon /> },
-  "ear-soundwaves": {
+  'ear-slash': { solid: <EarSlashFillIcon />, outline: <EarSlashIcon /> },
+  'ear-soundwaves': {
     solid: <EarSoundwavesFillIcon />,
     outline: <EarSoundwavesIcon />,
   },
   earth: { solid: <EarthFillIcon />, outline: <EarthIcon /> },
   elevator: { solid: <ElevatorFillIcon />, outline: <ElevatorIcon /> },
   enter: { outline: <EnterIcon /> },
-  "envelope-closed": {
+  'envelope-closed': {
     solid: <EnvelopeClosedFillIcon />,
     outline: <EnvelopeClosedIcon />,
   },
-  "envelope-open": {
+  'envelope-open': {
     solid: <EnvelopeOpenFillIcon />,
     outline: <EnvelopeOpenIcon />,
   },
@@ -1265,129 +1264,129 @@ export const iconsMap = {
   escalator: { outline: <EscalatorIcon /> },
   ethernet: { outline: <EthernetIcon /> },
   exclamationmark: { outline: <ExclamationmarkIcon /> },
-  "exclamationmark-triangle": {
+  'exclamationmark-triangle': {
     solid: <ExclamationmarkTriangleFillIcon />,
     outline: <ExclamationmarkTriangleIcon />,
   },
   expand: { outline: <ExpandIcon /> },
-  "external-link": {
+  'external-link': {
     solid: <ExternalLinkFillIcon />,
     outline: <ExternalLinkIcon />,
   },
-  "eye-closed": { outline: <EyeClosedIcon /> },
+  'eye-closed': { outline: <EyeClosedIcon /> },
   eye: { solid: <EyeFillIcon />, outline: <EyeIcon /> },
-  "eye-obfuscated": {
+  'eye-obfuscated': {
     solid: <EyeObfuscatedFillIcon />,
     outline: <EyeObfuscatedIcon />,
   },
-  "eye-slash": { solid: <EyeSlashFillIcon />, outline: <EyeSlashIcon /> },
-  "eye-with-pupil": {
+  'eye-slash': { solid: <EyeSlashFillIcon />, outline: <EyeSlashIcon /> },
+  'eye-with-pupil': {
     solid: <EyeWithPupilFillIcon />,
     outline: <EyeWithPupilIcon />,
   },
-  "face-cry": { solid: <FaceCryFillIcon />, outline: <FaceCryIcon /> },
+  'face-cry': { solid: <FaceCryFillIcon />, outline: <FaceCryIcon /> },
   face: { solid: <FaceFillIcon />, outline: <FaceIcon /> },
-  "face-frown": {
+  'face-frown': {
     solid: <FaceFrownFillIcon />,
     outline: <FaceFrownIcon />,
   },
-  "face-laugh": {
+  'face-laugh': {
     solid: <FaceLaughFillIcon />,
     outline: <FaceLaughIcon />,
   },
-  "face-smile": {
+  'face-smile': {
     solid: <FaceSmileFillIcon />,
     outline: <FaceSmileIcon />,
   },
-  "feeding-bottle": {
+  'feeding-bottle': {
     solid: <FeedingBottleFillIcon />,
     outline: <FeedingBottleIcon />,
   },
-  "figure-child": {
+  'figure-child': {
     solid: <FigureChildFillIcon />,
     outline: <FigureChildIcon />,
   },
-  "figure-combination": {
+  'figure-combination': {
     solid: <FigureCombinationFillIcon />,
     outline: <FigureCombinationIcon />,
   },
   figure: { solid: <FigureFillIcon />, outline: <FigureIcon /> },
-  "figure-inward": {
+  'figure-inward': {
     solid: <FigureInwardFillIcon />,
     outline: <FigureInwardIcon />,
   },
-  "figure-outward": {
+  'figure-outward': {
     solid: <FigureOutwardFillIcon />,
     outline: <FigureOutwardIcon />,
   },
-  "file-checkmark": {
+  'file-checkmark': {
     solid: <FileCheckmarkFillIcon />,
     outline: <FileCheckmarkIcon />,
   },
-  "file-code": { solid: <FileCodeFillIcon />, outline: <FileCodeIcon /> },
-  "file-csv": { solid: <FileCsvFillIcon />, outline: <FileCsvIcon /> },
-  "file-excel": {
+  'file-code': { solid: <FileCodeFillIcon />, outline: <FileCodeIcon /> },
+  'file-csv': { solid: <FileCsvFillIcon />, outline: <FileCsvIcon /> },
+  'file-excel': {
     solid: <FileExcelFillIcon />,
     outline: <FileExcelIcon />,
   },
-  "file-export": {
+  'file-export': {
     solid: <FileExportFillIcon />,
     outline: <FileExportIcon />,
   },
   file: { solid: <FileFillIcon />, outline: <FileIcon /> },
-  "file-image": {
+  'file-image': {
     solid: <FileImageFillIcon />,
     outline: <FileImageIcon />,
   },
-  "file-import": {
+  'file-import': {
     solid: <FileImportFillIcon />,
     outline: <FileImportIcon />,
   },
-  "file-json": { solid: <FileJsonFillIcon />, outline: <FileJsonIcon /> },
-  "file-loading": {
+  'file-json': { solid: <FileJsonFillIcon />, outline: <FileJsonIcon /> },
+  'file-loading': {
     solid: <FileLoadingFillIcon />,
     outline: <FileLoadingIcon />,
   },
-  "file-paragraph": {
+  'file-paragraph': {
     solid: <FileParagraphFillIcon />,
     outline: <FileParagraphIcon />,
   },
-  "file-pdf": { solid: <FilePdfFillIcon />, outline: <FilePdfIcon /> },
-  "file-plus": { solid: <FilePlusFillIcon />, outline: <FilePlusIcon /> },
-  "file-reset": {
+  'file-pdf': { solid: <FilePdfFillIcon />, outline: <FilePdfIcon /> },
+  'file-plus': { solid: <FilePlusFillIcon />, outline: <FilePlusIcon /> },
+  'file-reset': {
     solid: <FileResetFillIcon />,
     outline: <FileResetIcon />,
   },
-  "file-search": {
+  'file-search': {
     solid: <FileSearchFillIcon />,
     outline: <FileSearchIcon />,
   },
-  "file-shredder": {
+  'file-shredder': {
     solid: <FileShredderFillIcon />,
     outline: <FileShredderIcon />,
   },
-  "file-text": { solid: <FileTextFillIcon />, outline: <FileTextIcon /> },
-  "file-word": { solid: <FileWordFillIcon />, outline: <FileWordIcon /> },
-  "file-x-mark": {
+  'file-text': { solid: <FileTextFillIcon />, outline: <FileTextIcon /> },
+  'file-word': { solid: <FileWordFillIcon />, outline: <FileWordIcon /> },
+  'file-x-mark': {
     solid: <FileXMarkFillIcon />,
     outline: <FileXMarkIcon />,
   },
   files: { solid: <FilesFillIcon />, outline: <FilesIcon /> },
   filter: { outline: <FilterIcon /> },
-  "finger-button": {
+  'finger-button': {
     solid: <FingerButtonFillIcon />,
     outline: <FingerButtonIcon />,
   },
-  "finger-mobile": {
+  'finger-mobile': {
     solid: <FingerMobileFillIcon />,
     outline: <FingerMobileIcon />,
   },
-  "first-aid": { solid: <FirstAidFillIcon />, outline: <FirstAidIcon /> },
-  "first-aid-kit": {
+  'first-aid': { solid: <FirstAidFillIcon />, outline: <FirstAidIcon /> },
+  'first-aid-kit': {
     solid: <FirstAidKitFillIcon />,
     outline: <FirstAidKitIcon />,
   },
-  "flag-cross": {
+  'flag-cross': {
     solid: <FlagCrossFillIcon />,
     outline: <FlagCrossIcon />,
   },
@@ -1396,28 +1395,28 @@ export const iconsMap = {
     outline: <FloppydiskIcon />,
   },
   flower: { solid: <FlowerFillIcon />, outline: <FlowerIcon /> },
-  "flower-pension": {
+  'flower-pension': {
     solid: <FlowerPensionFillIcon />,
     outline: <FlowerPensionIcon />,
   },
-  "flower-petal-falling": {
+  'flower-petal-falling': {
     solid: <FlowerPetalFallingFillIcon />,
     outline: <FlowerPetalFallingIcon />,
   },
-  "flower-petals": {
+  'flower-petals': {
     solid: <FlowerPetalsFillIcon />,
     outline: <FlowerPetalsIcon />,
   },
-  "folder-file": {
+  'folder-file': {
     solid: <FolderFileFillIcon />,
     outline: <FolderFileIcon />,
   },
   folder: { solid: <FolderFillIcon />, outline: <FolderIcon /> },
-  "folder-minus": {
+  'folder-minus': {
     solid: <FolderMinusFillIcon />,
     outline: <FolderMinusIcon />,
   },
-  "folder-plus": {
+  'folder-plus': {
     solid: <FolderPlusFillIcon />,
     outline: <FolderPlusIcon />,
   },
@@ -1426,105 +1425,105 @@ export const iconsMap = {
   freezer: { solid: <FreezerFillIcon />, outline: <FreezerIcon /> },
   funnel: { solid: <FunnelFillIcon />, outline: <FunnelIcon /> },
   gavel: { solid: <GavelFillIcon />, outline: <GavelIcon /> },
-  "gavel-sound-block": {
+  'gavel-sound-block': {
     solid: <GavelSoundBlockFillIcon />,
     outline: <GavelSoundBlockIcon />,
   },
   glass: { solid: <GlassFillIcon />, outline: <GlassIcon /> },
   glasses: { solid: <GlassesFillIcon />, outline: <GlassesIcon /> },
   globe: { solid: <GlobeFillIcon />, outline: <GlobeIcon /> },
-  "globe-slash": {
+  'globe-slash': {
     solid: <GlobeSlashFillIcon />,
     outline: <GlobeSlashIcon />,
   },
-  "hand-bandage": {
+  'hand-bandage': {
     solid: <HandBandageFillIcon />,
     outline: <HandBandageIcon />,
   },
-  "hand-finger": {
+  'hand-finger': {
     solid: <HandFingerFillIcon />,
     outline: <HandFingerIcon />,
   },
-  "hand-heart": {
+  'hand-heart': {
     solid: <HandHeartFillIcon />,
     outline: <HandHeartIcon />,
   },
-  "hand-knot-filled": { outline: <HandKnotFilledIcon /> },
-  "hand-knot": { outline: <HandKnotIcon /> },
-  "hand-shake-heart": {
+  'hand-knot-filled': { outline: <HandKnotFilledIcon /> },
+  'hand-knot': { outline: <HandKnotIcon /> },
+  'hand-shake-heart': {
     solid: <HandShakeHeartFillIcon />,
     outline: <HandShakeHeartIcon />,
   },
   handshake: { solid: <HandshakeFillIcon />, outline: <HandshakeIcon /> },
   hanger: { outline: <HangerIcon /> },
-  "hard-hat": { solid: <HardHatFillIcon />, outline: <HardHatIcon /> },
+  'hard-hat': { solid: <HardHatFillIcon />, outline: <HardHatIcon /> },
   hashtag: { outline: <HashtagIcon /> },
-  "hat-school": {
+  'hat-school': {
     solid: <HatSchoolFillIcon />,
     outline: <HatSchoolIcon />,
   },
-  "hdd-down": { solid: <HddDownFillIcon />, outline: <HddDownIcon /> },
-  "hdd-up": { solid: <HddUpFillIcon />, outline: <HddUpIcon /> },
-  "head-cloud": {
+  'hdd-down': { solid: <HddDownFillIcon />, outline: <HddDownIcon /> },
+  'hdd-up': { solid: <HddUpFillIcon />, outline: <HddUpIcon /> },
+  'head-cloud': {
     solid: <HeadCloudFillIcon />,
     outline: <HeadCloudIcon />,
   },
   head: { solid: <HeadFillIcon />, outline: <HeadIcon /> },
-  "head-heart": {
+  'head-heart': {
     solid: <HeadHeartFillIcon />,
     outline: <HeadHeartIcon />,
   },
-  "hearing-loop": {
+  'hearing-loop': {
     solid: <HearingLoopFillIcon />,
     outline: <HearingLoopIcon />,
   },
-  "hearing-loop-radio": {
+  'hearing-loop-radio': {
     solid: <HearingLoopRadioFillIcon />,
     outline: <HearingLoopRadioIcon />,
   },
-  "heart-broken": {
+  'heart-broken': {
     solid: <HeartBrokenFillIcon />,
     outline: <HeartBrokenIcon />,
   },
   heart: { solid: <HeartFillIcon />, outline: <HeartIcon /> },
-  "hexagon-grid": {
+  'hexagon-grid': {
     solid: <HexagonGridFillIcon />,
     outline: <HexagonGridIcon />,
   },
-  "hiking-trail-sign": {
+  'hiking-trail-sign': {
     solid: <HikingTrailSignFillIcon />,
     outline: <HikingTrailSignIcon />,
   },
   hospital: { solid: <HospitalFillIcon />, outline: <HospitalIcon /> },
-  "hourglass-bottom-filled": { outline: <HourglassBottomFilledIcon /> },
+  'hourglass-bottom-filled': { outline: <HourglassBottomFilledIcon /> },
   hourglass: { outline: <HourglassIcon /> },
-  "hourglass-top-filled": { outline: <HourglassTopFilledIcon /> },
+  'hourglass-top-filled': { outline: <HourglassTopFilledIcon /> },
   house: { solid: <HouseFillIcon />, outline: <HouseIcon /> },
-  "house-heart": {
+  'house-heart': {
     solid: <HouseHeartFillIcon />,
     outline: <HouseHeartIcon />,
   },
   image: { solid: <ImageFillIcon />, outline: <ImageIcon /> },
-  "inbox-down": {
+  'inbox-down': {
     solid: <InboxDownFillIcon />,
     outline: <InboxDownIcon />,
   },
   inbox: { solid: <InboxFillIcon />, outline: <InboxIcon /> },
-  "inbox-up": { solid: <InboxUpFillIcon />, outline: <InboxUpIcon /> },
+  'inbox-up': { solid: <InboxUpFillIcon />, outline: <InboxUpIcon /> },
   information: { outline: <InformationIcon /> },
-  "information-square": {
+  'information-square': {
     solid: <InformationSquareFillIcon />,
     outline: <InformationSquareIcon />,
   },
-  "iv-fluid-bag": {
+  'iv-fluid-bag': {
     solid: <IvFluidBagFillIcon />,
     outline: <IvFluidBagIcon />,
   },
-  "key-horizontal": {
+  'key-horizontal': {
     solid: <KeyHorizontalFillIcon />,
     outline: <KeyHorizontalIcon />,
   },
-  "key-vertical": {
+  'key-vertical': {
     solid: <KeyVerticalFillIcon />,
     outline: <KeyVerticalIcon />,
   },
@@ -1532,105 +1531,105 @@ export const iconsMap = {
   kroner: { outline: <KronerIcon /> },
   language: { outline: <LanguageIcon /> },
   laptop: { solid: <LaptopFillIcon />, outline: <LaptopIcon /> },
-  "laptop-triangle": {
+  'laptop-triangle': {
     solid: <LaptopTriangleFillIcon />,
     outline: <LaptopTriangleIcon />,
   },
-  "layer-minus": {
+  'layer-minus': {
     solid: <LayerMinusFillIcon />,
     outline: <LayerMinusIcon />,
   },
   layers: { solid: <LayersFillIcon />, outline: <LayersIcon /> },
-  "layers-plus": {
+  'layers-plus': {
     solid: <LayersPlusFillIcon />,
     outline: <LayersPlusIcon />,
   },
   leave: { outline: <LeaveIcon /> },
-  "light-bulb": {
+  'light-bulb': {
     solid: <LightBulbFillIcon />,
     outline: <LightBulbIcon />,
   },
   lightning: { solid: <LightningFillIcon />, outline: <LightningIcon /> },
-  "line-graph-dot": { outline: <LineGraphDotIcon /> },
-  "line-graph": { outline: <LineGraphIcon /> },
-  "line-graph-stacked": { outline: <LineGraphStackedIcon /> },
-  "link-broken": { outline: <LinkBrokenIcon /> },
+  'line-graph-dot': { outline: <LineGraphDotIcon /> },
+  'line-graph': { outline: <LineGraphIcon /> },
+  'line-graph-stacked': { outline: <LineGraphStackedIcon /> },
+  'link-broken': { outline: <LinkBrokenIcon /> },
   link: { outline: <LinkIcon /> },
-  "location-pin": {
+  'location-pin': {
     solid: <LocationPinFillIcon />,
     outline: <LocationPinIcon />,
   },
-  "magnifying-glass": {
+  'magnifying-glass': {
     solid: <MagnifyingGlassFillIcon />,
     outline: <MagnifyingGlassIcon />,
   },
-  "measuring-tape": {
+  'measuring-tape': {
     solid: <MeasuringTapeFillIcon />,
     outline: <MeasuringTapeIcon />,
   },
-  "medicine-bottle": {
+  'medicine-bottle': {
     solid: <MedicineBottleFillIcon />,
     outline: <MedicineBottleIcon />,
   },
-  "meeting-large": {
+  'meeting-large': {
     solid: <MeetingLargeFillIcon />,
     outline: <MeetingLargeIcon />,
   },
-  "meeting-small": {
+  'meeting-small': {
     solid: <MeetingSmallFillIcon />,
     outline: <MeetingSmallIcon />,
   },
   megaphone: { solid: <MegaphoneFillIcon />, outline: <MegaphoneIcon /> },
-  "megaphone-speaking": {
+  'megaphone-speaking': {
     solid: <MegaphoneSpeakingFillIcon />,
     outline: <MegaphoneSpeakingIcon />,
   },
-  "menu-elipsis-horizontal-circle": {
+  'menu-elipsis-horizontal-circle': {
     solid: <MenuElipsisHorizontalCircleFillIcon />,
     outline: <MenuElipsisHorizontalCircleIcon />,
   },
-  "menu-elipsis-horizontal": { outline: <MenuElipsisHorizontalIcon /> },
-  "menu-elipsis-horizontal-square": {
+  'menu-elipsis-horizontal': { outline: <MenuElipsisHorizontalIcon /> },
+  'menu-elipsis-horizontal-square': {
     solid: <MenuElipsisHorizontalSquareFillIcon />,
     outline: <MenuElipsisHorizontalSquareIcon />,
   },
-  "menu-elipsis-vertical-circle": {
+  'menu-elipsis-vertical-circle': {
     solid: <MenuElipsisVerticalCircleFillIcon />,
     outline: <MenuElipsisVerticalCircleIcon />,
   },
-  "menu-elipsis-vertical": { outline: <MenuElipsisVerticalIcon /> },
-  "menu-elipsis-vertical-square": {
+  'menu-elipsis-vertical': { outline: <MenuElipsisVerticalIcon /> },
+  'menu-elipsis-vertical-square': {
     solid: <MenuElipsisVerticalSquareFillIcon />,
     outline: <MenuElipsisVerticalSquareIcon />,
   },
-  "menu-grid": { outline: <MenuGridIcon /> },
-  "menu-hamburger": { outline: <MenuHamburgerIcon /> },
+  'menu-grid': { outline: <MenuGridIcon /> },
+  'menu-hamburger': { outline: <MenuHamburgerIcon /> },
   microbe: { solid: <MicrobeFillIcon />, outline: <MicrobeIcon /> },
   microphone: {
     solid: <MicrophoneFillIcon />,
     outline: <MicrophoneIcon />,
   },
-  "microphone-slash": {
+  'microphone-slash': {
     solid: <MicrophoneSlashFillIcon />,
     outline: <MicrophoneSlashIcon />,
   },
   migration: { outline: <MigrationIcon /> },
-  "minus-circle": {
+  'minus-circle': {
     solid: <MinusCircleFillIcon />,
     outline: <MinusCircleIcon />,
   },
   minus: { outline: <MinusIcon /> },
   mobile: { solid: <MobileFillIcon />, outline: <MobileIcon /> },
-  "mobile-small": {
+  'mobile-small': {
     solid: <MobileSmallFillIcon />,
     outline: <MobileSmallIcon />,
   },
-  "mobile-triangle": {
+  'mobile-triangle': {
     solid: <MobileTriangleFillIcon />,
     outline: <MobileTriangleIcon />,
   },
   monitor: { solid: <MonitorFillIcon />, outline: <MonitorIcon /> },
-  "monitor-triangle": {
+  'monitor-triangle': {
     solid: <MonitorTriangleFillIcon />,
     outline: <MonitorTriangleIcon />,
   },
@@ -1643,28 +1642,28 @@ export const iconsMap = {
   mug: { solid: <MugFillIcon />, outline: <MugIcon /> },
   multiply: { outline: <MultiplyIcon /> },
   newspaper: { solid: <NewspaperFillIcon />, outline: <NewspaperIcon /> },
-  "no-smoking": {
+  'no-smoking': {
     solid: <NoSmokingFillIcon />,
     outline: <NoSmokingIcon />,
   },
   nok: { outline: <NokIcon /> },
-  "note-pencil-dash": { outline: <NotePencilDashIcon /> },
-  "note-pencil": {
+  'note-pencil-dash': { outline: <NotePencilDashIcon /> },
+  'note-pencil': {
     solid: <NotePencilFillIcon />,
     outline: <NotePencilIcon />,
   },
-  "number-list": { outline: <NumberListIcon /> },
-  "open-source": {
+  'number-list': { outline: <NumberListIcon /> },
+  'open-source': {
     solid: <OpenSourceFillIcon />,
     outline: <OpenSourceIcon />,
   },
   over18: { solid: <Over18FillIcon />, outline: <Over18Icon /> },
   package: { solid: <PackageFillIcon />, outline: <PackageIcon /> },
-  "padlock-locked": {
+  'padlock-locked': {
     solid: <PadlockLockedFillIcon />,
     outline: <PadlockLockedIcon />,
   },
-  "padlock-unlocked": {
+  'padlock-unlocked': {
     solid: <PadlockUnlockedFillIcon />,
     outline: <PadlockUnlockedIcon />,
   },
@@ -1675,102 +1674,102 @@ export const iconsMap = {
     outline: <PaperplaneIcon />,
   },
   paragraph: { outline: <ParagraphIcon /> },
-  "parasol-beach": {
+  'parasol-beach': {
     solid: <ParasolBeachFillIcon />,
     outline: <ParasolBeachIcon />,
   },
   parking: { solid: <ParkingFillIcon />, outline: <ParkingIcon /> },
   passport: { solid: <PassportFillIcon />, outline: <PassportIcon /> },
-  "password-hidden": { outline: <PasswordHiddenIcon /> },
+  'password-hidden': { outline: <PasswordHiddenIcon /> },
   pause: { solid: <PauseFillIcon />, outline: <PauseIcon /> },
-  "pencil-board": {
+  'pencil-board': {
     solid: <PencilBoardFillIcon />,
     outline: <PencilBoardIcon />,
   },
   pencil: { solid: <PencilFillIcon />, outline: <PencilIcon /> },
-  "pencil-line": {
+  'pencil-line': {
     solid: <PencilLineFillIcon />,
     outline: <PencilLineIcon />,
   },
-  "pencil-writing": {
+  'pencil-writing': {
     solid: <PencilWritingFillIcon />,
     outline: <PencilWritingIcon />,
   },
   pentagon: { solid: <PentagonFillIcon />, outline: <PentagonIcon /> },
   percent: { outline: <PercentIcon /> },
-  "person-chat": {
+  'person-chat': {
     solid: <PersonChatFillIcon />,
     outline: <PersonChatIcon />,
   },
-  "person-checkmark": {
+  'person-checkmark': {
     solid: <PersonCheckmarkFillIcon />,
     outline: <PersonCheckmarkIcon />,
   },
-  "person-circle": {
+  'person-circle': {
     solid: <PersonCircleFillIcon />,
     outline: <PersonCircleIcon />,
   },
-  "person-cross": {
+  'person-cross': {
     solid: <PersonCrossFillIcon />,
     outline: <PersonCrossIcon />,
   },
-  "person-envelope": {
+  'person-envelope': {
     solid: <PersonEnvelopeFillIcon />,
     outline: <PersonEnvelopeIcon />,
   },
   person: { solid: <PersonFillIcon />, outline: <PersonIcon /> },
-  "person-gavel": {
+  'person-gavel': {
     solid: <PersonGavelFillIcon />,
     outline: <PersonGavelIcon />,
   },
-  "person-group": {
+  'person-group': {
     solid: <PersonGroupFillIcon />,
     outline: <PersonGroupIcon />,
   },
-  "person-headset": {
+  'person-headset': {
     solid: <PersonHeadsetFillIcon />,
     outline: <PersonHeadsetIcon />,
   },
-  "person-minus": {
+  'person-minus': {
     solid: <PersonMinusFillIcon />,
     outline: <PersonMinusIcon />,
   },
-  "person-pencil": {
+  'person-pencil': {
     solid: <PersonPencilFillIcon />,
     outline: <PersonPencilIcon />,
   },
-  "person-plus": {
+  'person-plus': {
     solid: <PersonPlusFillIcon />,
     outline: <PersonPlusIcon />,
   },
-  "person-pregnant": {
+  'person-pregnant': {
     solid: <PersonPregnantFillIcon />,
     outline: <PersonPregnantIcon />,
   },
-  "person-rectangle": {
+  'person-rectangle': {
     solid: <PersonRectangleFillIcon />,
     outline: <PersonRectangleIcon />,
   },
-  "person-suit": {
+  'person-suit': {
     solid: <PersonSuitFillIcon />,
     outline: <PersonSuitIcon />,
   },
-  "person-tall-short": {
+  'person-tall-short': {
     solid: <PersonTallShortFillIcon />,
     outline: <PersonTallShortIcon />,
   },
   phone: { solid: <PhoneFillIcon />, outline: <PhoneIcon /> },
-  "pie-chart": { solid: <PieChartFillIcon />, outline: <PieChartIcon /> },
+  'pie-chart': { solid: <PieChartFillIcon />, outline: <PieChartIcon /> },
   piggybank: { solid: <PiggybankFillIcon />, outline: <PiggybankIcon /> },
-  "pill-circle": {
+  'pill-circle': {
     solid: <PillCircleFillIcon />,
     outline: <PillCircleIcon />,
   },
-  "pill-circle-rectangle": {
+  'pill-circle-rectangle': {
     solid: <PillCircleRectangleFillIcon />,
     outline: <PillCircleRectangleIcon />,
   },
-  "pill-rectangle": {
+  'pill-rectangle': {
     solid: <PillRectangleFillIcon />,
     outline: <PillRectangleIcon />,
   },
@@ -1778,49 +1777,49 @@ export const iconsMap = {
   plant: { solid: <PlantFillIcon />, outline: <PlantIcon /> },
   plate: { solid: <PlateFillIcon />, outline: <PlateIcon /> },
   play: { solid: <PlayFillIcon />, outline: <PlayIcon /> },
-  "plus-circle": {
+  'plus-circle': {
     solid: <PlusCircleFillIcon />,
     outline: <PlusCircleIcon />,
   },
   plus: { outline: <PlusIcon /> },
-  "plus-minus-slash": { outline: <PlusMinusSlashIcon /> },
+  'plus-minus-slash': { outline: <PlusMinusSlashIcon /> },
   portal: { solid: <PortalFillIcon />, outline: <PortalIcon /> },
   presentation: {
     solid: <PresentationFillIcon />,
     outline: <PresentationIcon />,
   },
-  "printer-large": {
+  'printer-large': {
     solid: <PrinterLargeFillIcon />,
     outline: <PrinterLargeIcon />,
   },
-  "printer-large-triangle": {
+  'printer-large-triangle': {
     solid: <PrinterLargeTriangleFillIcon />,
     outline: <PrinterLargeTriangleIcon />,
   },
-  "printer-small": {
+  'printer-small': {
     solid: <PrinterSmallFillIcon />,
     outline: <PrinterSmallIcon />,
   },
-  "printer-small-triangle": {
+  'printer-small-triangle': {
     solid: <PrinterSmallTriangleFillIcon />,
     outline: <PrinterSmallTriangleIcon />,
   },
-  "push-pin": { solid: <PushPinFillIcon />, outline: <PushPinIcon /> },
-  "puzzle-piece": {
+  'push-pin': { solid: <PushPinFillIcon />, outline: <PushPinIcon /> },
+  'puzzle-piece': {
     solid: <PuzzlePieceFillIcon />,
     outline: <PuzzlePieceIcon />,
   },
-  "qr-code": { solid: <QrCodeFillIcon />, outline: <QrCodeIcon /> },
-  "qr-code-scanning": {
+  'qr-code': { solid: <QrCodeFillIcon />, outline: <QrCodeIcon /> },
+  'qr-code-scanning': {
     solid: <QrCodeScanningFillIcon />,
     outline: <QrCodeScanningIcon />,
   },
-  "questionmark-diamond": {
+  'questionmark-diamond': {
     solid: <QuestionmarkDiamondFillIcon />,
     outline: <QuestionmarkDiamondIcon />,
   },
   questionmark: { outline: <QuestionmarkIcon /> },
-  "quiet-zone": {
+  'quiet-zone': {
     solid: <QuietZoneFillIcon />,
     outline: <QuietZoneIcon />,
   },
@@ -1828,7 +1827,7 @@ export const iconsMap = {
   receipt: { solid: <ReceiptFillIcon />, outline: <ReceiptIcon /> },
   reception: { solid: <ReceptionFillIcon />, outline: <ReceptionIcon /> },
   record: { solid: <RecordFillIcon />, outline: <RecordIcon /> },
-  "rectangle-sections": {
+  'rectangle-sections': {
     solid: <RectangleSectionsFillIcon />,
     outline: <RectangleSectionsIcon />,
   },
@@ -1839,24 +1838,24 @@ export const iconsMap = {
   },
   roadblock: { solid: <RoadblockFillIcon />, outline: <RoadblockIcon /> },
   robot: { solid: <RobotFillIcon />, outline: <RobotIcon /> },
-  "robot-frown": {
+  'robot-frown': {
     solid: <RobotFrownFillIcon />,
     outline: <RobotFrownIcon />,
   },
-  "robot-smile": {
+  'robot-smile': {
     solid: <RobotSmileFillIcon />,
     outline: <RobotSmileIcon />,
   },
   rocket: { solid: <RocketFillIcon />, outline: <RocketIcon /> },
-  "rocking-horse": {
+  'rocking-horse': {
     solid: <RockingHorseFillIcon />,
     outline: <RockingHorseIcon />,
   },
-  "rotate-left": {
+  'rotate-left': {
     solid: <RotateLeftFillIcon />,
     outline: <RotateLeftIcon />,
   },
-  "rotate-right": {
+  'rotate-right': {
     solid: <RotateRightFillIcon />,
     outline: <RotateRightIcon />,
   },
@@ -1864,57 +1863,57 @@ export const iconsMap = {
   ruler: { solid: <RulerFillIcon />, outline: <RulerIcon /> },
   rulers: { solid: <RulersFillIcon />, outline: <RulersIcon /> },
   sack: { solid: <SackFillIcon />, outline: <SackIcon /> },
-  "sack-kroner": {
+  'sack-kroner': {
     solid: <SackKronerFillIcon />,
     outline: <SackKronerIcon />,
   },
-  "sack-pension": {
+  'sack-pension': {
     solid: <SackPensionFillIcon />,
     outline: <SackPensionIcon />,
   },
   sandbox: { solid: <SandboxFillIcon />, outline: <SandboxIcon /> },
   scissors: { solid: <ScissorsFillIcon />, outline: <ScissorsIcon /> },
-  "seal-checkmark": {
+  'seal-checkmark': {
     solid: <SealCheckmarkFillIcon />,
     outline: <SealCheckmarkIcon />,
   },
   seal: { solid: <SealFillIcon />, outline: <SealIcon /> },
-  "seal-x-mark": {
+  'seal-x-mark': {
     solid: <SealXMarkFillIcon />,
     outline: <SealXMarkIcon />,
   },
-  "sector-chart": {
+  'sector-chart': {
     solid: <SectorChartFillIcon />,
     outline: <SectorChartIcon />,
   },
   shield: { solid: <ShieldFillIcon />, outline: <ShieldIcon /> },
-  "shield-lock": {
+  'shield-lock': {
     solid: <ShieldLockFillIcon />,
     outline: <ShieldLockIcon />,
   },
-  "shopping-basket": {
+  'shopping-basket': {
     solid: <ShoppingBasketFillIcon />,
     outline: <ShoppingBasketIcon />,
   },
   shower: { solid: <ShowerFillIcon />, outline: <ShowerIcon /> },
   shrink: { outline: <ShrinkIcon /> },
-  "sidebar-both": {
+  'sidebar-both': {
     solid: <SidebarBothFillIcon />,
     outline: <SidebarBothIcon />,
   },
-  "sidebar-left": {
+  'sidebar-left': {
     solid: <SidebarLeftFillIcon />,
     outline: <SidebarLeftIcon />,
   },
-  "sidebar-right": {
+  'sidebar-right': {
     solid: <SidebarRightFillIcon />,
     outline: <SidebarRightIcon />,
   },
-  "sign-language-single-hand": {
+  'sign-language-single-hand': {
     solid: <SignLanguageSingleHandFillIcon />,
     outline: <SignLanguageSingleHandIcon />,
   },
-  "sign-language-two-hands": {
+  'sign-language-two-hands': {
     solid: <SignLanguageTwoHandsFillIcon />,
     outline: <SignLanguageTwoHandsIcon />,
   },
@@ -1922,40 +1921,40 @@ export const iconsMap = {
     solid: <SilhouetteFillIcon />,
     outline: <SilhouetteIcon />,
   },
-  "skip-backward": {
+  'skip-backward': {
     solid: <SkipBackwardFillIcon />,
     outline: <SkipBackwardIcon />,
   },
-  "skip-forward": {
+  'skip-forward': {
     solid: <SkipForwardFillIcon />,
     outline: <SkipForwardIcon />,
   },
   snow: { outline: <SnowIcon /> },
-  "spark-large": { outline: <SparkLargeIcon /> },
-  "spark-small": { outline: <SparkSmallIcon /> },
+  'spark-large': { outline: <SparkLargeIcon /> },
+  'spark-small': { outline: <SparkSmallIcon /> },
   sparkles: { solid: <SparklesFillIcon />, outline: <SparklesIcon /> },
   speaker: { solid: <SpeakerFillIcon />, outline: <SpeakerIcon /> },
-  "speaker-slash": {
+  'speaker-slash': {
     solid: <SpeakerSlashFillIcon />,
     outline: <SpeakerSlashIcon />,
   },
-  "speaker-sound-wave1": {
+  'speaker-sound-wave1': {
     solid: <SpeakerSoundWave1FillIcon />,
     outline: <SpeakerSoundWave1Icon />,
   },
-  "speaker-sound-wave2": {
+  'speaker-sound-wave2': {
     solid: <SpeakerSoundWave2FillIcon />,
     outline: <SpeakerSoundWave2Icon />,
   },
-  "speaker-sound-wave3": {
+  'speaker-sound-wave3': {
     solid: <SpeakerSoundWave3FillIcon />,
     outline: <SpeakerSoundWave3Icon />,
   },
-  "split-horizontal": {
+  'split-horizontal': {
     solid: <SplitHorizontalFillIcon />,
     outline: <SplitHorizontalIcon />,
   },
-  "split-vertical": {
+  'split-vertical': {
     solid: <SplitVerticalFillIcon />,
     outline: <SplitVerticalIcon />,
   },
@@ -1964,45 +1963,45 @@ export const iconsMap = {
   squareroot: { outline: <SquarerootIcon /> },
   staircase: { outline: <StaircaseIcon /> },
   star: { solid: <StarFillIcon />, outline: <StarIcon /> },
-  "star-of-life": {
+  'star-of-life': {
     solid: <StarOfLifeFillIcon />,
     outline: <StarOfLifeIcon />,
   },
-  "stars-eu": { outline: <StarsEuIcon /> },
+  'stars-eu': { outline: <StarsEuIcon /> },
   stethoscope: { outline: <StethoscopeIcon /> },
   stop: { solid: <StopFillIcon />, outline: <StopIcon /> },
   stroller: { solid: <StrollerFillIcon />, outline: <StrollerIcon /> },
   sun: { solid: <SunFillIcon />, outline: <SunIcon /> },
   table: { solid: <TableFillIcon />, outline: <TableIcon /> },
   tablet: { solid: <TabletFillIcon />, outline: <TabletIcon /> },
-  "tabs-add": { solid: <TabsAddFillIcon />, outline: <TabsAddIcon /> },
+  'tabs-add': { solid: <TabsAddFillIcon />, outline: <TabsAddIcon /> },
   tabs: { solid: <TabsFillIcon />, outline: <TabsIcon /> },
-  "tabs-remove": {
+  'tabs-remove': {
     solid: <TabsRemoveFillIcon />,
     outline: <TabsRemoveIcon />,
   },
   tag: { solid: <TagFillIcon />, outline: <TagIcon /> },
-  "tap-water": { solid: <TapWaterFillIcon />, outline: <TapWaterIcon /> },
+  'tap-water': { solid: <TapWaterFillIcon />, outline: <TapWaterIcon /> },
   tasklist: { solid: <TasklistFillIcon />, outline: <TasklistIcon /> },
-  "tasklist-save": {
+  'tasklist-save': {
     solid: <TasklistSaveFillIcon />,
     outline: <TasklistSaveIcon />,
   },
-  "tasklist-send": {
+  'tasklist-send': {
     solid: <TasklistSendFillIcon />,
     outline: <TasklistSendIcon />,
   },
-  "tasklist-start": {
+  'tasklist-start': {
     solid: <TasklistStartFillIcon />,
     outline: <TasklistStartIcon />,
   },
-  "teddy-bear": {
+  'teddy-bear': {
     solid: <TeddyBearFillIcon />,
     outline: <TeddyBearIcon />,
   },
   tenancy: { solid: <TenancyFillIcon />, outline: <TenancyIcon /> },
   terminal: { solid: <TerminalFillIcon />, outline: <TerminalIcon /> },
-  "test-flask": {
+  'test-flask': {
     solid: <TestFlaskFillIcon />,
     outline: <TestFlaskIcon />,
   },
@@ -2010,17 +2009,17 @@ export const iconsMap = {
     solid: <ThermometerFillIcon />,
     outline: <ThermometerIcon />,
   },
-  "thumb-down": {
+  'thumb-down': {
     solid: <ThumbDownFillIcon />,
     outline: <ThumbDownIcon />,
   },
-  "thumb-up": { solid: <ThumbUpFillIcon />, outline: <ThumbUpIcon /> },
+  'thumb-up': { solid: <ThumbUpFillIcon />, outline: <ThumbUpIcon /> },
   timer: { solid: <TimerFillIcon />, outline: <TimerIcon /> },
-  "timer-pause": {
+  'timer-pause': {
     solid: <TimerPauseFillIcon />,
     outline: <TimerPauseIcon />,
   },
-  "timer-start": {
+  'timer-start': {
     solid: <TimerStartFillIcon />,
     outline: <TimerStartIcon />,
   },
@@ -2030,16 +2029,16 @@ export const iconsMap = {
   train: { solid: <TrainFillIcon />, outline: <TrainIcon /> },
   tram: { solid: <TramFillIcon />, outline: <TramIcon /> },
   trash: { solid: <TrashFillIcon />, outline: <TrashIcon /> },
-  "tray-food": { solid: <TrayFoodFillIcon />, outline: <TrayFoodIcon /> },
-  "trend-down": { outline: <TrendDownIcon /> },
-  "trend-flat": { outline: <TrendFlatIcon /> },
-  "trend-up": { outline: <TrendUpIcon /> },
+  'tray-food': { solid: <TrayFoodFillIcon />, outline: <TrayFoodIcon /> },
+  'trend-down': { outline: <TrendDownIcon /> },
+  'trend-flat': { outline: <TrendFlatIcon /> },
+  'trend-up': { outline: <TrendUpIcon /> },
   triangle: { solid: <TriangleFillIcon />, outline: <TriangleIcon /> },
   truck: { solid: <TruckFillIcon />, outline: <TruckIcon /> },
   umbrella: { solid: <UmbrellaFillIcon />, outline: <UmbrellaIcon /> },
   upload: { outline: <UploadIcon /> },
   video: { solid: <VideoFillIcon />, outline: <VideoIcon /> },
-  "video-slash": {
+  'video-slash': {
     solid: <VideoSlashFillIcon />,
     outline: <VideoSlashIcon />,
   },
@@ -2049,12 +2048,12 @@ export const iconsMap = {
   },
   virus: { solid: <VirusFillIcon />, outline: <VirusIcon /> },
   vitals: { outline: <VitalsIcon /> },
-  "waiting-room": {
+  'waiting-room': {
     solid: <WaitingRoomFillIcon />,
     outline: <WaitingRoomIcon />,
   },
   wallet: { solid: <WalletFillIcon />, outline: <WalletIcon /> },
-  "watering-can": {
+  'watering-can': {
     solid: <WateringCanFillIcon />,
     outline: <WateringCanIcon />,
   },
@@ -2066,14 +2065,14 @@ export const iconsMap = {
     outline: <WheelchairIcon />,
   },
   wrench: { solid: <WrenchFillIcon />, outline: <WrenchIcon /> },
-  "x-mark": { outline: <XMarkIcon /> },
-  "x-mark-octagon": {
+  'x-mark': { outline: <XMarkIcon /> },
+  'x-mark-octagon': {
     solid: <XMarkOctagonFillIcon />,
     outline: <XMarkOctagonIcon />,
   },
-  "zoom-minus": {
+  'zoom-minus': {
     solid: <ZoomMinusFillIcon />,
     outline: <ZoomMinusIcon />,
   },
-  "zoom-plus": { solid: <ZoomPlusFillIcon />, outline: <ZoomPlusIcon /> },
+  'zoom-plus': { solid: <ZoomPlusFillIcon />, outline: <ZoomPlusIcon /> },
 };

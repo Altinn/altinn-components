@@ -1,5 +1,5 @@
-import type { ElementType, ReactNode } from "react";
-import styles from "./menu.module.css";
+import type { ElementType, ReactNode } from 'react';
+import styles from './menu.module.css';
 
 export interface MenuBaseProps {
   as?: ElementType;
@@ -7,7 +7,7 @@ export interface MenuBaseProps {
   children?: ReactNode;
 }
 
-export const MenuBase = ({ as = "nav", theme, children }: MenuBaseProps) => {
+export const MenuBase = ({ as = 'nav', theme, children }: MenuBaseProps) => {
   const Component = as;
   return (
     <Component className={styles.menu} data-theme={theme}>

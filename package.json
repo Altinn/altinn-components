@@ -33,6 +33,7 @@
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react-swc": "^3.7.1",
+    "lint-staged": "^15.2.10",
     "prop-types": "^15.8.1",
     "storybook": "^8.3.5",
     "storybook-css-modules": "^1.0.8",
@@ -42,5 +43,8 @@
   "peerDependencies": {
     "react": ">=18"
   },
-  "packageManager": "pnpm@8.15.4"
+  "lint-staged": {
+    "**/*.*": "biome check --staged --no-errors-on-unmatched --write"
+  },
+  "packageManager": "pnpm@9.12.3"
 }

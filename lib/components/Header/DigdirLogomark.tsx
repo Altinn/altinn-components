@@ -1,6 +1,6 @@
 export interface SymbolProps {
   className?: string;
-  title?: string
+  title?: string;
 }
 
 export const DigdirLogomark = ({ className, title = 'Digdir logomark' }: SymbolProps) => {
