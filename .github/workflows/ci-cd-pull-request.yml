@@ -26,9 +26,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
         
-    # todo: fix lint issues and enable
-    #   - name: Lint
-    #     run: pnpm biome check ./lib
+      - name: Lint
+        run: pnpm biome check ./lib
         
       - name: Type check
         run: pnpm typecheck
