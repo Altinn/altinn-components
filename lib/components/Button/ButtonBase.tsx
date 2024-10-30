@@ -1,5 +1,5 @@
-import type { ElementType, ReactNode } from 'react';
 import cx from 'classnames';
+import type { ElementType, ReactNode } from 'react';
 
 import styles from './buttonBase.module.css';
 

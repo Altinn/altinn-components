@@ -1,13 +1,13 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { GlobalMenu } from "./GlobalMenu";
-import { useState } from "react";
+import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
+import { GlobalMenu } from './GlobalMenu';
 
 const meta = {
-  title: "Header/GlobalMenu",
+  title: 'Header/GlobalMenu',
   component: GlobalMenu,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
   args: {
     groups: {
@@ -17,18 +17,18 @@ const meta = {
     },
     items: [
       {
-        id: "inbox",
-        group: "apps",
-        size: "lg",
-        icon: "inbox",
-        label: "Innboks",
+        id: 'inbox',
+        group: 'apps',
+        size: 'lg',
+        icon: 'inbox',
+        label: 'Innboks',
       },
       {
-        id: "settings",
-        group: "apps",
-        size: "lg",
-        icon: "cog",
-        label: "Settings",
+        id: 'settings',
+        group: 'apps',
+        size: 'lg',
+        icon: 'cog',
+        label: 'Settings',
       },
     ],
   },
@@ -44,16 +44,16 @@ export const Login: Story = {
     expanded: true,
     items: [
       {
-        id: "login",
-        size: "lg",
-        icon: "padlock-locked",
-        title: "Logg inn",
+        id: 'login',
+        size: 'lg',
+        icon: 'padlock-locked',
+        title: 'Logg inn',
       },
       {
-        id: "help",
-        size: "lg",
-        icon: "chat-exclamationmark",
-        title: "Hjelp",
+        id: 'help',
+        size: 'lg',
+        icon: 'chat-exclamationmark',
+        title: 'Hjelp',
       },
     ],
   },
@@ -75,8 +75,8 @@ export const Person: Story = {
   args: {
     accounts: [
       {
-        type: "person",
-        name: "Aurora Mikalsen",
+        type: 'person',
+        name: 'Aurora Mikalsen',
         selected: true,
       },
     ],
@@ -87,8 +87,8 @@ export const Company: Story = {
   args: {
     accounts: [
       {
-        type: "company",
-        name: "Bergen bar",
+        type: 'company',
+        name: 'Bergen bar',
         selected: true,
       },
     ],
@@ -100,8 +100,8 @@ export const Expanded: Story = {
     expanded: true,
     accounts: [
       {
-        type: "company",
-        name: "Bergen bar",
+        type: 'company',
+        name: 'Bergen bar',
         selected: true,
       },
     ],
@@ -110,11 +110,11 @@ export const Expanded: Story = {
 
 export const CustomLabel: Story = {
   args: {
-    menuLabel: "Meny",
+    menuLabel: 'Meny',
     accounts: [
       {
-        type: "person",
-        name: "Aurora Mikalsen",
+        type: 'person',
+        name: 'Aurora Mikalsen',
         selected: true,
       },
     ],
@@ -123,26 +123,26 @@ export const CustomLabel: Story = {
 
 export const Accounts: Story = {
   args: {
-    menuLabel: "Meny",
-    backLabel: "Tilbake",
+    menuLabel: 'Meny',
+    backLabel: 'Tilbake',
     accountSearch: {
-      placeholder: "Søk etter konto",
+      placeholder: 'Søk etter konto',
       getResultsLabel: (hits = 0) => {
         if (hits) {
-          return hits + " treff";
+          return hits + ' treff';
         }
-        return "Ingen treff";
+        return 'Ingen treff';
       },
       hidden: false,
     },
     expanded: true,
     accountGroups: {
       primary: {
-        title: "Deg selv og favoritter",
+        title: 'Deg selv og favoritter',
       },
       secondary: {
         divider: true,
-        title: "Andre kontoer",
+        title: 'Andre kontoer',
       },
       favourites: {
         divider: true,
@@ -156,45 +156,45 @@ export const Accounts: Story = {
     },
     accounts: [
       {
-        group: "primary",
-        type: "person",
-        name: "Aurora Mikalsen",
+        group: 'primary',
+        type: 'person',
+        name: 'Aurora Mikalsen',
         selected: true,
       },
       {
-        group: "favourites",
-        type: "person",
-        name: "Rakel Engelsvik",
+        group: 'favourites',
+        type: 'person',
+        name: 'Rakel Engelsvik',
         selected: false,
       },
       {
-        group: "favourites",
-        type: "company",
-        name: "Auroras keeperskole",
+        group: 'favourites',
+        type: 'company',
+        name: 'Auroras keeperskole',
         selected: false,
       },
       {
-        group: "secondary",
-        type: "company",
-        name: "Keeperhansker AS",
+        group: 'secondary',
+        type: 'company',
+        name: 'Keeperhansker AS',
         selected: false,
       },
       {
-        group: "secondary",
-        type: "company",
-        name: "Stadion drift AS",
+        group: 'secondary',
+        type: 'company',
+        name: 'Stadion drift AS',
         selected: false,
       },
       {
-        group: "secondary",
-        type: "company",
-        name: "Sportsklubben Brann",
+        group: 'secondary',
+        type: 'company',
+        name: 'Sportsklubben Brann',
         selected: false,
       },
       {
-        group: "secondary",
-        type: "company",
-        name: "Landslaget",
+        group: 'secondary',
+        type: 'company',
+        name: 'Landslaget',
         selected: false,
       },
     ],

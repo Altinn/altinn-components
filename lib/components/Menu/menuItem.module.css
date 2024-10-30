@@ -68,16 +68,7 @@
   padding: 0 0.25rem;
 }
 
-.label[data-size="sm"] {
-}
-
-.label[data-size="lg"] {
-}
-
 /* title */
-
-.title {
-}
 
 .title[data-size="lg"] {
   font-size: 1.125rem;
@@ -143,23 +134,3 @@
 .media[data-color="person"] {
   background-color: var(--person-surface-default);
 }
-
-/* global */
-
-/*
-
-[data-theme="global"] [data-theme="neutral"] .media[data-bg="true"],
-[data-theme="global"] [data-theme="company"] .media[data-bg="true"],
-[data-theme="global"] [data-theme="person"] .media[data-bg="true"] {
-  background-color: var(--theme-surface-default);
-  color: var(--theme-text-default);
-}
-
-[data-theme="global"] [data-theme="neutral"] .item[aria-selected="true"],
-[data-theme="global"] [data-theme="company"] .item[aria-selected="true"],
-[data-theme="global"] [data-theme="person"] .item[aria-selected="true"] {
-  background-color: var(--theme-surface-default);
-  color: var(--theme-text-default);
-}
-
-*/

@@ -1,6 +1,6 @@
 import cx from 'classnames';
-import styles from './badge.module.css';
 import type { ReactNode } from 'react';
+import styles from './badge.module.css';
 
 interface BadgeProps {
   label?: string | number;

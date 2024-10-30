@@ -1,13 +1,13 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { HeaderButton } from "./HeaderButton";
+import { HeaderButton } from './HeaderButton';
 
 const meta = {
-  title: "Header/HeaderButton",
+  title: 'Header/HeaderButton',
   component: HeaderButton,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
   args: {},
 } satisfies Meta<typeof HeaderButton>;
@@ -21,15 +21,15 @@ export const Default: Story = {
 
 export const Icon: Story = {
   args: {
-    icon: "inbox",
+    icon: 'inbox',
   },
 };
 
 export const Person: Story = {
   args: {
     avatar: {
-      type: "person",
-      name: "Aurora Mikalsen",
+      type: 'person',
+      name: 'Aurora Mikalsen',
     },
   },
 };
@@ -37,8 +37,8 @@ export const Person: Story = {
 export const Company: Story = {
   args: {
     avatar: {
-      type: "company",
-      name: "Bergen bar",
+      type: 'company',
+      name: 'Bergen bar',
     },
   },
 };
@@ -47,8 +47,8 @@ export const Expanded: Story = {
   args: {
     expanded: true,
     avatar: {
-      type: "company",
-      name: "Bergen bar",
+      type: 'company',
+      name: 'Bergen bar',
     },
   },
 };

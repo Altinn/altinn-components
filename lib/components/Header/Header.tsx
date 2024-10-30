@@ -1,18 +1,18 @@
-"use client";
-import styles from "./header.module.css";
-import { useState } from "react";
-import { HeaderLogo } from "./HeaderLogo";
-import { HeaderSearch, type HeaderSearchProps } from "./HeaderSearch";
-import { GlobalMenu, type GlobalMenuProps } from "./GlobalMenu";
+'use client';
+import { useState } from 'react';
+import { GlobalMenu, type GlobalMenuProps } from './GlobalMenu';
+import { HeaderLogo } from './HeaderLogo';
+import { HeaderSearch, type HeaderSearchProps } from './HeaderSearch';
+import styles from './header.module.css';
 
-export type HeaderColor = "default" | "dark" | "light";
+export type HeaderColor = 'default' | 'dark' | 'light';
 
 export interface HeaderAccountProps {
   type?: string;
   name?: string;
 }
 
-type ExpandedType = "search" | "account";
+type ExpandedType = 'search' | 'account';
 
 export interface HeaderProps {
   color?: HeaderColor;
@@ -32,7 +32,7 @@ export const Header = ({ color, search, menu }: HeaderProps) => {
   };
 
   const onSearchFocus = () => {
-    setExpandedType("search");
+    setExpandedType('search');
   };
 
   const onSearchBlur = () => {
@@ -45,8 +45,8 @@ export const Header = ({ color, search, menu }: HeaderProps) => {
       {menu && (
         <GlobalMenu
           {...menu}
-          expanded={expandedType === "account"}
-          onToggle={() => onToggle("account")}
+          expanded={expandedType === 'account'}
+          onToggle={() => onToggle('account')}
           className={styles?.button}
         />
       )}
@@ -54,7 +54,7 @@ export const Header = ({ color, search, menu }: HeaderProps) => {
         <HeaderSearch
           {...search}
           className={styles?.search}
-          expanded={expandedType === "search"}
+          expanded={expandedType === 'search'}
           onBlur={onSearchBlur}
           onFocus={onSearchFocus}
         />

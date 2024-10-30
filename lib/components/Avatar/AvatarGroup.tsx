@@ -1,7 +1,7 @@
 import cx from 'classnames';
-import {Avatar, type AvatarProps, type AvatarSize, type AvatarType} from '.';
+import { useMemo } from 'react';
+import { Avatar, type AvatarProps, type AvatarSize, type AvatarType } from '.';
 import styles from './avatarGroup.module.css';
-import {useMemo} from 'react';
 
 export interface AvatarGroupProps {
   items?: AvatarProps[];

@@ -1,7 +1,7 @@
-import type {ChangeEventHandler} from 'react';
-import {MenuItemBase, type MenuItemSize} from './MenuItemBase';
-import {MenuItemLabel} from './MenuItemLabel';
-import {CheckboxIcon, RadioIcon} from '../Icon';
+import type { ChangeEventHandler } from 'react';
+import { CheckboxIcon, RadioIcon } from '../Icon';
+import { MenuItemBase, type MenuItemSize } from './MenuItemBase';
+import { MenuItemLabel } from './MenuItemLabel';
 import styles from './menuOption.module.css';
 
 export type MenuOptionType = 'checkbox' | 'radio';

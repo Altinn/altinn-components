@@ -1,5 +1,5 @@
 import type { SVGAttributes } from 'react';
-import { isValidElement, cloneElement } from 'react';
+import { cloneElement, isValidElement } from 'react';
 import type React from 'react';
 
 export type IconComponentProps = {

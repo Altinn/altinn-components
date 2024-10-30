@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { RadioIcon } from "./RadioIcon";
+import type { Meta, StoryObj } from '@storybook/react';
+import { RadioIcon } from './RadioIcon';
 
 const meta = {
-  title: "Atoms/Icon/RadioIcon",
+  title: 'Atoms/Icon/RadioIcon',
   component: RadioIcon,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
   args: {},
 } satisfies Meta<typeof RadioIcon>;

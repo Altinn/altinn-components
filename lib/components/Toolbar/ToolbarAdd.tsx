@@ -1,7 +1,7 @@
-import type { MouseEventHandler } from "react";
-import { ToolbarButton } from "./ToolbarButton";
-import { Menu, type MenuItemProps } from "../Menu";
-import styles from "./toolbar.module.css";
+import type { MouseEventHandler } from 'react';
+import { Menu, type MenuItemProps } from '../Menu';
+import { ToolbarButton } from './ToolbarButton';
+import styles from './toolbar.module.css';
 
 export interface ToolbarAddProps {
   items: MenuItemProps[];
@@ -11,12 +11,7 @@ export interface ToolbarAddProps {
   className?: string;
 }
 
-export const ToolbarAdd = ({
-  expanded = false,
-  onToggle,
-  label = "Legg til",
-  items,
-}: ToolbarAddProps) => {
+export const ToolbarAdd = ({ expanded = false, onToggle, label = 'Legg til', items }: ToolbarAddProps) => {
   return (
     <div className={styles.toggle}>
       <ToolbarButton as="div" type="add" onToggle={onToggle}>
