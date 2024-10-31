@@ -20,7 +20,7 @@ export const DialogHeader = ({
   return (
     <DialogHeaderBase>
       <DialogTitle size="xl">{title}</DialogTitle>
-      <DialogHeadings size="lg" sender={sender} recipient={recipient} />
+      <DialogHeadings size="xl" sender={sender} recipient={recipient} />
     </DialogHeaderBase>
   );
 };

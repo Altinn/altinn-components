@@ -1,7 +1,5 @@
 .title {
-  font-size: 1.25rem;
   font-weight: 600;
-  line-height: 24px;
   margin: 0;
   padding-right: 1.25rem;
   display: -webkit-box;
@@ -12,9 +10,26 @@
   text-overflow: ellipsis;
 }
 
+.title[data-size="xs"] {
+  font-size: 1rem;
+}
+
+.title[data-size="sm"] {
+  font-size: 1rem;
+}
+
+.title[data-size="md"] {
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+.title[data-size="lg"] {
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
 .title[data-size="xl"] {
   font-size: 1.5rem;
-  font-weight: 600;
   line-height: 1.25;
 }
 

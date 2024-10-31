@@ -65,7 +65,7 @@ export type DialogListItemProps = {
 
 export const DialogListItem = ({
   as = "a",
-  size,
+  size = "lg",
   href,
   select,
   selected,
@@ -87,24 +87,29 @@ export const DialogListItem = ({
   return (
     <DialogListItemBase
       as={as}
+      size={size}
       href={href}
       select={select}
       selected={selected}
       status={status}
       {...rest}
     >
-      <DialogBorder className={styles.border} seen={seenByEndUser}>
-        <header className={styles.header}>
-          <DialogTitle variant={seenByEndUser && "seen"}>{title}</DialogTitle>
+      <DialogBorder className={styles.border} size={size} seen={seenByEndUser}>
+        <header data-size={size} className={styles.header}>
+          <DialogTitle size={size} variant={seenByEndUser && "seen"}>
+            {title}
+          </DialogTitle>
           <DialogHeadings
-            size="xs"
+            size={size}
             grouped={grouped}
             sender={sender}
             recipient={recipient}
           />
         </header>
-        <p className={styles.summary}>{summary}</p>
-        <footer className={styles.footer}>
+        <p data-size={size} className={styles.summary}>
+          {summary}
+        </p>
+        <footer data-size={size} className={styles.footer}>
           <DialogMetadata
             status={status}
             updatedByName={updatedByName}

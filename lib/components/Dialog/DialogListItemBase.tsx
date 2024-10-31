@@ -3,7 +3,7 @@ import type { DialogStatusProps } from "./DialogStatus";
 import { DialogSelect, type DialogSelectProps } from "./DialogSelect";
 import styles from "./dialogListItem.module.css";
 
-export type DialogListItemSize = "sm" | "md" | "lg";
+export type DialogListItemSize = "xs" | "sm" | "md" | "lg" | "xl";
 
 export type DialogListItemBaseProps = {
   /** Render as */
@@ -47,7 +47,7 @@ export const DialogListItemBase = ({
       data-status={status?.value}
       aria-selected={selected}
     >
-      <Component className={styles.link} as={as} href={href} {...rest}>
+      <Component className={styles.link} data-size={size} href={href} {...rest}>
         {children}
       </Component>
       {select ? <DialogSelect className={styles.select} {...select} /> : ""}

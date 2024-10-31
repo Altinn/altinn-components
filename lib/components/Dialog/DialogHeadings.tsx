@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
-import { Avatar, AvatarGroup } from "../Avatar";
+import { Avatar, AvatarGroup, type AvatarSize } from "../Avatar";
+import { MetaBase, MetaItem } from "../Meta";
 import styles from "./dialogHeadings.module.css";
 
 export type DialogSenderType = "company" | "person";
@@ -16,10 +17,20 @@ export interface DialogRecipientProps {
   name: string;
 }
 
-type DialogHeadingsSize = "xs" | "sm" | "lg";
+type DialogHeadingsSize = "sm" | "xs" | "sm" | "lg" | "xl";
+
+const sizeMap = {
+  avatar: {
+    xs: "xs",
+    sm: "xs",
+    md: "xs",
+    lg: "xs",
+    xl: "lg",
+  },
+};
 
 export interface DialogHeadingsProps {
-  size?: DialogHeadingsSize;
+  size: DialogHeadingsSize;
   grouped?: boolean;
   sender?: DialogSenderProps;
   recipient?: DialogRecipientProps;
@@ -28,7 +39,7 @@ export interface DialogHeadingsProps {
 
 export const DialogHeadings = ({
   grouped,
-  size,
+  size = "lg",
   sender = { type: "company", name: "Sender" },
   recipient = { type: "person", name: "Recipient" },
 }: DialogHeadingsProps) => {
@@ -37,7 +48,7 @@ export const DialogHeadings = ({
       {grouped ? (
         <AvatarGroup
           items={[{ ...sender, type: "company" }, recipient]}
-          size={size}
+          size={sizeMap?.avatar[size] as AvatarSize}
           className={styles.avatar}
         />
       ) : (
@@ -45,19 +56,19 @@ export const DialogHeadings = ({
           type="company"
           imageUrl={sender?.imageUrl}
           name={sender.name}
-          size={size}
+          size={sizeMap?.avatar[size] as AvatarSize}
           className={styles.avatar}
         />
       )}
-      <div className={styles.text}>
+      <MetaItem size="xs" className={styles.text}>
         <span className={styles.sender}>{sender.name}</span>
         {recipient?.name && (
-          <>
+          <span>
             {" til "}
             <span>{recipient.name}</span>
-          </>
+          </span>
         )}
-      </div>
+      </MetaItem>
     </div>
   );
 };

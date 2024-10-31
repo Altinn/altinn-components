@@ -14,11 +14,16 @@
 }
 
 .text {
-  display: inline;
+  display: inline-flex;
   color: var(--neutral-text-subtle);
 }
 
 .sender {
   font-weight: 500;
   color: var(--neutral-text-default);
+}
+
+.headings[data-size="xs"] .avatar,
+.headings[data-size="sm"] .avatar {
+  display: none;
 }
