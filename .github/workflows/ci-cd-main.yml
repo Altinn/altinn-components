@@ -31,6 +31,7 @@ jobs:
           if: ${{ steps.release.outputs.release_created }}
         - name: Setup PNPM
           uses: pnpm/action-setup@v2
+          if: ${{ steps.release.outputs.release_created }}
           with:
             version: '9.12.3'
         - run: pnpm install --frozen-lockfile
