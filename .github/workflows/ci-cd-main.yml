@@ -29,6 +29,10 @@ jobs:
             node-version-file: .node-version
             registry-url: 'https://registry.npmjs.org'
           if: ${{ steps.release.outputs.release_created }}
+        - name: Setup PNPM
+          uses: pnpm/action-setup@v2
+          with:
+            version: '9.12.3'
         - run: pnpm install --frozen-lockfile
           if: ${{ steps.release.outputs.release_created }}
         - run: pnpm build
