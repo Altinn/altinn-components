@@ -1,25 +1,23 @@
 import { DialogBase } from "./DialogBase";
-import { DialogArticle } from "./DialogArticle";
+import { DialogArticleBase } from "./DialogArticleBase";
 import { DialogHeader } from "./DialogHeader";
-import { DialogBody } from "./DialogBody";
+import { DialogContent } from "./DialogContent";
+import { DialogFooter } from "./DialogFooter";
+import { DialogBodyBase } from "./DialogBodyBase";
+import { MetaBase } from "../Meta";
 import {
-  DialogHeadings,
-  type DialogSenderProps,
-  type DialogRecipientProps,
-} from "./DialogHeadings";
-import { DialogTitle } from "./DialogTitle";
-import { DialogMetadata } from "./DialogMetadata";
-import type { DialogActivityLogProps } from "./DialogActivityLog";
+  DialogAttachments,
+  type DialogAttachmentsProps,
+} from "./DialogAttachments";
+import { DialogSeenBy, type DialogSeenByProps } from "./DialogSeenBy";
+import {
+  DialogActivityLog,
+  type DialogActivityLogProps,
+} from "./DialogActivityLog";
 
-import { DialogAttachments } from "./DialogAttachments";
-import type { AttachmentLinkProps } from "../Attachment";
-
-import { DialogHistory } from "./DialogHistory";
-import type { HistoryItemProps } from "../History/HistoryItem";
-
+import { DialogHistory, type DialogHistoryProps } from "./DialogHistory";
 import { DialogAction, type DialogButtonProps } from "./DialogAction";
 import { DialogNav, type DialogBackButtonProps } from "./DialogNav";
-import { Typography, Markdown } from "../Typography";
 import { DialogStatusProps } from "./DialogStatus";
 
 export interface DialogProps {
@@ -46,15 +44,15 @@ export interface DialogProps {
   /** List of action (buttons) */
   action?: DialogButtonProps[];
   /** Dialog attachments */
-  attachments?: AttachmentLinkProps[];
-  /** Dialog is seen by the user */
-  seenByUser?: boolean;
-  /** Dialog is seen by others (count) */
-  seenByOthersCount?: number;
-  /** History */
-  history?: HistoryItemProps[];
+  attachments?: DialogAttachmentsProps;
+  /** Dialog is seen by the end user or others */
+  seenBy?: DialogSeenByProps;
   /** Activity Log */
-  activityLog?: DialogActivityLogProps[];
+  activityLog?: DialogActivityLogProps;
+  /** More information about the dialog, process, etc. */
+  additionalInfo?: string;
+  /** History */
+  history?: DialogHistoryProps;
 }
 
 /**
@@ -75,50 +73,33 @@ export const Dialog = ({
   action,
   attachments,
   history,
-  seenByUser = true,
-  seenByOthersCount,
-  activityLog = {
-    label: "Aktivitetslogg",
-  },
+  seenBy,
+  activityLog,
+  additionalInfo,
 }: DialogProps) => {
   return (
     <DialogBase>
       <DialogNav status={status} dueAt={dueAt} backButton={backButton} />
-      <DialogArticle>
-        <DialogHeader>
-          <DialogTitle size="xl">{title}</DialogTitle>
-          <DialogHeadings size="lg" sender={sender} recipient={recipient} />
-        </DialogHeader>
-        <DialogBody>
-          <section>
-            <DialogMetadata
-              updatedByName={updatedByName}
-              updatedAt={updatedAt}
-            ></DialogMetadata>
-
-            <Typography size="lg">
-              <p>{summary}</p>
-              {body ? <Markdown>{body}</Markdown> : ""}
-            </Typography>
-          </section>
-
-          {attachments && (
-            <DialogAttachments
-              title={attachments?.length + " vedlegg"}
-              items={attachments}
-            />
-          )}
+      <DialogArticleBase>
+        <DialogHeader title={title} sender={sender} recipient={recipient} />
+        <DialogBodyBase>
+          <DialogContent
+            updatedAt={updatedAt}
+            updatedByName={updatedByName}
+            summary={summary}
+            body={body}
+          />
+          {attachments && <DialogAttachments {...attachments} />}
           {action && <DialogAction items={action} />}
 
-          <DialogMetadata
-            seenByUser={seenByUser}
-            seenByOthersCount={seenByOthersCount}
-            activityLog={activityLog}
-          ></DialogMetadata>
-        </DialogBody>
-
-        {history && <DialogHistory title={"Hva har skjedd?"} items={history} />}
-      </DialogArticle>
+          <MetaBase>
+            {seenBy && <DialogSeenBy {...seenBy} />}
+            {activityLog && <DialogActivityLog {...activityLog} />}
+          </MetaBase>
+        </DialogBodyBase>
+        {additionalInfo && <DialogFooter additionalInfo={additionalInfo} />}
+        {history && <DialogHistory {...history} />}
+      </DialogArticleBase>
     </DialogBase>
   );
 };

@@ -25,9 +25,10 @@ export const MetaItem = ({
   variant = "text",
   icon,
   children,
+  ...rest
 }: MetaItemProps) => {
   return (
-    <MetaItemBase variant={variant} size={size}>
+    <MetaItemBase variant={variant} size={size} {...rest}>
       {icon ? <MetaItemMedia icon={icon} size={size} /> : ""}
       <MetaItemLabel variant={variant} size={size}>
         {children}

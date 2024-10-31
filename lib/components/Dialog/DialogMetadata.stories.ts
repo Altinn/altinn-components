@@ -63,6 +63,6 @@ export const Completed: Story = {
       label: "Avsluttet",
     },
     seenByOthersCount: 4,
-    seenByUser: true,
+    seenByEndUser: true,
   },
 };

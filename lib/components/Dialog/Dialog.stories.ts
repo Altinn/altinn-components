@@ -13,6 +13,14 @@ const meta = {
     updatedAt: "1999-05-26",
     title: "Title",
     summary: "Summary",
+  },
+} satisfies Meta<typeof Dialog>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Body: Story = {
+  args: {
     body:
       "## Body\n\n" +
       "Body will be loaded async.\n\n" +
@@ -22,21 +30,25 @@ const meta = {
       "- List 2\n" +
       "- List 3\n",
   },
-} satisfies Meta<typeof Dialog>;
+};
 
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Default: Story = {
+export const Attachments: Story = {
   args: {
-    attachments: [
-      {
-        label: "Dokument 1.pdf",
-      },
-      {
-        label: "Dokument 2.pdf",
-      },
-    ],
+    attachments: {
+      items: [
+        {
+          label: "Dokument 1.pdf",
+        },
+        {
+          label: "Dokument 2.pdf",
+        },
+      ],
+    },
+  },
+};
+
+export const Action: Story = {
+  args: {
     action: [
       {
         label: "Primary",
@@ -45,6 +57,24 @@ export const Default: Story = {
         label: "Secondary",
       },
     ],
+  },
+};
+
+export const SeenBy: Story = {
+  args: {
+    ...Action.args,
+    seenBy: {
+      as: "a",
+      href: "#",
+      label: "Sett av deg + 24",
+      seenByEndUser: true,
+      seenByOthersCount: 24,
+    },
+    activityLog: {
+      as: "a",
+      href: "#",
+      label: "Aktivitetslogg",
+    },
   },
 };
 
@@ -69,11 +99,13 @@ export const Example: Story = {
         label: "Rapporter bedriftsdata",
       },
     ],
-    attachments: [
-      {
-        label: "Vedtak om innlevering av bedriftsdata.pdf",
-      },
-    ],
+    attachments: {
+      items: [
+        {
+          label: "Vedtak om innlevering av bedriftsdata.pdf",
+        },
+      ],
+    },
   },
 };
 
@@ -98,11 +130,13 @@ export const HistoryContact: Story = {
         label: "Rapporter bedriftsdata",
       },
     ],
-    attachments: [
-      {
-        label: "Feilliste.pdf",
-      },
-    ],
+    attachments: {
+      items: [
+        {
+          label: "Feilliste.pdf",
+        },
+      ],
+    },
     history: [
       {
         createdAt: "2004-01-01 13:34",
@@ -163,45 +197,49 @@ export const Signering: Story = {
       },
     ],
 
-    attachments: [],
+    attachments: {},
 
-    history: [
-      {
-        updatedAt: "2004-01-01 13:34",
+    history: {
+      items: [
+        {
+          updatedAt: "2004-01-01 13:34",
 
-        updatedBy: {
-          name: "Eirik Horneland",
-        },
-
-        summary: "Rapportering ble sendt inn.",
-
-        attachments: [
-          {
-            label: "Kvittering.pdf",
+          updatedBy: {
+            name: "Eirik Horneland",
           },
-        ],
-      },
-      {
-        updatedAt: "2004-01-01 13:34",
 
-        updatedBy: {
-          imageUrl:
-            "https://digdir-proto-proto.vercel.app/_next/static/media/SSB.0ca4474e.png",
-          name: "Statistisk sentralbyrå",
+          summary: "Rapportering ble sendt inn.",
+
+          attachments: [
+            {
+              label: "Kvittering.pdf",
+            },
+          ],
         },
+        {
+          updatedAt: "2004-01-01 13:34",
 
-        summary: "Du må levere bedriftsdata innen 31. oktober.",
-
-        attachments: [
-          {
-            label: "Vedtak om innlevering av bedriftsdata.pdf",
+          updatedBy: {
+            imageUrl:
+              "https://digdir-proto-proto.vercel.app/_next/static/media/SSB.0ca4474e.png",
+            name: "Statistisk sentralbyrå",
           },
-        ],
-      },
-    ],
 
-    contactInfo:
-      "Kontakt oss på svar@ssb.no eller ring 62 88 56 08.\n\nSvartjenesten er åpen alle hverdager fra kl. 9-21 og lørdager fra kl. 10-16.",
+          summary: "Du må levere bedriftsdata innen 31. oktober.",
+
+          attachments: [
+            {
+              label: "Vedtak om innlevering av bedriftsdata.pdf",
+            },
+          ],
+        },
+      ],
+    },
+
+    contact: {
+      title: "Ta kontakt",
+      body: "Ta kontakt for mer informasjon på telefon 99 00 00 00.",
+    },
   },
 };
 
@@ -231,24 +269,9 @@ export const BrregDraft: Story = {
       },
     ],
 
-    attachments: [],
+    attachments: {},
     additionalInfo:
       "Enkeltpersonforetak må registreres i Enhetsregisteret for å få et organisasjonsnummer. Enkelte må også registreres i Foretaksregisteret.",
-
-    contactInfo:
-      "Svartjenesten er åpen alle hverdager fra kl. 9-21 og lørdager fra kl. 10-16.",
-    contactLinks: [
-      {
-        type: "phone",
-        value: "62885608",
-        label: "Ring 62 88 56 08",
-      },
-      {
-        type: "email",
-        value: "svar@ssb.no",
-        label: "Skriv til oss",
-      },
-    ],
   },
 };
 
@@ -267,36 +290,38 @@ export const BrregSign: Story = {
       },
     ],
 
-    history: [
-      {
-        createdAt: "2004-01-01 13:34",
-        createdBy: {
-          type: "person",
-          name: "Eirik Horneland",
-        },
-        summary: "Rapportering ble sendt inn.",
-        attachments: [
-          {
-            label: "Kvittering.pdf",
+    history: {
+      items: [
+        {
+          createdAt: "2004-01-01 13:34",
+          createdBy: {
+            type: "person",
+            name: "Eirik Horneland",
           },
-        ],
-      },
-      {
-        createdAt: "2004-01-01 13:34",
-        createdBy: {
-          imageUrl:
-            "https://digdir-proto-proto.vercel.app/_next/static/media/SSB.0ca4474e.png",
-          name: "Statistisk sentralbyrå",
+          summary: "Rapportering ble sendt inn.",
+          attachments: [
+            {
+              label: "Kvittering.pdf",
+            },
+          ],
         },
-
-        summary: "Du må levere bedriftsdata innen 31. oktober.",
-
-        attachments: [
-          {
-            label: "Vedtak om innlevering av bedriftsdata.pdf",
+        {
+          createdAt: "2004-01-01 13:34",
+          createdBy: {
+            imageUrl:
+              "https://digdir-proto-proto.vercel.app/_next/static/media/SSB.0ca4474e.png",
+            name: "Statistisk sentralbyrå",
           },
-        ],
-      },
-    ],
+
+          summary: "Du må levere bedriftsdata innen 31. oktober.",
+
+          attachments: [
+            {
+              label: "Vedtak om innlevering av bedriftsdata.pdf",
+            },
+          ],
+        },
+      ],
+    },
   },
 };

@@ -6,10 +6,12 @@ export interface DialogBodyProps {
   children?: ReactNode;
 }
 
-export const DialogBody = ({ children }: DialogBodyProps) => {
+export const DialogBodyBase = ({ children }: DialogBodyProps) => {
   return (
     <DialogBorder className={styles.border}>
-      <div className={styles.body}>{children}</div>
+      <div className={styles.body} data-theme="article">
+        {children}
+      </div>
     </DialogBorder>
   );
 };

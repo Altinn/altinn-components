@@ -1,10 +1,26 @@
-import { ReactNode } from "react";
-import styles from "./dialog.module.css";
+import { DialogHeaderBase } from "./DialogHeaderBase";
+import { DialogTitle } from "./DialogTitle";
+import {
+  DialogHeadings,
+  type DialogSenderProps,
+  type DialogRecipientProps,
+} from "./DialogHeadings";
 
 export interface DialogHeaderProps {
-  children?: ReactNode;
+  title?: string;
+  sender?: DialogSenderProps;
+  recipient?: DialogRecipientProps;
 }
 
-export const DialogHeader = ({ children }: DialogHeaderProps) => {
-  return <header className={styles.header}>{children}</header>;
+export const DialogHeader = ({
+  title,
+  sender,
+  recipient,
+}: DialogHeaderProps) => {
+  return (
+    <DialogHeaderBase>
+      <DialogTitle size="xl">{title}</DialogTitle>
+      <DialogHeadings size="lg" sender={sender} recipient={recipient} />
+    </DialogHeaderBase>
+  );
 };

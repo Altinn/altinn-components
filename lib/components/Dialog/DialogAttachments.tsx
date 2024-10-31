@@ -9,7 +9,7 @@ export interface DialogAttachmentsProps {
 }
 
 export const DialogAttachments = ({
-  title = "Vedlegg",
+  title = "Attachments",
   items,
 }: DialogAttachmentsProps) => {
   if (!items?.length) {

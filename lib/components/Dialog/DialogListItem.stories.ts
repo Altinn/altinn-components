@@ -26,9 +26,9 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const SeenByUser: Story = {
+export const seenByEndUser: Story = {
   args: {
-    seenByUser: true,
+    seenByEndUser: true,
   },
 };
 

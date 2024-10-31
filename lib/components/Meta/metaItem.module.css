@@ -6,6 +6,12 @@
   align-items: center;
   column-gap: 0.25em;
   white-space: nowrap;
+  text-decoration: none;
+}
+
+button.item:hover,
+a.item:hover {
+  color: var(--theme-base-hover);
 }
 
 .item {

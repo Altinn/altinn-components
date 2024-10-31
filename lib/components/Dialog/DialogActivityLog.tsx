@@ -1,16 +1,21 @@
+import { ElementType, MouseEventHandler } from "react";
 import { MetaItem, type MetaItemSize } from "../Meta";
 
 export interface DialogActivityLogProps {
-  size: MetaItemSize;
+  size?: MetaItemSize;
   label?: string;
+  as?: ElementType;
+  onClick?: MouseEventHandler;
+  href?: string;
 }
 
 export const DialogActivityLog = ({
   size = "xs",
-  label = "ActivityLog",
+  label = "Activity log",
+  ...rest
 }: DialogActivityLogProps) => {
   return (
-    <MetaItem size={size} icon={"clock-dashed"}>
+    <MetaItem {...rest} size={size} icon={"clock-dashed"}>
       {label}
     </MetaItem>
   );
