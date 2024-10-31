@@ -4,17 +4,19 @@ import { Badge } from "../Badge";
 import styles from "./listItem.module.css";
 import cx from "classnames";
 
+export type ListItemColor = "default" | "accent";
 export type ListItemSize = "xs" | "sm" | "md" | "lg" | "xl";
 
 interface ListItemBaseProps {
   as?: ElementType;
   size?: ListItemSize;
-  icon?: IconName;
+  linkIcon?: IconName;
+  color?: ListItemColor;
   badge?: string;
-  color?: string;
   href?: string;
   className?: string;
   collapsible?: boolean;
+  selected?: boolean;
   expanded?: boolean;
   children?: ReactNode;
 }
@@ -27,8 +29,9 @@ export const ListItemBase = ({
   size,
   color,
   collapsible,
+  selected,
   expanded,
-  icon,
+  linkIcon,
   badge,
   ...rest
 }: ListItemBaseProps) => {
@@ -39,15 +42,16 @@ export const ListItemBase = ({
       ? "chevron-up"
       : collapsible
       ? "chevron-down"
-      : icon
+      : href
       ? "chevron-right"
-      : icon;
+      : linkIcon;
 
   return (
     <Component
       className={cx(styles?.item, className)}
       data-color={color}
       data-size={size}
+      aria-selected={selected}
       aria-expanded={expanded}
       href={href}
       {...rest}
