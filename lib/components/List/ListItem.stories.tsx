@@ -5,14 +5,13 @@ import { fn } from "@storybook/test";
 import { MetaItem } from "../Meta";
 import { ListBase, ListItem } from "./";
 
-const sizes = ["xs", "sm", "md", "lg", "xl"];
+const sizes = ["lg", "md", "sm", "xs"];
 
 const ListItemSizes = (args) => {
   return (
     <ListBase>
       <ListItem {...args} />
       <MetaItem>{JSON.stringify(args)}</MetaItem>
-
       <ListBase>
         {sizes?.map((size) => {
           return (
@@ -49,13 +48,6 @@ export const Default: Story = {
 
 export const Icon: Story = {
   args: {
-    icon: "teddy-bear",
-  },
-};
-
-export const IconSubtle: Story = {
-  args: {
-    color: "subtle",
     icon: "teddy-bear",
   },
 };

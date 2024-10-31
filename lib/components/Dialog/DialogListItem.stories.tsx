@@ -1,11 +1,39 @@
+import { Fragment } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
+import { MetaItem } from "../Meta";
+import { ListBase, ListItem } from "../List";
+
+const sizes = ["lg", "md", "sm", "xs"];
 import { DialogListItem } from "./DialogListItem";
+
+const ListItemSizes = (args) => {
+  return (
+    <ListBase>
+      <DialogListItem {...args} />
+      <MetaItem>{JSON.stringify(args)}</MetaItem>
+      <ListBase>
+        {sizes?.map((size) => {
+          return (
+            <Fragment key={size}>
+              <DialogListItem
+                {...args}
+                size={size}
+                selected={size === args?.size}
+              />
+              <MetaItem>{size}</MetaItem>
+            </Fragment>
+          );
+        })}
+      </ListBase>
+    </ListBase>
+  );
+};
 
 const meta = {
   title: "Dialog/DialogListItem",
-  component: DialogListItem,
+  component: ListItemSizes,
   tags: ["autodocs"],
   parameters: {},
   args: {

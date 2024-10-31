@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import styles from "./dialogTitle.module.css";
 import { Icon, type IconName } from "../Icon";
 
-export type DialogTitleSize = "sm" | "md" | "lg" | "xl";
+export type DialogTitleSize = "xs" | "sm" | "md" | "lg" | "xl";
 export type DialogTitleVariant = "default" | "seen" | "trash";
 
 export type DialogTitleProps = {
