@@ -11,6 +11,9 @@
     "dev": "vite",
     "build-storybook": "storybook build"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
