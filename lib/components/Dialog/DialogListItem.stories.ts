@@ -12,9 +12,11 @@ const meta = {
     title: "Title",
     summary: "Summary",
     sender: {
+      type: "company",
       name: "Sender name",
     },
     recipient: {
+      type: "person",
       name: "Recipient name",
     },
     status: {

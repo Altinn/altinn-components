@@ -1,3 +1,4 @@
+import { withThemeByDataAttribute } from "@storybook/addon-themes";
 import "../lib/css/global.css";
 
 /** @type { import('@storybook/react').Preview } */
@@ -10,6 +11,18 @@ const preview = {
       },
     },
   },
+  decorators: [
+    withThemeByDataAttribute({
+      themes: {
+        global: "global",
+        neutral: "neutral",
+        company: "company",
+        person: "person",
+      },
+      defaultTheme: "neutral",
+      attributeName: "data-theme",
+    }),
+  ],
 };
 
 export default preview;

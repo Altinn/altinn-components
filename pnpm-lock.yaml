@@ -11,6 +11,9 @@ importers:
       '@navikt/aksel-icons':
         specifier: ^7.2.1
         version: 7.2.1
+      '@storybook/addon-themes':
+        specifier: ^8.4.0
+        version: 8.4.0(storybook@8.3.5)
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
@@ -685,6 +688,11 @@ packages:
     resolution: {integrity: sha512-dwmK6GzjEnQP9Yo0VnBUQtJkXZlXdfjWyskZ/IlUVc+IFdeeCtIiMyA92oMfHo8eXt0k1g21ZqMaIn7ZltOuHw==}
     peerDependencies:
       storybook: ^8.3.5
+
+  '@storybook/addon-themes@8.4.0':
+    resolution: {integrity: sha512-hgNcSI3SBJXZkxbOz36lmapxA9HAFILZlkCptRLMMSKbJsHwMLbn6Zc66Gyr8lP3Pv5SZ0OVy5AzLezr2d6f1w==}
+    peerDependencies:
+      storybook: ^8.4.0
 
   '@storybook/addon-toolbars@8.3.5':
     resolution: {integrity: sha512-Ml2gc9q8WbteDvmuAZGgBxt5SqWMXzuTkMjlsA8EB53hlkN1w9esX4s8YtBeNqC3HKoUzcdq8uexSBqU8fDbSA==}
@@ -2773,6 +2781,11 @@ snapshots:
   '@storybook/addon-outline@8.3.5(storybook@8.3.5)':
     dependencies:
       '@storybook/global': 5.0.0
+      storybook: 8.3.5
+      ts-dedent: 2.2.0
+
+  '@storybook/addon-themes@8.4.0(storybook@8.3.5)':
+    dependencies:
       storybook: 8.3.5
       ts-dedent: 2.2.0
 

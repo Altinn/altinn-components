@@ -1,6 +1,6 @@
 .item {
   background-color: var(--theme-background-default);
-  box-shadow: var(--ds-shadow-sm);
+  box-shadow: var(--ds-shadow-xs);
   position: relative;
   display: flex;
   align-items: center;
