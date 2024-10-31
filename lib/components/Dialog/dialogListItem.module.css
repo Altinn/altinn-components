@@ -87,6 +87,21 @@
   margin: 10px;
 }
 
+/* medium */
+
+.border[data-size="md"] {
+  padding-left: 0.75rem;
+  row-gap: 0.5rem;
+}
+
+.summary[data-size="md"] {
+  font-size: 1rem;
+}
+
+.summary[data-size="md"] {
+  font-size: 1rem;
+}
+
 /* sizes */
 
 .link[data-size="xs"],
