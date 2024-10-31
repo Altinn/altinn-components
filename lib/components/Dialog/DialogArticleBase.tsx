@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
 import styles from "./dialog.module.css";
 
-export interface DialogArticleProps {
+interface ArticleBaseProps {
   children?: ReactNode;
 }
 
-export const DialogArticle = ({ children }: DialogArticleProps) => {
+export const DialogArticleBase = ({ children }: ArticleBaseProps) => {
   return <article className={styles.article}>{children}</article>;
 };

@@ -4,16 +4,29 @@ import styles from "./dialog.module.css";
 
 export type DialogButtonType = "primary" | "secondary";
 
-export interface DialogButtonProps {
+export interface DialogActionButtonProps {
   type?: DialogButtonType;
   label?: string;
   onClick?: MouseEventHandler;
 }
 
 export interface DialogActionProps {
-  items?: DialogButtonProps[];
+  items?: DialogActionButtonProps[];
   maxItems?: number;
 }
+
+export const DialogActionButton = ({
+  variant = "outline",
+  loading = false,
+  label,
+  onClick,
+}) => {
+  return (
+    <Button onClick={onClick} color="primary" variant={variant} size="lg">
+      {item?.label}
+    </Button>
+  );
+};
 
 export const DialogAction = ({ items, maxItems = 2 }: DialogActionProps) => {
   if (!items?.length) {
@@ -33,7 +46,7 @@ export const DialogAction = ({ items, maxItems = 2 }: DialogActionProps) => {
   }
 
   return (
-    <div className={styles?.action} data-theme="article">
+    <div className={styles?.action}>
       {items?.map((item, index) => {
         return (
           <Button

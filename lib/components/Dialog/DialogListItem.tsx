@@ -44,7 +44,7 @@ export type DialogListItemProps = {
   /** Dialog due date */
   dueAt?: string;
   /** Dialog is seen by the user */
-  seenByUser?: boolean;
+  seenByEndUser?: boolean;
   /** Number of other users that have seen the dialog */
   seenByOthersCount?: number;
   /** List of users that have touched the dialog */
@@ -76,7 +76,7 @@ export const DialogListItem = ({
   updatedAt,
   updatedByName,
   dueAt,
-  seenByUser = false,
+  seenByEndUser = false,
   seenByOthersCount = 0,
   touchedBy,
   attachmentsCount,
@@ -93,9 +93,9 @@ export const DialogListItem = ({
       status={status}
       {...rest}
     >
-      <DialogBorder className={styles.border} seen={seenByUser}>
+      <DialogBorder className={styles.border} seen={seenByEndUser}>
         <header className={styles.header}>
-          <DialogTitle variant={seenByUser && "seen"}>{title}</DialogTitle>
+          <DialogTitle variant={seenByEndUser && "seen"}>{title}</DialogTitle>
           <DialogHeadings
             size="xs"
             grouped={grouped}
@@ -110,11 +110,10 @@ export const DialogListItem = ({
             updatedByName={updatedByName}
             updatedAt={updatedAt}
             dueAt={dueAt}
-            seenByUser={seenByUser}
+            seenByEndUser={seenByEndUser}
             seenByOthersCount={seenByOthersCount}
             attachmentsCount={attachmentsCount}
           />
-
           {touchedBy ? (
             <DialogTouched
               size="xs"

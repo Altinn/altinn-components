@@ -1,5 +1,5 @@
+import { DialogSectionBase } from "./DialogSectionBase";
 import { HistoryList, type HistoryItemProps } from "../History/";
-import styles from "./dialogHistory.module.css";
 
 export interface DialogHistoryProps {
   title?: string;
@@ -7,7 +7,7 @@ export interface DialogHistoryProps {
 }
 
 export const DialogHistory = ({
-  title = "Hva har skjedd?",
+  title = "History",
   items,
 }: DialogHistoryProps) => {
   if (!items) {
@@ -15,9 +15,8 @@ export const DialogHistory = ({
   }
 
   return (
-    <section className={styles?.section} data-theme="article">
-      <h2 className={styles?.title}>{title}</h2>
+    <DialogSectionBase title={title}>
       <HistoryList items={items} />
-    </section>
+    </DialogSectionBase>
   );
 };

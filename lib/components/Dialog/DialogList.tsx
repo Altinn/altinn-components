@@ -1,7 +1,6 @@
 import { ListBase } from "../List";
 import { DialogListItem, type DialogListItemProps } from "./DialogListItem";
 import type { DialogListItemSize } from "./DialogListItemBase";
-
 import type { LayoutTheme } from "../Layout";
 
 export interface DialogListProps {

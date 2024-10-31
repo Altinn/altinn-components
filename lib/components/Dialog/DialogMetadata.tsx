@@ -18,7 +18,7 @@ export type DialogMetadataProps = {
   /** Dialog due date */
   dueAt?: string;
   /** Dialog is seen by the user */
-  seenByUser?: boolean;
+  seenByEndUser?: boolean;
   /** Number of other users that have seen the dialog */
   seenByOthersCount?: number;
   /** Number of attachments */
@@ -36,7 +36,7 @@ export const DialogMetadata = ({
   updatedAt,
   updatedByName,
   dueAt,
-  seenByUser = false,
+  seenByEndUser = false,
   seenByOthersCount = 0,
   attachmentsCount,
   activityLog,
@@ -62,15 +62,14 @@ export const DialogMetadata = ({
         ""
       )}
       {dueAt ? <DialogDue dueAt={dueAt} size="xs" /> : ""}
-      {seenByUser || seenByOthersCount ? (
-        <DialogSeenBy
-          size="xs"
-          seenByUser={seenByUser}
-          seenByOthersCount={seenByOthersCount}
-        />
-      ) : (
-        ""
-      )}
+      {seenByEndUser ||
+        (seenByOthersCount > 0 && (
+          <DialogSeenBy
+            size="xs"
+            seenByEndUser={seenByEndUser}
+            seenByOthersCount={seenByOthersCount}
+          />
+        ))}
       {attachmentsCount ? (
         <MetaItem size="xs" icon="paperclip">
           {attachmentsCount}

@@ -1,41 +1,27 @@
+import { ElementType, MouseEventHandler } from "react";
 import { MetaItem, type MetaItemSize } from "../Meta";
 
 export interface DialogSeenByProps {
   size?: MetaItemSize;
-  seenByUser?: boolean;
+  seenByEndUser?: boolean;
   seenByOthersCount?: number;
-  seenLabel?: string;
-  userLabel?: string;
+  label: string;
+  as?: ElementType;
+  onClick?: MouseEventHandler;
+  href?: string;
 }
 
 export const DialogSeenBy = ({
   size = "xs",
-  seenLabel = "Sett av",
-  userLabel = "deg",
-  seenByUser = false,
+  label = "Seen by label",
+  seenByEndUser = false,
   seenByOthersCount = 0,
+  ...rest
 }: DialogSeenByProps) => {
-  let seen = false;
-  let seenByLabel = [];
-
-  if (seenByUser) {
-    seen = true;
-    seenByLabel.push(userLabel);
-  }
-
-  if (seenByOthersCount) {
-    seen = true;
-    seenByLabel.push(seenByOthersCount);
-  }
-
-  if (!seen) {
-    return false;
-  }
-
-  const label = [seenLabel, seenByLabel.join("+")].join(" ");
+  const seen = seenByEndUser || seenByOthersCount > 0;
 
   return (
-    <MetaItem size={size} icon={seen ? "eye" : "eye-closed"}>
+    <MetaItem size={size} icon={seen ? "eye" : "eye-closed"} {...rest}>
       {label}
     </MetaItem>
   );
