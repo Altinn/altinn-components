@@ -1,7 +1,8 @@
-import "../lib/css/global.css";
-import "./preview.css";
+import React from "react";
 import { withThemeByDataAttribute } from "@storybook/addon-themes";
 import { Preview, StoryFn } from "@storybook/react";
+import { StoryDecorator } from "./StoryDecorator";
+import "../lib/css/global.css";
 
 /** @type { import('@storybook/react').Preview } */
 const preview: Preview = {
@@ -17,18 +18,10 @@ const preview: Preview = {
     (Story: StoryFn, data) => {
       const { tags, globals } = data;
 
-      const isStable = (tags || []).includes("stable");
-      const state = isStable ? "stable" : "experimental";
-
-      console.log("Data", data);
-
       return (
-        <div data-theme={globals?.theme}>
-          <span className="preview-container-stage-tag" data-tag={state}>
-            {state}
-          </span>
+        <StoryDecorator tags={tags} theme={globals?.theme}>
           <Story />
-        </div>
+        </StoryDecorator>
       );
     },
     withThemeByDataAttribute({
