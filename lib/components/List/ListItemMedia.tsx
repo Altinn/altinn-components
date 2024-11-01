@@ -8,7 +8,7 @@ import {
   type AvatarSize,
 } from "../Avatar";
 import { Icon, type IconName } from "../Icon";
-import styles from "./listItem.module.css";
+import styles from "./listItemMedia.module.css";
 
 interface ListItemMediaProps {
   color?: ListItemColor;
@@ -54,20 +54,23 @@ export const ListItemMedia = ({
       data-size={size}
       data-color={!icon ? null : color}
     >
-      {icon ? (
-        <Icon name={icon} variant="outline" className={styles?.icon} />
-      ) : (
-        ""
-      )}
-      {avatar && (
-        <Avatar {...avatar} size={sizeMap?.avatar[size] as AvatarSize} />
-      )}
-      {avatarGroup && (
-        <AvatarGroup
-          {...avatarGroup}
-          size={sizeMap?.avatarGroup[size] as AvatarSize}
-        />
-      )}
+      {(icon && (
+        <Icon name={icon} variant="outline" className={styles.icon} />
+      )) ||
+        (avatar && (
+          <Avatar
+            {...avatar}
+            size={sizeMap?.avatar[size] as AvatarSize}
+            className={styles.avatar}
+          />
+        )) ||
+        (avatarGroup && (
+          <AvatarGroup
+            {...avatarGroup}
+            size={sizeMap?.avatarGroup[size] as AvatarSize}
+            className={styles.avatarGroup}
+          />
+        ))}
       {children}
     </div>
   );

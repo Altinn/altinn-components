@@ -1,0 +1,41 @@
+/* media */
+
+.media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1em;
+  height: 1em;
+}
+
+.media {
+  font-size: 1.5rem;
+}
+
+.media[data-size="xs"] {
+  font-size: 1.25rem;
+}
+
+.media[data-size="md"] {
+  font-size: 1.875rem;
+}
+
+.media[data-size="md"] .icon {
+  font-size: 1.5rem;
+}
+
+.media[data-size="lg"] {
+  font-size: 2.25rem;
+}
+
+.media[data-size="lg"] .icon {
+  font-size: 1.75rem;
+}
+
+.media[data-size="xl"] {
+  font-size: 2.75rem;
+}
+
+.media[data-size="xl"] .icon {
+  font-size: 2rem;
+}

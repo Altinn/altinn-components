@@ -1,10 +1,9 @@
 import type { ReactNode } from "react";
-import styles from "./listItem.module.css";
+import styles from "./listItemLabel.module.css";
 import type { ListItemSize } from "./ListItemBase";
 
 export interface ListItemLabelProps {
   size?: ListItemSize;
-  label?: string;
   title?: string;
   description?: string;
   children?: ReactNode;
@@ -12,7 +11,6 @@ export interface ListItemLabelProps {
 
 export const ListItemLabel = ({
   size = "sm",
-  label,
   title,
   description,
   children,
@@ -24,7 +22,7 @@ export const ListItemLabel = ({
       ) : (
         <>
           <strong className={styles?.title} data-size={size}>
-            {title || label}
+            {title}
           </strong>
           <span className={styles?.description} data-size={size}>
             {description}

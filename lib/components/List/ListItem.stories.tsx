@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
@@ -7,28 +7,9 @@ import { ListBase, ListItem } from "./";
 
 const sizes = ["lg", "md", "sm", "xs"];
 
-const ListItemSizes = (args) => {
-  return (
-    <ListBase>
-      <ListItem {...args} />
-      <MetaItem>{JSON.stringify(args)}</MetaItem>
-      <ListBase>
-        {sizes?.map((size) => {
-          return (
-            <Fragment key={size}>
-              <ListItem {...args} size={size} selected={size === args?.size} />
-              <MetaItem>{size}</MetaItem>
-            </Fragment>
-          );
-        })}
-      </ListBase>
-    </ListBase>
-  );
-};
-
 const meta = {
   title: "List/ListItem",
-  component: ListItemSizes,
+  component: ListItem,
   tags: ["autodocs"],
   parameters: {},
   args: {
@@ -142,4 +123,39 @@ export const LongTitle: Story = {
       "Samtykke for å reparere elektrisk utstyr hvis bruk er forbundet med særlig risiko, herunder elektromedisinsk utstyr",
     description: "Direktoratet for samfunnssikkerhet og beredskap",
   },
+};
+
+export const Sizes = (args) => {
+  return (
+    <ListBase>
+      {sizes?.map((size) => {
+        return (
+          <Fragment key={size}>
+            <ListItem {...args} size={size} selected={size === args?.size} />
+            <MetaItem>{size}</MetaItem>
+          </Fragment>
+        );
+      })}
+    </ListBase>
+  );
+};
+
+export const Collapsible = (args) => {
+  const [expanded, setExpanded] = useState(false);
+
+  const onToggle = () => {
+    setExpanded((prevState) => !prevState);
+  };
+
+  return (
+    <ListBase>
+      <ListItem
+        {...args}
+        collapsible={true}
+        expanded={expanded}
+        onClick={onToggle}
+        as="button"
+      ></ListItem>
+    </ListBase>
+  );
 };

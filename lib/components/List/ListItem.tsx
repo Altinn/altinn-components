@@ -12,24 +12,35 @@ import type { IconName } from "../Icon";
 export interface ListItemProps {
   id: string;
   type?: string;
+  /** Element type to render */
   as?: ElementType;
   color?: ListItemColor;
   href?: string;
   onClick?: () => void;
   hidden?: boolean;
+  /** Collapsible item, sets linkIcon to "chevron down" */
   collapsible?: boolean;
+  /** Item is expanded, sets linkIcon to "chevron up" */
   expanded?: boolean;
+  /** Item is selected */
   selected?: boolean;
+  /** Item is disabled, should disable mouse events */
   disabled?: boolean;
+  /** Display an icon indicating behaviour */
   linkIcon?: IconName;
-  group?: string | number;
+  /** Size of list item */
   size?: ListItemSize;
+  /** Title */
   title?: string;
+  /** Optional description */
   description?: string;
-  label?: string;
+  /** Optional badge */
   badge?: string;
+  /** List item media, icon */
   icon?: IconName;
+  /** List item media, avatar */
   avatar?: AvatarProps;
+  /** List item media, avatarGroup */
   avatarGroup?: AvatarGroupProps;
   children?: ReactNode;
   items?: ListItemProps[];
@@ -47,7 +58,6 @@ export const ListItem = ({
   avatar,
   avatarGroup,
   badge,
-  label,
   title,
   description,
   ...rest
@@ -69,7 +79,7 @@ export const ListItem = ({
         avatarGroup={avatarGroup}
       />
       <ListItemLabel title={title} description={description} size={size}>
-        {label || children}
+        {children}
       </ListItemLabel>
     </ListItemBase>
   );

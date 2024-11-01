@@ -1,7 +1,7 @@
 import { ReactNode, ElementType } from "react";
 import { Icon, type IconName } from "../Icon";
 import { Badge } from "../Badge";
-import styles from "./listItem.module.css";
+import styles from "./listItemBase.module.css";
 import cx from "classnames";
 
 export type ListItemColor = "default" | "accent";

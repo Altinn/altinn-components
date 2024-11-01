@@ -1,0 +1,55 @@
+/* label */
+
+.label {
+  display: flex;
+  justify-content: center;
+}
+
+.label[data-size="xs"] {
+  align-items: center;
+  column-gap: 0.25em;
+  font-size: 0.875rem;
+}
+
+.label[data-size="sm"] {
+  align-items: center;
+  column-gap: 0.25rem;
+}
+
+.label[data-size="md"] {
+  flex-direction: column;
+}
+
+.label[data-size="lg"] {
+  flex-direction: column;
+}
+
+.label[data-size="xl"] {
+  flex-direction: column;
+}
+
+/* title + descr */
+
+.title {
+  font-weight: 600;
+  margin: 0;
+}
+
+.title[data-size="lg"] {
+  font-size: 1.125rem;
+}
+
+.title[data-size="xl"] {
+  font-size: 1.25rem;
+}
+
+.description {
+  color: var(--theme-text-subtle);
+  margin: 0;
+}
+
+.description[data-size="md"],
+.description[data-size="lg"],
+.description[data-size="xl"] {
+  font-size: 0.875em;
+}
