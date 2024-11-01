@@ -1,0 +1,72 @@
+.item {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+  border: 0;
+  user-select: none;
+  cursor: pointer;
+  margin: 0.5rem 0;
+}
+
+.item[aria-disabled="true"] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* size */
+
+.item[data-size="sm"] {
+  min-height: 44px;
+}
+
+/* content */
+
+.content {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  column-gap: 6px;
+  padding: 6px;
+}
+
+.action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.actionIcon {
+  font-size: 1.5rem;
+}
+
+/* colors */
+
+.item:hover {
+  background-color: var(--theme-background-default);
+}
+
+.item[aria-selected="true"] {
+  background-color: var(--theme-background-default);
+}
+
+/* company */
+
+.item[data-color="company"]:hover {
+  background-color: var(--company-background-subtle);
+}
+
+.item[data-color="company"][aria-selected="true"] {
+  background-color: var(--company-surface-default);
+}
+
+/* person */
+
+.item[data-color="person"]:hover {
+  background-color: var(--person-background-subtle);
+}
+
+.item[data-color="person"][aria-selected="true"] {
+  background-color: var(--person-surface-default);
+}
