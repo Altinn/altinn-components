@@ -1,4 +1,4 @@
-import type { Preview } from "@storybook/react";
+import { Preview } from "@storybook/react";
 import { withThemeFromJSXProvider } from "@storybook/addon-themes";
 import { ThemeProvider } from "./ThemeProvider";
 import "../lib/css/global.css";
@@ -14,6 +14,7 @@ const preview = {
     },
   },
   decorators: [
+    /*
     withThemeFromJSXProvider({
       themes: {
         global: "global",
@@ -24,7 +25,7 @@ const preview = {
       defaultTheme: "neutral",
       Provider: ThemeProvider,
     }),
-    /*
+  */
     (Story: StoryFn, data) => {
       const { tags, parameters } = data;
 
@@ -41,7 +42,6 @@ const preview = {
         </>
       );
     },
-    */
   ],
 };
 
