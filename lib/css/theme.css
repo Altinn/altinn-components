@@ -20,3 +20,7 @@
 html[data-theme] {
   background: var(--theme-background-subtle);
 }
+
+.theme[data-theme] {
+  background: var(--theme-background-subtle);
+}

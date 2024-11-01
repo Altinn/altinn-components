@@ -1,0 +1,3 @@
+.theme[data-theme] {
+  background: var(--theme-background-subtle);
+}
