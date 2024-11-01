@@ -19,7 +19,13 @@ export interface AvatarGroupProps {
   className?: string;
 }
 
-export const AvatarGroup = ({ items = [], maxItemsCount = 4, defaultType, size = 'sm', className }: AvatarGroupProps) => {
+export const AvatarGroup = ({
+  items = [],
+  maxItemsCount = 4,
+  defaultType,
+  size = 'sm',
+  className,
+}: AvatarGroupProps) => {
   const maxItems = useMemo(() => items.slice(0, maxItemsCount), [items, maxItemsCount]);
 
   if (items?.length === 0) {
