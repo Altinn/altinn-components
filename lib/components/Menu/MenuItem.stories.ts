@@ -1,6 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
-
 import { MenuItem } from './MenuItem';
 
 const meta = {
@@ -83,8 +81,8 @@ export const PersonGroup: Story = {
 export const Company: Story = {
   args: {
     avatar: {
-      type: 'company',
       name: 'Sportsklubben Brann',
+      type: 'company',
     },
     title: 'Sportsklubben Brann',
   },
@@ -93,7 +91,7 @@ export const Company: Story = {
 export const CompanyGroup: Story = {
   args: {
     avatarGroup: {
-      type: 'company',
+      defaultType: 'company',
       items: [
         {
           name: 'Sportsklubben Brann',
