@@ -4,7 +4,7 @@ import { Avatar } from './';
 const meta = {
   title: 'Avatar/Avatar',
   component: Avatar,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'stable'],
   parameters: {},
   args: {
     name: 'Jane Doe',

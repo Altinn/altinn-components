@@ -19,6 +19,9 @@ export interface AvatarGroupProps {
   className?: string;
 }
 
+/**
+ * Avatar group component for displaying multiple avatars as a group.
+ */
 export const AvatarGroup = ({
   items = [],
   maxItemsCount = 4,
