@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.0](https://github.com/Altinn/altinn-components/compare/v0.0.1...v0.1.0) (2024-11-01)
+
+
+### Features
+
+* mark Avatar and AvatarGroup as stable ([#14](https://github.com/Altinn/altinn-components/issues/14)) ([fd8bbce](https://github.com/Altinn/altinn-components/commit/fd8bbce2ce59954d8682527b1a9d70bd08b9ccd7))
+
 ## 0.0.1 (2024-10-31)
 
 
