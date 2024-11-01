@@ -1,13 +1,7 @@
-import type { ReactNode } from "react";
-import {
-  LayoutBase,
-  LayoutBody,
-  LayoutContent,
-  LayoutSidebar,
-  type LayoutTheme,
-} from ".";
-import { Header, type HeaderProps } from "../Header";
-import { Menu, type MenuProps } from "../Menu";
+import type { ReactNode } from 'react';
+import { LayoutBase, LayoutBody, LayoutContent, LayoutSidebar, type LayoutTheme } from '.';
+import { Header, type HeaderProps } from '../Header';
+import { Menu, type MenuProps } from '../Menu';
 
 interface SidebarProps {
   theme?: LayoutTheme;
@@ -27,13 +21,7 @@ export interface LayoutProps {
   children: ReactNode;
 }
 
-export const Layout = ({
-  theme = "global",
-  header,
-  sidebar,
-  content,
-  children,
-}: LayoutProps) => {
+export const Layout = ({ theme = 'global', header, sidebar, content, children }: LayoutProps) => {
   const { menu, ...sidebarProps } = sidebar;
   return (
     <LayoutBase theme={theme}>

@@ -1,5 +1,4 @@
-/*
-:root {
+html {
   --theme-background-default: var(--global-background-default);
   --theme-background-subtle: var(--global-background-subtle);
   --theme-base-active: var(--global-base-active);
@@ -15,12 +14,11 @@
   --theme-text-subtle: var(--global-text-subtle);
 }
 
-*/
-
 html[data-theme] {
   background: var(--theme-background-subtle);
+  color: var(--neutral-text-default);
 }
 
-.theme[data-theme] {
-  background: var(--theme-background-subtle);
+body {
+  background-color: inherit;
 }

@@ -1,7 +1,7 @@
-import type {ChangeEventHandler, FocusEventHandler} from 'react';
-import {Icon} from '../Icon';
-import styles from './headerSearch.module.css';
 import cx from 'classnames';
+import type { ChangeEventHandler, FocusEventHandler } from 'react';
+import { Icon } from '../Icon';
+import styles from './headerSearch.module.css';
 
 export interface HeaderSearchProps {
   className?: string;

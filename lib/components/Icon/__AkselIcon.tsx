@@ -3,8 +3,8 @@ import * as AkselIcons from '@navikt/aksel-icons';
 const convertName = (str: string) => str.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`);
 
 export const Icon = ({ name = 'inbox' }: { name: string; variant: 'solid' | 'outline' }) => {
-  let byIcon = [];
-  let byName = {};
+  const byIcon = [];
+  const byName = {};
 
   const addRef = ({ name, type, key: string }: { name: string; type: 'solid' | 'outline'; key: string }) => {
     const icon = `<${string} />`;

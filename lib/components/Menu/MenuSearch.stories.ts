@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { MenuSearch } from "./MenuSearch";
+import { MenuSearch } from './MenuSearch';
 
 const meta = {
-  title: "Menu/MenuSearch",
+  title: 'Menu/MenuSearch',
   component: MenuSearch,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
   args: {},
 } satisfies Meta<typeof MenuSearch>;

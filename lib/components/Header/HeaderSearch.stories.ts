@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { HeaderSearch } from "./HeaderSearch";
+import type { Meta, StoryObj } from '@storybook/react';
+import { HeaderSearch } from './HeaderSearch';
 
 const meta = {
-  title: "Header/HeaderSearch",
+  title: 'Header/HeaderSearch',
   component: HeaderSearch,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
   args: {},
 } satisfies Meta<typeof HeaderSearch>;
@@ -14,7 +14,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    placeholder: "Search",
+    placeholder: 'Search',
     name: 'search',
   },
 };

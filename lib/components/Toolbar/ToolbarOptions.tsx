@@ -1,4 +1,4 @@
-import type { ChangeEventHandler } from "react";
+import type { ChangeEventHandler } from 'react';
 import {
   MenuBase,
   MenuGroup,
@@ -7,9 +7,9 @@ import {
   type MenuOptionProps,
   MenuSearch,
   type MenuSearchProps,
-} from "../Menu";
+} from '../Menu';
 
-export type ToolbarOptionType = "checkbox" | "radio";
+export type ToolbarOptionType = 'checkbox' | 'radio';
 
 export interface OptionGroup {
   title?: string;
@@ -24,19 +24,16 @@ export interface ToolbarOptionsProps {
   optionGroups?: { [key: string]: OptionGroup };
 }
 
-export const ToolbarOptions = ({
-  search,
-  optionGroups,
-  options,
-  onChange,
-  optionType,
-}: ToolbarOptionsProps) => {
-  const sections = options.reduce((acc, option) => {
-    const group = option.group || "";
-    acc[group] = acc[group] || [];
-    acc[group].push(option);
-    return acc;
-  }, {} as Record<string, MenuOptionProps[]>);
+export const ToolbarOptions = ({ search, optionGroups, options, onChange, optionType }: ToolbarOptionsProps) => {
+  const sections = options.reduce(
+    (acc, option) => {
+      const group = option.group || '';
+      acc[group] = acc[group] || [];
+      acc[group].push(option);
+      return acc;
+    },
+    {} as Record<string, MenuOptionProps[]>,
+  );
 
   return (
     <MenuBase theme="global">

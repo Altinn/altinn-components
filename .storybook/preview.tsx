@@ -1,10 +1,10 @@
-import { Preview } from "@storybook/react";
-import { withThemeFromJSXProvider } from "@storybook/addon-themes";
-import { ThemeProvider } from "./ThemeProvider";
 import "../lib/css/global.css";
+import "./preview.css";
+import { withThemeByDataAttribute } from "@storybook/addon-themes";
+import { Preview, StoryFn } from "@storybook/react";
 
 /** @type { import('@storybook/react').Preview } */
-const preview = {
+const preview: Preview = {
   parameters: {
     controls: {
       matchers: {
@@ -14,8 +14,24 @@ const preview = {
     },
   },
   decorators: [
-    /*
-    withThemeFromJSXProvider({
+    (Story: StoryFn, data) => {
+      const { tags, globals } = data;
+
+      const isStable = (tags || []).includes("stable");
+      const state = isStable ? "stable" : "experimental";
+
+      console.log("Data", data);
+
+      return (
+        <div data-theme={globals?.theme}>
+          <span className="preview-container-stage-tag" data-tag={state}>
+            {state}
+          </span>
+          <Story />
+        </div>
+      );
+    },
+    withThemeByDataAttribute({
       themes: {
         global: "global",
         neutral: "neutral",
@@ -23,25 +39,7 @@ const preview = {
         person: "person",
       },
       defaultTheme: "neutral",
-      Provider: ThemeProvider,
     }),
-  */
-    (Story: StoryFn, data) => {
-      const { tags, parameters } = data;
-
-      console.log("DATA", data);
-
-      const isStable = (tags || []).includes("stable");
-      const state = isStable ? "stable" : "experimental";
-      return (
-        <>
-          <span className="preview-container-stage-tag" data-tag={state}>
-            {state}
-          </span>
-          <Story />
-        </>
-      );
-    },
   ],
 };
 
