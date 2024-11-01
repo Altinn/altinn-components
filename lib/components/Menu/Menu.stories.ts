@@ -14,7 +14,6 @@ type Story = StoryObj<typeof meta>;
 
 export const GlobalMenu: Story = {
   args: {
-    theme: "global",
     groups: {
       settings: {
         defaultItemColor: "default",
@@ -38,6 +37,10 @@ export const GlobalMenu: Story = {
         size: "lg",
         icon: "inbox",
         title: "Innboks",
+        badge: {
+          color: "alert",
+          label: "4",
+        },
       },
       {
         id: "access",
@@ -45,6 +48,10 @@ export const GlobalMenu: Story = {
         size: "lg",
         icon: "bookmark",
         title: "Tilganger",
+        badge: {
+          color: "alert",
+          label: "2",
+        },
       },
       {
         id: "access",
@@ -65,7 +72,6 @@ export const GlobalMenu: Story = {
 
 export const CollapsibleGlobalMenu: Story = {
   args: {
-    theme: "global",
     groups: {
       settings: {
         defaultItemColor: "default",
@@ -89,7 +95,6 @@ export const CollapsibleGlobalMenu: Story = {
         size: "lg",
         icon: "inbox",
         title: "Innboks",
-        badge: "4",
         collapsible: true,
         items: [
           {
@@ -104,14 +109,12 @@ export const CollapsibleGlobalMenu: Story = {
             icon: "file-checkmark",
             selected: true,
             title: "Sendt",
-            badge: 2,
           },
           {
             id: "bookmarks",
             group: "3",
             icon: "bookmark",
             title: "Lagrede søk",
-            badge: 11,
           },
           {
             id: "arkiv",
@@ -169,7 +172,6 @@ export const ExpandedGlobalMenu: Story = {
 
 export const DrilldownMenu: Story = {
   args: {
-    theme: "global",
     color: "subtle",
     groups: {
       "level-1": {
@@ -220,7 +222,6 @@ export const DrilldownMenu: Story = {
 
 export const InboxMenu: Story = {
   args: {
-    theme: "global",
     groups: {},
 
     items: [
@@ -231,13 +232,16 @@ export const InboxMenu: Story = {
         icon: "inbox",
         title: "Innboks",
         color: "strong",
-        badge: 4,
+        badge: { color: "alert", label: "4" },
       },
       {
         id: "utkast",
         group: "2",
         icon: "doc-pencil",
         title: "Utkast",
+        badge: {
+          label: "3",
+        },
       },
       {
         id: "sendt",
@@ -245,20 +249,27 @@ export const InboxMenu: Story = {
         icon: "file-checkmark",
         selected: true,
         title: "Sendt",
-        badge: 2,
+        badge: {
+          label: "2",
+        },
       },
       {
         id: "lagret",
         group: "3",
         icon: "bookmark",
         title: "Lagrede søk",
-        badge: 11,
+        badge: {
+          label: "5",
+        },
       },
       {
         id: "arkivert",
         group: "4",
         icon: "archive",
         title: "Arkivert",
+        badge: {
+          label: "100+",
+        },
       },
       {
         id: "papirkurv",
@@ -266,6 +277,9 @@ export const InboxMenu: Story = {
         disabled: true,
         icon: "trash",
         title: "Papirkurv",
+        badge: {
+          label: "45",
+        },
       },
     ],
 
@@ -275,7 +289,6 @@ export const InboxMenu: Story = {
 
 export const InboxMenuWithShortcuts = {
   args: {
-    theme: "global",
     groups: {
       ...InboxMenu.args?.groups,
       shortcuts: {
@@ -303,7 +316,6 @@ export const InboxMenuWithShortcuts = {
 
 export const PersonMenu: Story = {
   args: {
-    theme: "global",
     groups: {},
     items: [
       {
@@ -352,7 +364,6 @@ export const PersonMenu: Story = {
 
 export const CompanyMenu: Story = {
   args: {
-    theme: "global",
     groups: {},
     items: [
       {
@@ -395,7 +406,6 @@ export const CompanyMenu: Story = {
 
 export const AccountMenu: Story = {
   args: {
-    theme: "global",
     groups: {
       a1: {
         title: "Deg selv, favoritter og grupper",
@@ -414,7 +424,9 @@ export const AccountMenu: Story = {
           name: "Dolly Duck",
         },
         title: "Dolly Duck",
-        badge: 15,
+        badge: {
+          label: "15",
+        },
       },
       {
         id: "2",
@@ -424,7 +436,9 @@ export const AccountMenu: Story = {
           name: "Bergen Bar",
         },
         title: "Bergen Bar",
-        badge: 21,
+        badge: {
+          label: "21",
+        },
       },
       {
         id: "3",
@@ -434,7 +448,9 @@ export const AccountMenu: Story = {
           name: "Sportsklubben Brann",
         },
         title: "Sportsklubben Brann",
-        badge: 4,
+        badge: {
+          label: "4",
+        },
       },
       {
         id: "4",
@@ -451,6 +467,9 @@ export const AccountMenu: Story = {
           ],
         },
         title: "Alle virksomheter",
+        badge: {
+          label: "45",
+        },
       },
       {
         id: "5",
@@ -469,6 +488,9 @@ export const AccountMenu: Story = {
           name: "Haralds gym",
         },
         title: "Haralds gym",
+        badge: {
+          label: "2",
+        },
       },
       {
         id: "7",

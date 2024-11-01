@@ -1,5 +1,6 @@
 import type { Preview } from "@storybook/react";
-import { withThemeByDataAttribute } from "@storybook/addon-themes";
+import { withThemeFromJSXProvider } from "@storybook/addon-themes";
+import ThemeProvider from "storybook-addon-theme-provider";
 import "../lib/css/global.css";
 
 /** @type { import('@storybook/react').Preview } */
@@ -11,7 +12,37 @@ const preview = {
         date: /Date$/i,
       },
     },
-  } /*
+  },
+  decorators: [
+    withThemeFromJSXProvider({
+      themes: {
+        global: "global",
+        neutral: "neutral",
+        company: "company",
+        person: "person",
+      },
+      defaultTheme: "neutral",
+      //      attributeName: "data-theme",
+    }),
+
+    (Story: StoryFn, data) => {
+      const { tags, parameters } = data;
+
+      console.log("DATA", data);
+
+      const isStable = (tags || []).includes("stable");
+      const state = isStable ? "stable" : "experimental";
+      return (
+        <>
+          <span className="preview-container-stage-tag" data-tag={state}>
+            {state}
+          </span>
+          <Story />
+        </>
+      );
+    },
+  ],
+  /*
   decorators: [
     withThemeByDataAttribute({
       themes: {
@@ -23,7 +54,8 @@ const preview = {
       defaultTheme: "neutral",
       attributeName: "data-theme",
     }),
-  ],*/,
+  ],
+  /*
   decorators: [
     // 👇 Defining the decorator in the preview file applies it to all stories
     (Story, { parameters }) => {
@@ -49,6 +81,7 @@ const preview = {
       }
     },
   ],
+  */
 };
 
 export default preview;

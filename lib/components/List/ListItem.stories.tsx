@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
 import { MetaItem } from "../Meta";
-import { ListBase, ListItem } from "./";
+import { ListBase, ListItem, List } from "./";
 
 const sizes = ["lg", "md", "sm", "xs"];
 
@@ -147,15 +147,62 @@ export const Collapsible = (args) => {
     setExpanded((prevState) => !prevState);
   };
 
+  const people = [
+    {
+      name: "Per Ove Ludvigsen",
+      role: "Sportlig leder",
+      rights: "Admin",
+    },
+    {
+      name: "Eirik Horneland",
+      role: "Trener",
+      rights: "Admin",
+    },
+    {
+      name: "Erik Huseklepp",
+      role: "Assistenttrener",
+      rights: "Lese og skrive",
+    },
+    {
+      name: "Hassan El Fakiri",
+      role: "Toppspillerutvikler",
+      rights: "Ingen rettigheter",
+    },
+  ];
+
+  const items = people?.map((item) => {
+    return {
+      avatar: {
+        ...item,
+        type: "person",
+      },
+      title: item?.name,
+      description: item?.role,
+      badge: { label: item?.rights },
+      linkIcon: "menu-elipsis-horizontal",
+    };
+  });
+
+  const avatarGroup = {
+    items: people?.map((item) => {
+      return {
+        name: item?.name,
+        type: "person",
+      };
+    }),
+  };
+
   return (
-    <ListBase>
+    <Fragment>
       <ListItem
         {...args}
+        avatarGroup={avatarGroup}
         collapsible={true}
         expanded={expanded}
         onClick={onToggle}
         as="button"
       ></ListItem>
-    </ListBase>
+      {expanded && <List size="xs" items={items} />}
+    </Fragment>
   );
 };

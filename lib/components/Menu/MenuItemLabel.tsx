@@ -1,6 +1,6 @@
-import type { ReactNode  } from 'react';
-import styles from './menuItem.module.css';
-import type { MenuItemSize } from './MenuItemBase';
+import type { ReactNode } from "react";
+import styles from "./menuItemLabel.module.css";
+import type { MenuItemSize } from "./MenuItemBase";
 
 export interface MenuItemLabelProps {
   size?: MenuItemSize;
@@ -10,7 +10,13 @@ export interface MenuItemLabelProps {
   children?: ReactNode;
 }
 
-export const MenuItemLabel = ({ size = 'sm', label, title, description, children }: MenuItemLabelProps) => {
+export const MenuItemLabel = ({
+  size = "sm",
+  label,
+  title,
+  description,
+  children,
+}: MenuItemLabelProps) => {
   return (
     <span className={styles?.label} data-size={size}>
       {children ? (

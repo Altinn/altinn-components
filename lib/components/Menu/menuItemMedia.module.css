@@ -1,0 +1,36 @@
+.media {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5%;
+  width: 2rem;
+  height: 2rem;
+}
+
+.media[data-size="lg"] {
+  width: 44px;
+  height: 44px;
+}
+
+.icon {
+  font-size: 1.5rem;
+}
+
+.media[data-color="subtle"] {
+  background-color: var(--theme-background-default);
+  color: var(--theme-text-default);
+}
+
+.media[data-color="strong"] {
+  background-color: var(--theme-base-default);
+  color: var(--theme-background-default);
+}
+
+.media[data-color="company"] {
+  background-color: var(--company-surface-default);
+}
+
+.media[data-color="person"] {
+  background-color: var(--person-surface-default);
+}

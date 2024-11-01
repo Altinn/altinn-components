@@ -1,4 +1,5 @@
-html {
+/*
+:root {
   --theme-background-default: var(--global-background-default);
   --theme-background-subtle: var(--global-background-subtle);
   --theme-base-active: var(--global-base-active);
@@ -14,10 +15,7 @@ html {
   --theme-text-subtle: var(--global-text-subtle);
 }
 
-html {
-  background: var(--neutral-background-default);
-  color: var(--neutral-text-default);
-}
+*/
 
 html[data-theme] {
   background: var(--theme-background-subtle);

@@ -25,7 +25,9 @@ export const DefaultBadge: Story = {
   args: {
     icon: "inbox",
     title: "Innboks",
-    badge: 4,
+    badge: {
+      label: "4",
+    },
   },
 };
 
@@ -38,13 +40,16 @@ export const Large: Story = {
   },
 };
 
-export const LargeBadge: Story = {
+export const AlertBadge: Story = {
   args: {
     size: "lg",
     icon: "inbox",
     title: "Innboks",
-    badge: 4,
     color: "strong",
+    badge: {
+      color: "alert",
+      label: "4",
+    },
   },
 };
 

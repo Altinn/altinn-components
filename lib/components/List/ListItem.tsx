@@ -1,5 +1,6 @@
 import type { ElementType, ReactNode } from "react";
 import type { AvatarGroupProps, AvatarProps } from "../Avatar";
+import type { BadgeProps } from "../Avatar";
 import {
   ListItemBase,
   type ListItemSize,
@@ -35,12 +36,12 @@ export interface ListItemProps {
   /** Optional description */
   description?: string;
   /** Optional badge */
-  badge?: string;
-  /** List item media, icon */
+  badge?: BadgeProps;
+  /** List item icon */
   icon?: IconName;
-  /** List item media, avatar */
+  /** List item avatar */
   avatar?: AvatarProps;
-  /** List item media, avatarGroup */
+  /** List item avatarGroup */
   avatarGroup?: AvatarGroupProps;
   children?: ReactNode;
   items?: ListItemProps[];

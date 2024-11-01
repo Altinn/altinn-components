@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import styles from "./list.module.css";
+import styles from "./listBase.module.css";
 
 import type { ListItemSize } from "./ListItemBase";
 import type { LayoutTheme } from "../Layout";

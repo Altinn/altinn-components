@@ -1,6 +1,6 @@
 import { ReactNode, ElementType } from "react";
 import { Icon, type IconName } from "../Icon";
-import { Badge } from "../Badge";
+import { Badge, type BadgeProps } from "../Badge";
 import styles from "./listItemBase.module.css";
 import cx from "classnames";
 
@@ -12,7 +12,7 @@ interface ListItemBaseProps {
   size?: ListItemSize;
   linkIcon?: IconName;
   color?: ListItemColor;
-  badge?: string;
+  badge?: BadgeProps;
   href?: string;
   className?: string;
   collapsible?: boolean;
@@ -59,12 +59,10 @@ export const ListItemBase = ({
       <div className={styles.content} data-size={size}>
         {children}
       </div>
-      <div className={styles?.action}>
-        {badge ? <Badge>{badge}</Badge> : ""}
-        {applicableIcon ? (
-          <Icon name={applicableIcon} className={styles?.actionIcon} />
-        ) : (
-          ""
+      <div className={styles.action}>
+        {badge && <Badge {...badge} />}
+        {applicableIcon && (
+          <Icon name={applicableIcon} className={styles.linkIcon} />
         )}
       </div>
     </Component>

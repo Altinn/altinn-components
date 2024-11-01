@@ -1,5 +1,6 @@
 import type { ElementType, ReactNode } from "react";
 import type { AvatarGroupProps, AvatarProps } from "../Avatar";
+import type { BadgeProps } from "../Badge";
 import {
   MenuItemBase,
   type MenuItemSize,
@@ -26,7 +27,7 @@ export interface MenuItemProps {
   title?: string;
   description?: string;
   label?: string;
-  badge?: string;
+  badge?: BadgeProps;
   icon?: IconName;
   avatar?: AvatarProps;
   avatarGroup?: AvatarGroupProps;
