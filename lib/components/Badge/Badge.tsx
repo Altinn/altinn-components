@@ -2,7 +2,7 @@ import cx from 'classnames';
 import type { ReactNode } from 'react';
 import styles from './badge.module.css';
 
-interface BadgeProps {
+export interface BadgeProps {
   label?: string | number;
   variant?: 'neutral' | 'strong';
   size?: 'medium' | 'small';
