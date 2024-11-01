@@ -9,8 +9,6 @@ const meta = {
   args: {
     name: 'Jane Doe',
     type: 'person',
-    variant: 'circle',
-    color: 'light',
     size: 'xl',
   },
 } satisfies Meta<typeof Avatar>;
@@ -30,15 +28,12 @@ export const Company: Story = {
   args: {
     type: 'company',
     name: 'Boligeksperten',
-    variant: 'square',
   },
 };
 
 export const Logo: Story = {
   args: {
-    variant: 'square',
     imageUrl: 'https://avatars.githubusercontent.com/u/1536293?s=200&v=4',
     size: 'xl',
-    color: 'dark',
   },
 };

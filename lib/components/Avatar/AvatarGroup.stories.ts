@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
 import { AvatarGroup } from './AvatarGroup';
 
 const meta = {
@@ -19,7 +18,7 @@ type Story = StoryObj<typeof meta>;
 
 export const People: Story = {
   args: {
-    type: 'person',
+    defaultType: 'person',
     items: [
       {
         name: 'Albert Åberg',
@@ -36,7 +35,7 @@ export const People: Story = {
 
 export const Companies: Story = {
   args: {
-    type: 'company',
+    defaultType: 'company',
     items: [
       {
         name: 'Albert Åberg',
