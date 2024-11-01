@@ -1,18 +1,18 @@
 .preview-container-stage-tag {
-    color: #fff;
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
+  color: #fff;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }
 
 .preview-container-stage-tag[data-tag="experimental"] {
-    background-color: #f0ad4e;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
+  background-color: #f0ad4e;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
 }
 
 .preview-container-stage-tag[data-tag="stable"] {
-    background-color: #5cb85c;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
+  background-color: #5cb85c;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
 }
