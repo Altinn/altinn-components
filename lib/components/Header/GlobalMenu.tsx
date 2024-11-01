@@ -1,16 +1,10 @@
-"use client";
-import { type MouseEventHandler, useState } from "react";
-import { HeaderButton } from "./HeaderButton";
-import {
-  MenuItem,
-  Menu,
-  type MenuSearchProps,
-  type MenuItemProps,
-  type MenuGroups,
-} from "../Menu";
-import styles from "./globalMenu.module.css";
-import cx from "classnames";
-import type { AvatarType } from "../Avatar";
+'use client';
+import cx from 'classnames';
+import { type MouseEventHandler, useState } from 'react';
+import type { AvatarType } from '../Avatar';
+import { Menu, type MenuGroups, MenuItem, type MenuItemProps, type MenuSearchProps } from '../Menu';
+import { HeaderButton } from './HeaderButton';
+import styles from './globalMenu.module.css';
 
 export type Account = {
   type: AvatarType;
@@ -48,12 +42,12 @@ export const GlobalMenu = ({
   accountSearch,
   items = [],
   groups,
-  menuLabel = "Menu",
-  backLabel = "Back",
+  menuLabel = 'Menu',
+  backLabel = 'Back',
 }: GlobalMenuProps) => {
   const accountMenu: MenuItemProps[] = accounts.map((account) => ({
     id: account.name,
-    group: account.group || "search",
+    group: account.group || 'search',
     selected: account.selected,
     title: account.name,
     avatar: {
@@ -64,7 +58,7 @@ export const GlobalMenu = ({
 
   const selectedAccount = accountMenu.find((account) => account.selected);
   const [selectAccount, setSelectAccount] = useState<boolean>(false);
-  const [filterString, setFilterString] = useState<string>("");
+  const [filterString, setFilterString] = useState<string>('');
 
   const onToggleAccounts = () => {
     setSelectAccount((prevState) => !prevState);
@@ -72,9 +66,9 @@ export const GlobalMenu = ({
 
   const accountMenuItem: MenuItemProps = {
     ...selectedAccount,
-    id: "account",
+    id: 'account',
     selected: false,
-    size: "lg",
+    size: 'lg',
     onClick: onToggleAccounts,
   };
 
@@ -82,13 +76,11 @@ export const GlobalMenu = ({
 
   const filteredAccountMenu = filterString
     ? accountMenu
-        .filter((item) =>
-          item?.title?.toLowerCase().includes(filterString.toLowerCase())
-        )
+        .filter((item) => item?.title?.toLowerCase().includes(filterString.toLowerCase()))
         .map((item) => {
           return {
             ...item,
-            group: "search",
+            group: 'search',
           };
         })
     : accountMenu;
@@ -104,45 +96,31 @@ export const GlobalMenu = ({
     : accountGroups;
 
   const accountSearchItem: MenuSearchProps = {
-    name: "account-search",
+    name: 'account-search',
     value: filterString,
-    placeholder: accountSearch?.placeholder ?? "Find account",
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
-      setFilterString(event.target.value),
+    placeholder: accountSearch?.placeholder ?? 'Find account',
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => setFilterString(event.target.value),
   };
 
   const backItem: MenuItemProps = {
-    id: "back",
-    title: backLabel ?? "Back",
-    icon: "arrow-left",
+    id: 'back',
+    title: backLabel ?? 'Back',
+    icon: 'arrow-left',
     onClick: onToggleAccounts,
   };
 
   const accountSwitcher: MenuItemProps[] = [
-    ...(filteredAccountMenu.length > 0
-      ? filteredAccountMenu
-      : [{ id: "search", group: "search", hidden: true }]),
+    ...(filteredAccountMenu.length > 0 ? filteredAccountMenu : [{ id: 'search', group: 'search', hidden: true }]),
   ];
 
   return (
     <div className={cx(styles.button, className)}>
-      <HeaderButton
-        as="div"
-        avatar={accountMenuItem.avatar}
-        onClick={onToggle}
-        expanded={expanded}
-        label={menuLabel}
-      />
+      <HeaderButton as="div" avatar={accountMenuItem.avatar} onClick={onToggle} expanded={expanded} label={menuLabel} />
       <div className={styles?.dropdown} aria-expanded={expanded}>
         {selectAccount ? (
           <>
             <MenuItem {...backItem} />
-            <Menu
-              theme="global"
-              search={accountSearchItem}
-              groups={filterAccountGroups}
-              items={accountSwitcher}
-            />
+            <Menu theme="global" search={accountSearchItem} groups={filterAccountGroups} items={accountSwitcher} />
           </>
         ) : (
           <Menu theme="global" groups={groups} items={globalMenu} />

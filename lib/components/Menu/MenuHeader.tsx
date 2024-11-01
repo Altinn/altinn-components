@@ -1,4 +1,4 @@
-import styles from "./menuHeader.module.css";
+import styles from './menuHeader.module.css';
 
 export interface MenuHeaderProps {
   title: string;

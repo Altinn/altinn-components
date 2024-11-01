@@ -1,6 +1,6 @@
 import cx from 'classnames';
-import {ButtonBase, type ButtonBaseProps} from './ButtonBase';
-import {Icon, type IconName} from '../Icon';
+import { Icon, type IconName } from '../Icon';
+import { ButtonBase, type ButtonBaseProps } from './ButtonBase';
 
 import styles from './button.module.css';
 

@@ -1,5 +1,5 @@
-import type { ElementType, ReactNode } from "react";
-import styles from "./menu.module.css";
+import type { ElementType, ReactNode } from 'react';
+import styles from './menu.module.css';
 
 export interface MenuGroupProps {
   as?: ElementType;
@@ -8,19 +8,10 @@ export interface MenuGroupProps {
   children?: ReactNode;
 }
 
-export const MenuGroup = ({
-  as = "ul",
-  expanded,
-  divider = true,
-  children,
-}: MenuGroupProps) => {
+export const MenuGroup = ({ as = 'ul', expanded, divider = true, children }: MenuGroupProps) => {
   const Component = as;
   return (
-    <Component
-      aria-expanded={expanded}
-      data-divider={divider}
-      className={styles.group}
-    >
+    <Component aria-expanded={expanded} data-divider={divider} className={styles.group}>
       {children}
     </Component>
   );

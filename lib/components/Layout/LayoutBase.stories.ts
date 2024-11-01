@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { LayoutBase } from "./LayoutBase";
+import type { Meta, StoryObj } from '@storybook/react';
+import { LayoutBase } from './LayoutBase';
 
 const meta = {
-  title: "Layout/LayoutBase",
+  title: 'Layout/LayoutBase',
   component: LayoutBase,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
   args: {},
 } satisfies Meta<typeof LayoutBase>;

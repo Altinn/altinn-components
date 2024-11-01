@@ -1,17 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { Avatar } from "./";
+import type { Meta, StoryObj } from '@storybook/react';
+import { Avatar } from './';
 
 const meta = {
-  title: "Avatar/Avatar",
+  title: 'Avatar/Avatar',
   component: Avatar,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
   args: {
-    name: "Jane Doe",
-    type: "person",
-    variant: "circle",
-    color: "light",
-    size: "xl",
+    name: 'Jane Doe',
+    type: 'person',
+    size: 'xl',
   },
 } satisfies Meta<typeof Avatar>;
 
@@ -20,25 +18,22 @@ type Story = StoryObj<typeof meta>;
 
 export const Person: Story = {
   args: {
-    type: "person",
-    name: "Jane Doe",
-    size: "xl",
+    type: 'person',
+    name: 'Jane Doe',
+    size: 'xl',
   },
 };
 
 export const Company: Story = {
   args: {
-    type: "company",
-    name: "Boligeksperten",
-    variant: "square",
+    type: 'company',
+    name: 'Boligeksperten',
   },
 };
 
 export const Logo: Story = {
   args: {
-    variant: "square",
-    imageUrl: "https://avatars.githubusercontent.com/u/1536293?s=200&v=4",
-    size: "xl",
-    color: "dark",
+    imageUrl: 'https://avatars.githubusercontent.com/u/1536293?s=200&v=4',
+    size: 'xl',
   },
 };

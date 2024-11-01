@@ -1,14 +1,14 @@
-"use client";
-import { useMemo, useState } from "react";
-import { ToolbarBase } from "./ToolbarBase";
-import { ToolbarAdd } from "./ToolbarAdd";
-import { ToolbarFilter, type ToolbarFilterProps } from "./ToolbarFilter.tsx";
-import { ToolbarSearch, type ToolbarSearchProps } from "./ToolbarSearch.tsx";
-import { ToolbarMenu, type ToolbarMenuProps } from "./ToolbarMenu.tsx";
-import type { ToolbarOptionType } from "./ToolbarOptions.tsx";
+'use client';
+import { useMemo, useState } from 'react';
+import { ToolbarAdd } from './ToolbarAdd';
+import { ToolbarBase } from './ToolbarBase';
+import { ToolbarFilter, type ToolbarFilterProps } from './ToolbarFilter.tsx';
+import { ToolbarMenu, type ToolbarMenuProps } from './ToolbarMenu.tsx';
+import type { ToolbarOptionType } from './ToolbarOptions.tsx';
+import { ToolbarSearch, type ToolbarSearchProps } from './ToolbarSearch.tsx';
 
-export type FilterState = Record<string, ToolbarFilterProps["value"]>;
-type ExpandedItemType = "filter" | "menu" | "add-filter";
+export type FilterState = Record<string, ToolbarFilterProps['value']>;
+type ExpandedItemType = 'filter' | 'menu' | 'add-filter';
 
 type ExpandedItem = {
   name: string;
@@ -20,7 +20,7 @@ export interface ToolbarProps {
   search?: ToolbarSearchProps;
   menu?: ToolbarMenuProps;
   filterState?: FilterState;
-  getFilterLabel?: (name: string, value: ToolbarFilterProps["value"]) => string;
+  getFilterLabel?: (name: string, value: ToolbarFilterProps['value']) => string;
   onFilterStateChange?: (state: FilterState) => void;
 }
 
@@ -33,31 +33,24 @@ export const Toolbar = ({
   getFilterLabel,
 }: ToolbarProps) => {
   const [expandedItem, setExpandedItem] = useState<ExpandedItem>(null);
-  const [localFilterState, setLocalFilterState] = useState<
-    Record<string, ToolbarFilterProps["value"]>
-  >(filterState ?? {});
-  const changeFilterState =
-    typeof onFilterStateChange === "function"
-      ? onFilterStateChange
-      : setLocalFilterState;
+  const [localFilterState, setLocalFilterState] = useState<Record<string, ToolbarFilterProps['value']>>(
+    filterState ?? {},
+  );
+  const changeFilterState = typeof onFilterStateChange === 'function' ? onFilterStateChange : setLocalFilterState;
   const applicableFilterState = filterState || localFilterState;
   const [hiddenFilterNames, setHiddenFilterNames] = useState<string[]>(
     filters
-      ?.filter(
-        (item) =>
-          item.removable &&
-          typeof applicableFilterState[item.name] === "undefined"
-      )
-      .map((item) => item.name) ?? []
+      ?.filter((item) => item.removable && typeof applicableFilterState[item.name] === 'undefined')
+      .map((item) => item.name) ?? [],
   );
 
   const visibleFilters = useMemo(
     () => filters.filter((item) => !hiddenFilterNames.includes(item.name)),
-    [filters, hiddenFilterNames]
+    [filters, hiddenFilterNames],
   );
   const hiddenFilters = useMemo(
     () => filters.filter((item) => hiddenFilterNames.includes(item.name)),
-    [filters, hiddenFilterNames]
+    [filters, hiddenFilterNames],
   );
 
   const onToggle = (type: ExpandedItemType, name: string) => {
@@ -68,25 +61,19 @@ export const Toolbar = ({
     }
   };
 
-  const onFilterChange = (
-    name: string,
-    value: ToolbarFilterProps["value"],
-    optionType: ToolbarOptionType
-  ) => {
-    if (optionType === "radio") {
+  const onFilterChange = (name: string, value: ToolbarFilterProps['value'], optionType: ToolbarOptionType) => {
+    if (optionType === 'radio') {
       changeFilterState({
         ...applicableFilterState,
         [name]: value,
       });
-      onToggle("filter", name);
+      onToggle('filter', name);
     } else {
       changeFilterState({
         ...applicableFilterState,
         [name]: applicableFilterState[name]
           ? applicableFilterState[name].some((v) => value?.includes(v))
-            ? applicableFilterState[name].filter(
-                (v) => !(value || []).includes(v)
-              )
+            ? applicableFilterState[name].filter((v) => !(value || []).includes(v))
             : [...applicableFilterState[name], ...(value || [])]
           : value,
       });
@@ -102,30 +89,19 @@ export const Toolbar = ({
   };
 
   const onFilterAdd = (name: string) => {
-    onToggle("filter", name);
-    setHiddenFilterNames((prevState) =>
-      prevState.filter((prevName) => prevName !== name)
-    );
+    onToggle('filter', name);
+    setHiddenFilterNames((prevState) => prevState.filter((prevName) => prevName !== name));
   };
 
   return (
     <ToolbarBase onClose={() => setExpandedItem(null)}>
-      {menu && (
-        <ToolbarMenu
-          onToggle={() => onToggle("menu", "")}
-          expanded={expandedItem?.type === "menu"}
-          {...menu}
-        />
-      )}
+      {menu && <ToolbarMenu onToggle={() => onToggle('menu', '')} expanded={expandedItem?.type === 'menu'} {...menu} />}
       {visibleFilters.map((item) => {
         return (
           <ToolbarFilter
             key={item.name}
-            onToggle={() => onToggle("filter", item.name)}
-            expanded={
-              item.name === expandedItem?.name &&
-              expandedItem?.type === "filter"
-            }
+            onToggle={() => onToggle('filter', item.name)}
+            expanded={item.name === expandedItem?.name && expandedItem?.type === 'filter'}
             onRemove={() => {
               onFilterRemove(item.name);
             }}
@@ -144,8 +120,8 @@ export const Toolbar = ({
       })}
       {hiddenFilters?.length > 0 && (
         <ToolbarAdd
-          expanded={expandedItem?.type === "add-filter"}
-          onToggle={() => onToggle("add-filter", "")}
+          expanded={expandedItem?.type === 'add-filter'}
+          onToggle={() => onToggle('add-filter', '')}
           items={hiddenFilters.map((item) => ({
             id: item.name,
             label: item.label,

@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { ToolbarOptions } from "./ToolbarOptions";
+import type { Meta, StoryObj } from '@storybook/react';
+import { ToolbarOptions } from './ToolbarOptions';
 
 const meta = {
-  title: "Toolbar/ToolbarOptions",
+  title: 'Toolbar/ToolbarOptions',
   component: ToolbarOptions,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
   args: {},
 } satisfies Meta<typeof ToolbarOptions>;
@@ -14,23 +14,23 @@ type Story = StoryObj<typeof meta>;
 
 export const Checkboxes: Story = {
   args: {
-    optionType: "checkbox",
+    optionType: 'checkbox',
     options: [
       {
-        type: "checkbox",
-        label: "Skatteetaten",
-        value: "1",
+        type: 'checkbox',
+        label: 'Skatteetaten',
+        value: '1',
       },
       {
-        type: "checkbox",
-        label: "Digdir",
-        value: "2",
+        type: 'checkbox',
+        label: 'Digdir',
+        value: '2',
       },
       {
-        type: "checkbox",
+        type: 'checkbox',
         checked: true,
-        label: "Helstilsynet",
-        value: "3",
+        label: 'Helstilsynet',
+        value: '3',
       },
     ],
   },
@@ -38,23 +38,23 @@ export const Checkboxes: Story = {
 
 export const Radio: Story = {
   args: {
-    optionType: "radio",
+    optionType: 'radio',
     options: [
       {
-        type: "radio",
-        label: "Skatteetaten",
-        value: "1",
+        type: 'radio',
+        label: 'Skatteetaten',
+        value: '1',
       },
       {
-        type: "radio",
-        label: "Digdir",
-        value: "2",
+        type: 'radio',
+        label: 'Digdir',
+        value: '2',
       },
       {
-        type: "radio",
+        type: 'radio',
         checked: true,
-        label: "Helstilsynet",
-        value: "3",
+        label: 'Helstilsynet',
+        value: '3',
       },
     ],
   },
@@ -64,44 +64,44 @@ export const RadioCheckbox: Story = {
   args: {
     optionGroups: {
       a: {
-        title: "Velg skadedyr",
-        optionType: "radio",
+        title: 'Velg skadedyr',
+        optionType: 'radio',
       },
       b: {
-        title: "Velg straff",
-        optionType: "checkbox",
+        title: 'Velg straff',
+        optionType: 'checkbox',
       },
     },
     options: [
       {
-        group: "a",
-        name: "animal",
-        label: "Katt",
-        value: "cat",
+        group: 'a',
+        name: 'animal',
+        label: 'Katt',
+        value: 'cat',
         checked: true,
       },
       {
-        group: "a",
-        name: "animal",
-        label: "Mus",
-        value: "mouse",
+        group: 'a',
+        name: 'animal',
+        label: 'Mus',
+        value: 'mouse',
       },
       {
-        group: "a",
-        name: "animal",
-        label: "Veggdyr",
-        value: "spider",
+        group: 'a',
+        name: 'animal',
+        label: 'Veggdyr',
+        value: 'spider',
       },
       {
-        group: "b",
-        label: "Husarrest",
-        value: "digdir",
+        group: 'b',
+        label: 'Husarrest',
+        value: 'digdir',
       },
       {
-        group: "b",
+        group: 'b',
         checked: true,
-        label: "Piskeslag",
-        value: "helse",
+        label: 'Piskeslag',
+        value: 'helse',
       },
     ],
   },

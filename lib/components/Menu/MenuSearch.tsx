@@ -1,5 +1,5 @@
-import type { ChangeEventHandler } from "react";
-import styles from "./menuSearch.module.css";
+import type { ChangeEventHandler } from 'react';
+import styles from './menuSearch.module.css';
 
 export interface MenuSearchProps {
   placeholder?: string;
@@ -8,12 +8,7 @@ export interface MenuSearchProps {
   onChange: ChangeEventHandler;
 }
 
-export const MenuSearch = ({
-  value,
-  name,
-  placeholder = "Søk",
-  onChange,
-}: MenuSearchProps) => {
+export const MenuSearch = ({ value, name, placeholder = 'Søk', onChange }: MenuSearchProps) => {
   return (
     <div className={styles.field}>
       <input

@@ -1,10 +1,10 @@
-import type { ElementType } from "react";
-import { ButtonBase, type ButtonProps } from "../Button";
-import { Avatar, type AvatarProps } from "../Avatar";
-import { Icon, type IconName } from "../Icon";
-import cx from "classnames";
+import cx from 'classnames';
+import type { ElementType } from 'react';
+import { Avatar, type AvatarProps } from '../Avatar';
+import { ButtonBase, type ButtonProps } from '../Button';
+import { Icon, type IconName } from '../Icon';
 
-import styles from "./headerButton.module.css";
+import styles from './headerButton.module.css';
 
 export interface HeaderButtonProps extends ButtonProps {
   label?: string;
@@ -17,23 +17,19 @@ export interface HeaderButtonProps extends ButtonProps {
 
 export const HeaderButton = ({
   className,
-  as = "button",
+  as = 'button',
   avatar,
-  icon = "padlock-locked",
+  icon = 'padlock-locked',
   expanded,
-  label = "Menu",
+  label = 'Menu',
   ...buttonProps
 }: HeaderButtonProps) => {
   if (expanded) {
     return (
-      <ButtonBase
-        {...buttonProps}
-        as={as}
-        className={cx(styles.button, className)}
-      >
+      <ButtonBase {...buttonProps} as={as} className={cx(styles.button, className)}>
         <span className={styles.label}>{label}</span>
         <span className={cx(styles.icon, styles.closeIcon)}>
-          <Icon name={"x-mark"} />
+          <Icon name={'x-mark'} />
         </span>
       </ButtonBase>
     );
@@ -41,11 +37,7 @@ export const HeaderButton = ({
 
   if (avatar) {
     return (
-      <ButtonBase
-        {...buttonProps}
-        as={as}
-        className={cx(styles.button, className)}
-      >
+      <ButtonBase {...buttonProps} as={as} className={cx(styles.button, className)}>
         <span className={styles.label}>{label}</span>
         <Avatar type={avatar?.type} name={avatar?.name} size="lg" />
       </ButtonBase>
@@ -53,11 +45,7 @@ export const HeaderButton = ({
   }
 
   return (
-    <ButtonBase
-      {...buttonProps}
-      as={as}
-      className={cx(styles.button, className)}
-    >
+    <ButtonBase {...buttonProps} as={as} className={cx(styles.button, className)}>
       <span className={styles.label}>{label}</span>
       <span className={cx(styles.icon, styles.loginIcon)}>
         <Icon name={icon} />

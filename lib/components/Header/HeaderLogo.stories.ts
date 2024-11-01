@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { HeaderLogo } from "./HeaderLogo";
+import type { Meta, StoryObj } from '@storybook/react';
+import { HeaderLogo } from './HeaderLogo';
 
 const meta = {
-  title: "Header/HeaderLogo",
+  title: 'Header/HeaderLogo',
   component: HeaderLogo,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
   args: {},
 } satisfies Meta<typeof HeaderLogo>;

@@ -1,5 +1,5 @@
-import type { ChangeEventHandler } from "react";
-import styles from "./toolbarSearch.module.css";
+import type { ChangeEventHandler } from 'react';
+import styles from './toolbarSearch.module.css';
 
 export interface ToolbarSearchProps {
   placeholder?: string;
@@ -8,12 +8,7 @@ export interface ToolbarSearchProps {
   onChange: ChangeEventHandler;
 }
 
-export const ToolbarSearch = ({
-  value,
-  name,
-  placeholder = "Søk",
-  onChange,
-}: ToolbarSearchProps) => {
+export const ToolbarSearch = ({ value, name, placeholder = 'Søk', onChange }: ToolbarSearchProps) => {
   return (
     <div className={styles.field}>
       <input

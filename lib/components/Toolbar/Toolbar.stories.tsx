@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { type FilterState, Toolbar } from "./Toolbar";
-import React from "react";
+import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
+import { type FilterState, Toolbar } from './Toolbar';
 
 const meta = {
-  title: "Toolbar/Toolbar",
+  title: 'Toolbar/Toolbar',
   component: Toolbar,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
   args: {},
 } satisfies Meta<typeof Toolbar>;
@@ -16,94 +16,94 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     menu: {
-      label: "Ola Nordmann",
-      value: "ola",
+      label: 'Ola Nordmann',
+      value: 'ola',
       items: [
         {
           avatar: {
-            name: "Ola Nordmann",
+            name: 'Ola Nordmann',
           },
-          label: "Ola Nordmann",
+          label: 'Ola Nordmann',
         },
         {
           avatar: {
-            name: "Kari Nordmann",
+            name: 'Kari Nordmann',
           },
-          label: "Kari Nordmann",
+          label: 'Kari Nordmann',
         },
       ],
     },
     filters: [
       {
         removable: true,
-        name: "from",
-        optionType: "checkbox",
-        label: "Velg avsender",
+        name: 'from',
+        optionType: 'checkbox',
+        label: 'Velg avsender',
         options: [
           {
-            value: "skatt",
-            label: "Skatteetaten",
+            value: 'skatt',
+            label: 'Skatteetaten',
           },
           {
-            value: "brreg",
-            label: "Brønnøysund",
+            value: 'brreg',
+            label: 'Brønnøysund',
           },
           {
-            value: "nav",
-            label: "NAV",
+            value: 'nav',
+            label: 'NAV',
           },
           {
-            value: "oslo",
-            label: "Oslo kommune",
+            value: 'oslo',
+            label: 'Oslo kommune',
           },
         ],
       },
       {
         removable: true,
-        name: "to",
-        optionType: "radio",
-        label: "Velg mottaker",
+        name: 'to',
+        optionType: 'radio',
+        label: 'Velg mottaker',
         options: [
           {
-            value: "ola",
-            label: "Ola Nordmann",
+            value: 'ola',
+            label: 'Ola Nordmann',
           },
           {
-            value: "kari",
-            label: "Kari Nordmann",
+            value: 'kari',
+            label: 'Kari Nordmann',
           },
         ],
       },
       {
         removable: true,
-        name: "status",
-        optionType: "radio",
-        label: "Velg status",
+        name: 'status',
+        optionType: 'radio',
+        label: 'Velg status',
         options: [
           {
-            group: "1",
-            value: "draft",
-            label: "Utkast",
+            group: '1',
+            value: 'draft',
+            label: 'Utkast',
           },
           {
-            group: "1",
-            value: "sent",
-            label: "Sendt",
+            group: '1',
+            value: 'sent',
+            label: 'Sendt',
           },
           {
-            group: "2",
-            value: "in-progress",
-            label: "Under arbeid",
+            group: '2',
+            value: 'in-progress',
+            label: 'Under arbeid',
           },
           {
-            group: "2",
-            value: "requires-attention",
-            label: "Krever handling",
+            group: '2',
+            value: 'requires-attention',
+            label: 'Krever handling',
           },
           {
-            group: "2",
-            value: "completed",
-            label: "Avsluttet",
+            group: '2',
+            value: 'completed',
+            label: 'Avsluttet',
           },
         ],
       },
@@ -115,9 +115,7 @@ export const CustomFilterLabel: Story = {
   args: {
     ...Default.args,
     getFilterLabel: (name, value) => {
-      return Array.isArray(value) && value.length > 1
-        ? `${value.length} selected`
-        : value;
+      return Array.isArray(value) && value.length > 1 ? `${value.length} selected` : value;
     },
   },
 };
@@ -142,52 +140,46 @@ export const StaticFilters: Story = {
 
 export const ControlledStateFilters = () => {
   const [filterState, setFilterState] = React.useState<FilterState>({
-    from: ["skatt", "brreg"],
+    from: ['skatt', 'brreg'],
   });
-  return (
-    <Toolbar
-      filters={Default.args!.filters}
-      filterState={filterState}
-      onFilterStateChange={setFilterState}
-    />
-  );
+  return <Toolbar filters={Default.args!.filters} filterState={filterState} onFilterStateChange={setFilterState} />;
 };
 
 export const FilterAndSearch: Story = {
   args: {
     search: {
-      placeholder: "Søk etter filter",
+      placeholder: 'Søk etter filter',
     },
     filters: [
       {
-        name: "status",
-        optionType: "checkbox",
-        label: "Velg status",
+        name: 'status',
+        optionType: 'checkbox',
+        label: 'Velg status',
         options: [
           {
-            group: "1",
-            value: "draft",
-            label: "Utkast",
+            group: '1',
+            value: 'draft',
+            label: 'Utkast',
           },
           {
-            group: "1",
-            value: "sent",
-            label: "Sendt",
+            group: '1',
+            value: 'sent',
+            label: 'Sendt',
           },
           {
-            group: "2",
-            value: "in-progress",
-            label: "Under arbeid",
+            group: '2',
+            value: 'in-progress',
+            label: 'Under arbeid',
           },
           {
-            group: "2",
-            value: "requires-attention",
-            label: "Krever handling",
+            group: '2',
+            value: 'requires-attention',
+            label: 'Krever handling',
           },
           {
-            group: "2",
-            value: "completed",
-            label: "Avsluttet",
+            group: '2',
+            value: 'completed',
+            label: 'Avsluttet',
           },
         ],
       },
