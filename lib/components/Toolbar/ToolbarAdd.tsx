@@ -17,7 +17,7 @@ export const ToolbarAdd = ({ expanded = false, onToggle, label = 'Legg til', ite
       <ToolbarButton as="div" type="add" onToggle={onToggle}>
         {label}
       </ToolbarButton>
-      <div aria-expanded={expanded} className={styles?.dropdown}>
+      <div aria-expanded={expanded} className={styles.dropdown}>
         <Menu theme="global" items={items} />
       </div>
     </div>

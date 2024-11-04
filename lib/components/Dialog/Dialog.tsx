@@ -1,0 +1,101 @@
+import { MetaBase } from '../Meta';
+import { DialogActivityLog, type DialogActivityLogProps } from './DialogActivityLog';
+import { DialogArticleBase } from './DialogArticleBase';
+import { DialogAttachments, type DialogAttachmentsProps } from './DialogAttachments';
+import { DialogBase } from './DialogBase';
+import { DialogBodyBase } from './DialogBodyBase';
+import { DialogContent } from './DialogContent';
+import { DialogFooter } from './DialogFooter';
+import { DialogHeader } from './DialogHeader';
+import { DialogSeenBy, type DialogSeenByProps } from './DialogSeenBy';
+
+import type { ReactNode } from 'react';
+import { DialogAction, type DialogActionButtonProps } from './DialogAction';
+import type { DialogRecipientProps, DialogSenderProps } from './DialogHeadings.tsx';
+import { DialogHistory, type DialogHistoryProps } from './DialogHistory';
+import { type DialogBackButtonProps, DialogNav } from './DialogNav';
+import type { DialogStatusProps } from './DialogStatus';
+
+export interface DialogProps {
+  /** Title */
+  title: string;
+  /** Back button */
+  backButton?: DialogBackButtonProps;
+  /** Dialog status */
+  status?: DialogStatusProps;
+  /** Updated date time */
+  updatedAt?: string;
+  /** Latest updated by name */
+  updatedByName?: string;
+  /** Due date */
+  dueAt?: string;
+  /** Sender */
+  sender?: DialogSenderProps;
+  /** Recipient  */
+  recipient?: DialogRecipientProps;
+  /** Summary */
+  summary?: string;
+  /** Body (should be an output markdown/html rendered to React / HTML) */
+  body?: ReactNode;
+  /** List of action (buttons) */
+  actions?: DialogActionButtonProps[];
+  /** Dialog attachments */
+  attachments?: DialogAttachmentsProps;
+  /** Dialog is seen by the end user or others */
+  seenBy?: DialogSeenByProps;
+  /** Activity Log */
+  activityLog?: DialogActivityLogProps;
+  /** More information about the dialog, process, etc. */
+  additionalInfo?: string;
+  /** History */
+  history?: DialogHistoryProps;
+}
+
+/**
+ * Full representation of a dialog, including attachments, actions and history,
+ */
+
+export const Dialog = ({
+  backButton,
+  updatedAt,
+  updatedByName,
+  dueAt,
+  status,
+  title,
+  sender,
+  recipient,
+  summary = 'Summary.',
+  body,
+  actions = [],
+  attachments,
+  history,
+  seenBy,
+  activityLog,
+  additionalInfo,
+}: DialogProps) => {
+  return (
+    <DialogBase>
+      <DialogNav status={status} dueAt={dueAt} backButton={backButton} />
+      <DialogArticleBase>
+        <DialogHeader
+          title={title}
+          sender={sender}
+          recipient={recipient}
+          seen={seenBy?.seenByEndUser ?? false}
+          variant="neutral"
+        />
+        <DialogBodyBase>
+          <DialogContent updatedAt={updatedAt} updatedByName={updatedByName} summary={summary} body={body} />
+          {attachments && <DialogAttachments {...attachments} />}
+          {actions?.length > 0 && <DialogAction items={actions} />}
+          <MetaBase>
+            {seenBy && <DialogSeenBy {...seenBy} />}
+            {activityLog && <DialogActivityLog {...activityLog} />}
+          </MetaBase>
+        </DialogBodyBase>
+        {additionalInfo && <DialogFooter additionalInfo={additionalInfo} />}
+        {history && <DialogHistory {...history} />}
+      </DialogArticleBase>
+    </DialogBase>
+  );
+};

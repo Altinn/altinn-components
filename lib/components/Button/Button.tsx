@@ -1,12 +1,12 @@
 import cx from 'classnames';
 import { Icon, type IconName } from '../Icon';
 import { ButtonBase, type ButtonBaseProps } from './ButtonBase';
-
 import styles from './button.module.css';
 
 export interface ButtonProps extends Partial<ButtonBaseProps> {
   icon?: IconName;
   reverse?: boolean;
+  loading?: boolean;
 }
 
 export const Button = ({
@@ -16,8 +16,26 @@ export const Button = ({
   icon,
   href,
   children,
+  loading,
   ...rest
 }: ButtonProps) => {
+  if (loading) {
+    return (
+      <ButtonBase
+        size={size}
+        selected={selected}
+        href={href}
+        className={cx(styles.button, { [styles.reverse]: reverse })}
+        {...rest}
+        disabled
+      >
+        <span className={styles.label} data-size={size}>
+          <span className={styles.loading}>Loading....</span>
+        </span>
+      </ButtonBase>
+    );
+  }
+
   return (
     <ButtonBase
       size={size}

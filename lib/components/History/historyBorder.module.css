@@ -1,0 +1,8 @@
+.border {
+  border-left: 0.25rem solid;
+  border-color: var(--theme-surface-active);
+}
+
+.border[data-seen="true"] {
+  border-color: var(--neutral-surface-default);
+}

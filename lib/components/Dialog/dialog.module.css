@@ -1,0 +1,21 @@
+.dialog {
+  background-color: var(--theme-background-default);
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5em;
+  box-shadow: var(--ds-shadow-xs);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5em;
+  margin-bottom: 1.5rem;
+}

@@ -37,7 +37,7 @@ export const MetaItemBase = ({
       data-variant={variant}
       data-progress={progress}
       dateTime={datetime}
-      className={cx(styles?.item, className)}
+      className={cx(styles.item, className)}
       {...rest}
     >
       {children}

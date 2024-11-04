@@ -12,15 +12,15 @@ export interface MenuItemLabelProps {
 
 export const MenuItemLabel = ({ size = 'sm', label, title, description, children }: MenuItemLabelProps) => {
   return (
-    <span className={styles?.label} data-size={size}>
+    <span className={styles.label} data-size={size}>
       {children ? (
         children
       ) : (
         <>
-          <strong className={styles?.title} data-size={size}>
+          <strong className={styles.title} data-size={size}>
             {title || label}
           </strong>
-          <span className={styles?.description} data-size={size}>
+          <span className={styles.description} data-size={size}>
             {description}
           </span>
         </>

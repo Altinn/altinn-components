@@ -1,4 +1,4 @@
-import type { ElementType, ReactNode } from 'react';
+import type { ElementType, MouseEventHandler, ReactNode } from 'react';
 import type { AvatarGroupProps, AvatarProps } from '../Avatar';
 import type { BadgeProps } from '../Badge';
 import type { IconName } from '../Icon';
@@ -12,7 +12,7 @@ export interface MenuItemProps {
   as?: ElementType;
   color?: MenuItemColor;
   href?: string;
-  onClick?: () => void;
+  onClick?: MouseEventHandler;
   hidden?: boolean;
   collapsible?: boolean;
   expanded?: boolean;

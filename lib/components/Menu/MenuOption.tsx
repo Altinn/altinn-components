@@ -33,8 +33,8 @@ export const MenuOption = ({
   onChange,
 }: MenuOptionProps) => {
   return (
-    <MenuItemBase className={styles?.label} disabled={disabled} selected={checked} size={size} as="label">
-      <input className={styles?.input} name={name} value={value} type={type} checked={checked} onChange={onChange} />
+    <MenuItemBase className={styles.label} disabled={disabled} selected={checked} size={size} as="label">
+      <input className={styles.input} name={name} value={value} type={type} checked={checked} onChange={onChange} />
       {type === 'checkbox' && <CheckboxIcon checked={checked} className={styles.icon} />}
       {type === 'radio' && <RadioIcon checked={checked} className={styles.icon} />}
       <MenuItemLabel title={title} description={description} size={size}>

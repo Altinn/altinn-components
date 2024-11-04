@@ -9,14 +9,14 @@ interface MetaItemMediaProps {
 }
 
 export const MetaItemMedia = ({ size = 'sm', icon, progress }: MetaItemMediaProps) => {
-  if (!icon && !progress) {
+  if (!icon && typeof progress !== 'number') {
     return false;
   }
 
   return (
     <span className={styles.media} data-size={size}>
-      {icon ? <Icon name={icon} className={styles?.icon} /> : ''}
-      {progress ? <ProgressIcon value={progress} className={styles?.icon} /> : ''}
+      {icon && <Icon name={icon} className={styles.icon} />}
+      {progress && <ProgressIcon value={progress} className={styles.icon} />}
     </span>
   );
 };

@@ -11,15 +11,15 @@ export interface ListItemLabelProps {
 
 export const ListItemLabel = ({ size = 'sm', title, description, children }: ListItemLabelProps) => {
   return (
-    <span className={styles?.label} data-size={size}>
+    <span className={styles.label} data-size={size}>
       {children ? (
         children
       ) : (
         <>
-          <strong className={styles?.title} data-size={size}>
+          <strong className={styles.title} data-size={size}>
             {title}
           </strong>
-          <span className={styles?.description} data-size={size}>
+          <span className={styles.description} data-size={size}>
             {description}
           </span>
         </>

@@ -8,13 +8,13 @@ import styles from './metaList.module.css';
 export type MetaListItemType = 'default' | 'progress' | 'timestamp';
 
 export interface MetaListItemProps extends MetaItemBaseProps {
-  type?: MetaListItemType;
   label: string;
+  type?: MetaListItemType;
 }
 
 export interface MetaListProps {
+  items: MetaListItemProps[];
   size?: MetaItemSize;
-  items?: MetaListItemProps[];
 }
 
 export const MetaListItem = ({ type = 'default', label, ...rest }: MetaListItemProps) => {
@@ -31,9 +31,9 @@ export const MetaListItem = ({ type = 'default', label, ...rest }: MetaListItemP
 export const MetaList = ({ size = 'xs', items = [] }: MetaListProps) => {
   return (
     <MetaBase size={size}>
-      <ul className={styles?.list}>
-        {items?.map((item, index) => (
-          <li className={styles?.item} key={'meta-' + index}>
+      <ul className={styles.list}>
+        {items.map((item, index) => (
+          <li className={styles.item} key={'meta-' + index}>
             <MetaListItem {...item} />
           </li>
         ))}

@@ -42,7 +42,7 @@ export const ListItemBase = ({
 
   return (
     <Component
-      className={cx(styles?.item, className)}
+      className={cx(styles.item, className)}
       data-color={color}
       data-size={size}
       aria-selected={selected}
