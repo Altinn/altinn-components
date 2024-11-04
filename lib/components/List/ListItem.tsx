@@ -1,6 +1,6 @@
 import type { ElementType, ReactNode } from 'react';
 import type { AvatarGroupProps, AvatarProps } from '../Avatar';
-import type { BadgeProps } from '../Avatar';
+import type { BadgeProps } from '../Badge';
 import type { IconName } from '../Icon';
 import { ListItemBase, type ListItemColor, type ListItemSize } from './ListItemBase';
 import { ListItemLabel } from './ListItemLabel';

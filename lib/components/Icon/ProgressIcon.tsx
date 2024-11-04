@@ -1,12 +1,16 @@
 import cx from 'classnames';
+import type { CSSProperties } from 'react';
 import styles from './progressIcon.module.css';
-export interface ProgressIconsProps {
+export interface ProgressIconProps {
   value?: number;
   total?: number;
   className?: string;
 }
 
-export const ProgressIcon = ({ value = 0, total = 100, className }: ProgressIconsProps) => {
+interface CustomCSSProperties extends CSSProperties {
+  '--progress'?: string;
+}
+export const ProgressIcon = ({ value = 0, total = 100, className }: ProgressIconProps) => {
   const percentage = Math.round((value / total) * 100);
 
   if (value === total) {
@@ -32,8 +36,8 @@ export const ProgressIcon = ({ value = 0, total = 100, className }: ProgressIcon
     );
   }
 
-  const progressStyle = {
-    '--progress': percentage + '%',
+  const progressStyle: CustomCSSProperties = {
+    '--progress': `${percentage}%`,
   };
 
   return <div className={cx(styles.progress, className)} style={progressStyle} data-value={`${percentage}%`} />;
