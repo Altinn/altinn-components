@@ -11,7 +11,7 @@ const meta = {
   parameters: {},
   args: {
     seenByEndUser: true,
-    seenByOthersCount: 10,
+    seenByOthersCount: 2,
   },
 } satisfies Meta<typeof DialogSeenBy>;
 
@@ -19,12 +19,16 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Unseen: Story = {
-  args: {},
+  args: {
+    seenByEndUser: false,
+    seenByOthersCount: 0,
+  },
 };
 
 export const seenByEndUser: Story = {
   args: {
     seenByEndUser: true,
+    seenByOthersCount: 0,
   },
 };
 
