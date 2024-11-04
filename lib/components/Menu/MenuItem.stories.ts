@@ -6,7 +6,9 @@ const meta = {
   component: MenuItem,
   tags: ['autodocs'],
   parameters: {},
-  args: {},
+  args: {
+    id: 'inbox',
+  },
 } satisfies Meta<typeof MenuItem>;
 
 export default meta;
@@ -23,7 +25,9 @@ export const DefaultBadge: Story = {
   args: {
     icon: 'inbox',
     title: 'Innboks',
-    badge: 4,
+    badge: {
+      label: '4',
+    },
   },
 };
 
@@ -36,13 +40,16 @@ export const Large: Story = {
   },
 };
 
-export const LargeBadge: Story = {
+export const AlertBadge: Story = {
   args: {
     size: 'lg',
     icon: 'inbox',
     title: 'Innboks',
-    badge: 4,
     color: 'strong',
+    badge: {
+      color: 'alert',
+      label: '4',
+    },
   },
 };
 
@@ -81,8 +88,8 @@ export const PersonGroup: Story = {
 export const Company: Story = {
   args: {
     avatar: {
-      name: 'Sportsklubben Brann',
       type: 'company',
+      name: 'Sportsklubben Brann',
     },
     title: 'Sportsklubben Brann',
   },

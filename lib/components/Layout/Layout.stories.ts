@@ -11,7 +11,6 @@ const menu: MenuProps = {
       size: 'lg',
       icon: 'inbox',
       title: 'Innboks',
-      badge: '4',
     },
     {
       id: '2',
@@ -25,14 +24,12 @@ const menu: MenuProps = {
       icon: 'file-checkmark',
       selected: true,
       title: 'Sendt',
-      badge: '2',
     },
     {
       id: '4',
       group: 3,
       icon: 'bookmark',
       title: 'Lagrede søk',
-      badge: '11',
     },
     {
       id: '5',

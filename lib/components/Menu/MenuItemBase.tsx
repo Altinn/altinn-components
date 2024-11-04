@@ -1,8 +1,8 @@
 import cx from 'classnames';
 import type { ElementType, ReactNode } from 'react';
-import { Badge } from '../Badge';
+import { Badge, type BadgeProps } from '../Badge';
 import { Icon, type IconName } from '../Icon';
-import styles from './menuItem.module.css';
+import styles from './menuItemBase.module.css';
 
 export type MenuItemColor = 'default' | 'subtle' | 'strong' | 'company' | 'person';
 export type MenuItemSize = 'sm' | 'md' | 'lg';
@@ -13,7 +13,7 @@ export interface MenuItemBaseProps {
   children?: ReactNode;
   size?: MenuItemSize;
   linkIcon?: IconName;
-  badge?: string | number | undefined;
+  badge?: BadgeProps;
   collapsible?: boolean;
   expanded?: boolean;
   selected?: boolean;
@@ -52,10 +52,10 @@ export const MenuItemBase = ({
     >
       <div className={styles.content}>
         {children}
-        {badge && <Badge>{badge}</Badge>}
+        {badge && <Badge {...badge} />}
       </div>
-      <div className={styles?.action}>
-        {applicableIcon && <Icon name={applicableIcon} className={styles?.actionIcon} />}
+      <div className={styles.action}>
+        {applicableIcon && <Icon name={applicableIcon} className={styles.actionIcon} />}
       </div>
     </Component>
   );

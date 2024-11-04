@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
 import { MenuOption } from './MenuOption';
 
 const meta = {
@@ -7,7 +6,10 @@ const meta = {
   component: MenuOption,
   tags: ['autodocs'],
   parameters: {},
-  args: {},
+  args: {
+    value: '',
+    label: 'Label',
+  },
 } satisfies Meta<typeof MenuOption>;
 
 export default meta;

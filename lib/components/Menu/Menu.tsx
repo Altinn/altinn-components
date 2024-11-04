@@ -8,7 +8,7 @@ import type { MenuItemColor, MenuItemSize } from './MenuItemBase';
 import { MenuItem, type MenuItemProps } from './MenuItem';
 import styles from './menu.module.css';
 
-export type MenuTheme = 'global' | 'neutral' | 'company' | 'person';
+export type MenuTheme = 'inherit' | 'global' | 'neutral' | 'company' | 'person';
 
 interface MenuItemsGroupProps {
   title?: string;
@@ -107,7 +107,7 @@ export const MenuItems = ({
 };
 
 export const Menu = ({
-  theme,
+  theme = 'inherit',
   defaultItemColor = 'subtle',
   defaultItemSize = 'sm',
   groups,
