@@ -1,0 +1,86 @@
+/* reset */
+
+.item {
+  border: none;
+
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+
+  line-height: normal;
+
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+
+  user-select: none;
+  cursor: pointer;
+}
+
+.item {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* sizes */
+
+.item[data-size="xs"] {
+  min-height: 36px;
+}
+
+.item[data-size="sm"] {
+  min-height: 44px;
+}
+
+.item[data-size="md"] {
+  min-height: 56px;
+}
+
+.item[data-size="lg"] {
+  min-height: 64px;
+}
+
+.item[data-size="xl"] {
+  min-height: 72px;
+}
+
+/* content (icon + header) */
+
+.content {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.5rem 0.625rem;
+}
+
+/* action */
+
+.action {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.625rem;
+}
+
+.linkIcon {
+  font-size: 1.5rem;
+}
+
+/* colors */
+
+.item {
+  background-color: var(--theme-background-default);
+  box-shadow: var(--ds-shadow-xs);
+}
+
+.item[data-color="accent"] {
+  background-color: var(--theme-surface-default);
+}
+
+.item[data-color="accent"]:hover {
+  background-color: var(--theme-surface-hover);
+}
