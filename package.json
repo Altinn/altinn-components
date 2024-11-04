@@ -8,6 +8,7 @@
     "storybook": "storybook dev -p 6006",
     "typecheck": "tsc --noEmit",
     "build": "tsc && vite build",
+    "format": "lint-staged",
     "dev": "vite",
     "build-storybook": "storybook build"
   },
