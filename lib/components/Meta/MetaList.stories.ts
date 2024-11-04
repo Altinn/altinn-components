@@ -1,23 +1,23 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 
-import { MetaList } from "./MetaList";
+import { MetaList } from './MetaList';
 
 const meta = {
-  title: "Meta/MetaList",
+  title: 'Meta/MetaList',
   component: MetaList,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
   args: {
     items: [
       {
-        label: "Meta 1",
+        label: 'Meta 1',
       },
       {
-        label: "Meta 2",
+        label: 'Meta 2',
       },
       {
-        label: "Meta 3",
+        label: 'Meta 3',
       },
     ],
   },

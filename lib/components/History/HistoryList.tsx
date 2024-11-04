@@ -1,6 +1,6 @@
-import { HistoryItem, HistoryItemProps } from "./HistoryItem";
-import styles from "./historyList.module.css";
-import cx from "classnames";
+import cx from 'classnames';
+import { HistoryItem, type HistoryItemProps } from './HistoryItem';
+import styles from './historyList.module.css';
 export interface HistoryProps {
   items?: HistoryItemProps[];
   className?: string;

@@ -1,6 +1,6 @@
-import type { ReactNode } from "react";
-import type { MetaItemSize, MetaItemVariant } from "./MetaItemBase";
-import styles from "./metaItem.module.css";
+import type { ReactNode } from 'react';
+import type { MetaItemSize, MetaItemVariant } from './MetaItemBase';
+import styles from './metaItem.module.css';
 
 export interface MetaItemLabelProps {
   /** Meta size */
@@ -11,11 +11,7 @@ export interface MetaItemLabelProps {
   children?: ReactNode;
 }
 
-export const MetaItemLabel = ({
-  size = "sm",
-  variant = "text",
-  children,
-}: MetaItemLabelProps) => {
+export const MetaItemLabel = ({ size = 'sm', variant = 'text', children }: MetaItemLabelProps) => {
   return (
     <span className={styles.label} data-variant={variant} data-size={size}>
       {children}

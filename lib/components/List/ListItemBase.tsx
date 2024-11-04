@@ -1,11 +1,11 @@
-import { ReactNode, ElementType } from "react";
-import { Icon, type IconName } from "../Icon";
-import { Badge, type BadgeProps } from "../Badge";
-import styles from "./listItemBase.module.css";
-import cx from "classnames";
+import cx from 'classnames';
+import type { ElementType, ReactNode } from 'react';
+import { Badge, type BadgeProps } from '../Badge';
+import { Icon, type IconName } from '../Icon';
+import styles from './listItemBase.module.css';
 
-export type ListItemColor = "default" | "accent";
-export type ListItemSize = "xs" | "sm" | "md" | "lg" | "xl";
+export type ListItemColor = 'default' | 'accent';
+export type ListItemSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 interface ListItemBaseProps {
   as?: ElementType;
@@ -35,16 +35,10 @@ export const ListItemBase = ({
   badge,
   ...rest
 }: ListItemBaseProps) => {
-  const Component = as || "a";
+  const Component = as || 'a';
 
   const applicableIcon =
-    collapsible && expanded
-      ? "chevron-up"
-      : collapsible
-      ? "chevron-down"
-      : href
-      ? "chevron-right"
-      : linkIcon;
+    collapsible && expanded ? 'chevron-up' : collapsible ? 'chevron-down' : href ? 'chevron-right' : linkIcon;
 
   return (
     <Component
@@ -61,9 +55,7 @@ export const ListItemBase = ({
       </div>
       <div className={styles.action}>
         {badge && <Badge {...badge} />}
-        {applicableIcon && (
-          <Icon name={applicableIcon} className={styles.linkIcon} />
-        )}
+        {applicableIcon && <Icon name={applicableIcon} className={styles.linkIcon} />}
       </div>
     </Component>
   );

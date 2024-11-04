@@ -1,24 +1,18 @@
-import { DialogBase } from "./DialogBase";
-import { DialogArticleBase } from "./DialogArticleBase";
-import { DialogHeader } from "./DialogHeader";
-import { DialogContent } from "./DialogContent";
-import { DialogFooter } from "./DialogFooter";
-import { DialogBodyBase } from "./DialogBodyBase";
-import { MetaBase } from "../Meta";
-import {
-  DialogAttachments,
-  type DialogAttachmentsProps,
-} from "./DialogAttachments";
-import { DialogSeenBy, type DialogSeenByProps } from "./DialogSeenBy";
-import {
-  DialogActivityLog,
-  type DialogActivityLogProps,
-} from "./DialogActivityLog";
+import { MetaBase } from '../Meta';
+import { DialogActivityLog, type DialogActivityLogProps } from './DialogActivityLog';
+import { DialogArticleBase } from './DialogArticleBase';
+import { DialogAttachments, type DialogAttachmentsProps } from './DialogAttachments';
+import { DialogBase } from './DialogBase';
+import { DialogBodyBase } from './DialogBodyBase';
+import { DialogContent } from './DialogContent';
+import { DialogFooter } from './DialogFooter';
+import { DialogHeader } from './DialogHeader';
+import { DialogSeenBy, type DialogSeenByProps } from './DialogSeenBy';
 
-import { DialogHistory, type DialogHistoryProps } from "./DialogHistory";
-import { DialogAction, type DialogButtonProps } from "./DialogAction";
-import { DialogNav, type DialogBackButtonProps } from "./DialogNav";
-import { DialogStatusProps } from "./DialogStatus";
+import { DialogAction, type DialogButtonProps } from './DialogAction';
+import { DialogHistory, type DialogHistoryProps } from './DialogHistory';
+import { type DialogBackButtonProps, DialogNav } from './DialogNav';
+import type { DialogStatusProps } from './DialogStatus';
 
 export interface DialogProps {
   /** Back button */
@@ -68,7 +62,7 @@ export const Dialog = ({
   title,
   sender,
   recipient,
-  summary = "Summary.",
+  summary = 'Summary.',
   body,
   action,
   attachments,
@@ -83,12 +77,7 @@ export const Dialog = ({
       <DialogArticleBase>
         <DialogHeader title={title} sender={sender} recipient={recipient} />
         <DialogBodyBase>
-          <DialogContent
-            updatedAt={updatedAt}
-            updatedByName={updatedByName}
-            summary={summary}
-            body={body}
-          />
+          <DialogContent updatedAt={updatedAt} updatedByName={updatedByName} summary={summary} body={body} />
           {attachments && <DialogAttachments {...attachments} />}
           {action && <DialogAction items={action} />}
 

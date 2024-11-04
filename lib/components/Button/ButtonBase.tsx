@@ -1,14 +1,13 @@
-import type { ElementType, ReactNode } from "react";
-import cx from "classnames";
+import cx from 'classnames';
+import type { ElementType, ReactNode } from 'react';
 
-import styles from "./buttonBase.module.css";
+import styles from './buttonBase.module.css';
 
-export type ButtonVariant = "solid" | "outline" | "dotted" | "text";
-export type ButtonSize = "sm" | "md" | "lg";
-export type ButtonColor = "primary" | "secondary";
+export type ButtonVariant = 'solid' | 'outline' | 'dotted' | 'text';
+export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonColor = 'primary' | 'secondary';
 
-export interface ButtonBaseProps
-  extends React.HTMLAttributes<HTMLButtonElement> {
+export interface ButtonBaseProps extends React.HTMLAttributes<HTMLButtonElement> {
   /**
    * Change the default rendered element for the one passed as a child, merging their props and behavior.
    * @default false
@@ -35,7 +34,7 @@ export const ButtonBase = ({
   variant,
   ...rest
 }: ButtonBaseProps) => {
-  const Component = as || "button";
+  const Component = as || 'button';
   return (
     <Component
       tabIndex={0}

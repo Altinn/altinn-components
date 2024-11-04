@@ -1,5 +1,5 @@
-import { ElementType, MouseEventHandler } from "react";
-import { MetaItem, type MetaItemSize } from "../Meta";
+import type { ElementType, MouseEventHandler } from 'react';
+import { MetaItem, type MetaItemSize } from '../Meta';
 
 export interface DialogSeenByProps {
   size?: MetaItemSize;
@@ -12,8 +12,8 @@ export interface DialogSeenByProps {
 }
 
 export const DialogSeenBy = ({
-  size = "xs",
-  label = "Seen by label",
+  size = 'xs',
+  label = 'Seen by label',
   seenByEndUser = false,
   seenByOthersCount = 0,
   ...rest
@@ -21,7 +21,7 @@ export const DialogSeenBy = ({
   const seen = seenByEndUser || seenByOthersCount > 0;
 
   return (
-    <MetaItem size={size} icon={seen ? "eye" : "eye-closed"} {...rest}>
+    <MetaItem size={size} icon={seen ? 'eye' : 'eye-closed'} {...rest}>
       {label}
     </MetaItem>
   );

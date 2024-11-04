@@ -1,2 +1,2 @@
-export * from "./AttachmentLink";
-export * from "./AttachmentList";
+export * from './AttachmentLink';
+export * from './AttachmentList';

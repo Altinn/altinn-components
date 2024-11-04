@@ -1,10 +1,10 @@
-import type { ElementType, ReactNode } from "react";
-import styles from "./metaItem.module.css";
-import cx from "classnames";
+import cx from 'classnames';
+import type { ElementType, ReactNode } from 'react';
+import styles from './metaItem.module.css';
 
-export type MetaItemVariant = "solid" | "outline" | "dotted" | "text";
-export type MetaItemSize = "xs" | "sm" | "md";
-export type MetaItemColor = "subtle";
+export type MetaItemVariant = 'solid' | 'outline' | 'dotted' | 'text';
+export type MetaItemSize = 'xs' | 'sm' | 'md';
+export type MetaItemColor = 'subtle';
 
 export interface MetaItemBaseProps {
   as?: ElementType;
@@ -19,7 +19,7 @@ export interface MetaItemBaseProps {
 
 export const MetaItemBase = ({
   as,
-  variant = "text",
+  variant = 'text',
   size,
   color,
   progress,
@@ -28,7 +28,7 @@ export const MetaItemBase = ({
   children,
   ...rest
 }: MetaItemBaseProps) => {
-  const Component = as || "span";
+  const Component = as || 'span';
 
   return (
     <Component

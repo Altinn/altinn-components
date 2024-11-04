@@ -1,17 +1,14 @@
-import { MetaItem } from "../Meta";
-import { AttachmentList, AttachmentLinkProps } from "../Attachment";
-import { Typography } from "../Typography";
-import styles from "./dialog.module.css";
+import { type AttachmentLinkProps, AttachmentList } from '../Attachment';
+import { MetaItem } from '../Meta';
+import { Typography } from '../Typography';
+import styles from './dialog.module.css';
 
 export interface DialogAttachmentsProps {
   title?: string;
   items?: AttachmentLinkProps[];
 }
 
-export const DialogAttachments = ({
-  title = "Attachments",
-  items,
-}: DialogAttachmentsProps) => {
+export const DialogAttachments = ({ title = 'Attachments', items }: DialogAttachmentsProps) => {
   if (!items?.length) {
     return null;
   }

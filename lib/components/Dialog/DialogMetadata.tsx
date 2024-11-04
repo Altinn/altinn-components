@@ -1,12 +1,9 @@
-import { DialogStatus, type DialogStatusProps } from "./DialogStatus";
-import { DialogUpdated } from "./DialogUpdated";
-import { DialogDue } from "./DialogDue";
-import { DialogSeenBy } from "./DialogSeenBy";
-import {
-  DialogActivityLog,
-  type DialogActivityLogProps,
-} from "./DialogActivityLog";
-import { MetaBase, MetaItem } from "../Meta";
+import { MetaBase, MetaItem } from '../Meta';
+import { DialogActivityLog, type DialogActivityLogProps } from './DialogActivityLog';
+import { DialogDue } from './DialogDue';
+import { DialogSeenBy } from './DialogSeenBy';
+import { DialogStatus, type DialogStatusProps } from './DialogStatus';
+import { DialogUpdated } from './DialogUpdated';
 
 export type DialogMetadataProps = {
   /** Dialog status */
@@ -43,41 +40,21 @@ export const DialogMetadata = ({
 }: DialogMetadataProps) => {
   return (
     <MetaBase size="xs">
-      {status ? (
-        <DialogStatus
-          size="xs"
-          value={status?.value}
-          label={status?.label || status?.value}
-        />
-      ) : (
-        ""
-      )}
-      {updatedAt ? (
-        <DialogUpdated
-          updatedAt={updatedAt}
-          updatedByName={updatedByName}
-          size="xs"
-        />
-      ) : (
-        ""
-      )}
-      {dueAt ? <DialogDue dueAt={dueAt} size="xs" /> : ""}
+      {status ? <DialogStatus size="xs" value={status?.value} label={status?.label || status?.value} /> : ''}
+      {updatedAt ? <DialogUpdated updatedAt={updatedAt} updatedByName={updatedByName} size="xs" /> : ''}
+      {dueAt ? <DialogDue dueAt={dueAt} size="xs" /> : ''}
       {seenByEndUser ||
         (seenByOthersCount > 0 && (
-          <DialogSeenBy
-            size="xs"
-            seenByEndUser={seenByEndUser}
-            seenByOthersCount={seenByOthersCount}
-          />
+          <DialogSeenBy size="xs" seenByEndUser={seenByEndUser} seenByOthersCount={seenByOthersCount} />
         ))}
       {attachmentsCount ? (
         <MetaItem size="xs" icon="paperclip">
           {attachmentsCount}
         </MetaItem>
       ) : (
-        ""
+        ''
       )}
-      {activityLog ? <DialogActivityLog {...activityLog} size="xs" /> : ""}
+      {activityLog ? <DialogActivityLog {...activityLog} size="xs" /> : ''}
     </MetaBase>
   );
 };

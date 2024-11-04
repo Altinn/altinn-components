@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
-import styles from "./historyBorder.module.css";
-import cx from "classnames";
+import cx from 'classnames';
+import type { ReactNode } from 'react';
+import styles from './historyBorder.module.css';
 
 export interface HistoryBorderProps {
   seen?: boolean;
@@ -8,11 +8,7 @@ export interface HistoryBorderProps {
   children?: ReactNode;
 }
 
-export const HistoryBorder = ({
-  seen = true,
-  className,
-  children,
-}: HistoryBorderProps) => {
+export const HistoryBorder = ({ seen = true, className, children }: HistoryBorderProps) => {
   return (
     <div className={cx(styles.border, className)} data-seen={seen}>
       {children}

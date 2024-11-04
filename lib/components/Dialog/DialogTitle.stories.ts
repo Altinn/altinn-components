@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 
-import { DialogTitle } from "./DialogTitle";
+import { DialogTitle } from './DialogTitle';
 
 const meta = {
-  title: "Dialog/DialogTitle",
+  title: 'Dialog/DialogTitle',
   component: DialogTitle,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
   args: {
-    children: "Title",
+    children: 'Title',
   },
 } satisfies Meta<typeof DialogTitle>;
 
@@ -22,12 +22,12 @@ export const Default: Story = {
 
 export const Seen: Story = {
   args: {
-    variant: "seen",
+    variant: 'seen',
   },
 };
 
 export const Trash: Story = {
   args: {
-    variant: "trash",
+    variant: 'trash',
   },
 };

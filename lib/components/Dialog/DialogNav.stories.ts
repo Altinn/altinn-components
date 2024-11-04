@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 
-import { DialogNav } from "./DialogNav";
+import { DialogNav } from './DialogNav';
 
 const meta = {
-  title: "Dialog/DialogNav",
+  title: 'Dialog/DialogNav',
   component: DialogNav,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
   args: {},
 } satisfies Meta<typeof DialogNav>;
@@ -17,8 +17,8 @@ type Story = StoryObj<typeof meta>;
 export const Draft: Story = {
   args: {
     status: {
-      value: "draft",
-      label: "Utkast",
+      value: 'draft',
+      label: 'Utkast',
     },
   },
 };
@@ -26,8 +26,8 @@ export const Draft: Story = {
 export const Sent: Story = {
   args: {
     status: {
-      value: "draft",
-      label: "Utkast",
+      value: 'draft',
+      label: 'Utkast',
     },
   },
 };
@@ -35,8 +35,8 @@ export const Sent: Story = {
 export const RequiresAttention: Story = {
   args: {
     status: {
-      value: "requires-attention",
-      label: "Utkast",
+      value: 'requires-attention',
+      label: 'Utkast',
     },
   },
 };
@@ -44,8 +44,8 @@ export const RequiresAttention: Story = {
 export const InProgress: Story = {
   args: {
     status: {
-      value: "in-progress",
-      label: "Utkast",
+      value: 'in-progress',
+      label: 'Utkast',
     },
   },
 };

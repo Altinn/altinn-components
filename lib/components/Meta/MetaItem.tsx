@@ -1,13 +1,9 @@
-import type { ReactNode } from "react";
+import type { ReactNode } from 'react';
 
-import {
-  MetaItemBase,
-  type MetaItemSize,
-  type MetaItemVariant,
-} from "./MetaItemBase";
-import { MetaItemLabel } from "./MetaItemLabel";
-import { MetaItemMedia } from "./MetaItemMedia";
-import type { IconName } from "../Icon";
+import type { IconName } from '../Icon';
+import { MetaItemBase, type MetaItemSize, type MetaItemVariant } from './MetaItemBase';
+import { MetaItemLabel } from './MetaItemLabel';
+import { MetaItemMedia } from './MetaItemMedia';
 
 export interface MetaItemProps {
   /** Meta size */
@@ -20,16 +16,10 @@ export interface MetaItemProps {
   children?: ReactNode;
 }
 
-export const MetaItem = ({
-  size = "xs",
-  variant = "text",
-  icon,
-  children,
-  ...rest
-}: MetaItemProps) => {
+export const MetaItem = ({ size = 'xs', variant = 'text', icon, children, ...rest }: MetaItemProps) => {
   return (
     <MetaItemBase variant={variant} size={size} {...rest}>
-      {icon ? <MetaItemMedia icon={icon} size={size} /> : ""}
+      {icon ? <MetaItemMedia icon={icon} size={size} /> : ''}
       <MetaItemLabel variant={variant} size={size}>
         {children}
       </MetaItemLabel>

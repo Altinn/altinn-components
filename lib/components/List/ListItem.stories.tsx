@@ -1,22 +1,22 @@
-import { Fragment, useState } from "react";
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
+import { Fragment, useState } from 'react';
 
-import { MetaItem } from "../Meta";
-import { ListBase, ListItem, List } from "./";
+import { MetaItem } from '../Meta';
+import { List, ListBase, ListItem } from './';
 
-const sizes = ["lg", "md", "sm", "xs"];
+const sizes = ['lg', 'md', 'sm', 'xs'];
 
 const meta = {
-  title: "List/ListItem",
+  title: 'List/ListItem',
   component: ListItem,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
   args: {
-    title: "Title",
-    description: "Description",
-    size: "md",
-    href: "#",
+    title: 'Title',
+    description: 'Description',
+    size: 'md',
+    href: '#',
   },
 } satisfies Meta<typeof ListItem>;
 
@@ -29,22 +29,22 @@ export const Default: Story = {
 
 export const Icon: Story = {
   args: {
-    icon: "teddy-bear",
+    icon: 'teddy-bear',
   },
 };
 
 export const IconAccent: Story = {
   args: {
-    color: "accent",
-    icon: "teddy-bear",
+    color: 'accent',
+    icon: 'teddy-bear',
   },
 };
 
 export const Person: Story = {
   args: {
     avatar: {
-      type: "person",
-      name: "Erik Huseklepp",
+      type: 'person',
+      name: 'Erik Huseklepp',
     },
   },
 };
@@ -52,8 +52,8 @@ export const Person: Story = {
 export const Company: Story = {
   args: {
     avatar: {
-      type: "company",
-      name: "Sportsklubben Brann",
+      type: 'company',
+      name: 'Sportsklubben Brann',
     },
   },
 };
@@ -61,10 +61,10 @@ export const Company: Story = {
 export const Logo: Story = {
   args: {
     avatar: {
-      type: "company",
-      name: "Politiets sikkerhetstjeneste",
+      type: 'company',
+      name: 'Politiets sikkerhetstjeneste',
       imageUrl:
-        "https://media.licdn.com/dms/image/v2/D4D0BAQH7Yv86kmHN5g/company-logo_200_200/company-logo_200_200/0/1688735908848?e=1738195200&v=beta&t=f-Mkzd03bqzdQN4IT0h89VQ9_Jri1iJ6XphYYnjsgEo",
+        'https://media.licdn.com/dms/image/v2/D4D0BAQH7Yv86kmHN5g/company-logo_200_200/company-logo_200_200/0/1688735908848?e=1738195200&v=beta&t=f-Mkzd03bqzdQN4IT0h89VQ9_Jri1iJ6XphYYnjsgEo',
     },
   },
 };
@@ -74,16 +74,16 @@ export const PeopleGroup: Story = {
     avatarGroup: {
       items: [
         {
-          type: "person",
-          name: "Albert Åberg",
+          type: 'person',
+          name: 'Albert Åberg',
         },
         {
-          type: "person",
-          name: "Birger Meling",
+          type: 'person',
+          name: 'Birger Meling',
         },
         {
-          type: "person",
-          name: "Celine Dion",
+          type: 'person',
+          name: 'Celine Dion',
         },
       ],
     },
@@ -95,16 +95,16 @@ export const CompanyGroup: Story = {
     avatarGroup: {
       items: [
         {
-          type: "company",
-          name: "Albert Åberg",
+          type: 'company',
+          name: 'Albert Åberg',
         },
         {
-          type: "company",
-          name: "Birger Meling",
+          type: 'company',
+          name: 'Birger Meling',
         },
         {
-          type: "company",
-          name: "Celine Dion",
+          type: 'company',
+          name: 'Celine Dion',
         },
       ],
     },
@@ -114,14 +114,14 @@ export const CompanyGroup: Story = {
 export const LongTitle: Story = {
   args: {
     avatar: {
-      type: "company",
-      name: "Direktoratet for samfunnssikkerhet og beredskap",
+      type: 'company',
+      name: 'Direktoratet for samfunnssikkerhet og beredskap',
       imageUrl:
-        "https://media.licdn.com/dms/image/v2/C510BAQHlQiOWI4f45w/company-logo_200_200/company-logo_200_200/0/1631389121726?e=1738195200&v=beta&t=Q1P8kOwpgLvoqHBxyrHCaYd2upNkPQVi2zSSxJzbdCA",
+        'https://media.licdn.com/dms/image/v2/C510BAQHlQiOWI4f45w/company-logo_200_200/company-logo_200_200/0/1631389121726?e=1738195200&v=beta&t=Q1P8kOwpgLvoqHBxyrHCaYd2upNkPQVi2zSSxJzbdCA',
     },
     title:
-      "Samtykke for å reparere elektrisk utstyr hvis bruk er forbundet med særlig risiko, herunder elektromedisinsk utstyr",
-    description: "Direktoratet for samfunnssikkerhet og beredskap",
+      'Samtykke for å reparere elektrisk utstyr hvis bruk er forbundet med særlig risiko, herunder elektromedisinsk utstyr',
+    description: 'Direktoratet for samfunnssikkerhet og beredskap',
   },
 };
 
@@ -149,24 +149,24 @@ export const Collapsible = (args) => {
 
   const people = [
     {
-      name: "Per Ove Ludvigsen",
-      role: "Sportlig leder",
-      rights: "Admin",
+      name: 'Per Ove Ludvigsen',
+      role: 'Sportlig leder',
+      rights: 'Admin',
     },
     {
-      name: "Eirik Horneland",
-      role: "Trener",
-      rights: "Admin",
+      name: 'Eirik Horneland',
+      role: 'Trener',
+      rights: 'Admin',
     },
     {
-      name: "Erik Huseklepp",
-      role: "Assistenttrener",
-      rights: "Lese og skrive",
+      name: 'Erik Huseklepp',
+      role: 'Assistenttrener',
+      rights: 'Lese og skrive',
     },
     {
-      name: "Hassan El Fakiri",
-      role: "Toppspillerutvikler",
-      rights: "Ingen rettigheter",
+      name: 'Hassan El Fakiri',
+      role: 'Toppspillerutvikler',
+      rights: 'Ingen rettigheter',
     },
   ];
 
@@ -174,12 +174,12 @@ export const Collapsible = (args) => {
     return {
       avatar: {
         ...item,
-        type: "person",
+        type: 'person',
       },
       title: item?.name,
       description: item?.role,
       badge: { label: item?.rights },
-      linkIcon: "menu-elipsis-horizontal",
+      linkIcon: 'menu-elipsis-horizontal',
     };
   });
 
@@ -187,7 +187,7 @@ export const Collapsible = (args) => {
     items: people?.map((item) => {
       return {
         name: item?.name,
-        type: "person",
+        type: 'person',
       };
     }),
   };
@@ -201,7 +201,7 @@ export const Collapsible = (args) => {
         expanded={expanded}
         onClick={onToggle}
         as="button"
-      ></ListItem>
+      />
       {expanded && <List size="xs" items={items} />}
     </Fragment>
   );

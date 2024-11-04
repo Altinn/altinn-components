@@ -1,12 +1,12 @@
-import { Fragment } from "react";
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
+import { Fragment } from 'react';
 
-import { MetaItem } from "../Meta";
-import { ListBase, ListItem } from "../List";
+import { ListBase, ListItem } from '../List';
+import { MetaItem } from '../Meta';
 
-const sizes = ["lg", "md", "sm", "xs"];
-import { DialogListItem } from "./DialogListItem";
+const sizes = ['lg', 'md', 'sm', 'xs'];
+import { DialogListItem } from './DialogListItem';
 
 const ListItemSizes = (args) => {
   return (
@@ -17,11 +17,7 @@ const ListItemSizes = (args) => {
         {sizes?.map((size) => {
           return (
             <Fragment key={size}>
-              <DialogListItem
-                {...args}
-                size={size}
-                selected={size === args?.size}
-              />
+              <DialogListItem {...args} size={size} selected={size === args?.size} />
               <MetaItem>{size}</MetaItem>
             </Fragment>
           );
@@ -32,23 +28,23 @@ const ListItemSizes = (args) => {
 };
 
 const meta = {
-  title: "Dialog/DialogListItem",
+  title: 'Dialog/DialogListItem',
   component: ListItemSizes,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
   args: {
-    title: "Title",
-    summary: "Summary",
+    title: 'Title',
+    summary: 'Summary',
     sender: {
-      type: "company",
-      name: "Sender name",
+      type: 'company',
+      name: 'Sender name',
     },
     recipient: {
-      type: "person",
-      name: "Recipient name",
+      type: 'person',
+      name: 'Recipient name',
     },
     status: {
-      value: "completed",
+      value: 'completed',
     },
   },
 } satisfies Meta<typeof DialogListItem>;
@@ -66,10 +62,10 @@ export const TouchedBy: Story = {
   args: {
     touchedBy: [
       {
-        name: "Lars",
+        name: 'Lars',
       },
       {
-        name: "Trine",
+        name: 'Trine',
       },
     ],
   },
@@ -78,7 +74,7 @@ export const TouchedBy: Story = {
 export const Draft: Story = {
   args: {
     status: {
-      value: "draft",
+      value: 'draft',
     },
   },
 };
@@ -86,7 +82,7 @@ export const Draft: Story = {
 export const Sent: Story = {
   args: {
     status: {
-      value: "sent",
+      value: 'sent',
     },
   },
 };
@@ -94,7 +90,7 @@ export const Sent: Story = {
 export const RequiresAttention: Story = {
   args: {
     status: {
-      value: "requires-attention",
+      value: 'requires-attention',
     },
   },
 };
@@ -102,7 +98,7 @@ export const RequiresAttention: Story = {
 export const InProgress: Story = {
   args: {
     status: {
-      value: "in-progress",
+      value: 'in-progress',
     },
   },
 };
@@ -110,7 +106,7 @@ export const InProgress: Story = {
 export const Completed: Story = {
   args: {
     status: {
-      value: "completed",
+      value: 'completed',
     },
   },
 };
@@ -123,16 +119,16 @@ export const GroupedView: Story = {
 
 export const LongSummary: Story = {
   args: {
-    title: "Long summary",
+    title: 'Long summary',
     summary:
-      "Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Nullam id dolor id nibh ultricies vehicula ut id elit.\n\nCras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur. Maecenas faucibus mollis interdum. Nullam id dolor id nibh ultricies vehicula ut id elit. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+      'Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Nullam id dolor id nibh ultricies vehicula ut id elit.\n\nCras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur. Maecenas faucibus mollis interdum. Nullam id dolor id nibh ultricies vehicula ut id elit. Nullam id dolor id nibh ultricies vehicula ut id elit.',
   },
 };
 
 export const LongTitle: Story = {
   args: {
     title:
-      "Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur. Maecenas faucibus mollis interdum. Nullam id dolor id nibh ultricies vehicula ut id elit. Nullam id dolor id nibh ultricies vehicula ut id elit.",
-    summary: "Short summary.",
+      'Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur. Maecenas faucibus mollis interdum. Nullam id dolor id nibh ultricies vehicula ut id elit. Nullam id dolor id nibh ultricies vehicula ut id elit.',
+    summary: 'Short summary.',
   },
 };

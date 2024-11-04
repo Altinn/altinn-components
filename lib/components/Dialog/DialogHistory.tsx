@@ -1,15 +1,12 @@
-import { DialogSectionBase } from "./DialogSectionBase";
-import { HistoryList, type HistoryItemProps } from "../History/";
+import { type HistoryItemProps, HistoryList } from '../History/';
+import { DialogSectionBase } from './DialogSectionBase';
 
 export interface DialogHistoryProps {
   title?: string;
   items?: HistoryItemProps[];
 }
 
-export const DialogHistory = ({
-  title = "History",
-  items,
-}: DialogHistoryProps) => {
+export const DialogHistory = ({ title = 'History', items }: DialogHistoryProps) => {
   if (!items) {
     return null;
   }

@@ -1,20 +1,20 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 
-import { DialogHeadings } from "./DialogHeadings";
+import { DialogHeadings } from './DialogHeadings';
 
 const meta = {
-  title: "Dialog/DialogHeadings",
+  title: 'Dialog/DialogHeadings',
   component: DialogHeadings,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
   args: {
     sender: {
-      name: "Sender",
+      name: 'Sender',
     },
     recipient: {
-      type: "person",
-      name: "Recipient",
+      type: 'person',
+      name: 'Recipient',
     },
   },
 } satisfies Meta<typeof DialogHeadings>;

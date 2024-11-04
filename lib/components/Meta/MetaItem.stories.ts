@@ -1,17 +1,17 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 
-import { MetaItem } from "./MetaItem";
+import { MetaItem } from './MetaItem';
 
 const meta = {
-  title: "Meta/MetaItem",
+  title: 'Meta/MetaItem',
   component: MetaItem,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
   args: {
-    children: "Label",
+    children: 'Label',
   },
 } satisfies Meta<typeof MetaItem>;
 
@@ -23,5 +23,5 @@ export const Default: Story = {
 };
 
 export const Icon: Story = {
-  args: { icon: "clock-dashed" },
+  args: { icon: 'clock-dashed' },
 };

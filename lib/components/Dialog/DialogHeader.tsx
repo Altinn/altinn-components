@@ -1,10 +1,6 @@
-import { DialogHeaderBase } from "./DialogHeaderBase";
-import { DialogTitle } from "./DialogTitle";
-import {
-  DialogHeadings,
-  type DialogSenderProps,
-  type DialogRecipientProps,
-} from "./DialogHeadings";
+import { DialogHeaderBase } from './DialogHeaderBase';
+import { DialogHeadings, type DialogRecipientProps, type DialogSenderProps } from './DialogHeadings';
+import { DialogTitle } from './DialogTitle';
 
 export interface DialogHeaderProps {
   title?: string;
@@ -12,11 +8,7 @@ export interface DialogHeaderProps {
   recipient?: DialogRecipientProps;
 }
 
-export const DialogHeader = ({
-  title,
-  sender,
-  recipient,
-}: DialogHeaderProps) => {
+export const DialogHeader = ({ title, sender, recipient }: DialogHeaderProps) => {
   return (
     <DialogHeaderBase>
       <DialogTitle size="xl">{title}</DialogTitle>

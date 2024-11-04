@@ -1,14 +1,10 @@
-import type { ElementType, ReactNode } from "react";
-import type { AvatarGroupProps, AvatarProps } from "../Avatar";
-import type { BadgeProps } from "../Avatar";
-import {
-  ListItemBase,
-  type ListItemSize,
-  type ListItemColor,
-} from "./ListItemBase";
-import { ListItemMedia } from "./ListItemMedia";
-import { ListItemLabel } from "./ListItemLabel";
-import type { IconName } from "../Icon";
+import type { ElementType, ReactNode } from 'react';
+import type { AvatarGroupProps, AvatarProps } from '../Avatar';
+import type { BadgeProps } from '../Avatar';
+import type { IconName } from '../Icon';
+import { ListItemBase, type ListItemColor, type ListItemSize } from './ListItemBase';
+import { ListItemLabel } from './ListItemLabel';
+import { ListItemMedia } from './ListItemMedia';
 
 export interface ListItemProps {
   id: string;
@@ -49,12 +45,12 @@ export interface ListItemProps {
 }
 
 export const ListItem = ({
-  as = "a",
+  as = 'a',
   color,
   children,
   selected,
   disabled,
-  size = "sm",
+  size = 'sm',
   icon,
   avatar,
   avatarGroup,
@@ -64,21 +60,8 @@ export const ListItem = ({
   ...rest
 }: ListItemProps) => {
   return (
-    <ListItemBase
-      as={as}
-      size={size}
-      badge={badge}
-      color={color}
-      selected={selected}
-      {...rest}
-    >
-      <ListItemMedia
-        color={color}
-        size={size}
-        icon={icon}
-        avatar={avatar}
-        avatarGroup={avatarGroup}
-      />
+    <ListItemBase as={as} size={size} badge={badge} color={color} selected={selected} {...rest}>
+      <ListItemMedia color={color} size={size} icon={icon} avatar={avatar} avatarGroup={avatarGroup} />
       <ListItemLabel title={title} description={description} size={size}>
         {children}
       </ListItemLabel>

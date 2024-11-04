@@ -1,16 +1,12 @@
-import cx from "classnames";
-import styles from "./progressIcon.module.css";
+import cx from 'classnames';
+import styles from './progressIcon.module.css';
 export interface ProgressIconsProps {
   value?: number;
   total?: number;
   className?: string;
 }
 
-export const ProgressIcon = ({
-  value = 0,
-  total = 100,
-  className,
-}: ProgressIconsProps) => {
+export const ProgressIcon = ({ value = 0, total = 100, className }: ProgressIconsProps) => {
   const percentage = Math.round((value / total) * 100);
 
   if (value === total) {
@@ -23,6 +19,9 @@ export const ProgressIcon = ({
         xmlns="http://www.w3.org/2000/svg"
         className={styles.complete}
       >
+        <title>
+          Progress {value} of {total}
+        </title>
         <path
           fill="currentColor"
           fillRule="evenodd"
@@ -34,14 +33,8 @@ export const ProgressIcon = ({
   }
 
   const progressStyle = {
-    "--progress": percentage + "%",
+    '--progress': percentage + '%',
   };
 
-  return (
-    <div
-      className={cx(styles.progress, className)}
-      style={progressStyle}
-      data-value={`${percentage}%`}
-    />
-  );
+  return <div className={cx(styles.progress, className)} style={progressStyle} data-value={`${percentage}%`} />;
 };

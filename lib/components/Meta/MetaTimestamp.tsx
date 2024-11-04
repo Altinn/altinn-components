@@ -1,13 +1,9 @@
-import type { ReactNode } from "react";
+import type { ReactNode } from 'react';
 
-import {
-  MetaItemBase,
-  type MetaItemSize,
-  type MetaItemVariant,
-} from "./MetaItemBase";
-import { MetaItemLabel } from "./MetaItemLabel";
-import { MetaItemMedia } from "./MetaItemMedia";
-import type { IconName } from "../Icon";
+import type { IconName } from '../Icon';
+import { MetaItemBase, type MetaItemSize, type MetaItemVariant } from './MetaItemBase';
+import { MetaItemLabel } from './MetaItemLabel';
+import { MetaItemMedia } from './MetaItemMedia';
 
 export interface MetaTimestampProps {
   /** Meta size */
@@ -22,16 +18,10 @@ export interface MetaTimestampProps {
   children?: ReactNode;
 }
 
-export const MetaTimestamp = ({
-  size = "xs",
-  variant = "text",
-  datetime,
-  icon,
-  children,
-}: MetaTimestampProps) => {
+export const MetaTimestamp = ({ size = 'xs', variant = 'text', datetime, icon, children }: MetaTimestampProps) => {
   return (
     <MetaItemBase as="time" variant={variant} datetime={datetime} size={size}>
-      {icon ? <MetaItemMedia size={size} icon={icon} /> : ""}
+      {icon ? <MetaItemMedia size={size} icon={icon} /> : ''}
       <MetaItemLabel variant={variant} size={size}>
         {children}
       </MetaItemLabel>

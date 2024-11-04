@@ -1,8 +1,8 @@
-import { ReactNode } from "react";
-import styles from "./typography.module.css";
-import cx from "classnames";
+import cx from 'classnames';
+import type { ReactNode } from 'react';
+import styles from './typography.module.css';
 
-export type TypographySize = "md" | "lg" | "xl";
+export type TypographySize = 'md' | 'lg' | 'xl';
 
 export interface TypographyProps {
   size?: TypographySize;
@@ -10,11 +10,7 @@ export interface TypographyProps {
   children?: ReactNode;
 }
 
-export const Typography = ({
-  size = "md",
-  className,
-  children,
-}: TypographyProps) => {
+export const Typography = ({ size = 'md', className, children }: TypographyProps) => {
   return (
     <div className={cx(styles.typography, className)} data-size={size}>
       {children}

@@ -1,13 +1,13 @@
-import { useState } from "react";
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
+import { useState } from 'react';
 
-import { DialogSeenBy } from "./DialogSeenBy";
+import { DialogSeenBy } from './DialogSeenBy';
 
 const meta = {
-  title: "Dialog/DialogSeenBy",
+  title: 'Dialog/DialogSeenBy',
   component: DialogSeenBy,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
   args: {
     seenByEndUser: true,
@@ -37,11 +37,11 @@ export const seenByEndUserAndOthers: Story = {
 
 export const ExampleLabel = ({ seenByEndUser, seenByOthersCount }) => {
   let seen = false;
-  let seenByLabel = [];
+  const seenByLabel = [];
 
   if (seenByEndUser) {
     seen = true;
-    seenByLabel.push("deg");
+    seenByLabel.push('deg');
   }
 
   if (seenByOthersCount) {
@@ -49,12 +49,6 @@ export const ExampleLabel = ({ seenByEndUser, seenByOthersCount }) => {
     seenByLabel.push(seenByOthersCount);
   }
 
-  const label = "Sett av " + seenByLabel.join("+");
-  return (
-    <DialogSeenBy
-      seenByEndUser={seenByEndUser}
-      seenByOthersCount={seenByOthersCount}
-      label={label}
-    />
-  );
+  const label = 'Sett av ' + seenByLabel.join('+');
+  return <DialogSeenBy seenByEndUser={seenByEndUser} seenByOthersCount={seenByOthersCount} label={label} />;
 };

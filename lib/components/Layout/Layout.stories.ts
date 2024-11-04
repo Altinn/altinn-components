@@ -1,70 +1,70 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { Layout } from "./Layout";
-import type { MenuProps } from "../Menu";
+import type { Meta, StoryObj } from '@storybook/react';
+import type { MenuProps } from '../Menu';
+import { Layout } from './Layout';
 
 const menu: MenuProps = {
   groups: {},
   items: [
     {
-      id: "1",
+      id: '1',
       group: 1,
-      size: "lg",
-      icon: "inbox",
-      title: "Innboks",
+      size: 'lg',
+      icon: 'inbox',
+      title: 'Innboks',
     },
     {
-      id: "2",
+      id: '2',
       group: 2,
-      icon: "doc-pencil",
-      title: "Utkast",
+      icon: 'doc-pencil',
+      title: 'Utkast',
     },
     {
-      id: "3",
+      id: '3',
       group: 2,
-      icon: "file-checkmark",
+      icon: 'file-checkmark',
       selected: true,
-      title: "Sendt",
+      title: 'Sendt',
     },
     {
-      id: "4",
+      id: '4',
       group: 3,
-      icon: "bookmark",
-      title: "Lagrede søk",
+      icon: 'bookmark',
+      title: 'Lagrede søk',
     },
     {
-      id: "5",
+      id: '5',
       group: 4,
-      icon: "archive",
-      title: "Arkivert",
+      icon: 'archive',
+      title: 'Arkivert',
     },
     {
-      id: "6",
+      id: '6',
       group: 4,
       disabled: true,
-      icon: "trash",
-      title: "Papirkurv",
+      icon: 'trash',
+      title: 'Papirkurv',
     },
   ],
 };
 
 const meta = {
-  title: "Layout/Layout",
+  title: 'Layout/Layout',
   component: Layout,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {
-    layout: "fullscreen",
+    layout: 'fullscreen',
   },
   args: {
     header: {
       menu: {
         search: {
-          name: "search",
-          placeholder: "Søk i Altinn",
+          name: 'search',
+          placeholder: 'Søk i Altinn',
         },
         accounts: [
           {
-            type: "person",
-            name: "Aurora Mikalsen",
+            type: 'person',
+            name: 'Aurora Mikalsen',
             selected: true,
           },
         ],
@@ -88,7 +88,7 @@ export const GlobalCompany: Story = {
     sidebar: {
       menu: {
         ...menu,
-        defaultItemColor: "company",
+        defaultItemColor: 'company',
       },
     },
   },
@@ -99,7 +99,7 @@ export const GlobalPerson: Story = {
     sidebar: {
       menu: {
         ...menu,
-        defaultItemColor: "person",
+        defaultItemColor: 'person',
       },
     },
   },
@@ -107,18 +107,18 @@ export const GlobalPerson: Story = {
 
 export const Neutral: Story = {
   args: {
-    theme: "neutral",
+    theme: 'neutral',
   },
 };
 
 export const Company: Story = {
   args: {
-    theme: "company",
+    theme: 'company',
   },
 };
 
 export const Person: Story = {
   args: {
-    theme: "person",
+    theme: 'person',
   },
 };

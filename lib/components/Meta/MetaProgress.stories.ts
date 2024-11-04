@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 
-import { MetaProgress } from "./MetaProgress";
+import { MetaProgress } from './MetaProgress';
 
 const meta = {
-  title: "Meta/MetaProgress",
+  title: 'Meta/MetaProgress',
   component: MetaProgress,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
   args: {},
 } satisfies Meta<typeof MetaProgress>;
@@ -19,13 +19,13 @@ type Story = StoryObj<typeof meta>;
 export const InProgress: Story = {
   args: {
     progress: 75,
-    children: "Under arbeid",
+    children: 'Under arbeid',
   },
 };
 
 export const ProgressComplete: Story = {
   args: {
     progress: 100,
-    children: "Avsluttet",
+    children: 'Avsluttet',
   },
 };
