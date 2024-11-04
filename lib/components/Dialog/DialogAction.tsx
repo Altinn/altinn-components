@@ -1,8 +1,8 @@
-import { MouseEventHandler } from "react";
-import { Button, ComboButton } from "../Button";
-import styles from "./dialog.module.css";
+import type { MouseEventHandler } from 'react';
+import { Button, ComboButton } from '../Button';
+import styles from './dialog.module.css';
 
-export type DialogButtonType = "primary" | "secondary";
+export type DialogButtonType = 'primary' | 'secondary';
 
 export interface DialogActionButtonProps {
   type?: DialogButtonType;
@@ -15,12 +15,7 @@ export interface DialogActionProps {
   maxItems?: number;
 }
 
-export const DialogActionButton = ({
-  variant = "outline",
-  loading = false,
-  label,
-  onClick,
-}) => {
+export const DialogActionButton = ({ variant = 'outline', loading = false, label, onClick }) => {
   return (
     <Button onClick={onClick} color="primary" variant={variant} size="lg">
       {item?.label}
@@ -50,10 +45,10 @@ export const DialogAction = ({ items, maxItems = 2 }: DialogActionProps) => {
       {items?.map((item, index) => {
         return (
           <Button
-            key={"button" + index}
+            key={'button' + index}
             onClick={item?.onClick}
             color="primary"
-            variant={index ? "outline" : "solid"}
+            variant={index ? 'outline' : 'solid'}
             size="lg"
           >
             {item?.label}

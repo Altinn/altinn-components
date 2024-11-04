@@ -1,2 +1,2 @@
-export * from "./DialogMetadata";
-export * from "./DialogListItem";
+export * from './DialogMetadata';
+export * from './DialogListItem';

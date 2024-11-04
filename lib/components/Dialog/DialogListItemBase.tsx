@@ -1,9 +1,9 @@
-import type { ReactNode, ElementType } from "react";
-import type { DialogStatusProps } from "./DialogStatus";
-import { DialogSelect, type DialogSelectProps } from "./DialogSelect";
-import styles from "./dialogListItem.module.css";
+import type { ElementType, ReactNode } from 'react';
+import { DialogSelect, type DialogSelectProps } from './DialogSelect';
+import type { DialogStatusProps } from './DialogStatus';
+import styles from './dialogListItem.module.css';
 
-export type DialogListItemSize = "xs" | "sm" | "md" | "lg" | "xl";
+export type DialogListItemSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export type DialogListItemBaseProps = {
   /** Render as */
@@ -29,7 +29,7 @@ export type DialogListItemBaseProps = {
  */
 
 export const DialogListItemBase = ({
-  as = "a",
+  as = 'a',
   size,
   href,
   select,
@@ -38,19 +38,14 @@ export const DialogListItemBase = ({
   children,
   ...rest
 }: DialogListItemBaseProps) => {
-  const Component = as || "button";
+  const Component = as || 'button';
 
   return (
-    <article
-      className={styles.item}
-      data-size={size}
-      data-status={status?.value}
-      aria-selected={selected}
-    >
+    <article className={styles.item} data-size={size} data-status={status?.value} aria-selected={selected}>
       <Component className={styles.link} data-size={size} href={href} {...rest}>
         {children}
       </Component>
-      {select ? <DialogSelect className={styles.select} {...select} /> : ""}
+      {select ? <DialogSelect className={styles.select} {...select} /> : ''}
     </article>
   );
 };

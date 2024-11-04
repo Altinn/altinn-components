@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
-import styles from "./dialogBorder.module.css";
-import cx from "classnames";
-import { DialogListItemSize } from "./DialogListItemBase";
+import cx from 'classnames';
+import type { ReactNode } from 'react';
+import type { DialogListItemSize } from './DialogListItemBase';
+import styles from './dialogBorder.module.css';
 
 export interface DialogBorderProps {
   seen?: boolean;
@@ -10,18 +10,9 @@ export interface DialogBorderProps {
   children?: ReactNode;
 }
 
-export const DialogBorder = ({
-  seen = true,
-  size = "lg",
-  className,
-  children,
-}: DialogBorderProps) => {
+export const DialogBorder = ({ seen = true, size = 'lg', className, children }: DialogBorderProps) => {
   return (
-    <div
-      className={cx(styles.border, className)}
-      data-size={size}
-      data-seen={seen}
-    >
+    <div className={cx(styles.border, className)} data-size={size} data-seen={seen}>
       {children}
     </div>
   );

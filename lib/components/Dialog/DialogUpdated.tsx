@@ -1,4 +1,4 @@
-import { MetaTimestamp, type MetaItemSize } from "../Meta";
+import { type MetaItemSize, MetaTimestamp } from '../Meta';
 
 export interface DialogUpdatedProps {
   size?: MetaItemSize;
@@ -7,18 +7,12 @@ export interface DialogUpdatedProps {
   label?: string;
 }
 
-export const DialogUpdated = ({
-  size,
-  updatedAt,
-  updatedByName,
-}: DialogUpdatedProps) => {
+export const DialogUpdated = ({ size, updatedAt, updatedByName }: DialogUpdatedProps) => {
   if (!updatedAt) {
     return;
   }
 
-  const label = updatedByName
-    ? [updatedByName, updatedAt].join(", ")
-    : updatedAt;
+  const label = updatedByName ? [updatedByName, updatedAt].join(', ') : updatedAt;
 
   return (
     <MetaTimestamp size={size} datetime={updatedAt}>

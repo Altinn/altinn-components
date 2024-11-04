@@ -1,22 +1,15 @@
-import type { ElementType } from "react";
-import styles from "./dialogListItem.module.css";
-import {
-  DialogHeadings,
-  type DialogSenderProps,
-  type DialogRecipientProps,
-} from "./DialogHeadings";
-import { DialogTitle } from "./DialogTitle";
-import { DialogTouched, type DialogTouchedByProps } from "./DialogTouched";
-import type { DialogStatusProps } from "./DialogStatus";
-import type { DialogSelectProps } from "./DialogSelect";
+import type { ElementType } from 'react';
+import { DialogHeadings, type DialogRecipientProps, type DialogSenderProps } from './DialogHeadings';
+import type { DialogSelectProps } from './DialogSelect';
+import type { DialogStatusProps } from './DialogStatus';
+import { DialogTitle } from './DialogTitle';
+import { DialogTouched, type DialogTouchedByProps } from './DialogTouched';
+import styles from './dialogListItem.module.css';
 
-import {
-  DialogListItemBase,
-  type DialogListItemSize,
-} from "./DialogListItemBase";
+import { DialogListItemBase, type DialogListItemSize } from './DialogListItemBase';
 
-import { DialogMetadata } from "./DialogMetadata";
-import { DialogBorder } from "./DialogBorder";
+import { DialogBorder } from './DialogBorder';
+import { DialogMetadata } from './DialogMetadata';
 
 export type DialogListItemProps = {
   /** Render as */
@@ -64,8 +57,8 @@ export type DialogListItemProps = {
  */
 
 export const DialogListItem = ({
-  as = "a",
-  size = "lg",
+  as = 'a',
+  size = 'lg',
   href,
   select,
   selected,
@@ -85,26 +78,13 @@ export const DialogListItem = ({
   ...rest
 }: DialogListItemProps) => {
   return (
-    <DialogListItemBase
-      as={as}
-      size={size}
-      href={href}
-      select={select}
-      selected={selected}
-      status={status}
-      {...rest}
-    >
+    <DialogListItemBase as={as} size={size} href={href} select={select} selected={selected} status={status} {...rest}>
       <DialogBorder className={styles.border} size={size} seen={seenByEndUser}>
         <header data-size={size} className={styles.header}>
-          <DialogTitle size={size} variant={seenByEndUser && "seen"}>
+          <DialogTitle size={size} variant={seenByEndUser && 'seen'}>
             {title}
           </DialogTitle>
-          <DialogHeadings
-            size={size}
-            grouped={grouped}
-            sender={sender}
-            recipient={recipient}
-          />
+          <DialogHeadings size={size} grouped={grouped} sender={sender} recipient={recipient} />
         </header>
         <p data-size={size} className={styles.summary}>
           {summary}
@@ -119,15 +99,7 @@ export const DialogListItem = ({
             seenByOthersCount={seenByOthersCount}
             attachmentsCount={attachmentsCount}
           />
-          {touchedBy ? (
-            <DialogTouched
-              size="xs"
-              touchedBy={touchedBy}
-              className={styles.touchedBy}
-            />
-          ) : (
-            ""
-          )}
+          {touchedBy ? <DialogTouched size="xs" touchedBy={touchedBy} className={styles.touchedBy} /> : ''}
         </footer>
       </DialogBorder>
     </DialogListItemBase>

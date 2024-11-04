@@ -1,10 +1,10 @@
-import { ReactNode } from "react";
-import { Avatar, AvatarGroup, type AvatarSize } from "../Avatar";
-import { MetaBase, MetaItem } from "../Meta";
-import styles from "./dialogHeadings.module.css";
+import type { ReactNode } from 'react';
+import { Avatar, AvatarGroup, type AvatarSize } from '../Avatar';
+import { MetaBase, MetaItem } from '../Meta';
+import styles from './dialogHeadings.module.css';
 
-export type DialogSenderType = "company" | "person";
-export type DialogRecipientType = "company" | "person";
+export type DialogSenderType = 'company' | 'person';
+export type DialogRecipientType = 'company' | 'person';
 
 export interface DialogSenderProps {
   type?: DialogSenderType;
@@ -17,15 +17,15 @@ export interface DialogRecipientProps {
   name: string;
 }
 
-type DialogHeadingsSize = "sm" | "xs" | "sm" | "lg" | "xl";
+type DialogHeadingsSize = 'sm' | 'xs' | 'sm' | 'lg' | 'xl';
 
 const sizeMap = {
   avatar: {
-    xs: "xs",
-    sm: "xs",
-    md: "xs",
-    lg: "xs",
-    xl: "lg",
+    xs: 'xs',
+    sm: 'xs',
+    md: 'xs',
+    lg: 'xs',
+    xl: 'lg',
   },
 };
 
@@ -39,15 +39,15 @@ export interface DialogHeadingsProps {
 
 export const DialogHeadings = ({
   grouped,
-  size = "lg",
-  sender = { type: "company", name: "Sender" },
-  recipient = { type: "person", name: "Recipient" },
+  size = 'lg',
+  sender = { type: 'company', name: 'Sender' },
+  recipient = { type: 'person', name: 'Recipient' },
 }: DialogHeadingsProps) => {
   return (
     <div className={styles.headings} data-size={size}>
       {grouped ? (
         <AvatarGroup
-          items={[{ ...sender, type: "company" }, recipient]}
+          items={[{ ...sender, type: 'company' }, recipient]}
           size={sizeMap?.avatar[size] as AvatarSize}
           className={styles.avatar}
         />
@@ -64,7 +64,7 @@ export const DialogHeadings = ({
         <span className={styles.sender}>{sender.name}</span>
         {recipient?.name && (
           <span>
-            {" til "}
+            {' til '}
             <span>{recipient.name}</span>
           </span>
         )}

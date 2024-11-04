@@ -1,12 +1,6 @@
-import { MetaItem, MetaProgress, type MetaItemSize } from "../Meta";
+import { MetaItem, type MetaItemSize, MetaProgress } from '../Meta';
 
-export type DialogStatusValue =
-  | "draft"
-  | "sent"
-  | "new"
-  | "requires-attention"
-  | "in-progress"
-  | "completed";
+export type DialogStatusValue = 'draft' | 'sent' | 'new' | 'requires-attention' | 'in-progress' | 'completed';
 
 export interface DialogStatusProps {
   size?: MetaItemSize;
@@ -14,29 +8,25 @@ export interface DialogStatusProps {
   label?: string;
 }
 
-export const DialogStatus = ({
-  size = "xs",
-  value = "new",
-  label,
-}: DialogStatusProps) => {
+export const DialogStatus = ({ size = 'xs', value = 'new', label }: DialogStatusProps) => {
   switch (value) {
-    case "new":
-      return "";
-    case "draft":
+    case 'new':
+      return '';
+    case 'draft':
       return (
         <MetaItem size={size} variant="dotted">
           {label || value}
         </MetaItem>
       );
-    case "requires-attention":
+    case 'requires-attention':
       return <MetaItem variant="solid"> {label || value}</MetaItem>;
-    case "in-progress":
+    case 'in-progress':
       return (
         <MetaProgress size={size} variant="outline" progress={75}>
           {label || value}
         </MetaProgress>
       );
-    case "completed":
+    case 'completed':
       return (
         <MetaProgress size={size} variant="outline" progress={100}>
           {label || value}

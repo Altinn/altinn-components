@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
-import { DialogBorder } from "./DialogBorder";
-import styles from "./dialog.module.css";
+import type { ReactNode } from 'react';
+import { DialogBorder } from './DialogBorder';
+import styles from './dialog.module.css';
 
 export interface DialogBodyProps {
   children?: ReactNode;

@@ -1,4 +1,4 @@
-import { AvatarGroup, type AvatarSize } from "../Avatar";
+import { AvatarGroup, type AvatarSize } from '../Avatar';
 
 export interface DialogTouchedByProps {
   name: string;
@@ -10,21 +10,10 @@ export interface DialogTouchedProps {
   className?: string;
 }
 
-export const DialogTouched = ({
-  size = "sm",
-  touchedBy,
-  className,
-}: DialogTouchedProps) => {
+export const DialogTouched = ({ size = 'sm', touchedBy, className }: DialogTouchedProps) => {
   if (!touchedBy?.length) {
     return null;
   }
 
-  return (
-    <AvatarGroup
-      type="person"
-      items={touchedBy}
-      size={size}
-      className={className}
-    />
-  );
+  return <AvatarGroup type="person" items={touchedBy} size={size} className={className} />;
 };

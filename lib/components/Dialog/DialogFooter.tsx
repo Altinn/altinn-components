@@ -1,5 +1,5 @@
-import { DialogSectionBase } from "./DialogSectionBase";
-import { Typography, Markdown } from "../Typography";
+import { Markdown, Typography } from '../Typography';
+import { DialogSectionBase } from './DialogSectionBase';
 
 export interface DialogFooterProps {
   additionalInfo?: string;

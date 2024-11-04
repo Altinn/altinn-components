@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import styles from "./dialog.module.css";
+import type { ReactNode } from 'react';
+import styles from './dialog.module.css';
 
 export interface DialogHeaderProps {
   children?: ReactNode;

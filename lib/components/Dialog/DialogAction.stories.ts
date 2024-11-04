@@ -1,19 +1,19 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 
-import { DialogAction } from "./DialogAction";
+import { DialogAction } from './DialogAction';
 
 const meta = {
-  title: "Dialog/DialogAction",
+  title: 'Dialog/DialogAction',
   component: DialogAction,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   args: {
     items: [
       {
-        label: "Primary",
+        label: 'Primary',
       },
       {
-        label: "Secondary",
+        label: 'Secondary',
       },
     ],
   },

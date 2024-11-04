@@ -1,4 +1,4 @@
-import { MetaTimestamp, type MetaItemSize } from "../Meta";
+import { type MetaItemSize, MetaTimestamp } from '../Meta';
 
 export interface DialogDueProps {
   size: MetaItemSize;
@@ -6,7 +6,7 @@ export interface DialogDueProps {
   label?: string;
 }
 
-export const DialogDue = ({ size = "xs", dueAt }: DialogDueProps) => {
+export const DialogDue = ({ size = 'xs', dueAt }: DialogDueProps) => {
   if (!dueAt) {
     return;
   }

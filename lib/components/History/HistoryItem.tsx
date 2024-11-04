@@ -1,12 +1,12 @@
-import { Avatar } from "../Avatar/";
-import { MetaBase, MetaTimestamp, MetaItem } from "../Meta/";
-import { HistoryBorder } from "./HistoryBorder";
-import styles from "./historyItem.module.css";
-import { AttachmentList, type AttachmentLinkProps } from "../Attachment";
-import { Typography } from "../Typography";
+import { type AttachmentLinkProps, AttachmentList } from '../Attachment';
+import { Avatar } from '../Avatar/';
+import { MetaBase, MetaItem, MetaTimestamp } from '../Meta/';
+import { Typography } from '../Typography';
+import { HistoryBorder } from './HistoryBorder';
+import styles from './historyItem.module.css';
 
 export interface CreatedByProps {
-  type?: "company" | "person";
+  type?: 'company' | 'person';
   name?: string;
   imageUrl?: string;
 }
@@ -20,21 +20,21 @@ export interface HistoryItemProps {
 
 export const HistoryItem = ({
   createdBy = {
-    type: "person",
+    type: 'person',
   },
   createdAt,
   summary,
   attachments,
 }: HistoryItemProps) => {
-  const title = attachments?.length + " vedlegg";
+  const title = attachments?.length + ' vedlegg';
 
   return (
     <section className={styles.item}>
       <header className={styles.header}>
         <Avatar
-          type={createdBy.type || "person"}
+          type={createdBy.type || 'person'}
           imageUrl={createdBy?.imageUrl}
-          name={createdBy.name || "Unknown name"}
+          name={createdBy.name || 'Unknown name'}
           size="sm"
         />
       </header>
@@ -42,7 +42,7 @@ export const HistoryItem = ({
         <article className={styles.body}>
           <MetaBase>
             <MetaTimestamp datetime={createdAt} size="xs">
-              {createdBy?.name + ", "}
+              {createdBy?.name + ', '}
               {createdAt}
             </MetaTimestamp>
           </MetaBase>
@@ -54,7 +54,7 @@ export const HistoryItem = ({
                 <AttachmentList items={attachments} />
               </section>
             ) : (
-              ""
+              ''
             )}
           </Typography>
         </article>
