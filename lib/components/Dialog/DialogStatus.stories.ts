@@ -25,28 +25,28 @@ export const Draft: Story = {
 
 export const Sent: Story = {
   args: {
-    value: 'draft',
-    label: 'Utkast',
+    value: 'sent',
+    label: 'Sendt',
   },
 };
 
 export const RequiresAttention: Story = {
   args: {
     value: 'requires-attention',
-    label: 'Utkast',
+    label: 'Krever handling',
   },
 };
 
 export const InProgress: Story = {
   args: {
     value: 'in-progress',
-    label: 'Utkast',
+    label: 'Under arbeid',
   },
 };
 
 export const Completed: Story = {
   args: {
     value: 'completed',
-    label: 'Utkast',
+    label: 'Avsluttet',
   },
 };
