@@ -9,21 +9,19 @@
 
 .icon {
   font-size: 1rem;
-  border: 2px solid;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.icon > svg {
-  color: transparent;
-}
-
-.label:hover .icon > svg {
+.icon {
   color: var(--theme-base-default);
 }
 
-.icon[data-checked="true"] > svg,
-.label:hover .icon[data-checked="true"] > svg {
-  color: var(--theme-background-subtle);
+.icon [data-hover="true"] {
+  opacity: 0;
+}
+
+.label:hover [data-hover="true"] {
+  opacity: 1;
 }

@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   background-color: transparent;
-  padding: 9px;
+  padding: .75rem;
   border-radius: 50%;
   border: 0;
 }
@@ -17,27 +17,18 @@
   opacity: 0;
 }
 
-.checkbox {
-  /*
-  border: 2px solid;
-  border-radius: 2px;
-  */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.label > input:checked + .checkbox {
-  border-color: var(--theme-base-default);
-  background-color: var(--theme-base-default);
-  color: var(--theme-background-subtle);
-}
-
-.label > input:checked + .checkbox {
-  outline: 1px solid red;
+.icon {
+  font-size: 1.25rem;
 }
 
 .icon {
-  width: 1.5rem;
-  height: 1.5rem;
+  color: var(--theme-base-default);
+}
+
+.icon [data-hover="true"] {
+  opacity: 0;
+}
+
+.label:hover [data-hover="true"] {
+  opacity: 1;
 }

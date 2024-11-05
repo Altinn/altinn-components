@@ -176,7 +176,6 @@ export const SelectableSelected = (args) => {
   });
 
   const onSelect = ({ id }) => {
-    console.log('XX', id);
     setItems((prevState) => {
       return {
         ...prevState,
@@ -196,6 +195,7 @@ export const SelectableSelected = (args) => {
             <DialogListItem
               {...args}
               title={item.title}
+              onClick={item.selected ? () => onSelect(item) : null}
               selected={item.selected}
               select={{ checked: item?.selected, onChange: () => onSelect(item) }}
             />
