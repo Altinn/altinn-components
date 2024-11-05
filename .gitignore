@@ -401,4 +401,4 @@ FodyWeavers.xsd
 
 .idea/
 dist/
-**/.DS_Store
+.DS_Store
