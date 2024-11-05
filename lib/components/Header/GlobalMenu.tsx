@@ -116,7 +116,7 @@ export const GlobalMenu = ({
   return (
     <div className={cx(styles.button, className)}>
       <HeaderButton as="div" avatar={accountMenuItem.avatar} onClick={onToggle} expanded={expanded} label={menuLabel} />
-      <div className={styles?.dropdown} aria-expanded={expanded}>
+      <div className={styles.dropdown} aria-expanded={expanded}>
         {selectAccount ? (
           <>
             <MenuItem {...backItem} />

@@ -41,19 +41,19 @@ export const Header = ({ color, search, menu }: HeaderProps) => {
 
   return (
     <header className={styles.header} data-color={color}>
-      <HeaderLogo className={styles?.logo} />
+      <HeaderLogo className={styles.logo} />
       {menu && (
         <GlobalMenu
           {...menu}
           expanded={expandedType === 'account'}
           onToggle={() => onToggle('account')}
-          className={styles?.button}
+          className={styles.button}
         />
       )}
       {search && (
         <HeaderSearch
           {...search}
-          className={styles?.search}
+          className={styles.search}
           expanded={expandedType === 'search'}
           onBlur={onSearchBlur}
           onFocus={onSearchFocus}

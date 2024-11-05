@@ -12,7 +12,7 @@ export interface ListBaseProps {
 
 export const ListBase = ({ size = 'md', theme, children }: ListBaseProps) => {
   return (
-    <div className={styles?.list} data-theme={theme} data-size={size}>
+    <div className={styles.list} data-theme={theme} data-size={size}>
       {children}
     </div>
   );

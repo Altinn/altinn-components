@@ -14,7 +14,8 @@ a.item:hover {
   color: var(--theme-base-hover);
 }
 
-.item {
+.label {
+  font-weight: normal;
   line-height: 1;
 }
 

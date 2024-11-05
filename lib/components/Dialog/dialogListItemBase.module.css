@@ -1,0 +1,28 @@
+.item {
+  position: relative;
+  background-color: var(--theme-background-default);
+  position: relative;
+  box-shadow: var(--ds-shadow-xs);
+}
+
+.item[aria-selected="true"] {
+  background-color: var(--theme-background-subtle);
+  outline: 1px solid;
+}
+
+.link {
+  display: flex;
+  padding: 1rem;
+}
+
+.link:hover {
+  outline: 2px solid;
+  outline-color: var(--global-base-default);
+}
+
+.select {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+}

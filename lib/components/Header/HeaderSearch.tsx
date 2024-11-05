@@ -34,7 +34,7 @@ export const HeaderSearch = ({
           value={value}
           onChange={onChange}
           placeholder={placeholder}
-          className={styles?.input}
+          className={styles.input}
           type="search"
         />
         <Icon name="magnifying-glass" className={styles.icon} />

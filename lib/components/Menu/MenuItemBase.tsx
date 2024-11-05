@@ -47,7 +47,7 @@ export const MenuItemBase = ({
       aria-expanded={expanded}
       aria-disabled={disabled}
       aria-selected={selected}
-      className={cx(styles?.item, className)}
+      className={cx(styles.item, className)}
       {...rest}
     >
       <div className={styles.content}>

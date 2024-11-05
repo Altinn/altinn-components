@@ -1,0 +1,29 @@
+.headings {
+  display: flex;
+  column-gap: 0.5em;
+  align-items: center;
+  font-size: 16px;
+}
+
+.headings[data-size="xs"] {
+  font-size: 14px;
+}
+
+.headings[data-size="sm"] {
+  font-size: 14px;
+}
+
+.text {
+  display: inline-flex;
+  color: var(--neutral-text-subtle);
+}
+
+.sender {
+  font-weight: 500;
+  color: var(--neutral-text-default);
+}
+
+.headings[data-size="xs"] .avatar,
+.headings[data-size="sm"] .avatar {
+  display: none;
+}

@@ -20,11 +20,11 @@ interface MenuItemsGroupProps {
 export type MenuGroups = Record<string, MenuItemsGroupProps>;
 
 export interface MenuProps {
+  items: MenuItemProps[];
   theme?: MenuTheme;
   defaultItemColor?: MenuItemColor;
   defaultItemSize?: MenuItemSize;
   groups?: MenuGroups;
-  items?: MenuItemProps[];
   search?: MenuSearchProps;
 }
 

@@ -37,6 +37,12 @@ export const Text: Story = {
   },
 };
 
+export const Loading: Story = {
+  args: {
+    loading: true,
+  },
+};
+
 export const Disabled: Story = {
   args: {
     disabled: true,
