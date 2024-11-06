@@ -7,7 +7,7 @@
 
 .item[aria-selected="true"] {
   background-color: var(--theme-background-subtle);
-  outline: 1px solid;
+  outline: 2px solid;
 }
 
 .link {

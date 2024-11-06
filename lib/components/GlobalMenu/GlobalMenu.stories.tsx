@@ -6,9 +6,7 @@ const meta = {
   title: 'Header/GlobalMenu',
   component: GlobalMenu,
   tags: ['autodocs'],
-  parameters: {
-    layout: 'centered',
-  },
+  parameters: {},
   args: {
     groups: {
       apps: {
@@ -141,17 +139,7 @@ export const Accounts: Story = {
         title: 'Deg selv og favoritter',
       },
       secondary: {
-        divider: true,
         title: 'Andre kontoer',
-      },
-      favourites: {
-        divider: true,
-      },
-      company: {
-        divider: true,
-      },
-      person: {
-        divider: true,
       },
     },
     accounts: [

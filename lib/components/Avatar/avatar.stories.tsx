@@ -33,6 +33,7 @@ export const Company: Story = {
 
 export const Logo: Story = {
   args: {
+    type: 'company',
     imageUrl: 'https://avatars.githubusercontent.com/u/1536293?s=200&v=4',
     size: 'xl',
   },

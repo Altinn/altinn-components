@@ -53,6 +53,8 @@ export type DialogListItemProps = {
   touchedBy?: DialogTouchedByActor[];
   /** Number of attachments */
   attachmentsCount?: number;
+  /** OnClick handler */
+  onClick?: () => void;
 };
 
 /**
@@ -82,6 +84,7 @@ export const DialogListItem = ({
   attachmentsCount,
   title,
   summary,
+  onClick,
   ...rest
 }: DialogListItemProps) => {
   return (

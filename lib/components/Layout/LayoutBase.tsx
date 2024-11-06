@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import styles from './layout.module.css';
+import styles from './layoutBase.module.css';
 
 export type LayoutTheme = 'global' | 'neutral' | 'company' | 'person';
 

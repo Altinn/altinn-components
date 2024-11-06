@@ -1,0 +1,10 @@
+.media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  font-size: 1.5rem;
+  margin: 0.625rem;
+}

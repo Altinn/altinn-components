@@ -7,30 +7,32 @@ interface SidebarProps {
   theme?: LayoutTheme;
   menu?: MenuProps;
   children?: ReactNode;
+  hidden?: boolean;
 }
 
 interface ContentProps {
-  theme: LayoutTheme;
+  theme?: LayoutTheme;
 }
 
 export interface LayoutProps {
-  theme: LayoutTheme;
-  header: HeaderProps;
+  theme?: LayoutTheme;
+  header?: HeaderProps;
   sidebar: SidebarProps;
   content: ContentProps;
   children: ReactNode;
 }
 
-export const Layout = ({ theme = 'global', header, sidebar, content, children }: LayoutProps) => {
-  const { menu, ...sidebarProps } = sidebar;
+export const Layout = ({ theme = 'global', header, sidebar = {}, content = {}, children }: LayoutProps) => {
+  const { menu, ...sideRestProps } = sidebar;
   return (
     <LayoutBase theme={theme}>
-      {header && <Header search={header?.search} {...header} />}
+      {header && <Header {...header} />}
       <LayoutBody>
         {sidebar && (
-          <LayoutSidebar theme={sidebar?.theme} {...sidebarProps}>
+          <LayoutSidebar hidden={sidebar?.hidden} theme={sidebar?.theme} {...sideRestProps}>
             {menu && <Menu {...menu} />}
             {sidebar?.children}
+            {sidebar?.hidden && 'HIDDEN'}
           </LayoutSidebar>
         )}
         <LayoutContent theme={content?.theme}>{children}</LayoutContent>

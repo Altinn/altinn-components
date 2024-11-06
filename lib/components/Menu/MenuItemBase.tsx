@@ -54,9 +54,11 @@ export const MenuItemBase = ({
         {children}
         {badge && <Badge {...badge} />}
       </div>
-      <div className={styles.action}>
-        {applicableIcon && <Icon name={applicableIcon} className={styles.actionIcon} />}
-      </div>
+      {applicableIcon && (
+        <div className={styles.action}>
+          {applicableIcon && <Icon name={applicableIcon} className={styles.actionIcon} />}
+        </div>
+      )}
     </Component>
   );
 };

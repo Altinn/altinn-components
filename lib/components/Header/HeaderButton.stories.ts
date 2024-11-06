@@ -43,6 +43,22 @@ export const Company: Story = {
   },
 };
 
+export const CompanyGroup: Story = {
+  args: {
+    avatarGroup: {
+      defaultType: 'company',
+      items: [
+        {
+          name: 'Bergen bar',
+        },
+        {
+          name: 'Sportsklubben Brann',
+        },
+      ],
+    },
+  },
+};
+
 export const Expanded: Story = {
   args: {
     expanded: true,

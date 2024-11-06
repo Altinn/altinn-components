@@ -1,0 +1,25 @@
+.menu {
+  background-color: var(--global-base-default);
+  color: white;
+  padding: 0 .5rem;
+  border-radius: 0.375rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+  .list {
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    column-gap: .5rem;
+    width: auto;
+  }
+}
+
+.list .item:hover {
+  background-color: var(--global-base-hover);
+}

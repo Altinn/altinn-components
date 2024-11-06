@@ -1,29 +1,36 @@
 'use client';
+import cx from 'classnames';
 import { useState } from 'react';
-import { GlobalMenu, type GlobalMenuProps } from './GlobalMenu';
+import { Backdrop, DrawerBase, DropdownBase } from '../Dropdown';
+import { GlobalMenu, type GlobalMenuProps } from '../GlobalMenu';
+import { HeaderBase } from './HeaderBase';
+import { HeaderButton } from './HeaderButton';
 import { HeaderLogo } from './HeaderLogo';
+import { HeaderMenu } from './HeaderMenu';
 import { HeaderSearch, type HeaderSearchProps } from './HeaderSearch';
 import styles from './header.module.css';
 
-export type HeaderColor = 'default' | 'dark' | 'light';
+export type HeaderExpandedType = 'search' | 'menu' | null;
 
 export interface HeaderAccountProps {
   type?: string;
   name?: string;
 }
 
-type ExpandedType = 'search' | 'account';
-
 export interface HeaderProps {
-  color?: HeaderColor;
   menu: GlobalMenuProps;
   search?: HeaderSearchProps;
 }
 
-export const Header = ({ color, search, menu }: HeaderProps) => {
-  const [expandedType, setExpandedType] = useState<ExpandedType | null>(null);
+export const Header = ({ search, menu }: HeaderProps) => {
+  const [expandedType, setExpandedType] = useState<HeaderExpandedType | null>(null);
+  const selectedAccount = menu?.accounts?.find((account) => account.selected);
+  const selectedAvatar = selectedAccount && {
+    type: selectedAccount.type,
+    name: selectedAccount.name,
+  };
 
-  const onToggle = (type: ExpandedType) => {
+  const onToggle = (type: HeaderExpandedType) => {
     if (expandedType === type) {
       setExpandedType(null);
     } else {
@@ -40,16 +47,30 @@ export const Header = ({ color, search, menu }: HeaderProps) => {
   };
 
   return (
-    <header className={styles.header} data-color={color}>
-      <HeaderLogo className={styles.logo} />
-      {menu && (
-        <GlobalMenu
-          {...menu}
-          expanded={expandedType === 'account'}
-          onToggle={() => onToggle('account')}
-          className={styles.button}
-        />
+    <HeaderBase
+      className={cx(
+        styles.header,
+        expandedType === 'menu' && styles.menuExpanded,
+        expandedType === 'search' && styles.searchExpanded,
       )}
+      expanded={(expandedType && true) || false}
+    >
+      <Backdrop className={styles.backdrop} />
+      <HeaderLogo className={styles.logo} />
+      <HeaderMenu className={styles.menu}>
+        <HeaderButton
+          avatar={selectedAvatar}
+          onClick={() => onToggle('menu')}
+          expanded={expandedType === 'menu'}
+          label={menu?.menuLabel}
+        />
+        {menu && (
+          <DropdownBase expanded={expandedType === 'menu'} className={styles.dropdown}>
+            <GlobalMenu {...menu} variant="dropdown" />
+          </DropdownBase>
+        )}
+      </HeaderMenu>
+
       {search && (
         <HeaderSearch
           {...search}
@@ -59,6 +80,11 @@ export const Header = ({ color, search, menu }: HeaderProps) => {
           onFocus={onSearchFocus}
         />
       )}
-    </header>
+      {menu && (
+        <DrawerBase expanded={expandedType === 'menu'} className={styles.drawer}>
+          <GlobalMenu {...menu} variant="drawer" expanded={expandedType === 'menu'} />
+        </DrawerBase>
+      )}
+    </HeaderBase>
   );
 };
