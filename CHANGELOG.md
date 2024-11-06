@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/Altinn/altinn-components/compare/v0.2.0...v0.2.1) (2024-11-06)
+
+
+### Bug Fixes
+
+* export members and add use client if needed for next support ([#26](https://github.com/Altinn/altinn-components/issues/26)) ([cb2c52e](https://github.com/Altinn/altinn-components/commit/cb2c52e8f8bd3b2633b439285bb8f4e5dc36d2ed))
+
 ## [0.2.0](https://github.com/Altinn/altinn-components/compare/v0.1.0...v0.2.0) (2024-11-06)
 
 
