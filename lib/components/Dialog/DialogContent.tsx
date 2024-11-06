@@ -3,7 +3,6 @@ import { Typography } from '../Typography';
 import { DialogMetadata } from './DialogMetadata';
 
 export interface DialogContentProps {
-  updatedByName?: string;
   updatedAt?: string;
   updatedAtLabel?: string;
   summary?: string;

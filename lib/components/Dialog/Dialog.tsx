@@ -9,6 +9,8 @@ import { DialogFooter } from './DialogFooter';
 import { DialogHeader } from './DialogHeader';
 import { DialogSeenBy, type DialogSeenByProps } from './DialogSeenBy';
 
+import type { ContextMenuProps } from '../ContextMenu/';
+
 import type { ReactNode } from 'react';
 import { type DialogActionButtonProps, DialogActions } from './DialogActions.tsx';
 import type { DialogRecipientProps, DialogSenderProps } from './DialogHeadings.tsx';
@@ -21,14 +23,18 @@ export interface DialogProps {
   title: string;
   /** Back button */
   backButton?: DialogBackButtonProps;
+  /** Context menu */
+  menu?: ContextMenuProps;
   /** Dialog status */
   status?: DialogStatusProps;
   /** Updated date time */
   updatedAt?: string;
-  /** Latest updated by name */
-  updatedByName?: string;
+  /** Updated label */
+  updatedAtLabel?: string;
   /** Due date */
   dueAt?: string;
+  /** Due at label */
+  dueAtLabel?: string;
   /** Sender */
   sender?: DialogSenderProps;
   /** Recipient  */
@@ -57,9 +63,11 @@ export interface DialogProps {
 
 export const Dialog = ({
   backButton,
+  menu,
   updatedAt,
-  updatedByName,
+  updatedAtLabel,
   dueAt,
+  dueAtLabel,
   status,
   title,
   sender,
@@ -75,7 +83,7 @@ export const Dialog = ({
 }: DialogProps) => {
   return (
     <DialogBase>
-      <DialogNav status={status} dueAt={dueAt} backButton={backButton} />
+      <DialogNav status={status} dueAt={dueAt} dueAtLabel={dueAtLabel} backButton={backButton} menu={menu} />
       <DialogArticleBase>
         <DialogHeader
           title={title}
@@ -85,7 +93,7 @@ export const Dialog = ({
           variant="neutral"
         />
         <DialogBodyBase>
-          <DialogContent updatedAt={updatedAt} updatedByName={updatedByName} summary={summary} body={body} />
+          <DialogContent updatedAt={updatedAt} updatedAtLabel={updatedAtLabel} summary={summary} body={body} />
           {attachments && <DialogAttachments {...attachments} />}
           {actions?.length > 0 && <DialogActions items={actions} />}
           <MetaBase>

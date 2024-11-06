@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import type { ElementType } from 'react';
 import { Button } from '../Button';
-import { ContextMenu, type DialogContextMenuProps } from '../ContextMenu/ContextMenu.tsx';
+import { ContextMenu, type ContextMenuProps } from '../ContextMenu/ContextMenu.tsx';
 import { MetaTimestamp } from '../Meta';
 import { DialogStatus, type DialogStatusProps } from './DialogStatus';
 import { DialogTouchedBy, type DialogTouchedByActor } from './DialogTouchedBy';
@@ -17,10 +17,10 @@ export interface DialogBackButtonProps {
 export interface DialogNavProps {
   status?: DialogStatusProps;
   dueAt?: string;
-  duaAtLabel?: string;
+  dueAtLabel?: string;
   touchedBy?: DialogTouchedByActor[];
   backButton?: DialogBackButtonProps;
-  menu?: DialogContextMenuProps;
+  menu?: ContextMenuProps;
 }
 
 /**
@@ -33,8 +33,8 @@ export const DialogNav = ({
   },
   status,
   dueAt,
+  dueAtLabel,
   touchedBy,
-  duaAtLabel,
   menu,
 }: DialogNavProps) => {
   const [expandedItem, setexpandedItem] = useState<boolean>(false);
@@ -46,9 +46,9 @@ export const DialogNav = ({
         {backButton?.label || 'Back'}
       </Button>
       <div className={styles.action}>
-        {duaAtLabel && duaAtLabel && (
+        {dueAt && dueAtLabel && (
           <MetaTimestamp datetime={dueAt} size="xs">
-            {duaAtLabel}
+            {dueAtLabel}
           </MetaTimestamp>
         )}
         {status && <DialogStatus {...status} />}

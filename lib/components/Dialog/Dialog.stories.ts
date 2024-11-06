@@ -10,7 +10,13 @@ const meta = {
   parameters: {},
   argTypes: { body: { control: 'text' } },
   args: {
+    menu: [
+      {
+        items: [{ label: 'Menu 1' }],
+      },
+    ],
     updatedAt: '1999-05-26',
+    updatedAtLabel: '26. mai 1999',
     title: 'Title',
     summary: 'Summary',
   },
