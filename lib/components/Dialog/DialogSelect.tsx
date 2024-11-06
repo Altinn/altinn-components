@@ -17,9 +17,7 @@ export const DialogSelect = ({ checked = false, onChange, className }: DialogSel
   return (
     <label className={cx(styles.label, className)}>
       <input type="checkbox" checked={checked} onChange={onChange} className={styles.input} />
-      <div className={styles.checkbox}>
-        <CheckboxIcon checked={checked} />
-      </div>
+      <CheckboxIcon hover={true} checked={checked} className={styles.icon} />
     </label>
   );
 };

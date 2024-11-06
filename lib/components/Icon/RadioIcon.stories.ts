@@ -18,6 +18,13 @@ export const Default: Story = {
   },
 };
 
+export const Hover: Story = {
+  args: {
+    checked: false,
+    hover: true,
+  },
+};
+
 export const Checked: Story = {
   args: {
     checked: true,
