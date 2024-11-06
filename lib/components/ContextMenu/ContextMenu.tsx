@@ -4,7 +4,7 @@ import { Icon } from '../Icon';
 import { Menu, type MenuGroups, type MenuItemProps } from '../Menu';
 import styles from './contextMenu.module.css';
 
-export interface DialogContextMenuProps {
+export interface ContextMenuProps {
   onToggle?: MouseEventHandler;
   label: string;
   value: string | number;
@@ -14,7 +14,7 @@ export interface DialogContextMenuProps {
   className?: string;
 }
 
-export const ContextMenu = ({ expanded = true, onToggle, groups = {}, items }: DialogContextMenuProps) => {
+export const ContextMenu = ({ expanded = true, onToggle, groups = {}, items }: ContextMenuProps) => {
   return (
     <div className={styles.toggle}>
       <ButtonBase className={styles.button} as="button" color="secondary" onClick={onToggle}>
