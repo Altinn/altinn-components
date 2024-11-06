@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.2.0](https://github.com/Altinn/altinn-components/compare/v0.1.0...v0.2.0) (2024-11-06)
+
+
+### Features
+
+* add dialogs as experimental ([#24](https://github.com/Altinn/altinn-components/issues/24)) ([12b3e4d](https://github.com/Altinn/altinn-components/commit/12b3e4dc81c236eff5a5ab0364b3a7e992606c3a))
+* add meta fields ([#23](https://github.com/Altinn/altinn-components/issues/23)) ([ea8ef87](https://github.com/Altinn/altinn-components/commit/ea8ef87ca03c089e52a331ab62526be2b5acc089))
+* list item + meta tags ([#17](https://github.com/Altinn/altinn-components/issues/17)) ([f865f6c](https://github.com/Altinn/altinn-components/commit/f865f6c226e8f7ce9d4ce18c0014fb4e1c9d0383))
+
+
+### Bug Fixes
+
+* icons for checkbox and radio ([#25](https://github.com/Altinn/altinn-components/issues/25)) ([fb796e2](https://github.com/Altinn/altinn-components/commit/fb796e25636ec0b27ff643a3036ea25171202a11))
+
 ## [0.1.0](https://github.com/Altinn/altinn-components/compare/v0.0.1...v0.1.0) (2024-11-01)
 
 
