@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/Altinn/altinn-components/compare/v0.2.1...v0.2.2) (2024-11-06)
+
+
+### Bug Fixes
+
+* dialog-props ([#28](https://github.com/Altinn/altinn-components/issues/28)) ([59b6a8f](https://github.com/Altinn/altinn-components/commit/59b6a8fb04abece013218402587f93863c1b9012))
+
 ## [0.2.1](https://github.com/Altinn/altinn-components/compare/v0.2.0...v0.2.1) (2024-11-06)
 
 
