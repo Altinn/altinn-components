@@ -1,3 +1,4 @@
+'use client';
 import cx from 'classnames';
 import { useMemo } from 'react';
 import { Avatar, type AvatarProps, type AvatarSize, type AvatarType } from '.';

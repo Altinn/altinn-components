@@ -1,23 +1,25 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { DialogAction } from './DialogAction';
+import { DialogActions } from './DialogActions';
 
 const meta = {
-  title: 'Dialog/Sections/DialogAction',
-  component: DialogAction,
+  title: 'Dialog/Sections/DialogActions',
+  component: DialogActions,
   tags: ['autodocs'],
   args: {
     items: [
       {
         label: 'Primary',
         priority: 'primary',
+        id: 'primary',
       },
       {
         label: 'Secondary',
         priority: 'secondary',
+        id: 'secondary',
       },
     ],
   },
-} satisfies Meta<typeof DialogAction>;
+} satisfies Meta<typeof DialogActions>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -34,18 +36,22 @@ export const MultipleButtons: Story = {
   args: {
     items: [
       {
+        id: 'primary',
         label: 'Primary',
         priority: 'primary',
       },
       {
+        id: 'secondary-1',
         label: 'Secondary',
         priority: 'secondary',
       },
       {
+        id: 'tertiary-1',
         label: 'Third action',
         priority: 'tertiary',
       },
       {
+        id: 'tertiary-2',
         label: 'Fourth action',
         priority: 'tertiary',
       },
