@@ -1,3 +1,4 @@
+'use client';
 import { type MouseEventHandler, useMemo, useState } from 'react';
 import { Button, ComboButton } from '../Button';
 import { Menu, type MenuItemProps } from '../Menu';
@@ -13,14 +14,14 @@ export interface DialogActionButtonProps {
   loading?: boolean;
 }
 
-export interface DialogActionProps {
+export interface DialogActionsProps {
   /** List of actions */
   items: DialogActionButtonProps[];
   /** How many actions to display before turning into a ComboButton */
   maxItems?: number;
 }
 
-export const DialogAction = ({ items, maxItems = 2 }: DialogActionProps) => {
+export const DialogActions = ({ items, maxItems = 2 }: DialogActionsProps) => {
   const [expanded, setExpanded] = useState<boolean>(false);
   const sortedItems = useMemo(() => {
     return (items || []).sort((a, b) => {

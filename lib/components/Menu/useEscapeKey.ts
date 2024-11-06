@@ -1,3 +1,4 @@
+'use client';
 import { useEffect } from 'react';
 
 export const useEscapeKey = (onEscape: () => void): void => {

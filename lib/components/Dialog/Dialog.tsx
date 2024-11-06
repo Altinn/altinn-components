@@ -10,7 +10,7 @@ import { DialogHeader } from './DialogHeader';
 import { DialogSeenBy, type DialogSeenByProps } from './DialogSeenBy';
 
 import type { ReactNode } from 'react';
-import { DialogAction, type DialogActionButtonProps } from './DialogAction';
+import { type DialogActionButtonProps, DialogActions } from './DialogActions.tsx';
 import type { DialogRecipientProps, DialogSenderProps } from './DialogHeadings.tsx';
 import { DialogHistory, type DialogHistoryProps } from './DialogHistory';
 import { type DialogBackButtonProps, DialogNav } from './DialogNav';
@@ -87,7 +87,7 @@ export const Dialog = ({
         <DialogBodyBase>
           <DialogContent updatedAt={updatedAt} updatedByName={updatedByName} summary={summary} body={body} />
           {attachments && <DialogAttachments {...attachments} />}
-          {actions?.length > 0 && <DialogAction items={actions} />}
+          {actions?.length > 0 && <DialogActions items={actions} />}
           <MetaBase>
             {seenBy && <DialogSeenBy {...seenBy} />}
             {activityLog && <DialogActivityLog {...activityLog} />}
