@@ -11,7 +11,7 @@ name: release-please
 
 jobs:
     deploy-documentation:
-      uses: ./.github/workflows/ci-cd-deploy-storybook.yml
+      uses: ./.github/workflows/workflow-deploy-storybook.yml
     release-please:
       runs-on: ubuntu-latest
       steps:
