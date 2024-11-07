@@ -28,14 +28,6 @@ jobs:
         uses: pnpm/action-setup@v2
       - run: pnpm install --frozen-lockfile
       - run: pnpm build-storybook
-      - name: 'Prep gh folder'
-        run: |
-          mkdir gh-pages
-          cp -r ./storybook-static gh-pages
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.0
         with:
-          path: "./storybook-static"
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+          path: ./storybook-static
