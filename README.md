@@ -31,4 +31,4 @@ import '@altinn/components/dist/index.css';
 for correct `font-family` and minimal collection of resets.
 
 ## Documentation
-The documentation for the components can be found in the storybook, cf. [TODO ADD Storybook]()
+The documentation for the components can be found in the [Storybook](https://altinn.github.io/altinn-components)
