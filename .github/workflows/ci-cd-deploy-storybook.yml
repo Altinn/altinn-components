@@ -17,16 +17,19 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          registry-url: 'https://registry.npmjs.org'
       - name: Setup PNPM
         uses: pnpm/action-setup@v2
+        with:
+          version: '9.12.3'
       - run: pnpm install --frozen-lockfile
       - run: pnpm build-storybook
       - name: Setup Pages
@@ -35,6 +38,12 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: "./storybook-static"
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
