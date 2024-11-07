@@ -28,8 +28,10 @@ jobs:
         uses: pnpm/action-setup@v2
       - run: pnpm install --frozen-lockfile
       - run: pnpm build-storybook
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
+      - name: 'Prep gh folder'
+        run: |
+          mkdir gh-pages
+          cp -r ./storybook-static gh-pages
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
