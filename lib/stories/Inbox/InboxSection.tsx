@@ -5,24 +5,6 @@ import styles from './inboxSection.module.css';
 import { groupBy } from './groupBy';
 import { useInboxContext } from './';
 
-const inboxes = {
-  search: {
-    empty: 'Ingen treff',
-  },
-  drafts: {
-    title: '{count} utkast',
-  },
-  sent: {
-    title: '{count} sendt',
-  },
-  trash: {
-    title: '{count} dialoger i papirkurven',
-  },
-  archive: {
-    title: '{count} arkiverte dialoger',
-  },
-};
-
 export function InboxSection() {
   const { inboxId, dialog, dialogId, onDialogId, items, onSelectId, selectedCount, bulkMenu, toolbar } =
     useInboxContext();
@@ -37,7 +19,7 @@ export function InboxSection() {
   }
 
   const count = items?.length;
-  const inbox = inboxes[inboxId] || inboxes['search'];
+  //  const inbox = inboxes[inboxId] || inboxes['search'];
 
   if (!count) {
     return (

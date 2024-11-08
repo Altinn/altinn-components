@@ -28,6 +28,11 @@ export const InboxProvider = ({ defaultValue = {}, children }: InboxProviderProp
     setInboxId(id);
   };
 
+  const onInbox = ({ id }) => {
+    setInboxId(id);
+    setDialogId(null);
+  };
+
   const onSelectId = (id) => {
     setItemsById((prevState) => {
       if (prevState[id]) {
@@ -70,7 +75,19 @@ export const InboxProvider = ({ defaultValue = {}, children }: InboxProviderProp
   const bulkMode = selectedCount > 0 ? true : false;
 
   const header = { menu: { accounts }, search: selectedCount > 0 ? null : search };
-  const sidebar = { hidden: selectedCount > 0 && true, menu };
+  const sidebar = {
+    hidden: selectedCount > 0 && true,
+    menu: {
+      ...menu,
+      items: menu.items?.map((item) => {
+        return {
+          ...item,
+          selected: inboxId === item.id,
+          onClick: () => onInbox(item),
+        };
+      }),
+    },
+  };
 
   const account = accounts?.find((item) => item.selected);
 

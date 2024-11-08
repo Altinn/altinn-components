@@ -4,7 +4,7 @@ export const menu: MenuProps = {
   groups: {},
   items: [
     {
-      id: '1',
+      id: 'inbox',
       group: 1,
       size: 'lg',
       icon: 'inbox',
@@ -12,36 +12,54 @@ export const menu: MenuProps = {
       color: 'strong',
     },
     {
-      id: '2',
+      id: 'drafts',
       group: 2,
       icon: 'doc-pencil',
       title: 'Utkast',
     },
     {
-      id: '3',
+      id: 'sent',
       group: 2,
       icon: 'file-checkmark',
       selected: true,
       title: 'Sendt',
     },
     {
-      id: '4',
+      id: 'bookmarks',
       group: 3,
       icon: 'bookmark',
       title: 'Lagrede søk',
     },
     {
-      id: '5',
+      id: 'archived',
       group: 4,
       icon: 'archive',
       title: 'Arkivert',
     },
     {
-      id: '6',
+      id: 'trash',
       group: 4,
       disabled: true,
       icon: 'trash',
       title: 'Papirkurv',
     },
   ],
+};
+
+export const sections = {
+  search: {
+    empty: 'Ingen treff',
+  },
+  drafts: {
+    title: '{count} utkast',
+  },
+  sent: {
+    title: '{count} sendt',
+  },
+  trash: {
+    title: '{count} dialoger i papirkurven',
+  },
+  archive: {
+    title: '{count} arkiverte dialoger',
+  },
 };
