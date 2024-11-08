@@ -24,18 +24,13 @@ const inboxes = {
 };
 
 export function InboxSection() {
-  const { inboxId, dialogId, onDialogId, items, onSelectId, selectedCount, bulkMenu, toolbar } = useInboxContext();
+  const { inboxId, dialog, dialogId, onDialogId, items, onSelectId, selectedCount, bulkMenu, toolbar } =
+    useInboxContext();
 
-  if (dialogId) {
-    const dialog = items?.find((item) => item.id === dialogId);
-
-    const backButton = {
-      onClick: () => onDialogId(dialogId),
-    };
-
+  if (dialog) {
     return (
       <section>
-        <Dialog {...dialog} backButton={backButton} />
+        <Dialog {...dialog} />
         <ActionMenu items={bulkMenu} theme="light" />
       </section>
     );
@@ -69,7 +64,7 @@ export function InboxSection() {
 
   return (
     <main>
-      <Toolbar {...toolbar} />
+      {!selectedCount > 0 && <Toolbar {...toolbar} />}
       <section className={styles?.section}>
         {Object.entries(groups).map(([key, items]) => {
           const title = key;

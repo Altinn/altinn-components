@@ -1,31 +1,30 @@
-import { createContext, useState, useEffect, useContext, type ReactNode } from 'react';
-import { search, footer, menu, accounts, dialogs, bulkMenu } from '.';
-
-type InboxId = string | null;
+import { createContext, useState, useContext, type ReactNode } from 'react';
+import { search, footer, menu, accounts, dialogs, actionMenu } from '.';
 
 interface InboxContextProvider {
-  inboxId: InboxId;
-  dialogId: InboxId;
+  inboxId: string | null;
+  dialogId: string | null;
   setInboxId: (id: InboxId) => void;
 }
 
-const InboxContext = createContext<InboxContextProvider>({ inboxId: 'inbox' });
+const InboxContext = createContext<InboxContextProvider>({ inboxId: 'inbox', dialogId: null });
 
 interface InboxProviderProps {
   children: ReactNode;
+  dialogId: string | null;
   defaultValue?: InboxContextProvider;
 }
 
-export const InboxProvider = ({ defaultValue, children }: InboxProviderProps) => {
-  const [inboxId, setInboxId] = useState<InboxId>(defaultValue?.inboxId);
-  const [dialogId, setDialogId] = useState<InboxId>(defaultValue?.dialogId);
-  const [itemsById, setItemsById] = useState({});
+export const InboxProvider = ({ defaultValue = {}, children }: InboxProviderProps) => {
+  const [inboxId, setInboxId] = useState('inbox');
+  const [dialogId, setDialogId] = useState(defaultValue.dialogId || null);
+  const [itemsById, setItemsById] = useState(defaultValue.itemsById || {});
 
-  const onDialogId = (id: InboxId) => {
+  const onDialogId = (id) => {
     setDialogId((prevState) => (prevState === id ? null : id));
   };
 
-  const onInboxId = (id: InboxId) => {
+  const onInboxId = (id) => {
     setInboxId(id);
   };
 
@@ -89,6 +88,18 @@ export const InboxProvider = ({ defaultValue, children }: InboxProviderProps) =>
     },
   };
 
+  const currentDialog = dialogId && items?.find((item) => item.id === dialogId);
+
+  const dialog = currentDialog && {
+    ...currentDialog,
+    menu: {
+      items: actionMenu,
+    },
+    backButton: {
+      onClick: () => onDialogId(dialogId),
+    },
+  };
+
   return (
     <InboxContext.Provider
       value={{
@@ -96,6 +107,7 @@ export const InboxProvider = ({ defaultValue, children }: InboxProviderProps) =>
         onInboxId,
         dialogId,
         onDialogId,
+        dialog,
         items,
         itemsCount,
         itemsById,
@@ -107,7 +119,7 @@ export const InboxProvider = ({ defaultValue, children }: InboxProviderProps) =>
         footer,
         menu,
         bulkMode,
-        bulkMenu,
+        bulkMenu: actionMenu,
         header,
         sidebar,
         toolbar,

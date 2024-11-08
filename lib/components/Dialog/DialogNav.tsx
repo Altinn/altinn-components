@@ -6,7 +6,7 @@ import { ContextMenu, type ContextMenuProps } from '../ContextMenu/ContextMenu.t
 import { MetaTimestamp } from '../Meta';
 import { DialogStatus, type DialogStatusProps } from './DialogStatus';
 import { DialogTouchedBy, type DialogTouchedByActor } from './DialogTouchedBy';
-import styles from './dialog.module.css';
+import styles from './dialogNav.module.css';
 
 export interface DialogBackButtonProps {
   as?: ElementType;

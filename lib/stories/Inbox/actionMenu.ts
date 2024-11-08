@@ -1,4 +1,4 @@
-export const bulkMenu = [
+export const actionMenu = [
   {
     id: '1',
     icon: 'arrow-redo',
