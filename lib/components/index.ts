@@ -6,6 +6,7 @@ export * from './Button';
 export * from './ContextMenu';
 export * from './Dialog';
 export * from './Dropdown';
+export * from './Footer';
 export * from './GlobalMenu';
 export * from './Header';
 export * from './History';

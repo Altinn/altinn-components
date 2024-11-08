@@ -1,0 +1,30 @@
+.menu {
+  position: relative;
+  font-size: .875rem;
+  line-height: 1.5;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .list {
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    column-gap: .5rem;
+    width: auto;
+  }
+}
+
+.list .item:hover {
+  background-color: var(--global-base-hover);
+}
+
+.link {
+  color: inherit;
+  text-decoration: underline;
+}

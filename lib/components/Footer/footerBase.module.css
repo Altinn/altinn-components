@@ -1,0 +1,28 @@
+.footer {
+  border-top: 1px solid;
+  border-color: var(--theme-border-subtle);
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+
+  padding: 1rem 0;
+  margin: 2rem 1rem;
+}
+
+.grid {
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  row-gap: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    padding: 0 1rem;
+    flex-direction: row;
+  }
+}

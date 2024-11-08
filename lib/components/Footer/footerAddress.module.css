@@ -1,0 +1,8 @@
+.address {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  font-style: normal;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
