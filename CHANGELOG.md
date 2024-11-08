@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/Altinn/altinn-components/compare/v0.3.0...v0.4.0) (2024-11-08)
+
+
+### Features
+
+* add footer component ([#40](https://github.com/Altinn/altinn-components/issues/40)) ([bdf5c0c](https://github.com/Altinn/altinn-components/commit/bdf5c0cd68c374ac5fe83536033074289f379abe))
+
 ## [0.3.0](https://github.com/Altinn/altinn-components/compare/v0.2.2...v0.3.0) (2024-11-08)
 
 
