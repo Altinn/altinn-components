@@ -1,6 +1,4 @@
 .menu {
-  background-color: var(--global-base-default);
-  color: white;
   padding: 0 .5rem;
   border-radius: 0.375rem;
 }
@@ -18,8 +16,4 @@
     column-gap: .5rem;
     width: auto;
   }
-}
-
-.list .item:hover {
-  background-color: var(--global-base-hover);
 }

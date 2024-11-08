@@ -84,7 +84,6 @@ export const DialogListItem = ({
   attachmentsCount,
   title,
   summary,
-  onClick,
   ...rest
 }: DialogListItemProps) => {
   return (
