@@ -1,6 +1,7 @@
 .menu {
   padding: 0 .5rem;
   border-radius: 0.375rem;
+  background-color: var(--theme-background-subtle);
 }
 
 .list {

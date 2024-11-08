@@ -8,7 +8,7 @@ export interface ActionFooterProps {
 
 export const ActionFooter = ({ hidden = false, children }: ActionFooterProps) => {
   return (
-    <footer className={styles.footer} aria-hidden={hidden}>
+    <footer className={styles.footer} aria-hidden={hidden} data-theme="global-dark">
       {children}
     </footer>
   );

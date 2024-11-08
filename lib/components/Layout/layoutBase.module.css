@@ -6,18 +6,6 @@
   overflow: hidden;
 }
 
-.base[data-theme="global"] {
-  background-color: var(--neutral-background-default);
-}
-
-.base[data-theme="neutral"] {
-  background-color: var(--neutral-background-subtle);
-}
-
-.base[data-theme="person"] {
-  background-color: var(--person-background-subtle);
-}
-
-.base[data-theme="company"] {
-  background-color: var(--company-background-subtle);
+.base[data-theme] {
+  background-color: var(--theme-background-subtle);
 }

@@ -1,5 +1,4 @@
 .item {
-  background-color: transparent;
   display: flex;
   align-items: center;
   column-gap: 4px;
@@ -43,30 +42,25 @@
 
 /* colors */
 
+.item {
+  background-color: transparent;
+  color: var(--theme-text-default);
+}
+
 .item:hover {
-  background-color: var(--theme-background-default);
+  background-color: var(--theme-surface-hover);
 }
 
 .item[aria-selected="true"] {
   background-color: var(--theme-background-default);
 }
 
-/* company */
-
-.item[data-color="company"]:hover {
-  background-color: var(--company-background-subtle);
+.media[data-color="subtle"] {
+  background-color: var(--theme-background-default);
+  color: var(--theme-text-default);
 }
 
-.item[data-color="company"][aria-selected="true"] {
-  background-color: var(--company-surface-default);
-}
-
-/* person */
-
-.item[data-color="person"]:hover {
-  background-color: var(--person-background-subtle);
-}
-
-.item[data-color="person"][aria-selected="true"] {
-  background-color: var(--person-surface-default);
+.media[data-color="strong"] {
+  background-color: var(--theme-base-default);
+  color: var(--theme-background-default);
 }
