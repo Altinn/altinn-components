@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/Altinn/altinn-components/compare/v0.2.2...v0.3.0) (2024-11-08)
+
+
+### Features
+
+* add snackbar and bulk operation action components ([#38](https://github.com/Altinn/altinn-components/issues/38)) ([a39178d](https://github.com/Altinn/altinn-components/commit/a39178d060819e6943b1d1a5632832529b8f4165))
+
 ## [0.2.2](https://github.com/Altinn/altinn-components/compare/v0.2.1...v0.2.2) (2024-11-06)
 
 
