@@ -1,0 +1,28 @@
+.footer {
+  position: fixed;
+  top: auto;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: .5rem;
+  padding: 1rem;
+}
+
+.footer {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: .15s;
+  transform: translateY(0);
+}
+
+.footer[aria-hidden="true"] {
+  transform: translateY(100%);
+}
+
+@media (min-width: 1024px) {
+  .footer {
+    align-items: center;
+  }
+}

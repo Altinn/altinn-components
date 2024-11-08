@@ -1,7 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
-import { useState } from 'react';
-
 import { DialogSeenBy } from './DialogSeenBy';
 
 const meta = {
@@ -12,6 +9,7 @@ const meta = {
   args: {
     seenByEndUser: true,
     seenByOthersCount: 2,
+    label: '',
   },
 } satisfies Meta<typeof DialogSeenBy>;
 
@@ -39,17 +37,17 @@ export const seenByEndUserAndOthers: Story = {
   },
 };
 
-export const ExampleLabel = ({ seenByEndUser, seenByOthersCount }) => {
-  let seen = false;
+export const ExampleLabel = ({
+  seenByEndUser,
+  seenByOthersCount,
+}: { seenByEndUser: boolean; seenByOthersCount: number }) => {
   const seenByLabel = [];
 
   if (seenByEndUser) {
-    seen = true;
     seenByLabel.push('deg');
   }
 
   if (seenByOthersCount) {
-    seen = true;
     seenByLabel.push(seenByOthersCount);
   }
 

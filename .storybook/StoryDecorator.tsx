@@ -1,5 +1,6 @@
-import { ReactNode } from "react";
+import {ReactNode} from "react";
 import styles from "./storyDecorator.module.css";
+import {RootProvider} from "../lib/components/RootProvider/";
 
 interface StoryDecoratorProps {
   tags: string[];
@@ -16,12 +17,13 @@ export const StoryDecorator = ({
   const state = isStable ? "stable" : "experimental";
 
   return (
-    <div className={styles.preview} data-theme={theme}>
-      <span className={styles.tag} data-tag={state}>
-        {state}
-      </span>
-
-      <div className={styles.component}>{children}</div>
-    </div>
+      <RootProvider>
+          <div className={styles.preview} data-theme={theme}>
+              <div className={styles.component}>{children}</div>
+              <span className={styles.tag} data-tag={state}>
+                  {state}
+              </span>
+          </div>
+      </RootProvider>
   );
 };

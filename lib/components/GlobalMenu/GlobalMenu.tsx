@@ -1,10 +1,7 @@
 'use client';
-import cx from 'classnames';
 import { type MouseEventHandler, useState } from 'react';
 import type { AvatarType } from '../Avatar';
 import { Menu, type MenuGroups, MenuItem, type MenuItemProps, type MenuSearchProps } from '../Menu';
-import { HeaderButton } from './HeaderButton';
-import styles from './globalMenu.module.css';
 
 export type Account = {
   type: AvatarType;
@@ -18,7 +15,10 @@ export interface AccountSearch extends MenuSearchProps {
   hidden?: boolean;
 }
 
+export type MobileMenuType = 'dropdown' | 'drawer';
+
 export interface GlobalMenuProps {
+  variant: MobileMenuType;
   expanded: boolean;
   onToggle: MouseEventHandler;
   items: MenuItemProps[];
@@ -34,15 +34,11 @@ export interface GlobalMenuProps {
 const defaultResultLabel = (hits: number) => `${hits} hits`;
 
 export const GlobalMenu = ({
-  className,
-  expanded,
-  onToggle,
   accounts = [],
   accountGroups = {},
   accountSearch,
   items = [],
   groups,
-  menuLabel = 'Menu',
   backLabel = 'Back',
 }: GlobalMenuProps) => {
   const accountMenu: MenuItemProps[] = accounts.map((account) => ({
@@ -72,7 +68,7 @@ export const GlobalMenu = ({
     onClick: onToggleAccounts,
   };
 
-  const globalMenu = selectedAccount ? [accountMenuItem, ...items] : items;
+  const MobileMenu = selectedAccount ? [accountMenuItem, ...items] : items;
 
   const filteredAccountMenu = filterString
     ? accountMenu
@@ -113,19 +109,14 @@ export const GlobalMenu = ({
     ...(filteredAccountMenu.length > 0 ? filteredAccountMenu : [{ id: 'search', group: 'search', hidden: true }]),
   ];
 
-  return (
-    <div className={cx(styles.button, className)}>
-      <HeaderButton as="div" avatar={accountMenuItem.avatar} onClick={onToggle} expanded={expanded} label={menuLabel} />
-      <div className={styles.dropdown} aria-expanded={expanded}>
-        {selectAccount ? (
-          <>
-            <MenuItem {...backItem} />
-            <Menu theme="global" search={accountSearchItem} groups={filterAccountGroups} items={accountSwitcher} />
-          </>
-        ) : (
-          <Menu theme="global" groups={groups} items={globalMenu} />
-        )}
-      </div>
-    </div>
-  );
+  if (selectAccount) {
+    return (
+      <>
+        <MenuItem {...backItem} />
+        <Menu theme="global" search={accountSearchItem} groups={filterAccountGroups} items={accountSwitcher} />
+      </>
+    );
+  }
+
+  return <Menu theme="global" groups={groups} items={MobileMenu} />;
 };

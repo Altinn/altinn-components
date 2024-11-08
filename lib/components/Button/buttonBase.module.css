@@ -56,14 +56,12 @@
 /* outline */
 
 .button[data-variant="outline"] {
-  border-color: var(--theme-base-hover);
   border-style: solid;
 }
 
 /* dotted */
 
 .button[data-variant="dotted"] {
-  border-color: var(--theme-base-hover);
   border-style: dotted;
 }
 
@@ -76,6 +74,23 @@
 .button[aria-selected="true"] {
   background-color: var(--theme-background-subtle);
   color: var(--theme-text-default);
+}
+
+/* primary color */
+
+.button[data-color="primary"] {
+  border-color: var(--theme-base-default);
+}
+
+.button[data-color="primary"]:hover {
+  border-color: var(--theme-base-hover);
+}
+
+.button[data-color="primary"][data-variant="solid"],
+.button[data-color="primary"][data-variant="solid"] {
+  border-color: var(--theme-base-default);
+  background-color: var(--theme-base-default);
+  color: white;
 }
 
 /* secondary color */

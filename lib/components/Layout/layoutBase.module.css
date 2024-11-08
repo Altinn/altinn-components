@@ -1,0 +1,23 @@
+.base {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.base[data-theme="global"] {
+  background-color: var(--neutral-background-default);
+}
+
+.base[data-theme="neutral"] {
+  background-color: var(--neutral-background-subtle);
+}
+
+.base[data-theme="person"] {
+  background-color: var(--person-background-subtle);
+}
+
+.base[data-theme="company"] {
+  background-color: var(--company-background-subtle);
+}

@@ -17,7 +17,25 @@ pnpm add @altinn/components
 ```
 Tested with Node.js 20.x <
 
+## Requirements
+
+React `>=18`in your project. 
+
 ## Usage
+Wrap your application in RootProvider to enable shared context across all components. Here’s a basic setup:
+
+```tsx
+import { RootProvider } from '@altinn/components';
+
+function App() {
+  return (
+    <RootProvider>
+      { /* Your application here */ }
+    </RootProvider>
+  );
+}
+```
+
 To use the components in your application, you need to import the components you want to use from the package. For example:
 
 ```tsx
@@ -26,7 +44,7 @@ import { Avatar, type AvatarVariant } from '@altinn/components';
 ```
 and import the css file in your application once:
 ```ts
-import '@altinn/components/dist/index.css';
+import '@altinn/altinn-components/lib/css/global.css';
 ```
 for correct `font-family` and minimal collection of resets.
 

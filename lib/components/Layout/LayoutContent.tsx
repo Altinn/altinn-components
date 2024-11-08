@@ -1,5 +1,5 @@
 import type { LayoutBaseProps } from './LayoutBase';
-import styles from './layout.module.css';
+import styles from './layoutContent.module.css';
 
 /**
  * Content layout container. Should be a child of LayoutBody.

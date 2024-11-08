@@ -1,0 +1,8 @@
+.drawer {
+  display: none;
+}
+
+.drawer[aria-expanded="true"] {
+  display: block;
+  width: 100%;
+}
