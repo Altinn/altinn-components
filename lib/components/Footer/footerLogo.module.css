@@ -1,0 +1,12 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  column-gap: .5em;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.symbol {
+  width: 1rem;
+  height: 1rem;
+}

@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { LayoutBase, LayoutBody, LayoutContent, LayoutSidebar, type LayoutTheme } from '.';
+import { Footer, type FooterProps } from '../Footer';
 import { Header, type HeaderProps } from '../Header';
 import { Menu, type MenuProps } from '../Menu';
 
@@ -17,12 +18,13 @@ interface ContentProps {
 export interface LayoutProps {
   theme?: LayoutTheme;
   header?: HeaderProps;
+  footer?: FooterProps;
   sidebar: SidebarProps;
   content: ContentProps;
   children: ReactNode;
 }
 
-export const Layout = ({ theme = 'global', header, sidebar = {}, content = {}, children }: LayoutProps) => {
+export const Layout = ({ theme = 'global', header, footer, sidebar = {}, content = {}, children }: LayoutProps) => {
   const { menu, ...sideRestProps } = sidebar;
   return (
     <LayoutBase theme={theme}>
@@ -32,11 +34,11 @@ export const Layout = ({ theme = 'global', header, sidebar = {}, content = {}, c
           <LayoutSidebar hidden={sidebar?.hidden} theme={sidebar?.theme} {...sideRestProps}>
             {menu && <Menu {...menu} />}
             {sidebar?.children}
-            {sidebar?.hidden && 'HIDDEN'}
           </LayoutSidebar>
         )}
         <LayoutContent theme={content?.theme}>{children}</LayoutContent>
       </LayoutBody>
+      {footer && <Footer {...footer} />}
     </LayoutBase>
   );
 };

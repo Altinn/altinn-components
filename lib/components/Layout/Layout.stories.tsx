@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { ActionFooter, ActionHeader, ActionMenu, DialogListItem, ListBase, Snackbar } from '../';
-import type { HeaderProps } from '../Header';
-import type { MenuProps } from '../Menu';
+import type { FooterProps, HeaderProps, MenuProps } from '../';
 import { Layout } from './Layout';
 
 const header: HeaderProps = {
@@ -16,6 +15,34 @@ const header: HeaderProps = {
         type: 'person',
         name: 'Aurora Mikalsen',
         selected: true,
+      },
+    ],
+  },
+};
+
+const footer: FooterProps = {
+  address: 'Postboks 1382 Vika, 0114 Oslo.',
+  menu: {
+    items: [
+      {
+        id: '1',
+        href: '#',
+        title: 'Om Altinn',
+      },
+      {
+        id: '2',
+        href: '#',
+        title: 'Driftsmeldinger',
+      },
+      {
+        id: '3',
+        href: '#',
+        title: 'Personvern',
+      },
+      {
+        id: '4',
+        href: '#',
+        title: 'Tilgjengelighet',
       },
     ],
   },
@@ -76,6 +103,7 @@ const meta = {
   },
   args: {
     header,
+    footer,
     sidebar: {
       menu,
     },
