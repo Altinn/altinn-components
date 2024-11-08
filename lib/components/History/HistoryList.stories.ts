@@ -16,23 +16,31 @@ const meta = {
           name: 'Eirik Horneland',
         },
         summary: 'Brann slo Glimt 4-1 på Stadion.',
-        attachments: [
-          {
-            label: '1-0 Castro.pdf',
-          },
-          {
-            label: '2-0 Kornvig.pdf',
-          },
-          {
-            label: '3-0 Kartum.pdf',
-          },
-          {
-            label: '3-1 Zinkernagel.pdf',
-          },
-          {
-            label: '4-1 Castro.pdf',
-          },
-        ],
+        attachments: {
+          title: '6 vedlegg',
+          items: [
+            {
+              href: '#',
+              label: '1-0 Castro.pdf',
+            },
+            {
+              href: '#',
+              label: '2-0 Kornvig.pdf',
+            },
+            {
+              href: '#',
+              label: '3-0 Kartum.pdf',
+            },
+            {
+              href: '#',
+              label: '3-1 Zinkernagel.pdf',
+            },
+            {
+              href: '#',
+              label: '4-1 Castro.pdf',
+            },
+          ],
+        },
       },
       {
         createdAt: '2004-09-09 13:34',
@@ -40,11 +48,15 @@ const meta = {
           name: 'Eirik Horneland',
         },
         summary: 'Brann vant 1-0 i Haugesund.',
-        attachments: [
-          {
-            label: 'Målet til Heggebø.pdf',
-          },
-        ],
+        attachments: {
+          title: '1 vedlegg',
+          items: [
+            {
+              href: '#',
+              label: 'Målet til Heggebø.pdf',
+            },
+          ],
+        },
       },
     ],
   },

@@ -29,8 +29,10 @@
 
 .media[data-color="company"] {
   background-color: var(--company-surface-default);
+  color: var(--company-text-default);
 }
 
 .media[data-color="person"] {
   background-color: var(--person-surface-default);
+  color: var(--person-text-default);
 }

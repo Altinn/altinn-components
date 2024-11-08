@@ -1,5 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { LayoutBase, LayoutSidebar, type LayoutTheme } from '../Layout';
+import { MetaItem } from '../Meta';
+import { MenuBase } from './MenuBase';
 import { MenuItem } from './MenuItem';
+import type { MenuItemColor } from './MenuItemBase';
 
 const meta = {
   title: 'Menu/MenuItem',
@@ -129,4 +133,32 @@ export const CompanyAccount: Story = {
     size: 'lg',
     description: 'Org nr.: XX.XX.XXXX',
   },
+};
+
+export const ThemesAndColors = () => {
+  const themes: LayoutTheme[] = ['global', 'neutral', 'company', 'person', 'global-dark'];
+  const colors: MenuItemColor[] = ['neutral', 'subtle', 'strong', 'company', 'person'];
+
+  return (
+    <div style={{ display: 'flex', width: '100%' }}>
+      {themes.map((theme) => {
+        return (
+          <div key={theme} style={{ flexGrow: 1 }}>
+            <LayoutBase theme={theme}>
+              <MenuBase>
+                {colors.map((color) => {
+                  return (
+                    <div key={color}>
+                      <MenuItem icon="inbox" title="Title" color={color} id="inbox" />
+                      <MetaItem>{theme + '/' + color}</MetaItem>
+                    </div>
+                  );
+                })}
+              </MenuBase>
+            </LayoutBase>
+          </div>
+        );
+      })}
+    </div>
+  );
 };
