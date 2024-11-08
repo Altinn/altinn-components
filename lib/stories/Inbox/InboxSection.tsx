@@ -1,6 +1,6 @@
 'use client';
 import { Fragment } from 'react';
-import { ListBase, DialogListItem, Dialog, ActionFooter, ActionMenu } from '../../components';
+import { ListBase, DialogListItem, Dialog, Toolbar, ActionMenu } from '../../components';
 import styles from './inboxSection.module.css';
 import { groupBy } from './groupBy';
 import { useInboxContext } from './';
@@ -24,7 +24,7 @@ const inboxes = {
 };
 
 export function InboxSection() {
-  const { inboxId, dialogId, onDialogId, items, onSelectId, selectedCount, bulkMenu } = useInboxContext();
+  const { inboxId, dialogId, onDialogId, items, onSelectId, selectedCount, bulkMenu, toolbar } = useInboxContext();
 
   if (dialogId) {
     const dialog = items?.find((item) => item.id === dialogId);
@@ -68,31 +68,34 @@ export function InboxSection() {
   const groups = groupBy(inboxItems);
 
   return (
-    <section className={styles?.section}>
-      {Object.entries(groups).map(([key, items]) => {
-        const title = key;
-        return (
-          <Fragment key={key}>
-            <header className={styles?.header}>
-              <h2 className={styles?.title}>{title.substring(0, 1).toUpperCase() + title.substring(1)}</h2>
-            </header>
-            <ListBase>
-              {items?.map((item) => {
-                return (
-                  <DialogListItem
-                    {...item}
-                    key={item?.id}
-                    title={item?.title}
-                    onClick={selectedCount > 0 ? () => onSelectId(item.id) : () => onDialogId(item.id)}
-                    selected={item?.selected}
-                    select={{ checked: item?.selected, onChange: () => onSelectId(item.id) }}
-                  />
-                );
-              })}
-            </ListBase>
-          </Fragment>
-        );
-      })}
-    </section>
+    <main>
+      <Toolbar {...toolbar} />
+      <section className={styles?.section}>
+        {Object.entries(groups).map(([key, items]) => {
+          const title = key;
+          return (
+            <Fragment key={key}>
+              <header className={styles?.header}>
+                <h2 className={styles?.title}>{title.substring(0, 1).toUpperCase() + title.substring(1)}</h2>
+              </header>
+              <ListBase>
+                {items?.map((item) => {
+                  return (
+                    <DialogListItem
+                      {...item}
+                      key={item?.id}
+                      title={item?.title}
+                      onClick={selectedCount > 0 ? () => onSelectId(item.id) : () => onDialogId(item.id)}
+                      selected={item?.selected}
+                      select={{ checked: item?.selected, onChange: () => onSelectId(item.id) }}
+                    />
+                  );
+                })}
+              </ListBase>
+            </Fragment>
+          );
+        })}
+      </section>
+    </main>
   );
 }

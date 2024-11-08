@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useContext, type ReactNode } from 'react';
-import { dialogs, bulkMenu } from '.';
+import { search, footer, menu, accounts, dialogs, bulkMenu } from '.';
 
 type InboxId = string | null;
 
@@ -70,6 +70,25 @@ export const InboxProvider = ({ defaultValue, children }: InboxProviderProps) =>
 
   const bulkMode = selectedCount > 0 ? true : false;
 
+  const header = { menu: { accounts }, search: selectedCount > 0 ? null : search };
+  const sidebar = { hidden: selectedCount > 0 && true, menu };
+
+  const account = accounts?.find((item) => item.selected);
+
+  const toolbar = {
+    menu: {
+      label: account?.name,
+      value: account?.name,
+      items: accounts?.map((item) => {
+        return {
+          avatar: item,
+          title: item?.name,
+          id: item?.name,
+        };
+      }),
+    },
+  };
+
   return (
     <InboxContext.Provider
       value={{
@@ -83,8 +102,15 @@ export const InboxProvider = ({ defaultValue, children }: InboxProviderProps) =>
         onSelectId,
         onUnselectAll,
         selectedCount,
+        accounts,
+        search,
+        footer,
+        menu,
         bulkMode,
         bulkMenu,
+        header,
+        sidebar,
+        toolbar,
       }}
     >
       {children}
