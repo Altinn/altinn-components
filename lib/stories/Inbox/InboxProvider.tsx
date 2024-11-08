@@ -1,10 +1,11 @@
-import { createContext, useState, useContext, type ReactNode } from 'react';
+import { createContext, useState, useEffect, useContext, type ReactNode } from 'react';
 import { dialogs, bulkMenu } from '.';
 
 type InboxId = string | null;
 
 interface InboxContextProvider {
   inboxId: InboxId;
+  dialogId: InboxId;
   setInboxId: (id: InboxId) => void;
 }
 
@@ -12,13 +13,12 @@ const InboxContext = createContext<InboxContextProvider>({ inboxId: 'inbox' });
 
 interface InboxProviderProps {
   children: ReactNode;
-  value?: InboxContextProvider;
+  defaultValue?: InboxContextProvider;
 }
 
-export const InboxProvider = ({ children }: InboxProviderProps) => {
-  const [inboxId, setInboxId] = useState<InboxId>('inbox');
-  const [dialogId, setDialogId] = useState<InboxId>(null);
-
+export const InboxProvider = ({ defaultValue, children }: InboxProviderProps) => {
+  const [inboxId, setInboxId] = useState<InboxId>(defaultValue?.inboxId);
+  const [dialogId, setDialogId] = useState<InboxId>(defaultValue?.dialogId);
   const [itemsById, setItemsById] = useState({});
 
   const onDialogId = (id: InboxId) => {

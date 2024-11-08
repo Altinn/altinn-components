@@ -1,8 +1,8 @@
 import { InboxProvider, InboxLayout, InboxSection } from './';
 
-export const Inbox = () => {
+export const Inbox = ({ dialogId, inboxId, itemsById }) => {
   return (
-    <InboxProvider>
+    <InboxProvider defaultValue={(dialogId, inboxId, itemsById)}>
       <InboxLayout>
         <InboxSection />
       </InboxLayout>
