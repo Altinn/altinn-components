@@ -60,6 +60,6 @@
     }
   },
   "files": {
-    "ignore": [".github", "node_modules", "dist", "build", ".storybook"]
+    "ignore": [".github", "node_modules", "dist", "build", ".storybook", "lib/stories"]
   }
 }

@@ -1,6 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
-
 import { DialogList } from './DialogList';
 
 const meta = {
@@ -16,26 +14,31 @@ const meta = {
         title: 'Støtte til utbygging av solceller',
         summary: 'Din støtte er innvilget',
         status: { value: 'draft' },
+        groupId: '2024-01',
       },
       {
         title: 'Støtte til utbygging av solceller',
         summary: 'Din støtte er innvilget',
         status: { value: 'sent' },
+        groupId: '2024-02',
       },
       {
         title: 'Støtte til utbygging av solceller',
         summary: 'Din støtte er innvilget',
         status: { value: 'requires-attention' },
+        groupId: '2024-01',
       },
       {
         title: 'Støtte til utbygging av solceller',
         summary: 'Din støtte er innvilget',
         status: { value: 'in-progress' },
+        groupId: '2024-02',
       },
       {
         title: 'Støtte til utbygging av solceller',
         summary: 'Din støtte er innvilget.',
         status: { value: 'completed' },
+        groupId: '2024-01',
       },
     ],
   },
@@ -48,14 +51,15 @@ export const Default: Story = {
   args: {},
 };
 
-export const Company: Story = {
+export const Grouped: Story = {
   args: {
-    theme: 'company',
-  },
-};
-
-export const Person: Story = {
-  args: {
-    theme: 'person',
+    groups: {
+      '2024-01': {
+        title: 'Januar 2024',
+      },
+      '2024-02': {
+        title: 'Februar 2024',
+      },
+    },
   },
 };

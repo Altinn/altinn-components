@@ -1,7 +1,9 @@
 import cx from 'classnames';
 import type { MouseEventHandler } from 'react';
-import { Icon, type IconName } from '../Icon';
+import type { IconName } from '../Icon';
 import { ButtonBase, type ButtonBaseProps } from './ButtonBase';
+import { ButtonIcon } from './ButtonIcon';
+import { ButtonLabel } from './ButtonLabel';
 
 import styles from './comboButton.module.css';
 
@@ -13,9 +15,9 @@ export interface ComboButtonProps extends Omit<ButtonBaseProps, 'onClick'> {
 }
 
 export const ComboButton = ({
-  size = 'md',
   variant = 'solid',
-  color,
+  color = 'primary',
+  size = 'md',
   selected = false,
   icon,
   children,
@@ -32,12 +34,12 @@ export const ComboButton = ({
       selected={selected}
       className={cx(styles.button, className)}
     >
-      <ButtonBase size={size} onClick={onIconClick} className={styles.icon}>
-        <Icon name={icon} />
+      <ButtonBase size={size} onClick={onIconClick} className={styles.secondary}>
+        <ButtonIcon icon={icon} size={size} />
       </ButtonBase>
       <span data-size={size} className={styles.divider} />
-      <ButtonBase size={size} onClick={onLabelClick} className={styles.label}>
-        {children}
+      <ButtonBase size={size} onClick={onLabelClick} className={styles.primary}>
+        <ButtonLabel size={size}>{children}</ButtonLabel>
       </ButtonBase>
     </ButtonBase>
   );

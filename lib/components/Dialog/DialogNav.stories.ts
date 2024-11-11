@@ -54,31 +54,31 @@ export const ContextMenu: Story = {
       items: [
         {
           id: '1',
-          group: '1',
+          groupId: '1',
           icon: 'arrow-redo',
           label: 'Del og gi tilgang',
         },
         {
           id: '2',
-          group: '1',
+          groupId: '1',
           icon: 'eye-closed',
           label: 'Marker som ny',
         },
         {
           id: '3',
-          group: '2',
+          groupId: '2',
           icon: 'archive',
           label: 'Flytt til arkiv',
         },
         {
           id: '4',
-          group: '2',
+          groupId: '2',
           icon: 'trash',
           label: 'Flytt til papirkurv',
         },
         {
           id: '5',
-          group: '3',
+          groupId: '3',
           icon: 'clock-dashed',
           label: 'Aktivitetslogg',
         },

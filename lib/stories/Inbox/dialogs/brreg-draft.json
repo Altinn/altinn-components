@@ -1,0 +1,45 @@
+{
+  "_createdAt": "2024-10-23T07:17:42Z",
+  "_id": "7cda3a28-2171-488c-8554-6b061b48e533",
+  "_rev": "n6M6ED8lI6VdyYqDQoylrM",
+  "_type": "dialog",
+  "_updatedAt": "2024-10-28T17:07:32Z",
+  "action": [
+    { "priority": "primary", "label": "Til skjema" },
+    {
+      "label": "Forkast utkast"
+    }
+  ],
+  "additionalInfo": "For at du skal kunne registrere enkeltpersonforetaket, er du nødt til å drive med næringsaktivitet. Dette er aktivitet som er egnet til å ha et visst omfang og varighet.",
+  "body": "## Oppsummering\n- **Foretakets navn:** Olas Enkeltmannsforetak\n- **Lorem ipsum:** Data",
+  "history": [
+    {
+      "_key": "334c343862da",
+      "_type": "historyItem",
+      "summary": "Skjema ble opprettet."
+    },
+    {
+      "_key": "f5cc7d1053c9",
+      "_type": "historyItem",
+      "summary": "Bla bla bla."
+    }
+  ],
+  "recipient": { "type": "person", "name": "Ola Nordmann", "imageUrl": null },
+  "sender": {
+    "type": "company",
+    "name": "Brønnøysundregistrene",
+    "imageUrl": "https://cdn.sanity.io/images/z3it2oa7/production/3be5df0229c0b58c7ab59db2ade6208cc83954d2-300x300.png?w=96"
+  },
+  "status": { "label": "Draft", "value": "draft" },
+  "summary": "Et utkast til skjema er lagret.",
+  "title": "Registrering av enkeltmannsforetak",
+  "updatedAt": "2024-10-28T17:07:32Z",
+  "actions": [
+    { "_key": "4af713286bf6", "_type": "dialogAction", "label": "Til skjema" },
+    {
+      "_key": "1ef5bc424eee",
+      "_type": "dialogAction",
+      "label": "Forkast utkast"
+    }
+  ]
+}

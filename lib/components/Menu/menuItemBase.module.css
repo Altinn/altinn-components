@@ -47,12 +47,13 @@
   color: var(--theme-text-default);
 }
 
-.item:hover {
-  background-color: var(--theme-surface-hover);
-}
-
 .item[aria-selected="true"] {
   background-color: var(--theme-background-default);
+}
+
+.item:hover,
+.item:active {
+  background-color: var(--theme-surface-hover);
 }
 
 .media[data-color="subtle"] {

@@ -21,7 +21,7 @@
   -moz-osx-font-smoothing: inherit;
 
   /* Corrects inability to style clickable `input` types in iOS */
-  -webkit-appearance: none;
+  appearance: none;
 
   /* user select none */
   user-select: none;
@@ -45,7 +45,19 @@
   border-color: var(--theme-base-active);
 }
 
-/* solid */
+.button[data-size="sm"] {
+  height: 2.25rem; /* sm 36 */
+}
+
+.button[data-size="md"] {
+  height: 2.75rem; /* md 44 */
+}
+
+.button[data-size="lg"] {
+  height: 3.5rem; /* lg 56 */
+}
+
+/* primary solid */
 
 .button[data-variant="solid"] {
   border-color: var(--theme-base-default);
@@ -53,44 +65,52 @@
   color: white;
 }
 
-/* outline */
+.button[data-variant="solid"]:hover {
+  border-color: var(--theme-base-hover);
+  background-color: var(--theme-base-hover);
+}
+
+.button[data-variant="solid"]:active {
+  border-color: var(--theme-base-active);
+  background-color: var(--theme-base-active);
+}
+
+/* primary outline, dotted + text */
+
+.button[data-variant="outline"],
+.button[data-variant="dotted"] {
+  border-color: var(--theme-base-default);
+}
 
 .button[data-variant="outline"] {
   border-style: solid;
 }
 
-/* dotted */
-
 .button[data-variant="dotted"] {
   border-style: dotted;
 }
-
-/* text */
 
 .button[data-variant="text"] {
   border-color: transparent;
 }
 
+.button[data-variant="outline"]:hover,
+.button[data-variant="dotted"]:hover,
+.button[data-variant="text"]:hover {
+  background-color: var(--theme-surface-default);
+}
+
+.button[data-variant="outline"]:active,
+.button[data-variant="dotted"]:active,
+.button[data-variant="text"]:active {
+  background-color: var(--theme-surface-active);
+}
+
+/* selected */
+
 .button[aria-selected="true"] {
   background-color: var(--theme-background-subtle);
   color: var(--theme-text-default);
-}
-
-/* primary color */
-
-.button[data-color="primary"] {
-  border-color: var(--theme-base-default);
-}
-
-.button[data-color="primary"]:hover {
-  border-color: var(--theme-base-hover);
-}
-
-.button[data-color="primary"][data-variant="solid"],
-.button[data-color="primary"][data-variant="solid"] {
-  border-color: var(--theme-base-default);
-  background-color: var(--theme-base-default);
-  color: white;
 }
 
 /* secondary color */
@@ -103,8 +123,20 @@
   border-color: var(--theme-surface-hover);
 }
 
-.button[data-color="secondary"][data-variant="solid"],
 .button[data-color="secondary"][data-variant="solid"] {
   border-color: var(--theme-surface-default);
   background-color: var(--theme-surface-default);
+}
+
+.button[data-color="secondary"][data-variant="solid"]:hover {
+  border-color: var(--theme-surface-hover);
+  background-color: var(--theme-surface-hover);
+}
+
+.button[data-color="secondary"][data-variant="solid"]:active,
+.button[data-color="secondary"][data-variant="outline"]:active,
+.button[data-color="secondary"][data-variant="dotted"]:active,
+.button[data-color="secondary"][data-variant="text"]:active {
+  border-color: var(--theme-surface-active);
+  background-color: var(--theme-surface-active);
 }

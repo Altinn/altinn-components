@@ -1,7 +1,4 @@
 .button {
-  border: 1px solid;
-  width: 2.75rem;
-  height: 2.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,5 +7,25 @@
 
 .icon {
   font-size: 1.5rem;
-  margin: 0.625rem;
+}
+
+/* sm 36 */
+
+.button[data-size="sm"] {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+/* md 44 */
+
+.button[data-size="md"] {
+  width: 2.75rem;
+  height: 2.75rem;
+}
+
+/* lg 56 */
+
+.button[data-size="lg"] {
+  width: 3.5rem;
+  height: 3.5rem;
 }

@@ -1,18 +1,18 @@
 import type { ReactNode } from 'react';
 import styles from './listBase.module.css';
 
-import type { LayoutTheme } from '../Layout';
-import type { ListItemSize } from './ListItemBase';
+export type ListTheme = 'inherit' | 'global' | 'neutral' | 'person' | 'company';
+export type ListSpacing = 'none' | 'sm' | 'md' | 'lg';
 
 export interface ListBaseProps {
-  size?: ListItemSize;
-  theme?: LayoutTheme;
+  theme?: ListTheme;
+  spacing?: ListSpacing;
   children?: ReactNode;
 }
 
-export const ListBase = ({ size = 'md', theme, children }: ListBaseProps) => {
+export const ListBase = ({ theme = 'inherit', spacing = 'md', children }: ListBaseProps) => {
   return (
-    <div className={styles.list} data-theme={theme} data-size={size}>
+    <div className={styles.list} data-theme={theme} data-spacing={spacing}>
       {children}
     </div>
   );

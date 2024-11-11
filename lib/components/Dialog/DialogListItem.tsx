@@ -55,6 +55,8 @@ export type DialogListItemProps = {
   attachmentsCount?: number;
   /** OnClick handler */
   onClick?: () => void;
+  /** Group id */
+  groupId?: string;
 };
 
 /**
@@ -68,6 +70,7 @@ export const DialogListItem = ({
   size = 'lg',
   variant = 'neutral',
   href,
+  onClick,
   select,
   selected,
   status,
@@ -84,10 +87,17 @@ export const DialogListItem = ({
   attachmentsCount,
   title,
   summary,
-  ...rest
 }: DialogListItemProps) => {
   return (
-    <DialogListItemBase as={as} size={size} href={href} select={select} selected={selected} variant={variant} {...rest}>
+    <DialogListItemBase
+      as={as}
+      size={size}
+      href={href}
+      select={select}
+      selected={selected}
+      variant={variant}
+      onClick={onClick}
+    >
       <DialogBorder className={styles.border} size={size} seen={seen}>
         <header data-size={size} className={styles.header}>
           <DialogTitle size={size} seen={seen} variant={variant}>

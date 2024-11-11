@@ -22,7 +22,7 @@ export const GlobalMenu: Story = {
     items: [
       {
         id: 'account',
-        group: 'account',
+        groupId: 'account',
         size: 'lg',
         avatar: {
           type: 'person',
@@ -33,7 +33,7 @@ export const GlobalMenu: Story = {
       },
       {
         id: 'inbox',
-        group: 'apps',
+        groupId: 'apps',
         size: 'lg',
         icon: 'inbox',
         title: 'Innboks',
@@ -44,7 +44,7 @@ export const GlobalMenu: Story = {
       },
       {
         id: 'access',
-        group: 'apps',
+        groupId: 'apps',
         size: 'lg',
         icon: 'bookmark',
         title: 'Tilganger',
@@ -55,14 +55,14 @@ export const GlobalMenu: Story = {
       },
       {
         id: 'access',
-        group: 'apps',
+        groupId: 'apps',
         size: 'lg',
         icon: 'menu-grid',
         title: 'Alle skjema',
       },
       {
         id: 'settings',
-        group: 'settings',
+        groupId: 'settings',
         icon: 'cog',
         title: 'Innstillinger',
       },
@@ -80,7 +80,7 @@ export const CollapsibleGlobalMenu: Story = {
     items: [
       {
         id: 'account',
-        group: 'account',
+        groupId: 'account',
         size: 'lg',
         avatar: {
           type: 'person',
@@ -91,7 +91,7 @@ export const CollapsibleGlobalMenu: Story = {
       },
       {
         id: 'innboks',
-        group: 'apps',
+        groupId: 'apps',
         size: 'lg',
         icon: 'inbox',
         title: 'Innboks',
@@ -99,32 +99,32 @@ export const CollapsibleGlobalMenu: Story = {
         items: [
           {
             id: 'utkast',
-            group: '1',
+            groupId: '1',
             icon: 'doc-pencil',
             title: 'Utkast',
           },
           {
             id: 'sent',
-            group: '1',
+            groupId: '1',
             icon: 'file-checkmark',
             selected: true,
             title: 'Sendt',
           },
           {
             id: 'bookmarks',
-            group: '3',
+            groupId: '3',
             icon: 'bookmark',
             title: 'Lagrede søk',
           },
           {
             id: 'arkiv',
-            group: '4',
+            groupId: '4',
             icon: 'archive',
             title: 'Arkivert',
           },
           {
             id: 'trash',
-            group: '4',
+            groupId: '4',
             icon: 'trash',
             title: 'Papirkurv',
           },
@@ -132,21 +132,21 @@ export const CollapsibleGlobalMenu: Story = {
       },
       {
         id: 'tilganger',
-        group: 'apps',
+        groupId: 'apps',
         size: 'lg',
         icon: 'bookmark',
         title: 'Tilganger',
       },
       {
         id: 'skjema',
-        group: 'apps',
+        groupId: 'apps',
         size: 'lg',
         icon: 'menu-grid',
         title: 'Alle skjema',
       },
       {
         id: 'settings',
-        group: 'settings',
+        groupId: 'settings',
         icon: 'cog',
         title: 'Innstillinger',
       },
@@ -184,14 +184,14 @@ export const DrilldownMenu: Story = {
     items: [
       {
         id: 'people',
-        group: 'level-1',
+        groupId: 'level-1',
         size: 'lg',
         icon: 'menu-grid',
         title: 'Alle skjema',
         expanded: true,
         items: [
           {
-            group: 'level-2',
+            groupId: 'level-2',
             name: 'tema',
             icon: 'teddy-bear',
             title: 'Tema',
@@ -199,16 +199,16 @@ export const DrilldownMenu: Story = {
             items: [
               {
                 id: 'c1',
-                group: 'level-3',
+                groupId: 'level-3',
                 title: 'Kategori 1',
               },
               {
-                group: 'level-3',
+                groupId: 'level-3',
                 id: 'c2',
                 title: 'Kategori 2',
               },
               {
-                group: 'level-3',
+                groupId: 'level-3',
                 id: 'c3',
                 title: 'Kategori 3',
               },
@@ -226,7 +226,7 @@ export const InboxMenu: Story = {
     items: [
       {
         id: 'innboks',
-        group: '1',
+        groupId: '1',
         size: 'lg',
         icon: 'inbox',
         title: 'Innboks',
@@ -235,7 +235,7 @@ export const InboxMenu: Story = {
       },
       {
         id: 'utkast',
-        group: '2',
+        groupId: '2',
         icon: 'doc-pencil',
         title: 'Utkast',
         badge: {
@@ -244,7 +244,7 @@ export const InboxMenu: Story = {
       },
       {
         id: 'sendt',
-        group: '2',
+        groupId: '2',
         icon: 'file-checkmark',
         selected: true,
         title: 'Sendt',
@@ -254,7 +254,7 @@ export const InboxMenu: Story = {
       },
       {
         id: 'lagret',
-        group: '3',
+        groupId: '3',
         icon: 'bookmark',
         title: 'Lagrede søk',
         badge: {
@@ -263,7 +263,7 @@ export const InboxMenu: Story = {
       },
       {
         id: 'arkivert',
-        group: '4',
+        groupId: '4',
         icon: 'archive',
         title: 'Arkivert',
         badge: {
@@ -272,7 +272,7 @@ export const InboxMenu: Story = {
       },
       {
         id: 'papirkurv',
-        group: '4',
+        groupId: '4',
         disabled: true,
         icon: 'trash',
         title: 'Papirkurv',
@@ -299,13 +299,13 @@ export const InboxMenuWithShortcuts = {
       ...(InboxMenu?.args?.items ?? []),
       {
         id: 'users',
-        group: 'shortcuts',
+        groupId: 'shortcuts',
         icon: 'person-group',
         title: 'Brukere',
       },
       {
         id: 'settings',
-        group: 'shortcuts',
+        groupId: 'shortcuts',
         icon: 'cog',
         title: 'Innstillinger',
       },
@@ -319,7 +319,7 @@ export const PersonMenu: Story = {
     items: [
       {
         id: 'person',
-        group: '1',
+        groupId: '1',
         size: 'lg',
         avatar: {
           type: 'person',
@@ -329,31 +329,31 @@ export const PersonMenu: Story = {
       },
       {
         id: 'profil',
-        group: '2',
+        groupId: '2',
         icon: 'person-circle',
         title: 'Kontaktinformasjon',
       },
       {
         id: 'varslinger',
-        group: '2',
+        groupId: '2',
         icon: 'bell',
         title: 'Varslingsinnstillinger',
       },
       {
         id: 'bookmarks',
-        group: '3',
+        groupId: '3',
         icon: 'bookmark',
         title: 'Favoritter',
       },
       {
         id: 'grupper',
-        group: '3',
+        groupId: '3',
         icon: 'hexagon-grid',
         title: 'Grupper',
       },
       {
         id: 'logg',
-        group: '4',
+        groupId: '4',
         icon: 'clock-dashed',
         title: 'Aktivitetslogg',
       },
@@ -367,7 +367,7 @@ export const CompanyMenu: Story = {
     items: [
       {
         id: 'company',
-        group: '1',
+        groupId: '1',
         size: 'lg',
         avatar: {
           type: 'company',
@@ -377,25 +377,25 @@ export const CompanyMenu: Story = {
       },
       {
         id: 'profil',
-        group: '2',
+        groupId: '2',
         icon: 'buildings2',
         title: 'Firmaprofil',
       },
       {
         id: 'brukere',
-        group: '3',
+        groupId: '3',
         icon: 'person-group',
         title: 'Brukere',
       },
       {
         id: 'grupper',
-        group: '3',
+        groupId: '3',
         icon: 'hexagon-grid',
         title: 'Grupper',
       },
       {
         id: 'logg',
-        group: '4',
+        groupId: '4',
         icon: 'clock-dashed',
         title: 'Aktivitetslogg',
       },
@@ -417,7 +417,7 @@ export const AccountMenu: Story = {
     items: [
       {
         id: '1',
-        group: 'a1',
+        groupId: 'a1',
         avatar: {
           type: 'person',
           name: 'Dolly Duck',
@@ -429,7 +429,7 @@ export const AccountMenu: Story = {
       },
       {
         id: '2',
-        group: 'a2',
+        groupId: 'a2',
         avatar: {
           type: 'company',
           name: 'Bergen Bar',
@@ -441,7 +441,7 @@ export const AccountMenu: Story = {
       },
       {
         id: '3',
-        group: 'a2',
+        groupId: 'a2',
         avatar: {
           type: 'company',
           name: 'Sportsklubben Brann',
@@ -453,7 +453,7 @@ export const AccountMenu: Story = {
       },
       {
         id: '4',
-        group: 'a3',
+        groupId: 'a3',
         avatarGroup: {
           type: 'company',
           items: [
@@ -472,7 +472,7 @@ export const AccountMenu: Story = {
       },
       {
         id: '5',
-        group: 'b1',
+        groupId: 'b1',
         avatar: {
           type: 'company',
           name: 'Jensens Laks',
@@ -481,7 +481,7 @@ export const AccountMenu: Story = {
       },
       {
         id: '6',
-        group: 'b1',
+        groupId: 'b1',
         avatar: {
           type: 'company',
           name: 'Haralds gym',
@@ -493,7 +493,7 @@ export const AccountMenu: Story = {
       },
       {
         id: '7',
-        group: 'b1',
+        groupId: 'b1',
         avatar: {
           type: 'company',
           name: 'Trim og tran',

@@ -1,6 +1,9 @@
 import cx from 'classnames';
-import { ButtonBase, type ButtonColor, type ButtonSize, type ButtonVariant } from '../Button';
-import { Icon, type IconName } from '../Icon';
+import type { MouseEventHandler } from 'react';
+import type { IconName } from '../Icon';
+import { ButtonBase } from './ButtonBase';
+import type { ButtonColor, ButtonSize, ButtonVariant } from './ButtonBase';
+import { ButtonIcon } from './ButtonIcon';
 import styles from './iconButton.module.css';
 
 interface IconButtonProps {
@@ -9,13 +12,20 @@ interface IconButtonProps {
   size?: ButtonSize;
   variant?: ButtonVariant;
   className?: string;
-  onClick?: () => void;
+  onClick?: MouseEventHandler;
 }
 
-export const IconButton = ({ className, variant, color, size, icon, onClick }: IconButtonProps) => {
+export const IconButton = ({
+  variant = 'solid',
+  color = 'primary',
+  size = 'md',
+  icon,
+  className,
+  onClick,
+}: IconButtonProps) => {
   return (
     <ButtonBase variant={variant} color={color} size={size} className={cx(styles.button, className)} onClick={onClick}>
-      <Icon name={icon} className={styles.icon} />
+      <ButtonIcon icon={icon} size={size} />
     </ButtonBase>
   );
 };

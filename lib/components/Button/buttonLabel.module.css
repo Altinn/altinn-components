@@ -1,0 +1,17 @@
+.label {
+  line-height: 1;
+  font-weight: 500;
+  padding: 0 .25em;
+}
+
+.label[data-size="sm"] {
+  font-size: 0.875rem;
+}
+
+.label[data-size="md"] {
+  font-size: 1rem;
+}
+
+.label[data-size="lg"] {
+  font-size: 1.125rem;
+}

@@ -15,6 +15,8 @@ export * from './Layout';
 export * from './List';
 export * from './Menu';
 export * from './Meta';
+export * from './Searchbar';
 export * from './Snackbar';
 export * from './Toolbar';
+export * from './Page';
 export * from './Typography';

@@ -1,83 +1,70 @@
 'use client';
-import cx from 'classnames';
-import { useState } from 'react';
-import { Backdrop, DrawerBase, DropdownBase } from '../Dropdown';
+import { useEscapeKey } from '../../hooks';
+import { DrawerBase, DropdownBase } from '../Dropdown';
 import { GlobalMenu, type GlobalMenuProps } from '../GlobalMenu';
+import { useRootContext } from '../RootProvider';
+import { Searchbar, type SearchbarProps } from '../Searchbar';
 import { HeaderBase } from './HeaderBase';
 import { HeaderButton } from './HeaderButton';
 import { HeaderLogo } from './HeaderLogo';
 import { HeaderMenu } from './HeaderMenu';
-import { HeaderSearch, type HeaderSearchProps } from './HeaderSearch';
 import styles from './header.module.css';
-
-export type HeaderExpandedType = 'search' | 'menu' | null;
 
 export interface HeaderProps {
   menu: GlobalMenuProps;
-  search?: HeaderSearchProps;
+  search?: SearchbarProps;
 }
 
 export const Header = ({ search, menu }: HeaderProps) => {
-  const [expandedType, setExpandedType] = useState<HeaderExpandedType | null>(null);
-  const selectedAccount = menu?.accounts?.find((account) => account.selected);
+  const { currentId, toggleId, openId, closeAll } = useRootContext();
+  const selectedAccount = menu.accounts?.find((account) => account.selected);
   const selectedAvatar = selectedAccount && {
     type: selectedAccount.type,
     name: selectedAccount.name,
   };
 
-  const onToggle = (type: HeaderExpandedType) => {
-    if (expandedType === type) {
-      setExpandedType(null);
-    } else {
-      setExpandedType(type);
-    }
-  };
+  useEscapeKey(closeAll);
 
   const onSearchFocus = () => {
-    setExpandedType('search');
+    openId('search');
   };
 
-  const onSearchBlur = () => {
-    setExpandedType(null);
+  const onSearchClose = () => {
+    toggleId('search');
+  };
+
+  const onToggleMenu = () => {
+    toggleId('menu');
   };
 
   return (
-    <HeaderBase
-      className={cx(
-        styles.header,
-        expandedType === 'menu' && styles.menuExpanded,
-        expandedType === 'search' && styles.searchExpanded,
-      )}
-      expanded={(expandedType && true) || false}
-    >
-      <Backdrop className={styles.backdrop} />
+    <HeaderBase currentId={currentId} open={currentId === 'search' || currentId === 'menu'} onClose={closeAll}>
       <HeaderLogo className={styles.logo} />
       <HeaderMenu className={styles.menu}>
         <HeaderButton
           avatar={selectedAvatar}
-          onClick={() => onToggle('menu')}
-          expanded={expandedType === 'menu'}
+          onClick={onToggleMenu}
+          expanded={currentId === 'menu'}
           label={menu?.menuLabel}
         />
         {menu && (
-          <DropdownBase expanded={expandedType === 'menu'} className={styles.dropdown}>
+          <DropdownBase placement="right" expanded={currentId === 'menu'} className={styles.dropdown}>
             <GlobalMenu {...menu} variant="dropdown" />
           </DropdownBase>
         )}
       </HeaderMenu>
-
       {search && (
-        <HeaderSearch
+        <Searchbar
           {...search}
           className={styles.search}
-          expanded={expandedType === 'search'}
-          onBlur={onSearchBlur}
+          expanded={currentId === 'search'}
+          onClose={onSearchClose}
           onFocus={onSearchFocus}
         />
       )}
       {menu && (
-        <DrawerBase expanded={expandedType === 'menu'} className={styles.drawer}>
-          <GlobalMenu {...menu} variant="drawer" expanded={expandedType === 'menu'} />
+        <DrawerBase expanded={currentId === 'menu'} className={styles.drawer}>
+          <GlobalMenu {...menu} variant="drawer" expanded={currentId === 'menu'} />
         </DrawerBase>
       )}
     </HeaderBase>

@@ -1,0 +1,35 @@
+{
+  "_createdAt": "2024-10-23T09:33:00Z",
+  "_id": "95f30463-b886-402d-b765-95d9eccf68c0",
+  "_rev": "n6M6ED8lI6VdyYqDQoyiME",
+  "_type": "dialog",
+  "_updatedAt": "2024-10-28T17:07:12Z",
+  "additionalInfo": "For at du skal kunne registrere enkeltpersonforetaket, er du nødt til å drive med næringsaktivitet. Dette er aktivitet som er egnet til å ha et visst omfang og varighet.",
+  "body": "## Nøkkelinformasjon\n- **Foretakets navn:** Olas Enkeltmannsforetak\n- **Organisasjonsnummer:** 999 999 999\n- **Dato registrert**: 14. mai 2024\n\n## Hva nå?\nTips og triks til deg som har startet enkeltpersonforetak:\n- Få en regnskapsfører.\n- Slik driver du selskapet ditt.\n- Bla bla bla.",
+  "history": [
+    {
+      "_key": "334c343862da",
+      "_type": "historyItem",
+      "summary": "Skjema ble opprettet."
+    },
+    {
+      "_key": "f5cc7d1053c9",
+      "_type": "historyItem",
+      "summary": "Bla bla bla."
+    }
+  ],
+  "recipient": {
+    "type": "person",
+    "name": "Rein Regnskapsfører",
+    "imageUrl": null
+  },
+  "sender": {
+    "type": "company",
+    "name": "Brønnøysundregistrene",
+    "imageUrl": "https://cdn.sanity.io/images/z3it2oa7/production/3be5df0229c0b58c7ab59db2ade6208cc83954d2-300x300.png?w=96"
+  },
+  "status": { "label": "Avsluttet", "value": "completed" },
+  "summary": "Gratulerer! Ditt enkeltpersonforetak er godkjent og klart til bruk.",
+  "title": "Registrering av enkeltmannsforetak",
+  "updatedAt": "2024-10-28T17:07:12Z"
+}

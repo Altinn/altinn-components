@@ -3,14 +3,14 @@
   flex-direction: column;
 }
 
-.list[data-size="sm"] {
+.list[data-spacing="sm"] {
   row-gap: 4px;
 }
 
-.list[data-size="md"] {
+.list[data-spacing="md"] {
   row-gap: 8px;
 }
 
-.list[data-size="lg"] {
+.list[data-spacing="lg"] {
   row-gap: 16px;
 }

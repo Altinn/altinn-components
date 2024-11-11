@@ -3,16 +3,15 @@
   flex-direction: column;
 }
 
-.menu ul {
+.group {
   list-style: none;
   padding: 0;
   margin: 0;
   text-indent: 0;
 }
 
-.menu li {
+.menuItem {
   list-style: none;
-  list-style-type: none;
 }
 
 .group[data-divider="true"] + .group {

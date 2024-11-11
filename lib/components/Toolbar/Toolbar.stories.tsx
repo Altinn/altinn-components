@@ -81,27 +81,27 @@ export const Default: Story = {
         label: 'Velg status',
         options: [
           {
-            group: '1',
+            groupId: '1',
             value: 'draft',
             label: 'Utkast',
           },
           {
-            group: '1',
+            groupId: '1',
             value: 'sent',
             label: 'Sendt',
           },
           {
-            group: '2',
+            groupId: '2',
             value: 'in-progress',
             label: 'Under arbeid',
           },
           {
-            group: '2',
+            groupId: '2',
             value: 'requires-attention',
             label: 'Krever handling',
           },
           {
-            group: '2',
+            groupId: '2',
             value: 'completed',
             label: 'Avsluttet',
           },
@@ -157,27 +157,27 @@ export const FilterAndSearch: Story = {
         label: 'Velg status',
         options: [
           {
-            group: '1',
+            groupId: '1',
             value: 'draft',
             label: 'Utkast',
           },
           {
-            group: '1',
+            groupId: '1',
             value: 'sent',
             label: 'Sendt',
           },
           {
-            group: '2',
+            groupId: '2',
             value: 'in-progress',
             label: 'Under arbeid',
           },
           {
-            group: '2',
+            groupId: '2',
             value: 'requires-attention',
             label: 'Krever handling',
           },
           {
-            group: '2',
+            groupId: '2',
             value: 'completed',
             label: 'Avsluttet',
           },

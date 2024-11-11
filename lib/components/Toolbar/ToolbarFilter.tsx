@@ -1,8 +1,9 @@
 import type { ChangeEventHandler, MouseEventHandler } from 'react';
+import { DrawerOrDropdown } from '../';
 import type { MenuOptionProps } from '../Menu';
 import { ToolbarButton } from './ToolbarButton';
 import { ToolbarOptions } from './ToolbarOptions';
-import styles from './toolbar.module.css';
+import styles from './toolbarFilter.module.css';
 
 type ToolbarFilterValue = (string | number)[];
 export interface ToolbarFilterProps {
@@ -28,7 +29,7 @@ const defaultGetSelectedLabel = (_: string, value?: ToolbarFilterValue) => {
 };
 
 export const ToolbarFilter = ({
-  expanded,
+  expanded = false,
   removable,
   label,
   name,
@@ -51,9 +52,8 @@ export const ToolbarFilter = ({
   const valueLabel = getSelectedLabel?.(name, value) ?? defaultGetSelectedLabel(name, value);
 
   return (
-    <div className={styles.toggle}>
+    <div className={styles.filter} aria-expanded={expanded}>
       <ToolbarButton
-        as="div"
         type="select"
         removable={removable}
         active={Array.isArray(value) ? value.length > 0 : typeof value !== 'undefined'}
@@ -62,9 +62,14 @@ export const ToolbarFilter = ({
       >
         {valueLabel || label}
       </ToolbarButton>
-      <div className={styles.dropdown} aria-expanded={expanded}>
+      <DrawerOrDropdown
+        expanded={expanded}
+        title={label}
+        onClose={onToggle}
+        button={{ onClick: onToggle, label: 'Vis X treff' }}
+      >
         <ToolbarOptions options={filterOptions} onChange={onChange} optionType={optionType} />
-      </div>
+      </DrawerOrDropdown>
     </div>
   );
 };

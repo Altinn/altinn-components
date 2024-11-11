@@ -5,6 +5,7 @@ export type LayoutTheme = 'global' | 'global-dark' | 'neutral' | 'company' | 'pe
 
 export interface LayoutBaseProps {
   theme?: LayoutTheme;
+  currentId?: string;
   children?: ReactNode;
 }
 
@@ -21,9 +22,9 @@ export interface LayoutBaseProps {
  *  - Footer
  *
  */
-export const LayoutBase = ({ theme, children }: LayoutBaseProps) => {
+export const LayoutBase = ({ currentId, theme, children }: LayoutBaseProps) => {
   return (
-    <div className={styles.base} data-theme={theme}>
+    <div className={styles.base} data-theme={theme} data-current-id={currentId}>
       {children}
     </div>
   );

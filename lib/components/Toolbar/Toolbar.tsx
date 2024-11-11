@@ -1,5 +1,6 @@
 'use client';
 import { useMemo, useState } from 'react';
+import { useRootContext } from '../RootProvider';
 import { ToolbarAdd } from './ToolbarAdd';
 import { ToolbarBase } from './ToolbarBase';
 import { ToolbarFilter, type ToolbarFilterProps } from './ToolbarFilter.tsx';
@@ -32,33 +33,50 @@ export const Toolbar = ({
   menu,
   getFilterLabel,
 }: ToolbarProps) => {
+  const { currentId, openId, closeAll } = useRootContext();
   const [expandedItem, setExpandedItem] = useState<ExpandedItem>(null);
   const [localFilterState, setLocalFilterState] = useState<Record<string, ToolbarFilterProps['value']>>(
     filterState ?? {},
   );
   const changeFilterState = typeof onFilterStateChange === 'function' ? onFilterStateChange : setLocalFilterState;
   const applicableFilterState = filterState || localFilterState;
-  const [hiddenFilterNames, setHiddenFilterNames] = useState<string[]>(
+
+  const [visibleFilterNames, setVisibleFilterNames] = useState<string[]>(
     filters
-      ?.filter((item) => item.removable && typeof applicableFilterState[item.name] === 'undefined')
+      ?.filter((item) => !(item.removable && typeof applicableFilterState[item.name] === 'undefined'))
       .map((item) => item.name) ?? [],
   );
 
+  const hiddenFilterNames = filters?.filter((item) => !visibleFilterNames.includes(item.name));
+
   const visibleFilters = useMemo(
-    () => filters.filter((item) => !hiddenFilterNames.includes(item.name)),
-    [filters, hiddenFilterNames],
+    () =>
+      visibleFilterNames
+        .map((name) => {
+          return filters.find((item) => item.name === name);
+        })
+        .filter((item) => typeof item !== 'undefined'),
+    [filters, visibleFilterNames],
   );
+
   const hiddenFilters = useMemo(
-    () => filters.filter((item) => hiddenFilterNames.includes(item.name)),
+    () => filters.filter((item) => hiddenFilterNames.includes(item)),
     [filters, hiddenFilterNames],
   );
 
   const onToggle = (type: ExpandedItemType, name: string) => {
     if (expandedItem?.name === name && expandedItem.type === type) {
+      closeAll();
       setExpandedItem(null);
     } else {
+      openId('toolbar');
       setExpandedItem({ name, type });
     }
+  };
+
+  const onClose = () => {
+    setExpandedItem(null);
+    closeAll();
   };
 
   const onFilterChange = (name: string, value: ToolbarFilterProps['value'], optionType: ToolbarOptionType) => {
@@ -81,7 +99,7 @@ export const Toolbar = ({
   };
 
   const onFilterRemove = (name: string) => {
-    setHiddenFilterNames((prevState) => [...prevState, name]);
+    setVisibleFilterNames((prevState) => prevState.filter((prevName) => prevName !== name));
     changeFilterState({
       ...applicableFilterState,
       [name]: undefined,
@@ -89,19 +107,19 @@ export const Toolbar = ({
   };
 
   const onFilterAdd = (name: string) => {
+    setVisibleFilterNames((prevState) => [...prevState, name]);
     onToggle('filter', name);
-    setHiddenFilterNames((prevState) => prevState.filter((prevName) => prevName !== name));
   };
 
   return (
-    <ToolbarBase onClose={() => setExpandedItem(null)}>
+    <ToolbarBase open={currentId === 'toolbar'} onClose={onClose}>
       {menu && <ToolbarMenu onToggle={() => onToggle('menu', '')} expanded={expandedItem?.type === 'menu'} {...menu} />}
       {visibleFilters.map((item) => {
         return (
           <ToolbarFilter
             key={item.name}
             onToggle={() => onToggle('filter', item.name)}
-            expanded={item.name === expandedItem?.name && expandedItem?.type === 'filter'}
+            expanded={currentId === 'toolbar' && item.name === expandedItem?.name && expandedItem?.type === 'filter'}
             onRemove={() => {
               onFilterRemove(item.name);
             }}
@@ -120,7 +138,7 @@ export const Toolbar = ({
       })}
       {hiddenFilters?.length > 0 && (
         <ToolbarAdd
-          expanded={expandedItem?.type === 'add-filter'}
+          expanded={currentId === 'toolbar' && expandedItem?.type === 'add-filter'}
           onToggle={() => onToggle('add-filter', '')}
           items={hiddenFilters.map((item) => ({
             id: item.name,

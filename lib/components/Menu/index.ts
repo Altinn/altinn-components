@@ -4,7 +4,7 @@ export * from './MenuItemMedia';
 export * from './MenuItem';
 export * from './MenuOption';
 export * from './MenuSearch';
-export * from './MenuGroup';
 export * from './MenuHeader';
+export * from './MenuItems';
 export * from './MenuBase';
 export * from './Menu';

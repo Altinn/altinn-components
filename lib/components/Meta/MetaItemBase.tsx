@@ -3,7 +3,7 @@ import type { ElementType, ReactNode } from 'react';
 import styles from './metaItem.module.css';
 
 export type MetaItemVariant = 'solid' | 'outline' | 'dotted' | 'text';
-export type MetaItemSize = 'xs' | 'sm' | 'md';
+export type MetaItemSize = 'xs'; // | 'sm' | 'md';
 export type MetaItemColor = 'subtle';
 
 export interface MetaItemBaseProps {

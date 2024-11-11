@@ -1,0 +1,8 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header[data-margin="true"] {
+  margin: 0.5rem 0;
+}

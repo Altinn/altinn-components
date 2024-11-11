@@ -8,7 +8,7 @@ interface MetaItemMediaProps {
   icon?: IconName;
 }
 
-export const MetaItemMedia = ({ size = 'sm', icon, progress }: MetaItemMediaProps) => {
+export const MetaItemMedia = ({ size = 'xs', icon, progress }: MetaItemMediaProps) => {
   if (!icon && typeof progress !== 'number') {
     return false;
   }

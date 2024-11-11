@@ -1,0 +1,33 @@
+{
+  "_createdAt": "2024-10-23T21:31:44Z",
+  "_id": "83b80be7-9b3a-474e-94bc-d5d24710ec9c",
+  "_rev": "5k1KJXrtipgHMEvoTB1MJV",
+  "_type": "dialog",
+  "_updatedAt": "2024-10-28T17:07:25Z",
+  "action": [
+    {
+      "_key": "2d7c53da7794",
+      "_type": "dialogAction",
+      "label": "Åpne skattemeldingen"
+    }
+  ],
+  "dueAt": "2024-05-31",
+  "recipient": { "type": "person", "name": "Ola Nordmann", "imageUrl": null },
+  "sender": {
+    "type": "company",
+    "name": "Skatteetaten",
+    "imageUrl": "https://cdn.sanity.io/images/z3it2oa7/production/e16a4f384d1d5ed959e1d74f0626259711d67509-88x88.png?w=96"
+  },
+  "status": { "label": "Krever handling", "value": "requires-attention" },
+  "summary": "Skattemeldingen for 2023 er tilgjengelig. Du bør sjekke at opplysningene er riktige.",
+  "title": "Skatten din 2023",
+  "updatedAt": "2024-10-28T17:07:25Z",
+  "actions": [
+    {
+      "_key": "2d7c53da7794",
+      "_type": "dialogAction",
+      "label": "Åpne skattemeldingen"
+    }
+  ],
+  "history": null
+}

@@ -1,8 +1,9 @@
-import type { ChangeEventHandler } from 'react';
+import { type ChangeEventHandler, Fragment } from 'react';
 import {
   MenuBase,
-  MenuGroup,
   MenuHeader,
+  MenuList,
+  MenuListItem,
   MenuOption,
   type MenuOptionProps,
   MenuSearch,
@@ -13,6 +14,7 @@ export type ToolbarOptionType = 'checkbox' | 'radio';
 
 export interface OptionGroup {
   title?: string;
+  divider?: boolean;
   optionType?: ToolbarOptionType;
 }
 
@@ -24,7 +26,7 @@ export interface ToolbarOptionsProps {
   optionGroups?: { [key: string]: OptionGroup };
 }
 
-export const ToolbarOptions = ({ search, optionGroups, options, onChange, optionType }: ToolbarOptionsProps) => {
+export const ToolbarOptions = ({ search, optionGroups = {}, options, onChange, optionType }: ToolbarOptionsProps) => {
   const sections = options.reduce(
     (acc, option) => {
       const group = option.group || '';
@@ -38,24 +40,35 @@ export const ToolbarOptions = ({ search, optionGroups, options, onChange, option
   return (
     <MenuBase theme="global">
       {search && <MenuSearch {...search} />}
-      {Object.keys(sections)?.map((key) => {
-        const headerTitle = optionGroups?.[key]?.title;
-        return (
-          <MenuGroup key={key}>
-            {headerTitle && <MenuHeader title={headerTitle} />}
-            {sections[key]?.map((item) => (
-              <MenuOption
-                key={item.value}
-                onChange={onChange}
-                label={item.label}
-                type={optionGroups?.[key]?.optionType || optionType}
-                value={item.value}
-                checked={item.checked}
-              />
-            ))}
-          </MenuGroup>
-        );
-      })}
+      <MenuList>
+        {Object.keys(sections)?.map((key, groupIndex) => {
+          const groupProps = optionGroups[key] || {};
+          const { title, divider = true } = groupProps;
+          return (
+            <Fragment key={key}>
+              {groupIndex && divider ? <MenuListItem role="separator" /> : ''}
+
+              {title && (
+                <MenuListItem>
+                  <MenuHeader title={title} />
+                </MenuListItem>
+              )}
+              {sections[key]?.map((item) => (
+                <MenuListItem key={item.value}>
+                  <MenuOption
+                    onChange={onChange}
+                    label={item.label}
+                    badge={item.badge}
+                    type={optionGroups?.[key]?.optionType || optionType}
+                    value={item.value}
+                    checked={item.checked}
+                  />
+                </MenuListItem>
+              ))}
+            </Fragment>
+          );
+        })}
+      </MenuList>
     </MenuBase>
   );
 };

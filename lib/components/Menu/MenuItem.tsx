@@ -8,18 +8,20 @@ import { MenuItemMedia } from './MenuItemMedia';
 
 export interface MenuItemProps {
   id: string;
+  tabIndex?: number;
   type?: string;
   as?: ElementType;
   color?: MenuItemColor;
+  size?: MenuItemSize;
   href?: string;
   onClick?: MouseEventHandler;
   hidden?: boolean;
+  active?: boolean;
   collapsible?: boolean;
   expanded?: boolean;
   selected?: boolean;
   disabled?: boolean;
-  group?: string | number;
-  size?: MenuItemSize;
+  groupId?: string | number;
   title?: string;
   description?: string;
   label?: string;
@@ -34,11 +36,11 @@ export interface MenuItemProps {
 
 export const MenuItem = ({
   as = 'a',
-  color,
+  color = 'neutral',
+  size = 'sm',
   children,
   selected,
   disabled,
-  size = 'sm',
   icon,
   avatar,
   avatarGroup,

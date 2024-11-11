@@ -77,6 +77,10 @@
   box-shadow: var(--ds-shadow-xs);
 }
 
+.item[data-active="true"] {
+  background-color: var(--theme-surface-default);
+}
+
 .item[data-color="accent"] {
   background-color: var(--theme-surface-default);
 }

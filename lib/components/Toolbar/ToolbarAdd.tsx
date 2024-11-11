@@ -1,7 +1,8 @@
 import type { MouseEventHandler } from 'react';
+import { DrawerOrDropdown } from '../';
 import { Menu, type MenuItemProps } from '../Menu';
 import { ToolbarButton } from './ToolbarButton';
-import styles from './toolbar.module.css';
+import styles from './toolbarAdd.module.css';
 
 export interface ToolbarAddProps {
   items: MenuItemProps[];
@@ -13,13 +14,13 @@ export interface ToolbarAddProps {
 
 export const ToolbarAdd = ({ expanded = false, onToggle, label = 'Legg til', items }: ToolbarAddProps) => {
   return (
-    <div className={styles.toggle}>
-      <ToolbarButton as="div" type="add" onToggle={onToggle}>
+    <div className={styles.menu}>
+      <ToolbarButton type="add" onToggle={onToggle}>
         {label}
       </ToolbarButton>
-      <div aria-expanded={expanded} className={styles.dropdown}>
+      <DrawerOrDropdown title={label} onClose={onToggle} expanded={expanded}>
         <Menu theme="global" items={items} />
-      </div>
+      </DrawerOrDropdown>
     </div>
   );
 };

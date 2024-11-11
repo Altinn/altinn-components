@@ -1,14 +1,15 @@
 import type { MouseEventHandler } from 'react';
-import { Menu, type MenuGroups, type MenuItemProps, type MenuSearchProps } from '../Menu';
+import { DrawerOrDropdown } from '../';
+import { Menu, type MenuItemGroups, type MenuItemProps, type MenuSearchProps } from '../Menu';
 import { ToolbarButton } from './ToolbarButton';
-import styles from './toolbar.module.css';
+import styles from './toolbarMenu.module.css';
 
 export interface ToolbarMenuProps {
   onToggle?: MouseEventHandler;
   label: string;
   value: string | number;
   items: MenuItemProps[];
-  groups?: MenuGroups;
+  groups?: MenuItemGroups;
   search?: MenuSearchProps;
   expanded?: boolean;
   className?: string;
@@ -16,13 +17,13 @@ export interface ToolbarMenuProps {
 
 export const ToolbarMenu = ({ expanded = false, onToggle, label, value, groups, search, items }: ToolbarMenuProps) => {
   return (
-    <div className={styles.toggle}>
-      <ToolbarButton as="div" type="switch" onToggle={onToggle} active={!!value}>
+    <div className={styles.menu}>
+      <ToolbarButton type="switch" onToggle={onToggle} active={!!value}>
         {label}
       </ToolbarButton>
-      <div className={styles.dropdown} aria-expanded={expanded}>
+      <DrawerOrDropdown expanded={expanded} title="Endre konto" onClose={onToggle}>
         <Menu theme="global" defaultItemColor="subtle" groups={groups} search={search} items={items} />
-      </div>
+      </DrawerOrDropdown>
     </div>
   );
 };

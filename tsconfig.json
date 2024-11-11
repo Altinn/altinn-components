@@ -17,7 +17,12 @@
     "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["./lib/**/*.ts", "./lib/**/*.tsx", "./**/*.d.ts"],
-  "exclude": ["./lib/**/*.stories.tsx", "./lib/**/*.stories.ts", "./lib/components/Icon/__AkselIcon.tsx"],
+  "include": ["./lib/**/*.ts", "./lib/hooks/*.tsx", "./**/*.d.ts"],
+  "exclude": [
+    "./lib/stories/**/*",
+    "lib/components/**/*.stories.ts",
+    "lib/components/**/*.stories.tsx",
+    "./lib/components/Icon/__AkselIcon.tsx"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

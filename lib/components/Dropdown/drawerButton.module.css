@@ -1,0 +1,6 @@
+.button {
+  height: 3.5rem; /* lg 56 */
+  border-radius: 1.75rem;
+  padding: 0 1rem;
+  margin: 1rem auto;
+}

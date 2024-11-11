@@ -1,6 +1,8 @@
 import cx from 'classnames';
-import { Icon, type IconName } from '../Icon';
+import type { IconName } from '../Icon';
 import { ButtonBase, type ButtonBaseProps } from './ButtonBase';
+import { ButtonIcon } from './ButtonIcon';
+import { ButtonLabel } from './ButtonLabel';
 import styles from './button.module.css';
 
 export interface ButtonProps extends Partial<ButtonBaseProps> {
@@ -10,22 +12,27 @@ export interface ButtonProps extends Partial<ButtonBaseProps> {
 }
 
 export const Button = ({
+  variant = 'solid',
+  color = 'primary',
   size = 'md',
   reverse = false,
   selected = false,
   icon,
   href,
   children,
+  className,
   loading,
   ...rest
 }: ButtonProps) => {
   if (loading) {
     return (
       <ButtonBase
+        variant={variant}
+        color={color}
         size={size}
         selected={selected}
         href={href}
-        className={cx(styles.button, { [styles.reverse]: reverse })}
+        className={cx(styles.button, { [styles.reverse]: reverse }, className)}
         {...rest}
         disabled
       >
@@ -38,20 +45,16 @@ export const Button = ({
 
   return (
     <ButtonBase
+      variant={variant}
+      color={color}
       size={size}
       selected={selected}
       href={href}
       className={cx(styles.button, { [styles.reverse]: reverse })}
       {...rest}
     >
-      <span className={styles.label} data-size={size}>
-        {children}
-      </span>
-      {icon && (
-        <span className={styles.icon} data-size={size}>
-          <Icon name={icon} />
-        </span>
-      )}
+      <ButtonLabel size={size}>{children}</ButtonLabel>
+      {icon && <ButtonIcon size={size} icon={icon} />}
     </ButtonBase>
   );
 };

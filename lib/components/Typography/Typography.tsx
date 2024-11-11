@@ -1,21 +1,24 @@
 import cx from 'classnames';
-import type { ReactNode } from 'react';
+import type { ElementType, ReactNode } from 'react';
 import type { LayoutTheme } from '../Layout';
 import styles from './typography.module.css';
 
-export type TypographySize = 'md' | 'lg' | 'xl';
+export type TypographySize = 'sm' | 'md' | 'lg';
 
 export interface TypographyProps {
+  as?: ElementType;
   size?: TypographySize;
   theme?: LayoutTheme;
   className?: string;
   children?: ReactNode;
 }
 
-export const Typography = ({ size = 'md', theme, className, children }: TypographyProps) => {
+export const Typography = ({ as = 'div', size = 'md', theme, className, children }: TypographyProps) => {
+  const Component = as;
+
   return (
-    <div className={cx(styles.typography, className)} data-size={size} data-theme={theme}>
+    <Component className={cx(styles.typography, className)} data-size={size} data-theme={theme}>
       {children}
-    </div>
+    </Component>
   );
 };
