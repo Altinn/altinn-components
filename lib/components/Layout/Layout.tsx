@@ -19,8 +19,8 @@ export interface LayoutProps {
   theme?: LayoutTheme;
   header?: HeaderProps;
   footer?: FooterProps;
-  sidebar: SidebarProps;
-  content: ContentProps;
+  sidebar?: SidebarProps;
+  content?: ContentProps;
   children: ReactNode;
 }
 
