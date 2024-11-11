@@ -9,7 +9,8 @@ const meta = {
   tags: ['autodocs'],
   parameters: {},
   args: {
-    createdAt: '2004-09-22 13:34',
+    createdAt: '2024-09-22 13:34',
+    createdAtLabel: '22. september 2024 kl 13.34',
     createdBy: {
       name: 'Eirik Horneland',
     },

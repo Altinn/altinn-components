@@ -14,6 +14,7 @@ export interface CreatedByProps {
 export interface HistoryItemProps {
   createdBy?: CreatedByProps;
   createdAt?: string;
+  createdAtLabel?: string;
   summary?: string;
   attachments?: HistoryAttachmentsProps;
 }
@@ -23,6 +24,7 @@ export const HistoryItem = ({
     type: 'person',
   },
   createdAt,
+  createdAtLabel,
   summary,
   attachments,
 }: HistoryItemProps) => {
@@ -40,8 +42,7 @@ export const HistoryItem = ({
         <article className={styles.body}>
           <MetaBase>
             <MetaTimestamp datetime={createdAt} size="xs">
-              {createdBy?.name + ', '}
-              {createdAt}
+              {[createdBy?.name, createdAtLabel].join(', ')}
             </MetaTimestamp>
           </MetaBase>
           <Typography size="lg">
