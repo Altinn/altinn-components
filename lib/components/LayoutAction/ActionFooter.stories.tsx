@@ -63,7 +63,7 @@ export const MenuAndSnackbar: Story = {
     children: (
       <>
         <Snackbar message="Snack 1" />
-        <ActionMenu {...menu} />
+        <ActionMenu {...menu} theme="global-dark" />
       </>
     ),
   },

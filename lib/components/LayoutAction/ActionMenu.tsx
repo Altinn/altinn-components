@@ -1,13 +1,14 @@
 import { MenuBase, MenuItem, type MenuItemProps } from '../Menu';
-import type { LayoutTheme } from '../Layout';
 import styles from './actionMenu.module.css';
 
+type ActionMenuTheme = 'inherit' | 'global-dark';
+
 export interface ActionMenuProps {
-  theme?: LayoutTheme;
+  theme?: ActionMenuTheme;
   items?: MenuItemProps[];
 }
 
-export const ActionMenu = ({ theme, items = [] }: ActionMenuProps) => {
+export const ActionMenu = ({ theme = 'inherit', items = [] }: ActionMenuProps) => {
   return (
     <MenuBase theme={theme} className={styles.menu}>
       <ul className={styles.list}>

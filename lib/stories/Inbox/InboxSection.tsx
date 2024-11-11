@@ -13,7 +13,7 @@ export function InboxSection() {
     return (
       <section>
         <Dialog {...dialog} />
-        <ActionMenu items={bulkMenu} theme="light" />
+        <ActionMenu items={bulkMenu} />
       </section>
     );
   }
