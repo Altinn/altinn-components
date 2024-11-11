@@ -19,6 +19,8 @@ import { type DialogBackButtonProps, DialogNav } from './DialogNav';
 import type { DialogStatusProps } from './DialogStatus';
 
 export interface DialogProps {
+  /** Dialog ID */
+  id: string;
   /** Title */
   title: string;
   /** Back button */

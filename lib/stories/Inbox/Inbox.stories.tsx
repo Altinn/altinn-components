@@ -8,7 +8,9 @@ const meta = {
   parameters: {
     layout: 'fullscreen',
   },
-  args: {},
+  args: {
+    dialogs: [],
+  },
 } satisfies Meta<typeof Inbox>;
 
 export default meta;
@@ -20,11 +22,6 @@ export const Default: Story = {
 
 export const BulkMode: Story = {
   args: {
-    itemsById: {
-      d1: {
-        selected: true,
-      },
-    },
   },
 };
 

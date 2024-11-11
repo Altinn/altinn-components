@@ -1,78 +1,65 @@
-import { createContext, useState, useContext, type ReactNode } from 'react';
-import { search, footer, menu, accounts, dialogs, actionMenu } from '.';
+import {createContext, type ReactNode, useContext, useState} from 'react';
+import {accounts, actionMenu, dialogs, footer, menu, search} from '.';
+import type {DialogProps, LayoutProps, MenuProps} from "../../components";
 
 interface InboxContextProvider {
   inboxId: string | null;
   dialogId: string | null;
-  setInboxId: (id: InboxId) => void;
+  dialogs: DialogProps[];
 }
 
-const InboxContext = createContext<InboxContextProvider>({ inboxId: 'inbox', dialogId: null });
+interface UseInboxContextOutput  {
+    layout: Partial<LayoutProps>;
+    selectedCount: number;
+    onUnselectAll: () => void;
+    onSelectId: (id: string) => void;
+    actionMenu: MenuProps;
+}
+
+const InboxContext = createContext<InboxContextProvider>({ inboxId: 'inbox', dialogId: null, dialogs: [] });
 
 interface InboxProviderProps {
   children: ReactNode;
-  dialogId: string | null;
   defaultValue?: InboxContextProvider;
 }
 
-export const InboxProvider = ({ defaultValue = {}, children }: InboxProviderProps) => {
+export const InboxProvider = ({
+  defaultValue = {
+    inboxId: null,
+    dialogId: null,
+    dialogs: [],
+  },
+  children,
+}: InboxProviderProps) => {
   const [inboxId, setInboxId] = useState('inbox');
-  const [dialogId, setDialogId] = useState(defaultValue.dialogId || null);
-  const [itemsById, setItemsById] = useState(defaultValue.itemsById || {});
+  const [dialogId, setDialogId] = useState<string | null>(defaultValue.dialogId || null);
+  const [selectedDialogsIds, setSelectedDialogsIds] = useState<string[]>([]);
 
-  const onDialogId = (id) => {
+  const onDialog = (id: string) => {
     setDialogId((prevState) => (prevState === id ? null : id));
   };
 
-  const onInboxId = (id) => {
-    setInboxId(id);
-  };
-
-  const onInbox = ({ id }) => {
+  const onInbox = ({ id }: { id: string }) => {
     setInboxId(id);
     setDialogId(null);
   };
 
-  const onSelectId = (id) => {
-    setItemsById((prevState) => {
-      if (prevState[id]) {
-        return {
-          ...prevState,
-          [id]: {
-            ...prevState[id],
-            selected: !prevState[id]?.selected,
-          },
-        };
+  const onSelectId = (id: string) => {
+    setSelectedDialogsIds((prevState) => {
+      if (prevState.includes(id)) {
+        return prevState.filter((item) => item !== id);
       }
-
-      return {
-        ...prevState,
-        [id]: {
-          selected: true,
-        },
-      };
+      return [...prevState, id];
     });
   };
 
   const onUnselectAll = () => {
-    setItemsById({});
+    setSelectedDialogsIds([]);
   };
 
-  const items = dialogs?.map((item) => {
-    const uniqueItem = itemsById[item.id] || {};
-
-    return {
-      ...item,
-      ...uniqueItem,
-    };
-  });
-
-  const itemsCount = items?.length;
-
-  const selectedItems = items?.filter((item) => item.selected);
-  const selectedCount = selectedItems?.length;
-
-  const bulkMode = selectedCount > 0 ? true : false;
+  const itemsCount = dialogs.length;
+  const selectedCount = selectedDialogsIds.length ?? 0;
+  const bulkMode = selectedCount > 0;
 
   const header = { menu: { accounts }, search: selectedCount > 0 ? null : search };
   const sidebar = {
@@ -105,7 +92,7 @@ export const InboxProvider = ({ defaultValue = {}, children }: InboxProviderProp
     },
   };
 
-  const currentDialog = dialogId && items?.find((item) => item.id === dialogId);
+  const currentDialog = dialogId && dialogs.find((item) => item.id === dialogId);
 
   const dialog = currentDialog && {
     ...currentDialog,
@@ -113,32 +100,28 @@ export const InboxProvider = ({ defaultValue = {}, children }: InboxProviderProp
       items: actionMenu,
     },
     backButton: {
-      onClick: () => onDialogId(dialogId),
+      onClick: () => onDialog(dialogId),
     },
   };
 
   return (
     <InboxContext.Provider
       value={{
+        layout: {
+            header: { search, menu: { accounts } },
+            footer,
+            sidebar: { hidden: bulkMode, menu },
+        },
         inboxId,
-        onInboxId,
         dialogId,
-        onDialogId,
+        onDialogId: onDialog,
         dialog,
-        items,
+        dialogs,
         itemsCount,
-        itemsById,
         onSelectId,
         onUnselectAll,
         selectedCount,
-        accounts,
-        search,
-        footer,
-        menu,
-        bulkMode,
-        bulkMenu: actionMenu,
-        header,
-        sidebar,
+        actionMenu,
         toolbar,
       }}
     >
@@ -147,6 +130,4 @@ export const InboxProvider = ({ defaultValue = {}, children }: InboxProviderProp
   );
 };
 
-export const useInboxContext = () => {
-  return useContext(InboxContext);
-};
+export const useInboxContext = (): UseInboxContextOutput => useContext(InboxContext);
