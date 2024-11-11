@@ -1,6 +1,5 @@
 import { type AttachmentLinkProps, AttachmentList } from '../Attachment';
 import { MetaItem } from '../Meta';
-import { Typography } from '../Typography';
 
 export interface HistoryAttachmentsProps {
   title?: string;
