@@ -26,22 +26,30 @@ export const Default: Story = {
 
 export const Attachments: Story = {
   args: {
-    attachments: [
-      {
-        label: '1-0 Castro.pdf',
-      },
-      {
-        label: '2-0 Kornvig.pdf',
-      },
-      {
-        label: '3-0 Kartum.pdf',
-      },
-      {
-        label: '3-1 Zinkernagel.pdf',
-      },
-      {
-        label: '4-1 Castro.pdf',
-      },
-    ],
+    attachments: {
+      title: '6 vedlegg',
+      items: [
+        {
+          href: '#',
+          label: '1-0 Castro.pdf',
+        },
+        {
+          href: '#',
+          label: '2-0 Kornvig.pdf',
+        },
+        {
+          href: '#',
+          label: '3-0 Kartum.pdf',
+        },
+        {
+          href: '#',
+          label: '3-1 Zinkernagel.pdf',
+        },
+        {
+          href: '#',
+          label: '4-1 Castro.pdf',
+        },
+      ],
+    },
   },
 };
