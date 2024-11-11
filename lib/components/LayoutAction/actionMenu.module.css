@@ -1,6 +1,9 @@
 .menu {
   padding: 0 .5rem;
   border-radius: 0.375rem;
+}
+
+.menu[data-theme="global-dark"] {
   background-color: var(--theme-background-subtle);
 }
 
