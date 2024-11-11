@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/Altinn/altinn-components/compare/v0.4.0...v0.4.1) (2024-11-11)
+
+
+### Bug Fixes
+
+* css changes to dialog ([#43](https://github.com/Altinn/altinn-components/issues/43)) ([79e3287](https://github.com/Altinn/altinn-components/commit/79e3287dc2efbce8ba7a9c0b94f955514289c0d3))
+
 ## [0.4.0](https://github.com/Altinn/altinn-components/compare/v0.3.0...v0.4.0) (2024-11-08)
 
 
