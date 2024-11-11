@@ -4,7 +4,7 @@ import { Badge, type BadgeProps } from '../Badge';
 import { Icon, type IconName } from '../Icon';
 import styles from './menuItemBase.module.css';
 
-export type MenuItemColor = 'default' | 'subtle' | 'strong' | 'company' | 'person';
+export type MenuItemColor = 'neutral' | 'subtle' | 'strong' | 'company' | 'person';
 export type MenuItemSize = 'sm' | 'md' | 'lg';
 
 export interface MenuItemBaseProps {

@@ -1,7 +1,7 @@
-import { type AttachmentLinkProps, AttachmentList } from '../Attachment';
 import { Avatar } from '../Avatar/';
-import { MetaBase, MetaItem, MetaTimestamp } from '../Meta/';
+import { MetaBase, MetaTimestamp } from '../Meta/';
 import { Typography } from '../Typography';
+import { HistoryAttachments, type HistoryAttachmentsProps } from './HistoryAttachments';
 import { HistoryBorder } from './HistoryBorder';
 import styles from './historyItem.module.css';
 
@@ -14,8 +14,9 @@ export interface CreatedByProps {
 export interface HistoryItemProps {
   createdBy?: CreatedByProps;
   createdAt?: string;
+  createdAtLabel?: string;
   summary?: string;
-  attachments?: AttachmentLinkProps[];
+  attachments?: HistoryAttachmentsProps;
 }
 
 export const HistoryItem = ({
@@ -23,11 +24,10 @@ export const HistoryItem = ({
     type: 'person',
   },
   createdAt,
+  createdAtLabel,
   summary,
   attachments,
 }: HistoryItemProps) => {
-  const title = attachments?.length + ' vedlegg';
-
   return (
     <section className={styles.item}>
       <header className={styles.header}>
@@ -42,20 +42,12 @@ export const HistoryItem = ({
         <article className={styles.body}>
           <MetaBase>
             <MetaTimestamp datetime={createdAt} size="xs">
-              {createdBy?.name + ', '}
-              {createdAt}
+              {[createdBy?.name, createdAtLabel].join(', ')}
             </MetaTimestamp>
           </MetaBase>
           <Typography size="lg">
             <p>{summary}</p>
-            {attachments ? (
-              <section>
-                <MetaItem size="xs">{title}</MetaItem>
-                <AttachmentList items={attachments} />
-              </section>
-            ) : (
-              ''
-            )}
+            {attachments && <HistoryAttachments {...attachments} />}
           </Typography>
         </article>
       </HistoryBorder>

@@ -12,11 +12,6 @@ import styles from './header.module.css';
 
 export type HeaderExpandedType = 'search' | 'menu' | null;
 
-export interface HeaderAccountProps {
-  type?: string;
-  name?: string;
-}
-
 export interface HeaderProps {
   menu: GlobalMenuProps;
   search?: HeaderSearchProps;

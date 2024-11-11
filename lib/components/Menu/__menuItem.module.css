@@ -87,8 +87,6 @@
   color: var(--theme-text-subtle);
 }
 
-/* colors */
-
 .item:hover {
   background-color: var(--theme-surface-default);
 }
@@ -107,8 +105,6 @@
   color: var(--theme-background-default);
 }
 
-/* company */
-
 .item[data-color="company"]:hover {
   background-color: var(--company-background-subtle);
 }
@@ -120,8 +116,6 @@
 .media[data-color="company"] {
   background-color: var(--company-surface-default);
 }
-
-/* person */
 
 .item[data-color="person"]:hover {
   background-color: var(--person-background-subtle);

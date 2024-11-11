@@ -9,7 +9,8 @@ const meta = {
   tags: ['autodocs'],
   parameters: {},
   args: {
-    createdAt: '2004-09-22 13:34',
+    createdAt: '2024-09-22 13:34',
+    createdAtLabel: '22. september 2024 kl 13.34',
     createdBy: {
       name: 'Eirik Horneland',
     },
@@ -26,22 +27,30 @@ export const Default: Story = {
 
 export const Attachments: Story = {
   args: {
-    attachments: [
-      {
-        label: '1-0 Castro.pdf',
-      },
-      {
-        label: '2-0 Kornvig.pdf',
-      },
-      {
-        label: '3-0 Kartum.pdf',
-      },
-      {
-        label: '3-1 Zinkernagel.pdf',
-      },
-      {
-        label: '4-1 Castro.pdf',
-      },
-    ],
+    attachments: {
+      title: '6 vedlegg',
+      items: [
+        {
+          href: '#',
+          label: '1-0 Castro.pdf',
+        },
+        {
+          href: '#',
+          label: '2-0 Kornvig.pdf',
+        },
+        {
+          href: '#',
+          label: '3-0 Kartum.pdf',
+        },
+        {
+          href: '#',
+          label: '3-1 Zinkernagel.pdf',
+        },
+        {
+          href: '#',
+          label: '4-1 Castro.pdf',
+        },
+      ],
+    },
   },
 };

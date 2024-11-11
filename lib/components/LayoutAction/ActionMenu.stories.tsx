@@ -8,6 +8,7 @@ const meta = {
   tags: ['autodocs'],
   parameters: {},
   args: {
+    theme: 'global-dark',
     items: [
       {
         id: '1',
