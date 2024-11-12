@@ -9,6 +9,12 @@ export const dialogs: DialogProps[] = [
       label: 'Krever handling',
       value: 'requires-attention',
     },
+    actions: [
+      {
+        priority: 'primary',
+        label: 'Call to action',
+      },
+    ],
   },
   {
     id: 'd2',

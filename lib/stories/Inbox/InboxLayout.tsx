@@ -8,10 +8,9 @@ export interface InboxLayoutProps {
 }
 
 export const InboxLayout = ({ children }: InboxLayoutProps) => {
-  const { itemsCount, selectedCount, onUnselectAll } = useInboxContext();
+  const { itemsCount, selectedCount, inboxId, onInboxId, onUnselectAll } = useInboxContext();
 
   const selectedTitle = `${selectedCount} av ${itemsCount} valgt`;
-
   const bulkMode = selectedCount > 0;
 
   return (
@@ -21,7 +20,16 @@ export const InboxLayout = ({ children }: InboxLayoutProps) => {
       header={header}
       sidebar={{
         hidden: bulkMode,
-        menu: menu,
+        menu: {
+          ...menu,
+          items: menu?.items.map((item) => {
+            return {
+              ...item,
+              selected: inboxId === item.id,
+              onClick: () => onInboxId(item.id),
+            };
+          }),
+        },
       }}
     >
       <ActionHeader title={selectedTitle} hidden={!bulkMode} onDismiss={onUnselectAll} />
