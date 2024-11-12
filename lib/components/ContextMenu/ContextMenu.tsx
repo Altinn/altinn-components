@@ -21,7 +21,7 @@ export const ContextMenu = ({ expanded = true, onToggle, groups = {}, items }: C
         <Icon className={styles.icon} name="menu-elipsis-horizontal" />
       </ButtonBase>
       <div className={styles.dropdown} aria-expanded={expanded}>
-        <Menu theme="global" defaultItemColor="subtle" groups={groups} items={items} />
+        <Menu theme="global" defaultItemColor="neutral" groups={groups} items={items} />
       </div>
     </div>
   );

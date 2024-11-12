@@ -8,7 +8,7 @@ export interface InboxLayoutProps {
 }
 
 export const InboxLayout = ({ children }: InboxLayoutProps) => {
-  const { itemsCount, selectedCount, inboxId, onInboxId, onUnselectAll } = useInboxContext();
+  const { itemsCount, selectedCount, inboxId, dialogId, onInboxId, onUnselectAll } = useInboxContext();
 
   const selectedTitle = `${selectedCount} av ${itemsCount} valgt`;
   const bulkMode = selectedCount > 0;
@@ -17,7 +17,12 @@ export const InboxLayout = ({ children }: InboxLayoutProps) => {
     <Layout
       theme={selectedCount ? 'neutral' : 'company'}
       footer={footer}
-      header={header}
+      header={{
+        ...header,
+        search: {
+          ...header.search,
+        },
+      }}
       sidebar={{
         hidden: bulkMode,
         menu: {
