@@ -1,6 +1,7 @@
 'use client';
 import { Fragment } from 'react';
-import { ListBase, DialogListItem, Dialog, Toolbar, ActionMenu, DialogListItemProps } from '../../components';
+import { ListBase, DialogListItem, Dialog, Toolbar, ActionMenu } from '../../components';
+import type { DialogListItemProps } from '../../components';
 import styles from './inboxSection.module.css';
 import { groupBy } from './groupBy';
 import { useInboxContext, actionMenu } from './';
@@ -12,20 +13,19 @@ export function InboxSection() {
     const dialog = items.find((item) => item.id === dialogId);
     return (
       <section>
-        <Dialog {...dialog} />
+        <Dialog {...dialog} menu={{ items: actionMenu }} backButton={{ onClick: () => onDialogId(dialogId) }} />
         <ActionMenu items={actionMenu} />
       </section>
     );
   }
 
   const count = items?.length;
-  //  const inbox = inboxes[inboxId] || inboxes['search'];
 
   if (!count) {
     return (
       <section className={styles?.section}>
         <header className={styles?.header}>
-          <h2 className={styles?.title}>{inbox?.title?.replace('{count}', 'Ingen')}</h2>
+          <h2 className={styles?.title}>Ingen treff</h2>
         </header>
       </section>
     );

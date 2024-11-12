@@ -11,6 +11,7 @@ export const dialogs: DialogProps[] = [
     },
     actions: [
       {
+        id: 'a1',
         priority: 'primary',
         label: 'Call to action',
       },
