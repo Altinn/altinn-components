@@ -1,0 +1,20 @@
+.searchbar {
+  position: relative;
+}
+
+.searchbar[data-autocomplete="true"][aria-expanded="true"] input {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.searchbar nav {
+  display: none;
+}
+
+.searchbar[aria-expanded="true"] nav {
+  position: absolute;
+  display: block;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  margin-top: -2px;
+}

@@ -4,6 +4,14 @@
   line-height: 1.5;
 }
 
+.item[data-size="sm"] {
+  font-size: 0.875rem;
+}
+
+.item[data-size="md"] {
+  font-size: 1rem;
+}
+
 .typography[data-size="lg"] {
   font-size: 1.125rem;
 }

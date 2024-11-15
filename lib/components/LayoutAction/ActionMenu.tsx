@@ -1,10 +1,8 @@
-import { MenuBase, MenuItem, type MenuItemProps } from '../Menu';
+import { MenuBase, MenuItem, type MenuItemProps, type MenuTheme } from '../Menu';
 import styles from './actionMenu.module.css';
 
-type ActionMenuTheme = 'inherit' | 'global-dark';
-
 export interface ActionMenuProps {
-  theme?: ActionMenuTheme;
+  theme?: MenuTheme;
   items?: MenuItemProps[];
 }
 

@@ -8,7 +8,7 @@ export interface MenuGroupProps {
   children?: ReactNode;
 }
 
-export const MenuGroup = ({ as = 'ul', expanded, divider = true, children }: MenuGroupProps) => {
+export const MenuGroup = ({ as = 'div', expanded, divider = true, children }: MenuGroupProps) => {
   const Component = as;
   return (
     <Component aria-expanded={expanded} data-divider={divider} className={styles.group}>

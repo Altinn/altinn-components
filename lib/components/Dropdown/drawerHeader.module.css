@@ -1,0 +1,17 @@
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--theme-border-subtle);
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin: 0;
+}

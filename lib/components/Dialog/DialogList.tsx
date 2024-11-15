@@ -1,20 +1,35 @@
-import type { LayoutTheme } from '../Layout';
-import { ListBase } from '../List';
+import { SectionBase } from '../';
+import { useMenu } from '../../hooks';
+import { DialogGroup, type DialogGroupProps } from './DialogGroup';
 import { DialogListItem, type DialogListItemProps } from './DialogListItem';
-import type { DialogListItemSize } from './DialogListItemBase';
 
 export interface DialogListProps {
-  size?: DialogListItemSize;
-  theme?: LayoutTheme;
-  items?: DialogListItemProps[];
+  items: DialogListItemProps[];
+  groups?: Record<string, DialogGroupProps>;
 }
 
-export const DialogList = ({ theme, size = 'md', items }: DialogListProps) => {
+export const DialogList = ({ items, groups = {} }: DialogListProps) => {
+  const { menu } = useMenu<DialogListItemProps, DialogGroupProps>({
+    items,
+    groups,
+    groupByKey: 'groupId',
+    keyboardEvents: false,
+  });
+
   return (
-    <ListBase theme={theme} size={size}>
-      {items?.map((item, index) => {
-        return <DialogListItem {...item} size={size} key={'item' + index} />;
+    <SectionBase spacing="none" margin="md">
+      {menu?.map((group, groupIndex) => {
+        const groupProps = group.props || {};
+
+        return (
+          <DialogGroup {...groupProps} key={groupIndex}>
+            {group?.items.map((item, index) => {
+              const itemProps = item.props || {};
+              return <DialogListItem {...itemProps} key={index} />;
+            })}
+          </DialogGroup>
+        );
       })}
-    </ListBase>
+    </SectionBase>
   );
 };

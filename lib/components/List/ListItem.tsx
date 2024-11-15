@@ -13,7 +13,10 @@ export interface ListItemProps {
   as?: ElementType;
   color?: ListItemColor;
   href?: string;
-  onClick?: () => void;
+  onClick?(): void;
+  /** Item is active */
+  active?: boolean;
+  /** Item should be hidden from view */
   hidden?: boolean;
   /** Collapsible item, sets linkIcon to "chevron down" */
   collapsible?: boolean;

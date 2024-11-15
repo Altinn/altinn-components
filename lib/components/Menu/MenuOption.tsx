@@ -1,4 +1,5 @@
 import type { ChangeEventHandler } from 'react';
+import type { BadgeProps } from '../Badge';
 import { CheckboxIcon, RadioIcon } from '../Icon';
 import { MenuItemBase, type MenuItemSize } from './MenuItemBase';
 import { MenuItemLabel } from './MenuItemLabel';
@@ -14,6 +15,7 @@ export interface MenuOptionProps {
   name?: string;
   title?: string;
   description?: string;
+  badge?: BadgeProps;
   checked?: boolean;
   disabled?: boolean;
   onChange?: ChangeEventHandler;
@@ -28,12 +30,13 @@ export const MenuOption = ({
   label,
   title,
   description,
+  badge,
   checked = false,
   disabled,
   onChange,
 }: MenuOptionProps) => {
   return (
-    <MenuItemBase className={styles.label} disabled={disabled} selected={checked} size={size} as="label">
+    <MenuItemBase className={styles.label} disabled={disabled} selected={checked} size={size} badge={badge} as="label">
       <input className={styles.input} name={name} value={value} type={type} checked={checked} onChange={onChange} />
       {type === 'checkbox' && <CheckboxIcon checked={checked} hover={true} className={styles.icon} />}
       {type === 'radio' && <RadioIcon checked={checked} hover={true} className={styles.icon} />}

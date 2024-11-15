@@ -3,6 +3,15 @@
 }
 
 .drawer[aria-expanded="true"] {
+  background-color: var(--theme-background-default);
   display: block;
   width: 100%;
+}
+
+.drawer[data-placement="bottom"] {
+  position: fixed;
+  top: 5.5rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

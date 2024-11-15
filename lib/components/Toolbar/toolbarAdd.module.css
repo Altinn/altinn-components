@@ -1,0 +1,7 @@
+.menu {
+  position: relative;
+}
+
+.menu[aria-expanded="true"] {
+  z-index: 2;
+}

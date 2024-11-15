@@ -74,31 +74,31 @@ export const RadioCheckbox: Story = {
     },
     options: [
       {
-        group: 'a',
+        groupId: 'a',
         name: 'animal',
         label: 'Katt',
         value: 'cat',
         checked: true,
       },
       {
-        group: 'a',
+        groupId: 'a',
         name: 'animal',
         label: 'Mus',
         value: 'mouse',
       },
       {
-        group: 'a',
+        groupId: 'a',
         name: 'animal',
         label: 'Veggdyr',
         value: 'spider',
       },
       {
-        group: 'b',
+        groupId: 'b',
         label: 'Husarrest',
         value: 'digdir',
       },
       {
-        group: 'b',
+        groupId: 'b',
         checked: true,
         label: 'Piskeslag',
         value: 'helse',

@@ -1,7 +1,7 @@
 'use client';
 import { type MouseEventHandler, useState } from 'react';
 import type { AvatarType } from '../Avatar';
-import { Menu, type MenuGroups, MenuItem, type MenuItemProps, type MenuSearchProps } from '../Menu';
+import { Menu, MenuItem, type MenuItemGroups, type MenuItemProps, type MenuSearchProps } from '../Menu';
 
 export type Account = {
   type: AvatarType;
@@ -22,9 +22,9 @@ export interface GlobalMenuProps {
   expanded: boolean;
   onToggle: MouseEventHandler;
   items: MenuItemProps[];
-  groups?: MenuGroups;
+  groups?: MenuItemGroups;
   accounts?: Account[];
-  accountGroups?: MenuGroups;
+  accountGroups?: MenuItemGroups;
   accountSearch?: AccountSearch;
   menuLabel?: string;
   backLabel?: string;
@@ -76,7 +76,7 @@ export const GlobalMenu = ({
         .map((item) => {
           return {
             ...item,
-            group: 'search',
+            groupId: 'search',
           };
         })
     : accountMenu;
@@ -106,7 +106,7 @@ export const GlobalMenu = ({
   };
 
   const accountSwitcher: MenuItemProps[] = [
-    ...(filteredAccountMenu.length > 0 ? filteredAccountMenu : [{ id: 'search', group: 'search', hidden: true }]),
+    ...(filteredAccountMenu.length > 0 ? filteredAccountMenu : [{ id: 'search', groupId: 'search', hidden: true }]),
   ];
 
   if (selectAccount) {

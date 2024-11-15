@@ -13,7 +13,7 @@ export const ActionHeader = ({ hidden = false, title, dismissable = true, onDism
   return (
     <header className={styles.header} aria-hidden={hidden} data-theme="global-dark">
       <h2 className={styles.title}>{title}</h2>
-      {dismissable && <IconButton icon="x-mark" onClick={onDismiss} className={styles.dismiss} />}
+      {dismissable && <IconButton icon="x-mark" variant="outline" onClick={onDismiss} className={styles.dismiss} />}
     </header>
   );
 };

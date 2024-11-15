@@ -20,6 +20,8 @@ export type DialogListItemBaseProps = {
   children?: ReactNode;
   /** Variant */
   variant?: DialogListItemVariant;
+  /** OnClick handler */
+  onClick?: () => void;
 };
 
 /**
@@ -35,13 +37,13 @@ export const DialogListItemBase = ({
   select,
   selected,
   children,
-  ...rest
+  onClick,
 }: DialogListItemBaseProps) => {
   const Component = as || 'button';
 
   return (
     <article className={styles.item} data-size={size} aria-selected={selected}>
-      <Component className={styles.link} data-size={size} href={href} {...rest}>
+      <Component className={styles.link} data-size={size} href={href} onClick={onClick} tabIndex={0}>
         {children}
       </Component>
       {select && <DialogSelect className={styles.select} {...select} />}

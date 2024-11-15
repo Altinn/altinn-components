@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { AttachmentLink } from './AttachmentLink';
 
 const meta = {
-  title: 'Attachment/AttachmentLink',
+  title: 'Atoms/Attachment/AttachmentLink',
   component: AttachmentLink,
   tags: ['autodocs'],
   parameters: {},

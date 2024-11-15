@@ -4,7 +4,7 @@ import type { ElementType, ReactNode } from 'react';
 import styles from './buttonBase.module.css';
 
 export type ButtonVariant = 'solid' | 'outline' | 'dotted' | 'text';
-export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonSize = 'sm' | 'md' | 'lg' | 'custom';
 export type ButtonColor = 'primary' | 'secondary';
 
 export interface ButtonBaseProps extends React.HTMLAttributes<HTMLButtonElement> {

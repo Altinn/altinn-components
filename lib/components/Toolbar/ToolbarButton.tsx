@@ -28,7 +28,7 @@ export const ToolbarButton = ({
   if (removable) {
     return (
       <ComboButton
-        className={styles.remove}
+        className={styles.removeButton}
         variant={active ? 'solid' : 'outline'}
         color="primary"
         size="sm"

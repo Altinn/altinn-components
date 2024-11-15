@@ -1,11 +1,11 @@
 'use client';
 import { useEffect } from 'react';
 
-export const useEscapeKey = (onEscape: () => void): void => {
+export const useEscapeKey = (onEscape?: () => void): void => {
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        onEscape();
+        onEscape?.();
       }
     };
     document.addEventListener('keydown', handleEscape);

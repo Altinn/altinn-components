@@ -53,7 +53,7 @@ const menu: MenuProps = {
   items: [
     {
       id: '1',
-      group: 1,
+      groupId: 1,
       size: 'lg',
       icon: 'inbox',
       title: 'Innboks',
@@ -61,7 +61,7 @@ const menu: MenuProps = {
     },
     {
       id: '2',
-      group: 2,
+      groupId: 2,
       icon: 'doc-pencil',
       title: 'Utkast',
     },
@@ -74,19 +74,19 @@ const menu: MenuProps = {
     },
     {
       id: '4',
-      group: 3,
+      groupId: 3,
       icon: 'bookmark',
       title: 'Lagrede søk',
     },
     {
       id: '5',
-      group: 4,
+      groupId: 4,
       icon: 'archive',
       title: 'Arkivert',
     },
     {
       id: '6',
-      group: 4,
+      groupId: 4,
       disabled: true,
       icon: 'trash',
       title: 'Papirkurv',
@@ -102,6 +102,7 @@ const meta = {
     layout: 'fullscreen',
   },
   args: {
+    theme: 'person',
     header,
     footer,
     sidebar: {
@@ -117,44 +118,82 @@ export const Default: Story = {
   args: {},
 };
 
-export const GlobalCompany: Story = {
-  args: {
-    sidebar: {
-      menu: {
-        ...menu,
-        defaultItemColor: 'company',
+export const ControlledStateSearch = (args) => {
+  const [q, setQ] = useState<string>('');
+  const onChange = (event) => {
+    setQ(event.target.value);
+  };
+
+  const scopes = [
+    {
+      groupId: '1',
+      id: 'inbox',
+      href: '#',
+      label: q
+        ? () => {
+            return (
+              <span>
+                <mark>{q}</mark> i innboksen
+              </span>
+            );
+          }
+        : 'Alt i innboksen',
+    },
+    {
+      groupId: '1',
+      id: 'global',
+      href: '#',
+      label: q
+        ? () => {
+            return (
+              <span>
+                <mark>{q}</mark> i hele Altinn
+              </span>
+            );
+          }
+        : 'Alt i hele Altinn',
+    },
+  ];
+
+  const suggestions = q
+    ? [
+        {
+          groupId: '2',
+          href: 'http://www.altinn.no',
+          label: 'Skattemelding 2024',
+        },
+        {
+          groupId: '2',
+          href: 'http://www.altinn.no',
+          label: 'Skattemelding 2025',
+        },
+      ].filter((item) => item.label.toLowerCase().includes((q ?? '').toLowerCase()))
+    : [];
+
+  const autocomplete = {
+    groups: {
+      2: {
+        title: `${suggestions.length} treff i innboksen`,
       },
     },
-  },
-};
+    items: [...scopes, ...suggestions],
+  };
 
-export const GlobalPerson: Story = {
-  args: {
-    sidebar: {
-      menu: {
-        ...menu,
-        defaultItemColor: 'person',
-      },
-    },
-  },
-};
-
-export const Neutral: Story = {
-  args: {
-    theme: 'neutral',
-  },
-};
-
-export const Company: Story = {
-  args: {
-    theme: 'company',
-  },
-};
-
-export const Person: Story = {
-  args: {
-    theme: 'person',
-  },
+  return (
+    <Layout
+      {...args}
+      header={{
+        ...args.header,
+        search: {
+          ...args.header.search,
+          value: q,
+          onChange,
+          onClear: () => setQ(''),
+          autocomplete,
+        },
+      }}
+    />
+  );
 };
 
 export const InboxBulkMode = (args) => {

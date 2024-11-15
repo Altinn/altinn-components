@@ -1,0 +1,14 @@
+.swatch {
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid;
+}
+
+.row {
+  display: flex;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}

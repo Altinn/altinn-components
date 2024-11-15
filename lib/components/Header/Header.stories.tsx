@@ -1,11 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 import { Header } from './Header';
 
 const meta = {
   title: 'Header/Header',
   component: Header,
   tags: ['autodocs'],
-  parameters: {},
+  parameters: {
+    layout: 'fullscreen',
+  },
   args: {
     expanded: true,
     search: {
@@ -22,43 +25,43 @@ const meta = {
       },
       accounts: [
         {
-          group: 'primary',
+          groupId: 'primary',
           type: 'person',
           name: 'Aurora Mikalsen',
           selected: true,
         },
         {
-          group: 'favourites',
+          groupId: 'favourites',
           type: 'person',
           name: 'Rakel Engelsvik',
           selected: false,
         },
         {
-          group: 'favourites',
+          groupId: 'favourites',
           type: 'company',
           name: 'Auroras keeperskole',
           selected: false,
         },
         {
-          group: 'secondary',
+          groupId: 'secondary',
           type: 'company',
           name: 'Keeperhansker AS',
           selected: false,
         },
         {
-          group: 'secondary',
+          groupId: 'secondary',
           type: 'company',
           name: 'Stadion drift AS',
           selected: false,
         },
         {
-          group: 'secondary',
+          groupId: 'secondary',
           type: 'company',
           name: 'Sportsklubben Brann',
           selected: false,
         },
         {
-          group: 'secondary',
+          groupId: 'secondary',
           type: 'company',
           name: 'Landslaget',
           selected: false,
@@ -93,21 +96,77 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-export const Company: Story = {
-  args: {
-    menu: {
-      ...meta.args?.menu,
-      accounts: [
-        {
-          type: 'company',
-          name: 'Bergen bar',
-          selected: true,
-        },
-        {
-          type: 'person',
-          name: 'Aurora Mikalsen',
-        },
-      ],
+export const ControlledState = (args) => {
+  const [q, setQ] = useState<string>('');
+  const onChange = (event) => {
+    setQ(event.target.value);
+  };
+
+  const scopes = [
+    {
+      groupId: '1',
+      id: 'inbox',
+      href: '#',
+      label: q
+        ? () => {
+            return (
+              <span>
+                <mark>{q}</mark> i innboksen
+              </span>
+            );
+          }
+        : 'Alt i innboksen',
     },
-  },
+    {
+      groupId: '1',
+      id: 'global',
+      href: '#',
+      label: q
+        ? () => {
+            return (
+              <span>
+                <mark>{q}</mark> i hele Altinn
+              </span>
+            );
+          }
+        : 'Alt i hele Altinn',
+    },
+  ];
+
+  const suggestions = q
+    ? [
+        {
+          groupId: '2',
+          href: 'http://www.altinn.no',
+          label: 'Skattemelding 2024',
+        },
+        {
+          groupId: '2',
+          href: 'http://www.altinn.no',
+          label: 'Skattemelding 2025',
+        },
+      ].filter((item) => item.label.toLowerCase().includes((q ?? '').toLowerCase()))
+    : [];
+
+  const autocomplete = {
+    groups: {
+      2: {
+        title: `${suggestions.length} treff i innboksen`,
+      },
+    },
+    items: [...scopes, ...suggestions],
+  };
+
+  return (
+    <Header
+      {...args}
+      search={{
+        ...args.search,
+        value: q,
+        onChange,
+        onClear: () => setQ(''),
+        autocomplete,
+      }}
+    />
+  );
 };

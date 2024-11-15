@@ -16,14 +16,14 @@ const meta = {
     items: [
       {
         id: 'inbox',
-        group: 'apps',
+        groupId: 'apps',
         size: 'lg',
         icon: 'inbox',
         label: 'Innboks',
       },
       {
         id: 'settings',
-        group: 'apps',
+        groupId: 'apps',
         size: 'lg',
         icon: 'cog',
         label: 'Settings',
@@ -144,43 +144,43 @@ export const Accounts: Story = {
     },
     accounts: [
       {
-        group: 'primary',
+        groupId: 'primary',
         type: 'person',
         name: 'Aurora Mikalsen',
         selected: true,
       },
       {
-        group: 'favourites',
+        groupId: 'favourites',
         type: 'person',
         name: 'Rakel Engelsvik',
         selected: false,
       },
       {
-        group: 'favourites',
+        groupId: 'favourites',
         type: 'company',
         name: 'Auroras keeperskole',
         selected: false,
       },
       {
-        group: 'secondary',
+        groupId: 'secondary',
         type: 'company',
         name: 'Keeperhansker AS',
         selected: false,
       },
       {
-        group: 'secondary',
+        groupId: 'secondary',
         type: 'company',
         name: 'Stadion drift AS',
         selected: false,
       },
       {
-        group: 'secondary',
+        groupId: 'secondary',
         type: 'company',
         name: 'Sportsklubben Brann',
         selected: false,
       },
       {
-        group: 'secondary',
+        groupId: 'secondary',
         type: 'company',
         name: 'Landslaget',
         selected: false,

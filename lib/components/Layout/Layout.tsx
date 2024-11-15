@@ -3,6 +3,7 @@ import { LayoutBase, LayoutBody, LayoutContent, LayoutSidebar, type LayoutTheme 
 import { Footer, type FooterProps } from '../Footer';
 import { Header, type HeaderProps } from '../Header';
 import { Menu, type MenuProps } from '../Menu';
+import { useRootContext } from '../RootProvider';
 
 interface SidebarProps {
   theme?: LayoutTheme;
@@ -19,15 +20,16 @@ export interface LayoutProps {
   theme?: LayoutTheme;
   header?: HeaderProps;
   footer?: FooterProps;
-  sidebar: SidebarProps;
-  content: ContentProps;
+  sidebar?: SidebarProps;
+  content?: ContentProps;
   children: ReactNode;
 }
 
 export const Layout = ({ theme = 'global', header, footer, sidebar = {}, content = {}, children }: LayoutProps) => {
+  const { currentId } = useRootContext();
   const { menu, ...sideRestProps } = sidebar;
   return (
-    <LayoutBase theme={theme}>
+    <LayoutBase theme={theme} currentId={currentId}>
       {header && <Header {...header} />}
       <LayoutBody>
         {sidebar && (

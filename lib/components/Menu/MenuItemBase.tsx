@@ -11,10 +11,12 @@ export interface MenuItemBaseProps {
   as?: ElementType;
   color?: MenuItemColor;
   children?: ReactNode;
+  tabIndex?: number;
   size?: MenuItemSize;
   linkIcon?: IconName;
   badge?: BadgeProps;
   collapsible?: boolean;
+  active?: boolean;
   expanded?: boolean;
   selected?: boolean;
   disabled?: boolean;
@@ -27,6 +29,8 @@ export const MenuItemBase = ({
   color,
   linkIcon,
   badge,
+  tabIndex = 0,
+  active = false,
   collapsible = false,
   expanded = false,
   selected = false,
@@ -42,8 +46,11 @@ export const MenuItemBase = ({
 
   return (
     <Component
+      role="menuitem"
+      tabIndex={!disabled && tabIndex}
       data-size={size}
       data-color={color}
+      data-active={active}
       aria-expanded={expanded}
       aria-disabled={disabled}
       aria-selected={selected}

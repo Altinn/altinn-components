@@ -1,28 +1,20 @@
-import type { MouseEventHandler } from 'react';
-import { ButtonBase } from '../Button';
-import { Icon } from '../Icon';
-import { Menu, type MenuGroups, type MenuItemProps } from '../Menu';
-import styles from './contextMenu.module.css';
+import type { DropdownPlacement, MenuItemProps } from '../';
+import { type MenuItemGroups, MenuItems } from '../';
+import { useRootContext } from '../RootProvider';
+import { ContextMenuBase } from './ContextMenuBase';
 
 export interface ContextMenuProps {
-  onToggle?: MouseEventHandler;
-  label: string;
-  value: string | number;
+  id: string;
   items: MenuItemProps[];
-  groups?: MenuGroups;
-  expanded?: boolean;
-  className?: string;
+  placement?: DropdownPlacement;
+  groups?: MenuItemGroups;
 }
 
-export const ContextMenu = ({ expanded = true, onToggle, groups = {}, items }: ContextMenuProps) => {
+export const ContextMenu = ({ id = 'context-menu', placement = 'right', groups = {}, items }: ContextMenuProps) => {
+  const { currentId, toggleId } = useRootContext();
   return (
-    <div className={styles.toggle}>
-      <ButtonBase className={styles.button} as="button" color="secondary" onClick={onToggle}>
-        <Icon className={styles.icon} name="menu-elipsis-horizontal" />
-      </ButtonBase>
-      <div className={styles.dropdown} aria-expanded={expanded}>
-        <Menu theme="global" defaultItemColor="subtle" groups={groups} items={items} />
-      </div>
-    </div>
+    <ContextMenuBase placement={placement} expanded={currentId === id} onToggle={() => toggleId(id)}>
+      <MenuItems groups={groups} items={items} />
+    </ContextMenuBase>
   );
 };

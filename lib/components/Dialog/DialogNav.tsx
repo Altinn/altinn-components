@@ -1,8 +1,7 @@
 'use client';
-import { useState } from 'react';
 import type { ElementType } from 'react';
 import { Button } from '../Button';
-import { ContextMenu, type ContextMenuProps } from '../ContextMenu/ContextMenu.tsx';
+import { ContextMenu, type ContextMenuProps } from '../ContextMenu';
 import { MetaTimestamp } from '../Meta';
 import { DialogStatus, type DialogStatusProps } from './DialogStatus';
 import { DialogTouchedBy, type DialogTouchedByActor } from './DialogTouchedBy';
@@ -37,9 +36,6 @@ export const DialogNav = ({
   touchedBy,
   menu,
 }: DialogNavProps) => {
-  const [expandedItem, setexpandedItem] = useState<boolean>(false);
-  const onToggle = () => setexpandedItem((expanded) => !expanded);
-
   return (
     <nav className={styles.nav}>
       <Button {...backButton} variant="text" color="secondary" icon="arrow-left" reverse>
@@ -53,7 +49,7 @@ export const DialogNav = ({
         )}
         {status && <DialogStatus {...status} />}
         {touchedBy && <DialogTouchedBy touchedBy={touchedBy} />}
-        {menu && <ContextMenu {...menu} expanded={expandedItem} onToggle={onToggle} />}
+        {menu && <ContextMenu {...menu} />}
       </div>
     </nav>
   );

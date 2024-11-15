@@ -1,27 +1,12 @@
 'use client';
-import { type ReactNode, useRef } from 'react';
-import { useClickOutside } from '../Menu/useClickOutside.ts';
-import { useEscapeKey } from '../Menu/useEscapeKey.ts';
-import styles from './toolbar.module.css';
+import type { ReactNode } from 'react';
+import styles from './toolbarBase.module.css';
 export interface ToolbarBaseProps {
   children?: ReactNode;
+  open?: boolean;
   onClose?: () => void;
 }
 
-export const ToolbarBase = ({ children, onClose }: ToolbarBaseProps) => {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useClickOutside(ref, () => {
-    onClose?.();
-  });
-
-  useEscapeKey(() => {
-    onClose?.();
-  });
-
-  return (
-    <div className={styles.toolbar} ref={ref}>
-      {children}
-    </div>
-  );
+export const ToolbarBase = ({ children }: ToolbarBaseProps) => {
+  return <div className={styles.toolbar}>{children}</div>;
 };

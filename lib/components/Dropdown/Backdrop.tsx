@@ -1,11 +1,12 @@
 import cx from 'classnames';
+import type { MouseEventHandler } from 'react';
 import styles from './backdrop.module.css';
 
 export interface BackdropProps {
-  expanded?: boolean;
   className?: string;
+  onClick?: MouseEventHandler;
 }
 
-export const Backdrop = ({ expanded = false, className }: BackdropProps) => {
-  return <div className={cx(styles.backdrop, className)} aria-expanded={expanded} />;
+export const Backdrop = ({ className, onClick }: BackdropProps) => {
+  return <div className={cx(styles.backdrop, className)} onMouseDown={onClick} />;
 };
