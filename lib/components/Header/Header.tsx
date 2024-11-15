@@ -48,8 +48,8 @@ export const Header = ({ search, menu }: HeaderProps) => {
           label={menu?.menuLabel}
         />
         {menu && (
-          <DropdownBase placement="right" expanded={currentId === 'menu'} className={styles.dropdown}>
-            <GlobalMenu {...menu} variant="dropdown" />
+          <DropdownBase padding={false} placement="right" expanded={currentId === 'menu'} className={styles.dropdown}>
+            <GlobalMenu {...menu} currentEndUser={selectedAccount} />
           </DropdownBase>
         )}
       </HeaderMenu>
@@ -64,7 +64,7 @@ export const Header = ({ search, menu }: HeaderProps) => {
       )}
       {menu && (
         <DrawerBase expanded={currentId === 'menu'} className={styles.drawer}>
-          <GlobalMenu {...menu} variant="drawer" expanded={currentId === 'menu'} />
+          <GlobalMenu {...menu} currentEndUser={selectedAccount} expanded={currentId === 'menu'} />
         </DrawerBase>
       )}
     </HeaderBase>
