@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/Altinn/altinn-components/compare/v0.4.1...v0.5.0) (2024-11-15)
+
+
+### Features
+
+* search bar ([#45](https://github.com/Altinn/altinn-components/issues/45)) ([cc908e0](https://github.com/Altinn/altinn-components/commit/cc908e05957783adf97b94d5e196bf9722523471))
+
 ## [0.4.1](https://github.com/Altinn/altinn-components/compare/v0.4.0...v0.4.1) (2024-11-11)
 
 
