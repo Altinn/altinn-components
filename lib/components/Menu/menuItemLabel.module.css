@@ -4,8 +4,18 @@
   padding: 0 0.25rem;
 }
 
+.title {
+  color: var(--theme-text-default);
+}
+
 .title[data-size="lg"] {
   font-size: 1.125rem;
+  line-height: 1.25;
+  font-weight: 500;
+}
+
+.title[data-size="md"] {
+  font-size: 1rem;
   line-height: 1.25;
   font-weight: 500;
 }
@@ -17,6 +27,6 @@
 }
 
 .description {
-  font-size: 14px;
+  font-size: 0.875rem;
   color: var(--theme-text-subtle);
 }

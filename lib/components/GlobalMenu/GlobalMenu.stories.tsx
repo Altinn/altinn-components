@@ -3,137 +3,11 @@ import { useState } from 'react';
 import { GlobalMenu } from './GlobalMenu';
 
 const meta = {
-  title: 'Header/GlobalMenu',
+  title: 'GlobalMenu/GlobalMenu',
   component: GlobalMenu,
   tags: ['autodocs'],
   parameters: {},
   args: {
-    groups: {
-      apps: {
-        divider: true,
-      },
-    },
-    items: [
-      {
-        id: 'inbox',
-        groupId: 'apps',
-        size: 'lg',
-        icon: 'inbox',
-        label: 'Innboks',
-      },
-      {
-        id: 'settings',
-        groupId: 'apps',
-        size: 'lg',
-        icon: 'cog',
-        label: 'Settings',
-      },
-    ],
-  },
-} satisfies Meta<typeof GlobalMenu>;
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Default: Story = {};
-
-export const Login: Story = {
-  args: {
-    expanded: true,
-    items: [
-      {
-        id: 'login',
-        size: 'lg',
-        icon: 'padlock-locked',
-        title: 'Logg inn',
-      },
-      {
-        id: 'help',
-        size: 'lg',
-        icon: 'chat-exclamationmark',
-        title: 'Hjelp',
-      },
-    ],
-  },
-};
-
-export const ControlledStateLogin = () => {
-  const [expanded, setExpanded] = useState<boolean>(false);
-  return (
-    <GlobalMenu
-      {...Login.args}
-      expanded={expanded}
-      onToggle={() => setExpanded((prevState) => !prevState)}
-      items={Login.args.items ?? []}
-    />
-  );
-};
-
-export const Person: Story = {
-  args: {
-    accounts: [
-      {
-        type: 'person',
-        name: 'Aurora Mikalsen',
-        selected: true,
-      },
-    ],
-  },
-};
-
-export const Company: Story = {
-  args: {
-    accounts: [
-      {
-        type: 'company',
-        name: 'Bergen bar',
-        selected: true,
-      },
-    ],
-  },
-};
-
-export const Expanded: Story = {
-  args: {
-    expanded: true,
-    accounts: [
-      {
-        type: 'company',
-        name: 'Bergen bar',
-        selected: true,
-      },
-    ],
-  },
-};
-
-export const CustomLabel: Story = {
-  args: {
-    menuLabel: 'Meny',
-    accounts: [
-      {
-        type: 'person',
-        name: 'Aurora Mikalsen',
-        selected: true,
-      },
-    ],
-  },
-};
-
-export const Accounts: Story = {
-  args: {
-    menuLabel: 'Meny',
-    backLabel: 'Tilbake',
-    accountSearch: {
-      placeholder: 'Søk etter konto',
-      getResultsLabel: (hits = 0) => {
-        if (hits) {
-          return hits + ' treff';
-        }
-        return 'Ingen treff';
-      },
-      hidden: false,
-    },
-    expanded: true,
     accountGroups: {
       primary: {
         title: 'Deg selv og favoritter',
@@ -142,23 +16,22 @@ export const Accounts: Story = {
         title: 'Andre kontoer',
       },
     },
+    currentAccount: {
+      type: 'person',
+      name: 'Mathias Dyngeland',
+      description: 'Fødselsnr. 07101995 XXXXXX',
+    },
     accounts: [
       {
         groupId: 'primary',
         type: 'person',
-        name: 'Aurora Mikalsen',
+        name: 'Mathias Dyngeland',
         selected: true,
       },
       {
         groupId: 'favourites',
-        type: 'person',
-        name: 'Rakel Engelsvik',
-        selected: false,
-      },
-      {
-        groupId: 'favourites',
         type: 'company',
-        name: 'Auroras keeperskole',
+        name: 'Bergen bar',
         selected: false,
       },
       {
@@ -174,7 +47,7 @@ export const Accounts: Story = {
         selected: false,
       },
       {
-        groupId: 'secondary',
+        groupId: 'favourites',
         type: 'company',
         name: 'Sportsklubben Brann',
         selected: false,
@@ -186,5 +59,123 @@ export const Accounts: Story = {
         selected: false,
       },
     ],
+    groups: {
+      apps: {
+        divider: true,
+      },
+    },
+    items: [
+      {
+        id: 'inbox',
+        groupId: 'apps',
+        size: 'lg',
+        icon: 'inbox',
+        title: 'Innboks',
+        badge: {
+          color: 'alert',
+          label: '4',
+        },
+      },
+      {
+        id: 'access',
+        groupId: 'apps',
+        size: 'lg',
+        icon: 'bookmark',
+        title: 'Tilganger',
+        badge: {
+          color: 'alert',
+          label: '2',
+        },
+      },
+      {
+        id: 'access',
+        groupId: 'apps',
+        size: 'lg',
+        icon: 'menu-grid',
+        title: 'Alle skjema',
+      },
+      {
+        id: 'startup',
+        groupId: 'help',
+        color: 'neutral',
+        size: 'sm',
+        icon: 'buildings2',
+        title: 'Starte og drive bedrift',
+      },
+      {
+        id: 'help',
+        groupId: 'help',
+        size: 'sm',
+        color: 'neutral',
+        icon: 'chat-exclamationmark',
+        title: 'Trenger du hjelp?',
+      },
+    ],
+  },
+} satisfies Meta<typeof GlobalMenu>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {};
+
+export const Login: Story = {
+  args: {
+    currentAccount: undefined,
+    items: [
+      {
+        id: 'login',
+        groupId: 'login',
+        size: 'lg',
+        color: 'strong',
+        icon: 'padlock-locked',
+        title: 'Logg inn',
+      },
+      {
+        id: 'startup',
+        groupId: 'help',
+        color: 'neutral',
+        size: 'sm',
+        icon: 'buildings2',
+        title: 'Starte og drive bedrift',
+      },
+      {
+        id: 'help',
+        groupId: 'help',
+        color: 'neutral',
+        size: 'sm',
+        icon: 'chat-exclamationmark',
+        title: 'Trenger du hjelp?',
+      },
+    ],
+  },
+};
+
+export const Company: Story = {
+  args: {
+    currentAccount: {
+      type: 'company',
+      name: 'Sportsklubben Brann',
+      description: 'Org. nr. 934908988',
+    },
+  },
+};
+
+export const CustomLabels: Story = {
+  args: {
+    logoutLabel: 'Logg ut',
+    menuLabel: 'Meny',
+    backLabel: 'Tilbake',
+    changeLabel: 'Endre konto',
+    accountSearch: {
+      placeholder: 'Søk etter konto',
+      getResultsLabel: (hits = 0) => {
+        if (hits) {
+          return hits + ' treff';
+        }
+        return 'Ingen treff';
+      },
+      hidden: false,
+    },
   },
 };

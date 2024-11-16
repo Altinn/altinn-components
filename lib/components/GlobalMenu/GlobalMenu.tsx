@@ -1,122 +1,74 @@
 'use client';
 import { type MouseEventHandler, useState } from 'react';
-import type { AvatarType } from '../Avatar';
-import { Menu, MenuItem, type MenuItemGroups, type MenuItemProps, type MenuSearchProps } from '../Menu';
+import { Menu, type MenuItemGroups, type MenuItemProps } from '../Menu';
+import { AccountButton } from './AccountButton';
+import { AccountMenu, type AccountMenuProps } from './AccountMenu';
+import { BackButton } from './BackButton';
+import { GlobalMenuBase, GlobalMenuFooter, GlobalMenuHeader } from './GlobalMenuBase';
+import { LogoutButton } from './LogoutButton';
 
-export type Account = {
-  type: AvatarType;
+export interface CurrentAccount {
+  type: 'person' | 'company';
   name: string;
-  selected?: boolean;
-  group?: string;
-};
-
-export interface AccountSearch extends MenuSearchProps {
-  getResultsLabel?: (hits: number) => string;
-  hidden?: boolean;
+  description?: string;
 }
 
-export type MobileMenuType = 'dropdown' | 'drawer';
-
-export interface GlobalMenuProps {
-  variant: MobileMenuType;
+export interface GlobalMenuProps extends AccountMenuProps {
+  currentEndUser?: CurrentAccount;
   expanded: boolean;
   onToggle: MouseEventHandler;
   items: MenuItemProps[];
   groups?: MenuItemGroups;
-  accounts?: Account[];
-  accountGroups?: MenuItemGroups;
-  accountSearch?: AccountSearch;
   menuLabel?: string;
   backLabel?: string;
+  changeLabel?: string;
+  logoutLabel?: string;
   className?: string;
 }
 
-const defaultResultLabel = (hits: number) => `${hits} hits`;
-
 export const GlobalMenu = ({
+  currentEndUser,
   accounts = [],
   accountGroups = {},
   accountSearch,
   items = [],
   groups,
+  changeLabel = 'Change',
+  logoutLabel = 'Logout',
   backLabel = 'Back',
 }: GlobalMenuProps) => {
-  const accountMenu: MenuItemProps[] = accounts.map((account) => ({
-    id: account.name,
-    group: account.group || 'search',
-    selected: account.selected,
-    title: account.name,
-    avatar: {
-      type: account.type,
-      name: account.name,
-    },
-  }));
-
-  const selectedAccount = accountMenu.find((account) => account.selected);
   const [selectAccount, setSelectAccount] = useState<boolean>(false);
-  const [filterString, setFilterString] = useState<string>('');
 
   const onToggleAccounts = () => {
     setSelectAccount((prevState) => !prevState);
   };
 
-  const accountMenuItem: MenuItemProps = {
-    ...selectedAccount,
-    id: 'account',
-    selected: false,
-    size: 'lg',
-    onClick: onToggleAccounts,
-  };
-
-  const MobileMenu = selectedAccount ? [accountMenuItem, ...items] : items;
-
-  const filteredAccountMenu = filterString
-    ? accountMenu
-        .filter((item) => item?.title?.toLowerCase().includes(filterString.toLowerCase()))
-        .map((item) => {
-          return {
-            ...item,
-            groupId: 'search',
-          };
-        })
-    : accountMenu;
-
-  const filterAccountGroups = filterString
-    ? {
-        search: {
-          title:
-            accountSearch?.getResultsLabel?.(filteredAccountMenu.length) ??
-            defaultResultLabel(filteredAccountMenu.length),
-        },
-      }
-    : accountGroups;
-
-  const accountSearchItem: MenuSearchProps = {
-    name: 'account-search',
-    value: filterString,
-    placeholder: accountSearch?.placeholder ?? 'Find account',
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => setFilterString(event.target.value),
-  };
-
-  const backItem: MenuItemProps = {
-    id: 'back',
-    title: backLabel ?? 'Back',
-    icon: 'arrow-left',
-    onClick: onToggleAccounts,
-  };
-
-  const accountSwitcher: MenuItemProps[] = [
-    ...(filteredAccountMenu.length > 0 ? filteredAccountMenu : [{ id: 'search', groupId: 'search', hidden: true }]),
-  ];
-
   if (selectAccount) {
     return (
-      <>
-        <MenuItem {...backItem} />
-        <Menu theme="global" search={accountSearchItem} groups={filterAccountGroups} items={accountSwitcher} />
-      </>
+      <GlobalMenuBase>
+        <BackButton onClick={onToggleAccounts} label={backLabel} />
+        <AccountMenu accounts={accounts} accountGroups={accountGroups} accountSearch={accountSearch} />
+      </GlobalMenuBase>
     );
   }
 
-  return <Menu theme="global" groups={groups} items={MobileMenu} />;
+  if (currentEndUser) {
+    return (
+      <GlobalMenuBase>
+        <GlobalMenuHeader>
+          <AccountButton account={currentEndUser} linkText={changeLabel} onClick={onToggleAccounts} />
+        </GlobalMenuHeader>
+        <Menu groups={groups} items={items} />
+        <GlobalMenuFooter>
+          <LogoutButton label={logoutLabel} />
+        </GlobalMenuFooter>
+      </GlobalMenuBase>
+    );
+  }
+
+  return (
+    <GlobalMenuBase>
+      <Menu groups={groups} items={items} />
+    </GlobalMenuBase>
+  );
 };
