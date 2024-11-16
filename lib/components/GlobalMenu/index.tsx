@@ -1,1 +1,1 @@
-export * from './GlobalMenu.tsx';
+export * from './GlobalMenu';

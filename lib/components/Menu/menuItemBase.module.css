@@ -36,7 +36,12 @@
   padding: 10px;
 }
 
-.actionIcon {
+.linkText {
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.linkIcon {
   font-size: 1.5rem;
 }
 
