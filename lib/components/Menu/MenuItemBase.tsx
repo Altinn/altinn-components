@@ -1,5 +1,5 @@
 import cx from 'classnames';
-import type { ElementType, ReactNode } from 'react';
+import type { ElementType, MouseEventHandler, ReactNode } from 'react';
 import { Badge, type BadgeProps } from '../Badge';
 import { Icon, type IconName } from '../Icon';
 import styles from './menuItemBase.module.css';
@@ -9,11 +9,13 @@ export type MenuItemSize = 'sm' | 'md' | 'lg';
 
 export interface MenuItemBaseProps {
   as?: ElementType;
+  onClick?: MouseEventHandler;
   color?: MenuItemColor;
   children?: ReactNode;
   tabIndex?: number;
   size?: MenuItemSize;
   linkIcon?: IconName;
+  linkText?: string;
   badge?: BadgeProps;
   collapsible?: boolean;
   active?: boolean;
@@ -25,9 +27,11 @@ export interface MenuItemBaseProps {
 
 export const MenuItemBase = ({
   as,
+  onClick,
   size,
   color,
   linkIcon,
+  linkText,
   badge,
   tabIndex = 0,
   active = false,
@@ -54,6 +58,7 @@ export const MenuItemBase = ({
       aria-expanded={expanded}
       aria-disabled={disabled}
       aria-selected={selected}
+      onClick={onClick}
       className={cx(styles.item, className)}
       {...rest}
     >
@@ -63,7 +68,8 @@ export const MenuItemBase = ({
       </div>
       {applicableIcon && (
         <div className={styles.action}>
-          {applicableIcon && <Icon name={applicableIcon} className={styles.actionIcon} />}
+          <span className={styles.linkText}>{linkText}</span>
+          {applicableIcon && <Icon name={applicableIcon} className={styles.linkIcon} />}
         </div>
       )}
     </Component>

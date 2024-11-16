@@ -31,6 +31,8 @@ export interface MenuItemProps {
   avatarGroup?: AvatarGroupProps;
   children?: ReactNode;
   items?: MenuItemProps[];
+  linkIcon?: IconName;
+  linkText?: string;
   className?: string;
 }
 
