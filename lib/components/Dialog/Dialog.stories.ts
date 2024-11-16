@@ -8,11 +8,15 @@ const meta = {
   parameters: {},
   argTypes: { body: { control: 'text' } },
   args: {
-    menu: [
-      {
-        items: [{ label: 'Menu 1' }],
-      },
-    ],
+    menu: {
+      id: 'context-menu',
+      items: [
+        {
+          label: 'Fjern',
+          id: 'remove',
+        },
+      ],
+    },
     updatedAt: '1999-05-26',
     updatedAtLabel: '26. mai 1999',
     title: 'Title',
@@ -42,9 +46,11 @@ export const Attachments: Story = {
       items: [
         {
           label: 'Dokument 1.pdf',
+          href: '',
         },
         {
           label: 'Dokument 2.pdf',
+          href: '',
         },
       ],
     },
@@ -106,6 +112,7 @@ export const Example: Story = {
       items: [
         {
           label: 'Vedtak om innlevering av bedriftsdata.pdf',
+          href: '',
         },
       ],
     },
