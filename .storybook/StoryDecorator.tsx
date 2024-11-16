@@ -19,7 +19,7 @@ export const StoryDecorator = ({
   return (
       <RootProvider>
           <div className={styles.preview} data-theme={theme}>
-              <div className={styles.component}>{children}</div>
+              <div id="story-in-story-decorator-root" className={styles.component}>{children}</div>
               <span className={styles.tag} data-tag={state}>
                   {state}
               </span>
