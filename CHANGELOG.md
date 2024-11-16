@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/Altinn/altinn-components/compare/v0.5.0...v0.5.1) (2024-11-16)
+
+
+### Bug Fixes
+
+* add log out button and refactoring of global menu ([#50](https://github.com/Altinn/altinn-components/issues/50)) ([0fc8bfa](https://github.com/Altinn/altinn-components/commit/0fc8bfaa0feb113624da9e740aed54d61de15d4c))
+
 ## [0.5.0](https://github.com/Altinn/altinn-components/compare/v0.4.1...v0.5.0) (2024-11-15)
 
 
