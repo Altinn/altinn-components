@@ -19,6 +19,7 @@ export const InboxLayout = ({ children }: InboxLayoutProps) => {
       footer={footer}
       header={{
         ...header,
+        currentAccount: accounts?.[0],
         menu: {
           accounts,
         },

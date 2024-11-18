@@ -23,40 +23,40 @@ const meta = {
     },
     accounts: [
       {
+        id: 'party:mathias',
         groupId: 'primary',
         type: 'person',
         name: 'Mathias Dyngeland',
-        selected: true,
       },
       {
+        id: 'party:bergerbar',
         groupId: 'favourites',
         type: 'company',
         name: 'Bergen bar',
-        selected: false,
       },
       {
+        id: 'party:keeperhansker',
         groupId: 'secondary',
         type: 'company',
         name: 'Keeperhansker AS',
-        selected: false,
       },
       {
+        id: 'party:stadiondrift',
         groupId: 'secondary',
         type: 'company',
         name: 'Stadion drift AS',
-        selected: false,
       },
       {
+        id: 'party:brann',
         groupId: 'favourites',
         type: 'company',
         name: 'Sportsklubben Brann',
-        selected: false,
       },
       {
+        id: 'party:landslaget',
         groupId: 'secondary',
         type: 'company',
         name: 'Landslaget',
-        selected: false,
       },
     ],
     groups: {

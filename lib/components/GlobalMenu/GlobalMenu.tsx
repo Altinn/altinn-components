@@ -1,20 +1,13 @@
 'use client';
 import { type MouseEventHandler, useState } from 'react';
 import { Menu, type MenuItemGroups, type MenuItemProps } from '../Menu';
-import { AccountButton } from './AccountButton';
+import { type Account, AccountButton } from './AccountButton';
 import { AccountMenu, type AccountMenuProps } from './AccountMenu';
 import { BackButton } from './BackButton';
 import { GlobalMenuBase, GlobalMenuFooter, GlobalMenuHeader } from './GlobalMenuBase';
 import { LogoutButton } from './LogoutButton';
 
-export interface CurrentAccount {
-  type: 'person' | 'company';
-  name: string;
-  description?: string;
-}
-
 export interface GlobalMenuProps extends AccountMenuProps {
-  currentEndUser?: CurrentAccount;
   expanded: boolean;
   onToggle: MouseEventHandler;
   items: MenuItemProps[];
@@ -24,10 +17,11 @@ export interface GlobalMenuProps extends AccountMenuProps {
   changeLabel?: string;
   logoutLabel?: string;
   className?: string;
+  currentAccount?: Account;
+  changeCurrentAccount?: (id: string) => void;
 }
 
 export const GlobalMenu = ({
-  currentEndUser,
   accounts = [],
   accountGroups = {},
   accountSearch,
@@ -36,27 +30,40 @@ export const GlobalMenu = ({
   changeLabel = 'Change',
   logoutLabel = 'Logout',
   backLabel = 'Back',
+  currentAccount,
+  changeCurrentAccount,
 }: GlobalMenuProps) => {
-  const [selectAccount, setSelectAccount] = useState<boolean>(false);
+  const [selectingAccount, setSelectingAccount] = useState<boolean>(false);
 
   const onToggleAccounts = () => {
-    setSelectAccount((prevState) => !prevState);
+    setSelectingAccount((prevState) => !prevState);
   };
 
-  if (selectAccount) {
+  const onSelectAccount = (id: string) => {
+    onToggleAccounts();
+    changeCurrentAccount?.(id);
+  };
+
+  if (selectingAccount) {
     return (
       <GlobalMenuBase>
         <BackButton onClick={onToggleAccounts} label={backLabel} />
-        <AccountMenu accounts={accounts} accountGroups={accountGroups} accountSearch={accountSearch} />
+        <AccountMenu
+          currentAccount={currentAccount}
+          accounts={accounts}
+          accountGroups={accountGroups}
+          accountSearch={accountSearch}
+          onSelectAccount={onSelectAccount}
+        />
       </GlobalMenuBase>
     );
   }
 
-  if (currentEndUser) {
+  if (currentAccount) {
     return (
       <GlobalMenuBase>
         <GlobalMenuHeader>
-          <AccountButton account={currentEndUser} linkText={changeLabel} onClick={onToggleAccounts} />
+          <AccountButton account={currentAccount} linkText={changeLabel} onClick={onToggleAccounts} />
         </GlobalMenuHeader>
         <Menu groups={groups} items={items} />
         <GlobalMenuFooter>

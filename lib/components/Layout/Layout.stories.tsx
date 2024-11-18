@@ -9,12 +9,17 @@ const header: HeaderProps = {
     name: 'search',
     placeholder: 'Søk i Altinn',
   },
+  currentAccount: {
+    id: 'party:aurora',
+    type: 'person',
+    name: 'Aurora Mikalsen',
+  },
   menu: {
     accounts: [
       {
+        id: 'party:aurora',
         type: 'person',
         name: 'Aurora Mikalsen',
-        selected: true,
       },
     ],
   },
@@ -197,7 +202,7 @@ export const ControlledStateSearch = (args) => {
 };
 
 export const InboxBulkMode = (args) => {
-  const [snackbars, setSnacbars] = useState([]);
+  const [snackbars, setSnackbars] = useState([]);
 
   const [itemsById, setItemsById] = useState({
     1: {

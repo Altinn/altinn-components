@@ -1,6 +1,7 @@
 import { MenuItemBase, MenuItemLabel, MenuItemMedia } from '../Menu';
 
-type Account = {
+export type Account = {
+  id: string;
   type: 'person' | 'company';
   name: string;
   description?: string;

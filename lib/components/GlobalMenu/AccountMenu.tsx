@@ -10,7 +10,7 @@ export interface AccountSearch extends MenuSearchProps {
 export interface AccountMenuItem {
   type: 'person' | 'company';
   name: string;
-  id?: string;
+  id: string;
   groupId?: string;
   selected?: boolean;
 }
@@ -19,20 +19,29 @@ export interface AccountMenuProps {
   accounts?: AccountMenuItem[];
   accountGroups?: MenuItemGroups;
   accountSearch?: AccountSearch;
+  currentAccount?: AccountMenuItem;
+  onSelectAccount?: (id: string) => void;
 }
 
 const defaultResultLabel = (hits: number) => `${hits} hits`;
 
-export const AccountMenu = ({ accounts = [], accountGroups = {}, accountSearch }: AccountMenuProps) => {
+export const AccountMenu = ({
+  accounts = [],
+  accountGroups = {},
+  accountSearch,
+  onSelectAccount,
+  currentAccount,
+}: AccountMenuProps) => {
   const accountMenu: MenuItemProps[] = accounts.map((account) => ({
-    id: account.name,
+    id: account.id || account.name,
     groupId: account.groupId || 'search',
-    selected: account.selected,
+    selected: account.selected ?? currentAccount?.id === account.id,
     title: account.name,
     avatar: {
       type: account.type,
       name: account.name,
     },
+    onClick: () => onSelectAccount?.(account.id || account.name),
   }));
 
   const [filterString, setFilterString] = useState<string>('');
