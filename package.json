@@ -1,6 +1,6 @@
 {
   "name": "@altinn/altinn-components",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "main": "lib/index.ts",
   "description": "Reusable react components",
   "scripts": {

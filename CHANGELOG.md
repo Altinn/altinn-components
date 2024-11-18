@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.2](https://github.com/Altinn/altinn-components/compare/v0.5.1...v0.5.2) (2024-11-18)
+
+
+### Bug Fixes
+
+* fixing selecting current account and simplify API for Header ([#58](https://github.com/Altinn/altinn-components/issues/58)) ([b39a14a](https://github.com/Altinn/altinn-components/commit/b39a14a14014ff78209d636f3edc93507b443fd2))
+
 ## [0.5.1](https://github.com/Altinn/altinn-components/compare/v0.5.0...v0.5.1) (2024-11-16)
 
 
