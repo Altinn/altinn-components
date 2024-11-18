@@ -25,46 +25,46 @@ const meta = {
       },
       accounts: [
         {
+          id: 'party:aurora',
           groupId: 'primary',
           type: 'person',
           name: 'Aurora Mikalsen',
-          selected: true,
         },
         {
+          id: 'party:rakel',
           groupId: 'favourites',
           type: 'person',
           name: 'Rakel Engelsvik',
-          selected: false,
         },
         {
+          id: 'party:auroraskeeperskole',
           groupId: 'favourites',
           type: 'company',
           name: 'Auroras keeperskole',
-          selected: false,
         },
         {
+          id: 'party:aurorashandsker',
           groupId: 'secondary',
           type: 'company',
           name: 'Keeperhansker AS',
-          selected: false,
         },
         {
+          id: 'party:aurorasfotballskole',
           groupId: 'secondary',
           type: 'company',
           name: 'Stadion drift AS',
-          selected: false,
         },
         {
+          id: 'party:aurorasfotballskole',
           groupId: 'secondary',
           type: 'company',
           name: 'Sportsklubben Brann',
-          selected: false,
         },
         {
+          id: 'party:aurorasfotballskole',
           groupId: 'secondary',
           type: 'company',
           name: 'Landslaget',
-          selected: false,
         },
       ],
       items: [
@@ -94,10 +94,20 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    currentAccount: {
+      id: 'party:aurora',
+      type: 'person',
+      name: 'Aurora Mikalsen',
+    },
+  },
+};
 
 export const ControlledState = (args) => {
   const [q, setQ] = useState<string>('');
+  const currentEndUserId = 'party:aurora';
+  const [selectedAccountId, setSelectedAccountId] = useState<string>(currentEndUserId);
   const onChange = (event) => {
     setQ(event.target.value);
   };
@@ -160,6 +170,12 @@ export const ControlledState = (args) => {
   return (
     <Header
       {...args}
+      currentAccount={args.menu.accounts.find((account) => account.id === selectedAccountId)}
+      menu={{
+        ...args.menu,
+        ...args.menu.accounts,
+        changeCurrentAccount: setSelectedAccountId,
+      }}
       search={{
         ...args.search,
         value: q,

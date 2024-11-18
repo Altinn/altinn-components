@@ -5,7 +5,6 @@ interface AccountProps {
   id?: string;
   type?: string;
   name?: string;
-  selected?: boolean;
 }
 
 export interface InboxDefaultValue {

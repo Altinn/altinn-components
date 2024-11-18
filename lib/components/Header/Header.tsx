@@ -2,6 +2,7 @@
 import { useEscapeKey } from '../../hooks';
 import { DrawerBase, DropdownBase } from '../Dropdown';
 import { GlobalMenu, type GlobalMenuProps } from '../GlobalMenu';
+import type { Account } from '../GlobalMenu/AccountButton.tsx';
 import { useRootContext } from '../RootProvider';
 import { Searchbar, type SearchbarProps } from '../Searchbar';
 import { HeaderBase } from './HeaderBase';
@@ -13,15 +14,11 @@ import styles from './header.module.css';
 export interface HeaderProps {
   menu: GlobalMenuProps;
   search?: SearchbarProps;
+  currentAccount?: Account;
 }
 
-export const Header = ({ search, menu }: HeaderProps) => {
+export const Header = ({ search, menu, currentAccount }: HeaderProps) => {
   const { currentId, toggleId, openId, closeAll } = useRootContext();
-  const selectedAccount = menu.accounts?.find((account) => account.selected);
-  const selectedAvatar = selectedAccount && {
-    type: selectedAccount.type,
-    name: selectedAccount.name,
-  };
 
   useEscapeKey(closeAll);
 
@@ -42,14 +39,19 @@ export const Header = ({ search, menu }: HeaderProps) => {
       <HeaderLogo className={styles.logo} />
       <HeaderMenu className={styles.menu}>
         <HeaderButton
-          avatar={selectedAvatar}
+          avatar={
+            currentAccount && {
+              type: currentAccount.type,
+              name: currentAccount.name,
+            }
+          }
           onClick={onToggleMenu}
           expanded={currentId === 'menu'}
           label={menu?.menuLabel}
         />
         {menu && (
           <DropdownBase padding={false} placement="right" expanded={currentId === 'menu'} className={styles.dropdown}>
-            <GlobalMenu {...menu} currentEndUser={selectedAccount} />
+            <GlobalMenu {...menu} currentAccount={currentAccount} />
           </DropdownBase>
         )}
       </HeaderMenu>
@@ -64,7 +66,7 @@ export const Header = ({ search, menu }: HeaderProps) => {
       )}
       {menu && (
         <DrawerBase expanded={currentId === 'menu'} className={styles.drawer}>
-          <GlobalMenu {...menu} currentEndUser={selectedAccount} expanded={currentId === 'menu'} />
+          <GlobalMenu {...menu} expanded={currentId === 'menu'} currentAccount={currentAccount} />
         </DrawerBase>
       )}
     </HeaderBase>
