@@ -1,3 +1,4 @@
+'use client';
 import { type ReactNode, createContext, useContext, useState } from 'react';
 
 type OpenElementId = 'search' | 'menu' | string;

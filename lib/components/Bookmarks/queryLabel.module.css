@@ -1,0 +1,45 @@
+.label {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 0.25rem;
+  row-gap: 0.25rem;
+}
+
+.group {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.25rem;
+}
+
+.plus {
+  color: var(--theme-text-subtle);
+}
+
+.item {
+  font-size: 0.875em;
+}
+
+.item[data-type="search"] {
+  background-color: transparent;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+}
+
+.item[data-type="search"]:before {
+  content: "«";
+}
+
+.item[data-type="search"]:after {
+  content: "»";
+}
+
+.item[data-type="filter"] {
+  background-color: transparent;
+  border: 1px solid;
+  font-weight: 500;
+  padding: 0.25em 0.5em;
+  border-radius: 2px;
+}

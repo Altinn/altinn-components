@@ -10,7 +10,7 @@ export type MenuOptionType = 'checkbox' | 'radio';
 export interface MenuOptionProps {
   value: string | number;
   label: string;
-  group?: string;
+  groupId?: string;
   size?: MenuItemSize;
   name?: string;
   title?: string;

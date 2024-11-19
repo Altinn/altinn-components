@@ -15,6 +15,7 @@ export interface HeaderButtonProps extends ButtonProps {
   className?: string;
   expanded?: boolean;
   icon?: IconName;
+  tabIndex?: number;
 }
 
 export const HeaderButton = ({

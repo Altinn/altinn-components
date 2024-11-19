@@ -10,6 +10,7 @@ interface IconButtonProps {
   icon: IconName;
   color?: ButtonColor;
   size?: ButtonSize;
+  iconSize?: ButtonSize;
   variant?: ButtonVariant;
   className?: string;
   onClick?: MouseEventHandler;
@@ -20,12 +21,13 @@ export const IconButton = ({
   color = 'primary',
   size = 'md',
   icon,
+  iconSize,
   className,
   onClick,
 }: IconButtonProps) => {
   return (
     <ButtonBase variant={variant} color={color} size={size} className={cx(styles.button, className)} onClick={onClick}>
-      <ButtonIcon icon={icon} size={size} />
+      <ButtonIcon icon={icon} size={iconSize || size} />
     </ButtonBase>
   );
 };

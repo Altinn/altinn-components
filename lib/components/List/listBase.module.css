@@ -14,3 +14,17 @@
 .list[data-spacing="lg"] {
   row-gap: 16px;
 }
+
+/*
+
+.list[data-spacing="none"] > :first-child {
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+.list[data-spacing="none"] > :last-child {
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
+*/

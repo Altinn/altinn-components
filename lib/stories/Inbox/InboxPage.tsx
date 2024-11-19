@@ -24,6 +24,7 @@ export function InboxPage() {
       return true;
     })
     .map((item) => {
+
       return {
         ...item,
         groupId: 'g1',

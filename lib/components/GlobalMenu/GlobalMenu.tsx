@@ -1,21 +1,19 @@
 'use client';
-import { type MouseEventHandler, useState } from 'react';
+import { useState } from 'react';
 import { Menu, type MenuItemGroups, type MenuItemProps } from '../Menu';
 import { type Account, AccountButton } from './AccountButton';
 import { AccountMenu, type AccountMenuProps } from './AccountMenu';
 import { BackButton } from './BackButton';
 import { GlobalMenuBase, GlobalMenuFooter, GlobalMenuHeader } from './GlobalMenuBase';
-import { LogoutButton } from './LogoutButton';
+import { LogoutButton, type LogoutButtonProps } from './LogoutButton';
 
 export interface GlobalMenuProps extends AccountMenuProps {
-  expanded: boolean;
-  onToggle: MouseEventHandler;
   items: MenuItemProps[];
   groups?: MenuItemGroups;
   menuLabel?: string;
   backLabel?: string;
+  logoutButton?: LogoutButtonProps;
   changeLabel?: string;
-  logoutLabel?: string;
   className?: string;
   currentAccount?: Account;
   changeCurrentAccount?: (id: string) => void;
@@ -28,10 +26,10 @@ export const GlobalMenu = ({
   items = [],
   groups,
   changeLabel = 'Change',
-  logoutLabel = 'Logout',
   backLabel = 'Back',
   currentAccount,
   changeCurrentAccount,
+  logoutButton,
 }: GlobalMenuProps) => {
   const [selectingAccount, setSelectingAccount] = useState<boolean>(false);
 
@@ -63,12 +61,19 @@ export const GlobalMenu = ({
     return (
       <GlobalMenuBase>
         <GlobalMenuHeader>
-          <AccountButton account={currentAccount} linkText={changeLabel} onClick={onToggleAccounts} />
+          <AccountButton
+            account={currentAccount}
+            linkText={changeLabel}
+            multipleAccounts={accounts.length > 1}
+            onClick={onToggleAccounts}
+          />
         </GlobalMenuHeader>
         <Menu groups={groups} items={items} />
-        <GlobalMenuFooter>
-          <LogoutButton label={logoutLabel} />
-        </GlobalMenuFooter>
+        {logoutButton && (
+          <GlobalMenuFooter>
+            <LogoutButton {...logoutButton} />
+          </GlobalMenuFooter>
+        )}
       </GlobalMenuBase>
     );
   }

@@ -29,7 +29,7 @@ export interface ToolbarOptionsProps {
 export const ToolbarOptions = ({ search, optionGroups = {}, options, onChange, optionType }: ToolbarOptionsProps) => {
   const sections = options.reduce(
     (acc, option) => {
-      const group = option.group || '';
+      const group = option.groupId || '';
       acc[group] = acc[group] || [];
       acc[group].push(option);
       return acc;
@@ -59,7 +59,7 @@ export const ToolbarOptions = ({ search, optionGroups = {}, options, onChange, o
                     onChange={onChange}
                     label={item.label}
                     badge={item.badge}
-                    type={optionGroups?.[key]?.optionType || optionType}
+                    type={item.type || optionGroups?.[key]?.optionType || optionType}
                     value={item.value}
                     checked={item.checked}
                   />

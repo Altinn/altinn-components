@@ -9,6 +9,7 @@ import { HeaderBase } from './HeaderBase';
 import { HeaderButton } from './HeaderButton';
 import { HeaderLogo } from './HeaderLogo';
 import { HeaderMenu } from './HeaderMenu';
+import { HeaderSearch } from './HeaderSearch';
 import styles from './header.module.css';
 
 export interface HeaderProps {
@@ -56,17 +57,13 @@ export const Header = ({ search, menu, currentAccount }: HeaderProps) => {
         )}
       </HeaderMenu>
       {search && (
-        <Searchbar
-          {...search}
-          className={styles.search}
-          expanded={currentId === 'search'}
-          onClose={onSearchClose}
-          onFocus={onSearchFocus}
-        />
+        <HeaderSearch expanded={currentId === 'search'}>
+          <Searchbar {...search} expanded={currentId === 'search'} onClose={onSearchClose} onFocus={onSearchFocus} />
+        </HeaderSearch>
       )}
       {menu && (
         <DrawerBase expanded={currentId === 'menu'} className={styles.drawer}>
-          <GlobalMenu {...menu} expanded={currentId === 'menu'} currentAccount={currentAccount} />
+          <GlobalMenu {...menu} currentAccount={currentAccount} />
         </DrawerBase>
       )}
     </HeaderBase>

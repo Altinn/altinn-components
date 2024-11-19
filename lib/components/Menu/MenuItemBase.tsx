@@ -51,7 +51,7 @@ export const MenuItemBase = ({
   return (
     <Component
       role="menuitem"
-      tabIndex={!disabled && tabIndex}
+      tabIndex={disabled ? '-1' : (tabIndex ?? 0)}
       data-size={size}
       data-color={color}
       data-active={active}

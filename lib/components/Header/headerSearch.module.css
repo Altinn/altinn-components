@@ -1,0 +1,21 @@
+.search {
+  width: 100%;
+}
+
+.search[aria-expanded="true"] {
+  z-index: 2;
+}
+
+@media (min-width: 1024px) {
+  .search {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    max-width: 320px;
+  }
+
+  .search[aria-expanded="true"] {
+    max-width: 640px;
+  }
+}

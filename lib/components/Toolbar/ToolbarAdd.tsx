@@ -2,7 +2,7 @@ import type { MouseEventHandler } from 'react';
 import { DrawerOrDropdown } from '../';
 import { Menu, type MenuItemProps } from '../Menu';
 import { ToolbarButton } from './ToolbarButton';
-import styles from './toolbarAdd.module.css';
+import { ToolbarFilterBase } from './ToolbarFilterBase';
 
 export interface ToolbarAddProps {
   items: MenuItemProps[];
@@ -14,13 +14,13 @@ export interface ToolbarAddProps {
 
 export const ToolbarAdd = ({ expanded = false, onToggle, label = 'Legg til', items }: ToolbarAddProps) => {
   return (
-    <div className={styles.menu}>
+    <ToolbarFilterBase expanded={expanded}>
       <ToolbarButton type="add" onToggle={onToggle}>
         {label}
       </ToolbarButton>
       <DrawerOrDropdown title={label} onClose={onToggle} expanded={expanded}>
         <Menu theme="global" items={items} />
       </DrawerOrDropdown>
-    </div>
+    </ToolbarFilterBase>
   );
 };

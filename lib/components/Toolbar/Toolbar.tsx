@@ -1,5 +1,5 @@
 'use client';
-import { useMemo, useState } from 'react';
+import { type ReactNode, useMemo, useState } from 'react';
 import { useRootContext } from '../RootProvider';
 import { ToolbarAdd } from './ToolbarAdd';
 import { ToolbarBase } from './ToolbarBase';
@@ -23,6 +23,7 @@ export interface ToolbarProps {
   filterState?: FilterState;
   getFilterLabel?: (name: string, value: ToolbarFilterProps['value']) => string;
   onFilterStateChange?: (state: FilterState) => void;
+  children?: ReactNode;
 }
 
 export const Toolbar = ({
@@ -32,6 +33,7 @@ export const Toolbar = ({
   search,
   menu,
   getFilterLabel,
+  children,
 }: ToolbarProps) => {
   const { currentId, openId, closeAll } = useRootContext();
   const [expandedItem, setExpandedItem] = useState<ExpandedItem>(null);
@@ -151,6 +153,7 @@ export const Toolbar = ({
         />
       )}
       {search && <ToolbarSearch {...search} />}
+      {children}
     </ToolbarBase>
   );
 };

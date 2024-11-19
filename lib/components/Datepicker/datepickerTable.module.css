@@ -1,0 +1,37 @@
+.table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.weekday {
+  font-size: 0.75rem;
+  text-align: center;
+  padding: 0.25rem 0;
+}
+
+.date {
+  background-color: transparent;
+  color: var(--theme-text-subtle);
+}
+
+.date[data-current-month="true"] {
+  background-color: var(--theme-background-subtle);
+  color: var(--theme-text-default);
+}
+
+.button {
+  font-size: 0.875rem;
+  width: 100%;
+  text-align: center;
+  height: 2.25rem;
+}
+
+.button[aria-selected="true"] {
+  background-color: transparent;
+  border: 1px solid var(--theme-border-default);
+}
+.button[aria-selected="true"]:hover,
+.button:hover {
+  background-color: var(--theme-surface-hover);
+}
