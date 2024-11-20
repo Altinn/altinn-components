@@ -48,5 +48,5 @@ import '@altinn/altinn-components/lib/css/global.css';
 ```
 for correct `font-family` and minimal collection of resets.
 
-## Documentation
+## Documentation and examples
 The documentation for the components can be found in the [Storybook](https://altinn.github.io/altinn-components)
