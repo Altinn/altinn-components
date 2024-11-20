@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.1](https://github.com/Altinn/altinn-components/compare/v0.6.0...v0.6.1) (2024-11-20)
+
+
+### Bug Fixes
+
+* publish npm: revert to old working export ([#63](https://github.com/Altinn/altinn-components/issues/63)) ([448bea6](https://github.com/Altinn/altinn-components/commit/448bea64b7220ad747eddb20dc624ded055dfb60))
+
 ## [0.6.0](https://github.com/Altinn/altinn-components/compare/v0.5.2...v0.6.0) (2024-11-20)
 
 
