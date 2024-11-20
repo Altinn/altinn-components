@@ -22,24 +22,3 @@
     display: block;
   }
 }
-
-/* search */
-
-.search {
-  width: 100%;
-}
-
-@media (min-width: 1024px) {
-  .search {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    max-width: 320px;
-  }
-
-  .search[aria-expanded="true"] {
-    z-index: 2;
-    max-width: 640px;
-  }
-}

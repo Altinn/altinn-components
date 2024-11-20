@@ -4,12 +4,6 @@
   "_rev": "n6M6ED8lI6VdyYqDQoylrM",
   "_type": "dialog",
   "_updatedAt": "2024-10-28T17:07:32Z",
-  "action": [
-    { "priority": "primary", "label": "Til skjema" },
-    {
-      "label": "Forkast utkast"
-    }
-  ],
   "additionalInfo": "For at du skal kunne registrere enkeltpersonforetaket, er du nødt til å drive med næringsaktivitet. Dette er aktivitet som er egnet til å ha et visst omfang og varighet.",
   "body": "## Oppsummering\n- **Foretakets navn:** Olas Enkeltmannsforetak\n- **Lorem ipsum:** Data",
   "history": [
@@ -35,10 +29,12 @@
   "title": "Registrering av enkeltmannsforetak",
   "updatedAt": "2024-10-28T17:07:32Z",
   "actions": [
-    { "_key": "4af713286bf6", "_type": "dialogAction", "label": "Til skjema" },
     {
-      "_key": "1ef5bc424eee",
-      "_type": "dialogAction",
+      "priority": "primary",
+      "label": "Til skjema"
+    },
+    {
+      "priority": "secondary",
       "label": "Forkast utkast"
     }
   ]

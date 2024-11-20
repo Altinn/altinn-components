@@ -16,7 +16,7 @@ export const DrawerOrDropdown = ({ expanded = false, title, onClose, button, chi
   return (
     <>
       {expanded && <Backdrop onClick={onClose} />}
-      <DropdownBase className={styles.dropdown} expanded={expanded}>
+      <DropdownBase className={styles.dropdown} padding={true} expanded={expanded}>
         {children}
       </DropdownBase>
       <DrawerBase className={styles.drawer} placement="bottom" expanded={expanded}>

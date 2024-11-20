@@ -1,6 +1,7 @@
 import cx from 'classnames';
 import type { ElementType, KeyboardEvent, KeyboardEventHandler, ReactNode } from 'react';
 import { Badge, type BadgeProps } from '../Badge';
+import { ContextMenu, type ContextMenuProps } from '../ContextMenu';
 import { Icon, type IconName } from '../Icon';
 import styles from './listItemBase.module.css';
 
@@ -10,6 +11,7 @@ export type ListItemSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 interface ListItemBaseProps {
   as?: ElementType;
   size?: ListItemSize;
+  menu?: ContextMenuProps;
   linkIcon?: IconName;
   color?: ListItemColor;
   badge?: BadgeProps;
@@ -39,6 +41,7 @@ export const ListItemBase = ({
   selected,
   expanded,
   linkIcon,
+  menu,
   badge,
   onClick,
   onKeyPress,
@@ -71,6 +74,7 @@ export const ListItemBase = ({
       </div>
       <div className={styles.action}>
         {badge && <Badge {...badge} />}
+        {menu && <ContextMenu {...menu} />}
         {applicableIcon && <Icon name={applicableIcon} className={styles.linkIcon} />}
       </div>
     </Component>

@@ -1,3 +1,4 @@
+'use client';
 import cx from 'classnames';
 import { type ChangeEventHandler, type FocusEventHandler, useRef } from 'react';
 import { IconButton } from '../Button';
@@ -6,7 +7,6 @@ import styles from './searchField.module.css';
 
 export interface SearchFieldProps {
   name: string;
-  // TODO: Should be required?
   value?: string;
   className?: string;
   expanded?: boolean;
@@ -17,6 +17,7 @@ export interface SearchFieldProps {
   onClear?: () => void;
   onClose?: () => void;
   onEnter?: () => void;
+  tabIndex?: number;
 }
 
 export const SearchField = ({
@@ -31,6 +32,7 @@ export const SearchField = ({
   onClear,
   onClose,
   onEnter,
+  tabIndex,
 }: SearchFieldProps) => {
   const ref = useRef<HTMLInputElement>(null);
 
@@ -60,6 +62,7 @@ export const SearchField = ({
         autoComplete="off"
         aria-autocomplete="list"
         aria-expanded={expanded}
+        tabIndex={tabIndex ?? 0}
       />
       <Icon name="magnifying-glass" className={styles.icon} />
       {(value && (

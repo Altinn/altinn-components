@@ -1,8 +1,6 @@
 /* reset */
 
 .item {
-  border: none;
-
   color: inherit;
   font: inherit;
   text-align: inherit;
@@ -75,6 +73,15 @@
 .item {
   background-color: var(--theme-background-default);
   box-shadow: var(--ds-shadow-xs);
+}
+
+.item:hover {
+  outline: 2px solid var(--theme-border-strong);
+  z-index: 2;
+}
+
+.item:hover strong {
+  text-decoration: underline;
 }
 
 .item[data-active="true"] {

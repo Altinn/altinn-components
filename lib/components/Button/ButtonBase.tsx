@@ -32,12 +32,13 @@ export const ButtonBase = ({
   size,
   selected,
   variant,
+  tabIndex = 0,
   ...rest
 }: ButtonBaseProps) => {
   const Component = as || 'button';
   return (
     <Component
-      tabIndex={0}
+      tabIndex={tabIndex}
       data-size={size}
       data-variant={variant}
       data-color={color}

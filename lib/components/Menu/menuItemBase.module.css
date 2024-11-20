@@ -6,6 +6,13 @@
   user-select: none;
   cursor: pointer;
   margin: 0.5rem 0;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  line-height: normal;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  appearance: none;
 }
 
 .item[aria-disabled="true"] {

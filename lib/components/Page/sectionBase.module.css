@@ -26,6 +26,10 @@
   row-gap: 1rem;
 }
 
+.section[data-spacing="xl"] {
+  row-gap: 1.5rem;
+}
+
 /* margin */
 
 .section[data-margin="sm"] {
@@ -43,7 +47,13 @@
 /* padding */
 
 .section[data-padding="true"] {
-  padding: 1rem;
+  padding: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .section[data-padding="true"] {
+    padding: 1.5rem 1rem;
+  }
 }
 
 /* color */

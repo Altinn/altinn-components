@@ -1,6 +1,7 @@
 'use client';
 import {
   Heading,
+  BookmarksList,
   ListBase,
   ListItem,
   MetaItem,
@@ -13,20 +14,49 @@ import {
 import { InboxToolbar } from './InboxToolbar';
 
 export function BookmarksPage() {
+  const contextMenu = {
+    items: [
+      {
+        icon: "pencil",
+        label: "Rediger søk"
+      },
+      {
+        icon: "trash",
+        label: "Slett søk"
+      }
+    ]
+  }
+
   const bookmarks = [
     {
       id: '1',
-      title: '123',
+      title: 'Mitt eget søk',
+      params: [
+        {type: "search", label: "Skatt"},
+        {type: "filter", label: "Under arbeid"}
+      ],
     },
     {
       id: '2',
-      title: '123',
+      params: [
+        {type: "search", label: "Skatt"},
+        {type: "filter", label: "Under arbeid"}
+      ],
     },
     {
       id: '3',
-      title: '123',
+      params: [
+        {type: "filter", label: "Brønnøysundregistrene"},
+        {type: "filter", label: "Krever handling"}
+      ],
     },
-  ];
+  ].map(item => {
+    return {
+      ...item,
+      menu: {...contextMenu, id: [item.id, "-menu"].join("-")}
+    }
+  });
+
 
   const count = bookmarks.length;
   const title = (count > 1 && count + ' lagrede søk') || (count && '1 lagret søk') || 'Ingen lagrede søk';
@@ -34,15 +64,11 @@ export function BookmarksPage() {
   return (
     <PageBase margin="lg" spacing="lg">
       <InboxToolbar />
-      <SectionBase spacing="lg">
-        <SectionHeader padding>
-          <Heading size="md">{title}</Heading>
+      <SectionBase padding color="subtle" spacing="lg" inset>
+      <SectionHeader>
+          <Heading size="sm">{title}</Heading>
         </SectionHeader>
-        <ListBase spacing="sm">
-          {bookmarks.map((item) => (
-            <ListItem {...item} key={item.id} />
-          ))}
-        </ListBase>
+        <BookmarksList spacing="none" items={bookmarks} />
         <SectionFooter padding>
           <MetaItem>Sist oppdatert: 10 minutter siden.</MetaItem>
         </SectionFooter>

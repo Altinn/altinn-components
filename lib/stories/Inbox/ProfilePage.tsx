@@ -21,6 +21,7 @@ export function ProfilePage() {
     <PageBase>
       <PageHeader
         title={account.name}
+        description="Fnr: XXXXXXX XXXXX"
         avatar={{ type: account?.type, name: account.name }}
         inset
         padding

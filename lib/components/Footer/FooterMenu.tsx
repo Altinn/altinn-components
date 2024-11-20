@@ -9,8 +9,8 @@ export interface FooterMenuProps {
 }
 
 export interface FooterLinkProps {
+  id: string;
   as?: ElementType;
-  id?: string;
   href?: string;
   title?: string;
   className?: string;

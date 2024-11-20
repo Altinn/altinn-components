@@ -17,10 +17,12 @@ export const ContextMenuBase = ({
   children,
 }: ContextMenuBaseProps) => {
   return (
-    <div className={styles.toggle}>
+    <div className={styles.toggle} data-theme="neutral">
       <IconButton
         className={styles.button}
+        size="sm"
         icon="menu-elipsis-horizontal"
+        iconSize="md"
         variant="text"
         color="secondary"
         onClick={onToggle}

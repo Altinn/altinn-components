@@ -97,6 +97,7 @@ export const InboxProvider = ({ defaultValue, children }: InboxProviderProps) =>
   const items = defaultValue?.dialogs?.map((item) => ({
     ...item,
     selected: selectedIds.includes(item.id),
+    recipient: account
   }));
 
   const itemsCount = items?.length || 0;

@@ -2,13 +2,14 @@ import type { ChangeEventHandler, MouseEventHandler } from 'react';
 import { DrawerOrDropdown } from '../';
 import type { MenuOptionProps } from '../Menu';
 import { ToolbarButton } from './ToolbarButton';
-import { ToolbarOptions } from './ToolbarOptions';
-import styles from './toolbarFilter.module.css';
+import { ToolbarFilterBase } from './ToolbarFilterBase';
+import { type OptionGroup, ToolbarOptions } from './ToolbarOptions';
 
 type ToolbarFilterValue = (string | number)[];
 export interface ToolbarFilterProps {
   name: string;
   options: MenuOptionProps[];
+  optionGroups?: { [key: string]: OptionGroup };
   label: string;
   value?: ToolbarFilterValue;
   optionType: 'checkbox' | 'radio';
@@ -35,6 +36,7 @@ export const ToolbarFilter = ({
   name,
   value,
   options,
+  optionGroups,
   onToggle,
   onChange,
   onRemove,
@@ -52,7 +54,7 @@ export const ToolbarFilter = ({
   const valueLabel = getSelectedLabel?.(name, value) ?? defaultGetSelectedLabel(name, value);
 
   return (
-    <div className={styles.filter} aria-expanded={expanded}>
+    <ToolbarFilterBase expanded={expanded}>
       <ToolbarButton
         type="select"
         removable={removable}
@@ -68,8 +70,13 @@ export const ToolbarFilter = ({
         onClose={onToggle}
         button={{ onClick: onToggle, label: 'Vis X treff' }}
       >
-        <ToolbarOptions options={filterOptions} onChange={onChange} optionType={optionType} />
+        <ToolbarOptions
+          options={filterOptions}
+          optionGroups={optionGroups}
+          onChange={onChange}
+          optionType={optionType}
+        />
       </DrawerOrDropdown>
-    </div>
+    </ToolbarFilterBase>
   );
 };

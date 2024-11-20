@@ -2,6 +2,7 @@ export * from './MenuItemBase';
 export * from './MenuItemLabel';
 export * from './MenuItemMedia';
 export * from './MenuItem';
+export * from './MenuInputField';
 export * from './MenuOption';
 export * from './MenuSearch';
 export * from './MenuHeader';

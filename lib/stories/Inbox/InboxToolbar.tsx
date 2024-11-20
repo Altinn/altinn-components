@@ -1,5 +1,5 @@
 'use client';
-import { Toolbar } from '../../components';
+import { Toolbar, Button } from '../../components';
 import { useInbox } from './';
 
 export function InboxToolbar({ items }) {
@@ -26,12 +26,12 @@ export function InboxToolbar({ items }) {
   const accountMenu = {
     label: currentAccount?.name,
     value: currentAccount?.id,
+    currentAccount,
     items: accounts.map((item) => {
       return {
         group: item.type,
         title: item?.name,
         avatar: item,
-        selected: item.selected,
         onClick: () => onAccountId(item.id),
       };
     }),
@@ -90,5 +90,5 @@ export function InboxToolbar({ items }) {
       };
     });
 
-  return <Toolbar menu={accountMenu} filters={filters} />;
+  return <Toolbar menu={accountMenu} filters={filters}><Button size="sm" variant="text" reverse icon="bookmark">Lagre søk</Button></Toolbar>;
 }
