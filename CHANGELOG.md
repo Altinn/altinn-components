@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/Altinn/altinn-components/compare/v0.5.2...v0.6.0) (2024-11-20)
+
+
+### Features
+
+* date picker + bookmarks + saved searches ([#60](https://github.com/Altinn/altinn-components/issues/60)) ([3cc249e](https://github.com/Altinn/altinn-components/commit/3cc249ebbd6bb1f5157524a0bfa1fa6693f38dd8))
+
 ## [0.5.2](https://github.com/Altinn/altinn-components/compare/v0.5.1...v0.5.2) (2024-11-18)
 
 
