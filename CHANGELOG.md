@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.2](https://github.com/Altinn/altinn-components/compare/v0.6.1...v0.6.2) (2024-11-20)
+
+
+### Bug Fixes
+
+* bump version for alignment with npm ([#65](https://github.com/Altinn/altinn-components/issues/65)) ([1de4f0a](https://github.com/Altinn/altinn-components/commit/1de4f0a37a7d37a2c04543d4fd8f1c733005f957))
+
 ## [0.6.1](https://github.com/Altinn/altinn-components/compare/v0.6.0...v0.6.1) (2024-11-20)
 
 
