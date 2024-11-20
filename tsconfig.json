@@ -15,7 +15,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "types": ["./typings.d.ts", "vite/client"]
   },
   "include": ["./lib/**/*.ts", "./lib/hooks/*.tsx", "./**/*.d.ts"],
   "exclude": [
@@ -23,6 +24,5 @@
     "lib/components/**/*.stories.ts",
     "lib/components/**/*.stories.tsx",
     "./lib/components/Icon/__AkselIcon.tsx"
-  ],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  ]
 }

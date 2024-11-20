@@ -19,7 +19,7 @@ Tested with Node.js 20.x <
 
 ## Requirements
 
-React `>=18`in your project. 
+`React` `>=18`in your project as a peer dependency. And `react-dom` if needed.
 
 ## Usage
 Wrap your application in RootProvider to enable shared context across all components. Here’s a basic setup:
@@ -48,5 +48,17 @@ import '@altinn/altinn-components/lib/css/global.css';
 ```
 for correct `font-family` and minimal collection of resets.
 
-## Documentation and examples
+Using `nextjs`?
+
+You probably need to transpile the package. Add the following to your `next.config.js`:
+
+```js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  transpilePackages: ['@altinn/components'],
+}
+module.exports = nextConfig
+```
+
+## Documentation
 The documentation for the components can be found in the [Storybook](https://altinn.github.io/altinn-components)
