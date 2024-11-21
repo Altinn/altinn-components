@@ -202,7 +202,7 @@ export const Collapsible = (args) => {
         onClick={onToggle}
         as="button"
       />
-      {expanded && <List size="xs" items={items} />}
+      {expanded && <List size="xs" spacing="none" items={items} />}
     </Fragment>
   );
 };
