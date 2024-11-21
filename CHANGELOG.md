@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.6.6](https://github.com/Altinn/altinn-components/compare/v0.6.5...v0.6.6) (2024-11-21)
+
+
+### Bug Fixes
+
+* menuitem base + onSelectAccount ([#75](https://github.com/Altinn/altinn-components/issues/75)) ([00baea1](https://github.com/Altinn/altinn-components/commit/00baea127c353136276a29f564f51dbefddaf706))
+* mer ([00baea1](https://github.com/Altinn/altinn-components/commit/00baea127c353136276a29f564f51dbefddaf706))
+
 ## [0.6.5](https://github.com/Altinn/altinn-components/compare/v0.6.4...v0.6.5) (2024-11-21)
 
 
