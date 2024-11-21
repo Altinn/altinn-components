@@ -1,3 +1,4 @@
+'use client';
 import type { DropdownPlacement, MenuItemProps } from '../';
 import { type MenuItemGroups, MenuItems } from '../';
 import { useRootContext } from '../RootProvider';
