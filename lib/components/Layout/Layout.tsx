@@ -1,3 +1,4 @@
+'use client';
 import type { ReactNode } from 'react';
 import { LayoutBase, LayoutBody, LayoutContent, LayoutSidebar, type LayoutTheme } from '.';
 import { Footer, type FooterProps } from '../Footer';
