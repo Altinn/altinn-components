@@ -16,7 +16,7 @@ export interface GlobalMenuProps extends AccountMenuProps {
   changeLabel?: string;
   className?: string;
   currentAccount?: Account;
-  changeCurrentAccount?: (id: string) => void;
+  onSelectAccount?: (id: string) => void;
 }
 
 export const GlobalMenu = ({
@@ -28,7 +28,7 @@ export const GlobalMenu = ({
   changeLabel = 'Change',
   backLabel = 'Back',
   currentAccount,
-  changeCurrentAccount,
+  onSelectAccount,
   logoutButton,
 }: GlobalMenuProps) => {
   const [selectingAccount, setSelectingAccount] = useState<boolean>(false);
@@ -37,9 +37,9 @@ export const GlobalMenu = ({
     setSelectingAccount((prevState) => !prevState);
   };
 
-  const onSelectAccount = (id: string) => {
+  const handleSelectAccount = (id: string) => {
     onToggleAccounts();
-    changeCurrentAccount?.(id);
+    onSelectAccount?.(id);
   };
 
   if (selectingAccount) {
@@ -51,7 +51,7 @@ export const GlobalMenu = ({
           accounts={accounts}
           accountGroups={accountGroups}
           accountSearch={accountSearch}
-          onSelectAccount={onSelectAccount}
+          onSelectAccount={handleSelectAccount}
         />
       </GlobalMenuBase>
     );

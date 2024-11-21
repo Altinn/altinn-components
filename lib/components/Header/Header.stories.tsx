@@ -49,19 +49,19 @@ const meta = {
           name: 'Keeperhansker AS',
         },
         {
-          id: 'party:aurorasfotballskole',
+          id: 'party:stadiondrift',
           groupId: 'secondary',
           type: 'company',
           name: 'Stadion drift AS',
         },
         {
-          id: 'party:aurorasfotballskole',
+          id: 'party:skb',
           groupId: 'secondary',
           type: 'company',
           name: 'Sportsklubben Brann',
         },
         {
-          id: 'party:aurorasfotballskole',
+          id: 'party:landslaget',
           groupId: 'secondary',
           type: 'company',
           name: 'Landslaget',
@@ -174,7 +174,7 @@ export const ControlledState = (args) => {
       menu={{
         ...args.menu,
         ...args.menu.accounts,
-        changeCurrentAccount: setSelectedAccountId,
+        onSelectAccount: setSelectedAccountId,
       }}
       search={{
         ...args.search,
