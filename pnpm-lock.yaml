@@ -75,6 +75,9 @@ importers:
       lint-staged:
         specifier: ^15.2.10
         version: 15.2.10
+      rollup-preserve-directives:
+        specifier: ^1.1.2
+        version: 1.1.2(rollup@4.27.2)
       storybook:
         specifier: ^8.4.4
         version: 8.4.4
@@ -1984,6 +1987,11 @@ packages:
 
   rfdc@1.4.1:
     resolution: {integrity: sha512-q1b3N5QkRUWUl7iyylaaj3kOpIT0N2i9MqIEQXP73GVsN9cw3fdx8X63cEmWhJGi2PPCF23Ijp7ktmd39rawIA==}
+
+  rollup-preserve-directives@1.1.2:
+    resolution: {integrity: sha512-OOaYh4zO0Dcd/eVWGB8H69CgTiohl+jJqc2TLtjLENVIQaV2rxO3OW6RILzCQOdDvPT+/rzwRp+97OXhem895Q==}
+    peerDependencies:
+      rollup: ^2.0.0 || ^3.0.0 || ^4.0.0
 
   rollup@4.27.2:
     resolution: {integrity: sha512-KreA+PzWmk2yaFmZVwe6GB2uBD86nXl86OsDkt1bJS9p3vqWuEQ6HnJJ+j/mZi/q0920P99/MVRlB4L3crpF5w==}
@@ -4140,6 +4148,11 @@ snapshots:
   reusify@1.0.4: {}
 
   rfdc@1.4.1: {}
+
+  rollup-preserve-directives@1.1.2(rollup@4.27.2):
+    dependencies:
+      magic-string: 0.30.12
+      rollup: 4.27.2
 
   rollup@4.27.2:
     dependencies:

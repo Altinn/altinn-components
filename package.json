@@ -52,6 +52,7 @@
     "axe-core": "^4.10.2",
     "glob": "^11.0.0",
     "lint-staged": "^15.2.10",
+    "rollup-preserve-directives": "^1.1.2",
     "storybook": "^8.4.4",
     "storybook-addon-theme-provider": "^0.2.8",
     "typescript": "^5.6.3",
