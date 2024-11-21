@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.4](https://github.com/Altinn/altinn-components/compare/v0.6.3...v0.6.4) (2024-11-21)
+
+
+### Bug Fixes
+
+* list item base reset ([#70](https://github.com/Altinn/altinn-components/issues/70)) ([bee70cc](https://github.com/Altinn/altinn-components/commit/bee70ccb3433a3fd230392188e7fd47c84b5e085))
+
 ## [0.6.3](https://github.com/Altinn/altinn-components/compare/v0.6.2...v0.6.3) (2024-11-21)
 
 
