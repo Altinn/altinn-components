@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.7](https://github.com/Altinn/altinn-components/compare/v0.6.6...v0.6.7) (2024-11-21)
+
+
+### Bug Fixes
+
+* list/menu width ([#77](https://github.com/Altinn/altinn-components/issues/77)) ([4ccbae5](https://github.com/Altinn/altinn-components/commit/4ccbae5bd1a80db63cbafe1202eb510720a9d99f))
+
 ## [0.6.6](https://github.com/Altinn/altinn-components/compare/v0.6.5...v0.6.6) (2024-11-21)
 
 
