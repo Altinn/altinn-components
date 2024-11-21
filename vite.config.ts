@@ -8,6 +8,7 @@ import dts from 'vite-plugin-dts';
 import { libInjectCss } from 'vite-plugin-lib-inject-css';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import pkg from './package.json';
+import preserveDirectives from 'rollup-preserve-directives';
 
 const dependencies = Object.keys({
   ...(pkg.devDependencies || {}),
@@ -29,6 +30,7 @@ export default () => {
       react(),
       libInjectCss(),
       dts({ include: ['lib'] }),
+      preserveDirectives()
     ],
     build: {
       lib: {
