@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.5](https://github.com/Altinn/altinn-components/compare/v0.6.4...v0.6.5) (2024-11-21)
+
+
+### Bug Fixes
+
+* add use client directives on the last files using useContext ([#73](https://github.com/Altinn/altinn-components/issues/73)) ([29a0267](https://github.com/Altinn/altinn-components/commit/29a02679c62b644e5c40e9fee1d282ed504ff9af))
+
 ## [0.6.4](https://github.com/Altinn/altinn-components/compare/v0.6.3...v0.6.4) (2024-11-21)
 
 
