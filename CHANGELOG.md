@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.3](https://github.com/Altinn/altinn-components/compare/v0.6.2...v0.6.3) (2024-11-21)
+
+
+### Bug Fixes
+
+* bundle for npm ([#62](https://github.com/Altinn/altinn-components/issues/62)) ([559613e](https://github.com/Altinn/altinn-components/commit/559613e79c279c5e4e80d4e05f80cdfe770993ba))
+
 ## [0.6.2](https://github.com/Altinn/altinn-components/compare/v0.6.1...v0.6.2) (2024-11-20)
 
 
