@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.8](https://github.com/Altinn/altinn-components/compare/v0.6.7...v0.6.8) (2024-11-22)
+
+
+### Bug Fixes
+
+* reset menu + list item ([#79](https://github.com/Altinn/altinn-components/issues/79)) ([9238747](https://github.com/Altinn/altinn-components/commit/923874714daa37a62841028a642b551c62075d7e))
+
 ## [0.6.7](https://github.com/Altinn/altinn-components/compare/v0.6.6...v0.6.7) (2024-11-21)
 
 
