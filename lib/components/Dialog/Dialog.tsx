@@ -54,7 +54,7 @@ export interface DialogProps {
   /** Activity Log */
   activityLog?: DialogActivityLogProps;
   /** More information about the dialog, process, etc. */
-  additionalInfo?: string;
+  additionalInfo?: ReactNode;
   /** History */
   history?: DialogHistoryProps;
 }
@@ -87,13 +87,7 @@ export const Dialog = ({
     <DialogBase>
       <DialogNav status={status} dueAt={dueAt} dueAtLabel={dueAtLabel} backButton={backButton} menu={menu} />
       <DialogArticleBase>
-        <DialogHeader
-          title={title}
-          sender={sender}
-          recipient={recipient}
-          seen={seenBy?.seenByEndUser ?? false}
-          variant="neutral"
-        />
+        <DialogHeader title={title} sender={sender} recipient={recipient} seen={false} variant="neutral" />
         <DialogBodyBase>
           <DialogContent updatedAt={updatedAt} updatedAtLabel={updatedAtLabel} summary={summary} body={body} />
           {attachments && <DialogAttachments {...attachments} />}

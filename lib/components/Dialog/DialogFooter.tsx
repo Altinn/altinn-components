@@ -1,8 +1,9 @@
+import type { ReactNode } from 'react';
 import { Typography } from '../Typography';
 import { DialogSectionBase } from './DialogSectionBase';
 
 export interface DialogFooterProps {
-  additionalInfo?: string;
+  additionalInfo?: ReactNode;
 }
 
 export const DialogFooter = ({ additionalInfo }: DialogFooterProps) => {

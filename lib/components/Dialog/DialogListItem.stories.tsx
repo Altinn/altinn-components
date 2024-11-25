@@ -4,7 +4,7 @@ import { Fragment, useState } from 'react';
 import { DialogListItem } from './DialogListItem';
 import { DialogStatusEnum } from './DialogStatus';
 
-import { ListBase } from '../List';
+import { ListBase, ListItem } from '../List';
 import { MetaItem } from '../Meta';
 
 const getStatusLabel = (value) => {
@@ -36,7 +36,9 @@ const meta = {
   title: 'Dialog/DialogListItem',
   component: DialogListItem,
   tags: ['autodocs'],
-  parameters: {},
+  parameters: {
+    theme: 'company',
+  },
   argTypes: {},
   args: {
     title: 'Title',
@@ -49,114 +51,104 @@ const meta = {
       type: 'person',
       name: 'Recipient name',
     },
-    status: {
-      value: 'completed',
-    },
+    updatedAt: '2024-11-25 15:30',
+    updatedAtLabel: '25. november 2024 kl 15.30',
+    status: {},
   },
 } satisfies Meta<typeof DialogListItem>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const selectable: Story = {
-  args: {
-    select: {
-      checked: false,
-    },
-  },
+export const Statuses = (args) => {
+  return (
+    <ListBase>
+      {statuslist?.map((status) => {
+        return (
+          <Fragment key={status?.value}>
+            <DialogListItem {...args} status={status} />
+            <MetaItem>{status?.value}</MetaItem>
+          </Fragment>
+        );
+      })}
+    </ListBase>
+  );
 };
 
-export const selected: Story = {
-  args: {
-    selected: true,
-    select: {
-      checked: true,
-    },
-  },
+export const DueAt = (args) => {
+  return (
+    <ListBase>
+      <DialogListItem
+        {...args}
+        status={{ label: 'Krever handling', value: 'requires-attention' }}
+        dueAt="2025-01-01"
+        dueAtLabel="Frist: 1. januar 2025"
+      />
+      <MetaItem>Dialog requires action wihtin a spesific due date.</MetaItem>
+    </ListBase>
+  );
 };
 
-export const seenByEndUser: Story = {
-  args: {
-    seenByEndUser: true,
-  },
+export const Attachments = (args) => {
+  return (
+    <ListBase>
+      <DialogListItem {...args} attachmentsCount={2} />
+      <MetaItem>Dialog has attachments.</MetaItem>
+    </ListBase>
+  );
 };
 
-export const TouchedBy: Story = {
-  args: {
-    touchedBy: [
-      {
-        name: 'Lars',
-      },
-      {
-        name: 'Trine',
-      },
-    ],
-  },
+export const SeenBy = (args) => {
+  return (
+    <ListBase>
+      <DialogListItem {...args} seen={true} seenBy={{ seenByEndUser: true, label: 'Sett av deg' }} />
+      <MetaItem>Seen by end user. Dialog is marked as seen.</MetaItem>
+      <DialogListItem {...args} seenBy={{ seenByOthersCount: 4, label: 'Sett av 4' }} />
+      <MetaItem>Seen by others. Dialog is not marked as seen.</MetaItem>
+      <DialogListItem
+        {...args}
+        seen={true}
+        seenBy={{ seenByOthersCount: 4, seenByEndUser: true, label: 'Sett av deg + 4' }}
+      />
+      <MetaItem>Seen by end user and others. Dialog is marked as seen.</MetaItem>
+    </ListBase>
+  );
 };
 
-export const Draft: Story = {
-  args: {
-    status: {
-      value: 'draft',
-    },
-  },
+export const TouchedBy = (args) => {
+  return (
+    <ListBase>
+      <DialogListItem {...args} touchedBy={[{ name: 'Kari Nordmann' }]} />
+      <MetaItem>Dialog has been touched by a single actor.</MetaItem>
+      <DialogListItem {...args} touchedBy={[{ name: 'Kari Nordmann' }, { name: 'Ola Nordmann' }]} />
+      <MetaItem>Dialog has been touched by two actors.</MetaItem>
+      <DialogListItem
+        {...args}
+        touchedBy={[{ name: 'Kari Nordmann' }, { name: 'Ola Nordmann' }, { name: 'Per Nordmann' }]}
+      />
+      <MetaItem>Dialog has been touched by a multiple actors.</MetaItem>
+    </ListBase>
+  );
 };
 
-export const Sent: Story = {
-  args: {
-    status: {
-      value: 'sent',
-    },
-  },
+export const TextLength = (args) => {
+  return (
+    <ListBase>
+      <DialogListItem
+        {...args}
+        title="Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur. Maecenas faucibus mollis interdum. Nullam id dolor id nibh ultricies vehicula ut id elit. Nullam id dolor id nibh ultricies vehicula ut id elit."
+      />
+      <MetaItem>Long title</MetaItem>
+      <DialogListItem
+        {...args}
+        summary="Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Nullam id dolor id nibh ultricies vehicula ut id elit.\n\nCras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur. Maecenas faucibus mollis interdum. Nullam id dolor id nibh ultricies vehicula ut id elit. Nullam id dolor id nibh ultricies vehicula ut id elit."
+      />
+      <MetaItem>Long summary</MetaItem>
+    </ListBase>
+  );
 };
 
-export const RequiresAttention: Story = {
-  args: {
-    status: {
-      value: 'requires-attention',
-    },
-  },
-};
-
-export const InProgress: Story = {
-  args: {
-    status: {
-      value: 'in-progress',
-    },
-  },
-};
-
-export const Completed: Story = {
-  args: {
-    status: {
-      value: 'completed',
-    },
-  },
-};
-
-export const GroupedView: Story = {
-  args: {
-    grouped: true,
-  },
-};
-
-export const LongSummary: Story = {
-  args: {
-    title: 'Long summary',
-    summary:
-      'Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Nullam id dolor id nibh ultricies vehicula ut id elit.\n\nCras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur. Maecenas faucibus mollis interdum. Nullam id dolor id nibh ultricies vehicula ut id elit. Nullam id dolor id nibh ultricies vehicula ut id elit.',
-  },
-};
-
-export const LongTitle: Story = {
-  args: {
-    title:
-      'Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur. Maecenas faucibus mollis interdum. Nullam id dolor id nibh ultricies vehicula ut id elit. Nullam id dolor id nibh ultricies vehicula ut id elit.',
-    summary: 'Short summary.',
-  },
-};
-
-export const SelectableSelected = (args) => {
+export const Selectable = (args) => {
   const [items, setItems] = useState({
     1: {
       id: '1',
@@ -200,21 +192,6 @@ export const SelectableSelected = (args) => {
               select={{ checked: item?.selected, onChange: () => onSelect(item) }}
             />
             <MetaItem>selected:{item.selected ? 'true' : 'false'}</MetaItem>
-          </Fragment>
-        );
-      })}
-    </ListBase>
-  );
-};
-
-export const Statuses = (args) => {
-  return (
-    <ListBase>
-      {statuslist?.map((status) => {
-        return (
-          <Fragment key={status?.value}>
-            <DialogListItem {...args} status={status} />
-            <MetaItem>{status?.value}</MetaItem>
           </Fragment>
         );
       })}

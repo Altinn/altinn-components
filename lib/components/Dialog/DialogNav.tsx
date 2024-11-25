@@ -43,13 +43,13 @@ export const DialogNav = ({
       </Button>
       <div className={styles.action}>
         {dueAt && dueAtLabel && (
-          <MetaTimestamp datetime={dueAt} size="xs">
+          <MetaTimestamp datetime={dueAt} icon="clock-dashed" size="xs">
             {dueAtLabel}
           </MetaTimestamp>
         )}
         {status && <DialogStatus {...status} />}
         {touchedBy && <DialogTouchedBy touchedBy={touchedBy} />}
-        {menu && <ContextMenu {...menu} />}
+        {menu && <ContextMenu {...menu} size="md" />}
       </div>
     </nav>
   );
