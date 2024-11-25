@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.9](https://github.com/Altinn/altinn-components/compare/v0.6.8...v0.6.9) (2024-11-25)
+
+
+### Bug Fixes
+
+* dialog stories ([#81](https://github.com/Altinn/altinn-components/issues/81)) ([020c141](https://github.com/Altinn/altinn-components/commit/020c1411e25cbc24dea724e31857cacbfdf951f4))
+
 ## [0.6.8](https://github.com/Altinn/altinn-components/compare/v0.6.7...v0.6.8) (2024-11-22)
 
 
