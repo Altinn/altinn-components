@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.6.10](https://github.com/Altinn/altinn-components/compare/v0.6.9...v0.6.10) (2024-11-26)
+
+
+### Bug Fixes
+
+* footer widths ([#87](https://github.com/Altinn/altinn-components/issues/87)) ([db7193e](https://github.com/Altinn/altinn-components/commit/db7193ec9df2aec74302538bce787d3fff219c2d))
+* make account search optional ([#86](https://github.com/Altinn/altinn-components/issues/86)) ([a855167](https://github.com/Altinn/altinn-components/commit/a85516732a886469de8dbce01ac9d870f0292a47))
+* menu item padding ([#83](https://github.com/Altinn/altinn-components/issues/83)) ([5281fec](https://github.com/Altinn/altinn-components/commit/5281fec7b991eb8e11da6919a8c3de5a4ed2c904))
+* menu-options flex ([#85](https://github.com/Altinn/altinn-components/issues/85)) ([9cf6a14](https://github.com/Altinn/altinn-components/commit/9cf6a14f46229448ddf68a4a736653afdb9778c3))
+
 ## [0.6.9](https://github.com/Altinn/altinn-components/compare/v0.6.8...v0.6.9) (2024-11-25)
 
 
