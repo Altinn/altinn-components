@@ -33,9 +33,9 @@ export const MenuItemMedia = ({ size = 'sm', color, icon, avatar, avatarGroup, c
 
   return (
     <div className={styles.media} data-size={size} data-color={!icon ? null : color}>
-      {icon && <Icon name={icon} variant={color === 'strong' ? 'solid' : 'outline'} className={styles.icon} />}
-      {avatar && <Avatar {...avatar} size={sizeMap?.avatar[size] as AvatarSize} />}
-      {avatarGroup && <AvatarGroup {...avatarGroup} size={sizeMap?.avatarGroup[size] as AvatarSize} />}
+      {(icon && <Icon name={icon} variant={color === 'strong' ? 'solid' : 'outline'} className={styles.icon} />) ||
+        (avatar && <Avatar {...avatar} size={sizeMap?.avatar[size] as AvatarSize} />) ||
+        (avatarGroup && <AvatarGroup {...avatarGroup} size={sizeMap?.avatarGroup[size] as AvatarSize} />)}
       {children}
     </div>
   );
