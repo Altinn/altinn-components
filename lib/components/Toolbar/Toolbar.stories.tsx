@@ -46,7 +46,14 @@ export const Default: Story = {
           },
           {
             value: 'brreg',
-            label: 'Brønnøysund',
+            label: 'Brønnøysundregistrene',
+          },
+          {
+            value: 'ssb',
+            label: 'Statisitisk sentralbyrå',
+            badge: {
+              label: '10',
+            },
           },
           {
             value: 'nav',
