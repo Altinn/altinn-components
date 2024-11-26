@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.11](https://github.com/Altinn/altinn-components/compare/v0.6.10...v0.6.11) (2024-11-26)
+
+
+### Bug Fixes
+
+* list item action props ([#88](https://github.com/Altinn/altinn-components/issues/88)) ([ab60ed8](https://github.com/Altinn/altinn-components/commit/ab60ed87cb41bf0cb17edbd3047d4e7e3bf81953))
+
 ## [0.6.10](https://github.com/Altinn/altinn-components/compare/v0.6.9...v0.6.10) (2024-11-26)
 
 
