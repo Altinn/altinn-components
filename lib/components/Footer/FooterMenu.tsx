@@ -1,6 +1,5 @@
 import cx from 'classnames';
 import type { ElementType } from 'react';
-import { MenuBase } from '../Menu/';
 import styles from './footerMenu.module.css';
 
 export interface FooterMenuProps {
@@ -28,7 +27,7 @@ export const FooterLink = ({ as, className, title, ...rest }: FooterLinkProps) =
 
 export const FooterMenu = ({ className, items = [] }: FooterMenuProps) => {
   return (
-    <MenuBase className={cx(styles.menu, className)}>
+    <nav className={cx(styles.menu, className)}>
       <ul className={styles.list}>
         {items.map((item) => {
           return (
@@ -38,6 +37,6 @@ export const FooterMenu = ({ className, items = [] }: FooterMenuProps) => {
           );
         })}
       </ul>
-    </MenuBase>
+    </nav>
   );
 };
