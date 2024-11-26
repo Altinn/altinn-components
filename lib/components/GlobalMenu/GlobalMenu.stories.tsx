@@ -17,9 +17,13 @@ const meta = {
       },
     },
     currentAccount: {
+      id: 'party:mathias',
       type: 'person',
       name: 'Mathias Dyngeland',
       description: 'Fødselsnr. 07101995 XXXXXX',
+    },
+    logoutButton: {
+      label: 'Logg ut',
     },
     accounts: [
       {
@@ -157,6 +161,14 @@ export const Company: Story = {
       type: 'company',
       name: 'Sportsklubben Brann',
       description: 'Org. nr. 934908988',
+    },
+  },
+};
+
+export const AccountSearch: Story = {
+  args: {
+    accountSearch: {
+      placeholder: 'Finn konto',
     },
   },
 };

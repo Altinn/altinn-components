@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Menu, type MenuItemGroups, type MenuItemProps } from '../Menu';
+import { Menu, type MenuItemGroups, type MenuItemProps, MenuListItem } from '../Menu';
 import { type Account, AccountButton } from './AccountButton';
 import { AccountMenu, type AccountMenuProps } from './AccountMenu';
 import { BackButton } from './BackButton';
@@ -45,7 +45,10 @@ export const GlobalMenu = ({
   if (selectingAccount) {
     return (
       <GlobalMenuBase>
-        <BackButton onClick={onToggleAccounts} label={backLabel} />
+        <GlobalMenuHeader>
+          <BackButton onClick={onToggleAccounts} label={backLabel} />
+        </GlobalMenuHeader>
+        {!accountSearch && <MenuListItem as="div" role="separator" />}
         <AccountMenu
           currentAccount={currentAccount}
           accounts={accounts}
@@ -68,11 +71,15 @@ export const GlobalMenu = ({
             onClick={onToggleAccounts}
           />
         </GlobalMenuHeader>
+        <MenuListItem as="div" role="separator" />
         <Menu groups={groups} items={items} />
         {logoutButton && (
-          <GlobalMenuFooter>
-            <LogoutButton {...logoutButton} />
-          </GlobalMenuFooter>
+          <>
+            <MenuListItem as="div" role="separator" />
+            <GlobalMenuFooter>
+              <LogoutButton {...logoutButton} />
+            </GlobalMenuFooter>
+          </>
         )}
       </GlobalMenuBase>
     );

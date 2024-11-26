@@ -78,5 +78,12 @@ export const AccountMenu = ({
     ...(filteredAccountMenu.length > 0 ? filteredAccountMenu : [{ id: 'search', groupId: 'search', hidden: true }]),
   ];
 
-  return <Menu theme="global" search={accountSearchItem} groups={filterAccountGroups} items={accountSwitcher} />;
+  return (
+    <Menu
+      theme="global"
+      search={accountSearch && accountSearchItem}
+      groups={filterAccountGroups}
+      items={accountSwitcher}
+    />
+  );
 };
