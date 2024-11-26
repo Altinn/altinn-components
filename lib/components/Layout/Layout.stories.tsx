@@ -27,6 +27,7 @@ const header: HeaderProps = {
 
 const footer: FooterProps = {
   address: 'Postboks 1382 Vika, 0114 Oslo.',
+  address2: 'Org.nr. 991 825 827',
   menu: {
     items: [
       {
@@ -299,9 +300,11 @@ export const InboxBulkMode = (args) => {
           );
         })}
       </ListBase>
-      <ActionFooter>
-        {bulkMode && <ActionMenu items={bulkMenu} />}
-        {snackbars.length > 0 && snackbars?.map((item, index) => <Snackbar key={index} {...item} />)}
+      <ActionFooter hidden={false}>
+        <>
+          {bulkMode && <ActionMenu items={bulkMenu} theme="global-dark" />}
+          {snackbars.length > 0 && snackbars?.map((item, index) => <Snackbar key={index} {...item} />)}
+        </>
       </ActionFooter>
     </Layout>
   );

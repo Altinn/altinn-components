@@ -16,7 +16,6 @@ const meta = {
     title: 'Title',
     description: 'Description',
     size: 'md',
-    href: '#',
   },
 } satisfies Meta<typeof ListItem>;
 
@@ -27,102 +26,118 @@ export const Default: Story = {
   args: {},
 };
 
-export const Icon: Story = {
-  args: {
-    icon: 'teddy-bear',
-  },
-};
-
-export const IconAccent: Story = {
-  args: {
-    color: 'accent',
-    icon: 'teddy-bear',
-  },
-};
-
-export const Person: Story = {
-  args: {
-    avatar: {
-      type: 'person',
-      name: 'Erik Huseklepp',
-    },
-  },
-};
-
-export const Company: Story = {
-  args: {
-    avatar: {
-      type: 'company',
-      name: 'Sportsklubben Brann',
-    },
-  },
-};
-
-export const Logo: Story = {
-  args: {
-    avatar: {
-      type: 'company',
-      name: 'Politiets sikkerhetstjeneste',
-      imageUrl:
-        'https://media.licdn.com/dms/image/v2/D4D0BAQH7Yv86kmHN5g/company-logo_200_200/company-logo_200_200/0/1688735908848?e=1738195200&v=beta&t=f-Mkzd03bqzdQN4IT0h89VQ9_Jri1iJ6XphYYnjsgEo',
-    },
-  },
-};
-
-export const PeopleGroup: Story = {
-  args: {
-    avatarGroup: {
-      items: [
-        {
+export const MediaTypes = (args) => {
+  return (
+    <ListBase>
+      <ListItem {...args} />
+      <MetaItem>No media</MetaItem>
+      <ListItem {...args} icon="teddy-bear" />
+      <MetaItem>Icon</MetaItem>
+      <ListItem
+        {...args}
+        avatar={{
           type: 'person',
-          name: 'Albert Åberg',
-        },
-        {
-          type: 'person',
-          name: 'Birger Meling',
-        },
-        {
-          type: 'person',
-          name: 'Celine Dion',
-        },
-      ],
-    },
-  },
+          name: 'Erik Huseklepp',
+        }}
+      />
+      <MetaItem>Person</MetaItem>
+      <ListItem
+        {...args}
+        avatar={{
+          type: 'company',
+          name: 'Sportsklubben Brann',
+        }}
+      />
+      <MetaItem>Company</MetaItem>
+      <ListItem
+        {...args}
+        avatar={{
+          type: 'company',
+          name: 'Politiets sikkerhetstjeneste',
+          imageUrl:
+            'https://media.licdn.com/dms/image/v2/D4D0BAQH7Yv86kmHN5g/company-logo_200_200/company-logo_200_200/0/1688735908848?e=1738195200&v=beta&t=f-Mkzd03bqzdQN4IT0h89VQ9_Jri1iJ6XphYYnjsgEo',
+        }}
+      />
+      <MetaItem>Logo</MetaItem>
+      <ListItem
+        {...args}
+        avatarGroup={{
+          items: [
+            {
+              type: 'person',
+              name: 'Albert Åberg',
+            },
+            {
+              type: 'person',
+              name: 'Birger Meling',
+            },
+            {
+              type: 'person',
+              name: 'Celine Dion',
+            },
+          ],
+        }}
+      />
+      <MetaItem>People group</MetaItem>
+      <ListItem
+        {...args}
+        avatarGroup={{
+          items: [
+            {
+              type: 'company',
+              name: 'Albert Åberg',
+            },
+            {
+              type: 'company',
+              name: 'Birger Meling',
+            },
+            {
+              type: 'company',
+              name: 'Celine Dion',
+            },
+          ],
+        }}
+      />
+      <MetaItem>Company group</MetaItem>
+    </ListBase>
+  );
 };
 
-export const CompanyGroup: Story = {
-  args: {
-    avatarGroup: {
-      items: [
-        {
-          type: 'company',
-          name: 'Albert Åberg',
-        },
-        {
-          type: 'company',
-          name: 'Birger Meling',
-        },
-        {
-          type: 'company',
-          name: 'Celine Dion',
-        },
-      ],
-    },
-  },
+export const ActionProps = (args) => {
+  return (
+    <ListBase>
+      <ListItem {...args} linkIcon="chevron-right" />
+      <MetaItem>Link icon, emphasising that this will take you somewhere</MetaItem>
+      <ListItem {...args} linkIcon="chevron-right" linkText="Åpne" />
+      <MetaItem>Link icon + link text, emphasising that this will take you somewhere</MetaItem>
+      <ListItem {...args} collapsible badge={{ label: 'Admin' }} />
+      <MetaItem>Collapsible item with badge</MetaItem>
+      <ListItem {...args} collapsible expanded />
+      <MetaItem>Collapsible and expanded item</MetaItem>
+      <ListItem
+        {...args}
+        linkIcon="chevron-right"
+        menu={{
+          items: [
+            { label: 'Innstillinger', icon: 'cog' },
+            { label: 'Aktivitetslogg', icon: 'clock-dashed' },
+          ],
+        }}
+      />
+      <MetaItem>List item with context menu and linkIcon</MetaItem>
+    </ListBase>
+  );
 };
 
-export const LongTitle: Story = {
-  args: {
-    avatar: {
-      type: 'company',
-      name: 'Direktoratet for samfunnssikkerhet og beredskap',
-      imageUrl:
-        'https://media.licdn.com/dms/image/v2/C510BAQHlQiOWI4f45w/company-logo_200_200/company-logo_200_200/0/1631389121726?e=1738195200&v=beta&t=Q1P8kOwpgLvoqHBxyrHCaYd2upNkPQVi2zSSxJzbdCA',
-    },
-    title:
-      'Samtykke for å reparere elektrisk utstyr hvis bruk er forbundet med særlig risiko, herunder elektromedisinsk utstyr',
-    description: 'Direktoratet for samfunnssikkerhet og beredskap',
-  },
+export const Colors = (args) => {
+  return (
+    <ListBase>
+      <ListItem {...args} />
+      <MetaItem>Default</MetaItem>
+      <ListItem {...args} color="accent" />
+      <MetaItem>Accent</MetaItem>
+    </ListBase>
+  );
 };
 
 export const Sizes = (args) => {

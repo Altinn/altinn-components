@@ -1,8 +1,9 @@
 import cx from 'classnames';
 import type { ElementType, KeyboardEvent, KeyboardEventHandler, ReactNode } from 'react';
-import { Badge, type BadgeProps } from '../Badge';
-import { ContextMenu, type ContextMenuProps } from '../ContextMenu';
-import { Icon, type IconName } from '../Icon';
+import type { BadgeProps } from '../Badge';
+import type { ContextMenuProps } from '../ContextMenu';
+import type { IconName } from '../Icon';
+import { ListItemAction } from './ListItemAction';
 import styles from './listItemBase.module.css';
 
 export type ListItemColor = 'default' | 'accent';
@@ -12,6 +13,7 @@ interface ListItemBaseProps {
   as?: ElementType;
   size?: ListItemSize;
   menu?: ContextMenuProps;
+  linkText?: string;
   linkIcon?: IconName;
   color?: ListItemColor;
   badge?: BadgeProps;
@@ -24,6 +26,7 @@ interface ListItemBaseProps {
   expanded?: boolean;
   onClick?: () => void;
   onKeyPress?: KeyboardEventHandler;
+  action?: ReactNode;
   children?: ReactNode;
   style?: React.CSSProperties;
 }
@@ -37,20 +40,22 @@ export const ListItemBase = ({
   color,
   active = false,
   hidden = false,
-  collapsible,
   selected,
+  collapsible,
   expanded,
+  linkText,
   linkIcon,
   menu,
   badge,
+  action,
   onClick,
   onKeyPress,
   style,
 }: ListItemBaseProps) => {
   const Component = as || 'a';
 
-  const applicableIcon =
-    collapsible && expanded ? 'chevron-up' : collapsible ? 'chevron-down' : href ? 'chevron-right' : linkIcon;
+  const applicableLinkIcon = collapsible && expanded ? 'chevron-up' : collapsible ? 'chevron-down' : linkIcon;
+
   return (
     <Component
       className={cx(styles.item, className)}
@@ -72,11 +77,9 @@ export const ListItemBase = ({
       <div className={styles.content} data-size={size}>
         {children}
       </div>
-      <div className={styles.action}>
-        {badge && <Badge {...badge} />}
-        {menu && <ContextMenu {...menu} />}
-        {applicableIcon && <Icon name={applicableIcon} className={styles.linkIcon} />}
-      </div>
+      <ListItemAction badge={badge} linkText={linkText} linkIcon={applicableLinkIcon} menu={menu}>
+        {action}
+      </ListItemAction>
     </Component>
   );
 };

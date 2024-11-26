@@ -1,6 +1,7 @@
 import type { ElementType, ReactNode } from 'react';
 import type { AvatarGroupProps, AvatarProps } from '../Avatar';
 import type { BadgeProps } from '../Badge';
+import type { ContextMenuProps } from '../ContextMenu';
 import type { IconName } from '../Icon';
 import { ListItemBase, type ListItemColor, type ListItemSize } from './ListItemBase';
 import { ListItemLabel } from './ListItemLabel';
@@ -26,23 +27,31 @@ export interface ListItemProps {
   selected?: boolean;
   /** Item is disabled, should disable mouse events */
   disabled?: boolean;
-  /** Display an icon indicating behaviour */
-  linkIcon?: IconName;
   /** Size of list item */
   size?: ListItemSize;
   /** Title */
   title?: string;
   /** Optional description */
   description?: string;
-  /** Optional badge */
-  badge?: BadgeProps;
+  /** Use children to create a custom label, overriding title and description */
+  children?: ReactNode;
   /** List item icon */
   icon?: IconName;
   /** List item avatar */
   avatar?: AvatarProps;
   /** List item avatarGroup */
   avatarGroup?: AvatarGroupProps;
-  children?: ReactNode;
+  /** Optional text indicating behaviour */
+  linkText?: string;
+  /** Optional icon indicating behaviour */
+  linkIcon?: IconName;
+  /** Optional badge */
+  badge?: BadgeProps;
+  /** Optional context menu */
+  menu?: ContextMenuProps;
+  /** Custom action overrides linkText, linkIcon, badge and menu */
+  action?: ReactNode;
+  /** Child items */
   items?: ListItemProps[];
   className?: string;
 }
@@ -50,20 +59,19 @@ export interface ListItemProps {
 export const ListItem = ({
   as = 'a',
   color,
-  children,
   selected,
   disabled,
   size = 'sm',
   icon,
   avatar,
   avatarGroup,
-  badge,
   title,
   description,
+  children,
   ...rest
 }: ListItemProps) => {
   return (
-    <ListItemBase as={as} size={size} badge={badge} color={color} selected={selected} {...rest}>
+    <ListItemBase as={as} size={size} color={color} selected={selected} {...rest}>
       <ListItemMedia color={color} size={size} icon={icon} avatar={avatar} avatarGroup={avatarGroup} />
       <ListItemLabel title={title} description={description} size={size}>
         {children}

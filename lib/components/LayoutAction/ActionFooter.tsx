@@ -2,7 +2,7 @@ import type { ReactElement } from 'react';
 import styles from './actionFooter.module.css';
 
 export interface ActionFooterProps {
-  hidden: boolean;
+  hidden?: boolean;
   children?: ReactElement;
 }
 
