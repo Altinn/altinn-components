@@ -5,6 +5,14 @@ export interface GlobalMenuBaseProps {
   children: ReactNode;
 }
 
+export interface GlobalMenuHeaderProps {
+  children: ReactNode;
+}
+
+export interface GlobalMenuFooterProps {
+  children: ReactNode;
+}
+
 export const GlobalMenuBase = ({ children }: GlobalMenuBaseProps) => {
   return (
     <nav className={styles.nav} data-theme="global">
@@ -13,10 +21,10 @@ export const GlobalMenuBase = ({ children }: GlobalMenuBaseProps) => {
   );
 };
 
-export const GlobalMenuHeader = ({ children }: GlobalMenuBaseProps) => {
+export const GlobalMenuHeader = ({ children }: GlobalMenuHeaderProps) => {
   return <header className={styles.header}>{children}</header>;
 };
 
-export const GlobalMenuFooter = ({ children }: GlobalMenuBaseProps) => {
+export const GlobalMenuFooter = ({ children }: GlobalMenuFooterProps) => {
   return <footer className={styles.footer}>{children}</footer>;
 };

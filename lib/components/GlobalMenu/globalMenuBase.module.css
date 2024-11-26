@@ -5,14 +5,10 @@
   padding: 0 0.5rem;
 }
 
-.header {
-  border-bottom: 1px solid var(--theme-border-subtle);
-}
-
 .footer {
-  border-top: 1px solid var(--theme-border-subtle);
   padding: 1rem 0.5rem;
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: stretch;
 }

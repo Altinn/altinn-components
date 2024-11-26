@@ -3,12 +3,12 @@ import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import react from '@vitejs/plugin-react-swc';
 import { glob } from 'glob';
+import preserveDirectives from 'rollup-preserve-directives';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import { libInjectCss } from 'vite-plugin-lib-inject-css';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import pkg from './package.json';
-import preserveDirectives from 'rollup-preserve-directives';
 
 const dependencies = Object.keys({
   ...(pkg.devDependencies || {}),
@@ -30,7 +30,7 @@ export default () => {
       react(),
       libInjectCss(),
       dts({ include: ['lib'] }),
-      preserveDirectives()
+      preserveDirectives(),
     ],
     build: {
       lib: {
