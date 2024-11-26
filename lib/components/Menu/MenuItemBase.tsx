@@ -68,7 +68,7 @@ export const MenuItemBase = ({
       </div>
       {applicableIcon && (
         <div className={styles.action}>
-          <span className={styles.linkText}>{linkText}</span>
+          {linkText && <span className={styles.linkText}>{linkText}</span>}
           {applicableIcon && <Icon name={applicableIcon} className={styles.linkIcon} />}
         </div>
       )}

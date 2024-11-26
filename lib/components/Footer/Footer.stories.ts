@@ -5,9 +5,12 @@ const meta = {
   title: 'Footer/Footer',
   component: Footer,
   tags: ['autodocs'],
-  parameters: {},
+  parameters: {
+    layout: 'fullscreen',
+  },
   args: {
     address: 'Postboks 1382 Vika, 0114 Oslo.',
+    address2: 'Org.nr. 991 825 827',
     menu: {
       items: [
         {
