@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.12](https://github.com/Altinn/altinn-components/compare/v0.6.11...v0.6.12) (2024-11-27)
+
+
+### Bug Fixes
+
+* header logo is used from header props ([#91](https://github.com/Altinn/altinn-components/issues/91)) ([8977746](https://github.com/Altinn/altinn-components/commit/897774602fb5832563c0c566b2de80edc1ae4b1f))
+
 ## [0.6.11](https://github.com/Altinn/altinn-components/compare/v0.6.10...v0.6.11) (2024-11-26)
 
 
