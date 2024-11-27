@@ -2,12 +2,12 @@
 import { useEscapeKey } from '../../hooks';
 import { DrawerBase, DropdownBase } from '../Dropdown';
 import { GlobalMenu, type GlobalMenuProps } from '../GlobalMenu';
-import type { Account } from '../GlobalMenu/AccountButton.tsx';
+import type { Account } from '../GlobalMenu';
 import { useRootContext } from '../RootProvider';
 import { Searchbar, type SearchbarProps } from '../Searchbar';
 import { HeaderBase } from './HeaderBase';
 import { HeaderButton } from './HeaderButton';
-import { HeaderLogo } from './HeaderLogo';
+import { HeaderLogo, type HeaderLogoProps } from './HeaderLogo';
 import { HeaderMenu } from './HeaderMenu';
 import { HeaderSearch } from './HeaderSearch';
 import styles from './header.module.css';
@@ -16,9 +16,10 @@ export interface HeaderProps {
   menu: GlobalMenuProps;
   search?: SearchbarProps;
   currentAccount?: Account;
+  logo?: HeaderLogoProps;
 }
 
-export const Header = ({ search, menu, currentAccount }: HeaderProps) => {
+export const Header = ({ search, menu, currentAccount, logo = {} }: HeaderProps) => {
   const { currentId, toggleId, openId, closeAll } = useRootContext();
 
   useEscapeKey(closeAll);
@@ -37,7 +38,7 @@ export const Header = ({ search, menu, currentAccount }: HeaderProps) => {
 
   return (
     <HeaderBase currentId={currentId} open={currentId === 'search' || currentId === 'menu'} onClose={closeAll}>
-      <HeaderLogo className={styles.logo} />
+      <HeaderLogo {...logo} className={styles.logo} />
       <HeaderMenu className={styles.menu}>
         <HeaderButton
           avatar={
