@@ -42,23 +42,12 @@ To use the components in your application, you need to import the components you
 // example: import the Avatar component and type
 import { Avatar, type AvatarVariant } from '@altinn/components';
 ```
-and import the css file in your application once:
+and import the css file in your application once, e.g. in your css:
 ```ts
 import '@altinn/altinn-components/lib/css/global.css';
 ```
 for correct `font-family` and minimal collection of resets.
 
-Using `nextjs`?
-
-You probably need to transpile the package. Add the following to your `next.config.js`:
-
-```js
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  transpilePackages: ['@altinn/components'],
-}
-module.exports = nextConfig
-```
 
 ## Documentation
 The documentation for the components can be found in the [Storybook](https://altinn.github.io/altinn-components)
