@@ -38,7 +38,7 @@ export const DialogNav = ({
 }: DialogNavProps) => {
   return (
     <nav className={styles.nav}>
-      <Button {...backButton} variant="text" color="secondary" icon="arrow-left" reverse>
+      <Button {...backButton} variant="text" color="secondary" icon="arrow-left">
         {backButton?.label || 'Back'}
       </Button>
       <div className={styles.action}>

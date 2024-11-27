@@ -1,0 +1,13 @@
+.media {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.media[data-size="xs"] {
+  font-size: 1rem;
+}
+
+.media[data-size="sm"] {
+  font-size: 1.25rem;
+}

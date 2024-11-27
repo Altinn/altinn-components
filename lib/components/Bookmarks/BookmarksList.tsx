@@ -1,4 +1,4 @@
-import { ListBase, type ListSpacing } from '../';
+import { ListBase, type ListSpacing } from '..';
 import { BookmarksListItem, type BookmarksListItemProps } from './BookmarksListItem';
 
 export interface BookmarksListProps {

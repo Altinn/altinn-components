@@ -1,6 +1,6 @@
 import { Icon, type IconName, ProgressIcon } from '../Icon';
 import type { MetaItemSize } from './MetaItemBase';
-import styles from './metaItem.module.css';
+import styles from './metaItemMedia.module.css';
 
 interface MetaItemMediaProps {
   size?: MetaItemSize;

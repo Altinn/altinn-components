@@ -2,23 +2,32 @@
   display: flex;
   column-gap: 0.5em;
   align-items: center;
+}
+
+.headings[data-size="xs"],
+.headings[data-size="sm"] {
+  font-size: 12px;
+}
+
+.headings[data-size="md"],
+.headings[data-size="lg"] {
+  font-size: 14px;
+}
+
+.headings[data-size="xl"] {
   font-size: 16px;
 }
 
-.headings[data-size="xs"] {
-  font-size: 14px;
-}
-
-.headings[data-size="sm"] {
-  font-size: 14px;
-}
-
 .text {
-  display: inline-flex;
+  display: inline;
   color: var(--neutral-text-subtle);
 }
 
 .sender {
   font-weight: 500;
   color: var(--neutral-text-default);
+}
+
+.recipient {
+  white-space: nowrap;
 }

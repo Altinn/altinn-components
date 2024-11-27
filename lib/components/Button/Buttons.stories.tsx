@@ -43,10 +43,10 @@ export const VariantsAndSizes = (args: Story) => {
               return (
                 <div key={size} style={{ display: 'flex', alignItems: 'center', columnGap: '1rem' }}>
                   <IconButton {...args} icon="x-mark" variant={variant} size={size} />
-                  <Button {...args} reverse variant={variant} icon="arrow-left" size={size}>
+                  <Button {...args} variant={variant} icon="arrow-left" size={size}>
                     Button
                   </Button>
-                  <Button {...args} variant={variant} icon="arrow-right" size={size}>
+                  <Button {...args} reverse variant={variant} icon="arrow-right" size={size}>
                     Button
                   </Button>
                   <ComboButton {...args} variant={variant} icon="chevron-down" size={size}>

@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Fragment, useState } from 'react';
 
-import { MetaItem } from '../Meta';
-import { List, ListBase, ListItem } from './';
+import { Button, List, ListBase, ListItem, MetaItem } from '../';
 
 const sizes = ['lg', 'md', 'sm', 'xs'];
 
@@ -116,6 +115,7 @@ export const ActionProps = (args) => {
       <MetaItem>Collapsible and expanded item</MetaItem>
       <ListItem
         {...args}
+        badge={{ label: 'Admin' }}
         linkIcon="chevron-right"
         menu={{
           items: [
@@ -125,6 +125,17 @@ export const ActionProps = (args) => {
         }}
       />
       <MetaItem>List item with context menu and linkIcon</MetaItem>
+      <ListItem
+        {...args}
+        action={
+          <div style={{ display: 'flex', alignItems: 'center', margin: '0.625rem' }}>
+            <Button icon="pencil" reverse size="sm" variant="outline">
+              Rediger
+            </Button>
+          </div>
+        }
+      />
+      <MetaItem>List item with custom action</MetaItem>
     </ListBase>
   );
 };
@@ -146,7 +157,7 @@ export const Sizes = (args) => {
       {sizes?.map((size) => {
         return (
           <Fragment key={size}>
-            <ListItem {...args} size={size} selected={size === args?.size} />
+            <ListItem {...args} icon="teddy-bear" size={size} selected={size === args?.size} linkIcon="chevron-right" />
             <MetaItem>{size}</MetaItem>
           </Fragment>
         );
@@ -217,7 +228,7 @@ export const Collapsible = (args) => {
         onClick={onToggle}
         as="button"
       />
-      {expanded && <List size="xs" spacing="none" items={items} />}
+      {expanded && <List size="sm" spacing="none" items={items} />}
     </Fragment>
   );
 };

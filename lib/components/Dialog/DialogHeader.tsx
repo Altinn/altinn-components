@@ -1,6 +1,6 @@
 import { DialogHeaderBase } from './DialogHeaderBase';
 import { DialogHeadings, type DialogRecipientProps, type DialogSenderProps } from './DialogHeadings';
-import type { DialogListItemVariant } from './DialogListItemBase.tsx';
+import type { DialogListItemVariant } from './DialogListItem.tsx';
 import { DialogTitle } from './DialogTitle';
 
 export interface DialogHeaderProps {
@@ -13,7 +13,7 @@ export interface DialogHeaderProps {
 
 export const DialogHeader = ({ title, sender, recipient, seen, variant }: DialogHeaderProps) => {
   return (
-    <DialogHeaderBase>
+    <DialogHeaderBase size="xl">
       <DialogTitle seen={seen} size="xl" variant={variant}>
         {title}
       </DialogTitle>

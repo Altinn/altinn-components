@@ -1,7 +1,12 @@
+.heading {
+  padding-right: 1.25rem;
+  display: inline-flex;
+  column-gap: 0.5rem;
+}
+
 .title {
   font-weight: 600;
   margin: 0;
-  padding-right: 1.25rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   line-clamp: 2;
@@ -18,14 +23,10 @@
   font-size: 1rem;
 }
 
-.title[data-size="md"] {
-  font-size: 1.125rem;
-  line-height: 1.2;
-}
-
+.title[data-size="md"],
 .title[data-size="lg"] {
   font-size: 1.25rem;
-  line-height: 1.2;
+  line-height: 1.5rem;
 }
 
 .title[data-size="xl"] {
@@ -37,11 +38,11 @@
   font-weight: 400;
 }
 
-.title[data-variant="archive"] {
+.title[data-variant="archived"] {
   font-weight: 400;
 }
 
-.title[data-variant="bin"] {
+.title[data-variant="trashed"] {
   font-weight: 400;
   text-decoration: line-through;
 }

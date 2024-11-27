@@ -1,27 +1,22 @@
 import cx from 'classnames';
 import type { ElementType, KeyboardEvent, KeyboardEventHandler, ReactNode } from 'react';
-import type { BadgeProps } from '../Badge';
-import type { ContextMenuProps } from '../ContextMenu';
-import type { IconName } from '../Icon';
-import { ListItemAction } from './ListItemAction';
 import styles from './listItemBase.module.css';
 
 export type ListItemColor = 'default' | 'accent';
 export type ListItemSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type ListItemShadow = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
-interface ListItemBaseProps {
+export interface ListItemBaseProps {
   as?: ElementType;
   size?: ListItemSize;
-  menu?: ContextMenuProps;
-  linkText?: string;
-  linkIcon?: IconName;
+  shadow?: ListItemShadow;
   color?: ListItemColor;
-  badge?: BadgeProps;
   href?: string;
   className?: string;
   active?: boolean;
   hidden?: boolean;
   collapsible?: boolean;
+  disabled?: boolean;
   selected?: boolean;
   expanded?: boolean;
   onClick?: () => void;
@@ -40,13 +35,10 @@ export const ListItemBase = ({
   color,
   active = false,
   hidden = false,
+  shadow = 'xs',
+  disabled,
   selected,
-  collapsible,
   expanded,
-  linkText,
-  linkIcon,
-  menu,
-  badge,
   action,
   onClick,
   onKeyPress,
@@ -54,32 +46,35 @@ export const ListItemBase = ({
 }: ListItemBaseProps) => {
   const Component = as || 'a';
 
-  const applicableLinkIcon = collapsible && expanded ? 'chevron-up' : collapsible ? 'chevron-down' : linkIcon;
-
   return (
-    <Component
-      className={cx(styles.item, className)}
+    <article
+      className={styles.item}
       data-color={color}
       data-size={size}
+      data-shadow={shadow}
       data-active={active}
       aria-hidden={hidden}
+      aria-disabled={disabled}
       aria-selected={selected}
       aria-expanded={expanded}
-      href={href}
-      onKeyPress={(e: KeyboardEvent) => {
-        e.key === 'Enter' && onClick?.();
-        onKeyPress?.(e);
-      }}
-      onClick={onClick}
-      tabIndex={-1}
       style={style}
     >
-      <div className={styles.content} data-size={size}>
+      <Component
+        className={cx(styles.link, className)}
+        data-size={size}
+        aria-expanded={expanded}
+        style={style}
+        href={href}
+        onKeyPress={(e: KeyboardEvent) => {
+          e.key === 'Enter' && onClick?.();
+          onKeyPress?.(e);
+        }}
+        onClick={onClick}
+        tabIndex={-1}
+      >
         {children}
-      </div>
-      <ListItemAction badge={badge} linkText={linkText} linkIcon={applicableLinkIcon} menu={menu}>
-        {action}
-      </ListItemAction>
-    </Component>
+      </Component>
+      {action}
+    </article>
   );
 };

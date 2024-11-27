@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react';
-import { MenuHeader } from '../Menu';
 import styles from './autocompleteGroup.module.css';
 
 export interface AutocompleteGroupProps {
@@ -10,7 +9,11 @@ export interface AutocompleteGroupProps {
 export const AutocompleteGroup = ({ title, children }: AutocompleteGroupProps) => {
   return (
     <section className={styles.group}>
-      {title && <MenuHeader title={title} />}
+      {title && (
+        <header className={styles.header}>
+          <h2 className={styles.title}>{title}</h2>
+        </header>
+      )}
       {children}
     </section>
   );

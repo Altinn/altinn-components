@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import type { MetaItemSize, MetaItemVariant } from './MetaItemBase';
-import styles from './metaItem.module.css';
+import styles from './metaItemLabel.module.css';
 
 export interface MetaItemLabelProps {
   /** Meta size */

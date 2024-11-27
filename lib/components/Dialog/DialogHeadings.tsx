@@ -1,5 +1,5 @@
 import { Avatar, AvatarGroup, type AvatarSize } from '../Avatar';
-import { MetaItem } from '../Meta';
+import type { DialogSize } from './DialogBase';
 import styles from './dialogHeadings.module.css';
 
 export type DialogSenderType = 'company' | 'person';
@@ -16,8 +16,6 @@ export interface DialogRecipientProps {
   name: string;
 }
 
-type DialogHeadingsSize = 'sm' | 'xs' | 'sm' | 'lg' | 'xl';
-
 const sizeMap = {
   avatar: {
     xs: 'xs',
@@ -29,7 +27,7 @@ const sizeMap = {
 };
 
 export interface DialogHeadingsProps {
-  size: DialogHeadingsSize;
+  size: DialogSize;
   /** Group sender and recipient avatars */
   grouped?: boolean;
   /** Sender */
@@ -63,15 +61,15 @@ export const DialogHeadings = ({
           className={styles.avatar}
         />
       )}
-      <MetaItem size="xs" className={styles.text}>
+      <span data-size={size} className={styles.text}>
         <span className={styles.sender}>{sender.name}</span>
         {recipient?.name && (
-          <span>
+          <span className={styles.recipient}>
             {' til '}
             <span>{recipient.name}</span>
           </span>
         )}
-      </MetaItem>
+      </span>
     </div>
   );
 };

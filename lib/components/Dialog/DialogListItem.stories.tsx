@@ -1,10 +1,11 @@
+import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Fragment, useState } from 'react';
 
 import { DialogListItem } from './DialogListItem';
 import { DialogStatusEnum } from './DialogStatus';
 
-import { ListBase, ListItem } from '../List';
+import { ListBase } from '../List';
 import { MetaItem } from '../Meta';
 
 const getStatusLabel = (value) => {
@@ -36,9 +37,15 @@ const meta = {
   title: 'Dialog/DialogListItem',
   component: DialogListItem,
   tags: ['autodocs'],
-  parameters: {
-    theme: 'company',
-  },
+  decorators: [
+    withThemeByDataAttribute({
+      themes: {
+        company: 'company',
+        person: 'person',
+      },
+      defaultTheme: 'company',
+    }),
+  ],
   argTypes: {},
   args: {
     title: 'Title',
@@ -71,6 +78,44 @@ export const Statuses = (args) => {
           </Fragment>
         );
       })}
+    </ListBase>
+  );
+};
+
+export const Variants = (args) => {
+  return (
+    <ListBase>
+      <DialogListItem {...args} label="Ulest" status={{ value: 'requires-attention', label: 'Krever handling' }} />
+      <MetaItem>Dialog is new and has not been seen by anybody</MetaItem>
+      <DialogListItem
+        {...args}
+        seen={true}
+        seenBy={{ seenByEndUser: true, label: 'Sett av deg' }}
+        status={{ value: 'requires-attention', label: 'Krever handling' }}
+      />
+      <MetaItem>Dialog has been seen</MetaItem>
+      <DialogListItem
+        {...args}
+        size="md"
+        label="Arkivert"
+        status={{ value: 'completed', label: 'Avsluttet' }}
+        seen={true}
+        seenBy={{ seenByEndUser: true, label: 'Sett av deg' }}
+        archivedAt="2024-11-27"
+        archivedAtLabel="Arkivert av Kjell Olsen, 27. nov 2024"
+      />
+      <MetaItem>Dialog has been moved to archive</MetaItem>
+      <DialogListItem
+        {...args}
+        size="md"
+        label="Papirkurv"
+        status={{ value: 'completed', label: 'Avsluttet' }}
+        seen={true}
+        seenBy={{ seenByEndUser: true, label: 'Sett av deg' }}
+        trashedAt="2024-11-27"
+        trashedAtLabel="Slettet av Kjell Olsen, 27. nov 2024"
+      />
+      <MetaItem>Dialog has been moved to trash</MetaItem>
     </ListBase>
   );
 };
@@ -205,7 +250,7 @@ export const Sizes = (args) => {
       {sizes?.map((size) => {
         return (
           <Fragment key={size}>
-            <DialogListItem {...args} size={size} />
+            <DialogListItem {...args} size={size} status={{ value: 'in-progress', label: 'Under arbeid' }} />
             <MetaItem>{size}</MetaItem>
           </Fragment>
         );

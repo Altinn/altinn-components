@@ -44,7 +44,7 @@ export const ToolbarButton = ({
 
   if (type === 'add') {
     return (
-      <Button reverse variant="dotted" color="primary" size="sm" icon="plus" selected={selected} onClick={onToggle}>
+      <Button variant="dotted" color="primary" size="sm" icon="plus" selected={selected} onClick={onToggle}>
         {children}
       </Button>
     );
@@ -58,6 +58,7 @@ export const ToolbarButton = ({
       icon="chevron-up-down"
       selected={selected}
       onClick={onToggle}
+      reverse
     >
       {children}
     </Button>

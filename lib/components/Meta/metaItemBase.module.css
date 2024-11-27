@@ -14,13 +14,6 @@ a.item:hover {
   color: var(--theme-base-hover);
 }
 
-.label {
-  font-weight: normal;
-  line-height: 1;
-}
-
-/* xs = 24, sm = 30, md = 36? */
-
 .item[data-size="xs"] {
   font-size: 0.875rem;
   height: 1.5rem;
@@ -34,27 +27,21 @@ a.item:hover {
   font-size: 1.125rem;
 }
 
-/* media */
-
-.media {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* text */
-
 .item[data-variant="text"] {
   border-color: transparent;
   padding-left: 0;
   padding-right: 0;
 }
 
-/* outline */
-
 .item[data-variant="outline"] {
-  border-color: var(--theme-base-hover);
+  border-color: var(--theme-border-subtle);
   border-style: solid;
+}
+
+.item[data-variant="rounded"] {
+  border-color: var(--theme-border-subtle);
+  border-style: solid;
+  border-radius: 0.75rem;
 }
 
 .item[data-variant="dotted"] {
@@ -68,40 +55,9 @@ a.item:hover {
   color: white;
 }
 
+.item[data-variant="rounded"],
 .item[data-variant="outline"],
 .item[data-variant="dotted"],
 .item[data-variant="solid"] {
   padding: 0 0.25em;
-}
-
-.label[data-variant="outline"],
-.label[data-variant="dotted"],
-.label[data-variant="solid"] {
-  font-size: 0.875em;
-  font-weight: 500;
-  padding: 0 0.25em;
-}
-
-/* xs */
-
-.item[data-size="xs"] {
-  font-size: 0.875rem;
-}
-
-.media[data-size="xs"] {
-  font-size: 1rem;
-}
-
-/* sm */
-
-.item[data-size="sm"] {
-  font-size: 1rem;
-}
-
-.media[data-size="sm"] {
-  font-size: 1.25rem;
-}
-
-.label[data-size="sm"] {
-  font-size: 1rem;
 }

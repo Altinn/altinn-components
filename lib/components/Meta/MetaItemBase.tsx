@@ -1,8 +1,8 @@
 import cx from 'classnames';
 import type { ElementType, ReactNode } from 'react';
-import styles from './metaItem.module.css';
+import styles from './metaItemBase.module.css';
 
-export type MetaItemVariant = 'solid' | 'outline' | 'dotted' | 'text';
+export type MetaItemVariant = 'solid' | 'outline' | 'dotted' | 'rounded' | 'text';
 export type MetaItemSize = 'xs'; // | 'sm' | 'md';
 export type MetaItemColor = 'subtle';
 

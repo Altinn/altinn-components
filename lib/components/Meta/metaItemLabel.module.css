@@ -1,0 +1,26 @@
+.label {
+  display: inline-flex;
+  font-weight: normal;
+  align-items: center;
+}
+
+.label[data-size="xs"] {
+  font-size: 0.875rem;
+}
+
+.label[data-size="sm"] {
+  font-size: 1rem;
+}
+
+.label[data-size="md"] {
+  font-size: 1.125rem;
+}
+
+.label[data-variant="rounded"],
+.label[data-variant="outline"],
+.label[data-variant="dotted"],
+.label[data-variant="solid"] {
+  font-size: 0.875em;
+  font-weight: 500;
+  padding: 0 0.25em;
+}

@@ -53,8 +53,8 @@ export const Button = ({
       className={cx(styles.button, { [styles.reverse]: reverse })}
       {...rest}
     >
-      <ButtonLabel size={size}>{children}</ButtonLabel>
       {icon && <ButtonIcon size={size} icon={icon} />}
+      <ButtonLabel size={size}>{children}</ButtonLabel>
     </ButtonBase>
   );
 };
