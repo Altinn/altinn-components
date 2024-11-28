@@ -1,18 +1,20 @@
 import type { ReactNode } from 'react';
 import { Badge, type BadgeProps } from '../Badge';
+import { ContextMenu, type ContextMenuProps } from '../ContextMenu';
 import { Icon, type IconName } from '../Icon';
-import styles from './listItemFooter.module.css';
+import styles from './listItemControls.module.css';
 
-interface ListItemFooterProps {
+interface ListItemControlsProps {
   badge?: BadgeProps;
   linkText?: string;
   linkIcon?: IconName;
+  menu?: ContextMenuProps;
   children?: ReactNode;
 }
 
-export const ListItemFooter = ({ badge, linkText, linkIcon, children }: ListItemFooterProps) => {
+export const ListItemControls = ({ badge, linkText, linkIcon, menu, children }: ListItemControlsProps) => {
   return (
-    <footer className={styles.footer}>
+    <div className={styles.controls} data-menu={menu && true}>
       {children ? (
         children
       ) : (
@@ -20,8 +22,9 @@ export const ListItemFooter = ({ badge, linkText, linkIcon, children }: ListItem
           {badge && <Badge {...badge} />}
           {linkText && <span className={styles.linkText}>{linkText}</span>}
           {linkIcon && <Icon name={linkIcon} className={styles.linkIcon} />}
+          {menu && <ContextMenu {...menu} className={styles.menu} />}
         </>
       )}
-    </footer>
+    </div>
   );
 };

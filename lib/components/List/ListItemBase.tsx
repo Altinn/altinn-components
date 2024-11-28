@@ -1,5 +1,6 @@
 import cx from 'classnames';
 import type { ElementType, KeyboardEvent, KeyboardEventHandler, ReactNode } from 'react';
+import { ListItemSelect, type ListItemSelectProps } from './ListItemSelect';
 import styles from './listItemBase.module.css';
 
 export type ListItemColor = 'default' | 'accent';
@@ -17,11 +18,13 @@ export interface ListItemBaseProps {
   hidden?: boolean;
   collapsible?: boolean;
   disabled?: boolean;
+  select?: ListItemSelectProps;
   selected?: boolean;
   expanded?: boolean;
   onClick?: () => void;
   onKeyPress?: KeyboardEventHandler;
   action?: ReactNode;
+  controls?: ReactNode;
   children?: ReactNode;
   style?: React.CSSProperties;
 }
@@ -36,10 +39,11 @@ export const ListItemBase = ({
   active = false,
   hidden = false,
   shadow = 'xs',
-  disabled,
+  select,
   selected,
+  disabled,
   expanded,
-  action,
+  controls,
   onClick,
   onKeyPress,
   style,
@@ -57,8 +61,8 @@ export const ListItemBase = ({
       aria-disabled={disabled}
       aria-selected={selected}
       aria-expanded={expanded}
-      style={style}
     >
+      {select && <ListItemSelect {...select} size={size} />}
       <Component
         className={cx(styles.link, className)}
         data-size={size}
@@ -74,7 +78,7 @@ export const ListItemBase = ({
       >
         {children}
       </Component>
-      {action}
+      {controls}
     </article>
   );
 };

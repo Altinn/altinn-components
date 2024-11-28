@@ -122,7 +122,7 @@ export const DialogListItem = ({
       {...rest}
       size={size}
       className={styles.item}
-      action={select && <DialogSelect className={styles.select} {...select} />}
+      controls={select && <DialogSelect className={styles.select} {...select} />}
     >
       <DialogBorder className={styles.border} size={size} seen={seen}>
         <DialogHeaderBase size={size}>

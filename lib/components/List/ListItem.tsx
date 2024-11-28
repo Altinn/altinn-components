@@ -2,9 +2,8 @@ import type { AvatarGroupProps, AvatarProps } from '../Avatar';
 import type { BadgeProps } from '../Badge';
 import type { ContextMenuProps } from '../ContextMenu';
 import type { IconName } from '../Icon';
-import { ListItemAction } from './ListItemAction';
 import { ListItemBase, type ListItemBaseProps } from './ListItemBase';
-import { ListItemFooter } from './ListItemFooter';
+import { ListItemControls } from './ListItemControls';
 import { ListItemHeader } from './ListItemHeader';
 import { ListItemLabel } from './ListItemLabel';
 import { ListItemMedia } from './ListItemMedia';
@@ -43,8 +42,6 @@ export const ListItem = ({
   as = 'a',
   color,
   loading,
-  selected,
-  disabled,
   size = 'sm',
   icon,
   avatar,
@@ -58,7 +55,8 @@ export const ListItem = ({
   linkText,
   linkIcon,
   menu,
-  action,
+  select,
+  controls,
   ...rest
 }: ListItemProps) => {
   const applicableLinkIcon = collapsible && expanded ? 'chevron-up' : collapsible ? 'chevron-down' : linkIcon;
@@ -69,7 +67,10 @@ export const ListItem = ({
       size={size}
       color={color}
       expanded={expanded}
-      action={action || (menu && <ListItemAction menu={menu}>{action}</ListItemAction>)}
+      select={select}
+      controls={
+        controls || <ListItemControls linkIcon={applicableLinkIcon} linkText={linkText} menu={menu} badge={badge} />
+      }
       {...rest}
     >
       <ListItemHeader size={size}>
@@ -78,7 +79,6 @@ export const ListItem = ({
           {children}
         </ListItemLabel>
       </ListItemHeader>
-      <ListItemFooter linkIcon={applicableLinkIcon} linkText={linkText} badge={badge} />
     </ListItemBase>
   );
 };
