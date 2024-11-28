@@ -1,3 +1,4 @@
+import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Dialog } from './Dialog';
 
@@ -6,6 +7,15 @@ const meta = {
   component: Dialog,
   tags: ['autodocs'],
   parameters: {},
+  decorators: [
+    withThemeByDataAttribute({
+      themes: {
+        company: 'company',
+        person: 'person',
+      },
+      defaultTheme: 'company',
+    }),
+  ],
   argTypes: { body: { control: 'text' } },
   args: {
     seenBy: {

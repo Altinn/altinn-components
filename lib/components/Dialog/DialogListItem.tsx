@@ -1,18 +1,22 @@
 import type { ElementType } from 'react';
-import { DialogHeadings, type DialogRecipientProps, type DialogSenderProps } from './DialogHeadings';
-import type { DialogSelectProps } from './DialogSelect';
+import { ListItemBase, type ListItemBaseProps, ListItemLabel } from '../List';
+import { DialogBorder } from './DialogBorder';
+import { DialogHeaderBase } from './DialogHeaderBase';
+import { DialogHeadings } from './DialogHeadings';
+import type { DialogRecipientProps, DialogSenderProps } from './DialogHeadings';
+import { DialogMetadata } from './DialogMetadata';
+import type { DialogSeenByProps } from './DialogSeenBy';
+import { DialogSelect, type DialogSelectProps } from './DialogSelect';
 import type { DialogStatusProps } from './DialogStatus';
 import { DialogTitle } from './DialogTitle';
 import { DialogTouchedBy, type DialogTouchedByActor } from './DialogTouchedBy';
+
+export type DialogListItemSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type DialogListItemVariant = 'neutral' | 'draft' | 'trashed' | 'archived';
+
 import styles from './dialogListItem.module.css';
 
-import { DialogListItemBase, type DialogListItemSize, type DialogListItemVariant } from './DialogListItemBase';
-
-import { DialogBorder } from './DialogBorder';
-import { DialogMetadata } from './DialogMetadata';
-import type { DialogSeenByProps } from './DialogSeenBy';
-
-export type DialogListItemProps = {
+export interface DialogListItemProps extends ListItemBaseProps {
   /** Dialog title */
   title: string;
   /** Render as */
@@ -45,6 +49,16 @@ export type DialogListItemProps = {
   dueAt?: string;
   /** Dialog due date label */
   dueAtLabel?: string;
+  /** Archived date time */
+  archivedAt?: string;
+  /** Archived label */
+  archivedAtLabel?: string;
+  /** Deleted at date time */
+  trashedAt?: string;
+  /** Deleted label */
+  trashedAtLabel?: string;
+  /** Custom label */
+  label?: string;
   /** Dialog has been seen */
   seen?: boolean;
   /** Dialog is seen by the user */
@@ -57,7 +71,7 @@ export type DialogListItemProps = {
   onClick?: () => void;
   /** Group id */
   groupId?: string;
-};
+}
 
 /**
  * Represents a dialog in list view, displaying information such as the title,
@@ -66,19 +80,20 @@ export type DialogListItemProps = {
  */
 
 export const DialogListItem = ({
-  as = 'a',
   size = 'lg',
   variant = 'neutral',
-  href,
-  onClick,
   select,
-  selected,
   status,
   sender,
   recipient,
   grouped,
   updatedAt,
   updatedAtLabel,
+  archivedAt,
+  archivedAtLabel,
+  trashedAt,
+  trashedAtLabel,
+  label,
   dueAt,
   dueAtLabel,
   seen = false,
@@ -87,24 +102,35 @@ export const DialogListItem = ({
   attachmentsCount,
   title,
   summary,
+  ...rest
 }: DialogListItemProps) => {
+  const applicableVariant = trashedAt ? 'trashed' : archivedAt ? 'archived' : variant;
+
+  if (size === 'xs' || size === 'sm') {
+    return (
+      <ListItemBase {...rest} size={size} className={styles.item}>
+        <DialogBorder className={styles.border} size={size} seen={seen}>
+          <ListItemLabel size={size} title={title} description={summary} />
+          <DialogMetadata updatedAt={updatedAt} updatedAtLabel={updatedAtLabel} />
+        </DialogBorder>
+      </ListItemBase>
+    );
+  }
+
   return (
-    <DialogListItemBase
-      as={as}
+    <ListItemBase
+      {...rest}
       size={size}
-      href={href}
-      select={select}
-      selected={selected}
-      variant={variant}
-      onClick={onClick}
+      className={styles.item}
+      action={select && <DialogSelect className={styles.select} {...select} />}
     >
       <DialogBorder className={styles.border} size={size} seen={seen}>
-        <header data-size={size} className={styles.header}>
-          <DialogTitle size={size} seen={seen} variant={variant}>
+        <DialogHeaderBase size={size}>
+          <DialogTitle size={size} variant={applicableVariant} label={label} seen={seen}>
             {title}
           </DialogTitle>
-          <DialogHeadings size="xs" grouped={grouped} sender={sender} recipient={recipient} />
-        </header>
+          <DialogHeadings size={size} grouped={grouped} sender={sender} recipient={recipient} />
+        </DialogHeaderBase>
         <p data-size={size} className={styles.summary}>
           {summary}
         </p>
@@ -113,6 +139,10 @@ export const DialogListItem = ({
             status={status}
             updatedAt={updatedAt}
             updatedAtLabel={updatedAtLabel}
+            archivedAt={archivedAt}
+            archivedAtLabel={archivedAtLabel}
+            trashedAt={trashedAt}
+            trashedAtLabel={trashedAtLabel}
             dueAt={dueAt}
             dueAtLabel={dueAtLabel}
             seenBy={seenBy}
@@ -121,6 +151,6 @@ export const DialogListItem = ({
           {touchedBy && <DialogTouchedBy size="xs" touchedBy={touchedBy} className={styles.touchedBy} />}
         </footer>
       </DialogBorder>
-    </DialogListItemBase>
+    </ListItemBase>
   );
 };

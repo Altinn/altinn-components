@@ -1,6 +1,6 @@
 import cx from 'classnames';
 import type { ReactNode } from 'react';
-import type { DialogListItemSize } from './DialogListItemBase';
+import type { DialogListItemSize } from './DialogListItem.tsx';
 import styles from './dialogBorder.module.css';
 
 export interface DialogBorderProps {

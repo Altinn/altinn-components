@@ -1,42 +1,11 @@
 .border {
   border-left: 0.25rem solid;
   border-color: var(--theme-surface-active);
-  /*
-  padding-left: 1rem;
+
   display: flex;
   flex-direction: column;
-  */
 }
 
 .border[data-seen="true"] {
   border-color: var(--neutral-surface-default);
 }
-
-/*
-
-.border[data-size="sm"][data-status="draft"] {
-  border-color: transparent;
-  padding-left: 0;
-}
-
-.border[data-size="sm"] {
-  row-gap: 1rem;
-}
-
-.border[data-size="lg"] {
-  font-size: 18px;
-  padding-left: 1.5rem;
-  padding-top: 0;
-  padding-bottom: 1.5rem;
-  margin-left: 1rem;
-  row-gap: 1.5rem;
-}
-
-.border[data-size="lg"][data-status="draft"] {
-  border: 1px dashed;
-  border-color: var(--theme-text-subtle);
-  padding: 1.5rem;
-  margin-left: 0;
-}
-
-*/

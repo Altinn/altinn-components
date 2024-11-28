@@ -34,17 +34,17 @@ export const useMenu = <T, V>({
   const [activeIndex, setActiveIndex] = useState<number>(-1);
 
   const menu = useMemo(() => {
-    const flatItems: T[] = [];
     const grouped = items.reduce(
       (acc, item) => {
         const key = groupByKey && item[groupByKey] ? (item[groupByKey] as string) : 'ungrouped';
         acc[key] = acc[key] || [];
         acc[key].push(item);
-        flatItems.push(item);
         return acc;
       },
       {} as Record<string, T[]>,
     );
+
+    const flatItems: T[] = Object.values(grouped).flat();
 
     return Object.entries(grouped).map(([key, groupItems]) => ({
       items: groupItems.map((item) => ({

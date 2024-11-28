@@ -13,7 +13,7 @@ export const DialogGroup = ({ title, children }: DialogGroupProps) => {
       {title && (
         <SectionHeader padding margin>
           <Heading>{title}</Heading>
-          <Button variant="text" icon="checkmark" size="sm" reverse>
+          <Button variant="text" icon="checkmark" size="sm">
             Velg alle
           </Button>
         </SectionHeader>
