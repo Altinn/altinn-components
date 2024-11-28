@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/Altinn/altinn-components/compare/v0.6.12...v0.7.0) (2024-11-28)
+
+
+### Features
+
+* autocomplete items and improved list items ([#93](https://github.com/Altinn/altinn-components/issues/93)) ([16c95b9](https://github.com/Altinn/altinn-components/commit/16c95b95066b8c9bdf65e30aceecb2aa3901d33d))
+
 ## [0.6.12](https://github.com/Altinn/altinn-components/compare/v0.6.11...v0.6.12) (2024-11-27)
 
 
