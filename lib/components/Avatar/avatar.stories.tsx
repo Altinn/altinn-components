@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Avatar } from './';
+import {expect, within} from "@storybook/test";
 
 const meta = {
   title: 'Avatar/Avatar',
@@ -21,6 +22,11 @@ export const Person: Story = {
     type: 'person',
     name: 'Jane Doe',
     size: 'xl',
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const initial = canvas.getByText('J');
+    await expect(initial).toBeInTheDocument();
   },
 };
 
