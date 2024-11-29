@@ -41,6 +41,7 @@ export const SearchField = ({
       ref.current?.blur();
     }
     if (event.key === 'Enter') {
+      ref.current?.blur();
       onEnter?.();
     }
   };

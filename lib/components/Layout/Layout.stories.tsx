@@ -132,6 +132,7 @@ export const ControlledStateSearch = (args) => {
 
   const scopes = [
     {
+      type: 'scope',
       groupId: '1',
       id: 'inbox',
       href: '#',
@@ -146,6 +147,7 @@ export const ControlledStateSearch = (args) => {
         : 'Alt i innboksen',
     },
     {
+      type: 'scope',
       groupId: '1',
       id: 'global',
       href: '#',
@@ -166,14 +168,14 @@ export const ControlledStateSearch = (args) => {
         {
           groupId: '2',
           href: 'http://www.altinn.no',
-          label: 'Skattemelding 2024',
+          description: 'Skattemelding 2024',
         },
         {
           groupId: '2',
           href: 'http://www.altinn.no',
-          label: 'Skattemelding 2025',
+          description: 'Skattemelding 2025',
         },
-      ].filter((item) => item.label.toLowerCase().includes((q ?? '').toLowerCase()))
+      ].filter((item) => item.description.toLowerCase().includes((q ?? '').toLowerCase()))
     : [];
 
   const autocomplete = {
@@ -281,7 +283,7 @@ export const InboxBulkMode = (args) => {
   return (
     <Layout
       theme={bulkMode ? 'neutral' : 'company'}
-      header={{ ...header, search: bulkMode ? null : header.search }}
+      header={{ ...header, search: bulkMode ? undefined : header.search }}
       sidebar={{ hidden: bulkMode, menu }}
       content={{ theme: 'neutral' }}
     >
