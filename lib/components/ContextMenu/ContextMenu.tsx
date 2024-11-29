@@ -10,6 +10,7 @@ export interface ContextMenuProps {
   placement?: DropdownPlacement;
   size?: ContextMenuSize;
   groups?: MenuItemGroups;
+  className?: string;
 }
 
 export const ContextMenu = ({
@@ -17,11 +18,18 @@ export const ContextMenu = ({
   placement = 'right',
   size,
   groups = {},
+  className,
   items,
 }: ContextMenuProps) => {
   const { currentId, toggleId } = useRootContext();
   return (
-    <ContextMenuBase size={size} placement={placement} expanded={currentId === id} onToggle={() => toggleId(id)}>
+    <ContextMenuBase
+      size={size}
+      placement={placement}
+      className={className}
+      expanded={currentId === id}
+      onToggle={() => toggleId(id)}
+    >
       <MenuItems groups={groups} items={items} />
     </ContextMenuBase>
   );

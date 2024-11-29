@@ -102,7 +102,7 @@ export const MediaTypes = (args) => {
   );
 };
 
-export const ActionProps = (args) => {
+export const Controls = (args) => {
   return (
     <ListBase>
       <ListItem {...args} linkIcon="chevron-right" />
@@ -124,18 +124,49 @@ export const ActionProps = (args) => {
           ],
         }}
       />
-      <MetaItem>List item with context menu and linkIcon</MetaItem>
+      <MetaItem>List item with badge, linkIcon and context menu</MetaItem>
+
       <ListItem
         {...args}
-        action={
-          <div style={{ display: 'flex', alignItems: 'center', margin: '0.625rem' }}>
-            <Button icon="pencil" reverse size="sm" variant="outline">
+        controls={
+          <div style={{ position: 'absolute', right: 0, display: 'flex', alignItems: 'center', margin: '0.625rem' }}>
+            <Button icon="pencil" size="sm" variant="outline">
               Rediger
             </Button>
           </div>
         }
       />
-      <MetaItem>List item with custom action</MetaItem>
+      <MetaItem>List item with custom controls</MetaItem>
+    </ListBase>
+  );
+};
+
+export const Selectable = (args) => {
+  return (
+    <ListBase>
+      {sizes?.map((size) => {
+        return (
+          <Fragment key={size}>
+            <ListItem
+              {...args}
+              size={size}
+              select={{
+                checked: false,
+              }}
+            />
+
+            <ListItem
+              {...args}
+              size={size}
+              select={{
+                checked: true,
+              }}
+              selected={true}
+            />
+            <MetaItem>{size}</MetaItem>
+          </Fragment>
+        );
+      })}
     </ListBase>
   );
 };

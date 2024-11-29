@@ -2,8 +2,13 @@
   position: relative;
   width: 100%;
   display: flex;
-  align-items: stretch;
+  align-items: center;
   justify-content: stretch;
+}
+
+.item[aria-selected="true"] {
+  background-color: var(--theme-background-subtle);
+  outline: 2px solid;
 }
 
 /* disabled */
@@ -67,6 +72,7 @@
 /* reset link */
 
 .link {
+  align-self: stretch;
   padding: 0;
   border: 0;
   background-color: transparent;
