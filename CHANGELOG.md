@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.3](https://github.com/Altinn/altinn-components/compare/v0.7.2...v0.7.3) (2024-11-29)
+
+
+### Bug Fixes
+
+* autocomplete stories ([#100](https://github.com/Altinn/altinn-components/issues/100)) ([43dd26a](https://github.com/Altinn/altinn-components/commit/43dd26acd6413b2a5a4b494d6c6742846258d7b0))
+
 ## [0.7.2](https://github.com/Altinn/altinn-components/compare/v0.7.1...v0.7.2) (2024-11-29)
 
 
