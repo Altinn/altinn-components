@@ -47,7 +47,6 @@ export const ListItem = ({
   avatarGroup,
   title,
   description,
-  children,
   collapsible,
   expanded,
   badge,
@@ -56,6 +55,7 @@ export const ListItem = ({
   menu,
   select,
   controls,
+  children,
   ...rest
 }: ListItemProps) => {
   const applicableLinkIcon = collapsible && expanded ? 'chevron-up' : collapsible ? 'chevron-down' : linkIcon;
