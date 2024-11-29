@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.2](https://github.com/Altinn/altinn-components/compare/v0.7.1...v0.7.2) (2024-11-29)
+
+
+### Bug Fixes
+
+* menu-item + loading skeleton + header badge, details ([#98](https://github.com/Altinn/altinn-components/issues/98)) ([3c347da](https://github.com/Altinn/altinn-components/commit/3c347dad1d67cca68df20a39c7fed5f94955bda0))
+
 ## [0.7.1](https://github.com/Altinn/altinn-components/compare/v0.7.0...v0.7.1) (2024-11-29)
 
 
