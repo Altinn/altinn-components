@@ -39,7 +39,11 @@ export const TooFewWords: Story = {
         id: '1a',
         type: 'scope',
         href: '#',
-        label: 'Skriv minst 3 tegn for søke i innboks',
+        label: () => (
+          <span>
+            <mark>sk</mark> i innboks
+          </span>
+        ),
       },
       {
         id: '1b',
@@ -59,7 +63,7 @@ export const ScopesAndResults: Story = {
   args: {
     groups: {
       '3': {
-        title: 'Mest relevante treff',
+        title: 'Anbefalte treff',
       },
     },
     items: [
@@ -69,7 +73,7 @@ export const ScopesAndResults: Story = {
         type: 'scope',
         href: '#',
         badge: {
-          label: '2 treff',
+          label: '24 treff',
         },
         label: () => (
           <span>
@@ -94,7 +98,7 @@ export const ScopesAndResults: Story = {
         type: 'dialog',
         href: '#',
         title: 'Skattemeldingen 2023',
-        summary: 'Skattemeldingen er klar for innsending.',
+        description: 'Skattemeldingen er klar for innsending.',
       },
       {
         id: '2b',
@@ -102,7 +106,86 @@ export const ScopesAndResults: Story = {
         type: 'dialog',
         href: '#',
         title: 'Skatteoppgjør 2022',
-        summary: 'Skatteoppgjøret ditt er klart.',
+        description: 'Skatteoppgjøret ditt er klart.',
+      },
+      {
+        id: '2c',
+        groupId: '3',
+        type: 'dialog',
+        href: '#',
+        title: 'Skatteoppgjør 2020',
+        description: 'Skatteoppgjøret ditt er ferdigstilt.',
+      },
+    ],
+  },
+};
+
+export const LoadingResults: Story = {
+  args: {
+    groups: {
+      '3': {
+        title: 'Søker etter «skatt» ...',
+      },
+    },
+    items: ScopesAndResults.args.items.map((item) => {
+      if (item.groupId === '3') {
+        return {
+          ...item,
+          type: null,
+          icon: 'inbox',
+          loading: true,
+        };
+      }
+
+      return item;
+    }),
+  },
+};
+
+export const NoHits: Story = {
+  args: {
+    ...ScopesAndResults.args,
+    groups: {
+      noHits: {
+        title: 'Ingen treff',
+      },
+    },
+    items: [
+      {
+        id: '1a',
+        groupId: '1',
+        type: 'scope',
+        href: '#',
+        disabled: true,
+        badge: {
+          label: 'Ingen treff',
+        },
+        label: () => (
+          <span>
+            <mark>skatt</mark> i innboks
+          </span>
+        ),
+      },
+      {
+        id: '1b',
+        groupId: '1',
+        type: 'scope',
+        href: '#',
+        label: () => (
+          <span>
+            <mark>skatt</mark> i hele Altinn
+          </span>
+        ),
+      },
+      {
+        groupId: 'noHits',
+        id: '2a',
+        type: 'information',
+        label: () => (
+          <span>
+            Søk etter <mark>skatt</mark> ga ingen treff.
+          </span>
+        ),
       },
     ],
   },
@@ -261,55 +344,6 @@ export const ScopesResultsAndSuggestions: Story = {
             label: 'Denne uken',
           },
         ],
-      },
-    ],
-  },
-};
-
-export const NoHits: Story = {
-  args: {
-    ...ScopesAndSuggestions.args,
-    groups: {
-      noHits: {
-        title: 'Ingen treff',
-      },
-    },
-    items: [
-      {
-        id: '1a',
-        groupId: '1',
-        type: 'scope',
-        href: '#',
-        disabled: true,
-        badge: {
-          label: 'Ingen treff',
-        },
-        label: () => (
-          <span>
-            <mark>skatt</mark> i innboks
-          </span>
-        ),
-      },
-      {
-        id: '1b',
-        groupId: '1',
-        type: 'scope',
-        href: '#',
-        label: () => (
-          <span>
-            <mark>skatt</mark> i hele Altinn
-          </span>
-        ),
-      },
-      {
-        groupId: 'noHits',
-        id: '2a',
-        type: 'information',
-        label: () => (
-          <span>
-            Søk etter <mark>skatt</mark> ga ingen treff.
-          </span>
-        ),
       },
     ],
   },

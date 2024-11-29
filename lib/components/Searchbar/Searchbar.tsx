@@ -14,12 +14,13 @@ export const Searchbar = ({
   autocomplete,
   expanded = false,
   onClose,
+  onEnter,
   tabIndex,
   ...search
 }: SearchbarProps) => {
   return (
     <SearchbarBase className={className} expanded={expanded} autocomplete={!!autocomplete}>
-      <SearchField {...search} expanded={expanded} onClose={onClose} tabIndex={tabIndex} />
+      <SearchField {...search} expanded={expanded} onClose={onClose} onEnter={onEnter} tabIndex={tabIndex} />
       {autocomplete && <Autocomplete {...autocomplete} expanded={expanded} />}
     </SearchbarBase>
   );

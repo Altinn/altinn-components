@@ -1,6 +1,7 @@
 import type { ElementType } from 'react';
 import { ListItemBase, type ListItemBaseProps, ListItemLabel } from '../List';
 import { DialogBorder } from './DialogBorder';
+import { DialogDescription } from './DialogDescription';
 import { DialogHeaderBase } from './DialogHeaderBase';
 import { DialogHeadings } from './DialogHeadings';
 import type { DialogRecipientProps, DialogSenderProps } from './DialogHeadings';
@@ -8,7 +9,6 @@ import { DialogMetadata } from './DialogMetadata';
 import type { DialogSeenByProps } from './DialogSeenBy';
 import { DialogSelect, type DialogSelectProps } from './DialogSelect';
 import type { DialogStatusProps } from './DialogStatus';
-import { DialogSummary } from './DialogSummary';
 import { DialogTitle } from './DialogTitle';
 import { DialogTouchedBy, type DialogTouchedByActor } from './DialogTouchedBy';
 
@@ -20,6 +20,8 @@ import styles from './dialogListItem.module.css';
 export interface DialogListItemProps extends ListItemBaseProps {
   /** Dialog title */
   title: string;
+  /** Dialog description */
+  description?: string;
   /** Dialog is loading */
   loading?: boolean;
   /** Render as */
@@ -42,8 +44,6 @@ export interface DialogListItemProps extends ListItemBaseProps {
   recipient?: DialogRecipientProps;
   /** Group view, show avatar for recipient */
   grouped?: boolean;
-  /** Dialog summary */
-  summary?: string;
   /** Updated datetime */
   updatedAt?: string;
   /** Updated at label */
@@ -105,7 +105,7 @@ export const DialogListItem = ({
   touchedBy,
   attachmentsCount,
   title,
-  summary,
+  description,
   ...rest
 }: DialogListItemProps) => {
   const applicableVariant = trashedAt ? 'trashed' : archivedAt ? 'archived' : variant;
@@ -114,7 +114,7 @@ export const DialogListItem = ({
     return (
       <ListItemBase {...rest} loading={loading} size={size} className={styles.item}>
         <DialogBorder className={styles.border} size={size} seen={seen} loading={loading}>
-          <ListItemLabel loading={loading} size={size} title={title} description={summary} />
+          <ListItemLabel loading={loading} size={size} title={title} description={description} />
           <DialogMetadata loading={loading} updatedAt={updatedAt} updatedAtLabel={updatedAtLabel} />
         </DialogBorder>
       </ListItemBase>
@@ -136,9 +136,9 @@ export const DialogListItem = ({
           </DialogTitle>
           <DialogHeadings loading={loading} size={size} grouped={grouped} sender={sender} recipient={recipient} />
         </DialogHeaderBase>
-        <DialogSummary loading={loading} size={size}>
-          {summary}
-        </DialogSummary>
+        <DialogDescription loading={loading} size={size}>
+          {description}
+        </DialogDescription>
         <footer data-size={size} className={styles.footer}>
           <DialogMetadata
             loading={loading}

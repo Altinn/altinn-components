@@ -8,6 +8,7 @@ export interface AutocompleteProps {
   groups?: Record<string, AutocompleteGroupProps>;
   expanded?: boolean;
   className?: string;
+  onSelect?: () => void;
 }
 
 export const Autocomplete = ({ className, items, groups = {}, expanded }: AutocompleteProps) => {

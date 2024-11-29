@@ -40,12 +40,12 @@ export const AutocompleteItem = ({ type, ...props }: AutocompleteItemProps) => {
   switch (type) {
     case 'scope':
       return <ScopeListItem {...(props as ScopeAutocompleteItemProps)} shadow="none" tabIndex={-1} />;
-    case 'information':
-      return <ScopeListItem {...(props as ScopeAutocompleteItemProps)} shadow="none" tabIndex={-1} />;
     case 'bookmark':
       return <BookmarksListItem {...(props as BookmarksListItemProps)} shadow="none" size="sm" tabIndex={-1} />;
     case 'dialog':
       return <DialogListItem {...(props as DialogListItemProps)} shadow="none" size="sm" tabIndex={-1} />;
+    case 'information':
+      return <ListItem {...(props as ListItemProps)} shadow="none" tabIndex={-1} disabled={true} />;
     default:
       return <ListItem {...(props as ListItemProps)} shadow="none" size="sm" tabIndex={-1} />;
   }
