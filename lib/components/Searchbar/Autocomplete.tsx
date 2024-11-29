@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useMenu } from '../../hooks';
 import { AutocompleteBase } from './AutocompleteBase';
 import { AutocompleteGroup, type AutocompleteGroupProps } from './AutocompleteGroup';
@@ -8,16 +9,22 @@ export interface AutocompleteProps {
   groups?: Record<string, AutocompleteGroupProps>;
   expanded?: boolean;
   className?: string;
-  onSelect?: () => void;
+  onActive?: (item?: AutocompleteItemProps) => void;
+  onSelect?: (item?: AutocompleteItemProps) => void;
 }
 
-export const Autocomplete = ({ className, items, groups = {}, expanded }: AutocompleteProps) => {
-  const { menu, setActiveIndex } = useMenu<AutocompleteItemProps, AutocompleteGroupProps>({
+export const Autocomplete = ({ className, items, groups = {}, onSelect, onActive, expanded }: AutocompleteProps) => {
+  const { menu, activeItem, setActiveIndex } = useMenu<AutocompleteItemProps, AutocompleteGroupProps>({
     items,
     groups,
     groupByKey: 'groupId',
     keyboardEvents: true,
   });
+
+  useEffect(() => {
+    onActive?.(activeItem);
+  }, [activeItem, onActive]);
+
   return (
     <AutocompleteBase className={className} expanded={expanded}>
       {menu.map((group, index) => {
@@ -32,7 +39,7 @@ export const Autocomplete = ({ className, items, groups = {}, expanded }: Autoco
                 } = item;
                 return (
                   <li key={index} tabIndex={-1} onMouseEnter={() => setActiveIndex(menuIndex)}>
-                    <AutocompleteItem {...itemProps} active={active} />
+                    <AutocompleteItem {...itemProps} active={active} onClick={() => onSelect?.(itemProps)} />
                   </li>
                 );
               })}

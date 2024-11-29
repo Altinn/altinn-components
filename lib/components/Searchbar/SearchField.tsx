@@ -39,6 +39,7 @@ export const SearchField = ({
   const handleOnKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Escape') {
       ref.current?.blur();
+      onClose?.();
     }
     if (event.key === 'Enter') {
       onEnter?.();

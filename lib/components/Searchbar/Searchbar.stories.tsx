@@ -39,28 +39,32 @@ export const Expanded: Story = {
       },
       items: [
         {
+          type: 'scope',
           id: '1a',
           groupId: '1',
           href: '#',
           label: 'Alt i innboks',
         },
         {
+          type: 'scope',
           id: '1b',
           groupId: '1',
           href: '#',
           label: 'Alt i hele Altinn',
         },
         {
+          type: 'dialog',
           id: '2a',
           groupId: '2',
           href: '#',
-          label: 'Skattemelding 2024',
+          title: 'Skattemelding 2024',
         },
         {
+          type: 'dialog',
           id: '2b',
           groupId: '2',
           href: '#',
-          label: 'Skattemelding 2025',
+          title: 'Skattemelding 2025',
         },
       ],
     },
@@ -68,21 +72,18 @@ export const Expanded: Story = {
 };
 
 export const ControlledState = (args) => {
-  const [expanded, setExpanded] = useState(false);
   const [q, setQ] = useState<string>('');
   const onChange = (event) => {
     setQ(event.target.value);
   };
 
-  const onFocus = () => {
-    setExpanded(true);
+  const onClear = () => {
+    setQ('');
   };
 
   const scopes = [
     {
-      groupId: '1',
       id: 'inbox',
-      href: '#',
       label: q
         ? () => {
             return (
@@ -94,9 +95,7 @@ export const ControlledState = (args) => {
         : 'Alt i innboksen',
     },
     {
-      groupId: '1',
       id: 'global',
-      href: '#',
       label: q
         ? () => {
             return (
@@ -107,24 +106,43 @@ export const ControlledState = (args) => {
           }
         : 'Alt i hele Altinn',
     },
-  ];
+  ].map((item) => {
+    return {
+      ...item,
+      groupId: '1',
+      type: 'scope',
+    };
+  });
 
   const suggestions = q
     ? [
         {
-          groupId: '2',
-          href: 'http://www.altinn.no',
-          label: 'Skattemelding 2024',
+          href: '#skatt-2024',
+          title: 'Skattemelding 2024',
         },
         {
-          groupId: '2',
-          onClick: () => {
-            alert('Skattemelding 2025 ble trykket på');
-          },
-          label: 'Skattemelding 2025',
+          href: '#skatt-2024',
+          title: 'Skattemelding 2025',
         },
-      ].filter((item) => item.label.toLowerCase().includes((q ?? '').toLowerCase()))
+      ]
+        .filter((item) => item.title.toLowerCase().includes((q ?? '').toLowerCase()))
+        .map((item) => {
+          return {
+            ...item,
+            type: 'dialog',
+            groupId: '2',
+          };
+        })
     : [];
+
+  const autocompleteItems = [...scopes, ...suggestions].map((item) => {
+    return {
+      ...item,
+      onClick: () => {
+        alert(JSON.stringify(item));
+      },
+    };
+  });
 
   const autocomplete = {
     groups: {
@@ -132,19 +150,18 @@ export const ControlledState = (args) => {
         title: `${suggestions.length} treff i innboksen`,
       },
     },
-    items: [...scopes, ...suggestions],
+    items: autocompleteItems,
   };
 
   return (
     <Searchbar
       {...args}
       autocomplete={autocomplete}
-      expanded={expanded}
       value={q}
       onChange={onChange}
-      onFocus={onFocus}
-      onEnter={() => {
-        alert(`Søk etter ${q}`);
+      onClear={onClear}
+      onSubmit={(item) => {
+        alert(`Item ${item}`);
       }}
     />
   );

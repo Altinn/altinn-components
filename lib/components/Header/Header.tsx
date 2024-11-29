@@ -22,17 +22,9 @@ export interface HeaderProps {
 }
 
 export const Header = ({ search, menu, currentAccount, logo = {}, badge }: HeaderProps) => {
-  const { currentId, toggleId, openId, closeAll } = useRootContext();
+  const { currentId, toggleId, closeAll } = useRootContext();
 
   useEscapeKey(closeAll);
-
-  const onSearchFocus = () => {
-    openId('search');
-  };
-
-  const onSearchClose = () => {
-    toggleId('search');
-  };
 
   const onToggleMenu = () => {
     toggleId('menu');
@@ -62,7 +54,7 @@ export const Header = ({ search, menu, currentAccount, logo = {}, badge }: Heade
       </HeaderMenu>
       {search && (
         <HeaderSearch expanded={currentId === 'search'}>
-          <Searchbar {...search} expanded={currentId === 'search'} onClose={onSearchClose} onFocus={onSearchFocus} />
+          <Searchbar {...search} expanded={currentId === 'search'} />
         </HeaderSearch>
       )}
       {menu && (

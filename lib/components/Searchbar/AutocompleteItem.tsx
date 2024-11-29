@@ -11,6 +11,7 @@ export interface AutoCompleteItemWithType {
   type: AutocompleteItemType;
   groupId?: string;
   active?: boolean;
+  onClick?: () => void;
 }
 
 export interface ScopeAutocompleteItemProps extends AutoCompleteItemWithType, ScopeListItemProps {

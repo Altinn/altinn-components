@@ -16,6 +16,8 @@ export interface UseMenuOutput<T, V> {
   menu: UseMenuGroup<T, V>[];
   activeIndex: number;
   setActiveIndex: (activeIndex: number) => void;
+  flatItems: T[];
+  activeItem?: T;
 }
 
 export interface UseMenuInput<T, V> {
@@ -33,7 +35,8 @@ export const useMenu = <T, V>({
 }: UseMenuInput<T, V>): UseMenuOutput<T, V> => {
   const [activeIndex, setActiveIndex] = useState<number>(-1);
 
-  const menu = useMemo(() => {
+  // Compute the menu structure and flat items
+  const { menu, flatItems } = useMemo(() => {
     const grouped = items.reduce(
       (acc, item) => {
         const key = groupByKey && item[groupByKey] ? (item[groupByKey] as string) : 'ungrouped';
@@ -44,9 +47,9 @@ export const useMenu = <T, V>({
       {} as Record<string, T[]>,
     );
 
-    const flatItems: T[] = Object.values(grouped).flat();
+    const flatItems = Object.values(grouped).flat();
 
-    return Object.entries(grouped).map(([key, groupItems]) => ({
+    const menu = Object.entries(grouped).map(([key, groupItems]) => ({
       items: groupItems.map((item) => ({
         menuIndex: flatItems.indexOf(item),
         active: activeIndex === flatItems.indexOf(item),
@@ -54,19 +57,26 @@ export const useMenu = <T, V>({
       })),
       props: groups[key] || {},
     }));
+
+    return { menu, flatItems };
   }, [items, groupByKey, activeIndex, groups]);
 
+  // Compute the active item
+  const activeItem = useMemo(() => flatItems[activeIndex] || undefined, [flatItems, activeIndex]);
+
+  // Handle keyboard navigation
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
       if (event.key === 'ArrowDown') {
-        setActiveIndex((prevIndex) => (prevIndex + 1) % items.length);
+        setActiveIndex((prevIndex) => (prevIndex + 1) % flatItems.length);
       } else if (event.key === 'ArrowUp') {
-        setActiveIndex((prevIndex) => (prevIndex - 1 + items.length) % items.length);
+        setActiveIndex((prevIndex) => (prevIndex - 1 + flatItems.length) % flatItems.length);
       }
     },
-    [items.length],
+    [flatItems.length],
   );
 
+  // Bind/unbind keyboard event listeners
   useEffect(() => {
     if (keyboardEvents) {
       setActiveIndex(0);
@@ -77,5 +87,5 @@ export const useMenu = <T, V>({
     }
   }, [handleKeyDown, keyboardEvents]);
 
-  return { menu, activeIndex, setActiveIndex };
+  return { menu, activeIndex, setActiveIndex, flatItems, activeItem };
 };
