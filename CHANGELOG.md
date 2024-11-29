@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.1](https://github.com/Altinn/altinn-components/compare/v0.7.0...v0.7.1) (2024-11-29)
+
+
+### Bug Fixes
+
+* controls (previous action) for list item ([#96](https://github.com/Altinn/altinn-components/issues/96)) ([dfac742](https://github.com/Altinn/altinn-components/commit/dfac7425639489b18451ace202fb26c6741aa967))
+
 ## [0.7.0](https://github.com/Altinn/altinn-components/compare/v0.6.12...v0.7.0) (2024-11-28)
 
 
