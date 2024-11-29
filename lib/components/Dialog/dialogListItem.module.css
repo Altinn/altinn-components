@@ -3,10 +3,6 @@
   outline: 2px solid;
 }
 
-.item[aria-selected="false"]:hover h2 {
-  text-decoration: underline;
-}
-
 .item[data-size="lg"],
 .item[data-size="md"] {
   padding: 1em;

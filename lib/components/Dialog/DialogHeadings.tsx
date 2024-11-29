@@ -1,4 +1,5 @@
 import { Avatar, AvatarGroup, type AvatarSize } from '../Avatar';
+import { Skeleton } from '../Skeleton';
 import type { DialogSize } from './DialogBase';
 import styles from './dialogHeadings.module.css';
 
@@ -34,11 +35,13 @@ export interface DialogHeadingsProps {
   sender?: DialogSenderProps;
   /** Recipient */
   recipient?: DialogRecipientProps;
+  loading?: boolean;
 }
 
 /** Dialog headings for sender and recipient. Should present an avatar for the sender. */
 
 export const DialogHeadings = ({
+  loading,
   grouped,
   size = 'lg',
   sender = { type: 'company', name: 'Sender' },
@@ -46,27 +49,34 @@ export const DialogHeadings = ({
 }: DialogHeadingsProps) => {
   return (
     <div className={styles.headings} data-size={size}>
-      {grouped ? (
-        <AvatarGroup
-          items={[{ ...sender, type: 'company' }, recipient]}
-          size={sizeMap?.avatar[size] as AvatarSize}
-          className={styles.avatar}
-        />
-      ) : (
-        <Avatar
-          type="company"
-          imageUrl={sender?.imageUrl}
-          name={sender.name}
-          size={sizeMap?.avatar[size] as AvatarSize}
-          className={styles.avatar}
-        />
-      )}
+      <Skeleton variant="circle" className={styles.avatar} loading={loading}>
+        {grouped ? (
+          <AvatarGroup
+            items={[{ ...sender, type: 'company' }, recipient]}
+            size={sizeMap?.avatar[size] as AvatarSize}
+            className={styles.avatar}
+          />
+        ) : (
+          <Avatar
+            type="company"
+            imageUrl={sender?.imageUrl}
+            name={sender.name}
+            size={sizeMap?.avatar[size] as AvatarSize}
+            className={styles.avatar}
+          />
+        )}
+      </Skeleton>
       <span data-size={size} className={styles.text}>
-        <span className={styles.sender}>{sender.name}</span>
+        <span className={styles.sender}>
+          {' '}
+          <Skeleton loading={loading}>{sender.name}</Skeleton>
+        </span>
         {recipient?.name && (
           <span className={styles.recipient}>
-            {' til '}
-            <span>{recipient.name}</span>
+            <Skeleton loading={loading}>
+              <span>{'til'}</span>
+              <span>{recipient.name}</span>
+            </Skeleton>
           </span>
         )}
       </span>

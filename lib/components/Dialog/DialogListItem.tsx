@@ -8,6 +8,7 @@ import { DialogMetadata } from './DialogMetadata';
 import type { DialogSeenByProps } from './DialogSeenBy';
 import { DialogSelect, type DialogSelectProps } from './DialogSelect';
 import type { DialogStatusProps } from './DialogStatus';
+import { DialogSummary } from './DialogSummary';
 import { DialogTitle } from './DialogTitle';
 import { DialogTouchedBy, type DialogTouchedByActor } from './DialogTouchedBy';
 
@@ -19,6 +20,8 @@ import styles from './dialogListItem.module.css';
 export interface DialogListItemProps extends ListItemBaseProps {
   /** Dialog title */
   title: string;
+  /** Dialog is loading */
+  loading?: boolean;
   /** Render as */
   as?: ElementType;
   /** Size */
@@ -82,6 +85,7 @@ export interface DialogListItemProps extends ListItemBaseProps {
 export const DialogListItem = ({
   size = 'lg',
   variant = 'neutral',
+  loading,
   select,
   status,
   sender,
@@ -108,10 +112,10 @@ export const DialogListItem = ({
 
   if (size === 'xs' || size === 'sm') {
     return (
-      <ListItemBase {...rest} size={size} className={styles.item}>
-        <DialogBorder className={styles.border} size={size} seen={seen}>
-          <ListItemLabel size={size} title={title} description={summary} />
-          <DialogMetadata updatedAt={updatedAt} updatedAtLabel={updatedAtLabel} />
+      <ListItemBase {...rest} loading={loading} size={size} className={styles.item}>
+        <DialogBorder className={styles.border} size={size} seen={seen} loading={loading}>
+          <ListItemLabel loading={loading} size={size} title={title} description={summary} />
+          <DialogMetadata loading={loading} updatedAt={updatedAt} updatedAtLabel={updatedAtLabel} />
         </DialogBorder>
       </ListItemBase>
     );
@@ -120,22 +124,24 @@ export const DialogListItem = ({
   return (
     <ListItemBase
       {...rest}
+      loading={loading}
       size={size}
       className={styles.item}
       controls={select && <DialogSelect className={styles.select} {...select} />}
     >
-      <DialogBorder className={styles.border} size={size} seen={seen}>
+      <DialogBorder className={styles.border} size={size} seen={seen} loading={loading}>
         <DialogHeaderBase size={size}>
-          <DialogTitle size={size} variant={applicableVariant} label={label} seen={seen}>
+          <DialogTitle loading={loading} size={size} variant={applicableVariant} label={label} seen={seen}>
             {title}
           </DialogTitle>
-          <DialogHeadings size={size} grouped={grouped} sender={sender} recipient={recipient} />
+          <DialogHeadings loading={loading} size={size} grouped={grouped} sender={sender} recipient={recipient} />
         </DialogHeaderBase>
-        <p data-size={size} className={styles.summary}>
+        <DialogSummary loading={loading} size={size}>
           {summary}
-        </p>
+        </DialogSummary>
         <footer data-size={size} className={styles.footer}>
           <DialogMetadata
+            loading={loading}
             status={status}
             updatedAt={updatedAt}
             updatedAtLabel={updatedAtLabel}
@@ -148,7 +154,9 @@ export const DialogListItem = ({
             seenBy={seenBy}
             attachmentsCount={attachmentsCount}
           />
-          {touchedBy && <DialogTouchedBy size="xs" touchedBy={touchedBy} className={styles.touchedBy} />}
+          {touchedBy && (
+            <DialogTouchedBy loading={loading} size="xs" touchedBy={touchedBy} className={styles.touchedBy} />
+          )}
         </footer>
       </DialogBorder>
     </ListItemBase>

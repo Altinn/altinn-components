@@ -1,4 +1,5 @@
 import type { ChangeEventHandler } from 'react';
+import { Icon, IconButton } from '../';
 import styles from './menuSearch.module.css';
 
 export interface MenuSearchProps {
@@ -6,9 +7,10 @@ export interface MenuSearchProps {
   name: string;
   value: string;
   onChange: ChangeEventHandler;
+  onClear?: () => void;
 }
 
-export const MenuSearch = ({ value, name, placeholder = 'Søk', onChange }: MenuSearchProps) => {
+export const MenuSearch = ({ value, name, placeholder = 'Søk', onChange, onClear }: MenuSearchProps) => {
   return (
     <div className={styles.field}>
       <input
@@ -20,6 +22,17 @@ export const MenuSearch = ({ value, name, placeholder = 'Søk', onChange }: Menu
         onChange={onChange}
         autoComplete="off"
       />
+      <Icon name="magnifying-glass" className={styles.icon} />
+      {onClear && (
+        <IconButton
+          icon="x-mark"
+          color="secondary"
+          variant="solid"
+          size="custom"
+          className={styles.clear}
+          onClick={onClear}
+        />
+      )}
     </div>
   );
 };

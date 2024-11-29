@@ -116,6 +116,7 @@ export const Toolbar = ({
   return (
     <ToolbarBase open={currentId === 'toolbar'} onClose={onClose}>
       {menu && <ToolbarMenu onToggle={() => onToggle('menu', '')} expanded={expandedItem?.type === 'menu'} {...menu} />}
+      {search && <ToolbarSearch {...search} />}
       {visibleFilters.map((item) => {
         return (
           <ToolbarFilter
@@ -152,7 +153,6 @@ export const Toolbar = ({
           }))}
         />
       )}
-      {search && <ToolbarSearch {...search} />}
       {children}
     </ToolbarBase>
   );

@@ -1,5 +1,5 @@
 .headings {
-  display: flex;
+  display: inline-flex;
   column-gap: 0.5em;
   align-items: center;
 }
@@ -19,7 +19,9 @@
 }
 
 .text {
-  display: inline;
+  display: inline-flex;
+  flex-wrap: wrap;
+  column-gap: 0.25em;
   color: var(--neutral-text-subtle);
 }
 
@@ -29,5 +31,7 @@
 }
 
 .recipient {
+  display: inline-flex;
+  column-gap: 0.25em;
   white-space: nowrap;
 }

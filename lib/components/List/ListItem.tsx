@@ -6,7 +6,6 @@ import { ListItemBase, type ListItemBaseProps } from './ListItemBase';
 import { ListItemControls } from './ListItemControls';
 import { ListItemHeader } from './ListItemHeader';
 import { ListItemLabel } from './ListItemLabel';
-import { ListItemMedia } from './ListItemMedia';
 
 export interface ListItemProps extends ListItemBaseProps {
   id: string;
@@ -66,16 +65,15 @@ export const ListItem = ({
       as={as}
       size={size}
       color={color}
-      expanded={expanded}
+      loading={loading}
       select={select}
       controls={
         controls || <ListItemControls linkIcon={applicableLinkIcon} linkText={linkText} menu={menu} badge={badge} />
       }
       {...rest}
     >
-      <ListItemHeader size={size}>
-        <ListItemMedia color={color} size={size} icon={icon} avatar={avatar} avatarGroup={avatarGroup} />
-        <ListItemLabel title={title} description={description} size={size}>
+      <ListItemHeader loading={loading} size={size} icon={icon} avatar={avatar} avatarGroup={avatarGroup}>
+        <ListItemLabel loading={loading} title={title} description={description} size={size}>
           {children}
         </ListItemLabel>
       </ListItemHeader>

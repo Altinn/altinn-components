@@ -18,7 +18,7 @@ export type AccountButtonProps = {
 export const AccountButton = ({ account, linkText, onClick, multipleAccounts }: AccountButtonProps) => {
   if (multipleAccounts) {
     return (
-      <MenuItemBase size="lg" onClick={onClick} linkText={linkText} linkIcon="arrow-right" as="button">
+      <MenuItemBase size="lg" onClick={onClick} linkText={linkText} linkIcon="chevron-right" as="button">
         <MenuItemMedia
           size="lg"
           avatar={{

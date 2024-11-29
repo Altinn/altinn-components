@@ -9,3 +9,7 @@
 .border[data-seen="true"] {
   border-color: var(--neutral-surface-default);
 }
+
+.border[data-loading="true"] {
+  border-color: var(--neutral-surface-default);
+}

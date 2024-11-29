@@ -3,6 +3,8 @@ import { DialogSeenBy, type DialogSeenByProps } from './DialogSeenBy';
 import { DialogStatus, type DialogStatusProps } from './DialogStatus';
 
 export type DialogMetadataProps = {
+  /** Metadata is loading */
+  loading?: boolean;
   /** Dialog status */
   status?: DialogStatusProps;
   /** Updated datetime */
@@ -32,6 +34,7 @@ export type DialogMetadataProps = {
  */
 
 export const DialogMetadata = ({
+  loading,
   status,
   updatedAt,
   updatedAtLabel,
@@ -46,33 +49,33 @@ export const DialogMetadata = ({
 }: DialogMetadataProps) => {
   return (
     <MetaBase size="xs">
-      {status && <DialogStatus size="xs" {...status} />}
+      {status && <DialogStatus loading={loading} size="xs" {...status} />}
       {updatedAt && (
-        <MetaTimestamp datetime={updatedAt} size="xs">
+        <MetaTimestamp loading={loading} datetime={updatedAt} size="xs">
           {updatedAtLabel}
         </MetaTimestamp>
       )}
       {dueAt && dueAtLabel && (
-        <MetaTimestamp datetime={dueAt} size="xs" icon="clock-dashed">
+        <MetaTimestamp loading={loading} datetime={dueAt} size="xs" icon="clock-dashed">
           {dueAtLabel}
         </MetaTimestamp>
       )}
       {attachmentsCount > 0 && (
-        <MetaItem size="xs" icon="paperclip">
+        <MetaItem loading={loading} size="xs" icon="paperclip">
           {attachmentsCount}
         </MetaItem>
       )}
       {(trashedAt && trashedAtLabel && (
-        <MetaTimestamp datetime={trashedAt} size="xs" icon="trash">
+        <MetaTimestamp loading={loading} datetime={trashedAt} size="xs" icon="trash">
           {trashedAtLabel}
         </MetaTimestamp>
       )) ||
         (archivedAt && archivedAtLabel && (
-          <MetaTimestamp datetime={archivedAt} size="xs" icon="archive">
+          <MetaTimestamp loading={loading} datetime={archivedAt} size="xs" icon="archive">
             {archivedAtLabel}
           </MetaTimestamp>
         )) ||
-        (seenBy && <DialogSeenBy size="xs" {...seenBy} />)}
+        (!loading && seenBy && <DialogSeenBy size="xs" {...seenBy} />)}
     </MetaBase>
   );
 };

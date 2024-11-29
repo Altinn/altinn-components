@@ -1,5 +1,6 @@
 'use client';
 import { useEscapeKey } from '../../hooks';
+import type { BadgeProps } from '../Badge';
 import { DrawerBase, DropdownBase } from '../Dropdown';
 import { GlobalMenu, type GlobalMenuProps } from '../GlobalMenu';
 import type { Account } from '../GlobalMenu';
@@ -16,10 +17,11 @@ export interface HeaderProps {
   menu: GlobalMenuProps;
   search?: SearchbarProps;
   currentAccount?: Account;
+  badge?: BadgeProps;
   logo?: HeaderLogoProps;
 }
 
-export const Header = ({ search, menu, currentAccount, logo = {} }: HeaderProps) => {
+export const Header = ({ search, menu, currentAccount, logo = {}, badge }: HeaderProps) => {
   const { currentId, toggleId, openId, closeAll } = useRootContext();
 
   useEscapeKey(closeAll);
@@ -41,6 +43,7 @@ export const Header = ({ search, menu, currentAccount, logo = {} }: HeaderProps)
       <HeaderLogo {...logo} className={styles.logo} />
       <HeaderMenu className={styles.menu}>
         <HeaderButton
+          badge={badge}
           avatar={
             currentAccount && {
               type: currentAccount.type,

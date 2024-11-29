@@ -1,10 +1,12 @@
 import type { ReactNode } from 'react';
 import { Avatar, AvatarGroup, type AvatarGroupProps, type AvatarProps, type AvatarSize } from '../Avatar';
 import { Icon, type IconName } from '../Icon';
+import { Skeleton } from '../Skeleton';
 import type { ListItemColor, ListItemSize } from './ListItemBase';
 import styles from './listItemMedia.module.css';
 
 interface ListItemMediaProps {
+  loading?: boolean;
   color?: ListItemColor;
   size?: ListItemSize;
   icon?: IconName;
@@ -31,6 +33,7 @@ const sizeMap = {
 };
 
 export const ListItemMedia = ({
+  loading,
   size = 'sm',
   color = 'default',
   icon,
@@ -40,6 +43,14 @@ export const ListItemMedia = ({
 }: ListItemMediaProps) => {
   if (!icon && !avatar && !avatarGroup && !children) {
     return false;
+  }
+
+  if (loading) {
+    return (
+      <Skeleton loading={loading} variant="circle" size={size} className={styles.media}>
+        <Icon name="airplane" variant="outline" className={styles.icon} />
+      </Skeleton>
+    );
   }
 
   return (

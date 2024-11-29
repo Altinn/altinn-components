@@ -102,6 +102,22 @@ export const MediaTypes = (args) => {
   );
 };
 
+export const Loading = (args) => {
+  return (
+    <ListBase>
+      {sizes?.map((size) => {
+        return (
+          <Fragment key={size}>
+            <ListItem {...args} icon="teddy-bear" size={size} loading={true} />
+            <ListItem {...args} icon="teddy-bear" size={size} loading={false} />
+            <MetaItem>{size}</MetaItem>
+          </Fragment>
+        );
+      })}
+    </ListBase>
+  );
+};
+
 export const Controls = (args) => {
   return (
     <ListBase>

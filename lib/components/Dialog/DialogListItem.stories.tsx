@@ -82,6 +82,17 @@ export const Statuses = (args) => {
   );
 };
 
+export const Loading = (args) => {
+  return (
+    <ListBase>
+      <DialogListItem {...args} loading={true} label="Ulest" />
+      <MetaItem>Loading</MetaItem>
+      <DialogListItem {...args} label="Ulest" />
+      <MetaItem>Loaded</MetaItem>
+    </ListBase>
+  );
+};
+
 export const Variants = (args) => {
   return (
     <ListBase>

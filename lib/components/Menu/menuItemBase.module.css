@@ -18,6 +18,7 @@
   align-items: center;
   column-gap: 0.25rem;
   margin: 0.5rem 0;
+  border-radius: 2px;
 }
 
 .item[aria-disabled="true"] {
