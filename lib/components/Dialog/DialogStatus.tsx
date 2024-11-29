@@ -18,6 +18,7 @@ export enum DialogStatusEnum {
 export type DialogStatusValue = keyof typeof DialogStatusEnum;
 
 export interface DialogStatusProps {
+  loading?: boolean;
   size?: MetaItemSize;
   value?: DialogStatusValue;
   label?: string;
@@ -27,7 +28,11 @@ export interface DialogStatusProps {
  * Dialog status.
  */
 
-export const DialogStatus = ({ size = 'xs', value = 'new', label }: DialogStatusProps) => {
+export const DialogStatus = ({ loading, size = 'xs', value = 'new', label }: DialogStatusProps) => {
+  if (loading) {
+    return null;
+  }
+
   switch (value) {
     case 'new':
       return null;

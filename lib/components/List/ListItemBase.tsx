@@ -1,52 +1,54 @@
 import cx from 'classnames';
-import type { ElementType, KeyboardEvent, KeyboardEventHandler, ReactNode } from 'react';
+import type { CSSProperties, ElementType, KeyboardEvent, KeyboardEventHandler, ReactNode } from 'react';
 import { ListItemSelect, type ListItemSelectProps } from './ListItemSelect';
 import styles from './listItemBase.module.css';
 
-export type ListItemColor = 'default' | 'accent';
 export type ListItemSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type ListItemColor = 'default' | 'accent';
 export type ListItemShadow = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export interface ListItemBaseProps {
   as?: ElementType;
   size?: ListItemSize;
-  shadow?: ListItemShadow;
   color?: ListItemColor;
-  href?: string;
+  shadow?: ListItemShadow;
   className?: string;
-  active?: boolean;
-  hidden?: boolean;
-  collapsible?: boolean;
+  style?: CSSProperties;
+  href?: string;
+  onClick?: () => void;
+  onKeyPress?: KeyboardEventHandler;
+  tabIndex?: number;
+  loading?: boolean;
   disabled?: boolean;
+  hidden?: boolean;
+  active?: boolean;
   select?: ListItemSelectProps;
   selected?: boolean;
   expanded?: boolean;
-  onClick?: () => void;
-  onKeyPress?: KeyboardEventHandler;
-  action?: ReactNode;
   controls?: ReactNode;
   children?: ReactNode;
-  style?: React.CSSProperties;
 }
 
 export const ListItemBase = ({
   as,
-  children,
-  className,
-  href,
   size,
   color,
-  active = false,
-  hidden = false,
   shadow = 'xs',
-  select,
-  selected,
-  disabled,
-  expanded,
-  controls,
+  className,
+  style,
+  href,
   onClick,
   onKeyPress,
-  style,
+  tabIndex,
+  loading,
+  disabled,
+  hidden = false,
+  active = false,
+  select,
+  selected,
+  expanded,
+  controls,
+  children,
 }: ListItemBaseProps) => {
   const Component = as || 'a';
 
@@ -58,7 +60,7 @@ export const ListItemBase = ({
       data-shadow={shadow}
       data-active={active}
       aria-hidden={hidden}
-      aria-disabled={disabled}
+      aria-disabled={disabled || loading}
       aria-selected={selected}
       aria-expanded={expanded}
     >
@@ -74,7 +76,7 @@ export const ListItemBase = ({
           onKeyPress?.(e);
         }}
         onClick={onClick}
-        tabIndex={-1}
+        tabIndex={tabIndex}
       >
         {children}
       </Component>

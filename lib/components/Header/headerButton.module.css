@@ -27,6 +27,15 @@
   font-size: 1.5rem;
 }
 
+.avatarGroup {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
 .loginIcon {
   background-color: white;
   color: black;
@@ -34,4 +43,12 @@
 
 .closeIcon {
   border: 1px solid white;
+}
+
+.badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: -0.75rem;
+  margin-right: -0.75rem;
 }

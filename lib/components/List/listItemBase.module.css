@@ -13,6 +13,10 @@
 
 /* disabled */
 
+.item[aria-disabled="true"] {
+  pointer-events: none;
+}
+
 /* shadow */
 
 .item[data-shadow="xs"] {
@@ -47,13 +51,13 @@
   background-color: var(--theme-background-default);
 }
 
-.item:hover {
+.item:not([aria-disabled="true"]):hover {
   outline: 2px solid var(--theme-border-strong);
   z-index: 2;
 }
 
-.item:hover strong,
-.item:hover h2 {
+.item:not([aria-disabled="true"]):hover strong,
+.item:not([aria-disabled="true"]):hover h2 {
   text-decoration: underline;
 }
 

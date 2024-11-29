@@ -5,13 +5,14 @@ export interface DialogTouchedByActor {
 }
 
 export interface DialogTouchedByProps {
+  loading?: boolean;
   size?: AvatarSize;
   touchedBy?: DialogTouchedByActor[];
   className?: string;
 }
 
-export const DialogTouchedBy = ({ size = 'sm', touchedBy = [], className }: DialogTouchedByProps) => {
-  if (!touchedBy?.length) {
+export const DialogTouchedBy = ({ loading, size = 'sm', touchedBy = [], className }: DialogTouchedByProps) => {
+  if (!touchedBy?.length || loading) {
     return null;
   }
 

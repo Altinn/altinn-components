@@ -1,4 +1,4 @@
-import type { ElementType, MouseEventHandler, ReactNode } from 'react';
+import type { ElementType, ReactNode } from 'react';
 import type { AvatarGroupProps, AvatarProps } from '../Avatar';
 import type { BadgeProps } from '../Badge';
 import type { IconName } from '../Icon';
@@ -8,13 +8,13 @@ import { MenuItemMedia } from './MenuItemMedia';
 
 export interface MenuItemProps {
   id: string;
-  tabIndex?: number;
   type?: string;
+  tabIndex?: number;
   as?: ElementType;
   color?: MenuItemColor;
   size?: MenuItemSize;
   href?: string;
-  onClick?: MouseEventHandler;
+  onClick?: () => void;
   hidden?: boolean;
   active?: boolean;
   collapsible?: boolean;
@@ -24,39 +24,50 @@ export interface MenuItemProps {
   groupId?: string | number;
   title?: string;
   description?: string;
-  label?: string;
-  badge?: BadgeProps;
   icon?: IconName;
   avatar?: AvatarProps;
   avatarGroup?: AvatarGroupProps;
-  children?: ReactNode;
-  items?: MenuItemProps[];
+  badge?: BadgeProps;
   linkIcon?: IconName;
   linkText?: string;
   className?: string;
+  children?: ReactNode;
+  items?: MenuItemProps[];
 }
 
 export const MenuItem = ({
   as = 'a',
   color = 'neutral',
   size = 'sm',
-  children,
-  selected,
-  disabled,
+  collapsible,
+  expanded,
   icon,
   avatar,
   avatarGroup,
-  badge,
-  label,
   title,
   description,
+  badge,
+  linkText,
+  linkIcon,
+  children,
   ...rest
 }: MenuItemProps) => {
+  const applicableLinkIcon = collapsible && expanded ? 'chevron-up' : collapsible ? 'chevron-down' : linkIcon;
+
   return (
-    <MenuItemBase as={as} size={size} badge={badge} color={color} selected={selected} disabled={disabled} {...rest}>
+    <MenuItemBase
+      as={as}
+      size={size}
+      badge={badge}
+      linkText={linkText}
+      linkIcon={applicableLinkIcon}
+      color={color}
+      expanded={expanded}
+      {...rest}
+    >
       <MenuItemMedia color={color} size={size} icon={icon} avatar={avatar} avatarGroup={avatarGroup} />
       <MenuItemLabel title={title} description={description} size={size}>
-        {label || children}
+        {children}
       </MenuItemLabel>
     </MenuItemBase>
   );

@@ -40,6 +40,10 @@ export const Company: Story = {
       type: 'company',
       name: 'Bergen bar',
     },
+    badge: {
+      color: 'alert',
+      label: '2',
+    },
   },
 };
 

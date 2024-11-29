@@ -1,5 +1,5 @@
 'use client';
-import { type MouseEventHandler, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Button, ComboButton } from '../Button';
 import { Menu, type MenuItemProps } from '../Menu';
 import styles from './dialogAction.module.css';
@@ -10,7 +10,7 @@ export interface DialogActionButtonProps {
   id: string;
   priority: DialogButtonPriority;
   label?: string;
-  onClick?: MouseEventHandler;
+  onClick?: () => void;
   loading?: boolean;
 }
 

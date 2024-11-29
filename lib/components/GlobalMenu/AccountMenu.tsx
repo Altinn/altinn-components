@@ -72,6 +72,7 @@ export const AccountMenu = ({
     value: filterString,
     placeholder: accountSearch?.placeholder ?? 'Find account',
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => setFilterString(event.target.value),
+    onClear: () => setFilterString(''),
   };
 
   const accountSwitcher: MenuItemProps[] = [

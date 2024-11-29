@@ -1,75 +1,80 @@
 import cx from 'classnames';
-import type { ElementType, MouseEventHandler, ReactNode } from 'react';
+import type { ElementType, KeyboardEvent, KeyboardEventHandler, ReactNode } from 'react';
 import { Badge, type BadgeProps } from '../Badge';
 import { Icon, type IconName } from '../Icon';
 import styles from './menuItemBase.module.css';
 
-export type MenuItemColor = 'neutral' | 'subtle' | 'strong' | 'company' | 'person';
 export type MenuItemSize = 'sm' | 'md' | 'lg';
+export type MenuItemColor = 'neutral' | 'subtle' | 'strong' | 'company' | 'person';
 
 export interface MenuItemBaseProps {
   as?: ElementType;
-  onClick?: MouseEventHandler;
-  color?: MenuItemColor;
-  children?: ReactNode;
-  tabIndex?: number;
   size?: MenuItemSize;
+  color?: MenuItemColor;
+  className?: string;
+  href?: string;
+  onClick?: () => void;
+  onKeyPress?: KeyboardEventHandler;
+  tabIndex?: number;
+  hidden?: boolean;
+  disabled?: boolean;
+  active?: boolean;
+  selected?: boolean;
+  expanded?: boolean;
+  children?: ReactNode;
+  badge?: BadgeProps;
   linkIcon?: IconName;
   linkText?: string;
-  badge?: BadgeProps;
-  collapsible?: boolean;
-  active?: boolean;
-  expanded?: boolean;
-  selected?: boolean;
-  disabled?: boolean;
-  className?: string;
 }
 
 export const MenuItemBase = ({
   as,
-  onClick,
   size,
   color,
+  className,
+  href,
+  onClick,
+  onKeyPress,
+  tabIndex = 0,
+  hidden,
+  disabled = false,
+  active = false,
+  selected = false,
+  expanded = false,
   linkIcon,
   linkText,
   badge,
-  tabIndex = 0,
-  active = false,
-  collapsible = false,
-  expanded = false,
-  selected = false,
-  disabled = false,
-  className,
   children,
-  ...rest
 }: MenuItemBaseProps) => {
   const Component = as || 'a';
-
-  const applicableIcon =
-    collapsible && expanded ? 'chevron-up' : collapsible ? 'chevron-down' : linkIcon ? 'chevron-right' : linkIcon;
 
   return (
     <Component
       role="menuitem"
       tabIndex={disabled ? '-1' : (tabIndex ?? 0)}
+      className={cx(styles.item, className)}
       data-size={size}
       data-color={color}
       data-active={active}
+      aria-hidden={hidden}
       aria-expanded={expanded}
       aria-disabled={disabled}
       aria-selected={selected}
+      href={href}
+      onKeyPress={(e: KeyboardEvent) => {
+        e.key === 'Enter' && onClick?.();
+        onKeyPress?.(e);
+      }}
       onClick={onClick}
-      className={cx(styles.item, className)}
-      {...rest}
     >
       <div className={styles.content}>
         {children}
         {badge && <Badge {...badge} />}
       </div>
-      {applicableIcon && (
+      {linkIcon && (
         <div className={styles.action}>
           {linkText && <span className={styles.linkText}>{linkText}</span>}
-          {applicableIcon && <Icon name={applicableIcon} className={styles.linkIcon} />}
+          {linkIcon && <Icon name={linkIcon} className={styles.linkIcon} />}
         </div>
       )}
     </Component>
