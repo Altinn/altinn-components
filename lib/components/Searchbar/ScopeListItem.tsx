@@ -1,4 +1,4 @@
-import type { ElementType, ReactNode } from 'react';
+import type { ElementType, ReactElement } from 'react';
 import type { BadgeProps } from '../Badge';
 import { ListItem, type ListItemProps } from '../List/';
 import styles from './scopeListItem.module.css';
@@ -9,7 +9,7 @@ export interface ScopeListItemProps extends ListItemProps {
   onClick?: () => void;
   badge: BadgeProps;
   loading?: boolean;
-  label?: string | (() => ReactNode);
+  label?: string | (() => ReactElement);
 }
 
 export const ScopeListItem = ({ as = 'a', label, ...rest }: ScopeListItemProps) => {
