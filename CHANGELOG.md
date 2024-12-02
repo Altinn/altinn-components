@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.4](https://github.com/Altinn/altinn-components/compare/v0.7.3...v0.7.4) (2024-12-02)
+
+
+### Bug Fixes
+
+* support on enter on enter on active item in search bar for autocomplete ([#107](https://github.com/Altinn/altinn-components/issues/107)) ([6d89eda](https://github.com/Altinn/altinn-components/commit/6d89edae4debf3cb629ce28d6c0ce84ffc90aedb))
+
 ## [0.7.3](https://github.com/Altinn/altinn-components/compare/v0.7.2...v0.7.3) (2024-11-29)
 
 
