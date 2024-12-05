@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.7.5](https://github.com/Altinn/altinn-components/compare/v0.7.4...v0.7.5) (2024-12-05)
+
+
+### Bug Fixes
+
+* add badge and avatar groups for account menu item ([#113](https://github.com/Altinn/altinn-components/issues/113)) ([41e250a](https://github.com/Altinn/altinn-components/commit/41e250a08f1873fe5535c3b513247dd4219c8711))
+* drawer menu not showing ([#114](https://github.com/Altinn/altinn-components/issues/114)) ([6ee65aa](https://github.com/Altinn/altinn-components/commit/6ee65aa91d615567fd09282224c11b0b5456a9c5))
+* remove unwanted list item when account search returns no hits ([#111](https://github.com/Altinn/altinn-components/issues/111)) ([7f8cfa5](https://github.com/Altinn/altinn-components/commit/7f8cfa5cda9a738c8ae2abf1db07268eb12e59c8))
+
 ## [0.7.4](https://github.com/Altinn/altinn-components/compare/v0.7.3...v0.7.4) (2024-12-02)
 
 
