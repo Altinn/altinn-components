@@ -23,6 +23,9 @@ const meta = {
         type: 'person',
         name: 'Aurora Mikalsen',
         selected: true,
+        badge: {
+          label: '2',
+        },
       },
       {
         id: 'bergen-bar',
@@ -30,6 +33,20 @@ const meta = {
         type: 'company',
         name: 'Bergen Bar',
         selected: false,
+        badge: {
+          label: '19',
+        },
+      },
+      {
+        id: 'allAccounts',
+        groupId: 'groups',
+        type: 'company',
+        name: 'Alle virksomheter',
+        accountNames: ['Keeperhansker AS', 'Stadion drift AS', 'Landslaget'],
+        selected: false,
+        badge: {
+          label: '19',
+        },
       },
       {
         id: 'keeper',
