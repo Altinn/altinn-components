@@ -14,9 +14,11 @@
   background-color: var(--theme-background-default);
 }
 
+/*
 @media (max-width: 1024px) {
   .base[data-current-id="menu"] header + *,
   .base[data-current-id="menu"] footer {
     display: none;
   }
 }
+  */

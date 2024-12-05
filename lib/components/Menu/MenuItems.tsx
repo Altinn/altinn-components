@@ -83,7 +83,7 @@ export const MenuItems = ({
                           defaultItemSize={defaultItemSize}
                         />
                         {/** Render a separator if expanded and there are items underneath */}
-                        {(nextGroup || nextItem) && <MenuListItem role="separator" />}
+                        {(nextGroup || nextItem) && <MenuListItem role="separator" as="div" />}
                       </>
                     )}
                   </MenuListItem>
