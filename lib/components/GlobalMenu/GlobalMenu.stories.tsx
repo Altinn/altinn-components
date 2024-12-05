@@ -167,20 +167,13 @@ export const Company: Story = {
 
 export const AccountSearch: Story = {
   args: {
-    accountSearch: {
-      placeholder: 'Finn konto',
-    },
-  },
-};
-
-export const CustomLabels: Story = {
-  args: {
     logoutLabel: 'Logg ut',
     menuLabel: 'Meny',
     backLabel: 'Tilbake',
     changeLabel: 'Endre konto',
     accountSearch: {
-      placeholder: 'Søk etter konto',
+      placeholder: 'Finn konto',
+      name: 'search-account',
       getResultsLabel: (hits = 0) => {
         if (hits) {
           return hits + ' treff';

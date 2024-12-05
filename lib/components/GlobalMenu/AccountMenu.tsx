@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Menu, type MenuItemGroups, type MenuItemProps, type MenuSearchProps } from '../Menu';
 
-export interface AccountSearch extends MenuSearchProps {
+export interface AccountSearchProps extends MenuSearchProps {
   getResultsLabel?: (hits: number) => string;
   hidden?: boolean;
 }
@@ -18,7 +18,7 @@ export interface AccountMenuItem {
 export interface AccountMenuProps {
   accounts?: AccountMenuItem[];
   accountGroups?: MenuItemGroups;
-  accountSearch?: AccountSearch;
+  accountSearch?: AccountSearchProps;
   currentAccount?: AccountMenuItem;
   onSelectAccount?: (id: string) => void;
 }

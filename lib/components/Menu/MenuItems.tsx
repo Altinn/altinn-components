@@ -56,38 +56,39 @@ export const MenuItems = ({
               </MenuListItem>
             )}
 
-            {group?.items.map((item, index) => {
-              const { active } = item;
-              const { groupId: _, ...itemProps } = item.props || {};
-              const { expanded } = itemProps;
-              const nextItem = group?.items[index + 1];
-
-              return (
-                <MenuListItem role="presentation" expanded={expanded} key={index}>
-                  <MenuItem
-                    {...itemProps}
-                    color={itemProps?.color || groupProps?.defaultItemColor || defaultItemColor}
-                    size={itemProps?.size || groupProps?.defaultItemSize || defaultItemSize}
-                    active={active}
-                    tabIndex={itemProps?.disabled ? -1 : 0}
-                  />
-                  {expanded && itemProps?.items && (
-                    <>
-                      <MenuItems
-                        expanded={expanded}
-                        level={level + 1}
-                        items={itemProps?.items}
-                        groups={groups}
-                        defaultItemColor={defaultItemColor}
-                        defaultItemSize={defaultItemSize}
-                      />
-                      {/** Render a separator if expanded and there are items underneath */}
-                      {(nextGroup || nextItem) && <MenuListItem role="separator" />}
-                    </>
-                  )}
-                </MenuListItem>
-              );
-            })}
+            {group?.items
+              .filter((item) => !item.props?.hidden)
+              .map((item, index) => {
+                const { active } = item;
+                const { groupId: _, ...itemProps } = item.props || {};
+                const { expanded } = itemProps;
+                const nextItem = group?.items[index + 1];
+                return (
+                  <MenuListItem role="presentation" expanded={expanded} key={index}>
+                    <MenuItem
+                      {...itemProps}
+                      color={itemProps?.color || groupProps?.defaultItemColor || defaultItemColor}
+                      size={itemProps?.size || groupProps?.defaultItemSize || defaultItemSize}
+                      active={active}
+                      tabIndex={itemProps?.disabled ? -1 : 0}
+                    />
+                    {expanded && itemProps?.items && (
+                      <>
+                        <MenuItems
+                          expanded={expanded}
+                          level={level + 1}
+                          items={itemProps?.items}
+                          groups={groups}
+                          defaultItemColor={defaultItemColor}
+                          defaultItemSize={defaultItemSize}
+                        />
+                        {/** Render a separator if expanded and there are items underneath */}
+                        {(nextGroup || nextItem) && <MenuListItem role="separator" />}
+                      </>
+                    )}
+                  </MenuListItem>
+                );
+              })}
           </Fragment>
         );
       })}
