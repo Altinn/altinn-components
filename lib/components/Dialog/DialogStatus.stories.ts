@@ -4,7 +4,7 @@ import { fn } from '@storybook/test';
 import { DialogStatus, DialogStatusEnum } from './DialogStatus';
 
 const meta = {
-  title: 'Dialog/DialogStatus',
+  title: 'Dialog/Sections/DialogStatus',
   component: DialogStatus,
   tags: ['autodocs'],
   parameters: {

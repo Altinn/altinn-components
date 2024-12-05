@@ -17,7 +17,7 @@ export const AttachmentList = ({ size, items }: AttachmentListProps) => {
       {items.map((item, index) => {
         return (
           <li key={index} className={styles.item}>
-            <AttachmentLink {...item} key={'attachment' + index} />
+            <AttachmentLink {...item} size={size} key={'attachment' + index} />
           </li>
         );
       })}

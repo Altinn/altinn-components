@@ -24,7 +24,6 @@ const meta = {
         label: 'Skatteetaten',
       },
     ],
-    size: 'md',
     href: '#',
   },
 } satisfies Meta<typeof BookmarksListItem>;

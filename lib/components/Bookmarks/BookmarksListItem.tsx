@@ -11,7 +11,7 @@ export interface BookmarksListItemProps extends ListItemProps {
 
 export const BookmarksListItem = ({ size = 'sm', title, description, params, ...rest }: BookmarksListItemProps) => {
   return (
-    <ListItem size={size} icon="magnifying-glass" linkIcon="chevron-right" {...rest}>
+    <ListItem size={size} title={title} linkIcon="chevron-right" {...rest}>
       {!title && <QueryLabel params={params} />}
     </ListItem>
   );

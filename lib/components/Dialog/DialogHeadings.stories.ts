@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { DialogHeadings } from './DialogHeadings';
 
 const meta = {
-  title: 'Dialog/DialogHeadings',
+  title: 'Dialog/Sections/DialogHeadings',
   component: DialogHeadings,
   tags: ['autodocs'],
   parameters: {},

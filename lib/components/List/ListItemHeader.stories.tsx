@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Fragment, useState } from 'react';
 
-import { Button, List, ListBase, ListItem, ListItemBase, ListItemHeader, MetaItem } from '../';
+import { Button, ListItemHeader, ListBase, MetaItem } from '../';
 
 const sizes = ['lg', 'md', 'sm', 'xs'];
 
 const meta = {
-  title: 'List/ListItem',
-  component: ListItem,
+  title: 'List/ListItemHeader',
+  component: ListItemHeader,
   tags: ['autodocs'],
   parameters: {},
   args: {
@@ -16,7 +16,7 @@ const meta = {
     description: 'Description',
     size: 'md',
   },
-} satisfies Meta<typeof ListItem>;
+} satisfies Meta<typeof ListItemHeader>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -28,11 +28,11 @@ export const Default: Story = {
 export const MediaTypes = (args) => {
   return (
     <ListBase>
-      <ListItem {...args} />
+      <ListItemHeader {...args} />
       <MetaItem>No media</MetaItem>
-      <ListItem {...args} icon="teddy-bear" />
+      <ListItemHeader {...args} icon="teddy-bear" />
       <MetaItem>Icon</MetaItem>
-      <ListItem
+      <ListItemHeader
         {...args}
         avatar={{
           type: 'person',
@@ -40,7 +40,7 @@ export const MediaTypes = (args) => {
         }}
       />
       <MetaItem>Person</MetaItem>
-      <ListItem
+      <ListItemHeader
         {...args}
         avatar={{
           type: 'company',
@@ -48,7 +48,7 @@ export const MediaTypes = (args) => {
         }}
       />
       <MetaItem>Company</MetaItem>
-      <ListItem
+      <ListItemHeader
         {...args}
         avatar={{
           type: 'company',
@@ -58,7 +58,7 @@ export const MediaTypes = (args) => {
         }}
       />
       <MetaItem>Logo</MetaItem>
-      <ListItem
+      <ListItemHeader
         {...args}
         avatarGroup={{
           items: [
@@ -78,7 +78,7 @@ export const MediaTypes = (args) => {
         }}
       />
       <MetaItem>People group</MetaItem>
-      <ListItem
+      <ListItemHeader
         {...args}
         avatarGroup={{
           items: [
@@ -108,8 +108,8 @@ export const Loading = (args) => {
       {sizes?.map((size) => {
         return (
           <Fragment key={size}>
-            <ListItem {...args} icon="teddy-bear" size={size} loading={true} />
-            <ListItem {...args} icon="teddy-bear" size={size} loading={false} />
+            <ListItemHeader {...args} icon="teddy-bear" size={size} loading={true} />
+            <ListItemHeader {...args} icon="teddy-bear" size={size} loading={false} />
             <MetaItem>{size}</MetaItem>
           </Fragment>
         );
@@ -121,15 +121,15 @@ export const Loading = (args) => {
 export const Controls = (args) => {
   return (
     <ListBase>
-      <ListItem {...args} linkIcon="chevron-right" />
+      <ListItemHeader {...args} linkIcon="chevron-right" />
       <MetaItem>Link icon, emphasising that this will take you somewhere</MetaItem>
-      <ListItem {...args} linkIcon="chevron-right" linkText="Åpne" />
+      <ListItemHeader {...args} linkIcon="chevron-right" linkText="Åpne" />
       <MetaItem>Link icon + link text, emphasising that this will take you somewhere</MetaItem>
-      <ListItem {...args} collapsible badge={{ label: 'Admin' }} />
+      <ListItemHeader {...args} collapsible badge={{ label: 'Admin' }} />
       <MetaItem>Collapsible item with badge</MetaItem>
-      <ListItem {...args} collapsible expanded />
+      <ListItemHeader {...args} collapsible expanded />
       <MetaItem>Collapsible and expanded item</MetaItem>
-      <ListItem
+      <ListItemHeader
         {...args}
         badge={{ label: 'Admin' }}
         linkIcon="chevron-right"
@@ -142,7 +142,7 @@ export const Controls = (args) => {
       />
       <MetaItem>List item with badge, linkIcon and context menu</MetaItem>
 
-      <ListItem
+      <ListItemHeader
         {...args}
         controls={
           <div style={{ position: 'absolute', right: 0, display: 'flex', alignItems: 'center', margin: '0.625rem' }}>
@@ -163,7 +163,7 @@ export const Selectable = (args) => {
       {sizes?.map((size) => {
         return (
           <Fragment key={size}>
-            <ListItem
+            <ListItemHeader
               {...args}
               size={size}
               select={{
@@ -171,7 +171,7 @@ export const Selectable = (args) => {
               }}
             />
 
-            <ListItem
+            <ListItemHeader
               {...args}
               size={size}
               select={{
@@ -190,9 +190,9 @@ export const Selectable = (args) => {
 export const Colors = (args) => {
   return (
     <ListBase>
-      <ListItem {...args} />
+      <ListItemHeader {...args} />
       <MetaItem>Default</MetaItem>
-      <ListItem {...args} color="accent" />
+      <ListItemHeader {...args} color="accent" />
       <MetaItem>Accent</MetaItem>
     </ListBase>
   );
@@ -204,7 +204,13 @@ export const Sizes = (args) => {
       {sizes?.map((size) => {
         return (
           <Fragment key={size}>
-            <ListItem {...args} icon="teddy-bear" size={size} selected={size === args?.size} linkIcon="chevron-right" />
+            <ListItemHeader
+              {...args}
+              icon="teddy-bear"
+              size={size}
+              selected={size === args?.size}
+              linkIcon="chevron-right"
+            />
             <MetaItem>{size}</MetaItem>
           </Fragment>
         );
@@ -266,7 +272,7 @@ export const Collapsible = (args) => {
   };
 
   return (
-    <ListItemBase>
+    <Fragment>
       <ListItemHeader
         {...args}
         avatarGroup={avatarGroup}
@@ -276,6 +282,6 @@ export const Collapsible = (args) => {
         as="button"
       />
       {expanded && <List size="sm" spacing="none" items={items} />}
-    </ListItemBase>
+    </Fragment>
   );
 };

@@ -2,19 +2,15 @@ import type { AvatarGroupProps, AvatarProps } from '../Avatar';
 import type { BadgeProps } from '../Badge';
 import type { ContextMenuProps } from '../ContextMenu';
 import type { IconName } from '../Icon';
-import { ListItemBase, type ListItemBaseProps } from './ListItemBase';
-import { ListItemControls } from './ListItemControls';
-import { ListItemHeader } from './ListItemHeader';
-import { ListItemLabel } from './ListItemLabel';
+import { ListItemBase } from './ListItemBase';
+import { ListItemHeader, type ListItemHeaderProps } from './ListItemHeader';
 
-export interface ListItemProps extends ListItemBaseProps {
+export interface ListItemProps extends ListItemHeaderProps {
   id: string;
+  /** Custom className */
+  className?: string;
   /** Element is loading, display a placeholder */
   loading?: boolean;
-  /** Collapsible item, sets linkIcon to "chevron down" */
-  collapsible?: boolean;
-  /** Item is expanded, sets linkIcon to "chevron up" */
-  expanded?: boolean;
   /** Title */
   title?: string;
   /** Optional description */
@@ -39,16 +35,17 @@ export interface ListItemProps extends ListItemBaseProps {
 
 export const ListItem = ({
   as = 'a',
+  className,
   color,
   loading,
+  collapsible,
+  expanded,
   size = 'sm',
   icon,
   avatar,
   avatarGroup,
   title,
   description,
-  collapsible,
-  expanded,
   badge,
   linkText,
   linkIcon,
@@ -58,24 +55,27 @@ export const ListItem = ({
   children,
   ...rest
 }: ListItemProps) => {
-  const applicableLinkIcon = collapsible && expanded ? 'chevron-up' : collapsible ? 'chevron-down' : linkIcon;
-
   return (
-    <ListItemBase
-      as={as}
-      size={size}
-      color={color}
-      loading={loading}
-      select={select}
-      controls={
-        controls || <ListItemControls linkIcon={applicableLinkIcon} linkText={linkText} menu={menu} badge={badge} />
-      }
-      {...rest}
-    >
-      <ListItemHeader loading={loading} size={size} icon={icon} avatar={avatar} avatarGroup={avatarGroup}>
-        <ListItemLabel loading={loading} title={title} description={description} size={size}>
-          {children}
-        </ListItemLabel>
+    <ListItemBase size={size} color={color} loading={loading} {...rest}>
+      <ListItemHeader
+        className={className}
+        loading={loading}
+        collapsible={collapsible}
+        expanded={expanded}
+        select={select}
+        size={size}
+        title={title}
+        description={description}
+        icon={icon}
+        avatar={avatar}
+        avatarGroup={avatarGroup}
+        linkIcon={linkIcon}
+        linkText={linkText}
+        badge={badge}
+        controls={controls}
+        menu={menu}
+      >
+        {children}
       </ListItemHeader>
     </ListItemBase>
   );

@@ -4,7 +4,7 @@ import { fn } from '@storybook/test';
 import { AttachmentList } from './AttachmentList';
 
 const meta = {
-  title: 'Atoms/Attachment/AttachmentList',
+  title: 'Attachment/AttachmentList',
   component: AttachmentList,
   tags: ['autodocs'],
   parameters: {

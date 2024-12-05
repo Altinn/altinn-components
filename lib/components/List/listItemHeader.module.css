@@ -1,7 +1,60 @@
 .header {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.link {
+  width: 100%;
+  align-self: stretch;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  text-decoration: none;
+  line-height: normal;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  appearance: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+.link {
   flex-grow: 1;
   display: flex;
   align-items: center;
   gap: 0.625rem;
-  padding: 0.5rem 0.625rem;
+  padding: 0.25rem 0.625rem;
+}
+
+.link[aria-disabled="true"] {
+  pointer-events: none;
+}
+
+.link:not([aria-disabled="true"]):hover h2 {
+  text-decoration: underline;
+}
+
+.link[data-size="xs"] {
+  min-height: 36px;
+}
+
+.link[data-size="sm"] {
+  min-height: 44px;
+}
+
+.link[data-size="md"] {
+  min-height: 56px;
+}
+
+.link[data-size="lg"] {
+  min-height: 64px;
+}
+
+.link[data-size="xl"] {
+  min-height: 72px;
 }

@@ -21,4 +21,5 @@ export * from './Searchbar';
 export * from './Snackbar';
 export * from './Toolbar';
 export * from './Page';
+export * from './Transmission';
 export * from './Typography';

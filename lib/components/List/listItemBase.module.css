@@ -2,68 +2,33 @@
   position: relative;
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: stretch;
+  flex-direction: column;
 }
-
-.item[aria-selected="true"] {
-  background-color: var(--theme-background-subtle);
-  outline: 2px solid;
-}
-
-/* disabled */
 
 .item[aria-disabled="true"] {
   pointer-events: none;
 }
 
-/* shadow */
-
 .item[data-shadow="xs"] {
   box-shadow: var(--ds-shadow-xs);
 }
 
-/* sizes */
-
-.item[data-size="xs"] {
-  min-height: 36px;
+.item:not([aria-disabled="true"]):hover {
+  outline: 2px solid var(--theme-border-strong);
 }
 
-.item[data-size="sm"] {
-  min-height: 44px;
-}
+/* default (white background) */
 
-.item[data-size="md"] {
-  min-height: 56px;
-}
-
-.item[data-size="lg"] {
-  min-height: 64px;
-}
-
-.item[data-size="xl"] {
-  min-height: 72px;
-}
-
-/* colors */
-
-.item {
+.item[data-color="default"] {
   background-color: var(--theme-background-default);
 }
 
-.item:not([aria-disabled="true"]):hover {
-  outline: 2px solid var(--theme-border-strong);
-  z-index: 2;
-}
+/*
+.item[data-color="default"]:not([aria-disabled="true"], [aria-selected="true"]):hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}*/
 
-.item:not([aria-disabled="true"]):hover strong,
-.item:not([aria-disabled="true"]):hover h2 {
-  text-decoration: underline;
-}
-
-.item[data-active="true"] {
-  background-color: var(--theme-surface-default);
-}
+/* surface color */
 
 .item[data-color="accent"] {
   background-color: var(--theme-surface-default);
@@ -73,27 +38,17 @@
   background-color: var(--theme-surface-hover);
 }
 
-/* reset link */
+/* active, selected, expanded */
 
-.link {
-  align-self: stretch;
-  padding: 0;
-  border: 0;
-  background-color: transparent;
-  color: inherit;
-  font: inherit;
-  text-align: inherit;
-  text-decoration: none;
-  line-height: normal;
-  -webkit-font-smoothing: inherit;
-  -moz-osx-font-smoothing: inherit;
-  appearance: none;
-  user-select: none;
-  cursor: pointer;
+.item[data-active="true"] {
+  background-color: var(--theme-surface-default);
 }
 
-.link {
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
+.item[aria-expanded="true"] {
+  outline: 2px solid;
+}
+
+.item[aria-selected="true"] {
+  background-color: var(--theme-background-subtle);
+  outline: 2px solid;
 }

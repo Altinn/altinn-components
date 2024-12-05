@@ -54,3 +54,56 @@ export const Attachments: Story = {
     },
   },
 };
+
+export const Transmissions: Story = {
+  args: {
+    size: 'sm',
+    summary: 'Leveransen er godkjent',
+    transmissions: {
+      title: '2 forsendelser',
+      items: [
+        {
+          sender: {
+            type: 'company',
+            name: 'Skatteetaten',
+            imageUrl:
+              'https://cdn.sanity.io/images/z3it2oa7/production/e16a4f384d1d5ed959e1d74f0626259711d67509-88x88.png?w=96',
+          },
+          title: 'Leveransen er godkjent',
+          badge: {
+            label: 'Godkjent',
+          },
+          attachments: {
+            title: '1 vedlegg',
+            items: [
+              {
+                href: '#',
+                label: 'Godkjent leveranse.pdf',
+              },
+            ],
+          },
+        },
+        {
+          title: 'Tredjepartsopplysninger ble levert',
+          sender: {
+            type: 'person',
+            name: 'Hassan El Fakiri',
+          },
+          attachments: {
+            title: '2 vedlegg',
+            items: [
+              {
+                href: '#',
+                label: '1-0 Castro.pdf',
+              },
+              {
+                href: '#',
+                label: '2-0 Kornvig.pdf',
+              },
+            ],
+          },
+        },
+      ],
+    },
+  },
+};

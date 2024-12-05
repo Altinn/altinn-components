@@ -1,16 +1,6 @@
-.item[aria-selected="true"] {
-  background-color: var(--theme-background-subtle);
-  outline: 2px solid;
-}
-
 .item[data-size="lg"],
 .item[data-size="md"] {
   padding: 1em;
-}
-
-.item[data-size="sm"],
-.item[data-size="xs"] {
-  padding: .5em .75em;
 }
 
 .select {

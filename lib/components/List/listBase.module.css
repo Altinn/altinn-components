@@ -4,6 +4,10 @@
   width: 100%;
 }
 
+.list[data-spacing="xs"] {
+  row-gap: 2px;
+}
+
 .list[data-spacing="sm"] {
   row-gap: 4px;
 }
@@ -16,16 +20,10 @@
   row-gap: 16px;
 }
 
-/*
-
-.list[data-spacing="none"] > :first-child {
-  border-top-left-radius: 0.25rem;
-  border-top-right-radius: 0.25rem;
+.list[data-color="white"] {
+  background-color: white;
 }
 
-.list[data-spacing="none"] > :last-child {
-  border-bottom-left-radius: 0.25rem;
-  border-bottom-right-radius: 0.25rem;
+.list[data-shadow="xs"] {
+  box-shadow: var(--ds-shadow-xs);
 }
-
-*/

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { DialogNav } from './DialogNav';
 
 const meta = {
-  title: 'Dialog/DialogNav',
+  title: 'Dialog/Sections/DialogNav',
   component: DialogNav,
   tags: ['autodocs'],
   parameters: {},
