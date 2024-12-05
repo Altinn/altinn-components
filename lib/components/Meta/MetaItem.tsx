@@ -19,6 +19,8 @@ export interface MetaItemProps {
   children?: ReactNode;
   /** classname */
   className?: string;
+  /** OnClick handler */
+  onClick?: () => void;
 }
 
 export const MetaItem = ({ loading, size = 'xs', variant = 'text', icon, children, ...rest }: MetaItemProps) => {

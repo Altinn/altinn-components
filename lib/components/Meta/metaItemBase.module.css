@@ -1,4 +1,19 @@
 .item {
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  text-decoration: none;
+  line-height: normal;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  appearance: none;
+  user-select: none;
+}
+
+.item {
   border: 1px;
   border-radius: 2px;
   color: var(--neutral-text-subtle);
@@ -9,9 +24,15 @@
   text-decoration: none;
 }
 
+.item strong {
+  font-weight: 500;
+  color: var(--neutral-text-default);
+}
+
 button.item:hover,
 a.item:hover {
   color: var(--theme-base-hover);
+  cursor: pointer;
 }
 
 .item[data-size="xs"] {

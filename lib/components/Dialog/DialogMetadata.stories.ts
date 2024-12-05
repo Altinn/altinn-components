@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { DialogMetadata } from './DialogMetadata';
 
 const meta = {
-  title: 'Dialog/DialogMetadata',
+  title: 'Dialog/Sections/DialogMetadata',
   component: DialogMetadata,
   tags: ['autodocs'],
   parameters: {},

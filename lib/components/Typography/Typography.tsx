@@ -11,13 +11,14 @@ export interface TypographyProps {
   theme?: LayoutTheme;
   className?: string;
   children?: ReactNode;
+  href?: string;
 }
 
-export const Typography = ({ as = 'div', size = 'md', theme, className, children }: TypographyProps) => {
+export const Typography = ({ as = 'div', size = 'md', theme, className, children, ...restProps }: TypographyProps) => {
   const Component = as;
 
   return (
-    <Component className={cx(styles.typography, className)} data-size={size} data-theme={theme}>
+    <Component className={cx(styles.typography, className)} data-size={size} data-theme={theme} {...restProps}>
       {children}
     </Component>
   );

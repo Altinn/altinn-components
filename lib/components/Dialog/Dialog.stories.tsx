@@ -109,6 +109,191 @@ export const Attachments: Story = {
   },
 };
 
+export const Transmissions: Story = {
+  args: {
+    sender: {
+      type: 'company',
+      name: 'Skatteetaten',
+      imageUrl:
+        'https://cdn.sanity.io/images/z3it2oa7/production/e16a4f384d1d5ed959e1d74f0626259711d67509-88x88.png?w=96',
+    },
+    title: 'Tredjepartsopplysninger for boligselskap',
+    summary:
+      'Her finner du alle innsendinger og tilbakemeldinger for tredjepartsopplysninger for boligselskap 2023. Frist for å levere er 20. januar 2024.',
+    actions: [
+      {
+        label: 'Lever tredjepartsopplysninger',
+      },
+    ],
+    additionalInfo: (
+      <p>
+        Sameier med 9 eller flere boligseksjoner skal levere opplysninger om sameiers andel av felles inntekter,
+        utgifter, formue og gjeld. <a href="https://altinn.no">Mer informasjon.</a>
+      </p>
+    ),
+    history: {
+      title: 'Hva har skjedd?',
+      items: [
+        {
+          createdAtLabel: '15. februar 2024 kl. 08.45',
+          createdBy: {
+            type: 'company',
+            name: 'Skatteetaten',
+            imageUrl:
+              'https://cdn.sanity.io/images/z3it2oa7/production/e16a4f384d1d5ed959e1d74f0626259711d67509-88x88.png?w=96',
+          },
+          summary: 'Skjemaet er lukket for rapportering og korreksjoner.',
+        },
+        {
+          createdAtLabel: '2. januar 2024 kl 08.00',
+          createdBy: {
+            type: 'company',
+            name: 'Skatteetaten',
+            imageUrl:
+              'https://cdn.sanity.io/images/z3it2oa7/production/e16a4f384d1d5ed959e1d74f0626259711d67509-88x88.png?w=96',
+          },
+          summary: 'Du kan nå levere tredjepartsopplysninger.',
+        },
+        {
+          createdAtLabel: '15. oktober 2023 kl 08.00',
+          createdBy: {
+            type: 'company',
+            name: 'Skatteetaten',
+            imageUrl:
+              'https://cdn.sanity.io/images/z3it2oa7/production/e16a4f384d1d5ed959e1d74f0626259711d67509-88x88.png?w=96',
+          },
+          summary: 'Du må levere tredjepartsopplysninger for boligselskap.',
+          attachments: [
+            {
+              label: 'Rapportering av tredjepartsopplysninger for boligselskap.pdf',
+            },
+          ],
+        },
+      ],
+    },
+    transmissions: {
+      title: '6 forsendelser',
+      items: [
+        {
+          createdAt: '1999-01-01',
+          createdAtLabel: 'Skatteetaten, 1. mars 2024',
+          sender: {
+            type: 'company',
+            name: 'Skatteetaten',
+            imageUrl:
+              'https://cdn.sanity.io/images/z3it2oa7/production/e16a4f384d1d5ed959e1d74f0626259711d67509-88x88.png?w=96',
+          },
+          badge: {
+            label: 'Godkjent, med feil',
+          },
+          title: 'Leveransen er godkjent, men inneholder feil',
+          summary:
+            'Skatteetaten har godkjent leveransen, men det er feil i oppgaver du må se nærmere på. Se tilbakemelding of feilliste under.',
+          attachments: {
+            title: '2 vedlegg',
+            items: [
+              {
+                label: 'Dokument 1.pdf',
+                href: '',
+              },
+              {
+                label: 'Dokument 2.pdf',
+                href: '',
+              },
+            ],
+          },
+        },
+        {
+          sender: {
+            name: 'Per Olav Olsen',
+          },
+          title: 'Tredjepartsopplysninger ble levert',
+          createdAtLabel: '1. mars 2024',
+          summary:
+            'Skatteetaten har godkjent leveransen, men det er feil i oppgaver du må se nærmere på. Se tilbakemelding of feilliste under.',
+        },
+        {
+          createdAt: '1999-01-01',
+          createdAtLabel: 'Skatteetaten, 1. mars 2024',
+          sender: {
+            type: 'company',
+            name: 'Skatteetaten',
+            imageUrl:
+              'https://cdn.sanity.io/images/z3it2oa7/production/e16a4f384d1d5ed959e1d74f0626259711d67509-88x88.png?w=96',
+          },
+          badge: {
+            label: 'Godkjent',
+          },
+          title: 'Leveransen er godkjent',
+          summary:
+            'Skatteetaten har godkjent leveransen, men det er feil i oppgaver du må se nærmere på. Se tilbakemelding of feilliste under.',
+          attachments: {
+            title: '2 vedlegg',
+            items: [
+              {
+                label: 'Dokument 1.pdf',
+                href: '',
+              },
+              {
+                label: 'Dokument 2.pdf',
+                href: '',
+              },
+            ],
+          },
+        },
+        {
+          sender: {
+            name: 'Kari Susanne Pettersen',
+          },
+          title: 'Tredjepartsopplysninger ble levert',
+          createdAtLabel: '1. mars 2024',
+          summary:
+            'Skatteetaten har godkjent leveransen, men det er feil i oppgaver du må se nærmere på. Se tilbakemelding of feilliste under.',
+        },
+
+        {
+          createdAt: '1999-01-01',
+          createdAtLabel: 'Skatteetaten, 1. mars 2024',
+          sender: {
+            type: 'company',
+            name: 'Skatteetaten',
+            imageUrl:
+              'https://cdn.sanity.io/images/z3it2oa7/production/e16a4f384d1d5ed959e1d74f0626259711d67509-88x88.png?w=96',
+          },
+          badge: {
+            label: 'Avvist',
+          },
+          title: 'Leveransen er avvist',
+          summary:
+            'Skatteetaten har godkjent leveransen, men det er feil i oppgaver du må se nærmere på. Se tilbakemelding of feilliste under.',
+          attachments: {
+            title: '2 vedlegg',
+            items: [
+              {
+                label: 'Dokument 1.pdf',
+                href: '',
+              },
+              {
+                label: 'Dokument 2.pdf',
+                href: '',
+              },
+            ],
+          },
+        },
+        {
+          sender: {
+            name: 'Siren Søftebø',
+          },
+          title: 'Tredjepartsopplysninger ble levert',
+          createdAtLabel: '1. mars 2024',
+          summary:
+            'Skatteetaten har godkjent leveransen, men det er feil i oppgaver du må se nærmere på. Se tilbakemelding of feilliste under.',
+        },
+      ],
+    },
+  },
+};
+
 export const Actions: Story = {
   args: {
     actions: [

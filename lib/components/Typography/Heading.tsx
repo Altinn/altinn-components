@@ -2,7 +2,7 @@ import cx from 'classnames';
 import type { ReactNode } from 'react';
 import styles from './heading.module.css';
 
-export type HeadingSize = 'sm' | 'md' | 'lg';
+export type HeadingSize = 'xs' | 'sm' | 'md' | 'lg';
 export type HeadingComponent = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
 export interface HeadingProps {

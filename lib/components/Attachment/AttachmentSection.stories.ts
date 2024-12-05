@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { DialogAttachments } from './DialogAttachments';
+import { AttachmentSection } from './AttachmentSection';
 
 const meta = {
-  title: 'Dialog/Sections/DialogAttachments',
-  component: DialogAttachments,
+  title: 'Attachment/AttachmentSection',
+  component: AttachmentSection,
   tags: ['autodocs'],
   args: {
     title: '6 vedlegg',
@@ -28,7 +28,7 @@ const meta = {
       },
     ],
   },
-} satisfies Meta<typeof DialogAttachments>;
+} satisfies Meta<typeof AttachmentSection>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
