@@ -55,7 +55,7 @@ export const Header = ({ search, menu, currentAccount, logo = {}, badge }: Heade
           label={menu?.menuLabel}
         />
         {menu && (
-          <DropdownBase padding={false} placement="right" expanded={currentId === 'menu'} className={styles.dropdown}>
+          <DropdownBase padding={true} placement="right" expanded={currentId === 'menu'} className={styles.dropdown}>
             <GlobalMenu {...menu} currentAccount={currentAccount} />
           </DropdownBase>
         )}

@@ -3,22 +3,15 @@
 }
 
 .dropdown[aria-expanded="true"] {
-  width: 320px;
   display: none;
 }
 
 @media (min-width: 1024px) {
   .dropdown[aria-expanded="true"] {
+    width: 320px;
     display: block;
   }
-}
-
-@media (min-width: 1024px) {
   .drawer[aria-expanded="true"] {
     display: none;
-  }
-
-  .dropdown[aria-expanded="true"] {
-    display: block;
   }
 }
