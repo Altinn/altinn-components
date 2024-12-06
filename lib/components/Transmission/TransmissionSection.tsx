@@ -1,5 +1,5 @@
 import { type TransmissionItemProps, TransmissionList } from '../Transmission';
-import type { ToolbarSearchProps, ToolbarFilterProps } from '../Toolbar';
+import { Toolbar, type ToolbarSearchProps, type ToolbarFilterProps } from '../Toolbar';
 import { Heading } from '../Typography';
 
 export interface TransmissionSectionProps {
@@ -19,7 +19,9 @@ export const TransmissionSection = ({ search, filters, title = 'Transmissions', 
       <Heading as="h2" size="xs">
         {title}
       </Heading>
-      <TransmissionList search={search} filters={filters} items={items} />
+      {(search || filters) && <Toolbar search={search} filters={filters} />}
+
+      <TransmissionList items={items} />
     </section>
   );
 };

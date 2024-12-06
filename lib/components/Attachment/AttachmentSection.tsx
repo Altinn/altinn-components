@@ -1,5 +1,5 @@
 import { type AttachmentLinkProps, AttachmentList } from '../Attachment';
-import { Heading, Typography } from '../Typography';
+import { Heading } from '../Typography';
 
 export interface AttachmentSectionProps {
   title?: string;

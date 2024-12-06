@@ -122,3 +122,59 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {},
 };
+
+export const ActivityLog: Story = {
+  args: {
+    items: [
+      {
+        createdAt: '2004-01-02 08:00',
+        createdAtLabel: '2. januar 2024 kl 08.00',
+        summary: 'Dialogen ble flyttet til papirkurven.',
+      },
+      {
+        createdAt: '2003-10-15 08:00',
+        createdAtLabel: '15. oktober 2023 kl 08.00',
+        createdBy: {
+          type: 'company',
+          name: 'Skatteetaten',
+          imageUrl:
+            'https://cdn.sanity.io/images/z3it2oa7/production/e16a4f384d1d5ed959e1d74f0626259711d67509-88x88.png?w=96',
+        },
+        summary: 'Du må levere tredjepartsopplysninger for boligselskap.',
+        attachments: {
+          title: '1 vedlegg',
+          items: [
+            {
+              href: '#',
+              label: 'Rapportering av tredjepartsopplysninger for boligselskap.pdf',
+            },
+          ],
+        },
+      },
+      {
+        size: 'xs',
+        createdAt: '2004-01-02 08:00',
+        createdAtLabel: '2. januar 2024 kl 08.00',
+        summary: 'Utkast lagret.',
+      },
+      {
+        size: 'xs',
+        createdAt: '2004-01-02 08:00',
+        createdAtLabel: '2. januar 2024 kl 08.00',
+        summary: 'Skjema opprettet.',
+      },
+      {
+        size: 'xs',
+        createdAt: '2004-01-02 08:00',
+        createdAtLabel: '2. januar 2024 kl 08.00',
+        summary: 'Dialogen ble flyttet til arkivet.',
+      },
+      {
+        size: 'xs',
+        createdAt: '2004-01-02 08:00',
+        createdAtLabel: '2. januar 2024 kl 08.00',
+        summary: 'Dialogen ble opprettet.',
+      },
+    ],
+  },
+};

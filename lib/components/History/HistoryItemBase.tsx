@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import type { AvatarProps } from '../Avatar/';
 import type { IconName } from '../Icon/';
-import { MetaBase, MetaItem, MetaTimestamp } from '../Meta/';
+import { MetaTimestamp } from '../Meta/';
 import { HistoryBorder } from './HistoryBorder';
 import { HistoryItemMedia } from './HistoryItemMedia';
 import { Typography, type TypographySize } from '../Typography';
