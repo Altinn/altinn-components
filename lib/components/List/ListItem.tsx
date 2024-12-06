@@ -74,6 +74,7 @@ export const ListItem = ({
         badge={badge}
         controls={controls}
         menu={menu}
+        {...rest}
       >
         {children}
       </ListItemHeader>
