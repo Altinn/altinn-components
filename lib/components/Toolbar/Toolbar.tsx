@@ -145,7 +145,7 @@ export const Toolbar = ({
           onToggle={() => onToggle('add-filter', '')}
           items={hiddenFilters.map((item) => ({
             id: item.name,
-            label: item.label,
+            title: item.label,
             name: item.name,
             onClick: () => {
               onFilterAdd(item.name);
