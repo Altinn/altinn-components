@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0](https://github.com/Altinn/altinn-components/compare/v0.7.5...v0.8.0) (2024-12-09)
+
+
+### Features
+
+* transmission list + history + bookmarks: ([#115](https://github.com/Altinn/altinn-components/issues/115)) ([f5686c6](https://github.com/Altinn/altinn-components/commit/f5686c62ec49c96d64fbcdd1ce88b7cf4686425e))
+
 ## [0.7.5](https://github.com/Altinn/altinn-components/compare/v0.7.4...v0.7.5) (2024-12-05)
 
 
