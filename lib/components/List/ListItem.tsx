@@ -37,7 +37,6 @@ export interface ListItemInputProps extends ListItemProps {
 }
 
 export const ListItem = ({
-  as = 'a',
   className,
   color,
   loading,
