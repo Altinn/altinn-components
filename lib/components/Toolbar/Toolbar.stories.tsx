@@ -23,13 +23,15 @@ export const Default: Story = {
           avatar: {
             name: 'Ola Nordmann',
           },
-          label: 'Ola Nordmann',
+          title: 'Ola Nordmann',
+          id: 'ola',
         },
         {
           avatar: {
             name: 'Kari Nordmann',
           },
-          label: 'Kari Nordmann',
+          title: 'Kari Nordmann',
+          id: 'kari',
         },
       ],
     },
@@ -121,8 +123,8 @@ export const Default: Story = {
 export const CustomFilterLabel: Story = {
   args: {
     ...Default.args,
-    getFilterLabel: (name, value) => {
-      return Array.isArray(value) && value.length > 1 ? `${value.length} selected` : value;
+    getFilterLabel: (_, value) => {
+      return (Array.isArray(value) && value.length > 1 ? `${value.length} selected` : value) as string;
     },
   },
 };
