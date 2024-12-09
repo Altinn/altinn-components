@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.2](https://github.com/Altinn/altinn-components/compare/v0.8.1...v0.8.2) (2024-12-09)
+
+
+### Bug Fixes
+
+* hidden filters in toolbar was not displaying label ([#121](https://github.com/Altinn/altinn-components/issues/121)) ([c206999](https://github.com/Altinn/altinn-components/commit/c20699963f1b1cf6a729c61f0ca24ed8ee0e7fe5))
+
 ## [0.8.1](https://github.com/Altinn/altinn-components/compare/v0.8.0...v0.8.1) (2024-12-09)
 
 
