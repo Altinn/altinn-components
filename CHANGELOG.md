@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.1](https://github.com/Altinn/altinn-components/compare/v0.8.0...v0.8.1) (2024-12-09)
+
+
+### Bug Fixes
+
+* list item “as” prop was not sent to ListItemHeader ([#118](https://github.com/Altinn/altinn-components/issues/118)) ([ccefe4c](https://github.com/Altinn/altinn-components/commit/ccefe4cf7722dea8b4eddf8c73d43a986869beb9))
+
 ## [0.8.0](https://github.com/Altinn/altinn-components/compare/v0.7.5...v0.8.0) (2024-12-09)
 
 
