@@ -18,13 +18,12 @@ export const ListItemLabel = ({ loading = false, size = 'sm', title, description
         children
       ) : (
         <>
-          <strong className={styles.title} data-size={size}>
+          <h2 className={styles.title} data-size={size}>
             <Skeleton loading={loading}>{title}</Skeleton>
-          </strong>
-
-          <span className={styles.description} data-size={size}>
+          </h2>{' '}
+          <p className={styles.description} data-size={size}>
             <Skeleton loading={loading}>{description}</Skeleton>
-          </span>
+          </p>
         </>
       )}
     </span>

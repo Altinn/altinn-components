@@ -9,7 +9,12 @@ export interface DialogActivityLogProps {
   href?: string;
 }
 
-export const DialogActivityLog = ({ size = 'xs', label = 'Activity log', ...rest }: DialogActivityLogProps) => {
+export const DialogActivityLog = ({
+  size = 'xs',
+  label = 'Activity log',
+  onClick,
+  ...rest
+}: DialogActivityLogProps) => {
   return (
     <MetaItem {...rest} size={size} icon={'clock-dashed'}>
       {label}

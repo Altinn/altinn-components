@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Fragment, useState } from 'react';
 
-import { Button, List, ListBase, ListItem, MetaItem } from '../';
+import { Button, List, ListBase, ListItem, ListItemBase, ListItemHeader, MetaItem } from '../';
 
 const sizes = ['lg', 'md', 'sm', 'xs'];
 
@@ -135,8 +135,8 @@ export const Controls = (args) => {
         linkIcon="chevron-right"
         menu={{
           items: [
-            { label: 'Innstillinger', icon: 'cog' },
-            { label: 'Aktivitetslogg', icon: 'clock-dashed' },
+            { title: 'Innstillinger', icon: 'cog' },
+            { title: 'Aktivitetslogg', icon: 'clock-dashed' },
           ],
         }}
       />
@@ -266,8 +266,8 @@ export const Collapsible = (args) => {
   };
 
   return (
-    <Fragment>
-      <ListItem
+    <ListItemBase>
+      <ListItemHeader
         {...args}
         avatarGroup={avatarGroup}
         collapsible={true}
@@ -276,6 +276,6 @@ export const Collapsible = (args) => {
         as="button"
       />
       {expanded && <List size="sm" spacing="none" items={items} />}
-    </Fragment>
+    </ListItemBase>
   );
 };

@@ -1,9 +1,9 @@
 import type { ElementType, ReactElement } from 'react';
 import type { BadgeProps } from '../Badge';
-import { ListItem, type ListItemProps } from '../List/';
+import { ListItem, type ListItemInputProps } from '../List/';
 import styles from './scopeListItem.module.css';
 
-export interface ScopeListItemProps extends ListItemProps {
+export interface ScopeListItemProps extends ListItemInputProps {
   as?: ElementType;
   href?: string;
   onClick?: () => void;

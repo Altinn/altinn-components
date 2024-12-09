@@ -1,13 +1,15 @@
 import { MetaBase } from '../Meta';
 import { DialogActivityLog, type DialogActivityLogProps } from './DialogActivityLog';
 import { DialogArticleBase } from './DialogArticleBase';
-import { DialogAttachments, type DialogAttachmentsProps } from './DialogAttachments';
 import { DialogBase } from './DialogBase';
 import { DialogBodyBase } from './DialogBodyBase';
 import { DialogContent } from './DialogContent';
 import { DialogFooter } from './DialogFooter';
 import { DialogHeader } from './DialogHeader';
 import { DialogSeenBy, type DialogSeenByProps } from './DialogSeenBy';
+
+import { AttachmentSection, type AttachmentSectionProps } from '../Attachment';
+import { TransmissionSection, type TransmissionSectionProps } from '../Transmission';
 
 import type { ContextMenuProps } from '../ContextMenu/';
 
@@ -47,14 +49,16 @@ export interface DialogProps {
   body?: ReactNode;
   /** List of action (buttons) */
   actions?: DialogActionButtonProps[];
-  /** Dialog attachments */
-  attachments?: DialogAttachmentsProps;
   /** Dialog is seen by the end user or others */
   seenBy?: DialogSeenByProps;
   /** Activity Log */
   activityLog?: DialogActivityLogProps;
   /** More information about the dialog, process, etc. */
   additionalInfo?: ReactNode;
+  /** Dialog attachments */
+  attachments?: AttachmentSectionProps;
+  /** Dialog transmissions */
+  transmissions?: TransmissionSectionProps;
   /** History */
   history?: DialogHistoryProps;
 }
@@ -82,6 +86,7 @@ export const Dialog = ({
   seenBy,
   activityLog,
   additionalInfo,
+  transmissions,
 }: DialogProps) => {
   return (
     <DialogBase>
@@ -90,8 +95,9 @@ export const Dialog = ({
         <DialogHeader title={title} sender={sender} recipient={recipient} seen={false} variant="neutral" />
         <DialogBodyBase>
           <DialogContent updatedAt={updatedAt} updatedAtLabel={updatedAtLabel} summary={summary} body={body} />
-          {attachments && <DialogAttachments {...attachments} />}
+          {attachments && <AttachmentSection {...attachments} />}
           {actions?.length > 0 && <DialogActions items={actions} />}
+          {transmissions && <TransmissionSection {...transmissions} />}
           <MetaBase>
             {seenBy && <DialogSeenBy {...seenBy} />}
             {activityLog && <DialogActivityLog {...activityLog} />}

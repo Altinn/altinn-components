@@ -1,7 +1,6 @@
 .label {
-  display: inline-flex;
+  display: inline;
   font-weight: normal;
-  align-items: center;
 }
 
 .label[data-size="xs"] {

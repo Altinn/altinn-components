@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { DialogSeenBy } from './DialogSeenBy';
 
 const meta = {
-  title: 'Dialog/Atoms/DialogSeenBy',
+  title: 'Dialog/Sections/DialogSeenBy',
   component: DialogSeenBy,
   tags: ['autodocs'],
   parameters: {},

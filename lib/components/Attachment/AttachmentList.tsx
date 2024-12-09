@@ -14,10 +14,10 @@ export const AttachmentList = ({ size, items }: AttachmentListProps) => {
 
   return (
     <ul className={styles.list} data-size={size}>
-      {items.map((item, index) => {
+      {items.map((item) => {
         return (
-          <li key={index} className={styles.item}>
-            <AttachmentLink {...item} key={'attachment' + index} />
+          <li key={item.href} className={styles.item}>
+            <AttachmentLink {...item} size={size} />
           </li>
         );
       })}

@@ -1,14 +1,13 @@
-import { ListBase, type ListSpacing } from '..';
+import { ListBase } from '..';
 import { BookmarksListItem, type BookmarksListItemProps } from './BookmarksListItem';
 
 export interface BookmarksListProps {
   items: BookmarksListItemProps[];
-  spacing: ListSpacing;
 }
 
-export const BookmarksList = ({ items, spacing }: BookmarksListProps) => {
+export const BookmarksList = ({ items }: BookmarksListProps) => {
   return (
-    <ListBase spacing={spacing}>
+    <ListBase spacing="xs">
       {items?.map((item) => (
         <BookmarksListItem {...item} key={item.id} />
       ))}

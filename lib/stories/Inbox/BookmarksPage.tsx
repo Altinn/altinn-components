@@ -18,11 +18,11 @@ export function BookmarksPage() {
     items: [
       {
         icon: "pencil",
-        label: "Rediger søk"
+        title: "Rediger søk"
       },
       {
         icon: "trash",
-        label: "Slett søk"
+        title: "Slett søk"
       }
     ]
   }

@@ -1,21 +1,21 @@
 import { type AttachmentLinkProps, AttachmentList } from '../Attachment';
-import { MetaItem } from '../Meta';
+import { Heading } from '../Typography';
 
-export interface HistoryAttachmentsProps {
+export interface AttachmentSectionProps {
   title?: string;
   items?: AttachmentLinkProps[];
 }
 
-export const HistoryAttachments = ({ title = 'Attachments', items }: HistoryAttachmentsProps) => {
+export const AttachmentSection = ({ title = 'Attachments', items }: AttachmentSectionProps) => {
   if (!items?.length) {
     return null;
   }
 
   return (
     <section>
-      <MetaItem as="h2" size="xs">
+      <Heading as="h2" size="xs">
         {title}
-      </MetaItem>
+      </Heading>
       <AttachmentList size="lg" items={items} />
     </section>
   );

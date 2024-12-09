@@ -1,7 +1,9 @@
 import { Icon, type IconName } from '../Icon';
+import { Typography, type TypographySize } from '../Typography';
 import styles from './attachmentLink.module.css';
 
 export interface AttachmentLinkProps {
+  size?: TypographySize;
   /** Link url */
   href: string;
   /** Label (filename) */
@@ -10,11 +12,11 @@ export interface AttachmentLinkProps {
   icon?: IconName;
 }
 
-export const AttachmentLink = ({ icon = 'file', href, label }: AttachmentLinkProps) => {
+export const AttachmentLink = ({ size = 'lg', icon = 'file', href, label }: AttachmentLinkProps) => {
   return (
-    <a href={href} className={styles.link}>
+    <Typography as="a" href={href} size={size} className={styles.link}>
       <Icon name={icon} className={styles.icon} />
       <span className={styles.label}>{label}</span>
-    </a>
+    </Typography>
   );
 };

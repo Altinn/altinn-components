@@ -1,5 +1,5 @@
 import type { ElementType } from 'react';
-import { ListItemBase, type ListItemBaseProps, ListItemLabel } from '../List';
+import { ListItem, type ListItemColor, ListItemLabel } from '../List';
 import { DialogBorder } from './DialogBorder';
 import { DialogDescription } from './DialogDescription';
 import { DialogHeaderBase } from './DialogHeaderBase';
@@ -17,11 +17,13 @@ export type DialogListItemVariant = 'neutral' | 'draft' | 'trashed' | 'archived'
 
 import styles from './dialogListItem.module.css';
 
-export interface DialogListItemProps extends ListItemBaseProps {
+export interface DialogListItemProps {
   /** Dialog title */
   title: string;
   /** Dialog description */
   description?: string;
+  /** Dialog summary (will override description) */
+  summary?: string;
   /** Dialog is loading */
   loading?: boolean;
   /** Render as */
@@ -32,6 +34,8 @@ export interface DialogListItemProps extends ListItemBaseProps {
   variant?: DialogListItemVariant;
   /** Link */
   href?: string;
+  /** OnClick handler */
+  onClick?: () => void;
   /** Select: Use to support batch operations */
   select?: DialogSelectProps;
   /** Dialog is selected */
@@ -60,8 +64,12 @@ export interface DialogListItemProps extends ListItemBaseProps {
   trashedAt?: string;
   /** Deleted label */
   trashedAtLabel?: string;
+  /** Tab index */
+  tabIndex?: number;
   /** Custom label */
   label?: string;
+  /** *Custom background color */
+  color?: ListItemColor;
   /** Dialog has been seen */
   seen?: boolean;
   /** Dialog is seen by the user */
@@ -70,8 +78,6 @@ export interface DialogListItemProps extends ListItemBaseProps {
   touchedBy?: DialogTouchedByActor[];
   /** Number of attachments */
   attachmentsCount?: number;
-  /** OnClick handler */
-  onClick?: () => void;
   /** Group id */
   groupId?: string;
 }
@@ -106,23 +112,24 @@ export const DialogListItem = ({
   attachmentsCount,
   title,
   description,
+  summary,
   ...rest
 }: DialogListItemProps) => {
   const applicableVariant = trashedAt ? 'trashed' : archivedAt ? 'archived' : variant;
 
   if (size === 'xs' || size === 'sm') {
     return (
-      <ListItemBase {...rest} loading={loading} size={size} className={styles.item}>
+      <ListItem {...rest} loading={loading} size={size} className={styles.item}>
         <DialogBorder className={styles.border} size={size} seen={seen} loading={loading}>
-          <ListItemLabel loading={loading} size={size} title={title} description={description} />
+          <ListItemLabel loading={loading} size={size} title={title} description={summary || description} />
           <DialogMetadata loading={loading} updatedAt={updatedAt} updatedAtLabel={updatedAtLabel} />
         </DialogBorder>
-      </ListItemBase>
+      </ListItem>
     );
   }
 
   return (
-    <ListItemBase
+    <ListItem
       {...rest}
       loading={loading}
       size={size}
@@ -137,7 +144,7 @@ export const DialogListItem = ({
           <DialogHeadings loading={loading} size={size} grouped={grouped} sender={sender} recipient={recipient} />
         </DialogHeaderBase>
         <DialogDescription loading={loading} size={size}>
-          {description}
+          {summary || description}
         </DialogDescription>
         <footer data-size={size} className={styles.footer}>
           <DialogMetadata
@@ -159,6 +166,6 @@ export const DialogListItem = ({
           )}
         </footer>
       </DialogBorder>
-    </ListItemBase>
+    </ListItem>
   );
 };

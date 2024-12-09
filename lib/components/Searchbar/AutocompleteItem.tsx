@@ -39,14 +39,14 @@ export type AutocompleteItemProps =
 export const AutocompleteItem = ({ type, ...props }: AutocompleteItemProps) => {
   switch (type) {
     case 'scope':
-      return <ScopeListItem {...(props as ScopeAutocompleteItemProps)} shadow="none" tabIndex={-1} />;
+      return <ScopeListItem {...(props as ScopeAutocompleteItemProps)} color="transparent" tabIndex={-1} />;
     case 'bookmark':
-      return <BookmarksListItem {...(props as BookmarksListItemProps)} shadow="none" size="sm" tabIndex={-1} />;
+      return <BookmarksListItem {...(props as BookmarksListItemProps)} color="transparent" size="sm" tabIndex={-1} />;
     case 'dialog':
-      return <DialogListItem {...(props as DialogListItemProps)} shadow="none" size="sm" tabIndex={-1} />;
+      return <DialogListItem {...(props as DialogListItemProps)} color="transparent" size="sm" tabIndex={-1} />;
     case 'information':
-      return <ListItem {...(props as ListItemProps)} shadow="none" tabIndex={-1} disabled={true} />;
+      return <ListItem {...(props as ListItemProps)} color="transparent" tabIndex={-1} disabled />;
     default:
-      return <ListItem {...(props as ListItemProps)} shadow="none" size="sm" tabIndex={-1} />;
+      return <ListItem {...(props as ListItemProps)} color="transparent" size="sm" tabIndex={-1} />;
   }
 };

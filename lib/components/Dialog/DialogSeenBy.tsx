@@ -24,6 +24,7 @@ export const DialogSeenBy = ({
   label = 'Seen by label',
   seenByEndUser = false,
   seenByOthersCount = 0,
+  onClick,
   ...rest
 }: DialogSeenByProps) => {
   const seen = seenByEndUser || seenByOthersCount > 0;
