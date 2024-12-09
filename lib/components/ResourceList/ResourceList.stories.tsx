@@ -1,43 +1,43 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { ResourceList } from "./ResourceList";
+import type { Meta, StoryObj } from '@storybook/react';
+import { ResourceList } from './ResourceList';
 
 const items = [
   {
-    title: "Utlån av bøker",
-    description: "Nasjonalbiblioteket",
+    title: 'Utlån av bøker',
+    description: 'Nasjonalbiblioteket',
     avatar: {
-      name: "Nasjonalbiblioteket",
-      imageUrl: "https://altinncdn.no/orgs/nbib/nasjonalbiblioteket.png",
-      imageUrlAlt: "nasjonalbiblioteket logo",
+      name: 'Nasjonalbiblioteket',
+      imageUrl: 'https://altinncdn.no/orgs/nbib/nasjonalbiblioteket.png',
+      imageUrlAlt: 'nasjonalbiblioteket logo',
     },
   },
   {
-    title: "Fiskekvoter",
-    description: "Fiskeridirektoratet",
+    title: 'Fiskekvoter',
+    description: 'Fiskeridirektoratet',
     avatar: {
-      name: "Fiskeridirektoratet",
-      imageUrl: "https://altinncdn.no/orgs/fd/fiskeridirektoratet.png",
-      imageUrlAlt: "fiskeridirektoratet logo",
+      name: 'Fiskeridirektoratet',
+      imageUrl: 'https://altinncdn.no/orgs/fd/fiskeridirektoratet.png',
+      imageUrlAlt: 'fiskeridirektoratet logo',
     },
   },
   {
-    title: "Tolldeklarasjon",
-    description: "Toll- og avgiftsdirektoratet",
+    title: 'Tolldeklarasjon',
+    description: 'Toll- og avgiftsdirektoratet',
     avatar: {
-      name: "Toll- og avgiftsdirektoratet",
+      name: 'Toll- og avgiftsdirektoratet',
     },
   },
 ];
 
 const meta = {
-  title: "Resource/List",
+  title: 'Resource/List',
   component: ResourceList,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
   args: {
-    spacing: "md",
+    spacing: 'md',
     items,
-    size: "md",
+    size: 'md',
   },
 } satisfies Meta<typeof ResourceList>;
 
