@@ -7,7 +7,7 @@ export interface ScopeListItemProps extends ListItemInputProps {
   as?: ElementType;
   href?: string;
   onClick?: () => void;
-  badge: BadgeProps;
+  badge?: BadgeProps;
   loading?: boolean;
   label?: string | (() => ReactElement);
 }
