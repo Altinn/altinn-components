@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { attachments } from '../../examples/attachments.ts';
 import { AttachmentSection } from './AttachmentSection';
 
 const meta = {
@@ -7,26 +8,7 @@ const meta = {
   tags: ['autodocs'],
   args: {
     title: '6 vedlegg',
-    items: [
-      {
-        label: 'A10-01 Situasjonsplan.pdf',
-      },
-      {
-        label: 'A40-01 Fasade Nord Ny.pdf',
-      },
-      {
-        label: 'A40-01 Fasade Øst.pdf',
-      },
-      {
-        label: 'Tegning ny fasade.pdf',
-      },
-      {
-        label: 'Tegning nytt snitt.pdf',
-      },
-      {
-        label: 'Redegjørelse estetikk.pdf',
-      },
-    ],
+    items: attachments,
   },
 } satisfies Meta<typeof AttachmentSection>;
 

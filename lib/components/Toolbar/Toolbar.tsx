@@ -1,19 +1,19 @@
 'use client';
 import { type ReactNode, useMemo, useState } from 'react';
 import { useRootContext } from '../RootProvider';
+import { ToolbarAccountMenu, type ToolbarAccountMenuProps } from './ToolbarAccountMenu.tsx';
 import { ToolbarAdd } from './ToolbarAdd';
 import { ToolbarBase } from './ToolbarBase';
 import { ToolbarFilter, type ToolbarFilterProps } from './ToolbarFilter.tsx';
-import { ToolbarMenu, type ToolbarMenuProps } from './ToolbarMenu.tsx';
 import type { ToolbarOptionType } from './ToolbarOptions.tsx';
 import { ToolbarSearch, type ToolbarSearchProps } from './ToolbarSearch.tsx';
 
 export type FilterState = Record<string, ToolbarFilterProps['value']>;
 
 export interface ToolbarProps {
+  accountMenu?: ToolbarAccountMenuProps;
   filters?: ToolbarFilterProps[];
   search?: ToolbarSearchProps;
-  menu?: ToolbarMenuProps;
   filterState?: FilterState;
   getFilterLabel?: (name: string, value: ToolbarFilterProps['value']) => string;
   onFilterStateChange?: (state: FilterState) => void;
@@ -28,7 +28,7 @@ export const Toolbar = ({
   filterState,
   onFilterStateChange,
   search,
-  menu,
+  accountMenu,
   getFilterLabel,
   children,
   showResultsLabel,
@@ -97,7 +97,7 @@ export const Toolbar = ({
 
   return (
     <ToolbarBase>
-      {menu && <ToolbarMenu {...menu} />}
+      {accountMenu && <ToolbarAccountMenu {...accountMenu} />}
       {search && <ToolbarSearch {...search} />}
       {visibleFilters.map((item) => {
         return (

@@ -5,19 +5,19 @@ import { DialogTitle } from './DialogTitle';
 
 export interface DialogHeaderProps {
   title: string;
-  seen: boolean;
   variant: DialogListItemVariant;
   sender?: DialogSenderProps;
+  seen?: boolean;
   recipient?: DialogRecipientProps;
 }
 
-export const DialogHeader = ({ title, sender, recipient, seen, variant }: DialogHeaderProps) => {
+export const DialogHeader = ({ title, sender, recipient, seen = false, variant }: DialogHeaderProps) => {
   return (
     <DialogHeaderBase size="xl">
       <DialogTitle seen={seen} size="xl" variant={variant}>
         {title}
       </DialogTitle>
-      <DialogHeadings size="xl" sender={sender} recipient={recipient} />
+      {sender && recipient && <DialogHeadings size="xl" sender={sender} recipient={recipient} />}
     </DialogHeaderBase>
   );
 };

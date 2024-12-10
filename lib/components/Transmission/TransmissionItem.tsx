@@ -2,11 +2,10 @@ import { useState } from 'react';
 import { AttachmentSection, type AttachmentSectionProps } from '../Attachment';
 import type { AvatarProps } from '../Avatar';
 import type { BadgeProps } from '../Badge';
+import { ListItem } from '../List';
 import { MetaTimestamp } from '../Meta';
 import { Typography } from '../Typography';
 import styles from './transmissionItem.module.css';
-
-import { ListItemBase, ListItemHeader } from '../List';
 
 export interface TransmissionItemProps {
   loading?: boolean;
@@ -39,21 +38,21 @@ export const TransmissionItem = ({
   };
 
   return (
-    <ListItemBase expanded={expanded}>
-      <ListItemHeader
-        as="button"
-        onClick={onToggle}
-        size="sm"
-        avatar={{
-          type: sender?.type,
-          imageUrl: sender?.imageUrl,
-          name: sender?.name,
-        }}
-        title={title}
-        description={expanded ? '' : description}
-        badge={badge}
-        linkIcon={expanded ? 'chevron-down' : 'chevron-up'}
-      />
+    <ListItem
+      as="button"
+      expanded={expanded}
+      onClick={onToggle}
+      size="sm"
+      avatar={{
+        type: sender?.type,
+        imageUrl: sender?.imageUrl,
+        name: sender?.name,
+      }}
+      title={title}
+      description={expanded ? '' : description}
+      badge={badge}
+      linkIcon={expanded ? 'chevron-down' : 'chevron-up'}
+    >
       {expanded && (
         <div className={styles.body}>
           {createdAt && (
@@ -68,6 +67,6 @@ export const TransmissionItem = ({
           </Typography>
         </div>
       )}
-    </ListItemBase>
+    </ListItem>
   );
 };

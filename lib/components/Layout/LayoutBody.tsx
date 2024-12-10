@@ -1,5 +1,10 @@
-import type { LayoutBaseProps } from './LayoutBase';
+import type { ReactNode } from 'react';
 import styles from './layoutBody.module.css';
+
+export interface LayoutBodyProps {
+  currentId?: string;
+  children?: ReactNode;
+}
 
 /**
  * Body layout container. Should be a child of LayoutBase.
@@ -7,9 +12,9 @@ import styles from './layoutBody.module.css';
  *
  */
 
-export const LayoutBody = ({ theme, children }: LayoutBaseProps) => {
+export const LayoutBody = ({ currentId, children }: LayoutBodyProps) => {
   return (
-    <div className={styles.body} data-theme={theme}>
+    <div className={styles.body} data-current-id={currentId}>
       {children}
     </div>
   );

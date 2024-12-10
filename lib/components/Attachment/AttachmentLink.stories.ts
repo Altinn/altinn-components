@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { attachments } from '../../examples/attachments.ts';
 import { AttachmentLink } from './AttachmentLink';
 
 const meta = {
@@ -6,9 +7,7 @@ const meta = {
   component: AttachmentLink,
   tags: ['autodocs'],
   parameters: {},
-  args: {
-    label: 'Document.pdf',
-  },
+  args: attachments[0],
 } satisfies Meta<typeof AttachmentLink>;
 
 export default meta;

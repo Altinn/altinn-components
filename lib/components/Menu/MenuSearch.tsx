@@ -5,8 +5,8 @@ import styles from './menuSearch.module.css';
 export interface MenuSearchProps {
   placeholder?: string;
   name: string;
-  value: string;
-  onChange: ChangeEventHandler;
+  value?: string;
+  onChange?: ChangeEventHandler;
   onClear?: () => void;
 }
 

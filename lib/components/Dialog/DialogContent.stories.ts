@@ -18,9 +18,3 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {},
 };
-
-export const UpdatedByName: Story = {
-  args: {
-    updatedByName: 'Ole Gunnar Solskjær',
-  },
-};

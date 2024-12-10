@@ -31,7 +31,7 @@ export interface MenuItemProps {
   linkIcon?: IconName;
   linkText?: string;
   className?: string;
-  children?: ReactNode;
+  label?: ReactNode;
   items?: MenuItemProps[];
 }
 
@@ -49,7 +49,7 @@ export const MenuItem = ({
   badge,
   linkText,
   linkIcon,
-  children,
+  label,
   ...rest
 }: MenuItemProps) => {
   const applicableLinkIcon = collapsible && expanded ? 'chevron-up' : collapsible ? 'chevron-down' : linkIcon;
@@ -67,7 +67,7 @@ export const MenuItem = ({
     >
       <MenuItemMedia color={color} size={size} icon={icon} avatar={avatar} avatarGroup={avatarGroup} />
       <MenuItemLabel title={title} description={description} size={size}>
-        {children}
+        {label}
       </MenuItemLabel>
     </MenuItemBase>
   );

@@ -6,7 +6,9 @@ const meta = {
   component: ToolbarAdd,
   tags: ['autodocs'],
   parameters: {},
-  args: {},
+  args: {
+    id: 'toolbar-add',
+  },
 } satisfies Meta<typeof ToolbarAdd>;
 
 export default meta;
@@ -16,6 +18,7 @@ export const Default: Story = {
   args: {
     items: [
       {
+        id: 'choose-date',
         label: 'Velg dato',
       },
     ],

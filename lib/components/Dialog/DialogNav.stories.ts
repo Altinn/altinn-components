@@ -51,6 +51,7 @@ export const InProgress: Story = {
 export const ContextMenu: Story = {
   args: {
     menu: {
+      id: 'context-menu-1',
       items: [
         {
           id: '1',

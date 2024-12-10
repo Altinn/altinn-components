@@ -32,6 +32,10 @@
   min-height: 44px;
 }
 
+.item[data-size="xs"] {
+  min-height: 40px;
+}
+
 /* content */
 
 .content {

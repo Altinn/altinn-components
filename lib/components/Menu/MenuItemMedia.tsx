@@ -15,11 +15,13 @@ interface MenuItemMediaProps {
 
 const sizeMap = {
   avatar: {
+    xs: 'xs',
     sm: 'sm',
     md: 'md',
     lg: 'lg',
   },
   avatarGroup: {
+    xs: 'xs',
     sm: 'xs',
     md: 'sm',
     lg: 'md',

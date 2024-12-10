@@ -14,11 +14,15 @@ const meta = {
         },
         createdAt: '2023-03-11 08:00',
         summary: 'Skattemeldingen ble levert.',
-        attachments: [
-          {
-            label: 'Kvittering på innsendt skattemelding.pdf',
-          },
-        ],
+        attachments: {
+          title: 'Vedlegg',
+          items: [
+            {
+              label: 'Kvittering på innsendt skattemelding.pdf',
+              href: 'kvittering.pdf',
+            },
+          ],
+        },
       },
       {
         createdBy: {
@@ -28,11 +32,15 @@ const meta = {
         },
         createdAt: '2023-03-11 08:00',
         summary: 'Vi har mottatt nye opplysninger og oppdatert skattemeldingen din.',
-        attachments: [
-          {
-            label: 'Nye opplysninger til Skattemeldingen.pdf',
-          },
-        ],
+        attachments: {
+          title: 'Vedlegg',
+          items: [
+            {
+              label: 'Oppdatert skattemelding',
+              href: 'kvittering_oppdatert.pdf',
+            },
+          ],
+        },
       },
       {
         createdBy: {
@@ -40,11 +48,15 @@ const meta = {
         },
         createdAt: '2023-03-11 08:00',
         summary: 'Skattemeldingen ble levert.',
-        attachments: [
-          {
-            label: 'Kvittering på innsendt skattemelding.pdf',
-          },
-        ],
+        attachments: {
+          title: 'Vedlegg',
+          items: [
+            {
+              label: 'Kvittering på innsendt skattemelding.pdf',
+              href: 'kvittering.pdf',
+            },
+          ],
+        },
       },
       {
         createdBy: {

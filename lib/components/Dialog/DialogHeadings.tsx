@@ -28,25 +28,19 @@ const sizeMap = {
 };
 
 export interface DialogHeadingsProps {
-  size: DialogSize;
+  /** Sender */
+  sender: DialogSenderProps;
+  /** Recipient */
+  recipient: DialogRecipientProps;
+  size?: DialogSize;
   /** Group sender and recipient avatars */
   grouped?: boolean;
-  /** Sender */
-  sender?: DialogSenderProps;
-  /** Recipient */
-  recipient?: DialogRecipientProps;
   loading?: boolean;
 }
 
 /** Dialog headings for sender and recipient. Should present an avatar for the sender. */
 
-export const DialogHeadings = ({
-  loading,
-  grouped,
-  size = 'lg',
-  sender = { type: 'company', name: 'Sender' },
-  recipient = { type: 'person', name: 'Recipient' },
-}: DialogHeadingsProps) => {
+export const DialogHeadings = ({ loading, grouped, size = 'lg', sender, recipient }: DialogHeadingsProps) => {
   return (
     <div className={styles.headings} data-size={size}>
       <Skeleton variant="circle" className={styles.avatar} loading={loading}>

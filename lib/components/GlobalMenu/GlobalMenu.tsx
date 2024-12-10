@@ -48,7 +48,7 @@ export const GlobalMenu = ({
         <GlobalMenuHeader>
           <BackButton onClick={onToggleAccounts} label={backLabel} />
         </GlobalMenuHeader>
-        {!accountSearch && <MenuListItem as="div" role="separator" />}
+        <MenuListItem as="div" role="separator" />
         <AccountMenu
           currentAccount={currentAccount}
           accounts={accounts}

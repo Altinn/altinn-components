@@ -1,6 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
-
 import { ToolbarMenu } from './ToolbarMenu';
 
 const meta = {
@@ -13,12 +11,15 @@ const meta = {
     value: 'skatt',
     items: [
       {
+        id: 'Skatteetaten',
         title: 'Skatteetaten',
       },
       {
+        id: 'Digdir',
         title: 'Digdir',
       },
       {
+        id: 'Helstilsynet',
         title: 'Helstilsynet',
       },
     ],
@@ -31,7 +32,5 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {};
 
 export const Expanded: Story = {
-  args: {
-    expanded: true,
-  },
+  args: {},
 };
