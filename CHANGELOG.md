@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.8.3](https://github.com/Altinn/altinn-components/compare/v0.8.2...v0.8.3) (2024-12-10)
+
+
+### Bug Fixes
+
+* backdrop issues and refactor toolbar ([#126](https://github.com/Altinn/altinn-components/issues/126)) ([393c887](https://github.com/Altinn/altinn-components/commit/393c887d337075b82627d91dc7325a1574528c4d))
+* search not dismissing when autocomplete item is selected ([#124](https://github.com/Altinn/altinn-components/issues/124)) ([97bc743](https://github.com/Altinn/altinn-components/commit/97bc743926c8cb84b1ee2ad60f58d24c2146c76d))
+
 ## [0.8.2](https://github.com/Altinn/altinn-components/compare/v0.8.1...v0.8.2) (2024-12-09)
 
 
