@@ -1,6 +1,5 @@
-import { ListBase } from '../List';
+import { ListBase, ListItem } from '../List';
 import type { ListProps, ListItemSize, ListSpacing } from '../List';
-import { ListItem } from '../List/ListItem';
 
 export interface ResourceListItemProps {
   id: string;
