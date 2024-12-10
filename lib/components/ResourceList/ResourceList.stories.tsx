@@ -39,6 +39,20 @@ const meta = {
     items,
     size: 'md',
   },
+  argTypes: {
+    size: {
+      options: ['sm', 'md', 'lg'],
+      control: {
+        type: 'inline-radio',
+      },
+    },
+    spacing: {
+      options: ['none', 'xs', 'sm', 'md', 'lg'],
+      control: {
+        type: 'inline-radio',
+      },
+    },
+  },
 } satisfies Meta<typeof ResourceList>;
 
 export default meta;

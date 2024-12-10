@@ -12,6 +12,7 @@ const meta = {
     title: 'Title',
     description: 'Description',
     size: 'md',
+
     avatar: {
       name: 'Fiskeridirektoratet',
       imageUrl: 'https://altinncdn.no/orgs/fd/fiskeridirektoratet.png',
@@ -22,6 +23,14 @@ const meta = {
         Endre
       </Button>
     ),
+  },
+  argTypes: {
+    size: {
+      options: ['sm', 'md', 'lg'],
+      control: {
+        type: 'inline-radio',
+      },
+    },
   },
 } satisfies Meta<typeof ResourceListItem>;
 
