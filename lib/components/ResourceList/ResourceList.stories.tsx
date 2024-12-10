@@ -3,29 +3,23 @@ import { ResourceList } from './ResourceList';
 
 const items = [
   {
-    title: 'Utlån av bøker',
-    description: 'Nasjonalbiblioteket',
-    avatar: {
-      name: 'Nasjonalbiblioteket',
-      imageUrl: 'https://altinncdn.no/orgs/nbib/nasjonalbiblioteket.png',
-      imageUrlAlt: 'nasjonalbiblioteket logo',
-    },
+    id: '1',
+    resourceName: 'Utlån',
+    ownerName: 'Nasjonalbiblioteket',
+    ownerLogoUrl: 'https://altinncdn.no/orgs/nbib/nasjonalbiblioteket.png',
+    ownerLogoUrlAlt: 'nasjonalbiblioteket logo',
   },
   {
-    title: 'Fiskekvoter',
-    description: 'Fiskeridirektoratet',
-    avatar: {
-      name: 'Fiskeridirektoratet',
-      imageUrl: 'https://altinncdn.no/orgs/fd/fiskeridirektoratet.png',
-      imageUrlAlt: 'fiskeridirektoratet logo',
-    },
+    id: '2',
+    resourceName: 'FiskInfo',
+    ownerName: 'Fiskeridirektoratet',
+    ownerLogoUrl: 'https://altinncdn.no/orgs/fd/fiskeridirektoratet.png',
+    ownerLogoUrlAlt: 'fiskeridirektoratet logo',
   },
   {
-    title: 'Tolldeklarasjon',
-    description: 'Toll- og avgiftsdirektoratet',
-    avatar: {
-      name: 'Toll- og avgiftsdirektoratet',
-    },
+    id: '3',
+    resourceName: 'Skattekort',
+    ownerName: 'Toll- og avgiftsdirektoratet',
   },
 ];
 

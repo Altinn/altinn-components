@@ -9,15 +9,12 @@ const meta = {
   tags: ['autodocs'],
   parameters: {},
   args: {
-    title: 'Title',
-    description: 'Description',
+    id: '1',
     size: 'md',
-
-    avatar: {
-      name: 'Fiskeridirektoratet',
-      imageUrl: 'https://altinncdn.no/orgs/fd/fiskeridirektoratet.png',
-      imageUrlAlt: 'fiskeridirektoratet logo',
-    },
+    resourceName: 'Utlån',
+    ownerName: 'Fiskeridirektoratet',
+    ownerLogoUrl: 'https://altinncdn.no/orgs/fd/fiskeridirektoratet.png',
+    ownerLogoUrlAlt: 'fiskeridirektoratet',
     controls: (
       <Button icon="pencil" variant="text" size="sm">
         Endre
