@@ -9,6 +9,7 @@ export type AutocompleteItemType = 'scope' | 'dialog' | 'bookmark' | 'informatio
 
 export interface AutoCompleteItemWithType {
   type: AutocompleteItemType;
+  onClick?: () => void;
   groupId?: string;
   active?: boolean;
 }

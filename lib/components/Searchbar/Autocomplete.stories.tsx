@@ -311,7 +311,7 @@ export const ScopesResultsAndSuggestions: Story = {
         groupId: '2',
         type: 'bookmark',
         href: '#',
-        label: 'Skattemeldingen 2023',
+        title: 'Skattemeldingen 2023',
         params: [
           {
             label: 'skatt',
