@@ -1,5 +1,5 @@
 import type { ChangeEventHandler, MouseEventHandler } from 'react';
-import { DrawerOrDropdown } from '../';
+import { DrawerOrDropdown, useRootContext } from '../';
 import type { MenuOptionProps } from '../Menu';
 import { ToolbarButton } from './ToolbarButton';
 import { ToolbarFilterBase } from './ToolbarFilterBase';
@@ -11,15 +11,15 @@ export interface ToolbarFilterProps {
   options: MenuOptionProps[];
   optionGroups?: { [key: string]: OptionGroup };
   label: string;
+  id?: string;
   value?: ToolbarFilterValue;
   optionType: 'checkbox' | 'radio';
-  expanded?: boolean;
   removable?: boolean;
   getSelectedLabel?: (name: string, value?: ToolbarFilterValue) => string;
   className?: string;
   onChange?: ChangeEventHandler;
-  onToggle?: MouseEventHandler;
   onRemove?: MouseEventHandler;
+  showResultsLabel?: string;
 }
 
 const defaultGetSelectedLabel = (_: string, value?: ToolbarFilterValue) => {
@@ -30,19 +30,20 @@ const defaultGetSelectedLabel = (_: string, value?: ToolbarFilterValue) => {
 };
 
 export const ToolbarFilter = ({
-  expanded = false,
   removable,
   label,
   name,
   value,
   options,
   optionGroups,
-  onToggle,
   onChange,
   onRemove,
   getSelectedLabel,
+  showResultsLabel = 'Show results',
   optionType,
+  id = `toolbar-filter-${name}`,
 }: ToolbarFilterProps) => {
+  const { currentId, toggleId, closeAll } = useRootContext();
   const filterOptions = (options ?? []).map(
     (item): MenuOptionProps => ({
       ...item,
@@ -52,6 +53,8 @@ export const ToolbarFilter = ({
   );
 
   const valueLabel = getSelectedLabel?.(name, value) ?? defaultGetSelectedLabel(name, value);
+  const onToggle = () => toggleId(id);
+  const expanded = currentId === id;
 
   return (
     <ToolbarFilterBase expanded={expanded}>
@@ -65,10 +68,10 @@ export const ToolbarFilter = ({
         {valueLabel || label}
       </ToolbarButton>
       <DrawerOrDropdown
-        expanded={expanded}
-        title={label}
-        onClose={onToggle}
-        button={{ onClick: onToggle, label: 'Vis X treff' }}
+        open={expanded}
+        drawerTitle={label}
+        onClose={closeAll}
+        drawerButton={{ onClick: onToggle, label: showResultsLabel }}
       >
         <ToolbarOptions
           options={filterOptions}

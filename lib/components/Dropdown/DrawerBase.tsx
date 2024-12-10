@@ -6,14 +6,14 @@ export type DrawerPlacement = 'inline' | 'bottom';
 
 export interface DrawerBaseProps {
   placement?: DrawerPlacement;
-  expanded?: boolean;
+  open?: boolean;
   className?: string;
   children?: ReactNode;
 }
 
-export const DrawerBase = ({ placement = 'inline', expanded = false, className, children }: DrawerBaseProps) => {
+export const DrawerBase = ({ placement = 'inline', open = false, className, children }: DrawerBaseProps) => {
   return (
-    <div className={cx(styles.drawer, className)} data-placement={placement} aria-expanded={expanded}>
+    <div className={cx(styles.drawer, className)} data-placement={placement} aria-expanded={open}>
       {children}
     </div>
   );

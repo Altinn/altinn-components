@@ -1,8 +1,11 @@
 'use client';
-import type { DropdownPlacement, MenuItemProps } from '../';
+import cx from 'classnames';
+import { DropdownBase, type DropdownPlacement, IconButton, type MenuItemProps } from '../';
 import { type MenuItemGroups, MenuItems } from '../';
 import { useRootContext } from '../RootProvider';
-import { ContextMenuBase, type ContextMenuSize } from './ContextMenuBase';
+import styles from './contextMenu.module.css';
+
+export type ContextMenuSize = 'sm' | 'md';
 
 export interface ContextMenuProps {
   id: string;
@@ -21,16 +24,22 @@ export const ContextMenu = ({
   className,
   items,
 }: ContextMenuProps) => {
-  const { currentId, toggleId } = useRootContext();
+  const { currentId, toggleId, closeAll } = useRootContext();
+  const onToggle = () => toggleId(id);
   return (
-    <ContextMenuBase
-      size={size}
-      placement={placement}
-      className={className}
-      expanded={currentId === id}
-      onToggle={() => toggleId(id)}
-    >
-      <MenuItems groups={groups} items={items} />
-    </ContextMenuBase>
+    <div className={cx(styles.toggle, className)} data-theme="neutral">
+      <IconButton
+        className={styles.button}
+        size={size}
+        icon="menu-elipsis-horizontal"
+        iconSize="md"
+        variant="text"
+        color="secondary"
+        onClick={onToggle}
+      />
+      <DropdownBase className={styles.dropdown} placement={placement} open={currentId === id} onClose={closeAll}>
+        <MenuItems groups={groups} items={items} />
+      </DropdownBase>
+    </div>
   );
 };

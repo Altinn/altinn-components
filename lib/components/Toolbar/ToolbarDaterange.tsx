@@ -58,7 +58,7 @@ export const ToolbarDaterange = ({
       <ToolbarButton type="switch" onToggle={onToggle} active={!!value}>
         {label}
       </ToolbarButton>
-      <DrawerOrDropdown expanded={expanded} title={title} onClose={onToggle}>
+      <DrawerOrDropdown open={expanded} drawerTitle={title} onClose={onToggle}>
         <MenuBase>
           <div className={styles.fields}>
             <MenuInputField

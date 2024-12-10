@@ -7,7 +7,9 @@ const meta = {
   component: Toolbar,
   tags: ['autodocs'],
   parameters: {},
-  args: {},
+  args: {
+    showResultsLabel: `Vis alle treff`,
+  },
 } satisfies Meta<typeof Toolbar>;
 
 export default meta;
@@ -147,16 +149,19 @@ export const StaticFilters: Story = {
   },
 };
 
-export const ControlledStateFilters = () => {
+export const ControlledStateFilters = (args) => {
   const [filterState, setFilterState] = React.useState<FilterState>({
     from: ['skatt', 'brreg'],
   });
-  return <Toolbar filters={Default.args!.filters} filterState={filterState} onFilterStateChange={setFilterState} />;
+  return (
+    <Toolbar {...args} filters={Default.args!.filters} filterState={filterState} onFilterStateChange={setFilterState} />
+  );
 };
 
 export const FilterAndSearch: Story = {
   args: {
     search: {
+      name: 'search',
       placeholder: 'Søk etter filter',
     },
     filters: [

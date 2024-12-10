@@ -1,24 +1,26 @@
-import type { MouseEventHandler } from 'react';
-import { DrawerOrDropdown } from '../';
+import { DrawerOrDropdown, useRootContext } from '../';
 import { Menu, type MenuItemProps } from '../Menu';
 import { ToolbarButton } from './ToolbarButton';
 import { ToolbarFilterBase } from './ToolbarFilterBase';
 
 export interface ToolbarAddProps {
   items: MenuItemProps[];
-  expanded: boolean;
-  onToggle?: MouseEventHandler;
+  id: string;
   label?: string;
   className?: string;
 }
 
-export const ToolbarAdd = ({ expanded = false, onToggle, label = 'Legg til', items }: ToolbarAddProps) => {
+export const ToolbarAdd = ({ label = 'Legg til', items, id }: ToolbarAddProps) => {
+  const { closeAll, currentId, toggleId } = useRootContext();
+  const expanded = currentId === id;
+  const onToggle = () => toggleId(id);
+
   return (
     <ToolbarFilterBase expanded={expanded}>
       <ToolbarButton type="add" onToggle={onToggle}>
         {label}
       </ToolbarButton>
-      <DrawerOrDropdown title={label} onClose={onToggle} expanded={expanded}>
+      <DrawerOrDropdown drawerTitle={label} onClose={closeAll} open={expanded}>
         <Menu theme="global" items={items} />
       </DrawerOrDropdown>
     </ToolbarFilterBase>

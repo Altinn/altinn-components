@@ -9,12 +9,6 @@ import type { ToolbarOptionType } from './ToolbarOptions.tsx';
 import { ToolbarSearch, type ToolbarSearchProps } from './ToolbarSearch.tsx';
 
 export type FilterState = Record<string, ToolbarFilterProps['value']>;
-type ExpandedItemType = 'filter' | 'menu' | 'add-filter';
-
-type ExpandedItem = {
-  name: string;
-  type: ExpandedItemType;
-} | null;
 
 export interface ToolbarProps {
   filters?: ToolbarFilterProps[];
@@ -23,8 +17,11 @@ export interface ToolbarProps {
   filterState?: FilterState;
   getFilterLabel?: (name: string, value: ToolbarFilterProps['value']) => string;
   onFilterStateChange?: (state: FilterState) => void;
+  showResultsLabel?: string;
   children?: ReactNode;
 }
+
+const getFilterId = (name: string, id?: string) => id || `toolbar-filter-${name}`;
 
 export const Toolbar = ({
   filters = [],
@@ -34,9 +31,9 @@ export const Toolbar = ({
   menu,
   getFilterLabel,
   children,
+  showResultsLabel,
 }: ToolbarProps) => {
-  const { currentId, openId, closeAll } = useRootContext();
-  const [expandedItem, setExpandedItem] = useState<ExpandedItem>(null);
+  const { openId, closeAll } = useRootContext();
   const [localFilterState, setLocalFilterState] = useState<Record<string, ToolbarFilterProps['value']>>(
     filterState ?? {},
   );
@@ -66,28 +63,13 @@ export const Toolbar = ({
     [filters, hiddenFilterNames],
   );
 
-  const onToggle = (type: ExpandedItemType, name: string) => {
-    if (expandedItem?.name === name && expandedItem.type === type) {
-      closeAll();
-      setExpandedItem(null);
-    } else {
-      openId('toolbar');
-      setExpandedItem({ name, type });
-    }
-  };
-
-  const onClose = () => {
-    setExpandedItem(null);
-    closeAll();
-  };
-
   const onFilterChange = (name: string, value: ToolbarFilterProps['value'], optionType: ToolbarOptionType) => {
     if (optionType === 'radio') {
+      closeAll();
       changeFilterState({
         ...applicableFilterState,
         [name]: value,
       });
-      onToggle('filter', name);
     } else {
       changeFilterState({
         ...applicableFilterState,
@@ -108,21 +90,21 @@ export const Toolbar = ({
     });
   };
 
-  const onFilterAdd = (name: string) => {
+  const onFilterAdd = (name: string, id: string) => {
     setVisibleFilterNames((prevState) => [...prevState, name]);
-    onToggle('filter', name);
+    openId(id);
   };
 
   return (
-    <ToolbarBase open={currentId === 'toolbar'} onClose={onClose}>
-      {menu && <ToolbarMenu onToggle={() => onToggle('menu', '')} expanded={expandedItem?.type === 'menu'} {...menu} />}
+    <ToolbarBase>
+      {menu && <ToolbarMenu {...menu} />}
       {search && <ToolbarSearch {...search} />}
       {visibleFilters.map((item) => {
         return (
           <ToolbarFilter
+            id={getFilterId(item.name, item.id)}
+            showResultsLabel={showResultsLabel}
             key={item.name}
-            onToggle={() => onToggle('filter', item.name)}
-            expanded={currentId === 'toolbar' && item.name === expandedItem?.name && expandedItem?.type === 'filter'}
             onRemove={() => {
               onFilterRemove(item.name);
             }}
@@ -141,16 +123,18 @@ export const Toolbar = ({
       })}
       {hiddenFilters?.length > 0 && (
         <ToolbarAdd
-          expanded={currentId === 'toolbar' && expandedItem?.type === 'add-filter'}
-          onToggle={() => onToggle('add-filter', '')}
-          items={hiddenFilters.map((item) => ({
-            id: item.name,
-            title: item.label,
-            name: item.name,
-            onClick: () => {
-              onFilterAdd(item.name);
-            },
-          }))}
+          id="toolbar-filter-add"
+          items={hiddenFilters.map((item) => {
+            const filterId = getFilterId(item.name, item.id);
+            return {
+              id: filterId,
+              title: item.label,
+              name: item.name,
+              onClick: () => {
+                onFilterAdd(item.name, filterId);
+              },
+            };
+          })}
         />
       )}
       {children}
