@@ -9,12 +9,11 @@ const meta = {
   tags: ['autodocs'],
   parameters: {},
   args: {
-    id: '1',
     size: 'md',
-    resourceName: 'Utlån',
-    ownerName: 'Fiskeridirektoratet',
-    ownerLogoUrl: 'https://altinncdn.no/orgs/fd/fiskeridirektoratet.png',
-    ownerLogoUrlAlt: 'fiskeridirektoratet',
+    id: 'se_5733_1',
+    resourceName: 'Avtale om oppbevaring om eksplosiver',
+    ownerName: 'Direktoratet for samfunnssikkerhet og beredskap',
+    ownerLogoUrl: 'https://altinncdn.no/orgs/dsb/dsb.png',
     controls: (
       <Button icon="pencil" variant="text" size="sm">
         Endre
