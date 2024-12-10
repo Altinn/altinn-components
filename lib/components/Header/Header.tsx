@@ -1,5 +1,4 @@
 'use client';
-import { useEscapeKey } from '../../hooks';
 import type { BadgeProps } from '../Badge';
 import { DrawerBase, DropdownBase } from '../Dropdown';
 import { GlobalMenu, type GlobalMenuProps } from '../GlobalMenu';
@@ -23,8 +22,6 @@ export interface HeaderProps {
 
 export const Header = ({ search, menu, currentAccount, logo = {}, badge }: HeaderProps) => {
   const { currentId, toggleId, openId, closeAll } = useRootContext();
-
-  useEscapeKey(closeAll);
 
   const onSearchFocus = () => {
     openId('search');
@@ -55,7 +52,7 @@ export const Header = ({ search, menu, currentAccount, logo = {}, badge }: Heade
           label={menu?.menuLabel}
         />
         {menu && (
-          <DropdownBase padding={true} placement="right" expanded={currentId === 'menu'} className={styles.dropdown}>
+          <DropdownBase padding={true} placement="right" open={currentId === 'menu'} className={styles.dropdown}>
             <GlobalMenu {...menu} currentAccount={currentAccount} />
           </DropdownBase>
         )}
@@ -66,7 +63,7 @@ export const Header = ({ search, menu, currentAccount, logo = {}, badge }: Heade
         </HeaderSearch>
       )}
       {menu && (
-        <DrawerBase expanded={currentId === 'menu'} className={styles.drawer}>
+        <DrawerBase open={currentId === 'menu'} className={styles.drawer}>
           <GlobalMenu {...menu} currentAccount={currentAccount} />
         </DrawerBase>
       )}

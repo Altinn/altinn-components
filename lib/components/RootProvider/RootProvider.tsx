@@ -1,5 +1,6 @@
 'use client';
 import { type ReactNode, createContext, useContext, useState } from 'react';
+import { useEscapeKey } from '../../hooks';
 
 type OpenElementId = 'search' | 'menu' | string;
 
@@ -46,6 +47,8 @@ export const useRootContext = (): RootContextProvider => {
   const closeAll = () => {
     setCurrentId!('');
   };
+  useEscapeKey(closeAll);
+
   const openId = (elementId: OpenElementId) => setCurrentId!(elementId);
   return {
     currentId,
