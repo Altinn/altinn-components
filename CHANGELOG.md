@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.0](https://github.com/Altinn/altinn-components/compare/v0.8.3...v0.9.0) (2024-12-11)
+
+
+### Features
+
+* New resource list variant ([#123](https://github.com/Altinn/altinn-components/issues/123)) ([d52c853](https://github.com/Altinn/altinn-components/commit/d52c853a66d042096bb9180f807837231d403305))
+
 ## [0.8.3](https://github.com/Altinn/altinn-components/compare/v0.8.2...v0.8.3) (2024-12-10)
 
 
