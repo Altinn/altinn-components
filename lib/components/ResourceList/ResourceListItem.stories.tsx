@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { Button } from '../Button';
-import { ResourceListItem } from './ResourceList';
+import { ResourceListItem } from './ResourceListItem';
 
 const meta = {
   title: 'List/ResourceListItem',
