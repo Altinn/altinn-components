@@ -1,0 +1,233 @@
+[
+  {
+    "identifier": "se_SMUTFL_1",
+    "resourceName": "Lese Samordnet registermelding - utfylling",
+    "ownerName": "Brønnøysundregistrene",
+    "ownerOrgCode": "brg",
+    "ownerImageUrl": "https://altinncdn.no/orgs/brg/brreg.png"
+  },
+  {
+    "identifier": "se_5899_1",
+    "resourceName": "Signering av digital innsending",
+    "ownerName": "Brønnøysundregistrene",
+    "ownerOrgCode": "brg",
+    "ownerImageUrl": "https://altinncdn.no/orgs/brg/brreg.png"
+  },
+  {
+    "identifier": "se_3776_1",
+    "resourceName": "Global Legal Entity Identifier Norway - signering",
+    "ownerName": "Brønnøysundregistrene",
+    "ownerOrgCode": "brg",
+    "ownerImageUrl": "https://altinncdn.no/orgs/brg/brreg.png"
+  },
+  {
+    "identifier": "se_5059_1",
+    "resourceName": "Årlig melding med krav om innsending av dokumentasjon for godkjent renholdsvirksomhet",
+    "ownerName": "Arbeidstilsynet",
+    "ownerOrgCode": "dat",
+    "ownerImageUrl": "https://altinncdn.no/orgs/dat/arbeidstilsynet.png"
+  },
+  {
+    "identifier": "se_5059_2",
+    "resourceName": "Årlig melding for godkjent renholdsvirksomhet",
+    "ownerName": "Arbeidstilsynet",
+    "ownerOrgCode": "dat",
+    "ownerImageUrl": "https://altinncdn.no/orgs/dat/arbeidstilsynet.png"
+  },
+  {
+    "identifier": "se_2482_1",
+    "resourceName": "Forhåndsmelding av arbeidsplass hvor det utføres midlertidig eller skiftende bygge- eller anleggsarbeid",
+    "ownerName": "Arbeidstilsynet",
+    "ownerOrgCode": "dat",
+    "ownerImageUrl": "https://altinncdn.no/orgs/dat/arbeidstilsynet.png"
+  },
+  {
+    "identifier": "se_4354_1",
+    "resourceName": "Generell henvendelse for renholdsvirksomhet",
+    "ownerName": "Arbeidstilsynet",
+    "ownerOrgCode": "dat",
+    "ownerImageUrl": "https://altinncdn.no/orgs/dat/arbeidstilsynet.png"
+  },
+  {
+    "identifier": "se_5693_1",
+    "resourceName": "Søknad om forhåndsgodkjenning av innkvartering i forbindelse med innreisekarantene",
+    "ownerName": "Arbeidstilsynet",
+    "ownerOrgCode": "dat",
+    "ownerImageUrl": "https://altinncdn.no/orgs/dat/arbeidstilsynet.png"
+  },
+  {
+    "identifier": "se_4352_2",
+    "resourceName": "Lese Meldinger til organisasjoner fra DFØ",
+    "ownerName": "Direktoratet for forvaltning og økonomistyring",
+    "ownerOrgCode": "dfo",
+    "ownerImageUrl": null
+  },
+  {
+    "identifier": "se_4351_1",
+    "resourceName": "Lese Meldinger til privatperson fra DFØ",
+    "ownerName": "Direktoratet for forvaltning og økonomistyring",
+    "ownerOrgCode": "dfo",
+    "ownerImageUrl": null
+  },
+  {
+    "identifier": "se_5786_1",
+    "resourceName": "Publiser tilskudd i Tilskudd.no",
+    "ownerName": "Direktoratet for forvaltning og økonomistyring",
+    "ownerOrgCode": "dfo",
+    "ownerImageUrl": null
+  },
+  {
+    "identifier": "se_4965_2",
+    "resourceName": "Erklæring om ansvarsrett",
+    "ownerName": "Direktoratet for byggkvalitet",
+    "ownerOrgCode": "dibk",
+    "ownerImageUrl": "https://altinncdn.no/orgs/dibk/dibk.png"
+  },
+  {
+    "identifier": "se_4398_6",
+    "resourceName": "Gjennomføringsplan",
+    "ownerName": "Direktoratet for byggkvalitet",
+    "ownerOrgCode": "dibk",
+    "ownerImageUrl": "https://altinncdn.no/orgs/dibk/dibk.png"
+  },
+  {
+    "identifier": "se_5444_1",
+    "resourceName": "Kontrollerklæring med sluttrapport",
+    "ownerName": "Direktoratet for byggkvalitet",
+    "ownerOrgCode": "dibk",
+    "ownerImageUrl": "https://altinncdn.no/orgs/dibk/dibk.png"
+  },
+  {
+    "identifier": "se_5445_1",
+    "resourceName": "Kontrollerklæring med sluttrapport",
+    "ownerName": "Direktoratet for byggkvalitet",
+    "ownerOrgCode": "dibk",
+    "ownerImageUrl": "https://altinncdn.no/orgs/dibk/dibk.png"
+  },
+  {
+    "identifier": "se_4662_1",
+    "resourceName": "Melding fra Fellestjenester Bygg",
+    "ownerName": "Direktoratet for byggkvalitet",
+    "ownerOrgCode": "dibk",
+    "ownerImageUrl": "https://altinncdn.no/orgs/dibk/dibk.png"
+  },
+  {
+    "identifier": "se_5968_1",
+    "resourceName": "Varsel til arving",
+    "ownerName": "Digitaliseringsdirektoratet",
+    "ownerOrgCode": "digdir",
+    "ownerImageUrl": ""
+  },
+  {
+    "identifier": "se_5756_1",
+    "resourceName": "Felles datakatalog - alle kataloger - lesetilgang",
+    "ownerName": "Digitaliseringsdirektoratet",
+    "ownerOrgCode": "digdir",
+    "ownerImageUrl": ""
+  },
+  {
+    "identifier": "se_5755_1",
+    "resourceName": "Felles datakatalog - alle kataloger - skrivetilgang",
+    "ownerName": "Digitaliseringsdirektoratet",
+    "ownerOrgCode": "digdir",
+    "ownerImageUrl": ""
+  },
+  {
+    "identifier": "se_5913_1",
+    "resourceName": "Søknad om helse- og omsorgstjeneste - varsel",
+    "ownerName": "Digitale Helgeland",
+    "ownerOrgCode": "dihe",
+    "ownerImageUrl": ""
+  },
+  {
+    "identifier": "se_4290_1",
+    "resourceName": "Melding om innsendt driftsrapport",
+    "ownerName": "Direktoratet for mineralforvaltning",
+    "ownerOrgCode": "dmf",
+    "ownerImageUrl": "https://altinncdn.no/orgs/dmf/dmf.png"
+  },
+  {
+    "identifier": "se_4603_1",
+    "resourceName": "Melding om avvik",
+    "ownerName": "Datatilsynet",
+    "ownerOrgCode": "dpa",
+    "ownerImageUrl": null
+  },
+  {
+    "identifier": "se_4963_1",
+    "resourceName": "Registrering av personvernombud",
+    "ownerName": "Datatilsynet",
+    "ownerOrgCode": "dpa",
+    "ownerImageUrl": null
+  },
+  {
+    "identifier": "se_5733_1",
+    "resourceName": "Avtale om oppbevaring om eksplosiver",
+    "ownerName": "Direktoratet for samfunnssikkerhet og beredskap",
+    "ownerOrgCode": "dsb",
+    "ownerImageUrl": "https://altinncdn.no/orgs/dsb/dsb.png"
+  },
+  {
+    "identifier": "se_5732_1",
+    "resourceName": "Avtale om retur av eksplosiver",
+    "ownerName": "Direktoratet for samfunnssikkerhet og beredskap",
+    "ownerOrgCode": "dsb",
+    "ownerImageUrl": "https://altinncdn.no/orgs/dsb/dsb.png"
+  },
+  {
+    "identifier": "se_3354_2",
+    "resourceName": "Registrering av virksomheter som prosjekterer, utfører, og vedlikeholder elektriske anlegg",
+    "ownerName": "Direktoratet for samfunnssikkerhet og beredskap",
+    "ownerOrgCode": "dsb",
+    "ownerImageUrl": "https://altinncdn.no/orgs/dsb/dsb.png"
+  },
+  {
+    "identifier": "se_5925_1",
+    "resourceName": "Energitilskudd-rapporteringsskjema",
+    "ownerName": "Enova SF",
+    "ownerOrgCode": "eno",
+    "ownerImageUrl": null
+  },
+  {
+    "identifier": "se_5894_1",
+    "resourceName": "Energitilskuddsordningen",
+    "ownerName": "Enova SF",
+    "ownerOrgCode": "eno",
+    "ownerImageUrl": null
+  },
+  {
+    "identifier": "se_6001_1",
+    "resourceName": "Akvakulturregisteret",
+    "ownerName": "Fiskeridirektoratet",
+    "ownerOrgCode": "fd",
+    "ownerImageUrl": "https://altinncdn.no/orgs/fd/fiskeridirektoratet.png"
+  },
+  {
+    "identifier": "se_5817_1",
+    "resourceName": "Akvakultursøknad",
+    "ownerName": "Fiskeridirektoratet",
+    "ownerOrgCode": "fd",
+    "ownerImageUrl": "https://altinncdn.no/orgs/fd/fiskeridirektoratet.png"
+  },
+  {
+    "identifier": "se_5798_1",
+    "resourceName": "Søknads- og rapporteringsportal for akvakultur",
+    "ownerName": "Fiskeridirektoratet",
+    "ownerOrgCode": "fd",
+    "ownerImageUrl": "https://altinncdn.no/orgs/fd/fiskeridirektoratet.png"
+  },
+  {
+    "identifier": "se_5890_1",
+    "resourceName": "Korrigering av fangst applikasjon",
+    "ownerName": "Fiskeridirektoratet",
+    "ownerOrgCode": "fd",
+    "ownerImageUrl": "https://altinncdn.no/orgs/fd/fiskeridirektoratet.png"
+  },
+  {
+    "identifier": "se_2382_3",
+    "resourceName": "Månedsrapport biomasse FD-0001 - versjon 3",
+    "ownerName": "Fiskeridirektoratet",
+    "ownerOrgCode": "fd",
+    "ownerImageUrl": "https://altinncdn.no/orgs/fd/fiskeridirektoratet.png"
+  }
+]
