@@ -7,11 +7,11 @@ const items = resources.map((resource) => ({
   ownerName: resource.ownerName ?? '',
   resourceName: resource.resourceName,
   ownerLogoUrl: resource.ownerImageUrl ?? '',
-  ownerLogoUrlAlt: 'resource.ownerName + logo',
+  ownerLogoUrlAlt: `${resource.ownerName} logo`,
 }));
 
 const meta = {
-  title: 'Resource/List',
+  title: 'List/ResourceList',
   component: ResourceList,
   tags: ['autodocs'],
   parameters: {},
