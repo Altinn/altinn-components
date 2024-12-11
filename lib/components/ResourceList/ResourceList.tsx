@@ -44,11 +44,11 @@ export interface ResourceListProps extends Omit<ListProps, 'items'> {
   items: ResourceListItemProps[];
 }
 
-export const ResourceList = ({ items, theme, spacing = 'md', size = 'md' }: ResourceListProps) => {
+export const ResourceList = ({ items, size = 'md', ...props }: ResourceListProps) => {
   return (
-    <ListBase theme={theme} spacing={spacing}>
-      {items.map((item, index) => (
-        <ResourceListItem {...item} key={'item' + index} size={size} />
+    <ListBase {...props}>
+      {items.map((item) => (
+        <ResourceListItem {...item} key={item.id} size={size} />
       ))}
     </ListBase>
   );
