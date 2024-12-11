@@ -5,24 +5,32 @@ import { Backdrop } from './Backdrop';
 import styles from './drawerOrDropdown.module.css';
 
 export interface DrawerOrDropdownProps {
-  title: string;
+  drawerTitle: string;
   children: ReactNode;
-  expanded?: boolean;
+  open?: boolean;
   onClose?: MouseEventHandler;
-  button?: DrawerButtonProps;
+  drawerButton?: DrawerButtonProps;
 }
 
-export const DrawerOrDropdown = ({ expanded = false, title, onClose, button, children }: DrawerOrDropdownProps) => {
+export const DrawerOrDropdown = ({
+  open = false,
+  onClose,
+  drawerButton,
+  children,
+  drawerTitle,
+}: DrawerOrDropdownProps) => {
   return (
     <>
-      {expanded && <Backdrop onClick={onClose} />}
-      <DropdownBase className={styles.dropdown} padding={true} expanded={expanded}>
+      {open && <Backdrop onClick={onClose} />}
+      <DropdownBase className={styles.dropdown} padding open={open}>
         {children}
       </DropdownBase>
-      <DrawerBase className={styles.drawer} placement="bottom" expanded={expanded}>
-        <DrawerHeader title={title} onClose={onClose} />
+      <DrawerBase className={styles.drawer} placement="bottom" open={open}>
+        <DrawerHeader title={drawerTitle} onClose={onClose} />
         <DrawerBody>{children}</DrawerBody>
-        <DrawerFooter>{button && <DrawerButton onClick={button?.onClick}>{button?.label}</DrawerButton>}</DrawerFooter>
+        <DrawerFooter>
+          {drawerButton && <DrawerButton onClick={drawerButton?.onClick}>{drawerButton?.label}</DrawerButton>}
+        </DrawerFooter>
       </DrawerBase>
     </>
   );

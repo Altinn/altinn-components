@@ -5,8 +5,8 @@ import styles from './toolbarSearch.module.css';
 export interface ToolbarSearchProps {
   placeholder?: string;
   name: string;
-  value: string;
-  onChange: ChangeEventHandler;
+  value?: string;
+  onChange?: ChangeEventHandler;
   onClear?: () => void;
 }
 
