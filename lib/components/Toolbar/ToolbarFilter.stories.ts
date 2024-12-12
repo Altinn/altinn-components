@@ -30,35 +30,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Single: Story = {
   args: {
+    name: 'single',
     optionType: 'radio',
-  },
-};
-
-export const SingleExpanded: Story = {
-  args: {
-    ...Single.args,
-    expanded: true,
-  },
-};
-
-export const SingleValue: Story = {
-  args: {
-    optionType: 'radio',
-    value: 'helse',
   },
 };
 
 export const Multiple: Story = {
   args: {
+    name: 'multiple',
     optionType: 'checkbox',
-    value: ['skatt', 'digdir'],
-  },
-};
-
-export const MultipleExpanded: Story = {
-  args: {
-    optionType: 'checkbox',
-    value: ['skatt', 'digdir'],
-    expanded: true,
   },
 };

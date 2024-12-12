@@ -3,7 +3,7 @@ import type { ElementType, ReactNode } from 'react';
 import type { LayoutTheme } from '../Layout';
 import styles from './typography.module.css';
 
-export type TypographySize = 'sm' | 'md' | 'lg';
+export type TypographySize = 'xs' | 'sm' | 'md' | 'lg';
 
 export interface TypographyProps {
   as?: ElementType;

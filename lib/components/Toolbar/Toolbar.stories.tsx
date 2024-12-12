@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
+import { accountMenu, inboxFilters, inboxStatusFilter } from '../../examples';
 import { type FilterState, Toolbar } from './Toolbar';
 
 const meta = {
@@ -17,108 +18,11 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    menu: {
-      label: 'Ola Nordmann',
-      value: 'ola',
-      items: [
-        {
-          avatar: {
-            name: 'Ola Nordmann',
-          },
-          title: 'Ola Nordmann',
-          id: 'ola',
-        },
-        {
-          avatar: {
-            name: 'Kari Nordmann',
-          },
-          title: 'Kari Nordmann',
-          id: 'kari',
-        },
-      ],
+    accountMenu: {
+      ...accountMenu,
+      currentAccount: accountMenu.accounts?.[0],
     },
-    filters: [
-      {
-        removable: true,
-        name: 'from',
-        optionType: 'checkbox',
-        label: 'Velg avsender',
-        options: [
-          {
-            value: 'skatt',
-            label: 'Skatteetaten',
-          },
-          {
-            value: 'brreg',
-            label: 'Brønnøysundregistrene',
-          },
-          {
-            value: 'ssb',
-            label: 'Statisitisk sentralbyrå',
-            badge: {
-              label: '10',
-            },
-          },
-          {
-            value: 'nav',
-            label: 'NAV',
-          },
-          {
-            value: 'oslo',
-            label: 'Oslo kommune',
-          },
-        ],
-      },
-      {
-        removable: true,
-        name: 'to',
-        optionType: 'radio',
-        label: 'Velg mottaker',
-        options: [
-          {
-            value: 'ola',
-            label: 'Ola Nordmann',
-          },
-          {
-            value: 'kari',
-            label: 'Kari Nordmann',
-          },
-        ],
-      },
-      {
-        removable: true,
-        name: 'status',
-        optionType: 'radio',
-        label: 'Velg status',
-        options: [
-          {
-            groupId: '1',
-            value: 'draft',
-            label: 'Utkast',
-          },
-          {
-            groupId: '1',
-            value: 'sent',
-            label: 'Sendt',
-          },
-          {
-            groupId: '2',
-            value: 'in-progress',
-            label: 'Under arbeid',
-          },
-          {
-            groupId: '2',
-            value: 'requires-attention',
-            label: 'Krever handling',
-          },
-          {
-            groupId: '2',
-            value: 'completed',
-            label: 'Avsluttet',
-          },
-        ],
-      },
-    ],
+    filters: inboxFilters,
   },
 };
 
@@ -149,7 +53,7 @@ export const StaticFilters: Story = {
   },
 };
 
-export const ControlledStateFilters = (args) => {
+export const ControlledStateFilters = (args: typeof Toolbar) => {
   const [filterState, setFilterState] = React.useState<FilterState>({
     from: ['skatt', 'brreg'],
   });
@@ -164,39 +68,6 @@ export const FilterAndSearch: Story = {
       name: 'search',
       placeholder: 'Søk etter filter',
     },
-    filters: [
-      {
-        name: 'status',
-        optionType: 'checkbox',
-        label: 'Velg status',
-        options: [
-          {
-            groupId: '1',
-            value: 'draft',
-            label: 'Utkast',
-          },
-          {
-            groupId: '1',
-            value: 'sent',
-            label: 'Sendt',
-          },
-          {
-            groupId: '2',
-            value: 'in-progress',
-            label: 'Under arbeid',
-          },
-          {
-            groupId: '2',
-            value: 'requires-attention',
-            label: 'Krever handling',
-          },
-          {
-            groupId: '2',
-            value: 'completed',
-            label: 'Avsluttet',
-          },
-        ],
-      },
-    ],
+    filters: [inboxStatusFilter],
   },
 };

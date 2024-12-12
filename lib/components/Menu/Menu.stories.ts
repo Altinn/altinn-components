@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { menuItems } from '../../examples/menuItems.ts';
 import { Menu } from './Menu';
 
 const meta = {
@@ -16,7 +17,7 @@ export const GlobalMenu: Story = {
   args: {
     groups: {
       settings: {
-        defaultItemColor: 'default',
+        defaultItemColor: 'neutral',
       },
     },
     items: [
@@ -74,7 +75,7 @@ export const CollapsibleGlobalMenu: Story = {
   args: {
     groups: {
       settings: {
-        defaultItemColor: 'default',
+        defaultItemColor: 'neutral',
       },
     },
     items: [
@@ -172,7 +173,7 @@ export const ExpandedGlobalMenu: Story = {
 
 export const DrilldownMenu: Story = {
   args: {
-    color: 'subtle',
+    defaultItemColor: 'subtle',
     groups: {
       'level-1': {
         divider: true,
@@ -192,7 +193,7 @@ export const DrilldownMenu: Story = {
         items: [
           {
             groupId: 'level-2',
-            name: 'tema',
+            id: 'tema',
             icon: 'teddy-bear',
             title: 'Tema',
             expanded: true,
@@ -409,98 +410,9 @@ export const AccountMenu: Story = {
       a1: {
         title: 'Deg selv, favoritter og grupper',
       },
-      b1: {
-        id: 'companies',
-        title: 'Andre kontoer',
-      },
+      b1: { title: 'Andre kontoer' },
     },
-    items: [
-      {
-        id: '1',
-        groupId: 'a1',
-        avatar: {
-          type: 'person',
-          name: 'Dolly Duck',
-        },
-        title: 'Dolly Duck',
-        badge: {
-          label: '15',
-        },
-      },
-      {
-        id: '2',
-        groupId: 'a2',
-        avatar: {
-          type: 'company',
-          name: 'Bergen Bar',
-        },
-        title: 'Bergen Bar',
-        badge: {
-          label: '21',
-        },
-      },
-      {
-        id: '3',
-        groupId: 'a2',
-        avatar: {
-          type: 'company',
-          name: 'Sportsklubben Brann',
-        },
-        title: 'Sportsklubben Brann',
-        badge: {
-          label: '4',
-        },
-      },
-      {
-        id: '4',
-        groupId: 'a3',
-        avatarGroup: {
-          type: 'company',
-          items: [
-            {
-              name: 'Sportsklubben Brann',
-            },
-            {
-              name: 'Bergen Bar',
-            },
-          ],
-        },
-        title: 'Alle virksomheter',
-        badge: {
-          label: '45',
-        },
-      },
-      {
-        id: '5',
-        groupId: 'b1',
-        avatar: {
-          type: 'company',
-          name: 'Jensens Laks',
-        },
-        title: 'Jensens laks',
-      },
-      {
-        id: '6',
-        groupId: 'b1',
-        avatar: {
-          type: 'company',
-          name: 'Haralds gym',
-        },
-        title: 'Haralds gym',
-        badge: {
-          label: '2',
-        },
-      },
-      {
-        id: '7',
-        groupId: 'b1',
-        avatar: {
-          type: 'company',
-          name: 'Trim og tran',
-        },
-        title: 'Trim og tran',
-      },
-    ],
+    items: menuItems,
   },
 };
 
@@ -508,6 +420,7 @@ export const AccountMenuWithSearch: Story = {
   args: {
     ...AccountMenu.args,
     search: {
+      name: 'search',
       placeholder: 'Søk i kontoer',
     },
   },

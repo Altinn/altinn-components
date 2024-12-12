@@ -1,3 +1,4 @@
+import type { ReactElement, ReactNode } from 'react';
 import type { AvatarGroupProps, AvatarProps } from '../Avatar';
 import type { BadgeProps } from '../Badge';
 import type { ContextMenuProps } from '../ContextMenu';
@@ -24,6 +25,8 @@ export interface ListItemProps extends ListItemHeaderProps {
   linkText?: string;
   /** Optional icon indicating behaviour */
   linkIcon?: IconName;
+  /** Custom label */
+  label?: ReactNode | (() => ReactElement);
   /** Optional badge */
   badge?: BadgeProps;
   /** Optional context menu */
@@ -51,14 +54,16 @@ export const ListItem = ({
   badge,
   linkText,
   linkIcon,
+  label,
   menu,
   select,
   controls,
   children,
   ...rest
 }: ListItemProps) => {
+  const applicableLabel = typeof label === 'function' ? label() : label;
   return (
-    <ListItemBase size={size} color={color} loading={loading} {...rest}>
+    <ListItemBase size={size} color={color} expanded={expanded} loading={loading} {...rest}>
       <ListItemHeader
         className={className}
         loading={loading}
@@ -78,8 +83,9 @@ export const ListItem = ({
         menu={menu}
         {...rest}
       >
-        {children}
+        {applicableLabel}
       </ListItemHeader>
+      {children}
     </ListItemBase>
   );
 };

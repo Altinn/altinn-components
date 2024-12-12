@@ -3,6 +3,7 @@ import { Fragment } from 'react';
 import { MenuHeader, MenuItem, MenuList, MenuListItem } from '../';
 import type { MenuItemColor, MenuItemProps, MenuItemSize } from '../';
 import { useMenu } from '../../hooks';
+import { MenuSearch, type MenuSearchProps } from './MenuSearch';
 
 export interface MenuGroupProps {
   title?: string;
@@ -16,6 +17,7 @@ export type MenuItemGroups = Record<string, MenuGroupProps>;
 export interface MenuItemsProps {
   level?: number;
   expanded?: boolean;
+  search?: MenuSearchProps;
   items: MenuItemProps[];
   groups?: MenuItemGroups;
   defaultItemColor?: MenuItemColor;
@@ -25,6 +27,7 @@ export interface MenuItemsProps {
 export const MenuItems = ({
   level = 0,
   expanded,
+  search,
   items,
   groups = {},
   defaultItemColor,
@@ -39,6 +42,8 @@ export const MenuItems = ({
 
   return (
     <MenuList expanded={expanded}>
+      {search && <MenuSearch {...search} />}
+
       {menu.map((group, groupIndex) => {
         const groupProps: MenuGroupProps = group?.props || {};
         const { title, divider = true } = groupProps;
@@ -48,7 +53,7 @@ export const MenuItems = ({
           <Fragment key={groupIndex}>
             {/** Render a separator if this is a new group or a new level */}
 
-            {(level > 0 || groupIndex) && divider ? <MenuListItem role="separator" /> : ''}
+            {(level ?? groupIndex) > 0 && divider ? <MenuListItem role="separator" /> : ''}
 
             {title && (
               <MenuListItem>

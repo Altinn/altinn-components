@@ -1,11 +1,11 @@
-import { Autocomplete, type AutocompleteProps } from './Autocomplete';
+import { Autocomplete, type AutocompleteProps } from '../Autocomplete';
 import { SearchField, type SearchFieldProps } from './SearchField';
 import { SearchbarBase } from './SearchbarBase';
 
 export interface SearchbarProps extends SearchFieldProps {
   className?: string;
   autocomplete?: AutocompleteProps;
-  expanded: boolean;
+  expanded?: boolean;
   tabIndex?: number;
 }
 

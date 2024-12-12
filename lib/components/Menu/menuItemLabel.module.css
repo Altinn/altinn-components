@@ -26,6 +26,12 @@
   font-weight: 400;
 }
 
+.title[data-size="xs"] {
+  font-size: 0.875rem;
+  line-height: 1.25;
+  font-weight: 400;
+}
+
 .description {
   font-size: 0.875rem;
   color: var(--theme-text-subtle);

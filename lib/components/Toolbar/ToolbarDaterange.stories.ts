@@ -9,6 +9,8 @@ const meta = {
   parameters: {},
   args: {
     label: 'Velg dato',
+    value: '2021-05-26',
+    title: 'Dato',
   },
 } satisfies Meta<typeof ToolbarDaterange>;
 
@@ -16,9 +18,3 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
-
-export const Expanded: Story = {
-  args: {
-    expanded: true,
-  },
-};

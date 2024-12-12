@@ -1,4 +1,9 @@
+import type { ReactNode } from 'react';
+import { AttachmentSection, type AttachmentSectionProps } from '../Attachment';
+import type { ContextMenuProps } from '../ContextMenu/';
 import { MetaBase } from '../Meta';
+import { TransmissionSection, type TransmissionSectionProps } from '../Transmission';
+import { type DialogActionButtonProps, DialogActions } from './DialogActions.tsx';
 import { DialogActivityLog, type DialogActivityLogProps } from './DialogActivityLog';
 import { DialogArticleBase } from './DialogArticleBase';
 import { DialogBase } from './DialogBase';
@@ -6,18 +11,10 @@ import { DialogBodyBase } from './DialogBodyBase';
 import { DialogContent } from './DialogContent';
 import { DialogFooter } from './DialogFooter';
 import { DialogHeader } from './DialogHeader';
-import { DialogSeenBy, type DialogSeenByProps } from './DialogSeenBy';
-
-import { AttachmentSection, type AttachmentSectionProps } from '../Attachment';
-import { TransmissionSection, type TransmissionSectionProps } from '../Transmission';
-
-import type { ContextMenuProps } from '../ContextMenu/';
-
-import type { ReactNode } from 'react';
-import { type DialogActionButtonProps, DialogActions } from './DialogActions.tsx';
 import type { DialogRecipientProps, DialogSenderProps } from './DialogHeadings.tsx';
 import { DialogHistory, type DialogHistoryProps } from './DialogHistory';
 import { type DialogBackButtonProps, DialogNav } from './DialogNav';
+import { DialogSeenBy, type DialogSeenByProps } from './DialogSeenBy';
 import type { DialogStatusProps } from './DialogStatus';
 
 export interface DialogProps {

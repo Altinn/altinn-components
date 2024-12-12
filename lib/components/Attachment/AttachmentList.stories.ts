@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
-
+import { attachments } from '../../examples/attachments.ts';
 import { AttachmentList } from './AttachmentList';
 
 const meta = {
@@ -11,23 +10,7 @@ const meta = {
     layout: 'fullscreen',
   },
   args: {
-    items: [
-      {
-        label: '1-0 Castro.pdf',
-      },
-      {
-        label: '2-0 Kornvig.pdf',
-      },
-      {
-        label: '3-0 Kartum.pdf',
-      },
-      {
-        label: '3-1 Zinkernagel.pdf',
-      },
-      {
-        label: '4-1 Castro.pdf',
-      },
-    ],
+    items: attachments,
   },
 } satisfies Meta<typeof AttachmentList>;
 

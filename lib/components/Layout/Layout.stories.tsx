@@ -1,193 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { ActionFooter, ActionHeader, ActionMenu, DialogListItem, ListBase, Snackbar } from '../';
-import type { FooterProps, HeaderProps, MenuProps } from '../';
+import { footer, header, inboxMenu, useAccountMenu, useInboxSearch } from '../../examples';
 import { Layout } from './Layout';
-
-const header: HeaderProps = {
-  search: {
-    name: 'search',
-    placeholder: 'Søk i Altinn',
-  },
-  currentAccount: {
-    id: 'party:aurora',
-    type: 'person',
-    name: 'Aurora Mikalsen',
-  },
-  menu: {
-    logoutButton: {
-      label: 'Logg ut',
-    },
-    items: [
-      {
-        id: '1',
-        icon: 'airplane',
-        size: 'lg',
-        title: 'Section 1',
-      },
-      {
-        id: '2',
-        icon: 'briefcase',
-        size: 'lg',
-        title: 'Section 2',
-      },
-      {
-        id: '3',
-        size: 'lg',
-        title: 'Section 3',
-        icon: 'camera',
-      },
-    ],
-    accountSearch: {
-      name: 'account-search',
-      placeholder: 'Søk etter konto',
-    },
-    accountGroups: {
-      primary: {
-        title: 'Deg selv og favoritter',
-      },
-      secondary: {
-        title: 'Andre kontoer',
-      },
-    },
-    accounts: [
-      {
-        id: 'aurora',
-        groupId: 'primary',
-        type: 'person',
-        name: 'Aurora Mikalsen',
-        selected: true,
-        badge: {
-          label: '2',
-        },
-      },
-      {
-        id: 'bergen-bar',
-        groupId: 'favourites',
-        type: 'company',
-        name: 'Bergen Bar',
-        selected: false,
-        badge: {
-          label: '19',
-        },
-      },
-      {
-        id: 'allAccounts',
-        groupId: 'groups',
-        type: 'company',
-        name: 'Alle virksomheter',
-        accountNames: ['Keeperhansker AS', 'Stadion drift AS', 'Landslaget'],
-        selected: false,
-        badge: {
-          label: '19',
-        },
-      },
-      {
-        id: 'keeper',
-        groupId: 'secondary',
-        type: 'company',
-        name: 'Keeperhansker AS',
-        selected: false,
-      },
-      {
-        id: 'stadion-drift',
-        groupId: 'secondary',
-        type: 'company',
-        name: 'Stadion drift AS',
-        selected: false,
-      },
-      {
-        id: 'sk-brann',
-        groupId: 'favourites',
-        type: 'company',
-        name: 'Sportsklubben Brann',
-        selected: false,
-      },
-      {
-        id: 'norge',
-        groupId: 'secondary',
-        type: 'company',
-        name: 'Landslaget',
-        selected: false,
-      },
-    ],
-  },
-};
-
-const footer: FooterProps = {
-  address: 'Postboks 1382 Vika, 0114 Oslo.',
-  address2: 'Org.nr. 991 825 827',
-  menu: {
-    items: [
-      {
-        id: '1',
-        href: '#',
-        title: 'Om Altinn',
-      },
-      {
-        id: '2',
-        href: '#',
-        title: 'Driftsmeldinger',
-      },
-      {
-        id: '3',
-        href: '#',
-        title: 'Personvern',
-      },
-      {
-        id: '4',
-        href: '#',
-        title: 'Tilgjengelighet',
-      },
-    ],
-  },
-};
-
-const menu: MenuProps = {
-  groups: {},
-  items: [
-    {
-      id: '1',
-      groupId: 1,
-      size: 'lg',
-      icon: 'inbox',
-      title: 'Innboks',
-      color: 'strong',
-    },
-    {
-      id: '2',
-      groupId: 2,
-      icon: 'doc-pencil',
-      title: 'Utkast',
-    },
-    {
-      id: '3',
-      group: 2,
-      icon: 'file-checkmark',
-      selected: true,
-      title: 'Sendt',
-    },
-    {
-      id: '4',
-      groupId: 3,
-      icon: 'bookmark',
-      title: 'Lagrede søk',
-    },
-    {
-      id: '5',
-      groupId: 4,
-      icon: 'archive',
-      title: 'Arkivert',
-    },
-    {
-      id: '6',
-      groupId: 4,
-      disabled: true,
-      icon: 'trash',
-      title: 'Papirkurv',
-    },
-  ],
-};
 
 const meta = {
   title: 'Layout/Layout',
@@ -201,101 +16,36 @@ const meta = {
     header,
     footer,
     sidebar: {
-      menu,
+      menu: inboxMenu,
     },
+    children: <p>Content (should be hidden on mobile when menu is open).</p>,
   },
 } satisfies Meta<typeof Layout>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  args: {},
-};
-
-export const ControlledStateSearch = (args) => {
-  const [q, setQ] = useState<string>('');
-  const onChange = (event) => {
-    setQ(event.target.value);
-  };
-
-  const scopes = [
-    {
-      type: 'scope',
-      groupId: '1',
-      id: 'inbox',
-      href: '#',
-      label: q
-        ? () => {
-            return (
-              <span>
-                <mark>{q}</mark> i innboksen
-              </span>
-            );
-          }
-        : 'Alt i innboksen',
-    },
-    {
-      type: 'scope',
-      groupId: '1',
-      id: 'global',
-      href: '#',
-      label: q
-        ? () => {
-            return (
-              <span>
-                <mark>{q}</mark> i hele Altinn
-              </span>
-            );
-          }
-        : 'Alt i hele Altinn',
-    },
-  ];
-
-  const suggestions = q
-    ? [
-        {
-          groupId: '2',
-          href: 'http://www.altinn.no',
-          description: 'Skattemelding 2024',
-        },
-        {
-          groupId: '2',
-          href: 'http://www.altinn.no',
-          description: 'Skattemelding 2025',
-        },
-      ].filter((item) => item.description.toLowerCase().includes((q ?? '').toLowerCase()))
-    : [];
-
-  const autocomplete = {
-    groups: {
-      2: {
-        title: `${suggestions.length} treff i innboksen`,
-      },
-    },
-    items: [...scopes, ...suggestions],
-  };
+export const Default = (args) => {
+  const search = useInboxSearch(args.header.search);
+  const menu = useAccountMenu(args.header.menu);
 
   return (
     <Layout
       {...args}
       header={{
         ...args.header,
-        search: {
-          ...args.header.search,
-          value: q,
-          onChange,
-          onClear: () => setQ(''),
-          autocomplete,
-        },
+        currentAccount: menu.currentAccount,
+        menu: menu,
+        search: search,
       }}
     />
   );
 };
 
 export const InboxBulkMode = (args) => {
-  const [snackbars, setSnackbars] = useState([]);
+  const search = useInboxSearch(args.header.search);
+  const menu = useAccountMenu(args.header.menu);
 
+  const [snackbars, setSnackbars] = useState([]);
   const [itemsById, setItemsById] = useState({
     1: {
       id: '1',
@@ -372,8 +122,8 @@ export const InboxBulkMode = (args) => {
   return (
     <Layout
       theme={bulkMode ? 'neutral' : 'company'}
-      header={{ ...header, search: bulkMode ? undefined : header.search }}
-      sidebar={{ hidden: bulkMode, menu }}
+      header={{ ...header, menu, currentAccount: menu.currentAccount, search: bulkMode ? undefined : search }}
+      sidebar={{ hidden: bulkMode, menu: inboxMenu }}
       content={{ theme: 'neutral' }}
     >
       <ActionHeader title={bulkTitle} hidden={!bulkMode} />

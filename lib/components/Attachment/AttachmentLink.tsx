@@ -3,13 +3,13 @@ import { Typography, type TypographySize } from '../Typography';
 import styles from './attachmentLink.module.css';
 
 export interface AttachmentLinkProps {
-  size?: TypographySize;
   /** Link url */
   href: string;
   /** Label (filename) */
   label: string;
   /** Icon */
   icon?: IconName;
+  size?: TypographySize;
 }
 
 export const AttachmentLink = ({ size = 'lg', icon = 'file', href, label }: AttachmentLinkProps) => {

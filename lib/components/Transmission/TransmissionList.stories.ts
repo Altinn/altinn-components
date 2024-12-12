@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
 
 import { TransmissionList } from './TransmissionList';
 
@@ -18,7 +17,7 @@ const meta = {
         },
         sender: {
           name: 'Skatteetaten',
-          type: 'Company',
+          type: 'company',
           imageUrl:
             'https://cdn.sanity.io/images/z3it2oa7/production/e16a4f384d1d5ed959e1d74f0626259711d67509-88x88.png?w=96',
         },

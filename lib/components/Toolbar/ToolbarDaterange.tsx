@@ -1,5 +1,5 @@
-import { type MouseEventHandler, useState } from 'react';
-import { DrawerOrDropdown } from '../';
+import { useState } from 'react';
+import { DrawerOrDropdown, useRootContext } from '../';
 import { Datepicker } from '../Datepicker';
 import { MenuBase, MenuInputField } from '../Menu';
 import { ToolbarButton } from './ToolbarButton';
@@ -13,21 +13,23 @@ export interface ToolbarDaterangeProps {
   description?: string;
   fromLabel?: string;
   toLabel?: string;
-  onToggle?: MouseEventHandler;
-  expanded?: boolean;
+  id?: string;
   className?: string;
 }
 
 export const ToolbarDaterange = ({
+  id = 'toolbar-filter-datetange',
   title = 'Select daterange',
   description = 'Choose dates or click to set daterange.',
   fromLabel = 'From date',
   toLabel = 'To date',
   label = 'Select daterange',
   value,
-  expanded = false,
-  onToggle,
 }: ToolbarDaterangeProps) => {
+  const { currentId, toggleId } = useRootContext();
+  const onToggle = () => toggleId(id);
+  const expanded = currentId === id;
+
   const [fromDate, setFromDate] = useState<string>('');
   const [toDate, setToDate] = useState<string>('');
 

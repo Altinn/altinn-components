@@ -23,7 +23,7 @@ export interface LayoutProps {
   footer?: FooterProps;
   sidebar?: SidebarProps;
   content?: ContentProps;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 export const Layout = ({ theme = 'global', header, footer, sidebar = {}, content = {}, children }: LayoutProps) => {
@@ -32,7 +32,7 @@ export const Layout = ({ theme = 'global', header, footer, sidebar = {}, content
   return (
     <LayoutBase theme={theme} currentId={currentId}>
       {header && <Header {...header} />}
-      <LayoutBody>
+      <LayoutBody currentId={currentId}>
         {sidebar && (
           <LayoutSidebar hidden={sidebar?.hidden} theme={sidebar?.theme} {...sideRestProps}>
             {menu && <Menu {...menu} />}

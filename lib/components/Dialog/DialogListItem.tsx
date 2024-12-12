@@ -1,5 +1,5 @@
 import type { ElementType } from 'react';
-import { ListItem, type ListItemColor, ListItemLabel } from '../List';
+import { ListItemBase, type ListItemColor, ListItemHeader, ListItemLabel } from '../List';
 import { DialogBorder } from './DialogBorder';
 import { DialogDescription } from './DialogDescription';
 import { DialogHeaderBase } from './DialogHeaderBase';
@@ -119,53 +119,59 @@ export const DialogListItem = ({
 
   if (size === 'xs' || size === 'sm') {
     return (
-      <ListItem {...rest} loading={loading} size={size} className={styles.item}>
-        <DialogBorder className={styles.border} size={size} seen={seen} loading={loading}>
-          <ListItemLabel loading={loading} size={size} title={title} description={summary || description} />
-          <DialogMetadata loading={loading} updatedAt={updatedAt} updatedAtLabel={updatedAtLabel} />
-        </DialogBorder>
-      </ListItem>
+      <ListItemBase {...rest} loading={loading} size={size}>
+        <ListItemHeader {...rest} loading={loading} size={size} className={styles.item}>
+          <DialogBorder className={styles.border} size={size} seen={seen} loading={loading}>
+            <ListItemLabel loading={loading} size={size} title={title} description={summary || description} />
+            <DialogMetadata loading={loading} updatedAt={updatedAt} updatedAtLabel={updatedAtLabel} />
+          </DialogBorder>
+        </ListItemHeader>
+      </ListItemBase>
     );
   }
 
   return (
-    <ListItem
-      {...rest}
-      loading={loading}
-      size={size}
-      className={styles.item}
-      controls={select && <DialogSelect className={styles.select} {...select} />}
-    >
-      <DialogBorder className={styles.border} size={size} seen={seen} loading={loading}>
-        <DialogHeaderBase size={size}>
-          <DialogTitle loading={loading} size={size} variant={applicableVariant} label={label} seen={seen}>
-            {title}
-          </DialogTitle>
-          <DialogHeadings loading={loading} size={size} grouped={grouped} sender={sender} recipient={recipient} />
-        </DialogHeaderBase>
-        <DialogDescription loading={loading} size={size}>
-          {summary || description}
-        </DialogDescription>
-        <footer data-size={size} className={styles.footer}>
-          <DialogMetadata
-            loading={loading}
-            status={status}
-            updatedAt={updatedAt}
-            updatedAtLabel={updatedAtLabel}
-            archivedAt={archivedAt}
-            archivedAtLabel={archivedAtLabel}
-            trashedAt={trashedAt}
-            trashedAtLabel={trashedAtLabel}
-            dueAt={dueAt}
-            dueAtLabel={dueAtLabel}
-            seenBy={seenBy}
-            attachmentsCount={attachmentsCount}
-          />
-          {touchedBy && (
-            <DialogTouchedBy loading={loading} size="xs" touchedBy={touchedBy} className={styles.touchedBy} />
-          )}
-        </footer>
-      </DialogBorder>
-    </ListItem>
+    <ListItemBase {...rest} loading={loading} size={size}>
+      <ListItemHeader
+        {...rest}
+        loading={loading}
+        size={size}
+        className={styles.item}
+        controls={select && <DialogSelect className={styles.select} {...select} />}
+      >
+        <DialogBorder className={styles.border} size={size} seen={seen} loading={loading}>
+          <DialogHeaderBase size={size}>
+            <DialogTitle loading={loading} size={size} variant={applicableVariant} label={label} seen={seen}>
+              {title}
+            </DialogTitle>
+            {sender && recipient && (
+              <DialogHeadings loading={loading} size={size} grouped={grouped} sender={sender} recipient={recipient} />
+            )}
+          </DialogHeaderBase>
+          <DialogDescription loading={loading} size={size}>
+            {summary || description}
+          </DialogDescription>
+          <footer data-size={size} className={styles.footer}>
+            <DialogMetadata
+              loading={loading}
+              status={status}
+              updatedAt={updatedAt}
+              updatedAtLabel={updatedAtLabel}
+              archivedAt={archivedAt}
+              archivedAtLabel={archivedAtLabel}
+              trashedAt={trashedAt}
+              trashedAtLabel={trashedAtLabel}
+              dueAt={dueAt}
+              dueAtLabel={dueAtLabel}
+              seenBy={seenBy}
+              attachmentsCount={attachmentsCount}
+            />
+            {touchedBy && (
+              <DialogTouchedBy loading={loading} size="xs" touchedBy={touchedBy} className={styles.touchedBy} />
+            )}
+          </footer>
+        </DialogBorder>
+      </ListItemHeader>
+    </ListItemBase>
   );
 };

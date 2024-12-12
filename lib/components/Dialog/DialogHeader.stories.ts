@@ -7,11 +7,14 @@ const meta = {
   tags: ['autodocs'],
   args: {
     title: 'Title',
+    variant: 'neutral',
     sender: {
       name: 'Sender',
+      type: 'company',
     },
     recipient: {
       name: 'Recipient',
+      type: 'person',
     },
   },
 } satisfies Meta<typeof DialogHeader>;

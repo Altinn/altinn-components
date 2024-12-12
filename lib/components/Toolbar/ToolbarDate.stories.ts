@@ -9,7 +9,7 @@ const meta = {
   parameters: {},
   args: {
     label: 'Velg dato',
-    value: 'today',
+    value: ['today'],
     optionType: 'radio',
     options: [
       {
@@ -53,10 +53,14 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    name: 'default',
+  },
+};
 
 export const Expanded: Story = {
   args: {
-    expanded: true,
+    name: 'expanded',
   },
 };
