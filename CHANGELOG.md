@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.1](https://github.com/Altinn/altinn-components/compare/v0.9.0...v0.9.1) (2024-12-12)
+
+
+### Bug Fixes
+
+* Layout body should be hidden on mobile when menu is open [#116](https://github.com/Altinn/altinn-components/issues/116) ([e7dd088](https://github.com/Altinn/altinn-components/commit/e7dd08871b1b5b6f7f39b989fae4fc3a918156f4))
+
 ## [0.9.0](https://github.com/Altinn/altinn-components/compare/v0.8.3...v0.9.0) (2024-12-11)
 
 
