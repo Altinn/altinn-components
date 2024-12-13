@@ -17,9 +17,24 @@
   outline: 2px solid var(--theme-border-strong);
 }
 
-/* default (white background) */
+/* variant */
 
-.item[data-color="default"] {
+.item[data-variant="outline"],
+.item[data-variant="dotted"] {
+  outline-color: var(--theme-base-default);
+}
+
+.item[data-variant="outline"] {
+  outline-style: solid;
+}
+
+.item[data-variant="dotted"] {
+  outline-style: dashed;
+}
+
+/* subtle */
+
+.item[data-color="subtle"] {
   background-color: var(--theme-background-default);
 }
 

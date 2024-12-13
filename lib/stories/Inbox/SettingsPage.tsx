@@ -5,7 +5,7 @@ import {
   ListItem,
   MetaItem,
   PageBase,
-  SectionBase,
+  Section,
   SectionFooter,
   SectionHeader,
   Typography,

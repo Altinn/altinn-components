@@ -24,36 +24,61 @@
   margin-bottom: 0;
 }
 
-.typography h2 {
+.typography strong {
+  font-weight: 500;
+}
+
+.typography a {
+  color: var(--theme-base-default);
+}
+
+.typography > p {
+  font-size: 1em;
+  margin: 1em 0;
+}
+
+.typography > h2 {
   font-size: 1.25rem;
   font-weight: 600;
   margin-top: 1.5em;
   margin-bottom: 0;
 }
 
-.typography h3 {
+.typography > h3 {
   font-size: 1em;
   font-weight: 600;
   margin: 1em 0;
 }
 
-.typography h4 {
+.typography > h4 {
   font-size: 1em;
   font-weight: 600;
   margin: 1em 0 0;
 }
 
-.typography p {
-  font-size: 1em;
+.typography > h5,
+.typography > h6 {
+  font-size: 0.875rem;
+  margin: 1em 0 0;
+}
+
+.typography > h6 {
+  font-weight: 500;
+  color: var(--theme-text-subtle);
+}
+
+.typography > h6 {
+  font-weight: 400;
+  color: var(--theme-text-subtle);
+}
+
+.typography > h5 + *,
+.typography > h6 + * {
+  margin-top: 0;
+}
+
+.typography > section {
   margin: 1em 0;
-}
-
-.typography strong {
-  font-weight: 600;
-}
-
-.typography a {
-  color: var(--link-base-default);
 }
 
 .typography ul:not([class]),

@@ -16,7 +16,7 @@
 .item {
   border: 1px;
   border-radius: 2px;
-  color: var(--neutral-text-subtle);
+  color: var(--theme-text-subtle);
   display: inline-flex;
   align-items: center;
   column-gap: 0.25em;
@@ -24,13 +24,19 @@
   text-decoration: none;
 }
 
+.reverse {
+  flex-direction: row-reverse;
+}
+
 .item strong {
   font-weight: 500;
-  color: var(--neutral-text-default);
+  color: var(--theme-text-default);
 }
 
 button.item:hover,
-a.item:hover {
+a.item:hover,
+button.item:hover strong,
+a.item:hover strong {
   color: var(--theme-base-hover);
   cursor: pointer;
 }

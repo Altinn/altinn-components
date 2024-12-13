@@ -3,10 +3,10 @@ import type { AvatarGroupProps, AvatarProps } from '../Avatar';
 import type { BadgeProps } from '../Badge';
 import type { ContextMenuProps } from '../ContextMenu';
 import type { IconName } from '../Icon';
-import { ListItemBase } from './ListItemBase';
+import { ListItemBase, type ListItemBaseProps } from './ListItemBase';
 import { ListItemHeader, type ListItemHeaderProps } from './ListItemHeader';
 
-export interface ListItemProps extends ListItemHeaderProps {
+export interface ListItemProps extends ListItemBaseProps, ListItemHeaderProps {
   /** Custom className */
   className?: string;
   /** Element is loading, display a placeholder */

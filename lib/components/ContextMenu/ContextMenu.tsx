@@ -1,7 +1,9 @@
 'use client';
 import cx from 'classnames';
+import { useRef } from 'react';
 import { DropdownBase, type DropdownPlacement, IconButton, type MenuItemProps } from '../';
 import { type MenuItemGroups, MenuItems } from '../';
+import { useClickOutside } from '../../hooks';
 import { useRootContext } from '../RootProvider';
 import styles from './contextMenu.module.css';
 
@@ -25,9 +27,13 @@ export const ContextMenu = ({
   items,
 }: ContextMenuProps) => {
   const { currentId, toggleId, closeAll } = useRootContext();
+  const ref = useRef<HTMLDivElement>(null);
+  useClickOutside(ref, () => closeAll());
   const onToggle = () => toggleId(id);
+  const expanded = currentId === id;
+
   return (
-    <div className={cx(styles.toggle, className)} data-theme="neutral">
+    <div className={cx(styles.toggle, className)} data-theme="neutral" ref={ref}>
       <IconButton
         className={styles.button}
         size={size}
@@ -37,7 +43,7 @@ export const ContextMenu = ({
         color="secondary"
         onClick={onToggle}
       />
-      <DropdownBase className={styles.dropdown} placement={placement} open={currentId === id} onClose={closeAll}>
+      <DropdownBase className={styles.dropdown} placement={placement} open={expanded}>
         <MenuItems groups={groups} items={items} />
       </DropdownBase>
     </div>

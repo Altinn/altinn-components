@@ -1,20 +1,27 @@
 import cx from 'classnames';
 import type { ElementType, ReactNode } from 'react';
-import type { LayoutTheme } from '../Layout';
 import styles from './typography.module.css';
 
+export type TypographyTheme = 'inherit' | 'neutral' | 'company' | 'person' | 'article';
 export type TypographySize = 'xs' | 'sm' | 'md' | 'lg';
 
 export interface TypographyProps {
   as?: ElementType;
   size?: TypographySize;
-  theme?: LayoutTheme;
+  theme?: TypographyTheme;
   className?: string;
   children?: ReactNode;
   href?: string;
 }
 
-export const Typography = ({ as = 'div', size = 'md', theme, className, children, ...restProps }: TypographyProps) => {
+export const Typography = ({
+  as = 'div',
+  size = 'md',
+  theme = 'inherit',
+  className,
+  children,
+  ...restProps
+}: TypographyProps) => {
   const Component = as;
 
   return (

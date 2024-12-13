@@ -1,14 +1,14 @@
 import type { ReactNode } from 'react';
-import { SectionBase, type SectionBaseProps } from './SectionBase';
+import { Section, type SectionProps } from './Section';
 
-export interface PageBaseProps extends SectionBaseProps {
+export interface PageBaseProps extends SectionProps {
   children?: ReactNode;
 }
 
 export const PageBase = ({ children, ...props }: PageBaseProps) => {
   return (
-    <SectionBase as="main" {...props}>
+    <Section as="div" {...props}>
       {children}
-    </SectionBase>
+    </Section>
   );
 };

@@ -2,11 +2,13 @@ import type { ReactNode } from 'react';
 import styles from './listItemBase.module.css';
 
 export type ListItemSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export type ListItemColor = 'default' | 'accent' | 'transparent';
+export type ListItemVariant = 'solid' | 'dotted';
+export type ListItemColor = 'subtle' | 'accent' | 'transparent';
 export type ListItemShadow = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export interface ListItemBaseProps {
   color?: ListItemColor;
+  variant?: ListItemVariant;
   size?: ListItemSize;
   shadow?: ListItemShadow;
   className?: string;
@@ -16,13 +18,13 @@ export interface ListItemBaseProps {
   active?: boolean;
   selected?: boolean;
   expanded?: boolean;
-  controls?: ReactNode;
   children?: ReactNode;
 }
 
 export const ListItemBase = ({
   size,
-  color = 'default',
+  variant = 'solid',
+  color = 'subtle',
   shadow = 'xs',
   loading,
   disabled,
@@ -35,6 +37,7 @@ export const ListItemBase = ({
   return (
     <article
       className={styles.item}
+      data-variant={variant}
       data-color={color}
       data-size={size}
       data-shadow={color === 'transparent' ? 'none' : shadow}

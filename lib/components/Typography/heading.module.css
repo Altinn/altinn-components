@@ -2,17 +2,25 @@
   margin: 0;
 }
 
+.heading[data-weight="normal"] {
+  font-weight: 400;
+}
+
+.heading[data-weight="medium"] {
+  font-weight: 500;
+}
+
+.heading[data-weight="bold"] {
+  font-weight: 600;
+}
+
 .heading[data-size="xs"] {
   font-size: 0.875rem;
-  font-weight: 400;
   line-height: 1.5rem;
-  color: var(--theme-text-subtle);
-  margin-bottom: 0.375rem;
 }
 
 .heading[data-size="sm"] {
   font-size: 1.125rem;
-  font-weight: 500;
   line-height: 1.5rem;
 }
 
@@ -25,5 +33,5 @@
 .heading[data-size="lg"] {
   font-size: 1.5rem;
   font-weight: 500;
-  line-height: 1.5rem;
+  line-height: 1.25;
 }

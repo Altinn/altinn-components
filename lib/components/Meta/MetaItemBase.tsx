@@ -8,6 +8,7 @@ export type MetaItemColor = 'subtle';
 
 export interface MetaItemBaseProps {
   as?: ElementType;
+  reverse?: boolean;
   variant?: MetaItemVariant;
   size?: MetaItemSize;
   color?: MetaItemColor;
@@ -19,6 +20,7 @@ export interface MetaItemBaseProps {
 
 export const MetaItemBase = ({
   as,
+  reverse,
   variant = 'text',
   size,
   color,
@@ -37,7 +39,7 @@ export const MetaItemBase = ({
       data-variant={variant}
       data-progress={progress}
       dateTime={datetime}
-      className={cx(styles.item, className)}
+      className={cx(styles.item, { [styles.reverse]: reverse }, className)}
       {...rest}
     >
       {children}

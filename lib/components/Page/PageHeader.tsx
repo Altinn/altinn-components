@@ -1,25 +1,29 @@
-import { Heading } from '../';
-import { PageHeaderMedia, type PageHeaderMediaProps } from './PageHeaderMedia';
-import { PageNav } from './PageNav';
-import { SectionBase, type SectionBaseProps } from './SectionBase';
-import styles from './pageHeader.module.css';
+import {
+  type AvatarGroupProps,
+  type AvatarProps,
+  Heading,
+  type IconName,
+  ListItemMedia,
+  Section,
+  type SectionProps,
+} from '..';
 
-export interface PageHeaderProps extends SectionBaseProps, PageHeaderMediaProps {
+export interface PageHeaderProps extends SectionProps {
   title?: string;
   description?: string;
+  icon?: IconName;
+  avatar?: AvatarProps;
+  avatarGroup?: AvatarGroupProps;
 }
 
-export const PageHeader = ({ title, description, icon, avatar, avatarGroup, children, ...props }: PageHeaderProps) => {
+export const PageHeader = ({ title, icon, avatar, avatarGroup, children, ...rest }: PageHeaderProps) => {
   return (
-    <SectionBase as="header" {...props}>
-      <PageNav />
-      <section className={styles.header}>
-        <PageHeaderMedia icon={icon} avatar={avatar} avatarGroup={avatarGroup} />
-        <div className={styles.title}>
-          <Heading size="md">{title}</Heading>
-          <div className="description">{description}</div>
-        </div>
-      </section>
-    </SectionBase>
+    <Section as="header" spacing="md" {...rest}>
+      <Section flex="row" align="center" spacing="md">
+        <ListItemMedia avatar={avatar} avatarGroup={avatarGroup} icon={icon} size="lg" />
+        <Heading size="lg">{title}</Heading>
+      </Section>
+      {children}
+    </Section>
   );
 };

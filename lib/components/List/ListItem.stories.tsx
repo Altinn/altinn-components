@@ -3,7 +3,7 @@ import { Fragment, useState } from 'react';
 
 import { Button, List, ListBase, ListItem, ListItemBase, ListItemHeader, MetaItem } from '../';
 
-const sizes = ['lg', 'md', 'sm', 'xs'];
+const sizes = ['xl', 'lg', 'md', 'sm', 'xs'];
 
 const meta = {
   title: 'List/ListItem',
