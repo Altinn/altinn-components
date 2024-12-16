@@ -1,11 +1,11 @@
 import type { ReactNode } from 'react';
 import { MetaItem, type MetaItemSize } from '../Meta';
 
-export type DialogLabelVariant = 'normal' | 'trashed' | 'archived';
+export type DialogLabelType = 'normal' | 'trashed' | 'archived';
 
 export interface DialogLabelProps {
   size?: MetaItemSize;
-  variant?: DialogLabelVariant;
+  type?: DialogLabelType;
   label?: string;
   children?: ReactNode;
 }
@@ -14,8 +14,8 @@ export interface DialogLabelProps {
  * Dialog label.
  */
 
-export const DialogLabel = ({ size = 'xs', variant, label, children }: DialogLabelProps) => {
-  switch (variant) {
+export const DialogLabel = ({ size = 'xs', type, label, children }: DialogLabelProps) => {
+  switch (type) {
     case 'trashed':
       return (
         <MetaItem size={size} icon="trash" variant="rounded">

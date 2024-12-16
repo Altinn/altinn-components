@@ -1,9 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Fragment, useState } from 'react';
 
-import { Button, List, ListBase, ListItem, ListItemBase, ListItemHeader, MetaItem } from '../';
+import {
+  type AvatarGroupProps,
+  Button,
+  List,
+  ListBase,
+  ListItem,
+  ListItemBase,
+  ListItemHeader,
+  type ListItemProps,
+  MetaItem,
+} from '../';
 
-const sizes = ['xl', 'lg', 'md', 'sm', 'xs'];
+const colors = ['neutral', 'accent', 'transparent'] as ListItemProps['color'][];
+const sizes = ['xl', 'lg', 'md', 'sm', 'xs'] as ListItemProps['size'][];
 
 const meta = {
   title: 'List/ListItem',
@@ -14,7 +25,7 @@ const meta = {
     id: 'id',
     title: 'Title',
     description: 'Description',
-    size: 'md',
+    size: 'sm',
   },
 } satisfies Meta<typeof ListItem>;
 
@@ -25,7 +36,7 @@ export const Default: Story = {
   args: {},
 };
 
-export const MediaTypes = (args) => {
+export const MediaTypes = (args: ListItemProps) => {
   return (
     <ListBase>
       <ListItem {...args} />
@@ -102,10 +113,10 @@ export const MediaTypes = (args) => {
   );
 };
 
-export const Loading = (args) => {
+export const Loading = (args: ListItemProps) => {
   return (
     <ListBase>
-      {sizes?.map((size) => {
+      {sizes.map((size) => {
         return (
           <Fragment key={size}>
             <ListItem {...args} icon="teddy-bear" size={size} loading={true} />
@@ -118,7 +129,7 @@ export const Loading = (args) => {
   );
 };
 
-export const Controls = (args) => {
+export const Controls = (args: ListItemProps) => {
   return (
     <ListBase>
       <ListItem {...args} linkIcon="chevron-right" />
@@ -134,9 +145,10 @@ export const Controls = (args) => {
         badge={{ label: 'Admin' }}
         linkIcon="chevron-right"
         menu={{
+          id: 'menu',
           items: [
-            { title: 'Innstillinger', icon: 'cog' },
-            { title: 'Aktivitetslogg', icon: 'clock-dashed' },
+            { id: 'settings', title: 'Innstillinger', icon: 'cog' },
+            { id: 'log', title: 'Aktivitetslogg', icon: 'clock-dashed' },
           ],
         }}
       />
@@ -157,7 +169,7 @@ export const Controls = (args) => {
   );
 };
 
-export const Selectable = (args) => {
+export const Selectable = (args: ListItemProps) => {
   return (
     <ListBase>
       {sizes?.map((size) => {
@@ -187,24 +199,29 @@ export const Selectable = (args) => {
   );
 };
 
-export const Colors = (args) => {
+export const Colors = (args: ListItemProps) => {
   return (
     <ListBase>
-      <ListItem {...args} />
-      <MetaItem>Default</MetaItem>
-      <ListItem {...args} color="accent" />
-      <MetaItem>Accent</MetaItem>
+      {colors.map((color) => {
+        return (
+          <Fragment key={color}>
+            <ListItem {...args} icon="teddy-bear" color={color} linkIcon="chevron-right" />
+            <MetaItem>{color}</MetaItem>
+          </Fragment>
+        );
+      })}
     </ListBase>
   );
 };
 
-export const Sizes = (args) => {
+export const Sizes = (args: ListItemProps) => {
   return (
     <ListBase>
       {sizes?.map((size) => {
         return (
           <Fragment key={size}>
-            <ListItem {...args} icon="teddy-bear" size={size} selected={size === args?.size} linkIcon="chevron-right" />
+            <ListItem {...args} icon="teddy-bear" size={size} linkIcon="chevron-right" />
+            <ListItem {...args} avatar={{ name: 'Avatar' }} size={size} linkIcon="chevron-right" />
             <MetaItem>{size}</MetaItem>
           </Fragment>
         );
@@ -213,7 +230,7 @@ export const Sizes = (args) => {
   );
 };
 
-export const Collapsible = (args) => {
+export const Collapsible = (args: ListItemProps) => {
   const [expanded, setExpanded] = useState(false);
 
   const onToggle = () => {
@@ -243,7 +260,7 @@ export const Collapsible = (args) => {
     },
   ];
 
-  const items = people?.map((item) => {
+  const items: ListItemProps[] = people.map((item, index) => {
     return {
       avatar: {
         ...item,
@@ -252,12 +269,20 @@ export const Collapsible = (args) => {
       title: item?.name,
       description: item?.role,
       badge: { label: item?.rights },
-      linkIcon: 'menu-elipsis-horizontal',
+      menu: {
+        id: 'menu' + index,
+        items: [
+          {
+            id: 'item1',
+            title: 'Hallo',
+          },
+        ],
+      },
     };
   });
 
-  const avatarGroup = {
-    items: people?.map((item) => {
+  const avatarGroup: AvatarGroupProps = {
+    items: people.map((item) => {
       return {
         name: item?.name,
         type: 'person',
@@ -275,7 +300,7 @@ export const Collapsible = (args) => {
         onClick={onToggle}
         as="button"
       />
-      {expanded && <List size="sm" spacing="none" items={items} />}
+      {expanded && <List spacing="none" defaultItemSize="xs" defaultItemColor="transparent" items={items} />}
     </ListItemBase>
   );
 };

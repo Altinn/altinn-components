@@ -44,11 +44,11 @@
   font-weight: 400;
 }
 
-.title[data-variant="archived"] {
+.title[data-state="archived"] {
   font-weight: 400;
 }
 
-.title[data-variant="trashed"] {
+.title[data-state="trashed"] {
   font-weight: 400;
   text-decoration: line-through;
 }

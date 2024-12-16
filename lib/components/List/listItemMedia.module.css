@@ -13,28 +13,18 @@
   font-size: 1.5rem;
 }
 
-.media[data-size="xs"] {
-  font-size: 1.25rem;
-}
-
-.media[data-size="md"] {
+.media[data-size="md"],
+.media[data-size="lg"] {
   font-size: 1.875rem;
 }
 
-.media[data-size="md"] .icon {
-  font-size: 1.5rem;
-}
-
-.media[data-size="lg"] {
-  font-size: 2.25rem;
-}
-
+.media[data-size="md"] .icon,
 .media[data-size="lg"] .icon {
   font-size: 1.75rem;
 }
 
 .media[data-size="xl"] {
-  font-size: 2.75rem;
+  font-size: 2.25rem;
 }
 
 .media[data-size="xl"] .icon {

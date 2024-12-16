@@ -2,12 +2,11 @@ import type { ReactNode } from 'react';
 import { Avatar, AvatarGroup, type AvatarGroupProps, type AvatarProps, type AvatarSize } from '../Avatar';
 import { Icon, type IconName } from '../Icon';
 import { Skeleton } from '../Skeleton';
-import type { ListItemColor, ListItemSize } from './ListItemBase';
+import type { ListItemSize } from './ListItemBase';
 import styles from './listItemMedia.module.css';
 
 export interface ListItemMediaProps {
   loading?: boolean;
-  color?: ListItemColor;
   size?: ListItemSize;
   icon?: IconName;
   avatar?: AvatarProps;
@@ -17,30 +16,22 @@ export interface ListItemMediaProps {
 
 const sizeMap = {
   avatar: {
-    xs: 'xs',
+    xs: 'sm',
     sm: 'sm',
     md: 'md',
-    lg: 'lg',
-    xl: 'xl',
+    lg: 'md',
+    xl: 'lg',
   },
   avatarGroup: {
-    xs: 'xs',
-    sm: 'xs',
-    md: 'sm',
+    xs: 'sm',
+    sm: 'sm',
+    md: 'md',
     lg: 'md',
     xl: 'lg',
   },
 };
 
-export const ListItemMedia = ({
-  loading,
-  size = 'sm',
-  color = 'transparent',
-  icon,
-  avatar,
-  avatarGroup,
-  children,
-}: ListItemMediaProps) => {
+export const ListItemMedia = ({ loading, size = 'sm', icon, avatar, avatarGroup, children }: ListItemMediaProps) => {
   if (!icon && !avatar && !avatarGroup && !children) {
     return false;
   }
@@ -54,7 +45,7 @@ export const ListItemMedia = ({
   }
 
   return (
-    <div className={styles.media} data-size={size} data-color={!icon ? null : color}>
+    <div className={styles.media} data-size={size}>
       {(icon && <Icon name={icon} variant="outline" className={styles.icon} />) ||
         (avatar && <Avatar {...avatar} size={sizeMap?.avatar[size] as AvatarSize} className={styles.avatar} />) ||
         (avatarGroup && (

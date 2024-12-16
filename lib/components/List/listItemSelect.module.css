@@ -25,13 +25,6 @@
   margin-right: -0.5rem;
 }
 
-.label[data-size="xs"] {
-  font-size: 1rem;
-  padding: .5rem;
-  margin-left: 0.25rem;
-  margin-right: -0.5rem;
-}
-
 .label:hover {
   background-color: var(--theme-surface-default);
 }

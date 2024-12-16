@@ -1,0 +1,23 @@
+.link {
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  text-decoration: none;
+  line-height: normal;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  appearance: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+.link[aria-disabled="true"] {
+  pointer-events: none;
+}
+
+.link:not([aria-disabled="true"]):hover h2 {
+  text-decoration: underline;
+}

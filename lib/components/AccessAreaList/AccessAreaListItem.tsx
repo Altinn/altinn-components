@@ -19,7 +19,7 @@ export const AccessAreaListItem = ({
   ...props
 }: AccessAreaListItemProps) => {
   return (
-    <ListItemBase size={size} color="subtle" expanded={expanded}>
+    <ListItemBase size={size} expanded={expanded}>
       <ListItemHeader
         as="button"
         avatar={{
