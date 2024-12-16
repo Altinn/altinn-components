@@ -1,13 +1,15 @@
 import { useState } from 'react';
-import { AttachmentSection, type AttachmentSectionProps } from '../Attachment';
 import type { AvatarProps } from '../Avatar';
 import type { BadgeProps } from '../Badge';
+import { DialogAttachments, type DialogAttachmentsProps } from '../Dialog';
 import { ListItem } from '../List';
 import { MetaTimestamp } from '../Meta';
 import { Typography } from '../Typography';
+import type { TransmissionTypeProps } from './TransmissionType';
 import styles from './transmissionItem.module.css';
 
 export interface TransmissionItemProps {
+  type?: TransmissionTypeProps;
   loading?: boolean;
   expanded?: boolean;
   sender: AvatarProps;
@@ -17,15 +19,15 @@ export interface TransmissionItemProps {
   title?: string;
   description?: string | undefined;
   summary?: string;
-  attachments?: AttachmentSectionProps;
+  attachments?: DialogAttachmentsProps;
 }
 
 export const TransmissionItem = ({
+  type,
   loading,
   sender,
   createdAt,
   createdAtLabel,
-  badge,
   title,
   description,
   summary,
@@ -36,6 +38,22 @@ export const TransmissionItem = ({
   const onToggle = () => {
     setExpanded((prevState) => !prevState);
   };
+
+  if (type?.value === 'draft') {
+    return (
+      <ListItem
+        as="button"
+        color="transparent"
+        variant="dotted"
+        size="sm"
+        icon="pencil"
+        title={title}
+        description={description}
+        badge={{ label: type?.label }}
+        linkIcon="chevron-right"
+      />
+    );
+  }
 
   return (
     <ListItem
@@ -50,7 +68,7 @@ export const TransmissionItem = ({
       }}
       title={title}
       description={expanded ? '' : description}
-      badge={badge}
+      badge={{ label: type?.label }}
       linkIcon={expanded ? 'chevron-down' : 'chevron-up'}
     >
       {expanded && (
@@ -63,7 +81,7 @@ export const TransmissionItem = ({
           )}
           <Typography size="lg">
             <p>{summary}</p>
-            {attachments && <AttachmentSection {...attachments} />}
+            {attachments && <DialogAttachments {...attachments} />}
           </Typography>
         </div>
       )}

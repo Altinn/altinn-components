@@ -1,4 +1,4 @@
-import { BookmarksList, Heading, MetaItem, SectionBase, SectionFooter, SectionHeader } from '../';
+import { BookmarksList, Heading, MetaItem, Section, SectionFooter, SectionHeader } from '../';
 import type { BookmarksListItemProps } from '../';
 
 export interface BookmarksSectionProps {
@@ -7,16 +7,16 @@ export interface BookmarksSectionProps {
   updatedAtLabel?: string;
 }
 
-export const BookmarksSection = ({ title, items, updatedAtLabel }) => {
+export const BookmarksSection = ({ title, items, updatedAtLabel }: BookmarksSectionProps) => {
   return (
-    <SectionBase padding color="subtle" spacing="lg" inset>
+    <Section padding="lg" color="surface" spacing="lg" inset>
       <SectionHeader>
         <Heading size="sm">{title}</Heading>
       </SectionHeader>
       <BookmarksList items={items} />
-      <SectionFooter padding>
+      <SectionFooter>
         <MetaItem>{updatedAtLabel}</MetaItem>
       </SectionFooter>
-    </SectionBase>
+    </Section>
   );
 };

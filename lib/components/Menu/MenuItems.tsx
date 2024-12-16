@@ -52,8 +52,7 @@ export const MenuItems = ({
         return (
           <Fragment key={groupIndex}>
             {/** Render a separator if this is a new group or a new level */}
-
-            {(level ?? groupIndex) > 0 && divider ? <MenuListItem role="separator" /> : ''}
+            {(level > 0 || groupIndex) && divider ? <MenuListItem role="separator" /> : ''}
 
             {title && (
               <MenuListItem>

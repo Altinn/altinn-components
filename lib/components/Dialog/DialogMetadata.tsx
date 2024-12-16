@@ -1,12 +1,24 @@
-import { MetaBase, MetaItem, MetaTimestamp } from '../Meta';
-import { DialogSeenBy, type DialogSeenByProps } from './DialogSeenBy';
-import { DialogStatus, type DialogStatusProps } from './DialogStatus';
+import {
+  type AvatarProps,
+  DialogSeenBy,
+  type DialogSeenByProps,
+  DialogStatus,
+  type DialogStatusProps,
+  DialogTouchedBy,
+  type DialogTouchedByProps,
+  MetaBase,
+  MetaItem,
+  MetaTimestamp,
+} from '..';
 
 export type DialogMetadataProps = {
+  className?: string;
   /** Metadata is loading */
   loading?: boolean;
   /** Dialog status */
   status?: DialogStatusProps;
+  /** Sender */
+  sender?: AvatarProps;
   /** Updated datetime */
   updatedAt?: string;
   /** Updated label */
@@ -25,8 +37,16 @@ export type DialogMetadataProps = {
   trashedAtLabel?: string;
   /** Who have seen the dialog after latest update */
   seenBy?: DialogSeenByProps;
+  /** Who have seen the dialog after latest update */
+  touchedBy?: DialogTouchedByProps;
   /** Number of attachments */
   attachmentsCount?: number;
+  /** Attachments label */
+  attachmentsLabel?: string;
+  /** Transmissions label */
+  transmissionsLabel?: string;
+  /** Clickable items */
+  onClick?: () => void;
 };
 
 /**
@@ -34,8 +54,10 @@ export type DialogMetadataProps = {
  */
 
 export const DialogMetadata = ({
+  className,
   loading,
   status,
+  sender,
   updatedAt,
   updatedAtLabel,
   dueAt,
@@ -45,13 +67,18 @@ export const DialogMetadata = ({
   archivedAt,
   archivedAtLabel,
   seenBy,
+  touchedBy,
   attachmentsCount = 0,
+  attachmentsLabel,
+  transmissionsLabel,
+  onClick,
 }: DialogMetadataProps) => {
   return (
-    <MetaBase size="xs">
+    <MetaBase className={className} size="xs">
       {status && <DialogStatus loading={loading} size="xs" {...status} />}
       {updatedAt && (
         <MetaTimestamp loading={loading} datetime={updatedAt} size="xs">
+          <strong>{sender && sender.name + ', '}</strong>
           {updatedAtLabel}
         </MetaTimestamp>
       )}
@@ -60,9 +87,14 @@ export const DialogMetadata = ({
           {dueAtLabel}
         </MetaTimestamp>
       )}
-      {attachmentsCount > 0 && (
-        <MetaItem loading={loading} size="xs" icon="paperclip">
-          {attachmentsCount}
+      {(attachmentsLabel || attachmentsCount > 0) && (
+        <MetaItem as={onClick && 'button'} onClick={onClick} loading={loading} size="xs" icon="paperclip">
+          {attachmentsLabel || attachmentsCount}
+        </MetaItem>
+      )}
+      {transmissionsLabel && (
+        <MetaItem as={onClick && 'button'} onClick={onClick} loading={loading} size="xs" icon="files">
+          {transmissionsLabel}
         </MetaItem>
       )}
       {(trashedAt && trashedAtLabel && (
@@ -76,6 +108,8 @@ export const DialogMetadata = ({
           </MetaTimestamp>
         )) ||
         (!loading && seenBy && <DialogSeenBy size="xs" {...seenBy} />)}
+
+      {touchedBy && <DialogTouchedBy {...touchedBy} loading={loading} size="xs" />}
     </MetaBase>
   );
 };

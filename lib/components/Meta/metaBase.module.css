@@ -1,0 +1,6 @@
+.meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 0.5rem;
+}

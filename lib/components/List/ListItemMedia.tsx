@@ -5,7 +5,7 @@ import { Skeleton } from '../Skeleton';
 import type { ListItemColor, ListItemSize } from './ListItemBase';
 import styles from './listItemMedia.module.css';
 
-interface ListItemMediaProps {
+export interface ListItemMediaProps {
   loading?: boolean;
   color?: ListItemColor;
   size?: ListItemSize;
@@ -35,7 +35,7 @@ const sizeMap = {
 export const ListItemMedia = ({
   loading,
   size = 'sm',
-  color = 'default',
+  color = 'transparent',
   icon,
   avatar,
   avatarGroup,

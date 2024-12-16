@@ -9,6 +9,7 @@
   border: 0;
 }
 
+.label[data-size="xl"],
 .label[data-size="lg"],
 .label[data-size="md"] {
   font-size: 1.25rem;

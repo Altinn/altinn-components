@@ -1,25 +1,32 @@
 import type { ElementType } from 'react';
-import { ListItemBase, type ListItemColor, ListItemHeader, ListItemLabel } from '../List';
-import { DialogBorder } from './DialogBorder';
-import { DialogDescription } from './DialogDescription';
-import { DialogHeaderBase } from './DialogHeaderBase';
-import { DialogHeadings } from './DialogHeadings';
-import type { DialogRecipientProps, DialogSenderProps } from './DialogHeadings';
-import { DialogMetadata } from './DialogMetadata';
-import type { DialogSeenByProps } from './DialogSeenBy';
-import { DialogSelect, type DialogSelectProps } from './DialogSelect';
-import type { DialogStatusProps } from './DialogStatus';
-import { DialogTitle } from './DialogTitle';
-import { DialogTouchedBy, type DialogTouchedByActor } from './DialogTouchedBy';
+import {
+  type AvatarProps,
+  DialogBorder,
+  DialogByline,
+  DialogHeading,
+  DialogMetadata,
+  type DialogSeenByProps,
+  DialogSelect,
+  type DialogSelectProps,
+  type DialogStatusProps,
+  type DialogTouchedByActor,
+  ListItemBase,
+  type ListItemColor,
+  ListItemHeader,
+  ListItemLabel,
+  Skeleton,
+} from '..';
 
 export type DialogListItemSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export type DialogListItemVariant = 'neutral' | 'draft' | 'trashed' | 'archived';
+export type DialogListItemVariant = 'normal' | 'trashed' | 'archived';
 
 import styles from './dialogListItem.module.css';
 
 export interface DialogListItemProps {
   /** Dialog title */
   title: string;
+  /** Dialog sender */
+  sender: AvatarProps;
   /** Dialog description */
   description?: string;
   /** Dialog summary (will override description) */
@@ -42,12 +49,12 @@ export interface DialogListItemProps {
   selected?: boolean;
   /** Dialog status */
   status?: DialogStatusProps;
-  /** Dialog sender */
-  sender?: DialogSenderProps;
   /** Dialog Recipient  */
-  recipient?: DialogRecipientProps;
-  /** Group view, show avatar for recipient */
-  grouped?: boolean;
+  recipient?: AvatarProps;
+  /** Dialog Recipient  */
+  recipientLabel?: string;
+  /** Group recipient, show both sender and recipient avatars */
+  recipientGroup?: boolean;
   /** Updated datetime */
   updatedAt?: string;
   /** Updated at label */
@@ -68,7 +75,7 @@ export interface DialogListItemProps {
   tabIndex?: number;
   /** Custom label */
   label?: string;
-  /** *Custom background color */
+  /** Custom color */
   color?: ListItemColor;
   /** Dialog has been seen */
   seen?: boolean;
@@ -89,14 +96,15 @@ export interface DialogListItemProps {
  */
 
 export const DialogListItem = ({
-  size = 'lg',
-  variant = 'neutral',
+  size = 'xl',
+  variant = 'normal',
   loading,
   select,
   status,
   sender,
   recipient,
-  grouped,
+  recipientLabel = 'to',
+  recipientGroup = false,
   updatedAt,
   updatedAtLabel,
   archivedAt,
@@ -117,13 +125,13 @@ export const DialogListItem = ({
 }: DialogListItemProps) => {
   const applicableVariant = trashedAt ? 'trashed' : archivedAt ? 'archived' : variant;
 
-  if (size === 'xs' || size === 'sm') {
+  if (size === 'xs' || size === 'sm' || size === 'md') {
     return (
-      <ListItemBase {...rest} loading={loading} size={size}>
+      <ListItemBase {...rest} size={size}>
         <ListItemHeader {...rest} loading={loading} size={size} className={styles.item}>
           <DialogBorder className={styles.border} size={size} seen={seen} loading={loading}>
             <ListItemLabel loading={loading} size={size} title={title} description={summary || description} />
-            <DialogMetadata loading={loading} updatedAt={updatedAt} updatedAtLabel={updatedAtLabel} />
+            <DialogMetadata loading={loading} sender={sender} updatedAt={updatedAt} updatedAtLabel={updatedAtLabel} />
           </DialogBorder>
         </ListItemHeader>
       </ListItemBase>
@@ -131,7 +139,7 @@ export const DialogListItem = ({
   }
 
   return (
-    <ListItemBase {...rest} loading={loading} size={size}>
+    <ListItemBase>
       <ListItemHeader
         {...rest}
         loading={loading}
@@ -140,36 +148,41 @@ export const DialogListItem = ({
         controls={select && <DialogSelect className={styles.select} {...select} />}
       >
         <DialogBorder className={styles.border} size={size} seen={seen} loading={loading}>
-          <DialogHeaderBase size={size}>
-            <DialogTitle loading={loading} size={size} variant={applicableVariant} label={label} seen={seen}>
+          <header className={styles.header} data-size={size}>
+            <DialogHeading loading={loading} size={size} variant={applicableVariant} label={label} seen={seen}>
               {title}
-            </DialogTitle>
-            {sender && recipient && (
-              <DialogHeadings loading={loading} size={size} grouped={grouped} sender={sender} recipient={recipient} />
-            )}
-          </DialogHeaderBase>
-          <DialogDescription loading={loading} size={size}>
-            {summary || description}
-          </DialogDescription>
-          <footer data-size={size} className={styles.footer}>
-            <DialogMetadata
+            </DialogHeading>
+            <DialogByline
+              size="xs"
               loading={loading}
-              status={status}
-              updatedAt={updatedAt}
-              updatedAtLabel={updatedAtLabel}
-              archivedAt={archivedAt}
-              archivedAtLabel={archivedAtLabel}
-              trashedAt={trashedAt}
-              trashedAtLabel={trashedAtLabel}
-              dueAt={dueAt}
-              dueAtLabel={dueAtLabel}
-              seenBy={seenBy}
-              attachmentsCount={attachmentsCount}
+              sender={sender}
+              recipient={recipient}
+              recipientLabel={recipientLabel}
+              recipientGroup={recipientGroup}
             />
-            {touchedBy && (
-              <DialogTouchedBy loading={loading} size="xs" touchedBy={touchedBy} className={styles.touchedBy} />
-            )}
-          </footer>
+            <p data-size={size} className={styles.summary}>
+              <Skeleton loading={loading}>{summary || description}</Skeleton>
+            </p>
+          </header>
+          <DialogMetadata
+            className={styles.footer}
+            loading={loading}
+            status={status}
+            updatedAt={updatedAt}
+            updatedAtLabel={updatedAtLabel}
+            archivedAt={archivedAt}
+            archivedAtLabel={archivedAtLabel}
+            trashedAt={trashedAt}
+            trashedAtLabel={trashedAtLabel}
+            dueAt={dueAt}
+            dueAtLabel={dueAtLabel}
+            attachmentsCount={attachmentsCount}
+            seenBy={seenBy}
+            touchedBy={{
+              touchedBy: touchedBy,
+              className: styles.touchedBy,
+            }}
+          />
         </DialogBorder>
       </ListItemHeader>
     </ListItemBase>

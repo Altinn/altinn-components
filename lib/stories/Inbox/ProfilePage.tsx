@@ -7,7 +7,7 @@ import {
   MetaItem,
   PageBase,
   PageHeader,
-  SectionBase,
+  Section,
   SectionFooter,
   SectionHeader,
   Typography,

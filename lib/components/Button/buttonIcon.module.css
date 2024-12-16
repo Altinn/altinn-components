@@ -4,6 +4,10 @@
   justify-content: center;
 }
 
+.icon[data-size="xs"] {
+  font-size: 1rem;
+}
+
 .icon[data-size="sm"] {
   font-size: 1.25rem;
 }

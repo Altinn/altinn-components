@@ -6,7 +6,7 @@ import {
   ListItem,
   MetaItem,
   PageBase,
-  SectionBase,
+  Section,
   SectionFooter,
   SectionHeader,
   Typography,
@@ -64,7 +64,7 @@ export function BookmarksPage() {
   return (
     <PageBase margin="lg" spacing="lg">
       <InboxToolbar />
-      <SectionBase padding color="subtle" spacing="lg" inset>
+      <Section padding color="subtle" spacing="lg" inset>
       <SectionHeader>
           <Heading size="sm">{title}</Heading>
         </SectionHeader>
@@ -72,7 +72,7 @@ export function BookmarksPage() {
         <SectionFooter padding>
           <MetaItem>Sist oppdatert: 10 minutter siden.</MetaItem>
         </SectionFooter>
-      </SectionBase>
+      </Section>
     </PageBase>
   );
 }

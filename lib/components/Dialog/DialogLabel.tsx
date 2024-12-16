@@ -1,10 +1,11 @@
 import type { ReactNode } from 'react';
 import { MetaItem, type MetaItemSize } from '../Meta';
-import type { DialogVariant } from './DialogBase';
+
+export type DialogLabelVariant = 'normal' | 'trashed' | 'archived';
 
 export interface DialogLabelProps {
   size?: MetaItemSize;
-  variant?: DialogVariant;
+  variant?: DialogLabelVariant;
   label?: string;
   children?: ReactNode;
 }

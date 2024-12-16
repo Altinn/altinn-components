@@ -1,23 +1,39 @@
 import type { ReactNode } from 'react';
-import { Typography } from '../Typography';
-import { DialogMetadata } from './DialogMetadata';
+import {
+  Byline,
+  DialogActivityLog,
+  type DialogActivityLogProps,
+  DialogSeenBy,
+  type DialogSeenByProps,
+  MetaBase,
+  Section,
+  TimelineSection,
+  Typography,
+} from '..';
 
 export interface DialogContentProps {
   updatedAt?: string;
   updatedAtLabel?: string;
-  summary?: string;
-  body?: ReactNode;
+  seenBy?: DialogSeenByProps;
+  activityLog?: DialogActivityLogProps;
+  children?: ReactNode;
 }
 
-/** Main textual content of a dialog, including summary, body and a timestamp */
-export const DialogContent = ({ updatedAt, updatedAtLabel, summary, body }: DialogContentProps) => {
+/** Main content of a dialog */
+
+export const DialogContent = ({ updatedAt, updatedAtLabel, seenBy, activityLog, children }: DialogContentProps) => {
   return (
-    <section>
-      <DialogMetadata updatedAt={updatedAt} updatedAtLabel={updatedAtLabel} />
-      <Typography size="lg">
-        <p>{summary}</p>
-        {body}
-      </Typography>
-    </section>
+    <TimelineSection seen={false}>
+      <Section spacing="lg" margin="md">
+        <div>
+          <Byline datetime={updatedAt}>{updatedAtLabel}</Byline>
+          <Typography size="lg">{children}</Typography>
+        </div>
+        <MetaBase>
+          {seenBy && <DialogSeenBy {...seenBy} />}
+          {activityLog && <DialogActivityLog {...activityLog} />}
+        </MetaBase>
+      </Section>
+    </TimelineSection>
   );
 };

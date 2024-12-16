@@ -7,6 +7,7 @@ import { MetaItemMedia } from './MetaItemMedia';
 
 export interface MetaItemProps {
   loading?: boolean;
+  reverse?: boolean;
   /**  Render as element */
   as?: ElementType;
   /** Meta size */
@@ -23,9 +24,17 @@ export interface MetaItemProps {
   onClick?: () => void;
 }
 
-export const MetaItem = ({ loading, size = 'xs', variant = 'text', icon, children, ...rest }: MetaItemProps) => {
+export const MetaItem = ({
+  loading,
+  reverse,
+  size = 'xs',
+  variant = 'text',
+  icon,
+  children,
+  ...rest
+}: MetaItemProps) => {
   return (
-    <MetaItemBase variant={variant} size={size} {...rest}>
+    <MetaItemBase reverse={reverse} variant={variant} size={size} {...rest}>
       <Skeleton loading={loading}>
         {!loading && icon && <MetaItemMedia size={size} icon={icon} />}
         <MetaItemLabel variant={variant} size={size}>

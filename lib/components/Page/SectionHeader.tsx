@@ -1,16 +1,20 @@
 import type { ReactNode } from 'react';
-import styles from './sectionHeader.module.css';
+import { Section, type SectionProps } from './Section';
 
-export interface SectionHeaderProps {
-  padding?: boolean;
-  margin?: boolean;
+export interface SectionHeaderProps extends SectionProps {
   children?: ReactNode;
 }
 
-export const SectionHeader = ({ margin = false, children }: SectionHeaderProps) => {
+export const SectionHeader = ({
+  flex = 'row',
+  align = 'center',
+  justify = 'between',
+  children,
+  ...rest
+}: SectionHeaderProps) => {
   return (
-    <header data-margin={margin} className={styles.header}>
+    <Section as="header" flex={flex} align={align} justify={justify} {...rest}>
       {children}
-    </header>
+    </Section>
   );
 };

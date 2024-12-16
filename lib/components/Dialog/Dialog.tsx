@@ -1,29 +1,42 @@
 import type { ReactNode } from 'react';
-import { AttachmentSection, type AttachmentSectionProps } from '../Attachment';
-import type { ContextMenuProps } from '../ContextMenu/';
-import { MetaBase } from '../Meta';
-import { TransmissionSection, type TransmissionSectionProps } from '../Transmission';
-import { type DialogActionButtonProps, DialogActions } from './DialogActions.tsx';
-import { DialogActivityLog, type DialogActivityLogProps } from './DialogActivityLog';
-import { DialogArticleBase } from './DialogArticleBase';
-import { DialogBase } from './DialogBase';
-import { DialogBodyBase } from './DialogBodyBase';
-import { DialogContent } from './DialogContent';
-import { DialogFooter } from './DialogFooter';
-import { DialogHeader } from './DialogHeader';
-import type { DialogRecipientProps, DialogSenderProps } from './DialogHeadings.tsx';
-import { DialogHistory, type DialogHistoryProps } from './DialogHistory';
-import { type DialogBackButtonProps, DialogNav } from './DialogNav';
-import { DialogSeenBy, type DialogSeenByProps } from './DialogSeenBy';
-import type { DialogStatusProps } from './DialogStatus';
+import {
+  Article,
+  type AvatarProps,
+  type BackButtonProps,
+  type ContextMenuProps,
+  type DialogActionButtonProps,
+  DialogActions,
+  type DialogActivityLogProps,
+  DialogAttachments,
+  type DialogAttachmentsProps,
+  DialogByline,
+  DialogContent,
+  DialogHistory,
+  type DialogHistoryProps,
+  DialogMetadata,
+  DialogSection,
+  type DialogSectionProps,
+  type DialogSeenByProps,
+  type DialogStatusProps,
+  DialogTimeline,
+  type DialogTimelineProps,
+  Heading,
+  PageBase,
+  PageNav,
+  Typography,
+} from '..';
 
 export interface DialogProps {
   /** Dialog id */
   id: string;
   /** Title */
   title: string;
+  /** Sender */
+  sender: AvatarProps;
+  /** Recipient  */
+  recipient?: AvatarProps;
   /** Back button */
-  backButton?: DialogBackButtonProps;
+  backButton?: BackButtonProps;
   /** Context menu */
   menu?: ContextMenuProps;
   /** Dialog status */
@@ -36,10 +49,10 @@ export interface DialogProps {
   dueAt?: string;
   /** Due at label */
   dueAtLabel?: string;
-  /** Sender */
-  sender?: DialogSenderProps;
-  /** Recipient  */
-  recipient?: DialogRecipientProps;
+  /** Recipient label (prefix) */
+  recipientLabel?: string;
+  /** Group recipient, show both sender and recipient avatars */
+  recipientGroup?: boolean;
   /** Summary */
   summary?: string;
   /** Body (should be an output markdown/html rendered to React / HTML) */
@@ -50,14 +63,16 @@ export interface DialogProps {
   seenBy?: DialogSeenByProps;
   /** Activity Log */
   activityLog?: DialogActivityLogProps;
-  /** More information about the dialog, process, etc. */
-  additionalInfo?: ReactNode;
   /** Dialog attachments */
-  attachments?: AttachmentSectionProps;
-  /** Dialog transmissions */
-  transmissions?: TransmissionSectionProps;
-  /** History */
+  attachments?: DialogAttachmentsProps;
+  /** Dialog history */
   history?: DialogHistoryProps;
+  /** Dialog timeline */
+  timeline?: DialogTimelineProps;
+  /** More information about the dialog, process, etc. */
+  additionalInfo?: DialogSectionProps;
+  /** Contact information. */
+  contactInfo?: DialogSectionProps;
 }
 
 /**
@@ -75,34 +90,57 @@ export const Dialog = ({
   title,
   sender,
   recipient,
+  recipientLabel = 'to',
+  recipientGroup,
   summary = 'Summary.',
   body,
   actions = [],
   attachments,
-  history,
   seenBy,
   activityLog,
+  history,
+  timeline,
   additionalInfo,
-  transmissions,
+  contactInfo,
 }: DialogProps) => {
   return (
-    <DialogBase>
-      <DialogNav status={status} dueAt={dueAt} dueAtLabel={dueAtLabel} backButton={backButton} menu={menu} />
-      <DialogArticleBase>
-        <DialogHeader title={title} sender={sender} recipient={recipient} seen={false} variant="neutral" />
-        <DialogBodyBase>
-          <DialogContent updatedAt={updatedAt} updatedAtLabel={updatedAtLabel} summary={summary} body={body} />
-          {attachments && <AttachmentSection {...attachments} />}
+    <PageBase color="subtle" shadow="xs">
+      <PageNav padding="sm" backButton={backButton} menu={menu}>
+        <DialogMetadata status={status} dueAt={dueAt} dueAtLabel={dueAtLabel} />
+      </PageNav>
+      <Article theme="article" padding="xl" spacing="xl">
+        <Heading size="lg">{title}</Heading>
+        {history && <DialogHistory {...history} collapsible={true} />}
+
+        <DialogByline
+          size="lg"
+          sender={sender}
+          recipient={recipient}
+          recipientLabel={recipientLabel}
+          recipientGroup={recipientGroup}
+        />
+
+        <DialogContent updatedAt={updatedAt} updatedAtLabel={updatedAtLabel} seenBy={seenBy} activityLog={activityLog}>
+          <p>{summary}</p>
+          {body}
+          {attachments && <DialogAttachments {...attachments} />}
           {actions?.length > 0 && <DialogActions items={actions} />}
-          {transmissions && <TransmissionSection {...transmissions} />}
-          <MetaBase>
-            {seenBy && <DialogSeenBy {...seenBy} />}
-            {activityLog && <DialogActivityLog {...activityLog} />}
-          </MetaBase>
-        </DialogBodyBase>
-        {additionalInfo && <DialogFooter additionalInfo={additionalInfo} />}
-        {history && <DialogHistory {...history} />}
-      </DialogArticleBase>
-    </DialogBase>
+        </DialogContent>
+
+        {timeline && <DialogTimeline {...timeline} />}
+
+        {additionalInfo && (
+          <DialogSection title={additionalInfo?.title}>
+            <Typography size="md">{additionalInfo?.children}</Typography>
+          </DialogSection>
+        )}
+
+        {contactInfo && (
+          <DialogSection title={contactInfo?.title}>
+            <Typography size="md">{contactInfo?.children}</Typography>
+          </DialogSection>
+        )}
+      </Article>
+    </PageBase>
   );
 };

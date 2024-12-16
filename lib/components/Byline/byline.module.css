@@ -1,0 +1,30 @@
+.byline {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.5em;
+}
+
+.label {
+  display: inline-flex;
+  flex-wrap: wrap;
+  column-gap: 0.25em;
+  color: var(--theme-text-subtle);
+}
+
+.label[data-size="xs"],
+.label[data-size="sm"] {
+  font-size: 14px;
+  line-height: 1.125rem;
+  padding: 0.1875rem 0;
+}
+
+.label[data-size="md"],
+.label[data-size="lg"] {
+  font-size: 16px;
+  line-height: 1.25rem;
+}
+
+.label > strong {
+  font-weight: 500;
+  color: var(--theme-text-default);
+}

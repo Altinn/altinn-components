@@ -46,6 +46,10 @@
   border-color: var(--theme-base-active);
 }
 
+.button[data-size="xs"] {
+  height: 1.5rem; /* sm 24 */
+}
+
 .button[data-size="sm"] {
   height: 2.25rem; /* sm 36 */
 }

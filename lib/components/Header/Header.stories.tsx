@@ -3,7 +3,7 @@ import { header, useAccountMenu, useInboxSearch } from '../../examples';
 import { Header } from './Header';
 
 const meta = {
-  title: 'Header/Header',
+  title: 'Layout/Header',
   component: Header,
   tags: ['autodocs'],
   parameters: {
