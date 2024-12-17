@@ -1,14 +1,12 @@
 import { ListItem } from '../List';
-import type { ListItemSize } from '../List';
+import type { ListItemProps } from '../List';
 
-export interface ResourceListItemProps {
+export interface ResourceListItemProps extends Pick<ListItemProps, 'size' | 'controls' | 'as' | 'onClick'> {
   id: string;
   ownerName: string;
   resourceName: string;
   ownerLogoUrl?: string;
   ownerLogoUrlAlt?: string;
-  size?: ListItemSize;
-  controls?: React.ReactNode;
 }
 
 export const ResourceListItem = ({
@@ -16,8 +14,7 @@ export const ResourceListItem = ({
   resourceName,
   ownerLogoUrlAlt,
   ownerLogoUrl,
-  size = 'md',
-  controls,
+  ...props
 }: ResourceListItemProps) => {
   return (
     <ListItem
@@ -29,8 +26,7 @@ export const ResourceListItem = ({
       }}
       title={resourceName}
       description={ownerName}
-      size={size}
-      controls={controls}
+      {...props}
     />
   );
 };

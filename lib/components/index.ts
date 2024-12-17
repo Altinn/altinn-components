@@ -27,3 +27,5 @@ export * from './Page';
 export * from './Transmission';
 export * from './Typography';
 export * from './ResourceList';
+export * from './AccessAreaList';
+export * from './AccessPackageList';
