@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import { AreaListItem } from './AreaListItem';
+import { AccessAreaListItem } from './AccessAreaListItem';
 
 import areaGroups from '../../../test-data/accesspackages.json';
 import { AccessPackageList } from '../AccessPackageList/AccessPackageList';
@@ -20,8 +20,8 @@ const children = (
 );
 
 const meta = {
-  title: 'List/AreaListItem',
-  component: AreaListItem,
+  title: 'List/AccessAreaListItem',
+  component: AccessAreaListItem,
   tags: ['autodocs'],
   args: {
     id: testArea.id,
@@ -38,7 +38,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof AreaListItem>;
+} satisfies Meta<typeof AccessAreaListItem>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -54,7 +54,7 @@ export const AllAreas = (args) => {
           <h2>{group.name}</h2>
           <p>{group.description}</p>
           {group.areas.map((area) => (
-            <AreaListItem
+            <AccessAreaListItem
               id={area.id}
               key={area.id}
               name={area.name}
@@ -70,7 +70,7 @@ export const AllAreas = (args) => {
                   title: p.name,
                 }))}
               />
-            </AreaListItem>
+            </AccessAreaListItem>
           ))}
         </div>
       ))}

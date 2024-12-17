@@ -2,14 +2,14 @@ import { ListItemBase, ListItemHeader } from '../List';
 import type { ListItemProps } from '../List';
 import styles from './areaListItem.module.css';
 
-export interface AreaListItemProps extends Pick<ListItemProps, 'size' | 'onClick' | 'expanded'> {
+export interface AccessAreaListItemProps extends Pick<ListItemProps, 'size' | 'onClick' | 'expanded'> {
   id: string;
   name: string;
   icon: string;
   children?: React.ReactNode;
 }
 
-export const AreaListItem = ({
+export const AccessAreaListItem = ({
   name,
   icon,
   size = 'md',
@@ -17,7 +17,7 @@ export const AreaListItem = ({
   expanded = false,
   onClick,
   ...props
-}: AreaListItemProps) => {
+}: AccessAreaListItemProps) => {
   return (
     <ListItemBase size={size} color="subtle" expanded={expanded}>
       <ListItemHeader
