@@ -2,7 +2,6 @@ import React from 'react';
 import { ListBase, type ListTheme } from '../List';
 import { AreaListItem, type AreaListItemProps } from './AreaListItem';
 
-
 export interface AreaListProps {
   items: AreaListItemProps[];
   theme?: ListTheme;

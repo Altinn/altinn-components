@@ -1,8 +1,8 @@
-import { ListItemBase, ListItemHeader } from "../List";
-import type { ListItemProps } from "../List";
-import styles from "./areaListItem.module.css";
+import { ListItemBase, ListItemHeader } from '../List';
+import type { ListItemProps } from '../List';
+import styles from './areaListItem.module.css';
 
-export interface AreaListItemProps extends Pick<ListItemProps, "size" | "onClick" | "expanded"> {
+export interface AreaListItemProps extends Pick<ListItemProps, 'size' | 'onClick' | 'expanded'> {
   id: string;
   name: string;
   icon: string;
@@ -12,20 +12,20 @@ export interface AreaListItemProps extends Pick<ListItemProps, "size" | "onClick
 export const AreaListItem = ({
   name,
   icon,
-  size = "md",
+  size = 'md',
   children,
   expanded = false,
   onClick,
   ...props
 }: AreaListItemProps) => {
-    return (
+  return (
     <ListItemBase size={size} color="subtle" expanded={expanded}>
       <ListItemHeader
         as="button"
         avatar={{
           name,
           imageUrl: icon,
-          type: "company",
+          type: 'company',
         }}
         title={name}
         size={size}
@@ -34,11 +34,7 @@ export const AreaListItem = ({
         onClick={onClick}
         {...props}
       />
-      {expanded && (
-        <div className={styles.content}>
-          {children}
-        </div>
-      )}
+      {expanded && <div className={styles.content}>{children}</div>}
     </ListItemBase>
   );
 };

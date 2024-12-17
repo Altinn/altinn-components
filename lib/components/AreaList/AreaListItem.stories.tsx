@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { AreaListItem } from "./AreaListItem";
-import React from "react";
+import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
+import { AreaListItem } from './AreaListItem';
 
-import areaGroups from "../../../test-data/accesspackages.json";
-import { AccessPackageList } from "../AccessPackageList/AccessPackageList";
+import areaGroups from '../../../test-data/accesspackages.json';
+import { AccessPackageList } from '../AccessPackageList/AccessPackageList';
 
 const testArea = areaGroups[1].areas[1];
 
@@ -20,21 +20,21 @@ const children = (
 );
 
 const meta = {
-  title: "List/AreaListItem",
+  title: 'List/AreaListItem',
   component: AreaListItem,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   args: {
     id: testArea.id,
-    size: "md",
+    size: 'md',
     name: testArea.name,
     icon: `data:image/svg+xml;base64,${btoa(testArea.icon)}`,
     children,
   },
   argTypes: {
     size: {
-      options: ["sm", "md", "lg"],
+      options: ['sm', 'md', 'lg'],
       control: {
-        type: "inline-radio",
+        type: 'inline-radio',
       },
     },
   },
@@ -50,10 +50,7 @@ export const AllAreas = (args) => {
   return (
     <div>
       {areaGroups.map((group) => (
-        <div
-          key={group.id}
-          style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
-        >
+        <div key={group.id} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
           <h2>{group.name}</h2>
           <p>{group.description}</p>
           {group.areas.map((area) => (
@@ -64,9 +61,7 @@ export const AllAreas = (args) => {
               icon={`data:image/svg+xml;base64,${btoa(area.icon)}`}
               size={args.size}
               expanded={expanded === area.id}
-              onClick={() =>
-                setExpanded((prev) => (prev === area.id ? null : area.id))
-              }
+              onClick={() => setExpanded((prev) => (prev === area.id ? null : area.id))}
             >
               {area.description && <p>{area.description}</p>}
               <AccessPackageList

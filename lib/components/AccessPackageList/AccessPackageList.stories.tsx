@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import React from "react";
+import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
 
-import areaGroups from "../../../test-data/accesspackages.json";
-import { AccessPackageList } from "./AccessPackageList";
+import areaGroups from '../../../test-data/accesspackages.json';
+import { AccessPackageList } from './AccessPackageList';
 
 const testArea = areaGroups[0].areas[1];
 
 const meta = {
-  title: "List/AccessPackageList",
+  title: 'List/AccessPackageList',
   component: AccessPackageList,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   args: {
     items: testArea.packages.map((p) => ({
       id: p.id,
