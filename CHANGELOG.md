@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.10.0](https://github.com/Altinn/altinn-components/compare/v0.9.1...v0.10.0) (2024-12-17)
+
+
+### Features
+
+* **AccessPackageListItem:** Adding list-item components for access-packages and access-areas ([#139](https://github.com/Altinn/altinn-components/issues/139)) ([e4b9145](https://github.com/Altinn/altinn-components/commit/e4b91456eb612c0d113a5a6409a2ae5896b7e189))
+* timeline + dialog fixes ([#135](https://github.com/Altinn/altinn-components/issues/135)) ([e6f16f5](https://github.com/Altinn/altinn-components/commit/e6f16f5f782739df9423f0f52cc2a2ffaef046ce))
+
 ## [0.9.1](https://github.com/Altinn/altinn-components/compare/v0.9.0...v0.9.1) (2024-12-12)
 
 

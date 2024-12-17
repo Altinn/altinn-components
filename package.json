@@ -1,12 +1,18 @@
 {
   "name": "@altinn/altinn-components",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist", "!dist/stories", "!dist/examples"],
+  "files": [
+    "dist",
+    "!dist/stories",
+    "!dist/examples"
+  ],
   "type": "module",
   "description": "Reusable react components",
-  "sideEffects": ["*.css"],
+  "sideEffects": [
+    "*.css"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",
