@@ -1,6 +1,6 @@
 import { ListItemBase, ListItemHeader } from '../List';
 import type { ListItemProps } from '../List';
-import styles from './areaListItem.module.css';
+import styles from './accessAreaListItem.module.css';
 
 export interface AccessAreaListItemProps extends Pick<ListItemProps, 'size' | 'onClick' | 'expanded'> {
   id: string;
