@@ -31,10 +31,20 @@ const meta = {
     children,
   },
   argTypes: {
+    expanded: {
+      control: {
+        type: 'boolean',
+      },
+    },
     size: {
       options: ['sm', 'md', 'lg'],
       control: {
         type: 'inline-radio',
+      },
+    },
+    icon: {
+      control: {
+        disable: true,
       },
     },
   },
