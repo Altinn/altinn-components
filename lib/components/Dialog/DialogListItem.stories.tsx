@@ -3,7 +3,7 @@ import type { Meta } from '@storybook/react';
 import { Fragment, useState } from 'react';
 
 import { DialogListItem, type DialogListItemProps, type DialogListItemSize } from './DialogListItem';
-import { DialogStatusEnum } from './DialogStatus';
+import { DialogStatusEnum, type DialogStatusValue } from './DialogStatus';
 
 import { ListBase } from '../List';
 import { MetaItem } from '../Meta';
@@ -26,12 +26,6 @@ const getStatusLabel = (value: string) => {
 };
 
 const sizes = ['xl', 'lg', 'md', 'sm', 'xs'] as DialogListItemSize[];
-const statuslist = Object.keys(DialogStatusEnum)?.map((value) => {
-  return {
-    value,
-    label: getStatusLabel(value),
-  };
-});
 
 const meta = {
   title: 'Dialog/DialogListItem',
@@ -69,11 +63,17 @@ export default meta;
 export const Statuses = (args: DialogListItemProps) => {
   return (
     <ListBase>
-      {statuslist.map((status) => {
+      {Object.keys(DialogStatusEnum).map((status: string) => {
         return (
-          <Fragment key={status.value}>
-            <DialogListItem {...args} status={status} />
-            <MetaItem>{status?.value}</MetaItem>
+          <Fragment key={status}>
+            <DialogListItem
+              {...args}
+              status={{
+                value: status as DialogStatusValue,
+                label: getStatusLabel(status),
+              }}
+            />
+            <MetaItem>{status}</MetaItem>
           </Fragment>
         );
       })}
@@ -142,7 +142,7 @@ export const DueAt = (args: DialogListItemProps) => {
   );
 };
 
-export const Attachments = (args) => {
+export const Attachments = (args: DialogListItemProps) => {
   return (
     <ListBase>
       <DialogListItem {...args} attachmentsCount={2} />
@@ -154,21 +154,17 @@ export const Attachments = (args) => {
 export const SeenBy = (args: DialogListItemProps) => {
   return (
     <ListBase>
-      <DialogListItem {...args} seen={true} seenBy={{ seenByEndUser: true, label: 'Sett av deg' }} />
+      <DialogListItem {...args} seen seenBy={{ seenByEndUser: true, label: 'Sett av deg' }} />
       <MetaItem>Seen by end user. Dialog is marked as seen.</MetaItem>
       <DialogListItem {...args} seenBy={{ seenByOthersCount: 4, label: 'Sett av 4' }} />
       <MetaItem>Seen by others. Dialog is not marked as seen.</MetaItem>
-      <DialogListItem
-        {...args}
-        seen={true}
-        seenBy={{ seenByOthersCount: 4, seenByEndUser: true, label: 'Sett av deg + 4' }}
-      />
+      <DialogListItem {...args} seen seenBy={{ seenByOthersCount: 4, seenByEndUser: true, label: 'Sett av deg + 4' }} />
       <MetaItem>Seen by end user and others. Dialog is marked as seen.</MetaItem>
     </ListBase>
   );
 };
 
-export const TouchedBy = (args) => {
+export const TouchedBy = (args: DialogListItemProps) => {
   return (
     <ListBase>
       <DialogListItem {...args} touchedBy={[{ name: 'Kari Nordmann' }]} />

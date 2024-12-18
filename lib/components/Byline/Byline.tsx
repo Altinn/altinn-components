@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { Avatar, AvatarGroup, type AvatarGroupProps, type AvatarProps, Skeleton } from '..';
 import styles from './byline.module.css';
 
-export type BylineSize = 'xs' | 'sm' | 'lg';
+export type BylineSize = 'xs' | 'sm' | 'md' | 'lg';
 
 export interface BylineProps {
   size?: BylineSize;

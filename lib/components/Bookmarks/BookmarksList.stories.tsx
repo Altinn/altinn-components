@@ -50,10 +50,12 @@ export const WithContextMenu: Story = {
           id: [item.id, 'menu'].join('-'),
           items: [
             {
+              id: [item.id, 'edit'].join('-'),
               icon: 'pencil',
               title: 'Rediger søk',
             },
             {
+              id: [item.id, 'trash'].join('-'),
               icon: 'trash',
               title: 'Slett søk',
             },

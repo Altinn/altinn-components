@@ -1,17 +1,12 @@
-import type { ReactNode } from 'react';
 import {
   Article,
   Avatar,
   Byline,
   DialogActions,
   DialogAttachments,
-  DialogByline,
-  DialogContent,
-  DialogHistory,
   DialogMetadata,
   type DialogProps,
   DialogSection,
-  DialogTimeline,
   Heading,
   PageBase,
   PageNav,
@@ -35,15 +30,10 @@ export const DraftDialog = ({
   sender,
   recipient,
   recipientLabel = 'to',
-  recipientGroup,
   summary = 'Summary.',
   body,
   actions = [],
   attachments,
-  seenBy,
-  activityLog,
-  history,
-  timeline,
   additionalInfo,
   contactInfo,
 }: DialogProps) => {
@@ -64,8 +54,7 @@ export const DraftDialog = ({
             {updatedAtLabel}
           </Byline>
         </Section>
-
-        <Section padding="xl" spacing="lg" color="" style={{ border: '1px solid', borderStyle: 'dashed' }}>
+        <Section padding="xl" spacing="lg" style={{ border: '1px solid', borderStyle: 'dashed' }}>
           <Typography size="lg">
             <p>{summary}</p>
             {body}
@@ -73,7 +62,6 @@ export const DraftDialog = ({
             {actions?.length > 0 && <DialogActions items={actions} />}
           </Typography>
         </Section>
-
         {additionalInfo && (
           <DialogSection title={additionalInfo?.title}>
             <Typography size="md">{additionalInfo?.children}</Typography>

@@ -1,6 +1,11 @@
 import { type ChangeEvent, useState } from 'react';
+import type { AutocompleteProps, SearchbarProps } from '../components';
+import type { AutocompleteItemProps } from '../components/Autocomplete/AutocompleteItem.tsx';
 
-export const useInboxSearch = ({ name = 'inbox-search', placeholder = 'Søk i innboks' }) => {
+export const useInboxSearch = ({
+  name = 'inbox-search',
+  placeholder = 'Søk i innboks',
+}: SearchbarProps): SearchbarProps => {
   const [q, setQ] = useState<string>('');
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setQ(event.target.value);
@@ -56,13 +61,13 @@ export const useInboxSearch = ({ name = 'inbox-search', placeholder = 'Søk i in
       ].filter((item) => item.title.toLowerCase().includes((q ?? '').toLowerCase()))
     : [];
 
-  const autocomplete = {
+  const autocomplete: AutocompleteProps = {
     groups: {
       2: {
         title: `${suggestions.length} treff i innboksen`,
       },
     },
-    items: [...scopes, ...suggestions],
+    items: [...scopes, ...suggestions] as AutocompleteItemProps[],
   };
 
   return {

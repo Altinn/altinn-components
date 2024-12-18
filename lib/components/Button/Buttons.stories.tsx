@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Button, ComboButton, IconButton, MetaItem } from '../';
+import type { StoryObj } from '@storybook/react';
+import { Button, type ButtonSize, type ButtonVariant, ComboButton, IconButton, MetaItem } from '../';
 
 const meta = {
   title: 'Atoms/Button/Buttons',
@@ -19,8 +19,8 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const sizes = ['sm', 'md', 'lg'];
-const variants = ['solid', 'outline', 'dotted', 'text'];
+const sizes = ['sm', 'md', 'lg'] as ButtonSize[];
+const variants = ['solid', 'outline', 'dotted', 'text'] as ButtonVariant[];
 
 export const VariantsAndSizes = (args: Story) => {
   return (
@@ -39,7 +39,7 @@ export const VariantsAndSizes = (args: Story) => {
             }}
           >
             <MetaItem>{variant}</MetaItem>
-            {sizes?.map((size) => {
+            {sizes.map((size) => {
               return (
                 <div key={size} style={{ display: 'flex', alignItems: 'center', columnGap: '1rem' }}>
                   <IconButton {...args} icon="x-mark" variant={variant} size={size} />

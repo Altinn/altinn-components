@@ -2,9 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { Snackbar } from '../Snackbar';
 import { ActionFooter } from './ActionFooter';
-import { ActionMenu } from './ActionMenu';
+import { ActionMenu, type ActionMenuProps } from './ActionMenu';
 
-const menu = {
+const menu: ActionMenuProps = {
   items: [
     {
       id: '1',

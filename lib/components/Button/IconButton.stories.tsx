@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { MetaItem } from '../Meta';
-import { IconButton } from './IconButton';
+import type { ButtonSize, ButtonVariant } from './ButtonBase.tsx';
+import { IconButton, type IconButtonProps } from './IconButton';
 
 const meta = {
   title: 'Atoms/Button/IconButton',
@@ -8,7 +9,6 @@ const meta = {
   tags: ['autodocs'],
   parameters: {},
   args: {
-    children: 'IconButton',
     icon: 'x-mark',
     size: 'sm',
   },
@@ -21,17 +21,17 @@ export const Default: Story = {
   args: {},
 };
 
-const sizes = ['sm', 'md', 'lg'];
-const variants = ['outline', 'solid', 'dotted', 'text'];
+const sizes = ['sm', 'md', 'lg'] as ButtonSize[];
+const variants = ['outline', 'solid', 'dotted', 'text'] as ButtonVariant[];
 
-export const Sizes = (args) => {
+export const Sizes = (args: IconButtonProps) => {
   return (
     <div style={{ display: 'flex', columnGap: '1rem', justifyContent: 'space-between', width: '100%' }}>
-      {variants?.map((variant) => {
+      {variants.map((variant) => {
         return (
           <div key={variant} style={{ display: 'flex', flexDirection: 'column', columnGap: '1rem' }}>
             <MetaItem>{variant}</MetaItem>
-            {sizes?.map((size) => {
+            {sizes.map((size) => {
               return (
                 <div key={size}>
                   <IconButton {...args} variant={variant} size={size} />

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Autocomplete } from './Autocomplete';
+import type { AutocompleteItemProps } from './AutocompleteItem.tsx';
 
 const meta = {
   title: 'Header/Autocomplete',
@@ -93,7 +94,6 @@ export const ScopesAndResults: Story = {
         ),
       },
       {
-        id: '2a',
         groupId: '3',
         type: 'dialog',
         href: '#',
@@ -101,7 +101,6 @@ export const ScopesAndResults: Story = {
         description: 'Skattemeldingen er klar for innsending.',
       },
       {
-        id: '2b',
         groupId: '3',
         type: 'dialog',
         href: '#',
@@ -109,7 +108,6 @@ export const ScopesAndResults: Story = {
         description: 'Skatteoppgjøret ditt er klart.',
       },
       {
-        id: '2c',
         groupId: '3',
         type: 'dialog',
         href: '#',
@@ -138,7 +136,7 @@ export const LoadingResults: Story = {
       }
 
       return item;
-    }),
+    }) as AutocompleteItemProps[],
   },
 };
 
@@ -179,7 +177,6 @@ export const NoHits: Story = {
       },
       {
         groupId: 'noHits',
-        id: '2a',
         type: 'information',
         label: () => (
           <span>
@@ -212,7 +209,7 @@ export const ScopesAndMixedResults: Story = {
         title: 'Alt om skatteoppgjøret',
         description: 'Lorem ipsum dolor sit amet.',
       },
-    ],
+    ] as AutocompleteItemProps[],
   },
 };
 

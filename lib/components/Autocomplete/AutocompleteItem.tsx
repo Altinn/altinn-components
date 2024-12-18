@@ -1,9 +1,8 @@
+import type { BadgeProps } from '../Badge';
 import { BookmarksListItem, type BookmarksListItemProps } from '../Bookmarks';
 import { DialogListItem, type DialogListItemProps } from '../Dialog/';
 import { ListItem, type ListItemProps } from '../List/';
 import { ScopeListItem, type ScopeListItemProps } from './ScopeListItem';
-
-import type { BadgeProps } from '../Badge';
 
 export type AutocompleteItemType = 'scope' | 'dialog' | 'bookmark' | 'information';
 
@@ -26,9 +25,9 @@ export interface BookmarkAutocompleteItemProps extends AutoCompleteItemWithType,
   type: 'bookmark';
 }
 
-export interface InformationAutocompleteItemProps extends AutoCompleteItemWithType {
+export interface InformationAutocompleteItemProps extends AutoCompleteItemWithType, ListItemProps {
   type: 'information';
-  badge: BadgeProps;
+  badge?: BadgeProps;
 }
 
 export type AutocompleteItemProps =

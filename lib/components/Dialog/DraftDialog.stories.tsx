@@ -63,7 +63,7 @@ const meta = {
     title: 'Title',
     summary: 'Summary',
   },
-} satisfies Meta<typeof Dialog>;
+} satisfies Meta<typeof DraftDialog>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -110,8 +110,8 @@ export const TransmissionsCompleted: Story = {
 
 export const Draft: Story = {
   args: {
+    id: '1',
     status: { value: 'draft', label: 'Utkast' },
-
     sender: {
       name: 'Statistisk sentralbyrå',
       imageUrl: 'https://digdir-proto-proto.vercel.app/_next/static/media/SSB.0ca4474e.png',
@@ -145,7 +145,6 @@ export const Sent: Story = {
   args: {
     ...Draft.args,
     status: { value: 'sent', label: 'Sendt' },
-    actions: undefined,
     summary: 'Skjema er sendt inn.',
     attachments: {
       title: '1 vedlegg',
