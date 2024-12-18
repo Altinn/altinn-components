@@ -7,7 +7,6 @@ const meta = {
   tags: ['autodocs'],
   parameters: {},
   args: {
-    id: 'id',
     icon: 'bell',
     message: 'Message',
   },

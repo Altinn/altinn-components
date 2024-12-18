@@ -2,14 +2,23 @@
 import { Toolbar, Button } from '../../components';
 import { useInbox } from './';
 
-export function InboxToolbar({ items }) {
+interface InboxToolbarProps {
+  items?: any[];
+}
+
+interface SenderOption {
+  label: string;
+  value: string;
+  count: number;
+}
+
+export function InboxToolbar({ items = [] }: InboxToolbarProps) {
   const { accounts = [], accountId, onAccountId } = useInbox();
 
-  const senderOptions = {};
+  const senderOptions: { [key: string]: SenderOption } = {};
 
-  items?.map((item) => {
+  items.map((item) => {
     const { sender } = item;
-
     if (!senderOptions[sender?.name]) {
       senderOptions[sender?.name] = {
         label: sender.name,
@@ -17,7 +26,6 @@ export function InboxToolbar({ items }) {
         count: 0,
       };
     }
-
     senderOptions[sender?.name].count++;
   });
 

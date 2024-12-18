@@ -5,7 +5,6 @@ import { SnackbarLabel } from './SnackbarLabel';
 import { SnackbarMedia } from './SnackbarMedia';
 
 export interface SnackbarProps {
-  id: string;
   /** Element type to render */
   as?: ElementType;
   /** Color */

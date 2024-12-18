@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 
-import { ListBase } from '..';
+import { type BookmarksListItemProps, ListBase } from '..';
 import { MetaItem } from '../Meta';
 import { BookmarksListItem } from './BookmarksListItem';
 
@@ -62,13 +62,13 @@ export const LotsOfParams: Story = {
   },
 };
 
-export const Sizes = (args) => {
+export const Sizes = (args: BookmarksListItemProps) => {
   return (
     <ListBase>
       {sizes?.map((size) => {
         return (
           <Fragment key={size}>
-            <BookmarksListItem {...args} size={size} selected={size === args?.size} />
+            <BookmarksListItem {...args} />
             <MetaItem>{size}</MetaItem>
           </Fragment>
         );

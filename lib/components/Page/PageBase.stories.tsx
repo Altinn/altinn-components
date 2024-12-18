@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Article, Button, Byline, Heading, PageBase, PageHeader, PageNav, Section, Typography } from '..';
-import { nav, skatt } from '../../examples/avatar';
+import type { Meta } from '@storybook/react';
+import { Article, Button, Byline, PageBase, PageHeader, PageNav, Section, Typography } from '..';
+import { nav } from '../../examples/avatar';
 
 const meta = {
   title: 'Page/PageBase',
@@ -11,7 +11,6 @@ const meta = {
 } satisfies Meta<typeof PageBase>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
 export const DialogPage = () => {
   return (
@@ -46,7 +45,7 @@ export const ProfilePage = () => {
   );
 };
 
-export const ArticlePage = ({ args }) => {
+export const ArticlePage = () => {
   return (
     <PageBase spacing="lg">
       <PageNav />

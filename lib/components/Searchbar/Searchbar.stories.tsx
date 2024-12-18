@@ -62,14 +62,12 @@ export const Expanded: Story = {
         },
         {
           type: 'dialog',
-          id: '2a',
           groupId: '2',
           href: '#',
           title: 'Skattemelding 2024',
         },
         {
           type: 'dialog',
-          id: '2b',
           groupId: '2',
           href: '#',
           title: 'Skattemelding 2025',

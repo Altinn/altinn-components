@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import { AccessAreaListItem } from './AccessAreaListItem';
-
 import areaGroups from '../../../test-data/accesspackages.json';
-import { AccessPackageList } from '../AccessPackageList/AccessPackageList';
+import { AccessPackageList } from '../AccessPackageList';
+import { AccessAreaListItem, type AccessAreaListItemProps } from './AccessAreaListItem';
 
 const testArea = areaGroups[1].areas[1];
 
@@ -55,7 +54,7 @@ type Story = StoryObj<typeof meta>;
 
 export const AreaListItemStory: Story = {};
 
-export const AllAreas = (args) => {
+export const AllAreas = (args: AccessAreaListItemProps) => {
   const [expanded, setExpanded] = React.useState<string | null>(null);
   return (
     <div>

@@ -6,7 +6,7 @@ import type { ButtonColor, ButtonSize, ButtonVariant } from './ButtonBase';
 import { ButtonIcon } from './ButtonIcon';
 import styles from './iconButton.module.css';
 
-interface IconButtonProps {
+export interface IconButtonProps {
   icon: IconName;
   color?: ButtonColor;
   size?: ButtonSize;

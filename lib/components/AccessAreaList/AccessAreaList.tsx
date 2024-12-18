@@ -1,4 +1,3 @@
-import React from 'react';
 import { ListBase, type ListTheme } from '../List';
 import { AccessAreaListItem, type AccessAreaListItemProps } from './AccessAreaListItem';
 

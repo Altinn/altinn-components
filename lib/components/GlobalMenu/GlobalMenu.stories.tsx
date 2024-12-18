@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { globalMenu, loginMenu } from '../../examples';
-import { GlobalMenu } from './GlobalMenu';
+import type { Account } from './AccountButton.tsx';
+import { GlobalMenu, type GlobalMenuProps } from './GlobalMenu';
 
 const meta = {
   title: 'GlobalMenu/GlobalMenu',
@@ -16,14 +17,15 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default = (args) => {
-  const accounts = args.accounts;
+export const Default = (args: GlobalMenuProps) => {
+  const accounts = args.accounts!;
+  const [currentAccount, setCurrentAccount] = useState<Account>(accounts[0]);
 
-  const [currentAccount, setCurrentAccount] = useState(accounts[0]);
-
-  const onSelectAccount = (id) => {
+  const onSelectAccount = (id: string) => {
     const account = accounts?.find((item) => item.id === id);
-    setCurrentAccount(account);
+    if (account) {
+      setCurrentAccount(account);
+    }
   };
 
   return (

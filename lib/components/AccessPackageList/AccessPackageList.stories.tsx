@@ -1,6 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
-
 import areaGroups from '../../../test-data/accesspackages.json';
 import { AccessPackageList } from './AccessPackageList';
 

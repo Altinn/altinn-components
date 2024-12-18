@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/react';
 import { header, useAccountMenu, useInboxSearch } from '../../examples';
-import { Header } from './Header';
+import { Header, type HeaderProps } from './Header';
 
 const meta = {
   title: 'Layout/Header',
@@ -20,9 +20,9 @@ const meta = {
 
 export default meta;
 
-export const Default = (args) => {
-  const search = useInboxSearch(args.search);
-  const menu = useAccountMenu(args.menu);
+export const Default = (args: HeaderProps) => {
+  const search = useInboxSearch(args.search!);
+  const menu = useAccountMenu(args.menu!);
 
-  return <Header {...args} currentAccount={menu.currentAccount} menu={menu} search={search} />;
+  return <Header {...args} currentAccount={menu.currentAccount} menu={menu} search={search!} />;
 };
