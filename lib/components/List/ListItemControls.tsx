@@ -1,3 +1,4 @@
+import cx from 'classnames';
 import type { ReactNode } from 'react';
 import { Badge, type BadgeProps } from '../Badge';
 import { ContextMenu, type ContextMenuProps } from '../ContextMenu';
@@ -5,6 +6,7 @@ import { Icon, type IconName } from '../Icon';
 import styles from './listItemControls.module.css';
 
 interface ListItemControlsProps {
+  className?: string;
   badge?: BadgeProps;
   linkText?: string;
   linkIcon?: IconName;
@@ -12,9 +14,9 @@ interface ListItemControlsProps {
   children?: ReactNode;
 }
 
-export const ListItemControls = ({ badge, linkText, linkIcon, menu, children }: ListItemControlsProps) => {
+export const ListItemControls = ({ className, badge, linkText, linkIcon, menu, children }: ListItemControlsProps) => {
   return (
-    <div className={styles.controls} data-menu={menu && true}>
+    <div className={cx(styles.controls, className)}>
       {children ? (
         children
       ) : (
@@ -22,7 +24,7 @@ export const ListItemControls = ({ badge, linkText, linkIcon, menu, children }: 
           {badge && <Badge {...badge} />}
           {linkText && <span className={styles.linkText}>{linkText}</span>}
           {linkIcon && <Icon name={linkIcon} className={styles.linkIcon} />}
-          {menu && <ContextMenu {...menu} className={styles.menu} />}
+          {menu && <ContextMenu {...menu} size="sm" className={styles.menu} />}
         </>
       )}
     </div>

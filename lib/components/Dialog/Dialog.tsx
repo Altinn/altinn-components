@@ -108,8 +108,8 @@ export const Dialog = ({
       <PageNav padding="sm" backButton={backButton} menu={menu}>
         <DialogMetadata status={status} dueAt={dueAt} dueAtLabel={dueAtLabel} />
       </PageNav>
-      <Article theme="article" padding="xl" spacing="xl">
-        <Heading size="lg">{title}</Heading>
+      <Article theme="inherit" padding="xl" spacing="xl">
+        <Heading size="xl">{title}</Heading>
         {history && <DialogHistory {...history} collapsible={true} />}
 
         <DialogByline

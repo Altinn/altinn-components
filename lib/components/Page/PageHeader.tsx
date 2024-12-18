@@ -1,6 +1,7 @@
 import {
   type AvatarGroupProps,
   type AvatarProps,
+  Flex,
   Heading,
   type IconName,
   ListItemMedia,
@@ -19,10 +20,10 @@ export interface PageHeaderProps extends SectionProps {
 export const PageHeader = ({ title, icon, avatar, avatarGroup, children, ...rest }: PageHeaderProps) => {
   return (
     <Section as="header" spacing="md" {...rest}>
-      <Section flex="row" align="center" spacing="md">
+      <Flex direction="row" align="center" spacing="md">
         <ListItemMedia avatar={avatar} avatarGroup={avatarGroup} icon={icon} size="lg" />
-        <Heading size="lg">{title}</Heading>
-      </Section>
+        <Heading size="xl">{title}</Heading>
+      </Flex>
       {children}
     </Section>
   );

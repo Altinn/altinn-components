@@ -9,6 +9,7 @@ export interface ButtonProps extends Partial<ButtonBaseProps> {
   icon?: IconName;
   reverse?: boolean;
   loading?: boolean;
+  label?: string;
 }
 
 export const Button = ({
@@ -19,6 +20,7 @@ export const Button = ({
   selected = false,
   icon,
   href,
+  label,
   children,
   className,
   loading,
@@ -54,7 +56,7 @@ export const Button = ({
       {...rest}
     >
       {icon && <ButtonIcon size={size} icon={icon} />}
-      <ButtonLabel size={size}>{children}</ButtonLabel>
+      <ButtonLabel size={size}>{children || label}</ButtonLabel>
     </ButtonBase>
   );
 };

@@ -25,5 +25,5 @@
     "./**/*.d.ts",
     "examples/dialog/sykmeldingDialog.tsz"
   ],
-  "exclude": ["./lib/stories/**/*", "./lib/components/Icon/__AkselIcon.tsx"]
+  "exclude": ["./lib/stories/**/*"]
 }

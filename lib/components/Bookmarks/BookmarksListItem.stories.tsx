@@ -1,11 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Fragment } from 'react';
-
-import { type BookmarksListItemProps, ListBase } from '..';
-import { MetaItem } from '../Meta';
 import { BookmarksListItem } from './BookmarksListItem';
-
-const sizes = ['lg', 'md', 'sm', 'xs'];
 
 const meta = {
   title: 'Bookmarks/BookmarksListItem',
@@ -41,6 +35,25 @@ export const CustomTitle: Story = {
   },
 };
 
+export const Expanded: Story = {
+  args: {
+    title: 'Mitt lagrede søk',
+    expanded: true,
+    untitled: 'Uten tittel',
+    titleField: {
+      label: 'Tittel',
+      placeholder: 'Uten tittel',
+      helperText: 'Gi bokmerket et navn.',
+    },
+    saveButton: {
+      label: 'Lagre endringer',
+    },
+    removeButton: {
+      label: 'Slett bokmerke',
+    },
+  },
+};
+
 export const LotsOfParams: Story = {
   args: {
     params: [
@@ -60,19 +73,4 @@ export const LotsOfParams: Story = {
       },
     ],
   },
-};
-
-export const Sizes = (args: BookmarksListItemProps) => {
-  return (
-    <ListBase>
-      {sizes?.map((size) => {
-        return (
-          <Fragment key={size}>
-            <BookmarksListItem {...args} />
-            <MetaItem>{size}</MetaItem>
-          </Fragment>
-        );
-      })}
-    </ListBase>
-  );
 };

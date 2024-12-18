@@ -1,0 +1,13 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.25rem;
+}
+
+.label {
+  color: var(--theme-text-default);
+}
+
+.helperText {
+  color: var(--theme-text-subtle);
+}

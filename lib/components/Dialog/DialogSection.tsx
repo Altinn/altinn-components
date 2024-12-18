@@ -13,7 +13,7 @@ export const DialogSection = ({ title, children }: DialogSectionProps) => {
 
   return (
     <Section spacing="md" margin="md">
-      {title && <Heading size="sm">{title}</Heading>}
+      {title && <Heading size="lg">{title}</Heading>}
       {children}
     </Section>
   );

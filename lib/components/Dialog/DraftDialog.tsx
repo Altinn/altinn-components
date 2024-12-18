@@ -42,9 +42,9 @@ export const DraftDialog = ({
       <PageNav backButton={backButton} menu={menu}>
         <DialogMetadata status={status} dueAt={dueAt} dueAtLabel={dueAtLabel} />
       </PageNav>
-      <Article theme="article" padding="xl" spacing="xl">
+      <Article padding="xl" spacing="xl">
         <Section as="header" spacing="md">
-          <Section flex="row" align="center" spacing="md">
+          <Section align="center" spacing="md">
             <Avatar size="lg" {...sender} />
             <Heading size="lg">{title}</Heading>
           </Section>

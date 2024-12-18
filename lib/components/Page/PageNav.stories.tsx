@@ -33,3 +33,20 @@ export const BackAndContextMenu: Story = {
     menu: dialogContextMenu,
   },
 };
+
+export const Breadcrumbs: Story = {
+  args: {
+    breadcrumbs: [
+      {
+        label: 'Home',
+      },
+      {
+        label: 'Section',
+      },
+      {
+        label: 'Article',
+      },
+    ],
+    menu: dialogContextMenu,
+  },
+};

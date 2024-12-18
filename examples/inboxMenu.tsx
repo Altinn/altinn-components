@@ -8,6 +8,7 @@ export const inboxMenu: MenuProps = {
       groupId: '1',
       size: 'lg',
       icon: 'inbox',
+      selected: true,
       title: 'Innboks',
       color: 'strong',
     },
@@ -21,7 +22,6 @@ export const inboxMenu: MenuProps = {
       id: '3',
       groupId: '2',
       icon: 'file-checkmark',
-      selected: true,
       title: 'Sendt',
     },
     {

@@ -31,6 +31,11 @@
   color: var(--theme-text-default);
 }
 
+.media[data-color="surface"] {
+  background-color: var(--theme-surface-default);
+  color: var(--theme-text-default);
+}
+
 .media[data-color="strong"] {
   background-color: var(--theme-base-default);
   color: var(--theme-background-default);
