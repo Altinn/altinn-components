@@ -1,13 +1,13 @@
 import type { ReactNode } from 'react';
-import { DialogLabel, type DialogListItemSize, type DialogListItemVariant, Skeleton } from '..';
+import { DialogLabel, type DialogListItemSize, type DialogListItemState, Skeleton } from '..';
 import styles from './dialogHeading.module.css';
 
 export type DialogHeadingProps = {
   loading?: boolean;
   /** Size */
   size?: DialogListItemSize;
-  /** Variant */
-  variant?: DialogListItemVariant;
+  /** Type */
+  state?: DialogListItemState;
   /** Label */
   label?: string;
   /** Variant */
@@ -19,14 +19,14 @@ export type DialogHeadingProps = {
 /**
  * Dialog heading
  */
-export const DialogHeading = ({ loading, size = 'sm', seen = false, variant, label, children }: DialogHeadingProps) => {
+export const DialogHeading = ({ loading, size = 'sm', seen = false, state, label, children }: DialogHeadingProps) => {
   return (
     <div className={styles.heading}>
-      <h2 className={styles.title} data-seen={seen} data-size={size} data-variant={variant}>
+      <h2 className={styles.title} data-seen={seen} data-size={size} data-state={state}>
         <Skeleton loading={loading}>{children}</Skeleton>
       </h2>
       {!loading && label && (
-        <DialogLabel variant={variant} size="xs">
+        <DialogLabel type={state} size="xs">
           {label}
         </DialogLabel>
       )}

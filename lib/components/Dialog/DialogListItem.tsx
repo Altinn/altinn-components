@@ -1,7 +1,5 @@
-import type { ElementType } from 'react';
 import {
   type AvatarProps,
-  DialogBorder,
   DialogByline,
   DialogHeading,
   DialogMetadata,
@@ -11,42 +9,35 @@ import {
   type DialogStatusProps,
   type DialogTouchedByActor,
   ListItemBase,
-  type ListItemColor,
-  ListItemHeader,
+  type ListItemBaseProps,
   ListItemLabel,
+  ListItemLink,
+  type ListItemLinkProps,
   Skeleton,
 } from '..';
 
 export type DialogListItemSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export type DialogListItemVariant = 'normal' | 'trashed' | 'archived';
+export type DialogListItemState = 'normal' | 'trashed' | 'archived';
 
 import styles from './dialogListItem.module.css';
 
-export interface DialogListItemProps {
+export interface DialogListItemProps extends ListItemBaseProps, ListItemLinkProps {
   /** Dialog title */
   title: string;
   /** Dialog sender */
-  sender: AvatarProps;
+  sender?: AvatarProps;
   /** Dialog description */
   description?: string;
   /** Dialog summary (will override description) */
   summary?: string;
-  /** Dialog is loading */
-  loading?: boolean;
-  /** Render as */
-  as?: ElementType;
-  /** Size */
+  /** Dialog size */
   size?: DialogListItemSize;
-  /** Variant */
-  variant?: DialogListItemVariant;
-  /** Link */
-  href?: string;
-  /** OnClick handler */
-  onClick?: () => void;
   /** Select: Use to support batch operations */
   select?: DialogSelectProps;
-  /** Dialog is selected */
+  /** Selected: Use to support batch operations */
   selected?: boolean;
+  /** Dialog state */
+  state?: DialogListItemState;
   /** Dialog status */
   status?: DialogStatusProps;
   /** Dialog Recipient  */
@@ -75,8 +66,6 @@ export interface DialogListItemProps {
   tabIndex?: number;
   /** Custom label */
   label?: string;
-  /** Custom color */
-  color?: ListItemColor;
   /** Dialog has been seen */
   seen?: boolean;
   /** Dialog is seen by the user */
@@ -97,7 +86,7 @@ export interface DialogListItemProps {
 
 export const DialogListItem = ({
   size = 'xl',
-  variant = 'normal',
+  state = 'normal',
   loading,
   select,
   status,
@@ -123,33 +112,27 @@ export const DialogListItem = ({
   summary,
   ...rest
 }: DialogListItemProps) => {
-  const applicableVariant = trashedAt ? 'trashed' : archivedAt ? 'archived' : variant;
+  const applicableState = trashedAt ? 'trashed' : archivedAt ? 'archived' : state;
 
   if (size === 'xs' || size === 'sm' || size === 'md') {
     return (
       <ListItemBase {...rest} size={size}>
-        <ListItemHeader {...rest} loading={loading} size={size} className={styles.item}>
-          <DialogBorder className={styles.border} size={size} seen={seen} loading={loading}>
+        <ListItemLink {...rest} size={size} className={styles.link}>
+          <div className={styles.border} data-size={size} data-seen={seen} data-loading={loading}>
             <ListItemLabel loading={loading} size={size} title={title} description={summary || description} />
             <DialogMetadata loading={loading} sender={sender} updatedAt={updatedAt} updatedAtLabel={updatedAtLabel} />
-          </DialogBorder>
-        </ListItemHeader>
+          </div>
+        </ListItemLink>
       </ListItemBase>
     );
   }
 
   return (
-    <ListItemBase>
-      <ListItemHeader
-        {...rest}
-        loading={loading}
-        size={size}
-        className={styles.item}
-        controls={select && <DialogSelect className={styles.select} {...select} />}
-      >
-        <DialogBorder className={styles.border} size={size} seen={seen} loading={loading}>
+    <ListItemBase {...rest} size={size}>
+      <ListItemLink {...rest} size={size} className={styles.link}>
+        <div className={styles.border} data-size={size} data-seen={seen} data-loading={loading}>
           <header className={styles.header} data-size={size}>
-            <DialogHeading loading={loading} size={size} variant={applicableVariant} label={label} seen={seen}>
+            <DialogHeading loading={loading} size={size} state={applicableState} label={label} seen={seen}>
               {title}
             </DialogHeading>
             <DialogByline
@@ -179,12 +162,13 @@ export const DialogListItem = ({
             attachmentsCount={attachmentsCount}
             seenBy={seenBy}
             touchedBy={{
-              touchedBy: touchedBy,
+              touchedBy,
               className: styles.touchedBy,
             }}
           />
-        </DialogBorder>
-      </ListItemHeader>
+        </div>
+      </ListItemLink>
+      {select && <DialogSelect className={styles.select} {...select} />}
     </ListItemBase>
   );
 };

@@ -1,30 +1,22 @@
 import cx from 'classnames';
-import type { ElementType, KeyboardEvent, KeyboardEventHandler, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import type { AvatarGroupProps, AvatarProps } from '../Avatar';
 import type { BadgeProps } from '../Badge';
 import type { IconName } from '../Icon';
-import type { ListItemColor, ListItemSize } from './ListItemBase';
+import type { ListItemSize } from './ListItemBase';
 import { ListItemControls } from './ListItemControls';
 import { ListItemLabel } from './ListItemLabel';
+import { ListItemLink, type ListItemLinkProps } from './ListItemLink';
 import { ListItemMedia } from './ListItemMedia';
 import { ListItemMenu, type ListItemMenuProps } from './ListItemMenu';
 import { ListItemSelect, type ListItemSelectProps } from './ListItemSelect';
 import styles from './listItemHeader.module.css';
 
-export interface ListItemHeaderProps {
-  as?: ElementType;
-  href?: string;
-  onClick?: () => void;
-  onKeyPress?: KeyboardEventHandler;
-  tabIndex?: number;
+export interface ListItemHeaderProps extends ListItemLinkProps {
   /** Header is loading */
   loading?: boolean;
-  /** Header is disabled */
-  disabled?: boolean;
   /** Header size */
   size?: ListItemSize;
-  /** Optional color */
-  color?: ListItemColor;
   /** Optional classname */
   className?: string;
   /** Select controls */
@@ -69,7 +61,6 @@ export const ListItemHeader = ({
   collapsible,
   expanded,
   size = 'sm',
-  color,
   title,
   description,
   icon,
@@ -83,39 +74,28 @@ export const ListItemHeader = ({
   className,
   children,
 }: ListItemHeaderProps) => {
-  const Component = as || 'button';
-
   const applicableLinkIcon = collapsible && expanded ? 'chevron-up' : collapsible ? 'chevron-down' : linkIcon;
 
   return (
-    <header className={styles.header} data-size={size} data-color={color} aria-expanded={expanded}>
+    <header className={styles.header} data-size={size} aria-expanded={expanded}>
       {select && <ListItemSelect {...select} size={size} />}
-      <Component
+      <ListItemLink
         className={cx(styles.link, className)}
+        as={as}
         href={href}
-        onKeyPress={(e: KeyboardEvent) => {
-          e.key === 'Enter' && onClick?.();
-          onKeyPress?.(e);
-        }}
         onClick={onClick}
+        onKeyPress={onKeyPress}
         tabIndex={tabIndex}
-        data-size={size}
-        data-color={color}
-        aria-disabled={loading || disabled}
+        loading={loading}
+        disabled={disabled}
+        size={size}
       >
-        <ListItemMedia
-          loading={loading}
-          size={size}
-          color={color}
-          icon={icon}
-          avatar={avatar}
-          avatarGroup={avatarGroup}
-        />
+        <ListItemMedia loading={loading} size={size} icon={icon} avatar={avatar} avatarGroup={avatarGroup} />
         <ListItemLabel loading={loading} size={size} title={title} description={description}>
           {children}
         </ListItemLabel>
         <ListItemControls linkIcon={applicableLinkIcon} linkText={linkText} badge={badge} />
-      </Component>
+      </ListItemLink>
       {(menu && <ListItemMenu {...menu} />) || controls}
     </header>
   );

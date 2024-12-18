@@ -1,7 +1,7 @@
 import { type AvatarProps, Byline, type BylineSize } from '..';
 
 export interface DialogBylineProps {
-  sender: AvatarProps;
+  sender?: AvatarProps;
   recipient?: AvatarProps;
   recipientLabel?: string;
   recipientGroup?: boolean;

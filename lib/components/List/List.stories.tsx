@@ -1,10 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Fragment, useState } from 'react';
-
-import { MetaItem } from '../Meta';
-import { List, ListBase, ListItem } from './';
-
-const sizes = ['lg', 'md', 'sm', 'xs'];
+import { List } from './';
 
 const meta = {
   title: 'List/List',

@@ -1,4 +1,5 @@
 export * from './ListItemBase';
+export * from './ListItemLink';
 export * from './ListItemHeader';
 export * from './ListItemLabel';
 export * from './ListItemMedia';

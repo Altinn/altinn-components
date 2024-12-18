@@ -7,6 +7,8 @@ import { ListItemBase, type ListItemBaseProps } from './ListItemBase';
 import { ListItemHeader, type ListItemHeaderProps } from './ListItemHeader';
 
 export interface ListItemProps extends ListItemBaseProps, ListItemHeaderProps {
+  /** List item id */
+  id?: string;
   /** Custom className */
   className?: string;
   /** Element is loading, display a placeholder */

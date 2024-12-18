@@ -18,10 +18,10 @@ const meta = {
   args: {
     spacing: 'md',
     items,
-    size: 'md',
+    defaultItemSize: 'md',
   },
   argTypes: {
-    size: {
+    defaultItemSize: {
       options: ['sm', 'md', 'lg'],
       control: {
         type: 'inline-radio',

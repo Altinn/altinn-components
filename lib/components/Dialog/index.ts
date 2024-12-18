@@ -8,7 +8,6 @@ export * from './DialogByline';
 
 export * from './DialogActions';
 export * from './DialogActivityLog';
-export * from './DialogBorder';
 export * from './DialogContent';
 export * from './DialogSection';
 export * from './DialogSeenBy';

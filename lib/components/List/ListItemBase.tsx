@@ -3,7 +3,7 @@ import styles from './listItemBase.module.css';
 
 export type ListItemSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type ListItemVariant = 'solid' | 'dotted';
-export type ListItemColor = 'subtle' | 'accent' | 'transparent';
+export type ListItemColor = 'neutral' | 'accent' | 'transparent';
 export type ListItemShadow = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export interface ListItemBaseProps {
@@ -24,7 +24,7 @@ export interface ListItemBaseProps {
 export const ListItemBase = ({
   size,
   variant = 'solid',
-  color = 'subtle',
+  color = 'neutral',
   shadow = 'xs',
   loading,
   disabled,

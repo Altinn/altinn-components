@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
-import { Searchbar } from './Searchbar';
+import { type ChangeEvent, useState } from 'react';
+import type { AutocompleteProps } from '../Autocomplete';
+import type { AutocompleteItemProps } from '../Autocomplete/AutocompleteItem';
+import { Searchbar, type SearchbarProps } from './Searchbar';
 
 const meta = {
   title: 'Header/Searchbar',
@@ -76,10 +78,10 @@ export const Expanded: Story = {
     },
   },
 };
-export const ControlledState = (args) => {
+export const ControlledState = (args: SearchbarProps) => {
   const [q, setQ] = useState<string>('');
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
-  const onChange = (event) => {
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setQ(event.target.value);
   };
 
@@ -87,7 +89,7 @@ export const ControlledState = (args) => {
     setQ('');
   };
 
-  const scopes = [
+  const scopes: AutocompleteItemProps[] = [
     {
       id: 'inbox',
       label: q
@@ -120,13 +122,15 @@ export const ControlledState = (args) => {
     };
   });
 
-  const suggestions = q
+  const suggestions: AutocompleteItemProps[] = q
     ? [
         {
+          type: 'dialog',
           href: '#skatt-2024',
           title: 'Skattemelding 2024',
         },
         {
+          type: 'dialog',
           href: '#skatt-2024',
           title: 'Skattemelding 2025',
         },
@@ -141,16 +145,16 @@ export const ControlledState = (args) => {
         })
     : [];
 
-  const autocompleteItems = [...scopes, ...suggestions].map((item) => {
+  const autocompleteItems: AutocompleteItemProps[] = [...scopes, ...suggestions].map((item) => {
     return {
       ...item,
       onClick: () => {
-        console.log(JSON.stringify(item));
+        console.info('clicked', JSON.stringify(item));
       },
     };
   });
 
-  const autocomplete = {
+  const autocomplete: AutocompleteProps = {
     groups: {
       2: {
         title: `${suggestions.length} treff i innboksen`,

@@ -1,9 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Fragment, useState } from 'react';
 
-import { Button, ListBase, ListItemHeader, MetaItem } from '../';
+import {
+  type AvatarGroupProps,
+  Button,
+  List,
+  ListBase,
+  ListItemHeader,
+  type ListItemHeaderProps,
+  type ListItemProps,
+  MetaItem,
+} from '../';
 
-const sizes = ['lg', 'md', 'sm', 'xs'];
+const sizes = ['lg', 'md', 'sm', 'xs'] as ListItemHeaderProps['size'][];
 
 const meta = {
   title: 'List/ListItemHeader',
@@ -11,7 +20,6 @@ const meta = {
   tags: ['autodocs'],
   parameters: {},
   args: {
-    id: 'id',
     title: 'Title',
     description: 'Description',
     size: 'md',
@@ -25,7 +33,7 @@ export const Default: Story = {
   args: {},
 };
 
-export const MediaTypes = (args) => {
+export const MediaTypes = (args: ListItemHeaderProps) => {
   return (
     <ListBase>
       <ListItemHeader {...args} />
@@ -102,7 +110,7 @@ export const MediaTypes = (args) => {
   );
 };
 
-export const Loading = (args) => {
+export const Loading = (args: ListItemHeaderProps) => {
   return (
     <ListBase>
       {sizes?.map((size) => {
@@ -118,7 +126,7 @@ export const Loading = (args) => {
   );
 };
 
-export const Controls = (args) => {
+export const Controls = (args: ListItemHeaderProps) => {
   return (
     <ListBase>
       <ListItemHeader {...args} linkIcon="chevron-right" />
@@ -134,9 +142,10 @@ export const Controls = (args) => {
         badge={{ label: 'Admin' }}
         linkIcon="chevron-right"
         menu={{
+          id: 'menu',
           items: [
-            { title: 'Innstillinger', icon: 'cog' },
-            { title: 'Aktivitetslogg', icon: 'clock-dashed' },
+            { id: 'settings', title: 'Innstillinger', icon: 'cog' },
+            { id: 'log', title: 'Aktivitetslogg', icon: 'clock-dashed' },
           ],
         }}
       />
@@ -157,7 +166,7 @@ export const Controls = (args) => {
   );
 };
 
-export const Selectable = (args) => {
+export const Selectable = (args: ListItemHeaderProps) => {
   return (
     <ListBase>
       {sizes?.map((size) => {
@@ -187,30 +196,24 @@ export const Selectable = (args) => {
   );
 };
 
-export const Colors = (args) => {
+export const Colors = (args: ListItemHeaderProps) => {
   return (
     <ListBase>
       <ListItemHeader {...args} />
       <MetaItem>Default</MetaItem>
-      <ListItemHeader {...args} color="accent" />
+      <ListItemHeader {...args} />
       <MetaItem>Accent</MetaItem>
     </ListBase>
   );
 };
 
-export const Sizes = (args) => {
+export const Sizes = (args: ListItemHeaderProps) => {
   return (
     <ListBase>
       {sizes?.map((size) => {
         return (
           <Fragment key={size}>
-            <ListItemHeader
-              {...args}
-              icon="teddy-bear"
-              size={size}
-              selected={size === args?.size}
-              linkIcon="chevron-right"
-            />
+            <ListItemHeader {...args} icon="teddy-bear" selected={size === args?.size} linkIcon="chevron-right" />
             <MetaItem>{size}</MetaItem>
           </Fragment>
         );
@@ -219,7 +222,7 @@ export const Sizes = (args) => {
   );
 };
 
-export const Collapsible = (args) => {
+export const Collapsible = (args: ListItemHeaderProps) => {
   const [expanded, setExpanded] = useState(false);
 
   const onToggle = () => {
@@ -249,7 +252,7 @@ export const Collapsible = (args) => {
     },
   ];
 
-  const items = people?.map((item) => {
+  const items: ListItemProps[] = people.map((item) => {
     return {
       avatar: {
         ...item,
@@ -262,8 +265,8 @@ export const Collapsible = (args) => {
     };
   });
 
-  const avatarGroup = {
-    items: people?.map((item) => {
+  const avatarGroup: AvatarGroupProps = {
+    items: people.map((item) => {
       return {
         name: item?.name,
         type: 'person',
@@ -281,7 +284,7 @@ export const Collapsible = (args) => {
         onClick={onToggle}
         as="button"
       />
-      {expanded && <List size="sm" spacing="none" items={items} />}
+      {expanded && <List defaultItemSize="sm" spacing="none" items={items} />}
     </Fragment>
   );
 };
