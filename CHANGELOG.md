@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.10.1](https://github.com/Altinn/altinn-components/compare/v0.10.0...v0.10.1) (2024-12-18)
+
+
+### Bug Fixes
+
+* adjust ListItem sizes (sm+xs) ([65d978e](https://github.com/Altinn/altinn-components/commit/65d978e4323f14def82b7572c58527759770f970))
+* list =&gt; defaultItemSize/Color ([65d978e](https://github.com/Altinn/altinn-components/commit/65d978e4323f14def82b7572c58527759770f970))
+* split ListItemHeader into ListItemLink + rest ([#137](https://github.com/Altinn/altinn-components/issues/137)) ([65d978e](https://github.com/Altinn/altinn-components/commit/65d978e4323f14def82b7572c58527759770f970))
+
 ## [0.10.0](https://github.com/Altinn/altinn-components/compare/v0.9.1...v0.10.0) (2024-12-17)
 
 
