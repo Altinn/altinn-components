@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Menu, type MenuItemGroups, type MenuItemProps, MenuListItem } from '../Menu';
 import { type Account, AccountButton } from './AccountButton';
 import { AccountMenu, type AccountMenuProps } from './AccountMenu';
@@ -17,6 +17,7 @@ export interface GlobalMenuProps extends AccountMenuProps {
   className?: string;
   currentAccount?: Account;
   onSelectAccount?: (id: string) => void;
+  onClose?: () => void;
 }
 
 export const GlobalMenu = ({
@@ -29,6 +30,7 @@ export const GlobalMenu = ({
   backLabel = 'Back',
   currentAccount,
   onSelectAccount,
+  onClose,
   logoutButton,
 }: GlobalMenuProps) => {
   const [selectingAccount, setSelectingAccount] = useState<boolean>(false);
@@ -41,6 +43,18 @@ export const GlobalMenu = ({
     onToggleAccounts();
     onSelectAccount?.(id);
   };
+
+  const itemsWithToggle = useMemo(() => {
+    return items.map((item) => {
+      return {
+        ...item,
+        onClick: () => {
+          item.onClick?.();
+          onClose?.();
+        },
+      };
+    });
+  }, [items, onClose]);
 
   if (selectingAccount) {
     return (
@@ -72,7 +86,7 @@ export const GlobalMenu = ({
           />
         </GlobalMenuHeader>
         <MenuListItem as="div" role="separator" />
-        <Menu groups={groups} items={items} />
+        <Menu groups={groups} items={itemsWithToggle} />
         {logoutButton && (
           <>
             <MenuListItem as="div" role="separator" />
@@ -87,7 +101,7 @@ export const GlobalMenu = ({
 
   return (
     <GlobalMenuBase>
-      <Menu groups={groups} items={items} />
+      <Menu groups={groups} items={itemsWithToggle} />
     </GlobalMenuBase>
   );
 };
