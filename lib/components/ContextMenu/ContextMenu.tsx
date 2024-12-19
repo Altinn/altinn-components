@@ -1,6 +1,6 @@
 'use client';
 import cx from 'classnames';
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { DropdownBase, type DropdownPlacement, IconButton, type MenuItemProps } from '../';
 import { type MenuItemGroups, MenuItems } from '../';
 import { useClickOutside } from '../../hooks';
@@ -32,6 +32,18 @@ export const ContextMenu = ({
   const onToggle = () => toggleId(id);
   const expanded = currentId === id;
 
+  const itemsWithToggle = useMemo(() => {
+    return items.map((item) => {
+      return {
+        ...item,
+        onClick: () => {
+          item.onClick?.();
+          closeAll();
+        },
+      };
+    });
+  }, [items, closeAll]);
+
   return (
     <div className={cx(styles.toggle, className)} data-theme="neutral" ref={ref}>
       <IconButton
@@ -44,7 +56,7 @@ export const ContextMenu = ({
         onClick={onToggle}
       />
       <DropdownBase className={styles.dropdown} placement={placement} open={expanded}>
-        <MenuItems groups={groups} items={items} />
+        <MenuItems groups={groups} items={itemsWithToggle} />
       </DropdownBase>
     </div>
   );
