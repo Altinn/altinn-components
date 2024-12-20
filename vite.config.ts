@@ -29,7 +29,10 @@ export default () => {
       }),
       react(),
       libInjectCss(),
-      dts({ include: ['lib'] }),
+      dts({
+        root: 'dist',
+        outDir: 'types',
+      }),
       preserveDirectives(),
     ],
     build: {
