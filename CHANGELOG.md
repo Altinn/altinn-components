@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.4](https://github.com/Altinn/altinn-components/compare/v0.10.3...v0.10.4) (2024-12-20)
+
+
+### Bug Fixes
+
+* types were not properly exported ([#146](https://github.com/Altinn/altinn-components/issues/146)) ([59abad4](https://github.com/Altinn/altinn-components/commit/59abad496c0712d828c9095dab7ce15af2486552))
+
 ## [0.10.3](https://github.com/Altinn/altinn-components/compare/v0.10.2...v0.10.3) (2024-12-20)
 
 
