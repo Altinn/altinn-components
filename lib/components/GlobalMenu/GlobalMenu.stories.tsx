@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { globalMenu, loginMenu } from '../../examples';
+import { globalMenu, loginMenu } from '../../../examples';
 import type { Account } from './AccountButton.tsx';
 import { GlobalMenu, type GlobalMenuProps } from './GlobalMenu';
 

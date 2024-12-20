@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { accountMenu } from '../../examples';
+import { accountMenu } from '../../../examples';
 import { AccountMenu } from './AccountMenu';
 
 const meta = {

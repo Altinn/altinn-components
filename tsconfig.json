@@ -23,7 +23,7 @@
     "./lib/**/*.tsx",
     "./lib/hooks/*.tsx",
     "./**/*.d.ts",
-    "lib/examples/dialog/sykmeldingDialog.tsz"
+    "examples/dialog/sykmeldingDialog.tsz"
   ],
   "exclude": ["./lib/stories/**/*", "./lib/components/Icon/__AkselIcon.tsx"]
 }

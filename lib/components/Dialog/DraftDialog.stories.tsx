@@ -12,10 +12,10 @@ import {
   transmissionsCompletedDialog,
   transmissionsDialog,
   transmissionsInProgressDialog,
-} from '../../examples';
+} from '../../../examples';
 import { DraftDialog } from './DraftDialog';
 
-const meta = {
+const meta: Meta<typeof DraftDialog> = {
   title: 'Dialog/DraftDialog',
   component: DraftDialog,
   tags: ['autodocs'],

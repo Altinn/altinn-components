@@ -27,7 +27,7 @@ const getStatusLabel = (value: string) => {
 
 const sizes = ['xl', 'lg', 'md', 'sm', 'xs'] as DialogListItemSize[];
 
-const meta = {
+const meta: Meta<typeof DialogListItem> = {
   title: 'Dialog/DialogListItem',
   component: DialogListItem,
   tags: ['autodocs'],

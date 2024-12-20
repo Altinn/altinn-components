@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { dialogContextMenu } from '../../examples';
+import { dialogContextMenu } from '../../../examples';
 import { PageNav } from './PageNav';
 
 const meta = {

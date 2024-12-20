@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import { accountMenu, inboxFilters, inboxStatusFilter } from '../../examples';
+import { accountMenu, inboxFilters, inboxStatusFilter } from '../../../examples';
 import { type FilterState, Toolbar } from './Toolbar';
 
 const meta = {

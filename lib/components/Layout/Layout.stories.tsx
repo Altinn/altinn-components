@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/react';
 import type { GlobalMenuProps, LayoutProps, SearchbarProps } from '../';
-import { footer, header, inboxMenu, useAccountMenu, useInboxSearch } from '../../examples';
+import { footer, header, inboxMenu, useAccountMenu, useInboxSearch } from '../../../examples';
 import { Layout } from './Layout';
 
 const meta = {

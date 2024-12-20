@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/react';
 import { Article, Button, Byline, PageBase, PageHeader, PageNav, Section, Typography } from '..';
-import { nav } from '../../examples/avatar';
+import { nav } from '../../../examples/avatar';
 
 const meta = {
   title: 'Page/PageBase',
