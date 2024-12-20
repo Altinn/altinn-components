@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta } from '@storybook/react';
 import { LayoutBase, type LayoutTheme, MenuBase, MenuItem, type MenuItemColor, MetaItem } from '../../components';
 
 const meta = {
@@ -12,8 +12,6 @@ const meta = {
 } satisfies Meta<typeof MenuItem>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
-
 export const ThemesAndColors = () => {
   const themes: LayoutTheme[] = ['global', 'neutral', 'company', 'person', 'global-dark'];
   const colors: MenuItemColor[] = ['neutral', 'subtle', 'strong', 'company', 'person'];

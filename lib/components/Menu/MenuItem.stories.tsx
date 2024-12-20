@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
 import { LayoutBase, type LayoutTheme } from '../Layout';
 import { MetaItem } from '../Meta';
 import { MenuBase } from './MenuBase';
@@ -13,7 +12,7 @@ const meta = {
   parameters: {},
   args: {
     id: 'inbox',
-    onClick: fn(),
+    onClick: () => {},
   },
 } satisfies Meta<typeof MenuItem>;
 

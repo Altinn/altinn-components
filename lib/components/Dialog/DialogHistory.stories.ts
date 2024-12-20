@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { dialogHistoryItems } from '../../examples';
+import { dialogHistoryItems } from '../../../examples';
 import { DialogHistory } from './DialogHistory';
 
 const meta = {

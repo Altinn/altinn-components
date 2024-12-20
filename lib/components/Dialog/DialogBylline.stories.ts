@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { skatt } from '../../examples/avatar';
+import { skatt } from '../../../examples/avatar';
 import { DialogByline } from './DialogByline';
 
 const meta = {

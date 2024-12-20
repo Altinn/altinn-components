@@ -1,5 +1,5 @@
 import type { Meta } from '@storybook/react';
-import { header, useAccountMenu, useInboxSearch } from '../../examples';
+import { header, useAccountMenu, useInboxSearch } from '../../../examples';
 import { Header, type HeaderProps } from './Header';
 
 const meta = {

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { transmissionList } from '../../examples';
+import { transmissionList } from '../../../examples';
 import { TransmissionList } from './TransmissionList';
 
 const meta = {
