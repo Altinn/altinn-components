@@ -5,7 +5,7 @@ import { ToolbarDaterange } from './ToolbarDaterange';
 const meta = {
   title: 'Toolbar/ToolbarDaterange',
   component: ToolbarDaterange,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'beta'],
   parameters: {},
   args: {
     label: 'Velg dato',

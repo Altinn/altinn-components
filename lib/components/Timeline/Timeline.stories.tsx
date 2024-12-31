@@ -4,7 +4,7 @@ import { Timeline } from './';
 const meta = {
   title: 'Timeline/Timeline',
   component: Timeline,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'beta'],
   parameters: {},
   args: {
     items: [

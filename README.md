@@ -51,3 +51,13 @@ for correct `font-family` and minimal collection of resets.
 
 ## Documentation
 The documentation for the components can be found in the [Storybook](https://altinn.github.io/altinn-components)
+Components are decorated with tags to show the current status of the component. 
+
+The tags are:
+- `@outdated` - The component is out of sync with latest design.
+- `@beta` - The component is in beta and is more likely to have flaws or missing features.
+- `@experimental` - The component is experimental and is work in progress. Recommended not to use.
+- `@deprecated` - The component is deprecated and should not be used.
+
+The main motivation behind having tags relives the pressure of having to make everything perfect before releasing it for use. 
+It also allows us to get feedback on the components in an early stage.

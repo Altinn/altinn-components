@@ -4,7 +4,7 @@ import { DialogTransmissions } from './DialogTransmissions';
 const meta = {
   title: 'Dialog/DialogTransmissions',
   component: DialogTransmissions,
-  tags: ['autodocs'],
+  tags: ['autodocsi', 'beta'],
   parameters: {},
   args: {
     title: '6 forsendelser',

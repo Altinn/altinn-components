@@ -5,7 +5,7 @@ import { ActionHeader } from './ActionHeader';
 const meta = {
   title: 'LayoutAction/ActionHeader',
   component: ActionHeader,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'beta'],
   parameters: {},
   args: {},
 } satisfies Meta<typeof ActionHeader>;

@@ -4,7 +4,7 @@ import { BookmarksSection } from './BookmarksSection';
 const meta = {
   title: 'Bookmarks/BookmarksSection',
   component: BookmarksSection,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'outdated'],
   parameters: {},
   args: {
     title: '3 lagrede søk',

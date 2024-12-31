@@ -30,7 +30,7 @@ const sizes = ['xl', 'lg', 'md', 'sm', 'xs'] as DialogListItemSize[];
 const meta: Meta<typeof DialogListItem> = {
   title: 'Dialog/DialogListItem',
   component: DialogListItem,
-  tags: ['autodocs'],
+  tags: ['autodocsi', 'beta'],
   decorators: [
     withThemeByDataAttribute({
       themes: {

@@ -5,7 +5,7 @@ import { ActionMenu } from './ActionMenu';
 const meta = {
   title: 'LayoutAction/ActionMenu',
   component: ActionMenu,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'beta'],
   parameters: {},
   args: {
     theme: 'global-dark',

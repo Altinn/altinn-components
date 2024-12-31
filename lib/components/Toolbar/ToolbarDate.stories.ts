@@ -5,7 +5,7 @@ import { ToolbarFilter } from './ToolbarFilter';
 const meta = {
   title: 'Toolbar/ToolbarDate',
   component: ToolbarFilter,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'beta'],
   parameters: {},
   args: {
     label: 'Velg dato',

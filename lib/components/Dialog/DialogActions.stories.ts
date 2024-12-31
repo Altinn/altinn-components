@@ -4,7 +4,7 @@ import { DialogActions } from './DialogActions';
 const meta = {
   title: 'Dialog/DialogActions',
   component: DialogActions,
-  tags: ['autodocs'],
+  tags: ['autodocsi', 'beta'],
   args: {
     items: [
       {
