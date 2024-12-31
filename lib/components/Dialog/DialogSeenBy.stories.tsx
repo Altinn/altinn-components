@@ -4,7 +4,7 @@ import { DialogSeenBy } from './DialogSeenBy';
 const meta = {
   title: 'Dialog/DialogSeenBy',
   component: DialogSeenBy,
-  tags: ['autodocs'],
+  tags: ['autodocsi', 'beta'],
   parameters: {},
   args: {
     seenByEndUser: true,

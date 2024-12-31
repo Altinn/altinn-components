@@ -18,7 +18,7 @@ import { Dialog } from './Dialog';
 const meta: Meta<typeof Dialog> = {
   title: 'Dialog/Dialog',
   component: Dialog,
-  tags: ['autodocs'],
+  tags: ['autodocsi', 'beta'],
   parameters: {},
   decorators: [
     withThemeByDataAttribute({

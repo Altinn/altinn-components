@@ -4,7 +4,7 @@ import { DialogTouchedBy } from './DialogTouchedBy';
 const meta = {
   title: 'Dialog/DialogTouchedBy',
   component: DialogTouchedBy,
-  tags: ['autodocs'],
+  tags: ['autodocsi', 'beta'],
   parameters: {},
   args: {
     touchedBy: [

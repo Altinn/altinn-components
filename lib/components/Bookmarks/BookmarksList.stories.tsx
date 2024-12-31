@@ -4,7 +4,7 @@ import { BookmarksList } from './BookmarksList';
 const meta = {
   title: 'Bookmarks/BookmarksList',
   component: BookmarksList,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'outdated'],
   parameters: {},
   args: {
     items: [

@@ -5,7 +5,7 @@ import { DialogHistory } from './DialogHistory';
 const meta = {
   title: 'Dialog/DialogHistory',
   component: DialogHistory,
-  tags: ['autodocs'],
+  tags: ['autodocsi', 'beta'],
   parameters: {},
   args: {
     items: dialogHistoryItems,

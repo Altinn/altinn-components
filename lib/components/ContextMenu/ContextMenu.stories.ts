@@ -4,7 +4,7 @@ import { ContextMenu } from './ContextMenu';
 const meta = {
   title: 'ContextMenu/ContextMenu',
   component: ContextMenu,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'beta'],
   parameters: {},
   args: {
     placement: 'left',

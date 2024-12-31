@@ -4,7 +4,7 @@ import { DialogStatus, DialogStatusEnum } from './DialogStatus';
 const meta = {
   title: 'Dialog/DialogStatus',
   component: DialogStatus,
-  tags: ['autodocs'],
+  tags: ['autodocsi', 'beta'],
   parameters: {
     layout: 'centered',
   },

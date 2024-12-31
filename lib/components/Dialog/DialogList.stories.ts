@@ -1,10 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { dialogListItems } from '../../../examples';
 import { DialogList } from './DialogList';
+
 const meta = {
   title: 'Dialog/DialogList',
   component: DialogList,
-  tags: ['autodocs'],
+  tags: ['autodocsi', 'beta'],
   parameters: {
     layout: 'fullscreen',
   },

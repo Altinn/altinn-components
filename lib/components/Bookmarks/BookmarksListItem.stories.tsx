@@ -10,7 +10,7 @@ const sizes = ['lg', 'md', 'sm', 'xs'];
 const meta = {
   title: 'Bookmarks/BookmarksListItem',
   component: BookmarksListItem,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'outdated'],
   parameters: {},
   args: {
     id: 'id',

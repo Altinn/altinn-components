@@ -32,7 +32,7 @@ const menu: ActionMenuProps = {
 const meta = {
   title: 'LayoutAction/ActionFooter',
   component: ActionFooter,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'beta'],
   parameters: {},
   args: {},
 } satisfies Meta<typeof ActionFooter>;

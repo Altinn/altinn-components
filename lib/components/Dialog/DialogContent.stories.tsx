@@ -4,7 +4,7 @@ import { DialogContent } from './DialogContent';
 const meta = {
   title: 'Dialog/DialogContent',
   component: DialogContent,
-  tags: ['autodocs'],
+  tags: ['autodocsi', 'beta'],
   args: {
     updatedAt: '1999-05-26 22:59:00',
     updatedAtLabel: '25. mai 1999 kl 22.59',

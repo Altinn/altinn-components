@@ -5,7 +5,7 @@ import { DialogAttachments } from './DialogAttachments';
 const meta = {
   title: 'Dialog/DialogAttachments',
   component: DialogAttachments,
-  tags: ['autodocs'],
+  tags: ['autodocsi', 'beta'],
   args: {
     title: '6 vedlegg',
     items: attachments,
