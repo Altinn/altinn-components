@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { expect, userEvent, within } from '@storybook/test';
 import { type ChangeEvent, useState } from 'react';
 import type { AutocompleteProps } from '../Autocomplete';
-import type { AutocompleteItemProps } from '../Autocomplete/AutocompleteItem';
+import type { AutocompleteItemProps } from '../Autocomplete';
 import { Searchbar, type SearchbarProps } from './Searchbar';
 
 const meta = {
@@ -76,6 +77,7 @@ export const Expanded: Story = {
     },
   },
 };
+
 export const ControlledState = (args: SearchbarProps) => {
   const [q, setQ] = useState<string>('');
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
@@ -175,4 +177,43 @@ export const ControlledState = (args: SearchbarProps) => {
       }}
     />
   );
+};
+
+ControlledState.play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+  const canvas = within(canvasElement);
+  const searchInput = canvas.getByRole('searchbox');
+  await userEvent.type(searchInput, 'skatt');
+
+  /* suggestions const of scopes and search results */
+  const autocomplete = canvas.getByRole('navigation');
+  const suggestions = canvas.getAllByRole('listitem');
+  await expect(autocomplete).toBeVisible();
+  await expect(suggestions).toHaveLength(4);
+
+  /* click on search result should close autocomplete */
+  const firstSearchResult = suggestions[2].querySelector('button')!;
+  await userEvent.click(firstSearchResult);
+  await expect(autocomplete).not.toBeVisible();
+
+  /* search input should be cleared */
+  await expect(searchInput).toHaveValue('skatt');
+  await userEvent.click(canvas.getByTestId('search-button-clear'));
+  await expect(searchInput).toHaveValue('');
+
+  /* test keyboard navigation */
+  await userEvent.type(searchInput, 'skatt');
+  await userEvent.keyboard('{arrowdown}');
+  await userEvent.keyboard('{arrowdown}');
+  const activeItem = suggestions.find((suggestion) => suggestion.querySelector('[data-active="true"]'));
+  await expect(activeItem).toBe(suggestions[2]);
+
+  await userEvent.keyboard('{arrowup}');
+  await userEvent.keyboard('{arrowup}');
+  const activeItem2 = suggestions.find((suggestion) => suggestion.querySelector('[data-active="true"]'));
+  await expect(activeItem2).toBe(suggestions[0]);
+
+  /* test keyboard enter should trigger selected item */
+  await userEvent.keyboard('{enter}');
+  await expect(autocomplete).not.toBeVisible();
+  await userEvent.click(canvas.getByTestId('search-button-clear'));
 };

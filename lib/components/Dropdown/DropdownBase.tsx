@@ -32,6 +32,7 @@ export const DropdownBase = ({
       data-placement={placement}
       data-padding={padding}
       aria-expanded={open}
+      role="menu"
     >
       {children}
     </div>

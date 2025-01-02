@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { expect, userEvent, within } from '@storybook/test';
 import { ContextMenu } from './ContextMenu';
 
 const meta = {
@@ -49,5 +50,29 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     id: 'context-menu-1',
+  },
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    // open the context menu
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole('button');
+    await userEvent.click(button);
+
+    // ensure that the context menu is visible
+    await expect(canvas.getByRole('menu')).toBeInTheDocument();
+
+    // close the context menu by pressing escape key
+    await userEvent.keyboard('{Escape}');
+    await expect(canvas.queryByRole('menu')).not.toBeInTheDocument();
+
+    // open the context menu again and close by clicking outside
+    await userEvent.click(button);
+    await userEvent.click(canvasElement);
+    await expect(canvas.queryByRole('menu')).not.toBeInTheDocument();
+
+    // open the context menu again and select an item
+    await userEvent.click(button);
+    const item = canvas.getByText('Flytt til arkiv');
+    await userEvent.click(item);
+    await expect(canvas.queryByRole('menu')).not.toBeInTheDocument();
   },
 };
