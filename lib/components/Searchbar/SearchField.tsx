@@ -74,9 +74,18 @@ export const SearchField = ({
           size="custom"
           className={styles.clear}
           onClick={onClear}
+          dataTestId="search-button-clear"
         />
       )) ||
-        (expanded && <IconButton icon="x-mark" variant="text" className={styles.dismiss} onClick={onClose} />)}
+        (expanded && (
+          <IconButton
+            icon="x-mark"
+            variant="text"
+            className={styles.dismiss}
+            onClick={onClose}
+            dataTestId="search-button-close"
+          />
+        ))}
     </div>
   );
 };

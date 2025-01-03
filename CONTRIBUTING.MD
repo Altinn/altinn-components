@@ -26,6 +26,15 @@ Follow these steps to set up Storybook and the necessary tools for development.
 #### Storybook
 Run storybook with `pnpm storybook` and navigate to `http://localhost:6006/` in your browser.
 
+#### Testing
+Run tests using `pnpm test-storybook` (requires Storybook to be running).
+This command runs the tests through [Storybook's Test Runner](https://storybook.js.org/docs/writing-tests/test-runner).
+
+When adding new components or features, it’s encouraged to write tests as separate play functions in the corresponding Storybook stories. This approach is particularly recommended for complex components. For examples, refer to:
+
+- `src/components/Searchbar/Searchbar.stories.tsx`
+- `src/components/ContextMenu/ContextMenu.stories.tsx`
+
 ### Pull requests
 A lot has been written already about how to write good pull requests. [Here are some](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/getting-started/best-practices-for-pull-requests) tips to make the process smoother.
 

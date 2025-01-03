@@ -14,6 +14,7 @@ export interface IconButtonProps {
   variant?: ButtonVariant;
   className?: string;
   onClick?: MouseEventHandler;
+  dataTestId?: string;
 }
 
 export const IconButton = ({
@@ -24,9 +25,17 @@ export const IconButton = ({
   iconSize,
   className,
   onClick,
+  dataTestId,
 }: IconButtonProps) => {
   return (
-    <ButtonBase variant={variant} color={color} size={size} className={cx(styles.button, className)} onClick={onClick}>
+    <ButtonBase
+      variant={variant}
+      color={color}
+      size={size}
+      className={cx(styles.button, className)}
+      onClick={onClick}
+      data-testid={dataTestId}
+    >
       <ButtonIcon icon={icon} size={iconSize || size} />
     </ButtonBase>
   );
