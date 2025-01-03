@@ -14,19 +14,19 @@ export const profileMenuItems: MenuItemProps[] = [
     title: 'Firmaprofil',
   },
   {
-    id: 'brukere',
+    id: 'users',
     groupId: '3',
     icon: 'person-group',
     title: 'Brukere',
   },
   {
-    id: 'grupper',
+    id: 'groups',
     groupId: '3',
     icon: 'hexagon-grid',
     title: 'Grupper',
   },
   {
-    id: 'logg',
+    id: 'log',
     groupId: '4',
     icon: 'clock-dashed',
     title: 'Aktivitetslogg',

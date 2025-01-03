@@ -1,11 +1,15 @@
 import React from 'react';
 import { PageBase } from '../../components';
-import { useAppContext } from './';
+import { useAppContext, ActivityLogPage } from './';
 export const ProfilePage = () => {
   const { pageId } = useAppContext();
 
   const parents = pageId?.split('/');
   const sectionId = parents?.[1];
+
+  if (sectionId === "log") {
+    return <ActivityLogPage />
+  }
 
   return (
     <PageBase>
