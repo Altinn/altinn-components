@@ -1,139 +1,16 @@
-.section {
-  display: flex;
-}
-
-.section[data-flex="col"] {
-  flex-direction: column;
-}
-
-.section[data-flex="row"] {
-  flex-direction: row;
-}
-
-.section[data-align="center"] {
-  align-items: center;
-}
-
-.section[data-align="start"] {
-  align-items: flex-start;
-}
-
-.section[data-align="end"] {
-  align-items: flex-end;
-}
-
-.section[data-justify="start"] {
-  justify-content: flex-start;
-}
-
-.section[data-justify="end"] {
-  justify-content: flex-end;
-}
-
-.section[data-justify="center"] {
-  justify-content: center;
-}
-
-.section[data-justify="between"] {
-  justify-content: space-between;
-}
-
-/* inset on small screens */
-
-@media (max-width: 1024px) {
-  .section[data-inset="true"] {
-    margin-left: -1rem;
-    margin-right: -1rem;
-  }
-}
-
-/* padding */
-
-.section[data-padding="xs"] {
-  padding: 0.25rem;
-}
-
-.section[data-padding="sm"] {
-  padding: 0.5rem;
-}
-
-.section[data-padding="md"] {
-  padding: 0.75rem;
-}
-
-.section[data-padding="lg"] {
-  padding: 1rem;
-}
-
-.section[data-padding="xl"] {
-  padding: 1.5rem;
-}
-
-@media (max-width: 1024px) {
-  .section[data-padding="xl"] {
-    padding: 1.5rem 1rem;
-  }
-}
-
-/* spacing */
-
-.section[data-spacing="xs"] {
-  gap: 0.25rem;
-}
-
-.section[data-spacing="sm"] {
-  gap: 0.5rem;
-}
-
-.section[data-spacing="md"] {
-  gap: 0.75rem;
-}
-
-.section[data-spacing="lg"] {
-  gap: 1rem;
-}
-
-.section[data-spacing="xl"] {
-  gap: 1.5rem;
-}
-
-/* margin */
-
-.section[data-margin="xs"] {
-  margin: 0.25rem 0;
-}
-
-.section[data-margin="sm"] {
-  margin: 0.5rem 0;
-}
-
-.section[data-margin="md"] {
-  margin: 0.75rem 0;
-}
-
-.section[data-margin="lg"] {
-  margin: 1rem 0;
-}
-
-.section[data-margin="lg"] {
-  margin: 1.5rem 0;
-}
-
-/* color */
-
-.section[data-color="subtle"] {
+.section[data-bg="subtle"] {
   background-color: var(--theme-background-default);
 }
 
-.section[data-color="surface"] {
+.section[data-bg="surface"] {
   background-color: var(--theme-surface-default);
 }
 
-.section[data-color="accent"] {
+.section[data-bg="accent"] {
   background-color: var(--theme-base-default);
 }
 
-/* size */
+/* shadow */
 
 .section[data-shadow="xs"] {
   box-shadow: var(--ds-shadow-xs);

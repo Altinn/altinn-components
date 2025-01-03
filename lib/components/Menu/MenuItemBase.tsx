@@ -5,7 +5,7 @@ import { Icon, type IconName } from '../Icon';
 import styles from './menuItemBase.module.css';
 
 export type MenuItemSize = 'xs' | 'sm' | 'md' | 'lg';
-export type MenuItemColor = 'neutral' | 'subtle' | 'strong' | 'company' | 'person';
+export type MenuItemColor = 'neutral' | 'subtle' | 'surface' | 'strong' | 'company' | 'person';
 
 export interface MenuItemBaseProps {
   as?: ElementType;

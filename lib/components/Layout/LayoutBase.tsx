@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import styles from './layoutBase.module.css';
 
-export type LayoutTheme = 'global' | 'global-dark' | 'neutral' | 'company' | 'person';
+export type LayoutTheme = 'inherit' | 'global' | 'global-dark' | 'neutral' | 'company' | 'person';
 
 export interface LayoutBaseProps {
   theme?: LayoutTheme;

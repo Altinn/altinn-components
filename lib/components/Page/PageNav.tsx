@@ -1,12 +1,24 @@
 import type { ReactNode } from 'react';
-import { type BackButtonProps, Button, ContextMenu, type ContextMenuProps, Section, type SectionProps } from '../';
+import {
+  type BackButtonProps,
+  Breadcrumbs,
+  type BreadcrumbsLinkProps,
+  Button,
+  ContextMenu,
+  type ContextMenuProps,
+  Flex,
+  type FlexProps,
+} from '../';
 import styles from './pageNav.module.css';
 
 export type PageNavPadding = 'none' | 'sm';
+export type PageNavMargin = 'none' | 'sm';
 
-export interface PageNavProps extends SectionProps {
+export interface PageNavProps extends FlexProps {
   padding?: PageNavPadding;
+  margin?: PageNavMargin;
   backButton?: BackButtonProps;
+  breadcrumbs?: BreadcrumbsLinkProps[];
   menu?: ContextMenuProps;
   children?: ReactNode;
 }
@@ -16,6 +28,8 @@ export interface PageNavProps extends SectionProps {
  */
 export const PageNav = ({
   padding = 'none',
+  margin = 'none',
+  breadcrumbs,
   backButton = {
     as: 'a',
     label: 'Back',
@@ -24,14 +38,18 @@ export const PageNav = ({
   children,
 }: PageNavProps) => {
   return (
-    <Section flex="row" align="center" justify="between" padding={padding}>
-      <Button {...backButton} variant="text" color="secondary" icon="arrow-left">
-        {backButton?.label || 'Back'}
-      </Button>
+    <Flex as="nav" direction="row" align="center" justify="between" padding={padding} margin={margin}>
+      {breadcrumbs ? (
+        <Breadcrumbs items={breadcrumbs} />
+      ) : (
+        <Button {...backButton} variant="text" color="secondary" icon="arrow-left">
+          {backButton?.label || 'Back'}
+        </Button>
+      )}
       <div className={styles.controls}>
         {children}
         {menu && <ContextMenu {...menu} />}
       </div>
-    </Section>
+    </Flex>
   );
 };

@@ -18,7 +18,7 @@ import { DraftDialog } from './DraftDialog';
 const meta: Meta<typeof DraftDialog> = {
   title: 'Dialog/DraftDialog',
   component: DraftDialog,
-  tags: ['autodocsi', 'beta'],
+  tags: ['autodocsi', 'alpha'],
   parameters: {},
   decorators: [
     withThemeByDataAttribute({

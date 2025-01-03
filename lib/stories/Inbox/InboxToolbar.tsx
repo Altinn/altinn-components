@@ -35,6 +35,7 @@ export function InboxToolbar({ items = [] }: InboxToolbarProps) {
     label: currentAccount?.name,
     value: currentAccount?.id,
     currentAccount,
+    accounts,
     items: accounts.map((item) => {
       return {
         group: item.type,
@@ -98,5 +99,5 @@ export function InboxToolbar({ items = [] }: InboxToolbarProps) {
       };
     });
 
-  return <Toolbar menu={accountMenu} filters={filters}><Button size="sm" variant="text" reverse icon="bookmark">Lagre søk</Button></Toolbar>;
+  return <Toolbar accountMenu={accountMenu} filters={filters}><Button size="sm" variant="text" icon="bookmark">Lagre søk</Button></Toolbar>;
 }

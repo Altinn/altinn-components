@@ -9,8 +9,8 @@
   flex-grow: 1;
   display: flex;
   align-items: center;
-  column-gap: 0.625rem;
-  padding: 0.325rem 0.625rem;
+  padding: 0.5rem;
+  column-gap: 0.5rem;
 }
 
 .link[data-size="xs"] {
@@ -23,18 +23,22 @@
 
 .link[data-size="md"] {
   min-height: 60px;
-  padding: 0.5rem 0.75rem;
-  column-gap: 0.75rem;
+  padding: 0.625rem;
+  column-gap: 0.625rem;
 }
 
 .link[data-size="lg"] {
   min-height: 64px;
-  padding: 0.5rem 0.875rem;
-  column-gap: 0.875rem;
+  padding: 0.75rem;
+  column-gap: 0.75rem;
 }
 
 .link[data-size="xl"] {
   min-height: 72px;
-  padding: 0.75rem 1rem;
+  padding: 1rem;
   column-gap: 1rem;
+}
+
+.controls {
+  margin-right: 0.5rem;
 }

@@ -1,0 +1,56 @@
+.input {
+  border: 1px solid;
+  border-color: transparent;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow: visible;
+
+  background: transparent;
+  text-decoration: none;
+
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+}
+
+.input {
+  border-color: var(--theme-border-default);
+  border-radius: 2px;
+}
+
+.input:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.input:focus {
+  border-color: var(--theme-base-active);
+}
+
+.input[data-size="xs"] {
+  height: 1.5rem; /* xs 24 */
+}
+
+.input[data-size="sm"] {
+  height: 2.25rem; /* sm 36 */
+  padding: 0 0.5rem;
+}
+
+.input[data-size="md"] {
+  height: 2.75rem; /* md 44 */
+  padding: 0 0.75rem;
+}
+
+.input[data-size="lg"] {
+  height: 3.5rem; /* lg 56 */
+  padding: 0 1rem;
+}

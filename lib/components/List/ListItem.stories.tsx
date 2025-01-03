@@ -157,11 +157,9 @@ export const Controls = (args: ListItemProps) => {
       <ListItem
         {...args}
         controls={
-          <div style={{ position: 'absolute', right: 0, display: 'flex', alignItems: 'center', margin: '0.625rem' }}>
-            <Button icon="pencil" size="sm" variant="outline">
-              Rediger
-            </Button>
-          </div>
+          <Button icon="pencil" size="sm" variant="outline">
+            Rediger
+          </Button>
         }
       />
       <MetaItem>List item with custom controls</MetaItem>

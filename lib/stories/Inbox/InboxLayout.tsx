@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { ActionFooter, ActionHeader, ActionMenu, Layout } from '../../components';
-import { actionMenu, footer, header, menu } from './';
+import { footer, header } from '../../../examples';
+import { actionMenu, menu } from './';
 import { useInbox } from './';
 
 export interface InboxLayoutProps {
@@ -8,7 +9,7 @@ export interface InboxLayoutProps {
 }
 
 export const InboxLayout = ({ children }: InboxLayoutProps) => {
-  const { theme, itemsCount, selectedCount, inboxId, accounts, dialogId, onInboxId, onUnselectAll } = useInbox();
+  const { theme, itemsCount, selectedCount, inboxId, accounts, onInboxId, onUnselectAll } = useInbox();
 
   const selectedTitle = `${selectedCount} av ${itemsCount} valgt`;
   const bulkMode = selectedCount > 0;
@@ -22,9 +23,6 @@ export const InboxLayout = ({ children }: InboxLayoutProps) => {
         currentAccount: accounts?.[0],
         menu: {
           accounts,
-        },
-        search: !dialogId && {
-          ...header.search,
         },
       }}
       sidebar={{

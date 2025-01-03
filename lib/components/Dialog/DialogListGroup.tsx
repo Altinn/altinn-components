@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Heading, ListBase, Section, SectionHeader } from '../';
+import { Flex, Heading, ListBase, Section } from '../';
 import { Button } from '../Button';
 
 export interface DialogListGroupProps {
@@ -11,12 +11,12 @@ export const DialogListGroup = ({ title, children }: DialogListGroupProps) => {
   return (
     <Section spacing="md">
       {title && (
-        <SectionHeader margin="sm">
-          <Heading>{title}</Heading>
+        <Flex direction="row" align="center" justify="between" margin="sm">
+          <Heading size="lg">{title}</Heading>
           <Button variant="text" icon="checkmark" size="sm">
             Velg alle
           </Button>
-        </SectionHeader>
+        </Flex>
       )}
       <ListBase spacing="md">{children}</ListBase>
     </Section>

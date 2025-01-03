@@ -1,4 +1,17 @@
-const getSeenBy = ({seenByEndUser, seenByOthersCount}) => {
+import brregCompleted from './brreg-completed.json';
+import brregDraft from './brreg-draft.json';
+import skatt2023 from './skatt-2023.json';
+import sykmeldingReferat from './sykmelding-referat.json';
+import enovaInProgress from './enova-in-progress.json';
+import {DialogSeenByProps} from "../../../components";
+
+interface SeenByInput {
+  seenByEndUser: DialogSeenByProps;
+  seenByOthersCount: number;
+  updatedAt?: string;
+}
+
+const getSeenBy = ({seenByEndUser, seenByOthersCount}: SeenByInput) => {
   const seenByLabel = [];
 
   if (seenByEndUser) {
@@ -23,8 +36,7 @@ const getSeenBy = ({seenByEndUser, seenByOthersCount}) => {
   return null;
 }
 
-const getTimeLabel = (timestamp) => {
-
+const getTimeLabel = (timestamp: string) => {
   const event = new Date(timestamp);
   const options = {
     year: 'numeric',
@@ -32,18 +44,10 @@ const getTimeLabel = (timestamp) => {
     day: 'numeric',
   };
  
-    return event.toLocaleDateString('no-NB', options)
-
+  return event.toLocaleDateString('no-NB', options)
 }
 
-import brregCompleted from './brreg-completed.json';
-import brregDraft from './brreg-draft.json';
-import skatt2023 from './skatt-2023.json';
-import sykmeldingReferat from './sykmelding-referat.json';
-import enovaInProgress from './enova-in-progress.json';
-
-export const dialogs = [brregDraft, brregCompleted, skatt2023, sykmeldingReferat, enovaInProgress].map((item, index) => {
-
+export const dialogs = [brregDraft, brregCompleted, skatt2023, sykmeldingReferat, enovaInProgress].map((item, index: number) => {
   return {
     ...item,
     seenBy: getSeenBy(item),

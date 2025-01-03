@@ -1,0 +1,55 @@
+.input {
+  border: 1px solid;
+  border-color: transparent;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+
+  background: transparent;
+  text-decoration: none;
+
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+
+  /* Corrects inability to style clickable `input` types in iOS */
+  appearance: none;
+
+  /* user select none */
+  user-select: none;
+  cursor: pointer;
+}
+
+.input:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.input:focus {
+  border-color: var(--theme-base-active);
+}
+
+.input[data-size="xs"] {
+  height: 1.5rem; /* sm 24 */
+}
+
+.input[data-size="sm"] {
+  height: 2.25rem; /* sm 36 */
+}
+
+.input[data-size="md"] {
+  height: 2.75rem; /* md 44 */
+}
+
+.input[data-size="lg"] {
+  height: 3.5rem; /* lg 56 */
+}

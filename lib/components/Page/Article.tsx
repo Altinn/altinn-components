@@ -5,9 +5,9 @@ export interface ArticleProps extends SectionProps {
   children?: ReactNode;
 }
 
-export const Article = ({ theme = 'article', children, ...props }: ArticleProps) => {
+export const Article = ({ children, ...props }: ArticleProps) => {
   return (
-    <Section as="article" theme={theme} {...props}>
+    <Section as="article" {...props}>
       {children}
     </Section>
   );

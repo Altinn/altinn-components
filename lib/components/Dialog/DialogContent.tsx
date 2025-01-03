@@ -27,7 +27,7 @@ export const DialogContent = ({ updatedAt, updatedAtLabel, seenBy, activityLog, 
       <Section spacing="lg" margin="md">
         <div>
           <Byline datetime={updatedAt}>{updatedAtLabel}</Byline>
-          <Typography size="lg">{children}</Typography>
+          <Typography size="md">{children}</Typography>
         </div>
         <MetaBase>
           {seenBy && <DialogSeenBy {...seenBy} />}

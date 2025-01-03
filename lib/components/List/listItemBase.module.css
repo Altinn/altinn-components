@@ -54,11 +54,11 @@
   outline: 2px solid;
 }
 
-.item[aria-disabled="true"] {
-  pointer-events: none;
-}
-
 .item:not([aria-selected="true"]):hover,
 .item:not([aria-disabled="true"]):hover {
   outline: 2px solid var(--theme-border-strong);
+}
+
+.item[aria-disabled="true"] {
+  pointer-events: none;
 }
