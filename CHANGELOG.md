@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.0](https://github.com/Altinn/altinn-components/compare/v0.10.4...v0.11.0) (2025-01-03)
+
+
+### Features
+
+* redesign of bookmarks ([#153](https://github.com/Altinn/altinn-components/issues/153)) ([0768bb7](https://github.com/Altinn/altinn-components/commit/0768bb78e965a4a9575658becf2b4941197441c4))
+
 ## [0.10.4](https://github.com/Altinn/altinn-components/compare/v0.10.3...v0.10.4) (2024-12-20)
 
 
