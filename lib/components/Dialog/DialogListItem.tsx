@@ -24,6 +24,8 @@ import styles from './dialogListItem.module.css';
 export interface DialogListItemProps extends ListItemBaseProps, ListItemLinkProps {
   /** Dialog title */
   title: string;
+  /** Dialog id */
+  id?: string;
   /** Dialog sender */
   sender?: AvatarProps;
   /** Dialog description */

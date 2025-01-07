@@ -7,6 +7,7 @@ export const InboxLayout = ({ children }: LayoutProps) => {
 
   const parents = pageId?.split('/');
   const parentId = parents?.[0];
+  const sectionId = parents?.[1] || "inbox";
 
   const parent = sitemap.find((item) => item.id === parentId);
 
@@ -16,10 +17,10 @@ export const InboxLayout = ({ children }: LayoutProps) => {
     return {
       ...item,
       id,
-      selected: pageId?.startsWith(id),
-      onClick: () => setPageId(id),
+      selected: item.id?.startsWith(sectionId),
+      onClick: () => setPageId?.(id),
     };
-  });
+  }) || [];
 
   return (
     <LayoutBody>

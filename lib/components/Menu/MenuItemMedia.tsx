@@ -18,7 +18,7 @@ const sizeMap = {
     xs: 'xs',
     sm: 'sm',
     md: 'md',
-    lg: 'lg',
+    lg: 'xl',
   },
   avatarGroup: {
     xs: 'xs',

@@ -6,6 +6,7 @@ export * from './App';
 export * from './InboxLayout';
 export * from './InboxPage';
 export * from './InboxSection';
+export * from './InboxToolbar';
 export * from './InboxDialog';
 export * from './BookmarksPage';
 
@@ -18,3 +19,5 @@ export * from './CategoryHome';
 export * from './CategorySection';
 export * from './CategoryArticle';
 
+
+export * from './ActivityLogPage';

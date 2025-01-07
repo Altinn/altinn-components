@@ -1,7 +1,8 @@
 import { type ReactNode, useMemo } from 'react';
 import { LayoutBase, LayoutBody, LayoutContent, Header, Footer, type LayoutProps } from '../../components';
-import { header, footer, sitemap, loginMenu } from './data';
 import { InboxLayout, CategoryLayout, ProfileLayout, useAppContext } from './';
+import { header, footer, sitemap, loginMenu } from './data';
+import { useSearch } from "./hooks"
 
 interface AppLayoutTypeProps {
   parentId: string | undefined;
@@ -47,6 +48,7 @@ export const AppLayout = ({ children }: LayoutProps) => {
       }
     : loginMenu;
 
+
   const theme = useMemo(() => {
     if (parentId === 'inbox') {
       return currentAccount?.type;
@@ -57,10 +59,11 @@ export const AppLayout = ({ children }: LayoutProps) => {
     }
   }, [parentId, currentAccount]);
 
+  const search = useSearch({parentId})
 
   return (
     <LayoutBase theme={theme}>
-      <Header {...header} currentAccount={currentAccount} menu={menu} />
+      <Header {...header} search={search} currentAccount={currentAccount} menu={menu} />
       <AppLayoutType parentId={parentId}>{children}</AppLayoutType>
       <Footer {...footer} />
     </LayoutBase>
