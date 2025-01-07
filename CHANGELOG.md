@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.0](https://github.com/Altinn/altinn-components/compare/v0.11.0...v0.12.0) (2025-01-07)
+
+
+### Features
+
+* make Snackbar context-aware ([#159](https://github.com/Altinn/altinn-components/issues/159)) ([7701241](https://github.com/Altinn/altinn-components/commit/77012414189e3795cbdcf45b9804e85e9cd4f217))
+
 ## [0.11.0](https://github.com/Altinn/altinn-components/compare/v0.10.4...v0.11.0) (2025-01-03)
 
 
