@@ -1,6 +1,7 @@
 'use client';
 import { type ReactNode, createContext, useContext, useState } from 'react';
 import { useEscapeKey } from '../../hooks';
+import { SnackbarProvider } from '../Snackbar/useSnackbar.tsx';
 
 type OpenElementId = 'search' | 'menu' | string;
 
@@ -36,7 +37,7 @@ export const RootProvider = ({ children, initialValue }: ProviderProps) => {
         setCurrentId,
       }}
     >
-      {children}
+      <SnackbarProvider>{children}</SnackbarProvider>
     </RootContext.Provider>
   );
 };
