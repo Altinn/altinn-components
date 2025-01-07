@@ -15,17 +15,20 @@ const meta = {
       placeholder: 'Uten tittel',
       helperText: 'Gi bokmerket et navn.',
     },
-    saveButton: {
-      label: 'Lagre endringer',
-    },
-    removeButton: {
-      label: 'Slett bokmerke',
-    },
     description: 'Sist oppdatert 3 minutter siden',
     items: [
       {
         id: 'bookmark-1',
         title: 'Mitt eget søk',
+        saveButton: {
+          label: 'Lagre søk',
+        },
+        removeButton: {
+          label: 'Slett',
+          onClick: () => {
+            alert('Slett bokmerket 1');
+          },
+        },
         params: [
           { type: 'search', label: 'Skatt' },
           { type: 'filter', label: 'Under arbeid' },
@@ -37,6 +40,15 @@ const meta = {
           { type: 'search', label: 'Skatt' },
           { type: 'filter', label: 'Under arbeid' },
         ],
+        saveButton: {
+          label: 'Lagre søk',
+        },
+        removeButton: {
+          label: 'Slett',
+          onClick: () => {
+            alert('Slett bokmerket 2');
+          },
+        },
       },
       {
         id: 'bookmark-3',
@@ -44,6 +56,12 @@ const meta = {
           { type: 'filter', label: 'Brønnøysundregistrene' },
           { type: 'filter', label: 'Krever handling' },
         ],
+        saveButton: {
+          label: 'Lagre søk',
+        },
+        removeButton: {
+          label: 'Slett',
+        },
       },
     ],
   },
@@ -92,5 +110,49 @@ export const EmptyState: Story = {
     title: 'Ingen lagrede søk',
     description: "Du kan lagre søk ved å klikke på 'Lagre søk'",
     items: [],
+  },
+};
+
+export const AsLink: Story = {
+  args: {
+    title: '2 lagrede søk',
+    untitled: 'Uten tittel',
+    titleField: {
+      label: 'Tittel',
+      placeholder: 'Uten tittel',
+      helperText: 'Gi bokmerket et navn.',
+    },
+    description: 'Sist oppdatert 3 minutter siden',
+    items: [
+      {
+        id: 'bookmark-1',
+        title: 'Mitt eget søk',
+        saveButton: {
+          label: 'Lagre søk',
+        },
+        removeButton: {
+          label: 'Slett',
+        },
+        as: (props) => <a {...props} href="#bookmark-1" />,
+        params: [
+          { type: 'search', label: 'Skatt' },
+          { type: 'filter', label: 'Under arbeid' },
+        ],
+      },
+      {
+        id: 'bookmark-2',
+        as: (props) => <a {...props} href="#bookmark-2" />,
+        params: [
+          { type: 'search', label: 'Skatt' },
+          { type: 'filter', label: 'Under arbeid' },
+        ],
+        saveButton: {
+          label: 'Lagre søk',
+        },
+        removeButton: {
+          label: 'Slett',
+        },
+      },
+    ],
   },
 };
