@@ -1,4 +1,5 @@
 .media {
+  position: relative;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -49,4 +50,13 @@
 .media[data-color="person"] {
   background-color: var(--person-surface-default);
   color: var(--person-text-default);
+}
+
+.badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: -.25em;
+  margin-right: -.25em;
+  outline: 1px solid white;
 }

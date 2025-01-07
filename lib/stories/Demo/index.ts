@@ -13,6 +13,9 @@ export * from './BookmarksPage';
 export * from './ProfileLayout';
 export * from './ProfilePage';
 
+export * from './AdminLayout';
+export * from './AdminPage';
+
 export * from './CategoryLayout';
 export * from './CategoryPage';
 export * from './CategoryHome';
@@ -21,3 +24,4 @@ export * from './CategoryArticle';
 
 
 export * from './ActivityLogPage';
+export * from './ColorsPage';

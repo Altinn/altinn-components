@@ -1,4 +1,4 @@
-import type { BookmarksListItemProps } from '../../../components';
+import type { BookmarksListItemProps } from '../../../../components';
 
 export const bookmarks: BookmarksListItemProps[] = [
   {

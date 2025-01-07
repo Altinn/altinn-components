@@ -18,12 +18,6 @@
     "allowSyntheticDefaultImports": true,
     "types": ["./typings.d.ts", "vite/client"]
   },
-  "include": [
-    "./lib/**/*.ts",
-    "./lib/**/*.tsx",
-    "./lib/hooks/*.tsx",
-    "./**/*.d.ts",
-    "examples/dialog/sykmeldingDialog.tsz"
-  ],
+  "include": ["./lib/**/*.ts", "./lib/**/*.tsx", "./lib/hooks/*.tsx", "./**/*.d.ts"],
   "exclude": ["./lib/stories/**/*"]
 }

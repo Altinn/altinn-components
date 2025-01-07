@@ -15,7 +15,7 @@ export interface TransmissionItemProps {
   sender: AvatarProps;
   createdAt?: string;
   createdAtLabel?: string;
-  badge?: BadgeProps;
+  badge?: BadgeProps | undefined;
   title?: string;
   description?: string | undefined;
   summary?: string;

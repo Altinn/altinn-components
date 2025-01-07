@@ -24,7 +24,7 @@ export interface LayoutBaseProps {
  */
 export const LayoutBase = ({ currentId, theme, children }: LayoutBaseProps) => {
   return (
-    <div className={styles.base} data-theme={theme} data-current-id={currentId}>
+    <div className={styles.base} data-color={theme} data-theme={theme} data-current-id={currentId}>
       {children}
     </div>
   );

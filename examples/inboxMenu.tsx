@@ -11,12 +11,21 @@ export const inboxMenu: MenuProps = {
       selected: true,
       title: 'Innboks',
       color: 'strong',
+      badge: {
+        label: '12',
+      },
+      alertBadge: {
+        label: '2 uleste',
+      },
     },
     {
       id: '2',
       groupId: '2',
       icon: 'doc-pencil',
       title: 'Utkast',
+      badge: {
+        label: '2',
+      },
     },
     {
       id: '3',
@@ -29,6 +38,9 @@ export const inboxMenu: MenuProps = {
       groupId: '3',
       icon: 'bookmark',
       title: 'Lagrede søk',
+      badge: {
+        label: '5',
+      },
     },
     {
       id: '5',

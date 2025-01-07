@@ -38,7 +38,7 @@ export const DraftDialog = ({
   contactInfo,
 }: DialogProps) => {
   return (
-    <PageBase color="subtle" shadow="xs">
+    <PageBase color="neutral" shadow="xs">
       <PageNav backButton={backButton} menu={menu}>
         <DialogMetadata status={status} dueAt={dueAt} dueAtLabel={dueAtLabel} />
       </PageNav>

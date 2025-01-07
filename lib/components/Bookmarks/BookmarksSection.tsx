@@ -23,7 +23,7 @@ export const BookmarksSection = ({
   onToggle,
 }: BookmarksSectionProps) => {
   return (
-    <Section padding="xl" color="surface" spacing="lg" inset>
+    <Section padding="xl" bg="surface" spacing="lg" inset>
       <Heading size="md">{title}</Heading>
       {items.length > 0 && (
         <ListBase spacing="xs">

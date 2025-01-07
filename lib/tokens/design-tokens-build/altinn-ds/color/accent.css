@@ -1,0 +1,23 @@
+/**
+ * These files are generated from design tokens defind using Token Studio
+ */
+
+@layer ds.theme.color {
+  :root {
+    --ds-color-accent-background-default: var(--ds-color-company-background-default);
+    --ds-color-accent-background-subtle: var(--ds-color-company-background-subtle);
+    --ds-color-accent-surface-default: var(--ds-color-company-surface-default);
+    --ds-color-accent-surface-hover: var(--ds-color-company-surface-hover);
+    --ds-color-accent-surface-active: var(--ds-color-company-surface-active);
+    --ds-color-accent-border-subtle: var(--ds-color-company-border-subtle);
+    --ds-color-accent-border-default: var(--ds-color-company-border-default);
+    --ds-color-accent-border-strong: var(--ds-color-company-border-strong);
+    --ds-color-accent-base-default: var(--ds-color-company-base-default);
+    --ds-color-accent-base-hover: var(--ds-color-company-base-hover);
+    --ds-color-accent-base-active: var(--ds-color-company-base-active);
+    --ds-color-accent-text-subtle: var(--ds-color-company-text-subtle);
+    --ds-color-accent-text-default: var(--ds-color-company-text-default);
+    --ds-color-accent-contrast-default: var(--ds-color-company-contrast-default);
+    --ds-color-accent-contrast-subtle: var(--ds-color-company-contrast-subtle);
+  }
+}

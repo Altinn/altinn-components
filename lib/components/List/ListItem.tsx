@@ -30,7 +30,7 @@ export interface ListItemProps extends ListItemBaseProps, ListItemHeaderProps {
   /** Custom label */
   label?: ReactNode | (() => ReactElement);
   /** Optional badge */
-  badge?: BadgeProps;
+  badge?: BadgeProps | undefined;
   /** Optional context menu */
   menu?: ContextMenuProps;
 }

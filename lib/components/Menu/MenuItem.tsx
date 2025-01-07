@@ -27,7 +27,8 @@ export interface MenuItemProps {
   icon?: IconName;
   avatar?: AvatarProps;
   avatarGroup?: AvatarGroupProps;
-  badge?: BadgeProps;
+  badge?: BadgeProps | undefined;
+  alertBadge?: BadgeProps | undefined;
   linkIcon?: IconName;
   linkText?: string;
   className?: string;
@@ -47,6 +48,7 @@ export const MenuItem = ({
   title,
   description,
   badge,
+  alertBadge,
   linkText,
   linkIcon,
   label,
@@ -65,7 +67,14 @@ export const MenuItem = ({
       expanded={expanded}
       {...rest}
     >
-      <MenuItemMedia color={color} size={size} icon={icon} avatar={avatar} avatarGroup={avatarGroup} />
+      <MenuItemMedia
+        badge={alertBadge}
+        color={color}
+        size={size}
+        icon={icon}
+        avatar={avatar}
+        avatarGroup={avatarGroup}
+      />
       <MenuItemLabel title={title} description={description} size={size}>
         {label}
       </MenuItemLabel>

@@ -104,11 +104,11 @@ export const Dialog = ({
   contactInfo,
 }: DialogProps) => {
   return (
-    <PageBase color="subtle" shadow="xs">
+    <PageBase bg="default" shadow="xs">
       <PageNav padding="sm" backButton={backButton} menu={menu}>
         <DialogMetadata status={status} dueAt={dueAt} dueAtLabel={dueAtLabel} />
       </PageNav>
-      <Article theme="inherit" padding="xl" spacing="xl">
+      <Article padding="xl" spacing="xl">
         <Heading size="xl">{title}</Heading>
         {history && <DialogHistory {...history} collapsible={true} />}
 

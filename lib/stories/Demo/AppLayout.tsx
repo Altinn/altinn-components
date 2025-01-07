@@ -1,6 +1,6 @@
 import { type ReactNode, useMemo } from 'react';
 import { LayoutBase, LayoutBody, LayoutContent, Header, Footer, type LayoutProps } from '../../components';
-import { InboxLayout, CategoryLayout, ProfileLayout, useAppContext } from './';
+import { InboxLayout, CategoryLayout, ProfileLayout, AdminLayout, useAppContext } from './';
 import { header, footer, sitemap, loginMenu } from './data';
 import { useSearch } from "./hooks"
 
@@ -15,6 +15,8 @@ export const AppLayoutType = ({ parentId, children }: AppLayoutTypeProps) => {
       return <InboxLayout>{children}</InboxLayout>;
     case 'profile':
       return <ProfileLayout>{children}</ProfileLayout>;
+    case 'admin':
+      return <AdminLayout>{children}</AdminLayout>;
     case 'category':
       return <CategoryLayout>{children}</CategoryLayout>;
     default:
@@ -52,7 +54,7 @@ export const AppLayout = ({ children }: LayoutProps) => {
   const theme = useMemo(() => {
     if (parentId === 'inbox') {
       return currentAccount?.type;
-    } else if (parentId === 'profile') {
+    } else if (parentId === 'profile' || parentId === "admin") {
       return 'neutral';
     } else {
       return 'global';

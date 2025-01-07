@@ -1,7 +1,18 @@
 import type { ReactNode } from 'react';
-import { Avatar, AvatarGroup, type AvatarGroupProps, type AvatarProps, type AvatarSize } from '../Avatar';
-import { Icon, type IconName } from '../Icon';
-import type { MenuItemColor, MenuItemSize } from './MenuItemBase';
+import {
+  Avatar,
+  AvatarGroup,
+  type AvatarGroupProps,
+  type AvatarProps,
+  type AvatarSize,
+  Badge,
+  type BadgeProps,
+  Icon,
+  type IconName,
+  type MenuItemColor,
+  type MenuItemSize,
+} from '..';
+
 import styles from './menuItemMedia.module.css';
 
 interface MenuItemMediaProps {
@@ -10,6 +21,7 @@ interface MenuItemMediaProps {
   icon?: IconName;
   avatar?: AvatarProps;
   avatarGroup?: AvatarGroupProps;
+  badge?: BadgeProps | undefined;
   children?: ReactNode;
 }
 
@@ -28,9 +40,17 @@ const sizeMap = {
   },
 };
 
-export const MenuItemMedia = ({ size = 'sm', color, icon, avatar, avatarGroup, children }: MenuItemMediaProps) => {
+export const MenuItemMedia = ({
+  size = 'sm',
+  color,
+  icon,
+  avatar,
+  avatarGroup,
+  badge,
+  children,
+}: MenuItemMediaProps) => {
   if (!icon && !avatar && !avatarGroup && !children) {
-    return false;
+    return null;
   }
 
   return (
@@ -39,6 +59,7 @@ export const MenuItemMedia = ({ size = 'sm', color, icon, avatar, avatarGroup, c
         (avatar && <Avatar {...avatar} size={sizeMap?.avatar[size] as AvatarSize} />) ||
         (avatarGroup && <AvatarGroup {...avatarGroup} size={sizeMap?.avatarGroup[size] as AvatarSize} />)}
       {children}
+      {badge && <Badge className={styles.badge} color="alert" size="xs" {...badge} />}
     </div>
   );
 };

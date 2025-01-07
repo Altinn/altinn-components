@@ -15,7 +15,8 @@ export interface AccountMenuItem {
   groupId?: string;
   selected?: boolean;
   accountNames?: string[];
-  badge?: BadgeProps;
+  badge?: BadgeProps | undefined;
+  alertBadge?: BadgeProps | undefined;
 }
 
 export interface AccountMenuProps {
@@ -52,6 +53,7 @@ export const AccountMenu = ({
       },
     }),
     badge: account.badge,
+    alertBadge: account.alertBadge,
     onClick: () => onSelectAccount?.(account.id || account.name),
   }));
 

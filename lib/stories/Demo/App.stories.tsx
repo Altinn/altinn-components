@@ -101,3 +101,12 @@ export const CompanyProfile: Story = {
     pageId: 'profile',
   },
 };
+
+export const CompanyAdmin: Story = {
+  args: {
+    theme: 'company',
+    accounts,
+    accountId: accounts[1].id,
+    pageId: 'admin',
+  },
+};

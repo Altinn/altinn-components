@@ -40,7 +40,7 @@ export interface ListItemHeaderProps extends ListItemLinkProps {
   /** Optional icon indicating behaviour */
   linkIcon?: IconName;
   /** Optional badge */
-  badge?: BadgeProps;
+  badge?: BadgeProps | undefined;
   /** Context menu */
   menu?: ContextMenuProps;
   /** Custom controls */

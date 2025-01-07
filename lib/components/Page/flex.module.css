@@ -117,6 +117,8 @@
 
 /* color */
 
+/*
+
 .flex[data-color="subtle"] {
   background-color: var(--theme-background-default);
 }
@@ -128,6 +130,8 @@
 .flex[data-color="accent"] {
   background-color: var(--theme-base-default);
 }
+
+*/
 
 /* size */
 

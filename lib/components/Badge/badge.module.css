@@ -3,25 +3,36 @@
   align-items: center;
   justify-content: center;
   white-space: nowrap;
+}
 
+.badge[data-size="xs"] {
+  width: .75rem;
+  height: .75rem;
+  padding: 0;
+  border-radius: 1em;
+}
+
+.badge[data-size="xs"] .label {
+  color: transparent;
+  width: 100%;
+  height: 100%;
+}
+
+.badge[data-size="sm"] {
   font-weight: 500;
+  font-size: 0.75rem;
   line-height: 1;
   padding: 0.5em 0.5em;
-
   min-width: 2em;
   border-radius: 2em;
 }
 
-.badge[data-size="sm"] {
-  font-size: 0.75rem;
-}
-
-.badge[data-color="subtle"] {
-  background-color: var(--theme-surface-default);
-  color: var(--theme-text-subtle);
+.badge[data-color="neutral"] {
+  background-color: var(--ds-color-surface-default);
+  color: var(--ds-color-text-subtle);
 }
 
 .badge[data-color="alert"] {
-  background-color: #e02e49;
+  background-color: var(--ds-color-base-default);
   color: white;
 }

@@ -127,7 +127,7 @@ export const ArticlePage = () => {
 export const DialogPage = () => {
   return (
     <Layout theme="inherit" header={header} footer={footer} sidebar={{ menu: inboxMenu }}>
-      <PageBase color="subtle" shadow="xs">
+      <PageBase color="neutral" shadow="xs">
         <PageNav padding="sm" />
         <Article padding="lg">
           <PageHeader title="Article">
@@ -144,7 +144,7 @@ export const DialogPage = () => {
 export const ProfilePage = () => {
   return (
     <PageBase spacing="lg">
-      <Section color="subtle" shadow="xs">
+      <Section color="neutral" shadow="xs">
         <PageNav padding="sm" />
         <PageHeader avatar={{ name: 'Zulu Salamander' }} title="Zulu Salamander" padding="lg">
           Tabs?

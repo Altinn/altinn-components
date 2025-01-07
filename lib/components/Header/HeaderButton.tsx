@@ -16,7 +16,7 @@ export interface HeaderButtonProps extends ButtonProps {
   className?: string;
   expanded?: boolean;
   icon?: IconName;
-  badge?: BadgeProps;
+  badge?: BadgeProps | undefined;
   tabIndex?: number;
 }
 

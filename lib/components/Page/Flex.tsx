@@ -3,8 +3,6 @@ import type { CSSProperties, ReactNode } from 'react';
 import styles from './flex.module.css';
 
 export type FlexElement = 'div' | 'section' | 'article' | 'header' | 'footer' | 'nav';
-export type FlexTheme = 'inherit' | 'neutral' | 'company' | 'person';
-export type FlexColor = 'transparent' | 'subtle' | 'surface' | 'accent';
 export type FlexDirection = 'col' | 'row';
 export type FlexAlign = 'initial' | 'start' | 'end' | 'center' | 'stretch';
 export type FlexJustify = 'initial' | 'start' | 'end' | 'center' | 'between';
@@ -15,8 +13,6 @@ export type FlexShadow = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export interface FlexProps {
   as?: FlexElement;
-  theme?: FlexTheme;
-  color?: FlexColor;
   direction?: FlexDirection;
   reverse?: boolean;
   align?: FlexAlign;
@@ -33,8 +29,6 @@ export interface FlexProps {
 
 export const Flex = ({
   as = 'div',
-  theme = 'inherit',
-  color = 'transparent',
   direction = 'col',
   reverse = false,
   align = 'initial',
@@ -54,8 +48,6 @@ export const Flex = ({
     <Component
       className={cx(styles.flex, className)}
       style={style}
-      data-theme={theme}
-      data-color={color}
       data-direction={direction}
       data-reverse={reverse}
       data-align={align}

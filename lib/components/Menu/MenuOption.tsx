@@ -15,7 +15,7 @@ export interface MenuOptionProps {
   name?: string;
   title?: string;
   description?: string;
-  badge?: BadgeProps;
+  badge?: BadgeProps | undefined;
   checked?: boolean;
   disabled?: boolean;
   onChange?: ChangeEventHandler;
