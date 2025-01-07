@@ -1,31 +1,30 @@
-import type { ElementType } from 'react';
-import type { IconName } from '../Icon';
-import { SnackbarBase, type SnackbarColor } from './SnackbarBase';
-import { SnackbarLabel } from './SnackbarLabel';
-import { SnackbarMedia } from './SnackbarMedia';
+'use client';
+import { SnackbarBase } from './SnackbarBase.tsx';
+import { SnackbarItem } from './SnackbarItem';
+import { useSnackbar } from './useSnackbar';
 
 export interface SnackbarProps {
-  /** Element type to render */
-  as?: ElementType;
-  /** Color */
-  color?: SnackbarColor;
-  /** Message */
-  message?: string;
-  /** Icon */
-  icon?: IconName;
-  /** Dismissable */
-  dismissable?: boolean;
-  /** onDismiss */
-  onDismiss?: () => void;
   /** Optional classname */
   className?: string;
 }
 
-export const Snackbar = ({ as = 'a', color, message, icon, ...rest }: SnackbarProps) => {
+export const Snackbar = ({ className }: SnackbarProps) => {
+  const { storedMessages, open, closeSnackbarItem } = useSnackbar();
+
+  if (!open) {
+    return null;
+  }
+
   return (
-    <SnackbarBase as={as} color={color} {...rest}>
-      <SnackbarMedia icon={icon} />
-      <SnackbarLabel>{message}</SnackbarLabel>
+    <SnackbarBase className={className}>
+      {(storedMessages || []).map((item) => (
+        <SnackbarItem
+          key={item.id}
+          onDismiss={() => closeSnackbarItem(item.id)}
+          dismissable={item.dismissable}
+          {...item}
+        />
+      ))}
     </SnackbarBase>
   );
 };
