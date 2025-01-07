@@ -1,5 +1,5 @@
 import { BookmarksListItem, Heading, ListBase, Section, Typography } from '../';
-import type { BookmarksListItemProps, ButtonProps, TextFieldProps } from '../';
+import type { BookmarksListItemProps, TextFieldProps } from '../';
 
 export interface BookmarksSectionProps {
   title?: string;
@@ -7,8 +7,6 @@ export interface BookmarksSectionProps {
   items: BookmarksListItemProps[];
   untitled?: string;
   titleField?: TextFieldProps;
-  saveButton?: ButtonProps;
-  removeButton?: ButtonProps;
   expandedId?: string;
   onToggle?: (id: string) => void;
   loading?: boolean;
@@ -21,8 +19,6 @@ export const BookmarksSection = ({
   items,
   untitled = 'Untitled bookmark',
   titleField,
-  saveButton,
-  removeButton,
   expandedId,
   onToggle,
 }: BookmarksSectionProps) => {
@@ -40,8 +36,6 @@ export const BookmarksSection = ({
               expanded={expandedId === item.id}
               untitled={untitled}
               titleField={titleField}
-              saveButton={saveButton}
-              removeButton={removeButton}
             />
           ))}
         </ListBase>

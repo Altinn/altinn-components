@@ -4,7 +4,7 @@ import { BookmarksListItem } from './BookmarksListItem';
 const meta = {
   title: 'Bookmarks/BookmarksListItem',
   component: BookmarksListItem,
-  tags: ['autodocs', 'outdated'],
+  tags: ['autodocs'],
   parameters: {},
   args: {
     id: 'id',
@@ -18,7 +18,6 @@ const meta = {
         label: 'Skatteetaten',
       },
     ],
-    href: '#',
   },
 } satisfies Meta<typeof BookmarksListItem>;
 

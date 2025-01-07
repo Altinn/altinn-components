@@ -33,6 +33,8 @@ export interface BookmarksListItemProps extends ListItemInputProps {
   saveButton?: ButtonProps;
   /** Delete button */
   removeButton?: ButtonProps;
+  /** Render as **/
+  as?: React.ElementType;
 }
 
 interface FormData {
@@ -52,6 +54,7 @@ export const BookmarksListItem = ({
   onToggle,
   saveButton,
   removeButton,
+  as,
   ...rest
 }: BookmarksListItemProps) => {
   const [formData, setFormData] = useState<FormData>({ title, params });
@@ -95,6 +98,7 @@ export const BookmarksListItem = ({
   return (
     <ListItemBase {...rest} loading={loading} expanded={expanded}>
       <ListItemHeader
+        as={as}
         size={size}
         title={title}
         loading={loading}
