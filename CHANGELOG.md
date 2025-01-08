@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.0](https://github.com/Altinn/altinn-components/compare/v0.12.0...v0.13.0) (2025-01-08)
+
+
+### Features
+
+* DS Colors and AlertBadge ([#163](https://github.com/Altinn/altinn-components/issues/163)) ([3486b1c](https://github.com/Altinn/altinn-components/commit/3486b1c90123a07b33ea28697d2f7977a38fc2f9))
+
 ## [0.12.0](https://github.com/Altinn/altinn-components/compare/v0.11.0...v0.12.0) (2025-01-07)
 
 
