@@ -1,5 +1,5 @@
 import type { MenuItemProps } from '../../../components';
-import { inboxMenuItems, profileMenuItems, categoryItems } from './';
+import { inboxMenuItems, profileMenuItems, adminMenuItems, categoryItems } from './';
 
 export const sitemap: MenuItemProps[] = [
   {
@@ -9,8 +9,10 @@ export const sitemap: MenuItemProps[] = [
     icon: 'inbox',
     title: 'Innboks',
     badge: {
-      color: 'alert',
       label: '4',
+    },
+    alertBadge: {
+      label: '2',
     },
     items: inboxMenuItems,
   },
@@ -23,15 +25,22 @@ export const sitemap: MenuItemProps[] = [
     items: categoryItems,
   },
   {
+    id: 'admin',
+    groupId: 'apps',
+    size: 'lg',
+    icon: 'handshake',
+    title: 'Tilganger',
+    alertBadge: {
+      label: '2',
+    },
+    items: adminMenuItems,
+  },
+  {
     id: 'profile',
     groupId: 'apps',
     size: 'lg',
     icon: 'person-circle',
     title: 'Profil',
-    badge: {
-      color: 'alert',
-      label: '2',
-    },
     items: profileMenuItems,
   },
   {

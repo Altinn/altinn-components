@@ -27,7 +27,7 @@ export interface BookmarkAutocompleteItemProps extends AutoCompleteItemWithType,
 
 export interface InformationAutocompleteItemProps extends AutoCompleteItemWithType, ListItemProps {
   type: 'information';
-  badge?: BadgeProps;
+  badge?: BadgeProps | undefined;
 }
 
 export type AutocompleteItemProps =

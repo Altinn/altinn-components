@@ -7,7 +7,7 @@ import styles from './listItemControls.module.css';
 
 interface ListItemControlsProps {
   className?: string;
-  badge?: BadgeProps;
+  badge?: BadgeProps | undefined;
   linkText?: string;
   linkIcon?: IconName;
   menu?: ContextMenuProps;

@@ -226,35 +226,37 @@ export const InboxMenu: Story = {
     groups: {},
     items: [
       {
-        id: 'innboks',
+        id: 'inbox',
         groupId: '1',
         size: 'lg',
         icon: 'inbox',
+        selected: true,
         title: 'Innboks',
         color: 'strong',
-        badge: { color: 'alert', label: '4' },
-      },
-      {
-        id: 'utkast',
-        groupId: '2',
-        icon: 'doc-pencil',
-        title: 'Utkast',
         badge: {
-          label: '3',
+          label: '12',
+        },
+        alertBadge: {
+          label: '2 uleste',
         },
       },
       {
-        id: 'sendt',
+        id: 'drafts',
         groupId: '2',
-        icon: 'file-checkmark',
-        selected: true,
-        title: 'Sendt',
+        icon: 'doc-pencil',
+        title: 'Utkast',
         badge: {
           label: '2',
         },
       },
       {
-        id: 'lagret',
+        id: 'sent',
+        groupId: '2',
+        icon: 'file-checkmark',
+        title: 'Sendt',
+      },
+      {
+        id: 'bookmarks',
         groupId: '3',
         icon: 'bookmark',
         title: 'Lagrede søk',
@@ -263,22 +265,21 @@ export const InboxMenu: Story = {
         },
       },
       {
-        id: 'arkivert',
+        id: 'trash',
         groupId: '4',
         icon: 'archive',
         title: 'Arkivert',
         badge: {
-          label: '100+',
+          label: '99+',
         },
       },
       {
-        id: 'papirkurv',
+        id: '6',
         groupId: '4',
-        disabled: true,
         icon: 'trash',
         title: 'Papirkurv',
         badge: {
-          label: '45',
+          label: '15',
         },
       },
     ],

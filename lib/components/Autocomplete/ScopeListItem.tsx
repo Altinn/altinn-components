@@ -7,7 +7,7 @@ export interface ScopeListItemProps extends ListItemInputProps {
   as?: ElementType;
   href?: string;
   onClick?: () => void;
-  badge?: BadgeProps;
+  badge?: BadgeProps | undefined;
   loading?: boolean;
 }
 

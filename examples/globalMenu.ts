@@ -20,8 +20,10 @@ export const globalMenu: GlobalMenuProps = {
       icon: 'inbox',
       title: 'Innboks',
       badge: {
-        color: 'alert',
         label: '4',
+      },
+      alertBadge: {
+        label: '2',
       },
     },
     {
@@ -30,10 +32,6 @@ export const globalMenu: GlobalMenuProps = {
       size: 'lg',
       icon: 'bookmark',
       title: 'Tilganger',
-      badge: {
-        color: 'alert',
-        label: '2',
-      },
     },
     {
       id: 'access',

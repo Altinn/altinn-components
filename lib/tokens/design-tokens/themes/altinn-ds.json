@@ -1,0 +1,364 @@
+{
+  "color": {
+    "company": {
+      "1": {
+        "$type": "color",
+        "$value": "{altinn-ds.company.1}"
+      },
+      "2": {
+        "$type": "color",
+        "$value": "{altinn-ds.company.2}"
+      },
+      "3": {
+        "$type": "color",
+        "$value": "{altinn-ds.company.3}"
+      },
+      "4": {
+        "$type": "color",
+        "$value": "{altinn-ds.company.4}"
+      },
+      "5": {
+        "$type": "color",
+        "$value": "{altinn-ds.company.5}"
+      },
+      "6": {
+        "$type": "color",
+        "$value": "{altinn-ds.company.6}"
+      },
+      "7": {
+        "$type": "color",
+        "$value": "{altinn-ds.company.7}"
+      },
+      "8": {
+        "$type": "color",
+        "$value": "{altinn-ds.company.8}"
+      },
+      "9": {
+        "$type": "color",
+        "$value": "{altinn-ds.company.9}"
+      },
+      "10": {
+        "$type": "color",
+        "$value": "{altinn-ds.company.10}"
+      },
+      "11": {
+        "$type": "color",
+        "$value": "{altinn-ds.company.11}"
+      },
+      "12": {
+        "$type": "color",
+        "$value": "{altinn-ds.company.12}"
+      },
+      "13": {
+        "$type": "color",
+        "$value": "{altinn-ds.company.13}"
+      },
+      "contrast-1": {
+        "$type": "color",
+        "$value": "{altinn-ds.company.contrast-1}"
+      },
+      "contrast-2": {
+        "$type": "color",
+        "$value": "{altinn-ds.company.contrast-2}"
+      }
+    },
+    "person": {
+      "1": {
+        "$type": "color",
+        "$value": "{altinn-ds.person.1}"
+      },
+      "2": {
+        "$type": "color",
+        "$value": "{altinn-ds.person.2}"
+      },
+      "3": {
+        "$type": "color",
+        "$value": "{altinn-ds.person.3}"
+      },
+      "4": {
+        "$type": "color",
+        "$value": "{altinn-ds.person.4}"
+      },
+      "5": {
+        "$type": "color",
+        "$value": "{altinn-ds.person.5}"
+      },
+      "6": {
+        "$type": "color",
+        "$value": "{altinn-ds.person.6}"
+      },
+      "7": {
+        "$type": "color",
+        "$value": "{altinn-ds.person.7}"
+      },
+      "8": {
+        "$type": "color",
+        "$value": "{altinn-ds.person.8}"
+      },
+      "9": {
+        "$type": "color",
+        "$value": "{altinn-ds.person.9}"
+      },
+      "10": {
+        "$type": "color",
+        "$value": "{altinn-ds.person.10}"
+      },
+      "11": {
+        "$type": "color",
+        "$value": "{altinn-ds.person.11}"
+      },
+      "12": {
+        "$type": "color",
+        "$value": "{altinn-ds.person.12}"
+      },
+      "13": {
+        "$type": "color",
+        "$value": "{altinn-ds.person.13}"
+      },
+      "contrast-1": {
+        "$type": "color",
+        "$value": "{altinn-ds.person.contrast-1}"
+      },
+      "contrast-2": {
+        "$type": "color",
+        "$value": "{altinn-ds.person.contrast-2}"
+      }
+    },
+    "neutral": {
+      "1": {
+        "$type": "color",
+        "$value": "{altinn-ds.neutral.1}"
+      },
+      "2": {
+        "$type": "color",
+        "$value": "{altinn-ds.neutral.2}"
+      },
+      "3": {
+        "$type": "color",
+        "$value": "{altinn-ds.neutral.3}"
+      },
+      "4": {
+        "$type": "color",
+        "$value": "{altinn-ds.neutral.4}"
+      },
+      "5": {
+        "$type": "color",
+        "$value": "{altinn-ds.neutral.5}"
+      },
+      "6": {
+        "$type": "color",
+        "$value": "{altinn-ds.neutral.6}"
+      },
+      "7": {
+        "$type": "color",
+        "$value": "{altinn-ds.neutral.7}"
+      },
+      "8": {
+        "$type": "color",
+        "$value": "{altinn-ds.neutral.8}"
+      },
+      "9": {
+        "$type": "color",
+        "$value": "{altinn-ds.neutral.9}"
+      },
+      "10": {
+        "$type": "color",
+        "$value": "{altinn-ds.neutral.10}"
+      },
+      "11": {
+        "$type": "color",
+        "$value": "{altinn-ds.neutral.11}"
+      },
+      "12": {
+        "$type": "color",
+        "$value": "{altinn-ds.neutral.12}"
+      },
+      "13": {
+        "$type": "color",
+        "$value": "{altinn-ds.neutral.13}"
+      },
+      "contrast-1": {
+        "$type": "color",
+        "$value": "{altinn-ds.neutral.contrast-1}"
+      },
+      "contrast-2": {
+        "$type": "color",
+        "$value": "{altinn-ds.neutral.contrast-2}"
+      }
+    },
+    "article": {
+      "1": {
+        "$type": "color",
+        "$value": "{altinn-ds.article.1}"
+      },
+      "2": {
+        "$type": "color",
+        "$value": "{altinn-ds.article.2}"
+      },
+      "3": {
+        "$type": "color",
+        "$value": "{altinn-ds.article.3}"
+      },
+      "4": {
+        "$type": "color",
+        "$value": "{altinn-ds.article.4}"
+      },
+      "5": {
+        "$type": "color",
+        "$value": "{altinn-ds.article.5}"
+      },
+      "6": {
+        "$type": "color",
+        "$value": "{altinn-ds.article.6}"
+      },
+      "7": {
+        "$type": "color",
+        "$value": "{altinn-ds.article.7}"
+      },
+      "8": {
+        "$type": "color",
+        "$value": "{altinn-ds.article.8}"
+      },
+      "9": {
+        "$type": "color",
+        "$value": "{altinn-ds.article.9}"
+      },
+      "10": {
+        "$type": "color",
+        "$value": "{altinn-ds.article.10}"
+      },
+      "11": {
+        "$type": "color",
+        "$value": "{altinn-ds.article.11}"
+      },
+      "12": {
+        "$type": "color",
+        "$value": "{altinn-ds.article.12}"
+      },
+      "13": {
+        "$type": "color",
+        "$value": "{altinn-ds.article.13}"
+      },
+      "contrast-1": {
+        "$type": "color",
+        "$value": "{altinn-ds.article.contrast-1}"
+      },
+      "contrast-2": {
+        "$type": "color",
+        "$value": "{altinn-ds.article.contrast-2}"
+      }
+    },
+    "alert": {
+      "1": {
+        "$type": "color",
+        "$value": "{altinn-ds.alert.1}"
+      },
+      "2": {
+        "$type": "color",
+        "$value": "{altinn-ds.alert.2}"
+      },
+      "3": {
+        "$type": "color",
+        "$value": "{altinn-ds.alert.3}"
+      },
+      "4": {
+        "$type": "color",
+        "$value": "{altinn-ds.alert.4}"
+      },
+      "5": {
+        "$type": "color",
+        "$value": "{altinn-ds.alert.5}"
+      },
+      "6": {
+        "$type": "color",
+        "$value": "{altinn-ds.alert.6}"
+      },
+      "7": {
+        "$type": "color",
+        "$value": "{altinn-ds.alert.7}"
+      },
+      "8": {
+        "$type": "color",
+        "$value": "{altinn-ds.alert.8}"
+      },
+      "9": {
+        "$type": "color",
+        "$value": "{altinn-ds.alert.9}"
+      },
+      "10": {
+        "$type": "color",
+        "$value": "{altinn-ds.alert.10}"
+      },
+      "11": {
+        "$type": "color",
+        "$value": "{altinn-ds.alert.11}"
+      },
+      "12": {
+        "$type": "color",
+        "$value": "{altinn-ds.alert.12}"
+      },
+      "13": {
+        "$type": "color",
+        "$value": "{altinn-ds.alert.13}"
+      },
+      "contrast-1": {
+        "$type": "color",
+        "$value": "{altinn-ds.alert.contrast-1}"
+      },
+      "contrast-2": {
+        "$type": "color",
+        "$value": "{altinn-ds.alert.contrast-2}"
+      }
+    }
+  },
+  "font": {
+    "family": {
+      "$type": "fontFamilies",
+      "$value": "{altinn-ds.main}"
+    }
+  },
+  "font-weight": {
+    "medium": {
+      "$type": "fontWeights",
+      "$value": "{altinn-ds.bold}"
+    },
+    "semibold": {
+      "$type": "fontWeights",
+      "$value": "{altinn-ds.extra-bold}"
+    },
+    "regular": {
+      "$type": "fontWeights",
+      "$value": "{altinn-ds.regular}"
+    }
+  },
+  "border-radius": {
+    "1": {
+      "$type": "borderRadius",
+      "$value": "min( {border-radius.base} , {border-radius.scale} *1)"
+    },
+    "2": {
+      "$type": "borderRadius",
+      "$value": "min( {border-radius.base} , {border-radius.scale} *2)"
+    },
+    "3": {
+      "$type": "borderRadius",
+      "$value": "min( {border-radius.base} , {border-radius.scale} *5)"
+    },
+    "4": {
+      "$type": "borderRadius",
+      "$value": "{border-radius.base}"
+    },
+    "5": {
+      "$type": "borderRadius",
+      "$value": "9999"
+    },
+    "base": {
+      "$type": "borderRadius",
+      "$value": "4"
+    },
+    "scale": {
+      "$type": "borderRadius",
+      "$value": "4"
+    }
+  }
+}

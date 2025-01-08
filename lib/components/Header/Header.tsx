@@ -16,7 +16,7 @@ export interface HeaderProps {
   menu: GlobalMenuProps;
   search?: SearchbarProps;
   currentAccount?: Account;
-  badge?: BadgeProps;
+  badge?: BadgeProps | undefined;
   logo?: HeaderLogoProps;
 }
 

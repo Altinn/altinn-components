@@ -51,20 +51,11 @@
 /* colors */
 
 .item {
-  background-color: var(--global-base-default);
+  background-color: var(--ds-color-base-default);
   color: white;
 }
 
-.item[data-color="accent"] {
-  background-color: var(--global-base-default);
-  color: white;
-}
-
-.item[data-color="accent"]:hover {
-  background-color: var(--global-base-hover);
-}
-
-.item[data-color="alert"] {
-  background-color: #e02e49;
-  color: white;
+.item[data-color="neutral"] {
+  background-color: var(--ds-color-background-default);
+  color: var(--ds-color-text-default);
 }

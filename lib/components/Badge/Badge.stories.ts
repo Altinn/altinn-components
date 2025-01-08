@@ -24,9 +24,23 @@ export const Alert: Story = {
   },
 };
 
+export const AlertXs: Story = {
+  args: {
+    ...Alert.args,
+    size: 'xs',
+  },
+};
+
 export const UnreadCount: Story = {
   args: {
     label: '2',
-    color: 'alert',
+    color: 'neutral',
+  },
+};
+
+export const UnreadCountXs: Story = {
+  args: {
+    ...UnreadCount.args,
+    size: 'xs',
   },
 };

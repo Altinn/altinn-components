@@ -1,4 +1,4 @@
-import type { MenuItemProps } from '../../../components';
+import type { MenuItemProps } from '../../../../components';
 
 export const inboxMenuItems: MenuItemProps[] = [
   {
@@ -9,12 +9,21 @@ export const inboxMenuItems: MenuItemProps[] = [
     selected: true,
     title: 'Innboks',
     color: 'strong',
+    badge: {
+      label: '12',
+    },
+    alertBadge: {
+      label: '2 uleste',
+    },
   },
   {
     id: 'drafts',
     groupId: '2',
     icon: 'doc-pencil',
     title: 'Utkast',
+    badge: {
+      label: '2',
+    },
   },
   {
     id: 'sent',
@@ -27,18 +36,26 @@ export const inboxMenuItems: MenuItemProps[] = [
     groupId: '3',
     icon: 'bookmark',
     title: 'Lagrede søk',
-  },
-  {
-    id: 'archive',
-    groupId: '4',
-    icon: 'archive',
-    title: 'Arkivert',
+    badge: {
+      label: '5',
+    },
   },
   {
     id: 'trash',
     groupId: '4',
-    disabled: true,
+    icon: 'archive',
+    title: 'Arkivert',
+    badge: {
+      label: '99+',
+    },
+  },
+  {
+    id: '6',
+    groupId: '4',
     icon: 'trash',
     title: 'Papirkurv',
+    badge: {
+      label: '15',
+    },
   },
 ];

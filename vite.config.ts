@@ -25,6 +25,10 @@ export default () => {
             src: 'lib/css/*.css',
             dest: path.resolve(__dirname, 'dist/'),
           },
+          {
+            src: 'lib/tokens/**/*',
+            dest: path.resolve(__dirname, 'dist/tokens/'),
+          },
         ],
       }),
       react(),
@@ -48,14 +52,17 @@ export default () => {
             .sync('lib/**/*.{ts,tsx}', {
               ignore: ['lib/**/*.d.ts'],
             })
-            .map((file) => [
-              // The name of the entry point
-              // lib/nested/foo.ts becomes nested/foo
-              relative('lib', file.slice(0, file.length - extname(file).length)),
-              // The absolute path to the entry file
-              // lib/nested/foo.ts becomes /project/lib/nested/foo.ts
-              fileURLToPath(new URL(file, import.meta.url)),
-            ]),
+            .filter((file) => !file.match(/\.stories\.tsx?$/))
+            .map((file) => {
+              return [
+                // The name of the entry point
+                // lib/nested/foo.ts becomes nested/foo
+                relative('lib', file.slice(0, file.length - extname(file).length)),
+                // The absolute path to the entry file
+                // lib/nested/foo.ts becomes /project/lib/nested/foo.ts
+                fileURLToPath(new URL(file, import.meta.url)),
+              ];
+            }),
         ),
         output: {
           assetFileNames: 'assets/[name][extname]',

@@ -22,7 +22,7 @@ export interface MenuItemBaseProps {
   selected?: boolean;
   expanded?: boolean;
   children?: ReactNode;
-  badge?: BadgeProps;
+  badge?: BadgeProps | undefined;
   linkIcon?: IconName;
   linkText?: string;
 }

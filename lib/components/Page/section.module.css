@@ -1,13 +1,22 @@
-.section[data-bg="subtle"] {
+.section[data-bg="default"] {
   background-color: var(--theme-background-default);
+}
+
+.section[data-bg="subtle"] {
+  background-color: var(--theme-background-subtle);
 }
 
 .section[data-bg="surface"] {
   background-color: var(--theme-surface-default);
 }
 
-.section[data-bg="accent"] {
+.section[data-bg="border"] {
+  background-color: var(--theme-border-default);
+}
+
+.section[data-bg="base"] {
   background-color: var(--theme-base-default);
+  color: var(--theme-contrast-default);
 }
 
 /* shadow */

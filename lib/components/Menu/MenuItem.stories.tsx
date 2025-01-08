@@ -26,11 +26,22 @@ export const Default: Story = {
   },
 };
 
-export const DefaultBadge: Story = {
+export const Badge: Story = {
   args: {
     icon: 'inbox',
     title: 'Innboks',
     badge: {
+      label: '4',
+    },
+  },
+};
+
+export const BadgeXs: Story = {
+  args: {
+    icon: 'inbox',
+    title: 'Innboks',
+    badge: {
+      size: 'xs',
       label: '4',
     },
   },
@@ -52,8 +63,10 @@ export const AlertBadge: Story = {
     title: 'Innboks',
     color: 'strong',
     badge: {
-      color: 'alert',
       label: '4',
+    },
+    alertBadge: {
+      label: '14 uleste',
     },
   },
 };
