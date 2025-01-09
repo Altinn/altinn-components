@@ -21,7 +21,7 @@ export const ToolbarAdd = ({ label = 'Legg til', items, id }: ToolbarAddProps) =
         {label}
       </ToolbarButton>
       <DrawerOrDropdown drawerTitle={label} onClose={closeAll} open={expanded}>
-        <Menu theme="global" items={items} />
+        <Menu color="neutral" items={items} />
       </DrawerOrDropdown>
     </ToolbarFilterBase>
   );

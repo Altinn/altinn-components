@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { LayoutContent } from './LayoutContent';
 
 const meta = {
-  title: 'Layout/LayoutContent',
+  title: 'Layout/Layout/LayoutContent',
   component: LayoutContent,
   tags: ['autodocs'],
   parameters: {},

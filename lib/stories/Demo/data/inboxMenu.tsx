@@ -1,5 +1,5 @@
-import type { MenuProps } from '../../../../components';
 import { inboxMenuItems } from '.';
+import type { MenuProps } from '../../../../components';
 
 export const inboxMenu: MenuProps = {
   groups: {},

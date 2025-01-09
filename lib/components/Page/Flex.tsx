@@ -1,18 +1,21 @@
 import cx from 'classnames';
 import type { CSSProperties, ReactNode } from 'react';
+import type { Color, Range, Shadow, Theme } from '..';
 import styles from './flex.module.css';
 
 export type FlexElement = 'div' | 'section' | 'article' | 'header' | 'footer' | 'nav';
 export type FlexDirection = 'col' | 'row';
 export type FlexAlign = 'initial' | 'start' | 'end' | 'center' | 'stretch';
 export type FlexJustify = 'initial' | 'start' | 'end' | 'center' | 'between';
-export type FlexSpacing = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export type FlexPadding = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export type FlexMargin = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export type FlexShadow = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type FlexSpacing = 'xs' | Range<11>;
+export type FlexPadding = 'page' | Range<11>;
+export type FlexMargin = 'page' | 'section';
 
 export interface FlexProps {
   as?: FlexElement;
+  shadow?: Shadow;
+  color?: Color;
+  theme?: Theme;
   direction?: FlexDirection;
   reverse?: boolean;
   align?: FlexAlign;
@@ -20,8 +23,7 @@ export interface FlexProps {
   spacing?: FlexSpacing;
   padding?: FlexPadding;
   margin?: FlexMargin;
-  shadow?: FlexShadow;
-  inset?: boolean;
+  bleed?: boolean;
   children?: ReactNode;
   className?: string;
   style?: CSSProperties;
@@ -29,14 +31,17 @@ export interface FlexProps {
 
 export const Flex = ({
   as = 'div',
-  direction = 'col',
+  color,
+  theme = 'transparent',
+  shadow = 'none',
+  direction = 'row',
   reverse = false,
   align = 'initial',
   justify = 'initial',
-  spacing = 'none',
-  padding = 'none',
-  margin = 'none',
-  inset = false,
+  spacing,
+  padding,
+  margin,
+  bleed = false,
   className,
   style,
   children,
@@ -48,6 +53,9 @@ export const Flex = ({
     <Component
       className={cx(styles.flex, className)}
       style={style}
+      data-color={color}
+      data-theme={theme}
+      data-shadow={shadow}
       data-direction={direction}
       data-reverse={reverse}
       data-align={align}
@@ -55,7 +63,7 @@ export const Flex = ({
       data-spacing={spacing}
       data-padding={padding}
       data-margin={margin}
-      data-inset={inset}
+      data-bleed={bleed}
       {...rest}
     >
       {children}

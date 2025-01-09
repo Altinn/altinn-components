@@ -2,7 +2,7 @@ import cx from 'classnames';
 import type { MouseEventHandler } from 'react';
 import styles from './backdrop.module.css';
 
-export type BackdropColor = 'transparent' | 'theme';
+export type BackdropColor = 'transparent' | 'inherit';
 
 export interface BackdropProps {
   className?: string;

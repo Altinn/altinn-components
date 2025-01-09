@@ -1,14 +1,16 @@
 import cx from 'classnames';
 import type { ElementType, ReactNode } from 'react';
+import type { MenuItemColor } from './MenuItemBase.tsx';
 import styles from './menuBase.module.css';
 
-export type MenuTheme = 'inherit' | 'global' | 'neutral' | 'company' | 'person' | 'global-dark';
+export type MenuTheme = 'transparent' | 'default' | 'subtle';
 export type MenuListRole = 'presentation' | 'group';
 export type MenuListItemRole = 'presentation' | 'group' | 'separator';
 
 export interface MenuBaseProps {
   as?: ElementType;
   theme?: MenuTheme;
+  color?: MenuItemColor;
   className?: string;
   children?: ReactNode;
 }

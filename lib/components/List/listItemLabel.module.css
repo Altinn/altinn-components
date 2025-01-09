@@ -31,9 +31,12 @@
   font-size: 1rem;
 }
 
-.label[data-size="lg"],
-.label[data-size="xl"] {
+.label[data-size="lg"] {
   font-size: 1.125rem;
+}
+
+.label[data-size="xl"] {
+  font-size: 1.25rem;
 }
 
 /* title + descr */
@@ -50,7 +53,7 @@
   display: inline;
   font-weight: 400;
   line-height: 1.125;
-  color: var(--theme-text-subtle);
+  color: var(--ds-color-text-subtle);
   margin: 0;
 }
 
@@ -61,4 +64,8 @@
 .description[data-size="xl"] {
   font-size: 0.875rem;
   line-height: 1rem;
+}
+
+[data-theme="base"] .description {
+  color: var(--ds-color-contrast-subtle);
 }

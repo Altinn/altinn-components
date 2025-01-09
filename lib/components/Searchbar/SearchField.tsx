@@ -69,7 +69,6 @@ export const SearchField = ({
       {(value && (
         <IconButton
           icon="x-mark"
-          color="secondary"
           variant="solid"
           size="custom"
           className={styles.clear}

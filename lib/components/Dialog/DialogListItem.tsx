@@ -18,6 +18,7 @@ import {
 
 export type DialogListItemSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type DialogListItemState = 'normal' | 'trashed' | 'archived';
+export type DialogListItemTheme = 'default' | 'subtle' | 'transparent';
 
 import styles from './dialogListItem.module.css';
 
@@ -78,6 +79,8 @@ export interface DialogListItemProps extends ListItemBaseProps, ListItemLinkProp
   attachmentsCount?: number;
   /** Group id */
   groupId?: string;
+  /** Theme */
+  theme?: DialogListItemTheme;
 }
 
 /**
@@ -91,6 +94,7 @@ export const DialogListItem = ({
   state = 'normal',
   loading,
   select,
+  selected,
   status,
   sender,
   recipient,
@@ -112,13 +116,16 @@ export const DialogListItem = ({
   title,
   description,
   summary,
+  theme,
   ...rest
 }: DialogListItemProps) => {
   const applicableState = trashedAt ? 'trashed' : archivedAt ? 'archived' : state;
 
+  const applicableTheme = theme || selected ? 'subtle' : 'default';
+
   if (size === 'xs' || size === 'sm' || size === 'md') {
     return (
-      <ListItemBase {...rest} size={size}>
+      <ListItemBase {...rest} size={size} selected={selected} theme={applicableTheme}>
         <ListItemLink {...rest} size={size} className={styles.link}>
           <div className={styles.border} data-size={size} data-seen={seen} data-loading={loading}>
             <ListItemLabel loading={loading} size={size} title={title} description={summary || description} />
@@ -130,7 +137,7 @@ export const DialogListItem = ({
   }
 
   return (
-    <ListItemBase {...rest} size={size}>
+    <ListItemBase {...rest} size={size} selected={selected} theme={applicableTheme}>
       <ListItemLink {...rest} size={size} className={styles.link}>
         <div className={styles.border} data-size={size} data-seen={seen} data-loading={loading}>
           <header className={styles.header} data-size={size}>

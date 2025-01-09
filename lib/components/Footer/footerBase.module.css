@@ -1,6 +1,6 @@
 .footer {
   border-top: 1px solid;
-  border-color: var(--theme-border-subtle);
+  border-color: var(--ds-color-border-subtle);
 
   display: flex;
   flex-direction: column;

@@ -5,7 +5,7 @@ import type { Account } from './AccountButton.tsx';
 import { GlobalMenu, type GlobalMenuProps } from './GlobalMenu';
 
 const meta = {
-  title: 'GlobalMenu/GlobalMenu',
+  title: 'Menu/GlobalMenu',
   component: GlobalMenu,
   tags: ['autodocs'],
   parameters: {},

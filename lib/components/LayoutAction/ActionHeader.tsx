@@ -1,19 +1,33 @@
+import { Heading, IconButton } from '../';
 import styles from './actionHeader.module.css';
 
-import { IconButton } from '../Button';
+import type { LayoutActionColor, LayoutActionTheme } from './LayoutAction';
 
 export interface ActionHeaderProps {
+  color?: LayoutActionColor;
+  theme?: LayoutActionTheme;
   title: string;
   hidden?: boolean;
   dismissable?: boolean;
   onDismiss?: () => void;
 }
 
-export const ActionHeader = ({ hidden = false, title, dismissable = true, onDismiss }: ActionHeaderProps) => {
+export const ActionHeader = ({
+  color,
+  theme,
+  hidden = false,
+  title,
+  dismissable = true,
+  onDismiss,
+}: ActionHeaderProps) => {
   return (
-    <header className={styles.header} aria-hidden={hidden} data-theme="global-dark">
-      <h2 className={styles.title}>{title}</h2>
-      {dismissable && <IconButton icon="x-mark" variant="outline" onClick={onDismiss} className={styles.dismiss} />}
+    <header className={styles.header} aria-hidden={hidden} data-color={color} data-theme={theme}>
+      <Heading size="sm" className={styles.title}>
+        {title}
+      </Heading>
+      {dismissable && (
+        <IconButton icon="x-mark" color={color} variant="solid" onClick={onDismiss} className={styles.dismiss} />
+      )}
     </header>
   );
 };

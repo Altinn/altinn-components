@@ -2,7 +2,7 @@
   width: 100%;
   border: 2px solid;
   border-radius: 0.25rem;
-  background-color: var(--theme-background-default);
+  background-color: var(--ds-color-background-default);
 }
 
 .autocomplete ul {

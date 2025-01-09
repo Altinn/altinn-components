@@ -1,11 +1,11 @@
 import type { ReactNode } from 'react';
-import { Avatar, type AvatarProps, Byline, type BylineSize, type IconName } from '..';
+import { Avatar, type AvatarProps, Byline, type BylineSize, type Color, type IconName } from '..';
 
 import styles from './timelineSection.module.css';
 
 export interface TimelineSectionProps {
   loading?: boolean;
-  seen?: boolean;
+  color?: Color;
   size?: BylineSize;
   datetime?: string;
   dateline?: string;
@@ -17,8 +17,8 @@ export interface TimelineSectionProps {
 
 export const TimelineSection = ({
   loading,
+  color,
   size = 'xs',
-  seen = true,
   datetime,
   dateline,
   byline,
@@ -26,14 +26,14 @@ export const TimelineSection = ({
   children,
 }: TimelineSectionProps) => {
   return (
-    <section className={styles.section} data-size={size} data-seen={seen}>
+    <section className={styles.section} data-color={color} data-size={size}>
       <aside className={styles.sidebar} data-size={size}>
         {(byline || dateline) && (
           <div className={styles.media} data-size={size}>
-            {(avatar && <Avatar {...avatar} size={size} />) || <div className={styles.dot} data-seen={seen} />}
+            {(avatar && <Avatar {...avatar} size={size} />) || <div className={styles.dot} />}
           </div>
         )}
-        <div className={styles.border} data-seen={seen} />
+        <div className={styles.border} />
       </aside>
       <div className={styles.content} data-size={size}>
         {(byline || dateline) && (

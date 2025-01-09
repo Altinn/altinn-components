@@ -12,13 +12,13 @@ export interface DialogTimelineItemProps {
 
 export const DialogTimelineItem = ({ updatedAt, updatedAtLabel, summary, items }: DialogTimelineItemProps) => {
   return (
-    <TimelineSection size="xs" datetime={updatedAt} dateline={updatedAtLabel}>
+    <TimelineSection size="xs" color="neutral" datetime={updatedAt} dateline={updatedAtLabel}>
       <Typography size="md">
         {summary && <p>{summary}</p>}
         {items && (
-          <ListBase theme="global">
+          <ListBase>
             {items.map((item, index) => (
-              <TransmissionItem {...item} key={index} />
+              <TransmissionItem {...item} key={index} theme="subtle" />
             ))}
           </ListBase>
         )}

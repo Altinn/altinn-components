@@ -6,7 +6,7 @@ import type { AutocompleteItemProps } from '../Autocomplete';
 import { Searchbar, type SearchbarProps } from './Searchbar';
 
 const meta = {
-  title: 'Header/Searchbar',
+  title: 'Search/Searchbar',
   component: Searchbar,
   tags: ['autodocs'],
   parameters: {},
@@ -179,7 +179,11 @@ export const ControlledState = (args: SearchbarProps) => {
   );
 };
 
-ControlledState.play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+ControlledState.play = async ({
+  canvasElement,
+}: {
+  canvasElement: HTMLElement;
+}) => {
   const canvas = within(canvasElement);
   const searchInput = canvas.getByRole('searchbox');
   await userEvent.type(searchInput, 'skatt');

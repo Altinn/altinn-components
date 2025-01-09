@@ -45,17 +45,17 @@ export const ContextMenu = ({
   }, [items, closeAll]);
 
   return (
-    <div className={cx(styles.toggle, className)} data-theme="neutral" ref={ref}>
+    <div className={cx(styles.toggle, className)} data-color="neutral" ref={ref}>
       <IconButton
         className={styles.button}
         size={size}
         icon="menu-elipsis-horizontal"
         iconSize="md"
         variant="text"
-        color="secondary"
+        color="neutral"
         onClick={onToggle}
       />
-      <DropdownBase className={styles.dropdown} placement={placement} open={expanded}>
+      <DropdownBase placement={placement} open={expanded}>
         <MenuItems groups={groups} items={itemsWithToggle} />
       </DropdownBase>
     </div>

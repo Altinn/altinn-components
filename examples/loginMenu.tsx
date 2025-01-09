@@ -6,7 +6,7 @@ export const loginMenu: MenuProps = {
       id: 'login',
       groupId: 'login',
       size: 'lg',
-      color: 'strong',
+      theme: 'base',
       icon: 'padlock-locked',
       title: 'Logg inn',
     },

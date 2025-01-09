@@ -22,17 +22,17 @@
 .border {
   position: relative;
   border-left: 0.25rem solid;
-  border-color: var(--theme-surface-active);
+  border-color: var(--ds-color-surface-active);
   display: flex;
   flex-direction: column;
 }
 
 .border[data-seen="true"] {
-  border-color: var(--neutral-surface-default);
+  border-color: var(--ds-color-surface-default);
 }
 
 .border[data-loading="true"] {
-  border-color: var(--neutral-surface-default);
+  border-color: var(--ds-color-surface-default);
 }
 
 .border[data-size="xs"],
@@ -81,7 +81,7 @@
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.25;
-  color: var(--theme-text-default);
+  color: var(--ds-color-text-default);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   line-clamp: 2;

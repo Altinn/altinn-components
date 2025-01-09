@@ -19,9 +19,9 @@ export interface IconButtonProps {
 
 export const IconButton = ({
   variant = 'solid',
-  color = 'primary',
   size = 'md',
   icon,
+  color,
   iconSize,
   className,
   onClick,

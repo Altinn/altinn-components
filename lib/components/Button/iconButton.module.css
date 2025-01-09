@@ -9,6 +9,13 @@
   font-size: 1.5rem;
 }
 
+/* xs 30 */
+
+.button[data-size="sm"] {
+  width: 1.875rem;
+  height: 1.875rem;
+}
+
 /* sm 36 */
 
 .button[data-size="sm"] {

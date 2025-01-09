@@ -7,6 +7,7 @@ import {
   DialogMetadata,
   type DialogProps,
   DialogSection,
+  Flex,
   Heading,
   PageBase,
   PageNav,
@@ -38,23 +39,23 @@ export const DraftDialog = ({
   contactInfo,
 }: DialogProps) => {
   return (
-    <PageBase color="neutral" shadow="xs">
-      <PageNav backButton={backButton} menu={menu}>
+    <PageBase theme="default" shadow="xs">
+      <PageNav backButton={backButton} menu={menu} padding={2}>
         <DialogMetadata status={status} dueAt={dueAt} dueAtLabel={dueAtLabel} />
       </PageNav>
-      <Article padding="xl" spacing="xl">
-        <Section as="header" spacing="md">
-          <Section align="center" spacing="md">
-            <Avatar size="lg" {...sender} />
-            <Heading size="lg">{title}</Heading>
-          </Section>
+      <Article padding="page" spacing={6}>
+        <Section as="header" spacing={3}>
+          <Flex align="center" spacing={3}>
+            <Avatar size="xl" {...sender} />
+            <Heading size="xl">{title}</Heading>
+          </Flex>
           <Byline size="md" datetime={updatedAt}>
             <strong>{recipient?.name}</strong>
             {recipientLabel + ' ' + sender?.name + ', '}
             {updatedAtLabel}
           </Byline>
         </Section>
-        <Section padding="xl" spacing="lg" style={{ border: '1px solid', borderStyle: 'dashed' }}>
+        <Section padding={6} spacing={4} style={{ border: '1px solid', borderStyle: 'dashed' }}>
           <Typography size="lg">
             <p>{summary}</p>
             {body}

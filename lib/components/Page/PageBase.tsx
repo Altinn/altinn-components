@@ -1,14 +1,17 @@
-import type { ReactNode } from 'react';
-import { Section, type SectionProps } from './Section';
+import { Flex, type FlexProps } from './Flex';
 
-export interface PageBaseProps extends SectionProps {
-  children?: ReactNode;
+export interface PageBaseProps extends FlexProps {
+  bleed?: boolean;
 }
 
-export const PageBase = ({ children, ...props }: PageBaseProps) => {
+/**
+ * PageBase component. Use as wrapper for pages. Should renders a flex column by default.
+ */
+
+export const PageBase = ({ children, as = 'div', direction = 'col', ...props }: PageBaseProps) => {
   return (
-    <Section as="div" {...props}>
+    <Flex as={as} direction={direction} {...props}>
       {children}
-    </Section>
+    </Flex>
   );
 };

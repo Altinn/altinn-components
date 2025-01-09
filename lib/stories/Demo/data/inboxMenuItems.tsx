@@ -3,12 +3,14 @@ import type { MenuItemProps } from '../../../../components';
 export const inboxMenuItems: MenuItemProps[] = [
   {
     id: 'inbox',
+    theme: 'base',
     groupId: '1',
     size: 'lg',
+    variant: 'strong',
     icon: 'inbox',
+    iconVariant: 'solid',
     selected: true,
     title: 'Innboks',
-    color: 'strong',
     badge: {
       label: '12',
     },

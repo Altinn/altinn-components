@@ -3,7 +3,7 @@ import { accountMenu } from '../../../examples';
 import { AccountMenu } from './AccountMenu';
 
 const meta = {
-  title: 'GlobalMenu/AccountMenu',
+  title: 'Menu/AccountMenu',
   component: AccountMenu,
   tags: ['autodocs'],
   parameters: {},

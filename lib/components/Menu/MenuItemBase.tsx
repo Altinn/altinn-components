@@ -1,16 +1,17 @@
 import cx from 'classnames';
 import type { ElementType, KeyboardEvent, KeyboardEventHandler, ReactNode } from 'react';
-import { Badge, type BadgeProps } from '../Badge';
-import { Icon, type IconName } from '../Icon';
+import { Badge, type BadgeProps, type Color, Icon, type IconName } from '..';
 import styles from './menuItemBase.module.css';
 
+export type MenuItemColor = Color;
 export type MenuItemSize = 'xs' | 'sm' | 'md' | 'lg';
-export type MenuItemColor = 'neutral' | 'subtle' | 'surface' | 'strong' | 'company' | 'person';
+export type MenuItemTheme = 'transparent' | 'default' | 'surface' | 'base';
 
 export interface MenuItemBaseProps {
   as?: ElementType;
-  size?: MenuItemSize;
   color?: MenuItemColor;
+  theme?: MenuItemTheme;
+  size?: MenuItemSize;
   className?: string;
   href?: string;
   onClick?: () => void;
@@ -29,8 +30,9 @@ export interface MenuItemBaseProps {
 
 export const MenuItemBase = ({
   as,
-  size,
   color,
+  theme,
+  size,
   className,
   href,
   onClick,
@@ -55,6 +57,7 @@ export const MenuItemBase = ({
       className={cx(styles.item, className)}
       data-size={size}
       data-color={color}
+      data-theme={theme}
       data-active={active}
       aria-hidden={hidden}
       aria-expanded={expanded}

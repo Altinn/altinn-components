@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Flex, type SnackbarColor, SnackbarColorEnum, SnackbarItem, type SnackbarItemProps } from '..';
 
 const meta = {
-  title: 'Snackbar/SnackbarItem',
+  title: 'Layout/Snackbar/SnackbarItem',
   component: SnackbarItem,
   tags: ['autodocs'],
   parameters: {},
@@ -22,7 +22,7 @@ export const Colors = (args: SnackbarItemProps) => {
   const colors = Object.keys(SnackbarColorEnum) as SnackbarColor[];
 
   return (
-    <Flex direction="col" spacing="md">
+    <Flex direction="col" spacing={3}>
       {colors.map((color) => (
         <SnackbarItem {...args} color={color} key={color} />
       ))}

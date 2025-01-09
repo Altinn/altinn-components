@@ -11,10 +11,11 @@ import {
   ListItemHeader,
   type ListItemProps,
   MetaItem,
+  Section,
 } from '../';
 
-const colors = ['neutral', 'accent', 'transparent'] as ListItemProps['color'][];
-const sizes = ['xl', 'lg', 'md', 'sm', 'xs'] as ListItemProps['size'][];
+const themes = ['default', 'subtle', 'surface', 'base', 'transparent'] as ListItemProps['theme'][];
+const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as ListItemProps['size'][];
 
 const meta = {
   title: 'List/ListItem',
@@ -197,14 +198,20 @@ export const Selectable = (args: ListItemProps) => {
   );
 };
 
-export const Colors = (args: ListItemProps) => {
+export const Themes = (args: ListItemProps) => {
   return (
     <ListBase>
-      {colors.map((color) => {
+      {themes?.map((theme) => {
         return (
-          <Fragment key={color}>
-            <ListItem {...args} icon="teddy-bear" color={color} linkIcon="chevron-right" />
-            <MetaItem>{color}</MetaItem>
+          <Fragment key={theme}>
+            {sizes.map((size) => {
+              return (
+                <Fragment key={theme}>
+                  <ListItem {...args} icon="teddy-bear" theme={theme} size={size} linkIcon="chevron-right" />
+                </Fragment>
+              );
+            })}
+            <MetaItem>{theme}</MetaItem>
           </Fragment>
         );
       })}
@@ -218,6 +225,8 @@ export const Sizes = (args: ListItemProps) => {
       {sizes?.map((size) => {
         return (
           <Fragment key={size}>
+            <ListItem {...args} description={undefined} size={size} linkIcon="chevron-right" />
+            <ListItem {...args} size={size} linkIcon="chevron-right" />
             <ListItem {...args} icon="teddy-bear" size={size} linkIcon="chevron-right" />
             <ListItem {...args} avatar={{ name: 'Avatar' }} size={size} linkIcon="chevron-right" />
             <MetaItem>{size}</MetaItem>
@@ -298,7 +307,17 @@ export const Collapsible = (args: ListItemProps) => {
         onClick={onToggle}
         as="button"
       />
-      {expanded && <List spacing="none" defaultItemSize="xs" defaultItemColor="transparent" items={items} />}
+      {expanded && (
+        <Section padding={2} spacing={2}>
+          <List
+            spacing="xs"
+            defaultItemSize="xs"
+            defaultItemColor="neutral"
+            defaultItemTheme="transparent"
+            items={items}
+          />
+        </Section>
+      )}
     </ListItemBase>
   );
 };

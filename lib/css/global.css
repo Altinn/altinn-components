@@ -1,14 +1,11 @@
 @import "https://altinncdn.no/fonts/inter/inter.css";
-@import "./colors.css";
-@import "./theme-global.css";
-@import "./theme-global-dark.css";
-@import "./theme-article.css";
-@import "./theme-neutral.css";
-@import "./theme-company.css";
-@import "./theme-person.css";
-@import "./theme.css";
-
 @import "./altinn-ds.css";
+@import "./altinn-ds-overrides.css";
+@import "./altinn-theme.css";
+
+@import "./shadow.css";
+@import "./padding.css";
+@import "./spacing.css";
 
 * {
   font-family: "Inter", sans-serif;

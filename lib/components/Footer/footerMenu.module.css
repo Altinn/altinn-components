@@ -25,11 +25,11 @@
   }
 }
 
-.list .item:hover {
-  background-color: var(--global-base-hover);
-}
-
 .link {
   color: inherit;
   text-decoration: underline;
+}
+
+.link:hover {
+  color: var(--ds-color-base-hover);
 }

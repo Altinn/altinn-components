@@ -3,7 +3,6 @@
 }
 
 .drawer[aria-expanded="true"] {
-  background-color: var(--theme-background-default);
   display: block;
   width: 100%;
 }

@@ -16,7 +16,7 @@ export const DialogList = ({ items, groups = {} }: DialogListProps) => {
   });
 
   return (
-    <Section spacing="md" margin="md">
+    <Section spacing={3} margin="section">
       {menu?.map((group, groupIndex) => {
         const groupProps = group.props || {};
 

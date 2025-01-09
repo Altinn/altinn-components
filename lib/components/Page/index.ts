@@ -1,5 +1,6 @@
 export * from './PageBase';
 export * from './PageNav';
+export * from './PageMenu';
 export * from './PageHeader';
 
 export * from './Article';

@@ -1,5 +1,5 @@
-import type { AccountMenuProps } from '../../../components';
 import { accounts } from '.';
+import type { AccountMenuProps } from '../../../components';
 
 export const accountMenu: AccountMenuProps = {
   accountSearch: {

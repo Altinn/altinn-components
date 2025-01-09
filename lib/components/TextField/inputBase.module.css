@@ -23,7 +23,7 @@
 }
 
 .input {
-  border-color: var(--theme-border-default);
+  border-color: var(--ds-color-border-default);
   border-radius: 2px;
 }
 
@@ -33,7 +33,7 @@
 }
 
 .input:focus {
-  border-color: var(--theme-base-active);
+  border-color: var(--ds-color-base-active);
 }
 
 .input[data-size="xs"] {

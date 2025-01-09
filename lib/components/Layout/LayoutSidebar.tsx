@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { LayoutTheme } from './LayoutBase';
+import type { LayoutColor } from './LayoutBase';
 import styles from './layoutSidebar.module.css';
 
 /**
@@ -9,14 +9,14 @@ import styles from './layoutSidebar.module.css';
  */
 
 export interface LayoutSidebarProps {
-  theme?: LayoutTheme;
+  color?: LayoutColor;
   hidden?: boolean;
   children?: ReactNode;
 }
 
-export const LayoutSidebar = ({ theme, hidden = false, children }: LayoutSidebarProps) => {
+export const LayoutSidebar = ({ color, hidden = false, children }: LayoutSidebarProps) => {
   return (
-    <aside className={styles.sidebar} data-theme={theme} aria-hidden={hidden}>
+    <aside className={styles.sidebar} data-color={color} aria-hidden={hidden}>
       {children}
     </aside>
   );

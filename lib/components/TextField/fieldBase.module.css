@@ -5,9 +5,9 @@
 }
 
 .label {
-  color: var(--theme-text-default);
+  color: var(--ds-color-text-default);
 }
 
 .helperText {
-  color: var(--theme-text-subtle);
+  color: var(--ds-color-text-subtle);
 }

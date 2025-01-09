@@ -16,7 +16,7 @@ export interface ComboButtonProps extends Omit<ButtonBaseProps, 'onClick'> {
 
 export const ComboButton = ({
   variant = 'solid',
-  color = 'primary',
+  color,
   size = 'md',
   selected = false,
   icon,

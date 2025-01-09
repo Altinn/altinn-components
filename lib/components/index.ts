@@ -1,3 +1,5 @@
+export * from '../types/';
+
 export * from './Attachment';
 export * from './Autocomplete';
 export * from './Avatar';

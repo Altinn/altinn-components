@@ -5,7 +5,7 @@ import { TransmissionList } from './TransmissionList';
 const meta = {
   title: 'Transmission/TransmissionList',
   component: TransmissionList,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'beta'],
   parameters: {},
   args: {
     items: transmissionList,

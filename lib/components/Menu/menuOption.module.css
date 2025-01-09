@@ -16,7 +16,7 @@
 }
 
 .icon {
-  color: var(--theme-base-default);
+  color: var(--ds-color-base-default);
 }
 
 .icon [data-hover="true"] {

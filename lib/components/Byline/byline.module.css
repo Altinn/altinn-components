@@ -8,7 +8,7 @@
   display: inline-flex;
   flex-wrap: wrap;
   column-gap: 0.25em;
-  color: var(--theme-text-subtle);
+  color: var(--ds-color-text-subtle);
 }
 
 .label[data-size="xs"],
@@ -26,5 +26,5 @@
 
 .label > strong {
   font-weight: 500;
-  color: var(--theme-text-default);
+  color: var(--ds-color-text-default);
 }

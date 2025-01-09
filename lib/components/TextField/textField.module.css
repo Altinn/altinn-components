@@ -35,7 +35,7 @@
 }
 
 .input:focus {
-  border-color: var(--theme-base-active);
+  border-color: var(--ds-color-base-active);
 }
 
 .input[data-size="xs"] {

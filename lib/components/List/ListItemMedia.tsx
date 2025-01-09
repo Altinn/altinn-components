@@ -17,10 +17,10 @@ export interface ListItemMediaProps {
 const sizeMap = {
   avatar: {
     xs: 'sm',
-    sm: 'sm',
-    md: 'md',
-    lg: 'md',
-    xl: 'lg',
+    sm: 'md',
+    md: 'lg',
+    lg: 'lg',
+    xl: 'xl',
   },
   avatarGroup: {
     xs: 'sm',

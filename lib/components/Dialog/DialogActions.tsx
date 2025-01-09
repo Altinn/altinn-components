@@ -1,7 +1,6 @@
 'use client';
 import { useMemo, useState } from 'react';
-import { Button, ComboButton } from '../Button';
-import { Menu, type MenuItemProps } from '../Menu';
+import { Button, ComboButton, DropdownBase, Menu, type MenuItemProps } from '..';
 import styles from './dialogAction.module.css';
 
 export type DialogButtonPriority = 'primary' | 'secondary' | 'tertiary';
@@ -44,7 +43,6 @@ export const DialogActions = ({ items, maxItems = 2 }: DialogActionsProps) => {
     return (
       <section className={styles.comboButton}>
         <ComboButton
-          color="primary"
           variant="solid"
           icon={expanded ? 'chevron-up' : 'chevron-down'}
           size="lg"
@@ -52,9 +50,9 @@ export const DialogActions = ({ items, maxItems = 2 }: DialogActionsProps) => {
         >
           {sortedItems[0].label}
         </ComboButton>
-        <div className={styles.dropdown} aria-expanded={expanded}>
-          <Menu items={remainingItems} theme="global" />
-        </div>
+        <DropdownBase open={expanded}>
+          <Menu items={remainingItems} />
+        </DropdownBase>
       </section>
     );
   }
@@ -66,7 +64,6 @@ export const DialogActions = ({ items, maxItems = 2 }: DialogActionsProps) => {
           <Button
             key={'button-' + index}
             onClick={item.onClick}
-            color="primary"
             variant={item.priority === 'primary' ? 'solid' : 'outline'}
             size="lg"
             loading={item.loading}

@@ -154,11 +154,9 @@ export const Controls = (args: ListItemHeaderProps) => {
       <ListItemHeader
         {...args}
         controls={
-          <div style={{ position: 'absolute', right: 0, display: 'flex', alignItems: 'center', margin: '0.625rem' }}>
-            <Button icon="pencil" size="sm" variant="outline">
-              Rediger
-            </Button>
-          </div>
+          <Button icon="pencil" size="sm" variant="outline">
+            Rediger
+          </Button>
         }
       />
       <MetaItem>List item with custom controls</MetaItem>
@@ -284,7 +282,7 @@ export const Collapsible = (args: ListItemHeaderProps) => {
         onClick={onToggle}
         as="button"
       />
-      {expanded && <List defaultItemSize="sm" spacing="none" items={items} />}
+      {expanded && <List defaultItemSize="sm" spacing="xs" items={items} />}
     </Fragment>
   );
 };

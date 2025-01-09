@@ -15,9 +15,10 @@ type Story = StoryObj<typeof meta>;
 
 export const GlobalMenu: Story = {
   args: {
+    theme: 'default',
     groups: {
       settings: {
-        defaultItemColor: 'neutral',
+        //        defaultItemColor: 'neutral',
       },
     },
     items: [
@@ -73,9 +74,10 @@ export const GlobalMenu: Story = {
 
 export const CollapsibleGlobalMenu: Story = {
   args: {
+    theme: 'default',
     groups: {
       settings: {
-        defaultItemColor: 'neutral',
+        //        defaultItemColor: 'neutral',
       },
     },
     items: [
@@ -173,7 +175,8 @@ export const ExpandedGlobalMenu: Story = {
 
 export const DrilldownMenu: Story = {
   args: {
-    defaultItemColor: 'subtle',
+    theme: 'default',
+    //    defaultItemColor: 'subtle',
     groups: {
       'level-1': {
         divider: true,
@@ -227,12 +230,13 @@ export const InboxMenu: Story = {
     items: [
       {
         id: 'inbox',
+        theme: 'base',
         groupId: '1',
         size: 'lg',
         icon: 'inbox',
+        iconVariant: 'solid',
         selected: true,
         title: 'Innboks',
-        color: 'strong',
         badge: {
           label: '12',
         },
@@ -283,8 +287,6 @@ export const InboxMenu: Story = {
         },
       },
     ],
-
-    defaultItemColor: 'subtle',
   },
 };
 
@@ -294,7 +296,7 @@ export const InboxMenuWithShortcuts = {
       ...InboxMenu.args?.groups,
       shortcuts: {
         title: 'Snarveier',
-        defaultItemColor: 'default',
+        defaultItemTheme: 'transparent',
       },
     },
     items: [

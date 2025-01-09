@@ -15,7 +15,7 @@ export const SearchbarBase = ({ className, children, expanded = false, autocompl
       className={cx(styles.searchbar, className)}
       aria-expanded={expanded}
       data-autocomplete={autocomplete}
-      data-theme="neutral"
+      data-color="neutral"
     >
       {children}
     </div>

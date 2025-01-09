@@ -7,16 +7,15 @@ import {
   ContextMenu,
   type ContextMenuProps,
   Flex,
-  type FlexProps,
 } from '../';
 import styles from './pageNav.module.css';
 
-export type PageNavPadding = 'none' | 'sm';
-export type PageNavMargin = 'none' | 'sm';
+export type PageNavColor = 'neutral' | 'company' | 'person';
+export type PageNavPadding = 0 | 2;
 
-export interface PageNavProps extends FlexProps {
+export interface PageNavProps {
+  color?: PageNavColor;
   padding?: PageNavPadding;
-  margin?: PageNavMargin;
   backButton?: BackButtonProps;
   breadcrumbs?: BreadcrumbsLinkProps[];
   menu?: ContextMenuProps;
@@ -27,8 +26,8 @@ export interface PageNavProps extends FlexProps {
  * Page navigation bar with Back button and controls.
  */
 export const PageNav = ({
-  padding = 'none',
-  margin = 'none',
+  color,
+  padding,
   breadcrumbs,
   backButton = {
     as: 'a',
@@ -38,11 +37,11 @@ export const PageNav = ({
   children,
 }: PageNavProps) => {
   return (
-    <Flex as="nav" direction="row" align="center" justify="between" padding={padding} margin={margin}>
+    <Flex as="nav" direction="row" align="center" justify="between" color={color} padding={padding}>
       {breadcrumbs ? (
         <Breadcrumbs items={breadcrumbs} />
       ) : (
-        <Button {...backButton} variant="text" color="secondary" icon="arrow-left">
+        <Button {...backButton} variant="text" icon="arrow-left">
           {backButton?.label || 'Back'}
         </Button>
       )}

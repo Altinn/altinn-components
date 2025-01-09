@@ -3,23 +3,13 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  overflow: hidden;
+  /*  overflow: hidden; */
 }
 
-.base[data-theme] {
-  background-color: var(--theme-background-subtle);
+.base[data-theme="default"] {
+  background-color: var(--ds-color-background-default);
 }
 
-/*
-@media (max-width: 1024px) {
-
-.base[data-current-id="menu"] {
-  background-color: var(--theme-background-default);
+.base[data-theme="subtle"] {
+  background-color: var(--ds-color-background-subtle);
 }
-
-.base[data-current-id="menu"] header + *,
-  .base[data-current-id="menu"] footer {
-    display: none;
-  }
-}
-  */

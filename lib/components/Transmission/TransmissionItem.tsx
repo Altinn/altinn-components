@@ -2,13 +2,15 @@ import { useState } from 'react';
 import type { AvatarProps } from '../Avatar';
 import type { BadgeProps } from '../Badge';
 import { DialogAttachments, type DialogAttachmentsProps } from '../Dialog';
-import { ListItem } from '../List';
+import { ListItem, type ListItemColor, type ListItemTheme } from '../List';
 import { MetaTimestamp } from '../Meta';
 import { Typography } from '../Typography';
 import type { TransmissionTypeProps } from './TransmissionType';
 import styles from './transmissionItem.module.css';
 
 export interface TransmissionItemProps {
+  color?: ListItemColor;
+  theme?: ListItemTheme;
   type?: TransmissionTypeProps;
   loading?: boolean;
   expanded?: boolean;
@@ -23,6 +25,7 @@ export interface TransmissionItemProps {
 }
 
 export const TransmissionItem = ({
+  theme,
   type,
   loading,
   sender,
@@ -43,7 +46,7 @@ export const TransmissionItem = ({
     return (
       <ListItem
         as="button"
-        color="transparent"
+        theme={theme}
         variant="dotted"
         size="sm"
         icon="pencil"
@@ -58,6 +61,7 @@ export const TransmissionItem = ({
   return (
     <ListItem
       as="button"
+      theme={theme}
       expanded={expanded}
       onClick={onToggle}
       size="sm"

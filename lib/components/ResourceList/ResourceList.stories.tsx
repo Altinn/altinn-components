@@ -16,7 +16,6 @@ const meta = {
   tags: ['autodocs'],
   parameters: {},
   args: {
-    spacing: 'md',
     items,
     defaultItemSize: 'md',
   },

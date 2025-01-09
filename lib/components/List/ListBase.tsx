@@ -1,23 +1,13 @@
-import type { ReactNode } from 'react';
-import styles from './listBase.module.css';
+import { Flex, type FlexProps } from '..';
 
-export type ListTheme = 'inherit' | 'global' | 'neutral' | 'person' | 'company';
-export type ListSpacing = 'none' | 'xs' | 'sm' | 'md' | 'lg';
-export type ListColor = 'transparent' | 'white';
-export type ListShadow = 'xs' | 'sm';
-
-export interface ListBaseProps {
-  theme?: ListTheme;
-  color?: ListColor;
-  shadow?: ListShadow;
-  spacing?: ListSpacing;
-  children?: ReactNode;
+export interface ListBaseProps extends FlexProps {
+  direction?: 'col';
 }
 
-export const ListBase = ({ theme = 'inherit', color, spacing = 'md', shadow, children }: ListBaseProps) => {
+export const ListBase = ({ direction = 'col', spacing = 2, children, ...rest }: ListBaseProps) => {
   return (
-    <div className={styles.list} data-theme={theme} data-color={color} data-spacing={spacing} data-shadow={shadow}>
+    <Flex direction={direction} spacing={spacing} {...rest}>
       {children}
-    </div>
+    </Flex>
   );
 };

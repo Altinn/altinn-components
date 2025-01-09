@@ -1,5 +1,5 @@
 import type { MenuItemProps } from '../../../components';
-import { inboxMenuItems, profileMenuItems, adminMenuItems, categoryItems } from './';
+import { categoryItems, companyMenuItems, inboxMenuItems, userMenuItems } from './';
 
 export const sitemap: MenuItemProps[] = [
   {
@@ -25,23 +25,23 @@ export const sitemap: MenuItemProps[] = [
     items: categoryItems,
   },
   {
-    id: 'admin',
+    id: 'company',
     groupId: 'apps',
     size: 'lg',
     icon: 'handshake',
-    title: 'Tilganger',
+    title: 'Administrasjon',
     alertBadge: {
       label: '2',
     },
-    items: adminMenuItems,
+    items: companyMenuItems,
   },
   {
-    id: 'profile',
-    groupId: 'apps',
-    size: 'lg',
+    id: 'user',
+    groupId: 'x',
+    size: 'sm',
     icon: 'person-circle',
-    title: 'Profil',
-    items: profileMenuItems,
+    title: 'Din profil',
+    items: userMenuItems,
   },
   {
     id: 'startup',

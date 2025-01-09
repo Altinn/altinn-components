@@ -3,7 +3,7 @@ import { Autocomplete } from './Autocomplete';
 import type { AutocompleteItemProps } from './AutocompleteItem.tsx';
 
 const meta = {
-  title: 'Header/Autocomplete',
+  title: 'Search/Autocomplete',
   component: Autocomplete,
   tags: ['autodocs'],
   parameters: {},

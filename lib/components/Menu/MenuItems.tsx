@@ -1,7 +1,7 @@
 'use client';
 import { Fragment } from 'react';
 import { MenuHeader, MenuItem, MenuList, MenuListItem } from '../';
-import type { MenuItemColor, MenuItemProps, MenuItemSize } from '../';
+import type { MenuItemColor, MenuItemProps, MenuItemSize, MenuItemTheme } from '../';
 import { useMenu } from '../../hooks';
 import { MenuSearch, type MenuSearchProps } from './MenuSearch';
 
@@ -10,6 +10,7 @@ export interface MenuGroupProps {
   divider?: boolean;
   defaultItemColor?: MenuItemColor;
   defaultItemSize?: MenuItemSize;
+  defaultItemTheme?: MenuItemTheme;
 }
 
 export type MenuItemGroups = Record<string, MenuGroupProps>;
@@ -22,6 +23,7 @@ export interface MenuItemsProps {
   groups?: MenuItemGroups;
   defaultItemColor?: MenuItemColor;
   defaultItemSize?: MenuItemSize;
+  defaultItemTheme?: MenuItemTheme;
 }
 
 export const MenuItems = ({
@@ -31,6 +33,7 @@ export const MenuItems = ({
   items,
   groups = {},
   defaultItemColor,
+  defaultItemTheme,
   defaultItemSize,
 }: MenuItemsProps) => {
   const { menu } = useMenu<MenuItemProps, MenuGroupProps>({
@@ -72,6 +75,7 @@ export const MenuItems = ({
                     <MenuItem
                       {...itemProps}
                       color={itemProps?.color || groupProps?.defaultItemColor || defaultItemColor}
+                      theme={itemProps?.theme || groupProps?.defaultItemTheme || defaultItemTheme}
                       size={itemProps?.size || groupProps?.defaultItemSize || defaultItemSize}
                       active={active}
                       tabIndex={itemProps?.disabled ? -1 : 0}
@@ -84,6 +88,7 @@ export const MenuItems = ({
                           items={itemProps?.items}
                           groups={groups}
                           defaultItemColor={defaultItemColor}
+                          defaultItemTheme={defaultItemTheme}
                           defaultItemSize={defaultItemSize}
                         />
                         {/** Render a separator if expanded and there are items underneath */}

@@ -62,28 +62,44 @@
   font-size: 1.5rem;
 }
 
-/* colors */
-
 .item {
   background-color: transparent;
-  color: var(--theme-text-default);
 }
 
-.item[aria-selected="true"] {
-  background-color: var(--theme-background-default);
+.item[data-theme] {
+  background-color: transparent;
 }
 
-.item:hover,
-.item:active {
-  background-color: var(--theme-surface-hover);
+/* default bg */
+
+[data-theme="default"] .item:hover {
+  background-color: var(--ds-color-surface-active);
 }
 
-.media[data-color="subtle"] {
-  background-color: var(--theme-background-default);
-  color: var(--theme-text-default);
+[data-theme="default"] .item:active {
+  background-color: var(--ds-color-surface-active);
 }
 
-.media[data-color="strong"] {
-  background-color: var(--theme-base-default);
-  color: var(--theme-background-default);
+[data-theme="default"] .item[aria-selected="true"] {
+  background-color: var(--ds-color-surface-default);
+}
+
+/* subtle bg */
+
+[data-theme="subtle"] .item:hover {
+  background-color: var(--ds-color-surface-active);
+}
+
+[data-theme="subtle"] .item:active {
+  background-color: var(--ds-color-surface-active);
+}
+
+[data-theme="subtle"] .item[aria-selected="true"] {
+  background-color: var(--ds-color-background-default);
+}
+
+/* selected */
+
+.item[data-theme="surface"][aria-selected="true"] {
+  background-color: var(--ds-color-surface-default);
 }

@@ -35,7 +35,7 @@
 
 .input:focus,
 .input[value] {
-  background-color: var(--theme-background-default);
+  background-color: var(--ds-color-background-default);
 }
 
 .dismiss {

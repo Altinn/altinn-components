@@ -1,9 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { LayoutBase, type LayoutTheme } from '../Layout';
-import { MetaItem } from '../Meta';
-import { MenuBase } from './MenuBase';
-import { MenuItem } from './MenuItem';
-import type { MenuItemColor } from './MenuItemBase';
+import { Flex, MenuBase, MenuItem, MetaItem } from '..';
+import type { MenuItemColor, MenuItemTheme } from '..';
 
 const meta = {
   title: 'Menu/MenuItem',
@@ -52,7 +49,7 @@ export const Large: Story = {
     size: 'lg',
     icon: 'inbox',
     title: 'Innboks',
-    color: 'strong',
+    theme: 'base',
   },
 };
 
@@ -61,7 +58,7 @@ export const AlertBadge: Story = {
     size: 'lg',
     icon: 'inbox',
     title: 'Innboks',
-    color: 'strong',
+    theme: 'base',
     badge: {
       label: '4',
     },
@@ -150,29 +147,27 @@ export const CompanyAccount: Story = {
 };
 
 export const ThemesAndColors = () => {
-  const themes: LayoutTheme[] = ['global', 'neutral', 'company', 'person', 'global-dark'];
-  const colors: MenuItemColor[] = ['neutral', 'subtle', 'strong', 'company', 'person'];
+  const colors: MenuItemColor[] = ['neutral', 'company', 'person'];
+  const themes: MenuItemTheme[] = ['default', 'surface', 'base', 'transparent'];
 
   return (
-    <div style={{ display: 'flex', width: '100%' }}>
+    <Flex>
       {themes.map((theme) => {
         return (
-          <div key={theme} style={{ flexGrow: 1 }}>
-            <LayoutBase theme={theme}>
-              <MenuBase>
-                {colors.map((color) => {
-                  return (
-                    <div key={color}>
-                      <MenuItem icon="inbox" title="Title" color={color} id="inbox" />
-                      <MetaItem>{theme + '/' + color}</MetaItem>
-                    </div>
-                  );
-                })}
-              </MenuBase>
-            </LayoutBase>
-          </div>
+          <Flex style={{ flexGrow: 1 }} key={theme}>
+            <MenuBase>
+              {colors.map((color) => {
+                return (
+                  <div key={color}>
+                    <MenuItem icon="inbox" title="Title" color={color} theme={theme} id="inbox" />
+                    <MetaItem>{'theme:' + theme + '/' + 'color:' + color}</MetaItem>
+                  </div>
+                );
+              })}
+            </MenuBase>
+          </Flex>
         );
       })}
-    </div>
+    </Flex>
   );
 };

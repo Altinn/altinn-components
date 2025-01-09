@@ -13,7 +13,7 @@ export interface HeaderBaseProps {
 
 export const HeaderBase = ({ currentId, className, children, open, onClose }: HeaderBaseProps) => {
   return (
-    <header className={cx(styles.header, className)} data-current-id={currentId}>
+    <header className={cx(styles.header, className)} data-color="neutral" data-current-id={currentId}>
       {open && <Backdrop className={styles.backdrop} onClick={onClose} />}
       {children}
     </header>

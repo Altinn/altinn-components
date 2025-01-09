@@ -8,13 +8,19 @@ export * from './dialogs';
 export * from './dialogMenuItems';
 export * from './bookmarks';
 
-export * from './profileMenuItems';
-export * from './adminMenuItems';
+export * from './userMenuItems';
+export * from './companyMenuItems';
 
 export * from './globalMenu';
 export * from './categoryItems';
-export * from './loginMenu';
 export * from './header';
 export * from './footer';
 
 export * from './sitemap';
+
+export * from './users';
+export * from './companies';
+export * from './services';
+
+export * from './docsMenuItems';
+export * from './loginMenu';

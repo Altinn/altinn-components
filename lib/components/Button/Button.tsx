@@ -14,7 +14,7 @@ export interface ButtonProps extends Partial<ButtonBaseProps> {
 
 export const Button = ({
   variant = 'solid',
-  color = 'primary',
+  color,
   size = 'md',
   reverse = false,
   selected = false,

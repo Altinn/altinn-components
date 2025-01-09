@@ -16,7 +16,7 @@
 .item {
   border: 1px;
   border-radius: 2px;
-  color: var(--theme-text-subtle);
+  color: var(--ds-color-text-subtle);
   display: inline-flex;
   align-items: center;
   column-gap: 0.25em;
@@ -30,14 +30,14 @@
 
 .item strong {
   font-weight: 500;
-  color: var(--theme-text-default);
+  color: var(--ds-color-text-default);
 }
 
 button.item:hover,
 a.item:hover,
 button.item:hover strong,
 a.item:hover strong {
-  color: var(--theme-base-hover);
+  color: var(--ds-color-base-hover);
   cursor: pointer;
 }
 
@@ -61,25 +61,25 @@ a.item:hover strong {
 }
 
 .item[data-variant="outline"] {
-  border-color: var(--theme-border-subtle);
+  border-color: var(--ds-color-border-subtle);
   border-style: solid;
 }
 
 .item[data-variant="rounded"] {
-  border-color: var(--theme-border-subtle);
+  border-color: var(--ds-color-border-subtle);
   border-style: solid;
   border-radius: 0.75rem;
 }
 
 .item[data-variant="dotted"] {
-  border-color: var(--theme-base-hover);
+  border-color: var(--ds-color-base-hover);
   border-style: dashed;
 }
 
 .item[data-variant="solid"] {
-  border-color: var(--theme-base-hover);
-  background-color: var(--theme-base-hover);
-  color: white;
+  border-color: var(--ds-color-base-hover);
+  background-color: var(--ds-color-base-hover);
+  color: var(--ds-color-contrast-default);
 }
 
 .item[data-variant="rounded"],

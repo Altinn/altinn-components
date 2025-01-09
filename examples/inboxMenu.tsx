@@ -8,9 +8,10 @@ export const inboxMenu: MenuProps = {
       groupId: '1',
       size: 'lg',
       icon: 'inbox',
+      iconVariant: 'solid',
       selected: true,
       title: 'Innboks',
-      color: 'strong',
+      theme: 'base',
       badge: {
         label: '12',
       },
