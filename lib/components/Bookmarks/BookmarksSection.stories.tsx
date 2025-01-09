@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
+import { type ChangeEvent, useMemo, useState } from 'react';
 import { BookmarksSection, type BookmarksSectionProps } from './BookmarksSection';
 
 const meta = {
@@ -83,6 +83,32 @@ export const ExpandedItem: Story = {
 
 export const ControlledState = (args: BookmarksSectionProps) => {
   const [expandedId, setExpandedId] = useState<string>('');
+  const [inputValue, setInputValue] = useState<Record<string, string>>({});
+
+  const bookmarkProps: BookmarksSectionProps = useMemo(
+    () => ({
+      ...args,
+      items: args.items.map((item) => ({
+        ...item,
+        inputValue: (typeof inputValue[item.id] === 'undefined' ? item.title : inputValue[item.id]) ?? '',
+        onChange: (e: ChangeEvent<HTMLInputElement>) => {
+          setInputValue((prevState) => ({
+            ...prevState,
+            [item.id]: e.target.value,
+          }));
+        },
+        onToggle: () => onToggle(item.id),
+        saveButton: {
+          ...item.saveButton,
+          onClick: () => {
+            alert(`Lagre søk med tittel ${inputValue[item.id]}`);
+          },
+        },
+        expanded: expandedId === item.id,
+      })),
+    }),
+    [args, expandedId, inputValue],
+  );
 
   const onToggle = (id: string) => {
     setExpandedId((prevState) => {
@@ -93,7 +119,7 @@ export const ControlledState = (args: BookmarksSectionProps) => {
     });
   };
 
-  return <BookmarksSection {...args} expandedId={expandedId} onToggle={onToggle} />;
+  return <BookmarksSection {...bookmarkProps} expandedId={expandedId} onToggle={onToggle} />;
 };
 
 export const LoadingState: Story = {
@@ -101,7 +127,7 @@ export const LoadingState: Story = {
     loading: true,
     title: 'Henter lagrede søk ...',
     description: '',
-    items: [{ id: '1', title: 'Loading the bookmark' }],
+    items: [{ id: '1', title: 'Loading the bookmark', inputValue: '', onChange: () => {} }],
   },
 };
 
@@ -133,6 +159,8 @@ export const AsLink: Story = {
         removeButton: {
           label: 'Slett',
         },
+        inputValue: '',
+        onChange: () => {},
         as: (props) => <a {...props} href="#bookmark-1" />,
         params: [
           { type: 'search', label: 'Skatt' },
@@ -141,6 +169,8 @@ export const AsLink: Story = {
       },
       {
         id: 'bookmark-2',
+        inputValue: '',
+        onChange: () => {},
         as: (props) => <a {...props} href="#bookmark-2" />,
         params: [
           { type: 'search', label: 'Skatt' },
