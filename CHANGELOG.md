@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.2](https://github.com/Altinn/altinn-components/compare/v0.13.1...v0.13.2) (2025-01-09)
+
+
+### Bug Fixes
+
+* incorrect path to altinn-ds tokens css file ([#169](https://github.com/Altinn/altinn-components/issues/169)) ([85170cb](https://github.com/Altinn/altinn-components/commit/85170cb97c428ee762d9d14124bf544efc8243ba))
+
 ## [0.13.1](https://github.com/Altinn/altinn-components/compare/v0.13.0...v0.13.1) (2025-01-09)
 
 
