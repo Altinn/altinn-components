@@ -15,6 +15,10 @@ import { type QueryItemProps, QueryLabel } from './QueryLabel';
 
 export interface BookmarksListItemProps extends ListItemInputProps {
   id: string;
+  /** Input value */
+  inputValue?: string;
+  /** On change */
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   /** Loading */
   loading?: boolean;
   /** Expanded */
@@ -37,11 +41,6 @@ export interface BookmarksListItemProps extends ListItemInputProps {
   as?: React.ElementType;
 }
 
-interface FormData {
-  title?: string;
-  params?: QueryItemProps[];
-}
-
 export const BookmarksListItem = ({
   size = 'sm',
   icon = 'bookmark',
@@ -54,18 +53,12 @@ export const BookmarksListItem = ({
   onToggle,
   saveButton,
   removeButton,
+  inputValue,
+  onChange,
   as,
   ...rest
 }: BookmarksListItemProps) => {
-  const [formData, setFormData] = useState<FormData>({ title, params });
-
-  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
+  const [internalValue, setInternalValue] = useState<string>('');
 
   if (expanded && !loading) {
     return (
@@ -82,7 +75,20 @@ export const BookmarksListItem = ({
         {expanded && (
           <Section padding="lg" spacing="lg">
             <QueryLabel params={params} />
-            {titleField && <TextField {...titleField} name="title" value={formData?.title || ''} onChange={onChange} />}
+            {titleField && (
+              <TextField
+                {...titleField}
+                name="title"
+                value={typeof inputValue === 'string' ? inputValue : internalValue}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  if (typeof onChange === 'function') {
+                    onChange(e);
+                  } else {
+                    setInternalValue(e.target.value);
+                  }
+                }}
+              />
+            )}
             {(saveButton || removeButton) && (
               <Flex as="footer" direction="row" spacing="sm">
                 {saveButton && <Button {...saveButton} />}

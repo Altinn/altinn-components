@@ -302,7 +302,6 @@ export const ScopesResultsAndSuggestions: Story = {
     },
     items: [
       ...ScopesAndMixedResults.args.items,
-
       {
         id: '2a',
         groupId: '2',
