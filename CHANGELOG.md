@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.1](https://github.com/Altinn/altinn-components/compare/v0.13.0...v0.13.1) (2025-01-09)
+
+
+### Bug Fixes
+
+* add onChange and inputValue for bookmarksection textfield ([#167](https://github.com/Altinn/altinn-components/issues/167)) ([e07105e](https://github.com/Altinn/altinn-components/commit/e07105e428b4378e33066e1b3d2c8ba15b4f49f6))
+
 ## [0.13.0](https://github.com/Altinn/altinn-components/compare/v0.12.0...v0.13.0) (2025-01-08)
 
 
