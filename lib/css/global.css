@@ -8,7 +8,7 @@
 @import "./theme-person.css";
 @import "./theme.css";
 
-@import "../tokens/design-tokens-build/altinn-ds.css";
+@import "./altinn-ds.css";
 
 * {
   font-family: "Inter", sans-serif;
