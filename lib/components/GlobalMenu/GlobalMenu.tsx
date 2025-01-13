@@ -41,6 +41,7 @@ export const GlobalMenu = ({
 
   const handleSelectAccount = (id: string) => {
     onToggleAccounts();
+    onClose?.();
     onSelectAccount?.(id);
   };
 
