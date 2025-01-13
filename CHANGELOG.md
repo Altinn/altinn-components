@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.3](https://github.com/Altinn/altinn-components/compare/v0.13.2...v0.13.3) (2025-01-13)
+
+
+### Bug Fixes
+
+* close menu on desktop when account is selected from global menu ([#172](https://github.com/Altinn/altinn-components/issues/172)) ([a336e3b](https://github.com/Altinn/altinn-components/commit/a336e3ba7835d693cc5f7376e1bc60ce0242ec8d))
+
 ## [0.13.2](https://github.com/Altinn/altinn-components/compare/v0.13.1...v0.13.2) (2025-01-09)
 
 
