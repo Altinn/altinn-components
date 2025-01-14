@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.4](https://github.com/Altinn/altinn-components/compare/v0.13.3...v0.13.4) (2025-01-14)
+
+
+### Bug Fixes
+
+* remove uncommented exports for snackbar ([#175](https://github.com/Altinn/altinn-components/issues/175)) ([62b3498](https://github.com/Altinn/altinn-components/commit/62b34984c9ed067ecbf2508356b99f198c9052b8))
+
 ## [0.13.3](https://github.com/Altinn/altinn-components/compare/v0.13.2...v0.13.3) (2025-01-13)
 
 
