@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.14.0](https://github.com/Altinn/altinn-components/compare/v0.13.4...v0.14.0) (2025-01-15)
+
+
+### Features
+
+* colors and themes ([#177](https://github.com/Altinn/altinn-components/issues/177)) ([93af0c6](https://github.com/Altinn/altinn-components/commit/93af0c693179ef1ea05ee4f33adfa3fef2f3b010))
+
 ## [0.13.4](https://github.com/Altinn/altinn-components/compare/v0.13.3...v0.13.4) (2025-01-14)
 
 
