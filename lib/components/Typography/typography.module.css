@@ -37,12 +37,23 @@
 }
 
 .typography a {
-  color: var(--theme-base-default);
+  color: var(--ds-color-base-default);
+}
+
+.typography a:hover {
+  color: var(--ds-color-base-hover);
 }
 
 .typography > p {
   font-size: 1em;
   margin: 1em 0;
+}
+
+.typography > h1 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-top: 1.5em;
+  margin-bottom: 0;
 }
 
 .typography > h2 {
@@ -72,12 +83,12 @@
 
 .typography > h6 {
   font-weight: 500;
-  color: var(--theme-text-subtle);
+  color: var(--ds-color-text-subtle);
 }
 
 .typography > h6 {
   font-weight: 400;
-  color: var(--theme-text-subtle);
+  color: var(--ds-color-text-subtle);
 }
 
 .typography > h5 + *,

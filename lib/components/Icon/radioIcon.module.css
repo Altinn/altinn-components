@@ -4,16 +4,16 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--theme-base-default);
+  color: var(--ds-color-base-default);
   border-radius: 50%;
   height: 1em;
   width: 1em;
 }
 
 .radio[data-checked="true"] {
-  border-color: var(--theme-base-default);
-  background-color: var(--theme-base-default);
-  color: var(--theme-background-subtle);
+  border-color: var(--ds-color-base-default);
+  background-color: var(--ds-color-base-default);
+  color: var(--ds-color-background-subtle);
 }
 
 .radio > svg {

@@ -4,7 +4,7 @@ import { TransmissionItem } from './TransmissionItem';
 const meta = {
   title: 'Transmission/TransmissionItem',
   component: TransmissionItem,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'beta'],
   parameters: {},
   args: {
     createdAt: '2024-09-22 13:34',

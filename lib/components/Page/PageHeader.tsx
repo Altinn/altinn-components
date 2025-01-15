@@ -19,9 +19,9 @@ export interface PageHeaderProps extends SectionProps {
 
 export const PageHeader = ({ title, icon, avatar, avatarGroup, children, ...rest }: PageHeaderProps) => {
   return (
-    <Section as="header" spacing="md" {...rest}>
-      <Flex direction="row" align="center" spacing="md">
-        <ListItemMedia avatar={avatar} avatarGroup={avatarGroup} icon={icon} size="lg" />
+    <Section as="header" spacing={3} {...rest}>
+      <Flex direction="row" align="center" spacing={3}>
+        <ListItemMedia avatar={avatar} avatarGroup={avatarGroup} icon={icon} size="xl" />
         <Heading size="xl">{title}</Heading>
       </Flex>
       {children}

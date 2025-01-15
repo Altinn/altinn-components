@@ -3,7 +3,7 @@
 }
 
 .group + .group {
-  border-top: 1px solid var(--theme-border-subtle);
+  border-top: 1px solid var(--ds-color-border-subtle);
 }
 
 .header {
@@ -14,6 +14,6 @@
   font-size: 0.875rem;
   font-weight: normal;
   line-height: 1.25rem;
-  color: var(--theme-text-subtle);
+  color: var(--ds-color-text-subtle);
   margin: 0;
 }

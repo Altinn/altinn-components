@@ -7,6 +7,6 @@
   font-size: 0.875rem;
   font-weight: normal;
   line-height: 1.25rem;
-  color: var(--theme-text-subtle);
+  color: var(--ds-color-text-subtle);
   margin: 0;
 }

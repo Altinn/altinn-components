@@ -5,7 +5,7 @@ import { Snackbar } from './Snackbar.tsx';
 import { useSnackbar } from './useSnackbar.tsx';
 
 const meta = {
-  title: 'Snackbar/Snackbar',
+  title: 'Layout/Snackbar',
   component: Snackbar,
   tags: ['autodocs', 'beta'],
   parameters: {},
@@ -19,7 +19,7 @@ export const Default = () => {
 
   return (
     <div>
-      <Flex direction="row" spacing="md">
+      <Flex direction="row" spacing={3}>
         <Button
           onClick={() =>
             openSnackbar({

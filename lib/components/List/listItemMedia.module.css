@@ -13,6 +13,12 @@
   font-size: 1.5rem;
 }
 
+.media[data-size="sm"],
+.media[data-size="md"] {
+  min-width: 2.25rem;
+  height: 2.25rem;
+}
+
 .media[data-size="md"],
 .media[data-size="lg"] {
   font-size: 1.875rem;

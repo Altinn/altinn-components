@@ -28,7 +28,7 @@
 
 a.link,
 button.link {
-  color: var(--theme-text-subtle);
+  color: var(--ds-color-text-subtle);
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 2px;
@@ -37,5 +37,5 @@ button.link {
 
 a.link:hover,
 button.link:hover {
-  color: var(--theme-text-default);
+  color: var(--ds-color-base-hover);
 }

@@ -1,5 +1,4 @@
-import { type AttachmentLinkProps, AttachmentList } from '../Attachment';
-import { Heading } from '../Typography';
+import { type AttachmentLinkProps, AttachmentList, Heading, Section } from '..';
 
 export interface DialogAttachmentsProps {
   title?: string;
@@ -12,11 +11,11 @@ export const DialogAttachments = ({ title = 'Attachments', items }: DialogAttach
   }
 
   return (
-    <section>
+    <Section spacing={1}>
       <Heading as="h2" size="xs">
         {title}
       </Heading>
       <AttachmentList size="lg" items={items} />
-    </section>
+    </Section>
   );
 };

@@ -4,10 +4,6 @@
   padding: 0 0.25rem;
 }
 
-.title {
-  color: var(--theme-text-default);
-}
-
 .title[data-size="lg"] {
   font-size: 1.125rem;
   line-height: 1.25;
@@ -34,5 +30,5 @@
 
 .description {
   font-size: 0.875rem;
-  color: var(--theme-text-subtle);
+  color: var(--ds-color-text-subtle);
 }

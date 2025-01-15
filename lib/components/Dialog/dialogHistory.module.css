@@ -1,5 +1,5 @@
 .section {
-  border-color: var(--neutral-surface-active);
+  /*  border-color: var(--neutral-surface-active); */
   display: flex;
   flex-direction: column;
   margin-bottom: 1.5rem;

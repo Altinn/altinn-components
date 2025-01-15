@@ -1,18 +1,17 @@
-import { type ChangeEvent, useState, useMemo } from 'react';
-import type { AutocompleteProps, AutocompleteItemProps, SearchbarProps } from '../../..';
+import { type ChangeEvent, useMemo, useState } from 'react';
+import type { AutocompleteItemProps, AutocompleteProps, SearchbarProps } from '../../..';
 
 interface UseSearchProps {
-  parentId?: string,
-  name?: string,
-  placeholder?: string
+  parentId?: string;
+  name?: string;
+  placeholder?: string;
 }
 
 export const useSearch = ({
-  parentId ,
+  parentId,
   name = 'inbox-search',
   placeholder = 'Søk i Altinn',
 }: UseSearchProps): SearchbarProps => {
-
   const [q, setQ] = useState<string>('');
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setQ(event.target.value);
@@ -34,7 +33,7 @@ export const useSearch = ({
           }
         : 'Alt i hele Altinn',
     },
-  ]
+  ];
 
   const inboxScopes = [
     {
@@ -51,18 +50,16 @@ export const useSearch = ({
             );
           }
         : 'Alt i innboksen',
-    }
-  ]
+    },
+  ];
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   const scopes = useMemo(() => {
     if (parentId === 'inbox') {
       return [...inboxScopes, ...globalScopes];
-    } else {
-      return globalScopes;
     }
+    return globalScopes;
   }, [parentId]);
-
-
 
   const suggestions = q
     ? [

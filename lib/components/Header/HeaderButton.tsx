@@ -23,6 +23,8 @@ export interface HeaderButtonProps extends ButtonProps {
 export const HeaderButton = ({
   className,
   as = 'button',
+  color = 'accent',
+  variant = 'solid',
   avatar,
   avatarGroup,
   icon = 'padlock-locked',
@@ -33,7 +35,7 @@ export const HeaderButton = ({
 }: HeaderButtonProps) => {
   if (expanded) {
     return (
-      <ButtonBase {...buttonProps} as={as} className={cx(styles.button, className)}>
+      <ButtonBase {...buttonProps} as={as} variant={variant} color={color} className={cx(styles.button, className)}>
         <span className={styles.label}>{label}</span>
         <span className={cx(styles.icon, styles.closeIcon)}>
           <Icon name={'x-mark'} />
@@ -45,7 +47,7 @@ export const HeaderButton = ({
 
   if (avatarGroup) {
     return (
-      <ButtonBase {...buttonProps} as={as} className={cx(styles.button, className)}>
+      <ButtonBase {...buttonProps} as={as} variant={variant} color={color} className={cx(styles.button, className)}>
         <span className={styles.label}>{label}</span>
         <AvatarGroup {...avatarGroup} size="sm" className={styles.avatarGroup} />
         {badge && <Badge {...badge} className={styles.badge} />}
@@ -55,7 +57,7 @@ export const HeaderButton = ({
 
   if (avatar) {
     return (
-      <ButtonBase {...buttonProps} as={as} className={cx(styles.button, className)}>
+      <ButtonBase {...buttonProps} as={as} variant={variant} color={color} className={cx(styles.button, className)}>
         <span className={styles.label}>{label}</span>
         <Avatar type={avatar?.type} name={avatar?.name} size="lg" />
         {badge && <Badge {...badge} className={styles.badge} />}
@@ -64,7 +66,7 @@ export const HeaderButton = ({
   }
 
   return (
-    <ButtonBase {...buttonProps} as={as} className={cx(styles.button, className)}>
+    <ButtonBase {...buttonProps} as={as} variant={variant} color={color} className={cx(styles.button, className)}>
       <span className={styles.label}>{label}</span>
       <span className={cx(styles.icon, styles.loginIcon)}>
         <Icon name={icon} />

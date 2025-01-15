@@ -27,36 +27,37 @@
   font-size: 1.5rem;
 }
 
-.media[data-color="subtle"] {
-  background-color: var(--theme-background-default);
-  color: var(--theme-text-default);
-}
-
-.media[data-color="surface"] {
-  background-color: var(--theme-surface-default);
-  color: var(--theme-text-default);
-}
-
-.media[data-color="strong"] {
-  background-color: var(--theme-base-default);
-  color: var(--theme-background-default);
-}
-
-.media[data-color="company"] {
-  background-color: var(--company-surface-default);
-  color: var(--company-text-default);
-}
-
-.media[data-color="person"] {
-  background-color: var(--person-surface-default);
-  color: var(--person-text-default);
-}
-
 .badge {
   position: absolute;
   top: 0;
   right: 0;
-  margin-top: -.25em;
-  margin-right: -.25em;
+  margin-top: -0.25em;
+  margin-right: -0.25em;
   outline: 1px solid white;
+}
+
+/** Iherit theme from parent */
+
+[data-theme="default"] .media {
+  background-color: var(--ds-color-surface-default);
+}
+
+[data-theme="subtle"] .media {
+  background-color: var(--ds-color-background-default);
+}
+
+/* If set explicitly, don't inherit */
+
+.media[data-theme="base"] {
+  background-color: var(--ds-color-base-default);
+  color: var(--ds-color-contrast-default);
+}
+
+.media[data-theme="surface"] {
+  background-color: var(--ds-color-surface-default);
+  color: var(--ds-color-base-default);
+}
+
+.media[data-theme="transparent"] {
+  background-color: transparent;
 }

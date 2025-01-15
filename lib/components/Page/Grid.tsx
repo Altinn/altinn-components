@@ -1,19 +1,18 @@
 import cx from 'classnames';
 import type { CSSProperties, ReactNode } from 'react';
+import type { Color, Range, Theme } from '..';
 import styles from './grid.module.css';
 
-export type GridTheme = 'inherit' | 'neutral' | 'company' | 'person';
-export type GridColor = 'transparent' | 'subtle' | 'surface' | 'accent';
 export type GridElement = 'div' | 'section' | 'article' | 'header' | 'footer';
-export type GridCols = '1-2-3';
-export type GridSpacing = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export type GridPadding = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export type GridMargin = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type GridCols = 2 | 3 | 4;
+export type GridSpacing = 'xs' | Range<11>;
+export type GridPadding = 'page' | Range<11>;
+export type GridMargin = 'page' | 'section';
 
 export interface GridProps {
   as?: GridElement;
-  theme?: GridTheme;
-  color?: GridColor;
+  color?: Color;
+  theme?: Theme;
   cols?: GridCols;
   reverse?: boolean;
   spacing?: GridSpacing;
@@ -26,13 +25,13 @@ export interface GridProps {
 
 export const Grid = ({
   as = 'div',
-  theme = 'inherit',
-  color = 'transparent',
-  cols = '1-2-3',
+  theme,
+  color,
+  cols = 2,
   reverse = false,
-  spacing = 'none',
-  padding = 'none',
-  margin = 'none',
+  spacing,
+  padding,
+  margin,
   className,
   style,
   children,

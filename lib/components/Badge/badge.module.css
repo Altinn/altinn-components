@@ -27,12 +27,12 @@
   border-radius: 2em;
 }
 
-.badge[data-color="neutral"] {
+.badge[data-variant="subtle"] {
   background-color: var(--ds-color-surface-default);
   color: var(--ds-color-text-subtle);
 }
 
-.badge[data-color="alert"] {
+.badge[data-variant="strong"] {
   background-color: var(--ds-color-base-default);
-  color: white;
+  color: var(--ds-color-contrast-default);
 }

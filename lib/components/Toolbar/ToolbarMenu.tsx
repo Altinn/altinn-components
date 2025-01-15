@@ -24,7 +24,7 @@ export const ToolbarMenu = ({ label, value, groups, search, items, id = 'toolbar
         {label}
       </ToolbarButton>
       <DrawerOrDropdown open={expanded} drawerTitle="Endre konto" onClose={closeAll}>
-        <Menu theme="global" defaultItemColor="subtle" groups={groups} search={search} items={items} />
+        <Menu groups={groups} search={search} items={items} />
       </DrawerOrDropdown>
     </ToolbarFilterBase>
   );

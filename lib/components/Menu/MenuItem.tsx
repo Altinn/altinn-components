@@ -1,8 +1,6 @@
 import type { ElementType, ReactNode } from 'react';
-import type { AvatarGroupProps, AvatarProps } from '../Avatar';
-import type { BadgeProps } from '../Badge';
-import type { IconName } from '../Icon';
-import { MenuItemBase, type MenuItemColor, type MenuItemSize } from './MenuItemBase';
+import type { AvatarGroupProps, AvatarProps, BadgeProps, IconName, IconVariant } from '..';
+import { MenuItemBase, type MenuItemColor, type MenuItemSize, type MenuItemTheme } from './MenuItemBase';
 import { MenuItemLabel } from './MenuItemLabel';
 import { MenuItemMedia } from './MenuItemMedia';
 
@@ -12,6 +10,7 @@ export interface MenuItemProps {
   tabIndex?: number;
   as?: ElementType;
   color?: MenuItemColor;
+  theme?: MenuItemTheme;
   size?: MenuItemSize;
   href?: string;
   onClick?: () => void;
@@ -25,6 +24,7 @@ export interface MenuItemProps {
   title?: string;
   description?: string;
   icon?: IconName;
+  iconVariant?: IconVariant;
   avatar?: AvatarProps;
   avatarGroup?: AvatarGroupProps;
   badge?: BadgeProps | undefined;
@@ -38,11 +38,13 @@ export interface MenuItemProps {
 
 export const MenuItem = ({
   as = 'a',
-  color = 'neutral',
   size = 'sm',
+  color,
+  theme,
   collapsible,
   expanded,
   icon,
+  iconVariant,
   avatar,
   avatarGroup,
   title,
@@ -60,6 +62,7 @@ export const MenuItem = ({
     <MenuItemBase
       as={as}
       size={size}
+      theme={theme}
       badge={badge}
       linkText={linkText}
       linkIcon={applicableLinkIcon}
@@ -68,10 +71,11 @@ export const MenuItem = ({
       {...rest}
     >
       <MenuItemMedia
+        theme={theme}
         badge={alertBadge}
-        color={color}
         size={size}
         icon={icon}
+        iconVariant={iconVariant}
         avatar={avatar}
         avatarGroup={avatarGroup}
       />

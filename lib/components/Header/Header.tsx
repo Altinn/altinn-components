@@ -40,6 +40,8 @@ export const Header = ({ search, menu, currentAccount, logo = {}, badge }: Heade
       <HeaderLogo {...logo} className={styles.logo} />
       <HeaderMenu className={styles.menu}>
         <HeaderButton
+          color="company"
+          variant="solid"
           badge={badge}
           avatar={
             currentAccount && {

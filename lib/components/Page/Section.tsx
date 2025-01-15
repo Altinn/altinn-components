@@ -1,29 +1,16 @@
-import cx from 'classnames';
-import styles from './section.module.css';
-
 import { Flex, type FlexProps } from '..';
 
-export type SectionBg = 'transparent' | 'default' | 'subtle' | 'surface' | 'border' | 'base';
-export type SectionShadow = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export type SectionColor = 'inherit' | 'company' | 'person' | 'neutral' | 'success' | 'warning' | 'danger' | 'info';
+/**
+ * Section component. Use to divide pages into sections. Should renders a flex column by default.
+ */
 
 export interface SectionProps extends FlexProps {
-  inset?: boolean;
-  color?: SectionColor;
-  bg?: SectionBg;
-  shadow?: SectionShadow;
+  bleed?: boolean;
 }
 
-export const Section = ({ as = 'section', className, bg, color, shadow, children, ...rest }: SectionProps) => {
+export const Section = ({ as = 'section', direction = 'col', children, ...rest }: FlexProps) => {
   return (
-    <Flex
-      as={as}
-      data-bg={bg}
-      data-color={color}
-      data-shadow={shadow}
-      className={cx(styles.section, className)}
-      {...rest}
-    >
+    <Flex as={as} direction={direction} {...rest}>
       {children}
     </Flex>
   );

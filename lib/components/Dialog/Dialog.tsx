@@ -20,9 +20,12 @@ import {
   type DialogStatusProps,
   DialogTimeline,
   type DialogTimelineProps,
+  Flex,
   Heading,
   PageBase,
+  PageMenu,
   PageNav,
+  Section,
   Typography,
 } from '..';
 
@@ -104,43 +107,52 @@ export const Dialog = ({
   contactInfo,
 }: DialogProps) => {
   return (
-    <PageBase bg="default" shadow="xs">
-      <PageNav padding="sm" backButton={backButton} menu={menu}>
-        <DialogMetadata status={status} dueAt={dueAt} dueAtLabel={dueAtLabel} />
-      </PageNav>
-      <Article padding="xl" spacing="xl">
-        <Heading size="xl">{title}</Heading>
-        {history && <DialogHistory {...history} collapsible={true} />}
+    <PageBase>
+      <Section theme="default" shadow="xs" bleed>
+        <PageNav color="neutral" padding={2} backButton={backButton} menu={menu} />
+        <Article padding={6} spacing={6}>
+          <Flex direction="col" align="start" spacing={3}>
+            <Heading size="xl">{title}</Heading>
+            <DialogMetadata status={status} dueAt={dueAt} dueAtLabel={dueAtLabel} />
+          </Flex>
+          {history && <DialogHistory {...history} collapsible={true} />}
 
-        <DialogByline
-          size="lg"
-          sender={sender}
-          recipient={recipient}
-          recipientLabel={recipientLabel}
-          recipientGroup={recipientGroup}
-        />
+          <DialogByline
+            size="lg"
+            sender={sender}
+            recipient={recipient}
+            recipientLabel={recipientLabel}
+            recipientGroup={recipientGroup}
+          />
 
-        <DialogContent updatedAt={updatedAt} updatedAtLabel={updatedAtLabel} seenBy={seenBy} activityLog={activityLog}>
-          <p>{summary}</p>
-          {body}
-          {attachments && <DialogAttachments {...attachments} />}
-          {actions?.length > 0 && <DialogActions items={actions} />}
-        </DialogContent>
+          <DialogContent
+            updatedAt={updatedAt}
+            updatedAtLabel={updatedAtLabel}
+            seenBy={seenBy}
+            activityLog={activityLog}
+          >
+            <p>{summary}</p>
+            {body}
+            {attachments && <DialogAttachments {...attachments} />}
+            {actions?.length > 0 && <DialogActions items={actions} />}
+          </DialogContent>
 
-        {timeline && <DialogTimeline {...timeline} />}
+          {timeline && <DialogTimeline {...timeline} />}
 
-        {additionalInfo && (
-          <DialogSection title={additionalInfo?.title}>
-            <Typography size="md">{additionalInfo?.children}</Typography>
-          </DialogSection>
-        )}
+          {additionalInfo && (
+            <DialogSection title={additionalInfo?.title}>
+              <Typography size="md">{additionalInfo?.children}</Typography>
+            </DialogSection>
+          )}
 
-        {contactInfo && (
-          <DialogSection title={contactInfo?.title}>
-            <Typography size="md">{contactInfo?.children}</Typography>
-          </DialogSection>
-        )}
-      </Article>
+          {contactInfo && (
+            <DialogSection title={contactInfo?.title}>
+              <Typography size="md">{contactInfo?.children}</Typography>
+            </DialogSection>
+          )}
+        </Article>
+      </Section>
+      <PageMenu items={menu?.items} />
     </PageBase>
   );
 };

@@ -5,7 +5,7 @@ import { PageNav } from './PageNav';
 const meta = {
   title: 'Page/PageNav',
   component: PageNav,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'beta'],
   parameters: {},
   args: {
     backButton: {

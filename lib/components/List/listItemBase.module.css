@@ -15,7 +15,7 @@
 
 .item[data-variant="outline"],
 .item[data-variant="dotted"] {
-  outline-color: var(--theme-base-default);
+  outline-color: var(--ds-color-base-default);
 }
 
 .item[data-variant="outline"] {
@@ -23,27 +23,46 @@
 }
 
 .item[data-variant="dotted"] {
+  outline-color: var(--ds-color-border-subtle);
   outline-style: dashed;
 }
 
-/* subtle */
+/* background */
 
-.item[data-color="neutral"] {
-  background-color: var(--theme-background-default);
+.item[data-theme="default"] {
+  background-color: var(--ds-color-background-default);
 }
 
-.item[data-color="accent"] {
-  background-color: var(--theme-surface-default);
+.item[data-theme="subtle"] {
+  background-color: var(--ds-color-background-subtle);
 }
 
-.item[data-color="accent"]:hover {
-  background-color: var(--theme-surface-hover);
+.item[data-theme="subtle"]:hover {
+  background-color: var(--ds-color-surface-hover);
+}
+
+.item[data-theme="surface"] {
+  background-color: var(--ds-color-surface-hover);
+}
+
+.item[data-theme="surface"]:hover {
+  background-color: var(--ds-color-surface-active);
+}
+
+.item[data-theme="base"] {
+  background-color: var(--ds-color-base-default);
+  color: var(--ds-color-contrast-default);
+}
+
+.item[data-theme="base"]:hover {
+  background-color: var(--ds-color-base-hover);
+  color: var(--ds-color-contrast-default);
 }
 
 /* active, selected, expanded */
 
 .item[data-active="true"] {
-  background-color: var(--theme-surface-default);
+  background-color: var(--ds-color-surface-default);
 }
 
 .item[aria-expanded="true"] {
@@ -56,7 +75,7 @@
 
 .item:not([aria-selected="true"]):hover,
 .item:not([aria-disabled="true"]):hover {
-  outline: 2px solid var(--theme-border-strong);
+  outline: 2px solid var(--ds-color-border-strong);
 }
 
 .item[aria-disabled="true"] {

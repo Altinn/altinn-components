@@ -9,16 +9,18 @@ import {
   type BadgeProps,
   Icon,
   type IconName,
-  type MenuItemColor,
+  type IconVariant,
   type MenuItemSize,
+  type MenuItemTheme,
 } from '..';
 
 import styles from './menuItemMedia.module.css';
 
 interface MenuItemMediaProps {
-  color?: MenuItemColor;
+  theme?: MenuItemTheme;
   size?: MenuItemSize;
   icon?: IconName;
+  iconVariant?: IconVariant;
   avatar?: AvatarProps;
   avatarGroup?: AvatarGroupProps;
   badge?: BadgeProps | undefined;
@@ -41,9 +43,10 @@ const sizeMap = {
 };
 
 export const MenuItemMedia = ({
+  theme,
   size = 'sm',
-  color,
   icon,
+  iconVariant,
   avatar,
   avatarGroup,
   badge,
@@ -53,13 +56,15 @@ export const MenuItemMedia = ({
     return null;
   }
 
+  const appliedTheme = ((avatar || avatarGroup) && 'transparent') || (icon && theme);
+
   return (
-    <div className={styles.media} data-size={size} data-color={!icon ? null : color}>
-      {(icon && <Icon name={icon} variant={color === 'strong' ? 'solid' : 'outline'} className={styles.icon} />) ||
+    <div className={styles.media} data-theme={appliedTheme} data-size={size}>
+      {(icon && <Icon name={icon} variant={iconVariant} className={styles.icon} />) ||
         (avatar && <Avatar {...avatar} size={sizeMap?.avatar[size] as AvatarSize} />) ||
         (avatarGroup && <AvatarGroup {...avatarGroup} size={sizeMap?.avatarGroup[size] as AvatarSize} />)}
       {children}
-      {badge && <Badge className={styles.badge} color="alert" size="xs" {...badge} />}
+      {badge && <Badge className={styles.badge} variant="strong" color="alert" size="xs" {...badge} />}
     </div>
   );
 };

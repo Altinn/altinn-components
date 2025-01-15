@@ -6,9 +6,9 @@ import styles from './layoutContent.module.css';
  *
  *
  */
-export const LayoutContent = ({ theme, children }: LayoutBaseProps) => {
+export const LayoutContent = ({ color, children }: LayoutBaseProps) => {
   return (
-    <main className={styles.content} data-theme={theme}>
+    <main className={styles.content} data-color={color}>
       {children}
     </main>
   );

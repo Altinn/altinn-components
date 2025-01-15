@@ -2,11 +2,11 @@
   display: inline-flex;
   align-items: start;
   column-gap: 0.25em;
-  color: var(--theme-base-default);
+  color: var(--ds-color-base-default);
 }
 
 .link:hover {
-  color: var(--theme-base-hover);
+  color: var(--ds-color-base-hover);
 }
 
 .label {

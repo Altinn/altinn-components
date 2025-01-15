@@ -9,16 +9,16 @@ export interface DialogListGroupProps {
 
 export const DialogListGroup = ({ title, children }: DialogListGroupProps) => {
   return (
-    <Section spacing="md">
+    <Section spacing={3}>
       {title && (
-        <Flex direction="row" align="center" justify="between" margin="sm">
+        <Flex direction="row" align="center" justify="between">
           <Heading size="lg">{title}</Heading>
           <Button variant="text" icon="checkmark" size="sm">
             Velg alle
           </Button>
         </Flex>
       )}
-      <ListBase spacing="md">{children}</ListBase>
+      <ListBase spacing={3}>{children}</ListBase>
     </Section>
   );
 };

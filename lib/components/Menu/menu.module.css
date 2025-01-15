@@ -16,10 +16,10 @@
 
 .group[data-divider="true"] + .group {
   border-top: 1px solid;
-  border-color: var(--theme-border-subtle);
+  border-color: var(--ds-color-border-subtle);
 }
 
 .item[aria-expanded="true"] > .group {
   border-top: 1px solid;
-  border-color: var(--theme-border-subtle);
+  border-color: var(--ds-color-border-subtle);
 }

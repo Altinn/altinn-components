@@ -24,29 +24,10 @@
 }
 
 .dot {
-  background-color: var(--theme-surface-active);
+  background-color: var(--ds-color-surface-active);
   width: .875rem;
   height: .875rem;
   border-radius: 50%;
-}
-
-.dot[data-seen="true"] {
-  background-color: var(--theme-surface-hover);
-}
-
-.border {
-  flex-grow: 1;
-  padding-top: 0;
-  padding-bottom: 1.5rem;
-}
-
-.border {
-  width: 0.25rem;
-  background-color: var(--theme-surface-active);
-}
-
-.border[data-seen="true"] {
-  background-color: var(--neutral-surface-default);
 }
 
 .content {
@@ -58,4 +39,10 @@
 .content[data-size="lg"] {
   padding: 0.5rem 0;
   row-gap: 1rem;
+}
+
+.border {
+  border-left: 0.25rem solid;
+  border-color: var(--ds-color-surface-active);
+  flex-grow: 1;
 }

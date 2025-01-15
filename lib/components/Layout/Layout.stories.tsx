@@ -4,14 +4,14 @@ import { footer, header, inboxMenu, useAccountMenu, useInboxSearch } from '../..
 import { Layout } from './Layout';
 
 const meta = {
-  title: 'Layout/Layout',
+  title: 'Layout',
   component: Layout,
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
   },
   args: {
-    theme: 'person',
+    color: 'person',
     header,
     footer,
     sidebar: {

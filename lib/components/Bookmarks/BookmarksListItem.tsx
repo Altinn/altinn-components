@@ -43,7 +43,7 @@ export interface BookmarksListItemProps extends ListItemInputProps {
 
 export const BookmarksListItem = ({
   size = 'sm',
-  icon = 'bookmark',
+  icon,
   expanded,
   loading,
   title,
@@ -67,13 +67,12 @@ export const BookmarksListItem = ({
           size={size}
           title={title || untitled}
           loading={loading}
-          icon={icon}
           onClick={onToggle}
           controls={<IconButton variant="outline" size="sm" icon="chevron-up" onClick={onToggle} />}
           {...rest}
         />
         {expanded && (
-          <Section padding="lg" spacing="lg">
+          <Section padding={4} spacing={4}>
             <QueryLabel params={params} />
             {titleField && (
               <TextField
@@ -90,7 +89,7 @@ export const BookmarksListItem = ({
               />
             )}
             {(saveButton || removeButton) && (
-              <Flex as="footer" direction="row" spacing="sm">
+              <Flex as="footer" direction="row" spacing={2}>
                 {saveButton && <Button {...saveButton} />}
                 {removeButton && <Button {...removeButton} variant="outline" />}
               </Flex>

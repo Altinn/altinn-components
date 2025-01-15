@@ -13,7 +13,7 @@
 }
 
 .plus {
-  color: var(--theme-text-subtle);
+  color: var(--ds-color-text-subtle);
 }
 
 .item {

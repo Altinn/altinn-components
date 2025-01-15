@@ -1,24 +1,30 @@
-import { ListBase, type ListSpacing, type ListTheme } from '../List';
-import { ListItem, type ListItemProps } from './ListItem';
-import type { ListItemColor, ListItemSize } from './ListItemBase';
+import {
+  ListBase,
+  type ListBaseProps,
+  ListItem,
+  type ListItemColor,
+  type ListItemProps,
+  type ListItemSize,
+  type ListItemTheme,
+} from '..';
 
-export interface ListProps {
-  spacing?: ListSpacing;
-  theme?: ListTheme;
+export interface ListProps extends ListBaseProps {
   items?: ListItemProps[];
   defaultItemColor?: ListItemColor;
+  defaultItemTheme?: ListItemTheme;
   defaultItemSize?: ListItemSize;
 }
 
-export const List = ({ theme, defaultItemSize, defaultItemColor, spacing = 'md', items = [] }: ListProps) => {
+export const List = ({ defaultItemSize, defaultItemTheme, defaultItemColor, items = [], ...rest }: ListProps) => {
   return (
-    <ListBase theme={theme} spacing={spacing}>
+    <ListBase {...rest}>
       {items.map((item, index) => {
         return (
           <ListItem
             {...item}
             size={item?.size || defaultItemSize}
             color={item?.color || defaultItemColor}
+            theme={item?.theme || defaultItemTheme}
             key={'item' + index}
           />
         );

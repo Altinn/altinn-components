@@ -8,5 +8,5 @@ export interface BackButtonProps {
 }
 
 export const BackButton = ({ label, onClick, as }: BackButtonProps) => {
-  return <MenuItem size="xs" id="back" icon="arrow-undo" title={label} onClick={onClick} as={as} />;
+  return <MenuItem size="xs" id="back" icon="arrow-undo" theme="transparent" title={label} onClick={onClick} as={as} />;
 };

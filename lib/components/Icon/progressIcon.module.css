@@ -4,7 +4,7 @@
   height: var(--size);
   aspect-ratio: 1;
   border-radius: 50%;
-  background: conic-gradient(var(--theme-border-strong) var(--progress, 0), var(--theme-surface-default) 0);
+  background: conic-gradient(var(--ds-color-border-strong) var(--progress, 0), var(--ds-color-surface-default) 0);
   display: grid;
   place-content: center;
   transform: scaleX(-1);
@@ -25,5 +25,5 @@
 .complete {
   width: var(--size);
   height: var(--size);
-  color: var(--theme-border-strong);
+  color: var(--ds-color-border-strong);
 }

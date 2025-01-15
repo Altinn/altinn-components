@@ -1,0 +1,46 @@
+[data-theme="default"] {
+  background-color: var(--ds-color-background-default);
+}
+
+[data-theme="subtle"] {
+  background-color: var(--ds-color-background-subtle);
+}
+
+[data-theme="surface-default"] {
+  background-color: var(--ds-color-surface-default);
+}
+
+[data-theme="surface-hover"] {
+  background-color: var(--ds-color-surface-hover);
+}
+
+[data-theme="surface-active"] {
+  background-color: var(--ds-color-surface-active);
+}
+
+[data-theme="border-subtle"] {
+  background-color: var(--ds-color-border-subtle);
+}
+
+[data-theme="border-default"] {
+  background-color: var(--ds-color-border-default);
+}
+
+[data-theme="border-strong"] {
+  background-color: var(--ds-color-border-strong);
+}
+
+[data-theme="base-default"] {
+  background-color: var(--ds-color-base-default);
+  color: var(--ds-color-contrast-default);
+}
+
+[data-theme="base-hover"] {
+  background-color: var(--ds-color-base-hover);
+  color: var(--ds-color-contrast-default);
+}
+
+[data-theme="base-active"] {
+  background-color: var(--ds-color-base-active);
+  color: var(--ds-color-contrast-default);
+}

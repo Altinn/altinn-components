@@ -1,16 +1,18 @@
 import type { ReactNode } from 'react';
 import styles from './layoutBase.module.css';
 
-export type LayoutTheme = 'inherit' | 'global' | 'global-dark' | 'neutral' | 'company' | 'person';
+export type LayoutColor = 'neutral' | 'company' | 'person';
+export type LayoutTheme = 'default' | 'subtle';
 
 export interface LayoutBaseProps {
+  color?: LayoutColor;
   theme?: LayoutTheme;
   currentId?: string;
   children?: ReactNode;
 }
 
 /**
- * Base layout container where you can set the application theme colors.
+ * Base layout container where you can set the application colors.
  *
  * Anatomy of a layout:
  *
@@ -22,9 +24,9 @@ export interface LayoutBaseProps {
  *  - Footer
  *
  */
-export const LayoutBase = ({ currentId, theme, children }: LayoutBaseProps) => {
+export const LayoutBase = ({ currentId, color, theme, children }: LayoutBaseProps) => {
   return (
-    <div className={styles.base} data-color={theme} data-theme={theme} data-current-id={currentId}>
+    <div className={styles.base} data-color={color} data-theme={theme} data-current-id={currentId}>
       {children}
     </div>
   );

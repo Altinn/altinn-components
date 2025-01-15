@@ -30,7 +30,6 @@ export const ToolbarButton = ({
       <ComboButton
         className={styles.removeButton}
         variant={active ? 'solid' : 'outline'}
-        color="primary"
         size="sm"
         icon="x-mark"
         selected={selected}
@@ -44,7 +43,7 @@ export const ToolbarButton = ({
 
   if (type === 'add') {
     return (
-      <Button variant="dotted" color="primary" size="sm" icon="plus" selected={selected} onClick={onToggle}>
+      <Button variant="dotted" size="sm" icon="plus" selected={selected} onClick={onToggle}>
         {children}
       </Button>
     );
@@ -53,7 +52,6 @@ export const ToolbarButton = ({
   return (
     <Button
       variant={active ? 'solid' : 'outline'}
-      color="primary"
       size="sm"
       icon="chevron-up-down"
       selected={selected}

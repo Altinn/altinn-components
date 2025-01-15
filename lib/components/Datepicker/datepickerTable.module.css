@@ -12,12 +12,12 @@
 
 .date {
   background-color: transparent;
-  color: var(--theme-text-subtle);
+  color: var(--ds-color-text-subtle);
 }
 
 .date[data-current-month="true"] {
-  background-color: var(--theme-background-subtle);
-  color: var(--theme-text-default);
+  background-color: var(--ds-color-background-subtle);
+  color: var(--ds-color-text-default);
 }
 
 .button {
@@ -29,9 +29,9 @@
 
 .button[aria-selected="true"] {
   background-color: transparent;
-  border: 1px solid var(--theme-border-default);
+  border: 1px solid var(--ds-color-border-default);
 }
 .button[aria-selected="true"]:hover,
 .button:hover {
-  background-color: var(--theme-surface-hover);
+  background-color: var(--ds-color-surface-hover);
 }

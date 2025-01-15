@@ -3,7 +3,7 @@ import { expect, userEvent, within } from '@storybook/test';
 import { ContextMenu } from './ContextMenu';
 
 const meta = {
-  title: 'ContextMenu/ContextMenu',
+  title: 'Menu/ContextMenu',
   component: ContextMenu,
   tags: ['autodocs', 'beta'],
   parameters: {},

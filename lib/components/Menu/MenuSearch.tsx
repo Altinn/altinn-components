@@ -23,16 +23,7 @@ export const MenuSearch = ({ value, name, placeholder = 'Søk', onChange, onClea
         autoComplete="off"
       />
       <Icon name="magnifying-glass" className={styles.icon} />
-      {onClear && (
-        <IconButton
-          icon="x-mark"
-          color="secondary"
-          variant="solid"
-          size="custom"
-          className={styles.clear}
-          onClick={onClear}
-        />
-      )}
+      {onClear && <IconButton icon="x-mark" variant="solid" size="custom" className={styles.clear} onClick={onClear} />}
     </div>
   );
 };

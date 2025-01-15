@@ -32,13 +32,14 @@ export const DialogHistoryItem = ({
 }: DialogHistoryItemProps) => {
   return (
     <TimelineSection
+      color="neutral"
       size="xs"
       datetime={createdAt}
       dateline={createdAtLabel}
       byline={createdBy?.name}
       avatar={createdBy}
     >
-      <Typography theme="article" size="md">
+      <Typography color="article" size="md">
         {summary && <p>{summary}</p>}
         <DialogHistoryDetails attachments={attachments} transmissions={transmissions} />
         {children}
