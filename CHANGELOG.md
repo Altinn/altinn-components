@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.14.1](https://github.com/Altinn/altinn-components/compare/v0.14.0...v0.14.1) (2025-01-16)
+
+
+### Bug Fixes
+
+* missing exports for some components ([#179](https://github.com/Altinn/altinn-components/issues/179)) ([1566866](https://github.com/Altinn/altinn-components/commit/156686667ef329db724b5729836dc5313ff32453))
+
 ## [0.14.0](https://github.com/Altinn/altinn-components/compare/v0.13.4...v0.14.0) (2025-01-15)
 
 
