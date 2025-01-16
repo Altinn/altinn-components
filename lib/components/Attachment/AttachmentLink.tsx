@@ -9,6 +9,7 @@ export interface AttachmentLinkProps {
   label: string;
   /** Icon */
   icon?: IconName;
+  /** Size */
   size?: TypographySize;
 }
 
