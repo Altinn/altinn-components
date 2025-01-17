@@ -4,7 +4,12 @@ import { Button, Flex, Grid, Heading, ListItem, PageBase, Section, Typography } 
 export const UserDashboard = () => {
   const { currentAccount, accounts, setPageId } = useAppContext();
 
-  const accessItems = accounts?.filter((item) => item.id !== currentAccount.id);
+  const accessItems = accounts?.filter((item) => item.id !== currentAccount.id)?.map(item => {
+    return {
+      ...item,
+      description: "2 varslingsadresser"
+    }
+  });
 
   return (
     <PageBase color="person" spacing={6}>
@@ -19,14 +24,17 @@ export const UserDashboard = () => {
         </Typography>
         <Flex justify="start" spacing={2}>
           <Button variant="outline" size="sm" icon="pencil" onClick={() => setPageId('user/settings')}>
-            Endre kontaktinformasjon
+            Endre telefon/e-post
+          </Button>
+          <Button variant="outline" size="sm" icon="pencil" onClick={() => setPageId('user/settings')}>
+            Endre adresse
           </Button>
         </Flex>
       </DashboardHeader>
 
       <Flex justify="between" items="center">
         <Flex direction="col">
-          <Heading size="lg">Dine tilganger</Heading>
+          <Heading size="lg">Dine aktører</Heading>
         </Flex>
       </Flex>
 

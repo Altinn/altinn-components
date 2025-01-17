@@ -5,7 +5,7 @@ import { AccessPackageList } from './AccessPackageList';
 const testArea = areaGroups[0].areas[1];
 
 const meta = {
-  title: 'List/AccessPackageList',
+  title: 'Access/List/AccessPackageList',
   component: AccessPackageList,
   tags: ['autodocs'],
   args: {

@@ -6,7 +6,6 @@ import { Layout } from './Layout';
 const meta = {
   title: 'Layout',
   component: Layout,
-  tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
   },

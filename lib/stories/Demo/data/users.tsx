@@ -5,8 +5,24 @@ export interface DemoUser {
 
 export const users: DemoUser[] = [
   {
+    id: 'party:freyr',
+    name: 'Freyr Alexandersson',
+  },
+  {
     id: 'party:mathias',
     name: 'Mathias Dyngeland',
+  },
+  {
+    id: 'party:mathias',
+    name: 'Martin Børsheim',
+  },
+  {
+    id: 'party:mathias',
+    name: 'Mathias Klasuen',
+  },
+  {
+    id: 'party:palle',
+    name: 'Fredrik Pallesen Knudsen',
   },
   {
     id: 'party:huse',
@@ -17,7 +33,15 @@ export const users: DemoUser[] = [
     name: 'Aune Heggebø',
   },
   {
-    id: 'party:rakel',
-    name: 'Rakel Engesvik',
+    id: 'party:japhet',
+    name: 'Japhet Sery Larsen',
+  },
+  {
+    id: 'party:torsvik',
+    name: 'Jonas Torsvik',
+  },
+  {
+    id: 'party:felix',
+    name: 'Felix Horn Myhre',
   },
 ];

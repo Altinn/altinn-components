@@ -1,0 +1,32 @@
+import { Meta, Controls, Primary, Canvas } from "@storybook/blocks";
+import * as LayoutStories from "./Layout.stories";
+
+<Meta of={LayoutStories} />
+
+# Layout
+
+The layout component is shared accross products and includes the global `Header` and `Footer`, as well as a container for .
+
+<Canvas of={LayoutStories.Default} />
+
+## Layout composition.
+
+The layout is composed of sevaral global components.
+
+```tsx
+import { LayoutBase, Header, LayoutBody, LayoutSidebar, Menu, LayoutContent, Footer } from "@altinn/altinn-components";
+
+return (
+  <LayoutBase>
+    <Header />
+    <LayoutBody>
+        <LayoutSidebar>
+            <Menu />
+        <LayoutContent>
+            <!-- Your content -->
+        </LayoutContent>
+    </LayoutBody>
+    <Footer />
+  </LayoutBase>
+);
+```

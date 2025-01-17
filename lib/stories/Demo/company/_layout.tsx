@@ -1,8 +1,8 @@
 import { useLayout, useNavigation } from "..";
 import { Layout, type LayoutProps } from "../../../components";
-import { sitemap } from "../data";
+import { sitemap } from "..";
 export const CompanyLayout = ({ children }: LayoutProps) => {
-  const { currentAccount, pageId, articleId, setPageId } = useNavigation();
+  const { currentAccount, pageId, sectionId, articleId, childId, setPageId } = useNavigation();
   const { header, footer } = useLayout();
 
   const parentId = "company";
@@ -23,10 +23,12 @@ export const CompanyLayout = ({ children }: LayoutProps) => {
     return {
       ...item,
       id,
-      selected: pageId === id,
+      selected: pageId === id || pageId?.startsWith(id),
       onClick: () => setPageId(id),
     };
   });
+
+  const hiddenSidebar = sectionId === "users" && articleId  || sectionId === "access" && childId
 
   const layout = {
     theme: "subtle",
@@ -34,7 +36,7 @@ export const CompanyLayout = ({ children }: LayoutProps) => {
     header,
     footer,
     sidebar: {
-      hidden: articleId && true,
+      hidden: hiddenSidebar && true,
       menu: {
         defaultItemColor: "company",
         defaultItemTheme: "subtle",

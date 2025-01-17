@@ -15,7 +15,7 @@ export interface GlobalMenuFooterProps {
 
 export const GlobalMenuBase = ({ children }: GlobalMenuBaseProps) => {
   return (
-    <nav className={styles.nav} data-color="neutral">
+    <nav className={styles.nav} data-theme="default">
       {children}
     </nav>
   );

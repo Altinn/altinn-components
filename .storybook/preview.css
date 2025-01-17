@@ -1,0 +1,20 @@
+.sbdocs-content:not(.sb-unstyled) > * {
+  font-size: 1rem;
+}
+
+.sbdocs-content:not(.sb-unstyled) > h1 {
+  font-size: 2rem;
+}
+
+.sbdocs-content:not(.sb-unstyled) > h2 {
+  font-size: 1.5rem;
+}
+
+.sbdocs-content:not(.sb-unstyled) > h3 {
+  font-size: 1.25rem;
+}
+
+.sbdocs-content:not(.sb-unstyled) > p > code {
+  font-size: 0.825rem;
+  color: blue;
+}

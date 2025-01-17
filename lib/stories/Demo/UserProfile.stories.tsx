@@ -3,7 +3,7 @@ import { App } from './';
 import { accounts } from './data';
 
 const meta = {
-  title: 'Demo',
+  title: 'Demo/UserProfile',
   component: App,
   tags: ['autodocs', 'beta'],
   parameters: {
@@ -15,54 +15,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  args: {
-    accounts,
-    pageId: 'docs',
-  },
-};
-
-export const DocsElements: Story = {
-  args: {
-    accounts,
-    pageId: 'docs/elements',
-  },
-};
-
-export const Inbox: Story = {
-  args: {
-    accounts,
-    accountId: accounts[0].id,
-    pageId: 'inbox',
-  },
-};
-
-export const InboxBulk: Story = {
-  args: {
-    accounts,
-    accountId: accounts[0].id,
-    pageId: 'inbox',
-    selectedIds: ['inbox/inbox/1', 'inbox/inbox/2'],
-  },
-};
-
-export const InboxDialog: Story = {
-  args: {
-    accounts,
-    accountId: accounts[0].id,
-    pageId: 'inbox/inbox/1',
-  },
-};
-
-export const InboxBookmarks: Story = {
-  args: {
-    accounts,
-    accountId: accounts[0].id,
-    pageId: 'inbox/bookmarks',
-  },
-};
-
-export const User: Story = {
+export const Dashboard: Story = {
   args: {
     accounts,
     accountId: accounts[0].id,
@@ -70,7 +23,7 @@ export const User: Story = {
   },
 };
 
-export const UserSettings: Story = {
+export const Settings: Story = {
   args: {
     accounts,
     accountId: accounts[0].id,
@@ -78,7 +31,18 @@ export const UserSettings: Story = {
   },
 };
 
-export const UserNotifications: Story = {
+export const ActivityLog: Story = {
+  args: {
+    accounts,
+    accountId: accounts[0].id,
+    pageId: 'user/log',
+  },
+};
+
+
+/*
+
+export const NotificationSettings: Story = {
   args: {
     accounts,
     accountId: accounts[0].id,
@@ -173,3 +137,5 @@ export const CategoryPage: Story = {
     pageId: 'category/personale/lonn',
   },
 };
+
+*/

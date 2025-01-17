@@ -28,7 +28,7 @@ export const AccountList = ({ expandedId, onToggle, items }) => {
     <Flex direction="col" spacing="xs">
       {items?.map((item, index) => {
         return (
-          <AccountListItem {...item} expanded={expandedId === item.id} key={item.id} onClick={() => onToggle(item.id)}>
+          <AccountListItem {...item} description="E-post og sms" expanded={expandedId === item.id} key={item.id} onClick={() => onToggle(item.id)}>
             {expandedId === item.id ? <AccountDetails /> : null}
           </AccountListItem>
         );

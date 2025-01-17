@@ -6,6 +6,7 @@
   background-color: var(--ds-color-background-subtle);
 }
 
+[data-theme="surface"],
 [data-theme="surface-default"] {
   background-color: var(--ds-color-surface-default);
 }
@@ -18,6 +19,7 @@
   background-color: var(--ds-color-surface-active);
 }
 
+[data-theme="border"],
 [data-theme="border-subtle"] {
   background-color: var(--ds-color-border-subtle);
 }
@@ -30,6 +32,7 @@
   background-color: var(--ds-color-border-strong);
 }
 
+[data-theme="base"],
 [data-theme="base-default"] {
   background-color: var(--ds-color-base-default);
   color: var(--ds-color-contrast-default);

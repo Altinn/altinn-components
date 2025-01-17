@@ -8,7 +8,7 @@ import {
   type ListItemTheme,
 } from '..';
 
-export interface ListProps extends ListBaseProps {
+export interface ListProps extends Omit<ListBaseProps, 'children'> {
   items?: ListItemProps[];
   defaultItemColor?: ListItemColor;
   defaultItemTheme?: ListItemTheme;

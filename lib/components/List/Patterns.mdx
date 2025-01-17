@@ -1,0 +1,29 @@
+import { Meta, Controls, Primary, Canvas } from "@storybook/blocks";
+import * as MultilevelList from "./MultilevelList.stories";
+import * as BookmarkStories from "../Bookmarks/BookmarksSection.stories";
+
+<Meta title="List/Patterns" />
+
+# List Patterns
+
+While lists can be modified to represent spesific needs, we should try to establish common patterns for similar tasks across Altinn.
+
+## List of users
+
+Lists of users with people, companies and groups, using `Avatar` and `AvatarGroup` as icon.
+
+## List of services
+
+Lists of services, using the service owner logo as an using `Avatar`.
+
+## Expanding an element to make changes
+
+Lists that can be manipulated when expanded, for example `Bookmarks`.
+
+<Canvas of={BookmarkStories.ControlledState} />
+
+## Expanding, multilevel lists
+
+An expandable multilevel list. Parent items are medium sized, children are small. Selected items are indicated using color, while unselected items are gray. Custom controls to manipulate item.
+
+<Canvas of={MultilevelList.Default} />

@@ -1,0 +1,70 @@
+import { Meta, Controls, Primary, Canvas } from "@storybook/blocks";
+import * as MenuStories from "./Menu.stories";
+import * as GlobalMenuStories from "../GlobalMenu/GlobalMenu.stories";
+
+<Meta title="Menu" />
+
+# The Menu component
+
+The menu component is the basis of all menus, including the `GlobalMenu`. It is also included in the `Layout` as an optional local menu.
+
+## Using Menu
+
+Use menu by providing an array of `items` and an optional `groups` object. Items can be nested.
+
+```tsx
+import { Menu } from "@altinn/altinn-components";
+
+return (
+  <Menu groups={<MenuItemGroups>} items={<MenuItemProps[]>}>
+);
+```
+
+### Using items
+
+Menu items represent a single link. It must include at least a `title` and an `id`. Use `icon` to emphasise meaning.
+
+<Canvas of={MenuStories.Default} />
+
+### Creating hiearchy
+
+Use `groups` to divide the menu into logical parts which will be divided by a border.
+
+Use `size`, and `iconTheme` to create hierarchy.
+
+You can set defaults by using `defaultItemSize`, and `defaultIconTheme` on menu and groups.
+
+<Canvas of={MenuStories.CreatingHiearchy} />
+
+### Nesting items
+
+Items can be nested.
+
+<Canvas of={MenuStories.NestingItems} />
+
+## Menu composition
+
+Under the hood, menus are constructed using multiple components.
+
+```tsx
+return (
+  <MenuBase>
+    <MenuList>
+      <MenuListItem>
+        <MenuItem />
+      </MenuListItem>
+      <MenuListItem>
+        <MenuItem />
+        <MenuList>
+          <MenuListItem>
+            <MenuItem />
+          </MenuListItem>
+          <MenuListItem>
+            <MenuItem />
+          </MenuListItem>
+        </MenuList>
+      </MenuListItem>
+    </MenuList>
+  </MenuBase>
+);
+```

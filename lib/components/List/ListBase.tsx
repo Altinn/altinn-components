@@ -1,12 +1,16 @@
-import { Flex, type FlexProps } from '..';
+import type { ReactNode } from 'react';
+import { type Color, Flex, type FlexPadding, type FlexSpacing } from '..';
 
-export interface ListBaseProps extends FlexProps {
-  direction?: 'col';
+export interface ListBaseProps {
+  children: ReactNode;
+  spacing?: FlexSpacing;
+  padding?: FlexPadding;
+  color?: Color;
 }
 
-export const ListBase = ({ direction = 'col', spacing = 2, children, ...rest }: ListBaseProps) => {
+export const ListBase = ({ spacing = 2, children, ...rest }: ListBaseProps) => {
   return (
-    <Flex direction={direction} spacing={spacing} {...rest}>
+    <Flex direction="col" spacing={spacing} {...rest}>
       {children}
     </Flex>
   );

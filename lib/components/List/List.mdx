@@ -1,0 +1,34 @@
+import { Meta, Controls, Primary, Canvas } from "@storybook/blocks";
+import * as ListStories from "./List.stories";
+import * as ListBaseStories from "./ListBase.stories";
+import * as ListItemStories from "./ListItem.stories";
+
+<Meta title="List" />
+
+# Using lists
+
+Use lists to represent links to spesific objects, for example a list of people or a list of services.
+
+```tsx
+import { ListBase, ListItem } from "@altinn/altinn-components";
+
+return (
+  <ListBase>
+    <ListItem />
+    <ListItem />
+    <ListItem />
+  </ListBase>
+);
+```
+
+## List
+
+Unified, simple lists can be built using the `List` component.
+
+<Canvas of={ListStories.Default} />
+
+## Building lists
+
+Lists are built using [`ListBase`](/docs/list-listbase--docs) and [`ListItem`](/docs/list-listitem--docs) components.
+
+<Canvas of={ListBaseStories.Default} />

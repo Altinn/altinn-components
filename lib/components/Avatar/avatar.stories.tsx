@@ -5,7 +5,9 @@ const meta = {
   title: 'Avatar/Avatar',
   component: Avatar,
   tags: ['autodocs', 'stable'],
-  parameters: {},
+  parameters: {
+    layout: 'centered',
+  },
   args: {
     name: 'Jane Doe',
     type: 'person',

@@ -107,8 +107,8 @@ export const Dialog = ({
   contactInfo,
 }: DialogProps) => {
   return (
-    <PageBase>
-      <Section theme="default" shadow="xs" bleed>
+    <PageBase bleed>
+      <Section theme="default" shadow="xs">
         <PageNav color="neutral" padding={2} backButton={backButton} menu={menu} />
         <Article padding={6} spacing={6}>
           <Flex direction="col" align="start" spacing={3}>

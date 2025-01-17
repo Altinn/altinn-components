@@ -21,7 +21,7 @@ export const Default: Story = {
 export const Alert: Story = {
   args: {
     color: 'alert',
-    variant: 'strong',
+    theme: 'base',
   },
 };
 
@@ -29,7 +29,7 @@ export const AlertXs: Story = {
   args: {
     ...Alert.args,
     size: 'xs',
-    variant: 'strong',
+    theme: 'base',
   },
 };
 
@@ -44,6 +44,6 @@ export const UnreadCountXs: Story = {
   args: {
     ...UnreadCount.args,
     size: 'xs',
-    variant: 'strong',
+    theme: 'base',
   },
 };

@@ -43,7 +43,10 @@ export const AccountMenu = ({
     title: account.name,
     ...(account?.accountNames && {
       avatarGroup: {
-        items: account.accountNames.map((name) => ({ name, type: account.type })),
+        items: account.accountNames.map((name) => ({
+          name,
+          type: account.type,
+        })),
       },
     }),
     ...(!account?.accountNames && {
@@ -92,5 +95,12 @@ export const AccountMenu = ({
     ...(filteredAccountMenu.length > 0 ? filteredAccountMenu : [{ id: 'search', groupId: 'search', hidden: true }]),
   ];
 
-  return <Menu search={accountSearch && accountSearchItem} groups={filterAccountGroups} items={accountSwitcher} />;
+  return (
+    <Menu
+      theme="default"
+      search={accountSearch && accountSearchItem}
+      groups={filterAccountGroups}
+      items={accountSwitcher}
+    />
+  );
 };

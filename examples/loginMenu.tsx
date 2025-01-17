@@ -6,14 +6,12 @@ export const loginMenu: MenuProps = {
       id: 'login',
       groupId: 'login',
       size: 'lg',
-      theme: 'base',
-      icon: 'padlock-locked',
+      icon: { name: 'padlock-locked', theme: 'base', variant: 'solid' },
       title: 'Logg inn',
     },
     {
       id: 'startup',
       groupId: 'help',
-      color: 'neutral',
       size: 'sm',
       icon: 'buildings2',
       title: 'Starte og drive bedrift',
@@ -21,7 +19,6 @@ export const loginMenu: MenuProps = {
     {
       id: 'help',
       groupId: 'help',
-      color: 'neutral',
       size: 'sm',
       icon: 'chat-exclamationmark',
       title: 'Trenger du hjelp?',

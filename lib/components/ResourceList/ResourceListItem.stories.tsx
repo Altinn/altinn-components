@@ -3,7 +3,7 @@ import { Button } from '../Button';
 import { ResourceListItem } from './ResourceListItem';
 
 const meta = {
-  title: 'List/ResourceListItem',
+  title: 'Access/List/ResourceListItem',
   component: ResourceListItem,
   tags: ['autodocs'],
   parameters: {},

@@ -1,4 +1,4 @@
-import { MenuItemBase, MenuItemLabel, MenuItemMedia } from '../Menu';
+import { MenuItemBase, MenuItemIcon, MenuItemLabel } from '../Menu';
 
 export type Account = {
   id: string;
@@ -19,8 +19,8 @@ export const AccountButton = ({ account, linkText, onClick, multipleAccounts }: 
   if (multipleAccounts) {
     return (
       <MenuItemBase size="lg" onClick={onClick} linkText={linkText} linkIcon="chevron-right" as="button">
-        <MenuItemMedia
-          size="lg"
+        <MenuItemIcon
+          size="xl"
           avatar={{
             name: account.name,
             type: account.type,
@@ -33,7 +33,7 @@ export const AccountButton = ({ account, linkText, onClick, multipleAccounts }: 
 
   return (
     <MenuItemBase size="lg" as="div">
-      <MenuItemMedia
+      <MenuItemIcon
         size="lg"
         avatar={{
           name: account.name,

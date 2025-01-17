@@ -1,6 +1,6 @@
 import { useAppContext } from '..';
 import { Dialog } from '../../../components';
-import { dialogMenuItems, dialogs } from '../data';
+import { dialogMenuItems, dialogTrashMenuItems, dialogs } from '../data';
 export const InboxDialog = () => {
   const { pageId, setPageId, currentAccount } = useAppContext();
 
@@ -23,12 +23,13 @@ export const InboxDialog = () => {
     name: 'Unknown',
   };
 
+
   return (
     <Dialog
       {...dialog}
       recipient={recipient}
       backButton={backButton}
-      menu={{ id: 'dialog-menu', items: dialogMenuItems }}
+      menu={{ id: 'dialog-menu', items: sectionId === "trash" ? dialogTrashMenuItems : dialogMenuItems }}
     />
   );
 };

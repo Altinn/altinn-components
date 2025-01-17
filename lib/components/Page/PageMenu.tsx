@@ -10,14 +10,14 @@ export interface PageMenuProps {
   items?: MenuItemProps[];
 }
 
-export const PageMenu = ({ theme = 'transparent', color, items = [] }: PageMenuProps) => {
+export const PageMenu = ({ theme, color, items = [] }: PageMenuProps) => {
   return (
     <nav data-theme={theme} data-color={color} className={styles.menu}>
       <ul className={styles.list}>
         {items.map((item) => {
           return (
             <li key={item.id}>
-              <MenuItem {...item} theme={theme} className={styles.item} />
+              <MenuItem {...item} className={styles.item} />
             </li>
           );
         })}

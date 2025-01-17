@@ -1,11 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { menuItems } from '../../../examples/menuItems.ts';
 import { Menu } from './Menu';
 
 const meta = {
   title: 'Menu/Menu',
   component: Menu,
-  tags: ['autodocs'],
   parameters: {},
   args: {},
 } satisfies Meta<typeof Menu>;
@@ -13,185 +11,99 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const GlobalMenu: Story = {
+export const Default: Story = {
   args: {
-    theme: 'default',
-    groups: {
-      settings: {
-        //        defaultItemColor: 'neutral',
-      },
-    },
     items: [
       {
-        id: 'account',
-        groupId: 'account',
-        size: 'lg',
-        avatar: {
-          type: 'person',
-          name: 'Herman Friele',
-        },
-        title: 'Herman Friele',
-        description: 'Fødselsnr: XX.XX.XXXX',
+        id: '1',
+        icon: 'first-aid',
+        title: 'Menu item 1',
       },
       {
-        id: 'inbox',
-        groupId: 'apps',
-        size: 'lg',
-        icon: 'inbox',
-        title: 'Innboks',
-        badge: {
-          color: 'alert',
-          label: '4',
-        },
+        id: '2',
+        icon: 'truck',
+        title: 'Menu item 2',
+        selected: true,
       },
       {
-        id: 'access',
-        groupId: 'apps',
-        size: 'lg',
-        icon: 'bookmark',
-        title: 'Tilganger',
-        badge: {
-          color: 'alert',
-          label: '2',
-        },
-      },
-      {
-        id: 'access',
-        groupId: 'apps',
-        size: 'lg',
-        icon: 'menu-grid',
-        title: 'Alle skjema',
-      },
-      {
-        id: 'settings',
-        groupId: 'settings',
-        icon: 'cog',
-        title: 'Innstillinger',
+        id: '2',
+        icon: 'bicycle',
+        title: 'Menu item 3',
       },
     ],
   },
 };
 
-export const CollapsibleGlobalMenu: Story = {
+export const CreatingHiearchy: Story = {
   args: {
-    theme: 'default',
+    defaultIconTheme: 'default',
     groups: {
-      settings: {
-        //        defaultItemColor: 'neutral',
+      shortcuts: {
+        title: 'Shortcuts',
+        defaultItemSize: 'sm',
+        defaultIconTheme: 'transparent',
       },
     },
     items: [
       {
-        id: 'account',
-        groupId: 'account',
+        groupId: 'a',
         size: 'lg',
-        avatar: {
-          type: 'person',
-          name: 'Herman Friele',
-        },
-        title: 'Herman Friele',
-        description: 'Fødselsnr: XX.XX.XXXX',
+        id: '1',
+        icon: { theme: 'base', variant: 'solid', name: 'first-aid' },
+        title: 'Menu item 1',
       },
       {
-        id: 'innboks',
-        groupId: 'apps',
-        size: 'lg',
-        icon: 'inbox',
-        title: 'Innboks',
-        collapsible: true,
-        items: [
-          {
-            id: 'utkast',
-            groupId: '1',
-            icon: 'doc-pencil',
-            title: 'Utkast',
-          },
-          {
-            id: 'sent',
-            groupId: '1',
-            icon: 'file-checkmark',
-            selected: true,
-            title: 'Sendt',
-          },
-          {
-            id: 'bookmarks',
-            groupId: '3',
-            icon: 'bookmark',
-            title: 'Lagrede søk',
-          },
-          {
-            id: 'arkiv',
-            groupId: '4',
-            icon: 'archive',
-            title: 'Arkivert',
-          },
-          {
-            id: 'trash',
-            groupId: '4',
-            icon: 'trash',
-            title: 'Papirkurv',
-          },
-        ],
+        groupId: 'b',
+        id: '2',
+        icon: 'truck',
+        title: 'Menu item 2',
+        selected: true,
       },
       {
-        id: 'tilganger',
-        groupId: 'apps',
-        size: 'lg',
-        icon: 'bookmark',
-        title: 'Tilganger',
+        groupId: 'b',
+        id: '2',
+        icon: 'bicycle',
+        title: 'Menu item 3',
       },
       {
-        id: 'skjema',
-        groupId: 'apps',
-        size: 'lg',
-        icon: 'menu-grid',
-        title: 'Alle skjema',
+        id: 'users',
+        groupId: 'shortcuts',
+        icon: 'person-group',
+        title: 'Shortcut 1',
       },
       {
         id: 'settings',
-        groupId: 'settings',
+        groupId: 'shortcuts',
         icon: 'cog',
-        title: 'Innstillinger',
+        title: 'Shortcut 2',
       },
     ],
   },
 };
 
-export const ExpandedGlobalMenu: Story = {
-  args: {
-    ...CollapsibleGlobalMenu.args,
-    items: [...CollapsibleGlobalMenu.args.items].map((item) => {
-      if (item.collapsible) {
-        return {
-          ...item,
-          group: item?.id === 'inbox' ? 'inbox' : '',
-          expanded: true,
-        };
-      }
-      return item;
-    }),
-  },
-};
-
-export const DrilldownMenu: Story = {
+export const NestingItems: Story = {
   args: {
     theme: 'default',
-    //    defaultItemColor: 'subtle',
+    defaultIconTheme: 'surface',
     groups: {
       'level-1': {
         divider: true,
+        defaultItemSize: 'lg',
       },
       'level-2': {
         divider: true,
+      },
+      'level-3': {
+        defaultItemSize: 'sm',
       },
     },
     items: [
       {
         id: 'people',
         groupId: 'level-1',
-        size: 'lg',
         icon: 'menu-grid',
         title: 'Alle skjema',
+        collapsible: true,
         expanded: true,
         items: [
           {
@@ -199,232 +111,28 @@ export const DrilldownMenu: Story = {
             id: 'tema',
             icon: 'teddy-bear',
             title: 'Tema',
+            collapsible: true,
             expanded: true,
             items: [
               {
                 id: 'c1',
                 groupId: 'level-3',
-                title: 'Kategori 1',
+                title: 'Level 3.1',
               },
               {
                 groupId: 'level-3',
                 id: 'c2',
-                title: 'Kategori 2',
+                title: 'Level 3.2',
               },
               {
                 groupId: 'level-3',
                 id: 'c3',
-                title: 'Kategori 3',
+                title: 'Level 3.3',
               },
             ],
           },
         ],
       },
     ],
-  },
-};
-
-export const InboxMenu: Story = {
-  args: {
-    groups: {},
-    items: [
-      {
-        id: 'inbox',
-        theme: 'base',
-        groupId: '1',
-        size: 'lg',
-        icon: 'inbox',
-        iconVariant: 'solid',
-        selected: true,
-        title: 'Innboks',
-        badge: {
-          label: '12',
-        },
-        alertBadge: {
-          label: '2 uleste',
-        },
-      },
-      {
-        id: 'drafts',
-        groupId: '2',
-        icon: 'doc-pencil',
-        title: 'Utkast',
-        badge: {
-          label: '2',
-        },
-      },
-      {
-        id: 'sent',
-        groupId: '2',
-        icon: 'file-checkmark',
-        title: 'Sendt',
-      },
-      {
-        id: 'bookmarks',
-        groupId: '3',
-        icon: 'bookmark',
-        title: 'Lagrede søk',
-        badge: {
-          label: '5',
-        },
-      },
-      {
-        id: 'trash',
-        groupId: '4',
-        icon: 'archive',
-        title: 'Arkivert',
-        badge: {
-          label: '99+',
-        },
-      },
-      {
-        id: '6',
-        groupId: '4',
-        icon: 'trash',
-        title: 'Papirkurv',
-        badge: {
-          label: '15',
-        },
-      },
-    ],
-  },
-};
-
-export const InboxMenuWithShortcuts = {
-  args: {
-    groups: {
-      ...InboxMenu.args?.groups,
-      shortcuts: {
-        title: 'Snarveier',
-        defaultItemTheme: 'transparent',
-      },
-    },
-    items: [
-      ...(InboxMenu?.args?.items ?? []),
-      {
-        id: 'users',
-        groupId: 'shortcuts',
-        icon: 'person-group',
-        title: 'Brukere',
-      },
-      {
-        id: 'settings',
-        groupId: 'shortcuts',
-        icon: 'cog',
-        title: 'Innstillinger',
-      },
-    ],
-  },
-};
-
-export const PersonMenu: Story = {
-  args: {
-    groups: {},
-    items: [
-      {
-        id: 'person',
-        groupId: '1',
-        size: 'lg',
-        avatar: {
-          type: 'person',
-          name: 'Erik Huseklepp',
-        },
-        title: 'Erik Huseklepp',
-      },
-      {
-        id: 'profil',
-        groupId: '2',
-        icon: 'person-circle',
-        title: 'Kontaktinformasjon',
-      },
-      {
-        id: 'varslinger',
-        groupId: '2',
-        icon: 'bell',
-        title: 'Varslingsinnstillinger',
-      },
-      {
-        id: 'bookmarks',
-        groupId: '3',
-        icon: 'bookmark',
-        title: 'Favoritter',
-      },
-      {
-        id: 'grupper',
-        groupId: '3',
-        icon: 'hexagon-grid',
-        title: 'Grupper',
-      },
-      {
-        id: 'logg',
-        groupId: '4',
-        icon: 'clock-dashed',
-        title: 'Aktivitetslogg',
-      },
-    ],
-  },
-};
-
-export const CompanyMenu: Story = {
-  args: {
-    groups: {},
-    items: [
-      {
-        id: 'company',
-        groupId: '1',
-        size: 'lg',
-        avatar: {
-          type: 'company',
-          name: 'Bergen Bar',
-        },
-        title: 'Bergen Bar',
-      },
-      {
-        id: 'profil',
-        groupId: '2',
-        icon: 'buildings2',
-        title: 'Firmaprofil',
-      },
-      {
-        id: 'brukere',
-        groupId: '3',
-        icon: 'person-group',
-        title: 'Brukere',
-      },
-      {
-        id: 'grupper',
-        groupId: '3',
-        icon: 'hexagon-grid',
-        title: 'Grupper',
-      },
-      {
-        id: 'logg',
-        groupId: '4',
-        icon: 'clock-dashed',
-        title: 'Aktivitetslogg',
-      },
-    ],
-  },
-};
-
-export const AccountMenu: Story = {
-  args: {
-    groups: {
-      a1: {
-        title: 'Deg selv, favoritter og grupper',
-      },
-      b1: { title: 'Andre kontoer' },
-    },
-    items: menuItems,
-  },
-};
-
-export const AccountMenuWithSearch: Story = {
-  args: {
-    ...AccountMenu.args,
-    search: {
-      name: 'search',
-      placeholder: 'Søk i kontoer',
-    },
   },
 };

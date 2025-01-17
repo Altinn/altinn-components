@@ -43,7 +43,7 @@ export const inboxMenuItems: MenuItemProps[] = [
     },
   },
   {
-    id: 'trash',
+    id: 'archive',
     groupId: '4',
     icon: 'archive',
     title: 'Arkivert',
@@ -52,7 +52,7 @@ export const inboxMenuItems: MenuItemProps[] = [
     },
   },
   {
-    id: '6',
+    id: 'trash',
     groupId: '4',
     icon: 'trash',
     title: 'Papirkurv',

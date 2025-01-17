@@ -1,0 +1,15 @@
+.icon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: -0.25em;
+  margin-right: -0.25em;
+  outline: 1px solid white;
+}

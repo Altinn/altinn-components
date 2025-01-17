@@ -19,7 +19,7 @@ const children = (
 );
 
 const meta = {
-  title: 'List/AccessAreaListItem',
+  title: 'Access/List/AccessAreaListItem',
   component: AccessAreaListItem,
   tags: ['autodocs'],
   args: {

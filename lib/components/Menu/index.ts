@@ -1,6 +1,6 @@
 export * from './MenuItemBase';
 export * from './MenuItemLabel';
-export * from './MenuItemMedia';
+export * from './MenuItemIcon';
 export * from './MenuItem';
 export * from './MenuInputField';
 export * from './MenuOption';

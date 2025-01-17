@@ -1,17 +1,23 @@
 import type { ElementType, ReactNode } from 'react';
-import type { AvatarGroupProps, AvatarProps, BadgeProps, IconName, IconVariant } from '..';
-import { MenuItemBase, type MenuItemColor, type MenuItemSize, type MenuItemTheme } from './MenuItemBase';
-import { MenuItemLabel } from './MenuItemLabel';
-import { MenuItemMedia } from './MenuItemMedia';
+import type { AvatarGroupProps, AvatarProps, BadgeProps, IconName, IconOrAvatarSize, IconProps, IconTheme } from '..';
+
+import {
+  MenuItemBase,
+  type MenuItemColor,
+  MenuItemIcon,
+  MenuItemLabel,
+  type MenuItemSize,
+  type MenuItemTheme,
+} from './';
 
 export interface MenuItemProps {
   id: string;
   type?: string;
   tabIndex?: number;
   as?: ElementType;
+  size?: MenuItemSize;
   color?: MenuItemColor;
   theme?: MenuItemTheme;
-  size?: MenuItemSize;
   href?: string;
   onClick?: () => void;
   hidden?: boolean;
@@ -23,12 +29,12 @@ export interface MenuItemProps {
   groupId?: string | number;
   title?: string;
   description?: string;
-  icon?: IconName;
-  iconVariant?: IconVariant;
+  icon?: IconName | IconProps | ReactNode;
+  iconTheme?: IconTheme;
+  iconBadge?: BadgeProps | undefined;
   avatar?: AvatarProps;
   avatarGroup?: AvatarGroupProps;
   badge?: BadgeProps | undefined;
-  alertBadge?: BadgeProps | undefined;
   linkIcon?: IconName;
   linkText?: string;
   className?: string;
@@ -36,27 +42,38 @@ export interface MenuItemProps {
   items?: MenuItemProps[];
 }
 
+/** Map MenuItemSize to MenuItemIconSize */
+const iconSizeMap: Record<MenuItemSize, IconOrAvatarSize> = {
+  xs: 'sm',
+  sm: 'sm',
+  md: 'md',
+  lg: 'xl',
+};
+
 export const MenuItem = ({
   as = 'a',
-  size = 'sm',
+  size = 'md',
   color,
   theme,
   collapsible,
   expanded,
   icon,
-  iconVariant,
+  iconTheme,
+  iconBadge,
   avatar,
   avatarGroup,
   title,
   description,
   badge,
-  alertBadge,
   linkText,
   linkIcon,
   label,
   ...rest
 }: MenuItemProps) => {
   const applicableLinkIcon = collapsible && expanded ? 'chevron-up' : collapsible ? 'chevron-down' : linkIcon;
+
+  /** Set icon size */
+  const applicableIconSize = iconSizeMap[size];
 
   return (
     <MenuItemBase
@@ -70,12 +87,11 @@ export const MenuItem = ({
       expanded={expanded}
       {...rest}
     >
-      <MenuItemMedia
-        theme={theme}
-        badge={alertBadge}
-        size={size}
+      <MenuItemIcon
+        size={applicableIconSize}
         icon={icon}
-        iconVariant={iconVariant}
+        iconTheme={iconTheme}
+        iconBadge={iconBadge}
         avatar={avatar}
         avatarGroup={avatarGroup}
       />

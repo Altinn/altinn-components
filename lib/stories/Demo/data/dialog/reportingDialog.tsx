@@ -14,6 +14,11 @@ export const reportingDialog: DialogProps = {
   dueAtLabel: 'Frist: 31. oktober 2024',
   title: 'Rapportering av bedriftsdata',
   summary: 'Du må levere bedriftsdata innen 31. oktober.',
+  seenBy: {
+    seenByEndUser: true,
+    seenByOthersCount: 4,
+    label: "Sett av deg + 4"
+  },
   attachments: {
     title: '1 vedlegg',
     items: [

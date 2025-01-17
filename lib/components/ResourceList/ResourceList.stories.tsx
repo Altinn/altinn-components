@@ -11,7 +11,7 @@ const items = resources.map((resource) => ({
 }));
 
 const meta = {
-  title: 'List/ResourceList',
+  title: 'Access/List/ResourceList',
   component: ResourceList,
   tags: ['autodocs'],
   parameters: {},

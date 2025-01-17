@@ -4,6 +4,7 @@ import type { ListItemSize } from './ListItemBase';
 import styles from './listItemLink.module.css';
 
 export interface ListItemLinkProps {
+  interactive?: boolean;
   size?: ListItemSize;
   as?: ElementType;
   href?: string;
@@ -18,6 +19,7 @@ export interface ListItemLinkProps {
 }
 
 export const ListItemLink = ({
+  interactive = false,
   size,
   as,
   loading,
@@ -30,11 +32,19 @@ export const ListItemLink = ({
   className,
   children,
 }: ListItemLinkProps) => {
+  if (!interactive) {
+    return (
+      <div className={cx(styles.link, className)} data-size={size}>
+        {children}
+      </div>
+    );
+  }
+
   const Component = as || 'button';
 
   return (
     <Component
-      className={cx(styles.link, className)}
+      className={cx(styles.link, styles.interactive, className)}
       href={href}
       onKeyPress={(e: KeyboardEvent) => {
         e.key === 'Enter' && onClick?.();

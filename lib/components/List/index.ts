@@ -2,7 +2,7 @@ export * from './ListItemBase';
 export * from './ListItemLink';
 export * from './ListItemHeader';
 export * from './ListItemLabel';
-export * from './ListItemMedia';
+export * from './ListItemIcon';
 export * from './ListItemControls';
 export * from './ListItemSelect';
 export * from './ListItem';
