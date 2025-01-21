@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.14.2](https://github.com/Altinn/altinn-components/compare/v0.14.1...v0.14.2) (2025-01-21)
+
+
+### Bug Fixes
+
+* remove react and react-dom as dependencies ([#185](https://github.com/Altinn/altinn-components/issues/185)) ([9a74d99](https://github.com/Altinn/altinn-components/commit/9a74d999211a5e95998227d804c5dd55cf7490e6))
+
 ## [0.14.1](https://github.com/Altinn/altinn-components/compare/v0.14.0...v0.14.1) (2025-01-16)
 
 
