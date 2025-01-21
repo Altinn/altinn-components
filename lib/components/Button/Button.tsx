@@ -9,6 +9,7 @@ export interface ButtonProps extends Partial<ButtonBaseProps> {
   icon?: IconName;
   reverse?: boolean;
   loading?: boolean;
+  loadingText?: string;
   label?: string;
 }
 
@@ -24,12 +25,14 @@ export const Button = ({
   children,
   className,
   loading,
+  loadingText = 'Loading ...',
   ...rest
 }: ButtonProps) => {
   if (loading) {
     return (
       <ButtonBase
         variant={variant}
+        aria-busy
         color={color}
         size={size}
         selected={selected}
@@ -39,7 +42,7 @@ export const Button = ({
         disabled
       >
         <span className={styles.label} data-size={size}>
-          <span className={styles.loading}>Loading....</span>
+          <span className={styles.loading}>{loadingText}</span>
         </span>
       </ButtonBase>
     );
