@@ -10,10 +10,14 @@ import { libInjectCss } from 'vite-plugin-lib-inject-css';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import pkg from './package.json';
 
-const dependencies = Object.keys({
-  ...(pkg.devDependencies || {}),
-  ...(pkg.peerDependencies || {}),
-});
+const dependencies = [
+  ...Object.keys({
+    ...(pkg.devDependencies || {}),
+    ...(pkg.peerDependencies || {}),
+  }),
+  'react',
+  'react-dom',
+];
 
 // https://vitejs.dev/config/
 export default () => {
