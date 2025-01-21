@@ -38,7 +38,7 @@
   padding: var(--ds-spacing-6);
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
   .grid[data-padding="page"] {
     padding-left: var(--ds-spacing-4);
     padding-right: var(--ds-spacing-4);
