@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.14.3](https://github.com/Altinn/altinn-components/compare/v0.14.2...v0.14.3) (2025-01-22)
+
+
+### Bug Fixes
+
+* add prop for custom loading text ([#188](https://github.com/Altinn/altinn-components/issues/188)) ([f35ce1e](https://github.com/Altinn/altinn-components/commit/f35ce1e18c071ebd96e40b296153ed905b69076f))
+* adjust max-height for desktop media query on layout properties ([#189](https://github.com/Altinn/altinn-components/issues/189)) ([447d3af](https://github.com/Altinn/altinn-components/commit/447d3af4138ccb7a1116705840e3a69ad8809a71))
+
 ## [0.14.2](https://github.com/Altinn/altinn-components/compare/v0.14.1...v0.14.2) (2025-01-21)
 
 
