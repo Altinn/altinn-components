@@ -38,18 +38,7 @@ export const Expanded: Story = {
   args: {
     title: 'Mitt lagrede søk',
     expanded: true,
-    untitled: 'Uten tittel',
-    titleField: {
-      label: 'Tittel',
-      placeholder: 'Uten tittel',
-      helperText: 'Gi bokmerket et navn.',
-    },
-    saveButton: {
-      label: 'Lagre endringer',
-    },
-    removeButton: {
-      label: 'Slett bokmerke',
-    },
+    children: <p>Edit this bookmark</p>,
   },
 };
 

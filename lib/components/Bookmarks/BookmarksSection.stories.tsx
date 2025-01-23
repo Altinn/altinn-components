@@ -31,7 +31,7 @@ const meta = {
         },
         params: [
           { type: 'search', label: 'Skatt' },
-          { type: 'filter', label: 'Under arbeid' },
+          { type: 'filter', label: 'Krever handling' },
         ],
       },
       {
@@ -127,7 +127,14 @@ export const LoadingState: Story = {
     loading: true,
     title: 'Henter lagrede søk ...',
     description: '',
-    items: [{ id: '1', title: 'Loading the bookmark', inputValue: '', onChange: () => {} }],
+    items: [
+      {
+        id: '1',
+        title: 'Loading the bookmark',
+        inputValue: '',
+        onChange: () => {},
+      },
+    ],
   },
 };
 
