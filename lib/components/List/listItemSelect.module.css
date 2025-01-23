@@ -4,25 +4,8 @@
   align-items: center;
   justify-content: center;
   background-color: transparent;
-  padding: .75rem;
   border-radius: 50%;
   border: 0;
-}
-
-.label[data-size="xl"],
-.label[data-size="lg"],
-.label[data-size="md"] {
-  font-size: 1.25rem;
-  margin-left: 0.375rem;
-  margin-right: -0.25rem;
-}
-
-.label[data-size="sm"],
-.label[data-size="xs"] {
-  font-size: 1rem;
-  padding: .625rem;
-  margin-left: 0.325rem;
-  margin-right: -0.5rem;
 }
 
 .label:hover {
@@ -44,4 +27,58 @@
 
 .label:hover [data-hover="true"] {
   opacity: 1;
+}
+
+.label[data-size="xs"] {
+  width: 24px;
+  height: 24px;
+  margin: -2px;
+}
+
+.label[data-size="xs"] .icon {
+  width: 12px;
+}
+
+.label[data-size="sm"] {
+  width: 28px;
+  height: 28px;
+  margin: -2px;
+}
+
+.label[data-size="sm"] .icon {
+  width: 14px;
+  height: 14px;
+}
+
+.label[data-size="md"] {
+  width: 36px;
+  height: 36px;
+  margin: -2px;
+}
+
+.label[data-size="md"] .icon {
+  width: 16px;
+  height: 16px;
+}
+
+.label[data-size="lg"] {
+  width: 44px;
+  height: 44px;
+  margin: -4px;
+}
+
+.label[data-size="lg"] .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.label[data-size="xl"] {
+  width: 52px;
+  height: 52px;
+  margin: -4px;
+}
+
+.label[data-size="xl"] .icon {
+  width: 24px;
+  height: 24px;
 }

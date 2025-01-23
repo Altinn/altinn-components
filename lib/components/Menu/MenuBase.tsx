@@ -1,8 +1,9 @@
 import cx from 'classnames';
 import type { ElementType, ReactNode } from 'react';
-import type { MenuItemColor } from './MenuItemBase.tsx';
+import type { Color } from '..';
 import styles from './menuBase.module.css';
 
+export type MenuColor = Color;
 export type MenuTheme = 'transparent' | 'default' | 'subtle';
 export type MenuListRole = 'presentation' | 'group';
 export type MenuListItemRole = 'presentation' | 'group' | 'separator';
@@ -10,7 +11,7 @@ export type MenuListItemRole = 'presentation' | 'group' | 'separator';
 export interface MenuBaseProps {
   as?: ElementType;
   theme?: MenuTheme;
-  color?: MenuItemColor;
+  color?: MenuColor;
   className?: string;
   children?: ReactNode;
 }
@@ -31,10 +32,10 @@ export interface MenuListItemProps {
   children?: ReactNode;
 }
 
-export const MenuBase = ({ as = 'nav', theme, className, children }: MenuBaseProps) => {
+export const MenuBase = ({ as = 'nav', color, theme, className, children }: MenuBaseProps) => {
   const Component = as;
   return (
-    <Component className={cx(styles.menu, className)} data-theme={theme} role="menu">
+    <Component className={cx(styles.menu, className)} data-color={color} data-theme={theme} role="menu">
       {children}
     </Component>
   );

@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AvatarGroup } from './AvatarGroup';
+import { AvatarGroup, type AvatarGroupProps, Flex } from '..';
+
+const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as AvatarGroupProps['size'][];
 
 const meta = {
   title: 'Avatar/AvatarGroup',
   component: AvatarGroup,
-  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs', 'stable'],
   parameters: {
-    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
-    //    layout: 'fullscreen',
+    layout: 'centered',
   },
   args: {},
 } satisfies Meta<typeof AvatarGroup>;
@@ -63,4 +63,23 @@ export const CompanyAndPerson: Story = {
       },
     ],
   },
+};
+
+export const MaxItemsCount = () => {
+  const items = [{ name: 'A' }, { name: 'B' }, { name: 'C' }, { name: 'D' }];
+
+  return (
+    <Flex spacing={2} align="end">
+      {sizes?.map((size) => {
+        return (
+          <Flex direction="col" align="start" spacing={1} key={size}>
+            <AvatarGroup items={items} maxItemsCount={1} size={size} />
+            <AvatarGroup items={items} maxItemsCount={2} size={size} />
+            <AvatarGroup items={items} maxItemsCount={3} size={size} />
+            <AvatarGroup items={items} maxItemsCount={4} size={size} />
+          </Flex>
+        );
+      })}
+    </Flex>
+  );
 };

@@ -9,3 +9,4 @@ export * from './useInboxSearch';
 export * from './useAccountMenu';
 export * from './dialog';
 export * from './drilldownMenu';
+export * from './categoryItems';

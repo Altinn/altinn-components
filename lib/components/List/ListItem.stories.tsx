@@ -1,32 +1,47 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 
 import {
+  Avatar,
+  AvatarGroup,
   type AvatarGroupProps,
   Button,
-  List,
+  ContextMenu,
+  Icon,
   ListBase,
   ListItem,
-  ListItemBase,
-  ListItemHeader,
   type ListItemProps,
-  MetaItem,
   Section,
 } from '../';
 
 const themes = ['default', 'subtle', 'surface', 'base', 'transparent'] as ListItemProps['theme'][];
+
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as ListItemProps['size'][];
+
+const avatarGroupsProps = {
+  items: [
+    {
+      name: 'Alfa',
+    },
+    {
+      name: 'Beta',
+    },
+    {
+      name: 'Charlie',
+    },
+  ],
+} as AvatarGroupProps;
 
 const meta = {
   title: 'List/ListItem',
   component: ListItem,
-  tags: ['autodocs'],
+  //  tags: ["autodocs"],
   parameters: {},
   args: {
     id: 'id',
+    as: 'button',
     title: 'Title',
-    description: 'Description',
-    size: 'sm',
+    onClick: () => alert('xl'),
   },
 } satisfies Meta<typeof ListItem>;
 
@@ -34,16 +49,30 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    icon: {
+      theme: 'surface',
+      name: 'teddy-bear',
+    },
+    badge: {
+      theme: 'subtle',
+      label: '2 av 4',
+    },
+  },
 };
 
-export const MediaTypes = (args: ListItemProps) => {
+export const IconTypes = (args: ListItemProps) => {
   return (
     <ListBase>
-      <ListItem {...args} />
-      <MetaItem>No media</MetaItem>
       <ListItem {...args} icon="teddy-bear" />
-      <MetaItem>Icon</MetaItem>
+      <ListItem {...args} icon={{ theme: 'surface', name: 'teddy-bear' }} />
+    </ListBase>
+  );
+};
+
+export const Avatars = (args: ListItemProps) => {
+  return (
+    <ListBase>
       <ListItem
         {...args}
         avatar={{
@@ -51,7 +80,6 @@ export const MediaTypes = (args: ListItemProps) => {
           name: 'Erik Huseklepp',
         }}
       />
-      <MetaItem>Person</MetaItem>
       <ListItem
         {...args}
         avatar={{
@@ -59,7 +87,6 @@ export const MediaTypes = (args: ListItemProps) => {
           name: 'Sportsklubben Brann',
         }}
       />
-      <MetaItem>Company</MetaItem>
       <ListItem
         {...args}
         avatar={{
@@ -69,101 +96,45 @@ export const MediaTypes = (args: ListItemProps) => {
             'https://media.licdn.com/dms/image/v2/D4D0BAQH7Yv86kmHN5g/company-logo_200_200/company-logo_200_200/0/1688735908848?e=1738195200&v=beta&t=f-Mkzd03bqzdQN4IT0h89VQ9_Jri1iJ6XphYYnjsgEo',
         }}
       />
-      <MetaItem>Logo</MetaItem>
-      <ListItem
-        {...args}
-        avatarGroup={{
-          items: [
-            {
-              type: 'person',
-              name: 'Albert Åberg',
-            },
-            {
-              type: 'person',
-              name: 'Birger Meling',
-            },
-            {
-              type: 'person',
-              name: 'Celine Dion',
-            },
-          ],
-        }}
-      />
-      <MetaItem>People group</MetaItem>
-      <ListItem
-        {...args}
-        avatarGroup={{
-          items: [
-            {
-              type: 'company',
-              name: 'Albert Åberg',
-            },
-            {
-              type: 'company',
-              name: 'Birger Meling',
-            },
-            {
-              type: 'company',
-              name: 'Celine Dion',
-            },
-          ],
-        }}
-      />
-      <MetaItem>Company group</MetaItem>
     </ListBase>
   );
 };
 
-export const Loading = (args: ListItemProps) => {
+export const AvatarGroups = (args: ListItemProps) => {
   return (
     <ListBase>
-      {sizes.map((size) => {
-        return (
-          <Fragment key={size}>
-            <ListItem {...args} icon="teddy-bear" size={size} loading={true} />
-            <ListItem {...args} icon="teddy-bear" size={size} loading={false} />
-            <MetaItem>{size}</MetaItem>
-          </Fragment>
-        );
-      })}
+      <ListItem
+        {...args}
+        avatarGroup={{
+          ...avatarGroupsProps,
+          defaultType: 'person',
+        }}
+      />
+      <ListItem
+        {...args}
+        avatarGroup={{
+          ...avatarGroupsProps,
+          defaultType: 'company',
+        }}
+      />
     </ListBase>
   );
 };
 
-export const Controls = (args: ListItemProps) => {
+export const Badges = (args: ListItemProps) => {
   return (
     <ListBase>
-      <ListItem {...args} linkIcon="chevron-right" />
-      <MetaItem>Link icon, emphasising that this will take you somewhere</MetaItem>
-      <ListItem {...args} linkIcon="chevron-right" linkText="Åpne" />
-      <MetaItem>Link icon + link text, emphasising that this will take you somewhere</MetaItem>
-      <ListItem {...args} collapsible badge={{ label: 'Admin' }} />
-      <MetaItem>Collapsible item with badge</MetaItem>
-      <ListItem {...args} collapsible expanded />
-      <MetaItem>Collapsible and expanded item</MetaItem>
-      <ListItem
-        {...args}
-        badge={{ label: 'Admin' }}
-        linkIcon="chevron-right"
-        menu={{
-          id: 'menu',
-          items: [
-            { id: 'settings', title: 'Innstillinger', icon: 'cog' },
-            { id: 'log', title: 'Aktivitetslogg', icon: 'clock-dashed' },
-          ],
-        }}
-      />
-      <MetaItem>List item with badge, linkIcon and context menu</MetaItem>
+      <ListItem {...args} icon="teddy-bear" badge={{ label: '2 ting' }} description="Adding a badge." />
+      <ListItem {...args} icon="teddy-bear" linkIcon={undefined} description="LinkIcon has been removed." />
+    </ListBase>
+  );
+};
 
-      <ListItem
-        {...args}
-        controls={
-          <Button icon="pencil" size="sm" variant="outline">
-            Rediger
-          </Button>
-        }
-      />
-      <MetaItem>List item with custom controls</MetaItem>
+export const LoadingState = (args: ListItemProps) => {
+  return (
+    <ListBase>
+      <ListItem {...args} icon="teddy-bear" loading={true} />
+      <ListItem {...args} icon="teddy-bear" loading={false} />
     </ListBase>
   );
 };
@@ -171,68 +142,19 @@ export const Controls = (args: ListItemProps) => {
 export const Selectable = (args: ListItemProps) => {
   return (
     <ListBase>
-      {sizes?.map((size) => {
-        return (
-          <Fragment key={size}>
-            <ListItem
-              {...args}
-              size={size}
-              select={{
-                checked: false,
-              }}
-            />
-
-            <ListItem
-              {...args}
-              size={size}
-              select={{
-                checked: true,
-              }}
-              selected={true}
-            />
-            <MetaItem>{size}</MetaItem>
-          </Fragment>
-        );
-      })}
-    </ListBase>
-  );
-};
-
-export const Themes = (args: ListItemProps) => {
-  return (
-    <ListBase>
-      {themes?.map((theme) => {
-        return (
-          <Fragment key={theme}>
-            {sizes.map((size) => {
-              return (
-                <Fragment key={theme}>
-                  <ListItem {...args} icon="teddy-bear" theme={theme} size={size} linkIcon="chevron-right" />
-                </Fragment>
-              );
-            })}
-            <MetaItem>{theme}</MetaItem>
-          </Fragment>
-        );
-      })}
-    </ListBase>
-  );
-};
-
-export const Sizes = (args: ListItemProps) => {
-  return (
-    <ListBase>
-      {sizes?.map((size) => {
-        return (
-          <Fragment key={size}>
-            <ListItem {...args} description={undefined} size={size} linkIcon="chevron-right" />
-            <ListItem {...args} size={size} linkIcon="chevron-right" />
-            <ListItem {...args} icon="teddy-bear" size={size} linkIcon="chevron-right" />
-            <ListItem {...args} avatar={{ name: 'Avatar' }} size={size} linkIcon="chevron-right" />
-            <MetaItem>{size}</MetaItem>
-          </Fragment>
-        );
-      })}
+      <ListItem
+        {...args}
+        select={{
+          checked: false,
+        }}
+      />
+      <ListItem
+        {...args}
+        select={{
+          checked: true,
+        }}
+        selected={true}
+      />
     </ListBase>
   );
 };
@@ -244,80 +166,155 @@ export const Collapsible = (args: ListItemProps) => {
     setExpanded((prevState) => !prevState);
   };
 
-  const people = [
-    {
-      name: 'Per Ove Ludvigsen',
-      role: 'Sportlig leder',
-      rights: 'Admin',
-    },
-    {
-      name: 'Eirik Horneland',
-      role: 'Trener',
-      rights: 'Admin',
-    },
-    {
-      name: 'Erik Huseklepp',
-      role: 'Assistenttrener',
-      rights: 'Lese og skrive',
-    },
-    {
-      name: 'Hassan El Fakiri',
-      role: 'Toppspillerutvikler',
-      rights: 'Ingen rettigheter',
-    },
-  ];
-
-  const items: ListItemProps[] = people.map((item, index) => {
-    return {
-      avatar: {
-        ...item,
-        type: 'person',
-      },
-      title: item?.name,
-      description: item?.role,
-      badge: { label: item?.rights },
-      menu: {
-        id: 'menu' + index,
-        items: [
-          {
-            id: 'item1',
-            title: 'Hallo',
-          },
-        ],
-      },
-    };
-  });
-
-  const avatarGroup: AvatarGroupProps = {
-    items: people.map((item) => {
-      return {
-        name: item?.name,
-        type: 'person',
-      };
-    }),
-  };
-
   return (
-    <ListItemBase>
-      <ListItemHeader
-        {...args}
-        avatarGroup={avatarGroup}
-        collapsible={true}
-        expanded={expanded}
-        onClick={onToggle}
-        as="button"
-      />
+    <ListItem
+      {...args}
+      icon={{ theme: 'surface', name: 'teddy-bear' }}
+      badge={{ label: 'Badge' }}
+      description={expanded ? '' : 'Click to expand'}
+      collapsible={true}
+      expanded={expanded}
+      onClick={onToggle}
+      as="button"
+    >
       {expanded && (
-        <Section padding={2} spacing={2}>
-          <List
-            spacing="xs"
-            defaultItemSize="xs"
-            defaultItemColor="neutral"
-            defaultItemTheme="transparent"
-            items={items}
-          />
+        <Section padding={4}>
+          <p>Item is expanded</p>
         </Section>
       )}
-    </ListItemBase>
+    </ListItem>
+  );
+};
+
+export const Theme = (args: ListItemProps) => {
+  return (
+    <ListBase>
+      {themes?.map((theme) => {
+        return (
+          <ListItem
+            {...args}
+            icon="teddy-bear"
+            title={theme}
+            description={'theme:' + theme}
+            theme={theme}
+            linkIcon="chevron-right"
+            key={theme}
+          />
+        );
+      })}
+    </ListBase>
+  );
+};
+
+export const Size = (args: ListItemProps) => {
+  return (
+    <ListBase>
+      {sizes?.map((size) => {
+        return (
+          <ListItem
+            {...args}
+            icon={{ name: 'teddy-bear', theme: 'surface' }}
+            title={size}
+            description={'theme:' + size}
+            size={size}
+            linkIcon="chevron-right"
+            key={size}
+          />
+        );
+      })}
+    </ListBase>
+  );
+};
+
+export const OverridingIcon = (args: ListItemProps) => {
+  return (
+    <ListBase>
+      <ListItem
+        {...args}
+        description="Custom icon with Avatar + Icon"
+        icon={
+          <span style={{ position: 'relative' }}>
+            <Avatar name="Alfa" size="md" />
+            <span style={{ position: 'absolute', bottom: -2, right: -2 }}>
+              <Icon name="teddy-bear" size="xs" theme="subtle" />
+            </span>
+          </span>
+        }
+      />
+      <ListItem
+        {...args}
+        description="Custom icon with Icon + Avatar"
+        icon={
+          <span style={{ position: 'relative' }}>
+            <Icon name="teddy-bear" size="md" theme="subtle" />
+            <span style={{ position: 'absolute', bottom: -2, right: -2 }}>
+              <Avatar name="Alfa" size="xs" />
+            </span>
+          </span>
+        }
+      />
+      <ListItem {...args} description="Smaller AvatarGroup" icon={<AvatarGroup {...avatarGroupsProps} />} />
+    </ListBase>
+  );
+};
+
+export const OverridingBadge = (args: ListItemProps) => {
+  return (
+    <ListBase>
+      <ListItem
+        {...args}
+        description="Badge replaced by AvatarGroup"
+        badge={<AvatarGroup {...avatarGroupsProps} size="sm" />}
+        linkIcon="chevron-right"
+      />
+    </ListBase>
+  );
+};
+
+export const OverridingLabel = (args: ListItemProps) => {
+  return (
+    <ListBase>
+      <ListItem
+        {...args}
+        icon="teddy-bear"
+        label={
+          <span>
+            A <em>custom</em> label{' '}
+          </span>
+        }
+      />
+    </ListBase>
+  );
+};
+
+export const CustomControls = (args: ListItemProps) => {
+  return (
+    <ListBase>
+      <ListItem
+        {...args}
+        icon="teddy-bear"
+        badge={{ label: 'Admin' }}
+        linkIcon="chevron-right"
+        controls={
+          <ContextMenu
+            id="menu"
+            size="sm"
+            items={[
+              { id: 'settings', title: 'Innstillinger', icon: 'cog' },
+              { id: 'log', title: 'Aktivitetslogg', icon: 'clock-dashed' },
+            ]}
+          />
+        }
+      />
+      <ListItem
+        {...args}
+        icon="teddy-bear"
+        controls={
+          <Button icon="pencil" size="sm" variant="outline">
+            Rediger
+          </Button>
+        }
+      />
+    </ListBase>
   );
 };

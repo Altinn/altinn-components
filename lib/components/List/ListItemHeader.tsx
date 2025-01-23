@@ -1,15 +1,23 @@
 import cx from 'classnames';
-import type { ReactNode } from 'react';
-import type { AvatarGroupProps, AvatarProps } from '../Avatar';
-import type { BadgeProps } from '../Badge';
-import type { ContextMenuProps } from '../ContextMenu';
-import type { IconName } from '../Icon';
-import type { ListItemSize } from './ListItemBase';
-import { ListItemControls } from './ListItemControls';
-import { ListItemLabel } from './ListItemLabel';
-import { ListItemLink, type ListItemLinkProps } from './ListItemLink';
-import { ListItemMedia } from './ListItemMedia';
-import { ListItemSelect, type ListItemSelectProps } from './ListItemSelect';
+import { type ReactNode, isValidElement } from 'react';
+import {
+  type AvatarGroupProps,
+  type AvatarProps,
+  Badge,
+  type BadgeProps,
+  Icon,
+  type IconName,
+  type IconProps,
+  ListItemControls,
+  ListItemIcon,
+  type ListItemIconSize,
+  ListItemLabel,
+  ListItemLink,
+  type ListItemLinkProps,
+  ListItemSelect,
+  type ListItemSelectProps,
+  type ListItemSize,
+} from '..';
 import styles from './listItemHeader.module.css';
 
 export interface ListItemHeaderProps extends ListItemLinkProps {
@@ -30,19 +38,15 @@ export interface ListItemHeaderProps extends ListItemLinkProps {
   /** Description */
   description?: string;
   /** List item icon */
-  icon?: IconName;
+  icon?: IconName | IconProps | ReactNode | undefined;
   /** List item avatar */
   avatar?: AvatarProps;
   /** List item avatarGroup */
   avatarGroup?: AvatarGroupProps;
-  /** Optional text indicating behaviour */
-  linkText?: string;
   /** Optional icon indicating behaviour */
-  linkIcon?: IconName;
+  linkIcon?: IconName | undefined;
   /** Optional badge */
-  badge?: BadgeProps | undefined;
-  /** Context menu */
-  menu?: ContextMenuProps;
+  badge?: BadgeProps | ReactNode | undefined;
   /** Custom controls */
   controls?: ReactNode;
   /** Custom label */
@@ -58,8 +62,6 @@ export const ListItemHeader = ({
   onClick,
   onKeyPress,
   tabIndex,
-  collapsible,
-  expanded,
   size = 'sm',
   title,
   description,
@@ -67,37 +69,77 @@ export const ListItemHeader = ({
   avatar,
   avatarGroup,
   linkIcon,
-  linkText,
   badge,
-  menu,
   controls,
   className,
   children,
 }: ListItemHeaderProps) => {
-  const applicableLinkIcon = collapsible && expanded ? 'chevron-up' : collapsible ? 'chevron-down' : linkIcon;
+  /** Map ListItemSize to ListItemIconSize */
+  const iconSizeMap: Record<ListItemSize, ListItemIconSize> = {
+    xs: 'sm',
+    sm: 'md',
+    md: 'lg',
+    lg: 'lg',
+    xl: 'xl',
+  };
+
+  /** Set default icon size */
+  const applicableIconSize = iconSizeMap[size];
+
+  /** Badge can be custom, or a Badge object. */
+  const renderBadge = (): ReactNode => {
+    if (badge && typeof badge === 'object' && 'label' in badge) {
+      return <Badge {...(badge as BadgeProps)} />;
+    }
+    if (isValidElement(badge)) {
+      return badge;
+    }
+    return null;
+  };
 
   return (
-    <header className={styles.header} data-size={size} aria-expanded={expanded}>
-      {select && <ListItemSelect {...select} size={size} />}
-      <ListItemLink
-        className={cx(styles.link, className)}
-        as={as}
-        href={href}
-        onClick={onClick}
-        onKeyPress={onKeyPress}
-        tabIndex={tabIndex}
-        loading={loading}
-        disabled={disabled || loading}
-        size={size}
-      >
-        <ListItemMedia loading={loading} size={size} icon={icon} avatar={avatar} avatarGroup={avatarGroup} />
-        <ListItemLabel loading={loading} size={size} title={title} description={description}>
-          {children}
-        </ListItemLabel>
-        <ListItemControls linkIcon={applicableLinkIcon} linkText={linkText} badge={badge} />
-      </ListItemLink>
-      <ListItemControls className={styles.controls} menu={menu}>
-        {controls}
+    <header className={styles.header} data-size={size}>
+      <div className={styles.link}>
+        {select && <ListItemSelect {...select} size={applicableIconSize as ListItemIconSize} />}
+        <ListItemLink
+          interactive={!!controls}
+          className={cx(styles.link, className)}
+          as={as}
+          href={href}
+          onClick={onClick}
+          onKeyPress={onKeyPress}
+          tabIndex={tabIndex}
+          loading={loading}
+          disabled={disabled || loading}
+          size={size}
+        >
+          <ListItemIcon
+            loading={loading}
+            size={applicableIconSize as ListItemIconSize}
+            icon={icon}
+            avatar={avatar}
+            avatarGroup={avatarGroup}
+          />
+          <ListItemLabel size={size} loading={loading} title={title} description={description}>
+            {children}
+          </ListItemLabel>
+          {controls && (
+            <>
+              {renderBadge()}
+              {linkIcon && <Icon name={linkIcon} size={applicableIconSize as ListItemIconSize} />}
+            </>
+          )}
+        </ListItemLink>
+      </div>
+      <ListItemControls className={styles.controls}>
+        {controls ? (
+          controls
+        ) : (
+          <>
+            {renderBadge()}
+            {linkIcon && <Icon name={linkIcon} size={applicableIconSize as ListItemIconSize} />}
+          </>
+        )}
       </ListItemControls>
     </header>
   );

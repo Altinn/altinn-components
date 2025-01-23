@@ -7,6 +7,7 @@ export * from './inboxMenu';
 export * from './dialogs';
 export * from './dialogMenuItems';
 export * from './bookmarks';
+export * from "./dialogTrashMenuItems";
 
 export * from './userMenuItems';
 export * from './companyMenuItems';
@@ -16,7 +17,6 @@ export * from './categoryItems';
 export * from './header';
 export * from './footer';
 
-export * from './sitemap';
 
 export * from './users';
 export * from './companies';
@@ -24,3 +24,8 @@ export * from './services';
 
 export * from './docsMenuItems';
 export * from './loginMenu';
+
+export * from "./companyAccess"
+export * from "./companyUsers"
+
+export * from './sitemap';

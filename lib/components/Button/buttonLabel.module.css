@@ -2,6 +2,7 @@
   line-height: 1;
   font-weight: 500;
   padding: 0 .25em;
+  white-space: nowrap;
 }
 
 .label[data-size="xs"] {

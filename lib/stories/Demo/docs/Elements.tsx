@@ -3,6 +3,7 @@ import { Flex, PageBase, PageNav, Section, Typography } from '../../../component
 import { brreg } from '../data/avatar';
 
 import { Avatars } from './Avatars';
+import { AvatarGroups } from './AvatarGroups';
 import { Buttons } from './Buttons';
 import { Colors } from './Colors';
 import { Icons } from './Icons';
@@ -17,7 +18,7 @@ export const Elements = () => {
         <h1>Icons and avatars</h1>
         <h2>Avatar</h2>
         <p>
-          Avatars are used to identify people and companies across Altinn. They come in multiple sizes and are included
+          Use avatars to identify people and companies across Altinn. They come in multiple sizes and are included
           in components like ListItem and MenuItem.
         </p>
         <Avatars name="Person" type="person" />
@@ -26,6 +27,14 @@ export const Elements = () => {
         <p>Company avatars are square and uses a dark background color.</p>
         <Avatars {...brreg} />
         <p>Companies can also be idenitfied by their logo.</p>
+
+        <h2>Avatar groups</h2>
+        <p>Use avatar groups when you need to identify a group of companies or a group of people.</p>
+
+        <AvatarGroups defaultType="company" />
+        <p>Group of companies.</p>
+        <AvatarGroups defaultType="person" />
+        <p>Group of people.</p>
 
         <h2>Icon</h2>
         <p>

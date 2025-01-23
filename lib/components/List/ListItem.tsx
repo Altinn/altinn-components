@@ -1,8 +1,7 @@
 import type { ReactElement, ReactNode } from 'react';
 import type { AvatarGroupProps, AvatarProps } from '../Avatar';
 import type { BadgeProps } from '../Badge';
-import type { ContextMenuProps } from '../ContextMenu';
-import type { IconName } from '../Icon';
+import type { IconName, IconProps } from '../Icon';
 import { ListItemBase, type ListItemBaseProps } from './ListItemBase';
 import { ListItemHeader, type ListItemHeaderProps } from './ListItemHeader';
 
@@ -18,21 +17,17 @@ export interface ListItemProps extends ListItemBaseProps, ListItemHeaderProps {
   /** Optional description */
   description?: string;
   /** List item icon */
-  icon?: IconName;
+  icon?: IconName | IconProps | ReactNode | undefined;
   /** List item avatar */
   avatar?: AvatarProps;
   /** List item avatarGroup */
   avatarGroup?: AvatarGroupProps;
-  /** Optional text indicating behaviour */
-  linkText?: string;
   /** Optional icon indicating behaviour */
-  linkIcon?: IconName;
+  linkIcon?: IconName | undefined;
   /** Custom label */
   label?: ReactNode | (() => ReactElement);
   /** Optional badge */
-  badge?: BadgeProps | undefined;
-  /** Optional context menu */
-  menu?: ContextMenuProps;
+  badge?: BadgeProps | ReactNode | undefined;
 }
 
 export interface ListItemInputProps extends ListItemProps {
@@ -43,7 +38,10 @@ export interface ListItemInputProps extends ListItemProps {
 
 export const ListItem = ({
   className,
+  variant = 'solid',
   color,
+  theme = 'default',
+  shadow = 'xs',
   loading,
   collapsible,
   expanded,
@@ -54,23 +52,64 @@ export const ListItem = ({
   title,
   description,
   badge,
-  linkText,
-  linkIcon,
+  linkIcon = 'chevron-right',
   label,
-  menu,
   select,
   controls,
   children,
   ...rest
 }: ListItemProps) => {
+  const applicableLinkIcon = collapsible && expanded ? 'chevron-up' : collapsible ? 'chevron-down' : linkIcon;
   const applicableLabel = typeof label === 'function' ? label() : label;
+
+  if (expanded) {
+    return (
+      <ListItemBase
+        interactive={false}
+        variant={variant}
+        color={color}
+        theme={theme}
+        shadow={shadow}
+        expanded={expanded}
+      >
+        <ListItemBase theme="transparent" interactive={!controls} size={size} color={color} loading={loading} {...rest}>
+          <ListItemHeader
+            className={className}
+            loading={loading}
+            select={select}
+            size={size}
+            title={title}
+            description={description}
+            icon={icon}
+            avatar={avatar}
+            avatarGroup={avatarGroup}
+            badge={badge}
+            linkIcon={applicableLinkIcon}
+            controls={controls}
+            {...rest}
+          >
+            {applicableLabel}
+          </ListItemHeader>
+        </ListItemBase>
+        {children}
+      </ListItemBase>
+    );
+  }
+
   return (
-    <ListItemBase size={size} color={color} expanded={expanded} loading={loading} {...rest}>
+    <ListItemBase
+      interactive={!controls}
+      variant={variant}
+      color={color}
+      theme={theme}
+      shadow={shadow}
+      expanded={expanded}
+      loading={loading}
+      {...rest}
+    >
       <ListItemHeader
         className={className}
         loading={loading}
-        collapsible={collapsible}
-        expanded={expanded}
         select={select}
         size={size}
         title={title}
@@ -78,16 +117,13 @@ export const ListItem = ({
         icon={icon}
         avatar={avatar}
         avatarGroup={avatarGroup}
-        linkIcon={linkIcon}
-        linkText={linkText}
         badge={badge}
+        linkIcon={applicableLinkIcon}
         controls={controls}
-        menu={menu}
         {...rest}
       >
         {applicableLabel}
       </ListItemHeader>
-      {children}
     </ListItemBase>
   );
 };

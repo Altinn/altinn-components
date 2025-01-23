@@ -2,6 +2,7 @@ import { withThemeByDataAttribute } from "@storybook/addon-themes";
 import { Preview, StoryFn } from "@storybook/react";
 import { StoryDecorator } from "./StoryDecorator";
 import "../lib/css/global.css";
+import "./preview.css";
 import { A11yParameters } from "@storybook/addon-a11y";
 import { Rule, getRules } from "axe-core";
 
@@ -39,7 +40,7 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ["Layout", "Search", "Menu", "List"],
+        order: ["Docs", "Layout", "Search", "Menu", "List"],
       },
     },
   },

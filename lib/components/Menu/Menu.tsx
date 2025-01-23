@@ -10,9 +10,10 @@ export interface MenuProps extends MenuItemsProps {
 export const Menu = ({
   color,
   theme,
-  defaultItemColor,
-  defaultItemTheme = 'default',
-  defaultItemSize = 'sm',
+  defaultItemColor /** Should inherit from parent? */,
+  defaultItemTheme /** Should inherit from parent? */,
+  defaultItemSize,
+  defaultIconTheme,
   groups,
   items = [],
   search,
@@ -26,6 +27,7 @@ export const Menu = ({
         defaultItemSize={defaultItemSize}
         defaultItemColor={defaultItemColor}
         defaultItemTheme={defaultItemTheme}
+        defaultIconTheme={defaultIconTheme}
       />
     </MenuBase>
   );

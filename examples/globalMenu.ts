@@ -9,6 +9,7 @@ export const globalMenu: GlobalMenuProps = {
   changeLabel: 'Endre',
   groups: {
     apps: {
+      defaultIconTheme: 'surface',
       divider: true,
     },
   },
@@ -19,10 +20,14 @@ export const globalMenu: GlobalMenuProps = {
       size: 'lg',
       icon: 'inbox',
       title: 'Innboks',
+      selected: true,
       badge: {
         label: '4',
       },
-      alertBadge: {
+      iconBadge: {
+        color: 'alert',
+        theme: 'base',
+        size: 'xs',
         label: '2',
       },
     },
@@ -43,7 +48,6 @@ export const globalMenu: GlobalMenuProps = {
     {
       id: 'startup',
       groupId: 'help',
-      color: 'neutral',
       size: 'sm',
       icon: 'buildings2',
       title: 'Starte og drive bedrift',
@@ -52,7 +56,6 @@ export const globalMenu: GlobalMenuProps = {
       id: 'help',
       groupId: 'help',
       size: 'sm',
-      color: 'neutral',
       icon: 'chat-exclamationmark',
       title: 'Trenger du hjelp?',
     },

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { CategoryLayout, CompanyLayout, InboxLayout, UserLayout } from '../';
+import { DocsLayout, CategoryLayout, CompanyLayout, InboxLayout, UserLayout } from '../';
 import { Layout, type LayoutProps } from '../../../components';
 import { useLayout, useNavigation } from '../hooks';
 
@@ -12,6 +12,8 @@ export const AppLayoutType = ({ children }: AppLayoutTypeProps) => {
   const { header, footer } = useLayout();
   const { parentId } = useNavigation();
   switch (parentId) {
+    case 'docs':
+      return <DocsLayout>{children}</DocsLayout>;
     case 'inbox':
       return <InboxLayout>{children}</InboxLayout>;
     case 'company':

@@ -21,9 +21,11 @@ export const ListItemLabel = ({ loading = false, size = 'sm', title, description
           <h2 className={styles.title} data-size={size}>
             <Skeleton loading={loading}>{title}</Skeleton>
           </h2>{' '}
-          <p className={styles.description} data-size={size}>
-            <Skeleton loading={loading}>{description}</Skeleton>
-          </p>
+          {description && (
+            <p className={styles.description} data-size={size}>
+              <Skeleton loading={loading}>{description}</Skeleton>
+            </p>
+          )}
         </>
       )}
     </span>

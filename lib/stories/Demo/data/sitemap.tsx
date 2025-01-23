@@ -29,7 +29,7 @@ export const sitemap: MenuItemProps[] = [
     groupId: 'apps',
     size: 'lg',
     icon: 'handshake',
-    title: 'Administrasjon',
+    title: 'Tilganger',
     alertBadge: {
       label: '2',
     },

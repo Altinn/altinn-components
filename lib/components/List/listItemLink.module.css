@@ -11,13 +11,18 @@
   -moz-osx-font-smoothing: inherit;
   appearance: none;
   user-select: none;
-  cursor: pointer;
 }
 
 .link[aria-disabled="true"] {
   pointer-events: none;
 }
 
-.link:not([aria-disabled="true"]):hover h2 {
+/* only apply hover styles when interactive */
+
+.interactive:not([aria-disabled="true"]) {
+  cursor: pointer;
+}
+
+.interactive:not([aria-disabled="true"]):hover h2 {
   text-decoration: underline;
 }

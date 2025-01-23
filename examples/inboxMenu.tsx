@@ -2,21 +2,23 @@ import type { MenuProps } from '../lib';
 
 export const inboxMenu: MenuProps = {
   groups: {},
+  defaultIconTheme: 'default',
   items: [
     {
       id: '1',
       groupId: '1',
       size: 'lg',
-      icon: 'inbox',
-      iconVariant: 'solid',
+      icon: { name: 'inbox', theme: 'base', variant: 'solid' },
+      iconBadge: {
+        size: 'xs',
+        theme: 'base',
+        color: 'alert',
+        label: '2 uleste',
+      },
       selected: true,
       title: 'Innboks',
-      theme: 'base',
       badge: {
         label: '12',
-      },
-      alertBadge: {
-        label: '2 uleste',
       },
     },
     {

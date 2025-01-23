@@ -8,6 +8,7 @@ import {
   type DialogSelectProps,
   type DialogStatusProps,
   type DialogTouchedByActor,
+  ListItem,
   ListItemBase,
   type ListItemBaseProps,
   ListItemLabel,
@@ -116,23 +117,29 @@ export const DialogListItem = ({
   title,
   description,
   summary,
-  theme,
+  theme = 'default',
   ...rest
 }: DialogListItemProps) => {
   const applicableState = trashedAt ? 'trashed' : archivedAt ? 'archived' : state;
 
-  const applicableTheme = theme || selected ? 'subtle' : 'default';
+  const applicableTheme = selected ? 'subtle' : theme;
 
   if (size === 'xs' || size === 'sm' || size === 'md') {
     return (
-      <ListItemBase {...rest} size={size} selected={selected} theme={applicableTheme}>
-        <ListItemLink {...rest} size={size} className={styles.link}>
+      <ListItem
+        {...rest}
+        size={size}
+        selected={selected}
+        theme={applicableTheme}
+        label={
           <div className={styles.border} data-size={size} data-seen={seen} data-loading={loading}>
             <ListItemLabel loading={loading} size={size} title={title} description={summary || description} />
-            <DialogMetadata loading={loading} sender={sender} updatedAt={updatedAt} updatedAtLabel={updatedAtLabel} />
           </div>
-        </ListItemLink>
-      </ListItemBase>
+        }
+        badge={
+          <DialogMetadata loading={loading} sender={sender} updatedAt={updatedAt} updatedAtLabel={updatedAtLabel} />
+        }
+      />
     );
   }
 

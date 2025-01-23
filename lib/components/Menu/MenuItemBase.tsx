@@ -5,7 +5,7 @@ import styles from './menuItemBase.module.css';
 
 export type MenuItemColor = Color;
 export type MenuItemSize = 'xs' | 'sm' | 'md' | 'lg';
-export type MenuItemTheme = 'transparent' | 'default' | 'surface' | 'base';
+export type MenuItemTheme = 'default' | 'subtle' | 'surface' | 'base';
 
 export interface MenuItemBaseProps {
   as?: ElementType;
@@ -72,7 +72,7 @@ export const MenuItemBase = ({
     >
       <div className={styles.content}>
         {children}
-        {badge && <Badge {...badge} />}
+        {badge && <Badge {...badge} theme={badge?.theme || 'surface'} />}
       </div>
       {linkIcon && (
         <div className={styles.action}>

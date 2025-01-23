@@ -13,17 +13,11 @@
 .title[data-size="md"] {
   font-size: 1rem;
   line-height: 1.25;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .title[data-size="sm"] {
   font-size: 1rem;
-  line-height: 1.25;
-  font-weight: 400;
-}
-
-.title[data-size="xs"] {
-  font-size: 0.875rem;
   line-height: 1.25;
   font-weight: 400;
 }

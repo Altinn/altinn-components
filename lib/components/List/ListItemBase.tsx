@@ -1,5 +1,5 @@
 import cx from 'classnames';
-import type { ReactNode } from 'react';
+import type { ElementType, KeyboardEvent, KeyboardEventHandler, ReactNode } from 'react';
 import type { Color } from '..';
 import styles from './listItemBase.module.css';
 
@@ -11,6 +11,12 @@ export type ListItemColor = Color;
 export type ListItemTheme = 'transparent' | 'default' | 'subtle' | 'surface' | 'base';
 
 export interface ListItemBaseProps {
+  interactive?: boolean;
+  as?: ElementType;
+  href?: string;
+  onClick?: () => void;
+  onKeyPress?: KeyboardEventHandler;
+  tabIndex?: number;
   color?: ListItemColor;
   theme?: ListItemTheme;
   variant?: ListItemVariant;
@@ -27,11 +33,17 @@ export interface ListItemBaseProps {
 }
 
 export const ListItemBase = ({
+  interactive = true,
+  as,
+  href,
+  onClick,
+  onKeyPress,
+  tabIndex,
   size,
-  variant = 'solid',
+  variant,
   color,
-  theme = 'default',
-  shadow = 'xs',
+  theme,
+  shadow,
   loading,
   disabled,
   hidden = false,
@@ -41,6 +53,38 @@ export const ListItemBase = ({
   className,
   children,
 }: ListItemBaseProps) => {
+  const appliedShadow = theme === 'transparent' ? 'none' : shadow;
+
+  if (interactive) {
+    const linkClass = cx(styles.item, styles.interactive, className);
+    const Component = as || 'button';
+
+    return (
+      <Component
+        className={linkClass}
+        data-variant={variant}
+        data-color={color}
+        data-theme={theme}
+        data-size={size}
+        data-shadow={appliedShadow}
+        data-active={active}
+        href={href}
+        onKeyPress={(e: KeyboardEvent) => {
+          e.key === 'Enter' && onClick?.();
+          onKeyPress?.(e);
+        }}
+        onClick={onClick}
+        tabIndex={tabIndex}
+        aria-hidden={hidden}
+        aria-disabled={disabled || loading}
+        aria-selected={selected}
+        aria-expanded={expanded}
+      >
+        {children}
+      </Component>
+    );
+  }
+
   const itemClass = cx(styles.item, className);
 
   return (
@@ -50,7 +94,7 @@ export const ListItemBase = ({
       data-color={color}
       data-theme={theme}
       data-size={size}
-      data-shadow={theme === 'transparent' ? 'none' : shadow}
+      data-shadow={appliedShadow}
       data-active={active}
       aria-hidden={hidden}
       aria-disabled={disabled || loading}

@@ -6,9 +6,11 @@ import {
   reportingDraftDialog,
   simpleLetterDialog,
   transmissionsDialog,
+  snowDialog
 } from './dialog';
 
 export const dialogs = [
+  snowDialog,
   reportingDialog,
   simpleLetterDialog,
   extendedLetterDialog,

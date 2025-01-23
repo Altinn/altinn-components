@@ -31,7 +31,13 @@ export const useLayout = () => {
       ...header,
       search,
       currentAccount,
-      menu,
+      menu: {
+        ...menu,
+        menuLabel: "Meny",
+        backLabel: "Tilbake",
+        logoutButton: { label: 'Logg ut' },
+        changeLabel: 'Endre',
+      },
     },
     footer,
   };

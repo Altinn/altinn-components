@@ -1,8 +1,9 @@
-import { useAppContext } from '..';
 import { Article, Heading, ListBase, ListItem, PageBase, PageHeader, PageNav, Typography } from '../../../components';
-import { sitemap } from '../data';
+import { useNavigation, AccessPackageItem } from '../';
 export const CategorySection = () => {
-  const { pageId, setPageId } = useAppContext();
+  const {parentId, sectionId, section, breadcrumbs, pageId, setPageId} = useNavigation();
+
+  /*
 
   const parents = pageId?.split('/');
   const parentId = parents?.[0];
@@ -30,6 +31,8 @@ export const CategorySection = () => {
       };
     });
 
+    */
+
   const { icon, title } = section;
 
   const list = section?.items.map((item) => {
@@ -38,11 +41,13 @@ export const CategorySection = () => {
     const itemId = [parentId, sectionId, id].join('/');
 
     return {
+      variant: "category",
       as: 'button',
       onClick: () => setPageId(itemId),
       icon,
       title,
-      linkText: '5 tjenester',
+      linkIcon: null,
+      badge: {label: '5 tjenester'},
       menu: {
         id: ['menu', id].join('-'),
         items: [{ title: 'Lorem' }, { title: 'Ipsum' }, { title: 'Dolor' }],
@@ -51,10 +56,10 @@ export const CategorySection = () => {
   });
 
   return (
-    <PageBase spacing={4}>
+    <PageBase color="company" spacing={4}>
       <PageNav breadcrumbs={breadcrumbs} />
       <Article spacing={4}>
-        <PageHeader icon={icon} title={title} />
+        <PageHeader icon={{theme: "surface", name: icon}} title={title} />
         <Typography>
           <p>
             Når du betaler ut lønn til ansatte, er det flere rapporteringsplikter du må oppfylle overfor offentlige
@@ -62,9 +67,9 @@ export const CategorySection = () => {
           </p>
         </Typography>
 
-        <ListBase>
+        <ListBase color="neutral">
           {list?.map((item) => (
-            <ListItem {...item} theme="subtle" />
+            <AccessPackageItem {...item} theme="subtle" />
           ))}
         </ListBase>
       </Article>

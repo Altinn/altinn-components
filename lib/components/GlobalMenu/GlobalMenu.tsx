@@ -87,7 +87,7 @@ export const GlobalMenu = ({
           />
         </GlobalMenuHeader>
         <MenuListItem as="div" role="separator" />
-        <Menu groups={groups} items={itemsWithToggle} defaultItemTheme="surface" />
+        <Menu groups={groups} items={itemsWithToggle} theme="default" />
         {logoutButton && (
           <>
             <MenuListItem as="div" role="separator" />

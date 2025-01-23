@@ -23,7 +23,7 @@ export interface MenuOptionProps {
 }
 
 export const MenuOption = ({
-  size = 'sm',
+  size = 'md',
   type,
   name,
   value,

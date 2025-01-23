@@ -1,16 +1,17 @@
 'use client';
 import { Fragment } from 'react';
 import { MenuHeader, MenuItem, MenuList, MenuListItem } from '../';
-import type { MenuItemColor, MenuItemProps, MenuItemSize, MenuItemTheme } from '../';
+import type { IconTheme, MenuItemColor, MenuItemProps, MenuItemSize, MenuItemTheme } from '../';
 import { useMenu } from '../../hooks';
 import { MenuSearch, type MenuSearchProps } from './MenuSearch';
 
 export interface MenuGroupProps {
   title?: string;
   divider?: boolean;
-  defaultItemColor?: MenuItemColor;
   defaultItemSize?: MenuItemSize;
+  defaultItemColor?: MenuItemColor;
   defaultItemTheme?: MenuItemTheme;
+  defaultIconTheme?: IconTheme;
 }
 
 export type MenuItemGroups = Record<string, MenuGroupProps>;
@@ -21,9 +22,10 @@ export interface MenuItemsProps {
   search?: MenuSearchProps;
   items: MenuItemProps[];
   groups?: MenuItemGroups;
-  defaultItemColor?: MenuItemColor;
   defaultItemSize?: MenuItemSize;
+  defaultItemColor?: MenuItemColor;
   defaultItemTheme?: MenuItemTheme;
+  defaultIconTheme?: IconTheme;
 }
 
 export const MenuItems = ({
@@ -32,9 +34,10 @@ export const MenuItems = ({
   search,
   items,
   groups = {},
+  defaultItemSize,
   defaultItemColor,
   defaultItemTheme,
-  defaultItemSize,
+  defaultIconTheme,
 }: MenuItemsProps) => {
   const { menu } = useMenu<MenuItemProps, MenuGroupProps>({
     items,
@@ -74,9 +77,10 @@ export const MenuItems = ({
                   <MenuListItem role="presentation" expanded={expanded} key={index}>
                     <MenuItem
                       {...itemProps}
+                      size={itemProps?.size || groupProps?.defaultItemSize || defaultItemSize}
                       color={itemProps?.color || groupProps?.defaultItemColor || defaultItemColor}
                       theme={itemProps?.theme || groupProps?.defaultItemTheme || defaultItemTheme}
-                      size={itemProps?.size || groupProps?.defaultItemSize || defaultItemSize}
+                      iconTheme={itemProps?.iconTheme || groupProps?.defaultIconTheme || defaultIconTheme}
                       active={active}
                       tabIndex={itemProps?.disabled ? -1 : 0}
                     />
@@ -87,9 +91,10 @@ export const MenuItems = ({
                           level={level + 1}
                           items={itemProps?.items}
                           groups={groups}
+                          defaultItemSize={defaultItemSize}
                           defaultItemColor={defaultItemColor}
                           defaultItemTheme={defaultItemTheme}
-                          defaultItemSize={defaultItemSize}
+                          defaultIconTheme={defaultIconTheme}
                         />
                         {/** Render a separator if expanded and there are items underneath */}
                         {(nextGroup || nextItem) && <MenuListItem role="separator" as="div" />}

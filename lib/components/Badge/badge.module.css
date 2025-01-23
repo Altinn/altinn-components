@@ -3,11 +3,12 @@
   align-items: center;
   justify-content: center;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .badge[data-size="xs"] {
-  width: .75rem;
-  height: .75rem;
+  width: 0.75rem;
+  height: 0.75rem;
   padding: 0;
   border-radius: 1em;
 }

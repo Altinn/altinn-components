@@ -1,7 +1,7 @@
 import { ListBase, type ListBaseProps } from '../List';
 import { AccessPackageListItem, type AccessPackageListItemProps } from './AccessPackageListItem';
 
-export interface AccessPackageListProps extends Pick<ListBaseProps, 'spacing' | 'theme'> {
+export interface AccessPackageListProps extends Pick<ListBaseProps, 'spacing'> {
   items: AccessPackageListItemProps[];
 }
 

@@ -28,6 +28,10 @@ export const InboxSection = () => {
           title: groupId,
         };
 
+        if (sectionId === "trash") {
+          return true
+        }
+
         if (sectionId === 'inbox' && status?.value) {
           if (['new', 'in-progress', 'completed', 'requires-attention'].includes(status.value)) {
             return true;

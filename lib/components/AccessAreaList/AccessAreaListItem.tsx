@@ -1,4 +1,4 @@
-import { ListItemBase, ListItemHeader } from '../List';
+import { ListItem } from '../List';
 import type { ListItemProps } from '../List';
 import styles from './accessAreaListItem.module.css';
 
@@ -19,22 +19,21 @@ export const AccessAreaListItem = ({
   ...props
 }: AccessAreaListItemProps) => {
   return (
-    <ListItemBase size={size} expanded={expanded}>
-      <ListItemHeader
-        as="button"
-        avatar={{
-          name,
-          imageUrl: icon,
-          type: 'company',
-        }}
-        title={name}
-        size={size}
-        collapsible={true}
-        expanded={expanded}
-        onClick={onClick}
-        {...props}
-      />
+    <ListItem
+      as="button"
+      avatar={{
+        name,
+        imageUrl: icon,
+        type: 'company',
+      }}
+      title={name}
+      size={size}
+      collapsible={true}
+      expanded={expanded}
+      onClick={onClick}
+      {...props}
+    >
       {expanded && <div className={styles.content}>{children}</div>}
-    </ListItemBase>
+    </ListItem>
   );
 };
