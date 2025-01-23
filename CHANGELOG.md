@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.15.1](https://github.com/Altinn/altinn-components/compare/v0.15.0...v0.15.1) (2025-01-23)
+
+
+### Bug Fixes
+
+* bookmarks list item ([#197](https://github.com/Altinn/altinn-components/issues/197)) ([aee34ee](https://github.com/Altinn/altinn-components/commit/aee34eea95b25c5b799bd3d4f7ec357c11148b50))
+
 ## [0.15.0](https://github.com/Altinn/altinn-components/compare/v0.14.3...v0.15.0) (2025-01-23)
 
 
