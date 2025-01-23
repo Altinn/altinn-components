@@ -1,10 +1,10 @@
-import { BookmarksListItem, Heading, ListBase, Section, Typography } from '../';
-import type { BookmarksListItemProps, TextFieldProps } from '../';
+import { BookmarksListItem, EditableBookmark, Heading, ListBase, Section, Typography } from '../';
+import type { EditableBookmarkProps, TextFieldProps } from '../';
 
 export interface BookmarksSectionProps {
   title?: string;
   description?: string;
-  items: BookmarksListItemProps[];
+  items: EditableBookmarkProps[];
   untitled?: string;
   titleField?: TextFieldProps;
   expandedId?: string;
@@ -25,20 +25,25 @@ export const BookmarksSection = ({
   return (
     <Section padding={6} theme="surface-hover" spacing={4} bleed>
       <Heading size="md">{title}</Heading>
-      {items.length > 0 && (
-        <ListBase spacing="xs">
-          {items.map((item) => (
-            <BookmarksListItem
-              {...item}
-              key={item.id}
-              loading={loading || item.loading}
-              onToggle={() => onToggle?.(item.id)}
-              expanded={expandedId === item.id}
-              untitled={untitled}
-              titleField={titleField}
-            />
-          ))}
-        </ListBase>
+      {loading ? (
+        <BookmarksListItem title={title} loading={loading} size="sm" />
+      ) : (
+        items.length > 0 && (
+          <ListBase spacing="xs">
+            {items.map((item) => (
+              <EditableBookmark
+                {...item}
+                key={item.id}
+                loading={loading || item.loading}
+                onToggle={() => onToggle?.(item.id)}
+                expanded={expandedId === item.id}
+                untitled={untitled}
+                titleField={titleField}
+                size="sm"
+              />
+            ))}
+          </ListBase>
+        )
       )}
       <Typography size="xs">{description}</Typography>
     </Section>
