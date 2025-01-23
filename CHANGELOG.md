@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.15.0](https://github.com/Altinn/altinn-components/compare/v0.14.3...v0.15.0) (2025-01-23)
+
+
+### Features
+
+* improve list and menu items and improve storybook documentation ([#193](https://github.com/Altinn/altinn-components/issues/193)) ([714531e](https://github.com/Altinn/altinn-components/commit/714531edcb9ac74a1fb0d106c1614d51b682ab09))
+
 ## [0.14.3](https://github.com/Altinn/altinn-components/compare/v0.14.2...v0.14.3) (2025-01-22)
 
 
