@@ -1,8 +1,20 @@
 # altinn-components
-This package is a set of reusable components for building web applications for [Altinn 3](https://docs.altinn.studio/nb/community/about/).
-This is *not* a general purpose library, but a library of components that are specifically designed for the Altinn platform, to ensure
-a consistent look and feel across all applications. It also contains a storybook with stories explaining the purpose and usage of each component, and
-with real examples of how to use them separately or together (composition).
+
+The next frontend of altinn.no is developed by multiple product teams, all working toward the shared goal of delivering a seamless, unified experience for the end users — ensuring they perceive it as a single and robust product.
+This package represents a collaborative effort between designers and developers across these teams, consolidating solutions to shared challenges. 
+It provides Altinn-specific React components tailored to address the common UI needs of these specific teams.   
+
+Today these teams are [Team Arbeidsflate](https://github.com/digdir/dialogporten-frontend), [Team authorization](https://github.com/Altinn/altinn-access-management-frontend), and Team Portal.
+
+Note that this package is specifically designed to meet the unique needs of the aforementioned teams and is not intended to serve as a general-purpose library. 
+We already have the amazing [Norwegian public sector's Design System](https://designsystemet.no/), and we aim to incorporate its elements wherever it makes sense, ensuring alignment and leveraging its strengths while adapting to the specific requirements of Altinn.
+
+Currently, we do not use components from the design system _directly_ but rely on its token structure and continue to explore opportunities for deeper integration. 
+This approach helps us align with brand guidelines and the broader vision of a unified Altinn product. 
+
+## Feedback and questions
+Keep in mind that this package is a work in progress and will be updated continuously. 
+If you have any feedback or questions, please reach out to us on Github.
 
 ## Installation
 To install the package, run the following command:
