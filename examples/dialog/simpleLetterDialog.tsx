@@ -32,12 +32,21 @@ export const simpleLetterDialog: DialogProps = {
     ),
   },
   contactInfo: {
-    title: 'Ta kontakt',
-    children: (
-      <p>
-        Du kan kontakte oss på telefon 800 80 000 eller på skatteetaten.no/kontakt. Ditt referansenummer er SK985-09.
-        Hvis du ringer fra utlandet er telefonnummeret +47 22 07 70 00
-      </p>
-    ),
+    title: 'Kontakt Skatteetaten',
+    description: 'Du kan kontakt oss på hverdager mellom 08–16.',
+    items: [
+      {
+        icon: 'chat',
+        label: 'Chat med oss',
+      },
+      {
+        icon: 'phone',
+        label: 'Ring 800 80 000',
+      },
+      {
+        icon: 'pencil',
+        label: 'Skriv til oss',
+      },
+    ],
   },
 };

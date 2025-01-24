@@ -1,34 +1,12 @@
-import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import type { Meta, StoryObj } from '@storybook/react';
-import {
-  dialogContextMenu,
-  extendedLetterDialog,
-  metadataDialog,
-  reportingCompletedDialog,
-  reportingDialog,
-  reportingDraftDialog,
-  reportingInProgressDialog,
-  simpleLetterDialog,
-  transmissionsCompletedDialog,
-  transmissionsDialog,
-  transmissionsInProgressDialog,
-} from '../../../examples';
+import { dialogContextMenu, reportingDraftDialog } from '../../../examples';
 import { DraftDialog } from './DraftDialog';
 
 const meta: Meta<typeof DraftDialog> = {
   title: 'Dialog/DraftDialog',
   component: DraftDialog,
-  tags: ['autodocsi', 'alpha'],
+  tags: ['autodocs', 'alpha'],
   parameters: {},
-  decorators: [
-    withThemeByDataAttribute({
-      themes: {
-        company: 'company',
-        person: 'person',
-      },
-      defaultTheme: 'company',
-    }),
-  ],
   argTypes: { body: { control: 'text' } },
   args: {
     sender: {
@@ -68,92 +46,6 @@ const meta: Meta<typeof DraftDialog> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const SimpleLetter: Story = {
-  args: simpleLetterDialog,
-};
-
-export const ExtendedLetter: Story = {
-  args: extendedLetterDialog,
-};
-
-export const TypographyMetadata: Story = {
-  args: metadataDialog,
-};
-
-export const ReportingRequired: Story = {
-  args: reportingDialog,
-};
-
-export const ReportingDraft: Story = {
+export const Default: Story = {
   args: reportingDraftDialog,
-};
-
-export const ReportingInProgress: Story = {
-  args: reportingInProgressDialog,
-};
-
-export const ReportingCompleted: Story = {
-  args: reportingCompletedDialog,
-};
-
-export const Transmissions: Story = {
-  args: transmissionsDialog,
-};
-
-export const TransmissionsInProgress: Story = {
-  args: transmissionsInProgressDialog,
-};
-
-export const TransmissionsCompleted: Story = {
-  args: transmissionsCompletedDialog,
-};
-
-export const Draft: Story = {
-  args: {
-    id: '1',
-    status: { value: 'draft', label: 'Utkast' },
-    sender: {
-      name: 'Statistisk sentralbyrå',
-      imageUrl: 'https://digdir-proto-proto.vercel.app/_next/static/media/SSB.0ca4474e.png',
-    },
-
-    recipient: {
-      name: 'Bergen Bar',
-    },
-
-    title: 'Registrere enkeltmannsforetak',
-    summary: 'Skjema er opprettet.',
-
-    actions: [
-      {
-        id: '1',
-        priority: 'primary',
-        label: 'Gå til skjema',
-      },
-      {
-        id: '2',
-        priority: 'secondary',
-        label: 'Forkast',
-      },
-    ],
-
-    attachments: {},
-  },
-};
-
-export const Sent: Story = {
-  args: {
-    ...Draft.args,
-    status: { value: 'sent', label: 'Sendt' },
-    summary: 'Skjema er sendt inn.',
-    attachments: {
-      title: '1 vedlegg',
-      items: [
-        {
-          href: '#',
-          label: 'Kvittering på innsendt skjema.pdf',
-        },
-      ],
-    },
-  },
 };

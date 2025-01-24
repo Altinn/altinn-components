@@ -8,9 +8,9 @@ export interface PageBaseProps extends FlexProps {
  * PageBase component. Use as wrapper for pages. Should renders a flex column by default.
  */
 
-export const PageBase = ({ children, as = 'div', direction = 'col', ...props }: PageBaseProps) => {
+export const PageBase = ({ children, as = 'div', direction = 'col', spacing = 'page', ...props }: PageBaseProps) => {
   return (
-    <Flex as={as} direction={direction} {...props}>
+    <Flex as={as} spacing={spacing} direction={direction} {...props}>
       {children}
     </Flex>
   );

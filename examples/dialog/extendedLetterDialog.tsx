@@ -76,8 +76,4 @@ export const extendedLetterDialog: DialogProps = {
       </p>
     ),
   },
-  contactInfo: {
-    title: 'Ta kontakt',
-    children: <p>Spørsmål om byggeplanene kan rettes til ansvarlig arkitekt Borhaven Arkitekter på tlf. 905 05 345.</p>,
-  },
 };

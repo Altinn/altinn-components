@@ -39,7 +39,17 @@ export const reportingDialog: DialogProps = {
     ),
   },
   contactInfo: {
-    title: 'Ta kontakt',
-    children: <p>Little itpsum.</p>,
+    title: 'Kontakt SSB',
+    description: 'Sentralbordet er åpent mandag–fredag 9.00-11.25 og 12–14.',
+    items: [
+      {
+        icon: 'phone',
+        label: 'Ring 62 88 50 00',
+      },
+      {
+        icon: 'pencil',
+        label: 'Skriv til oss',
+      },
+    ],
   },
 };

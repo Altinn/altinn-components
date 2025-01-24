@@ -9,21 +9,19 @@ import {
   type DialogStatusProps,
   type DialogTouchedByActor,
   ListItem,
-  ListItemBase,
-  type ListItemBaseProps,
   ListItemLabel,
-  ListItemLink,
   type ListItemLinkProps,
+  type ListItemProps,
   Skeleton,
 } from '..';
 
-export type DialogListItemSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type DialogListItemSize = 'xs' | 'sm' | 'md' | 'lg';
 export type DialogListItemState = 'normal' | 'trashed' | 'archived';
 export type DialogListItemTheme = 'default' | 'subtle' | 'transparent';
 
 import styles from './dialogListItem.module.css';
 
-export interface DialogListItemProps extends ListItemBaseProps, ListItemLinkProps {
+export interface DialogListItemProps extends ListItemProps, ListItemLinkProps {
   /** Dialog title */
   title: string;
   /** Dialog id */
@@ -91,7 +89,7 @@ export interface DialogListItemProps extends ListItemBaseProps, ListItemLinkProp
  */
 
 export const DialogListItem = ({
-  size = 'xl',
+  size = 'lg',
   state = 'normal',
   loading,
   select,
@@ -144,8 +142,14 @@ export const DialogListItem = ({
   }
 
   return (
-    <ListItemBase {...rest} size={size} selected={selected} theme={applicableTheme}>
-      <ListItemLink {...rest} size={size} className={styles.link}>
+    <ListItem
+      {...rest}
+      size={size}
+      selected={selected}
+      theme={applicableTheme}
+      linkIcon={null}
+      controls={select && <DialogSelect className={styles.select} {...select} />}
+      label={
         <div className={styles.border} data-size={size} data-seen={seen} data-loading={loading}>
           <header className={styles.header} data-size={size}>
             <DialogHeading loading={loading} size={size} state={applicableState} label={label} seen={seen}>
@@ -183,8 +187,7 @@ export const DialogListItem = ({
             }}
           />
         </div>
-      </ListItemLink>
-      {select && <DialogSelect className={styles.select} {...select} />}
-    </ListItemBase>
+      }
+    />
   );
 };

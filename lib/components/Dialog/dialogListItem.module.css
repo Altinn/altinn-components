@@ -28,7 +28,7 @@
 }
 
 .border[data-seen="true"] {
-  border-color: var(--ds-color-surface-default);
+  border-color: var(--ds-color-neutral-surface-default);
 }
 
 .border[data-loading="true"] {

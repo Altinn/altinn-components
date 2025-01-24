@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { ContextMenu, PageNav } from '../';
 import { dialogContextMenu } from '../../../examples';
-import { PageNav } from './PageNav';
 
 const meta = {
   title: 'Page/PageNav',
@@ -17,23 +17,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const BackButton: Story = {
-  args: {
-    backButton: {
-      label: 'Tilbake',
-    },
-  },
-};
-
-export const BackAndContextMenu: Story = {
-  args: {
-    backButton: {
-      label: 'Tilbake',
-    },
-    menu: dialogContextMenu,
-  },
-};
-
 export const Breadcrumbs: Story = {
   args: {
     breadcrumbs: [
@@ -47,6 +30,22 @@ export const Breadcrumbs: Story = {
         label: 'Article',
       },
     ],
-    menu: dialogContextMenu,
+  },
+};
+
+export const BackButton: Story = {
+  args: {
+    backButton: {
+      label: 'Tilbake',
+    },
+  },
+};
+
+export const BackButtonAndControls: Story = {
+  args: {
+    backButton: {
+      label: 'Tilbake',
+    },
+    controls: <ContextMenu {...dialogContextMenu} />,
   },
 };
