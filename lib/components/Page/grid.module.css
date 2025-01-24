@@ -4,12 +4,12 @@
 
 /* cols */
 
-.grid[data-cols="1-2-3"] {
+.grid[data-cols="3"] {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
 @media (min-width: 640px) {
-  .grid[data-cols="1-2-3"] {
+  .grid[data-cols="3"] {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -27,7 +27,7 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .grid[data-cols="1-2-3"] {
+  .grid[data-cols="3"] {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }

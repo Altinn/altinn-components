@@ -1,5 +1,5 @@
 import { Meta, Controls, Primary, Canvas } from "@storybook/blocks";
-import * as MultilevelList from "./MultilevelList.stories";
+import * as Patterns from "./Patterns.stories";
 import * as BookmarkStories from "../Bookmarks/BookmarksSection.stories";
 
 <Meta title="List/Patterns" />
@@ -8,22 +8,38 @@ import * as BookmarkStories from "../Bookmarks/BookmarksSection.stories";
 
 While lists can be modified to represent spesific needs, we should try to establish common patterns for similar tasks across Altinn.
 
-## List of users
+## List of people
 
-Lists of users with people, companies and groups, using `Avatar` and `AvatarGroup` as icon.
+Lists of people, using avatars.
+
+<Canvas of={Patterns.ListOfServices} />
 
 ## List of services
 
-Lists of services, using the service owner logo as an using `Avatar`.
+Lists of services, using the service owner logo as avatar.
+
+<Canvas of={Patterns.ListOfServices} />
+
+## List of categories
+
+Lists of categories, using an icon with a subtle color.
+
+<Canvas of={Patterns.ListOfCategories} />
+
+## Grids
+
+List items can be displayed in a grid.
+
+<Canvas of={Patterns.CategoryGrid} />
+
+## Expanding, multilevel lists
+
+An expandable multilevel list. Parent items are medium sized, children are small. Selected items are indicated using color, while unselected items are gray. Custom controls to manipulate item.
+
+<Canvas of={Patterns.MultilevelList} />
 
 ## Expanding an element to make changes
 
 Lists that can be manipulated when expanded, for example `Bookmarks`.
 
 <Canvas of={BookmarkStories.ControlledState} />
-
-## Expanding, multilevel lists
-
-An expandable multilevel list. Parent items are medium sized, children are small. Selected items are indicated using color, while unselected items are gray. Custom controls to manipulate item.
-
-<Canvas of={MultilevelList.Default} />
