@@ -40,7 +40,7 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ["Docs", "Layout", "Search", "Menu", "List"],
+        order: ["Docs", "Layout", "Menu", "List", "Search"],
       },
     },
   },
@@ -55,7 +55,6 @@ const preview: Preview = {
     },
     withThemeByDataAttribute({
       themes: {
-        global: "global",
         neutral: "neutral",
         company: "company",
         person: "person",

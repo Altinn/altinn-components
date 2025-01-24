@@ -9,6 +9,8 @@ import * as ListItemStories from "./ListItem.stories";
 
 Use lists to represent links to spesific objects, for example a list of people or a list of services.
 
+Build lists using `ListBase` and `ListItem`, or use the `List` component for simple, unified lists.
+
 ```tsx
 import { ListBase, ListItem } from "@altinn/altinn-components";
 
@@ -21,14 +23,97 @@ return (
 );
 ```
 
-## List
+## ListItem
+
+A `ListItem` represents a piece of content; a page, person or an object.
+
+<Canvas of={ListItemStories.Default} />
+
+## How to use
+
+```tsx
+import { ListItem } from "@altinn/altinn-components";
+
+<ListItem
+  title="Title"
+  icon={{ theme: "surface", name: "teddy-bear" }}
+  badge={{ theme: "subtle", label: "2 av 3" }}
+  linkIcon="chevron-right"
+/>;
+```
+
+## Using icons or avatars
+
+Add an icon using the `icon` prop. Icons can be references by name or using IconProps, making it possible to add an optional `color` and `theme`.
+
+<Canvas of={ListItemStories.IconTypes} />
+
+Add an avatar using the `avatar` prop.
+
+<Canvas of={ListItemStories.Avatars} />
+
+Add an avatar group using the `avatarGroup` prop.
+
+<Canvas of={ListItemStories.AvatarGroups} />
+
+If you need a custom icon you can override it by adding your own component as `icon`:
+
+<Canvas of={ListItemStories.OverridingIcon} />
+
+## Using labels
+
+By default labels are built up of a `badge` and an optional `description`. You can override both using the `label` prop:
+
+<Canvas of={ListItemStories.OverridingLabel} />
+
+## Using badges
+
+By default list items will include a chevron indicating interaction. Use the `badge` prop to emphasise what action to expect.
+
+<Canvas of={ListItemStories.Badges} />
+
+Badge can be replaced with your own component unsing the `badge` prop:
+
+<Canvas of={ListItemStories.OverridingBadge} />
+
+## Loading state
+
+Add the `loading` prop to represent that a list item is loading .
+
+<Canvas of={ListItemStories.LoadingState} />
+
+## Custom controls
+
+Add custom controls using the `controls` prop.
+
+<Canvas of={ListItemStories.CustomControls} />
+
+When adding controls, list item interaction is split from controls and default badges are moved next to the label.
+
+## Collapsible/expanded
+
+Make items collapsible by adding the `collapsible` prop. Adding the `expanded` prop will change the default `linkIcon` and expose the `children` of the list item.
+
+<Canvas of={ListItemStories.Collapsible} />
+
+## Selectable
+
+Make items selectable by using the `select` prop. Add `selected` to select the whole element.
+
+<Canvas of={ListItemStories.Selectable} />
+
+## List components
 
 Unified, simple lists can be built using the `List` component.
 
 <Canvas of={ListStories.Default} />
 
-## Building lists
+## Props
 
-Lists are built using [`ListBase`](/docs/list-listbase--docs) and [`ListItem`](/docs/list-listitem--docs) components.
+ListBase props.
 
-<Canvas of={ListBaseStories.Default} />
+<Controls of={ListBaseStories.Default} />
+
+ListItem props.
+
+<Controls of={ListItemStories.Default} />

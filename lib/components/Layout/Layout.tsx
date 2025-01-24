@@ -27,15 +27,7 @@ export interface LayoutProps {
   children?: ReactNode;
 }
 
-export const Layout = ({
-  color = 'neutral',
-  theme = 'subtle',
-  header,
-  footer,
-  sidebar,
-  content = {},
-  children,
-}: LayoutProps) => {
+export const Layout = ({ color, theme = 'subtle', header, footer, sidebar, content = {}, children }: LayoutProps) => {
   const { currentId } = useRootContext();
   return (
     <LayoutBase color={color} theme={theme} currentId={currentId}>
