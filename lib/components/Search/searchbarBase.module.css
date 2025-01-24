@@ -11,7 +11,7 @@
   display: none;
 }
 
-.searchbar[aria-expanded="true"] nav {
+.searchbarExpanded nav {
   position: absolute;
   display: block;
   border-top-left-radius: 0;

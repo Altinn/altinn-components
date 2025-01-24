@@ -8,10 +8,6 @@ export interface HeaderMenuProps {
   children?: ReactNode;
 }
 
-export const HeaderMenu = ({ expanded = false, className, children }: HeaderMenuProps) => {
-  return (
-    <div className={cx(styles.menu, className)} aria-expanded={expanded}>
-      {children}
-    </div>
-  );
+export const HeaderMenu = ({ className, children }: HeaderMenuProps) => {
+  return <div className={cx(styles.menu, className)}>{children}</div>;
 };

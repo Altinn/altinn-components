@@ -17,6 +17,7 @@
 
   --ds-color-alert-contrast-default: var(--ds-color-neutral-contrast-default);
   --ds-color-alert-contrast-subtle: var(--ds-color-neutral-contrast-subtle);
+  --ds-color-alert-base-default: #d82c46;
 
   /* ACCENT = COMPANY */
 

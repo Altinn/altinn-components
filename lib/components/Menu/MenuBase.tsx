@@ -35,31 +35,25 @@ export interface MenuListItemProps {
 export const MenuBase = ({ as = 'nav', color, theme, className, children }: MenuBaseProps) => {
   const Component = as;
   return (
-    <Component className={cx(styles.menu, className)} data-color={color} data-theme={theme} role="menu">
+    <Component className={cx(styles.menu, className)} data-color={color} data-theme={theme}>
       {children}
     </Component>
   );
 };
 
-export const MenuList = ({ as = 'ul', role = 'group', expanded, className, children }: MenuListProps) => {
+export const MenuList = ({ as = 'ul', role = 'group', className, children }: MenuListProps) => {
   const Component = as;
   return (
-    <Component className={cx(styles.list, className)} role={role} aria-expanded={expanded}>
+    <Component className={cx(styles.list, className)} role={role}>
       {children}
     </Component>
   );
 };
 
-export const MenuListItem = ({
-  as = 'li',
-  role = 'presentation',
-  expanded,
-  className,
-  children,
-}: MenuListItemProps) => {
+export const MenuListItem = ({ as = 'li', role = 'presentation', className, children }: MenuListItemProps) => {
   const Component = as;
   return (
-    <Component className={cx(styles.item, className)} role={role} aria-expanded={expanded}>
+    <Component className={cx(styles.item, className)} role={role}>
       {children}
     </Component>
   );

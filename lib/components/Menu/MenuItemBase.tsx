@@ -40,9 +40,6 @@ export const MenuItemBase = ({
   tabIndex = 0,
   hidden,
   disabled = false,
-  active = false,
-  selected = false,
-  expanded = false,
   linkIcon,
   linkText,
   badge,
@@ -52,17 +49,13 @@ export const MenuItemBase = ({
 
   return (
     <Component
-      role="menuitem"
       tabIndex={disabled ? '-1' : (tabIndex ?? 0)}
       className={cx(styles.item, className)}
       data-size={size}
       data-color={color}
       data-theme={theme}
-      data-active={active}
       aria-hidden={hidden}
-      aria-expanded={expanded}
       aria-disabled={disabled}
-      aria-selected={selected}
       href={href}
       onKeyPress={(e: KeyboardEvent) => {
         e.key === 'Enter' && onClick?.();

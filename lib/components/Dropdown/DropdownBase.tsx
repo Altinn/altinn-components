@@ -25,16 +25,17 @@ export const DropdownBase = ({
   const ref = useRef<HTMLDivElement>(null);
   useClickOutside(ref, onClose);
 
+  const dropdownBaseStyles = cx(styles.dropdown, className, open && styles.dropdownExpanded);
+
   return (
     <div
       ref={ref}
-      className={cx(styles.dropdown, className)}
+      className={dropdownBaseStyles}
       data-theme="default"
       data-color="neutral"
       data-shadow="md"
       data-placement={placement}
       data-padding={padding}
-      aria-expanded={open}
       role="menu"
     >
       {children}

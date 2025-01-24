@@ -2,17 +2,11 @@
   "name": "@altinn/altinn-components",
   "version": "0.15.3",
   "main": "dist/index.js",
-  "files": [
-    "dist/",
-    "!dist/stories/",
-    "!dist/components/*/*.stories.js"
-  ],
+  "files": ["dist/", "!dist/stories/", "!dist/components/*/*.stories.js"],
   "types": "dist/types/lib/index.d.ts",
   "type": "module",
   "description": "Reusable react components",
-  "sideEffects": [
-    "*.css"
-  ],
+  "sideEffects": ["*.css"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",
@@ -39,11 +33,11 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@chromatic-com/storybook": "^3.2.4",
-    "@storybook/addon-mdx-gfm": "^8.5.0",
     "@storybook/addon-a11y": "^8.5.0",
     "@storybook/addon-essentials": "^8.5.0",
     "@storybook/addon-interactions": "^8.5.0",
     "@storybook/addon-links": "^8.5.0",
+    "@storybook/addon-mdx-gfm": "^8.5.0",
     "@storybook/addon-themes": "^8.5.0",
     "@storybook/blocks": "^8.5.0",
     "@storybook/react": "^8.5.0",
@@ -54,6 +48,7 @@
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react-swc": "^3.7.2",
     "axe-core": "^4.10.2",
+    "axe-playwright": "^2.0.3",
     "glob": "^11.0.1",
     "lint-staged": "^15.4.1",
     "playwright": "^1.49.1",

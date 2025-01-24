@@ -20,8 +20,10 @@ export const Heading = ({ loading, as = 'h2', size = 'md', weight = 'medium', cl
   const H = as;
 
   return (
-    <H className={cx(styles.heading, className)} data-size={size} data-weight={weight}>
-      <Skeleton loading={loading}>{children}</Skeleton>
-    </H>
+    <Skeleton loading={loading}>
+      <H className={cx(styles.heading, className)} data-size={size} data-weight={weight}>
+        {children}
+      </H>
+    </Skeleton>
   );
 };
