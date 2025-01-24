@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta } from '@storybook/react';
 import { useState } from 'react';
 import { Button, Flex, Layout, LayoutAction, type LayoutActionProps } from '..';
 import { footer, header } from '../../../examples';
@@ -6,7 +6,7 @@ import { footer, header } from '../../../examples';
 const meta = {
   title: 'Layout/LayoutAction',
   component: LayoutAction,
-  tags: ['autodocs', 'beta'],
+  tags: ['beta'],
   parameters: {},
   args: {
     title: '3 av 24 valgt',
@@ -38,13 +38,8 @@ const meta = {
 } satisfies Meta<typeof LayoutAction>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  args: {},
-};
-
-export const Controlled = (args: LayoutActionProps) => {
+export const Default = (args: LayoutActionProps) => {
   const [hidden, setHidden] = useState(true);
 
   return (

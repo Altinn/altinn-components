@@ -1,17 +1,55 @@
 import { Meta, Controls, Primary, Canvas } from "@storybook/blocks";
 import * as LayoutStories from "./Layout.stories";
+import * as HeaderStories from "../Header/Header.stories";
+import * as FooterStories from "../Footer/Footer.stories";
 
-<Meta of={LayoutStories} />
+<Meta title="Layout" />
 
-# Layout
+# Global Layout
 
-The layout component is shared accross products and includes the global `Header` and `Footer`, as well as a container for .
+The global layout is shared accross applications and provides a common `Header` and `Footer`, as well as a container for a local `Menu`.
 
-<Canvas of={LayoutStories.Default} />
+Use `Layout` by providing the global `header` and `footer` props, and an optional `sidebar`. Wrap your application in `RootProvider` to enable shared context across all components.
 
-## Layout composition.
+Add a `color` and a `theme` and include the content for your application as `children`.
 
-The layout is composed of sevaral global components.
+```tsx
+import { RootProvider, Layout } from '@altinn/components';
+
+function App() {
+  return (
+    <RootProvider>
+      <Layout {...layoutProps} color={<Color>} theme={<Theme>}>
+        { /* Your application here */ }
+      </Layout>
+    </RootProvider>
+  );
+}
+```
+
+## The Header
+
+Use `header` to includes a global menu and search, as well as an account switcher when user is logged in.
+
+<Canvas of={HeaderStories.CurrentAccount} />
+
+Before login.
+
+<Canvas of={HeaderStories.Login} />
+
+## The Footer
+
+Use `footer` to includes an address and a list of helpful links.
+
+<Canvas of={FooterStories.Default} />
+
+## The Sidebar
+
+Use `sidebar` to unclude an optional local menu. It can be hidden, or omitted completely. When omitted main content will span the full width of the page.
+
+## Layout composition
+
+While the preferred way of using layout is the `Layout` component itself, it is possible to build a layout using the underlying components.
 
 ```tsx
 import { LayoutBase, Header, LayoutBody, LayoutSidebar, Menu, LayoutContent, Footer } from "@altinn/altinn-components";
@@ -30,3 +68,13 @@ return (
   </LayoutBase>
 );
 ```
+
+## Preview
+
+Layout with sidebar.
+
+<Canvas of={LayoutStories.Preview} />
+
+Layout with hidden sidebar.
+
+<Canvas of={LayoutStories.HiddenSidebar} />
