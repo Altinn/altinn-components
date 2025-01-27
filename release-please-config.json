@@ -7,7 +7,7 @@
       "prerelease": false
     }
   },
-  "release-type": "simple",
+  "release-type": "node",
   "changelog-sections": [
     {
       "type": "feat",
