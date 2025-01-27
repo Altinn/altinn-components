@@ -7,7 +7,7 @@ export type FlexElement = 'div' | 'section' | 'article' | 'header' | 'footer' | 
 export type FlexDirection = 'col' | 'row';
 export type FlexAlign = 'initial' | 'start' | 'end' | 'center' | 'stretch';
 export type FlexJustify = 'initial' | 'start' | 'end' | 'center' | 'between';
-export type FlexSpacing = 'xs' | Range<11>;
+export type FlexSpacing = 'page' | 'xs' | Range<11>;
 export type FlexPadding = 'page' | Range<11>;
 export type FlexMargin = 'page' | 'section';
 

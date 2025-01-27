@@ -1,0 +1,31 @@
+import { Meta, Controls, Primary, Canvas } from "@storybook/blocks";
+import * as Examples from "./Examples.stories";
+
+<Meta title="Avatar" />
+
+# Using avatars
+
+Use avatars to identify people and companies across Altinn. They come in multiple sizes and are included
+in components like ListItem and MenuItem.
+
+## People
+
+People avatars are circular and uses a light background color.
+
+<Canvas of={Examples.PeopleAvatars} />
+
+Avatar groups.
+
+<Canvas of={Examples.PeopleAvatarGroups} />
+
+## Companies
+
+Company avatars are square and uses a dark background color.
+
+<Canvas of={Examples.CompanyAvatars} />
+
+Avatar groups.
+
+<Canvas of={Examples.CompanyAvatarGroups} />
+
+Companies can also be idenitfied by their logo.

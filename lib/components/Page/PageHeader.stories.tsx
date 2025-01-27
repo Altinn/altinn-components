@@ -18,81 +18,48 @@ export const Default: Story = {
   args: {},
 };
 
-export const Company: Story = {
-  args: {
-    avatar: {
-      type: 'company',
-      name: 'Zero Zulu',
-    },
-    title: 'Zero Zulu',
-  },
-};
-
-export const Person: Story = {
-  args: {
-    avatar: {
-      name: 'Zero Zulu',
-    },
-    title: 'Zero Zulu',
-  },
-};
-
 export const Icon: Story = {
   args: {
-    icon: 'teddy-bear',
-    title: 'Zero Zulu',
-  },
-};
-
-export const People: Story = {
-  args: {
-    avatarGroup: {
-      defaultType: 'person',
-      items: [
-        {
-          name: 'Albert Åberg',
-        },
-        {
-          name: 'Birger Meling',
-        },
-        {
-          name: 'Celine Dion',
-        },
-      ],
+    icon: {
+      theme: 'surface',
+      name: 'teddy-bear',
     },
   },
 };
 
-export const Companies: Story = {
+export const UserCard: Story = {
   args: {
-    avatarGroup: {
-      defaultType: 'company',
-      items: [
-        {
-          name: 'Albert Åberg',
-        },
-        {
-          name: 'Birger Meling',
-        },
-        {
-          name: 'Celine Dion',
-        },
-      ],
+    variant: 'card',
+    avatar: {
+      type: 'person',
+      name: 'Per Hilmar Nybø',
     },
+    title: 'Per Hilmar Nybø',
   },
 };
 
-export const CompanyAndPerson: Story = {
+export const CardAndTabs: Story = {
   args: {
-    avatarGroup: {
+    variant: 'card',
+    avatar: {
+      type: 'company',
+      name: 'Alfa Inc.',
+    },
+    title: 'Alfa Inc.',
+    tabs: {
       items: [
         {
-          type: 'company',
-          name: 'Albert Åberg',
+          id: '1',
+          title: 'Tab 1',
+          selected: true,
         },
         {
-          type: 'person',
-          name: 'Birger Meling',
+          id: '2',
+          title: 'Tab 2',
+        },
+        {
+          id: '3',
+          title: 'Tab 3',
         },
       ],
     },

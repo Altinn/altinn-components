@@ -4,6 +4,7 @@ import {
   Flex,
   Heading,
   type IconName,
+  type IconProps,
   ListItemIcon,
   PageTabs,
   type PageTabsProps,
@@ -20,7 +21,7 @@ export interface PageHeaderProps extends SectionProps {
   size?: PageHeaderSize;
   title?: string;
   description?: string;
-  icon?: IconName;
+  icon?: IconName | IconProps;
   avatar?: AvatarProps;
   avatarGroup?: AvatarGroupProps;
   tabs?: PageTabsProps;
@@ -52,8 +53,8 @@ export const PageHeader = ({
   }
 
   return (
-    <Section as="header" theme={theme} padding={padding} shadow={shadow} bleed={bleed} spacing={4} {...rest}>
-      <Flex direction="row" align="center" spacing={3}>
+    <Section as="header" theme={theme} shadow={shadow} bleed={bleed} {...rest}>
+      <Flex direction="row" align="center" padding={padding} spacing={3}>
         <ListItemIcon avatar={avatar} avatarGroup={avatarGroup} icon={icon} size="xl" />
         <Flex direction="col">
           <Heading size={size}>{title}</Heading>
@@ -61,7 +62,7 @@ export const PageHeader = ({
         </Flex>
       </Flex>
       {children}
-      {tabs && <PageTabs {...tabs} />}
+      {tabs && <PageTabs {...tabs} variant={variant} />}
     </Section>
   );
 };

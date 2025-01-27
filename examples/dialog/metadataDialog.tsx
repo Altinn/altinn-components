@@ -79,13 +79,4 @@ export const metadataDialog: DialogProps = {
       </p>
     ),
   },
-  contactInfo: {
-    title: 'Ta kontakt',
-    children: (
-      <p>
-        Du kan kontakte oss på telefon 800 80 000 eller på skatteetaten.no/kontakt. Ditt referansenummer er SK985-09.
-        Hvis du ringer fra utlandet er telefonnummeret +47 22 07 70 00
-      </p>
-    ),
-  },
 };

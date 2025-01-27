@@ -1,32 +1,25 @@
 import {
   Article,
-  Avatar,
   Byline,
   DialogActions,
   DialogAttachments,
-  DialogMetadata,
   type DialogProps,
-  DialogSection,
   Flex,
-  Heading,
   PageBase,
+  PageHeader,
   PageNav,
   Section,
   Typography,
 } from '..';
 
 /**
- * Draft dialog variant,
+ * Draft dialog variant, work-in-progress.
  */
 
 export const DraftDialog = ({
   backButton,
-  menu,
   updatedAt,
   updatedAtLabel,
-  dueAt,
-  dueAtLabel,
-  status,
   title,
   sender,
   recipient,
@@ -35,26 +28,19 @@ export const DraftDialog = ({
   body,
   actions = [],
   attachments,
-  additionalInfo,
-  contactInfo,
 }: DialogProps) => {
   return (
-    <PageBase theme="default" shadow="xs">
-      <PageNav backButton={backButton} menu={menu} padding={2}>
-        <DialogMetadata status={status} dueAt={dueAt} dueAtLabel={dueAtLabel} />
-      </PageNav>
+    <PageBase spacing={0} theme="default" shadow="xs">
+      <PageNav backButton={backButton} padding={2} />
       <Article padding="page" spacing={6}>
-        <Section as="header" spacing={3}>
-          <Flex align="center" spacing={3}>
-            <Avatar size="xl" {...sender} />
-            <Heading size="xl">{title}</Heading>
-          </Flex>
+        <Flex direction="col" spacing={3}>
+          <PageHeader avatar={sender} title={title} />
           <Byline size="md" datetime={updatedAt}>
             <strong>{recipient?.name}</strong>
             {recipientLabel + ' ' + sender?.name + ', '}
             {updatedAtLabel}
           </Byline>
-        </Section>
+        </Flex>
         <Section padding={6} spacing={4} style={{ border: '1px solid', borderStyle: 'dashed' }}>
           <Typography size="lg">
             <p>{summary}</p>
@@ -63,17 +49,6 @@ export const DraftDialog = ({
             {actions?.length > 0 && <DialogActions items={actions} />}
           </Typography>
         </Section>
-        {additionalInfo && (
-          <DialogSection title={additionalInfo?.title}>
-            <Typography size="md">{additionalInfo?.children}</Typography>
-          </DialogSection>
-        )}
-
-        {contactInfo && (
-          <DialogSection title={contactInfo?.title}>
-            <Typography size="md">{contactInfo?.children}</Typography>
-          </DialogSection>
-        )}
       </Article>
     </PageBase>
   );

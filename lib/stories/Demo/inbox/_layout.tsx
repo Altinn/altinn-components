@@ -1,20 +1,20 @@
-import { useBulk, useLayout, useNavigation } from '..';
-import { Layout, LayoutAction, type LayoutProps } from '../../../components';
-import { dialogMenuItems, sitemap } from '../data';
+import { useBulk, useLayout, useNavigation } from "..";
+import { Layout, LayoutAction, type LayoutProps } from "../../../components";
+import { dialogMenuItems, sitemap } from "../data";
 export const InboxLayout = ({ children }: LayoutProps) => {
   const { currentAccount, pageId, setPageId } = useNavigation();
   const { header, footer } = useLayout();
   const { count, unselectAll } = useBulk();
 
-  const parents = pageId?.split('/');
+  const parents = pageId?.split("/");
   const parentId = parents?.[0];
-  const sectionId = parents?.[1] || 'inbox';
+  const sectionId = parents?.[1] || "inbox";
 
   const parent = sitemap.find((item) => item.id === parentId);
 
   const menuItems =
     parent?.items?.map((item) => {
-      const id = [parentId, item.id].join('/');
+      const id = [parentId, item.id].join("/");
 
       return {
         ...item,
@@ -25,14 +25,14 @@ export const InboxLayout = ({ children }: LayoutProps) => {
     }) || [];
 
   const layout = {
-    theme: 'subtle',
-    color: count ? 'neutral' : currentAccount?.type || 'neutral',
+    theme: "subtle",
+    color: count ? "neutral" : currentAccount?.type || "neutral",
     header,
     footer,
     sidebar: {
       hidden: count && true,
       menu: {
-        defaultItemTheme: 'subtle',
+        defaultIconTheme: "default",
         items: menuItems,
       },
     },
@@ -41,7 +41,7 @@ export const InboxLayout = ({ children }: LayoutProps) => {
   return (
     <Layout {...layout}>
       <LayoutAction
-        title={count + ' selected'}
+        title={count + " selected"}
         hidden={!count}
         onDismiss={unselectAll}
         menu={{ items: dialogMenuItems }}

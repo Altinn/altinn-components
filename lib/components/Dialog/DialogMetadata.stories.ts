@@ -34,7 +34,7 @@ export const Sent: Story = {
   },
 };
 
-export const RequiresAttentionAndDueDate: Story = {
+export const DueDate: Story = {
   args: {
     status: {
       value: 'requires-attention',
@@ -46,7 +46,22 @@ export const RequiresAttentionAndDueDate: Story = {
   },
 };
 
-export const InProgressSeenByOthers: Story = {
+export const SeenByEndUser: Story = {
+  args: {
+    status: {
+      value: 'completed',
+      label: 'Avsluttet',
+    },
+    attachmentsCount: 1,
+    seenBy: {
+      seenByEndUser: true,
+      seenByOthersCount: 0,
+      label: 'Sett av deg',
+    },
+  },
+};
+
+export const SeenByOthers: Story = {
   args: {
     status: {
       value: 'in-progress',
@@ -60,16 +75,16 @@ export const InProgressSeenByOthers: Story = {
   },
 };
 
-export const CompletedSeenByEndUser: Story = {
+export const SeenByEndUserAndOthers: Story = {
   args: {
     status: {
-      value: 'completed',
-      label: 'Avsluttet',
+      value: 'in-progress',
+      label: 'Under arbeid',
     },
     seenBy: {
       seenByEndUser: true,
-      seenByOthersCount: 0,
-      label: 'Sett av deg',
+      seenByOthersCount: 4,
+      label: 'Sett av deg + 4',
     },
   },
 };

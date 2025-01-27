@@ -2,7 +2,7 @@ import { MenuItem, type MenuItemColor, type MenuItemProps } from '..';
 
 import styles from './pageMenu.module.css';
 
-export type PageMenuTheme = 'transparent' | 'base';
+export type PageMenuTheme = 'default' | 'subtle' | 'base';
 
 export interface PageMenuProps {
   theme?: PageMenuTheme;

@@ -44,7 +44,7 @@ export interface ListItemHeaderProps extends ListItemLinkProps {
   /** List item avatarGroup */
   avatarGroup?: AvatarGroupProps;
   /** Optional icon indicating behaviour */
-  linkIcon?: IconName | undefined;
+  linkIcon?: IconName | undefined | null;
   /** Optional badge */
   badge?: BadgeProps | ReactNode | undefined;
   /** Custom controls */

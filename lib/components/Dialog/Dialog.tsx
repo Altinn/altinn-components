@@ -3,6 +3,9 @@ import {
   Article,
   type AvatarProps,
   type BackButtonProps,
+  ContactSection,
+  type ContactSectionProps,
+  ContextMenu,
   type ContextMenuProps,
   type DialogActionButtonProps,
   DialogActions,
@@ -75,7 +78,7 @@ export interface DialogProps {
   /** More information about the dialog, process, etc. */
   additionalInfo?: DialogSectionProps;
   /** Contact information. */
-  contactInfo?: DialogSectionProps;
+  contactInfo?: ContactSectionProps;
 }
 
 /**
@@ -107,9 +110,9 @@ export const Dialog = ({
   contactInfo,
 }: DialogProps) => {
   return (
-    <PageBase bleed>
+    <PageBase spacing={0} bleed>
       <Section theme="default" shadow="xs">
-        <PageNav color="neutral" padding={2} backButton={backButton} menu={menu} />
+        <PageNav color="neutral" padding={2} backButton={backButton} controls={menu && <ContextMenu {...menu} />} />
         <Article padding={6} spacing={6}>
           <Flex direction="col" align="start" spacing={3}>
             <Heading size="xl">{title}</Heading>
@@ -140,19 +143,15 @@ export const Dialog = ({
           {timeline && <DialogTimeline {...timeline} />}
 
           {additionalInfo && (
-            <DialogSection title={additionalInfo?.title}>
+            <DialogSection>
               <Typography size="md">{additionalInfo?.children}</Typography>
             </DialogSection>
           )}
 
-          {contactInfo && (
-            <DialogSection title={contactInfo?.title}>
-              <Typography size="md">{contactInfo?.children}</Typography>
-            </DialogSection>
-          )}
+          {contactInfo && <ContactSection {...contactInfo} />}
         </Article>
       </Section>
-      <PageMenu items={menu?.items} />
+      <PageMenu theme="subtle" items={menu?.items} />
     </PageBase>
   );
 };

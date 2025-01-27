@@ -25,7 +25,7 @@ const getStatusLabel = (value: string) => {
   }
 };
 
-const sizes = ['xl', 'lg', 'md', 'sm', 'xs'] as DialogListItemSize[];
+const sizes = ['lg', 'md', 'sm', 'xs'] as DialogListItemSize[];
 
 const meta: Meta<typeof DialogListItem> = {
   title: 'Dialog/DialogListItem',
@@ -59,6 +59,84 @@ const meta: Meta<typeof DialogListItem> = {
 } satisfies Meta<typeof DialogListItem>;
 
 export default meta;
+
+export const Default = {
+  args: {},
+};
+
+export const SeenVsUnseen = (args: DialogListItemProps) => {
+  return (
+    <ListBase>
+      <DialogListItem {...args} label="Ny" />
+      <DialogListItem {...args} seen={true} seenBy={{ seenByEndUser: true, label: 'Sett av deg' }} />
+    </ListBase>
+  );
+};
+
+export const SeenBy = (args: DialogListItemProps) => {
+  return (
+    <ListBase>
+      <DialogListItem {...args} seen seenBy={{ seenByEndUser: true, label: 'Sett av deg' }} />
+      <MetaItem>Seen by end user. Dialog is marked as seen.</MetaItem>
+      <DialogListItem {...args} seenBy={{ seenByOthersCount: 4, label: 'Sett av 4' }} />
+      <MetaItem>Seen by others. Dialog is not marked as seen.</MetaItem>
+      <DialogListItem
+        {...args}
+        seen
+        seenBy={{
+          seenByOthersCount: 4,
+          seenByEndUser: true,
+          label: 'Sett av deg + 4',
+        }}
+      />
+      <MetaItem>Seen by end user and others. Dialog is marked as seen.</MetaItem>
+    </ListBase>
+  );
+};
+
+export const InboxStatuses = (args: DialogListItemProps) => {
+  return (
+    <ListBase>
+      <DialogListItem {...args} status={{ value: 'requires-attention', label: 'Krever handling' }} />
+      <DialogListItem {...args} status={{ value: 'in-progress', label: 'Under arbeid' }} />
+      <DialogListItem {...args} status={{ value: 'completed', label: 'Avsluttet' }} />
+    </ListBase>
+  );
+};
+
+export const DraftAndSent = (args: DialogListItemProps) => {
+  return (
+    <ListBase>
+      <DialogListItem {...args} status={{ value: 'draft', label: 'Utkast' }} />
+      <DialogListItem {...args} status={{ value: 'sent', label: 'Sendt' }} />
+    </ListBase>
+  );
+};
+
+export const ArchivedAndTrashed = (args: DialogListItemProps) => {
+  return (
+    <ListBase>
+      <DialogListItem
+        {...args}
+        label="Arkivert"
+        status={{ value: 'completed', label: 'Avsluttet' }}
+        seen={true}
+        seenBy={{ seenByEndUser: true, label: 'Sett av deg' }}
+        archivedAt="2024-11-27"
+        archivedAtLabel="Arkivert av Kjell Olsen, 27. nov 2024"
+      />
+      <DialogListItem
+        {...args}
+        label="Papirkurv"
+        status={{ value: 'completed', label: 'Avsluttet' }}
+        seen={true}
+        seenBy={{ seenByEndUser: true, label: 'Sett av deg' }}
+        trashedAt="2024-11-27"
+        trashedAtLabel="Slettet av Kjell Olsen, 27. nov 2024"
+      />
+    </ListBase>
+  );
+};
 
 export const Statuses = (args: DialogListItemProps) => {
   return (
@@ -151,19 +229,6 @@ export const Attachments = (args: DialogListItemProps) => {
   );
 };
 
-export const SeenBy = (args: DialogListItemProps) => {
-  return (
-    <ListBase>
-      <DialogListItem {...args} seen seenBy={{ seenByEndUser: true, label: 'Sett av deg' }} />
-      <MetaItem>Seen by end user. Dialog is marked as seen.</MetaItem>
-      <DialogListItem {...args} seenBy={{ seenByOthersCount: 4, label: 'Sett av 4' }} />
-      <MetaItem>Seen by others. Dialog is not marked as seen.</MetaItem>
-      <DialogListItem {...args} seen seenBy={{ seenByOthersCount: 4, seenByEndUser: true, label: 'Sett av deg + 4' }} />
-      <MetaItem>Seen by end user and others. Dialog is marked as seen.</MetaItem>
-    </ListBase>
-  );
-};
-
 export const TouchedBy = (args: DialogListItemProps) => {
   return (
     <ListBase>
@@ -243,7 +308,10 @@ export const Selectable = (args: DialogListItemProps) => {
               title={item.title}
               onClick={item.selected ? () => onSelect(item) : undefined}
               selected={item.selected}
-              select={{ checked: item?.selected, onChange: () => onSelect(item) }}
+              select={{
+                checked: item?.selected,
+                onChange: () => onSelect(item),
+              }}
             />
             <MetaItem>selected:{item.selected ? 'true' : 'false'}</MetaItem>
           </Fragment>

@@ -66,6 +66,10 @@
   gap: 0.125rem;
 }
 
+.flex[data-spacing="page"] {
+  gap: 1.5rem;
+}
+
 /* margin */
 
 .flex[data-margin="section"] {

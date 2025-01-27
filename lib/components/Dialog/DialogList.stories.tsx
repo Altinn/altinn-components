@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { DialogList } from '..';
 import { dialogListItems } from '../../../examples';
-import { DialogList } from './DialogList';
 
 const meta = {
   title: 'Dialog/DialogList',
@@ -16,10 +16,6 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-
-export const Default: Story = {
-  args: {},
-};
 
 export const Grouped: Story = {
   args: {

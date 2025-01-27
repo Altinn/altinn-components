@@ -22,8 +22,6 @@ export interface ListItemProps extends ListItemBaseProps, ListItemHeaderProps {
   avatar?: AvatarProps;
   /** List item avatarGroup */
   avatarGroup?: AvatarGroupProps;
-  /** Optional icon indicating behaviour */
-  linkIcon?: IconName | undefined;
   /** Custom label */
   label?: ReactNode | (() => ReactElement);
   /** Optional badge */
@@ -59,7 +57,10 @@ export const ListItem = ({
   children,
   ...rest
 }: ListItemProps) => {
-  const applicableLinkIcon = collapsible && expanded ? 'chevron-up' : collapsible ? 'chevron-down' : linkIcon;
+  /** Set linkIcon */
+  const applicableLinkIcon = collapsible ? (expanded ? 'chevron-up' : 'chevron-down') : linkIcon;
+
+  /** Set label */
   const applicableLabel = typeof label === 'function' ? label() : label;
 
   if (expanded) {
