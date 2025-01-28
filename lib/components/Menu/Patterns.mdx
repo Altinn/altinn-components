@@ -1,10 +1,10 @@
 import { Meta, Controls, Primary, Canvas } from "@storybook/blocks";
-import * as Patterns from "./Patterns.stories";
+import * as Examples from "./Examples.stories";
 import * as MenuStories from "./Menu.stories";
 import * as GlobalMenuStories from "../GlobalMenu/GlobalMenu.stories";
 import * as AccountMenuStories from "../GlobalMenu/AccountMenu.stories";
 
-<Meta of={Patterns} />
+<Meta title="Menu/Patterns" />
 
 # Menu patterns
 
@@ -32,16 +32,16 @@ Separate by content and avatar. Tie things together with color.
 
 ### Personal inbox:
 
-<Canvas of={Patterns.PersonInboxMenu} />
+<Canvas of={Examples.PersonInboxMenu} />
 
 ### Personal settings:
 
-<Canvas of={Patterns.NeutralPersonMenu} />
+<Canvas of={Examples.NeutralPersonMenu} />
 
 ### Company inbox:
 
-<Canvas of={Patterns.CompanyInboxMenu} />
+<Canvas of={Examples.CompanyInboxMenu} />
 
 ### Company settings:
 
-<Canvas of={Patterns.NeutralCompanyMenu} />
+<Canvas of={Examples.NeutralCompanyMenu} />
