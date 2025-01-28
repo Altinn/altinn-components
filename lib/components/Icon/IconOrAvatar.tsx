@@ -46,10 +46,10 @@ export const IconOrAvatar = ({ size, icon, iconTheme, avatar, avatarGroup }: Ico
   /** Avatar or AvatarGroup */
 
   if (avatar) {
-    return <Avatar {...avatar} size={size as AvatarSize} />;
+    return <Avatar {...avatar} size={avatar.size || size} />;
   }
 
   if (avatarGroup) {
-    return <AvatarGroup {...avatarGroup} size={size as AvatarSize} />;
+    return <AvatarGroup {...avatarGroup} size={avatarGroup.size || (size as AvatarSize)} />;
   }
 };

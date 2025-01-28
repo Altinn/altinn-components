@@ -13,6 +13,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
+    theme: 'subtle',
     items: [
       {
         id: '1',
@@ -36,6 +37,7 @@ export const Default: Story = {
 
 export const CreatingHiearchy: Story = {
   args: {
+    theme: 'subtle',
     defaultIconTheme: 'default',
     groups: {
       shortcuts: {

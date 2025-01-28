@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Menu } from './Menu';
 
 const meta = {
-  title: 'Menu/Patterns',
+  title: 'Menu/Examples',
   component: Menu,
   //  tags: ["autodocs"],
   parameters: {},
@@ -102,6 +102,7 @@ export const PersonInboxMenu = {
 
 export const CompanyMenu: Story = {
   args: {
+    theme: 'subtle',
     color: 'company',
     defaultIconTheme: 'default',
     groups: {},

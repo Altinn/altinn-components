@@ -43,6 +43,7 @@ export const AccountMenu = ({
     title: account.name,
     ...(account?.accountNames && {
       avatarGroup: {
+        size: 'sm',
         items: account.accountNames.map((name) => ({
           name,
           type: account.type,
@@ -51,6 +52,7 @@ export const AccountMenu = ({
     }),
     ...(!account?.accountNames && {
       avatar: {
+        size: 'md',
         type: account.type,
         name: account.name,
       },
