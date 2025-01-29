@@ -83,12 +83,14 @@
 
 .button[data-variant="text"] {
   border-color: transparent;
+  color: var(--ds-color-text-subtle);
 }
 
 .button[data-variant="outline"]:hover,
 .button[data-variant="dotted"]:hover,
 .button[data-variant="text"]:hover {
   background-color: var(--ds-color-surface-default);
+  color: var(--ds-color-text-default);
 }
 
 .button[data-variant="outline"]:active,

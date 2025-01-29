@@ -15,7 +15,19 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    breadcrumbs: [
+      {
+        label: 'Forside',
+      },
+      {
+        label: 'Seksjon',
+      },
+      {
+        label: 'Side',
+      },
+    ],
+  },
 };
 
 export const Icon: Story = {

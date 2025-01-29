@@ -29,25 +29,23 @@ export const metadataDialog: DialogProps = {
     },
   ],
   history: {
-    updatedAtLabel: 'Sander Svendsens sykehistorikk',
-    summary: '73 dager sykmeldt i år',
     expandLabel: 'Vis historikk',
     collapseLabel: 'Skjul historikk',
     items: [
       {
         createdAt: '',
         createdAtLabel: '1. januar 2024',
-        summary: '14 dager sykmeldt fra 12. januar–26. januar.',
+        description: '14 dager sykmeldt fra 12. januar–26. januar.',
       },
       {
         createdAt: '',
         createdAtLabel: '4. februar 2024',
-        summary: '7 dagers sykmeldt fra 6. februar–12. februar.',
+        description: '7 dagers sykmeldt fra 6. februar–12. februar.',
       },
       {
         createdAt: '',
         createdAtLabel: '15. april 2024',
-        summary: '45 dagers sykmeldt fra 15. april–30. mai 2024.',
+        description: '45 dagers sykmeldt fra 15. april–30. mai 2024.',
       },
       {
         createdBy: {
@@ -56,17 +54,17 @@ export const metadataDialog: DialogProps = {
         },
         createdAt: '',
         createdAtLabel: '1. mai 2024',
-        summary: 'Inntektsmelding ble sendt',
+        description: 'Inntektsmelding ble sendt',
       },
       {
         createdAt: '',
         createdAtLabel: '4. november 2024',
-        summary: '7 dagers sykmeldt fra 4. november–11. november.',
+        description: '7 dagers sykmeldt fra 4. november–11. november.',
       },
       {
         createdAt: '',
         createdAtLabel: '4. november 2024',
-        summary: '7 dagers sykmeldt fra 4. november–11. november.',
+        description: '7 dagers sykmeldt fra 4. november–11. november.',
       },
     ],
   },

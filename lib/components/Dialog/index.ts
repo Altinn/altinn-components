@@ -1,4 +1,8 @@
 export * from './Dialog';
+
+export * from './DialogHeader';
+export * from './DialogBody';
+
 export * from './DialogList';
 export * from './DialogListGroup';
 export * from './DialogListItem';
@@ -24,4 +28,8 @@ export * from './DialogTimeline';
 export * from './DialogTimelineItem';
 
 export * from './DialogHistory';
-export * from './DialogHistoryItem';
+
+export * from './ActivityLog';
+export * from './ActivityItem';
+
+export * from './SeenByLog';

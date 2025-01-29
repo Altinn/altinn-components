@@ -7,7 +7,6 @@ import { transmissionsTimeline } from './transmissionsTimeline';
 const historyItems = transmissionsHistoryItems?.filter(
   (item) => item.createdAt && new Date(item.createdAt) < new Date('2024-02-02'),
 );
-const latestHistoryItem = historyItems[historyItems?.length - 1];
 
 export const transmissionsInProgressDialog: DialogProps = {
   id: 'transmissions',
@@ -28,8 +27,6 @@ export const transmissionsInProgressDialog: DialogProps = {
     },
   ],
   history: {
-    updatedAtLabel: '3 dager siden',
-    summary: latestHistoryItem.summary,
     items: historyItems,
   },
   timeline: transmissionsTimeline,

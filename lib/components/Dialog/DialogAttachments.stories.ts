@@ -3,7 +3,7 @@ import { attachments } from '../../../examples/attachments.ts';
 import { DialogAttachments } from './DialogAttachments';
 
 const meta = {
-  title: 'Dialog/DialogAttachments',
+  title: 'Dialog/Atoms/DialogAttachments',
   component: DialogAttachments,
   tags: ['autodocs', 'beta'],
   args: {
