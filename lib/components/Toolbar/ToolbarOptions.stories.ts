@@ -18,19 +18,37 @@ export const Checkboxes: Story = {
     options: [
       {
         type: 'checkbox',
+        label: 'Brønnøysundregistrene',
+        checked: true,
+        value: 'brreg',
+        badge: {
+          label: '14',
+        },
+      },
+      {
+        type: 'checkbox',
         label: 'Skatteetaten',
-        value: '1',
+        checked: true,
+        value: 'Skatt',
+        badge: {
+          label: '23',
+        },
       },
       {
         type: 'checkbox',
         label: 'Digdir',
-        value: '2',
+        value: 'digdir',
+        badge: {
+          label: '2',
+        },
       },
       {
         type: 'checkbox',
-        checked: true,
         label: 'Helstilsynet',
-        value: '3',
+        value: 'hdir',
+        badge: {
+          label: '7',
+        },
       },
     ],
   },
@@ -41,20 +59,57 @@ export const Radio: Story = {
     optionType: 'radio',
     options: [
       {
-        type: 'radio',
-        label: 'Skatteetaten',
-        value: '1',
-      },
-      {
-        type: 'radio',
-        label: 'Digdir',
-        value: '2',
-      },
-      {
-        type: 'radio',
+        groupId: 'a',
+        name: 'date',
+        label: 'I dag',
+        value: 'today',
         checked: true,
-        label: 'Helstilsynet',
-        value: '3',
+        badge: {
+          label: '1',
+        },
+      },
+      {
+        groupId: 'a',
+        name: 'date',
+        label: 'Denne uken',
+        value: 'this-week',
+        badge: {
+          label: '4',
+        },
+      },
+      {
+        groupId: 'a',
+        name: 'date',
+        label: 'Denne måneden',
+        value: 'this-week',
+        badge: {
+          label: '11',
+        },
+      },
+      {
+        groupId: 'b',
+        name: 'date',
+        label: 'Siste 6 måneder',
+        value: 'last-6-months',
+        badge: {
+          label: '23',
+        },
+      },
+      {
+        groupId: 'b',
+        label: 'Siste 12 måneder',
+        value: 'this-year',
+        badge: {
+          label: '43',
+        },
+      },
+      {
+        groupId: 'c',
+        label: 'Eldre enn 1 år',
+        value: 'older-than-a-year',
+        badge: {
+          label: '22',
+        },
       },
     ],
   },
