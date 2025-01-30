@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.15.2](https://github.com/Altinn/altinn-components/compare/v0.15.1...v0.15.2) (2025-01-30)
+
+
+### Bug Fixes
+
+* account menu avatars and menu patterns ([#217](https://github.com/Altinn/altinn-components/issues/217)) ([45c8b86](https://github.com/Altinn/altinn-components/commit/45c8b8680140e158ba5e77bc7cab5922c169ff97))
+* should show chevron-up if expanded in BookmarksListItem ([#230](https://github.com/Altinn/altinn-components/issues/230)) ([91bc9f6](https://github.com/Altinn/altinn-components/commit/91bc9f6a0573c85d7607fe80c68f7803bdf2dae3))
+
+
+### Miscellaneous Chores
+
+* **deps:** update actions/setup-node action to v4 ([#166](https://github.com/Altinn/altinn-components/issues/166)) ([d646baf](https://github.com/Altinn/altinn-components/commit/d646baf423c5eeef227c7c8649635ef49a346ec9))
+* ensure correct release strategy ([#211](https://github.com/Altinn/altinn-components/issues/211)) ([0a1f562](https://github.com/Altinn/altinn-components/commit/0a1f5623a6b7ca5dae9449a43e533a31eafff2d4))
+* ensure package name are not included in releases ([#213](https://github.com/Altinn/altinn-components/issues/213)) ([58d306f](https://github.com/Altinn/altinn-components/commit/58d306fa3b5e648ecfb3f6bdd551b90201ea3c9e))
+* include chores in changelog ([#209](https://github.com/Altinn/altinn-components/issues/209)) ([12ba04f](https://github.com/Altinn/altinn-components/commit/12ba04f341f9704d7bd5d2cf9fc2d76667bf116f))
+
 ## [0.15.1](https://github.com/Altinn/altinn-components/compare/v0.15.0...v0.15.1) (2025-01-23)
 
 
