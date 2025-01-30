@@ -1,6 +1,5 @@
 import { type ChangeEvent, useState } from 'react';
-import type { AutocompleteProps, SearchbarProps } from '../lib';
-import type { AutocompleteItemProps } from '../lib/components/Autocomplete/AutocompleteItem.tsx';
+import type { AutocompleteItemProps, AutocompleteProps, SearchbarProps } from '../lib';
 
 export const useInboxSearch = ({
   name = 'inbox-search',

@@ -1,9 +1,13 @@
 import { useRef } from 'react';
-import { useMenu } from '../../hooks';
+import {
+  AutocompleteBase,
+  AutocompleteGroup,
+  type AutocompleteGroupProps,
+  AutocompleteItem,
+  type AutocompleteItemProps,
+} from '..';
+import { useMenu } from '../../hooks/index.ts';
 import { useEnterKey } from '../../hooks/useEnterKey.ts';
-import { AutocompleteBase } from './AutocompleteBase';
-import { AutocompleteGroup, type AutocompleteGroupProps } from './AutocompleteGroup';
-import { AutocompleteItem, type AutocompleteItemProps } from './AutocompleteItem';
 
 export interface AutocompleteProps {
   items: AutocompleteItemProps[];

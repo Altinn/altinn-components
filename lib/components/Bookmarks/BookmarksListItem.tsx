@@ -1,5 +1,4 @@
-import { ListItem, type ListItemProps } from '..';
-import { type QueryItemProps, QueryLabel } from './QueryLabel';
+import { ListItem, type ListItemProps, type QueryItemProps, QueryLabel } from '..';
 
 export interface BookmarksListItemProps extends ListItemProps {
   /** Query params */

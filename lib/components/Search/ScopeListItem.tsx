@@ -1,6 +1,6 @@
 import type { ElementType } from 'react';
 import type { BadgeProps } from '../Badge';
-import { ListItem, type ListItemInputProps } from '../List/';
+import { ListItem, type ListItemInputProps } from '../List';
 import styles from './scopeListItem.module.css';
 
 export interface ScopeListItemProps extends ListItemInputProps {

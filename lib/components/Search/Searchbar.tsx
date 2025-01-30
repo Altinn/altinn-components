@@ -1,6 +1,4 @@
-import { Autocomplete, type AutocompleteProps } from '../Autocomplete';
-import { SearchField, type SearchFieldProps } from './SearchField';
-import { SearchbarBase } from './SearchbarBase';
+import { Autocomplete, type AutocompleteProps, SearchField, type SearchFieldProps, SearchbarBase } from '..';
 
 export interface SearchbarProps extends SearchFieldProps {
   className?: string;

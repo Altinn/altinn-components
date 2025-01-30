@@ -1,10 +1,18 @@
+import {
+  BookmarksListItem,
+  type BookmarksListItemProps,
+  DialogListItem,
+  type DialogListItemProps,
+  ListItem,
+  type ListItemProps,
+  ScopeListItem,
+  type ScopeListItemProps,
+  SuggestListItem,
+  type SuggestListItemProps,
+} from '..';
 import type { BadgeProps } from '../Badge';
-import { BookmarksListItem, type BookmarksListItemProps } from '../Bookmarks';
-import { DialogListItem, type DialogListItemProps } from '../Dialog/';
-import { ListItem, type ListItemProps } from '../List/';
-import { ScopeListItem, type ScopeListItemProps } from './ScopeListItem';
 
-export type AutocompleteItemType = 'scope' | 'dialog' | 'bookmark' | 'information';
+export type AutocompleteItemType = 'scope' | 'suggest' | 'dialog' | 'bookmark' | 'information';
 
 export interface AutoCompleteItemWithType {
   type: AutocompleteItemType;
@@ -15,6 +23,10 @@ export interface AutoCompleteItemWithType {
 
 export interface ScopeAutocompleteItemProps extends AutoCompleteItemWithType, ScopeListItemProps {
   type: 'scope';
+}
+
+export interface SuggestAutocompleteItemProps extends AutoCompleteItemWithType, SuggestListItemProps {
+  type: 'suggest';
 }
 
 export interface DialogAutocompleteItemProps extends AutoCompleteItemWithType, DialogListItemProps {
@@ -32,6 +44,7 @@ export interface InformationAutocompleteItemProps extends AutoCompleteItemWithTy
 
 export type AutocompleteItemProps =
   | ScopeAutocompleteItemProps
+  | SuggestAutocompleteItemProps
   | DialogAutocompleteItemProps
   | BookmarkAutocompleteItemProps
   | InformationAutocompleteItemProps;
@@ -39,7 +52,26 @@ export type AutocompleteItemProps =
 export const AutocompleteItem = ({ type, ...props }: AutocompleteItemProps) => {
   switch (type) {
     case 'scope':
-      return <ScopeListItem {...(props as ScopeAutocompleteItemProps)} theme="default" shadow="none" tabIndex={-1} />;
+      return (
+        <ScopeListItem
+          {...(props as ScopeAutocompleteItemProps)}
+          color="company"
+          theme="default"
+          shadow="none"
+          tabIndex={-1}
+        />
+      );
+    case 'suggest':
+      return (
+        <SuggestListItem
+          {...(props as SuggestAutocompleteItemProps)}
+          color="company"
+          theme="default"
+          shadow="none"
+          size="sm"
+          tabIndex={-1}
+        />
+      );
     case 'bookmark':
       return (
         <BookmarksListItem

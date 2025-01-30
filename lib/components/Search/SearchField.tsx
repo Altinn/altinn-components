@@ -1,8 +1,7 @@
 'use client';
 import cx from 'classnames';
 import { type ChangeEventHandler, type FocusEventHandler, useRef } from 'react';
-import { IconButton } from '../Button';
-import { Icon } from '../Icon';
+import { Icon, IconButton } from '..';
 import styles from './searchField.module.css';
 
 export interface SearchFieldProps {
