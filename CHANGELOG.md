@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.15.3](https://github.com/Altinn/altinn-components/compare/v0.15.2...v0.15.3) (2025-01-30)
+
+
+### Bug Fixes
+
+* on enter not working in auto complete ([#231](https://github.com/Altinn/altinn-components/issues/231)) ([0116d5f](https://github.com/Altinn/altinn-components/commit/0116d5f8c98f2e42e64b4e43705e705e05c4b6a4))
+
 ## [0.15.2](https://github.com/Altinn/altinn-components/compare/v0.15.1...v0.15.2) (2025-01-30)
 
 
