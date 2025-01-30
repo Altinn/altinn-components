@@ -1,12 +1,8 @@
-.section {
-  /*  border-color: var(--neutral-surface-active); */
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1.5rem;
+.toggle {
+  color: var(--ds-color-text-subtle);
 }
 
-.title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin: 1em 0;
+.toggle:hover {
+  color: var(--ds-color-text-default);
+  text-decoration: underline;
 }

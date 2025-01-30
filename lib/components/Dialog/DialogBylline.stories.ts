@@ -3,7 +3,7 @@ import { skatt } from '../../../examples/avatar';
 import { DialogByline } from './DialogByline';
 
 const meta = {
-  title: 'Dialog/DialogByline',
+  title: 'Dialog/Atoms/DialogByline',
   component: DialogByline,
   tags: ['autodocsi', 'beta'],
   args: {
@@ -20,6 +20,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {},
+};
+
+export const Grouped: Story = {
+  args: {
+    grouped: true,
+  },
 };
 
 export const Large: Story = {

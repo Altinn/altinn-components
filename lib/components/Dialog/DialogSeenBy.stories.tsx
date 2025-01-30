@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { DialogSeenBy } from './DialogSeenBy';
 
 const meta = {
-  title: 'Dialog/DialogSeenBy',
+  title: 'Dialog/Atoms/DialogSeenBy',
   component: DialogSeenBy,
   tags: ['autodocsi', 'beta'],
   parameters: {},
@@ -40,7 +40,10 @@ export const seenByEndUserAndOthers: Story = {
 export const ExampleLabel = ({
   seenByEndUser,
   seenByOthersCount,
-}: { seenByEndUser: boolean; seenByOthersCount: number }) => {
+}: {
+  seenByEndUser: boolean;
+  seenByOthersCount: number;
+}) => {
   const seenByLabel = [];
 
   if (seenByEndUser) {

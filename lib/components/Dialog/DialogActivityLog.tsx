@@ -2,6 +2,7 @@ import type { ElementType, MouseEventHandler } from 'react';
 import { MetaItem, type MetaItemSize } from '../Meta';
 
 export interface DialogActivityLogProps {
+  loading?: boolean;
   size?: MetaItemSize;
   label?: string;
   as?: ElementType;

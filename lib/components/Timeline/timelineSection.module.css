@@ -12,6 +12,10 @@
   width: 2.25rem;
 }
 
+.sidebar[data-size="xxs"] {
+  margin-top: 0.25rem;
+}
+
 .sidebar[data-size="xs"] {
   margin-top: 0.125rem;
 }
@@ -25,8 +29,8 @@
 
 .dot {
   background-color: var(--ds-color-surface-active);
-  width: .875rem;
-  height: .875rem;
+  width: 0.875rem;
+  height: 0.875rem;
   border-radius: 50%;
 }
 

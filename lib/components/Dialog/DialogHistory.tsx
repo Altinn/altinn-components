@@ -1,11 +1,11 @@
 'use client';
-import { useState } from 'react';
-import { MetaItem, TimelineBase } from '../';
-import { DialogHistoryItem, type DialogHistoryItemProps } from './DialogHistoryItem';
+import { type ReactNode, useState } from 'react';
+import { ActivityItem, type ActivityItemProps, ButtonBase, Icon, TimelineBase, TimelineSection } from '..';
+
+import styles from './dialogHistory.module.css';
 
 export interface DialogHistoryProps {
-  items?: DialogHistoryItemProps[];
-  summary?: string;
+  items?: ActivityItemProps[];
   updatedAt?: string;
   updatedAtLabel?: string;
   expandLabel?: string;
@@ -13,11 +13,28 @@ export interface DialogHistoryProps {
   collapsible?: boolean;
 }
 
+interface ToggleButtonProps {
+  expanded?: boolean;
+  children: ReactNode;
+  onClick: () => void;
+}
+
+const ToggleButton = ({ expanded, children, onClick }: ToggleButtonProps) => {
+  return (
+    <ButtonBase
+      className={styles.toggle}
+      size="sm"
+      onClick={onClick}
+      style={{ display: 'inline-flex', alignItems: 'center' }}
+    >
+      {children}
+      <Icon name={expanded ? 'arrow-up' : 'arrow-down'} size="sm" />
+    </ButtonBase>
+  );
+};
+
 export const DialogHistory = ({
   items,
-  summary = 'History summary',
-  updatedAt,
-  updatedAtLabel,
   collapsible = false,
   expandLabel = 'Expand history',
   collapseLabel = 'Collapse history',
@@ -32,20 +49,27 @@ export const DialogHistory = ({
     return null;
   }
 
+  if (expanded || !collapsible) {
+    return (
+      <TimelineBase>
+        {items.map((item, index) => {
+          return <ActivityItem {...item} key={index} />;
+        })}
+
+        {collapsible && (
+          <ToggleButton expanded={true} onClick={onToggle}>
+            {collapseLabel}
+          </ToggleButton>
+        )}
+      </TimelineBase>
+    );
+  }
+
   return (
     <TimelineBase>
-      {((expanded || !collapsible) &&
-        items.map((item, index) => {
-          return <DialogHistoryItem {...item} key={index} />;
-        })) || <DialogHistoryItem createdAt={updatedAt} createdAtLabel={updatedAtLabel} summary={summary} />}
-
-      {collapsible && (
-        <footer>
-          <MetaItem size="xs" as="button" reverse icon={expanded ? 'arrow-up' : 'arrow-down'} onClick={onToggle}>
-            <strong>{expanded ? collapseLabel : expandLabel}</strong>
-          </MetaItem>
-        </footer>
-      )}
+      <TimelineSection color="neutral">
+        <ToggleButton onClick={onToggle}>{expandLabel}</ToggleButton>
+      </TimelineSection>
     </TimelineBase>
   );
 };

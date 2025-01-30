@@ -1,5 +1,7 @@
 import {
   type AvatarProps,
+  DialogActivityLog,
+  type DialogActivityLogProps,
   DialogSeenBy,
   type DialogSeenByProps,
   DialogStatus,
@@ -45,6 +47,8 @@ export type DialogMetadataProps = {
   attachmentsLabel?: string;
   /** Transmissions label */
   transmissionsLabel?: string;
+  /** Activity Log */
+  activityLog?: DialogActivityLogProps;
   /** Clickable items */
   onClick?: () => void;
 };
@@ -71,7 +75,7 @@ export const DialogMetadata = ({
   attachmentsCount = 0,
   attachmentsLabel,
   transmissionsLabel,
-  onClick,
+  activityLog,
 }: DialogMetadataProps) => {
   return (
     <MetaBase className={className} size="xs">
@@ -88,12 +92,12 @@ export const DialogMetadata = ({
         </MetaTimestamp>
       )}
       {(attachmentsLabel || attachmentsCount > 0) && (
-        <MetaItem as={onClick && 'button'} onClick={onClick} loading={loading} size="xs" icon="paperclip">
+        <MetaItem loading={loading} size="xs" icon="paperclip">
           {attachmentsLabel || attachmentsCount}
         </MetaItem>
       )}
       {transmissionsLabel && (
-        <MetaItem as={onClick && 'button'} onClick={onClick} loading={loading} size="xs" icon="files">
+        <MetaItem loading={loading} size="xs" icon="files">
           {transmissionsLabel}
         </MetaItem>
       )}
@@ -108,6 +112,8 @@ export const DialogMetadata = ({
           </MetaTimestamp>
         )) ||
         (!loading && seenBy && <DialogSeenBy size="xs" {...seenBy} />)}
+
+      {activityLog && <DialogActivityLog {...activityLog} loading={loading} size="xs" />}
 
       {touchedBy && <DialogTouchedBy {...touchedBy} loading={loading} size="xs" />}
     </MetaBase>

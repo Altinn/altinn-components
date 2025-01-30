@@ -1,23 +1,7 @@
 import type { DialogListItemProps } from '../../lib';
 import { skatt } from '../avatar';
-import { simpleLetterDialog } from './';
 
-export const dialogListItems: DialogListItemProps[] = [simpleLetterDialog]?.map((item) => {
-  const { id, updatedAt, updatedAtLabel, sender, recipient, title, summary, attachments } = item;
-
-  return {
-    id,
-    updatedAt,
-    updatedAtLabel,
-    sender,
-    recipient,
-    title,
-    summary,
-    attachmentsCount: attachments?.items?.length,
-  };
-});
-
-export const dialogListItemsX: DialogListItemProps[] = [
+export const dialogListItems: DialogListItemProps[] = [
   {
     groupId: '2023-02',
     updatedAt: '2023-02-15 08:45',

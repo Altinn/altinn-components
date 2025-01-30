@@ -47,7 +47,7 @@ const meta: Meta<typeof Dialog> = {
     backButton: {
       label: 'Tilbake',
     },
-    menu: dialogContextMenu,
+    contextMenu: dialogContextMenu,
   },
 } satisfies Meta<typeof Dialog>;
 

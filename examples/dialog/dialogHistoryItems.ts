@@ -1,24 +1,24 @@
-import type { DialogHistoryItemProps } from '../../lib';
+import type { ActivityItemProps } from '../../lib';
 import { skatt } from '../avatar';
 
-export const dialogHistoryItems: DialogHistoryItemProps[] = [
+export const dialogHistoryItems: ActivityItemProps[] = [
   {
     createdAt: '',
     createdAtLabel: '15. februar 2024 kl. 08.45',
     createdBy: skatt,
-    summary: 'Skjemaet er lukket for rapportering og korreksjoner.',
+    description: 'Skjemaet er lukket for rapportering og korreksjoner.',
   },
   {
     createdAt: '',
     createdAtLabel: '2. januar 2024 kl 08.00',
     createdBy: skatt,
-    summary: 'Du kan nå levere tredjepartsopplysninger.',
+    description: 'Du kan nå levere tredjepartsopplysninger.',
   },
   {
     createdAt: '',
     createdAtLabel: '15. oktober 2023 kl 08.00',
     createdBy: skatt,
-    summary: 'Du må levere tredjepartsopplysninger for boligselskap.',
+    description: 'Du må levere tredjepartsopplysninger for boligselskap.',
     attachments: {
       title: '1 vedlegg',
       items: [

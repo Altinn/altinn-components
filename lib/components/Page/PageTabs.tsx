@@ -6,18 +6,15 @@ export type PageTabsPadding = 0 | 2;
 export type PageTabsVariant = 'card' | undefined;
 
 export interface PageTabsProps {
-  variant?: PageTabsVariant;
   theme?: PageTabsTheme;
   color?: MenuItemColor;
   padding?: PageTabsPadding;
   items?: MenuItemProps[];
 }
 
-export const PageTabs = ({ variant, theme = 'transparent', color, items = [], padding }: PageTabsProps) => {
-  const appliedPadding = (variant === 'card' && 2) || padding;
-
+export const PageTabs = ({ theme = 'transparent', color, items = [], padding = 0 }: PageTabsProps) => {
   return (
-    <Flex theme={theme} color={color} padding={appliedPadding}>
+    <Flex theme={theme} color={color} padding={padding}>
       <ul className={styles.list}>
         {items.map((item) => {
           return (
