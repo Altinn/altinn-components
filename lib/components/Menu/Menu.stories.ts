@@ -1,3 +1,12 @@
+import {
+  BicycleIcon,
+  CogIcon,
+  FirstAidFillIcon,
+  MenuGridIcon,
+  PersonGroupIcon,
+  TeddyBearIcon,
+  TruckIcon,
+} from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Menu } from './Menu';
 
@@ -17,18 +26,18 @@ export const Default: Story = {
     items: [
       {
         id: '1',
-        icon: 'first-aid',
+        icon: FirstAidFillIcon,
         title: 'Menu item 1',
       },
       {
         id: '2',
-        icon: 'truck',
+        icon: TruckIcon,
         title: 'Menu item 2',
         selected: true,
       },
       {
         id: '2',
-        icon: 'bicycle',
+        icon: BicycleIcon,
         title: 'Menu item 3',
       },
     ],
@@ -51,32 +60,32 @@ export const CreatingHiearchy: Story = {
         groupId: 'a',
         size: 'lg',
         id: '1',
-        icon: { theme: 'base', variant: 'solid', name: 'first-aid' },
+        icon: { theme: 'base', svgElement: FirstAidFillIcon },
         title: 'Menu item 1',
       },
       {
         groupId: 'b',
         id: '2',
-        icon: 'truck',
+        icon: TruckIcon,
         title: 'Menu item 2',
         selected: true,
       },
       {
         groupId: 'b',
         id: '2',
-        icon: 'bicycle',
+        icon: BicycleIcon,
         title: 'Menu item 3',
       },
       {
         id: 'users',
         groupId: 'shortcuts',
-        icon: 'person-group',
+        icon: PersonGroupIcon,
         title: 'Shortcut 1',
       },
       {
         id: 'settings',
         groupId: 'shortcuts',
-        icon: 'cog',
+        icon: CogIcon,
         title: 'Shortcut 2',
       },
     ],
@@ -103,7 +112,7 @@ export const NestingItems: Story = {
       {
         id: 'people',
         groupId: 'level-1',
-        icon: 'menu-grid',
+        icon: MenuGridIcon,
         title: 'Alle skjema',
         collapsible: true,
         expanded: true,
@@ -111,7 +120,7 @@ export const NestingItems: Story = {
           {
             groupId: 'level-2',
             id: 'tema',
-            icon: 'teddy-bear',
+            icon: TeddyBearIcon,
             title: 'Tema',
             collapsible: true,
             expanded: true,

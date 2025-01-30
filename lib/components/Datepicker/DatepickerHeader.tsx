@@ -1,3 +1,4 @@
+import { ChevronLeftIcon, ChevronRightIcon } from '@navikt/aksel-icons';
 import { IconButton } from '../Button';
 import styles from './datepickerHeader.module.css';
 
@@ -12,8 +13,8 @@ export const DatepickerHeader = ({ title, onNext, onPrev }: DatepickerHeaderProp
     <header className={styles.header}>
       <h2 className={styles.title}>{title}</h2>
       <nav className={styles.nav}>
-        <IconButton icon="chevron-left" size="sm" variant="text" onClick={onPrev} />
-        <IconButton icon="chevron-right" size="sm" variant="text" onClick={onNext} />
+        <IconButton icon={ChevronLeftIcon} size="sm" variant="text" onClick={onPrev} iconAltText="prev icon" />
+        <IconButton icon={ChevronRightIcon} size="sm" variant="text" onClick={onNext} iconAltText="next icon" />
       </nav>
     </header>
   );

@@ -1,6 +1,6 @@
+import { ChevronDownIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 import type { ElementType, ReactNode } from 'react';
-import type { AvatarGroupProps, AvatarProps, BadgeProps, IconName, IconOrAvatarSize, IconProps, IconTheme } from '..';
-
+import type { AvatarGroupProps, AvatarProps, BadgeProps, IconOrAvatarSize, IconProps, IconTheme, SvgElement } from '..';
 import {
   MenuItemBase,
   type MenuItemColor,
@@ -29,13 +29,13 @@ export interface MenuItemProps {
   groupId?: string | number;
   title?: string;
   description?: string;
-  icon?: IconName | IconProps | ReactNode;
+  icon?: SvgElement | IconProps | ReactNode;
   iconTheme?: IconTheme;
   iconBadge?: BadgeProps | undefined;
   avatar?: AvatarProps;
   avatarGroup?: AvatarGroupProps;
   badge?: BadgeProps | undefined;
-  linkIcon?: IconName;
+  linkIcon?: SvgElement;
   linkText?: string;
   className?: string;
   label?: ReactNode;
@@ -70,8 +70,7 @@ export const MenuItem = ({
   label,
   ...rest
 }: MenuItemProps) => {
-  const applicableLinkIcon = collapsible && expanded ? 'chevron-up' : collapsible ? 'chevron-down' : linkIcon;
-
+  const applicableLinkIcon = collapsible && expanded ? ChevronUpIcon : collapsible ? ChevronDownIcon : linkIcon;
   /** Set icon size */
   const applicableIconSize = iconSizeMap[size];
 

@@ -1,3 +1,4 @@
+import { ChatIcon, PencilIcon, PhoneIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { dialogContextMenu } from '../../../examples';
 import { skatt } from '../../../examples/avatar';
@@ -84,15 +85,15 @@ export const ContactInfo: Story = {
       description: 'Kontakt Skatteetaten mellom kl 08–16.',
       items: [
         {
-          icon: 'chat',
+          icon: ChatIcon,
           label: 'Chat med oss',
         },
         {
-          icon: 'phone',
+          icon: PhoneIcon,
           label: 'Ring 800 80 000',
         },
         {
-          icon: 'pencil',
+          icon: PencilIcon,
           label: 'Skriv til oss',
         },
       ],

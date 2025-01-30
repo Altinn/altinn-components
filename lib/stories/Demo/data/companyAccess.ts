@@ -1,4 +1,3 @@
-import {categoryItems} from "./categoryItems"
+import {categoryItems} from "../../../../examples";
 
-
-export const companyAccessItems = categoryItems
+export const companyAccessItems = categoryItems;

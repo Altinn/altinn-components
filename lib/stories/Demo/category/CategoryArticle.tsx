@@ -1,19 +1,21 @@
 import { useNavigation } from '..';
 import { Article, Button, PageBase, PageHeader, PageNav, Toolbar, Typography } from '../../../components';
+import {BookmarkIcon, PersonGroupIcon} from "@navikt/aksel-icons";
+
 export const CategoryArticle = () => {
-  const { section, article, breadcrumbs } = useNavigation();
-  const { title } = article;
+  const { article, breadcrumbs } = useNavigation();
+  const title = article?.title;
 
   return (
     <PageBase spacing={4}>
       <PageNav breadcrumbs={breadcrumbs} />
       <Article spacing={4}>
-        <PageHeader icon={section?.icon} title={title}>
+        <PageHeader title={title}>
           <Toolbar>
-            <Button color="person" icon="person-group" size="sm">
+            <Button color="person" icon={PersonGroupIcon} size="sm">
               Gi fullmakt til <strong>{title}</strong>
             </Button>
-            <Button color="neutral" variant="outline" icon="bookmark" size="sm">
+            <Button color="neutral" variant="outline" icon={BookmarkIcon} size="sm">
               Legg <strong>{title}</strong> til mine oppgaver
             </Button>
           </Toolbar>

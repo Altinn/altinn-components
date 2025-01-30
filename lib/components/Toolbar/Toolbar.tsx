@@ -18,6 +18,7 @@ export interface ToolbarProps {
   getFilterLabel?: (name: string, value: ToolbarFilterProps['value']) => string;
   onFilterStateChange?: (state: FilterState) => void;
   showResultsLabel?: string;
+  removeButtonAltText?: string;
   children?: ReactNode;
 }
 
@@ -32,6 +33,7 @@ export const Toolbar = ({
   getFilterLabel,
   children,
   showResultsLabel,
+  removeButtonAltText,
 }: ToolbarProps) => {
   const { openId, closeAll } = useRootContext();
   const [localFilterState, setLocalFilterState] = useState<Record<string, ToolbarFilterProps['value']>>(
@@ -118,6 +120,7 @@ export const Toolbar = ({
             optionType={item.optionType}
             removable={item.removable}
             getSelectedLabel={getFilterLabel}
+            buttonAltText={removeButtonAltText}
           />
         );
       })}

@@ -1,3 +1,4 @@
+import { ChatIcon, PencilIcon, PhoneIcon } from '@navikt/aksel-icons';
 import type { DialogProps } from '../../lib';
 import { skatt } from '../avatar';
 
@@ -36,15 +37,15 @@ export const simpleLetterDialog: DialogProps = {
     description: 'Du kan kontakt oss på hverdager mellom 08–16.',
     items: [
       {
-        icon: 'chat',
+        icon: ChatIcon,
         label: 'Chat med oss',
       },
       {
-        icon: 'phone',
+        icon: PhoneIcon,
         label: 'Ring 800 80 000',
       },
       {
-        icon: 'pencil',
+        icon: PencilIcon,
         label: 'Skriv til oss',
       },
     ],

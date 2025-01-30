@@ -1,11 +1,11 @@
-import { Icon, type IconName, ProgressIcon } from '../Icon';
+import { Icon, ProgressIcon, type SvgElement } from '../Icon';
 import type { MetaItemSize } from './MetaItemBase';
 import styles from './metaItemMedia.module.css';
 
 interface MetaItemMediaProps {
   size?: MetaItemSize;
   progress?: number;
-  icon?: IconName;
+  icon?: SvgElement;
 }
 
 export const MetaItemMedia = ({ size = 'xs', icon, progress }: MetaItemMediaProps) => {
@@ -15,7 +15,7 @@ export const MetaItemMedia = ({ size = 'xs', icon, progress }: MetaItemMediaProp
 
   return (
     <span className={styles.media} data-size={size}>
-      {icon && <Icon name={icon} className={styles.icon} />}
+      {icon && <Icon svgElement={icon} className={styles.icon} />}
       {progress && <ProgressIcon value={progress} className={styles.icon} />}
     </span>
   );

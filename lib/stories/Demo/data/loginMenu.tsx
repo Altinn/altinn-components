@@ -1,5 +1,6 @@
 import type { MenuProps } from '../../../components';
 import { docsMenuItems } from './';
+import {Buildings2Icon, ChatExclamationmarkIcon, PadlockLockedIcon} from "@navikt/aksel-icons";
 
 export const loginMenu: MenuProps = {
   items: [
@@ -8,7 +9,7 @@ export const loginMenu: MenuProps = {
       groupId: 'login',
       size: 'lg',
       color: 'strong',
-      icon: 'padlock-locked',
+      icon: PadlockLockedIcon,
       title: 'Logg inn',
       items: docsMenuItems,
     },
@@ -17,7 +18,7 @@ export const loginMenu: MenuProps = {
       groupId: 'help',
       color: 'neutral',
       size: 'sm',
-      icon: 'buildings2',
+      icon: Buildings2Icon,
       title: 'Starte og drive bedrift',
     },
     {
@@ -25,7 +26,7 @@ export const loginMenu: MenuProps = {
       groupId: 'help',
       color: 'neutral',
       size: 'sm',
-      icon: 'chat-exclamationmark',
+      icon: ChatExclamationmarkIcon,
       title: 'Trenger du hjelp?',
     },
   ],

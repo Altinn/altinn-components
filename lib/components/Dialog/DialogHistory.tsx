@@ -1,4 +1,5 @@
 'use client';
+import { ArrowDownIcon, ArrowUpIcon } from '@navikt/aksel-icons';
 import { type ReactNode, useState } from 'react';
 import { ActivityItem, type ActivityItemProps, ButtonBase, Icon, TimelineBase, TimelineSection } from '..';
 
@@ -28,7 +29,7 @@ const ToggleButton = ({ expanded, children, onClick }: ToggleButtonProps) => {
       style={{ display: 'inline-flex', alignItems: 'center' }}
     >
       {children}
-      <Icon name={expanded ? 'arrow-up' : 'arrow-down'} size="sm" />
+      <Icon svgElement={expanded ? ArrowUpIcon : ArrowDownIcon} size="sm" />
     </ButtonBase>
   );
 };

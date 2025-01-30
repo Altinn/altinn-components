@@ -84,6 +84,12 @@ export const ControlledStateFilters = (args: typeof Toolbar) => {
     from: ['skatt', 'brreg'],
   });
   return (
-    <Toolbar {...args} filters={Default.args!.filters} filterState={filterState} onFilterStateChange={setFilterState} />
+    <Toolbar
+      {...args}
+      filters={Default.args!.filters}
+      filterState={filterState}
+      onFilterStateChange={setFilterState}
+      removeButtonAltText="remove"
+    />
   );
 };

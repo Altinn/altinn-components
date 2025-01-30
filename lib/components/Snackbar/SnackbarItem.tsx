@@ -1,6 +1,7 @@
+import { BellFillIcon, XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import type { ElementType, ReactNode } from 'react';
-import { Icon, IconButton, type IconName } from '..';
+import { Icon, IconButton, type SvgElement } from '..';
 import styles from './snackbarItem.module.css';
 
 export enum SnackbarColorEnum {
@@ -18,8 +19,9 @@ export type SnackbarColor = keyof typeof SnackbarColorEnum;
 export interface SnackbarItemProps {
   as?: ElementType;
   color?: SnackbarColor;
-  icon?: IconName;
+  icon?: SvgElement;
   message: string | ReactNode;
+  iconAltText?: string;
   href?: string;
   className?: string;
   dismissable?: boolean;
@@ -32,7 +34,8 @@ export const SnackbarItem = ({
   message,
   className,
   color = 'accent',
-  icon = 'bell',
+  icon = BellFillIcon,
+  iconAltText = 'Bell icon',
   dismissable = true,
   onDismiss,
   ...rest
@@ -42,12 +45,18 @@ export const SnackbarItem = ({
   return (
     <Component className={cx(styles.item, className)} data-color={color} {...rest}>
       <div className={styles.media}>
-        <Icon name={icon} variant="solid" className={styles.icon} />
+        <Icon svgElement={icon} className={styles.icon} />
       </div>
       <div className={styles.content}>{message}</div>
       {dismissable && (
         <div className={styles.action}>
-          <IconButton icon="x-mark" variant="outline" onClick={onDismiss} className={styles.dismiss} />
+          <IconButton
+            icon={XMarkIcon}
+            variant="outline"
+            onClick={onDismiss}
+            className={styles.dismiss}
+            iconAltText="close"
+          />
         </div>
       )}
     </Component>

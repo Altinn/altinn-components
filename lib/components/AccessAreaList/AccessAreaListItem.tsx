@@ -1,3 +1,4 @@
+import type { SvgElement } from '../Icon';
 import { ListItem } from '../List';
 import type { ListItemProps } from '../List';
 import styles from './accessAreaListItem.module.css';
@@ -5,7 +6,7 @@ import styles from './accessAreaListItem.module.css';
 export interface AccessAreaListItemProps extends Pick<ListItemProps, 'size' | 'onClick' | 'expanded'> {
   id: string;
   name: string;
-  icon: string;
+  icon: SvgElement;
   children?: React.ReactNode;
 }
 
@@ -21,11 +22,7 @@ export const AccessAreaListItem = ({
   return (
     <ListItem
       as="button"
-      avatar={{
-        name,
-        imageUrl: icon,
-        type: 'company',
-      }}
+      icon={icon}
       title={name}
       size={size}
       collapsible={true}

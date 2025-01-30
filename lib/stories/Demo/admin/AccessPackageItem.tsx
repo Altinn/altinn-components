@@ -1,19 +1,21 @@
 import { ListItem, AvatarGroup, type ListItemProps } from '../../../components';
 import { AccessControls } from "./AccessControls"
+import {ChevronRightIcon, PackageIcon} from "@navikt/aksel-icons";
 
 export type AccessPackageItemVariant = "access" | undefined
 
-export interface AccessPackageItemProps extends ListItemProps {
-  variant?: string;
+export interface AccessPackageItemProps extends Omit<ListItemProps, 'variant'> {
+  variant?: AccessPackageItemVariant;
   access?: any
+  users?: ListItemProps[]
 }
 
 export const AccessPackageItem = ({
   variant,
   theme = "subtle",
-  icon = "package",
+  icon = PackageIcon,
   size = "sm",
-  linkIcon = "chevron-right",
+  linkIcon = ChevronRightIcon,
   access,
   users,
   ...props
@@ -23,7 +25,7 @@ export const AccessPackageItem = ({
     return (
       <ListItem
       {...props}
-        color={!access && "neutral"}
+        color={!access ? "neutral" : undefined}
         theme={theme}
         size={size}
         icon={icon}
@@ -33,13 +35,10 @@ export const AccessPackageItem = ({
   }
 
   if (users) {
-    return <ListItem {...props} icon={icon} color={!users?.length && "neutral" }theme={theme} controls={<AvatarGroup size="xs" items={users} />} linkIcon={linkIcon} />
+    return <ListItem {...props} icon={icon} color={!users?.length ? "neutral" : undefined } theme={theme} controls={<AvatarGroup size="xs" items={users} />} linkIcon={linkIcon} />
     
   }
 
-    return <ListItem {...props} icon={icon} theme={theme} linkIcon={linkIcon} />
-
-
-
+  return <ListItem {...props} icon={icon} theme={theme} linkIcon={linkIcon} />
 
 };

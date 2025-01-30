@@ -1,9 +1,10 @@
 import type { ReactNode } from 'react';
-import { Icon, type IconName, Avatar, Flex, Heading, Section, Typography } from '../../../components';
+import {Icon, type SvgElement, Avatar, Flex, Heading, Section, Typography, AvatarProps} from '../../../components';
 
 interface PageHeaderProps {
-  icon: IconName;
+  icon: SvgElement;
   title: string;
+  description?: string;
   currentAccount?: AvatarProps;
   children?: ReactNode;
 }
@@ -13,7 +14,7 @@ export const PageHeader = ({ currentAccount, icon, title = "Title", description 
     <Section as="header" theme="default" padding="page" spacing={6} shadow="xs" bleed>
       <Flex direction="row" align="center" spacing={3}>
         <div style={{ position: 'relative' }}>
-          <Icon size="xl" name={icon} theme="subtle" />
+          <Icon size="xl" svgElement={icon} theme="subtle" />
           {currentAccount && (
             <div style={{ position: 'absolute', bottom: '-8px', left: '-8px' }}>
               <Avatar size="sm" {...currentAccount} outline={true} />
@@ -22,8 +23,8 @@ export const PageHeader = ({ currentAccount, icon, title = "Title", description 
         </div>
         <Flex direction="col">
           <Heading size="lg">{title}</Heading>
-          <Typography size="xs">
-            <p>Descr.</p>
+          <Typography size="xs" as="p">
+            {description}
           </Typography>
         </Flex>
       </Flex>

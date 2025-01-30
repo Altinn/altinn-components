@@ -1,7 +1,8 @@
+import { ChevronDownIcon, ChevronRightIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 import type { ReactElement, ReactNode } from 'react';
 import type { AvatarGroupProps, AvatarProps } from '../Avatar';
 import type { BadgeProps } from '../Badge';
-import type { IconName, IconProps } from '../Icon';
+import type { IconProps, SvgElement } from '../Icon';
 import { ListItemBase, type ListItemBaseProps } from './ListItemBase';
 import { ListItemHeader, type ListItemHeaderProps } from './ListItemHeader';
 
@@ -17,7 +18,7 @@ export interface ListItemProps extends ListItemBaseProps, ListItemHeaderProps {
   /** Optional description */
   description?: string;
   /** List item icon */
-  icon?: IconName | IconProps | ReactNode | undefined;
+  icon?: SvgElement | IconProps | ReactNode | undefined;
   /** List item avatar */
   avatar?: AvatarProps;
   /** List item avatarGroup */
@@ -50,7 +51,7 @@ export const ListItem = ({
   title,
   description,
   badge,
-  linkIcon = 'chevron-right',
+  linkIcon = ChevronRightIcon,
   label,
   select,
   controls,
@@ -58,7 +59,7 @@ export const ListItem = ({
   ...rest
 }: ListItemProps) => {
   /** Set linkIcon */
-  const applicableLinkIcon = collapsible ? (expanded ? 'chevron-up' : 'chevron-down') : linkIcon;
+  const applicableLinkIcon = collapsible ? (expanded ? ChevronUpIcon : ChevronDownIcon) : linkIcon;
 
   /** Set label */
   const applicableLabel = typeof label === 'function' ? label() : label;

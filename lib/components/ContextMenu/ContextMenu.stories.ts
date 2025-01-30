@@ -1,3 +1,4 @@
+import { ArchiveIcon, ArrowRedoIcon, ClockDashedIcon, EyeClosedIcon, TrashIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, userEvent, within } from '@storybook/test';
 import { ContextMenu } from './ContextMenu';
@@ -13,31 +14,31 @@ const meta = {
       {
         id: '1',
         groupId: '1',
-        icon: 'arrow-redo',
+        icon: ArrowRedoIcon,
         title: 'Del og gi tilgang',
       },
       {
         id: '2',
         groupId: '1',
-        icon: 'eye-closed',
+        icon: EyeClosedIcon,
         title: 'Marker som ny',
       },
       {
         id: '3',
         groupId: '2',
-        icon: 'archive',
+        icon: ArchiveIcon,
         title: 'Flytt til arkiv',
       },
       {
         id: '4',
         groupId: '2',
-        icon: 'trash',
+        icon: TrashIcon,
         title: 'Flytt til papirkurv',
       },
       {
         id: '5',
         groupId: '3',
-        icon: 'clock-dashed',
+        icon: ClockDashedIcon,
         title: 'Aktivitetslogg',
       },
     ],

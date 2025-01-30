@@ -1,3 +1,4 @@
+import { ChevronRightIcon } from '@navikt/aksel-icons';
 import { MenuItemBase, MenuItemIcon, MenuItemLabel } from '../Menu';
 
 export type Account = {
@@ -18,7 +19,7 @@ export type AccountButtonProps = {
 export const AccountButton = ({ account, linkText, onClick, multipleAccounts }: AccountButtonProps) => {
   if (multipleAccounts) {
     return (
-      <MenuItemBase size="lg" onClick={onClick} linkText={linkText} linkIcon="chevron-right" as="button">
+      <MenuItemBase size="lg" onClick={onClick} linkText={linkText} linkIcon={ChevronRightIcon} as="button">
         <MenuItemIcon
           size="xl"
           avatar={{

@@ -9,7 +9,7 @@ import {
   useRef,
   useState,
 } from 'react';
-import type { IconName } from '../Icon';
+import type { SvgElement } from '../Icon';
 import type { SnackbarColor } from './SnackbarItem.tsx';
 
 export enum SnackbarDuration {
@@ -26,7 +26,7 @@ export interface SnackbarQueueItem extends SnackbarItemProps {
   message: string;
   color: SnackbarColor;
   duration?: number;
-  icon?: IconName;
+  icon?: SvgElement;
 }
 
 interface SnackbarItemProps {

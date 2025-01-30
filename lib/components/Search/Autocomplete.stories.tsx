@@ -1,3 +1,4 @@
+import { InboxIcon, SignLanguageTwoHandsIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Autocomplete, type AutocompleteItemProps } from '..';
 
@@ -232,7 +233,7 @@ export const LoadingResults: Story = {
         return {
           ...item,
           type: null,
-          icon: 'inbox',
+          icon: InboxIcon,
           loading: true,
         };
       }
@@ -298,7 +299,7 @@ export const ScopesAndMixedResults: Story = {
       {
         id: '2d',
         groupId: '4',
-        icon: 'sign-language-two-hands',
+        icon: SignLanguageTwoHandsIcon,
         href: '#',
         title: 'Alt om skatteoppgjøret',
         description: 'Lorem ipsum dolor sit amet.',

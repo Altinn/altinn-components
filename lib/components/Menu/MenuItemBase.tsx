@@ -1,6 +1,6 @@
 import cx from 'classnames';
 import type { ElementType, KeyboardEvent, KeyboardEventHandler, ReactNode } from 'react';
-import { Badge, type BadgeProps, type Color, Icon, type IconName } from '..';
+import { Badge, type BadgeProps, type Color, Icon, type SvgElement } from '..';
 import styles from './menuItemBase.module.css';
 
 export type MenuItemColor = Color;
@@ -24,7 +24,7 @@ export interface MenuItemBaseProps {
   expanded?: boolean;
   children?: ReactNode;
   badge?: BadgeProps | undefined;
-  linkIcon?: IconName;
+  linkIcon?: SvgElement;
   linkText?: string;
 }
 
@@ -70,7 +70,7 @@ export const MenuItemBase = ({
       {linkIcon && (
         <div className={styles.action}>
           {linkText && <span className={styles.linkText}>{linkText}</span>}
-          {linkIcon && <Icon name={linkIcon} className={styles.linkIcon} />}
+          {linkIcon && <Icon svgElement={linkIcon} className={styles.linkIcon} />}
         </div>
       )}
     </Component>

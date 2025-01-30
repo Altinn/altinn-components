@@ -7,7 +7,6 @@ import {
   type BreadcrumbsLinkProps,
   Flex,
   Heading,
-  type IconName,
   type IconProps,
   ListItemIcon,
   PageNav,
@@ -15,6 +14,7 @@ import {
   type PageTabsProps,
   Section,
   type SectionProps,
+  type SvgElement,
   Typography,
 } from '..';
 
@@ -26,7 +26,7 @@ export interface PageHeaderProps extends SectionProps {
   size?: PageHeaderSize;
   title?: string;
   description?: string;
-  icon?: IconName | IconProps;
+  icon?: SvgElement | IconProps;
   avatar?: AvatarProps;
   avatarGroup?: AvatarGroupProps;
   tabs?: PageTabsProps;

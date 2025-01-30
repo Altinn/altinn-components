@@ -1,3 +1,4 @@
+import { XMarkIcon } from '@navikt/aksel-icons';
 import type { ReactNode } from 'react';
 import { IconOrAvatar, type IconOrAvatarProps } from '../';
 import styles from './listItemIcon.module.css';
@@ -17,7 +18,7 @@ export const ListItemIcon = ({ loading, size = 'sm', icon, avatar, avatarGroup, 
   }
 
   if (loading) {
-    return <Icon name="x-mark" size={size as IconSize} loading={true} />;
+    return <Icon svgElement={XMarkIcon} size={size as IconSize} loading={true} />;
   }
 
   return (

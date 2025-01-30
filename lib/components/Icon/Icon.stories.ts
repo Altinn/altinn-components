@@ -1,18 +1,14 @@
+import { InboxFillIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Icon } from './Icon';
-import { iconsMap } from './iconsMap';
 
 const meta: Meta<typeof Icon> = {
   title: 'Atoms/Icon/Icon',
   component: Icon,
   tags: ['autodocs'],
   parameters: {},
-  argTypes: {
-    name: Object.keys(iconsMap),
-  },
   args: {
-    name: 'inbox',
-    variant: 'outline',
+    svgElement: InboxFillIcon,
   },
 } satisfies Meta<typeof Icon>;
 

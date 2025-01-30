@@ -1,3 +1,4 @@
+import { ArchiveIcon, ArrowRedoIcon, EyeIcon, TrashIcon } from '@navikt/aksel-icons';
 import type { Meta } from '@storybook/react';
 import { useState } from 'react';
 import { Button, Flex, Layout, LayoutAction, type LayoutActionProps } from '..';
@@ -14,22 +15,22 @@ const meta = {
       items: [
         {
           id: '1',
-          icon: 'arrow-redo',
+          icon: ArrowRedoIcon,
           title: 'Del og gi tilgang',
         },
         {
           id: '2',
-          icon: 'eye',
+          icon: EyeIcon,
           title: 'Marker som lest',
         },
         {
           id: '3',
-          icon: 'archive',
+          icon: ArchiveIcon,
           title: 'Flytt til arkiv',
         },
         {
           id: '4',
-          icon: 'trash',
+          icon: TrashIcon,
           title: 'Flytt til papirkurv',
         },
       ],

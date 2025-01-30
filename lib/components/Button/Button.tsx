@@ -1,12 +1,13 @@
 import cx from 'classnames';
-import type { IconName } from '../Icon';
+import type { SvgElement } from '../Icon';
 import { ButtonBase, type ButtonBaseProps } from './ButtonBase';
 import { ButtonIcon } from './ButtonIcon';
 import { ButtonLabel } from './ButtonLabel';
 import styles from './button.module.css';
 
 export interface ButtonProps extends Partial<ButtonBaseProps> {
-  icon?: IconName;
+  icon?: SvgElement;
+  ariaLabel?: string;
   reverse?: boolean;
   loading?: boolean;
   loadingText?: string;
@@ -26,6 +27,7 @@ export const Button = ({
   className,
   loading,
   loadingText = 'Loading ...',
+  ariaLabel,
   ...rest
 }: ButtonProps) => {
   if (loading) {
@@ -53,6 +55,7 @@ export const Button = ({
       variant={variant}
       color={color}
       size={size}
+      ariaLabel={ariaLabel}
       selected={selected}
       href={href}
       className={cx(styles.button, { [styles.reverse]: reverse })}

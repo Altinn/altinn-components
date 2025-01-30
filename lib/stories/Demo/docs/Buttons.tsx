@@ -8,6 +8,7 @@ import {
   IconButton,
   MetaItem,
 } from '../../../components';
+import {ArrowLeftIcon, ArrowRightIcon, ChevronDownIcon, XMarkIcon} from "@navikt/aksel-icons";
 
 const buttonSizes = ['sm', 'md', 'lg'] as ButtonSize[];
 const buttonVariants = ['solid', 'outline', 'dotted', 'text'] as ButtonVariant[];
@@ -23,17 +24,17 @@ export const Buttons = () => {
             {buttonSizes.map((size) => {
               return (
                 <Flex key={size} spacing={4} align="center">
-                  <IconButton icon="x-mark" variant={variant} size={size} />
+                  <IconButton icon={XMarkIcon} variant={variant} size={size} iconAltText="xmark" />
                   <Button variant={variant} size={size}>
                     Button
                   </Button>
-                  <Button variant={variant} icon="arrow-left" size={size}>
+                  <Button variant={variant} icon={ArrowLeftIcon} size={size}>
                     Button
                   </Button>
-                  <Button reverse variant={variant} icon="arrow-right" size={size}>
+                  <Button reverse variant={variant} icon={ArrowRightIcon} size={size}>
                     Button
                   </Button>
-                  <ComboButton variant={variant} icon="chevron-down" size={size}>
+                  <ComboButton variant={variant} icon={ChevronDownIcon} size={size}>
                     ComboButton
                   </ComboButton>
                   <MetaItem>{size}</MetaItem>

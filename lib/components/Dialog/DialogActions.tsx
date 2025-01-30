@@ -1,4 +1,5 @@
 'use client';
+import { ChevronDownIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 import { useMemo, useState } from 'react';
 import { Button, ComboButton, DropdownBase, Menu, type MenuItemProps } from '..';
 import styles from './dialogAction.module.css';
@@ -44,9 +45,10 @@ export const DialogActions = ({ items, maxItems = 2 }: DialogActionsProps) => {
       <section className={styles.comboButton}>
         <ComboButton
           variant="solid"
-          icon={expanded ? 'chevron-up' : 'chevron-down'}
+          icon={expanded ? ChevronUpIcon : ChevronDownIcon}
           size="lg"
           onIconClick={() => setExpanded((expanded) => !expanded)}
+          ariaLabel={expanded ? 'chevron up icon' : 'chevron down icon'}
         >
           {sortedItems[0].label}
         </ComboButton>

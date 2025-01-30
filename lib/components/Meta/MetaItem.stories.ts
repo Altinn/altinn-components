@@ -1,3 +1,4 @@
+import { ClockDashedIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { MetaItem } from './MetaItem';
 
@@ -21,5 +22,5 @@ export const Default: Story = {
 };
 
 export const Icon: Story = {
-  args: { icon: 'clock-dashed' },
+  args: { icon: ClockDashedIcon },
 };

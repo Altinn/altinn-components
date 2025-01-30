@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { IconName } from '../Icon';
+import type { SvgElement } from '../Icon';
 import { Skeleton } from '../Skeleton';
 import { MetaItemBase, type MetaItemSize, type MetaItemVariant } from './MetaItemBase';
 import { MetaItemLabel } from './MetaItemLabel';
@@ -14,7 +14,7 @@ export interface MetaTimestampProps {
   /** Datetime in ISO format */
   datetime?: string;
   /** Icon name */
-  icon?: IconName;
+  icon?: SvgElement;
   /** Label */
   children?: ReactNode;
 }
