@@ -6,7 +6,7 @@ import {
   AutocompleteItem,
   type AutocompleteItemProps,
 } from '..';
-import { useMenu } from '../../hooks/index.ts';
+import { useMenu } from '../../hooks';
 import { useEnterKey } from '../../hooks/useEnterKey.ts';
 
 export interface AutocompleteProps {
@@ -22,8 +22,7 @@ export const Autocomplete = ({ className, items, groups = {}, expanded, onSelect
 
   useEnterKey(() => {
     const activeItem = ref.current?.querySelector('[data-active="true"]') as HTMLElement | null;
-    const firstInteractiveItem = activeItem?.querySelector('a, button');
-    firstInteractiveItem?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    activeItem?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     onSelect?.();
   });
 
