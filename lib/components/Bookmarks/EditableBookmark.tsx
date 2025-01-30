@@ -54,7 +54,9 @@ export const EditableBookmark = ({
       id={id}
       title={expanded ? title || untitled : title}
       params={params}
-      controls={<IconButton variant="outline" size="sm" icon="chevron-up" onClick={onToggle} />}
+      controls={
+        <IconButton variant="outline" size="sm" icon={expanded ? 'chevron-up' : 'chevron-down'} onClick={onToggle} />
+      }
     >
       <Section padding={4} spacing={4}>
         <QueryLabel params={params} />
