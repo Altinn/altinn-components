@@ -4,7 +4,7 @@ import { DrawerBase, DropdownBase } from '../Dropdown';
 import { GlobalMenu, type GlobalMenuProps } from '../GlobalMenu';
 import type { Account } from '../GlobalMenu';
 import { useRootContext } from '../RootProvider';
-import { Searchbar, type SearchbarProps } from '../Searchbar';
+import { Searchbar, type SearchbarProps } from '../Search';
 import { HeaderBase } from './HeaderBase';
 import { HeaderButton } from './HeaderButton';
 import { HeaderLogo, type HeaderLogoProps } from './HeaderLogo';

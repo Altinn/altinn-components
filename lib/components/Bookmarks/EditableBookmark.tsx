@@ -1,8 +1,7 @@
 import { type ChangeEvent, useState } from 'react';
 import { Button, type ButtonProps, Flex, IconButton, Section, TextField, type TextFieldProps } from '..';
 
-import { BookmarksListItem, type BookmarksListItemProps } from './BookmarksListItem';
-import { type QueryItemProps, QueryLabel } from './QueryLabel';
+import { BookmarksListItem, type BookmarksListItemProps, type QueryItemProps, QueryLabel } from '..';
 
 export interface EditableBookmarkProps extends BookmarksListItemProps {
   id: string;
