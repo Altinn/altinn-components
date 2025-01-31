@@ -1,3 +1,4 @@
+import { useId } from 'react';
 import {
   ListBase,
   type ListBaseProps,
@@ -16,19 +17,20 @@ export interface ListProps extends Omit<ListBaseProps, 'children'> {
 }
 
 export const List = ({ defaultItemSize, defaultItemTheme, defaultItemColor, items = [], ...rest }: ListProps) => {
+  const listId = useId();
   return (
     <ListBase {...rest}>
-      {items.map((item, index) => {
-        return (
-          <ListItem
-            {...item}
-            size={item?.size || defaultItemSize}
-            color={item?.color || defaultItemColor}
-            theme={item?.theme || defaultItemTheme}
-            key={'item' + index}
-          />
-        );
-      })}
+        {items.map((item, index) => {
+          return (
+              <ListItem
+                {...item}
+                size={item?.size || defaultItemSize}
+                color={item?.color || defaultItemColor}
+                theme={item?.theme || defaultItemTheme}
+                key={listId + index}
+              />
+          );
+        })}
     </ListBase>
   );
 };

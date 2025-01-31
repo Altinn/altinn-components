@@ -7,19 +7,29 @@ const meta = {
   tags: ['autodocs'],
   parameters: {},
   args: {
-    children: (
-      <>
-        <ListItem title="Item 1" />
-        <ListItem title="Item 2" />
-        <ListItem title="Item 3" />
-      </>
-    ),
+    
   },
 } satisfies Meta<typeof ListBase>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  args: {},
+export const Interactive: Story = {
+  args: {children: (
+    <>
+      <ListItem title="Item 1" linkIcon />
+      <ListItem title="Item 2" linkIcon/>
+      <ListItem title="Item 3" linkIcon/>
+    </>
+  ),},
+};
+
+export const NonIteractive: Story = {
+  args: {children: (
+    <>
+      <ListItem title="Item 1" interactive={false}/>
+      <ListItem title="Item 2" interactive={false}/>
+      <ListItem title="Item 3" interactive={false}/>
+    </>
+  ),},
 };

@@ -56,8 +56,9 @@ export const Default: Story = {
     },
     badge: {
       theme: 'subtle',
-      label: '2 av 4',
+      label: 'New',
     },
+    linkIcon: true,
   },
 };
 
@@ -122,10 +123,17 @@ export const AvatarGroups = (args: ListItemProps) => {
 };
 
 export const Badges = (args: ListItemProps) => {
+
+  const [expanded, setExpanded] = useState(false);
+
+  const toggleExpanded = () => {
+    setExpanded((prevState) => !prevState);
+  };
+  
   return (
     <ListBase>
-      <ListItem {...args} icon="teddy-bear" badge={{ label: '2 ting' }} description="Adding a badge." />
-      <ListItem {...args} icon="teddy-bear" linkIcon={undefined} description="LinkIcon has been removed." />
+      <ListItem {...args} icon="teddy-bear" description="This item is a link." linkIcon />
+      <ListItem {...args} icon="teddy-bear" badge={{ label: '2 ting' }} description="Adding a badge." collapsible expanded={expanded} onClick={toggleExpanded}/>
     </ListBase>
   );
 };
@@ -197,7 +205,7 @@ export const Theme = (args: ListItemProps) => {
             title={theme}
             description={'theme:' + theme}
             theme={theme}
-            linkIcon="chevron-right"
+            linkIcon
             key={theme}
           />
         );
@@ -217,7 +225,7 @@ export const Size = (args: ListItemProps) => {
             title={size}
             description={'theme:' + size}
             size={size}
-            linkIcon="chevron-right"
+            linkIcon
             key={size}
           />
         );
@@ -265,7 +273,7 @@ export const OverridingBadge = (args: ListItemProps) => {
         {...args}
         description="Badge replaced by AvatarGroup"
         badge={<AvatarGroup {...avatarGroupsProps} size="sm" />}
-        linkIcon="chevron-right"
+        linkIcon
       />
     </ListBase>
   );
@@ -294,7 +302,7 @@ export const CustomControls = (args: ListItemProps) => {
         {...args}
         icon="teddy-bear"
         badge={{ label: 'Admin' }}
-        linkIcon="chevron-right"
+        linkIcon
         controls={
           <ContextMenu
             id="menu"

@@ -1,5 +1,6 @@
 .flex {
   display: flex;
+  list-style: none;
 }
 
 .flex[data-direction="col"] {

@@ -60,6 +60,7 @@ export const ListItemBase = ({
     const Component = as || 'button';
 
     return (
+      <li className={styles.item}>
       <Component
         className={linkClass}
         data-variant={variant}
@@ -82,13 +83,14 @@ export const ListItemBase = ({
       >
         {children}
       </Component>
+      </li>
     );
   }
 
   const itemClass = cx(styles.item, className);
 
   return (
-    <article
+    <li
       className={itemClass}
       data-variant={variant}
       data-color={color}
@@ -102,6 +104,6 @@ export const ListItemBase = ({
       aria-expanded={expanded}
     >
       {children}
-    </article>
+    </li>
   );
 };

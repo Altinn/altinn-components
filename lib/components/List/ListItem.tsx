@@ -26,6 +26,8 @@ export interface ListItemProps extends ListItemBaseProps, ListItemHeaderProps {
   label?: ReactNode | (() => ReactElement);
   /** Optional badge */
   badge?: BadgeProps | ReactNode | undefined;
+  /** Whether to display the item with a link icon */
+  linkIcon?: boolean;
 }
 
 export interface ListItemInputProps extends ListItemProps {
@@ -50,7 +52,7 @@ export const ListItem = ({
   title,
   description,
   badge,
-  linkIcon = 'chevron-right',
+  linkIcon = false,
   label,
   select,
   controls,
@@ -58,7 +60,7 @@ export const ListItem = ({
   ...rest
 }: ListItemProps) => {
   /** Set linkIcon */
-  const applicableLinkIcon = collapsible ? (expanded ? 'chevron-up' : 'chevron-down') : linkIcon;
+  const chevronIcon = collapsible ? (expanded ? 'chevron-up' : 'chevron-down') : undefined;
 
   /** Set label */
   const applicableLabel = typeof label === 'function' ? label() : label;
@@ -85,7 +87,7 @@ export const ListItem = ({
             avatar={avatar}
             avatarGroup={avatarGroup}
             badge={badge}
-            linkIcon={applicableLinkIcon}
+            chevron={chevronIcon}
             controls={controls}
             {...rest}
           >
@@ -119,7 +121,7 @@ export const ListItem = ({
         avatar={avatar}
         avatarGroup={avatarGroup}
         badge={badge}
-        linkIcon={applicableLinkIcon}
+        chevron={chevronIcon ?? (linkIcon ? 'chevron-right' : undefined)}
         controls={controls}
         {...rest}
       >

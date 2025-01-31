@@ -43,8 +43,8 @@ export interface ListItemHeaderProps extends ListItemLinkProps {
   avatar?: AvatarProps;
   /** List item avatarGroup */
   avatarGroup?: AvatarGroupProps;
-  /** Optional icon indicating behaviour */
-  linkIcon?: IconName | undefined | null;
+  /** Optional chevron icon indicating behaviour */
+  chevron?: 'chevron-up' | 'chevron-down' | 'chevron-right';
   /** Optional badge */
   badge?: BadgeProps | ReactNode | undefined;
   /** Custom controls */
@@ -68,7 +68,7 @@ export const ListItemHeader = ({
   icon,
   avatar,
   avatarGroup,
-  linkIcon,
+  chevron,
   badge,
   controls,
   className,
@@ -126,7 +126,7 @@ export const ListItemHeader = ({
           {controls && (
             <>
               {renderBadge()}
-              {linkIcon && <Icon name={linkIcon} size={applicableIconSize as ListItemIconSize} />}
+              {chevron && <Icon name={chevron} size={applicableIconSize as ListItemIconSize} />}
             </>
           )}
         </ListItemLink>
@@ -137,7 +137,7 @@ export const ListItemHeader = ({
         ) : (
           <>
             {renderBadge()}
-            {linkIcon && <Icon name={linkIcon} size={applicableIconSize as ListItemIconSize} />}
+            {chevron && <Icon name={chevron} size={applicableIconSize as ListItemIconSize} />}
           </>
         )}
       </ListItemControls>
