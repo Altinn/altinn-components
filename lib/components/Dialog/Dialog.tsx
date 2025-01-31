@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 import {
   Article,
   type BackButtonProps,
@@ -18,14 +18,14 @@ import {
   type DialogHistoryProps,
   DialogSection,
   type DialogSectionProps,
-  DialogTimeline,
-  type DialogTimelineProps,
+  DialogTransmissions,
+  type DialogTransmissionsProps,
   PageBase,
   PageMenu,
   type PageMenuProps,
   PageNav,
   Section,
-} from '..';
+} from "..";
 
 export interface DialogProps extends DialogHeaderProps, DialogBodyProps {
   /** Dialog is loading */
@@ -48,8 +48,8 @@ export interface DialogProps extends DialogHeaderProps, DialogBodyProps {
   attachments?: DialogAttachmentsProps;
   /** Dialog history */
   history?: DialogHistoryProps;
-  /** Dialog timeline */
-  timeline?: DialogTimelineProps;
+  /** Dialog transmissions */
+  transmissions?: DialogTransmissionsProps;
   /** More information about the dialog, process, etc. */
   additionalInfo?: DialogSectionProps;
   /** Contact information. */
@@ -73,16 +73,16 @@ export const Dialog = ({
   title,
   sender,
   recipient,
-  recipientLabel = 'to',
+  recipientLabel = "to",
   recipientGroup,
-  summary = 'Summary.',
+  summary = "Summary.",
   body,
   actions = [],
   attachments,
   seenBy,
   activityLog,
   history,
-  timeline,
+  transmissions,
   additionalInfo,
   contactInfo,
 }: DialogProps) => {
@@ -96,7 +96,13 @@ export const Dialog = ({
           controls={contextMenu && <ContextMenu {...contextMenu} />}
         />
         <Article padding={6} spacing={6}>
-          <DialogHeader loading={loading} title={title} status={status} dueAt={dueAt} dueAtLabel={dueAtLabel} />
+          <DialogHeader
+            loading={loading}
+            title={title}
+            status={status}
+            dueAt={dueAt}
+            dueAtLabel={dueAtLabel}
+          />
 
           {history && <DialogHistory {...history} collapsible={true} />}
 
@@ -117,9 +123,11 @@ export const Dialog = ({
             {actions?.length > 0 && <DialogActions items={actions} />}
           </DialogBody>
 
-          {timeline && <DialogTimeline {...timeline} />}
+          {transmissions && <DialogTransmissions {...transmissions} />}
 
-          {additionalInfo && <DialogSection>{additionalInfo?.children}</DialogSection>}
+          {additionalInfo && (
+            <DialogSection>{additionalInfo?.children}</DialogSection>
+          )}
 
           {contactInfo && <ContactSection {...contactInfo} />}
         </Article>

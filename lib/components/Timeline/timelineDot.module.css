@@ -1,0 +1,6 @@
+.dot {
+  background-color: var(--ds-color-surface-active);
+  width: 0.875rem;
+  height: 0.875rem;
+  border-radius: 50%;
+}

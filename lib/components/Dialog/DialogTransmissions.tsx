@@ -1,25 +1,19 @@
-import { Toolbar, type ToolbarProps } from '../Toolbar';
-import { type TransmissionItemProps, TransmissionList } from '../Transmission';
-import { Heading } from '../Typography';
+import { type TransmissionListProps, TransmissionList } from "..";
 
-export interface DialogTransmissionsProps {
-  title?: string;
-  items?: TransmissionItemProps[];
-  toolbar?: ToolbarProps;
-}
-
-export const DialogTransmissions = ({ title = 'Transmissions', items, toolbar }: DialogTransmissionsProps) => {
+export const DialogTransmissions = ({
+  items,
+  ...props
+}: TransmissionListProps) => {
   if (!items?.length) {
     return null;
   }
 
   return (
-    <section>
-      <Heading as="h2" size="xs">
-        {title}
-      </Heading>
-      {toolbar && <Toolbar {...toolbar} />}
-      <TransmissionList items={items} />
-    </section>
+    <TransmissionList
+      {...props}
+      defaultItemColor="neutral"
+      defaultItemTheme="subtle"
+      items={items}
+    />
   );
 };
