@@ -13,7 +13,7 @@ export const AccessPackageItem = ({
   theme = "subtle",
   icon = "package",
   size = "sm",
-  linkIcon = "chevron-right",
+  linkIcon = false,
   access,
   users,
   ...props

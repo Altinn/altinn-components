@@ -147,7 +147,6 @@ export const DialogListItem = ({
       size={size}
       selected={selected}
       theme={applicableTheme}
-      linkIcon={null}
       controls={select && <DialogSelect className={styles.select} {...select} />}
       label={
         <div className={styles.border} data-size={size} data-seen={seen} data-loading={loading}>

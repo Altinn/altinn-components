@@ -29,9 +29,9 @@ export interface ListItemHeaderProps extends ListItemLinkProps {
   className?: string;
   /** Select controls */
   select?: ListItemSelectProps;
-  /** Collapsible item, sets linkIcon to "chevron down" */
+  /** Collapsible item */
   collapsible?: boolean;
-  /** Item is expanded, sets linkIcon to "chevron up" */
+  /** Item is expanded */
   expanded?: boolean;
   /** Title */
   title?: string;

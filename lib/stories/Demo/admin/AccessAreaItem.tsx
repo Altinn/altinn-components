@@ -43,6 +43,7 @@ if (count && accessCount) {
     <ListItem
       {...props}
       expanded={expanded}
+      collapsable
       size="md"
       icon={{
         color: accessCount ? "company" : "neutral",
@@ -51,7 +52,6 @@ if (count && accessCount) {
       }}
       badge={badge}
       title={title}
-      linkIcon={expanded ? "chevron-up" : "chevron-down"}
     >
       {expanded && <Section padding={6} spacing={6}>
         <Typography>{description}</Typography>

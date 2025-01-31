@@ -34,7 +34,7 @@ export const Theme = (args: ListItemProps) => {
                     theme={theme}
                     description={theme + '/' + size}
                     size={size}
-                    linkIcon="chevron-right"
+                    linkIcon
                   />
                 </Fragment>
               );
@@ -53,19 +53,19 @@ export const Size = (args: ListItemProps) => {
       {sizes?.map((size) => {
         return (
           <Fragment key={size}>
-            <ListItem {...args} description={undefined} size={size} linkIcon="chevron-right" />
-            <ListItem {...args} size={size} linkIcon="chevron-right" />
-            <ListItem {...args} select={{ checked: true }} size={size} linkIcon="chevron-right" />
-            <ListItem {...args} icon="teddy-bear" size={size} linkIcon="chevron-right" />
-            <ListItem {...args} icon={{ name: 'teddy-bear', theme: 'surface' }} size={size} linkIcon="chevron-right" />
-            <ListItem {...args} avatar={{ name: 'Avatar' }} size={size} linkIcon="chevron-right" />
+            <ListItem {...args} description={undefined} size={size} linkIcon />
+            <ListItem {...args} size={size} linkIcon/>
+            <ListItem {...args} select={{ checked: true }} size={size} linkIcon />
+            <ListItem {...args} icon="teddy-bear" size={size} linkIcon />
+            <ListItem {...args} icon={{ name: 'teddy-bear', theme: 'surface' }} size={size} linkIcon />
+            <ListItem {...args} avatar={{ name: 'Avatar' }} size={size} linkIcon />
             <ListItem
               {...args}
               avatarGroup={{
                 items: [{ name: 'Alfa' }, { name: 'Beta' }, { name: 'Charlie' }],
               }}
               size={size}
-              linkIcon="chevron-right"
+              linkIcon
             />
             <MetaItem>{size}</MetaItem>
           </Fragment>

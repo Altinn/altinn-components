@@ -53,7 +53,7 @@ export const TransmissionItem = ({
         title={title}
         description={description}
         badge={{ label: type?.label }}
-        linkIcon="chevron-right"
+        linkIcon
       />
     );
   }
@@ -63,6 +63,7 @@ export const TransmissionItem = ({
       as="button"
       theme={theme}
       expanded={expanded}
+      collapsible
       onClick={onToggle}
       size="sm"
       avatar={{
@@ -73,7 +74,6 @@ export const TransmissionItem = ({
       title={title}
       description={expanded ? '' : description}
       badge={{ label: type?.label }}
-      linkIcon={expanded ? 'chevron-down' : 'chevron-up'}
     >
       {expanded && (
         <div className={styles.body}>
