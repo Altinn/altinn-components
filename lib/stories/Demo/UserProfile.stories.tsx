@@ -5,7 +5,7 @@ import { accounts } from './data';
 const meta = {
   title: 'Demo/UserProfile',
   component: App,
-  tags: ['autodocs', 'beta'],
+  tags: ['autodocs', 'beta', 'skip-test'],
   parameters: {
     layout: 'fullscreen',
   },

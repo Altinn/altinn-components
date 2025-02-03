@@ -43,7 +43,6 @@ export const ButtonBase = ({
       data-size={size}
       data-variant={variant}
       data-color={color}
-      aria-selected={selected}
       aria-disabled={disabled}
       disabled={disabled}
       className={cx(styles.button, className)}

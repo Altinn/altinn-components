@@ -136,6 +136,7 @@ export const DialogListItem = ({
         badge={
           <DialogMetadata loading={loading} sender={sender} updatedAt={updatedAt} updatedAtLabel={updatedAtLabel} />
         }
+        title={title}
       />
     );
   }
@@ -148,6 +149,7 @@ export const DialogListItem = ({
       theme={applicableTheme}
       linkIcon={null}
       controls={select && <ListItemSelect className={styles.select} {...select} size="xl" />}
+      title={title}
       label={
         <div className={styles.border} data-size={size} data-seen={seen} data-loading={loading}>
           <header className={styles.header} data-size={size}>
@@ -162,9 +164,11 @@ export const DialogListItem = ({
               recipientLabel={recipientLabel}
               grouped={grouped}
             />
-            <p data-size={size} className={styles.summary}>
-              <Skeleton loading={loading}>{summary || description}</Skeleton>
-            </p>
+            <Skeleton loading={loading}>
+              <p data-size={size} className={styles.summary}>
+                {summary || description}
+              </p>
+            </Skeleton>
           </header>
           <DialogMetadata
             className={styles.footer}

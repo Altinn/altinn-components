@@ -15,7 +15,13 @@ interface SkeletonProps {
 export const Skeleton = ({ loading = false, size, variant = 'text', className, children }: SkeletonProps) => {
   if (loading) {
     return (
-      <span className={cx(styles.skelaton, className)} data-size={size} data-loading={loading} data-variant={variant}>
+      <span
+        className={cx(styles.skelaton, className)}
+        data-size={size}
+        data-loading={loading}
+        data-variant={variant}
+        aria-hidden="true"
+      >
         {children}
       </span>
     );

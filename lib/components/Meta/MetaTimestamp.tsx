@@ -28,13 +28,13 @@ export const MetaTimestamp = ({
   children,
 }: MetaTimestampProps) => {
   return (
-    <MetaItemBase as="time" variant={variant} datetime={datetime} size={size}>
-      <Skeleton loading={loading}>
+    <Skeleton loading={loading}>
+      <MetaItemBase as="time" variant={variant} datetime={datetime} size={size}>
         {!loading && icon && <MetaItemMedia size={size} icon={icon} />}
         <MetaItemLabel variant={variant} size={size}>
           {children}
         </MetaItemLabel>
-      </Skeleton>
-    </MetaItemBase>
+      </MetaItemBase>
+    </Skeleton>
   );
 };

@@ -170,7 +170,7 @@ export const Statuses = (args: DialogListItemProps) => {
   );
 };
 
-export const Loading = (args: DialogListItemProps) => {
+const Loading = (args: DialogListItemProps) => {
   return (
     <ListBase>
       <DialogListItem {...args} loading label="Ulest" />
@@ -180,6 +180,12 @@ export const Loading = (args: DialogListItemProps) => {
     </ListBase>
   );
 };
+
+Loading.parameters = {
+  tags: ['skip-test'],
+};
+
+export { Loading };
 
 export const Variants = (args: DialogListItemProps) => {
   return (

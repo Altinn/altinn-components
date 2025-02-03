@@ -74,7 +74,7 @@ export const MenuItems = ({
                 const { expanded } = itemProps;
                 const nextItem = group?.items[index + 1];
                 return (
-                  <MenuListItem role="presentation" expanded={expanded} key={index}>
+                  <MenuListItem expanded={expanded} key={index}>
                     <MenuItem
                       {...itemProps}
                       size={itemProps?.size || groupProps?.defaultItemSize || defaultItemSize}

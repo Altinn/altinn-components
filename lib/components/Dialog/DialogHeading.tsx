@@ -22,9 +22,12 @@ export type DialogHeadingProps = {
 export const DialogHeading = ({ loading, size = 'sm', seen = false, state, label, children }: DialogHeadingProps) => {
   return (
     <div className={styles.heading}>
-      <h2 className={styles.title} data-seen={seen} data-size={size} data-state={state}>
-        <Skeleton loading={loading}>{children}</Skeleton>
-      </h2>
+      <Skeleton loading={loading}>
+        <h2 className={styles.title} data-seen={seen} data-size={size} data-state={state}>
+          {children}
+        </h2>
+      </Skeleton>
+
       {!loading && label && (
         <DialogLabel type={state} size="xs">
           {label}

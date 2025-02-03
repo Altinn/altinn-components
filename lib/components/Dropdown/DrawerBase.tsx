@@ -12,9 +12,10 @@ export interface DrawerBaseProps {
 }
 
 export const DrawerBase = ({ placement = 'inline', open = false, className, children }: DrawerBaseProps) => {
+  const drawerBaseStyles = cx(styles.drawer, className, open && styles.drawerExpanded);
   return (
     <div
-      className={cx(styles.drawer, className)}
+      className={drawerBaseStyles}
       data-placement={placement}
       data-theme="default"
       data-color="neutral"

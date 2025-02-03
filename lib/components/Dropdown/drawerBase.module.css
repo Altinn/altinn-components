@@ -2,7 +2,7 @@
   display: none;
 }
 
-.drawer[aria-expanded="true"] {
+.drawerExpanded {
   display: block;
   width: 100%;
 }

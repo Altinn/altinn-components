@@ -2,7 +2,7 @@
   width: 100%;
 }
 
-.search[aria-expanded="true"] {
+.searchExpanded {
   z-index: 2;
 }
 
@@ -15,7 +15,7 @@
     max-width: 320px;
   }
 
-  .search[aria-expanded="true"] {
+  .searchExpanded {
     max-width: 640px;
   }
 }

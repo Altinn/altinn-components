@@ -28,7 +28,6 @@ export const ListItemLink = ({
   href,
   onClick,
   onKeyPress,
-  tabIndex,
   className,
   children,
 }: ListItemLinkProps) => {
@@ -51,7 +50,6 @@ export const ListItemLink = ({
         onKeyPress?.(e);
       }}
       onClick={onClick}
-      tabIndex={tabIndex}
       aria-disabled={loading || disabled}
       aria-selected={selected}
       data-size={size}

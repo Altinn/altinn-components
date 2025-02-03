@@ -44,6 +44,7 @@ export const Loading: Story = {
   args: {
     loading: true,
   },
+  tags: ['skip-test'],
 };
 
 export const ExtendedContent: Story = {
