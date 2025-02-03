@@ -12,14 +12,13 @@ export interface DrawerBaseProps {
 }
 
 export const DrawerBase = ({ placement = 'inline', open = false, className, children }: DrawerBaseProps) => {
-  const drawerBaseStyles = cx(styles.drawer, className, open && styles.drawerExpanded);
   return (
     <div
-      className={drawerBaseStyles}
+      className={cx(styles.drawer, className)}
       data-placement={placement}
       data-theme="default"
       data-color="neutral"
-      aria-expanded={open}
+      data-expanded={open}
     >
       {children}
     </div>

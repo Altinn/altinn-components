@@ -2,7 +2,7 @@
   display: none;
 }
 
-.dropdownExpanded {
+.dropdown[data-expanded="true"] {
   display: block;
   position: absolute;
   z-index: 2;

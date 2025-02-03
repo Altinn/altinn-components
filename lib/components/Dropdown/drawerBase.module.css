@@ -2,7 +2,7 @@
   display: none;
 }
 
-.drawerExpanded {
+.drawer[data-expanded="true"] {
   display: block;
   width: 100%;
 }

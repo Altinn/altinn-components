@@ -1,17 +1,17 @@
-.drawer[aria-expanded="true"] {
+.drawer[data-expanded="true"] {
   display: block;
 }
 
-.dropdown[aria-expanded="true"] {
+.dropdown[data-expanded="true"] {
   display: none;
 }
 
 @media (min-width: 1024px) {
-  .dropdown[aria-expanded="true"] {
+  .dropdown[data-expanded="true"] {
     width: 320px;
     display: block;
   }
-  .drawer[aria-expanded="true"] {
+  .drawer[data-expanded="true"] {
     display: none;
   }
 }
