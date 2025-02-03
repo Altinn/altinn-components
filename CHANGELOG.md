@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.15.4](https://github.com/Altinn/altinn-components/compare/v0.15.3...v0.15.4) (2025-02-03)
+
+
+### Miscellaneous Chores
+
+* Setup accessibility test runner and fix accessibility issues in altinn components ([#208](https://github.com/Altinn/altinn-components/issues/208)) ([c4efeeb](https://github.com/Altinn/altinn-components/commit/c4efeebf1f984c09f42cfb1f9ee75366782c73a3))
+
 ## [0.15.3](https://github.com/Altinn/altinn-components/compare/v0.15.2...v0.15.3) (2025-01-30)
 
 
