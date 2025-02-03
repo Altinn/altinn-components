@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.15.5](https://github.com/Altinn/altinn-components/compare/v0.15.4...v0.15.5) (2025-02-03)
+
+
+### Bug Fixes
+
+* drawer layout issues after aria-expanded was removed ([#236](https://github.com/Altinn/altinn-components/issues/236)) ([89d4176](https://github.com/Altinn/altinn-components/commit/89d417664211159bfcbd9e8b117919ccd4acd900))
+
 ## [0.15.4](https://github.com/Altinn/altinn-components/compare/v0.15.3...v0.15.4) (2025-02-03)
 
 
