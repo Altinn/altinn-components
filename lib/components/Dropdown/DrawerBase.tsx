@@ -18,7 +18,7 @@ export const DrawerBase = ({ placement = 'inline', open = false, className, chil
       data-placement={placement}
       data-theme="default"
       data-color="neutral"
-      aria-expanded={open}
+      data-expanded={open}
     >
       {children}
     </div>

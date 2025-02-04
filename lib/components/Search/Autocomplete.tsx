@@ -1,9 +1,13 @@
 import { useRef } from 'react';
+import {
+  AutocompleteBase,
+  AutocompleteGroup,
+  type AutocompleteGroupProps,
+  AutocompleteItem,
+  type AutocompleteItemProps,
+} from '..';
 import { useMenu } from '../../hooks';
 import { useEnterKey } from '../../hooks/useEnterKey.ts';
-import { AutocompleteBase } from './AutocompleteBase';
-import { AutocompleteGroup, type AutocompleteGroupProps } from './AutocompleteGroup';
-import { AutocompleteItem, type AutocompleteItemProps } from './AutocompleteItem';
 
 export interface AutocompleteProps {
   items: AutocompleteItemProps[];
@@ -18,8 +22,7 @@ export const Autocomplete = ({ className, items, groups = {}, expanded, onSelect
 
   useEnterKey(() => {
     const activeItem = ref.current?.querySelector('[data-active="true"]') as HTMLElement | null;
-    const firstInteractiveItem = activeItem?.querySelector('a, button');
-    firstInteractiveItem?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    activeItem?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     onSelect?.();
   });
 

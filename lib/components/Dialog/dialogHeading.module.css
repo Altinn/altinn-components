@@ -40,6 +40,8 @@
   font-weight: 400;
 }
 
+/* STATE */
+
 .title[data-state="archived"] {
   font-weight: 400;
 }

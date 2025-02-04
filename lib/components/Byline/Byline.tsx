@@ -35,9 +35,11 @@ export const Byline = ({
           avatar && <Avatar {...avatar} size={size} className={styles.avatar} />
         )}
       </Skeleton>
-      <time data-size={size} dateTime={datetime} className={styles.label}>
-        <Skeleton loading={loading}>{children}</Skeleton>
-      </time>
+      <Skeleton loading={loading}>
+        <time data-size={size} dateTime={datetime} className={styles.label}>
+          {children}
+        </time>
+      </Skeleton>
     </div>
   );
 };

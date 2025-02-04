@@ -2,7 +2,7 @@
   display: none;
 }
 
-.dropdown[aria-expanded="true"] {
+.dropdown[data-expanded="true"] {
   display: block;
   position: absolute;
   z-index: 2;

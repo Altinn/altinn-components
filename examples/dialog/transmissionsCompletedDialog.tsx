@@ -4,7 +4,6 @@ import { skatt } from '../avatar';
 import { transmissionsHistoryItems } from './transmissionsHistoryItems';
 
 const historyItems = transmissionsHistoryItems;
-const latestHistoryItem = historyItems[historyItems?.length - 1];
 
 export const transmissionsCompletedDialog: DialogProps = {
   id: 'transmissions',
@@ -26,8 +25,6 @@ export const transmissionsCompletedDialog: DialogProps = {
     ],
   },
   history: {
-    updatedAtLabel: '14 dager siden',
-    summary: latestHistoryItem.summary,
     items: historyItems,
   },
   additionalInfo: {

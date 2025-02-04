@@ -10,13 +10,9 @@ export interface SearchbarBaseProps {
 }
 
 export const SearchbarBase = ({ className, children, expanded = false, autocomplete = false }: SearchbarBaseProps) => {
+  const searchBaseStyles = cx(styles.searchbar, className, expanded && styles.searchbarExpanded);
   return (
-    <div
-      className={cx(styles.searchbar, className)}
-      aria-expanded={expanded}
-      data-autocomplete={autocomplete}
-      data-color="neutral"
-    >
+    <div className={searchBaseStyles} data-autocomplete={autocomplete} data-color="neutral">
       {children}
     </div>
   );

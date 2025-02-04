@@ -38,7 +38,7 @@ export const ToolbarOptions = ({ search, optionGroups = {}, options, onChange, o
   );
 
   return (
-    <MenuBase>
+    <MenuBase theme="default">
       {search && <MenuSearch {...search} />}
       <MenuList>
         {Object.keys(sections)?.map((key, groupIndex) => {

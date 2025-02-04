@@ -4,7 +4,7 @@ export interface DialogBylineProps {
   sender?: AvatarProps;
   recipient?: AvatarProps;
   recipientLabel?: string;
-  recipientGroup?: boolean;
+  grouped?: boolean;
   loading?: boolean;
   size?: BylineSize;
 }
@@ -14,7 +14,7 @@ export const DialogByline = ({
   sender,
   recipient,
   recipientLabel = 'to',
-  recipientGroup = false,
+  grouped = false,
   loading,
   size = 'xs',
 }: DialogBylineProps) => {
@@ -23,7 +23,7 @@ export const DialogByline = ({
   }
 
   const avatarGroup =
-    recipientGroup && sender && recipient
+    !loading && grouped && sender && recipient
       ? {
           items: [sender, recipient],
         }

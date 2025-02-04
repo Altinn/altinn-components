@@ -8,12 +8,12 @@ import {
   type DialogTransmissionsProps,
 } from '../';
 
-export interface DialogHistoryDetailsProps {
+export interface ActivityItemDetailsProps {
   attachments?: DialogAttachmentsProps;
   transmissions?: DialogTransmissionsProps;
 }
 
-export const DialogHistoryDetails = ({ attachments, transmissions }: DialogHistoryDetailsProps) => {
+export const ActivityItemDetails = ({ attachments, transmissions }: ActivityItemDetailsProps) => {
   const attachmentsLabel = attachments?.title;
   const transmissionsLabel = transmissions?.title;
 

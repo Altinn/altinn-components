@@ -23,13 +23,13 @@ export const Icon = ({ loading, name, size, color, theme, variant = 'outline', c
     (iconsMap[name] as { [key in IconVariant]: JSX.Element })?.[variant] ?? iconsMap[name]?.outline;
 
   if (!svgIcon) {
-    return <span className={cx([styles.icon], className)} />;
+    return <span className={cx([styles.icon], className)} aria-label={name} />;
   }
 
   return (
     <Skeleton loading={loading} variant="circle">
       <span data-size={size} data-color={color} data-theme={theme} className={cx([styles.icon], className)}>
-        <SvgIcon svgIconComponent={svgIcon} />
+        <SvgIcon svgIconComponent={svgIcon} aria-label={name} />
       </span>
     </Skeleton>
   );

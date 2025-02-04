@@ -4,14 +4,13 @@ import {
   DialogHeading,
   DialogMetadata,
   type DialogSeenByProps,
-  DialogSelect,
-  type DialogSelectProps,
   type DialogStatusProps,
   type DialogTouchedByActor,
   ListItem,
   ListItemLabel,
-  type ListItemLinkProps,
   type ListItemProps,
+  ListItemSelect,
+  type ListItemSelectProps,
   Skeleton,
 } from '..';
 
@@ -21,7 +20,7 @@ export type DialogListItemTheme = 'default' | 'subtle' | 'transparent';
 
 import styles from './dialogListItem.module.css';
 
-export interface DialogListItemProps extends ListItemProps, ListItemLinkProps {
+export interface DialogListItemProps extends ListItemProps {
   /** Dialog title */
   title: string;
   /** Dialog id */
@@ -35,7 +34,7 @@ export interface DialogListItemProps extends ListItemProps, ListItemLinkProps {
   /** Dialog size */
   size?: DialogListItemSize;
   /** Select: Use to support batch operations */
-  select?: DialogSelectProps;
+  select?: ListItemSelectProps;
   /** Selected: Use to support batch operations */
   selected?: boolean;
   /** Dialog state */
@@ -47,7 +46,7 @@ export interface DialogListItemProps extends ListItemProps, ListItemLinkProps {
   /** Dialog Recipient  */
   recipientLabel?: string;
   /** Group recipient, show both sender and recipient avatars */
-  recipientGroup?: boolean;
+  grouped?: boolean;
   /** Updated datetime */
   updatedAt?: string;
   /** Updated at label */
@@ -98,7 +97,7 @@ export const DialogListItem = ({
   sender,
   recipient,
   recipientLabel = 'to',
-  recipientGroup = false,
+  grouped = false,
   updatedAt,
   updatedAtLabel,
   archivedAt,
@@ -137,6 +136,7 @@ export const DialogListItem = ({
         badge={
           <DialogMetadata loading={loading} sender={sender} updatedAt={updatedAt} updatedAtLabel={updatedAtLabel} />
         }
+        title={title}
       />
     );
   }
@@ -147,7 +147,8 @@ export const DialogListItem = ({
       size={size}
       selected={selected}
       theme={applicableTheme}
-      controls={select && <DialogSelect className={styles.select} {...select} />}
+      controls={select && <ListItemSelect className={styles.select} {...select} size="xl" />}
+      title={title}
       label={
         <div className={styles.border} data-size={size} data-seen={seen} data-loading={loading}>
           <header className={styles.header} data-size={size}>
@@ -160,11 +161,13 @@ export const DialogListItem = ({
               sender={sender}
               recipient={recipient}
               recipientLabel={recipientLabel}
-              recipientGroup={recipientGroup}
+              grouped={grouped}
             />
-            <p data-size={size} className={styles.summary}>
-              <Skeleton loading={loading}>{summary || description}</Skeleton>
-            </p>
+            <Skeleton loading={loading}>
+              <p data-size={size} className={styles.summary}>
+                {summary || description}
+              </p>
+            </Skeleton>
           </header>
           <DialogMetadata
             className={styles.footer}

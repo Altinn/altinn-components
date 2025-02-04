@@ -34,13 +34,13 @@ export const MetaItem = ({
   ...rest
 }: MetaItemProps) => {
   return (
-    <MetaItemBase reverse={reverse} variant={variant} size={size} {...rest}>
-      <Skeleton loading={loading}>
+    <Skeleton loading={loading}>
+      <MetaItemBase reverse={reverse} variant={variant} size={size} {...rest}>
         {!loading && icon && <MetaItemMedia size={size} icon={icon} />}
         <MetaItemLabel variant={variant} size={size}>
           {children}
         </MetaItemLabel>
-      </Skeleton>
-    </MetaItemBase>
+      </MetaItemBase>
+    </Skeleton>
   );
 };

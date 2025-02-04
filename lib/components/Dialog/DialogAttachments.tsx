@@ -15,7 +15,7 @@ export const DialogAttachments = ({ title = 'Attachments', items }: DialogAttach
       <Heading as="h2" size="xs">
         {title}
       </Heading>
-      <AttachmentList size="md" items={items} />
+      <AttachmentList items={items} />
     </Section>
   );
 };

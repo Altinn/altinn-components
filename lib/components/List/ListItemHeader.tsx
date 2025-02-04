@@ -100,7 +100,9 @@ export const ListItemHeader = ({
   return (
     <header className={styles.header} data-size={size}>
       <div className={styles.link}>
-        {select && <ListItemSelect {...select} size={applicableIconSize as ListItemIconSize} />}
+        {select && (
+          <ListItemSelect {...select} className={styles.select} size={applicableIconSize as ListItemIconSize} />
+        )}
         <ListItemLink
           interactive={!!controls}
           className={cx(styles.link, className)}

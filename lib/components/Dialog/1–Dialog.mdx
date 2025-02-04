@@ -3,17 +3,22 @@ import * as DialogStories from "./Dialog.stories";
 import * as DialogListItem from "./DialogListItem.stories";
 import * as DialogMetadata from "./DialogMetadata.stories";
 
-<Meta title="Dialog" />
+<Meta title="Dialog/1. Dialog list views" />
 
 # The dialog
 
 A dialog is a representation of public correspondance. Users can access their dialogs through the inbox, where dialogs are presented chronologically in the order they were last updated.
 
-## Anatomy of a dialog
+## Dialogs list views
 
-A dialog must include a `title` and a `summary`, a `sender` and `recipient`, as well as a timestamp representing when the dialog was created or updated.
+In list views dialogs represent an excerpt of the full dialog and must include a `title` and a `summary`, as well as a timestamp representing when the dialog was created or updated. The `sender` of the dialog is presented with their avatar, and
+the `recipient` is included to emphasise which actor the dialog belongs to.
 
 <Canvas of={DialogListItem.Default} />
+
+In list views including more than a single recipient, both sender and recipient avatars should be presented to make it easier to distingish between dialogs.
+
+<Canvas of={DialogListItem.GroupedAvatars} />
 
 ## Seen vs. unseen
 
@@ -60,9 +65,3 @@ Seen by others.
 Seen by end user and others.
 
 <Canvas of={DialogMetadata.SeenByEndUserAndOthers} />
-
-## Full dialog
-
-When a dialog is opened, main content is highlighted with a border and introduced with a timestamp, representing the time the dialog was last updated. The `summary` might include a list of `attachments` and/or one or more call to `actions`.
-
-<Canvas of={DialogStories.Default} />

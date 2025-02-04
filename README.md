@@ -75,5 +75,42 @@ The tags are:
 - `@experimental` - The component is experimental and is work in progress. Recommended not to use.
 - `@deprecated` - The component is deprecated and should not be used.
 
-The main motivation behind having tags is relieving the pressure of having to make everything stable before releasing it for use.
+The main motivation behind having tags is relieving the pressure of having to make everything stable before releasing it for use. 
 It also allows us to get feedback on the components in an early stage.
+
+## Storybook test runner (accessibility)
+Config for the storybook test runner is placed under .storybook/test-runner.ts
+
+
+First you will need to run the storybook: 
+```
+pnpm storybook
+```
+-
+
+When that is done, in another terminal run following command to test all the stories for accessibility
+```
+pnpm test-storybook
+```
+ - 
+
+To test a specific file, run... 
+```
+pnpm test-storybook --watch
+```
+...and press 'p' to choose filtering by file name. Then start typing the name of the storybook file f.ex. 'badge'. The helper will list all the files matching your input. 
+
+Hit enter to test the file. 
+
+If there is more files matching your input, they will also be tested.
+
+- 
+If the storybook cli runs all the tests even with --watch flag, alternatively you can simply run: 
+
+```
+pnpm test-storybook --watch 'MyComponent.stories.tsx'
+```
+
+- 
+To skip the test add 'skip-test' string into the tags array for the test you want to exclude. That option is defined in the test-runner.ts file. 
+Currently all the tests under stories/Demo and docs are excluded as the accessibility test is not needed there.

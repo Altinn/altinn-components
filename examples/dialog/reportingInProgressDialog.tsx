@@ -3,7 +3,6 @@ import { reportingDialog } from './reportingDialog';
 import { reportingHistoryItems } from './reportingHistoryItems';
 
 const historyItems = reportingHistoryItems.slice(0, 2);
-const latestHistoryItem = historyItems[historyItems.length - 1];
 
 export const reportingInProgressDialog: DialogProps = {
   ...reportingDialog,
@@ -34,8 +33,6 @@ export const reportingInProgressDialog: DialogProps = {
   actions: undefined,
   attachments: undefined,
   history: {
-    updatedAtLabel: '2 dager siden',
-    summary: latestHistoryItem?.summary,
     expandLabel: 'Vis historikk',
     collapseLabel: 'Skjul historikk',
     items: historyItems,

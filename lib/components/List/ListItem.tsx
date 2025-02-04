@@ -74,8 +74,18 @@ export const ListItem = ({
         theme={theme}
         shadow={shadow}
         expanded={expanded}
+        title={title}
+        loading={loading}
       >
-        <ListItemBase theme="transparent" interactive={!controls} size={size} color={color} loading={loading} {...rest}>
+        <ListItemBase
+          theme="transparent"
+          interactive={!controls}
+          size={size}
+          color={color}
+          loading={loading}
+          title={title}
+          {...rest}
+        >
           <ListItemHeader
             className={className}
             loading={loading}
@@ -108,6 +118,7 @@ export const ListItem = ({
       shadow={shadow}
       expanded={expanded}
       loading={loading}
+      title={title}
       {...rest}
     >
       <ListItemHeader

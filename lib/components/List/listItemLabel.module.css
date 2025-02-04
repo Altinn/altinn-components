@@ -69,3 +69,7 @@
 [data-theme="base"] .description {
   color: var(--ds-color-contrast-subtle);
 }
+
+[data-theme="surface"] .description {
+  color: var(--ds-color-text-default);
+}

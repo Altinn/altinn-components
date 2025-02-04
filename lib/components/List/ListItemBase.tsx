@@ -11,6 +11,7 @@ export type ListItemColor = Color;
 export type ListItemTheme = 'transparent' | 'default' | 'subtle' | 'surface' | 'base';
 
 export interface ListItemBaseProps {
+  title?: string;
   interactive?: boolean;
   as?: ElementType;
   href?: string;
@@ -33,6 +34,7 @@ export interface ListItemBaseProps {
 }
 
 export const ListItemBase = ({
+  title,
   interactive = true,
   as,
   href,
@@ -49,19 +51,24 @@ export const ListItemBase = ({
   hidden = false,
   active = false,
   selected,
-  expanded,
   className,
   children,
 }: ListItemBaseProps) => {
   const appliedShadow = theme === 'transparent' ? 'none' : shadow;
 
   if (interactive) {
-    const linkClass = cx(styles.item, styles.interactive, className);
+    const linkClass = cx(
+      styles.item,
+      styles.interactive,
+      className,
+      selected && styles.interactiveSelected,
+      hidden && styles.interactiveHidden,
+    );
     const Component = as || 'button';
-
     return (
       <li className={styles.item}>
       <Component
+        aria-label={title}
         className={linkClass}
         data-variant={variant}
         data-color={color}
@@ -76,10 +83,8 @@ export const ListItemBase = ({
         }}
         onClick={onClick}
         tabIndex={tabIndex}
-        aria-hidden={hidden}
         aria-disabled={disabled || loading}
-        aria-selected={selected}
-        aria-expanded={expanded}
+        disabled={disabled || loading}
       >
         {children}
       </Component>
@@ -87,7 +92,7 @@ export const ListItemBase = ({
     );
   }
 
-  const itemClass = cx(styles.item, className);
+  const itemClass = cx(styles.item, className, selected && styles.interactiveSelected);
 
   return (
     <li
@@ -100,8 +105,6 @@ export const ListItemBase = ({
       data-active={active}
       aria-hidden={hidden}
       aria-disabled={disabled || loading}
-      aria-selected={selected}
-      aria-expanded={expanded}
     >
       {children}
     </li>

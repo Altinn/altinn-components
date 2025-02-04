@@ -93,12 +93,16 @@
 
 /* interactive classes, active, selected, expanded */
 
-.interactive:not([aria-selected="true"]) {
-  cursor: pointer;
+.interactiveSelected {
+  outline: 2px solid var(--ds-color-border-strong);
 }
 
-.interactive:not([aria-expanded="true"]):not([data-theme="transparent"]):hover,
-.interactive:not([aria-selected="true"]):not([data-theme="transparent"]):hover,
-.interactive:not([aria-disabled="true"]):not([data-theme="transparent"]):hover {
+.interactiveHidden {
+  display: none;
+}
+
+.interactive:not([data-theme="transparent"]):hover,
+.interactive:not([data-theme="transparent"]):hover,
+.interactive:not([data-theme="transparent"]):hover {
   outline: 2px solid var(--ds-color-border-strong);
 }

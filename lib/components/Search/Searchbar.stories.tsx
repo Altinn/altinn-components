@@ -1,9 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, userEvent, within } from '@storybook/test';
 import { type ChangeEvent, useState } from 'react';
-import type { AutocompleteProps } from '../Autocomplete';
-import type { AutocompleteItemProps } from '../Autocomplete';
-import { Searchbar, type SearchbarProps } from './Searchbar';
+import { type AutocompleteItemProps, type AutocompleteProps, Searchbar, type SearchbarProps, Section } from '..';
 
 const meta = {
   title: 'Search/Searchbar',
@@ -22,6 +20,97 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {},
+};
+
+export const GlobalSearch = () => {
+  return <Searchbar name="search" placeholder="Søk i Altinn" />;
+};
+
+export const InboxSearch = () => {
+  return <Searchbar name="search" placeholder="Søk i innboksen" />;
+};
+
+export const InboxScopes = (args: SearchbarProps) => {
+  const [q, setQ] = useState<string>(args.value || '');
+  const [searchOpen, setSearchOpen] = useState<boolean>(args.expanded || false);
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setQ(event.target.value);
+  };
+
+  const onClear = () => {
+    setQ('');
+  };
+
+  const scopes: AutocompleteItemProps[] = [
+    {
+      id: 'inbox',
+      label: q
+        ? () => {
+            return (
+              <span>
+                <mark>{q}</mark> i innboksen
+              </span>
+            );
+          }
+        : 'Alt i innboksen',
+    },
+    {
+      id: 'global',
+      label: q
+        ? () => {
+            return (
+              <span>
+                <mark>{q}</mark> i hele Altinn
+              </span>
+            );
+          }
+        : 'Alt i hele Altinn',
+    },
+  ].map((item) => {
+    return {
+      ...item,
+      groupId: '1',
+      type: 'scope',
+    };
+  });
+
+  const autocompleteItems: AutocompleteItemProps[] = [...scopes].map((item) => {
+    return {
+      ...item,
+      onClick: () => {
+        console.info('clicked', JSON.stringify(item));
+      },
+    };
+  });
+
+  const autocomplete: AutocompleteProps = {
+    items: autocompleteItems,
+  };
+
+  return (
+    <Searchbar
+      {...args}
+      name="search"
+      placeholder="Søk i innboksen"
+      autocomplete={autocomplete}
+      value={q}
+      onChange={onChange}
+      onClear={onClear}
+      expanded={searchOpen}
+      onFocus={() => setSearchOpen(true)}
+      onClose={() => {
+        setSearchOpen(false);
+      }}
+    />
+  );
+};
+
+export const InboxScopesExpanded = () => {
+  return (
+    <Section style={{ minHeight: '176px' }}>
+      <InboxScopes name="search" expanded={true} value="skatt" />
+    </Section>
+  );
 };
 
 export const Query: Story = {

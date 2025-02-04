@@ -9,9 +9,7 @@ export interface HeaderSearchProps {
 }
 
 export const HeaderSearch = ({ expanded = false, className, children }: HeaderSearchProps) => {
-  return (
-    <div className={cx(styles.search, className)} aria-expanded={expanded}>
-      {children}
-    </div>
-  );
+  const headerSearchStyles = cx(styles.search, className, expanded && styles.searchExpanded);
+
+  return <div className={headerSearchStyles}>{children}</div>;
 };

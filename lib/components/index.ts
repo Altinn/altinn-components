@@ -1,7 +1,6 @@
 export * from '../types/';
 
 export * from './Attachment';
-export * from './Autocomplete';
 export * from './Avatar';
 export * from './Badge';
 export * from './Bookmarks';
@@ -20,7 +19,7 @@ export * from './List';
 export * from './Menu';
 export * from './Meta';
 export * from './RootProvider';
-export * from './Searchbar';
+export * from './Search';
 export * from './Snackbar';
 export * from './Skeleton';
 export * from './Timeline';

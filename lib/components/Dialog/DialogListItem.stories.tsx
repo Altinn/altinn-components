@@ -1,6 +1,6 @@
-import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import type { Meta } from '@storybook/react';
 import { Fragment, useState } from 'react';
+import { skatt } from '../../../examples/avatar';
 
 import { DialogListItem, type DialogListItemProps, type DialogListItemSize } from './DialogListItem';
 import { DialogStatusEnum, type DialogStatusValue } from './DialogStatus';
@@ -31,23 +31,11 @@ const meta: Meta<typeof DialogListItem> = {
   title: 'Dialog/DialogListItem',
   component: DialogListItem,
   tags: ['autodocsi', 'beta'],
-  decorators: [
-    withThemeByDataAttribute({
-      themes: {
-        company: 'company',
-        person: 'person',
-      },
-      defaultTheme: 'company',
-    }),
-  ],
   argTypes: {},
   args: {
     title: 'Title',
     summary: 'Summary',
-    sender: {
-      type: 'company',
-      name: 'Sender name',
-    },
+    sender: skatt,
     recipient: {
       type: 'person',
       name: 'Recipient name',
@@ -62,6 +50,29 @@ export default meta;
 
 export const Default = {
   args: {},
+};
+
+export const GroupedAvatars = (args: DialogListItemProps) => {
+  return (
+    <ListBase>
+      <DialogListItem
+        {...args}
+        grouped={true}
+        recipient={{
+          type: 'company',
+          name: 'Frontenders Inc',
+        }}
+      />
+      <DialogListItem
+        {...args}
+        grouped={true}
+        recipient={{
+          type: 'company',
+          name: 'Designers Ltd',
+        }}
+      />
+    </ListBase>
+  );
 };
 
 export const SeenVsUnseen = (args: DialogListItemProps) => {
@@ -159,7 +170,7 @@ export const Statuses = (args: DialogListItemProps) => {
   );
 };
 
-export const Loading = (args: DialogListItemProps) => {
+const Loading = (args: DialogListItemProps) => {
   return (
     <ListBase>
       <DialogListItem {...args} loading label="Ulest" />
@@ -169,6 +180,12 @@ export const Loading = (args: DialogListItemProps) => {
     </ListBase>
   );
 };
+
+Loading.parameters = {
+  tags: ['skip-test'],
+};
+
+export { Loading };
 
 export const Variants = (args: DialogListItemProps) => {
   return (

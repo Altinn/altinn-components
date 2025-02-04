@@ -2,6 +2,7 @@ import type { ElementType, MouseEventHandler } from 'react';
 import { MetaItem, type MetaItemSize } from '../Meta';
 
 export interface DialogSeenByProps {
+  loading?: boolean;
   size?: MetaItemSize;
   /** Dialog has been seen by current end user */
   seenByEndUser?: boolean;

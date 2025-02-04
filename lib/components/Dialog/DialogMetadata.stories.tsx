@@ -88,3 +88,44 @@ export const SeenByEndUserAndOthers: Story = {
     },
   },
 };
+
+export const SeenByAndActivityLog: Story = {
+  args: {
+    updatedAt: undefined,
+    updatedAtLabel: undefined,
+    seenBy: {
+      seenByEndUser: true,
+      seenByOthersCount: 4,
+      label: 'Sett av deg + 4',
+      as: 'button',
+    },
+    activityLog: {
+      label: 'Aktivitetslogg',
+      as: 'button',
+    },
+  },
+};
+
+export const SeenByLog: Story = {
+  args: {
+    updatedAt: undefined,
+    updatedAtLabel: undefined,
+    seenBy: {
+      seenByEndUser: true,
+      seenByOthersCount: 4,
+      label: 'Sett av deg + 4',
+      as: 'button',
+    },
+  },
+};
+
+export const ActivityLog: Story = {
+  args: {
+    updatedAt: undefined,
+    updatedAtLabel: undefined,
+    activityLog: {
+      label: 'Aktivitetslogg',
+      as: 'button',
+    },
+  },
+};

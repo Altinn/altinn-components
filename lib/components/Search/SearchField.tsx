@@ -1,8 +1,7 @@
 'use client';
 import cx from 'classnames';
 import { type ChangeEventHandler, type FocusEventHandler, useRef } from 'react';
-import { IconButton } from '../Button';
-import { Icon } from '../Icon';
+import { Icon, IconButton } from '..';
 import styles from './searchField.module.css';
 
 export interface SearchFieldProps {
@@ -47,7 +46,7 @@ export const SearchField = ({
   };
 
   return (
-    <div className={cx(styles.field, className)} aria-expanded={expanded}>
+    <div className={cx(styles.field, className)}>
       <input
         ref={ref}
         onFocus={onFocus}
@@ -62,7 +61,6 @@ export const SearchField = ({
         aria-haspopup
         autoComplete="off"
         aria-autocomplete="list"
-        aria-expanded={expanded}
         tabIndex={tabIndex ?? 0}
       />
       <Icon name="magnifying-glass" className={styles.icon} />
