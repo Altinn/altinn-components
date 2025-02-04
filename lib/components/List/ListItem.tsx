@@ -1,9 +1,9 @@
-import type { ReactElement, ReactNode } from 'react';
-import type { AvatarGroupProps, AvatarProps } from '../Avatar';
-import type { BadgeProps } from '../Badge';
-import type { IconName, IconProps } from '../Icon';
-import { ListItemBase, type ListItemBaseProps } from './ListItemBase';
-import { ListItemHeader, type ListItemHeaderProps } from './ListItemHeader';
+import type { ReactElement, ReactNode } from "react";
+import type { AvatarGroupProps, AvatarProps } from "../Avatar";
+import type { BadgeProps } from "../Badge";
+import type { IconName, IconProps } from "../Icon";
+import { ListItemBase, type ListItemBaseProps } from "./ListItemBase";
+import { ListItemHeader, type ListItemHeaderProps } from "./ListItemHeader";
 
 export interface ListItemProps extends ListItemBaseProps, ListItemHeaderProps {
   /** List item id */
@@ -38,14 +38,14 @@ export interface ListItemInputProps extends ListItemProps {
 
 export const ListItem = ({
   className,
-  variant = 'solid',
+  variant = "solid",
   color,
-  theme = 'default',
-  shadow = 'xs',
+  theme = "default",
+  shadow = "xs",
   loading,
   collapsible,
   expanded,
-  size = 'sm',
+  size = "sm",
   icon,
   avatar,
   avatarGroup,
@@ -60,10 +60,14 @@ export const ListItem = ({
   ...rest
 }: ListItemProps) => {
   /** Set linkIcon */
-  const chevronIcon = collapsible ? (expanded ? 'chevron-up' : 'chevron-down') : undefined;
+  const chevronIcon = collapsible
+    ? expanded
+      ? "chevron-up"
+      : "chevron-down"
+    : undefined;
 
   /** Set label */
-  const applicableLabel = typeof label === 'function' ? label() : label;
+  const applicableLabel = typeof label === "function" ? label() : label;
 
   if (expanded) {
     return (
@@ -132,7 +136,7 @@ export const ListItem = ({
         avatar={avatar}
         avatarGroup={avatarGroup}
         badge={badge}
-        chevron={chevronIcon ?? (linkIcon ? 'chevron-right' : undefined)}
+        chevron={chevronIcon ?? (linkIcon ? "chevron-right" : undefined)}
         controls={controls}
         {...rest}
       >
