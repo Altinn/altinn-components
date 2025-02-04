@@ -1,24 +1,14 @@
-import cx from "classnames";
-import type {
-  ElementType,
-  KeyboardEvent,
-  KeyboardEventHandler,
-  ReactNode,
-} from "react";
-import type { Color } from "..";
-import styles from "./listItemBase.module.css";
+import cx from 'classnames';
+import type { ElementType, KeyboardEvent, KeyboardEventHandler, ReactNode } from 'react';
+import type { Color } from '..';
+import styles from './listItemBase.module.css';
 
-export type ListItemSize = "xs" | "sm" | "md" | "lg" | "xl";
-export type ListItemVariant = "solid" | "dotted";
-export type ListItemShadow = "none" | "xs" | "sm" | "md" | "lg" | "xl";
+export type ListItemSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type ListItemVariant = 'solid' | 'dotted';
+export type ListItemShadow = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export type ListItemColor = Color;
-export type ListItemTheme =
-  | "transparent"
-  | "default"
-  | "subtle"
-  | "surface"
-  | "base";
+export type ListItemTheme = 'transparent' | 'default' | 'subtle' | 'surface' | 'base';
 
 export interface ListItemBaseProps {
   title?: string;
@@ -64,7 +54,7 @@ export const ListItemBase = ({
   className,
   children,
 }: ListItemBaseProps) => {
-  const appliedShadow = theme === "transparent" ? "none" : shadow;
+  const appliedShadow = theme === 'transparent' ? 'none' : shadow;
 
   if (interactive) {
     const linkClass = cx(
@@ -72,9 +62,9 @@ export const ListItemBase = ({
       styles.interactive,
       className,
       selected && styles.interactiveSelected,
-      hidden && styles.interactiveHidden
+      hidden && styles.interactiveHidden,
     );
-    const Component = as || "button";
+    const Component = as || 'button';
     return (
       <li className={styles.item}>
         <Component
@@ -88,7 +78,7 @@ export const ListItemBase = ({
           data-active={active}
           href={href}
           onKeyPress={(e: KeyboardEvent) => {
-            e.key === "Enter" && onClick?.();
+            e.key === 'Enter' && onClick?.();
             onKeyPress?.(e);
           }}
           onClick={onClick}
@@ -102,11 +92,7 @@ export const ListItemBase = ({
     );
   }
 
-  const itemClass = cx(
-    styles.item,
-    className,
-    selected && styles.interactiveSelected
-  );
+  const itemClass = cx(styles.item, className, selected && styles.interactiveSelected);
 
   return (
     <li

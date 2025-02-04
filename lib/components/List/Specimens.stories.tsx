@@ -54,7 +54,7 @@ export const Size = (args: ListItemProps) => {
         return (
           <Fragment key={size}>
             <ListItem {...args} description={undefined} size={size} linkIcon />
-            <ListItem {...args} size={size} linkIcon/>
+            <ListItem {...args} size={size} linkIcon />
             <ListItem {...args} select={{ checked: true }} size={size} linkIcon />
             <ListItem {...args} icon="teddy-bear" size={size} linkIcon />
             <ListItem {...args} icon={{ name: 'teddy-bear', theme: 'surface' }} size={size} linkIcon />

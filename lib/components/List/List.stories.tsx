@@ -1,30 +1,30 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { List } from "./";
+import type { Meta, StoryObj } from '@storybook/react';
+import { List } from './';
 
 const meta = {
-  title: "List/List",
+  title: 'List/List',
   component: List,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
   args: {
     items: [
       {
-        id: "1",
-        title: "Title",
-        description: "Description",
-        href: "#",
+        id: '1',
+        title: 'Title',
+        description: 'Description',
+        href: '#',
       },
       {
-        id: "2",
-        title: "Title",
-        description: "Description",
-        href: "#",
+        id: '2',
+        title: 'Title',
+        description: 'Description',
+        href: '#',
       },
       {
-        id: "3",
-        title: "Title",
-        description: "Description",
-        href: "#",
+        id: '3',
+        title: 'Title',
+        description: 'Description',
+        href: '#',
       },
     ],
   },

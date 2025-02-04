@@ -1,4 +1,4 @@
-import { useId } from "react";
+import { useId } from 'react';
 import {
   ListBase,
   type ListBaseProps,
@@ -7,22 +7,16 @@ import {
   type ListItemProps,
   type ListItemSize,
   type ListItemTheme,
-} from "..";
+} from '..';
 
-export interface ListProps extends Omit<ListBaseProps, "children"> {
+export interface ListProps extends Omit<ListBaseProps, 'children'> {
   items?: ListItemProps[];
   defaultItemColor?: ListItemColor;
   defaultItemTheme?: ListItemTheme;
   defaultItemSize?: ListItemSize;
 }
 
-export const List = ({
-  defaultItemSize,
-  defaultItemTheme,
-  defaultItemColor,
-  items = [],
-  ...rest
-}: ListProps) => {
+export const List = ({ defaultItemSize, defaultItemTheme, defaultItemColor, items = [], ...rest }: ListProps) => {
   const listId = useId();
   return (
     <ListBase {...rest}>

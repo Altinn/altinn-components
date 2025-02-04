@@ -21,7 +21,7 @@ export const ListItemIcon = ({ loading, size = 'sm', icon, avatar, avatarGroup, 
   }
 
   return (
-    <span className={styles.icon}>
+    <span className={styles.listIcon}>
       {children || <IconOrAvatar size={size} icon={icon} avatar={avatar} avatarGroup={avatarGroup} />}
     </span>
   );

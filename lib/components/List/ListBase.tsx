@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
-import { type Color, Flex, type FlexPadding, type FlexSpacing } from "..";
+import type { ReactNode } from 'react';
+import { type Color, Flex, type FlexPadding, type FlexSpacing } from '..';
 
 export interface ListBaseProps {
   children: ReactNode;

@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { useState } from "react";
+import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 
 import {
   Avatar,
@@ -12,42 +12,36 @@ import {
   ListItem,
   type ListItemProps,
   Section,
-} from "../";
+} from '../';
 
-const themes = [
-  "default",
-  "subtle",
-  "surface",
-  "base",
-  "transparent",
-] as ListItemProps["theme"][];
+const themes = ['default', 'subtle', 'surface', 'base', 'transparent'] as ListItemProps['theme'][];
 
-const sizes = ["xs", "sm", "md", "lg", "xl"] as ListItemProps["size"][];
+const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as ListItemProps['size'][];
 
 const avatarGroupsProps = {
   items: [
     {
-      name: "Alfa",
+      name: 'Alfa',
     },
     {
-      name: "Beta",
+      name: 'Beta',
     },
     {
-      name: "Charlie",
+      name: 'Charlie',
     },
   ],
 } as AvatarGroupProps;
 
 const meta = {
-  title: "List/ListItem",
+  title: 'List/ListItem',
   component: ListItem,
   //  tags: ["autodocs"],
   parameters: {},
   args: {
-    id: "id",
-    as: "button",
-    title: "Title",
-    onClick: () => alert("xl"),
+    id: 'id',
+    as: 'button',
+    title: 'Title',
+    onClick: () => alert('xl'),
   },
 } satisfies Meta<typeof ListItem>;
 
@@ -57,12 +51,12 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     icon: {
-      theme: "surface",
-      name: "teddy-bear",
+      theme: 'surface',
+      name: 'teddy-bear',
     },
     badge: {
-      theme: "subtle",
-      label: "New",
+      theme: 'subtle',
+      label: 'New',
     },
     linkIcon: true,
   },
@@ -72,7 +66,7 @@ export const IconTypes = (args: ListItemProps) => {
   return (
     <ListBase>
       <ListItem {...args} icon="teddy-bear" />
-      <ListItem {...args} icon={{ theme: "surface", name: "teddy-bear" }} />
+      <ListItem {...args} icon={{ theme: 'surface', name: 'teddy-bear' }} />
     </ListBase>
   );
 };
@@ -83,24 +77,24 @@ export const Avatars = (args: ListItemProps) => {
       <ListItem
         {...args}
         avatar={{
-          type: "person",
-          name: "Erik Huseklepp",
+          type: 'person',
+          name: 'Erik Huseklepp',
         }}
       />
       <ListItem
         {...args}
         avatar={{
-          type: "company",
-          name: "Sportsklubben Brann",
+          type: 'company',
+          name: 'Sportsklubben Brann',
         }}
       />
       <ListItem
         {...args}
         avatar={{
-          type: "company",
-          name: "Politiets sikkerhetstjeneste",
+          type: 'company',
+          name: 'Politiets sikkerhetstjeneste',
           imageUrl:
-            "https://media.licdn.com/dms/image/v2/D4D0BAQH7Yv86kmHN5g/company-logo_200_200/company-logo_200_200/0/1688735908848?e=1738195200&v=beta&t=f-Mkzd03bqzdQN4IT0h89VQ9_Jri1iJ6XphYYnjsgEo",
+            'https://media.licdn.com/dms/image/v2/D4D0BAQH7Yv86kmHN5g/company-logo_200_200/company-logo_200_200/0/1688735908848?e=1738195200&v=beta&t=f-Mkzd03bqzdQN4IT0h89VQ9_Jri1iJ6XphYYnjsgEo',
         }}
       />
     </ListBase>
@@ -114,14 +108,14 @@ export const AvatarGroups = (args: ListItemProps) => {
         {...args}
         avatarGroup={{
           ...avatarGroupsProps,
-          defaultType: "person",
+          defaultType: 'person',
         }}
       />
       <ListItem
         {...args}
         avatarGroup={{
           ...avatarGroupsProps,
-          defaultType: "company",
+          defaultType: 'company',
         }}
       />
     </ListBase>
@@ -137,16 +131,11 @@ export const Badges = (args: ListItemProps) => {
 
   return (
     <ListBase>
+      <ListItem {...args} icon="teddy-bear" description="This item is a link." linkIcon />
       <ListItem
         {...args}
         icon="teddy-bear"
-        description="This item is a link."
-        linkIcon
-      />
-      <ListItem
-        {...args}
-        icon="teddy-bear"
-        badge={{ label: "2 ting" }}
+        badge={{ label: '2 ting' }}
         description="Adding a badge."
         collapsible
         expanded={expanded}
@@ -195,9 +184,9 @@ export const Collapsible = (args: ListItemProps) => {
   return (
     <ListItem
       {...args}
-      icon={{ theme: "surface", name: "teddy-bear" }}
-      badge={{ label: "Badge" }}
-      description={expanded ? "" : "Click to expand"}
+      icon={{ theme: 'surface', name: 'teddy-bear' }}
+      badge={{ label: 'Badge' }}
+      description={expanded ? '' : 'Click to expand'}
       collapsible={true}
       expanded={expanded}
       onClick={onToggle}
@@ -221,7 +210,7 @@ export const Theme = (args: ListItemProps) => {
             {...args}
             icon="teddy-bear"
             title={theme}
-            description={"theme:" + theme}
+            description={'theme:' + theme}
             theme={theme}
             linkIcon
             key={theme}
@@ -239,9 +228,9 @@ export const Size = (args: ListItemProps) => {
         return (
           <ListItem
             {...args}
-            icon={{ name: "teddy-bear", theme: "surface" }}
+            icon={{ name: 'teddy-bear', theme: 'surface' }}
             title={size}
-            description={"theme:" + size}
+            description={'theme:' + size}
             size={size}
             linkIcon
             key={size}
@@ -259,9 +248,9 @@ export const OverridingIcon = (args: ListItemProps) => {
         {...args}
         description="Custom icon with Avatar + Icon"
         icon={
-          <span style={{ position: "relative" }}>
+          <span style={{ position: 'relative' }}>
             <Avatar name="Alfa" size="md" />
-            <span style={{ position: "absolute", bottom: -2, right: -2 }}>
+            <span style={{ position: 'absolute', bottom: -2, right: -2 }}>
               <Icon name="teddy-bear" size="xs" theme="subtle" />
             </span>
           </span>
@@ -271,19 +260,15 @@ export const OverridingIcon = (args: ListItemProps) => {
         {...args}
         description="Custom icon with Icon + Avatar"
         icon={
-          <span style={{ position: "relative" }}>
+          <span style={{ position: 'relative' }}>
             <Icon name="teddy-bear" size="md" theme="subtle" />
-            <span style={{ position: "absolute", bottom: -2, right: -2 }}>
+            <span style={{ position: 'absolute', bottom: -2, right: -2 }}>
               <Avatar name="Alfa" size="xs" />
             </span>
           </span>
         }
       />
-      <ListItem
-        {...args}
-        description="Smaller AvatarGroup"
-        icon={<AvatarGroup {...avatarGroupsProps} />}
-      />
+      <ListItem {...args} description="Smaller AvatarGroup" icon={<AvatarGroup {...avatarGroupsProps} />} />
     </ListBase>
   );
 };
@@ -309,7 +294,7 @@ export const OverridingLabel = (args: ListItemProps) => {
         icon="teddy-bear"
         label={
           <span>
-            A <em>custom</em> label{" "}
+            A <em>custom</em> label{' '}
           </span>
         }
       />
@@ -323,15 +308,15 @@ export const CustomControls = (args: ListItemProps) => {
       <ListItem
         {...args}
         icon="teddy-bear"
-        badge={{ label: "Admin" }}
+        badge={{ label: 'Admin' }}
         linkIcon
         controls={
           <ContextMenu
             id="menu"
             size="sm"
             items={[
-              { id: "settings", title: "Innstillinger", icon: "cog" },
-              { id: "log", title: "Aktivitetslogg", icon: "clock-dashed" },
+              { id: 'settings', title: 'Innstillinger', icon: 'cog' },
+              { id: 'log', title: 'Aktivitetslogg', icon: 'clock-dashed' },
             ]}
           />
         }

@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { ListBase, ListItem } from "./";
+import type { Meta, StoryObj } from '@storybook/react';
+import { ListBase, ListItem } from './';
 
 const meta = {
-  title: "List/ListBase",
+  title: 'List/ListBase',
   component: ListBase,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
   args: {},
 } satisfies Meta<typeof ListBase>;
