@@ -32,7 +32,6 @@ export const SeenByLog = ({ items, endUserLabel = 'you' }: SeenByLogProps) => {
             avatar={{ type: 'person', name: seenBy?.name }}
             title={seenBy?.name}
             description={seenBy?.isEndUser ? endUserLabel : ''}
-            linkIcon={null}
             badge={<MetaTimestamp datetime={seenAt}>{seenAtLabel}</MetaTimestamp>}
             key={id}
           />
