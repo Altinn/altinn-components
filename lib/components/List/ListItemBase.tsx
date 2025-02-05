@@ -104,7 +104,6 @@ export const ListItemBase = ({
       data-shadow={appliedShadow}
       data-active={active}
       aria-hidden={hidden}
-      aria-disabled={disabled || loading}
     >
       {children}
     </li>
