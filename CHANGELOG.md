@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.16.0](https://github.com/Altinn/altinn-components/compare/v0.15.5...v0.16.0) (2025-02-06)
+
+
+### Features
+
+* change iconName to icon ([#234](https://github.com/Altinn/altinn-components/issues/234)) ([c8c357b](https://github.com/Altinn/altinn-components/commit/c8c357b65c1e3a401e59f1c810adfcdea03c583c))
+
+
+### Miscellaneous Chores
+
+* fix error running axe-playwright by forcing max-workers to 1 for now ([#239](https://github.com/Altinn/altinn-components/issues/239)) ([3cec92f](https://github.com/Altinn/altinn-components/commit/3cec92f235263a4dd5785c6506a220c68f028d57))
+
 ## [0.15.5](https://github.com/Altinn/altinn-components/compare/v0.15.4...v0.15.5) (2025-02-03)
 
 
