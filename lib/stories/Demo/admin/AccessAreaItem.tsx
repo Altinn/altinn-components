@@ -24,7 +24,7 @@ export const AccessAreaItem = ({
   description = "En beskrivelse av området.",
   children,
   ...props
-}:AccessAreaItemProps) => {
+}: AccessAreaItemProps) => {
 
   return (
     <ListItem
@@ -43,7 +43,7 @@ export const AccessAreaItem = ({
       {expanded && <Section padding={6} spacing={6}>
         <Typography>{description}</Typography>
         {children}
-        </Section>}
+      </Section>}
     </ListItem>
   )
 };

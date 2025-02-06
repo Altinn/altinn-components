@@ -5,6 +5,7 @@ import type { IconProps, SvgElement } from '../Icon';
 import { ListItemBase, type ListItemBaseProps } from './ListItemBase';
 import { ListItemHeader, type ListItemHeaderProps } from './ListItemHeader';
 import styles from './listItemBase.module.css';
+import { ChevronDownIcon, ChevronRightIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 
 export interface ListItemProps extends ListItemBaseProps, ListItemHeaderProps {
   /** List item id */
@@ -63,7 +64,7 @@ export const ListItem = ({
   ...rest
 }: ListItemProps) => {
   /** Set linkIcon */
-  const chevronIcon = collapsible ? (expanded ? 'chevron-up' : 'chevron-down') : undefined;
+  const chevronIcon = collapsible ? (expanded ? ChevronUpIcon : ChevronDownIcon) : undefined;
 
   /** Set label */
   const applicableLabel = typeof label === 'function' ? label() : label;
@@ -138,7 +139,7 @@ export const ListItem = ({
           avatar={avatar}
           avatarGroup={avatarGroup}
           badge={badge}
-          chevron={chevronIcon ?? (linkIcon ? 'chevron-right' : undefined)}
+          chevron={chevronIcon ?? (linkIcon ? ChevronRightIcon : undefined)}
           controls={controls}
           {...rest}
         >
