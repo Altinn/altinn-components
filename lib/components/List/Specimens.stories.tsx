@@ -1,4 +1,4 @@
-import { ChevronRightIcon, TeddyBearIcon } from '@navikt/aksel-icons';
+import { TeddyBearIcon } from '@navikt/aksel-icons';
 import type { Meta } from '@storybook/react';
 import { Fragment } from 'react';
 import { ListBase, ListItem, type ListItemProps, MetaItem } from '../';

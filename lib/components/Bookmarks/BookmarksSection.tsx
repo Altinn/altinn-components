@@ -1,4 +1,4 @@
-import { BookmarksListItem, EditableBookmark, Heading, List, ListBase, Section, Typography } from '../';
+import { BookmarksListItem, EditableBookmark, Heading, ListBase, Section, Typography } from '../';
 import type { EditableBookmarkProps, TextFieldProps } from '../';
 
 export interface BookmarksSectionProps {

@@ -1,4 +1,4 @@
-import { ChevronRightIcon, ClockDashedIcon, CogIcon, PencilIcon, TeddyBearIcon } from '@navikt/aksel-icons';
+import { ClockDashedIcon, CogIcon, PencilIcon, TeddyBearIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import {
