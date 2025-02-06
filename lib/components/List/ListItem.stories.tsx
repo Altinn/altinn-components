@@ -49,6 +49,11 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  render: (args) => (
+    <ListBase>
+      <ListItem {...args} />
+    </ListBase>
+  ),
   args: {
     icon: {
       theme: 'surface',
@@ -182,22 +187,24 @@ export const Collapsible = (args: ListItemProps) => {
   };
 
   return (
-    <ListItem
-      {...args}
-      icon={{ theme: 'surface', name: 'teddy-bear' }}
-      badge={{ label: 'Badge' }}
-      description={expanded ? '' : 'Click to expand'}
-      collapsible={true}
-      expanded={expanded}
-      onClick={onToggle}
-      as="button"
-    >
-      {expanded && (
-        <Section padding={4}>
-          <p>Item is expanded</p>
-        </Section>
-      )}
-    </ListItem>
+    <ListBase>
+      <ListItem
+        {...args}
+        icon={{ theme: 'surface', name: 'teddy-bear' }}
+        badge={{ label: 'Badge' }}
+        description={expanded ? '' : 'Click to expand'}
+        collapsible={true}
+        expanded={expanded}
+        onClick={onToggle}
+        as="button"
+      >
+        {expanded && (
+          <Section padding={4}>
+            <p>Item is expanded</p>
+          </Section>
+        )}
+      </ListItem>
+    </ListBase>
   );
 };
 

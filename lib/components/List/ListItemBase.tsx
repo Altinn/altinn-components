@@ -66,36 +66,34 @@ export const ListItemBase = ({
     );
     const Component = as || 'button';
     return (
-      <li className={styles.item}>
-        <Component
-          aria-label={title}
-          className={linkClass}
-          data-variant={variant}
-          data-color={color}
-          data-theme={theme}
-          data-size={size}
-          data-shadow={appliedShadow}
-          data-active={active}
-          href={href}
-          onKeyPress={(e: KeyboardEvent) => {
-            e.key === 'Enter' && onClick?.();
-            onKeyPress?.(e);
-          }}
-          onClick={onClick}
-          tabIndex={tabIndex}
-          aria-disabled={disabled || loading}
-          disabled={disabled || loading}
-        >
-          {children}
-        </Component>
-      </li>
+      <Component
+        aria-label={title}
+        className={linkClass}
+        data-variant={variant}
+        data-color={color}
+        data-theme={theme}
+        data-size={size}
+        data-shadow={appliedShadow}
+        data-active={active}
+        href={href}
+        onKeyPress={(e: KeyboardEvent) => {
+          e.key === 'Enter' && onClick?.();
+          onKeyPress?.(e);
+        }}
+        onClick={onClick}
+        tabIndex={tabIndex}
+        aria-disabled={disabled || loading}
+        disabled={disabled || loading}
+      >
+        {children}
+      </Component>
     );
   }
 
   const itemClass = cx(styles.item, className, selected && styles.interactiveSelected);
 
   return (
-    <li
+    <div
       className={itemClass}
       data-variant={variant}
       data-color={color}
@@ -106,6 +104,6 @@ export const ListItemBase = ({
       aria-hidden={hidden}
     >
       {children}
-    </li>
+    </div>
   );
 };

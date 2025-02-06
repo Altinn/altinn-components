@@ -129,24 +129,6 @@ export const ListOfCategories = () => {
   );
 };
 
-export const CategoryGrid = () => {
-  return (
-    <Grid color="company" cols={3} spacing={4}>
-      {categoryItems.slice(0, 9).map((item, index) => (
-        <ListItem
-          theme="surface"
-          size="lg"
-          key={index}
-          icon={{
-            name: item.icon as IconName,
-          }}
-          title={item.title}
-        />
-      ))}
-    </Grid>
-  );
-};
-
 export const MultilevelList = () => {
   const [expandedId, setExpandedId] = useState<string | null>(null);
 

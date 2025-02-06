@@ -27,7 +27,7 @@ export const List = ({ defaultItemSize, defaultItemTheme, defaultItemColor, item
             size={item?.size || defaultItemSize}
             color={item?.color || defaultItemColor}
             theme={item?.theme || defaultItemTheme}
-            key={listId + index}
+            key={`${listId}-${item.title ?? index}`}
           />
         );
       })}
