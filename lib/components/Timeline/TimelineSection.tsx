@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Avatar, type AvatarProps, Byline, type Color, type IconName } from '..';
+import { Avatar, type AvatarProps, Byline, type Color, type SvgElement } from '..';
 
 import styles from './timelineSection.module.css';
 
@@ -13,7 +13,7 @@ export interface TimelineSectionProps {
   dateline?: string;
   byline?: ReactNode;
   avatar?: AvatarProps;
-  icon?: IconName;
+  icon?: SvgElement;
   children?: ReactNode;
 }
 

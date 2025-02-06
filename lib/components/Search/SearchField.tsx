@@ -1,4 +1,5 @@
 'use client';
+import { MagnifyingGlassIcon, XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import { type ChangeEventHandler, type FocusEventHandler, useRef } from 'react';
 import { Icon, IconButton } from '..';
@@ -9,6 +10,8 @@ export interface SearchFieldProps {
   value?: string;
   className?: string;
   expanded?: boolean;
+  closeButtonAltText?: string;
+  clearButtonAltText?: string;
   placeholder?: string;
   onFocus?: FocusEventHandler;
   onBlur?: FocusEventHandler;
@@ -24,7 +27,9 @@ export const SearchField = ({
   expanded,
   name = 'q',
   value,
-  placeholder = 'Søk',
+  placeholder = 'Search',
+  closeButtonAltText = 'Close search',
+  clearButtonAltText = 'Clear search',
   onFocus,
   onBlur,
   onChange,
@@ -63,24 +68,26 @@ export const SearchField = ({
         aria-autocomplete="list"
         tabIndex={tabIndex ?? 0}
       />
-      <Icon name="magnifying-glass" className={styles.icon} />
+      <Icon svgElement={MagnifyingGlassIcon} className={styles.icon} />
       {(value && (
         <IconButton
-          icon="x-mark"
+          icon={XMarkIcon}
           variant="solid"
           size="custom"
           className={styles.clear}
           onClick={onClear}
           dataTestId="search-button-clear"
+          iconAltText={clearButtonAltText}
         />
       )) ||
         (expanded && (
           <IconButton
-            icon="x-mark"
+            icon={XMarkIcon}
             variant="text"
             className={styles.dismiss}
             onClick={onClose}
             dataTestId="search-button-close"
+            iconAltText={closeButtonAltText}
           />
         ))}
     </div>

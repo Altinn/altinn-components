@@ -13,12 +13,13 @@ A `ListItem` represents a piece of content; a page, person or an object.
 
 ```tsx
 import { ListItem } from "@altinn/altinn-components";
+import { TeddyBearIcon } from '@navikt/aksel-icons';
 
 <ListItem
   title="Title"
-  icon={{ theme: "surface", name: "teddy-bear" }}
+  icon={{ theme: "surface", svgElement: TeddyBearIcon }}
   badge={{ theme: "subtle", label: "2 av 3" }}
-  linkIcon="chevron-right"
+  linkIcon={ChevronRightIcon}
 />;
 ```
 

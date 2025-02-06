@@ -1,12 +1,13 @@
 import { ReactNode } from 'react';
-import { ListItem, type ListItemProps, Section, Typography, type ListItemSize, type IconName, type BadgeProps } from '../../../components';
+import { ChevronDownIcon, ChevronUpIcon } from "@navikt/aksel-icons";
+import { ListItem, type ListItemProps, Section, Typography, type ListItemSize, type SvgElement, type BadgeProps } from '../../../components';
 
 export interface AccessAreaItemProps extends ListItemProps {
   id: string;
   expanded?: boolean;
   title: string;
   size?: ListItemSize;
-  icon?: IconName;
+  icon?: SvgElement;
   count?: number;
   accessCount?: number;
   badge?: BadgeProps;
@@ -19,25 +20,11 @@ export const AccessAreaItem = ({
   badge,
   title,
   accessCount,
-  userCount,
   count,
   description = "En beskrivelse av området.",
   children,
   ...props
 }:AccessAreaItemProps) => {
-
-if (count && accessCount) {
-    badge = {
-      color: "company",
-      label: accessCount + " av " + count
-    }
-  } else {
-    badge = {
-      color: "neutral",
-      label: "Gi tilgang"
-    }
-  }
-
 
   return (
     <ListItem
@@ -47,11 +34,11 @@ if (count && accessCount) {
       icon={{
         color: accessCount ? "company" : "neutral",
         theme: "surface",
-        name: icon
+        svgElement: icon
       }}
       badge={badge}
       title={title}
-      linkIcon={expanded ? "chevron-up" : "chevron-down"}
+      linkIcon={expanded ? ChevronUpIcon : ChevronDownIcon}
     >
       {expanded && <Section padding={6} spacing={6}>
         <Typography>{description}</Typography>

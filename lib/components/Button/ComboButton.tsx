@@ -1,6 +1,6 @@
 import cx from 'classnames';
 import type { MouseEventHandler } from 'react';
-import type { IconName } from '../Icon';
+import type { SvgElement } from '../Icon';
 import { ButtonBase, type ButtonBaseProps } from './ButtonBase';
 import { ButtonIcon } from './ButtonIcon';
 import { ButtonLabel } from './ButtonLabel';
@@ -8,7 +8,9 @@ import { ButtonLabel } from './ButtonLabel';
 import styles from './comboButton.module.css';
 
 export interface ComboButtonProps extends Omit<ButtonBaseProps, 'onClick'> {
-  icon: IconName;
+  icon: SvgElement;
+  iconAltText?: string;
+  ariaLabel?: string;
   onIconClick?: MouseEventHandler<HTMLButtonElement>;
   onLabelClick?: MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
@@ -22,6 +24,7 @@ export const ComboButton = ({
   icon,
   children,
   className,
+  ariaLabel,
   onLabelClick,
   onIconClick,
 }: ComboButtonProps) => {
@@ -33,8 +36,9 @@ export const ComboButton = ({
       color={color}
       selected={selected}
       className={cx(styles.button, className)}
+      ariaLabel={ariaLabel}
     >
-      <ButtonBase size={size} onClick={onIconClick} className={styles.secondary}>
+      <ButtonBase size={size} onClick={onIconClick} className={styles.secondary} ariaLabel={ariaLabel}>
         <ButtonIcon icon={icon} size={size} />
       </ButtonBase>
       <span data-size={size} className={styles.divider} />

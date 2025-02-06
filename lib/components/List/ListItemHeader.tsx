@@ -6,7 +6,6 @@ import {
   Badge,
   type BadgeProps,
   Icon,
-  type IconName,
   type IconProps,
   ListItemControls,
   ListItemIcon,
@@ -17,6 +16,7 @@ import {
   ListItemSelect,
   type ListItemSelectProps,
   type ListItemSize,
+  type SvgElement,
 } from '..';
 import styles from './listItemHeader.module.css';
 
@@ -38,13 +38,13 @@ export interface ListItemHeaderProps extends ListItemLinkProps {
   /** Description */
   description?: string;
   /** List item icon */
-  icon?: IconName | IconProps | ReactNode | undefined;
+  icon?: SvgElement | IconProps | ReactNode | undefined;
   /** List item avatar */
   avatar?: AvatarProps;
   /** List item avatarGroup */
   avatarGroup?: AvatarGroupProps;
   /** Optional icon indicating behaviour */
-  linkIcon?: IconName | undefined | null;
+  linkIcon?: SvgElement | undefined | null;
   /** Optional badge */
   badge?: BadgeProps | ReactNode | undefined;
   /** Custom controls */
@@ -128,7 +128,7 @@ export const ListItemHeader = ({
           {controls && (
             <>
               {renderBadge()}
-              {linkIcon && <Icon name={linkIcon} size={applicableIconSize as ListItemIconSize} />}
+              {linkIcon && <Icon svgElement={linkIcon} size={applicableIconSize as ListItemIconSize} />}
             </>
           )}
         </ListItemLink>
@@ -139,7 +139,7 @@ export const ListItemHeader = ({
         ) : (
           <>
             {renderBadge()}
-            {linkIcon && <Icon name={linkIcon} size={applicableIconSize as ListItemIconSize} />}
+            {linkIcon && <Icon svgElement={linkIcon} size={applicableIconSize as ListItemIconSize} />}
           </>
         )}
       </ListItemControls>

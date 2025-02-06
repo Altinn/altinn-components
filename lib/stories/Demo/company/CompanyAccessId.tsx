@@ -7,6 +7,7 @@ import {
   PageNav,
 } from "../../../components";
 import { PageHeader, UserAdminListItem, useNavigation, companyUsers } from "..";
+import {PackageIcon, PlusIcon} from "@navikt/aksel-icons";
 
 export const CompanyAccessId = () => {
   const { breadcrumbs, articleId, childId, child } = useNavigation();
@@ -34,7 +35,7 @@ export const CompanyAccessId = () => {
   return (
     <PageBase color="company" spacing={6}>
       <PageNav breadcrumbs={breadcrumbs} />
-      <PageHeader {...child} icon="package" />
+      <PageHeader {...child} icon={PackageIcon} />
 
       <Heading size="lg">{title}</Heading>
       <ListBase>
@@ -44,7 +45,7 @@ export const CompanyAccessId = () => {
       </ListBase>
       <Flex justify="" align="center" spacing={4}>
         <Heading size="lg">Gi tilgang </Heading>
-        <Button size="sm" icon="plus" variant="outline">
+        <Button size="sm" icon={PlusIcon} variant="outline">
           Ny bruker
         </Button>
       </Flex>

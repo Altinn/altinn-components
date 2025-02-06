@@ -1,13 +1,14 @@
 import cx from 'classnames';
 import type { MouseEventHandler } from 'react';
-import type { IconName } from '../Icon';
+import type { SvgElement } from '../Icon';
 import { ButtonBase } from './ButtonBase';
 import type { ButtonColor, ButtonSize, ButtonVariant } from './ButtonBase';
 import { ButtonIcon } from './ButtonIcon';
 import styles from './iconButton.module.css';
 
 export interface IconButtonProps {
-  icon: IconName;
+  icon: SvgElement;
+  iconAltText: string;
   color?: ButtonColor;
   size?: ButtonSize;
   iconSize?: ButtonSize;
@@ -26,6 +27,7 @@ export const IconButton = ({
   className,
   onClick,
   dataTestId,
+  iconAltText,
 }: IconButtonProps) => {
   return (
     <ButtonBase
@@ -35,6 +37,7 @@ export const IconButton = ({
       className={cx(styles.button, className)}
       onClick={onClick}
       data-testid={dataTestId}
+      aria-label={iconAltText}
     >
       <ButtonIcon icon={icon} size={iconSize || size} />
     </ButtonBase>

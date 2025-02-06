@@ -13,10 +13,8 @@ export * from './userMenuItems';
 export * from './companyMenuItems';
 
 export * from './globalMenu';
-export * from './categoryItems';
 export * from './header';
 export * from './footer';
-
 
 export * from './users';
 export * from './companies';

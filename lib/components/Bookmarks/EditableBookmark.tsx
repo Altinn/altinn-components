@@ -1,10 +1,13 @@
+import { ChevronDownIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 import { type ChangeEvent, useState } from 'react';
 import { Button, type ButtonProps, Flex, IconButton, Section, TextField, type TextFieldProps } from '..';
-
 import { BookmarksListItem, type BookmarksListItemProps, type QueryItemProps, QueryLabel } from '..';
 
 export interface EditableBookmarkProps extends BookmarksListItemProps {
+  /** Bookmark id */
   id: string;
+  /** discernible text for expand icon */
+  expandIconAltText: string;
   /** Input value */
   inputValue?: string;
   /** On change */
@@ -43,6 +46,7 @@ export const EditableBookmark = ({
   removeButton,
   inputValue,
   onChange,
+  expandIconAltText,
   ...rest
 }: EditableBookmarkProps) => {
   const [internalValue, setInternalValue] = useState<string>('');
@@ -55,7 +59,13 @@ export const EditableBookmark = ({
       title={expanded ? title || untitled : title}
       params={params}
       controls={
-        <IconButton variant="outline" size="sm" icon={expanded ? 'chevron-up' : 'chevron-down'} onClick={onToggle} />
+        <IconButton
+          variant="outline"
+          size="sm"
+          icon={expanded ? ChevronUpIcon : ChevronDownIcon}
+          onClick={onToggle}
+          iconAltText={expandIconAltText}
+        />
       }
     >
       <Section padding={4} spacing={4}>

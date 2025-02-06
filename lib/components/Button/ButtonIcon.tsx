@@ -1,16 +1,17 @@
-import { Icon, type IconName } from '../Icon';
+import { Icon, type SvgElement } from '../Icon';
 import type { ButtonSize } from './ButtonBase';
 import styles from './buttonIcon.module.css';
 
 export interface ButtonIconProps {
-  icon: IconName;
+  icon: SvgElement;
+  iconAltText?: string;
   size: ButtonSize;
 }
 
-export const ButtonIcon = ({ size, icon }: ButtonIconProps) => {
+export const ButtonIcon = ({ size, icon, iconAltText }: ButtonIconProps) => {
   return (
     <span className={styles.icon} data-size={size}>
-      <Icon name={icon} />
+      <Icon svgElement={icon} altText={iconAltText} />
     </span>
   );
 };

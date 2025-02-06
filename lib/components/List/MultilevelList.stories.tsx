@@ -1,6 +1,7 @@
+import { PackageIcon } from '@navikt/aksel-icons';
 import type { Meta } from '@storybook/react';
 import { useState } from 'react';
-import { ContextMenu, type IconName, List, ListBase, ListItem, type ListItemColor, Section } from '../';
+import { ContextMenu, List, ListBase, ListItem, type ListItemColor, Section, type SvgElement } from '../';
 import { categoryItems } from '../../../examples';
 
 const meta: Meta<typeof List> = {
@@ -66,7 +67,7 @@ export const Default = () => {
             size="md"
             icon={{
               theme: 'surface',
-              name: item.icon as IconName,
+              svgElement: item.icon as SvgElement,
             }}
             title={item.title}
             badge={{
@@ -86,7 +87,7 @@ export const Default = () => {
                   {item?.items?.map((child, index) => (
                     <ListItem
                       key={'c' + index}
-                      icon="package"
+                      icon={PackageIcon}
                       size="sm"
                       color={child.color as ListItemColor}
                       theme="subtle"

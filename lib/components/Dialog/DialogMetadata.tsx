@@ -1,3 +1,4 @@
+import { ArchiveIcon, ClockDashedIcon, FilesIcon, PaperclipIcon, TrashIcon } from '@navikt/aksel-icons';
 import {
   type AvatarProps,
   DialogActivityLog,
@@ -12,7 +13,6 @@ import {
   MetaItem,
   MetaTimestamp,
 } from '..';
-
 export type DialogMetadataProps = {
   className?: string;
   /** Metadata is loading */
@@ -87,27 +87,27 @@ export const DialogMetadata = ({
         </MetaTimestamp>
       )}
       {dueAt && dueAtLabel && (
-        <MetaTimestamp loading={loading} datetime={dueAt} size="xs" icon="clock-dashed">
+        <MetaTimestamp loading={loading} datetime={dueAt} size="xs" icon={ClockDashedIcon}>
           {dueAtLabel}
         </MetaTimestamp>
       )}
       {(attachmentsLabel || attachmentsCount > 0) && (
-        <MetaItem loading={loading} size="xs" icon="paperclip">
+        <MetaItem loading={loading} size="xs" icon={PaperclipIcon}>
           {attachmentsLabel || attachmentsCount}
         </MetaItem>
       )}
       {transmissionsLabel && (
-        <MetaItem loading={loading} size="xs" icon="files">
+        <MetaItem loading={loading} size="xs" icon={FilesIcon}>
           {transmissionsLabel}
         </MetaItem>
       )}
       {(trashedAt && trashedAtLabel && (
-        <MetaTimestamp loading={loading} datetime={trashedAt} size="xs" icon="trash">
+        <MetaTimestamp loading={loading} datetime={trashedAt} size="xs" icon={TrashIcon}>
           {trashedAtLabel}
         </MetaTimestamp>
       )) ||
         (archivedAt && archivedAtLabel && (
-          <MetaTimestamp loading={loading} datetime={archivedAt} size="xs" icon="archive">
+          <MetaTimestamp loading={loading} datetime={archivedAt} size="xs" icon={ArchiveIcon}>
             {archivedAtLabel}
           </MetaTimestamp>
         )) ||

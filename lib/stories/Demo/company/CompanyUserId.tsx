@@ -1,17 +1,14 @@
-import { useState } from "react" 
-import { AccountHeader, useNavigation } from '..';
+import { useState } from "react"
+import { useNavigation } from '..';
 import { Heading, ListBase, PageBase, PageNav, PageHeader } from '../../../components';
-import { AccessAreaItem, AccessPackageItem, companyAccessItems, categoryItems } from '..';
+import { AccessAreaItem, AccessPackageItem, companyAccessItems } from '..';
 
 export const CompanyUserId = () => {
-  const { breadcrumbs, article, parentId, sectionId, articleId, pageId, childId, setPageId } = useNavigation();
+  const { breadcrumbs, article: user, parentId, sectionId, articleId, pageId, childId, setPageId } = useNavigation();
+  const [accessIds, setAccessIds] = useState<string[]>(user?.access || [])
   const userAccessId = [parentId, sectionId, articleId].join("/")
 
-  const user = article;
-
-  const [accessIds, setAccessIds] = useState(user?.access || [])
-
-  const onToggleAccess = (id) => {
+  const onToggleAccess = (id: string) => {
     setAccessIds(prevState => {
       if (prevState?.includes(id)) {
         return prevState?.filter(item => item !== id)
@@ -32,7 +29,7 @@ export const CompanyUserId = () => {
       expanded,
       as: "button",
       onClick: () => setPageId(areaId === pageId ? userAccessId : areaId),
-      items: item?.items.map(child => {
+      items: (item?.items ?? []).map(child => {
         const accessId = [item.id, child.id].join("/")
         const access = accessIds?.filter(item => item === accessId)
 
@@ -75,13 +72,16 @@ export const CompanyUserId = () => {
   const tabs = {
     items: [
       {
+        id: "tab1",
         title: "Tab 1",
         selected: true
       },
       {
+        id: "tab2",
         title: "Tab 2"
       },
       {
+        id: "tab3",
         title: "Tab 3"
       }
     ]
@@ -104,10 +104,10 @@ export const CompanyUserId = () => {
 
       <Heading size="lg">{title}</Heading>
       <ListBase>
-        {hasAccess?.map((item) => {
-          return <AccessAreaItem {...item}>
+        {hasAccess.map((item) => {
+          return <AccessAreaItem key={item.id} {...item}>
             <ListBase>
-              {item?.items?.map(child => <AccessPackageItem {...child} variant="access" />)}
+              {item.items.map(child => <AccessPackageItem key={child.id} {...child} variant="access" />)}
             </ListBase>
           </AccessAreaItem>;
         })}
@@ -116,9 +116,9 @@ export const CompanyUserId = () => {
       <Heading size="lg">Gi flere tilganger</Heading>
       <ListBase>
         {giveAccess?.map((item) => {
-          return <AccessAreaItem {...item}>
+          return <AccessAreaItem key={item.id} {...item}>
             <ListBase>
-              {item?.items?.map(child => <AccessPackageItem {...child} variant="access" />)}
+              {item?.items?.map(child => <AccessPackageItem key={child.id} {...child} variant="access" />)}
             </ListBase>
           </AccessAreaItem>;
         })}

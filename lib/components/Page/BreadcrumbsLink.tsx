@@ -20,7 +20,6 @@ export const BreadcrumbsLink = ({
   tabIndex = 0,
   label,
   children,
-  ...rest
 }: BreadcrumbsLinkProps) => {
   const Component = as || 'a';
   return (
@@ -30,7 +29,6 @@ export const BreadcrumbsLink = ({
       aria-disabled={disabled}
       disabled={disabled}
       className={cx(styles.link, className)}
-      {...rest}
     >
       {children || label}
     </Component>

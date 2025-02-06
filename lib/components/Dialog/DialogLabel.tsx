@@ -1,3 +1,4 @@
+import { ArchiveIcon, TrashIcon } from '@navikt/aksel-icons';
 import type { ReactNode } from 'react';
 import { MetaItem, type MetaItemSize } from '../Meta';
 
@@ -13,18 +14,17 @@ export interface DialogLabelProps {
 /**
  * Dialog label.
  */
-
 export const DialogLabel = ({ size = 'xs', type, label, children }: DialogLabelProps) => {
   switch (type) {
     case 'trashed':
       return (
-        <MetaItem size={size} icon="trash" variant="rounded">
+        <MetaItem size={size} icon={TrashIcon} variant="rounded">
           {children || label}
         </MetaItem>
       );
     case 'archived':
       return (
-        <MetaItem size={size} icon="archive" variant="rounded">
+        <MetaItem size={size} icon={ArchiveIcon} variant="rounded">
           {children || label}
         </MetaItem>
       );

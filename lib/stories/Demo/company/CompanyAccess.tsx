@@ -58,12 +58,13 @@ export const CompanyAccess = () => {
 
     return {
       ...item,
+      badge: count && accessCount ? { color: "company", label: accessCount + " av " + count }
+       : { color: "neutral",label: "Gi tilgang"},
       count,
       accessCount,
       userCount
     }
   })
-
 
 
   const title = 'Fullmakter for ' + currentAccount?.name;

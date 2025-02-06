@@ -1,3 +1,4 @@
+import { TeddyBearIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { PageHeader } from './PageHeader';
 
@@ -34,7 +35,7 @@ export const Icon: Story = {
   args: {
     icon: {
       theme: 'surface',
-      name: 'teddy-bear',
+      svgElement: TeddyBearIcon,
     },
   },
 };

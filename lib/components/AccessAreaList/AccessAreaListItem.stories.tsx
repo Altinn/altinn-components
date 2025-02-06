@@ -6,6 +6,13 @@ import { AccessAreaListItem, type AccessAreaListItemProps } from './AccessAreaLi
 
 const testArea = areaGroups[1].areas[1];
 
+/* eslint-disable react/no-danger */
+const svgStringToComponent = (dataString: string, altText: string): React.FC<React.SVGProps<SVGSVGElement>> => {
+  // @ts-ignore
+  // biome-ignore lint/security/noDangerouslySetInnerHtml: Let's trust the test
+  return (props) => <span aria-label={altText} dangerouslySetInnerHTML={{ __html: dataString }} {...props} />;
+};
+
 const children = (
   <>
     {testArea.description && <p>{testArea.description}</p>}
@@ -26,7 +33,7 @@ const meta = {
     id: testArea.id,
     size: 'md',
     name: testArea.name,
-    icon: `data:image/svg+xml;base64,${btoa(testArea.icon)}`,
+    icon: svgStringToComponent(testArea.icon, testArea.name),
     children,
   },
   argTypes: {
@@ -67,7 +74,7 @@ export const AllAreas = (args: AccessAreaListItemProps) => {
               id={area.id}
               key={area.id}
               name={area.name}
-              icon={`data:image/svg+xml;base64,${btoa(area.icon)}`}
+              icon={svgStringToComponent(area.icon, area.name)}
               size={args.size}
               expanded={expanded === area.id}
               onClick={() => setExpanded((prev) => (prev === area.id ? null : area.id))}

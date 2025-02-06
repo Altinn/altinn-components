@@ -1,3 +1,4 @@
+import { ChevronDownIcon, ChevronRightIcon, ChevronUpIcon, PencilIcon } from '@navikt/aksel-icons';
 import { useState } from 'react';
 import type { AvatarProps } from '../Avatar';
 import type { BadgeProps } from '../Badge';
@@ -49,11 +50,11 @@ export const TransmissionItem = ({
         theme={theme}
         variant="dotted"
         size="sm"
-        icon="pencil"
+        icon={PencilIcon}
         title={title}
         description={description}
         badge={{ label: type?.label }}
-        linkIcon="chevron-right"
+        linkIcon={ChevronRightIcon}
       />
     );
   }
@@ -73,7 +74,7 @@ export const TransmissionItem = ({
       title={title}
       description={expanded ? '' : description}
       badge={{ label: type?.label }}
-      linkIcon={expanded ? 'chevron-down' : 'chevron-up'}
+      linkIcon={expanded ? ChevronDownIcon : ChevronUpIcon}
     >
       {expanded && (
         <div className={styles.body}>
