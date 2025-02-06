@@ -1,4 +1,5 @@
-import { Icon, type IconName } from '../Icon';
+import { FileIcon } from '@navikt/aksel-icons';
+import { Icon, type SvgElement } from '../Icon';
 import styles from './attachmentLink.module.css';
 
 export interface AttachmentLinkProps {
@@ -7,13 +8,15 @@ export interface AttachmentLinkProps {
   /** Label (filename) */
   label: string;
   /** Icon */
-  icon?: IconName;
+  icon?: SvgElement;
+  /** Icon Alt text */
+  iconAltText?: string;
 }
 
-export const AttachmentLink = ({ icon = 'file', href, label }: AttachmentLinkProps) => {
+export const AttachmentLink = ({ icon = FileIcon, iconAltText, href, label }: AttachmentLinkProps) => {
   return (
     <a href={href} className={styles.link}>
-      <Icon name={icon} className={styles.icon} />
+      <Icon svgElement={icon} altText={iconAltText} className={styles.icon} />
       <span className={styles.label}>{label}</span>
     </a>
   );

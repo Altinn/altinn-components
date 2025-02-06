@@ -1,5 +1,6 @@
 import type { GlobalMenuProps } from '../../../components';
 import { accountMenu } from './';
+import {BookmarkIcon, Buildings2Icon, ChatExclamationmarkIcon, InboxIcon, MenuGridIcon} from "@navikt/aksel-icons";
 
 export const globalMenu: GlobalMenuProps = {
   ...accountMenu,
@@ -17,7 +18,7 @@ export const globalMenu: GlobalMenuProps = {
       id: 'inbox',
       groupId: 'apps',
       size: 'lg',
-      icon: 'inbox',
+      icon: InboxIcon,
       title: 'Innboks',
       badge: {
         label: '4',
@@ -27,7 +28,7 @@ export const globalMenu: GlobalMenuProps = {
       id: 'access',
       groupId: 'apps',
       size: 'lg',
-      icon: 'bookmark',
+      icon: BookmarkIcon,
       title: 'Tilganger',
       badge: {
         label: '2',
@@ -37,7 +38,7 @@ export const globalMenu: GlobalMenuProps = {
       id: 'access',
       groupId: 'apps',
       size: 'lg',
-      icon: 'menu-grid',
+      icon: MenuGridIcon,
       title: 'Alle skjema',
     },
     {
@@ -45,7 +46,7 @@ export const globalMenu: GlobalMenuProps = {
       groupId: 'help',
       color: 'neutral',
       size: 'sm',
-      icon: 'buildings2',
+      icon: Buildings2Icon,
       title: 'Starte og drive bedrift',
     },
     {
@@ -53,7 +54,7 @@ export const globalMenu: GlobalMenuProps = {
       groupId: 'help',
       size: 'sm',
       color: 'neutral',
-      icon: 'chat-exclamationmark',
+      icon: ChatExclamationmarkIcon,
       title: 'Trenger du hjelp?',
     },
   ],

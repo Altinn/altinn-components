@@ -1,7 +1,7 @@
 import type { HTMLProps, ReactElement, ReactNode } from 'react';
 import type { AvatarGroupProps, AvatarProps } from '../Avatar';
 import type { BadgeProps } from '../Badge';
-import type { IconName, IconProps } from '../Icon';
+import type { IconProps, SvgElement } from '../Icon';
 import { ListItemBase, type ListItemBaseProps } from './ListItemBase';
 import { ListItemHeader, type ListItemHeaderProps } from './ListItemHeader';
 import styles from './listItemBase.module.css';
@@ -18,7 +18,7 @@ export interface ListItemProps extends ListItemBaseProps, ListItemHeaderProps {
   /** Optional description */
   description?: string;
   /** List item icon */
-  icon?: IconName | IconProps | ReactNode | undefined;
+  icon?: SvgElement | IconProps | ReactNode | undefined;
   /** List item avatar */
   avatar?: AvatarProps;
   /** List item avatarGroup */

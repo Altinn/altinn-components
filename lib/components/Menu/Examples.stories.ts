@@ -1,10 +1,23 @@
+import {
+  ArchiveIcon,
+  BellIcon,
+  BookmarkIcon,
+  Buildings2Icon,
+  ClockDashedIcon,
+  DocPencilIcon,
+  FileCheckmarkIcon,
+  HexagonGridIcon,
+  InboxFillIcon,
+  PersonCircleIcon,
+  PersonGroupIcon,
+  TrashIcon,
+} from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Menu } from './Menu';
 
 const meta = {
   title: 'Menu/Examples',
   component: Menu,
-  //  tags: ["autodocs"],
   parameters: {},
   args: {},
 } satisfies Meta<typeof Menu>;
@@ -23,8 +36,7 @@ export const InboxMenu: Story = {
         size: 'lg',
         icon: {
           theme: 'base',
-          name: 'inbox',
-          variant: 'solid',
+          svgElement: InboxFillIcon,
         },
         iconBadge: {
           size: 'xs',
@@ -41,7 +53,7 @@ export const InboxMenu: Story = {
       {
         id: 'drafts',
         groupId: '2',
-        icon: 'doc-pencil',
+        icon: DocPencilIcon,
         title: 'Utkast',
         badge: {
           label: '2',
@@ -50,13 +62,13 @@ export const InboxMenu: Story = {
       {
         id: 'sent',
         groupId: '2',
-        icon: 'file-checkmark',
+        icon: FileCheckmarkIcon,
         title: 'Sendt',
       },
       {
         id: 'bookmarks',
         groupId: '3',
-        icon: 'bookmark',
+        icon: BookmarkIcon,
         title: 'Lagrede søk',
         badge: {
           label: '5',
@@ -65,7 +77,7 @@ export const InboxMenu: Story = {
       {
         id: 'trash',
         groupId: '4',
-        icon: 'archive',
+        icon: ArchiveIcon,
         title: 'Arkivert',
         badge: {
           label: '99+',
@@ -74,7 +86,7 @@ export const InboxMenu: Story = {
       {
         id: '6',
         groupId: '4',
-        icon: 'trash',
+        icon: TrashIcon,
         title: 'Papirkurv',
         badge: {
           label: '15',
@@ -120,19 +132,19 @@ export const CompanyMenu: Story = {
       {
         id: 'profil',
         groupId: '2',
-        icon: 'buildings2',
+        icon: Buildings2Icon,
         title: 'Firmaprofil',
       },
       {
         id: 'brukere',
         groupId: '3',
-        icon: 'person-group',
+        icon: PersonGroupIcon,
         title: 'Brukere',
       },
       {
         id: 'varsling',
         groupId: '3',
-        icon: 'bell',
+        icon: BellIcon,
         iconBadge: {
           color: 'alert',
           theme: 'base',
@@ -145,7 +157,7 @@ export const CompanyMenu: Story = {
       {
         id: 'logg',
         groupId: '4',
-        icon: 'clock-dashed',
+        icon: ClockDashedIcon,
         title: 'Aktivitetslogg',
       },
     ],
@@ -179,14 +191,14 @@ export const PersonMenu: Story = {
       {
         id: 'profil',
         groupId: '2',
-        icon: 'person-circle',
+        icon: PersonCircleIcon,
         title: 'Kontaktinformasjon',
         selected: true,
       },
       {
         id: 'varslinger',
         groupId: '2',
-        icon: 'bell',
+        icon: BellIcon,
         iconBadge: {
           color: 'alert',
           theme: 'base',
@@ -198,19 +210,19 @@ export const PersonMenu: Story = {
       {
         id: 'bookmarks',
         groupId: '3',
-        icon: 'bookmark',
+        icon: BookmarkIcon,
         title: 'Favoritter',
       },
       {
         id: 'grupper',
         groupId: '3',
-        icon: 'hexagon-grid',
+        icon: HexagonGridIcon,
         title: 'Grupper',
       },
       {
         id: 'logg',
         groupId: '4',
-        icon: 'clock-dashed',
+        icon: ClockDashedIcon,
         title: 'Aktivitetslogg',
       },
     ],

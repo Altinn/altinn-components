@@ -1,10 +1,25 @@
+import {
+  BedIcon,
+  Buildings2Icon,
+  FlowerPetalFallingFillIcon,
+  HandShakeHeartIcon,
+  HardHatIcon,
+  HeadHeartIcon,
+  HospitalIcon,
+  PieChartIcon,
+  ReceiptIcon,
+  TapWaterIcon,
+  TeddyBearIcon,
+  TrayFoodIcon,
+  TruckIcon,
+} from '@navikt/aksel-icons';
 import type { MenuItemProps } from '../lib';
 
 export const categoryItems: MenuItemProps[] = [
   {
     id: 'skatt',
     groupId: '2',
-    icon: 'pie-chart',
+    icon: PieChartIcon,
     title: 'Skatt, regnskap og toll',
     items: [
       {
@@ -28,7 +43,7 @@ export const categoryItems: MenuItemProps[] = [
   {
     id: 'personale',
     groupId: '2',
-    icon: 'receipt',
+    icon: ReceiptIcon,
     title: 'Personale',
     items: [
       {
@@ -52,7 +67,7 @@ export const categoryItems: MenuItemProps[] = [
   {
     id: 'miljo',
     groupId: '2',
-    icon: 'head-heart',
+    icon: HeadHeartIcon,
     title: 'Miljø og sikkerhet',
     items: [
       {
@@ -77,18 +92,10 @@ export const categoryItems: MenuItemProps[] = [
       },
     ],
   },
-  /*
-    {
-      id: "post-arkiv",
-      groupId: '2',
-      icon: "envelope",
-      backgroundColor: "#F3ABB6",
-      title: "Post og arkiv",
-    },*/
   {
     id: 'forhold',
     groupId: '2',
-    icon: 'reception',
+    icon: ReceiptIcon,
     title: 'Forhold ved virksomheten',
     items: [
       {
@@ -144,7 +151,7 @@ export const categoryItems: MenuItemProps[] = [
   {
     id: 'jorbruk-hav',
     groupId: '2',
-    icon: 'tray-food',
+    icon: TrayFoodIcon,
     title: 'Jordbruk og hav',
     items: [
       {
@@ -172,7 +179,7 @@ export const categoryItems: MenuItemProps[] = [
   {
     id: 'eiendom',
     groupId: '2',
-    icon: 'hard-hat',
+    icon: HardHatIcon,
     title: 'Bygg, anlegg og eiendom',
     items: [
       {
@@ -192,7 +199,7 @@ export const categoryItems: MenuItemProps[] = [
   {
     id: 'transport',
     groupId: '2',
-    icon: 'truck',
+    icon: TruckIcon,
     title: 'Transport og lagring',
     items: [
       {
@@ -225,7 +232,7 @@ export const categoryItems: MenuItemProps[] = [
   {
     id: 'helse',
     groupId: '2',
-    icon: 'hospital',
+    icon: HospitalIcon,
     title: 'Helse, pleie og omsorg',
     items: [
       {
@@ -257,7 +264,7 @@ export const categoryItems: MenuItemProps[] = [
   {
     id: 'utdanning',
     groupId: '2',
-    icon: 'teddy-bear',
+    icon: TeddyBearIcon,
     title: 'Oppvekst og utdanning',
     items: [
       {
@@ -297,7 +304,7 @@ export const categoryItems: MenuItemProps[] = [
   {
     id: 'energi',
     groupId: '2',
-    icon: 'tap-water',
+    icon: TapWaterIcon,
     title: 'Energi, vann, avløp, avfall',
     items: [
       {
@@ -333,7 +340,7 @@ export const categoryItems: MenuItemProps[] = [
   {
     id: 'industrier',
     groupId: '2',
-    icon: 'buildings2',
+    icon: Buildings2Icon,
     title: 'Industrier',
     items: [
       {
@@ -353,7 +360,7 @@ export const categoryItems: MenuItemProps[] = [
   {
     id: 'kultur',
     groupId: '2',
-    icon: 'hand-shake-heart',
+    icon: HandShakeHeartIcon,
     title: 'Kultur og frivillighet',
     items: [
       {
@@ -373,7 +380,7 @@ export const categoryItems: MenuItemProps[] = [
   {
     id: 'handel',
     groupId: '2',
-    icon: 'bed',
+    icon: BedIcon,
     title: 'Handel og overnatting',
     items: [
       {
@@ -393,7 +400,7 @@ export const categoryItems: MenuItemProps[] = [
   {
     id: 'dodsfall',
     groupId: '2',
-    icon: 'flower-petal-falling',
+    icon: FlowerPetalFallingFillIcon,
     title: 'Dødsfall og arv',
     items: [
       {

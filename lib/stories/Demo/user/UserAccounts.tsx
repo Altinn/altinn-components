@@ -1,6 +1,7 @@
 import { useNavigation } from '..';
 import { Heading, ListBase, ListItem, PageBase, PageNav, Toolbar } from '../../../components';
 import { companies } from '../data';
+import {ChevronRightIcon} from "@navikt/aksel-icons";
 
 export const UserAccounts = () => {
   const { breadcrumbs, breadcrumbsId, setPageId } = useNavigation();

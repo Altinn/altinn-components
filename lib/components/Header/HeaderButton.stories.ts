@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { InboxIcon } from '@navikt/aksel-icons';
 import { HeaderButton } from './HeaderButton';
 
 const meta = {
@@ -21,7 +22,7 @@ export const Default: Story = {
 
 export const Icon: Story = {
   args: {
-    icon: 'inbox',
+    icon: InboxIcon,
   },
 };
 

@@ -1,3 +1,4 @@
+import { ArrowLeftIcon, ArrowRightIcon, ChevronDownIcon, XMarkIcon } from '@navikt/aksel-icons';
 import type { StoryObj } from '@storybook/react';
 import { Button, type ButtonSize, type ButtonVariant, ComboButton, IconButton, MetaItem } from '../';
 
@@ -25,7 +26,7 @@ const variants = ['solid', 'outline', 'dotted', 'text'] as ButtonVariant[];
 export const VariantsAndSizes = (args: Story) => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', rowGap: '1rem' }}>
-      {variants?.map((variant) => {
+      {variants.map((variant) => {
         return (
           <div
             key={variant}
@@ -42,14 +43,21 @@ export const VariantsAndSizes = (args: Story) => {
             {sizes.map((size) => {
               return (
                 <div key={size} style={{ display: 'flex', alignItems: 'center', columnGap: '1rem' }}>
-                  <IconButton {...args} icon="x-mark" variant={variant} size={size} />
-                  <Button {...args} variant={variant} icon="arrow-left" size={size}>
+                  <IconButton iconAltText={size} {...args} icon={XMarkIcon} variant={variant} size={size} />
+                  <Button {...args} variant={variant} icon={ArrowLeftIcon} size={size}>
                     Button
                   </Button>
-                  <Button {...args} reverse variant={variant} icon="arrow-right" size={size}>
+                  <Button {...args} reverse variant={variant} icon={ArrowRightIcon} size={size}>
                     Button
                   </Button>
-                  <ComboButton {...args} variant={variant} icon="chevron-down" size={size}>
+                  <ComboButton
+                    {...args}
+                    variant={variant}
+                    icon={ChevronDownIcon}
+                    size={size}
+                    iconAltText="chevron down"
+                    ariaLabel={`ComboButton ${size}`}
+                  >
                     ComboButton
                   </ComboButton>
                   <MetaItem>{size}</MetaItem>

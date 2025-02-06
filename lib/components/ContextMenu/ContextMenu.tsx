@@ -1,4 +1,5 @@
 'use client';
+import { MenuElipsisHorizontalIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import { useMemo, useRef } from 'react';
 import { DropdownBase, type DropdownPlacement, IconButton, type MenuItemProps } from '../';
@@ -49,11 +50,12 @@ export const ContextMenu = ({
       <IconButton
         className={styles.button}
         size={size}
-        icon="menu-elipsis-horizontal"
+        icon={MenuElipsisHorizontalIcon}
         iconSize="md"
         variant="text"
         color="neutral"
         onClick={onToggle}
+        iconAltText={`Open ${id}`}
       />
       <DropdownBase placement={placement} open={expanded}>
         <MenuItems groups={groups} items={itemsWithToggle} />

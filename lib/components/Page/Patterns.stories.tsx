@@ -39,9 +39,9 @@ export const UserAndLists = () => {
       />
       <Heading size="lg">Heading lg</Heading>
       <ListBase>
-        <ListItem title="Button 1" />
-        <ListItem title="Button 2" />
-        <ListItem title="Button 3" />
+        <ListItem title="Title" />
+        <ListItem title="Title" />
+        <ListItem title="Title" />
       </ListBase>
     </PageBase>
   );

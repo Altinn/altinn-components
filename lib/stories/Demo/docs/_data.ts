@@ -1,11 +1,12 @@
 import type { MenuItemProps } from '../../../components';
+import { DocPencilIcon } from '@navikt/aksel-icons';
 
 export const sitemap: MenuItemProps[] = [
     {
       id: 'docs',
       size: "lg",
       groupId: '1',
-      icon: 'doc-pencil',
+      icon: DocPencilIcon,
       title: 'Altinn UI',
       badge: {
         label: '2',

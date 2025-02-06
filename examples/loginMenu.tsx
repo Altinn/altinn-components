@@ -1,3 +1,4 @@
+import { Buildings2Icon, ChatExclamationmarkIcon, PadlockLockedFillIcon } from '@navikt/aksel-icons';
 import type { MenuProps } from '../lib';
 
 export const loginMenu: MenuProps = {
@@ -6,21 +7,21 @@ export const loginMenu: MenuProps = {
       id: 'login',
       groupId: 'login',
       size: 'lg',
-      icon: { name: 'padlock-locked', theme: 'base', variant: 'solid' },
+      icon: { svgElement: PadlockLockedFillIcon, theme: 'base' },
       title: 'Logg inn',
     },
     {
       id: 'startup',
       groupId: 'help',
       size: 'sm',
-      icon: 'buildings2',
+      icon: Buildings2Icon,
       title: 'Starte og drive bedrift',
     },
     {
       id: 'help',
       groupId: 'help',
       size: 'sm',
-      icon: 'chat-exclamationmark',
+      icon: ChatExclamationmarkIcon,
       title: 'Trenger du hjelp?',
     },
   ],

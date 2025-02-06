@@ -1,12 +1,12 @@
 import cx from 'classnames';
 import { type ReactNode, isValidElement } from 'react';
+import { ChevronDownIcon } from '@navikt/aksel-icons';
 import {
   type AvatarGroupProps,
   type AvatarProps,
   Badge,
   type BadgeProps,
   Icon,
-  type IconName,
   type IconProps,
   ListItemControls,
   ListItemIcon,
@@ -17,6 +17,7 @@ import {
   ListItemSelect,
   type ListItemSelectProps,
   type ListItemSize,
+  type SvgElement,
 } from '..';
 import styles from './listItemHeader.module.css';
 
@@ -38,13 +39,13 @@ export interface ListItemHeaderProps extends ListItemLinkProps {
   /** Description */
   description?: string;
   /** List item icon */
-  icon?: IconName | IconProps | ReactNode | undefined;
+  icon?: SvgElement | IconProps | ReactNode | undefined;
   /** List item avatar */
   avatar?: AvatarProps;
   /** List item avatarGroup */
   avatarGroup?: AvatarGroupProps;
   /** Optional chevron icon indicating behaviour */
-  chevron?: 'chevron-up' | 'chevron-down' | 'chevron-right';
+  chevron?: typeof ChevronDownIcon;
   /** Optional badge */
   badge?: BadgeProps | ReactNode | undefined;
   /** Custom controls */
@@ -128,21 +129,21 @@ export const ListItemHeader = ({
           {controls && (
             <>
               {renderBadge()}
-              {chevron && <Icon name={chevron} size={applicableIconSize as ListItemIconSize} />}
+              {chevron && <Icon svgElement={chevron} size={applicableIconSize as ListItemIconSize} />}
             </>
           )}
-        </ListItemLink>
-      </div>
+        </ListItemLink >
+      </div >
       <ListItemControls className={styles.controls}>
         {controls ? (
           controls
         ) : (
           <>
             {renderBadge()}
-            {chevron && <Icon name={chevron} size={applicableIconSize as ListItemIconSize} />}
+            {chevron && <Icon svgElement={chevron} size={applicableIconSize as ListItemIconSize} />}
           </>
         )}
-      </ListItemControls>
-    </header>
+      </ListItemControls >
+    </header >
   );
 };

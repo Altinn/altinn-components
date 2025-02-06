@@ -1,19 +1,21 @@
 import { useMemo } from 'react';
 import { useAppContext } from '..';
-import type { AvatarProps, MenuItemProps } from '../../../components';
+import type {AvatarProps, BreadcrumbsLinkProps, MenuItemProps, SvgElement} from '../../../components';
 import { sitemap } from '../data';
 
 export const useNavigation = (): {
   currentAccount: AvatarProps;
   parent: { id: string; title: string } | undefined;
   parentId: string | undefined;
-  section: { id: string; title: string } | undefined;
+  section: { id: string; title: string, icon?: SvgElement, items?:  MenuItemProps[]} | undefined;
   sectionId: string | undefined;
-  article: { id: string; title: string } | undefined;
+  article: {
+    access?: string[];
+    id: string; title: string } | undefined;
   articleId: string | undefined;
   child: { id: string; title: string } | undefined;
   childId: string | undefined;
-  breadcrumbs: { id?: string; title: string; label: string | undefined; as: string; onClick: () => void }[];
+  breadcrumbs: BreadcrumbsLinkProps[];
   breadcrumbsId: string;
   pageId: string | undefined;
   setPageId: (id: string) => void;

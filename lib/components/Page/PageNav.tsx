@@ -1,3 +1,4 @@
+import { ArrowLeftIcon } from '@navikt/aksel-icons';
 import type { ReactNode } from 'react';
 import { type BackButtonProps, Breadcrumbs, type BreadcrumbsLinkProps, Button, Flex } from '../';
 import styles from './pageNav.module.css';
@@ -31,7 +32,7 @@ export const PageNav = ({
       {breadcrumbs ? (
         <Breadcrumbs items={breadcrumbs} />
       ) : (
-        <Button {...backButton} variant="text" icon="arrow-left">
+        <Button {...backButton} variant="text" icon={ArrowLeftIcon}>
           {backButton?.label || 'Back'}
         </Button>
       )}

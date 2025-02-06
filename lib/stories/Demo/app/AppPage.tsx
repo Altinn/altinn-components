@@ -2,7 +2,7 @@
 import { ActivityLogPage, CategoryPage, CompanyPage, DocsPage, InboxPage, UserPage, useNavigation } from '../';
 
 export const AppPage = () => {
-  const { pageId, parentId, sectionId, articleId } = useNavigation();
+  const { parentId, articleId } = useNavigation();
 
   if (articleId === 'log') {
     return <ActivityLogPage />;

@@ -1,3 +1,4 @@
+import { PencilIcon, PhoneIcon } from '@navikt/aksel-icons';
 import type { DialogProps } from '../../lib';
 import { ssb } from '../avatar';
 
@@ -43,11 +44,11 @@ export const reportingDialog: DialogProps = {
     description: 'Sentralbordet er åpent mandag–fredag 9.00-11.25 og 12–14.',
     items: [
       {
-        icon: 'phone',
+        icon: PhoneIcon,
         label: 'Ring 62 88 50 00',
       },
       {
-        icon: 'pencil',
+        icon: PencilIcon,
         label: 'Skriv til oss',
       },
     ],

@@ -1,3 +1,4 @@
+import { ChevronUpDownIcon, PlusIcon, XMarkIcon } from '@navikt/aksel-icons';
 import type { ElementType, MouseEventHandler, ReactNode } from 'react';
 import { Button, ComboButton } from '../Button';
 import styles from './toolbarButton.module.css';
@@ -7,9 +8,9 @@ export type ToolbarButtonType = 'add' | 'select' | 'switch';
 export interface ToolbarButtonProps {
   as?: ElementType;
   type?: ToolbarButtonType;
+  ariaLabel?: string;
   removable?: boolean;
   selected?: boolean;
-  icon?: string;
   active?: boolean;
   children?: ReactNode;
   onToggle?: MouseEventHandler;
@@ -20,6 +21,7 @@ export const ToolbarButton = ({
   type = 'select',
   selected = false,
   removable = false,
+  ariaLabel,
   active,
   children,
   onToggle,
@@ -31,10 +33,11 @@ export const ToolbarButton = ({
         className={styles.removeButton}
         variant={active ? 'solid' : 'outline'}
         size="sm"
-        icon="x-mark"
+        icon={XMarkIcon}
         selected={selected}
         onLabelClick={onToggle}
         onIconClick={onRemove}
+        ariaLabel={ariaLabel || 'remove'}
       >
         {children}
       </ComboButton>
@@ -43,7 +46,14 @@ export const ToolbarButton = ({
 
   if (type === 'add') {
     return (
-      <Button variant="dotted" size="sm" icon="plus" selected={selected} onClick={onToggle}>
+      <Button
+        variant="dotted"
+        size="sm"
+        icon={PlusIcon}
+        selected={selected}
+        onClick={onToggle}
+        ariaLabel={ariaLabel || 'add'}
+      >
         {children}
       </Button>
     );
@@ -53,7 +63,8 @@ export const ToolbarButton = ({
     <Button
       variant={active ? 'solid' : 'outline'}
       size="sm"
-      icon="chevron-up-down"
+      icon={ChevronUpDownIcon}
+      ariaLabel={ariaLabel}
       selected={selected}
       onClick={onToggle}
       reverse

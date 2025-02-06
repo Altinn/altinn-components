@@ -1,6 +1,6 @@
+import { ChevronRightIcon, TeddyBearIcon } from '@navikt/aksel-icons';
 import type { Meta } from '@storybook/react';
 import { Fragment } from 'react';
-
 import { ListBase, ListItem, type ListItemProps, MetaItem } from '../';
 
 const themes = ['default', 'subtle', 'surface', 'base', 'transparent'] as ListItemProps['theme'][];
@@ -30,7 +30,7 @@ export const Theme = (args: ListItemProps) => {
               <Fragment key={theme}>
                 <ListItem
                   {...args}
-                  icon="teddy-bear"
+                  icon={TeddyBearIcon}
                   theme={theme}
                   description={theme + '/' + size}
                   size={size}
@@ -54,8 +54,8 @@ export const Size = (args: ListItemProps) => {
           <ListItem {...args} description={undefined} size={size} linkIcon />
           <ListItem {...args} size={size} linkIcon />
           <ListItem {...args} select={{ checked: true }} size={size} linkIcon />
-          <ListItem {...args} icon="teddy-bear" size={size} linkIcon />
-          <ListItem {...args} icon={{ name: 'teddy-bear', theme: 'surface' }} size={size} linkIcon />
+          <ListItem {...args} icon={TeddyBearIcon} size={size} linkIcon />
+          <ListItem {...args} icon={{ svgElement: TeddyBearIcon, theme: 'surface' }} size={size} linkIcon />
           <ListItem {...args} avatar={{ name: 'Avatar' }} size={size} linkIcon />
           <ListItem
             {...args}

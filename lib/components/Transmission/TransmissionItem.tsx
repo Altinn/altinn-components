@@ -1,3 +1,4 @@
+import { PencilIcon } from '@navikt/aksel-icons';
 import { useState } from 'react';
 import type { AvatarProps } from '../Avatar';
 import type { BadgeProps } from '../Badge';
@@ -49,7 +50,7 @@ export const TransmissionItem = ({
         theme={theme}
         variant="dotted"
         size="sm"
-        icon="pencil"
+        icon={PencilIcon}
         title={title}
         description={description}
         badge={{ label: type?.label }}

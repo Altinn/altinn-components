@@ -1,3 +1,4 @@
+import { XMarkIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { MetaItem } from '../Meta';
 import type { ButtonSize, ButtonVariant } from './ButtonBase.tsx';
@@ -9,7 +10,7 @@ const meta = {
   tags: ['autodocs'],
   parameters: {},
   args: {
-    icon: 'x-mark',
+    icon: XMarkIcon,
     size: 'sm',
   },
 } satisfies Meta<typeof IconButton>;
@@ -18,7 +19,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    iconAltText: 'Close icon',
+  },
 };
 
 const sizes = ['sm', 'md', 'lg'] as ButtonSize[];
@@ -34,7 +37,7 @@ export const Sizes = (args: IconButtonProps) => {
             {sizes.map((size) => {
               return (
                 <div key={size}>
-                  <IconButton {...args} variant={variant} size={size} />
+                  <IconButton {...args} variant={variant} size={size} iconAltText={size} />
                   <MetaItem>{size}</MetaItem>
                 </div>
               );

@@ -1,3 +1,4 @@
+import { MagnifyingGlassIcon, XMarkIcon } from '@navikt/aksel-icons';
 import type { ChangeEventHandler } from 'react';
 import { Icon, IconButton } from '../';
 import styles from './menuSearch.module.css';
@@ -5,12 +6,20 @@ import styles from './menuSearch.module.css';
 export interface MenuSearchProps {
   placeholder?: string;
   name: string;
+  clearButtonAltText?: string;
   value?: string;
   onChange?: ChangeEventHandler;
   onClear?: () => void;
 }
 
-export const MenuSearch = ({ value, name, placeholder = 'Søk', onChange, onClear }: MenuSearchProps) => {
+export const MenuSearch = ({
+  value,
+  name,
+  placeholder = 'Search',
+  clearButtonAltText = 'Clear search',
+  onChange,
+  onClear,
+}: MenuSearchProps) => {
   return (
     <div className={styles.field}>
       <input
@@ -22,8 +31,17 @@ export const MenuSearch = ({ value, name, placeholder = 'Søk', onChange, onClea
         onChange={onChange}
         autoComplete="off"
       />
-      <Icon name="magnifying-glass" className={styles.icon} />
-      {onClear && <IconButton icon="x-mark" variant="solid" size="custom" className={styles.clear} onClick={onClear} />}
+      <Icon svgElement={MagnifyingGlassIcon} className={styles.icon} />
+      {onClear && (
+        <IconButton
+          icon={XMarkIcon}
+          variant="solid"
+          size="custom"
+          className={styles.clear}
+          onClick={onClear}
+          iconAltText={clearButtonAltText}
+        />
+      )}
     </div>
   );
 };

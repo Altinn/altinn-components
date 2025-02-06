@@ -1,4 +1,5 @@
-import type { MenuItemProps } from "../../../../components";
+import type { MenuItemProps } from "../../../components";
+import { InboxFillIcon, DocPencilIcon, FileCheckmarkIcon, BookmarkIcon, ArchiveIcon, TrashIcon } from "@navikt/aksel-icons";
 
 export const inboxMenuItems: MenuItemProps[] = [
   {
@@ -6,9 +7,8 @@ export const inboxMenuItems: MenuItemProps[] = [
     groupId: "1",
     size: "lg",
     icon: {
-      name: "inbox",
+      svgElement: InboxFillIcon,
       theme: "base",
-      variant: "solid",
     },
     iconBadge: {
       size: "xs",
@@ -25,7 +25,7 @@ export const inboxMenuItems: MenuItemProps[] = [
   {
     id: "drafts",
     groupId: "2",
-    icon: "doc-pencil",
+    icon: DocPencilIcon,
     title: "Utkast",
     badge: {
       label: "2",
@@ -34,13 +34,13 @@ export const inboxMenuItems: MenuItemProps[] = [
   {
     id: "sent",
     groupId: "2",
-    icon: "file-checkmark",
+    icon: FileCheckmarkIcon,
     title: "Sendt",
   },
   {
     id: "bookmarks",
     groupId: "3",
-    icon: "bookmark",
+    icon: BookmarkIcon,
     title: "Lagrede søk",
     badge: {
       label: "5",
@@ -49,7 +49,7 @@ export const inboxMenuItems: MenuItemProps[] = [
   {
     id: "archive",
     groupId: "4",
-    icon: "archive",
+    icon: ArchiveIcon,
     title: "Arkivert",
     badge: {
       label: "99+",
@@ -58,7 +58,7 @@ export const inboxMenuItems: MenuItemProps[] = [
   {
     id: "trash",
     groupId: "4",
-    icon: "trash",
+    icon: TrashIcon,
     title: "Papirkurv",
     badge: {
       label: "15",

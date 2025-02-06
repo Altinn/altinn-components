@@ -1,3 +1,4 @@
+import { ClockDashedIcon } from '@navikt/aksel-icons';
 import type { ElementType, MouseEventHandler } from 'react';
 import { MetaItem, type MetaItemSize } from '../Meta';
 
@@ -17,7 +18,7 @@ export const DialogActivityLog = ({
   ...rest
 }: DialogActivityLogProps) => {
   return (
-    <MetaItem {...rest} size={size} icon={'clock-dashed'}>
+    <MetaItem {...rest} size={size} icon={ClockDashedIcon}>
       {label}
     </MetaItem>
   );
