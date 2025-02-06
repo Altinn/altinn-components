@@ -1,6 +1,6 @@
+import type { ChevronDownIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import { type ReactNode, isValidElement } from 'react';
-import { ChevronDownIcon } from '@navikt/aksel-icons';
 import {
   type AvatarGroupProps,
   type AvatarProps,
@@ -132,8 +132,8 @@ export const ListItemHeader = ({
               {chevron && <Icon svgElement={chevron} size={applicableIconSize as ListItemIconSize} />}
             </>
           )}
-        </ListItemLink >
-      </div >
+        </ListItemLink>
+      </div>
       <ListItemControls className={styles.controls}>
         {controls ? (
           controls
@@ -143,7 +143,7 @@ export const ListItemHeader = ({
             {chevron && <Icon svgElement={chevron} size={applicableIconSize as ListItemIconSize} />}
           </>
         )}
-      </ListItemControls >
-    </header >
+      </ListItemControls>
+    </header>
   );
 };

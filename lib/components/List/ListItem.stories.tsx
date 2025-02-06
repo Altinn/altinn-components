@@ -146,7 +146,7 @@ export const Badges = (args: ListItemProps) => {
         expanded={expanded}
         onClick={toggleExpanded}
       />
-    </ListBase >
+    </ListBase>
   );
 };
 

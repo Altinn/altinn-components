@@ -22,9 +22,9 @@ export default meta;
 export const Theme = (args: ListItemProps) => {
   return themes?.map((theme) => {
     return (
-      <>
+      <div key={theme}>
         <MetaItem>{theme}</MetaItem>
-        <ListBase key={theme}>
+        <ListBase>
           {sizes.map((size) => {
             return (
               <Fragment key={theme}>
@@ -40,7 +40,7 @@ export const Theme = (args: ListItemProps) => {
             );
           })}
         </ListBase>
-      </>
+      </div>
     );
   });
 };
@@ -48,9 +48,9 @@ export const Theme = (args: ListItemProps) => {
 export const Size = (args: ListItemProps) => {
   return sizes?.map((size) => {
     return (
-      <>
+      <div key={size}>
         <MetaItem>{size}</MetaItem>
-        <ListBase key={size}>
+        <ListBase>
           <ListItem {...args} description={undefined} size={size} linkIcon />
           <ListItem {...args} size={size} linkIcon />
           <ListItem {...args} select={{ checked: true }} size={size} linkIcon />
@@ -66,7 +66,7 @@ export const Size = (args: ListItemProps) => {
             linkIcon
           />
         </ListBase>
-      </>
+      </div>
     );
   });
 };

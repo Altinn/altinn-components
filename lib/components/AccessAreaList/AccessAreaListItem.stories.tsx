@@ -97,8 +97,8 @@ export const AllAreas = (args: AccessAreaListItemProps) => {
               </AccessAreaListItem>
             ))}
           </ListBase>
-        </div >
+        </div>
       ))}
-    </div >
+    </div>
   );
 };

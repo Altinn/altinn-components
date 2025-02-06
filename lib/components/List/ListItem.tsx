@@ -1,3 +1,4 @@
+import { ChevronDownIcon, ChevronRightIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 import type { HTMLProps, ReactElement, ReactNode } from 'react';
 import type { AvatarGroupProps, AvatarProps } from '../Avatar';
 import type { BadgeProps } from '../Badge';
@@ -5,7 +6,6 @@ import type { IconProps, SvgElement } from '../Icon';
 import { ListItemBase, type ListItemBaseProps } from './ListItemBase';
 import { ListItemHeader, type ListItemHeaderProps } from './ListItemHeader';
 import styles from './listItemBase.module.css';
-import { ChevronDownIcon, ChevronRightIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 
 export interface ListItemProps extends ListItemBaseProps, ListItemHeaderProps {
   /** List item id */
