@@ -12,6 +12,10 @@ const config: TestRunnerConfig = {
   async postVisit(page, context) {
     const storyContext = await getStoryContext(page, context);
 
+    if (storyContext.parameters?.a11y?.disable) {
+      return;
+    }
+
     await configureAxe(page, {
       rules: [...storyContext.parameters?.a11y?.config?.rules],
     });
@@ -19,6 +23,7 @@ const config: TestRunnerConfig = {
     const element = storyContext.parameters?.a11y?.element ?? 'body';
     
     await checkA11y(page, element, {
+      verbose: false,
       detailedReport: true,
       detailedReportOptions: { html: true },
       axeOptions: { 
