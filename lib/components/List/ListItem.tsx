@@ -30,8 +30,6 @@ export interface ListItemProps extends ListItemBaseProps, ListItemHeaderProps {
   badge?: BadgeProps | ReactNode | undefined;
   /** Whether to display the item with a link icon */
   linkIcon?: boolean;
-  /** onMouseEnter event handler */
-  onMouseEnter?: HTMLProps<HTMLLIElement>['onMouseEnter'];
 }
 
 export interface ListItemInputProps extends ListItemProps {
@@ -71,7 +69,7 @@ export const ListItem = ({
 
   if (expanded) {
     return (
-      <li className={styles.item} {...rest}>
+      <li className={styles.item}>
         <ListItemBase
           interactive={false}
           variant={variant}
@@ -116,7 +114,7 @@ export const ListItem = ({
   }
 
   return (
-    <li className={styles.item} {...rest}>
+    <li className={styles.item}>
       <ListItemBase
         interactive={!controls}
         variant={variant}
