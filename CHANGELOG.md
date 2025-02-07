@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.17.0](https://github.com/Altinn/altinn-components/compare/v0.16.0...v0.17.0) (2025-02-07)
+
+
+### Features
+
+* ListItem - minor updates to api and default behaviour ([#233](https://github.com/Altinn/altinn-components/issues/233)) ([e6aaed0](https://github.com/Altinn/altinn-components/commit/e6aaed0ce979d615dcd7bb4b0c5677128dde240c))
+
 ## [0.16.0](https://github.com/Altinn/altinn-components/compare/v0.15.5...v0.16.0) (2025-02-06)
 
 
