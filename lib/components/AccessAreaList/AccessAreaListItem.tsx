@@ -43,7 +43,6 @@ export const AccessAreaListItem = ({
       expanded={expanded}
       onClick={onClick}
       badge={badge}
-      interactive
       {...props}
     >
       {expanded && <div className={styles.content}>{children}</div>}

@@ -2,11 +2,12 @@ import { PencilIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from '../Button';
 import { ResourceListItem } from './ResourceListItem';
+import { ListBase } from '../List';
 
 const meta = {
   title: 'Access/List/ResourceListItem',
   component: ResourceListItem,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'beta'],
   parameters: {},
   args: {
     size: 'md',
@@ -22,7 +23,7 @@ const meta = {
   },
   argTypes: {
     size: {
-      options: ['sm', 'md', 'lg'],
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
       control: {
         type: 'inline-radio',
       },
@@ -35,9 +36,9 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: (args) => (
-    <ul>
-      <ResourceListItem {...args} />
-    </ul>
+    <ListBase>
+      <ResourceListItem badge={{label: "New", color: "success", theme: "base"}} {...args} onClick={() => alert(`You clicked me - yay!`)} />
+    </ListBase>
   ),
   args: {},
 };
