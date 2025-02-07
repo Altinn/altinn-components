@@ -3,6 +3,7 @@ import React from 'react';
 import areaGroups from '../../../test-data/accesspackages.json';
 import { AccessPackageList } from '../AccessPackageList';
 import { AccessAreaListItem, type AccessAreaListItemProps } from './AccessAreaListItem';
+import { Color } from '../../types';
 
 const testArea = areaGroups[1].areas[1];
 
@@ -13,14 +14,14 @@ const svgStringToComponent = (dataString: string, altText: string): React.FC<Rea
   return (props) => <span aria-label={altText} dangerouslySetInnerHTML={{ __html: dataString }} {...props} />;
 };
 
-const children = (
+const children = (colorTheme: Color | undefined) => (
   <>
     {testArea.description && <p>{testArea.description}</p>}
     <AccessPackageList
       items={testArea.packages.map((p, index) => ({
         id: p.id,
         title: p.name,
-        color: index < 2 ? 'company' : 'neutral',
+        color: index < 2 ? colorTheme : 'neutral',
       }))}
     />
   </>
@@ -35,7 +36,8 @@ const meta = {
     size: 'md',
     name: testArea.name,
     icon: svgStringToComponent(testArea.icon, testArea.name),
-    children,
+    badgeText: '2 of 7',
+    colorTheme: 'company',
   },
   argTypes: {
     expanded: {
@@ -54,7 +56,18 @@ const meta = {
         disable: true,
       },
     },
+    colorTheme: {
+      options: ['neutral', 'company', 'person'],
+      control: {
+        type: 'select',
+      },
+    },
   },
+  render: (args) => (
+    <AccessAreaListItem {...args}>
+      {children(args.colorTheme)}
+    </AccessAreaListItem>
+  ),
 } satisfies Meta<typeof AccessAreaListItem>;
 
 export default meta;
@@ -63,7 +76,8 @@ type Story = StoryObj<typeof meta>;
 export const AreaListItemStory: Story = {};
 
 export const AreaWithPackages = (args: AccessAreaListItemProps) => {
-  return <AccessAreaListItem {...args} expanded />;
+  const [expanded, setExpanded] = React.useState<boolean>(false);
+  return <AccessAreaListItem {...args} colorTheme='company' expanded={expanded} onClick={() => setExpanded(!expanded)} badgeText={`2 of ${testArea.packages.length}`}>{children(args.colorTheme)}</AccessAreaListItem>;
 };
 
 export const AllAreas = (args: AccessAreaListItemProps) => {
@@ -80,9 +94,11 @@ export const AllAreas = (args: AccessAreaListItemProps) => {
               key={area.id}
               name={area.name}
               icon={svgStringToComponent(area.icon, area.name)}
+              colorTheme='neutral'
               size={args.size}
               expanded={expanded === area.id}
               onClick={() => setExpanded((prev) => (prev === area.id ? null : area.id))}
+              badgeText={`0 of ${area.packages.length}`}
             >
               {area.description && <p>{area.description}</p>}
               <AccessPackageList
@@ -94,7 +110,8 @@ export const AllAreas = (args: AccessAreaListItemProps) => {
             </AccessAreaListItem>
           ))}
         </div>
-      ))}
-    </div>
+      ))
+      }
+    </div >
   );
 };
