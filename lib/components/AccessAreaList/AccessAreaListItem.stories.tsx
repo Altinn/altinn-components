@@ -17,9 +17,10 @@ const children = (
   <>
     {testArea.description && <p>{testArea.description}</p>}
     <AccessPackageList
-      items={testArea.packages.map((p) => ({
+      items={testArea.packages.map((p, index) => ({
         id: p.id,
         title: p.name,
+        color: index < 2 ? 'company' : 'neutral',
       }))}
     />
   </>
@@ -60,6 +61,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const AreaListItemStory: Story = {};
+
+export const AreaWithPackages = (args: AccessAreaListItemProps) => {
+  return <AccessAreaListItem {...args} expanded />;
+};
 
 export const AllAreas = (args: AccessAreaListItemProps) => {
   const [expanded, setExpanded] = React.useState<string | null>(null);

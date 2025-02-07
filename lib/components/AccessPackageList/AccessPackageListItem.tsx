@@ -1,27 +1,19 @@
 import { ListItem, type ListItemProps } from '../List';
 
 export interface AccessPackageListItemProps
-  extends Pick<ListItemProps, 'onClick' | 'as' | 'title' | 'description' | 'size' | 'controls'> {
+  extends Pick<ListItemProps, 'color' | 'onClick' | 'as' | 'title' | 'description' | 'size' | 'controls'> {
   id: string;
-  icon?: string;
 }
 
-export const AccessPackageListItem = ({ as = 'button', icon, title, ...props }: AccessPackageListItemProps) => {
+export const AccessPackageListItem = ({ as = 'button', title, color = 'neutral', ...props }: AccessPackageListItemProps) => {
   return (
     <ListItem
-      avatar={
-        icon
-          ? {
-              imageUrl: icon,
-              type: 'company',
-              name: title || '',
-            }
-          : undefined
-      }
+      icon="package"
       as={as}
       size="sm"
-      color="accent"
       title={title}
+      color={color}
+      theme='subtle'
       {...props}
     />
   );
