@@ -1,5 +1,5 @@
 import { ChevronDownIcon, ChevronRightIcon, ChevronUpIcon } from '@navikt/aksel-icons';
-import type { HTMLProps, ReactElement, ReactNode } from 'react';
+import type { ReactElement, ReactNode } from 'react';
 import type { AvatarGroupProps, AvatarProps } from '../Avatar';
 import type { BadgeProps } from '../Badge';
 import type { IconProps, SvgElement } from '../Icon';
