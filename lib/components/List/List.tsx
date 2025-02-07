@@ -17,7 +17,6 @@ export interface ListProps extends Omit<ListBaseProps, 'children'> {
 }
 
 export const List = ({ defaultItemSize, defaultItemTheme, defaultItemColor, items = [], ...rest }: ListProps) => {
-  const listId = useId();
   return (
     <ListBase {...rest}>
       {items.map((item, index) => {
@@ -27,7 +26,7 @@ export const List = ({ defaultItemSize, defaultItemTheme, defaultItemColor, item
             size={item?.size || defaultItemSize}
             color={item?.color || defaultItemColor}
             theme={item?.theme || defaultItemTheme}
-            key={`${listId}-${item.title ?? index}`}
+            key={`item-${item.id ?? index}`}
           />
         );
       })}
