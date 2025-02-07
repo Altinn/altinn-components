@@ -147,7 +147,6 @@ export const DialogListItem = ({
       size={size}
       selected={selected}
       theme={applicableTheme}
-      linkIcon={null}
       controls={select && <ListItemSelect className={styles.select} {...select} size="xl" />}
       title={title}
       label={

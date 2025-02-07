@@ -25,16 +25,31 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  render: (args) => (
+    <ul>
+      <BookmarksListItem {...args} />
+    </ul>
+  ),
   args: {},
 };
 
 export const CustomTitle: Story = {
+  render: (args) => (
+    <ul>
+      <BookmarksListItem {...args} />
+    </ul>
+  ),
   args: {
     title: 'Mitt lagrede søk',
   },
 };
 
 export const Expanded: Story = {
+  render: (args) => (
+    <ul>
+      <BookmarksListItem {...args} />
+    </ul>
+  ),
   args: {
     title: 'Mitt lagrede søk',
     expanded: true,
@@ -43,6 +58,11 @@ export const Expanded: Story = {
 };
 
 export const LotsOfParams: Story = {
+  render: (args) => (
+    <ul>
+      <BookmarksListItem {...args} />
+    </ul>
+  ),
   args: {
     params: [
       {

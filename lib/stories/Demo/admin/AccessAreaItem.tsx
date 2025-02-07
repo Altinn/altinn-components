@@ -24,12 +24,13 @@ export const AccessAreaItem = ({
   description = "En beskrivelse av området.",
   children,
   ...props
-}:AccessAreaItemProps) => {
+}: AccessAreaItemProps) => {
 
   return (
     <ListItem
       {...props}
       expanded={expanded}
+      collapsable
       size="md"
       icon={{
         color: accessCount ? "company" : "neutral",
@@ -38,12 +39,11 @@ export const AccessAreaItem = ({
       }}
       badge={badge}
       title={title}
-      linkIcon={expanded ? ChevronUpIcon : ChevronDownIcon}
     >
       {expanded && <Section padding={6} spacing={6}>
         <Typography>{description}</Typography>
         {children}
-        </Section>}
+      </Section>}
     </ListItem>
   )
 };

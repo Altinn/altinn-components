@@ -1,4 +1,4 @@
-import { ChevronRightIcon, ClockDashedIcon, CogIcon, PencilIcon, TeddyBearIcon } from '@navikt/aksel-icons';
+import { ClockDashedIcon, CogIcon, PencilIcon, TeddyBearIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import {
@@ -49,6 +49,11 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  render: (args) => (
+    <ListBase>
+      <ListItem {...args} />
+    </ListBase>
+  ),
   args: {
     icon: {
       theme: 'surface',
@@ -56,8 +61,9 @@ export const Default: Story = {
     },
     badge: {
       theme: 'subtle',
-      label: '2 av 4',
+      label: 'New',
     },
+    linkIcon: true,
   },
 };
 
@@ -122,10 +128,24 @@ export const AvatarGroups = (args: ListItemProps) => {
 };
 
 export const Badges = (args: ListItemProps) => {
+  const [expanded, setExpanded] = useState(false);
+
+  const toggleExpanded = () => {
+    setExpanded((prevState) => !prevState);
+  };
+
   return (
     <ListBase>
-      <ListItem {...args} icon={TeddyBearIcon} badge={{ label: '2 ting' }} description="Adding a badge." />
-      <ListItem {...args} icon={TeddyBearIcon} linkIcon={undefined} description="LinkIcon has been removed." />
+      <ListItem {...args} icon={TeddyBearIcon} description="This item is a link." linkIcon />
+      <ListItem
+        {...args}
+        icon={TeddyBearIcon}
+        badge={{ label: '2 ting' }}
+        description="Adding a badge."
+        collapsible
+        expanded={expanded}
+        onClick={toggleExpanded}
+      />
     </ListBase>
   );
 };
@@ -167,22 +187,24 @@ export const Collapsible = (args: ListItemProps) => {
   };
 
   return (
-    <ListItem
-      {...args}
-      icon={{ theme: 'surface', svgElement: TeddyBearIcon }}
-      badge={{ label: 'Badge' }}
-      description={expanded ? '' : 'Click to expand'}
-      collapsible={true}
-      expanded={expanded}
-      onClick={onToggle}
-      as="button"
-    >
-      {expanded && (
-        <Section padding={4}>
-          <p>Item is expanded</p>
-        </Section>
-      )}
-    </ListItem>
+    <ListBase>
+      <ListItem
+        {...args}
+        icon={{ theme: 'surface', svgElement: TeddyBearIcon }}
+        badge={{ label: 'Badge' }}
+        description={expanded ? '' : 'Click to expand'}
+        collapsible={true}
+        expanded={expanded}
+        onClick={onToggle}
+        as="button"
+      >
+        {expanded && (
+          <Section padding={4}>
+            <p>Item is expanded</p>
+          </Section>
+        )}
+      </ListItem>
+    </ListBase>
   );
 };
 
@@ -197,7 +219,7 @@ export const Theme = (args: ListItemProps) => {
             title={theme}
             description={'theme:' + theme}
             theme={theme}
-            linkIcon={ChevronRightIcon}
+            linkIcon
             key={theme}
           />
         );
@@ -217,7 +239,7 @@ export const Size = (args: ListItemProps) => {
             title={size}
             description={'theme:' + size}
             size={size}
-            linkIcon={ChevronRightIcon}
+            linkIcon
             key={size}
           />
         );
@@ -265,7 +287,7 @@ export const OverridingBadge = (args: ListItemProps) => {
         {...args}
         description="Badge replaced by AvatarGroup"
         badge={<AvatarGroup {...avatarGroupsProps} size="sm" />}
-        linkIcon={ChevronRightIcon}
+        linkIcon
       />
     </ListBase>
   );
@@ -294,7 +316,7 @@ export const CustomControls = (args: ListItemProps) => {
         {...args}
         icon={TeddyBearIcon}
         badge={{ label: 'Admin' }}
-        linkIcon={ChevronRightIcon}
+        linkIcon
         controls={
           <ContextMenu
             id="menu"

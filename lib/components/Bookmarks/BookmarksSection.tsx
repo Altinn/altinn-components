@@ -26,7 +26,9 @@ export const BookmarksSection = ({
     <Section padding={6} theme="surface-hover" spacing={4} bleed>
       <Heading size="md">{title}</Heading>
       {loading ? (
-        <BookmarksListItem title={title} loading={loading} size="sm" />
+        <ListBase>
+          <BookmarksListItem title={title} loading={loading} size="sm" />
+        </ListBase>
       ) : (
         items.length > 0 && (
           <ListBase spacing="xs">

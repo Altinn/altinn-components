@@ -1,3 +1,4 @@
+import type { ChevronDownIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import { type ReactNode, isValidElement } from 'react';
 import {
@@ -29,9 +30,9 @@ export interface ListItemHeaderProps extends ListItemLinkProps {
   className?: string;
   /** Select controls */
   select?: ListItemSelectProps;
-  /** Collapsible item, sets linkIcon to "chevron down" */
+  /** Collapsible item */
   collapsible?: boolean;
-  /** Item is expanded, sets linkIcon to "chevron up" */
+  /** Item is expanded */
   expanded?: boolean;
   /** Title */
   title?: string;
@@ -43,8 +44,8 @@ export interface ListItemHeaderProps extends ListItemLinkProps {
   avatar?: AvatarProps;
   /** List item avatarGroup */
   avatarGroup?: AvatarGroupProps;
-  /** Optional icon indicating behaviour */
-  linkIcon?: SvgElement | undefined | null;
+  /** Optional chevron icon indicating behaviour */
+  chevron?: typeof ChevronDownIcon;
   /** Optional badge */
   badge?: BadgeProps | ReactNode | undefined;
   /** Custom controls */
@@ -68,7 +69,7 @@ export const ListItemHeader = ({
   icon,
   avatar,
   avatarGroup,
-  linkIcon,
+  chevron,
   badge,
   controls,
   className,
@@ -128,7 +129,7 @@ export const ListItemHeader = ({
           {controls && (
             <>
               {renderBadge()}
-              {linkIcon && <Icon svgElement={linkIcon} size={applicableIconSize as ListItemIconSize} />}
+              {chevron && <Icon svgElement={chevron} size={applicableIconSize as ListItemIconSize} />}
             </>
           )}
         </ListItemLink>
@@ -139,7 +140,7 @@ export const ListItemHeader = ({
         ) : (
           <>
             {renderBadge()}
-            {linkIcon && <Icon svgElement={linkIcon} size={applicableIconSize as ListItemIconSize} />}
+            {chevron && <Icon svgElement={chevron} size={applicableIconSize as ListItemIconSize} />}
           </>
         )}
       </ListItemControls>

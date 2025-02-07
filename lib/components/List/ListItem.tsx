@@ -5,6 +5,7 @@ import type { BadgeProps } from '../Badge';
 import type { IconProps, SvgElement } from '../Icon';
 import { ListItemBase, type ListItemBaseProps } from './ListItemBase';
 import { ListItemHeader, type ListItemHeaderProps } from './ListItemHeader';
+import styles from './listItemBase.module.css';
 
 export interface ListItemProps extends ListItemBaseProps, ListItemHeaderProps {
   /** List item id */
@@ -27,6 +28,8 @@ export interface ListItemProps extends ListItemBaseProps, ListItemHeaderProps {
   label?: ReactNode | (() => ReactElement);
   /** Optional badge */
   badge?: BadgeProps | ReactNode | undefined;
+  /** Whether to display the item with a link icon */
+  linkIcon?: boolean;
 }
 
 export interface ListItemInputProps extends ListItemProps {
@@ -51,7 +54,7 @@ export const ListItem = ({
   title,
   description,
   badge,
-  linkIcon = ChevronRightIcon,
+  linkIcon = false,
   label,
   select,
   controls,
@@ -59,84 +62,88 @@ export const ListItem = ({
   ...rest
 }: ListItemProps) => {
   /** Set linkIcon */
-  const applicableLinkIcon = collapsible ? (expanded ? ChevronUpIcon : ChevronDownIcon) : linkIcon;
+  const chevronIcon = collapsible ? (expanded ? ChevronUpIcon : ChevronDownIcon) : undefined;
 
   /** Set label */
   const applicableLabel = typeof label === 'function' ? label() : label;
 
   if (expanded) {
     return (
+      <li className={styles.item}>
+        <ListItemBase
+          interactive={false}
+          variant={variant}
+          color={color}
+          theme={theme}
+          shadow={shadow}
+          expanded={expanded}
+          title={title}
+          loading={loading}
+        >
+          <ListItemBase
+            theme="transparent"
+            interactive={!controls}
+            size={size}
+            color={color}
+            loading={loading}
+            title={title}
+            {...rest}
+          >
+            <ListItemHeader
+              className={className}
+              loading={loading}
+              select={select}
+              size={size}
+              title={title}
+              description={description}
+              icon={icon}
+              avatar={avatar}
+              avatarGroup={avatarGroup}
+              badge={badge}
+              chevron={chevronIcon}
+              controls={controls}
+              {...rest}
+            >
+              {applicableLabel}
+            </ListItemHeader>
+          </ListItemBase>
+          {children}
+        </ListItemBase>
+      </li>
+    );
+  }
+
+  return (
+    <li className={styles.item}>
       <ListItemBase
-        interactive={false}
+        interactive={!controls}
         variant={variant}
         color={color}
         theme={theme}
         shadow={shadow}
         expanded={expanded}
-        title={title}
         loading={loading}
-      >
-        <ListItemBase
-          theme="transparent"
-          interactive={!controls}
-          size={size}
-          color={color}
-          loading={loading}
-          title={title}
-          {...rest}
-        >
-          <ListItemHeader
-            className={className}
-            loading={loading}
-            select={select}
-            size={size}
-            title={title}
-            description={description}
-            icon={icon}
-            avatar={avatar}
-            avatarGroup={avatarGroup}
-            badge={badge}
-            linkIcon={applicableLinkIcon}
-            controls={controls}
-            {...rest}
-          >
-            {applicableLabel}
-          </ListItemHeader>
-        </ListItemBase>
-        {children}
-      </ListItemBase>
-    );
-  }
-
-  return (
-    <ListItemBase
-      interactive={!controls}
-      variant={variant}
-      color={color}
-      theme={theme}
-      shadow={shadow}
-      expanded={expanded}
-      loading={loading}
-      title={title}
-      {...rest}
-    >
-      <ListItemHeader
-        className={className}
-        loading={loading}
-        select={select}
-        size={size}
         title={title}
-        description={description}
-        icon={icon}
-        avatar={avatar}
-        avatarGroup={avatarGroup}
-        badge={badge}
-        linkIcon={applicableLinkIcon}
-        controls={controls}
         {...rest}
       >
-        {applicableLabel}
-      </ListItemHeader>
-    </ListItemBase>
+        <ListItemHeader
+          className={className}
+          loading={loading}
+          select={select}
+          size={size}
+          title={title}
+          description={description}
+          icon={icon}
+          avatar={avatar}
+          avatarGroup={avatarGroup}
+          badge={badge}
+          chevron={chevronIcon ?? (linkIcon ? ChevronRightIcon : undefined)}
+          controls={controls}
+          {...rest}
+        >
+          {applicableLabel}
+        </ListItemHeader>
+      </ListItemBase>
+    </li>
   );
 };

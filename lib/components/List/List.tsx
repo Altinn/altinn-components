@@ -25,7 +25,7 @@ export const List = ({ defaultItemSize, defaultItemTheme, defaultItemColor, item
             size={item?.size || defaultItemSize}
             color={item?.color || defaultItemColor}
             theme={item?.theme || defaultItemTheme}
-            key={'item' + index}
+            key={`item-${item.id ?? index}`}
           />
         );
       })}

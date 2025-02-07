@@ -5,7 +5,6 @@ import {
   type AvatarProps,
   type BadgeProps,
   ContextMenu,
-  Grid,
   List,
   ListBase,
   ListItem,
@@ -122,16 +121,6 @@ export const ListOfCategories = () => {
         />
       ))}
     </ListBase>
-  );
-};
-
-export const CategoryGrid = () => {
-  return (
-    <Grid color="company" cols={3} spacing={4}>
-      {categoryItems.slice(0, 9).map((item, index) => (
-        <ListItem theme="surface" size="lg" key={index} icon={item.icon} title={item.title} />
-      ))}
-    </Grid>
   );
 };
 

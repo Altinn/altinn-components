@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import areaGroups from '../../../test-data/accesspackages.json';
 import { AccessPackageList } from '../AccessPackageList';
+import { ListBase } from '../List';
 import { AccessAreaListItem, type AccessAreaListItemProps } from './AccessAreaListItem';
 import { Color } from '../../types';
 
@@ -63,17 +64,20 @@ const meta = {
       },
     },
   },
-  render: (args) => (
-    <AccessAreaListItem {...args}>
-      {children(args.colorTheme)}
-    </AccessAreaListItem>
-  ),
 } satisfies Meta<typeof AccessAreaListItem>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const AreaListItemStory: Story = {};
+export const AreaListItemStory: Story = {
+  render: (args) => (
+    <ListBase>
+      <AccessAreaListItem {...args}>
+        {children(args.colorTheme)}
+      </AccessAreaListItem>
+    </ListBase>
+  ),
+};
 
 export const AreaWithPackages = (args: AccessAreaListItemProps) => {
   const [expanded, setExpanded] = React.useState<boolean>(false);
@@ -88,27 +92,29 @@ export const AllAreas = (args: AccessAreaListItemProps) => {
         <div key={group.id} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
           <h2>{group.name}</h2>
           <p>{group.description}</p>
-          {group.areas.map((area) => (
-            <AccessAreaListItem
-              id={area.id}
-              key={area.id}
-              name={area.name}
-              icon={svgStringToComponent(area.icon, area.name)}
-              colorTheme='neutral'
-              size={args.size}
-              expanded={expanded === area.id}
-              onClick={() => setExpanded((prev) => (prev === area.id ? null : area.id))}
-              badgeText={`0 of ${area.packages.length}`}
-            >
-              {area.description && <p>{area.description}</p>}
-              <AccessPackageList
-                items={area.packages.map((p) => ({
-                  id: p.id,
-                  title: p.name,
-                }))}
-              />
-            </AccessAreaListItem>
-          ))}
+          <ListBase>
+            {group.areas.map((area) => (
+              <AccessAreaListItem
+                id={area.id}
+                key={area.id}
+                name={area.name}
+                icon={svgStringToComponent(area.icon, area.name)}
+                colorTheme='neutral'
+                size={args.size}
+                expanded={expanded === area.id}
+                onClick={() => setExpanded((prev) => (prev === area.id ? null : area.id))}
+                badgeText={`0 of ${area.packages.length}`}
+              >
+                {area.description && <p>{area.description}</p>}
+                <AccessPackageList
+                  items={area.packages.map((p) => ({
+                    id: p.id,
+                    title: p.name,
+                  }))}
+                />
+              </AccessAreaListItem>
+            ))}
+          </ListBase>
         </div>
       ))
       }

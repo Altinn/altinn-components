@@ -15,7 +15,7 @@ export const AccessPackageItem = ({
   theme = "subtle",
   icon = PackageIcon,
   size = "sm",
-  linkIcon = ChevronRightIcon,
+  linkIcon = false,
   access,
   users,
   ...props

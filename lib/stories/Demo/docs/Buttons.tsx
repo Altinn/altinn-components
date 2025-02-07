@@ -8,7 +8,7 @@ import {
   IconButton,
   MetaItem,
 } from '../../../components';
-import {ArrowLeftIcon, ArrowRightIcon, ChevronDownIcon, XMarkIcon} from "@navikt/aksel-icons";
+import { ArrowLeftIcon, ArrowRightIcon, ChevronDownIcon, XMarkIcon } from "@navikt/aksel-icons";
 
 const buttonSizes = ['sm', 'md', 'lg'] as ButtonSize[];
 const buttonVariants = ['solid', 'outline', 'dotted', 'text'] as ButtonVariant[];
