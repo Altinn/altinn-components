@@ -34,6 +34,6 @@ export const UserAdminListItem = ({
   }
 
   return (
-    <ListItem {...props} size={size} icon={icon} title={name} description={role} linkIcon={ChevronRightIcon} />
-  );
+    <ListItem {...props} size={size} icon={icon} title={name} description={role} linkIcon />
+);
 };

@@ -46,16 +46,17 @@ export const Autocomplete = ({ className, items, groups = {}, expanded, onSelect
                   props: { groupId, onClick, ...itemProps },
                 } = item;
                 return (
-                  <li key={index} tabIndex={-1} onMouseEnter={() => setActiveIndex(menuIndex)}>
-                    <AutocompleteItem
-                      {...itemProps}
-                      onClick={() => {
-                        onClick?.();
-                        onSelect?.();
-                      }}
-                      active={active}
-                    />
-                  </li>
+                  <AutocompleteItem
+                    key={index}
+                    tabIndex={-1}
+                    onMouseEnter={() => setActiveIndex(menuIndex)}
+                    {...itemProps}
+                    onClick={() => {
+                      onClick?.();
+                      onSelect?.();
+                    }}
+                    active={active}
+                  />
                 );
               })}
             </ul>

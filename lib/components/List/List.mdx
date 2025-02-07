@@ -39,7 +39,7 @@ import { ChevronRightIcon, TeddyBearIcon } from "@navikt/aksel-icons";
   title="Title"
   icon={{ theme: "surface", svgElement: TeddyBearIcon }}
   badge={{ theme: "subtle", label: "2 av 3" }}
-  linkIcon={ChevronRightIcon}
+  linkIcon
 />;
 ```
 
@@ -93,7 +93,7 @@ When adding controls, list item interaction is split from controls and default b
 
 ## Collapsible/expanded
 
-Make items collapsible by adding the `collapsible` prop. Adding the `expanded` prop will change the default `linkIcon` and expose the `children` of the list item.
+Make items collapsible by adding the `collapsible` prop. Adding the `expanded` prop will expose its `children`.
 
 <Canvas of={ListItemStories.Collapsible} />
 
