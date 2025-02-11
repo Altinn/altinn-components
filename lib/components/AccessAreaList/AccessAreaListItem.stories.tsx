@@ -80,15 +80,17 @@ export const AreaListItemStory: Story = {
 export const AreaWithPackages = (args: AccessAreaListItemProps) => {
   const [expanded, setExpanded] = React.useState<boolean>(false);
   return (
-    <AccessAreaListItem
-      {...args}
-      colorTheme="company"
-      expanded={expanded}
-      onClick={() => setExpanded(!expanded)}
-      badgeText={`2 of ${testArea.packages.length}`}
-    >
-      {children(args.colorTheme)}
-    </AccessAreaListItem>
+    <ListBase>
+      <AccessAreaListItem
+        {...args}
+        colorTheme="company"
+        expanded={expanded}
+        onClick={() => setExpanded(!expanded)}
+        badgeText={`2 of ${testArea.packages.length}`}
+      >
+        {children(args.colorTheme)}
+      </AccessAreaListItem>
+    </ListBase>
   );
 };
 
