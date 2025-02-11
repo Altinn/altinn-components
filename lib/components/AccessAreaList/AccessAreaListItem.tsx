@@ -5,7 +5,7 @@ import { ListItem } from '../List';
 import type { ListItemProps } from '../List';
 import styles from './accessAreaListItem.module.css';
 
-export interface AccessAreaListItemProps extends Pick<ListItemProps, 'size' | 'onClick' | 'expanded'> {
+export interface AccessAreaListItemProps extends Pick<ListItemProps, 'size' | 'onClick' | 'expanded' | 'loading'> {
   /** Id of the item */
   id: string;
   /** Name of the Access Area */
@@ -29,6 +29,7 @@ export const AccessAreaListItem = ({
   onClick,
   badgeText,
   colorTheme,
+  loading,
   ...props
 }: AccessAreaListItemProps) => {
   const themedIcon = { svgElement: icon, theme: 'subtle', color: colorTheme } as IconProps;
@@ -39,10 +40,11 @@ export const AccessAreaListItem = ({
       icon={themedIcon}
       title={name}
       size={size}
-      collapsible={true}
+      collapsible={loading ? false : true}
       expanded={expanded}
       onClick={onClick}
       badge={badge}
+      loading={loading}
       {...props}
     >
       {expanded && <div className={styles.content}>{children}</div>}

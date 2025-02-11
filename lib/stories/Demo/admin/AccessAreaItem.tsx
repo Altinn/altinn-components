@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { ChevronDownIcon, ChevronUpIcon } from "@navikt/aksel-icons";
 import { ListItem, type ListItemProps, Section, Typography, type ListItemSize, type SvgElement, type BadgeProps } from '../../../components';
+import React from 'react';
 
 export interface AccessAreaItemProps extends ListItemProps {
   id: string;
@@ -30,7 +31,7 @@ export const AccessAreaItem = ({
     <ListItem
       {...props}
       expanded={expanded}
-      collapsable
+      collapsible
       size="md"
       icon={{
         color: accessCount ? "company" : "neutral",

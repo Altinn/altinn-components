@@ -12,6 +12,7 @@ const meta = {
   args: {
     size: 'md',
     id: 'se_5733_1',
+    loading: false,
     resourceName: 'Avtale om oppbevaring om eksplosiver',
     ownerName: 'Direktoratet for samfunnssikkerhet og beredskap',
     ownerLogoUrl: 'https://altinncdn.no/orgs/dsb/dsb.png',
