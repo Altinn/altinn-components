@@ -39,7 +39,7 @@ const meta = {
     icon: svgStringToComponent(testArea.icon, testArea.name),
     badgeText: '2 of 7',
     colorTheme: 'company',
-    loading: false
+    loading: false,
   },
   argTypes: {
     expanded: {
