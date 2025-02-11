@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import areaGroups from '../../../test-data/accesspackages.json';
+import type { Color } from '../../types';
 import { AccessPackageList } from '../AccessPackageList';
 import { ListBase } from '../List';
 import { AccessAreaListItem, type AccessAreaListItemProps } from './AccessAreaListItem';
-import { Color } from '../../types';
 
 const testArea = areaGroups[1].areas[1];
 
@@ -72,16 +72,24 @@ type Story = StoryObj<typeof meta>;
 export const AreaListItemStory: Story = {
   render: (args) => (
     <ListBase>
-      <AccessAreaListItem {...args}>
-        {children(args.colorTheme)}
-      </AccessAreaListItem>
+      <AccessAreaListItem {...args}>{children(args.colorTheme)}</AccessAreaListItem>
     </ListBase>
   ),
 };
 
 export const AreaWithPackages = (args: AccessAreaListItemProps) => {
   const [expanded, setExpanded] = React.useState<boolean>(false);
-  return <AccessAreaListItem {...args} colorTheme='company' expanded={expanded} onClick={() => setExpanded(!expanded)} badgeText={`2 of ${testArea.packages.length}`}>{children(args.colorTheme)}</AccessAreaListItem>;
+  return (
+    <AccessAreaListItem
+      {...args}
+      colorTheme="company"
+      expanded={expanded}
+      onClick={() => setExpanded(!expanded)}
+      badgeText={`2 of ${testArea.packages.length}`}
+    >
+      {children(args.colorTheme)}
+    </AccessAreaListItem>
+  );
 };
 
 export const AllAreas = (args: AccessAreaListItemProps) => {
@@ -99,7 +107,7 @@ export const AllAreas = (args: AccessAreaListItemProps) => {
                 key={area.id}
                 name={area.name}
                 icon={svgStringToComponent(area.icon, area.name)}
-                colorTheme='neutral'
+                colorTheme="neutral"
                 size={args.size}
                 expanded={expanded === area.id}
                 onClick={() => setExpanded((prev) => (prev === area.id ? null : area.id))}
@@ -116,8 +124,7 @@ export const AllAreas = (args: AccessAreaListItemProps) => {
             ))}
           </ListBase>
         </div>
-      ))
-      }
-    </div >
+      ))}
+    </div>
   );
 };

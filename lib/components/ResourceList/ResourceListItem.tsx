@@ -1,4 +1,4 @@
-import { BadgeProps } from '../Badge';
+import type { BadgeProps } from '../Badge';
 import { ListItem } from '../List';
 import type { ListItemProps } from '../List';
 

@@ -1,6 +1,6 @@
-import { Color } from '../../types';
-import { BadgeProps } from '../Badge';
-import { type IconProps, type SvgElement } from '../Icon';
+import type { Color } from '../../types';
+import type { BadgeProps } from '../Badge';
+import type { IconProps, SvgElement } from '../Icon';
 import { ListItem } from '../List';
 import type { ListItemProps } from '../List';
 import styles from './accessAreaListItem.module.css';
@@ -32,7 +32,7 @@ export const AccessAreaListItem = ({
   ...props
 }: AccessAreaListItemProps) => {
   const themedIcon = { svgElement: icon, theme: 'subtle', color: colorTheme } as IconProps;
-  const badge = badgeText ? { label: badgeText, color: colorTheme } as BadgeProps : undefined;
+  const badge = badgeText ? ({ label: badgeText, color: colorTheme } as BadgeProps) : undefined;
   return (
     <ListItem
       as="button"
