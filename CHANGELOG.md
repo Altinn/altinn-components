@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.18.1](https://github.com/Altinn/altinn-components/compare/v0.18.0...v0.18.1) (2025-02-12)
+
+
+### Bug Fixes
+
+* list story ([#248](https://github.com/Altinn/altinn-components/issues/248)) ([390fd65](https://github.com/Altinn/altinn-components/commit/390fd652ddd050813f06dc159329ef9c516f7108))
+* wrapping of span with filter badge for toolbar ([#249](https://github.com/Altinn/altinn-components/issues/249)) ([ebefb5a](https://github.com/Altinn/altinn-components/commit/ebefb5ab3d0c7a37cc9cd11c2e1544154c03a1db))
+
 ## [0.18.0](https://github.com/Altinn/altinn-components/compare/v0.17.0...v0.18.0) (2025-02-12)
 
 
