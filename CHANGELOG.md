@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.0](https://github.com/Altinn/altinn-components/compare/v0.17.0...v0.18.0) (2025-02-12)
+
+
+### Features
+
+* Cosmetic changes to access components ([#245](https://github.com/Altinn/altinn-components/issues/245)) ([50a6ec1](https://github.com/Altinn/altinn-components/commit/50a6ec1968197da65485e39334759f805fafd2bf))
+
 ## [0.17.0](https://github.com/Altinn/altinn-components/compare/v0.16.0...v0.17.0) (2025-02-07)
 
 
