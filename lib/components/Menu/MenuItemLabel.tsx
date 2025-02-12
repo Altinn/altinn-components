@@ -1,8 +1,10 @@
+import cx from 'classnames';
 import type { ReactNode } from 'react';
 import type { MenuItemSize } from './MenuItemBase';
 import styles from './menuItemLabel.module.css';
 
 export interface MenuItemLabelProps {
+  className?: string;
   size?: MenuItemSize;
   label?: string;
   title?: string;
@@ -10,9 +12,9 @@ export interface MenuItemLabelProps {
   children?: ReactNode;
 }
 
-export const MenuItemLabel = ({ size = 'sm', label, title, description, children }: MenuItemLabelProps) => {
+export const MenuItemLabel = ({ className, size = 'sm', label, title, description, children }: MenuItemLabelProps) => {
   return (
-    <span className={styles.label} data-size={size}>
+    <span className={cx(styles.label, className)} data-size={size}>
       {children ? (
         children
       ) : (

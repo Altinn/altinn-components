@@ -1,5 +1,18 @@
-.label {
+.base {
   padding-left: 6px;
+}
+
+.base:hover [data-hover="true"] {
+  opacity: 1;
+}
+
+.label {
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: max-content;
+  overflow: hidden;
+  max-width: 240px;
 }
 
 .input {
@@ -21,8 +34,4 @@
 
 .icon [data-hover="true"] {
   opacity: 0;
-}
-
-.label:hover [data-hover="true"] {
-  opacity: 1;
 }
