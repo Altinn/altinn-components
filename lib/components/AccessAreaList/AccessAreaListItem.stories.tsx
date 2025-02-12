@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import areaGroups from '../../../test-data/accesspackages.json';
+import type { Color } from '../../types';
 import { AccessPackageList } from '../AccessPackageList';
 import { ListBase } from '../List';
 import { AccessAreaListItem, type AccessAreaListItemProps } from './AccessAreaListItem';
@@ -14,13 +15,14 @@ const svgStringToComponent = (dataString: string, altText: string): React.FC<Rea
   return (props) => <span aria-label={altText} dangerouslySetInnerHTML={{ __html: dataString }} {...props} />;
 };
 
-const children = (
+const children = (colorTheme: Color | undefined) => (
   <>
     {testArea.description && <p>{testArea.description}</p>}
     <AccessPackageList
-      items={testArea.packages.map((p) => ({
+      items={testArea.packages.map((p, index) => ({
         id: p.id,
         title: p.name,
+        color: index < 2 ? colorTheme : 'neutral',
       }))}
     />
   </>
@@ -29,13 +31,15 @@ const children = (
 const meta = {
   title: 'Access/List/AccessAreaListItem',
   component: AccessAreaListItem,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'beta'],
   args: {
     id: testArea.id,
     size: 'md',
     name: testArea.name,
     icon: svgStringToComponent(testArea.icon, testArea.name),
-    children,
+    badgeText: '2 of 7',
+    colorTheme: 'company',
+    loading: false,
   },
   argTypes: {
     expanded: {
@@ -54,6 +58,12 @@ const meta = {
         disable: true,
       },
     },
+    colorTheme: {
+      options: ['neutral', 'company', 'person'],
+      control: {
+        type: 'select',
+      },
+    },
   },
 } satisfies Meta<typeof AccessAreaListItem>;
 
@@ -63,9 +73,26 @@ type Story = StoryObj<typeof meta>;
 export const AreaListItemStory: Story = {
   render: (args) => (
     <ListBase>
-      <AccessAreaListItem {...args} />
+      <AccessAreaListItem {...args}>{children(args.colorTheme)}</AccessAreaListItem>
     </ListBase>
   ),
+};
+
+export const AreaWithPackages = (args: AccessAreaListItemProps) => {
+  const [expanded, setExpanded] = React.useState<boolean>(false);
+  return (
+    <ListBase>
+      <AccessAreaListItem
+        {...args}
+        colorTheme="company"
+        expanded={expanded}
+        onClick={() => setExpanded(!expanded)}
+        badgeText={`2 of ${testArea.packages.length}`}
+      >
+        {children(args.colorTheme)}
+      </AccessAreaListItem>
+    </ListBase>
+  );
 };
 
 export const AllAreas = (args: AccessAreaListItemProps) => {
@@ -83,9 +110,11 @@ export const AllAreas = (args: AccessAreaListItemProps) => {
                 key={area.id}
                 name={area.name}
                 icon={svgStringToComponent(area.icon, area.name)}
+                colorTheme="neutral"
                 size={args.size}
                 expanded={expanded === area.id}
                 onClick={() => setExpanded((prev) => (prev === area.id ? null : area.id))}
+                badgeText={`0 of ${area.packages.length}`}
               >
                 {area.description && <p>{area.description}</p>}
                 <AccessPackageList

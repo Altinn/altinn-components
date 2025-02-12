@@ -89,7 +89,7 @@ export const ListItemHeader = ({
 
   /** Badge can be custom, or a Badge object. */
   const renderBadge = (): ReactNode => {
-    if (badge && typeof badge === 'object' && 'label' in badge) {
+    if (badge && !loading && typeof badge === 'object' && 'label' in badge) {
       return <Badge {...(badge as BadgeProps)} />;
     }
     if (isValidElement(badge)) {
@@ -135,7 +135,7 @@ export const ListItemHeader = ({
         </ListItemLink>
       </div>
       <ListItemControls className={styles.controls}>
-        {controls ? (
+        {controls && !loading ? (
           controls
         ) : (
           <>
