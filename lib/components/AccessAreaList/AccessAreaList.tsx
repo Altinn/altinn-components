@@ -10,7 +10,7 @@ export const AccessAreaList = ({ items, color }: AccessAreaListProps) => {
   return (
     <ListBase color={color} spacing={1}>
       {items.map((item) => (
-        <AccessAreaListItem {...item} key={item.id} {...item} />
+        <AccessAreaListItem key={item.id} {...item} />
       ))}
     </ListBase>
   );
