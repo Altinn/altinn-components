@@ -7,7 +7,12 @@ export interface ToolbarAccountMenuProps extends AccountMenuProps {
   id?: string;
 }
 
-export const ToolbarAccountMenu = ({ currentAccount, id = 'toolbar-accounts', ...rest }: ToolbarAccountMenuProps) => {
+export const ToolbarAccountMenu = ({
+  currentAccount,
+  id = 'toolbar-accounts',
+  onSelectAccount,
+  ...rest
+}: ToolbarAccountMenuProps) => {
   const { currentId, toggleId, closeAll } = useRootContext();
   const onToggle = () => toggleId(id);
   const expanded = currentId === id;
@@ -18,7 +23,14 @@ export const ToolbarAccountMenu = ({ currentAccount, id = 'toolbar-accounts', ..
         {currentAccount?.name}
       </ToolbarButton>
       <DrawerOrDropdown open={expanded} drawerTitle="Endre konto" onClose={closeAll}>
-        <AccountMenu {...rest} currentAccount={currentAccount} />
+        <AccountMenu
+          {...rest}
+          onSelectAccount={(id: string) => {
+            onSelectAccount?.(id);
+            closeAll();
+          }}
+          currentAccount={currentAccount}
+        />
       </DrawerOrDropdown>
     </ToolbarFilterBase>
   );
