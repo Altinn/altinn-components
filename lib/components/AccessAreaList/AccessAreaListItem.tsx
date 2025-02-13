@@ -5,15 +5,11 @@ import { ListItem } from '../List';
 import type { ListItemProps } from '../List';
 import styles from './accessAreaListItem.module.css';
 
-export interface AccessAreaListItemProps extends Pick<ListItemProps, 'size' | 'onClick' | 'expanded' | 'loading'> {
+interface AccessAreaListItemDefaultProps extends Pick<ListItemProps, 'size' | 'onClick' | 'expanded' | 'loading'> {
   /** Id of the item */
   id: string;
   /** Name of the Access Area */
   name: string;
-  /** The icon associated with the Access Area */
-  icon?: SvgElement;
-  /** The imgUrl of the icon associated with the Access Area */
-  iconUrl?: string;
   /** Color theme of the Access Area */
   colorTheme?: Color;
   /** Optional Badge to display things like the number of packages a user has in the area */
@@ -21,6 +17,10 @@ export interface AccessAreaListItemProps extends Pick<ListItemProps, 'size' | 'o
   /** Children to render when the item is expanded */
   children?: React.ReactNode;
 }
+
+export type AccessAreaListItemProps =
+  | (AccessAreaListItemDefaultProps & { icon: SvgElement; iconUrl?: never })
+  | (AccessAreaListItemDefaultProps & { iconUrl: string; icon?: never });
 
 export const AccessAreaListItem = ({
   name,
