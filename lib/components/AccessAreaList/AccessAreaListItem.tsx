@@ -35,7 +35,13 @@ export const AccessAreaListItem = ({
   loading,
   ...props
 }: AccessAreaListItemProps) => {
-  const themedIcon = { svgElement: icon, iconUrl: iconUrl, theme: 'subtle', color: colorTheme, altText: '' } as IconProps;
+  const themedIcon = {
+    svgElement: icon,
+    iconUrl: iconUrl,
+    theme: 'subtle',
+    color: colorTheme,
+    altText: '',
+  } as IconProps;
   const badge = badgeText ? ({ label: badgeText, color: colorTheme } as BadgeProps) : undefined;
   return (
     <ListItem
