@@ -21,9 +21,11 @@ export const Autocomplete = ({ className, items, groups = {}, expanded, onSelect
   const ref = useRef<HTMLDivElement>(null);
 
   useEnterKey(() => {
-    const activeItem = ref.current?.querySelector('[data-active="true"]') as HTMLElement | null;
-    activeItem?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-    onSelect?.();
+    if (expanded) {
+      const activeItem = ref.current?.querySelector('[data-active="true"]') as HTMLElement | null;
+      activeItem?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      onSelect?.();
+    }
   });
 
   const { menu, setActiveIndex } = useMenu<AutocompleteItemProps, AutocompleteGroupProps>({
