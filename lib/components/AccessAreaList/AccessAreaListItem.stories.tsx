@@ -36,7 +36,7 @@ const meta = {
     id: testArea.id,
     size: 'md',
     name: testArea.name,
-    icon: svgStringToComponent(testArea.icon, testArea.name),
+    iconUrl: 'https://www.svgrepo.com/show/457192/home.svg',
     badgeText: '2 of 7',
     colorTheme: 'company',
     loading: false,
@@ -51,11 +51,6 @@ const meta = {
       options: ['sm', 'md', 'lg'],
       control: {
         type: 'inline-radio',
-      },
-    },
-    icon: {
-      control: {
-        disable: true,
       },
     },
     colorTheme: {

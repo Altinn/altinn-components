@@ -11,7 +11,9 @@ export interface AccessAreaListItemProps extends Pick<ListItemProps, 'size' | 'o
   /** Name of the Access Area */
   name: string;
   /** The icon associated with the Access Area */
-  icon: SvgElement;
+  icon?: SvgElement;
+  /** The imgUrl of the icon associated with the Access Area */
+  iconUrl?: string;
   /** Color theme of the Access Area */
   colorTheme?: Color;
   /** Optional Badge to display things like the number of packages a user has in the area */
@@ -23,6 +25,7 @@ export interface AccessAreaListItemProps extends Pick<ListItemProps, 'size' | 'o
 export const AccessAreaListItem = ({
   name,
   icon,
+  iconUrl,
   size = 'md',
   children,
   expanded = false,
@@ -32,7 +35,7 @@ export const AccessAreaListItem = ({
   loading,
   ...props
 }: AccessAreaListItemProps) => {
-  const themedIcon = { svgElement: icon, theme: 'subtle', color: colorTheme } as IconProps;
+  const themedIcon = { svgElement: icon, iconUrl: iconUrl, theme: 'subtle', color: colorTheme, altText: '' } as IconProps;
   const badge = badgeText ? ({ label: badgeText, color: colorTheme } as BadgeProps) : undefined;
   return (
     <ListItem
