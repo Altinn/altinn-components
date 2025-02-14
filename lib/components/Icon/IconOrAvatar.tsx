@@ -35,7 +35,7 @@ function isReactNode(value: unknown): value is ReactNode {
 }
 
 const isIconProps = (icon: IconProps | SvgElement | ReactNode): icon is IconProps => {
-  return (icon as IconProps).svgElement !== undefined;
+  return (icon as IconProps).svgElement !== undefined || (icon as IconProps).iconUrl !== undefined;
 };
 
 export const IconOrAvatar = ({ size, icon, iconTheme, avatar, avatarGroup }: IconOrAvatarProps) => {
