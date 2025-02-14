@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.18.3](https://github.com/Altinn/altinn-components/compare/v0.18.2...v0.18.3) (2025-02-14)
+
+
+### Bug Fixes
+
+* close account menu in toolbar when selected ([#252](https://github.com/Altinn/altinn-components/issues/252)) ([8874f3f](https://github.com/Altinn/altinn-components/commit/8874f3f2be1d3ce2bda067b2c85904bf0ea60f93))
+* Keyboard onEnter unintentionally opens search bar ([#253](https://github.com/Altinn/altinn-components/issues/253)) ([a16481d](https://github.com/Altinn/altinn-components/commit/a16481d3a1028fd602b51cd60b9b69b170d6be1c))
+
 ## [0.18.2](https://github.com/Altinn/altinn-components/compare/v0.18.1...v0.18.2) (2025-02-14)
 
 
