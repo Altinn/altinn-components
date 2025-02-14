@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.2](https://github.com/Altinn/altinn-components/compare/v0.18.1...v0.18.2) (2025-02-14)
+
+
+### Bug Fixes
+
+* allow use of img url as icon source ([#254](https://github.com/Altinn/altinn-components/issues/254)) ([e2753cc](https://github.com/Altinn/altinn-components/commit/e2753cc800fd8b7817d242919cfc179d416172c9))
+
 ## [0.18.1](https://github.com/Altinn/altinn-components/compare/v0.18.0...v0.18.1) (2025-02-12)
 
 
