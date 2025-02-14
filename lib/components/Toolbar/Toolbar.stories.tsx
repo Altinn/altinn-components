@@ -93,3 +93,24 @@ export const ControlledStateFilters = (args: typeof Toolbar) => {
     />
   );
 };
+
+export const ControlledStateAccount = () => {
+  const [currentAccountId, setCurrentAccountId] = React.useState<string>('party:mathias');
+  const [filterState, setFilterState] = React.useState<FilterState>({
+    from: ['skatt', 'brreg'],
+  });
+
+  return (
+    <Toolbar
+      accountMenu={{
+        ...accountMenu,
+        onSelectAccount: (id) => setCurrentAccountId(id),
+        currentAccount: accountMenu.accounts?.find((account) => account.id === currentAccountId),
+      }}
+      filters={Default.args!.filters}
+      filterState={filterState}
+      onFilterStateChange={setFilterState}
+      removeButtonAltText="remove"
+    />
+  );
+};
