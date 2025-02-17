@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.4](https://github.com/Altinn/altinn-components/compare/v0.18.3...v0.18.4) (2025-02-17)
+
+
+### Bug Fixes
+
+* add addFilterButtonLabel prop to Toolbar in order to override label for add filter ([#257](https://github.com/Altinn/altinn-components/issues/257)) ([76e21a4](https://github.com/Altinn/altinn-components/commit/76e21a4136d5a3e4647b7db53c043cb37141b3e5))
+
 ## [0.18.3](https://github.com/Altinn/altinn-components/compare/v0.18.2...v0.18.3) (2025-02-14)
 
 
