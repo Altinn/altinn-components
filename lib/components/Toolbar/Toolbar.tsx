@@ -18,6 +18,7 @@ export interface ToolbarProps {
   getFilterLabel?: (name: string, value: ToolbarFilterProps['value']) => string;
   onFilterStateChange?: (state: FilterState) => void;
   showResultsLabel?: string;
+  addFilterButtonLabel?: string;
   removeButtonAltText?: string;
   children?: ReactNode;
 }
@@ -34,6 +35,7 @@ export const Toolbar = ({
   children,
   showResultsLabel,
   removeButtonAltText,
+  addFilterButtonLabel,
 }: ToolbarProps) => {
   const { openId, closeAll } = useRootContext();
   const [localFilterState, setLocalFilterState] = useState<Record<string, ToolbarFilterProps['value']>>(
@@ -127,6 +129,7 @@ export const Toolbar = ({
       {hiddenFilters?.length > 0 && (
         <ToolbarAdd
           id="toolbar-filter-add"
+          label={addFilterButtonLabel}
           items={hiddenFilters.map((item) => {
             const filterId = getFilterId(item.name, item.id);
             return {
