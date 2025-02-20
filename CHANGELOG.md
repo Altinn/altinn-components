@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.5](https://github.com/Altinn/altinn-components/compare/v0.18.4...v0.18.5) (2025-02-20)
+
+
+### Bug Fixes
+
+* make checkbox and its label in DialogListGroup optional ([#261](https://github.com/Altinn/altinn-components/issues/261)) ([50f72df](https://github.com/Altinn/altinn-components/commit/50f72df60044e44b54c1f379f95bea1b2dde858a))
+
 ## [0.18.4](https://github.com/Altinn/altinn-components/compare/v0.18.3...v0.18.4) (2025-02-17)
 
 
