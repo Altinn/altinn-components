@@ -1,5 +1,5 @@
 import { InboxToolbar, useAppContext, useBulk } from '..';
-import { DialogList, PageBase } from '../../../components';
+import {DialogList, DialogListGroupProps, PageBase} from '../../../components';
 import { dialogList } from '../data';
 export const InboxSection = () => {
   const { pageId, setPageId, currentAccount } = useAppContext();
@@ -17,7 +17,7 @@ export const InboxSection = () => {
     name: 'Unknown',
   };
 
-  const groups = {};
+  const groups: DialogListGroupProps = {};
 
   const items =
     dialogList
@@ -26,6 +26,7 @@ export const InboxSection = () => {
 
         groups[groupId] = {
           title: groupId,
+          checkAllLabel: 'Velg alle',
         };
 
         if (sectionId === "trash") {
@@ -38,11 +39,7 @@ export const InboxSection = () => {
           }
         } else if (sectionId === 'drafts' && status?.value === 'draft') {
           return true;
-        } else if (sectionId === 'sent' && status?.value === 'sent') {
-          return true;
-        } else {
-          return false;
-        }
+        } else return sectionId === 'sent' && status?.value === 'sent';
       })
       .map((item) => {
         const dialogId = [parentId, sectionId, item.id].join('/');

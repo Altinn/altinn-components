@@ -67,6 +67,7 @@ export const SearchField = ({
         autoComplete="off"
         aria-autocomplete="list"
         tabIndex={tabIndex ?? 0}
+        data-testid="searchbar-input"
       />
       <Icon svgElement={MagnifyingGlassIcon} className={styles.icon} />
       {(value && (
