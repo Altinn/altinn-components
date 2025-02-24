@@ -13,8 +13,7 @@
 }
 
 .input {
-  position: absolute;
-  opacity: 0;
+  display: none;
 }
 
 .icon {
@@ -29,56 +28,42 @@
   opacity: 1;
 }
 
-.label[data-size="xs"] {
-  width: 24px;
-  height: 24px;
-  margin: -2px;
-}
+/* xs: 20 */
 
 .label[data-size="xs"] .icon {
-  width: 12px;
+  width: 16px;
+  height: 16px;
+  margin: 2px;
 }
 
-.label[data-size="sm"] {
-  width: 28px;
-  height: 28px;
-  margin: -2px;
-}
+/* sm: 24 */
 
 .label[data-size="sm"] .icon {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
+  margin: 4px;
 }
 
-.label[data-size="md"] {
-  width: 36px;
-  height: 36px;
-  margin: -2px;
-}
+/* md: 32 */
 
 .label[data-size="md"] .icon {
   width: 16px;
   height: 16px;
+  margin: 8px;
 }
 
-.label[data-size="lg"] {
-  width: 44px;
-  height: 44px;
-  margin: -4px;
-}
+/* lg: 36 */
 
 .label[data-size="lg"] .icon {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
+  margin: 9px;
 }
 
-.label[data-size="xl"] {
-  width: 52px;
-  height: 52px;
-  margin: -4px;
-}
+/* xl: 44 */
 
 .label[data-size="xl"] .icon {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
+  margin: 12px;
 }

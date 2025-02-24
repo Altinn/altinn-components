@@ -1,3 +1,4 @@
+import { ClockIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { MetaTimestamp } from './MetaTimestamp';
 
@@ -5,9 +6,7 @@ const meta = {
   title: 'Meta/MetaTimestamp',
   component: MetaTimestamp,
   tags: ['autodocs'],
-  parameters: {
-    //    layout: "fullscreen",
-  },
+  parameters: {},
   args: {
     children: '26. mai 1999',
     datetime: '1999-05-26',
@@ -26,7 +25,7 @@ export const Default: Story = {
 
 export const Icon: Story = {
   args: {
-    icon: 'clock',
+    icon: ClockIcon,
     children: 'Frist: 26. mai 1999',
     datetime: '1999-05-26',
   },

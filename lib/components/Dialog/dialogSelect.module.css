@@ -13,8 +13,7 @@
 }
 
 .input {
-  position: absolute;
-  opacity: 0;
+  display: none;
 }
 
 .icon {

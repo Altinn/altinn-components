@@ -7,49 +7,62 @@ import {
   type AvatarSize,
   type BadgeProps,
   Icon,
-  type IconName,
   type IconProps,
   type IconSize,
   type IconTheme,
+  type SvgElement,
 } from '..';
 
 export type IconOrAvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
-//import styles from "./menuItemIcon.module.css";
-
 export interface IconOrAvatarProps {
   size?: IconOrAvatarSize;
-  icon?: IconProps | IconName | ReactNode;
+  icon?: IconProps | SvgElement | ReactNode;
   iconTheme?: IconTheme;
   avatar?: AvatarProps;
   avatarGroup?: AvatarGroupProps;
   badge?: BadgeProps | undefined;
 }
 
+function isReactNode(value: unknown): value is ReactNode {
+  return (
+    typeof value === 'string' ||
+    typeof value === 'number' ||
+    typeof value === 'boolean' ||
+    value === null ||
+    isValidElement(value)
+  );
+}
+
+const isIconProps = (icon: IconProps | SvgElement | ReactNode): icon is IconProps => {
+  return (icon as IconProps).svgElement !== undefined || (icon as IconProps).iconUrl !== undefined;
+};
+
 export const IconOrAvatar = ({ size, icon, iconTheme, avatar, avatarGroup }: IconOrAvatarProps) => {
   if (!icon && !avatar && !avatarGroup) {
     return null;
   }
 
-  /** Icon can be custom, a string or an Icon object. */
-
+  /** Icon can be custom, a svg or an Icon object. */
   if (icon) {
-    if (isValidElement(icon)) {
+    if (isIconProps(icon)) {
+      return <Icon theme={icon.theme || iconTheme} size={icon.size || size} {...(icon as IconProps)} />;
+    }
+
+    if (isReactNode(icon)) {
       return icon;
     }
 
-    const applicableIcon = typeof icon === 'string' ? ({ name: icon } as IconProps) : (icon as IconProps);
-
-    return <Icon {...applicableIcon} theme={applicableIcon?.theme || iconTheme} size={size as IconSize} />;
+    return <Icon svgElement={icon as SvgElement} theme={iconTheme} size={size as IconSize} />;
   }
 
   /** Avatar or AvatarGroup */
 
   if (avatar) {
-    return <Avatar {...avatar} size={size as AvatarSize} />;
+    return <Avatar {...avatar} size={avatar.size || size} />;
   }
 
   if (avatarGroup) {
-    return <AvatarGroup {...avatarGroup} size={size as AvatarSize} />;
+    return <AvatarGroup {...avatarGroup} size={avatarGroup.size || (size as AvatarSize)} />;
   }
 };

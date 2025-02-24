@@ -16,6 +16,7 @@ export interface ToolbarFilterProps {
   optionType: 'checkbox' | 'radio';
   removable?: boolean;
   getSelectedLabel?: (name: string, value?: ToolbarFilterValue) => string;
+  buttonAltText?: string;
   className?: string;
   onChange?: ChangeEventHandler;
   onRemove?: MouseEventHandler;
@@ -38,6 +39,7 @@ export const ToolbarFilter = ({
   optionGroups,
   onChange,
   onRemove,
+  buttonAltText = 'Remove button',
   getSelectedLabel,
   showResultsLabel = 'Show results',
   optionType,
@@ -63,6 +65,7 @@ export const ToolbarFilter = ({
         removable={removable}
         active={Array.isArray(value) ? value.length > 0 : typeof value !== 'undefined'}
         onToggle={onToggle}
+        ariaLabel={buttonAltText}
         onRemove={onRemove}
       >
         {valueLabel || label}

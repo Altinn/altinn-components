@@ -1,6 +1,6 @@
+import { ClockDashedIcon, CogIcon, PencilIcon, TeddyBearIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-
 import {
   Avatar,
   AvatarGroup,
@@ -49,23 +49,29 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  render: (args) => (
+    <ListBase>
+      <ListItem {...args} />
+    </ListBase>
+  ),
   args: {
     icon: {
       theme: 'surface',
-      name: 'teddy-bear',
+      svgElement: TeddyBearIcon,
     },
     badge: {
       theme: 'subtle',
-      label: '2 av 4',
+      label: 'New',
     },
+    linkIcon: true,
   },
 };
 
 export const IconTypes = (args: ListItemProps) => {
   return (
     <ListBase>
-      <ListItem {...args} icon="teddy-bear" />
-      <ListItem {...args} icon={{ theme: 'surface', name: 'teddy-bear' }} />
+      <ListItem {...args} icon={TeddyBearIcon} />
+      <ListItem {...args} icon={{ theme: 'surface', svgElement: TeddyBearIcon }} />
     </ListBase>
   );
 };
@@ -122,10 +128,24 @@ export const AvatarGroups = (args: ListItemProps) => {
 };
 
 export const Badges = (args: ListItemProps) => {
+  const [expanded, setExpanded] = useState(false);
+
+  const toggleExpanded = () => {
+    setExpanded((prevState) => !prevState);
+  };
+
   return (
     <ListBase>
-      <ListItem {...args} icon="teddy-bear" badge={{ label: '2 ting' }} description="Adding a badge." />
-      <ListItem {...args} icon="teddy-bear" linkIcon={undefined} description="LinkIcon has been removed." />
+      <ListItem {...args} icon={TeddyBearIcon} description="This item is a link." linkIcon />
+      <ListItem
+        {...args}
+        icon={TeddyBearIcon}
+        badge={{ label: '2 ting' }}
+        description="Adding a badge."
+        collapsible
+        expanded={expanded}
+        onClick={toggleExpanded}
+      />
     </ListBase>
   );
 };
@@ -133,8 +153,8 @@ export const Badges = (args: ListItemProps) => {
 export const LoadingState = (args: ListItemProps) => {
   return (
     <ListBase>
-      <ListItem {...args} icon="teddy-bear" loading={true} />
-      <ListItem {...args} icon="teddy-bear" loading={false} />
+      <ListItem {...args} icon={TeddyBearIcon} loading={true} />
+      <ListItem {...args} icon={TeddyBearIcon} loading={false} />
     </ListBase>
   );
 };
@@ -167,22 +187,24 @@ export const Collapsible = (args: ListItemProps) => {
   };
 
   return (
-    <ListItem
-      {...args}
-      icon={{ theme: 'surface', name: 'teddy-bear' }}
-      badge={{ label: 'Badge' }}
-      description={expanded ? '' : 'Click to expand'}
-      collapsible={true}
-      expanded={expanded}
-      onClick={onToggle}
-      as="button"
-    >
-      {expanded && (
-        <Section padding={4}>
-          <p>Item is expanded</p>
-        </Section>
-      )}
-    </ListItem>
+    <ListBase>
+      <ListItem
+        {...args}
+        icon={{ theme: 'surface', svgElement: TeddyBearIcon }}
+        badge={{ label: 'Badge' }}
+        description={expanded ? '' : 'Click to expand'}
+        collapsible={true}
+        expanded={expanded}
+        onClick={onToggle}
+        as="button"
+      >
+        {expanded && (
+          <Section padding={4}>
+            <p>Item is expanded</p>
+          </Section>
+        )}
+      </ListItem>
+    </ListBase>
   );
 };
 
@@ -193,11 +215,11 @@ export const Theme = (args: ListItemProps) => {
         return (
           <ListItem
             {...args}
-            icon="teddy-bear"
+            icon={TeddyBearIcon}
             title={theme}
             description={'theme:' + theme}
             theme={theme}
-            linkIcon="chevron-right"
+            linkIcon
             key={theme}
           />
         );
@@ -213,11 +235,11 @@ export const Size = (args: ListItemProps) => {
         return (
           <ListItem
             {...args}
-            icon={{ name: 'teddy-bear', theme: 'surface' }}
+            icon={{ svgElement: TeddyBearIcon, theme: 'surface' }}
             title={size}
             description={'theme:' + size}
             size={size}
-            linkIcon="chevron-right"
+            linkIcon
             key={size}
           />
         );
@@ -236,7 +258,7 @@ export const OverridingIcon = (args: ListItemProps) => {
           <span style={{ position: 'relative' }}>
             <Avatar name="Alfa" size="md" />
             <span style={{ position: 'absolute', bottom: -2, right: -2 }}>
-              <Icon name="teddy-bear" size="xs" theme="subtle" />
+              <Icon svgElement={TeddyBearIcon} size="xs" theme="subtle" />
             </span>
           </span>
         }
@@ -246,7 +268,7 @@ export const OverridingIcon = (args: ListItemProps) => {
         description="Custom icon with Icon + Avatar"
         icon={
           <span style={{ position: 'relative' }}>
-            <Icon name="teddy-bear" size="md" theme="subtle" />
+            <Icon svgElement={TeddyBearIcon} size="md" theme="subtle" />
             <span style={{ position: 'absolute', bottom: -2, right: -2 }}>
               <Avatar name="Alfa" size="xs" />
             </span>
@@ -265,7 +287,7 @@ export const OverridingBadge = (args: ListItemProps) => {
         {...args}
         description="Badge replaced by AvatarGroup"
         badge={<AvatarGroup {...avatarGroupsProps} size="sm" />}
-        linkIcon="chevron-right"
+        linkIcon
       />
     </ListBase>
   );
@@ -276,7 +298,7 @@ export const OverridingLabel = (args: ListItemProps) => {
     <ListBase>
       <ListItem
         {...args}
-        icon="teddy-bear"
+        icon={TeddyBearIcon}
         label={
           <span>
             A <em>custom</em> label{' '}
@@ -292,25 +314,25 @@ export const CustomControls = (args: ListItemProps) => {
     <ListBase>
       <ListItem
         {...args}
-        icon="teddy-bear"
+        icon={TeddyBearIcon}
         badge={{ label: 'Admin' }}
-        linkIcon="chevron-right"
+        linkIcon
         controls={
           <ContextMenu
             id="menu"
             size="sm"
             items={[
-              { id: 'settings', title: 'Innstillinger', icon: 'cog' },
-              { id: 'log', title: 'Aktivitetslogg', icon: 'clock-dashed' },
+              { id: 'settings', title: 'Innstillinger', icon: CogIcon },
+              { id: 'log', title: 'Aktivitetslogg', icon: ClockDashedIcon },
             ]}
           />
         }
       />
       <ListItem
         {...args}
-        icon="teddy-bear"
+        icon={TeddyBearIcon}
         controls={
-          <Button icon="pencil" size="sm" variant="outline">
+          <Button icon={PencilIcon} size="sm" variant="outline">
             Rediger
           </Button>
         }

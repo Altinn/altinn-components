@@ -44,7 +44,7 @@ export const AccountListItem = ({
         title={name}
         description={type}
         loading={loading}
-        linkIcon={expanded ? 'chevron-up' : 'chevron-down'}
+        chevron={expanded ? 'chevron-up' : 'chevron-down'}
         badge={{ ...badge, label: badge?.label + ' roller' }}
         avatar={{ type, name }}
       />

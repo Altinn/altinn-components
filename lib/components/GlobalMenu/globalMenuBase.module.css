@@ -11,22 +11,22 @@
   align-items: stretch;
 }
 
-.drawer[aria-expanded="true"] {
+.drawer[data-expanded="true"] {
   display: block;
   padding: 0.5rem;
   z-index: 2;
 }
 
-.dropdown[aria-expanded="true"] {
+.dropdown[data-expanded="true"] {
   display: none;
 }
 
 @media (min-width: 1024px) {
-  .drawer[aria-expanded="true"] {
+  .drawer[data-expanded="true"] {
     display: none;
   }
 
-  .dropdown[aria-expanded="true"] {
+  .dropdown[data-expanded="true"] {
     display: block;
     z-index: 2;
   }

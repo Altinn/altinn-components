@@ -1,3 +1,4 @@
+import { ArchiveIcon, ArrowRedoIcon, ClockDashedIcon, EyeIcon, TrashIcon } from '@navikt/aksel-icons';
 import type { ContextMenuProps } from '../../lib';
 
 export const dialogContextMenu: ContextMenuProps = {
@@ -6,31 +7,31 @@ export const dialogContextMenu: ContextMenuProps = {
     {
       groupId: '1',
       id: '1',
-      icon: 'arrow-redo',
+      icon: ArrowRedoIcon,
       title: 'Del og gi tilgang',
     },
     {
       groupId: '1',
       id: '2',
-      icon: 'eye',
+      icon: EyeIcon,
       title: 'Marker som lest',
     },
     {
       groupId: '2',
       id: '3',
-      icon: 'archive',
+      icon: ArchiveIcon,
       title: 'Flytt til arkiv',
     },
     {
       groupId: '2',
       id: '4',
-      icon: 'trash',
+      icon: TrashIcon,
       title: 'Flytt til papirkurv',
     },
     {
       groupId: '3',
       id: '4',
-      icon: 'clock-dashed',
+      icon: ClockDashedIcon,
       title: 'Aktivitetslogg',
     },
   ],

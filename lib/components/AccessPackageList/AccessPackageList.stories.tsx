@@ -1,22 +1,35 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta } from '@storybook/react';
 import areaGroups from '../../../test-data/accesspackages.json';
-import { AccessPackageList } from './AccessPackageList';
+import { AccessPackageList, type AccessPackageListProps } from './AccessPackageList';
 
 const testArea = areaGroups[0].areas[1];
 
 const meta = {
   title: 'Access/List/AccessPackageList',
   component: AccessPackageList,
-  tags: ['autodocs'],
-  args: {
-    items: testArea.packages.map((p) => ({
-      id: p.id,
-      title: p.name,
-    })),
+  tags: ['autodocs', 'beta'],
+  args: {},
+  argTypes: {
+    spacing: {
+      options: ['page', 'xs', '1', '2', '3', '4', '5'],
+      control: {
+        type: 'inline-radio',
+      },
+    },
   },
 } satisfies Meta<typeof AccessPackageList>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
-export const AccessPackageListStory: Story = {};
+export const AccessPackageListStory = (args: AccessPackageListProps) => {
+  return (
+    <AccessPackageList
+      {...args}
+      items={testArea.packages.map((p) => ({
+        id: p.id,
+        title: p.name,
+        onClick: () => alert(`Package name: ${p.name}`),
+      }))}
+    />
+  );
+};

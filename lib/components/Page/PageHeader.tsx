@@ -1,14 +1,20 @@
+import type { ReactNode } from 'react';
+
 import {
   type AvatarGroupProps,
   type AvatarProps,
+  type BackButtonProps,
+  type BreadcrumbsLinkProps,
   Flex,
   Heading,
-  type IconName,
+  type IconProps,
   ListItemIcon,
+  PageNav,
   PageTabs,
   type PageTabsProps,
   Section,
   type SectionProps,
+  type SvgElement,
   Typography,
 } from '..';
 
@@ -20,10 +26,13 @@ export interface PageHeaderProps extends SectionProps {
   size?: PageHeaderSize;
   title?: string;
   description?: string;
-  icon?: IconName;
+  icon?: SvgElement | IconProps;
   avatar?: AvatarProps;
   avatarGroup?: AvatarGroupProps;
   tabs?: PageTabsProps;
+  backButton?: BackButtonProps;
+  breadcrumbs?: BreadcrumbsLinkProps[];
+  controls?: ReactNode;
 }
 
 export const PageHeader = ({
@@ -39,6 +48,9 @@ export const PageHeader = ({
   padding,
   shadow,
   bleed,
+  breadcrumbs,
+  backButton,
+  controls,
   children,
   ...rest
 }: PageHeaderProps) => {
@@ -51,9 +63,27 @@ export const PageHeader = ({
     bleed = true;
   }
 
+  if (variant === 'card') {
+    return (
+      <Section as="header" theme={theme} shadow={shadow} bleed={bleed} {...rest}>
+        {(backButton || breadcrumbs) && <PageNav backButton={backButton} breadcrumbs={breadcrumbs} padding={2} />}
+        <Flex direction="row" align="center" padding="page" spacing={3}>
+          <ListItemIcon avatar={avatar} avatarGroup={avatarGroup} icon={icon} size="xl" />
+          <Flex direction="col">
+            <Heading size={size}>{title}</Heading>
+            {description && <Typography size="xs">{description}</Typography>}
+          </Flex>
+        </Flex>
+        {children}
+        {tabs && <PageTabs {...tabs} padding={2} />}
+      </Section>
+    );
+  }
+
   return (
-    <Section as="header" theme={theme} padding={padding} shadow={shadow} bleed={bleed} spacing={4} {...rest}>
-      <Flex direction="row" align="center" spacing={3}>
+    <Section as="header" theme={theme} shadow={shadow} bleed={bleed} {...rest}>
+      {(backButton || breadcrumbs) && <PageNav backButton={backButton} breadcrumbs={breadcrumbs} />}
+      <Flex direction="row" align="center" padding={padding} spacing={3}>
         <ListItemIcon avatar={avatar} avatarGroup={avatarGroup} icon={icon} size="xl" />
         <Flex direction="col">
           <Heading size={size}>{title}</Heading>

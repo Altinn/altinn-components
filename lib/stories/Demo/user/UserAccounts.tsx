@@ -1,6 +1,7 @@
 import { useNavigation } from '..';
 import { Heading, ListBase, ListItem, PageBase, PageNav, Toolbar } from '../../../components';
 import { companies } from '../data';
+import {ChevronRightIcon} from "@navikt/aksel-icons";
 
 export const UserAccounts = () => {
   const { breadcrumbs, breadcrumbsId, setPageId } = useNavigation();
@@ -26,7 +27,7 @@ export const UserAccounts = () => {
               description="Org. nr. 2341324134"
               badge={index === 2 ? { label: 'Admin' } : undefined}
               onClick={() => setPageId([breadcrumbsId, item.id].join('/'))}
-              linkIcon="chevron-right"
+              linkIcon
             />
           );
         })}

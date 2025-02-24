@@ -1,5 +1,7 @@
 .flex {
   display: flex;
+  list-style: none;
+  padding: 0;
 }
 
 .flex[data-direction="col"] {
@@ -64,6 +66,10 @@
 
 .flex[data-spacing="xs"] {
   gap: 0.125rem;
+}
+
+.flex[data-spacing="page"] {
+  gap: 1.5rem;
 }
 
 /* margin */

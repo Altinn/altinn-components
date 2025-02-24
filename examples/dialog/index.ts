@@ -1,6 +1,5 @@
 export * from './dialogContextMenu';
 export * from './dialogHistoryItems';
-export * from './dialogListItems';
 
 export * from './transmissionList';
 
@@ -16,3 +15,5 @@ export * from './reportingCompletedDialog';
 export * from './transmissionsDialog';
 export * from './transmissionsInProgressDialog';
 export * from './transmissionsCompletedDialog';
+
+export * from './dialogListItems';

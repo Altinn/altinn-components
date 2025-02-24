@@ -1,13 +1,14 @@
 import { Button } from '../../../components';
+import {MinusCircleIcon, PlusCircleIcon} from "@navikt/aksel-icons";
 
 const GiveAccessButton = () => {
-    return <Button icon="plus-circle" reverse size="sm" variant="outline">Gi fullmakt</Button>
+    return <Button icon={PlusCircleIcon} reverse size="sm" variant="outline">Gi fullmakt</Button>
   }
 
   const RevokeAccessButton = () => {
-    return <Button icon="minus-circle" reverse size="sm" variant="text">Slett fullmakt</Button>
+    return <Button icon={MinusCircleIcon} reverse size="sm" variant="text">Slett fullmakt</Button>
   }
 
-  export const AccessControls = ({access}) => {
+  export const AccessControls = ({access}: {access:boolean}) => {
     return access ? <RevokeAccessButton /> : <GiveAccessButton />
 }

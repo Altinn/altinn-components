@@ -1,3 +1,4 @@
+import type { ChevronDownIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import { type ReactNode, isValidElement } from 'react';
 import {
@@ -6,7 +7,6 @@ import {
   Badge,
   type BadgeProps,
   Icon,
-  type IconName,
   type IconProps,
   ListItemControls,
   ListItemIcon,
@@ -17,6 +17,7 @@ import {
   ListItemSelect,
   type ListItemSelectProps,
   type ListItemSize,
+  type SvgElement,
 } from '..';
 import styles from './listItemHeader.module.css';
 
@@ -29,22 +30,22 @@ export interface ListItemHeaderProps extends ListItemLinkProps {
   className?: string;
   /** Select controls */
   select?: ListItemSelectProps;
-  /** Collapsible item, sets linkIcon to "chevron down" */
+  /** Collapsible item */
   collapsible?: boolean;
-  /** Item is expanded, sets linkIcon to "chevron up" */
+  /** Item is expanded */
   expanded?: boolean;
   /** Title */
   title?: string;
   /** Description */
   description?: string;
   /** List item icon */
-  icon?: IconName | IconProps | ReactNode | undefined;
+  icon?: SvgElement | IconProps | ReactNode | undefined;
   /** List item avatar */
   avatar?: AvatarProps;
   /** List item avatarGroup */
   avatarGroup?: AvatarGroupProps;
-  /** Optional icon indicating behaviour */
-  linkIcon?: IconName | undefined;
+  /** Optional chevron icon indicating behaviour */
+  chevron?: typeof ChevronDownIcon;
   /** Optional badge */
   badge?: BadgeProps | ReactNode | undefined;
   /** Custom controls */
@@ -68,7 +69,7 @@ export const ListItemHeader = ({
   icon,
   avatar,
   avatarGroup,
-  linkIcon,
+  chevron,
   badge,
   controls,
   className,
@@ -88,7 +89,7 @@ export const ListItemHeader = ({
 
   /** Badge can be custom, or a Badge object. */
   const renderBadge = (): ReactNode => {
-    if (badge && typeof badge === 'object' && 'label' in badge) {
+    if (badge && !loading && typeof badge === 'object' && 'label' in badge) {
       return <Badge {...(badge as BadgeProps)} />;
     }
     if (isValidElement(badge)) {
@@ -100,7 +101,9 @@ export const ListItemHeader = ({
   return (
     <header className={styles.header} data-size={size}>
       <div className={styles.link}>
-        {select && <ListItemSelect {...select} size={applicableIconSize as ListItemIconSize} />}
+        {select && (
+          <ListItemSelect {...select} className={styles.select} size={applicableIconSize as ListItemIconSize} />
+        )}
         <ListItemLink
           interactive={!!controls}
           className={cx(styles.link, className)}
@@ -126,18 +129,18 @@ export const ListItemHeader = ({
           {controls && (
             <>
               {renderBadge()}
-              {linkIcon && <Icon name={linkIcon} size={applicableIconSize as ListItemIconSize} />}
+              {chevron && <Icon svgElement={chevron} size={applicableIconSize as ListItemIconSize} />}
             </>
           )}
         </ListItemLink>
       </div>
       <ListItemControls className={styles.controls}>
-        {controls ? (
+        {controls && !loading ? (
           controls
         ) : (
           <>
             {renderBadge()}
-            {linkIcon && <Icon name={linkIcon} size={applicableIconSize as ListItemIconSize} />}
+            {chevron && <Icon svgElement={chevron} size={applicableIconSize as ListItemIconSize} />}
           </>
         )}
       </ListItemControls>

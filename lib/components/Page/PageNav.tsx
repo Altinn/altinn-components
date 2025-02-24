@@ -1,13 +1,6 @@
+import { ArrowLeftIcon } from '@navikt/aksel-icons';
 import type { ReactNode } from 'react';
-import {
-  type BackButtonProps,
-  Breadcrumbs,
-  type BreadcrumbsLinkProps,
-  Button,
-  ContextMenu,
-  type ContextMenuProps,
-  Flex,
-} from '../';
+import { type BackButtonProps, Breadcrumbs, type BreadcrumbsLinkProps, Button, Flex } from '../';
 import styles from './pageNav.module.css';
 
 export type PageNavColor = 'neutral' | 'company' | 'person';
@@ -18,8 +11,7 @@ export interface PageNavProps {
   padding?: PageNavPadding;
   backButton?: BackButtonProps;
   breadcrumbs?: BreadcrumbsLinkProps[];
-  menu?: ContextMenuProps;
-  children?: ReactNode;
+  controls?: ReactNode;
 }
 
 /**
@@ -33,22 +25,18 @@ export const PageNav = ({
     as: 'a',
     label: 'Back',
   },
-  menu,
-  children,
+  controls,
 }: PageNavProps) => {
   return (
     <Flex as="nav" direction="row" align="center" justify="between" color={color} padding={padding}>
       {breadcrumbs ? (
         <Breadcrumbs items={breadcrumbs} />
       ) : (
-        <Button {...backButton} variant="text" icon="arrow-left">
+        <Button {...backButton} variant="text" icon={ArrowLeftIcon}>
           {backButton?.label || 'Back'}
         </Button>
       )}
-      <div className={styles.controls}>
-        {children}
-        {menu && <ContextMenu {...menu} />}
-      </div>
+      {controls && <div className={styles.controls}>{controls}</div>}
     </Flex>
   );
 };

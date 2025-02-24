@@ -12,3 +12,5 @@ export * from './Grid';
 
 export * from './Breadcrumbs';
 export * from './BreadcrumbsLink';
+
+export * from './ContactSection';

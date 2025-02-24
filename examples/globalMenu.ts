@@ -1,3 +1,4 @@
+import { BookmarkIcon, Buildings2Icon, ChatExclamationmarkIcon, InboxIcon, MenuGridIcon } from '@navikt/aksel-icons';
 import type { GlobalMenuProps } from '../lib';
 import { accountMenu } from './index';
 
@@ -18,7 +19,7 @@ export const globalMenu: GlobalMenuProps = {
       id: 'inbox',
       groupId: 'apps',
       size: 'lg',
-      icon: 'inbox',
+      icon: InboxIcon,
       title: 'Innboks',
       selected: true,
       badge: {
@@ -35,28 +36,28 @@ export const globalMenu: GlobalMenuProps = {
       id: 'access',
       groupId: 'apps',
       size: 'lg',
-      icon: 'bookmark',
+      icon: BookmarkIcon,
       title: 'Tilganger',
     },
     {
       id: 'access',
       groupId: 'apps',
       size: 'lg',
-      icon: 'menu-grid',
+      icon: MenuGridIcon,
       title: 'Alle skjema',
     },
     {
       id: 'startup',
       groupId: 'help',
       size: 'sm',
-      icon: 'buildings2',
+      icon: Buildings2Icon,
       title: 'Starte og drive bedrift',
     },
     {
       id: 'help',
       groupId: 'help',
       size: 'sm',
-      icon: 'chat-exclamationmark',
+      icon: ChatExclamationmarkIcon,
       title: 'Trenger du hjelp?',
     },
   ],

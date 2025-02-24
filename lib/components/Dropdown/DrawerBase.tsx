@@ -17,8 +17,8 @@ export const DrawerBase = ({ placement = 'inline', open = false, className, chil
       className={cx(styles.drawer, className)}
       data-placement={placement}
       data-theme="default"
-      data-color="neutral"
-      aria-expanded={open}
+      data-color="company"
+      data-expanded={open}
     >
       {children}
     </div>

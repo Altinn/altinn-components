@@ -1,3 +1,4 @@
+import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { BreadcrumbsLink, type BreadcrumbsLinkProps, Icon } from '../';
 import styles from './breadcrumbs.module.css';
 
@@ -15,7 +16,7 @@ export const Breadcrumbs = ({ items = [] }: BreadcrumbsProps) => {
           return (
             <li className={styles.item} key={index}>
               <BreadcrumbsLink {...itemProps}>{label}</BreadcrumbsLink>
-              <Icon name="arrow-right" className={styles.icon} />
+              <Icon svgElement={ArrowRightIcon} className={styles.icon} />
             </li>
           );
         }

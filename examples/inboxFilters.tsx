@@ -98,6 +98,20 @@ export const inboxFilters: ToolbarFilterProps[] = [
         },
       },
       {
+        value: 'fkd',
+        label: 'Fagernes kjøtt og data',
+        badge: {
+          label: '14',
+        },
+      },
+      {
+        value: 'dvkd',
+        label: 'Direktoratet for vilt-, kjøtt og datautstyr',
+        badge: {
+          label: '14',
+        },
+      },
+      {
         value: 'nav',
         label: 'NAV',
       },

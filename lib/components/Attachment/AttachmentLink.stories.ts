@@ -3,7 +3,7 @@ import { attachments } from '../../../examples/attachments.ts';
 import { AttachmentLink } from './AttachmentLink';
 
 const meta = {
-  title: 'Attachment/AttachmentLink',
+  title: 'Typography/AttachmentLink',
   component: AttachmentLink,
   tags: ['autodocs'],
   parameters: {},

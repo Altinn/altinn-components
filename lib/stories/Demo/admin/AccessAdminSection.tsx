@@ -32,10 +32,8 @@ export const AccessAdminSection = ({items}: AccessAdminSectionProps) => {
     }
   ]
 
-  const filteredItems = items;
 
-  const title = filteredItems?.length + ' tilgangspakker';
-
+  const title = items.length + ' tilgangspakker';
 
   return (
     <Section spacing={6}>

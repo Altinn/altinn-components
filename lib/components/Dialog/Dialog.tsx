@@ -1,71 +1,49 @@
 import type { ReactNode } from 'react';
 import {
   Article,
-  type AvatarProps,
   type BackButtonProps,
+  ContactSection,
+  type ContactSectionProps,
+  ContextMenu,
   type ContextMenuProps,
   type DialogActionButtonProps,
   DialogActions,
-  type DialogActivityLogProps,
   DialogAttachments,
   type DialogAttachmentsProps,
-  DialogByline,
-  DialogContent,
+  DialogBody,
+  type DialogBodyProps,
+  DialogHeader,
+  type DialogHeaderProps,
   DialogHistory,
   type DialogHistoryProps,
-  DialogMetadata,
   DialogSection,
   type DialogSectionProps,
-  type DialogSeenByProps,
-  type DialogStatusProps,
   DialogTimeline,
   type DialogTimelineProps,
-  Flex,
-  Heading,
   PageBase,
   PageMenu,
+  type PageMenuProps,
   PageNav,
   Section,
-  Typography,
 } from '..';
 
-export interface DialogProps {
+export interface DialogProps extends DialogHeaderProps, DialogBodyProps {
+  /** Dialog is loading */
+  loading?: boolean;
   /** Dialog id */
   id: string;
-  /** Title */
-  title: string;
-  /** Sender */
-  sender: AvatarProps;
-  /** Recipient  */
-  recipient?: AvatarProps;
   /** Back button */
   backButton?: BackButtonProps;
   /** Context menu */
-  menu?: ContextMenuProps;
-  /** Dialog status */
-  status?: DialogStatusProps;
-  /** Updated date time */
-  updatedAt?: string;
-  /** Updated label */
-  updatedAtLabel?: string;
-  /** Due date */
-  dueAt?: string;
-  /** Due at label */
-  dueAtLabel?: string;
-  /** Recipient label (prefix) */
-  recipientLabel?: string;
-  /** Group recipient, show both sender and recipient avatars */
-  recipientGroup?: boolean;
+  contextMenu?: ContextMenuProps;
+  /** Page menu */
+  pageMenu?: PageMenuProps;
   /** Summary */
   summary?: string;
   /** Body (should be an output markdown/html rendered to React / HTML) */
   body?: ReactNode;
   /** List of action (buttons) */
   actions?: DialogActionButtonProps[];
-  /** Dialog is seen by the end user or others */
-  seenBy?: DialogSeenByProps;
-  /** Activity Log */
-  activityLog?: DialogActivityLogProps;
   /** Dialog attachments */
   attachments?: DialogAttachmentsProps;
   /** Dialog history */
@@ -75,7 +53,7 @@ export interface DialogProps {
   /** More information about the dialog, process, etc. */
   additionalInfo?: DialogSectionProps;
   /** Contact information. */
-  contactInfo?: DialogSectionProps;
+  contactInfo?: ContactSectionProps;
 }
 
 /**
@@ -83,8 +61,10 @@ export interface DialogProps {
  */
 
 export const Dialog = ({
+  loading,
   backButton,
-  menu,
+  contextMenu,
+  pageMenu,
   updatedAt,
   updatedAtLabel,
   dueAt,
@@ -107,25 +87,25 @@ export const Dialog = ({
   contactInfo,
 }: DialogProps) => {
   return (
-    <PageBase bleed>
+    <PageBase spacing={0} bleed>
       <Section theme="default" shadow="xs">
-        <PageNav color="neutral" padding={2} backButton={backButton} menu={menu} />
+        <PageNav
+          color="neutral"
+          padding={2}
+          backButton={backButton}
+          controls={contextMenu && <ContextMenu {...contextMenu} />}
+        />
         <Article padding={6} spacing={6}>
-          <Flex direction="col" align="start" spacing={3}>
-            <Heading size="xl">{title}</Heading>
-            <DialogMetadata status={status} dueAt={dueAt} dueAtLabel={dueAtLabel} />
-          </Flex>
+          <DialogHeader loading={loading} title={title} status={status} dueAt={dueAt} dueAtLabel={dueAtLabel} />
+
           {history && <DialogHistory {...history} collapsible={true} />}
 
-          <DialogByline
-            size="lg"
+          <DialogBody
+            loading={loading}
             sender={sender}
             recipient={recipient}
             recipientLabel={recipientLabel}
             recipientGroup={recipientGroup}
-          />
-
-          <DialogContent
             updatedAt={updatedAt}
             updatedAtLabel={updatedAtLabel}
             seenBy={seenBy}
@@ -135,24 +115,16 @@ export const Dialog = ({
             {body}
             {attachments && <DialogAttachments {...attachments} />}
             {actions?.length > 0 && <DialogActions items={actions} />}
-          </DialogContent>
+          </DialogBody>
 
           {timeline && <DialogTimeline {...timeline} />}
 
-          {additionalInfo && (
-            <DialogSection title={additionalInfo?.title}>
-              <Typography size="md">{additionalInfo?.children}</Typography>
-            </DialogSection>
-          )}
+          {additionalInfo && <DialogSection>{additionalInfo?.children}</DialogSection>}
 
-          {contactInfo && (
-            <DialogSection title={contactInfo?.title}>
-              <Typography size="md">{contactInfo?.children}</Typography>
-            </DialogSection>
-          )}
+          {contactInfo && <ContactSection {...contactInfo} />}
         </Article>
       </Section>
-      <PageMenu items={menu?.items} />
+      <PageMenu theme="subtle" items={pageMenu?.items} />
     </PageBase>
   );
 };

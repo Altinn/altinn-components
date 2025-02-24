@@ -1,0 +1,38 @@
+import { Meta, Controls, Primary, Canvas } from "@storybook/blocks";
+import * as Searchbar from "./Searchbar.stories";
+import * as Autocomplete from "./Autocomplete.stories";
+
+<Meta title="Search" />
+
+# The search
+
+The layout includes a prominent search that should handle search behavior across products.
+
+Until we are able to provide a global search across all products, the search will start out as a local search in context of each product.
+
+## Search context and scopes
+
+The placeholder text of the search should reflect the context of the product. Before login the placeholder should reflect what content is searchable:
+
+<Canvas of={Searchbar.GlobalSearch} />
+
+In other contexts, like the Inbox, the placeholder should indicate that search will operate within that context.
+
+<Canvas of={Searchbar.InboxSearch} />
+
+To enable users to search across products, we can use scopes to provide an option to trigger the same query in a different context.
+
+<Canvas of={Searchbar.InboxScopesExpanded} />
+
+## Using suggestions
+
+Based on the query, the autocomplete can be used to suggest relevant searches, for example applying a filter for sender if the query matches a sender's name.
+
+**Note**: Indicating number of hits is a nice feature, but not required in first version; this requires a backend that explicitly can provide this information and/or requires searches in parallel.
+
+
+<Canvas of={Autocomplete.SuggestedFilters} />
+
+Autocomplete can also be used to suggest top hits:
+
+<Canvas of={Autocomplete.SuggestedHits} />

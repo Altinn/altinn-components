@@ -1,0 +1,309 @@
+import { InboxIcon, SignLanguageTwoHandsIcon } from '@navikt/aksel-icons';
+import type { Meta, StoryObj } from '@storybook/react';
+import { Autocomplete, type AutocompleteItemProps } from '..';
+
+const meta = {
+  title: 'Search/Autocomplete',
+  component: Autocomplete,
+  tags: ['autodocs'],
+  parameters: {},
+  args: {},
+} satisfies Meta<typeof Autocomplete>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Scopes: Story = {
+  args: {
+    groups: {},
+    items: [
+      {
+        id: '1a',
+        type: 'scope',
+        href: '#',
+        label: 'Alt i innboks',
+      },
+      {
+        id: '1b',
+        type: 'scope',
+        href: '#',
+        label: 'Alt i hele Altinn',
+      },
+    ],
+  },
+};
+
+export const ScopesAndQuery: Story = {
+  args: {
+    groups: {},
+    items: [
+      {
+        id: '1a',
+        type: 'scope',
+        href: '#',
+        label: (
+          <span>
+            <mark>skatt</mark> i innboks
+          </span>
+        ),
+      },
+      {
+        id: '1b',
+        type: 'scope',
+        href: '#',
+        label: (
+          <span>
+            <mark>skatt</mark> i hele Altinn
+          </span>
+        ),
+      },
+    ],
+  },
+};
+
+export const SuggestedFilters: Story = {
+  args: {
+    groups: {
+      '2': {
+        title: 'Søkeforslag',
+      },
+    },
+    items: [
+      {
+        id: '1a',
+        groupId: '1',
+        type: 'scope',
+        href: '#',
+        badge: {
+          label: '22 treff',
+        },
+        label: () => (
+          <span>
+            <mark>skatt inkasso</mark> i innboks
+          </span>
+        ),
+      },
+      {
+        id: '1b',
+        groupId: '1',
+        type: 'scope',
+        href: '#',
+        label: () => (
+          <span>
+            <mark>skatt inkasso</mark> i hele Altinn
+          </span>
+        ),
+      },
+      {
+        id: '2a',
+        groupId: '2',
+        type: 'suggest',
+        href: '#',
+        badge: {
+          label: '22 treff',
+        },
+        params: [
+          {
+            type: 'search',
+            label: 'skatt',
+          },
+          {
+            type: 'search',
+            label: 'inkasso',
+          },
+        ],
+      },
+      {
+        id: '2b',
+        groupId: '2',
+        type: 'suggest',
+        href: '#',
+        badge: {
+          label: '9 treff',
+        },
+        params: [
+          {
+            type: 'filter',
+            label: 'Skatteetaten',
+          },
+          {
+            type: 'search',
+            label: 'inkasso',
+          },
+        ],
+      },
+    ],
+  },
+};
+
+export const SuggestedHits: Story = {
+  args: {
+    groups: {
+      '3': {
+        title: 'Anbefalte treff',
+      },
+    },
+    items: [
+      {
+        id: '1a',
+        groupId: '1',
+        type: 'scope',
+        href: '#',
+        badge: {
+          label: '24 treff',
+        },
+        label: () => (
+          <span>
+            <mark>skatteoppgjør</mark> i innboks
+          </span>
+        ),
+      },
+      {
+        id: '1b',
+        groupId: '1',
+        type: 'scope',
+        href: '#',
+        label: () => (
+          <span>
+            <mark>skatteoppgjør</mark> i hele Altinn
+          </span>
+        ),
+      },
+      {
+        groupId: '3',
+        type: 'dialog',
+        href: '#',
+        title: 'Skattemeldingen 2024',
+        description: 'Skatteoppgjøret ditt er klart.',
+      },
+      {
+        groupId: '3',
+        type: 'dialog',
+        href: '#',
+        title: 'Skatteoppgjør 2023',
+        description: 'Skatteoppgjøret ditt er klart.',
+      },
+      {
+        groupId: '3',
+        type: 'dialog',
+        href: '#',
+        title: 'Skatteoppgjør 2022',
+        description: 'Skatteoppgjøret ditt er ferdigstilt.',
+      },
+    ],
+  },
+};
+
+export const TooFewWords: Story = {
+  args: {
+    items: [
+      {
+        id: '1a',
+        type: 'scope',
+        href: '#',
+        label: () => (
+          <span>
+            <mark>sk</mark> i innboks
+          </span>
+        ),
+      },
+      {
+        id: '1b',
+        type: 'scope',
+        href: '#',
+        label: () => (
+          <span>
+            <mark>sk</mark> i hele Altinn
+          </span>
+        ),
+      },
+    ],
+  },
+};
+
+export const LoadingResults: Story = {
+  args: {
+    groups: {
+      '3': {
+        title: 'Søker etter «skatt» ...',
+      },
+    },
+    items: SuggestedHits.args.items.map((item) => {
+      if (item.groupId === '3') {
+        return {
+          ...item,
+          type: null,
+          icon: InboxIcon,
+          loading: true,
+        };
+      }
+
+      return item;
+    }) as AutocompleteItemProps[],
+  },
+};
+
+export const NoHits: Story = {
+  args: {
+    ...SuggestedHits.args,
+    groups: {
+      noHits: {
+        title: 'Ingen treff',
+      },
+    },
+    items: [
+      {
+        id: '1a',
+        groupId: '1',
+        type: 'scope',
+        href: '#',
+        disabled: true,
+        badge: {
+          label: 'Ingen treff',
+        },
+        label: () => (
+          <span>
+            <mark>skatt</mark> i innboks
+          </span>
+        ),
+      },
+      {
+        id: '1b',
+        groupId: '1',
+        type: 'scope',
+        href: '#',
+        label: () => (
+          <span>
+            <mark>skatt</mark> i hele Altinn
+          </span>
+        ),
+      },
+      {
+        groupId: 'noHits',
+        type: 'information',
+        label: () => (
+          <span>
+            Søk etter <mark>skatt</mark> ga ingen treff.
+          </span>
+        ),
+      },
+    ],
+  },
+};
+
+export const ScopesAndMixedResults: Story = {
+  args: {
+    ...SuggestedHits.args,
+    items: [
+      ...SuggestedHits.args.items,
+      {
+        id: '2d',
+        groupId: '4',
+        icon: SignLanguageTwoHandsIcon,
+        href: '#',
+        title: 'Alt om skatteoppgjøret',
+        description: 'Lorem ipsum dolor sit amet.',
+      },
+    ] as AutocompleteItemProps[],
+  },
+};

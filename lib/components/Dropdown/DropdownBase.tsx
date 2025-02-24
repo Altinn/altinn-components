@@ -30,12 +30,12 @@ export const DropdownBase = ({
       ref={ref}
       className={cx(styles.dropdown, className)}
       data-theme="default"
-      data-color="neutral"
+      data-color="company"
       data-shadow="md"
       data-placement={placement}
       data-padding={padding}
-      aria-expanded={open}
       role="menu"
+      data-expanded={open}
     >
       {children}
     </div>

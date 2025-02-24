@@ -22,6 +22,7 @@ export interface ButtonBaseProps extends React.HTMLAttributes<HTMLButtonElement>
   href?: string;
   className?: string;
   children?: ReactNode;
+  ariaLabel?: string;
 }
 
 export const ButtonBase = ({
@@ -30,6 +31,7 @@ export const ButtonBase = ({
   className,
   children,
   disabled = false,
+  ariaLabel,
   size,
   selected,
   variant,
@@ -43,10 +45,10 @@ export const ButtonBase = ({
       data-size={size}
       data-variant={variant}
       data-color={color}
-      aria-selected={selected}
       aria-disabled={disabled}
       disabled={disabled}
       className={cx(styles.button, className)}
+      aria-label={ariaLabel}
       {...rest}
     >
       {children}

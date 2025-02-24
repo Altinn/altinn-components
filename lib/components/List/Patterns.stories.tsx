@@ -1,11 +1,10 @@
+import { PackageIcon } from '@navikt/aksel-icons';
 import type { Meta } from '@storybook/react';
 import { useState } from 'react';
 import {
   type AvatarProps,
   type BadgeProps,
   ContextMenu,
-  Grid,
-  type IconName,
   List,
   ListBase,
   ListItem,
@@ -24,7 +23,6 @@ const meta: Meta<typeof List> = {
 };
 
 export default meta;
-//type Story = StoryObj<typeof meta>;
 
 interface DemoService {
   title: string;
@@ -116,34 +114,13 @@ export const ListOfCategories = () => {
         <ListItem
           size="md"
           key={index}
-          icon={{
-            theme: 'surface',
-            name: item.icon as IconName,
-          }}
+          icon={item.icon}
           title={item.title}
           description={item?.items?.length + ' tjenester'}
           theme="default"
         />
       ))}
     </ListBase>
-  );
-};
-
-export const CategoryGrid = () => {
-  return (
-    <Grid color="company" cols={3} spacing={4}>
-      {categoryItems.slice(0, 9).map((item, index) => (
-        <ListItem
-          theme="surface"
-          size="lg"
-          key={index}
-          icon={{
-            name: item.icon as IconName,
-          }}
-          title={item.title}
-        />
-      ))}
-    </Grid>
   );
 };
 
@@ -197,17 +174,14 @@ export const MultilevelList = () => {
           <ListItem
             color={item.color as ListItemColor}
             size="md"
-            icon={{
-              theme: 'surface',
-              name: item.icon as IconName,
-            }}
+            icon={item.icon}
             title={item.title}
             badge={{
               theme: 'surface',
               label: item.badge.label,
             }}
             description={expanded ? '' : item?.items?.length + ' tjenester'}
-            collapsible={true}
+            collapsible
             expanded={expanded}
             onClick={() => onToggle(item.id)}
             as="button"
@@ -220,7 +194,7 @@ export const MultilevelList = () => {
                   {item?.items?.map((child, index) => (
                     <ListItem
                       key={'c' + index}
-                      icon="package"
+                      icon={PackageIcon}
                       size="sm"
                       color={child.color as ListItemColor}
                       theme="subtle"

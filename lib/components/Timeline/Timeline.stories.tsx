@@ -17,7 +17,7 @@ const meta = {
         children: 'With byline',
       },
       {
-        size: 'xs',
+        size: 'sm',
         avatar: {
           name: 'Per Person',
         },

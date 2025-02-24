@@ -28,7 +28,7 @@
 }
 
 .border[data-seen="true"] {
-  border-color: var(--ds-color-surface-default);
+  border-color: var(--ds-color-neutral-surface-default);
 }
 
 .border[data-loading="true"] {
@@ -114,4 +114,59 @@
   right: 0;
   bottom: 0;
   margin: 8px;
+}
+
+/* Title */
+
+.heading {
+  padding-right: 1.25rem;
+  display: inline-flex;
+  column-gap: 0.5em;
+}
+
+.title {
+  line-height: 1.25;
+  font-weight: 600;
+  margin: 0;
+}
+
+.title[data-size="xs"],
+.title[data-size="sm"] {
+  font-size: 1rem;
+}
+
+.title[data-size="md"],
+.title[data-size="lg"],
+.title[data-size="xl"] {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.title[data-size="md"] {
+  font-size: 1rem;
+}
+
+.title[data-size="lg"],
+.title[data-size="xl"] {
+  font-size: 1.25rem;
+  line-height: 1.25;
+}
+
+.title[data-seen="true"] {
+  font-weight: 400;
+}
+
+/* STATE */
+
+.title[data-state="archived"] {
+  font-weight: 400;
+}
+
+.title[data-state="trashed"] {
+  font-weight: 400;
+  text-decoration: line-through;
 }

@@ -3,9 +3,9 @@ import { attachments } from '../../../examples/attachments.ts';
 import { DialogAttachments } from './DialogAttachments';
 
 const meta = {
-  title: 'Dialog/DialogAttachments',
+  title: 'Dialog/Atoms/DialogAttachments',
   component: DialogAttachments,
-  tags: ['autodocsi', 'beta'],
+  tags: ['autodocs', 'beta'],
   args: {
     title: '6 vedlegg',
     items: attachments,

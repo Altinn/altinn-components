@@ -4,26 +4,23 @@ import {
   DialogHeading,
   DialogMetadata,
   type DialogSeenByProps,
-  DialogSelect,
-  type DialogSelectProps,
   type DialogStatusProps,
   type DialogTouchedByActor,
   ListItem,
-  ListItemBase,
-  type ListItemBaseProps,
   ListItemLabel,
-  ListItemLink,
-  type ListItemLinkProps,
+  type ListItemProps,
+  ListItemSelect,
+  type ListItemSelectProps,
   Skeleton,
 } from '..';
 
-export type DialogListItemSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type DialogListItemSize = 'xs' | 'sm' | 'md' | 'lg';
 export type DialogListItemState = 'normal' | 'trashed' | 'archived';
 export type DialogListItemTheme = 'default' | 'subtle' | 'transparent';
 
 import styles from './dialogListItem.module.css';
 
-export interface DialogListItemProps extends ListItemBaseProps, ListItemLinkProps {
+export interface DialogListItemProps extends ListItemProps {
   /** Dialog title */
   title: string;
   /** Dialog id */
@@ -37,7 +34,7 @@ export interface DialogListItemProps extends ListItemBaseProps, ListItemLinkProp
   /** Dialog size */
   size?: DialogListItemSize;
   /** Select: Use to support batch operations */
-  select?: DialogSelectProps;
+  select?: ListItemSelectProps;
   /** Selected: Use to support batch operations */
   selected?: boolean;
   /** Dialog state */
@@ -49,7 +46,7 @@ export interface DialogListItemProps extends ListItemBaseProps, ListItemLinkProp
   /** Dialog Recipient  */
   recipientLabel?: string;
   /** Group recipient, show both sender and recipient avatars */
-  recipientGroup?: boolean;
+  grouped?: boolean;
   /** Updated datetime */
   updatedAt?: string;
   /** Updated at label */
@@ -91,7 +88,7 @@ export interface DialogListItemProps extends ListItemBaseProps, ListItemLinkProp
  */
 
 export const DialogListItem = ({
-  size = 'xl',
+  size = 'lg',
   state = 'normal',
   loading,
   select,
@@ -100,7 +97,7 @@ export const DialogListItem = ({
   sender,
   recipient,
   recipientLabel = 'to',
-  recipientGroup = false,
+  grouped = false,
   updatedAt,
   updatedAtLabel,
   archivedAt,
@@ -139,13 +136,20 @@ export const DialogListItem = ({
         badge={
           <DialogMetadata loading={loading} sender={sender} updatedAt={updatedAt} updatedAtLabel={updatedAtLabel} />
         }
+        title={title}
       />
     );
   }
 
   return (
-    <ListItemBase {...rest} size={size} selected={selected} theme={applicableTheme}>
-      <ListItemLink {...rest} size={size} className={styles.link}>
+    <ListItem
+      {...rest}
+      size={size}
+      selected={selected}
+      theme={applicableTheme}
+      controls={select && <ListItemSelect className={styles.select} {...select} size="xl" />}
+      title={title}
+      label={
         <div className={styles.border} data-size={size} data-seen={seen} data-loading={loading}>
           <header className={styles.header} data-size={size}>
             <DialogHeading loading={loading} size={size} state={applicableState} label={label} seen={seen}>
@@ -157,11 +161,13 @@ export const DialogListItem = ({
               sender={sender}
               recipient={recipient}
               recipientLabel={recipientLabel}
-              recipientGroup={recipientGroup}
+              grouped={grouped}
             />
-            <p data-size={size} className={styles.summary}>
-              <Skeleton loading={loading}>{summary || description}</Skeleton>
-            </p>
+            <Skeleton loading={loading}>
+              <p data-size={size} className={styles.summary}>
+                {summary || description}
+              </p>
+            </Skeleton>
           </header>
           <DialogMetadata
             className={styles.footer}
@@ -183,8 +189,7 @@ export const DialogListItem = ({
             }}
           />
         </div>
-      </ListItemLink>
-      {select && <DialogSelect className={styles.select} {...select} />}
-    </ListItemBase>
+      }
+    />
   );
 };

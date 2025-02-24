@@ -1,18 +1,29 @@
 import type { MenuItemProps } from '../../../components';
-import { categoryItems, companyMenuItems, inboxMenuItems, userMenuItems } from './';
+import { companyMenuItems, inboxMenuItems, userMenuItems } from './';
+import {
+  Buildings2Icon,
+  ChatExclamationmarkIcon,
+  HandshakeIcon, InboxIcon,
+  MenuGridIcon,
+  PersonCircleIcon
+} from "@navikt/aksel-icons";
+import {categoryItems} from "../../../../examples";
 
 export const sitemap: MenuItemProps[] = [
   {
     id: 'inbox',
     groupId: 'apps',
     size: 'lg',
-    icon: 'inbox',
+    icon: InboxIcon,
     title: 'Innboks',
     badge: {
       label: '4',
     },
-    alertBadge: {
-      label: '2',
+    iconBadge: {
+      size: 'xs',
+      theme: 'base',
+      color: 'alert',
+      label: '!',
     },
     items: inboxMenuItems,
   },
@@ -20,7 +31,7 @@ export const sitemap: MenuItemProps[] = [
     id: 'category',
     groupId: 'apps',
     size: 'lg',
-    icon: 'menu-grid',
+    icon: MenuGridIcon,
     title: 'Alle skjema',
     items: categoryItems,
   },
@@ -28,10 +39,13 @@ export const sitemap: MenuItemProps[] = [
     id: 'company',
     groupId: 'apps',
     size: 'lg',
-    icon: 'handshake',
+    icon: HandshakeIcon,
     title: 'Tilganger',
-    alertBadge: {
+    iconBadge: {
       label: '2',
+      size: 'xs',
+      theme: 'base',
+      color: 'alert',
     },
     items: companyMenuItems,
   },
@@ -39,7 +53,7 @@ export const sitemap: MenuItemProps[] = [
     id: 'user',
     groupId: 'x',
     size: 'sm',
-    icon: 'person-circle',
+    icon: PersonCircleIcon,
     title: 'Din profil',
     items: userMenuItems,
   },
@@ -48,7 +62,7 @@ export const sitemap: MenuItemProps[] = [
     groupId: 'help',
     color: 'neutral',
     size: 'sm',
-    icon: 'buildings2',
+    icon: Buildings2Icon,
     title: 'Starte og drive bedrift',
   },
   {
@@ -56,7 +70,7 @@ export const sitemap: MenuItemProps[] = [
     groupId: 'help',
     size: 'sm',
     color: 'neutral',
-    icon: 'chat-exclamationmark',
+    icon: ChatExclamationmarkIcon,
     title: 'Trenger du hjelp?',
   },
 ];

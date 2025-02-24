@@ -2,6 +2,6 @@
   position: relative;
 }
 
-.base[aria-expanded="true"] {
+.expanded {
   z-index: 2;
 }

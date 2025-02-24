@@ -18,7 +18,7 @@ export type ListItemSelectProps = {
 export const ListItemSelect = ({ size, checked = false, onChange, className }: ListItemSelectProps) => {
   return (
     <label className={cx(styles.label, className)} data-size={size}>
-      <input type="checkbox" checked={checked} onChange={onChange} className={styles.input} tabIndex={-1} />
+      <input type="checkbox" checked={checked} onChange={onChange} className={styles.input} />
       <CheckboxIcon hover={true} checked={checked} className={styles.icon} />
     </label>
   );

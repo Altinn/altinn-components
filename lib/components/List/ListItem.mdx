@@ -13,12 +13,13 @@ A `ListItem` represents a piece of content; a page, person or an object.
 
 ```tsx
 import { ListItem } from "@altinn/altinn-components";
+import { TeddyBearIcon } from "@navikt/aksel-icons";
 
 <ListItem
   title="Title"
-  icon={{ theme: "surface", name: "teddy-bear" }}
+  icon={{ theme: "surface", svgElement: TeddyBearIcon }}
   badge={{ theme: "subtle", label: "2 av 3" }}
-  linkIcon="chevron-right"
+  linkIcon
 />;
 ```
 
@@ -46,9 +47,15 @@ By default labels are built up of a `badge` and an optional `description`. You c
 
 <Canvas of={ListItemStories.OverridingLabel} />
 
-## Using badges
+## Collapsible/expanded
 
-By default list items will include a chevron indicating interaction. Use the `badge` prop to emphasise what action to expect.
+Make items collapsible by adding the `collapsible` prop. Adding the `expanded` prop will expose the `children` of the list item.
+
+<Canvas of={ListItemStories.Collapsible} />
+
+## Arrow and badges
+
+Use the `linkIcon` prop to indicate to the user that your item is a link. The `badge` prop is also useful for informing the user of what to expect when interacting with the item. For example if the item is collapsable.
 
 <Canvas of={ListItemStories.Badges} />
 
@@ -69,12 +76,6 @@ Add custom controls using the `controls` prop.
 <Canvas of={ListItemStories.CustomControls} />
 
 When adding controls, list item interaction is split from controls and default badges are moved next to the label.
-
-## Collapsible/expanded
-
-Make items collapsible by adding the `collapsible` prop. Adding the `expanded` prop will change the default `linkIcon` and expose the `children` of the list item.
-
-<Canvas of={ListItemStories.Collapsible} />
 
 ## Selectable
 

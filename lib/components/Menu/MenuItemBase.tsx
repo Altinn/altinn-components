@@ -1,6 +1,6 @@
 import cx from 'classnames';
 import type { ElementType, KeyboardEvent, KeyboardEventHandler, ReactNode } from 'react';
-import { Badge, type BadgeProps, type Color, Icon, type IconName } from '..';
+import { Badge, type BadgeProps, type Color, Icon, type SvgElement } from '..';
 import styles from './menuItemBase.module.css';
 
 export type MenuItemColor = Color;
@@ -24,7 +24,7 @@ export interface MenuItemBaseProps {
   expanded?: boolean;
   children?: ReactNode;
   badge?: BadgeProps | undefined;
-  linkIcon?: IconName;
+  linkIcon?: SvgElement;
   linkText?: string;
 }
 
@@ -40,9 +40,6 @@ export const MenuItemBase = ({
   tabIndex = 0,
   hidden,
   disabled = false,
-  active = false,
-  selected = false,
-  expanded = false,
   linkIcon,
   linkText,
   badge,
@@ -52,17 +49,13 @@ export const MenuItemBase = ({
 
   return (
     <Component
-      role="menuitem"
       tabIndex={disabled ? '-1' : (tabIndex ?? 0)}
       className={cx(styles.item, className)}
       data-size={size}
       data-color={color}
       data-theme={theme}
-      data-active={active}
       aria-hidden={hidden}
-      aria-expanded={expanded}
       aria-disabled={disabled}
-      aria-selected={selected}
       href={href}
       onKeyPress={(e: KeyboardEvent) => {
         e.key === 'Enter' && onClick?.();
@@ -77,7 +70,7 @@ export const MenuItemBase = ({
       {linkIcon && (
         <div className={styles.action}>
           {linkText && <span className={styles.linkText}>{linkText}</span>}
-          {linkIcon && <Icon name={linkIcon} className={styles.linkIcon} />}
+          {linkIcon && <Icon svgElement={linkIcon} className={styles.linkIcon} />}
         </div>
       )}
     </Component>

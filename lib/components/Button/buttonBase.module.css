@@ -83,23 +83,18 @@
 
 .button[data-variant="text"] {
   border-color: transparent;
+  color: var(--ds-color-text-subtle);
 }
 
 .button[data-variant="outline"]:hover,
 .button[data-variant="dotted"]:hover,
 .button[data-variant="text"]:hover {
   background-color: var(--ds-color-surface-default);
+  color: var(--ds-color-text-default);
 }
 
 .button[data-variant="outline"]:active,
 .button[data-variant="dotted"]:active,
 .button[data-variant="text"]:active {
   background-color: var(--ds-color-surface-active);
-}
-
-/* selected */
-
-.button[aria-selected="true"] {
-  background-color: var(--ds-color-background-subtle);
-  color: var(--ds-color-text-default);
 }

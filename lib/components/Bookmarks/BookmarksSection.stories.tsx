@@ -33,6 +33,7 @@ const meta = {
           { type: 'search', label: 'Skatt' },
           { type: 'filter', label: 'Krever handling' },
         ],
+        expandIconAltText: 'expand icon',
       },
       {
         id: 'bookmark-2',
@@ -49,6 +50,7 @@ const meta = {
             alert('Slett bokmerket 2');
           },
         },
+        expandIconAltText: 'expand icon',
       },
       {
         id: 'bookmark-3',
@@ -62,6 +64,7 @@ const meta = {
         removeButton: {
           label: 'Slett',
         },
+        expandIconAltText: 'expand icon',
       },
     ],
   },
@@ -133,6 +136,7 @@ export const LoadingState: Story = {
         title: 'Loading the bookmark',
         inputValue: '',
         onChange: () => {},
+        expandIconAltText: 'expand icon',
       },
     ],
   },
@@ -166,6 +170,8 @@ export const AsLink: Story = {
         removeButton: {
           label: 'Slett',
         },
+        expandIconAltText: 'expand icon',
+
         inputValue: '',
         onChange: () => {},
         as: (props) => <a {...props} href="#bookmark-1" />,
@@ -186,6 +192,7 @@ export const AsLink: Story = {
         saveButton: {
           label: 'Lagre søk',
         },
+        expandIconAltText: 'expand icon',
         removeButton: {
           label: 'Slett',
         },

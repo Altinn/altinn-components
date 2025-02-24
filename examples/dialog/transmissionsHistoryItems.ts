@@ -1,12 +1,12 @@
-import type { DialogHistoryItemProps } from '../../lib';
+import type { ActivityItemProps } from '../../lib';
 import { skatt } from '../avatar';
 
-export const transmissionsHistoryItems: DialogHistoryItemProps[] = [
+export const transmissionsHistoryItems: ActivityItemProps[] = [
   {
     createdBy: skatt,
     createdAt: '2023-10-15 08:00',
     createdAtLabel: '15. oktober 2023 kl 08.00',
-    summary: 'Du må levere tredjepartsopplysninger for boligselskap.',
+    description: 'Du må levere tredjepartsopplysninger for boligselskap.',
     attachments: {
       items: [
         {
@@ -20,12 +20,12 @@ export const transmissionsHistoryItems: DialogHistoryItemProps[] = [
     createdBy: skatt,
     createdAt: '2024-01-02 08:00',
     createdAtLabel: '2. januar 2024 kl 08.00',
-    summary: 'Du kan nå levere tredjepartsopplysninger.',
+    description: 'Du kan nå levere tredjepartsopplysninger.',
   },
   {
     createdAt: '2024-01-05 09:10',
     createdAtLabel: '5. januar 2024 kl 09.10',
-    summary: 'Leveransen er godkjent, men inneholder feil',
+    description: 'Leveransen er godkjent, men inneholder feil',
     transmissions: {
       title: '2 forsendelser',
       items: [
@@ -40,7 +40,7 @@ export const transmissionsHistoryItems: DialogHistoryItemProps[] = [
           title: 'Tredjepartsopplysninger ble levert',
           createdAt: '2024-01-05 07:30',
           createdAtLabel: '5. januar 2024 kl 07.30',
-          summary:
+          description:
             'Skatteetaten har godkjent leveransen, men det er feil i oppgaver du må se nærmere på. Se tilbakemelding of feilliste under.',
         },
         {
@@ -52,7 +52,7 @@ export const transmissionsHistoryItems: DialogHistoryItemProps[] = [
           createdAtLabel: '5. januar 2024 kl 09.10',
           sender: skatt,
           title: 'Leveransen er godkjent, men inneholder feil',
-          summary:
+          description:
             'Skatteetaten har godkjent leveransen, men det er feil i oppgaver du må se nærmere på. Se tilbakemelding of feilliste under.',
           attachments: {
             title: '2 vedlegg',
@@ -74,7 +74,7 @@ export const transmissionsHistoryItems: DialogHistoryItemProps[] = [
   {
     createdAt: '2024-01-09 12:22',
     createdAtLabel: '9. januar 2024 kl 12.22',
-    summary: 'Leveransen er godkjent',
+    description: 'Leveransen er godkjent',
     transmissions: {
       title: '2 forsendelser',
       items: [
@@ -89,7 +89,7 @@ export const transmissionsHistoryItems: DialogHistoryItemProps[] = [
           title: 'Tredjepartsopplysninger ble levert',
           createdAt: '2024-01-09 10:45',
           createdAtLabel: '9. januar 2024 kl 10.45',
-          summary:
+          description:
             'Skatteetaten har godkjent leveransen, men det er feil i oppgaver du må se nærmere på. Se tilbakemelding of feilliste under.',
         },
         {
@@ -101,7 +101,7 @@ export const transmissionsHistoryItems: DialogHistoryItemProps[] = [
           createdAtLabel: '9. januar 2024 kl 12.22',
           sender: skatt,
           title: 'Leveransen er godkjent',
-          summary:
+          description:
             'Skatteetaten har godkjent leveransen, men det er feil i oppgaver du må se nærmere på. Se tilbakemelding of feilliste under.',
           attachments: {
             title: '2 vedlegg',
@@ -123,7 +123,7 @@ export const transmissionsHistoryItems: DialogHistoryItemProps[] = [
   {
     createdAt: '2024-01-15 14:45',
     createdAtLabel: '15. januar 2024 kl 14.45',
-    summary: 'Leveransen er avvist',
+    description: 'Leveransen er avvist',
     transmissions: {
       title: '2 forsendelser',
       items: [
@@ -138,7 +138,7 @@ export const transmissionsHistoryItems: DialogHistoryItemProps[] = [
           title: 'Tredjepartsopplysninger ble levert',
           createdAt: '2024-01-14 13:25',
           createdAtLabel: '15. januar 2024 kl 13.25',
-          summary:
+          description:
             'Skatteetaten har godkjent leveransen, men det er feil i oppgaver du må se nærmere på. Se tilbakemelding of feilliste under.',
         },
         {
@@ -150,7 +150,7 @@ export const transmissionsHistoryItems: DialogHistoryItemProps[] = [
           createdAtLabel: '15. januar 2024 kl 14.45',
           sender: skatt,
           title: 'Leveransen er avvist',
-          summary:
+          description:
             'Skatteetaten har godkjent leveransen, men det er feil i oppgaver du må se nærmere på. Se tilbakemelding of feilliste under.',
           attachments: {
             title: '2 vedlegg',
@@ -173,12 +173,12 @@ export const transmissionsHistoryItems: DialogHistoryItemProps[] = [
     createdBy: skatt,
     createdAt: '2024-01-31 08:00',
     createdAtLabel: '31. januar 2024 kl 08.00',
-    summary: 'Skjemaet er lukket for ordinær rapportering. Du kan gjøre korreksjoner tom. 15. februar.',
+    description: 'Skjemaet er lukket for ordinær rapportering. Du kan gjøre korreksjoner tom. 15. februar.',
   },
   {
     createdAt: '2024-01-21 13:45',
     createdAtLabel: '21. januar 2024 kl 13.45',
-    summary: 'Tredjepartsopplysninger ble levert',
+    description: 'Tredjepartsopplysninger ble levert',
     transmissions: {
       title: '1 forsendelse',
       items: [
@@ -193,7 +193,7 @@ export const transmissionsHistoryItems: DialogHistoryItemProps[] = [
           title: 'Tredjepartsopplysninger ble levert',
           createdAt: '2024-01-14 13:25',
           createdAtLabel: '15. januar 2024 kl 13.25',
-          summary:
+          description:
             'Skatteetaten har godkjent leveransen, men det er feil i oppgaver du må se nærmere på. Se tilbakemelding of feilliste under.',
         },
       ],

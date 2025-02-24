@@ -30,11 +30,7 @@
   font-size: 1rem;
 }
 
-.title[data-size="lg"] {
-  font-size: 1.125rem;
-  line-height: 1.5rem;
-}
-
+.title[data-size="lg"],
 .title[data-size="xl"] {
   font-size: 1.25rem;
   line-height: 1.25;
@@ -43,6 +39,8 @@
 .title[data-seen="true"] {
   font-weight: 400;
 }
+
+/* STATE */
 
 .title[data-state="archived"] {
   font-weight: 400;

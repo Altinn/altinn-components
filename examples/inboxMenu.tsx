@@ -1,3 +1,11 @@
+import {
+  ArchiveIcon,
+  BookmarkIcon,
+  DocPencilIcon,
+  FileCheckmarkIcon,
+  InboxFillIcon,
+  TrashIcon,
+} from '@navikt/aksel-icons';
 import type { MenuProps } from '../lib';
 
 export const inboxMenu: MenuProps = {
@@ -8,7 +16,7 @@ export const inboxMenu: MenuProps = {
       id: '1',
       groupId: '1',
       size: 'lg',
-      icon: { name: 'inbox', theme: 'base', variant: 'solid' },
+      icon: { svgElement: InboxFillIcon, theme: 'base' },
       iconBadge: {
         size: 'xs',
         theme: 'base',
@@ -24,7 +32,7 @@ export const inboxMenu: MenuProps = {
     {
       id: '2',
       groupId: '2',
-      icon: 'doc-pencil',
+      icon: DocPencilIcon,
       title: 'Utkast',
       badge: {
         label: '2',
@@ -33,13 +41,13 @@ export const inboxMenu: MenuProps = {
     {
       id: '3',
       groupId: '2',
-      icon: 'file-checkmark',
+      icon: FileCheckmarkIcon,
       title: 'Sendt',
     },
     {
       id: '4',
       groupId: '3',
-      icon: 'bookmark',
+      icon: BookmarkIcon,
       title: 'Lagrede søk',
       badge: {
         label: '5',
@@ -48,14 +56,14 @@ export const inboxMenu: MenuProps = {
     {
       id: '5',
       groupId: '4',
-      icon: 'archive',
+      icon: ArchiveIcon,
       title: 'Arkivert',
     },
     {
       id: '6',
       groupId: '4',
       disabled: true,
-      icon: 'trash',
+      icon: TrashIcon,
       title: 'Papirkurv',
     },
   ],

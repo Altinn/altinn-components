@@ -1,0 +1,43 @@
+import { Meta, Controls, Primary, Canvas } from "@storybook/blocks";
+import * as ToolbarStories from "./Toolbar.stories";
+import * as ToolbarOptions from "./ToolbarOptions.stories";
+
+<Meta title="Toolbar" />
+
+# The Toolbar
+
+The toolbar provides a way of filtering content, using faceted navigation or other types of filters. It should appear directly above the content that can be filtered.
+
+## Static filters
+
+Filters can be static, making all available filters available at once.
+
+<Canvas of={ToolbarStories.StaticFilters} />
+
+## Adding and removing filters
+
+Filters can be hidden by default, making each filter available as the user is adding them. This type of filtering works well for faceted navigation, where available filters might change depending on what is selected.
+
+<Canvas of={ToolbarStories.HiddenFilters} />
+
+## Combining with account selector
+
+The Toolbar can include the AccountMenu, creating a shortcut for switching accounts. Combined with addable filters, the current account marks a starting point for faceted navigation.
+
+<Canvas of={ToolbarStories.WithAccountMenu} />
+
+## Combining with search
+
+Filters available in the toolbar can work as post-filtering for a global search, but the Toolbar can also include a simple search that can be used for filtering content by simple queries.
+
+<Canvas of={ToolbarStories.WithSearch} />
+
+## Option types
+
+Toolbar filters can have single or multiple options. In faceted navigation selecting multiple options should make the filters inclusive, providing results including any of the selected options.
+
+<Canvas of={ToolbarOptions.Checkboxes} />
+
+Single options should switch between the options provided:
+
+<Canvas of={ToolbarOptions.Radio} />

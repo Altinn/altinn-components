@@ -1,0 +1,7 @@
+.listIcon {
+  flex-shrink: 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

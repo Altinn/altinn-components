@@ -1,11 +1,13 @@
 import { Heading, IconButton } from '../';
 import styles from './actionHeader.module.css';
 
+import { XMarkIcon } from '@navikt/aksel-icons';
 import type { LayoutActionColor, LayoutActionTheme } from './LayoutAction';
 
 export interface ActionHeaderProps {
   color?: LayoutActionColor;
   theme?: LayoutActionTheme;
+  dismissIconAltText?: string;
   title: string;
   hidden?: boolean;
   dismissable?: boolean;
@@ -18,6 +20,7 @@ export const ActionHeader = ({
   hidden = false,
   title,
   dismissable = true,
+  dismissIconAltText = 'Close',
   onDismiss,
 }: ActionHeaderProps) => {
   return (
@@ -26,7 +29,14 @@ export const ActionHeader = ({
         {title}
       </Heading>
       {dismissable && (
-        <IconButton icon="x-mark" color={color} variant="solid" onClick={onDismiss} className={styles.dismiss} />
+        <IconButton
+          icon={XMarkIcon}
+          color={color}
+          variant="solid"
+          onClick={onDismiss}
+          className={styles.dismiss}
+          iconAltText={dismissIconAltText}
+        />
       )}
     </header>
   );

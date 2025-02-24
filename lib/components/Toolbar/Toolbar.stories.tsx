@@ -53,21 +53,64 @@ export const StaticFilters: Story = {
   },
 };
 
+export const HiddenFilters: Story = {
+  args: {
+    filters: inboxFilters,
+  },
+};
+
+export const WithAccountMenu: Story = {
+  args: {
+    accountMenu: {
+      ...accountMenu,
+      currentAccount: accountMenu.accounts?.[0],
+    },
+    filters: inboxFilters,
+  },
+};
+
+export const WithSearch: Story = {
+  args: {
+    search: {
+      name: 'search',
+      placeholder: 'Søk i listen',
+    },
+    filters: [inboxStatusFilter],
+  },
+};
+
 export const ControlledStateFilters = (args: typeof Toolbar) => {
   const [filterState, setFilterState] = React.useState<FilterState>({
     from: ['skatt', 'brreg'],
   });
   return (
-    <Toolbar {...args} filters={Default.args!.filters} filterState={filterState} onFilterStateChange={setFilterState} />
+    <Toolbar
+      {...args}
+      filters={Default.args!.filters}
+      filterState={filterState}
+      onFilterStateChange={setFilterState}
+      removeButtonAltText="remove"
+    />
   );
 };
 
-export const FilterAndSearch: Story = {
-  args: {
-    search: {
-      name: 'search',
-      placeholder: 'Søk etter filter',
-    },
-    filters: [inboxStatusFilter],
-  },
+export const ControlledStateAccount = () => {
+  const [currentAccountId, setCurrentAccountId] = React.useState<string>('party:mathias');
+  const [filterState, setFilterState] = React.useState<FilterState>({
+    from: ['skatt', 'brreg'],
+  });
+
+  return (
+    <Toolbar
+      accountMenu={{
+        ...accountMenu,
+        onSelectAccount: (id) => setCurrentAccountId(id),
+        currentAccount: accountMenu.accounts?.find((account) => account.id === currentAccountId),
+      }}
+      filters={Default.args!.filters}
+      filterState={filterState}
+      onFilterStateChange={setFilterState}
+      removeButtonAltText="remove"
+    />
+  );
 };

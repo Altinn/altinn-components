@@ -1,5 +1,5 @@
 import type { ElementType, ReactNode } from 'react';
-import type { IconName } from '../Icon';
+import type { SvgElement } from '../Icon';
 import { Skeleton } from '../Skeleton';
 import { MetaItemBase, type MetaItemSize, type MetaItemVariant } from './MetaItemBase';
 import { MetaItemLabel } from './MetaItemLabel';
@@ -15,7 +15,7 @@ export interface MetaItemProps {
   /** Variant */
   variant?: MetaItemVariant;
   /** Icon name */
-  icon?: IconName;
+  icon?: SvgElement;
   /** Label */
   children?: ReactNode;
   /** classname */
@@ -34,13 +34,13 @@ export const MetaItem = ({
   ...rest
 }: MetaItemProps) => {
   return (
-    <MetaItemBase reverse={reverse} variant={variant} size={size} {...rest}>
-      <Skeleton loading={loading}>
+    <Skeleton loading={loading}>
+      <MetaItemBase reverse={reverse} variant={variant} size={size} {...rest}>
         {!loading && icon && <MetaItemMedia size={size} icon={icon} />}
         <MetaItemLabel variant={variant} size={size}>
           {children}
         </MetaItemLabel>
-      </Skeleton>
-    </MetaItemBase>
+      </MetaItemBase>
+    </Skeleton>
   );
 };

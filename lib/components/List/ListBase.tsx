@@ -10,7 +10,7 @@ export interface ListBaseProps {
 
 export const ListBase = ({ spacing = 2, children, ...rest }: ListBaseProps) => {
   return (
-    <Flex direction="col" spacing={spacing} {...rest}>
+    <Flex direction="col" spacing={spacing} as="ul" {...rest}>
       {children}
     </Flex>
   );
