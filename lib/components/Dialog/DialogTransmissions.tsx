@@ -1,14 +1,18 @@
-import { Toolbar, type ToolbarProps } from '../Toolbar';
-import { type TransmissionItemProps, TransmissionList } from '../Transmission';
-import { Heading } from '../Typography';
+import { Toolbar, type ToolbarProps } from "../Toolbar";
+import { type TransmissionProps, TransmissionList } from "../Transmission";
+import { Heading } from "../Typography";
 
 export interface DialogTransmissionsProps {
   title?: string;
-  items?: TransmissionItemProps[];
+  items?: TransmissionProps[];
   toolbar?: ToolbarProps;
 }
 
-export const DialogTransmissions = ({ title = 'Transmissions', items, toolbar }: DialogTransmissionsProps) => {
+export const DialogTransmissions = ({
+  title = "Transmissions",
+  items,
+  toolbar,
+}: DialogTransmissionsProps) => {
   if (!items?.length) {
     return null;
   }

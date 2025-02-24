@@ -1,8 +1,7 @@
-import { ListBase } from '../List';
-import { TransmissionItem, type TransmissionItemProps } from './TransmissionItem';
+import { ListBase, Transmission, type TransmissionProps } from "..";
 
 export interface TransmissionListProps {
-  items: TransmissionItemProps[];
+  items: TransmissionProps[];
   className?: string;
 }
 
@@ -14,7 +13,7 @@ export const TransmissionList = ({ items }: TransmissionListProps) => {
   return (
     <ListBase>
       {items.map((item, index) => {
-        return <TransmissionItem {...item} key={index} />;
+        return <Transmission {...item} key={index} />;
       })}
     </ListBase>
   );
