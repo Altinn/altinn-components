@@ -22,6 +22,9 @@ const dependencies = [
 // https://vitejs.dev/config/
 export default () => {
   return defineConfig({
+    optimizeDeps: {
+      force: true,
+    },
     plugins: [
       viteStaticCopy({
         targets: [
