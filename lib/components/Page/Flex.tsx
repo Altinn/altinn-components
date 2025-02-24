@@ -1,15 +1,22 @@
-import cx from 'classnames';
-import type { CSSProperties, ReactNode } from 'react';
-import type { Color, Range, Shadow, Theme } from '..';
-import styles from './flex.module.css';
+import cx from "classnames";
+import type { CSSProperties, ReactNode } from "react";
+import type { Color, Range, Shadow, Theme } from "..";
+import styles from "./flex.module.css";
 
-export type FlexElement = 'div' | 'section' | 'article' | 'header' | 'footer' | 'nav' | 'ul';
-export type FlexDirection = 'col' | 'row';
-export type FlexAlign = 'initial' | 'start' | 'end' | 'center' | 'stretch';
-export type FlexJustify = 'initial' | 'start' | 'end' | 'center' | 'between';
-export type FlexSpacing = 'page' | 'xs' | Range<11>;
-export type FlexPadding = 'page' | Range<11>;
-export type FlexMargin = 'page' | 'section';
+export type FlexElement =
+  | "div"
+  | "section"
+  | "article"
+  | "header"
+  | "footer"
+  | "nav"
+  | "ul";
+export type FlexDirection = "col" | "row";
+export type FlexAlign = "initial" | "start" | "end" | "center" | "stretch";
+export type FlexJustify = "initial" | "start" | "end" | "center" | "between";
+export type FlexSpacing = "page" | "xs" | Range<11>;
+export type FlexPadding = "page" | Range<11>;
+export type FlexMargin = 0 | "page" | "section";
 
 export interface FlexProps {
   as?: FlexElement;
@@ -30,17 +37,17 @@ export interface FlexProps {
 }
 
 export const Flex = ({
-  as = 'div',
+  as = "div",
   color,
-  theme = 'transparent',
-  shadow = 'none',
-  direction = 'row',
+  theme = "transparent",
+  shadow = "none",
+  direction = "row",
   reverse = false,
-  align = 'initial',
-  justify = 'initial',
+  align = "initial",
+  justify = "initial",
   spacing,
   padding,
-  margin,
+  margin = 0,
   bleed = false,
   className,
   style,

@@ -1,8 +1,14 @@
-import { ArchiveIcon, ClockDashedIcon, FilesIcon, PaperclipIcon, TrashIcon } from '@navikt/aksel-icons';
+import {
+  ArchiveIcon,
+  ClockDashedIcon,
+  FilesIcon,
+  PaperclipIcon,
+  TrashIcon,
+} from "@navikt/aksel-icons";
 import {
   type AvatarProps,
-  DialogActivityLog,
-  type DialogActivityLogProps,
+  //  DialogActivityLog,
+  //  type DialogActivityLogProps,
   DialogSeenBy,
   type DialogSeenByProps,
   DialogStatus,
@@ -12,7 +18,7 @@ import {
   MetaBase,
   MetaItem,
   MetaTimestamp,
-} from '..';
+} from "..";
 export type DialogMetadataProps = {
   className?: string;
   /** Metadata is loading */
@@ -48,7 +54,7 @@ export type DialogMetadataProps = {
   /** Transmissions label */
   transmissionsLabel?: string;
   /** Activity Log */
-  activityLog?: DialogActivityLogProps;
+  //  activityLog?: DialogActivityLogProps;
   /** Clickable items */
   onClick?: () => void;
 };
@@ -82,12 +88,17 @@ export const DialogMetadata = ({
       {status && <DialogStatus loading={loading} size="xs" {...status} />}
       {updatedAt && (
         <MetaTimestamp loading={loading} datetime={updatedAt} size="xs">
-          <strong>{sender && sender.name + ', '}</strong>
+          <strong>{sender && sender.name + ", "}</strong>
           {updatedAtLabel}
         </MetaTimestamp>
       )}
       {dueAt && dueAtLabel && (
-        <MetaTimestamp loading={loading} datetime={dueAt} size="xs" icon={ClockDashedIcon}>
+        <MetaTimestamp
+          loading={loading}
+          datetime={dueAt}
+          size="xs"
+          icon={ClockDashedIcon}
+        >
           {dueAtLabel}
         </MetaTimestamp>
       )}
@@ -102,20 +113,32 @@ export const DialogMetadata = ({
         </MetaItem>
       )}
       {(trashedAt && trashedAtLabel && (
-        <MetaTimestamp loading={loading} datetime={trashedAt} size="xs" icon={TrashIcon}>
+        <MetaTimestamp
+          loading={loading}
+          datetime={trashedAt}
+          size="xs"
+          icon={TrashIcon}
+        >
           {trashedAtLabel}
         </MetaTimestamp>
       )) ||
         (archivedAt && archivedAtLabel && (
-          <MetaTimestamp loading={loading} datetime={archivedAt} size="xs" icon={ArchiveIcon}>
+          <MetaTimestamp
+            loading={loading}
+            datetime={archivedAt}
+            size="xs"
+            icon={ArchiveIcon}
+          >
             {archivedAtLabel}
           </MetaTimestamp>
         )) ||
         (!loading && seenBy && <DialogSeenBy size="xs" {...seenBy} />)}
 
-      {activityLog && <DialogActivityLog {...activityLog} loading={loading} size="xs" />}
+      {/*activityLog && <DialogActivityLog {...activityLog} loading={loading} size="xs" /> */}
 
-      {touchedBy && <DialogTouchedBy {...touchedBy} loading={loading} size="xs" />}
+      {touchedBy && (
+        <DialogTouchedBy {...touchedBy} loading={loading} size="xs" />
+      )}
     </MetaBase>
   );
 };

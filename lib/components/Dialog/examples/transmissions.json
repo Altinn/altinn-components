@@ -1,0 +1,107 @@
+{
+  "status": null,
+  "createdAt": null,
+  "dueAt": null,
+  "title": "Tredjepartsopplysninger for boligselskap",
+  "summary": "Her finner du alle innsendinger og tilbakemeldinger for boligselskapet for inntektsåret 2023. Frist for å levere er 20. januar 2024.",
+  "actions": null,
+  "additionalInfo": {
+    "html": "<p>Sameier med 9 eller flere boligseksjoner skal levere opplysninger om sameiers andel av felles inntekter, utgifter, formue og gjeld. Det er vanligvis sameiets styre eller forretningsfører som leverer opplysningene. Mer informasjon</p>"
+  },
+  "sender": {
+    "name": "Skatteetaten",
+    "image": {
+      "asset": {
+        "_ref": "image-e16a4f384d1d5ed959e1d74f0626259711d67509-88x88-png",
+        "_type": "reference"
+      },
+      "_type": "image"
+    }
+  },
+  "updatedAt": null,
+  "attachments": null,
+  "history": [
+    {
+      "attachments": [{ "label": "Tredjepartsopplysninger.xml" }],
+      "id": "098dd0da-d07d-4941-9447-f570f46c9fdc",
+      "relatedId": null,
+      "variant": "transmission",
+      "type": { "value": "submission", "label": "Innsending" },
+      "title": "Tredjepartsopplysninger er levert",
+      "createdAt": "2024-09-23T10:25:00.000Z",
+      "sender": null,
+      "senderName": "Kari Johanne Nordmann",
+      "summary": null,
+      "description": null
+    },
+    {
+      "type": { "value": "submission", "label": "Innsending" },
+      "senderName": "Tor Ole Nordmann",
+      "description": null,
+      "attachments": [{ "label": "Tredjepartsopplysninger.xml" }],
+      "id": "c823d6c3-4320-4f23-8283-1977745cfe68",
+      "variant": "transmission",
+      "sender": null,
+      "title": "Tredjepartsopplysninger er levert",
+      "summary": null,
+      "relatedId": null,
+      "createdAt": "2024-09-17T10:25:00.000Z"
+    },
+    {
+      "senderName": null,
+      "summary": "Skatteetaten har godkjent leveransen, men det er feil i oppgaver som du må se nærmere på. Se tilbakemelding og feilliste under.",
+      "type": { "value": "acceptance", "label": "Godkjennelse" },
+      "sender": {
+        "type": "company",
+        "name": "Skatteetaten",
+        "image": {
+          "asset": {
+            "_ref": "image-e16a4f384d1d5ed959e1d74f0626259711d67509-88x88-png",
+            "_type": "reference"
+          },
+          "_type": "image"
+        }
+      },
+      "title": "Leveransen er godkjent, men inneholder feil.",
+      "description": null,
+      "attachments": [
+        { "label": "Tilbakemelding.xml" },
+        { "label": "Feilliste.csv" }
+      ],
+      "id": "8b7b56d3-204d-4ec4-a215-94140b96009e",
+      "relatedId": "098dd0da-d07d-4941-9447-f570f46c9fdc",
+      "variant": "transmission",
+      "createdAt": "2025-02-24T09:38:00.000Z"
+    },
+    {
+      "title": "Leveransen er avvist",
+      "summary": "Skatteetaten har avvist leveransen. Se tilbakemelding og feilliste under.",
+      "id": "7b0f24a6-427e-4b3b-886c-45ac6b4cf5c9",
+      "variant": "transmission",
+      "type": { "value": "rejection", "label": "Avvisning" },
+      "sender": {
+        "type": "company",
+        "name": "Skatteetaten",
+        "image": {
+          "asset": {
+            "_ref": "image-e16a4f384d1d5ed959e1d74f0626259711d67509-88x88-png",
+            "_type": "reference"
+          },
+          "_type": "image"
+        }
+      },
+      "senderName": null,
+      "description": null,
+      "attachments": [
+        { "label": "Tilbakemelding.xml" },
+        { "label": "Feilliste.csv" }
+      ],
+      "relatedId": "c823d6c3-4320-4f23-8283-1977745cfe68",
+      "createdAt": "2025-02-24T09:38:00.000Z"
+    }
+  ],
+  "id": "8002d09b-7152-4fe8-bb61-b52bc344efc3",
+  "recipient": { "name": "Bergen Bar", "type": "company" },
+  "pathname": "inbox",
+  "seen": true
+}

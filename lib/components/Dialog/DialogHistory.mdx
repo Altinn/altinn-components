@@ -1,0 +1,41 @@
+import { Meta, Controls, Primary, Canvas, Story } from "@storybook/blocks";
+import * as DialogHistoryStories from "./DialogHistory.stories";
+import * as DialogStories from "./Dialog.stories";
+import * as DialogHeader from "./DialogHeader.stories";
+import * as DialogBody from "./DialogBody.stories";
+import * as DialogMetadata from "./DialogMetadata.stories";
+import * as SeenByLog from "./SeenByLog.stories";
+
+<Meta of={DialogHistoryStories} />
+
+# Dialog history and logs
+
+Dialog history is a curated list of activites and transmassions, informing the user of important events that has led to the current dialog.
+
+<Primary />
+
+## ActivityLog
+
+The activity log is a list of every event related to the dialog, including the curated DialogHistory. It might be filtered by type, or searched in.
+
+<Canvas id="Dialog/DialogHistory/ActivityLog" />
+
+## Collapsible
+
+History can be expanded and collapsed.
+
+<Canvas id="Collapsible" />
+
+## SeenByLog
+
+The seen by log is a log of people that have seen the dialog.
+
+<Canvas of={SeenByLog.Default} />
+
+It is can accessed by clicking on the "Seen by"-button inside the main dialog and is presented as a modal.
+
+<Canvas of={DialogMetadata.SeenByLog} />
+
+It can be accessed by clicking the "Activity log"-button inside the main dialog.
+
+<Canvas of={DialogMetadata.ActivityLog} />

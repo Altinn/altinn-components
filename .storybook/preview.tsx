@@ -40,7 +40,26 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ["Docs", "Layout", "Search", "Menu", "List"],
+        order: [
+          "Docs",
+          "Layout",
+          "Search",
+          "Menu",
+          "List",
+          "Timeline",
+          "Dialog",
+          [
+            "Docs",
+            "Patterns",
+            "Dialog",
+            "DialogHeader",
+            "DialogBody",
+            "DialogHistory",
+            "DialogList",
+            "DialogListItem",
+          ],
+          "Transmission",
+        ],
       },
     },
   },
