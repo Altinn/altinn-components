@@ -1,12 +1,19 @@
-'use client';
-import { ArrowDownIcon, ArrowUpIcon } from '@navikt/aksel-icons';
-import { type ReactNode, useState } from 'react';
-import { ActivityItem, type ActivityItemProps, ButtonBase, Icon, TimelineBase, TimelineSection } from '..';
+"use client";
+import { ArrowDownIcon, ArrowUpIcon } from "@navikt/aksel-icons";
+import { type ReactNode, useState } from "react";
+import {
+  DialogActivity,
+  type DialogActivityProps,
+  ButtonBase,
+  Icon,
+  Timeline,
+  TimelineBase,
+} from "..";
 
-import styles from './dialogHistory.module.css';
+import styles from "./dialogHistory.module.css";
 
 export interface DialogHistoryProps {
-  items?: ActivityItemProps[];
+  items?: DialogActivityProps[];
   updatedAt?: string;
   updatedAtLabel?: string;
   expandLabel?: string;
@@ -26,7 +33,7 @@ const ToggleButton = ({ expanded, children, onClick }: ToggleButtonProps) => {
       className={styles.toggle}
       size="sm"
       onClick={onClick}
-      style={{ display: 'inline-flex', alignItems: 'center' }}
+      style={{ display: "inline-flex", alignItems: "center" }}
     >
       {children}
       <Icon svgElement={expanded ? ArrowUpIcon : ArrowDownIcon} size="sm" />
@@ -37,8 +44,8 @@ const ToggleButton = ({ expanded, children, onClick }: ToggleButtonProps) => {
 export const DialogHistory = ({
   items,
   collapsible = false,
-  expandLabel = 'Expand history',
-  collapseLabel = 'Collapse history',
+  expandLabel = "Expand history",
+  collapseLabel = "Collapse history",
 }: DialogHistoryProps) => {
   const [expanded, setExpanded] = useState(false);
 
@@ -52,9 +59,9 @@ export const DialogHistory = ({
 
   if (expanded || !collapsible) {
     return (
-      <TimelineBase>
+      <Timeline>
         {items.map((item, index) => {
-          return <ActivityItem {...item} key={index} />;
+          return <DialogActivity {...item} key={index} />;
         })}
 
         {collapsible && (
@@ -62,15 +69,13 @@ export const DialogHistory = ({
             {collapseLabel}
           </ToggleButton>
         )}
-      </TimelineBase>
+      </Timeline>
     );
   }
 
   return (
     <TimelineBase>
-      <TimelineSection color="neutral">
-        <ToggleButton onClick={onToggle}>{expandLabel}</ToggleButton>
-      </TimelineSection>
+      <ToggleButton onClick={onToggle}>{expandLabel}</ToggleButton>
     </TimelineBase>
   );
 };
