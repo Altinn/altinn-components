@@ -1,6 +1,6 @@
+import cx from 'classnames';
 import type { ReactNode } from 'react';
 import { Avatar, type AvatarProps, Byline, type Color, type SvgElement } from '..';
-
 import styles from './timelineSection.module.css';
 
 export type TimelineSectionSize = 'xs' | 'sm' | 'lg';
@@ -15,6 +15,7 @@ export interface TimelineSectionProps {
   avatar?: AvatarProps;
   icon?: SvgElement;
   children?: ReactNode;
+  isSeenByEndUser?: boolean;
 }
 
 export const TimelineSection = ({
@@ -26,6 +27,7 @@ export const TimelineSection = ({
   byline,
   avatar,
   children,
+  isSeenByEndUser = false,
 }: TimelineSectionProps) => {
   return (
     <section className={styles.section} data-color={color} data-size={size}>
@@ -35,7 +37,7 @@ export const TimelineSection = ({
             {(avatar && <Avatar {...avatar} size={size} />) || <div className={styles.dot} />}
           </div>
         )}
-        <div className={styles.border} />
+        <div className={cx(styles.border, { [styles.seenByEnderUser]: isSeenByEndUser })} />
       </aside>
       <div className={styles.content} data-size={size}>
         {(byline || dateline) && (
