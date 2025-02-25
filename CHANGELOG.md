@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.8](https://github.com/Altinn/altinn-components/compare/v0.18.7...v0.18.8) (2025-02-25)
+
+
+### Bug Fixes
+
+* add isSeenByDialog on DialogBody ([#268](https://github.com/Altinn/altinn-components/issues/268)) ([0893993](https://github.com/Altinn/altinn-components/commit/0893993d23756c7901bc740cf30ceb202ca7fff4))
+
 ## [0.18.7](https://github.com/Altinn/altinn-components/compare/v0.18.6...v0.18.7) (2025-02-25)
 
 
