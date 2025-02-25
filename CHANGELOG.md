@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.18.6](https://github.com/Altinn/altinn-components/compare/v0.18.5...v0.18.6) (2025-02-25)
+
+
+### Bug Fixes
+
+* add target blank to dialog attachment link ([#264](https://github.com/Altinn/altinn-components/issues/264)) ([f1db11a](https://github.com/Altinn/altinn-components/commit/f1db11a76ccd0eef5f0e47220e368118bd8b6d6b))
+
+
+### Miscellaneous Chores
+
+* **deps:** update actions/checkout action to v4 ([#165](https://github.com/Altinn/altinn-components/issues/165)) ([8c77c33](https://github.com/Altinn/altinn-components/commit/8c77c33106c5a69f698f11df7c7d7a23095e59ad))
+
 ## [0.18.5](https://github.com/Altinn/altinn-components/compare/v0.18.4...v0.18.5) (2025-02-20)
 
 
