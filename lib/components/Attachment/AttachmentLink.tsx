@@ -15,7 +15,7 @@ export interface AttachmentLinkProps {
 
 export const AttachmentLink = ({ icon = FileIcon, iconAltText, href, label }: AttachmentLinkProps) => {
   return (
-    <a href={href} className={styles.link}>
+    <a href={href} className={styles.link} target="_blank" rel="noreferrer">
       <Icon svgElement={icon} altText={iconAltText} className={styles.icon} />
       <span className={styles.label}>{label}</span>
     </a>
