@@ -69,7 +69,7 @@ export const DialogBody = ({
         loading={loading}
       />
 
-      <TimelineSection>
+      <TimelineSection isSeenByEndUser={seenBy?.seenByEndUser}>
         <Section spacing={4} margin="section">
           <div>
             <DialogMetadata loading={loading} updatedAt={updatedAt} updatedAtLabel={updatedAtLabel} />
