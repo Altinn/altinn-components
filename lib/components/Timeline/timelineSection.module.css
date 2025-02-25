@@ -50,3 +50,7 @@
   border-color: var(--ds-color-surface-active);
   flex-grow: 1;
 }
+
+.seenByEnderUser {
+  border-color: var(--ds-color-border-default);
+}

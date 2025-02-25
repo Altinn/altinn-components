@@ -23,7 +23,7 @@ export interface DialogContentProps {
 
 export const DialogContent = ({ updatedAt, updatedAtLabel, seenBy, activityLog, children }: DialogContentProps) => {
   return (
-    <TimelineSection>
+    <TimelineSection isSeenByEndUser={seenBy?.seenByEndUser}>
       <Section spacing={4} margin="section">
         <div>
           <Byline datetime={updatedAt}>{updatedAtLabel}</Byline>
