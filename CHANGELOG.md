@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.7](https://github.com/Altinn/altinn-components/compare/v0.18.6...v0.18.7) (2025-02-25)
+
+
+### Bug Fixes
+
+* add isSeenByEndUser for TimelineSection ([#265](https://github.com/Altinn/altinn-components/issues/265)) ([ac06075](https://github.com/Altinn/altinn-components/commit/ac060759e15f3859f83ba23e8e3bf76db19bdc1f))
+
 ## [0.18.6](https://github.com/Altinn/altinn-components/compare/v0.18.5...v0.18.6) (2025-02-25)
 
 
