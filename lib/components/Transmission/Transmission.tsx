@@ -16,7 +16,7 @@ export interface TransmissionType {
 
 export interface TransmissionProps {
   id: string;
-  type: TransmissionType;
+  type?: TransmissionType;
   createdAt?: string;
   createdAtLabel?: string;
   sender?: AvatarProps;
@@ -41,7 +41,7 @@ export const Transmission = ({
       {...item}
       avatar={sender}
       badge={type}
-      size="sm"
+      size="xs"
       theme="subtle"
       color="neutral"
       expanded={expanded}

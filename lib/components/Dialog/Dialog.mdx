@@ -1,0 +1,51 @@
+import { Meta, Controls, Primary, Canvas } from "@storybook/blocks";
+import * as DialogStories from "./Dialog.stories";
+import * as DialogHeader from "./DialogHeader.stories";
+import * as DialogBody from "./DialogBody.stories";
+import * as DialogHistory from "./DialogHistory.stories";
+
+<Meta title="Dialog/Dialog" />
+
+# Anatomy of a dialog
+
+A full dialog is built up of a header and a body, and depending on the content of the dialog, potentially a history part and a list of transmissions. Metadata is split and presented in relation to different parts of the dialog.
+
+## DialogHeader
+
+The header introduces the dialog with a `title` and an optional a `status` and due date.
+
+<Canvas of={DialogHeader.Default} />
+
+## DialogBody
+
+The body is the main part of a dialog, including the `summary` potential `attachments` and/or one or more calls to `actions`. Content is introduced with a timestamp and highlighted with a border, pointing from the senders avatar, indicating the origin of the content and that it could be part of a timeline. At the end, users are presented with links to the `SeenByLog` and `ActivityLog` for further inspection.
+
+<Canvas of={DialogBody.Default} />
+
+The body may include a list of attachments:
+
+<Canvas of={DialogBody.WithAttachments} />
+
+The body may include one or more call-to-actions:
+
+<Canvas of={DialogBody.WithActions} />
+
+## DialogHistory
+
+The history is a curated list of events that has happened in the past, informing the user of important events that has led to the current dialog. The history is presented between the header and body.
+
+<Canvas of={DialogHistory.Default} />
+
+History can be expanded and collapsed.
+
+<Canvas of={DialogHistory.Collapsible} />
+
+## Putting it together
+
+The following is a dialog with history that has been completed. It includes a single attachment and an action. Underneath the body, users are presented with a section explaining what the process is about.
+
+<Canvas of={DialogStories.WithHistory} />
+
+## DialogTransmissions
+
+Transmissions are individual pieces of information that have been sent

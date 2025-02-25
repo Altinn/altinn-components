@@ -1,12 +1,16 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
-import { accountMenu, inboxFilters, inboxStatusFilter } from '../../../examples';
-import { type FilterState, Toolbar } from './Toolbar';
+import type { Meta, StoryObj } from "@storybook/react";
+import React from "react";
+import {
+  accountMenu,
+  inboxFilters,
+  inboxStatusFilter,
+} from "../../../examples";
+import { type FilterState, Toolbar } from "./Toolbar";
 
 const meta = {
-  title: 'Toolbar/Toolbar',
+  title: "Toolbar/Toolbar",
   component: Toolbar,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   parameters: {},
   args: {
     showResultsLabel: `Vis alle treff`,
@@ -30,7 +34,21 @@ export const CustomFilterLabel: Story = {
   args: {
     ...Default.args,
     getFilterLabel: (_, value) => {
-      return (Array.isArray(value) && value.length > 1 ? `${value.length} selected` : value) as string;
+      return (
+        Array.isArray(value) && value.length > 1
+          ? `${value.length} selected`
+          : value
+      ) as string;
+    },
+  },
+};
+
+export const AccountSearchFilters: Story = {
+  args: {
+    ...Default.args,
+    search: {
+      name: "search",
+      placeholder: "Søk i listen",
     },
   },
 };
@@ -72,8 +90,8 @@ export const WithAccountMenu: Story = {
 export const WithSearch: Story = {
   args: {
     search: {
-      name: 'search',
-      placeholder: 'Søk i listen',
+      name: "search",
+      placeholder: "Søk i listen",
     },
     filters: [inboxStatusFilter],
   },
@@ -81,7 +99,7 @@ export const WithSearch: Story = {
 
 export const ControlledStateFilters = (args: typeof Toolbar) => {
   const [filterState, setFilterState] = React.useState<FilterState>({
-    from: ['skatt', 'brreg'],
+    from: ["skatt", "brreg"],
   });
   return (
     <Toolbar
@@ -95,9 +113,10 @@ export const ControlledStateFilters = (args: typeof Toolbar) => {
 };
 
 export const ControlledStateAccount = () => {
-  const [currentAccountId, setCurrentAccountId] = React.useState<string>('party:mathias');
+  const [currentAccountId, setCurrentAccountId] =
+    React.useState<string>("party:mathias");
   const [filterState, setFilterState] = React.useState<FilterState>({
-    from: ['skatt', 'brreg'],
+    from: ["skatt", "brreg"],
   });
 
   return (
@@ -105,7 +124,9 @@ export const ControlledStateAccount = () => {
       accountMenu={{
         ...accountMenu,
         onSelectAccount: (id) => setCurrentAccountId(id),
-        currentAccount: accountMenu.accounts?.find((account) => account.id === currentAccountId),
+        currentAccount: accountMenu.accounts?.find(
+          (account) => account.id === currentAccountId
+        ),
       }}
       filters={Default.args!.filters}
       filterState={filterState}

@@ -9,6 +9,8 @@ import {
   type Color,
 } from "..";
 
+import styles from "./timelineIcon.module.css";
+
 export interface TimelineIconProps {
   icon?: SvgElement;
   iconTheme?: Theme;
@@ -20,7 +22,7 @@ export interface TimelineIconProps {
 export const TimelineIcon = ({
   icon,
   iconColor,
-  iconTheme = "surface",
+  iconTheme,
   avatar,
   avatarGroup,
 }: TimelineIconProps) => {
@@ -37,6 +39,12 @@ export const TimelineIcon = ({
   }
 
   return (
-    <Icon svgElement={icon} color={iconColor} theme={iconTheme} size="sm" />
+    <Icon
+      className={styles.icon}
+      svgElement={icon}
+      color={iconColor}
+      theme={iconTheme}
+      size="sm"
+    />
   );
 };

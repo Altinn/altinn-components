@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { transmissionList } from '../../../examples';
-import { TransmissionList } from './TransmissionList';
+import type { Meta, StoryObj } from "@storybook/react";
+import { transmissionListItems } from "./examples";
+import { TransmissionList } from "./TransmissionList";
 
 const meta = {
-  title: 'Transmission/TransmissionList',
+  title: "Transmission/TransmissionList",
   component: TransmissionList,
-  tags: ['autodocs', 'beta'],
+  tags: ["autodocs", "beta"],
   parameters: {},
   args: {
-    items: transmissionList,
+    items: transmissionListItems,
   },
 } satisfies Meta<typeof TransmissionList>;
 

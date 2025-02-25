@@ -36,7 +36,13 @@ export const TimelineBase = ({
     <section className={styles.section} data-color={color}>
       <aside className={styles.sidebar}>
         {(icon || avatar || avatarGroup) && (
-          <TimelineIcon icon={icon} avatar={avatar} avatarGroup={avatarGroup} />
+          <span className={styles.icon}>
+            <TimelineIcon
+              icon={icon}
+              avatar={avatar}
+              avatarGroup={avatarGroup}
+            />
+          </span>
         )}
         {!borderHidden && <TimelineBorder variant={border} />}
       </aside>

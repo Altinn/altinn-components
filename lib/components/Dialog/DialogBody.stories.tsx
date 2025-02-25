@@ -1,34 +1,34 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { DialogActions, DialogAttachments, DialogBody } from '..';
+import type { Meta, StoryObj } from "@storybook/react";
+import { DialogActions, DialogAttachments, DialogBody } from "..";
 
 const meta = {
-  title: 'Dialog/DialogBody',
+  title: "Dialog/DialogBody",
   component: DialogBody,
-  tags: ['autodocs', 'beta'],
+  tags: ["autodocs", "beta"],
   args: {
     sender: {
-      type: 'company',
-      name: 'Skatteetaten',
+      type: "company",
+      name: "Skatteetaten",
       imageUrl:
-        'https://cdn.sanity.io/images/z3it2oa7/production/e16a4f384d1d5ed959e1d74f0626259711d67509-88x88.png?w=96',
+        "https://cdn.sanity.io/images/z3it2oa7/production/e16a4f384d1d5ed959e1d74f0626259711d67509-88x88.png?w=96",
     },
-    recipientLabel: 'til',
+    recipientLabel: "til",
     recipient: {
-      type: 'person',
-      name: 'Roar Recipient',
+      type: "person",
+      name: "Roar Recipient",
     },
 
-    updatedAt: '1999-05-26 22:59:00',
-    updatedAtLabel: '25. mai 1999 kl 22.59',
+    updatedAt: "1999-05-26 22:59:00",
+    updatedAtLabel: "25. mai 1999 kl 22.59",
     children: <p>A summary of the dialog.</p>,
     seenBy: {
-      as: 'button',
+      as: "button",
       seenByEndUser: true,
-      label: 'Sett av deg',
+      label: "Sett av deg",
     },
     activityLog: {
-      as: 'button',
-      label: 'Aktivitetslogg',
+      as: "button",
+      label: "Aktivitetslogg",
     },
   },
 } satisfies Meta<typeof DialogBody>;
@@ -44,7 +44,7 @@ export const Loading: Story = {
   args: {
     loading: true,
   },
-  tags: ['skip-test'],
+  tags: ["skip-test"],
 };
 
 export const ExtendedContent: Story = {
@@ -52,7 +52,8 @@ export const ExtendedContent: Story = {
     children: (
       <>
         <p>
-          <strong>Sander Svendsen</strong> er sykmeldt i 4 dager fra 2. juli–5. juli 2024. Du må oppgi nærmeste leder.
+          <strong>Sander Svendsen</strong> er sykmeldt i 4 dager fra 2. juli–5.
+          juli 2024. Du må oppgi nærmeste leder.
         </p>
         <h6>Ansvarlig lege</h6>
         <p>Mark Medisin + 47 23369090</p>
@@ -71,8 +72,8 @@ export const WithAttachments: Story = {
         <DialogAttachments
           title="2 attachments"
           items={[
-            { href: '#', label: 'Document 1.pdf' },
-            { href: '#', label: 'Document 2.pdf' },
+            { href: "#", label: "Document 1.pdf" },
+            { href: "#", label: "Document 2.pdf" },
           ]}
         />
       </>
@@ -87,8 +88,8 @@ export const WithActions: Story = {
         <p>A summary of the dialog.</p>
         <DialogActions
           items={[
-            { id: '1', priority: 'primary', label: 'Primary CTA' },
-            { id: '2', priority: 'secondary', label: 'Secondary' },
+            { id: "1", priority: "primary", label: "Primary CTA" },
+            { id: "2", priority: "secondary", label: "Secondary" },
           ]}
         />
       </>

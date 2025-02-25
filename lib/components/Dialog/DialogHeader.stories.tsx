@@ -1,19 +1,19 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { DialogHeader } from './DialogHeader';
+import type { Meta, StoryObj } from "@storybook/react";
+import { DialogHeader } from "./DialogHeader";
 
 const meta = {
-  title: 'Dialog/DialogHeader',
+  title: "Dialog/DialogHeader",
   component: DialogHeader,
-  tags: ['autodocs', 'beta'],
+  tags: ["autodocs", "beta"],
   parameters: {},
   args: {
-    title: 'Title',
+    title: "Title",
     status: {
-      value: 'requires-attention',
-      label: 'Krever handling',
+      value: "requires-attention",
+      label: "Krever handling",
     },
-    dueAt: '2025-04-01',
-    dueAtLabel: 'Frist: 1. april 2025',
+    dueAt: "2025-04-01",
+    dueAtLabel: "Frist: 1. april 2025",
   },
 } satisfies Meta<typeof DialogHeader>;
 

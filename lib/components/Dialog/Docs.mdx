@@ -1,0 +1,67 @@
+import { Meta, Controls, Primary, Canvas } from "@storybook/blocks";
+import * as DialogStories from "./Dialog.stories";
+import * as DialogListItem from "./DialogListItem.stories";
+import * as DialogMetadata from "./DialogMetadata.stories";
+
+<Meta title="Dialog/Docs" />
+
+# The dialog
+
+A dialog is a representation of public correspondance. Users can access their dialogs through the inbox, where dialogs are presented chronologically in the order they were last updated.
+
+## Dialogs list views
+
+In list views dialogs represent an excerpt of the full dialog and must include a `title` and a `summary`, as well as a timestamp representing when the dialog was created or updated. The `sender` of the dialog is presented with their avatar, and
+the `recipient` is included to emphasise which actor the dialog belongs to.
+
+<Canvas of={DialogListItem.Default} />
+
+In list views including more than a single recipient, both sender and recipient avatars should be presented to make it easier to distingish between dialogs.
+
+<Canvas of={DialogListItem.GroupedAvatars} />
+
+## Seen vs. unseen
+
+New dialogs are unseen until they have been opened by the current user. In list views, new dialogs are indicated using three clues; it has a coloured border, a stronger title weight and an optional label, emphasising that the dialog is "New". When a dialog is opened the dialog is marked as seen by the end user, the border and title weight is neutralised, and the label is removed.
+
+<Canvas of={DialogListItem.SeenVsUnseen} />
+
+## Requires attention, in progress, completed
+
+Dialogs can have different statuses, representing different states of a dialog.
+
+The inbox will include dialogs with four different statuses; `new`, `requires-attention`, `in-progress` and `completed`. Dialogs with status `new` have no particular label, while the other statuses are highlighted using a label next to the timestamp.
+
+The most prominent status is `requires-attention`, representing a state where an action needs to happen before a process can continue. Other statuses include `in-progress`, and `completed`, indicating that a dialog in a waiting state, or that it has reached a conclusion.
+
+<Canvas of={DialogListItem.InboxStatuses} />
+
+## Draft and sent
+
+Processes that have been initiated by the end user, for example by filling out a form, should not appear in the main inbox. These types of dialogs should have the `draft` or `sent` status and should be mapped to the "Drafts" og "Sent" folders respectively.
+
+<Canvas of={DialogListItem.DraftAndSent} />
+
+## Archived and trashed
+
+To clean up the inbox, users can move dialogs to archived or trashed. Archived dialogs should be mapped to the "Archived" folder, while trashed dialogs should be mapped to the "Trash" folder.
+
+<Canvas of={DialogListItem.ArchivedAndTrashed} />
+
+## Dialog metadata
+
+Dialogs can include additional metadata to indicate due date, number of attachments and/or who have seen the dialog. DueDate + attachments:
+
+<Canvas of={DialogMetadata.DueDate} />
+
+Single attachment + seen by end user:
+
+<Canvas of={DialogMetadata.SeenByEndUser} />
+
+Seen by others.
+
+<Canvas of={DialogMetadata.SeenByOthers} />
+
+Seen by end user and others.
+
+<Canvas of={DialogMetadata.SeenByEndUserAndOthers} />

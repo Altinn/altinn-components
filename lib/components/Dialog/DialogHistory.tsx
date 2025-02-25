@@ -2,8 +2,8 @@
 import { ArrowDownIcon, ArrowUpIcon } from "@navikt/aksel-icons";
 import { type ReactNode, useState } from "react";
 import {
-  ActivityItem,
-  type ActivityItemProps,
+  DialogActivity,
+  type DialogActivityProps,
   ButtonBase,
   Icon,
   Timeline,
@@ -13,7 +13,7 @@ import {
 import styles from "./dialogHistory.module.css";
 
 export interface DialogHistoryProps {
-  items?: ActivityItemProps[];
+  items?: DialogActivityProps[];
   updatedAt?: string;
   updatedAtLabel?: string;
   expandLabel?: string;
@@ -61,7 +61,7 @@ export const DialogHistory = ({
     return (
       <Timeline>
         {items.map((item, index) => {
-          return <ActivityItem {...item} key={index} />;
+          return <DialogActivity {...item} key={index} />;
         })}
 
         {collapsible && (

@@ -3,7 +3,6 @@ import type { ReactNode } from "react";
 import {
   TimelineBase,
   type AvatarProps,
-  type DialogActivityLogProps,
   DialogByline,
   DialogMetadata,
   type DialogSeenByProps,
@@ -37,8 +36,6 @@ export interface DialogBodyProps {
   recipientGroup?: boolean;
   /** Dialog is seen by the end user or others */
   seenBy?: DialogSeenByProps;
-  /** Activity Log */
-  activityLog?: DialogActivityLogProps;
   /** Content */
   children?: ReactNode;
 }
@@ -85,11 +82,7 @@ export const DialogBody = ({
               children}
           </Typography>
         </div>
-        <DialogMetadata
-          loading={loading}
-          seenBy={seenBy}
-          activityLog={activityLog}
-        />
+        <DialogMetadata loading={loading} seenBy={seenBy} />
       </TimelineBase>
     </Section>
   );

@@ -1,47 +1,51 @@
-import type { Meta } from '@storybook/react';
-import { Fragment, useState } from 'react';
-import { skatt } from '../../../examples/avatar';
+import type { Meta } from "@storybook/react";
+import { Fragment, useState } from "react";
+import { skatt } from "./examples/avatar";
 
-import { DialogListItem, type DialogListItemProps, type DialogListItemSize } from './DialogListItem';
-import { DialogStatusEnum, type DialogStatusValue } from './DialogStatus';
+import {
+  DialogListItem,
+  type DialogListItemProps,
+  type DialogListItemSize,
+} from "./DialogListItem";
+import { DialogStatusEnum, type DialogStatusValue } from "./DialogStatus";
 
-import { ListBase } from '../List';
-import { MetaItem } from '../Meta';
+import { ListBase } from "../List";
+import { MetaItem } from "../Meta";
 
 const getStatusLabel = (value: string) => {
   switch (value) {
-    case 'draft':
-      return 'Utkast';
-    case 'sent':
-      return 'Sendt';
-    case 'requires-attention':
-      return 'Krever handling';
-    case 'in-progress':
-      return 'Under arbeid';
-    case 'completed':
-      return 'Avsluttet';
+    case "draft":
+      return "Utkast";
+    case "sent":
+      return "Sendt";
+    case "requires-attention":
+      return "Krever handling";
+    case "in-progress":
+      return "Under arbeid";
+    case "completed":
+      return "Avsluttet";
     default:
-      return '';
+      return "";
   }
 };
 
-const sizes = ['lg', 'md', 'sm', 'xs'] as DialogListItemSize[];
+const sizes = ["lg", "md", "sm", "xs"] as DialogListItemSize[];
 
 const meta: Meta<typeof DialogListItem> = {
-  title: 'Dialog/DialogListItem',
+  title: "Dialog/DialogListItem",
   component: DialogListItem,
-  tags: ['autodocsi', 'beta'],
+  tags: ["autodocsi", "beta"],
   argTypes: {},
   args: {
-    title: 'Title',
-    summary: 'Summary',
+    title: "Title",
+    summary: "Summary",
     sender: skatt,
     recipient: {
-      type: 'person',
-      name: 'Recipient name',
+      type: "person",
+      name: "Recipient name",
     },
-    updatedAt: '2024-11-25 15:30',
-    updatedAtLabel: '25. november 2024 kl 15.30',
+    updatedAt: "2024-11-25 15:30",
+    updatedAtLabel: "25. november 2024 kl 15.30",
     status: {},
   },
 } satisfies Meta<typeof DialogListItem>;
@@ -64,16 +68,16 @@ export const GroupedAvatars = (args: DialogListItemProps) => {
         {...args}
         grouped={true}
         recipient={{
-          type: 'company',
-          name: 'Frontenders Inc',
+          type: "company",
+          name: "Frontenders Inc",
         }}
       />
       <DialogListItem
         {...args}
         grouped={true}
         recipient={{
-          type: 'company',
-          name: 'Designers Ltd',
+          type: "company",
+          name: "Designers Ltd",
         }}
       />
     </ListBase>
@@ -84,7 +88,11 @@ export const SeenVsUnseen = (args: DialogListItemProps) => {
   return (
     <ListBase>
       <DialogListItem {...args} label="Ny" />
-      <DialogListItem {...args} seen={true} seenBy={{ seenByEndUser: true, label: 'Sett av deg' }} />
+      <DialogListItem
+        {...args}
+        seen={true}
+        seenBy={{ seenByEndUser: true, label: "Sett av deg" }}
+      />
     </ListBase>
   );
 };
@@ -93,11 +101,18 @@ export const SeenBy = (args: DialogListItemProps) => {
   return (
     <>
       <ListBase>
-        <DialogListItem {...args} seen seenBy={{ seenByEndUser: true, label: 'Sett av deg' }} />
+        <DialogListItem
+          {...args}
+          seen
+          seenBy={{ seenByEndUser: true, label: "Sett av deg" }}
+        />
       </ListBase>
       <MetaItem>Seen by end user. Dialog is marked as seen.</MetaItem>
       <ListBase>
-        <DialogListItem {...args} seenBy={{ seenByOthersCount: 4, label: 'Sett av 4' }} />
+        <DialogListItem
+          {...args}
+          seenBy={{ seenByOthersCount: 4, label: "Sett av 4" }}
+        />
       </ListBase>
       <MetaItem>Seen by others. Dialog is not marked as seen.</MetaItem>
       <ListBase>
@@ -107,11 +122,13 @@ export const SeenBy = (args: DialogListItemProps) => {
           seenBy={{
             seenByOthersCount: 4,
             seenByEndUser: true,
-            label: 'Sett av deg + 4',
+            label: "Sett av deg + 4",
           }}
         />
       </ListBase>
-      <MetaItem>Seen by end user and others. Dialog is marked as seen.</MetaItem>
+      <MetaItem>
+        Seen by end user and others. Dialog is marked as seen.
+      </MetaItem>
     </>
   );
 };
@@ -119,9 +136,18 @@ export const SeenBy = (args: DialogListItemProps) => {
 export const InboxStatuses = (args: DialogListItemProps) => {
   return (
     <ListBase>
-      <DialogListItem {...args} status={{ value: 'requires-attention', label: 'Krever handling' }} />
-      <DialogListItem {...args} status={{ value: 'in-progress', label: 'Under arbeid' }} />
-      <DialogListItem {...args} status={{ value: 'completed', label: 'Avsluttet' }} />
+      <DialogListItem
+        {...args}
+        status={{ value: "requires-attention", label: "Krever handling" }}
+      />
+      <DialogListItem
+        {...args}
+        status={{ value: "in-progress", label: "Under arbeid" }}
+      />
+      <DialogListItem
+        {...args}
+        status={{ value: "completed", label: "Avsluttet" }}
+      />
     </ListBase>
   );
 };
@@ -129,8 +155,8 @@ export const InboxStatuses = (args: DialogListItemProps) => {
 export const DraftAndSent = (args: DialogListItemProps) => {
   return (
     <ListBase>
-      <DialogListItem {...args} status={{ value: 'draft', label: 'Utkast' }} />
-      <DialogListItem {...args} status={{ value: 'sent', label: 'Sendt' }} />
+      <DialogListItem {...args} status={{ value: "draft", label: "Utkast" }} />
+      <DialogListItem {...args} status={{ value: "sent", label: "Sendt" }} />
     </ListBase>
   );
 };
@@ -141,18 +167,18 @@ export const ArchivedAndTrashed = (args: DialogListItemProps) => {
       <DialogListItem
         {...args}
         label="Arkivert"
-        status={{ value: 'completed', label: 'Avsluttet' }}
+        status={{ value: "completed", label: "Avsluttet" }}
         seen={true}
-        seenBy={{ seenByEndUser: true, label: 'Sett av deg' }}
+        seenBy={{ seenByEndUser: true, label: "Sett av deg" }}
         archivedAt="2024-11-27"
         archivedAtLabel="Arkivert av Kjell Olsen, 27. nov 2024"
       />
       <DialogListItem
         {...args}
         label="Papirkurv"
-        status={{ value: 'completed', label: 'Avsluttet' }}
+        status={{ value: "completed", label: "Avsluttet" }}
         seen={true}
-        seenBy={{ seenByEndUser: true, label: 'Sett av deg' }}
+        seenBy={{ seenByEndUser: true, label: "Sett av deg" }}
         trashedAt="2024-11-27"
         trashedAtLabel="Slettet av Kjell Olsen, 27. nov 2024"
       />
@@ -195,7 +221,7 @@ const Loading = (args: DialogListItemProps) => {
 };
 
 Loading.parameters = {
-  tags: ['skip-test'],
+  tags: ["skip-test"],
 };
 
 export { Loading };
@@ -204,15 +230,19 @@ export const Variants = (args: DialogListItemProps) => {
   return (
     <>
       <ListBase>
-        <DialogListItem {...args} label="Ulest" status={{ value: 'requires-attention', label: 'Krever handling' }} />
+        <DialogListItem
+          {...args}
+          label="Ulest"
+          status={{ value: "requires-attention", label: "Krever handling" }}
+        />
       </ListBase>
       <MetaItem>Dialog is new and has not been seen by anybody</MetaItem>
       <ListBase>
         <DialogListItem
           {...args}
           seen={true}
-          seenBy={{ seenByEndUser: true, label: 'Sett av deg' }}
-          status={{ value: 'requires-attention', label: 'Krever handling' }}
+          seenBy={{ seenByEndUser: true, label: "Sett av deg" }}
+          status={{ value: "requires-attention", label: "Krever handling" }}
         />
       </ListBase>
       <MetaItem>Dialog has been seen</MetaItem>
@@ -220,9 +250,9 @@ export const Variants = (args: DialogListItemProps) => {
         <DialogListItem
           {...args}
           label="Arkivert"
-          status={{ value: 'completed', label: 'Avsluttet' }}
+          status={{ value: "completed", label: "Avsluttet" }}
           seen={true}
-          seenBy={{ seenByEndUser: true, label: 'Sett av deg' }}
+          seenBy={{ seenByEndUser: true, label: "Sett av deg" }}
           archivedAt="2024-11-27"
           archivedAtLabel="Arkivert av Kjell Olsen, 27. nov 2024"
         />
@@ -232,9 +262,9 @@ export const Variants = (args: DialogListItemProps) => {
         <DialogListItem
           {...args}
           label="Papirkurv"
-          status={{ value: 'completed', label: 'Avsluttet' }}
+          status={{ value: "completed", label: "Avsluttet" }}
           seen={true}
-          seenBy={{ seenByEndUser: true, label: 'Sett av deg' }}
+          seenBy={{ seenByEndUser: true, label: "Sett av deg" }}
           trashedAt="2024-11-27"
           trashedAtLabel="Slettet av Kjell Olsen, 27. nov 2024"
         />
@@ -250,7 +280,7 @@ export const DueAt = (args: DialogListItemProps) => {
       <ListBase>
         <DialogListItem
           {...args}
-          status={{ label: 'Krever handling', value: 'requires-attention' }}
+          status={{ label: "Krever handling", value: "requires-attention" }}
           dueAt="2025-01-01"
           dueAtLabel="Frist: 1. januar 2025"
         />
@@ -275,17 +305,24 @@ export const TouchedBy = (args: DialogListItemProps) => {
   return (
     <>
       <ListBase>
-        <DialogListItem {...args} touchedBy={[{ name: 'Kari Nordmann' }]} />
+        <DialogListItem {...args} touchedBy={[{ name: "Kari Nordmann" }]} />
       </ListBase>
       <MetaItem>Dialog has been touched by a single actor.</MetaItem>
       <ListBase>
-        <DialogListItem {...args} touchedBy={[{ name: 'Kari Nordmann' }, { name: 'Ola Nordmann' }]} />
+        <DialogListItem
+          {...args}
+          touchedBy={[{ name: "Kari Nordmann" }, { name: "Ola Nordmann" }]}
+        />
       </ListBase>
       <MetaItem>Dialog has been touched by two actors.</MetaItem>
       <ListBase>
         <DialogListItem
           {...args}
-          touchedBy={[{ name: 'Kari Nordmann' }, { name: 'Ola Nordmann' }, { name: 'Per Nordmann' }]}
+          touchedBy={[
+            { name: "Kari Nordmann" },
+            { name: "Ola Nordmann" },
+            { name: "Per Nordmann" },
+          ]}
         />
       </ListBase>
       <MetaItem>Dialog has been touched by a multiple actors.</MetaItem>
@@ -321,19 +358,19 @@ interface SelectableItem {
 }
 export const Selectable = (args: DialogListItemProps) => {
   const [items, setItems] = useState<Record<string, SelectableItem>>({
-    '1': {
-      id: '1',
-      title: 'Item 1',
+    "1": {
+      id: "1",
+      title: "Item 1",
       selected: true,
     },
-    '2': {
-      id: '2',
-      title: 'Item 2',
+    "2": {
+      id: "2",
+      title: "Item 2",
       selected: false,
     },
-    '3': {
-      id: '3',
-      title: 'Item 2',
+    "3": {
+      id: "3",
+      title: "Item 2",
       selected: false,
     },
   });
@@ -365,7 +402,7 @@ export const Selectable = (args: DialogListItemProps) => {
             }}
           />
         </ListBase>
-        <MetaItem>selected:{item.selected ? 'true' : 'false'}</MetaItem>
+        <MetaItem>selected:{item.selected ? "true" : "false"}</MetaItem>
       </Fragment>
     );
   });
@@ -376,7 +413,11 @@ export const Sizes = (args: DialogListItemProps) => {
     return (
       <Fragment key={size}>
         <ListBase>
-          <DialogListItem {...args} size={size} status={{ value: 'in-progress', label: 'Under arbeid' }} />
+          <DialogListItem
+            {...args}
+            size={size}
+            status={{ value: "in-progress", label: "Under arbeid" }}
+          />
         </ListBase>
         <MetaItem>{size}</MetaItem>
       </Fragment>
