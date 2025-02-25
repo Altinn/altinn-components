@@ -1,6 +1,7 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
 import {
+  TimelineBase,
   type AvatarProps,
   type DialogActivityLogProps,
   DialogByline,
@@ -8,9 +9,8 @@ import {
   type DialogSeenByProps,
   Section,
   Skeleton,
-  TimelineSection,
   Typography,
-} from '..';
+} from "..";
 
 export interface DialogBodyProps {
   /** Sender */
@@ -47,7 +47,7 @@ export interface DialogBodyProps {
 
 export const DialogBody = ({
   loading,
-  loadingText = 'Loading ...',
+  loadingText = "Loading ...",
   grouped,
   sender,
   recipient,
@@ -69,22 +69,28 @@ export const DialogBody = ({
         loading={loading}
       />
 
-      <TimelineSection>
-        <Section spacing={4} margin="section">
-          <div>
-            <DialogMetadata loading={loading} updatedAt={updatedAt} updatedAtLabel={updatedAtLabel} />
-            <Typography loading={loading} size="md">
-              {(loading && (
-                <p>
-                  <Skeleton loading={loading}>{loadingText}</Skeleton>
-                </p>
-              )) ||
-                children}
-            </Typography>
-          </div>
-          <DialogMetadata loading={loading} seenBy={seenBy} activityLog={activityLog} />
-        </Section>
-      </TimelineSection>
+      <TimelineBase>
+        <div>
+          <DialogMetadata
+            loading={loading}
+            updatedAt={updatedAt}
+            updatedAtLabel={updatedAtLabel}
+          />
+          <Typography loading={loading} size="md">
+            {(loading && (
+              <p>
+                <Skeleton loading={loading}>{loadingText}</Skeleton>
+              </p>
+            )) ||
+              children}
+          </Typography>
+        </div>
+        <DialogMetadata
+          loading={loading}
+          seenBy={seenBy}
+          activityLog={activityLog}
+        />
+      </TimelineBase>
     </Section>
   );
 };

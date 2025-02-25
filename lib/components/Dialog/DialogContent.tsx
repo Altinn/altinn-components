@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 import {
   Byline,
   DialogActivityLog,
@@ -7,9 +7,9 @@ import {
   type DialogSeenByProps,
   MetaBase,
   Section,
-  TimelineSection,
+  TimelineBase,
   Typography,
-} from '..';
+} from "..";
 
 export interface DialogContentProps {
   updatedAt?: string;
@@ -21,9 +21,15 @@ export interface DialogContentProps {
 
 /** Main content of a dialog */
 
-export const DialogContent = ({ updatedAt, updatedAtLabel, seenBy, activityLog, children }: DialogContentProps) => {
+export const DialogContent = ({
+  updatedAt,
+  updatedAtLabel,
+  seenBy,
+  activityLog,
+  children,
+}: DialogContentProps) => {
   return (
-    <TimelineSection>
+    <TimelineBase>
       <Section spacing={4} margin="section">
         <div>
           <Byline datetime={updatedAt}>{updatedAtLabel}</Byline>
@@ -34,6 +40,6 @@ export const DialogContent = ({ updatedAt, updatedAtLabel, seenBy, activityLog, 
           {activityLog && <DialogActivityLog {...activityLog} />}
         </MetaBase>
       </Section>
-    </TimelineSection>
+    </TimelineBase>
   );
 };

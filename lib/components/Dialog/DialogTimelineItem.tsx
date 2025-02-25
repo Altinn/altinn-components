@@ -2,7 +2,7 @@
 import type { ReactNode } from "react";
 import {
   ListBase,
-  TimelineSection,
+  TimelineItem,
   Transmission,
   type TransmissionProps,
   Typography,
@@ -23,7 +23,7 @@ export const DialogTimelineItem = ({
   items,
 }: DialogTimelineItemProps) => {
   return (
-    <TimelineSection
+    <TimelineItem
       size="xs"
       color="neutral"
       datetime={updatedAt}
@@ -39,6 +39,6 @@ export const DialogTimelineItem = ({
           </ListBase>
         )}
       </Typography>
-    </TimelineSection>
+    </TimelineItem>
   );
 };

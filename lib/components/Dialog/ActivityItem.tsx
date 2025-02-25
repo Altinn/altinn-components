@@ -1,20 +1,19 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 import {
   type AvatarProps,
   type DialogAttachmentsProps,
   type DialogTransmissionsProps,
-  TimelineSection,
-  type TimelineSectionSize,
+  TimelineItem,
   Typography,
-} from '../';
+} from "../";
 
 // import { ActivityItemDetails } from "./ActivityItemDetails";
 
-export type ActivityItemType = 'information' | 'created' | 'closed' | 'opened';
+export type ActivityItemType = "information" | "created" | "closed" | "opened";
 
 export interface ActivityItemProps {
   type?: ActivityItemType;
-  size?: TimelineSectionSize;
+  size?: TimelineItemSize;
   createdAt?: string;
   createdAtLabel?: string;
   createdBy?: AvatarProps;
@@ -25,16 +24,16 @@ export interface ActivityItemProps {
   children?: ReactNode;
 }
 
-const typeToSize: Record<ActivityItemType, TimelineSectionSize> = {
-  information: 'sm',
-  created: 'xs',
-  closed: 'xs',
-  opened: 'xs',
+const typeToSize: Record<ActivityItemType, TimelineItemSize> = {
+  information: "sm",
+  created: "xs",
+  closed: "xs",
+  opened: "xs",
 };
 
 export const ActivityItem = ({
   type,
-  size = 'sm',
+  size = "sm",
   createdBy,
   createdAt,
   createdAtLabel,
@@ -44,17 +43,20 @@ export const ActivityItem = ({
   const applicableSize = (type && typeToSize[type]) || size;
 
   return (
-    <TimelineSection
+    <TimelineItem
       color="neutral"
       size={applicableSize}
       datetime={createdAt}
       dateline={createdAtLabel}
       byline={createdBy?.name}
-      avatar={applicableSize !== 'xs' ? createdBy : undefined}
+      avatar={applicableSize !== "xs" ? createdBy : undefined}
     >
-      <Typography variant={applicableSize === 'xs' ? 'subtle' : 'default'} size={applicableSize === 'xs' ? 'sm' : 'md'}>
+      <Typography
+        variant={applicableSize === "xs" ? "subtle" : "default"}
+        size={applicableSize === "xs" ? "sm" : "md"}
+      >
         {children || description}
       </Typography>
-    </TimelineSection>
+    </TimelineItem>
   );
 };

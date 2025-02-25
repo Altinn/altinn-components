@@ -1,49 +1,79 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Timeline } from './';
+import type { Meta, StoryObj } from "@storybook/react";
+import {
+  Timeline,
+  TimelineBase,
+  TimelineItem,
+  Byline,
+  Transmission,
+  ListBase,
+} from "..";
+import {
+  CircleFillIcon,
+  DiamondFillIcon,
+  SquareFillIcon,
+} from "@navikt/aksel-icons";
 
 const meta = {
-  title: 'Timeline/Timeline',
+  title: "Timeline/Avatars",
   component: Timeline,
-  tags: ['autodocs', 'beta'],
+  tags: ["autodocs", "beta"],
   parameters: {},
   args: {
     items: [
       {
-        children: 'Timeline section',
-      },
-      {
-        datetime: '2024-12-12 11:15',
-        dateline: '12. desember 2024',
-        children: 'With byline',
-      },
-      {
-        size: 'sm',
-        avatar: {
-          name: 'Per Person',
+        id: "1",
+        avatarGroup: {
+          items: [
+            {
+              name: "A",
+            },
+            {
+              name: "B",
+            },
+            {
+              name: "C",
+            },
+          ],
         },
-        datetime: '2024-12-12 11:15',
-        dateline: '12. desember 2024',
-        children: 'XS avatar and byline',
+        children: "Content only",
       },
       {
-        size: 'sm',
-        avatar: {
-          name: 'Per Person',
-        },
-        datetime: '2024-12-12 11:15',
-        dateline: '12. desember 2024',
-        children: 'Small avatar and byline',
+        id: "2",
+        datetime: "2024-12-12 11:15",
+        byline: "12. desember 2024",
+        children: "With byline",
       },
       {
-        size: 'lg',
+        id: "3",
         avatar: {
-          type: 'company',
-          name: 'Bergen bar',
+          name: "Per Person",
         },
-        byline: 'Bergen bar',
-        datetime: '2024-12-12 11:15',
-        dateline: '12. desember 2024',
-        children: 'Large avatar and byline',
+        datetime: "2024-12-12 11:15",
+        byline: "12. desember 2024",
+        children: "XS avatar and byline",
+      },
+      {
+        id: "4",
+        avatar: {
+          name: "Per Person",
+        },
+        datetime: "2024-12-12 11:15",
+        byline: "12. desember 2024",
+        children: "Small avatar and byline",
+      },
+      {
+        id: "5",
+        avatar: {
+          type: "company",
+          name: "Bergen bar",
+        },
+        datetime: "2024-12-12 11:15",
+        byline: (
+          <>
+            <strong>Bergen Bar, </strong> 12. desember 2024
+          </>
+        ),
+        children: "Large avatar and byline",
       },
     ],
   },
@@ -56,8 +86,45 @@ export const Default: Story = {
   args: {},
 };
 
-export const ActivityLog: Story = {
-  args: {
-    items: [{}],
-  },
+export const Composition = () => {
+  return (
+    <Timeline>
+      <TimelineBase icon={CircleFillIcon}>
+        <Byline>
+          <strong>Dialogen ble opprettet, </strong> i går kl 14.00
+        </Byline>
+      </TimelineBase>
+      <TimelineBase>
+        <p>Noe skjedde, men det har vi skjult.</p>
+      </TimelineBase>
+      <TimelineItem
+        avatar={{ name: "Kari Nordmann" }}
+        byline={
+          <>
+            <strong>Kari Nordmann, </strong> mandag kl 7
+          </>
+        }
+      >
+        <ListBase>
+          <Transmission />
+          <Transmission />
+          <Transmission />
+        </ListBase>
+      </TimelineItem>
+      <TimelineItem
+        byline={
+          <>
+            <strong>Skattetaten, </strong> mandag kl 7
+          </>
+        }
+      >
+        <ListBase>
+          <Transmission />
+          <Transmission />
+          <Transmission />
+        </ListBase>
+      </TimelineItem>
+      <TimelineItem icon={CircleFillIcon}>asdasdsa</TimelineItem>
+    </Timeline>
+  );
 };
