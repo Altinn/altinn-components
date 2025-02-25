@@ -1,24 +1,22 @@
 import { Byline, Typography, TimelineBase, type TimelineBaseProps } from "..";
-import { CircleFillIcon } from "@navikt/aksel-icons";
 
 export interface TimelineItemProps extends TimelineBaseProps {
+  size?: "sm" | "md";
   datetime?: string;
   byline?: string;
 }
 
 export const TimelineItem = ({
-  icon = CircleFillIcon,
+  size,
   datetime,
   byline,
   children,
   ...props
 }: TimelineItemProps) => {
   return (
-    <TimelineBase {...props} icon={icon}>
-      <Byline datetime={datetime}>{byline}</Byline>
-      <Typography size="md">
-        <p>{children}</p>
-      </Typography>
+    <TimelineBase {...props}>
+      {byline && <Byline datetime={datetime}>{byline}</Byline>}
+      {children && <Typography size={size}>{children}</Typography>}
     </TimelineBase>
   );
 };

@@ -6,97 +6,30 @@ import {
   Byline,
   Transmission,
   ListBase,
+  Typography,
+  AvatarGroup,
 } from "..";
 import {
   CircleFillIcon,
+  EyeIcon,
   DiamondFillIcon,
   SquareFillIcon,
 } from "@navikt/aksel-icons";
 
 const meta = {
-  title: "Timeline/Avatars",
+  title: "Timeline/Timeline",
   component: Timeline,
   tags: ["autodocs", "beta"],
   parameters: {},
-  args: {
-    items: [
-      {
-        id: "1",
-        avatarGroup: {
-          items: [
-            {
-              name: "A",
-            },
-            {
-              name: "B",
-            },
-            {
-              name: "C",
-            },
-          ],
-        },
-        children: "Content only",
-      },
-      {
-        id: "2",
-        datetime: "2024-12-12 11:15",
-        byline: "12. desember 2024",
-        children: "With byline",
-      },
-      {
-        id: "3",
-        avatar: {
-          name: "Per Person",
-        },
-        datetime: "2024-12-12 11:15",
-        byline: "12. desember 2024",
-        children: "XS avatar and byline",
-      },
-      {
-        id: "4",
-        avatar: {
-          name: "Per Person",
-        },
-        datetime: "2024-12-12 11:15",
-        byline: "12. desember 2024",
-        children: "Small avatar and byline",
-      },
-      {
-        id: "5",
-        avatar: {
-          type: "company",
-          name: "Bergen bar",
-        },
-        datetime: "2024-12-12 11:15",
-        byline: (
-          <>
-            <strong>Bergen Bar, </strong> 12. desember 2024
-          </>
-        ),
-        children: "Large avatar and byline",
-      },
-    ],
-  },
+  args: {},
 } satisfies Meta<typeof Timeline>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  args: {},
-};
-
 export const Composition = () => {
   return (
     <Timeline>
-      <TimelineBase icon={CircleFillIcon}>
-        <Byline>
-          <strong>Dialogen ble opprettet, </strong> i går kl 14.00
-        </Byline>
-      </TimelineBase>
-      <TimelineBase>
-        <p>Noe skjedde, men det har vi skjult.</p>
-      </TimelineBase>
       <TimelineItem
         avatar={{ name: "Kari Nordmann" }}
         byline={
@@ -105,26 +38,46 @@ export const Composition = () => {
           </>
         }
       >
-        <ListBase>
-          <Transmission />
-          <Transmission />
-          <Transmission />
-        </ListBase>
+        <p>En samtale med Skatteetaten.</p>
       </TimelineItem>
       <TimelineItem
+        icon={CircleFillIcon}
         byline={
           <>
             <strong>Skattetaten, </strong> mandag kl 7
           </>
         }
       >
-        <ListBase>
-          <Transmission />
-          <Transmission />
-          <Transmission />
+        <ListBase style={{ marginTop: ".5rem" }}>
+          <Transmission
+            title="Tilbakemelding 2"
+            sender={{ type: "company", name: "Skatteetaten" }}
+          />
+          <Transmission
+            title="Tilbakemelding 1"
+            sender={{ type: "company", name: "Skatteetaten" }}
+          />
+          <Transmission
+            title="Leveranse levert"
+            sender={{ name: "Klara Klok" }}
+          />
         </ListBase>
       </TimelineItem>
-      <TimelineItem icon={CircleFillIcon}>asdasdsa</TimelineItem>
+      <TimelineItem
+        border="dashed"
+        size="sm"
+        icon={DiamondFillIcon}
+        byline="14.–18. august"
+      >
+        <p>
+          <a href="#">Sett av 5 personer</a>
+        </p>
+      </TimelineItem>
+      <TimelineBase borderHidden icon={CircleFillIcon}>
+        <Byline>
+          <strong>Dialogen ble opprettet, </strong> i går kl 14.00
+        </Byline>
+      </TimelineBase>
     </Timeline>
   );
 };

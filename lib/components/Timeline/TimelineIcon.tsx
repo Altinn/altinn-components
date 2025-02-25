@@ -11,16 +11,16 @@ import {
 
 export interface TimelineIconProps {
   icon?: SvgElement;
-  theme?: Theme;
-  color?: Color;
+  iconTheme?: Theme;
+  iconColor?: Color;
   avatar?: AvatarProps;
   avatarGroup?: AvatarGroupProps;
 }
 
 export const TimelineIcon = ({
   icon,
-  color,
-  theme,
+  iconColor,
+  iconTheme = "surface",
   avatar,
   avatarGroup,
 }: TimelineIconProps) => {
@@ -36,5 +36,7 @@ export const TimelineIcon = ({
     return <Avatar {...avatar} size="sm" />;
   }
 
-  return <Icon svgElement={icon} color={color} theme={theme} size="sm" />;
+  return (
+    <Icon svgElement={icon} color={iconColor} theme={iconTheme} size="sm" />
+  );
 };

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { TimelineBorder, TimelineIcon } from "..";
+import { TimelineBorder, type TimelineBorderVariant, TimelineIcon } from "..";
 import type {
   Color,
   Theme,
@@ -11,16 +11,21 @@ import styles from "./timelineBase.module.css";
 
 export interface TimelineBaseProps {
   loading?: boolean;
-  border?: boolean;
+  border?: TimelineBorderVariant;
+  borderHidden?: boolean;
   color?: Color;
   theme?: Theme;
   icon?: SvgElement;
+  iconColor?: Color;
+  iconTheme?: Theme;
   avatar?: AvatarProps;
   avatarGroup?: AvatarGroupProps;
   children?: ReactNode;
 }
 
 export const TimelineBase = ({
+  border = "solid",
+  borderHidden,
   color,
   icon,
   avatar,
@@ -33,7 +38,7 @@ export const TimelineBase = ({
         {(icon || avatar || avatarGroup) && (
           <TimelineIcon icon={icon} avatar={avatar} avatarGroup={avatarGroup} />
         )}
-        <TimelineBorder />
+        {!borderHidden && <TimelineBorder variant={border} />}
       </aside>
       <div className={styles.content}>{children}</div>
     </section>

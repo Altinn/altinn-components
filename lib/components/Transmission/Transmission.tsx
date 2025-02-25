@@ -41,7 +41,7 @@ export const Transmission = ({
       {...item}
       avatar={sender}
       badge={type}
-      size="xs"
+      size="sm"
       theme="subtle"
       color="neutral"
       expanded={expanded}
