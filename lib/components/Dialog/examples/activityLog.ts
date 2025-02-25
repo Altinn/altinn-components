@@ -8,6 +8,7 @@ export const activityLogItems: DialogActivityProps[] = [
     description: "Dialogen ble opprettet.",
   },
   {
+    size: "md",
     type: "information",
     createdBy: skatt,
     createdAt: "2023-03-11 08:00",
@@ -21,6 +22,22 @@ export const activityLogItems: DialogActivityProps[] = [
       "Varsling ble sendt til deg, Aune Heggebø og Felix Horn Myhre.",
   },
   {
+    transmissions: [
+      {
+        id: "2",
+        sender: skatt,
+        createdAt: "2023-03-12 14:45",
+        createdAtLabel: "12. mars 2023 kl 14.40",
+        title: "Tilbakemelding på tredjepartsopplysninger.",
+        badge: {
+          theme: "surface-active",
+          color: "company",
+          label: "Godkjent",
+        },
+      },
+    ],
+  },
+  {
     createdAt: "2023-03-11 09:05",
     createdAtLabel: "11. mars 2023 kl 09.05",
     description: "Dialogen ble åpnet av Felix Horn Myhre.",
@@ -29,6 +46,16 @@ export const activityLogItems: DialogActivityProps[] = [
     createdAt: "2023-03-12 09:15",
     createdAtLabel: "12. mars 2023 kl 09.15",
     description: "Dialogen ble åpnet av deg.",
+  },
+  {
+    size: "md",
+    type: "information",
+    createdBy: {
+      name: "Aune Heggebø",
+    },
+    createdAt: "2023-03-12 14:40",
+    createdAtLabel: "12. mars 2023 kl 14.40",
+    description: "Skattemeldingen ble levert.",
   },
   {
     createdAt: "2023-03-12 11:22",
@@ -41,13 +68,18 @@ export const activityLogItems: DialogActivityProps[] = [
     description: "Dialogen ble send til innsending.",
   },
   {
-    type: "information",
-    createdBy: {
-      name: "Aune Heggebø",
-    },
-    createdAt: "2023-03-12 14:40",
-    createdAtLabel: "12. mars 2023 kl 14.40",
-    description: "Skattemeldingen ble levert.",
+    transmissions: [
+      {
+        id: "2",
+        sender: {
+          name: "Mette Saltnes",
+        },
+        createdAt: "2023-03-12 14:45",
+        createdAtLabel: "12. mars 2023 kl 14.40",
+        title: "Innsending av tredjepartsopplysninger",
+        badge: {},
+      },
+    ],
   },
   {
     type: "information",

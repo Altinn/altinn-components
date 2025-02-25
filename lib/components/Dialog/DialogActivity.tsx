@@ -9,6 +9,8 @@ import {
   TransmissionList,
   type TransmissionProps,
   type BadgeProps,
+  type Color,
+  type SvgElement,
 } from "../";
 
 export interface DialogActivityBadge {
@@ -21,6 +23,8 @@ export type DialogActivitySize = "sm" | "md";
 export interface DialogActivityProps {
   type?: string;
   size?: DialogActivitySize;
+  icon?: SvgElement;
+  color?: Color;
   badge?: BadgeProps;
   createdAt?: string;
   createdAtLabel?: string;
@@ -33,7 +37,10 @@ export interface DialogActivityProps {
 
 export const DialogActivity = ({
   type,
+  icon = CircleFillIcon,
+  color = "neutral",
   size = "sm",
+  //  size = "sm",
   createdBy,
   createdAt,
   createdAtLabel,
@@ -41,13 +48,13 @@ export const DialogActivity = ({
   transmissions,
   children,
 }: DialogActivityProps) => {
-  const applicableSize = type === "information" ? "md" : "sm";
+  //  const applicableSize = type === "information" ? "md" : "sm";
 
   return (
     <TimelineBase
-      color="neutral"
-      icon={CircleFillIcon}
-      avatar={applicableSize === "md" ? createdBy : undefined}
+      color={color}
+      icon={icon}
+      avatar={size === "md" ? createdBy : undefined}
     >
       <Section style={{ marginBottom: ".5em" }}>
         {createdAtLabel && (

@@ -14,6 +14,56 @@ export const transmissionsHistoryItems: DialogActivityProps[] = [
     ],
   },
   {
+    color: "company",
+    transmissions: [
+      {
+        id: "2",
+        sender: skatt,
+        createdAt: "2023-03-12 14:45",
+        createdAtLabel: "12. mars 2023 kl 14.40",
+        title: "Tilbakemelding.",
+        badge: {
+          theme: "surface-active",
+          color: "company",
+          label: "Godkjent",
+        },
+      },
+      {
+        id: "2",
+        sender: skatt,
+        createdAt: "2023-03-12 14:45",
+        createdAtLabel: "12. mars 2023 kl 14.40",
+        title: "Tilbakemelding.",
+        badge: {
+          theme: "surface-active",
+          color: "company",
+          label: "Godkjent",
+        },
+      },
+      {
+        id: "2",
+        sender: skatt,
+        createdAt: "2023-03-12 14:45",
+        createdAtLabel: "12. mars 2023 kl 14.40",
+        title: "Tilbakemelding.",
+        badge: {
+          theme: "surface-active",
+          color: "company",
+          label: "Godkjent",
+        },
+      },
+      {
+        id: "1",
+        sender: {
+          name: "Aune Heggebø",
+        },
+        createdAt: "2023-03-12 14:40",
+        createdAtLabel: "12. mars 2023 kl 14.40",
+        title: "Leveranse",
+      },
+    ],
+  },
+  {
     transmissions: [
       {
         id: "1",
@@ -22,23 +72,33 @@ export const transmissionsHistoryItems: DialogActivityProps[] = [
         },
         createdAt: "2023-03-12 14:40",
         createdAtLabel: "12. mars 2023 kl 14.40",
-        title: "Skattemeldingen ble levert.",
+        title: "Leveranse",
       },
     ],
   },
   {
-    createdBy: skatt,
-    createdAt: "2023-04-09 08:00",
-    createdAtLabel: "9. april 2023 kl 08.00",
-    description:
-      "Vi har mottatt nye opplysninger og oppdatert Skattemeldingen din.",
-  },
-  {
-    createdBy: {
-      name: "Aune Heggebø",
-    },
-    createdAt: "2023-07-02 12:45",
-    createdAtLabel: "2. juli 2023 kl 12.45",
-    description: "Skattemeldingen ble levert.",
+    transmissions: [
+      {
+        id: "2",
+        sender: skatt,
+        createdAt: "2023-03-12 14:45",
+        createdAtLabel: "12. mars 2023 kl 14.40",
+        title: "Innsendingen din er avvist",
+        badge: {
+          theme: "surface-active",
+          color: "danger",
+          label: "Avvist",
+        },
+      },
+      {
+        id: "1",
+        sender: {
+          name: "Aune Heggebø",
+        },
+        createdAt: "2023-03-12 14:40",
+        createdAtLabel: "12. mars 2023 kl 14.40",
+        title: "Leveranse",
+      },
+    ],
   },
 ];

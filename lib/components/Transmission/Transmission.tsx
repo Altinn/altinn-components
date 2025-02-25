@@ -7,6 +7,7 @@ import {
   AttachmentList,
   type AvatarProps,
   type AttachmentListProps,
+  type BadgeProps,
 } from "..";
 
 export interface TransmissionType {
@@ -17,6 +18,7 @@ export interface TransmissionType {
 export interface TransmissionProps {
   id: string;
   type?: TransmissionType;
+  badge?: BadgeProps;
   createdAt?: string;
   createdAtLabel?: string;
   sender?: AvatarProps;
@@ -29,6 +31,7 @@ export const Transmission = ({
   type,
   createdAt,
   createdAtLabel,
+  badge,
   sender,
   summary,
   attachments,
@@ -40,7 +43,7 @@ export const Transmission = ({
     <ListItem
       {...item}
       avatar={sender}
-      badge={type}
+      badge={badge}
       size="xs"
       theme="subtle"
       color="neutral"

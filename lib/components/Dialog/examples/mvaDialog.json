@@ -1,0 +1,210 @@
+{
+  "status": null,
+  "sender": {
+    "name": "Skatteetaten",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-e16a4f384d1d5ed959e1d74f0626259711d67509-88x88-png",
+        "_type": "reference"
+      }
+    }
+  },
+  "summary": "Mva-meldingen viser XXX kroner å betale i merverdiavgift.",
+  "body": null,
+  "additionalInfo": {
+    "blocks": [
+      {
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "marks": [],
+            "text": "Skal virksomheten betale merverdiavgift?",
+            "_key": "246ba272f007"
+          }
+        ],
+        "_type": "block",
+        "style": "h2",
+        "_key": "81b08c55a1a9"
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "_key": "11ac19c7ca6a",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "marks": [],
+            "text": "Dersom den innsendte mva-meldingen viser at virksomheten skylder merverdiavgift for terminen, så skal betalingsinformasjonen nederst i denne kvitteringen benyttes. Merk at virksomheten ikke skal betale inn merverdiavgift som er under 100 kroner.",
+            "_key": "dfaf321c3b5d"
+          }
+        ]
+      },
+      {
+        "_type": "block",
+        "style": "h2",
+        "_key": "19d3ee53e7f1",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "2404bf6a5274",
+            "_type": "span",
+            "marks": [],
+            "text": "Får virksomheten tilbake merverdiavgift?"
+          }
+        ]
+      },
+      {
+        "_key": "0ed9a85d99d3",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "marks": [],
+            "text": "Dersom den innsendte mva-meldingen viser at virksomheten skal få tilbake merverdiavgift for terminen, så vil beløpet bli utbetalt innen kort tid. Merk at tilgodebeløp som er under 100 kroner ikke vil bli utbetalt.",
+            "_key": "ae808e27b667"
+          }
+        ],
+        "_type": "block",
+        "style": "normal"
+      },
+      {
+        "style": "h2",
+        "_key": "8818843c7dfe",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "marks": [],
+            "text": "Har virksomheten allerede betalt eller fått tilbake merverdiavgift for denne terminen?",
+            "_key": "f6e54037bdc5"
+          }
+        ],
+        "_type": "block"
+      },
+      {
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "marks": [],
+            "text": "Hvis virksomheten tidligere har fått tilbake merverdiavgift for terminen, og den innsendte mva-meldingen nå fører til at virksomheten skylder merverdiavgift, så skal betalingsinformasjon nederst i denne kvitteringen benyttes.",
+            "_key": "541a5e6a0e3f"
+          }
+        ],
+        "_type": "block",
+        "style": "normal",
+        "_key": "b91c7286ae1b"
+      },
+      {
+        "style": "normal",
+        "_key": "70b5546b592f",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "marks": [],
+            "text": "Vær oppmerksom på at hvis virksomheten skylder merverdiavgift for andre terminer, så vil tilgodebeløpet brukes til å dekke skyldig beløp før eventuell utbetaling. Det samme gjelder dersom virksomheten skylder andre avgifter eller skatt.",
+            "_key": "1da0d169f61a"
+          }
+        ],
+        "_type": "block"
+      },
+      {
+        "children": [
+          { "_type": "span", "marks": [], "text": "\n", "_key": "e1593bb43339" }
+        ],
+        "_type": "block",
+        "style": "normal",
+        "_key": "753bd201bcaf",
+        "markDefs": []
+      }
+    ]
+  },
+  "history": [
+    {
+      "senderName": null,
+      "summary": "SILJE VICTORIA DUGSTAD SKARHOLM har sendt inn en mva-melding for FOSSLAND + FOSS AS.",
+      "description": null,
+      "attachments": null,
+      "id": "04e3be11-10a8-495c-9996-9de688c5653f",
+      "variant": "transmission",
+      "type": { "value": "submission", "label": "Innsending" },
+      "sender": {
+        "type": "company",
+        "name": "Tripletex",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-02cf80fbf1c8acff66ad67e51273987c11c0fdaa-225x225-png",
+            "_type": "reference"
+          }
+        }
+      },
+      "title": "Merverdiavgift termin 1 – 2023",
+      "relatedId": null,
+      "createdAt": null
+    },
+    {
+      "description": "Dialogen ble opprettet.",
+      "attachments": null,
+      "id": "0525a6fb-f81b-46ba-aea9-00108d0d5302",
+      "relatedId": null,
+      "variant": "activity",
+      "summary": null,
+      "createdAt": null,
+      "type": { "value": "created", "label": "Opprettet" },
+      "sender": null,
+      "senderName": null,
+      "title": null
+    },
+    {
+      "description": "Varsel ble sendt til inge@fosslandfoss.no; thord@fosslandfoss.no; nihad@gerhardogsonn.no; kontakt@fosslandfoss.no på e-post eller SMS.",
+      "attachments": null,
+      "variant": "activity",
+      "senderName": null,
+      "title": null,
+      "summary": null,
+      "id": "c4f474ef-15e2-45eb-8ad4-d20887525246",
+      "relatedId": null,
+      "createdAt": null,
+      "type": { "value": "information", "label": "Informasjon" },
+      "sender": null
+    },
+    {
+      "summary": "Mva-meldingen viser XXX kroner å betale i merverdiavgift.",
+      "description": null,
+      "createdAt": "2025-02-07T10:45:00.000Z",
+      "type": null,
+      "senderName": null,
+      "attachments": [{ "label": "Betalingsinformasjon.pdf" }],
+      "id": "38a60382-8cab-4659-a68c-f9635fc79a5f",
+      "relatedId": null,
+      "variant": "transmission",
+      "sender": {
+        "type": "company",
+        "name": "Skatteetaten",
+        "image": {
+          "asset": {
+            "_ref": "image-e16a4f384d1d5ed959e1d74f0626259711d67509-88x88-png",
+            "_type": "reference"
+          },
+          "_type": "image"
+        }
+      },
+      "title": "Merverdiavgift termin 1 – Betalingsinformasjon"
+    }
+  ],
+  "id": "5a69567e-f3bf-4953-9b98-9087ce286185",
+  "createdAt": "2025-02-07T10:40:00.000Z",
+  "updatedAt": null,
+  "dueAt": null,
+  "title": "Merverdiavgift termin 1 – 2023",
+  "attachments": [{ "label": "Betalingsinformasjon.pdf" }],
+  "actions": null,
+  "recipient": { "name": "Bergen Bar", "type": "company" },
+  "pathname": "inbox",
+  "seen": true
+}
