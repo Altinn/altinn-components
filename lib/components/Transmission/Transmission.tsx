@@ -1,6 +1,7 @@
-"use client";
-import { useState } from "react";
+'use client';
+import { useState, type ReactNode } from 'react';
 import {
+  Byline,
   Section,
   Typography,
   ListItem,
@@ -8,7 +9,7 @@ import {
   type AvatarProps,
   type AttachmentListProps,
   type BadgeProps,
-} from "..";
+} from '..';
 
 export interface TransmissionType {
   value: string;
@@ -17,6 +18,8 @@ export interface TransmissionType {
 
 export interface TransmissionProps {
   id: string;
+  datetime?: string;
+  dateline?: ReactNode;
   type?: TransmissionType;
   badge?: BadgeProps;
   createdAt?: string;
@@ -53,6 +56,9 @@ export const Transmission = ({
       linkIcon
     >
       <Section padding={4}>
+        <Byline>
+          <strong>{sender?.name + ', '}</strong> {createdAtLabel}
+        </Byline>
         <Typography size="md">
           <p>{summary}</p>
           {attachments?.items && <AttachmentList {...attachments} />}

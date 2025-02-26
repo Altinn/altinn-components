@@ -7,9 +7,9 @@ import {
   type SvgElement,
   type Theme,
   type Color,
-} from "..";
+} from '..';
 
-import styles from "./timelineIcon.module.css";
+import styles from './timelineIcon.module.css';
 
 export interface TimelineIconProps {
   icon?: SvgElement;
@@ -19,13 +19,7 @@ export interface TimelineIconProps {
   avatarGroup?: AvatarGroupProps;
 }
 
-export const TimelineIcon = ({
-  icon,
-  iconColor,
-  iconTheme,
-  avatar,
-  avatarGroup,
-}: TimelineIconProps) => {
+export const TimelineIcon = ({ icon, iconColor, iconTheme, avatar, avatarGroup }: TimelineIconProps) => {
   if (!icon && !avatar && !avatarGroup) {
     return null;
   }
@@ -35,16 +29,8 @@ export const TimelineIcon = ({
   }
 
   if (avatar) {
-    return <Avatar {...avatar} size="sm" />;
+    return <Avatar {...avatar} size={avatar.size || 'sm'} />;
   }
 
-  return (
-    <Icon
-      className={styles.icon}
-      svgElement={icon}
-      color={iconColor}
-      theme={iconTheme}
-      size="sm"
-    />
-  );
+  return <Icon className={styles.icon} svgElement={icon} color={iconColor} theme={iconTheme} size="sm" />;
 };

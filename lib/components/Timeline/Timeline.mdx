@@ -1,0 +1,32 @@
+import { Meta, Controls, Primary, Canvas } from "@storybook/blocks";
+import * as TimelineStories from "./Timeline.stories";
+
+<Meta title="Timeline" />
+
+# Using timeline
+
+Use `Timeline` to create activity logs and other time based lists. Timeline is used to 
+
+## ActivityLog
+
+Create logs by using `Timeline` and `TimelineActivity`:
+
+<Canvas of={TimelineStories.ActivityLog} />
+
+## Adding emphasis
+
+Use colors, avatars and strong labels to add emphasis:
+
+<Canvas of={TimelineStories.UsingAvatars} />
+
+## Collapsing elements
+
+Further explorations might be to collapse long logs.
+
+<Canvas of={TimelineStories.CollapsedElements} />
+
+## Creating a dialog.
+
+A dialog including transmissions, using `TimelineHeader`, `TimelineSection` and `TimelineFooter`:
+
+<Canvas of={TimelineStories.DialogHistory} />

@@ -1,13 +1,7 @@
-import type { ReactNode } from "react";
-import { TimelineBorder, type TimelineBorderVariant, TimelineIcon } from "..";
-import type {
-  Color,
-  Theme,
-  AvatarProps,
-  AvatarGroupProps,
-  SvgElement,
-} from "..";
-import styles from "./timelineBase.module.css";
+import type { ReactNode } from 'react';
+import { TimelineBorder, type TimelineBorderVariant, TimelineIcon, Byline, Section } from '..';
+import type { Color, Theme, AvatarProps, AvatarGroupProps, SvgElement, SectionProps } from '..';
+import styles from './timelineBase.module.css';
 
 export interface TimelineBaseProps {
   loading?: boolean;
@@ -18,14 +12,20 @@ export interface TimelineBaseProps {
   icon?: SvgElement;
   iconColor?: Color;
   iconTheme?: Theme;
+  datetime?: string;
   avatar?: AvatarProps;
   avatarGroup?: AvatarGroupProps;
+  label?: ReactNode;
+  margin?: SectionProps['margin'];
   children?: ReactNode;
 }
 
 export const TimelineBase = ({
-  border = "solid",
+  border = 'solid',
   borderHidden,
+  datetime,
+  label,
+  margin = 0,
   color,
   icon,
   avatar,
@@ -37,16 +37,15 @@ export const TimelineBase = ({
       <aside className={styles.sidebar}>
         {(icon || avatar || avatarGroup) && (
           <span className={styles.icon}>
-            <TimelineIcon
-              icon={icon}
-              avatar={avatar}
-              avatarGroup={avatarGroup}
-            />
+            <TimelineIcon icon={icon} avatar={avatar} avatarGroup={avatarGroup} />
           </span>
         )}
         {!borderHidden && <TimelineBorder variant={border} />}
       </aside>
-      <div className={styles.content}>{children}</div>
+      <div className={styles.content}>
+        {label && <Byline datetime={datetime}>{label}</Byline>}
+        <Section margin={margin}>{children}</Section>
+      </div>
     </section>
   );
 };

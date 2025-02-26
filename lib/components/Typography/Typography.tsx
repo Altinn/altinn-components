@@ -5,6 +5,7 @@ import styles from './typography.module.css';
 export type TypographyColor = 'neutral' | 'company' | 'person' | 'article';
 export type TypographyVariant = 'default' | 'subtle';
 export type TypographySize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type TypographyMargin = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export interface TypographyProps {
   loading?: boolean;

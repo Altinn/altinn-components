@@ -1,7 +1,7 @@
-import type { Color, Theme } from "..";
-import styles from "./timelineBorder.module.css";
+import type { Color, Theme } from '..';
+import styles from './timelineBorder.module.css';
 
-export type TimelineBorderVariant = "solid" | "dotted";
+export type TimelineBorderVariant = 'solid' | 'dashed' | 'none';
 
 export interface TimelineBorderProps {
   variant?: TimelineBorderVariant;
@@ -9,17 +9,9 @@ export interface TimelineBorderProps {
   theme?: Theme;
 }
 
-export const TimelineBorder = ({
-  variant,
-  color,
-  theme,
-}: TimelineBorderProps) => {
-  return (
-    <div
-      className={styles.border}
-      data-variant={variant}
-      data-color={color}
-      data-theme={theme}
-    />
-  );
+export const TimelineBorder = ({ variant, color, theme }: TimelineBorderProps) => {
+  if (variant === 'none') {
+    return;
+  }
+  return <div className={styles.border} data-variant={variant} data-color={color} data-theme={theme} />;
 };

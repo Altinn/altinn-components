@@ -47,6 +47,7 @@ const preview: Preview = {
           "Menu",
           "List",
           "Timeline",
+          "Transmission",
           "Dialog",
           [
             "Docs",
@@ -58,7 +59,6 @@ const preview: Preview = {
             "DialogList",
             "DialogListItem",
           ],
-          "Transmission",
         ],
       },
     },
