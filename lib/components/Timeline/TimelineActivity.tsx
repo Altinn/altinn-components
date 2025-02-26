@@ -5,7 +5,7 @@ import { CircleFillIcon } from '@navikt/aksel-icons';
 export interface TimelineActivityProps extends TimelineBaseProps {
   icon?: SvgElement;
   datetime?: string;
-  label?: ReactNode;
+  dateline?: ReactNode;
 }
 
 export const TimelineActivity = ({

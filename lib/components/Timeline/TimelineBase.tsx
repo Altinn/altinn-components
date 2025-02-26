@@ -13,9 +13,9 @@ export interface TimelineBaseProps {
   iconColor?: Color;
   iconTheme?: Theme;
   datetime?: string;
+  dateline?: ReactNode;
   avatar?: AvatarProps;
   avatarGroup?: AvatarGroupProps;
-  label?: ReactNode;
   margin?: SectionProps['margin'];
   children?: ReactNode;
 }
@@ -24,7 +24,7 @@ export const TimelineBase = ({
   border = 'solid',
   borderHidden,
   datetime,
-  label,
+  dateline,
   margin = 0,
   color,
   icon,
@@ -43,7 +43,7 @@ export const TimelineBase = ({
         {!borderHidden && <TimelineBorder variant={border} />}
       </aside>
       <div className={styles.content}>
-        {label && <Byline datetime={datetime}>{label}</Byline>}
+        {dateline && <Byline datetime={datetime}>{dateline}</Byline>}
         <Section margin={margin}>{children}</Section>
       </div>
     </section>

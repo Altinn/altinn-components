@@ -28,27 +28,27 @@ export default meta;
 export const ActivityLog = () => {
   return (
     <Timeline>
-      <TimelineActivity label="Today, 14:10">
+      <TimelineActivity dateline="Today, 14:10">
         <Typography>
           <p>End of conversation.</p>
         </Typography>
       </TimelineActivity>
-      <TimelineActivity label="Yesterday">
+      <TimelineActivity dateline="Yesterday">
         <Typography>
           <p>Activity 4.</p>
         </Typography>
       </TimelineActivity>
-      <TimelineActivity label="A week ago">
+      <TimelineActivity dateline="A week ago">
         <Typography>
           <p>Activity 3.</p>
         </Typography>
       </TimelineActivity>
-      <TimelineActivity label="2 weeks ago">
+      <TimelineActivity dateline="2 weeks ago">
         <Typography>
           <p>Activity 2.</p>
         </Typography>
       </TimelineActivity>
-      <TimelineActivity label="Last year">
+      <TimelineActivity dateline="Last year">
         <Typography>
           <p>Start of conversation.</p>
         </Typography>
@@ -63,7 +63,7 @@ export const UsingAvatars = () => {
       <TimelineActivity
         avatar={skatt}
         color="company"
-        label={
+        dateline={
           <>
             <strong>Skattetaten,</strong> today
           </>
@@ -73,17 +73,17 @@ export const UsingAvatars = () => {
           <p>End of conversation.</p>
         </Typography>
       </TimelineActivity>
-      <TimelineActivity label="Yesterday">
+      <TimelineActivity dateline="Yesterday">
         <Typography>
           <p>Some description.</p>
         </Typography>
       </TimelineActivity>
-      <TimelineActivity label="A week ago">
+      <TimelineActivity dateline="A week ago">
         <Typography>
           <p>Some description.</p>
         </Typography>
       </TimelineActivity>
-      <TimelineActivity label="2 weeks ago">
+      <TimelineActivity dateline="2 weeks ago">
         <Typography>
           <p>Some description.</p>
         </Typography>
@@ -93,7 +93,7 @@ export const UsingAvatars = () => {
           type: 'person',
           name: 'Kari Nordmann',
         }}
-        label={
+        dateline={
           <>
             <strong>Kari Nordmann,</strong> last year
           </>
@@ -107,13 +107,13 @@ export const UsingAvatars = () => {
   );
 };
 
-export const CollapsedElements = () => {
+export const CollapsingElements = () => {
   return (
     <Timeline>
       <TimelineActivity
         avatar={skatt}
         color="company"
-        label={
+        dateline={
           <>
             <strong>Skattetaten,</strong> today
           </>
@@ -123,7 +123,7 @@ export const CollapsedElements = () => {
           <p>End of conversation.</p>
         </Typography>
       </TimelineActivity>
-      <TimelineActivity icon={DiamondFillIcon} border="dashed" margin="page" label="2 weeks ago – last year">
+      <TimelineActivity icon={DiamondFillIcon} border="dashed" margin="page" dateline="2 weeks ago – last year">
         <Typography>
           <Button variant="outline">Show all</Button>
         </Typography>
@@ -133,7 +133,7 @@ export const CollapsedElements = () => {
           type: 'person',
           name: 'Kari Nordmann',
         }}
-        label={
+        dateline={
           <>
             <strong>Kari Nordmann,</strong> last year
           </>

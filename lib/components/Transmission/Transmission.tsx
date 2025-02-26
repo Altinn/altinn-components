@@ -5,6 +5,7 @@ import {
   Section,
   Typography,
   ListItem,
+  type ListItemProps,
   AttachmentList,
   type AvatarProps,
   type AttachmentListProps,
@@ -16,7 +17,7 @@ export interface TransmissionType {
   label: string;
 }
 
-export interface TransmissionProps {
+export interface TransmissionProps extends ListItemProps {
   id: string;
   datetime?: string;
   dateline?: ReactNode;
@@ -31,6 +32,9 @@ export interface TransmissionProps {
 }
 
 export const Transmission = ({
+  size = 'xs',
+  theme = 'subtle',
+  color = 'neutral',
   type,
   createdAt,
   createdAtLabel,
@@ -47,9 +51,9 @@ export const Transmission = ({
       {...item}
       avatar={sender}
       badge={badge}
-      size="xs"
-      theme="subtle"
-      color="neutral"
+      size={size}
+      theme={theme}
+      color={color}
       expanded={expanded}
       onClick={() => setExpanded((prevState) => !prevState)}
       collapsible
