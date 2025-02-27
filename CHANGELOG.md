@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.19.2](https://github.com/Altinn/altinn-components/compare/v0.19.1...v0.19.2) (2025-02-27)
+
+
+### Bug Fixes
+
+* Page tabs selected ([#279](https://github.com/Altinn/altinn-components/issues/279)) ([ab6f2e1](https://github.com/Altinn/altinn-components/commit/ab6f2e1f630869eba877ea08b648410f45c0ecbb))
+
 ## [0.19.1](https://github.com/Altinn/altinn-components/compare/v0.19.0...v0.19.1) (2025-02-27)
 
 
