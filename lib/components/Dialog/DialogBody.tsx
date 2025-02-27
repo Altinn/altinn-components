@@ -3,13 +3,11 @@ import type { ReactNode } from 'react';
 import {
   type AvatarProps,
   type DialogActivityLogProps,
-  DialogByline,
   DialogMetadata,
   type DialogSeenByProps,
-  Section,
-  Skeleton,
+  Timeline,
+  TimelineHeader,
   TimelineSection,
-  Typography,
 } from '..';
 
 export interface DialogBodyProps {
@@ -21,8 +19,6 @@ export interface DialogBodyProps {
   loading?: boolean;
   /** Loading text */
   loadingText?: string;
-  /** Group sender and recipient */
-  grouped?: boolean;
   /** Updated date time */
   updatedAt?: string;
   /** Updated label */
@@ -48,7 +44,6 @@ export interface DialogBodyProps {
 export const DialogBody = ({
   loading,
   loadingText = 'Loading ...',
-  grouped,
   sender,
   recipient,
   recipientLabel,
@@ -59,32 +54,21 @@ export const DialogBody = ({
   activityLog,
 }: DialogBodyProps) => {
   return (
-    <Section spacing={6}>
-      <DialogByline
-        size="lg"
-        sender={sender}
-        recipient={recipient}
-        recipientLabel={recipientLabel}
-        grouped={grouped}
+    <Timeline>
+      <TimelineHeader loading={loading} avatar={sender}>
+        <strong>{sender.name}</strong>
+        {recipientLabel + ' ' + recipient?.name}
+      </TimelineHeader>
+      <TimelineSection
         loading={loading}
-      />
-
-      <TimelineSection isSeenByEndUser={seenBy?.seenByEndUser}>
-        <Section spacing={4} margin="section">
-          <div>
-            <DialogMetadata loading={loading} updatedAt={updatedAt} updatedAtLabel={updatedAtLabel} />
-            <Typography loading={loading} size="md">
-              {(loading && (
-                <p>
-                  <Skeleton loading={loading}>{loadingText}</Skeleton>
-                </p>
-              )) ||
-                children}
-            </Typography>
-          </div>
-          <DialogMetadata loading={loading} seenBy={seenBy} activityLog={activityLog} />
-        </Section>
+        footer={<DialogMetadata loading={loading} seenBy={seenBy} activityLog={activityLog} />}
+        datetime={updatedAt}
+        byline={updatedAtLabel}
+        spacing={4}
+        color={loading ? 'neutral' : undefined}
+      >
+        {children || loadingText}
       </TimelineSection>
-    </Section>
+    </Timeline>
   );
 };

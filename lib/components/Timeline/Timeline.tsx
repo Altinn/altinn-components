@@ -1,19 +1,10 @@
-import { TimelineBase, TimelineSection, type TimelineSectionProps } from '.';
+import type { ReactNode } from 'react';
+import { Section } from '..';
 
 export interface TimelineProps {
-  items: TimelineSectionProps[];
+  children?: ReactNode;
 }
 
-export const Timeline = ({ items }: TimelineProps) => {
-  return (
-    <TimelineBase>
-      {items?.map((item, index) => {
-        return (
-          <TimelineSection {...item} key={index}>
-            {item.children}
-          </TimelineSection>
-        );
-      })}
-    </TimelineBase>
-  );
+export const Timeline = ({ children }: TimelineProps) => {
+  return <Section spacing={2}>{children}</Section>;
 };

@@ -1,7 +1,4 @@
 export * from './dialogContextMenu';
-export * from './dialogHistoryItems';
-
-export * from './transmissionList';
 
 export * from './simpleLetterDialog';
 export * from './extendedLetterDialog';
@@ -12,8 +9,7 @@ export * from './reportingDraftDialog';
 export * from './reportingInProgressDialog';
 export * from './reportingCompletedDialog';
 
-export * from './transmissionsDialog';
-export * from './transmissionsInProgressDialog';
-export * from './transmissionsCompletedDialog';
-
 export * from './dialogListItems';
+
+export * from './activityLog';
+export * from './history';

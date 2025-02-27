@@ -18,8 +18,6 @@ import {
   type DialogHistoryProps,
   DialogSection,
   type DialogSectionProps,
-  DialogTimeline,
-  type DialogTimelineProps,
   PageBase,
   PageMenu,
   type PageMenuProps,
@@ -48,8 +46,8 @@ export interface DialogProps extends DialogHeaderProps, DialogBodyProps {
   attachments?: DialogAttachmentsProps;
   /** Dialog history */
   history?: DialogHistoryProps;
-  /** Dialog timeline */
-  timeline?: DialogTimelineProps;
+  /** Dialog transmissions */
+  transmissions?: DialogHistoryProps;
   /** More information about the dialog, process, etc. */
   additionalInfo?: DialogSectionProps;
   /** Contact information. */
@@ -82,7 +80,7 @@ export const Dialog = ({
   seenBy,
   activityLog,
   history,
-  timeline,
+  transmissions,
   additionalInfo,
   contactInfo,
 }: DialogProps) => {
@@ -117,10 +115,9 @@ export const Dialog = ({
             {actions?.length > 0 && <DialogActions items={actions} />}
           </DialogBody>
 
-          {timeline && <DialogTimeline {...timeline} />}
+          {transmissions && <DialogHistory {...transmissions} collapsible={true} />}
 
           {additionalInfo && <DialogSection>{additionalInfo?.children}</DialogSection>}
-
           {contactInfo && <ContactSection {...contactInfo} />}
         </Article>
       </Section>

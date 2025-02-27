@@ -4,7 +4,7 @@ import * as DialogHeader from "./DialogHeader.stories";
 import * as DialogBody from "./DialogBody.stories";
 import * as DialogHistory from "./DialogHistory.stories";
 
-<Meta title="Dialog/2. Full dialog" />
+<Meta title="Dialog" />
 
 # Anatomy of a dialog
 
@@ -32,20 +32,12 @@ The body may include one or more call-to-actions:
 
 ## DialogHistory
 
-The history is a curated list of events that has happened in the past, informing the user of important events that has led to the current dialog. The history is presented between the header and body.
+The history is a curated list of activities and/or transmissions that has happened in the past, informing the user of important events that has led to the current state of the dialog.
 
 <Canvas of={DialogHistory.Default} />
-
-History can be expanded and collapsed.
-
-<Canvas of={DialogHistory.Collapsible} />
 
 ## Putting it together
 
 The following is a dialog with history that has been completed. It includes a single attachment and an action. Underneath the body, users are presented with a section explaining what the process is about.
 
 <Canvas of={DialogStories.WithHistory} />
-
-## DialogTransmissions
-
-Transmissions are individual pieces of information that have been sent

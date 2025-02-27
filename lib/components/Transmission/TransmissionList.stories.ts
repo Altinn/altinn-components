@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { transmissionList } from '../../../examples';
+import { transmissionListItems } from '../../../examples/transmission';
 import { TransmissionList } from './TransmissionList';
 
 const meta = {
@@ -8,7 +8,7 @@ const meta = {
   tags: ['autodocs', 'beta'],
   parameters: {},
   args: {
-    items: transmissionList,
+    items: transmissionListItems,
   },
 } satisfies Meta<typeof TransmissionList>;
 

@@ -1,5 +1,6 @@
 import cx from 'classnames';
 import type { ElementType, ReactNode } from 'react';
+import { Skeleton } from '../Skeleton';
 import styles from './typography.module.css';
 
 export type TypographyColor = 'neutral' | 'company' | 'person' | 'article';
@@ -8,6 +9,7 @@ export type TypographySize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export interface TypographyProps {
   loading?: boolean;
+  loadingText?: string;
   as?: ElementType;
   size?: TypographySize;
   color?: TypographyColor;
@@ -19,6 +21,7 @@ export interface TypographyProps {
 
 export const Typography = ({
   loading,
+  loadingText = 'Loading ...',
   as = 'div',
   size = 'md',
   color,
@@ -37,7 +40,7 @@ export const Typography = ({
       data-variant={variant}
       {...restProps}
     >
-      {children}
+      {(loading && <Skeleton loading={loading}>{loadingText}</Skeleton>) || children}
     </Component>
   );
 };

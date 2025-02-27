@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { ElementType, ReactNode } from 'react';
 import { Avatar, AvatarGroup, type AvatarGroupProps, type AvatarProps, Skeleton } from '..';
 import styles from './byline.module.css';
 
@@ -7,6 +7,7 @@ export type BylineSize = 'xs' | 'sm' | 'md' | 'lg';
 
 export interface BylineProps {
   size?: BylineSize;
+  as?: ElementType;
   color?: BylineColor;
   avatar?: AvatarProps;
   avatarGroup?: AvatarGroupProps;
@@ -25,21 +26,23 @@ export const Byline = ({
   avatarGroup,
   datetime,
   children,
+  as,
 }: BylineProps) => {
+  const Component = as || 'div';
   return (
-    <div className={styles.byline} data-color={color} data-size={size}>
-      <Skeleton variant="circle" className={styles.avatar} loading={loading}>
-        {avatarGroup ? (
-          <AvatarGroup {...avatarGroup} size={size} className={styles.avatar} />
-        ) : (
-          avatar && <Avatar {...avatar} size={size} className={styles.avatar} />
-        )}
-      </Skeleton>
-      <Skeleton loading={loading}>
-        <time data-size={size} dateTime={datetime} className={styles.label}>
-          {children}
-        </time>
-      </Skeleton>
-    </div>
+    <Component className={styles.byline} data-color={color} data-size={size}>
+      {(avatarGroup || avatar) && (
+        <Skeleton variant="circle" className={styles.avatar} loading={loading}>
+          {avatarGroup ? (
+            <AvatarGroup {...avatarGroup} size={size} className={styles.avatar} />
+          ) : (
+            avatar && <Avatar {...avatar} size={size} className={styles.avatar} />
+          )}
+        </Skeleton>
+      )}
+      <time data-size={size} dateTime={datetime} className={styles.label}>
+        <Skeleton loading={loading}>{children}</Skeleton>
+      </time>
+    </Component>
   );
 };

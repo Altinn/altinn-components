@@ -1,10 +1,11 @@
 import cx from 'classnames';
-import type { ReactNode } from 'react';
+import type { ElementType, ReactNode } from 'react';
 import styles from './skeleton.module.css';
 
 export type SkeletonVariant = 'circle' | 'text';
 
 interface SkeletonProps {
+  as?: ElementType;
   loading?: boolean;
   variant?: SkeletonVariant;
   size?: string;
@@ -12,18 +13,28 @@ interface SkeletonProps {
   className?: string;
 }
 
-export const Skeleton = ({ loading = false, size, variant = 'text', className, children }: SkeletonProps) => {
+export const Skeleton = ({
+  as = 'span',
+  loading = false,
+  size,
+  variant = 'text',
+  className,
+  children,
+}: SkeletonProps) => {
+  const Component = as;
+
   if (loading) {
     return (
-      <span
-        className={cx(styles.skelaton, className)}
+      <Component
+        className={cx(styles.skeleton, className)}
+        aria-busy
         data-size={size}
         data-loading={loading}
         data-variant={variant}
-        aria-hidden="true"
+        aria-hidden
       >
-        {children}
-      </span>
+        <div aria-hidden="true">{children}</div>
+      </Component>
     );
   }
 

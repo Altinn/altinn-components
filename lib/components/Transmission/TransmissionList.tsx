@@ -1,8 +1,7 @@
-import { ListBase } from '../List';
-import { TransmissionItem, type TransmissionItemProps } from './TransmissionItem';
+import { Byline, ListBase, Transmission, type TransmissionProps } from '..';
 
 export interface TransmissionListProps {
-  items: TransmissionItemProps[];
+  items: TransmissionProps[];
   className?: string;
 }
 
@@ -14,7 +13,17 @@ export const TransmissionList = ({ items }: TransmissionListProps) => {
   return (
     <ListBase>
       {items.map((item, index) => {
-        return <TransmissionItem {...item} key={index} />;
+        const { datetime, byline, createdAtLabel } = item;
+        return (
+          <li key={item.id}>
+            <ListBase>
+              <Byline as="li" datetime={datetime}>
+                {byline || createdAtLabel}
+              </Byline>
+              <Transmission {...item} key={index} />
+            </ListBase>
+          </li>
+        );
       })}
     </ListBase>
   );

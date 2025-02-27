@@ -1,6 +1,5 @@
 import type { ElementType, ReactNode } from 'react';
 import type { SvgElement } from '../Icon';
-import { Skeleton } from '../Skeleton';
 import { MetaItemBase, type MetaItemSize, type MetaItemVariant } from './MetaItemBase';
 import { MetaItemLabel } from './MetaItemLabel';
 import { MetaItemMedia } from './MetaItemMedia';
@@ -34,13 +33,11 @@ export const MetaItem = ({
   ...rest
 }: MetaItemProps) => {
   return (
-    <Skeleton loading={loading}>
-      <MetaItemBase reverse={reverse} variant={variant} size={size} {...rest}>
-        {!loading && icon && <MetaItemMedia size={size} icon={icon} />}
-        <MetaItemLabel variant={variant} size={size}>
-          {children}
-        </MetaItemLabel>
-      </MetaItemBase>
-    </Skeleton>
+    <MetaItemBase loading={loading} reverse={reverse} variant={variant} size={size} {...rest}>
+      {!loading && icon && <MetaItemMedia size={size} icon={icon} />}
+      <MetaItemLabel variant={variant} size={size}>
+        {children}
+      </MetaItemLabel>
+    </MetaItemBase>
   );
 };
