@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.19.0](https://github.com/Altinn/altinn-components/compare/v0.18.9...v0.19.0) (2025-02-27)
+
+
+### Features
+
+* timeline, transmissions and dialog history ([#274](https://github.com/Altinn/altinn-components/issues/274)) ([bf45389](https://github.com/Altinn/altinn-components/commit/bf453895741abe411cff2b866c591e8aa5c1836f))
+
+
+### Bug Fixes
+
+* menu item selected ([#275](https://github.com/Altinn/altinn-components/issues/275)) ([e70631b](https://github.com/Altinn/altinn-components/commit/e70631bcacea547e25e914ec3ac4379a9e707d4c))
+
 ## [0.18.9](https://github.com/Altinn/altinn-components/compare/v0.18.8...v0.18.9) (2025-02-27)
 
 
