@@ -1,12 +1,11 @@
-import { Flex, MenuItem, type MenuItemColor, type MenuItemProps } from '..';
+import { Flex, MenuItem, type MenuItemColor, type MenuItemProps, type MenuTheme } from '..';
 import styles from './pageTabs.module.css';
 
-export type PageTabsTheme = 'transparent' | 'base';
 export type PageTabsPadding = 0 | 2;
 export type PageTabsVariant = 'card' | undefined;
 
 export interface PageTabsProps {
-  theme?: PageTabsTheme;
+  theme?: MenuTheme;
   color?: MenuItemColor;
   padding?: PageTabsPadding;
   items?: MenuItemProps[];
