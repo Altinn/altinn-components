@@ -39,6 +39,7 @@ export const MenuItemBase = ({
   onKeyPress,
   tabIndex = 0,
   hidden,
+  selected,
   disabled = false,
   linkIcon,
   linkText,
@@ -56,6 +57,7 @@ export const MenuItemBase = ({
       data-theme={theme}
       aria-hidden={hidden}
       aria-disabled={disabled}
+      data-selected={selected}
       href={href}
       onKeyPress={(e: KeyboardEvent) => {
         e.key === 'Enter' && onClick?.();
