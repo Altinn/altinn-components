@@ -13,7 +13,7 @@ import {
 } from '..';
 import { skatt } from '../../../examples/avatar';
 
-import { DiamondFillIcon } from '@navikt/aksel-icons';
+import { DiamondFillIcon, TeddyBearFillIcon } from '@navikt/aksel-icons';
 
 const meta = {
   title: 'Timeline/Timeline',
@@ -75,17 +75,17 @@ export const UsingAvatars = () => {
       </TimelineActivity>
       <TimelineActivity dateline="Yesterday">
         <Typography>
-          <p>Some description.</p>
+          <p>Activity 4.</p>
         </Typography>
       </TimelineActivity>
-      <TimelineActivity dateline="A week ago">
+      <TimelineActivity dateline="A week ago" color="inherit">
         <Typography>
-          <p>Some description.</p>
+          <p>Important activity.</p>
         </Typography>
       </TimelineActivity>
       <TimelineActivity dateline="2 weeks ago">
         <Typography>
-          <p>Some description.</p>
+          <p>Activity 2.</p>
         </Typography>
       </TimelineActivity>
       <TimelineActivity
@@ -151,11 +151,9 @@ export const DialogHistory = () => {
   return (
     <Timeline>
       <TimelineHeader avatar={{ ...skatt, size: 'lg' }}>
-        <Byline size="lg">
-          <strong>Skattetaten</strong> til Kari Nordmann
-        </Byline>
+        <strong>Skattetaten</strong> til Kari Nordmann
       </TimelineHeader>
-      <TimelineSection margin="section">
+      <TimelineSection>
         <Byline>26. februar, kl. 08.00</Byline>
         <Typography>
           <p>Gratulerer, søknaden din om startsborgerskap er godkjent.</p>
@@ -190,8 +188,31 @@ export const DialogHistory = () => {
           ]}
         />
       </TimelineActivity>
+      <TimelineFooter>Søknaden ble opprettet</TimelineFooter>
+    </Timeline>
+  );
+};
+
+export const ProcessTimeline = () => {
+  return (
+    <Timeline>
+      <TimelineHeader size="lg" icon={TeddyBearFillIcon}>
+        <strong>Søknad om statsborgerskap</strong>
+      </TimelineHeader>
+      <TimelineSection>
+        <Byline>26. februar, kl. 08.00</Byline>
+        <Typography>
+          <p>Gratulerer, søknaden din om startsborgerskap er godkjent.</p>
+          <AttachmentList items={[{ href: '/#1', label: 'Godkjent vedtak.pdf' }]} />
+        </Typography>
+      </TimelineSection>
+      <TimelineActivity dateline="2 år siden">
+        <Typography>
+          <p>Søknaden ble sendt.</p>
+        </Typography>
+      </TimelineActivity>
       <TimelineFooter>
-        <Byline>Søknaden ble opprettet</Byline>
+        <Byline>Avsluttet</Byline>
       </TimelineFooter>
     </Timeline>
   );

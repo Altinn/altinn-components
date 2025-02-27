@@ -1,32 +1,35 @@
 import type { ReactNode } from 'react';
-import type { FlexProps, Color, AvatarProps, AvatarGroupProps, SvgElement } from '..';
-import { Flex, TimelineIcon } from '..';
-import { CircleFillIcon } from '@navikt/aksel-icons';
+import type { FlexProps, Color, IconOrAvatarProps } from '..';
+import { Flex, IconOrAvatar, Byline } from '..';
 import styles from './timelineHeader.module.css';
+
+export type TimelineHeaderSize = 'sm' | 'lg';
 
 export interface TimelineHeaderProps {
   as?: FlexProps['as'];
   color?: Color;
-  avatar?: AvatarProps;
-  avatarGroup?: AvatarGroupProps;
-  icon?: SvgElement;
+  avatar?: IconOrAvatarProps['avatar'];
+  icon?: IconOrAvatarProps['icon'];
+  iconTheme?: IconOrAvatarProps['iconTheme'];
   children?: ReactNode;
 }
 
 export const TimelineHeader = ({
   as = 'header',
-  color = 'neutral',
-  icon = CircleFillIcon,
+  color,
+  icon,
+  iconTheme = 'base',
   avatar,
-  avatarGroup,
   children,
 }: TimelineHeaderProps) => {
   return (
     <Flex as={as} className={styles.header} color={color}>
       <aside className={styles.sidebar}>
-        {(icon || avatar || avatarGroup) && <TimelineIcon icon={icon} avatar={avatar} avatarGroup={avatarGroup} />}
+        <IconOrAvatar size="lg" icon={icon} iconTheme={iconTheme} avatar={avatar} />
       </aside>
-      <div className={styles.content}>{children}</div>
+      <div className={styles.content}>
+        <Byline size="lg">{children}</Byline>
+      </div>
     </Flex>
   );
 };

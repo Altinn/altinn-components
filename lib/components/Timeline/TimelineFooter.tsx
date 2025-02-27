@@ -1,16 +1,25 @@
 import type { ReactNode } from 'react';
-import { TimelineHeader, type TimelineHeaderProps } from '..';
+import { TimelineBase, type TimelineBaseProps, Byline } from '..';
+import { CircleFillIcon } from '@navikt/aksel-icons';
 
 export interface TimelineFooterProps {
-  color?: TimelineHeaderProps['color'];
-  icon?: TimelineHeaderProps['icon'];
+  as?: TimelineBaseProps['as'];
+  color?: TimelineBaseProps['color'];
+  icon?: TimelineBaseProps['icon'];
+  iconColor?: TimelineBaseProps['iconColor'];
   children?: ReactNode;
 }
 
-export const TimelineFooter = ({ color = 'neutral', icon, children }: TimelineFooterProps) => {
+export const TimelineFooter = ({
+  as = 'footer',
+  color,
+  icon = CircleFillIcon,
+  iconColor,
+  children,
+}: TimelineFooterProps) => {
   return (
-    <TimelineHeader as="footer" color={color} icon={icon}>
-      {children}
-    </TimelineHeader>
+    <TimelineBase as={as} icon={icon} color={color} iconColor={iconColor} border="hidden">
+      <Byline>{children}</Byline>
+    </TimelineBase>
   );
 };

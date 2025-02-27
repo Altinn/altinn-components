@@ -1,17 +1,17 @@
 import type { ReactNode } from 'react';
-import { TimelineBase, type TimelineBaseProps } from '..';
+import { TimelineBase, type TimelineBaseProps, Section, type SectionProps } from '..';
 
 export interface TimelineSectionProps {
-  margin?: TimelineBaseProps['margin'];
   border?: TimelineBaseProps['border'];
   color?: TimelineBaseProps['color'];
+  margin?: SectionProps['margin'];
   children?: ReactNode;
 }
 
 export const TimelineSection = ({ margin, border, color = 'neutral', children }: TimelineSectionProps) => {
   return (
-    <TimelineBase margin={margin} border={border} color={color}>
-      {children}
+    <TimelineBase border={border} color={color}>
+      <Section margin={margin}>{children}</Section>
     </TimelineBase>
   );
 };

@@ -1,51 +1,45 @@
 import type { ReactNode } from 'react';
-import { TimelineBorder, type TimelineBorderVariant, TimelineIcon, Byline, Section } from '..';
-import type { Color, Theme, AvatarProps, AvatarGroupProps, SvgElement, SectionProps } from '..';
+import { Flex, Icon, Avatar } from '..';
+import type { FlexProps, AvatarProps, Color, Theme, SvgElement } from '..';
 import styles from './timelineBase.module.css';
 
+export type TimelineTheme = 'base' | 'surface';
+export type TimelineBorder = 'solid' | 'dashed' | 'hidden';
+
 export interface TimelineBaseProps {
+  as?: FlexProps['as'];
   loading?: boolean;
-  border?: TimelineBorderVariant;
+  border?: TimelineBorder;
   borderHidden?: boolean;
   color?: Color;
   theme?: Theme;
   icon?: SvgElement;
   iconColor?: Color;
-  iconTheme?: Theme;
-  datetime?: string;
-  dateline?: ReactNode;
   avatar?: AvatarProps;
-  avatarGroup?: AvatarGroupProps;
-  margin?: SectionProps['margin'];
   children?: ReactNode;
 }
 
 export const TimelineBase = ({
+  as = 'section',
   border = 'solid',
-  borderHidden,
-  datetime,
-  dateline,
-  margin = 0,
   color,
   icon,
+  iconColor,
   avatar,
-  avatarGroup,
   children,
 }: TimelineBaseProps) => {
   return (
-    <section className={styles.section} data-color={color}>
+    <Flex as={as} className={styles.section} color={color}>
       <aside className={styles.sidebar}>
-        {(icon || avatar || avatarGroup) && (
-          <span className={styles.icon}>
-            <TimelineIcon icon={icon} avatar={avatar} avatarGroup={avatarGroup} />
-          </span>
-        )}
-        {!borderHidden && <TimelineBorder variant={border} />}
+        {(avatar && <Avatar {...avatar} size="sm" />) ||
+          (icon && (
+            <span data-color={iconColor} className={styles.icon}>
+              <Icon svgElement={icon} size="sm" />
+            </span>
+          ))}
+        <div className={styles.border} data-variant={border} data-color={color} />
       </aside>
-      <div className={styles.content}>
-        {dateline && <Byline datetime={datetime}>{dateline}</Byline>}
-        <Section margin={margin}>{children}</Section>
-      </div>
-    </section>
+      <div className={styles.content}>{children}</div>
+    </Flex>
   );
 };

@@ -1,8 +1,6 @@
-export * from './TimelineBase';
-export * from './TimelineBorder';
-export * from './TimelineIcon';
 export * from './Timeline';
 
+export * from './TimelineBase';
 export * from './TimelineActivity';
 export * from './TimelineFooter';
 
