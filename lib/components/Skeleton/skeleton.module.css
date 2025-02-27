@@ -1,19 +1,19 @@
-.skelaton {
+.skeleton {
   background-color: #ccc;
   animation: fade 1.5s infinite reverse;
   background-size: 200%;
   color: transparent;
 }
 
-.skelaton[data-loading="true"] > * {
+.skeleton[data-loading="true"] > * {
   opacity: 0;
 }
 
-.skelaton[data-variant="circle"] {
+.skeleton[data-variant="circle"] {
   border-radius: 50%;
 }
 
-.skelaton[data-variant="text"] {
+.skeleton[data-variant="text"] {
   border-radius: 0.125rem;
 }
 

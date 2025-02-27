@@ -1,12 +1,9 @@
-import type { TransmissionItemProps } from '../../lib';
+import type { TransmissionProps } from '../../lib';
 import { skatt } from '../avatar';
 
-export const transmissionList: TransmissionItemProps[] = [
+export const transmissionListItems: TransmissionProps[] = [
   {
-    type: {
-      value: 'submission',
-      label: 'Sendt',
-    },
+    id: '1',
     sender: {
       name: 'Per Olav Olsen',
     },
@@ -17,10 +14,7 @@ export const transmissionList: TransmissionItemProps[] = [
       'Skatteetaten har godkjent leveransen, men det er feil i oppgaver du må se nærmere på. Se tilbakemelding of feilliste under.',
   },
   {
-    type: {
-      value: 'acceptance',
-      label: 'Godkjent',
-    },
+    id: '2',
     createdAt: '2024-01-05 09:10',
     createdAtLabel: '5. januar 2024 kl 09.10',
     sender: skatt,
@@ -28,7 +22,6 @@ export const transmissionList: TransmissionItemProps[] = [
     summary:
       'Skatteetaten har godkjent leveransen, men det er feil i oppgaver du må se nærmere på. Se tilbakemelding of feilliste under.',
     attachments: {
-      title: '2 vedlegg',
       items: [
         {
           label: 'Dokument 1.pdf',
@@ -42,10 +35,7 @@ export const transmissionList: TransmissionItemProps[] = [
     },
   },
   {
-    type: {
-      value: 'submission',
-      label: 'Sendt',
-    },
+    id: '3',
     sender: {
       name: 'Siren Søftebø',
     },
@@ -56,10 +46,7 @@ export const transmissionList: TransmissionItemProps[] = [
       'Skatteetaten har godkjent leveransen, men det er feil i oppgaver du må se nærmere på. Se tilbakemelding of feilliste under.',
   },
   {
-    type: {
-      value: 'rejection',
-      label: 'Avvist',
-    },
+    id: '4',
     createdAt: '2024-01-15 14:45',
     createdAtLabel: '15. januar 2024 kl 14.45',
     sender: skatt,
@@ -67,7 +54,6 @@ export const transmissionList: TransmissionItemProps[] = [
     summary:
       'Skatteetaten har godkjent leveransen, men det er feil i oppgaver du må se nærmere på. Se tilbakemelding of feilliste under.',
     attachments: {
-      title: '2 vedlegg',
       items: [
         {
           label: 'Dokument 1.pdf',
@@ -81,10 +67,7 @@ export const transmissionList: TransmissionItemProps[] = [
     },
   },
   {
-    type: {
-      value: 'correction',
-      label: 'Rettelse',
-    },
+    id: '5',
     sender: {
       name: 'Siren Søftebø',
     },

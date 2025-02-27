@@ -1,4 +1,14 @@
-export type Color = 'accent' | 'company' | 'person' | 'neutral' | 'success' | 'warning' | 'danger' | 'info' | 'alert';
+export type Color =
+  | 'inherit'
+  | 'accent'
+  | 'company'
+  | 'person'
+  | 'neutral'
+  | 'success'
+  | 'warning'
+  | 'danger'
+  | 'info'
+  | 'alert';
 export type Theme =
   | 'transparent'
   | 'default'

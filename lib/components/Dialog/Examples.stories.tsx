@@ -9,9 +9,6 @@ import {
   reportingDraftDialog,
   reportingInProgressDialog,
   simpleLetterDialog,
-  transmissionsCompletedDialog,
-  transmissionsDialog,
-  transmissionsInProgressDialog,
 } from '../../../examples';
 
 const meta: Meta<typeof Dialog> = {
@@ -80,16 +77,4 @@ export const ReportingInProgress: Story = {
 
 export const ReportingCompleted: Story = {
   args: reportingCompletedDialog,
-};
-
-export const Transmissions: Story = {
-  args: transmissionsDialog,
-};
-
-export const TransmissionsInProgress: Story = {
-  args: transmissionsInProgressDialog,
-};
-
-export const TransmissionsCompleted: Story = {
-  args: transmissionsCompletedDialog,
 };

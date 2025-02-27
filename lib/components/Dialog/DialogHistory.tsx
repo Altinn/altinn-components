@@ -1,12 +1,12 @@
 'use client';
 import { ArrowDownIcon, ArrowUpIcon } from '@navikt/aksel-icons';
 import { type ReactNode, useState } from 'react';
-import { ActivityItem, type ActivityItemProps, ButtonBase, Icon, TimelineBase, TimelineSection } from '..';
+import { ButtonBase, DialogActivity, type DialogActivityProps, Icon, Timeline, TimelineSection } from '..';
 
 import styles from './dialogHistory.module.css';
 
 export interface DialogHistoryProps {
-  items?: ActivityItemProps[];
+  items?: DialogActivityProps[];
   updatedAt?: string;
   updatedAtLabel?: string;
   expandLabel?: string;
@@ -52,9 +52,9 @@ export const DialogHistory = ({
 
   if (expanded || !collapsible) {
     return (
-      <TimelineBase>
+      <Timeline>
         {items.map((item, index) => {
-          return <ActivityItem {...item} key={index} />;
+          return <DialogActivity {...item} key={index} />;
         })}
 
         {collapsible && (
@@ -62,15 +62,13 @@ export const DialogHistory = ({
             {collapseLabel}
           </ToggleButton>
         )}
-      </TimelineBase>
+      </Timeline>
     );
   }
 
   return (
-    <TimelineBase>
-      <TimelineSection color="neutral">
-        <ToggleButton onClick={onToggle}>{expandLabel}</ToggleButton>
-      </TimelineSection>
-    </TimelineBase>
+    <TimelineSection border="dashed">
+      <ToggleButton onClick={onToggle}>{expandLabel}</ToggleButton>
+    </TimelineSection>
   );
 };

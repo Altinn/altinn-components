@@ -1,5 +1,6 @@
 import cx from 'classnames';
 import type { ElementType, ReactNode } from 'react';
+import { Skeleton } from '../Skeleton';
 import styles from './metaItemBase.module.css';
 
 export type MetaItemVariant = 'solid' | 'outline' | 'dotted' | 'rounded' | 'text';
@@ -8,6 +9,7 @@ export type MetaItemColor = 'subtle';
 
 export interface MetaItemBaseProps {
   as?: ElementType;
+  loading?: boolean;
   reverse?: boolean;
   variant?: MetaItemVariant;
   size?: MetaItemSize;
@@ -20,6 +22,7 @@ export interface MetaItemBaseProps {
 
 export const MetaItemBase = ({
   as,
+  loading,
   reverse,
   variant = 'text',
   size,
@@ -42,7 +45,7 @@ export const MetaItemBase = ({
       className={cx(styles.item, { [styles.reverse]: reverse }, className)}
       {...rest}
     >
-      {children}
+      <Skeleton loading={loading}>{children}</Skeleton>
     </Component>
   );
 };

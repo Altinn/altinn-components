@@ -74,6 +74,10 @@
 
 /* margin */
 
+.flex {
+  margin: 0;
+}
+
 .flex[data-margin="section"] {
   margin: 0.625rem 0;
 }
