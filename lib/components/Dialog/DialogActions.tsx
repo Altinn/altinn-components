@@ -1,17 +1,15 @@
 'use client';
 import { ChevronDownIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 import { useMemo, useState } from 'react';
-import { Button, ComboButton, DropdownBase, Menu, type MenuItemProps } from '..';
+import { Button, type ButtonProps, ComboButton, DropdownBase, Menu, type MenuItemProps } from '..';
 import styles from './dialogAction.module.css';
 
 export type DialogButtonPriority = 'primary' | 'secondary' | 'tertiary';
 
-export interface DialogActionButtonProps {
+export interface DialogActionButtonProps extends ButtonProps {
   id: string;
   priority: DialogButtonPriority;
-  label?: string;
   onClick?: () => void;
-  loading?: boolean;
 }
 
 export interface DialogActionsProps {
@@ -62,14 +60,9 @@ export const DialogActions = ({ items, maxItems = 2 }: DialogActionsProps) => {
   return (
     <section className={styles.action}>
       {sortedItems.map((item, index) => {
+        const { priority, id: _, ...props } = item;
         return (
-          <Button
-            key={'button-' + index}
-            onClick={item.onClick}
-            variant={item.priority === 'primary' ? 'solid' : 'outline'}
-            size="lg"
-            loading={item.loading}
-          >
+          <Button key={'button-' + index} variant={priority === 'primary' ? 'solid' : 'outline'} size="lg" {...props}>
             {item.label}
           </Button>
         );
