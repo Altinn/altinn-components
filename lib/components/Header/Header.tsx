@@ -66,7 +66,7 @@ export const Header = ({ search, menu, currentAccount, logo = {}, badge }: Heade
       )}
       {menu && (
         <DrawerBase open={currentId === 'menu'} className={styles.drawer}>
-          <GlobalMenu {...menu} currentAccount={currentAccount} />
+          <GlobalMenu {...menu} currentAccount={currentAccount} onClose={closeAll} />
         </DrawerBase>
       )}
     </HeaderBase>
