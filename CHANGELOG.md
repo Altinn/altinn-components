@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.9](https://github.com/Altinn/altinn-components/compare/v0.18.8...v0.18.9) (2025-02-27)
+
+
+### Bug Fixes
+
+* Close menu when selecting an item from global menu on mobile ([#272](https://github.com/Altinn/altinn-components/issues/272)) ([520d679](https://github.com/Altinn/altinn-components/commit/520d679db652b1bdc35f372c28ee1f58b3633204))
+
 ## [0.18.8](https://github.com/Altinn/altinn-components/compare/v0.18.7...v0.18.8) (2025-02-25)
 
 
