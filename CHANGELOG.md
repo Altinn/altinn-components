@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.19.1](https://github.com/Altinn/altinn-components/compare/v0.19.0...v0.19.1) (2025-02-27)
+
+
+### Bug Fixes
+
+* add missing button props to gui action buttons ([#277](https://github.com/Altinn/altinn-components/issues/277)) ([1108f22](https://github.com/Altinn/altinn-components/commit/1108f22429f879547d5c62e928612f37c5742a26))
+
 ## [0.19.0](https://github.com/Altinn/altinn-components/compare/v0.18.9...v0.19.0) (2025-02-27)
 
 
