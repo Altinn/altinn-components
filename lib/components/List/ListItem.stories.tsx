@@ -208,6 +208,24 @@ export const Collapsible = (args: ListItemProps) => {
   );
 };
 
+export const ExpandedSelected = (args: ListItemProps) => {
+  return (
+    <ListBase>
+      <ListItem
+        {...args}
+        icon={{ theme: 'surface', svgElement: TeddyBearIcon }}
+        badge={{ label: 'Badge' }}
+        expanded={true}
+        selected={true}
+      >
+        <Section padding={4}>
+          <p>Item is expanded and selected</p>
+        </Section>
+      </ListItem>
+    </ListBase>
+  );
+};
+
 export const Theme = (args: ListItemProps) => {
   return (
     <ListBase>

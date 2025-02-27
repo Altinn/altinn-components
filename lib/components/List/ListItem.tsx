@@ -57,6 +57,7 @@ export const ListItem = ({
   linkIcon = false,
   label,
   select,
+  selected,
   controls,
   children,
   ...rest
@@ -76,6 +77,7 @@ export const ListItem = ({
           color={color}
           theme={theme}
           shadow={shadow}
+          selected={selected}
           expanded={expanded}
           title={title}
           loading={loading}
@@ -122,6 +124,7 @@ export const ListItem = ({
         theme={theme}
         shadow={shadow}
         expanded={expanded}
+        selected={selected}
         loading={loading}
         title={title}
         {...rest}

@@ -84,7 +84,7 @@
   background-color: var(--ds-color-surface-active);
 }
 
-[data-theme="subtle"] .item[aria-selected="true"] {
+[data-theme="subtle"] .item[data-selected="true"] {
   background-color: var(--ds-color-background-default);
 }
 
@@ -98,6 +98,6 @@
   background-color: var(--ds-color-surface-active);
 }
 
-[data-theme="default"] .item[aria-selected="true"] {
+[data-theme="default"] .item[data-selected="true"] {
   background-color: var(--ds-color-background-subtle);
 }
