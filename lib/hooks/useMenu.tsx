@@ -23,6 +23,7 @@ export interface UseMenuInput<T, V> {
   groups: Record<string, V>;
   groupByKey?: keyof T;
   keyboardEvents?: boolean;
+  sortGroupBy?: (a: [string, T[]], b: [string, T[]]) => number;
 }
 
 export const useMenu = <T, V>({
@@ -30,6 +31,7 @@ export const useMenu = <T, V>({
   groups,
   groupByKey,
   keyboardEvents = false,
+  sortGroupBy,
 }: UseMenuInput<T, V>): UseMenuOutput<T, V> => {
   const [activeIndex, setActiveIndex] = useState<number>(-1);
 
@@ -46,14 +48,16 @@ export const useMenu = <T, V>({
 
     const flatItems: T[] = Object.values(grouped).flat();
 
-    return Object.entries(grouped).map(([key, groupItems]) => ({
-      items: groupItems.map((item) => ({
-        menuIndex: flatItems.indexOf(item),
-        active: activeIndex === flatItems.indexOf(item),
-        props: item,
-      })),
-      props: groups[key] || {},
-    }));
+    return Object.entries(grouped)
+      .sort(sortGroupBy || (() => 0))
+      .map(([key, groupItems]) => ({
+        items: groupItems.map((item) => ({
+          menuIndex: flatItems.indexOf(item),
+          active: activeIndex === flatItems.indexOf(item),
+          props: item,
+        })),
+        props: groups[key] || {},
+      }));
   }, [items, groupByKey, activeIndex, groups]);
 
   const handleKeyDown = useCallback(
