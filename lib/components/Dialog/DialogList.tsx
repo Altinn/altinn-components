@@ -5,14 +5,16 @@ import { useMenu } from '../../hooks';
 export interface DialogListProps {
   items: DialogListItemProps[];
   groups?: Record<string, DialogListGroupProps>;
+  sortGroupBy?: (a: [string, DialogListItemProps[]], b: [string, DialogListItemProps[]]) => number;
 }
 
-export const DialogList = ({ items, groups = {} }: DialogListProps) => {
+export const DialogList = ({ items, groups = {}, sortGroupBy }: DialogListProps) => {
   const { menu } = useMenu<DialogListItemProps, DialogListGroupProps>({
     items,
     groups,
     groupByKey: 'groupId',
     keyboardEvents: false,
+    sortGroupBy,
   });
 
   return (
