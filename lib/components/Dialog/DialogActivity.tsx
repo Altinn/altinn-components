@@ -47,7 +47,7 @@ export const DialogActivity = ({
 }: DialogActivityProps) => {
   return (
     <TimelineBase color={color} icon={icon} avatar={size === 'md' ? createdBy : undefined}>
-      <Section style={{ marginBottom: '.5em' }}>
+      <Section style={{ marginBottom: '1em' }}>
         {createdAtLabel && (
           <Byline datetime={createdAt}>
             <strong>{createdBy?.name}</strong>
