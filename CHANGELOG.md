@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.19.3](https://github.com/Altinn/altinn-components/compare/v0.19.2...v0.19.3) (2025-03-03)
+
+
+### Bug Fixes
+
+* Sort dialog list by date desc ([#281](https://github.com/Altinn/altinn-components/issues/281)) ([765a0b2](https://github.com/Altinn/altinn-components/commit/765a0b2e51e5f0a1d371912fb6ab826a04b3ade8))
+
 ## [0.19.2](https://github.com/Altinn/altinn-components/compare/v0.19.1...v0.19.2) (2025-02-27)
 
 
