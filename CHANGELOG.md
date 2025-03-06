@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.19.4](https://github.com/Altinn/altinn-components/compare/v0.19.3...v0.19.4) (2025-03-06)
+
+
+### Bug Fixes
+
+* Timeline segments ([#287](https://github.com/Altinn/altinn-components/issues/287)) ([a630b30](https://github.com/Altinn/altinn-components/commit/a630b30d5d73380a33877e95bd82cd71e70cc5ad))
+
 ## [0.19.3](https://github.com/Altinn/altinn-components/compare/v0.19.2...v0.19.3) (2025-03-03)
 
 
