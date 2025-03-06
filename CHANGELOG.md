@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.19.5](https://github.com/Altinn/altinn-components/compare/v0.19.4...v0.19.5) (2025-03-06)
+
+
+### Bug Fixes
+
+* breacrumbs href/rest ([#290](https://github.com/Altinn/altinn-components/issues/290)) ([4b65706](https://github.com/Altinn/altinn-components/commit/4b6570621980679b27cf9bec305bb043c7093bcf))
+
 ## [0.19.4](https://github.com/Altinn/altinn-components/compare/v0.19.3...v0.19.4) (2025-03-06)
 
 
