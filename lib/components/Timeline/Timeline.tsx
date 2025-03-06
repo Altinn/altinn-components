@@ -1,10 +1,11 @@
 import type { ReactNode } from 'react';
-import { Section } from '..';
+import { Section, type SectionProps } from '..';
 
 export interface TimelineProps {
+  spacing?: SectionProps['spacing'];
   children?: ReactNode;
 }
 
-export const Timeline = ({ children }: TimelineProps) => {
-  return <Section spacing={2}>{children}</Section>;
+export const Timeline = ({ spacing = 2, children }: TimelineProps) => {
+  return <Section spacing={spacing}>{children}</Section>;
 };

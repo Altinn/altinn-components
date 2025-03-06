@@ -5,7 +5,6 @@ import {
   Section,
   type SectionProps,
   type SvgElement,
-  TimelineBase,
   type TimelineBaseProps,
   type TimelineBorder,
   Typography,
@@ -18,7 +17,7 @@ export interface TimelineActivityProps extends TimelineBaseProps {
   datetime?: string;
   border?: TimelineBorder;
   byline?: ReactNode;
-  children?: ReactNode;
+  children?: string | ReactNode;
   footer?: ReactNode;
   typographyProps?: TypographyProps;
   margin?: SectionProps['margin'];
@@ -39,20 +38,19 @@ export const TimelineActivity = ({
   ...props
 }: TimelineActivityProps) => {
   return (
-    <TimelineBase loading={loading} color={color} icon={icon} {...props}>
+    <Section margin={margin} spacing={spacing} {...props}>
       {byline && (
         <Byline loading={loading} datetime={datetime}>
           {byline}
         </Byline>
       )}
-      <Section margin={margin} spacing={spacing}>
-        {children && (
-          <Typography loading={loading} size="md" {...typographyProps}>
-            {children}
-          </Typography>
-        )}
-        {footer}
-      </Section>
-    </TimelineBase>
+      {children && typeof children === 'string' ? (
+        <Typography as="p" loading={loading} size="md" {...typographyProps}>
+          {children}
+        </Typography>
+      ) : (
+        children
+      )}
+    </Section>
   );
 };

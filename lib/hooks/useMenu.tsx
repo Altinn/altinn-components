@@ -35,6 +35,7 @@ export const useMenu = <T, V>({
 }: UseMenuInput<T, V>): UseMenuOutput<T, V> => {
   const [activeIndex, setActiveIndex] = useState<number>(-1);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   const menu = useMemo(() => {
     const grouped = items.reduce(
       (acc, item) => {
