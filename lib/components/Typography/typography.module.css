@@ -4,6 +4,10 @@
   line-height: 1.5;
 }
 
+p.typography {
+  margin: 0;
+}
+
 .typography[data-variant="default"] {
   color: var(--ds-color-text-default);
 }
