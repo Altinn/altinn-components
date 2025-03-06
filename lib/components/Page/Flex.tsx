@@ -9,7 +9,7 @@ export type FlexAlign = 'initial' | 'start' | 'end' | 'center' | 'stretch';
 export type FlexJustify = 'initial' | 'start' | 'end' | 'center' | 'between';
 export type FlexSpacing = 'page' | 'xs' | Range<11>;
 export type FlexPadding = 'page' | Range<11>;
-export type FlexMargin = 'page' | 'section';
+export type FlexMargin = 0 | 'page' | 'section' | 'bottom';
 
 export interface FlexProps {
   as?: FlexElement;

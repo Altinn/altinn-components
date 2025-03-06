@@ -85,3 +85,7 @@
 .flex[data-margin="page"] {
   margin: 1.125rem 0;
 }
+
+.flex[data-margin="bottom"] {
+  margin: 0 0 1em 0;
+}
