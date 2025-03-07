@@ -22,12 +22,8 @@ export interface DialogActionsProps {
 }
 
 export const DialogActions = ({ items, maxItems = 2, id = 'dialog-actions' }: DialogActionsProps) => {
-  const { currentId, toggleId } = useRootContext();
+  const { currentId, closeAll, toggleId } = useRootContext();
   const expanded = currentId === id;
-
-  const onToggleMenu = () => {
-    toggleId(id);
-  };
 
   const sortedItems = useMemo(() => {
     return (items || []).sort((a, b) => {
@@ -53,12 +49,13 @@ export const DialogActions = ({ items, maxItems = 2, id = 'dialog-actions' }: Di
           variant="solid"
           icon={expanded ? ChevronUpIcon : ChevronDownIcon}
           size="lg"
-          onIconClick={() => onToggleMenu()}
+          onIconClick={() => toggleId(id)}
+          onLabelClick={sortedItems[0].onClick}
           ariaLabel={expanded ? 'chevron up icon' : 'chevron down icon'}
         >
           {sortedItems[0].label}
         </ComboButton>
-        <DropdownBase open={expanded} onClose={onToggleMenu}>
+        <DropdownBase open={expanded} onClose={closeAll}>
           <Menu items={remainingItems} />
         </DropdownBase>
       </section>
