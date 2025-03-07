@@ -118,10 +118,10 @@ export const DialogListItem = ({
   ...rest
 }: DialogListItemProps) => {
   const applicableState = trashedAt ? 'trashed' : archivedAt ? 'archived' : state;
-
   const applicableTheme = selected ? 'subtle' : theme;
+  const applicableVariant = status?.value;
 
-  if (size === 'xs' || size === 'sm' || size === 'md') {
+  if (size === 'xs' || size === 'sm') {
     return (
       <ListItem
         {...rest}
@@ -129,7 +129,13 @@ export const DialogListItem = ({
         selected={selected}
         theme={applicableTheme}
         label={
-          <div className={styles.border} data-size={size} data-seen={seen} data-loading={loading}>
+          <div
+            className={styles.border}
+            data-variant={applicableVariant}
+            data-size={size}
+            data-seen={seen}
+            data-loading={loading}
+          >
             <ListItemLabel loading={loading} size={size} title={title} description={summary || description} />
           </div>
         }
@@ -150,7 +156,13 @@ export const DialogListItem = ({
       controls={select && <ListItemSelect className={styles.select} {...select} size="xl" />}
       title={title}
       label={
-        <div className={styles.border} data-size={size} data-seen={seen} data-loading={loading}>
+        <div
+          className={styles.border}
+          data-variant={applicableVariant}
+          data-size={size}
+          data-seen={seen}
+          data-loading={loading}
+        >
           <header className={styles.header} data-size={size}>
             <DialogHeading loading={loading} size={size} state={applicableState} label={label} seen={seen}>
               {title}
@@ -163,11 +175,13 @@ export const DialogListItem = ({
               recipientLabel={recipientLabel}
               grouped={grouped}
             />
-            <Skeleton loading={loading}>
-              <p data-size={size} className={styles.summary}>
-                {summary || description}
-              </p>
-            </Skeleton>
+            {size === 'lg' && (
+              <Skeleton loading={loading}>
+                <p data-size={size} className={styles.summary}>
+                  {summary || description}
+                </p>
+              </Skeleton>
+            )}
           </header>
           <DialogMetadata
             className={styles.footer}

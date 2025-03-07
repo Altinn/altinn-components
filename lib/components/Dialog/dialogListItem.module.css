@@ -31,6 +31,17 @@
   border-color: var(--ds-color-neutral-surface-default);
 }
 
+.border[data-variant="draft"] {
+  border-color: var(--ds-color-neutral-surface-active);
+  border-left-width: 0.125rem;
+  margin-left: 0.125rem;
+  border-left-style: dashed;
+}
+
+.border[data-variant="sent"] {
+  border-color: var(--ds-color-neutral-surface-default);
+}
+
 .border[data-loading="true"] {
   border-color: var(--ds-color-surface-default);
 }

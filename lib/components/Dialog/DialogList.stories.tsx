@@ -5,10 +5,7 @@ import { dialogListItemsDate, dialogListItemsRoute } from '../../../examples';
 const meta = {
   title: 'Dialog/DialogList',
   component: DialogList,
-  tags: ['autodocsi', 'beta'],
-  parameters: {
-    layout: 'fullscreen',
-  },
+  tags: ['beta'],
   args: {
     items: dialogListItemsDate,
   },

@@ -1,0 +1,25 @@
+import { Meta, Controls, Primary, Canvas } from "@storybook/blocks";
+import * as DialogStories from "./Dialog.stories";
+import * as DialogList from "./DialogListItem.stories";
+import * as DialogListItem from "./DialogListItem.stories";
+import * as DialogMetadata from "./DialogMetadata.stories";
+
+<Meta of={DialogMetadata} />
+
+# Dialog metadata
+
+Dialogs can include a `status` and additional metadata to indicate due date, number of attachments and/or who have seen the dialog. DueDate + attachments:
+
+<Canvas of={DialogMetadata.DueDate} />
+
+Single attachment + seen by end user:
+
+<Canvas of={DialogMetadata.SeenByEndUser} />
+
+Seen by others.
+
+<Canvas of={DialogMetadata.SeenByOthers} />
+
+Seen by end user and others.
+
+<Canvas of={DialogMetadata.SeenByEndUserAndOthers} />
