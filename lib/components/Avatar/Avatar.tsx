@@ -1,6 +1,6 @@
 'use client';
 import cx from 'classnames';
-import { useState } from 'react';
+import { type ReactElement, useState } from 'react';
 import styles from './avatar.module.css';
 import { fromStringToColor } from './color';
 
@@ -44,7 +44,7 @@ export const Avatar = ({
   imageUrlAlt,
   customLabel,
   className,
-}: AvatarProps): JSX.Element => {
+}: AvatarProps): ReactElement => {
   const [hasImageError, setHasImageError] = useState<boolean>(false);
   const variant: AvatarVariant = type === 'person' ? 'circle' : 'square';
   const color: AvatarColor = type === 'person' ? 'light' : 'dark';
