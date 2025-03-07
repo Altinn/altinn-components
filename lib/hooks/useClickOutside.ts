@@ -1,7 +1,7 @@
 'use client';
 import { type RefObject, useEffect } from 'react';
 
-export const useClickOutside = (ref: RefObject<HTMLDivElement>, callback?: () => void) => {
+export const useClickOutside = (ref: RefObject<HTMLDivElement | null>, callback?: () => void) => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent | TouchEvent) => {
       if (ref.current && !ref.current.contains(event.target as Node)) {
