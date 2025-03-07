@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.19.6](https://github.com/Altinn/altinn-components/compare/v0.19.5...v0.19.6) (2025-03-07)
+
+
+### Bug Fixes
+
+* **DialogActions:** make dismissable with escape or click-away ([#294](https://github.com/Altinn/altinn-components/issues/294)) ([62ba98e](https://github.com/Altinn/altinn-components/commit/62ba98e005217589f51401c9d59185e7b571482c))
+
+
+### Miscellaneous Chores
+
+* bump storybook to ^8.6.4 and increase speed of docsgen by disabling typescript for reactDocgen ([#292](https://github.com/Altinn/altinn-components/issues/292)) ([4e6373b](https://github.com/Altinn/altinn-components/commit/4e6373bf725193fdabfc486609c92995d14ca2d3))
+
 ## [0.19.5](https://github.com/Altinn/altinn-components/compare/v0.19.4...v0.19.5) (2025-03-06)
 
 
