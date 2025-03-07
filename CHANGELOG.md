@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.20.0](https://github.com/Altinn/altinn-components/compare/v0.19.6...v0.20.0) (2025-03-07)
+
+
+### Features
+
+* update to React 19 ([#295](https://github.com/Altinn/altinn-components/issues/295)) ([4391288](https://github.com/Altinn/altinn-components/commit/43912887b560e17bef51d5046012a9b908239f49))
+
+
+### Bug Fixes
+
+* dialog actions not working properly with multi button selected ([#296](https://github.com/Altinn/altinn-components/issues/296)) ([578d19c](https://github.com/Altinn/altinn-components/commit/578d19cffc54ae0eaa159648e91b7810dc448520))
+
 ## [0.19.6](https://github.com/Altinn/altinn-components/compare/v0.19.5...v0.19.6) (2025-03-07)
 
 
