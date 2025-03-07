@@ -1,7 +1,7 @@
 'use client';
 import { ChevronDownIcon, ChevronUpIcon } from '@navikt/aksel-icons';
-import { useMemo, useState } from 'react';
-import { Button, type ButtonProps, ComboButton, DropdownBase, Menu, type MenuItemProps } from '..';
+import { useMemo } from 'react';
+import { Button, type ButtonProps, ComboButton, DropdownBase, Menu, type MenuItemProps, useRootContext } from '..';
 import styles from './dialogAction.module.css';
 
 export type DialogButtonPriority = 'primary' | 'secondary' | 'tertiary';
@@ -17,10 +17,18 @@ export interface DialogActionsProps {
   items: DialogActionButtonProps[];
   /** How many actions to display before turning into a ComboButton */
   maxItems?: number;
+  /** Unique id for the dialog if multiple DialogAction are needed */
+  id?: string;
 }
 
-export const DialogActions = ({ items, maxItems = 2 }: DialogActionsProps) => {
-  const [expanded, setExpanded] = useState<boolean>(false);
+export const DialogActions = ({ items, maxItems = 2, id = 'dialog-actions' }: DialogActionsProps) => {
+  const { currentId, toggleId } = useRootContext();
+  const expanded = currentId === id;
+
+  const onToggleMenu = () => {
+    toggleId(id);
+  };
+
   const sortedItems = useMemo(() => {
     return (items || []).sort((a, b) => {
       const priorityOrder = ['primary', 'secondary', 'tertiary'];
@@ -45,12 +53,12 @@ export const DialogActions = ({ items, maxItems = 2 }: DialogActionsProps) => {
           variant="solid"
           icon={expanded ? ChevronUpIcon : ChevronDownIcon}
           size="lg"
-          onIconClick={() => setExpanded((expanded) => !expanded)}
+          onIconClick={() => onToggleMenu()}
           ariaLabel={expanded ? 'chevron up icon' : 'chevron down icon'}
         >
           {sortedItems[0].label}
         </ComboButton>
-        <DropdownBase open={expanded}>
+        <DropdownBase open={expanded} onClose={onToggleMenu}>
           <Menu items={remainingItems} />
         </DropdownBase>
       </section>

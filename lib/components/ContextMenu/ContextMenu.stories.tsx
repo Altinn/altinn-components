@@ -1,7 +1,7 @@
 import { ArchiveIcon, ArrowRedoIcon, ClockDashedIcon, EyeClosedIcon, TrashIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, userEvent, within } from '@storybook/test';
-import { ContextMenu } from './ContextMenu';
+import { ContextMenu, type ContextMenuProps } from './ContextMenu';
 
 const meta = {
   title: 'Menu/ContextMenu',
@@ -76,4 +76,13 @@ export const Default: Story = {
     await userEvent.click(item);
     await expect(canvas.queryByRole('menu')).not.toBeInTheDocument();
   },
+};
+
+export const MultipleContextMenus = (props: ContextMenuProps) => {
+  return (
+    <>
+      <ContextMenu key="context-menu-1" {...props} id="context-menu-1" />
+      <ContextMenu key="context-menu-2" {...props} id="context-menu-2" />
+    </>
+  );
 };

@@ -108,7 +108,7 @@ export const InboxScopes = (args: SearchbarProps) => {
 export const InboxScopesExpanded = () => {
   return (
     <Section style={{ minHeight: '176px' }}>
-      <InboxScopes name="search" expanded={true} value="skatt" />
+      <InboxScopes name="search" expanded value="skatt" />
     </Section>
   );
 };
