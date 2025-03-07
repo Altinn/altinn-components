@@ -93,14 +93,8 @@ export const SeenBy = (args: DialogListItemProps) => {
   return (
     <>
       <ListBase>
-        <DialogListItem {...args} seen seenBy={{ seenByEndUser: true, label: 'Sett av deg' }} />
-      </ListBase>
-      <MetaItem>Seen by end user. Dialog is marked as seen.</MetaItem>
-      <ListBase>
+        <DialogListItem {...args} seen label="Ny" seenBy={{ seenByEndUser: true, label: 'Sett av deg' }} />
         <DialogListItem {...args} seenBy={{ seenByOthersCount: 4, label: 'Sett av 4' }} />
-      </ListBase>
-      <MetaItem>Seen by others. Dialog is not marked as seen.</MetaItem>
-      <ListBase>
         <DialogListItem
           {...args}
           seen
@@ -111,7 +105,6 @@ export const SeenBy = (args: DialogListItemProps) => {
           }}
         />
       </ListBase>
-      <MetaItem>Seen by end user and others. Dialog is marked as seen.</MetaItem>
     </>
   );
 };
@@ -129,8 +122,8 @@ export const InboxStatuses = (args: DialogListItemProps) => {
 export const DraftAndSent = (args: DialogListItemProps) => {
   return (
     <ListBase>
-      <DialogListItem {...args} status={{ value: 'draft', label: 'Utkast' }} />
-      <DialogListItem {...args} status={{ value: 'sent', label: 'Sendt' }} />
+      <DialogListItem {...args} summary={undefined} status={{ value: 'draft', label: 'Utkast' }} />
+      <DialogListItem {...args} summary={undefined} status={{ value: 'sent', label: 'Sendt' }} />
     </ListBase>
   );
 };
@@ -140,6 +133,7 @@ export const ArchivedAndTrashed = (args: DialogListItemProps) => {
     <ListBase>
       <DialogListItem
         {...args}
+        summary={undefined}
         label="Arkivert"
         status={{ value: 'completed', label: 'Avsluttet' }}
         seen={true}
@@ -149,6 +143,7 @@ export const ArchivedAndTrashed = (args: DialogListItemProps) => {
       />
       <DialogListItem
         {...args}
+        summary={undefined}
         label="Papirkurv"
         status={{ value: 'completed', label: 'Avsluttet' }}
         seen={true}

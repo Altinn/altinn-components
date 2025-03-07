@@ -4,7 +4,7 @@ import { DialogActions, DialogAttachments, DialogBody } from '..';
 const meta = {
   title: 'Dialog/DialogBody',
   component: DialogBody,
-  tags: ['autodocs', 'beta'],
+  tags: ['beta'],
   args: {
     sender: {
       type: 'company',

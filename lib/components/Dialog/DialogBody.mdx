@@ -1,0 +1,26 @@
+import { Meta, Controls, Primary, Canvas } from "@storybook/blocks";
+import * as DialogBody from "./DialogBody.stories";
+
+<Meta of={DialogBody} />
+
+# Dialog body
+
+The main part of the dialog, including sender and recipient.
+
+<Canvas of={DialogBody.Default} />
+
+## Loading state
+
+<Canvas of={DialogBody.Loading} />
+
+## Actions
+
+<Canvas of={DialogBody.WithActions} />
+
+## Attachments
+
+<Canvas of={DialogBody.WithAttachments} />
+
+## Extended content
+
+<Canvas of={DialogBody.ExtendedContent} />
