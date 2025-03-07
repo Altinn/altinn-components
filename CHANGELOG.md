@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.20.1](https://github.com/Altinn/altinn-components/compare/v0.20.0...v0.20.1) (2025-03-07)
+
+
+### Bug Fixes
+
+* typo ([#299](https://github.com/Altinn/altinn-components/issues/299)) ([e7b612f](https://github.com/Altinn/altinn-components/commit/e7b612fcc02fc3f48832feb02edc33a7cf8e0a45))
+
 ## [0.20.0](https://github.com/Altinn/altinn-components/compare/v0.19.6...v0.20.0) (2025-03-07)
 
 
