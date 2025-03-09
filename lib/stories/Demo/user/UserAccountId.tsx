@@ -16,7 +16,7 @@ export const UserAccountId = () => {
   return (
     <PageBase color="person" spacing={6}>
       <PageNav breadcrumbs={breadcrumbs} />
-      <AccountHeader {...company} type="company" currentAccount={currentAccount} />
+      <AccountHeader {...company} type="company" currentAccount={currentAccount}  />
       <Heading size="lg">{title}</Heading>
       <ListBase>
         {items.map((item) => {

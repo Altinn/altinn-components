@@ -35,7 +35,7 @@ export const useLayout = () => {
         ...menu,
         menuLabel: "Meny",
         backLabel: "Tilbake",
-        logoutButton: { label: 'Logg ut' },
+        logoutButton: currentAccount ? { label: 'Logg ut' } : undefined,
         changeLabel: 'Endre',
       },
     },
