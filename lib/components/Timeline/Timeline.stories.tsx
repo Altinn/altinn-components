@@ -1,5 +1,5 @@
-import { DiamondFillIcon, TeddyBearFillIcon } from '@navikt/aksel-icons';
-import type { Meta } from '@storybook/react';
+import { DiamondFillIcon, TeddyBearFillIcon } from "@navikt/aksel-icons";
+import type { Meta } from "@storybook/react";
 import {
   AttachmentList,
   Button,
@@ -11,13 +11,13 @@ import {
   TimelineSection,
   TimelineSegment,
   TransmissionList,
-} from '..';
-import { skatt } from '../../../examples/avatar';
+} from "..";
+import { skatt } from "../../../examples/avatar";
 
 const meta = {
-  title: 'Timeline/Timeline',
+  title: "Timeline/Timeline",
   component: Timeline,
-  tags: ['beta'],
+  tags: ["beta"],
   parameters: {},
   args: {},
 } satisfies Meta<typeof Timeline>;
@@ -28,19 +28,29 @@ export const ActivityLog = () => {
   return (
     <Timeline>
       <TimelineSegment>
-        <TimelineActivity byline="Today, 14:10">End of conversation.</TimelineActivity>
+        <TimelineActivity byline="Today, 14:10">
+          End of conversation.
+        </TimelineActivity>
       </TimelineSegment>
       <TimelineSegment>
-        <TimelineActivity byline="Yesterday, 20:00">Activity 4.</TimelineActivity>
+        <TimelineActivity byline="Yesterday, 20:00">
+          Activity 4.
+        </TimelineActivity>
       </TimelineSegment>
       <TimelineSegment>
-        <TimelineActivity byline="Yesterday, 12:00">Activity 3.</TimelineActivity>
+        <TimelineActivity byline="Yesterday, 12:00">
+          Activity 3.
+        </TimelineActivity>
       </TimelineSegment>
       <TimelineSegment>
-        <TimelineActivity byline="Yesterday, 08:00">Activity 2.</TimelineActivity>
+        <TimelineActivity byline="Yesterday, 08:00">
+          Activity 2.
+        </TimelineActivity>
       </TimelineSegment>
       <TimelineSegment>
-        <TimelineActivity byline="Last week">Start of conversation.</TimelineActivity>
+        <TimelineActivity byline="Last week">
+          Start of conversation.
+        </TimelineActivity>
       </TimelineSegment>
     </Timeline>
   );
@@ -50,7 +60,9 @@ export const GroupedLog = () => {
   return (
     <Timeline>
       <TimelineSegment>
-        <TimelineActivity byline="Today, 14:10">End of conversation.</TimelineActivity>
+        <TimelineActivity byline="Today, 14:10">
+          End of conversation.
+        </TimelineActivity>
       </TimelineSegment>
       <TimelineSegment byline="Yesterday">
         <TimelineActivity byline="20:00">Activity 4.</TimelineActivity>
@@ -58,7 +70,9 @@ export const GroupedLog = () => {
         <TimelineActivity byline="08:00">Activity 2.</TimelineActivity>
       </TimelineSegment>
       <TimelineSegment>
-        <TimelineActivity byline="Last week">Start of conversation.</TimelineActivity>
+        <TimelineActivity byline="Last week">
+          Start of conversation.
+        </TimelineActivity>
       </TimelineSegment>
     </Timeline>
   );
@@ -85,8 +99,8 @@ export const UsingAvatars = () => {
       </TimelineSegment>
       <TimelineSegment
         avatar={{
-          type: 'person',
-          name: 'Kari Nordmann',
+          type: "person",
+          name: "Kari Nordmann",
         }}
         border="strong"
       >
@@ -118,15 +132,19 @@ export const CollapsingElements = () => {
           End of conversation.
         </TimelineActivity>
       </TimelineSegment>
-      <TimelineSegment icon={DiamondFillIcon} border="dashed" byline="Yesterday 08.00–20.00">
+      <TimelineSegment
+        icon={DiamondFillIcon}
+        border="dashed"
+        byline="Yesterday 08.00–20.00"
+      >
         <div>
           <Button variant="outline">Show all</Button>
         </div>
       </TimelineSegment>
       <TimelineSegment
         avatar={{
-          type: 'person',
-          name: 'Kari Nordmann',
+          type: "person",
+          name: "Kari Nordmann",
         }}
         border="strong"
       >
@@ -153,33 +171,39 @@ export const DialogHistory = () => {
       <TimelineSection margin="bottom" byline="26. februar, kl. 08.00">
         <p>Gratulerer, søknaden din om startsborgerskap er godkjent.</p>
         <h6>1 vedlegg</h6>
-        <AttachmentList items={[{ href: '/#1', label: 'Godkjent vedtak.pdf' }]} />
+        <AttachmentList
+          items={[{ href: "/#1", label: "Godkjent vedtak.pdf" }]}
+        />
       </TimelineSection>
       <TimelineSegment>
         <TimelineActivity>
           <TransmissionList
             items={[
               {
-                id: '2',
-                byline: 'I går, kl 08.00',
+                id: "2",
+                byline: "I går, kl 08.00",
                 sender: skatt,
-                createdAtLabel: '25. februar kl 08.00',
-                title: 'Søknaden din er godkjent',
-                summary: 'Søknad om statsborgerskap er godkjent.',
-                attachments: { items: [{ href: '/#1', label: 'Godkjent vedtak.pdf' }] },
+                createdAtLabel: "25. februar kl 08.00",
+                title: "Søknaden din er godkjent",
+                summary: "Søknad om statsborgerskap er godkjent.",
+                attachments: {
+                  items: [{ href: "/#1", label: "Godkjent vedtak.pdf" }],
+                },
                 badge: {
-                  theme: 'base',
-                  color: 'success',
-                  label: 'Godkjent',
+                  theme: "base",
+                  color: "success",
+                  label: "Godkjent",
                 },
               },
               {
-                id: '1',
-                byline: '2 uker siden',
-                sender: { name: 'Kari Nordmann' },
-                createdAtLabel: '11. februar kl 12.25',
-                title: 'Søknad om startsborgerskap',
-                attachments: { items: [{ href: '/#1', label: 'Kvittering.pdf' }] },
+                id: "1",
+                byline: "2 uker siden",
+                sender: { name: "Kari Nordmann" },
+                createdAtLabel: "11. februar kl 12.25",
+                title: "Søknad om startsborgerskap",
+                attachments: {
+                  items: [{ href: "/#1", label: "Kvittering.pdf" }],
+                },
               },
             ]}
           />
@@ -200,10 +224,14 @@ export const ProcessTimeline = () => {
         <p>Slik søker du statsborgerskap:</p>
       </TimelineSection>
       <TimelineSegment>
-        <TimelineActivity byline="Første steg">Gå på norskkurs.</TimelineActivity>
+        <TimelineActivity byline="Første steg">
+          Gå på norskkurs.
+        </TimelineActivity>
       </TimelineSegment>
       <TimelineSegment>
-        <TimelineActivity byline="Andre steg">Ta bergenstesten.</TimelineActivity>
+        <TimelineActivity byline="Andre steg">
+          Ta bergenstesten.
+        </TimelineActivity>
       </TimelineSegment>
       <TimelineSegment>
         <TimelineActivity byline="Tredje steg">Send søknad.</TimelineActivity>

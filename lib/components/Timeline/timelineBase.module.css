@@ -15,6 +15,10 @@
   width: 2.25rem;
 }
 
+.sidebar[data-level="2"] {
+  width: 1.5rem;
+}
+
 .content {
   flex-grow: 1;
   display: flex;

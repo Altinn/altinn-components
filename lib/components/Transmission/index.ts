@@ -1,2 +1,2 @@
-export * from './Transmission';
-export * from './TransmissionList';
+export * from "./Transmission";
+export * from "./TransmissionList";
