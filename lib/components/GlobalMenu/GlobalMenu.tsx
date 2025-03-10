@@ -103,6 +103,14 @@ export const GlobalMenu = ({
   return (
     <GlobalMenuBase>
       <Menu groups={groups} items={itemsWithToggle} />
+      {logoutButton && (
+        <>
+          <MenuListItem as="div" role="separator" />
+          <GlobalMenuFooter>
+            <LogoutButton {...logoutButton} />
+          </GlobalMenuFooter>
+        </>
+      )}
     </GlobalMenuBase>
   );
 };
