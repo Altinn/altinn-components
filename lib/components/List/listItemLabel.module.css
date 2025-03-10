@@ -40,13 +40,19 @@
 }
 
 /* title + descr */
-
 .title {
   display: inline;
   font-size: 1em;
-  font-weight: 600;
   line-height: 1.125;
   margin: 0;
+}
+
+.title[data-weight="bold"] {
+  font-weight: 600;
+}
+
+.title[data-weight="normal"] {
+  font-weight: normal;
 }
 
 .description {

@@ -16,7 +16,7 @@ export interface TimelineHeaderProps {
 }
 
 export const TimelineHeader = ({
-  as = 'header',
+  as = 'li',
   loading,
   color,
   icon,

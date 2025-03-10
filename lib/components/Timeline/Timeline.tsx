@@ -7,5 +7,9 @@ export interface TimelineProps {
 }
 
 export const Timeline = ({ spacing = 2, children }: TimelineProps) => {
-  return <Section spacing={spacing}>{children}</Section>;
+  return (
+    <Section as="ul" spacing={spacing}>
+      {children}
+    </Section>
+  );
 };

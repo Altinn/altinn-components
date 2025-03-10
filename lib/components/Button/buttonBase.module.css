@@ -98,3 +98,12 @@
 .button[data-variant="text"]:active {
   background-color: var(--ds-color-surface-active);
 }
+
+.button[data-variant="link"] {
+  border: none;
+  color: var(--ds-color-text-subtle);
+}
+
+.button[data-variant="link"]:hover {
+  color: var(--ds-color-base-hover);
+}

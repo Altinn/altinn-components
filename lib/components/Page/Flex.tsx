@@ -1,9 +1,8 @@
 import cx from 'classnames';
-import type { CSSProperties, ReactNode } from 'react';
+import type { CSSProperties, ElementType, ReactNode } from 'react';
 import type { Color, Range, Shadow, Theme } from '..';
 import styles from './flex.module.css';
 
-export type FlexElement = 'div' | 'section' | 'article' | 'header' | 'footer' | 'nav' | 'ul';
 export type FlexDirection = 'col' | 'row';
 export type FlexAlign = 'initial' | 'start' | 'end' | 'center' | 'stretch';
 export type FlexJustify = 'initial' | 'start' | 'end' | 'center' | 'between';
@@ -12,7 +11,7 @@ export type FlexPadding = 'page' | Range<11>;
 export type FlexMargin = 0 | 'page' | 'section' | 'bottom';
 
 export interface FlexProps {
-  as?: FlexElement;
+  as?: ElementType;
   shadow?: Shadow;
   color?: Color;
   theme?: Theme;
