@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.20.2](https://github.com/Altinn/altinn-components/compare/v0.20.1...v0.20.2) (2025-03-10)
+
+
+### Bug Fixes
+
+* show logout button ing global menu when props are provided even though current account is not provided ([#301](https://github.com/Altinn/altinn-components/issues/301)) ([fb0815c](https://github.com/Altinn/altinn-components/commit/fb0815c930d924f99caed2ef293c9d9f5d3dcbd2))
+
 ## [0.20.1](https://github.com/Altinn/altinn-components/compare/v0.20.0...v0.20.1) (2025-03-07)
 
 
