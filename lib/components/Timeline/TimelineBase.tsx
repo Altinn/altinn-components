@@ -1,15 +1,16 @@
-import type { ReactNode } from 'react';
-import { Avatar, Flex, Icon, Skeleton } from '..';
-import type { AvatarProps, Color, FlexProps, SvgElement, Theme } from '..';
-import styles from './timelineBase.module.css';
+import type { ReactNode } from "react";
+import { Avatar, Flex, Icon, Skeleton } from "..";
+import type { AvatarProps, Color, FlexProps, SvgElement, Theme } from "..";
+import styles from "./timelineBase.module.css";
 
-export type TimelineTheme = 'base' | 'surface';
-export type TimelineBorder = 'strong' | 'solid' | 'dashed' | 'hidden';
+export type TimelineTheme = "base" | "surface";
+export type TimelineBorder = "strong" | "solid" | "dashed" | "hidden";
 export type TimelineBorderWidth = 1 | 2;
 
 export interface TimelineBaseProps {
-  as?: FlexProps['as'];
+  as?: FlexProps["as"];
   loading?: boolean;
+  level?: number;
   border?: TimelineBorder;
   color?: Color;
   theme?: Theme;
@@ -20,18 +21,20 @@ export interface TimelineBaseProps {
 }
 
 export const TimelineBase = ({
-  as = 'section',
+  as = "section",
   loading,
-  border = 'solid',
+  border = "solid",
+  level = 1,
   color,
   icon,
   iconColor,
   avatar,
   children,
+  ...props
 }: TimelineBaseProps) => {
   return (
-    <Flex as={as} className={styles.section} color={color}>
-      <aside className={styles.sidebar}>
+    <Flex as={as} className={styles.section} color={color} {...props}>
+      <aside className={styles.sidebar} data-level={level}>
         {(avatar && <Avatar {...avatar} size="sm" />) ||
           (icon && (
             <Skeleton loading={loading} variant="circle">
@@ -40,7 +43,12 @@ export const TimelineBase = ({
               </span>
             </Skeleton>
           ))}
-        <div className={styles.border} data-loading={loading} data-variant={border} data-color={color} />
+        <div
+          className={styles.border}
+          data-loading={loading}
+          data-variant={border}
+          data-color={color}
+        />
       </aside>
       <div className={styles.content}>{children}</div>
     </Flex>

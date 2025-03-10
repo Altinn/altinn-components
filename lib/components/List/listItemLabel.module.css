@@ -49,6 +49,10 @@
   margin: 0;
 }
 
+.title[data-weight="normal"] {
+  font-weight: normal;
+}
+
 .description {
   display: inline;
   font-weight: 400;

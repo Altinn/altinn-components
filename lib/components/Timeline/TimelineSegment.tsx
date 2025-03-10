@@ -1,5 +1,5 @@
-import { CircleFillIcon } from '@navikt/aksel-icons';
-import type { ReactNode } from 'react';
+import { CircleFillIcon } from "@navikt/aksel-icons";
+import type { ReactNode } from "react";
 import {
   Byline,
   Section,
@@ -9,7 +9,7 @@ import {
   type TimelineBaseProps,
   type TimelineBorder,
   type TypographyProps,
-} from '..';
+} from "..";
 
 export interface TimelineSegmentProps extends TimelineBaseProps {
   loading?: boolean;
@@ -20,8 +20,8 @@ export interface TimelineSegmentProps extends TimelineBaseProps {
   children?: ReactNode;
   footer?: ReactNode;
   typographyProps?: TypographyProps;
-  margin?: SectionProps['margin'];
-  spacing?: SectionProps['spacing'];
+  margin?: SectionProps["margin"];
+  spacing?: SectionProps["spacing"];
 }
 
 export const TimelineSegment = ({
@@ -29,9 +29,9 @@ export const TimelineSegment = ({
   datetime,
   byline,
   icon = CircleFillIcon,
-  color = 'neutral',
+  color = "neutral",
   spacing = 2,
-  margin = 'bottom',
+  margin = "bottom",
   children,
   footer,
   ...props
