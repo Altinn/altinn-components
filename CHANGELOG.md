@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.21.0](https://github.com/Altinn/altinn-components/compare/v0.20.2...v0.21.0) (2025-03-11)
+
+
+### Features
+
+* Transmission timeline ([#303](https://github.com/Altinn/altinn-components/issues/303)) ([96fe740](https://github.com/Altinn/altinn-components/commit/96fe740822bdc083b1fdf23e9c294da7fc94bcac))
+
 ## [0.20.2](https://github.com/Altinn/altinn-components/compare/v0.20.1...v0.20.2) (2025-03-10)
 
 
