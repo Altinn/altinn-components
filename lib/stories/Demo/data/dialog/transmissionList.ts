@@ -1,7 +1,6 @@
-import type { TransmissionItemProps } from '../../../../components';
 import { skatt } from '../avatar';
 
-export const transmissionList: TransmissionItemProps[] = [
+export const transmissionList: DialogHistoryItemProps[] = [
   {
     type: {
       value: 'submission',

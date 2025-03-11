@@ -13,7 +13,7 @@ export interface TimelineFooterProps {
 
 export const TimelineFooter = ({
   loading,
-  as = 'footer',
+  as = 'li',
   color = 'neutral',
   icon = CircleFillIcon,
   iconColor,

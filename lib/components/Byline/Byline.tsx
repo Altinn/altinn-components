@@ -27,10 +27,11 @@ export const Byline = ({
   datetime,
   children,
   as,
+  ...props
 }: BylineProps) => {
   const Component = as || 'div';
   return (
-    <Component className={styles.byline} data-color={color} data-size={size}>
+    <Component {...props} className={styles.byline} data-color={color} data-size={size}>
       {(avatarGroup || avatar) && (
         <Skeleton variant="circle" className={styles.avatar} loading={loading}>
           {avatarGroup ? (

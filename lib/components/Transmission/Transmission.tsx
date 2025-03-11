@@ -7,21 +7,17 @@ import {
   type BadgeProps,
   Byline,
   ListItem,
+  ListItemLabel,
   type ListItemProps,
   Section,
   Typography,
 } from '..';
 
-export interface TransmissionType {
-  value: string;
-  label: string;
-}
-
 export interface TransmissionProps extends ListItemProps {
   id: string;
   datetime?: string;
   byline?: ReactNode;
-  type?: TransmissionType;
+  type?: string;
   badge?: BadgeProps;
   createdAt?: string;
   createdAtLabel?: string;
@@ -36,6 +32,7 @@ export const Transmission = ({
   theme = 'subtle',
   color = 'neutral',
   type,
+  title,
   createdAt,
   createdAtLabel,
   badge,
@@ -54,6 +51,7 @@ export const Transmission = ({
       size={size}
       theme={theme}
       color={color}
+      label={<ListItemLabel title={title} weight={type === 'submission' ? 'normal' : 'bold'} />}
       expanded={expanded}
       onClick={() => setExpanded((prevState) => !prevState)}
       collapsible

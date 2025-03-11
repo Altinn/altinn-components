@@ -1,6 +1,6 @@
-import type { ReactNode } from 'react';
+import type { ElementType, ReactNode } from 'react';
 import { Avatar, Flex, Icon, Skeleton } from '..';
-import type { AvatarProps, Color, FlexProps, SvgElement, Theme } from '..';
+import type { AvatarProps, Color, SvgElement, Theme } from '..';
 import styles from './timelineBase.module.css';
 
 export type TimelineTheme = 'base' | 'surface';
@@ -8,8 +8,9 @@ export type TimelineBorder = 'strong' | 'solid' | 'dashed' | 'hidden';
 export type TimelineBorderWidth = 1 | 2;
 
 export interface TimelineBaseProps {
-  as?: FlexProps['as'];
+  as?: ElementType;
   loading?: boolean;
+  level?: number;
   border?: TimelineBorder;
   color?: Color;
   theme?: Theme;
@@ -23,15 +24,17 @@ export const TimelineBase = ({
   as = 'section',
   loading,
   border = 'solid',
+  level = 1,
   color,
   icon,
   iconColor,
   avatar,
   children,
+  ...props
 }: TimelineBaseProps) => {
   return (
-    <Flex as={as} className={styles.section} color={color}>
-      <aside className={styles.sidebar}>
+    <Flex as={as} className={styles.section} color={color} {...props}>
+      <aside className={styles.sidebar} data-level={level}>
         {(avatar && <Avatar {...avatar} size="sm" />) ||
           (icon && (
             <Skeleton loading={loading} variant="circle">

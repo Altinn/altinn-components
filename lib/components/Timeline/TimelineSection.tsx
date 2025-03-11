@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { ElementType, ReactNode } from 'react';
 import {
   Byline,
   Section,
@@ -20,12 +20,14 @@ export interface TimelineSectionProps {
   byline?: ReactNode;
   children?: ReactNode;
   footer?: ReactNode;
+  as?: ElementType;
 }
 
 export const TimelineSection = ({
   loading,
   margin,
   spacing,
+  as = 'li',
   border = 'strong',
   color,
   typographyProps = {},
@@ -35,7 +37,7 @@ export const TimelineSection = ({
   footer,
 }: TimelineSectionProps) => {
   return (
-    <TimelineBase loading={loading} border={border} color={color}>
+    <TimelineBase loading={loading} border={border} color={color} as={as}>
       {byline && (
         <Byline loading={loading} datetime={datetime}>
           {byline}

@@ -4,7 +4,7 @@ import type { Color } from '..';
 
 import styles from './buttonBase.module.css';
 
-export type ButtonVariant = 'solid' | 'outline' | 'dotted' | 'text';
+export type ButtonVariant = 'solid' | 'outline' | 'dotted' | 'text' | 'link';
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'custom';
 export type ButtonColor = Color | 'inherit';
 

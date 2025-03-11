@@ -1,0 +1,24 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.125em;
+  height: 1.5rem;
+  align-self: flex-start;
+}
+
+.reverse {
+  flex-direction: row-reverse;
+}
+
+.icon {
+  font-size: 1.25rem;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.125rem;
+  padding: 0.1875rem 0;
+}

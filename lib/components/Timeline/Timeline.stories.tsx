@@ -166,7 +166,9 @@ export const DialogHistory = () => {
                 createdAtLabel: '25. februar kl 08.00',
                 title: 'Søknaden din er godkjent',
                 summary: 'Søknad om statsborgerskap er godkjent.',
-                attachments: { items: [{ href: '/#1', label: 'Godkjent vedtak.pdf' }] },
+                attachments: {
+                  items: [{ href: '/#1', label: 'Godkjent vedtak.pdf' }],
+                },
                 badge: {
                   theme: 'base',
                   color: 'success',
@@ -179,7 +181,9 @@ export const DialogHistory = () => {
                 sender: { name: 'Kari Nordmann' },
                 createdAtLabel: '11. februar kl 12.25',
                 title: 'Søknad om startsborgerskap',
-                attachments: { items: [{ href: '/#1', label: 'Kvittering.pdf' }] },
+                attachments: {
+                  items: [{ href: '/#1', label: 'Kvittering.pdf' }],
+                },
               },
             ]}
           />
