@@ -2,7 +2,6 @@ import type { MouseEventHandler, ReactNode } from 'react';
 import { DrawerBase, DrawerBody, DrawerButton, DrawerFooter, DrawerHeader, DropdownBase } from '../';
 import type { DrawerButtonProps } from '../';
 import { Backdrop } from './Backdrop';
-import styles from './drawerOrDropdown.module.css';
 
 export interface DrawerOrDropdownProps {
   drawerTitle: string;
@@ -22,10 +21,10 @@ export const DrawerOrDropdown = ({
   return (
     <>
       {open && <Backdrop onClick={onClose} />}
-      <DropdownBase className={styles.dropdown} padding open={open}>
+      <DropdownBase layout="desktop" padding open={open}>
         {children}
       </DropdownBase>
-      <DrawerBase className={styles.drawer} placement="bottom" open={open}>
+      <DrawerBase layout="mobile" placement="bottom" open={open}>
         <DrawerHeader title={drawerTitle} onClose={onClose} />
         <DrawerBody>{children}</DrawerBody>
         <DrawerFooter>

@@ -7,6 +7,7 @@ const meta = {
   tags: ['autodocs'],
   parameters: {},
   args: {
+    as: 'section',
     byline: 'Byline',
     children: (
       <>

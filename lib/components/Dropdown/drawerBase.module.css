@@ -5,6 +5,7 @@
 .drawer[data-expanded="true"] {
   display: block;
   width: 100%;
+  z-index: 2;
 }
 
 .drawer[data-placement="bottom"] {
@@ -13,4 +14,16 @@
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+@media (max-width: 1023px) {
+  .drawer[data-expanded="true"][data-layout="desktop"] {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .drawer[data-expanded="true"][data-layout="mobile"] {
+    display: none;
+  }
 }

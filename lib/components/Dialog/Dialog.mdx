@@ -2,7 +2,7 @@ import { Meta, Controls, Primary, Canvas } from "@storybook/blocks";
 import * as DialogStories from "./Dialog.stories";
 import * as DialogHeader from "./DialogHeader.stories";
 import * as DialogBody from "./DialogBody.stories";
-import * as DialogHistory from "./DialogHistory.stories";
+import * as DialogHistory from "./DialogHistory.stories.tsx";
 
 <Meta title="Dialog" />
 
@@ -36,8 +36,3 @@ The history is a curated list of activities and/or transmissions that has happen
 
 <Canvas of={DialogHistory.Default} />
 
-## Putting it together
-
-The following is a dialog with history that has been completed. It includes a single attachment and an action. Underneath the body, users are presented with a section explaining what the process is about.
-
-<Canvas of={DialogStories.WithHistory} />

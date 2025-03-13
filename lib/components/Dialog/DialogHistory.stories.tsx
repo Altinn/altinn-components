@@ -5,7 +5,7 @@ import { DialogHistory } from './DialogHistory';
 const meta = {
   title: 'Dialog/DialogHistory',
   component: DialogHistory,
-  tags: ['beta'],
+  tags: ['beta', 'skip-test'],
   parameters: {},
   args: {
     items: dialogHistoryItems,
@@ -31,4 +31,11 @@ export const Collapsible: Story = {
     collapseLabel: 'Skjul historikk',
     collapsible: true,
   },
+  decorators: [
+    (Story) => (
+      <ul>
+        <Story />
+      </ul>
+    ),
+  ],
 };

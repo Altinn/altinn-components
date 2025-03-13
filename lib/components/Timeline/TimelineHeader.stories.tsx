@@ -9,6 +9,7 @@ const meta = {
   tags: ['autodocs'],
   parameters: {},
   args: {
+    as: 'header',
     avatar: skatt,
     children: (
       <>
