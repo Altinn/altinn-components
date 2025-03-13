@@ -8,6 +8,7 @@ const meta = {
   parameters: {},
   args: {
     children: 'Footer text',
+    as: 'footer',
   },
 } satisfies Meta<typeof TimelineFooter>;
 

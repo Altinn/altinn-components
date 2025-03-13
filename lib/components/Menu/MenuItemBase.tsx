@@ -51,7 +51,7 @@ export const MenuItemBase = ({
   return (
     <Component
       tabIndex={disabled ? '-1' : (tabIndex ?? 0)}
-      className={cx(styles.item, className)}
+      className={cx(className, styles.item)}
       data-size={size}
       data-color={color}
       data-theme={theme}

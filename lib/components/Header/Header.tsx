@@ -54,7 +54,13 @@ export const Header = ({ search, menu, currentAccount, logo = {}, badge }: Heade
           label={menu?.menuLabel}
         />
         {menu && (
-          <DropdownBase padding placement="right" open={currentId === 'menu'} className={styles.dropdown}>
+          <DropdownBase
+            layout="desktop"
+            padding
+            placement="right"
+            open={currentId === 'menu'}
+            className={styles.dropdown}
+          >
             <GlobalMenu {...menu} currentAccount={currentAccount} onClose={closeAll} />
           </DropdownBase>
         )}
@@ -65,7 +71,7 @@ export const Header = ({ search, menu, currentAccount, logo = {}, badge }: Heade
         </HeaderSearch>
       )}
       {menu && (
-        <DrawerBase open={currentId === 'menu'} className={styles.drawer}>
+        <DrawerBase layout="mobile" open={currentId === 'menu'} className={styles.drawer}>
           <GlobalMenu {...menu} currentAccount={currentAccount} onClose={closeAll} />
         </DrawerBase>
       )}

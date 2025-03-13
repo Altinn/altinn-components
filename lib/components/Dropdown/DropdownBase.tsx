@@ -4,9 +4,11 @@ import { useClickOutside } from '../../hooks';
 import styles from './dropdownBase.module.css';
 
 export type DropdownPlacement = 'left' | 'right';
+export type DropdownLayout = 'mobile' | 'desktop';
 
 export interface DropdownBaseProps {
   placement?: DropdownPlacement;
+  layout?: DropdownLayout;
   padding?: boolean;
   open?: boolean;
   className?: string;
@@ -15,6 +17,7 @@ export interface DropdownBaseProps {
 }
 
 export const DropdownBase = ({
+  layout,
   placement = 'left',
   padding = true,
   open = false,
@@ -29,6 +32,7 @@ export const DropdownBase = ({
     <div
       ref={ref}
       className={cx(styles.dropdown, className)}
+      data-layout={layout}
       data-theme="default"
       data-color="company"
       data-shadow="md"
