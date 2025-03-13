@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.21.2](https://github.com/Altinn/altinn-components/compare/v0.21.1...v0.21.2) (2025-03-13)
+
+
+### Bug Fixes
+
+* dropdown + drawer css inheritance ([#310](https://github.com/Altinn/altinn-components/issues/310)) ([2c2cfa7](https://github.com/Altinn/altinn-components/commit/2c2cfa791a934242718af7416337664878fe4976))
+
 ## [0.21.1](https://github.com/Altinn/altinn-components/compare/v0.21.0...v0.21.1) (2025-03-13)
 
 
