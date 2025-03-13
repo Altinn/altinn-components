@@ -1,5 +1,7 @@
 import {
   type AvatarProps,
+  type BadgeProps,
+  type Color,
   DialogByline,
   DialogHeading,
   DialogMetadata,
@@ -65,8 +67,8 @@ export interface DialogListItemProps extends ListItemProps {
   trashedAtLabel?: string;
   /** Tab index */
   tabIndex?: number;
-  /** Custom label */
-  label?: string;
+  /** Custom badge */
+  badge?: BadgeProps;
   /** Dialog has been seen */
   seen?: boolean;
   /** Dialog is seen by the user */
@@ -79,6 +81,8 @@ export interface DialogListItemProps extends ListItemProps {
   groupId?: string;
   /** Theme */
   theme?: DialogListItemTheme;
+  /** Color */
+  color?: Color;
 }
 
 /**
@@ -104,7 +108,7 @@ export const DialogListItem = ({
   archivedAtLabel,
   trashedAt,
   trashedAtLabel,
-  label,
+  badge,
   dueAt,
   dueAtLabel,
   seen = false,
@@ -164,7 +168,7 @@ export const DialogListItem = ({
           data-loading={loading}
         >
           <header className={styles.header} data-size={size}>
-            <DialogHeading loading={loading} size={size} state={applicableState} label={label} seen={seen}>
+            <DialogHeading loading={loading} size={size} state={applicableState} badge={badge} seen={seen}>
               {title}
             </DialogHeading>
             <DialogByline

@@ -91,7 +91,7 @@
 .summary {
   font-size: 1rem;
   font-weight: 400;
-  line-height: 1.25;
+  line-height: 1.375;
   color: var(--ds-color-text-default);
   display: -webkit-box;
   -webkit-line-clamp: 2;

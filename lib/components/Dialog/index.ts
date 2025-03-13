@@ -19,7 +19,6 @@ export * from './DialogSelect';
 export * from './DialogStatus';
 export * from './DialogHeading';
 export * from './DialogTouchedBy';
-export * from './DialogLabel';
 
 export * from './DialogAttachments';
 

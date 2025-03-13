@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { DialogLabel, type DialogListItemSize, type DialogListItemState, Skeleton } from '..';
+import { Badge, type BadgeProps, type DialogListItemSize, type DialogListItemState, Skeleton } from '..';
 import styles from './dialogHeading.module.css';
 
 export type DialogHeadingProps = {
@@ -8,8 +8,8 @@ export type DialogHeadingProps = {
   size?: DialogListItemSize;
   /** Type */
   state?: DialogListItemState;
-  /** Label */
-  label?: string;
+  /** Badge */
+  badge?: BadgeProps;
   /** Variant */
   seen?: boolean;
   /** Dialog title */
@@ -19,7 +19,7 @@ export type DialogHeadingProps = {
 /**
  * Dialog heading
  */
-export const DialogHeading = ({ loading, size = 'sm', seen = false, state, label, children }: DialogHeadingProps) => {
+export const DialogHeading = ({ loading, size = 'sm', seen = false, state, badge, children }: DialogHeadingProps) => {
   return (
     <div className={styles.heading}>
       <Skeleton loading={loading}>
@@ -28,11 +28,7 @@ export const DialogHeading = ({ loading, size = 'sm', seen = false, state, label
         </h2>
       </Skeleton>
 
-      {!loading && label && (
-        <DialogLabel type={state} size="xs">
-          {label}
-        </DialogLabel>
-      )}
+      {!loading && badge && <Badge {...badge} />}
     </div>
   );
 };

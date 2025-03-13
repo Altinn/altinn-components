@@ -83,7 +83,7 @@ export const GroupedAvatars = (args: DialogListItemProps) => {
 export const SeenVsUnseen = (args: DialogListItemProps) => {
   return (
     <ListBase>
-      <DialogListItem {...args} label="Ny" />
+      <DialogListItem {...args} badge={{ theme: 'surface', label: 'Ny' }} />
       <DialogListItem {...args} seen={true} seenBy={{ seenByEndUser: true, label: 'Sett av deg' }} />
     </ListBase>
   );
@@ -122,8 +122,18 @@ export const InboxStatuses = (args: DialogListItemProps) => {
 export const DraftAndSent = (args: DialogListItemProps) => {
   return (
     <ListBase>
-      <DialogListItem {...args} summary={undefined} status={{ value: 'draft', label: 'Utkast' }} />
-      <DialogListItem {...args} summary={undefined} status={{ value: 'sent', label: 'Sendt' }} />
+      <DialogListItem
+        {...args}
+        summary={undefined}
+        badge={{ label: 'Utkast' }}
+        //        status={{ value: "draft", label: "Utkast" }}
+      />
+      <DialogListItem
+        {...args}
+        summary={undefined}
+        badge={{ label: 'Sendt' }}
+        //        status={{ value: "sent", label: "Sendt" }}
+      />
     </ListBase>
   );
 };
@@ -133,8 +143,10 @@ export const ArchivedAndTrashed = (args: DialogListItemProps) => {
     <ListBase>
       <DialogListItem
         {...args}
+        color="neutral"
         summary={undefined}
-        label="Arkivert"
+        //        label="Arkivert"
+        badge={{ label: 'Arkivert' }}
         status={{ value: 'completed', label: 'Avsluttet' }}
         seen={true}
         seenBy={{ seenByEndUser: true, label: 'Sett av deg' }}
@@ -143,8 +155,10 @@ export const ArchivedAndTrashed = (args: DialogListItemProps) => {
       />
       <DialogListItem
         {...args}
+        color="neutral"
         summary={undefined}
-        label="Papirkurv"
+        //        label="Papirkurv"
+        badge={{ label: 'Papirkurv' }}
         status={{ value: 'completed', label: 'Avsluttet' }}
         seen={true}
         seenBy={{ seenByEndUser: true, label: 'Sett av deg' }}
