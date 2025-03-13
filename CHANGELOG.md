@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.21.1](https://github.com/Altinn/altinn-components/compare/v0.21.0...v0.21.1) (2025-03-13)
+
+
+### Bug Fixes
+
+* replace DialogLabel with Badge ([#307](https://github.com/Altinn/altinn-components/issues/307)) ([5a0252c](https://github.com/Altinn/altinn-components/commit/5a0252c6432c3a7ad3d72eaa883d5f998507cf32))
+
 ## [0.21.0](https://github.com/Altinn/altinn-components/compare/v0.20.2...v0.21.0) (2025-03-11)
 
 
