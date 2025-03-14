@@ -1,14 +1,15 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
 import {
   type AvatarProps,
   type DialogActivityLogProps,
-  DialogMetadata,
-  type DialogSeenByProps,
   Timeline,
   TimelineHeader,
   TimelineSection,
-} from '..';
+  Typography,
+  SeenByLog,
+  type SeenByLogProps,
+} from "..";
 
 export interface DialogBodyProps {
   /** Sender */
@@ -32,7 +33,7 @@ export interface DialogBodyProps {
   /** Group recipient, show both sender and recipient avatars */
   recipientGroup?: boolean;
   /** Dialog is seen by the end user or others */
-  seenBy?: DialogSeenByProps;
+  seenByLog?: SeenByLogProps;
   /** Activity Log */
   activityLog?: DialogActivityLogProps;
   /** Content */
@@ -43,31 +44,33 @@ export interface DialogBodyProps {
 
 export const DialogBody = ({
   loading,
-  loadingText = 'Loading ...',
   sender,
   recipient,
   recipientLabel,
   updatedAt,
   updatedAtLabel,
   children,
-  seenBy,
-  activityLog,
+  seenByLog,
 }: DialogBodyProps) => {
   return (
     <Timeline>
       <TimelineHeader loading={loading} avatar={sender}>
         <strong>{sender.name}</strong>
-        {recipientLabel + ' ' + recipient?.name}
+        {recipientLabel + " " + recipient?.name}
       </TimelineHeader>
       <TimelineSection
         loading={loading}
-        footer={<DialogMetadata loading={loading} seenBy={seenBy} activityLog={activityLog} />}
         datetime={updatedAt}
         byline={updatedAtLabel}
         spacing={4}
-        color={loading ? 'neutral' : undefined}
+        color={loading ? "neutral" : undefined}
       >
-        {children || loadingText}
+        {!loading && (
+          <>
+            <Typography>{children}</Typography>
+            {seenByLog && <SeenByLog {...seenByLog} />}
+          </>
+        )}
       </TimelineSection>
     </Timeline>
   );

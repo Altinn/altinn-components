@@ -1,10 +1,11 @@
-import { MenuItem, type MenuItemColor, type MenuItemProps } from '..';
+import { MenuItem, type MenuItemColor, type MenuItemProps } from "..";
 
-import styles from './pageMenu.module.css';
+import styles from "./pageMenu.module.css";
 
-export type PageMenuTheme = 'default' | 'subtle' | 'base';
+export type PageMenuTheme = "default" | "subtle" | "base";
 
 export interface PageMenuProps {
+  id?: string;
   theme?: PageMenuTheme;
   color?: MenuItemColor;
   items?: MenuItemProps[];

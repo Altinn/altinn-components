@@ -1,17 +1,22 @@
-'use client';
-import { MenuElipsisHorizontalIcon } from '@navikt/aksel-icons';
-import cx from 'classnames';
-import { useMemo, useRef } from 'react';
-import { DropdownBase, type DropdownPlacement, IconButton, type MenuItemProps } from '../';
-import { type MenuItemGroups, MenuItems } from '../';
-import { useClickOutside } from '../../hooks';
-import { useRootContext } from '../RootProvider';
-import styles from './contextMenu.module.css';
+"use client";
+import { MenuElipsisHorizontalIcon } from "@navikt/aksel-icons";
+import cx from "classnames";
+import { useMemo, useRef } from "react";
+import {
+  DropdownBase,
+  type DropdownPlacement,
+  IconButton,
+  type MenuItemProps,
+} from "../";
+import { type MenuItemGroups, MenuItems } from "../";
+import { useClickOutside } from "../../hooks";
+import { useRootContext } from "../RootProvider";
+import styles from "./contextMenu.module.css";
 
-export type ContextMenuSize = 'sm' | 'md';
+export type ContextMenuSize = "sm" | "md";
 
 export interface ContextMenuProps {
-  id: string;
+  id?: string;
   items: MenuItemProps[];
   placement?: DropdownPlacement;
   size?: ContextMenuSize;
@@ -20,8 +25,8 @@ export interface ContextMenuProps {
 }
 
 export const ContextMenu = ({
-  id = 'context-menu',
-  placement = 'right',
+  id = "context-menu",
+  placement = "right",
   size,
   groups = {},
   className,
@@ -46,7 +51,11 @@ export const ContextMenu = ({
   }, [items, closeAll]);
 
   return (
-    <div className={cx(styles.toggle, className)} data-color="neutral" ref={ref}>
+    <div
+      className={cx(styles.toggle, className)}
+      data-color="neutral"
+      ref={ref}
+    >
       <IconButton
         className={styles.button}
         size={size}

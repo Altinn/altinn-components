@@ -1,0 +1,28 @@
+import { Meta, Controls, Primary, Canvas } from "@storybook/blocks";
+import * as DialogHeader from "./DialogHeader.stories";
+import * as DialogBody from "./DialogBody.stories";
+import * as DialogHistory from "./DialogHistory.stories.tsx";
+
+<Meta of={DialogHeader} />
+
+# DialogHeader
+
+The header introduces a dialog with a `title` and an optional a `status` and due date.
+
+## Status
+
+Dialog requires attention:
+
+<Canvas of={DialogHeader.Default} />
+
+Dialog is in progress or in a waiting state.
+
+<Canvas of={DialogHeader.InProgress} />
+
+Dialog is completed. No action needed.
+
+<Canvas of={DialogHeader.Completed} />
+
+## Loading state
+
+<Canvas of={DialogHeader.Loading} />
