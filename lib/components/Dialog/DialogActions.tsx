@@ -26,10 +26,12 @@ export const DialogActions = ({ items, maxItems = 2, id = 'dialog-actions' }: Di
   const expanded = currentId === id;
 
   const sortedItems = useMemo(() => {
-    return (items || []).sort((a, b) => {
-      const priorityOrder = ['primary', 'secondary', 'tertiary'];
-      return priorityOrder.indexOf(a?.priority) - priorityOrder.indexOf(b?.priority);
-    });
+    return (items || [])
+      .filter((item) => !item.hidden)
+      .sort((a, b) => {
+        const priorityOrder = ['primary', 'secondary', 'tertiary'];
+        return priorityOrder.indexOf(a?.priority) - priorityOrder.indexOf(b?.priority);
+      });
   }, [items]);
 
   if (!sortedItems.length || maxItems <= 0) {
