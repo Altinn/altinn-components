@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.21.5](https://github.com/Altinn/altinn-components/compare/v0.21.4...v0.21.5) (2025-03-14)
+
+
+### Bug Fixes
+
+* Add hiden support for dialog actions ([#316](https://github.com/Altinn/altinn-components/issues/316)) ([a40c054](https://github.com/Altinn/altinn-components/commit/a40c0544007f4fc0d0a724644e0c3c08769ef82d))
+
 ## [0.21.4](https://github.com/Altinn/altinn-components/compare/v0.21.3...v0.21.4) (2025-03-14)
 
 
