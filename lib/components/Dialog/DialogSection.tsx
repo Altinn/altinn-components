@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
-import { Heading, Section, Typography } from '..';
+import type { ReactNode } from "react";
+import { Heading, Section, Typography } from "..";
 
 export interface DialogSectionProps {
   title?: string;
@@ -12,7 +12,7 @@ export const DialogSection = ({ title, children }: DialogSectionProps) => {
   }
 
   return (
-    <Section spacing={3} margin="section">
+    <Section spacing={4}>
       {title && <Heading size="lg">{title}</Heading>}
       <Typography>{children}</Typography>
     </Section>

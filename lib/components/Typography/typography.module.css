@@ -8,11 +8,13 @@ p.typography {
   margin: 0;
 }
 
-.typography[data-variant="default"] {
+.typography[data-theme="default"] {
+  background-color: transparent;
   color: var(--ds-color-text-default);
 }
 
-.typography[data-variant="subtle"] {
+.typography[data-theme="subtle"] {
+  background-color: transparent;
   color: var(--ds-color-text-subtle);
 }
 

@@ -3,15 +3,15 @@ import * as DialogBody from "./DialogBody.stories";
 
 <Meta of={DialogBody} />
 
-# Dialog body
+# DialogBody
 
-The main part of the dialog, including sender and recipient.
+Dialog body represents the main part of a dialog. It is made up three parts;
+
+1. A header with `sender` and `recipient` and the sender's logo or avatar.
+2. The content part which should contain a timestamp and a `summary` pointing to optional `attachments` and/or `actions`.
+3. A footer indicating who have seen the dialog, exposing a `SeenByLog` on interaction.
 
 <Canvas of={DialogBody.Default} />
-
-## Loading state
-
-<Canvas of={DialogBody.Loading} />
 
 ## Actions
 
@@ -24,3 +24,7 @@ The main part of the dialog, including sender and recipient.
 ## Extended content
 
 <Canvas of={DialogBody.ExtendedContent} />
+
+## Loading state
+
+<Canvas of={DialogBody.Loading} />

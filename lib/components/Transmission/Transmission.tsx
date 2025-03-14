@@ -1,5 +1,5 @@
-'use client';
-import { type ReactNode, useState } from 'react';
+"use client";
+import { type ReactNode, useState } from "react";
 import {
   AttachmentList,
   type AttachmentListProps,
@@ -11,27 +11,25 @@ import {
   type ListItemProps,
   Section,
   Typography,
-} from '..';
+} from "..";
 
 export interface TransmissionProps extends ListItemProps {
   id: string;
   datetime?: string;
   byline?: ReactNode;
-  type?: string;
   badge?: BadgeProps;
   createdAt?: string;
   createdAtLabel?: string;
   sender?: AvatarProps;
-  title: string;
+  title?: string;
   summary?: string;
   attachments?: AttachmentListProps;
 }
 
 export const Transmission = ({
-  size = 'xs',
-  theme = 'subtle',
-  color = 'neutral',
-  type,
+  size = "xs",
+  theme = "subtle",
+  color = "neutral",
   title,
   createdAt,
   createdAtLabel,
@@ -47,11 +45,21 @@ export const Transmission = ({
     <ListItem
       {...item}
       avatar={sender}
-      badge={badge}
+      badge={
+        badge && {
+          ...badge,
+          theme: badge?.theme || "surface",
+        }
+      }
       size={size}
       theme={theme}
       color={color}
-      label={<ListItemLabel title={title} weight={type === 'submission' ? 'normal' : 'bold'} />}
+      label={
+        <ListItemLabel
+          title={title}
+          weight={sender?.type === "person" ? "normal" : "bold"}
+        />
+      }
       expanded={expanded}
       onClick={() => setExpanded((prevState) => !prevState)}
       collapsible
@@ -59,7 +67,7 @@ export const Transmission = ({
     >
       <Section padding={4}>
         <Byline>
-          <strong>{sender?.name + ', '}</strong> {createdAtLabel}
+          <strong>{sender?.name + ", "}</strong> {createdAtLabel}
         </Byline>
         <Typography size="md">
           <p>{summary}</p>

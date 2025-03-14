@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { ContextMenu, PageNav } from '../';
-import { dialogContextMenu } from '../../../examples';
+import { ArrowRedoIcon, ClockDashedIcon } from "@navikt/aksel-icons";
+import type { Meta, StoryObj } from "@storybook/react";
+import { ContextMenu, PageNav } from "../";
 
 const meta = {
-  title: 'Page/PageNav',
+  title: "Page/PageNav",
   component: PageNav,
-  tags: ['autodocs', 'beta'],
+  tags: ["autodocs", "beta"],
   parameters: {},
   args: {
     backButton: {
-      label: 'Tilbake',
+      label: "Tilbake",
     },
   },
 } satisfies Meta<typeof PageNav>;
@@ -21,13 +21,13 @@ export const Breadcrumbs: Story = {
   args: {
     breadcrumbs: [
       {
-        label: 'Home',
+        label: "Home",
       },
       {
-        label: 'Section',
+        label: "Section",
       },
       {
-        label: 'Article',
+        label: "Article",
       },
     ],
   },
@@ -36,7 +36,7 @@ export const Breadcrumbs: Story = {
 export const BackButton: Story = {
   args: {
     backButton: {
-      label: 'Tilbake',
+      label: "Tilbake",
     },
   },
 };
@@ -44,8 +44,26 @@ export const BackButton: Story = {
 export const BackButtonAndControls: Story = {
   args: {
     backButton: {
-      label: 'Tilbake',
+      label: "Tilbake",
     },
-    controls: <ContextMenu {...dialogContextMenu} />,
+    controls: (
+      <ContextMenu
+        id="context-menu"
+        items={[
+          {
+            id: "1",
+            groupId: "1",
+            icon: ArrowRedoIcon,
+            title: "Del og gi tilgang",
+          },
+          {
+            id: "5",
+            groupId: "3",
+            icon: ClockDashedIcon,
+            title: "Aktivitetslogg",
+          },
+        ]}
+      />
+    ),
   },
 };

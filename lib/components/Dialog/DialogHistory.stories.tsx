@@ -1,14 +1,16 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { dialogActivityLogItems, dialogHistoryItems } from '../../../examples';
-import { DialogHistory } from './DialogHistory';
+import type { Meta, StoryObj } from "@storybook/react";
+import { DialogHistory } from "./DialogHistory";
+import { transmissionHistory, activityLog } from "../../../examples/";
 
 const meta = {
-  title: 'Dialog/DialogHistory',
+  title: "Dialog/DialogHistory",
   component: DialogHistory,
-  tags: ['beta', 'skip-test'],
+  tags: ["beta", "skip-test"],
   parameters: {},
   args: {
-    items: dialogHistoryItems,
+    ...transmissionHistory,
+    expandLabel: "Vis historikk",
+    collapseLabel: "Skjul historikk",
   },
 } satisfies Meta<typeof DialogHistory>;
 
@@ -16,26 +18,35 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
+  args: { collapsible: true },
+};
+
+export const CollapsibleExpanded: Story = {
+  args: {
+    expanded: true,
+    collapsible: true,
+  },
+};
+
+export const ItemExpanded: Story = {
+  args: {
+    items: transmissionHistory.items.map((item, index) => {
+      return {
+        ...item,
+        expanded: !index,
+      };
+    }),
+    collapsible: true,
+  },
+};
+
+export const EverythingExpanded: Story = {
+  args: {
+    ...transmissionHistory,
+    expanded: true,
+  },
 };
 
 export const ActivityLog: Story = {
-  args: {
-    items: dialogActivityLogItems,
-  },
-};
-
-export const Collapsible: Story = {
-  args: {
-    expandLabel: 'Vis historikk',
-    collapseLabel: 'Skjul historikk',
-    collapsible: true,
-  },
-  decorators: [
-    (Story) => (
-      <ul>
-        <Story />
-      </ul>
-    ),
-  ],
+  args: activityLog,
 };

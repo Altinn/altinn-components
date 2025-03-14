@@ -1,28 +1,32 @@
-export * from './Dialog';
+export * from "./Dialog";
+export * from "./DialogLayout";
 
-export * from './DialogHeader';
-export * from './DialogBody';
+export * from "./DialogHeader";
+export * from "./DialogBody";
+export * from "./DialogTabs";
 
-export * from './DialogList';
-export * from './DialogListGroup';
-export * from './DialogListItem';
+export * from "./DialogSection";
+export * from "./DialogContact";
 
-export * from './DialogMetadata';
-export * from './DialogByline';
+export * from "./DialogHistory";
+export * from "./DialogHistorySegment";
 
-export * from './DialogActions';
-export * from './DialogActivityLog';
+export * from "./DialogList";
+export * from "./DialogListGroup";
+export * from "./DialogListItem";
 
-export * from './DialogSection';
-export * from './DialogSeenBy';
-export * from './DialogSelect';
-export * from './DialogStatus';
-export * from './DialogHeading';
-export * from './DialogTouchedBy';
+export * from "./DialogMetadata";
+export * from "./DialogByline";
 
-export * from './DialogAttachments';
+export * from "./DialogActions";
+export * from "./DialogActivityLog";
 
-export * from './DialogHistory';
-export * from './DialogActivity';
+export * from "./DialogSeenBy";
+export * from "./DialogSelect";
+export * from "./DialogStatus";
+export * from "./DialogHeading";
+export * from "./DialogTouchedBy";
 
-export * from './SeenByLog';
+export * from "./DialogAttachments";
+
+export * from "./SeenByLog";

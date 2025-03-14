@@ -1,17 +1,29 @@
-import { Flex, MenuItem, type MenuItemColor, type MenuItemProps, type MenuTheme } from '..';
-import styles from './pageTabs.module.css';
+import {
+  Flex,
+  MenuItem,
+  type MenuItemColor,
+  type MenuItemProps,
+  type MenuTheme,
+} from "..";
+import styles from "./pageTabs.module.css";
 
 export type PageTabsPadding = 0 | 2;
-export type PageTabsVariant = 'card' | undefined;
+export type PageTabsVariant = "card" | undefined;
 
 export interface PageTabsProps {
+  id?: string;
   theme?: MenuTheme;
   color?: MenuItemColor;
   padding?: PageTabsPadding;
   items?: MenuItemProps[];
 }
 
-export const PageTabs = ({ theme, color, items = [], padding = 0 }: PageTabsProps) => {
+export const PageTabs = ({
+  theme,
+  color,
+  items = [],
+  padding = 0,
+}: PageTabsProps) => {
   return (
     <Flex theme={theme} color={color} padding={padding}>
       <ul className={styles.list}>

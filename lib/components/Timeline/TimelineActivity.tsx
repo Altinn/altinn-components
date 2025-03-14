@@ -1,5 +1,5 @@
-import { CircleFillIcon } from '@navikt/aksel-icons';
-import type { ReactNode } from 'react';
+import { CircleFillIcon } from "@navikt/aksel-icons";
+import type { ReactNode } from "react";
 import {
   Byline,
   Section,
@@ -9,7 +9,7 @@ import {
   type TimelineBorder,
   Typography,
   type TypographyProps,
-} from '..';
+} from "..";
 
 export interface TimelineActivityProps extends TimelineBaseProps {
   loading?: boolean;
@@ -20,15 +20,15 @@ export interface TimelineActivityProps extends TimelineBaseProps {
   children?: string | ReactNode;
   footer?: ReactNode;
   typographyProps?: TypographyProps;
-  margin?: SectionProps['margin'];
-  spacing?: SectionProps['spacing'];
+  margin?: SectionProps["margin"];
+  spacing?: SectionProps["spacing"];
 }
 
 export const TimelineActivity = ({
   loading,
   byline,
   icon = CircleFillIcon,
-  color = 'neutral',
+  color = "neutral",
   typographyProps = {},
   margin,
   spacing,
@@ -44,7 +44,7 @@ export const TimelineActivity = ({
           {byline}
         </Byline>
       )}
-      {children && typeof children === 'string' ? (
+      {children && typeof children === "string" ? (
         <Typography as="p" loading={loading} size="md" {...typographyProps}>
           {children}
         </Typography>

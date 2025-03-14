@@ -14,13 +14,13 @@ import {
   ListItemSelect,
   type ListItemSelectProps,
   Skeleton,
-} from '..';
+} from "..";
 
-export type DialogListItemSize = 'xs' | 'sm' | 'md' | 'lg';
-export type DialogListItemState = 'normal' | 'trashed' | 'archived';
-export type DialogListItemTheme = 'default' | 'subtle' | 'transparent';
+export type DialogListItemSize = "xs" | "sm" | "md" | "lg";
+export type DialogListItemState = "normal" | "trashed" | "archived";
+export type DialogListItemTheme = "default" | "subtle" | "transparent";
 
-import styles from './dialogListItem.module.css';
+import styles from "./dialogListItem.module.css";
 
 export interface DialogListItemProps extends ListItemProps {
   /** Dialog title */
@@ -92,15 +92,15 @@ export interface DialogListItemProps extends ListItemProps {
  */
 
 export const DialogListItem = ({
-  size = 'lg',
-  state = 'normal',
+  size = "lg",
+  state = "normal",
   loading,
   select,
   selected,
   status,
   sender,
   recipient,
-  recipientLabel = 'to',
+  recipientLabel = "to",
   grouped = false,
   updatedAt,
   updatedAtLabel,
@@ -118,14 +118,18 @@ export const DialogListItem = ({
   title,
   description,
   summary,
-  theme = 'default',
+  theme = "default",
   ...rest
 }: DialogListItemProps) => {
-  const applicableState = trashedAt ? 'trashed' : archivedAt ? 'archived' : state;
-  const applicableTheme = selected ? 'subtle' : theme;
+  const applicableState = trashedAt
+    ? "trashed"
+    : archivedAt
+    ? "archived"
+    : state;
+  const applicableTheme = selected ? "subtle" : theme;
   const applicableVariant = status?.value;
 
-  if (size === 'xs' || size === 'sm') {
+  if (size === "xs" || size === "sm") {
     return (
       <ListItem
         {...rest}
@@ -140,11 +144,21 @@ export const DialogListItem = ({
             data-seen={seen}
             data-loading={loading}
           >
-            <ListItemLabel loading={loading} size={size} title={title} description={summary || description} />
+            <ListItemLabel
+              loading={loading}
+              size={size}
+              title={title}
+              description={summary || description}
+            />
           </div>
         }
         badge={
-          <DialogMetadata loading={loading} sender={sender} updatedAt={updatedAt} updatedAtLabel={updatedAtLabel} />
+          <DialogMetadata
+            loading={loading}
+            sender={sender}
+            updatedAt={updatedAt}
+            updatedAtLabel={updatedAtLabel}
+          />
         }
         title={title}
       />
@@ -157,7 +171,11 @@ export const DialogListItem = ({
       size={size}
       selected={selected}
       theme={applicableTheme}
-      controls={select && <ListItemSelect className={styles.select} {...select} size="xl" />}
+      controls={
+        select && (
+          <ListItemSelect className={styles.select} {...select} size="xl" />
+        )
+      }
       title={title}
       label={
         <div
@@ -168,7 +186,13 @@ export const DialogListItem = ({
           data-loading={loading}
         >
           <header className={styles.header} data-size={size}>
-            <DialogHeading loading={loading} size={size} state={applicableState} badge={badge} seen={seen}>
+            <DialogHeading
+              loading={loading}
+              size={size}
+              state={applicableState}
+              badge={badge}
+              seen={seen}
+            >
               {title}
             </DialogHeading>
             <DialogByline
@@ -179,7 +203,7 @@ export const DialogListItem = ({
               recipientLabel={recipientLabel}
               grouped={grouped}
             />
-            {size === 'lg' && (
+            {size === "lg" && summary && (
               <Skeleton loading={loading}>
                 <p data-size={size} className={styles.summary}>
                   {summary || description}

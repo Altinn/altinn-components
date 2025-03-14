@@ -1,13 +1,20 @@
-import type { ElementType, ReactNode } from 'react';
-import { Avatar, AvatarGroup, type AvatarGroupProps, type AvatarProps, Skeleton } from '..';
-import styles from './byline.module.css';
+import type { ElementType, ReactNode } from "react";
+import {
+  Avatar,
+  AvatarGroup,
+  type AvatarGroupProps,
+  type AvatarProps,
+  Skeleton,
+} from "..";
+import styles from "./byline.module.css";
 
-export type BylineColor = 'neutral' | 'company' | 'person';
-export type BylineSize = 'xs' | 'sm' | 'md' | 'lg';
+export type BylineColor = "neutral" | "company" | "person";
+export type BylineSize = "xs" | "sm" | "md" | "lg";
 
 export interface BylineProps {
   size?: BylineSize;
   as?: ElementType;
+  onClick?: () => void;
   color?: BylineColor;
   avatar?: AvatarProps;
   avatarGroup?: AvatarGroupProps;
@@ -20,8 +27,8 @@ export interface BylineProps {
 
 export const Byline = ({
   loading,
-  color = 'neutral',
-  size = 'xs',
+  color = "neutral",
+  size = "xs",
   avatar,
   avatarGroup,
   datetime,
@@ -29,15 +36,26 @@ export const Byline = ({
   as,
   ...props
 }: BylineProps) => {
-  const Component = as || 'div';
+  const Component = as || "div";
   return (
-    <Component {...props} className={styles.byline} data-color={color} data-size={size}>
+    <Component
+      {...props}
+      className={styles.byline}
+      data-color={color}
+      data-size={size}
+    >
       {(avatarGroup || avatar) && (
         <Skeleton variant="circle" className={styles.avatar} loading={loading}>
           {avatarGroup ? (
-            <AvatarGroup {...avatarGroup} size={size} className={styles.avatar} />
+            <AvatarGroup
+              {...avatarGroup}
+              size={size}
+              className={styles.avatar}
+            />
           ) : (
-            avatar && <Avatar {...avatar} size={size} className={styles.avatar} />
+            avatar && (
+              <Avatar {...avatar} size={size} className={styles.avatar} />
+            )
           )}
         </Skeleton>
       )}

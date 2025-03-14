@@ -1,4 +1,4 @@
-import type { ElementType, ReactNode } from 'react';
+import type { ElementType, ReactNode } from "react";
 import {
   Byline,
   Section,
@@ -7,19 +7,19 @@ import {
   type TimelineBaseProps,
   Typography,
   type TypographyProps,
-} from '..';
+} from "..";
 
 export interface TimelineSectionProps {
   loading?: boolean;
-  border?: TimelineBaseProps['border'];
-  color?: TimelineBaseProps['color'];
+  level?: TimelineBaseProps["level"];
+  border?: TimelineBaseProps["border"];
+  color?: TimelineBaseProps["color"];
   typographyProps?: TypographyProps;
-  margin?: SectionProps['margin'];
-  spacing?: SectionProps['spacing'];
+  margin?: SectionProps["margin"];
+  spacing?: SectionProps["spacing"];
   datetime?: string;
   byline?: ReactNode;
-  children?: ReactNode;
-  footer?: ReactNode;
+  children?: ReactNode | string;
   as?: ElementType;
 }
 
@@ -27,14 +27,13 @@ export const TimelineSection = ({
   loading,
   margin,
   spacing,
-  as = 'li',
-  border = 'strong',
+  as = "li",
+  border = "strong",
   color,
   typographyProps = {},
   datetime,
   byline,
   children,
-  footer,
 }: TimelineSectionProps) => {
   return (
     <TimelineBase loading={loading} border={border} color={color} as={as}>
@@ -45,12 +44,13 @@ export const TimelineSection = ({
       )}
 
       <Section margin={margin} spacing={spacing}>
-        {children && (
-          <Typography loading={loading} size="md" {...typographyProps}>
+        {children && typeof children === "string" ? (
+          <Typography as="p" loading={loading} size="md" {...typographyProps}>
             {children}
           </Typography>
+        ) : (
+          children
         )}
-        {footer}
       </Section>
     </TimelineBase>
   );
