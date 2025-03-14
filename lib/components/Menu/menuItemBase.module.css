@@ -1,4 +1,6 @@
 .item {
+  font: inherit;
+  color: inherit;
   padding: 0;
   border: 0;
   text-align: inherit;
