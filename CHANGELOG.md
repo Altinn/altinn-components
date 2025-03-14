@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.21.4](https://github.com/Altinn/altinn-components/compare/v0.21.3...v0.21.4) (2025-03-14)
+
+
+### Bug Fixes
+
+* menu item color + font ([#314](https://github.com/Altinn/altinn-components/issues/314)) ([58f5f70](https://github.com/Altinn/altinn-components/commit/58f5f70e224158f257559b3c1cc22dde707e8e2c))
+
 ## [0.21.3](https://github.com/Altinn/altinn-components/compare/v0.21.2...v0.21.3) (2025-03-14)
 
 
