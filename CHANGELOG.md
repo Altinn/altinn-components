@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.21.6](https://github.com/Altinn/altinn-components/compare/v0.21.5...v0.21.6) (2025-03-14)
+
+
+### Bug Fixes
+
+* filter out hidden dialog actions ([#318](https://github.com/Altinn/altinn-components/issues/318)) ([61ba956](https://github.com/Altinn/altinn-components/commit/61ba956d6d29aa4a546feb1cff38097a6c3bc965))
+
 ## [0.21.5](https://github.com/Altinn/altinn-components/compare/v0.21.4...v0.21.5) (2025-03-14)
 
 
