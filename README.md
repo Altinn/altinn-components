@@ -61,7 +61,13 @@ and import the css file in your application once, e.g. in your css:
 import "@altinn/altinn-components/lib/css/global.css";
 ```
 
-for correct `font-family` and minimal collection of resets.
+for correct and minimal collection of global resets and variables.
+
+Ensure that you have the font faces for the Inter font family properly loaded:
+
+```html
+  <link rel="stylesheet" href="https://altinncdn.no/fonts/inter/v4.1/inter.css" integrity="sha384-OcHzc/By/OPw9uJREawUCjP2inbOGKtKb4A/I2iXxmknUfog2H8Adx71tWVZRscD" crossorigin="anonymous">  
+```
 
 ## Documentation
 
