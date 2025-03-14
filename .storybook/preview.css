@@ -1,4 +1,5 @@
-.sbdocs-content:not(.sb-unstyled) > * {
+.sbdocs-content:not(.sb-unstyled) > *,
+.sbdocs-content:not(.sb-unstyled) > * > li {
   font-size: 1rem;
 }
 
@@ -14,7 +15,8 @@
   font-size: 1.25rem;
 }
 
-.sbdocs-content:not(.sb-unstyled) > p > code {
+.sbdocs-content:not(.sb-unstyled) > p > code,
+.sbdocs-content:not(.sb-unstyled) > * > li > code {
   font-size: 0.825rem;
   color: blue;
 }

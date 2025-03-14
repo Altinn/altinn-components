@@ -13,25 +13,33 @@ import {
   Typography,
 } from '..';
 
+export type TransmissionType =
+  | 'submission'
+  | 'acceptance'
+  | 'rejection'
+  | 'request'
+  | 'alert'
+  | 'decision'
+  | 'correction';
+
 export interface TransmissionProps extends ListItemProps {
   id: string;
   datetime?: string;
   byline?: ReactNode;
-  type?: string;
   badge?: BadgeProps;
   createdAt?: string;
   createdAtLabel?: string;
   sender?: AvatarProps;
-  title: string;
+  title?: string;
   summary?: string;
   attachments?: AttachmentListProps;
+  type?: TransmissionType;
 }
 
 export const Transmission = ({
   size = 'xs',
   theme = 'subtle',
   color = 'neutral',
-  type,
   title,
   createdAt,
   createdAtLabel,
@@ -39,15 +47,21 @@ export const Transmission = ({
   sender,
   summary,
   attachments,
+  type,
   ...item
 }: TransmissionProps) => {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState<boolean>(false);
 
   return (
     <ListItem
       {...item}
       avatar={sender}
-      badge={badge}
+      badge={
+        badge && {
+          ...badge,
+          theme: badge?.theme || 'surface',
+        }
+      }
       size={size}
       theme={theme}
       color={color}

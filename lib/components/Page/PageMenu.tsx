@@ -5,6 +5,7 @@ import styles from './pageMenu.module.css';
 export type PageMenuTheme = 'default' | 'subtle' | 'base';
 
 export interface PageMenuProps {
+  id?: string;
   theme?: PageMenuTheme;
   color?: MenuItemColor;
   items?: MenuItemProps[];

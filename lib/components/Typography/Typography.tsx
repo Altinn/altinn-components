@@ -4,7 +4,7 @@ import { Skeleton } from '../Skeleton';
 import styles from './typography.module.css';
 
 export type TypographyColor = 'neutral' | 'company' | 'person' | 'article';
-export type TypographyVariant = 'default' | 'subtle';
+export type TypographyTheme = 'default' | 'subtle';
 export type TypographySize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export interface TypographyProps {
@@ -13,7 +13,7 @@ export interface TypographyProps {
   as?: ElementType;
   size?: TypographySize;
   color?: TypographyColor;
-  variant?: TypographyVariant;
+  theme?: TypographyTheme;
   className?: string;
   children?: ReactNode;
   href?: string;
@@ -25,7 +25,7 @@ export const Typography = ({
   as = 'div',
   size = 'md',
   color,
-  variant,
+  theme,
   className,
   children,
   ...restProps
@@ -37,7 +37,7 @@ export const Typography = ({
       className={cx(styles.typography, className)}
       data-size={size}
       data-color={color}
-      data-variant={variant}
+      data-theme={theme}
       {...restProps}
     >
       {(loading && <Skeleton loading={loading}>{loadingText}</Skeleton>) || children}

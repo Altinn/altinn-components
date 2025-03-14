@@ -111,7 +111,7 @@ export const DialogMetadata = ({
             {archivedAtLabel}
           </MetaTimestamp>
         )) ||
-        (!loading && seenBy && <DialogSeenBy size="xs" {...seenBy} />)}
+        (seenBy && <DialogSeenBy size="xs" {...seenBy} loading={loading} />)}
 
       {activityLog && <DialogActivityLog {...activityLog} loading={loading} size="xs" />}
 

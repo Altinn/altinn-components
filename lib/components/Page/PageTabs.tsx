@@ -2,9 +2,9 @@ import { Flex, MenuItem, type MenuItemColor, type MenuItemProps, type MenuTheme 
 import styles from './pageTabs.module.css';
 
 export type PageTabsPadding = 0 | 2;
-export type PageTabsVariant = 'card' | undefined;
 
 export interface PageTabsProps {
+  id?: string;
   theme?: MenuTheme;
   color?: MenuItemColor;
   padding?: PageTabsPadding;

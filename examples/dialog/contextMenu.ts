@@ -1,7 +1,7 @@
 import { ArchiveIcon, ArrowRedoIcon, ClockDashedIcon, EyeIcon, TrashIcon } from '@navikt/aksel-icons';
 import type { ContextMenuProps } from '../../lib';
 
-export const dialogContextMenu: ContextMenuProps = {
+export const contextMenu: ContextMenuProps = {
   id: 'context-menu',
   items: [
     {

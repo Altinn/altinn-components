@@ -3,11 +3,12 @@ import type { ReactNode } from 'react';
 import {
   type AvatarProps,
   type DialogActivityLogProps,
-  DialogMetadata,
-  type DialogSeenByProps,
+  SeenByLog,
+  type SeenByLogProps,
   Timeline,
   TimelineHeader,
   TimelineSection,
+  Typography,
 } from '..';
 
 export interface DialogBodyProps {
@@ -32,7 +33,7 @@ export interface DialogBodyProps {
   /** Group recipient, show both sender and recipient avatars */
   recipientGroup?: boolean;
   /** Dialog is seen by the end user or others */
-  seenBy?: DialogSeenByProps;
+  seenByLog?: SeenByLogProps;
   /** Activity Log */
   activityLog?: DialogActivityLogProps;
   /** Content */
@@ -43,15 +44,13 @@ export interface DialogBodyProps {
 
 export const DialogBody = ({
   loading,
-  loadingText = 'Loading ...',
   sender,
   recipient,
   recipientLabel,
   updatedAt,
   updatedAtLabel,
   children,
-  seenBy,
-  activityLog,
+  seenByLog,
 }: DialogBodyProps) => {
   return (
     <Timeline>
@@ -61,13 +60,17 @@ export const DialogBody = ({
       </TimelineHeader>
       <TimelineSection
         loading={loading}
-        footer={<DialogMetadata loading={loading} seenBy={seenBy} activityLog={activityLog} />}
         datetime={updatedAt}
         byline={updatedAtLabel}
         spacing={4}
         color={loading ? 'neutral' : undefined}
       >
-        {children || loadingText}
+        {!loading && (
+          <>
+            <Typography>{children}</Typography>
+            {seenByLog && <SeenByLog {...seenByLog} />}
+          </>
+        )}
       </TimelineSection>
     </Timeline>
   );

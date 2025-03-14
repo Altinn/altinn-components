@@ -11,6 +11,7 @@ import {
 
 export interface TimelineSectionProps {
   loading?: boolean;
+  level?: TimelineBaseProps['level'];
   border?: TimelineBaseProps['border'];
   color?: TimelineBaseProps['color'];
   typographyProps?: TypographyProps;
@@ -18,8 +19,7 @@ export interface TimelineSectionProps {
   spacing?: SectionProps['spacing'];
   datetime?: string;
   byline?: ReactNode;
-  children?: ReactNode;
-  footer?: ReactNode;
+  children?: ReactNode | string;
   as?: ElementType;
 }
 
@@ -34,7 +34,6 @@ export const TimelineSection = ({
   datetime,
   byline,
   children,
-  footer,
 }: TimelineSectionProps) => {
   return (
     <TimelineBase loading={loading} border={border} color={color} as={as}>
@@ -45,12 +44,13 @@ export const TimelineSection = ({
       )}
 
       <Section margin={margin} spacing={spacing}>
-        {children && (
-          <Typography loading={loading} size="md" {...typographyProps}>
+        {children && typeof children === 'string' ? (
+          <Typography as="p" loading={loading} size="md" {...typographyProps}>
             {children}
           </Typography>
+        ) : (
+          children
         )}
-        {footer}
       </Section>
     </TimelineBase>
   );

@@ -6,6 +6,7 @@ export type Color =
   | 'neutral'
   | 'success'
   | 'warning'
+  | 'error'
   | 'danger'
   | 'info'
   | 'alert';

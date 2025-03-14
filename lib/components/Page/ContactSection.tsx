@@ -1,11 +1,15 @@
+import type { ReactNode } from 'react';
+
 import { Button, type ButtonProps, type Color, Flex, Heading, Section, type Theme, Typography } from '..';
 
 export type ContactSectionVariant = 'inline' | 'card';
 
 export interface ContactSectionProps {
-  title: string;
+  id?: string;
+  title?: string;
   description?: string;
-  items?: ButtonProps[];
+  children?: ReactNode;
+  items: ButtonProps[];
   variant?: ContactSectionVariant;
   color?: Color;
   theme?: Theme;
@@ -17,6 +21,7 @@ export const ContactSection = ({
   variant = 'inline',
   title,
   description,
+  children,
   items,
 }: ContactSectionProps) => {
   return (
@@ -28,18 +33,12 @@ export const ContactSection = ({
       shadow={variant === 'card' ? 'xs' : 'none'}
       spacing={4}
     >
-      <Flex direction="col">
-        <Heading size="lg">{title}</Heading>
-        {description && <Typography>{description}</Typography>}
-      </Flex>
+      {title && <Heading size="lg">{title}</Heading>}
+      <Typography>{children || <p>{description}</p>}</Typography>
       {items && (
         <Flex spacing={2}>
           {items.map((item, index) => {
-            return (
-              <Button key={index} variant="outline" icon={item?.icon}>
-                {item.label}
-              </Button>
-            );
+            return <Button {...item} variant="outline" key={index} />;
           })}
         </Flex>
       )}
