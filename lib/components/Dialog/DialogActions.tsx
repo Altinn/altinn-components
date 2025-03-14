@@ -42,6 +42,7 @@ export const DialogActions = ({ items, maxItems = 2, id = 'dialog-actions' }: Di
       title: item.label,
       onClick: item.onClick,
       group: item.priority,
+      hidden: item.hidden,
     }));
     return (
       <section className={styles.comboButton}>

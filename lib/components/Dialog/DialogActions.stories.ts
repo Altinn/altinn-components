@@ -59,6 +59,13 @@ export const MultipleButtons: Story = {
         priority: 'tertiary',
         onClick: () => console.log('Fourth clicked'),
       },
+      {
+        id: 'tertiary-3',
+        label: 'Hidden action',
+        priority: 'tertiary',
+        onClick: () => console.log('Hidden clicked'),
+        hidden: true,
+      },
     ],
   },
 };
