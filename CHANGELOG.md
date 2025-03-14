@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.21.3](https://github.com/Altinn/altinn-components/compare/v0.21.2...v0.21.3) (2025-03-14)
+
+
+### Bug Fixes
+
+* drop import of fonts ([#312](https://github.com/Altinn/altinn-components/issues/312)) ([8498235](https://github.com/Altinn/altinn-components/commit/8498235bcf321b997cd12a61e9ec0bee936a1c3c))
+
 ## [0.21.2](https://github.com/Altinn/altinn-components/compare/v0.21.1...v0.21.2) (2025-03-13)
 
 
