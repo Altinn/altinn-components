@@ -34,7 +34,7 @@
 }
 
 .input:focus,
-.input[value] {
+.input:not(:placeholder-shown) {
   background-color: var(--ds-color-background-default);
 }
 
