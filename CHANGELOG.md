@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.22.1](https://github.com/Altinn/altinn-components/compare/v0.22.0...v0.22.1) (2025-03-17)
+
+
+### Bug Fixes
+
+* search backgrounds ([#324](https://github.com/Altinn/altinn-components/issues/324)) ([9f04960](https://github.com/Altinn/altinn-components/commit/9f0496009dc41d358b28d8f84c23067b9f4f739f))
+
 ## [0.22.0](https://github.com/Altinn/altinn-components/compare/v0.21.6...v0.22.0) (2025-03-17)
 
 
