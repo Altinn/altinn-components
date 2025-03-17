@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.22.0](https://github.com/Altinn/altinn-components/compare/v0.21.6...v0.22.0) (2025-03-17)
+
+
+### Features
+
+* DialogHistory + SeenByLogs ([#320](https://github.com/Altinn/altinn-components/issues/320)) ([f8f0477](https://github.com/Altinn/altinn-components/commit/f8f04777ac7f43417316abbc0d56b85961e9afda))
+
 ## [0.21.6](https://github.com/Altinn/altinn-components/compare/v0.21.5...v0.21.6) (2025-03-14)
 
 
