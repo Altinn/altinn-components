@@ -12,6 +12,25 @@ A dialog can include logs of transmissions and activities representing events th
 
 By default, the history will display a curated list of transmissions, where related transmissions are combined to reflect submissions and answers.
 
+### Anatomy
+
+`DialogHistory` represents a `Timeline` component, which consists of one or more `DialogHistorySegment` (**Level 1**) components.
+
+Each segment groups related transmissions. Transmissions are considered related (and therefore grouped together) if they reference each other through [Dialogporten’s `relatedTransmissionId`](https://docs.altinn.studio/dialogporten/reference/entities/transmission/#V1EndUserDialogsQueriesGet_DialogTransmission_relatedTransmissionId).
+
+#### Hierarchy
+
+- **Level 1**: A `DialogHistorySegment` represents a group of related transmissions.
+- **Level 2**: The most recent (or only) transmission in each group is displayed as a `DialogHistoryItem`.
+- **Level 3**: Older transmissions in the group are initially hidden behind a "Show more" button.
+
+#### Example
+
+1. **Level 1**: Two transmission groups, sorted by creation date (newest first).
+2. **Level 2**: The latest transmission in each group is **"Bedriftsdata er godkjent"** and **"Bedriftsdata er avvist"**.
+3. **Level 3**: Each group contains older transmissions (in this example, only one per group), hidden behind a "Show more" button.
+
+
 <Canvas of={DialogHistoryStories.Default} />
 
 ## Activity log
@@ -23,5 +42,6 @@ The activity log is a list of every activity related to the dialog, ordered by t
 ## Seen by log
 
 The seen by log is a list of people who have seen the current dialog, ordered by time.
+This is collapsed by default.
 
 <Canvas of={SeenByLogStories.Collapsible} />
