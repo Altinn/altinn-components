@@ -11,7 +11,7 @@ import styles from './contextMenu.module.css';
 export type ContextMenuSize = 'sm' | 'md';
 
 export interface ContextMenuProps {
-  id: string;
+  id?: string;
   items: MenuItemProps[];
   placement?: DropdownPlacement;
   size?: ContextMenuSize;

@@ -1,13 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { DialogStatus, DialogStatusEnum } from './DialogStatus';
+import { DialogStatus, DialogStatusEnum, MetaBase } from '..';
 
 const meta = {
   title: 'Dialog/Atoms/DialogStatus',
   component: DialogStatus,
   tags: ['autodocsi', 'beta'],
-  parameters: {
-    layout: 'centered',
-  },
+  parameters: {},
   argTypes: {
     value: {
       options: Object.keys(DialogStatusEnum),
@@ -18,6 +16,16 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+
+export const Default = () => {
+  return (
+    <MetaBase>
+      <DialogStatus value="requires-attention" label="Krever handling" />
+      <DialogStatus value="in-progress" label="Under arbeid" />
+      <DialogStatus value="completed" label="Avsluttet" />
+    </MetaBase>
+  );
+};
 
 export const Draft: Story = {
   args: {

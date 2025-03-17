@@ -8,6 +8,7 @@ export type BylineSize = 'xs' | 'sm' | 'md' | 'lg';
 export interface BylineProps {
   size?: BylineSize;
   as?: ElementType;
+  onClick?: () => void;
   color?: BylineColor;
   avatar?: AvatarProps;
   avatarGroup?: AvatarGroupProps;

@@ -1,0 +1,24 @@
+import { Meta, Controls, Primary, Canvas } from "@storybook/blocks";
+import * as TransmissionStories from "./Transmission.stories";
+import * as DialogHistory from "../Dialog/DialogHistory.stories";
+
+
+<Meta of={TransmissionStories} />
+
+# Transmission
+
+A `tranmsission` is a piece of information sent from a user or a service owner. It is identified by the `sender` and a `title`, and may contain a `summary` and `attachments`.
+
+<Canvas of={TransmissionStories.Default} />
+
+## Using badges
+
+Badges can be used to indicate type of tranmsission, for example an `acceptance`, `rejection` or `alert`.
+
+<Canvas of={TransmissionStories.UsingBadges} />
+
+## Transmission history
+
+Dialog transmisssions are presented using `DialogHistory`.
+
+<Canvas of={DialogHistory.Default} />

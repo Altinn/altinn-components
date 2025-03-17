@@ -1,27 +1,27 @@
 import { Meta, Controls, Primary, Canvas } from "@storybook/blocks";
-import * as DialogHistoryStories from "./DialogHistory.stories.tsx";
-import * as DialogMetadata from "./DialogMetadata.stories";
-import * as SeenByLog from "./SeenByLog.stories";
+import * as DialogHistoryStories from "./DialogHistory.stories";
+import * as SeenByLogStories from "./SeenByLog.stories";
 
 <Meta of={DialogHistoryStories} />
 
 # Dialog history and logs
 
-A dialog can include logs representing events that have happened in the past.
+A dialog can include logs of transmissions and activities representing events that have happened in the past.
 
-## Activity logs
+## Transmission history
+
+By default, the history will display a curated list of transmissions, where related transmissions are combined to reflect submissions and answers.
+
+<Canvas of={DialogHistoryStories.Default} />
+
+## Activity log
 
 The activity log is a list of every activity related to the dialog, ordered by time.
 
 <Canvas of={DialogHistoryStories.ActivityLog} />
 
-## History
+## Seen by log
 
-The history is a curated list of activities and transmissions, informing the user of important events that has led to the current state of the dialog.
+The seen by log is a list of people who have seen the current dialog, ordered by time.
 
-<Canvas of={DialogHistoryStories.Default} />
-
-History can be expanded and collapsed.
-
-<Canvas of={DialogHistoryStories.Collapsible} />
-
+<Canvas of={SeenByLogStories.Collapsible} />

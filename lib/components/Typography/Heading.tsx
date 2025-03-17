@@ -1,6 +1,6 @@
 import cx from 'classnames';
 import type { ReactNode } from 'react';
-import { Skeleton } from '../Skeleton';
+import { Skeleton, type TypographyProps } from '..';
 import styles from './heading.module.css';
 
 export type HeadingSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -12,16 +12,33 @@ export interface HeadingProps {
   as?: HeadingComponent;
   size?: HeadingSize;
   weight?: HeadingWeight;
+  color?: TypographyProps['color'];
+  theme?: TypographyProps['theme'];
   className?: string;
   children?: ReactNode;
 }
 
-export const Heading = ({ loading, as = 'h2', size = 'md', weight = 'medium', className, children }: HeadingProps) => {
+export const Heading = ({
+  loading,
+  as = 'h2',
+  size = 'md',
+  weight = 'medium',
+  color,
+  theme,
+  className,
+  children,
+}: HeadingProps) => {
   const H = as;
 
   return (
     <Skeleton loading={loading}>
-      <H className={cx(styles.heading, className)} data-size={size} data-weight={weight}>
+      <H
+        className={cx(styles.heading, className)}
+        data-size={size}
+        data-weight={weight}
+        data-color={color}
+        data-theme={theme}
+      >
         {children}
       </H>
     </Skeleton>

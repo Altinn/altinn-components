@@ -1,6 +1,6 @@
+import { ArrowRedoIcon, ClockDashedIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ContextMenu, PageNav } from '../';
-import { dialogContextMenu } from '../../../examples';
 
 const meta = {
   title: 'Page/PageNav',
@@ -46,6 +46,24 @@ export const BackButtonAndControls: Story = {
     backButton: {
       label: 'Tilbake',
     },
-    controls: <ContextMenu {...dialogContextMenu} />,
+    controls: (
+      <ContextMenu
+        id="context-menu"
+        items={[
+          {
+            id: '1',
+            groupId: '1',
+            icon: ArrowRedoIcon,
+            title: 'Del og gi tilgang',
+          },
+          {
+            id: '5',
+            groupId: '3',
+            icon: ClockDashedIcon,
+            title: 'Aktivitetslogg',
+          },
+        ]}
+      />
+    ),
   },
 };

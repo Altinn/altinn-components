@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { type Color, Flex, type FlexPadding, type FlexSpacing } from '..';
 
 export interface ListBaseProps {
+  className?: string;
   children: ReactNode;
   spacing?: FlexSpacing;
   padding?: FlexPadding;

@@ -179,7 +179,7 @@ export const DialogListItem = ({
               recipientLabel={recipientLabel}
               grouped={grouped}
             />
-            {size === 'lg' && (
+            {size === 'lg' && summary && (
               <Skeleton loading={loading}>
                 <p data-size={size} className={styles.summary}>
                   {summary || description}

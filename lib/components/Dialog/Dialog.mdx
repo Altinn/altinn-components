@@ -18,17 +18,9 @@ The header introduces the dialog with a `title` and an optional a `status` and d
 
 ## DialogBody
 
-The body is the main part of a dialog, including the `summary` potential `attachments` and/or one or more calls to `actions`. Content is introduced with a timestamp and highlighted with a border, pointing from the senders avatar, indicating the origin of the content and that it could be part of a timeline. At the end, users are presented with links to the `SeenByLog` and `ActivityLog` for further inspection.
+The body is the main part of a dialog, including the `summary` potential `attachments` and/or one or more calls to `actions`. Content is introduced with a timestamp and highlighted with a border, pointing from the senders avatar, indicating the origin of the content and that it could be part of a timeline.
 
 <Canvas of={DialogBody.Default} />
-
-The body may include a list of attachments:
-
-<Canvas of={DialogBody.WithAttachments} />
-
-The body may include one or more call-to-actions:
-
-<Canvas of={DialogBody.WithActions} />
 
 ## DialogHistory
 
@@ -36,3 +28,8 @@ The history is a curated list of activities and/or transmissions that has happen
 
 <Canvas of={DialogHistory.Default} />
 
+## Putting it together
+
+A dialog page is made up by the header, body, tabs and a tabpanel.
+
+<Canvas of={DialogStories.Default} />

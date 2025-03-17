@@ -1,6 +1,15 @@
 .heading {
   margin: 0;
 }
+.heading[data-theme="default"] {
+  background-color: transparent;
+  color: var(--ds-color-text-default);
+}
+
+.heading[data-theme="subtle"] {
+  background-color: transparent;
+  color: var(--ds-color-text-subtle);
+}
 
 .heading[data-weight="normal"] {
   font-weight: 400;
