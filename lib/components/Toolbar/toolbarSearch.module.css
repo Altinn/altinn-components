@@ -20,6 +20,7 @@
   border-radius: 2px;
   border: 1px solid;
   border-color: var(--ds-color-border-default);
+  background-color: var(--ds-color-background-default);
 }
 
 .input[type="search"]::-webkit-search-decoration,
