@@ -35,6 +35,8 @@ export interface DialogListItemProps extends ListItemProps {
   summary?: string;
   /** Dialog size */
   size?: DialogListItemSize;
+  /** Custom controls */
+  controls?: ListItemProps['controls'];
   /** Select: Use to support batch operations */
   select?: ListItemSelectProps;
   /** Selected: Use to support batch operations */
@@ -95,6 +97,7 @@ export const DialogListItem = ({
   size = 'lg',
   state = 'normal',
   loading,
+  controls,
   select,
   selected,
   status,
@@ -157,7 +160,9 @@ export const DialogListItem = ({
       size={size}
       selected={selected}
       theme={applicableTheme}
-      controls={select && <ListItemSelect className={styles.select} {...select} size="xl" />}
+      controls={
+        <div className={styles.controls}>{controls || (select && <ListItemSelect {...select} size="xl" />)}</div>
+      }
       title={title}
       label={
         <div

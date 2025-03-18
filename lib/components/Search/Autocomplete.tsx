@@ -49,6 +49,7 @@ export const Autocomplete = ({ className, items, groups = {}, expanded, onSelect
                 } = item;
                 return (
                   <AutocompleteItem
+                    as="button"
                     key={index}
                     tabIndex={-1}
                     onMouseEnter={() => setActiveIndex(menuIndex)}

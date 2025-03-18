@@ -16,13 +16,3 @@
 .link[aria-disabled="true"] {
   pointer-events: none;
 }
-
-/* only apply hover styles when interactive */
-
-.interactive:not([aria-disabled="true"]) {
-  cursor: pointer;
-}
-
-.interactive:not([aria-disabled="true"]):hover h2 {
-  text-decoration: underline;
-}

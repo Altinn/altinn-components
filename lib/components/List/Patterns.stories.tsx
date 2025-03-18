@@ -173,6 +173,7 @@ export const MultilevelList = () => {
         return (
           <ListItem
             color={item.color as ListItemColor}
+            theme="default"
             size="md"
             icon={item.icon}
             title={item.title}

@@ -41,7 +41,7 @@ const meta = {
     id: 'id',
     as: 'button',
     title: 'Title',
-    onClick: () => alert('xl'),
+    onClick: () => alert('onClick'),
   },
 } satisfies Meta<typeof ListItem>;
 
@@ -208,13 +208,14 @@ export const Collapsible = (args: ListItemProps) => {
   );
 };
 
-export const ExpandedSelected = (args: ListItemProps) => {
+export const CollapsibleExpanded = (args: ListItemProps) => {
   return (
     <ListBase>
       <ListItem
         {...args}
         icon={{ theme: 'surface', svgElement: TeddyBearIcon }}
         badge={{ label: 'Badge' }}
+        collapsible={true}
         expanded={true}
         selected={true}
       >
@@ -333,8 +334,21 @@ export const CustomControls = (args: ListItemProps) => {
       <ListItem
         {...args}
         icon={TeddyBearIcon}
-        badge={{ label: 'Admin' }}
         linkIcon
+        badge={
+          <ContextMenu
+            id="menu-2"
+            size="sm"
+            items={[
+              { id: 'settings', title: 'Innstillinger', icon: CogIcon },
+              { id: 'log', title: 'Aktivitetslogg', icon: ClockDashedIcon },
+            ]}
+          />
+        }
+      />
+      <ListItem
+        {...args}
+        icon={TeddyBearIcon}
         controls={
           <ContextMenu
             id="menu"
@@ -350,7 +364,7 @@ export const CustomControls = (args: ListItemProps) => {
         {...args}
         icon={TeddyBearIcon}
         controls={
-          <Button icon={PencilIcon} size="sm" variant="outline">
+          <Button icon={PencilIcon} size="sm" variant="outline" onClick={() => alert('Button clicked')}>
             Rediger
           </Button>
         }

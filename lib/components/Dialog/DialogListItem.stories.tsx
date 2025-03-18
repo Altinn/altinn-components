@@ -1,8 +1,9 @@
+import { ClockDashedIcon, CogIcon } from '@navikt/aksel-icons';
 import type { Meta } from '@storybook/react';
 import { Fragment, useState } from 'react';
 import { skatt } from '../../../examples/avatar';
 
-import { DialogListItem, type DialogListItemProps, type DialogListItemSize } from './DialogListItem';
+import { ContextMenu, DialogListItem, type DialogListItemProps, type DialogListItemSize } from '..';
 import { DialogStatusEnum, type DialogStatusValue } from './DialogStatus';
 
 import { ListBase } from '../List';
@@ -391,4 +392,35 @@ export const Sizes = (args: DialogListItemProps) => {
       </Fragment>
     );
   });
+};
+
+export const AsLink = (args: DialogListItemProps) => {
+  return (
+    <ListBase>
+      <DialogListItem {...args} status={{ value: 'in-progress', label: 'Under arbeid' }} as="a" href="//vg.no" />
+    </ListBase>
+  );
+};
+
+export const CustomControls = (args: DialogListItemProps) => {
+  return (
+    <ListBase>
+      <DialogListItem
+        {...args}
+        status={{ value: 'in-progress', label: 'Under arbeid' }}
+        controls={
+          <ContextMenu
+            id="menu-2"
+            size="sm"
+            items={[
+              { id: 'settings', title: 'Innstillinger', icon: CogIcon },
+              { id: 'log', title: 'Aktivitetslogg', icon: ClockDashedIcon },
+            ]}
+          />
+        }
+        as="a"
+        href="//vg.no"
+      />
+    </ListBase>
+  );
 };

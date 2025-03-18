@@ -87,7 +87,7 @@ export const AutocompleteItem = ({ type, ...props }: AutocompleteItemProps) => {
         <DialogListItem {...(props as DialogListItemProps)} theme="default" shadow="none" size="sm" tabIndex={-1} />
       );
     case 'information':
-      return <ListItem {...(props as ListItemProps)} theme="default" shadow="none" tabIndex={-1} disabled />;
+      return <ListItem {...(props as ListItemProps)} theme="default" shadow="none" tabIndex={-1} interactive={false} />;
     default:
       return <ListItem {...(props as ListItemProps)} theme="default" shadow="none" size="sm" tabIndex={-1} />;
   }

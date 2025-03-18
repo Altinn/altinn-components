@@ -4,6 +4,7 @@ import type { ListItemSize } from './ListItemBase';
 import styles from './listItemLabel.module.css';
 
 export interface ListItemLabelProps {
+  id?: string;
   loading?: boolean;
   size?: ListItemSize;
   title?: string;
@@ -19,20 +20,25 @@ export const ListItemLabel = ({
   weight = 'bold',
   description,
   children,
+  id,
 }: ListItemLabelProps) => {
   return (
-    <span className={styles.label} data-size={size}>
+    <span className={styles.label} data-size={size} id={id}>
       {children ? (
         children
       ) : (
         <>
-          <h2 className={styles.title} data-size={size} data-weight={weight}>
-            <Skeleton loading={loading}>{title}</Skeleton>
-          </h2>{' '}
+          <Skeleton loading={loading}>
+            <h2 className={styles.title} data-size={size} data-weight={weight}>
+              {title}
+            </h2>
+          </Skeleton>{' '}
           {description && (
-            <p className={styles.description} data-size={size}>
-              <Skeleton loading={loading}>{description}</Skeleton>
-            </p>
+            <Skeleton loading={loading}>
+              <p className={styles.description} data-size={size}>
+                {description}
+              </p>
+            </Skeleton>
           )}
         </>
       )}
