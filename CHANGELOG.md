@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.22.2](https://github.com/Altinn/altinn-components/compare/v0.22.1...v0.22.2) (2025-03-19)
+
+
+### Bug Fixes
+
+* general-purpose global selectors should be more precise and part of the root ([#328](https://github.com/Altinn/altinn-components/issues/328)) ([b6929e3](https://github.com/Altinn/altinn-components/commit/b6929e36a70509d043aec7a444d8d421bb20b157))
+
 ## [0.22.1](https://github.com/Altinn/altinn-components/compare/v0.22.0...v0.22.1) (2025-03-17)
 
 
