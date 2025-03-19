@@ -1,23 +1,25 @@
-[data-padding="1"] {
-  padding: var(--ds-spacing-1);
-}
+:root {
+  [data-padding="1"] {
+    padding: var(--ds-spacing-1);
+  }
 
-[data-padding="2"] {
-  padding: var(--ds-spacing-2);
-}
+  [data-padding="2"] {
+    padding: var(--ds-spacing-2);
+  }
 
-[data-padding="3"] {
-  padding: var(--ds-spacing-3);
-}
+  [data-padding="3"] {
+    padding: var(--ds-spacing-3);
+  }
 
-[data-padding="4"] {
-  padding: var(--ds-spacing-4);
-}
+  [data-padding="4"] {
+    padding: var(--ds-spacing-4);
+  }
 
-[data-padding="5"] {
-  padding: var(--ds-spacing-5);
-}
+  [data-padding="5"] {
+    padding: var(--ds-spacing-5);
+  }
 
-[data-padding="6"] {
-  padding: var(--ds-spacing-6);
+  [data-padding="6"] {
+    padding: var(--ds-spacing-6);
+  }
 }
