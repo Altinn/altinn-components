@@ -1,19 +1,21 @@
-[data-shadow="xs"] {
-  box-shadow: var(--ds-shadow-xs);
-}
+:root {
+  [data-shadow="xs"] {
+    box-shadow: var(--ds-shadow-xs);
+  }
 
-[data-shadow="sm"] {
-  box-shadow: var(--ds-shadow-sm);
-}
+  [data-shadow="sm"] {
+    box-shadow: var(--ds-shadow-sm);
+  }
 
-[data-shadow="md"] {
-  box-shadow: var(--ds-shadow-md);
-}
+  [data-shadow="md"] {
+    box-shadow: var(--ds-shadow-md);
+  }
 
-[data-shadow="lg"] {
-  box-shadow: var(--ds-shadow-lg);
-}
+  [data-shadow="lg"] {
+    box-shadow: var(--ds-shadow-lg);
+  }
 
-[data-shadow="xl"] {
-  box-shadow: var(--ds-shadow-xl);
+  [data-shadow="xl"] {
+    box-shadow: var(--ds-shadow-xl);
+  }
 }
