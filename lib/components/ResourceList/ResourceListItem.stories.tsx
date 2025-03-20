@@ -17,7 +17,7 @@ const meta = {
     ownerName: 'Direktoratet for samfunnssikkerhet og beredskap',
     ownerLogoUrl: 'https://altinncdn.no/orgs/dsb/dsb.png',
     controls: (
-      <Button icon={PencilIcon} variant="text" size="sm">
+      <Button icon={PencilIcon} variant="text" size="sm" onClick={() => alert('Endre')}>
         Endre
       </Button>
     ),

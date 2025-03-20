@@ -38,6 +38,8 @@ export const inboxSection: DialogListProps = {
       id: 'nabovarsel',
       groupId: '2025-02',
       title: 'Nabovarsel for Louises gate 15',
+      href: '//vg.no',
+      as: 'a',
       status: undefined,
       summary: 'Nabovarsel for byggeplaner i for Louises gate 15, 0169 Oslo (gårdsnr. 118, bruksnr. 366).',
       updatedAt: '2025-02-18T08:54:00.000Z',

@@ -16,6 +16,8 @@ export interface ListItemLinkProps {
   selected?: boolean;
   className?: string;
   children?: ReactNode;
+  active?: boolean;
+  describedby?: string;
 }
 
 export const ListItemLink = ({
@@ -30,16 +32,18 @@ export const ListItemLink = ({
   onKeyPress,
   className,
   children,
+  active,
+  describedby,
 }: ListItemLinkProps) => {
   if (!interactive) {
     return (
-      <div className={cx(styles.link, className)} data-size={size}>
+      <div className={cx(styles.link, className)} data-size={size} aria-describedby={describedby}>
         {children}
       </div>
     );
   }
 
-  const Component = as || 'button';
+  const Component = as || 'div';
 
   return (
     <Component
@@ -50,9 +54,12 @@ export const ListItemLink = ({
         onKeyPress?.(e);
       }}
       onClick={onClick}
+      data-interactive={interactive}
       aria-disabled={loading || disabled}
       aria-selected={selected}
+      aria-describedby={describedby}
       data-size={size}
+      data-active={active}
     >
       {children}
     </Component>

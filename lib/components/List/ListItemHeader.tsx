@@ -1,6 +1,7 @@
-import type { ChevronDownIcon } from '@navikt/aksel-icons';
+import { ChevronDownIcon, ChevronRightIcon, ChevronUpIcon } from '@navikt/aksel-icons';
+
 import cx from 'classnames';
-import { type ReactNode, isValidElement } from 'react';
+import { type ReactNode, isValidElement, useId } from 'react';
 import {
   type AvatarGroupProps,
   type AvatarProps,
@@ -8,6 +9,7 @@ import {
   type BadgeProps,
   Icon,
   type IconProps,
+  type ListItemColor,
   ListItemControls,
   ListItemIcon,
   type ListItemIconSize,
@@ -17,11 +19,18 @@ import {
   ListItemSelect,
   type ListItemSelectProps,
   type ListItemSize,
+  type ListItemTheme,
   type SvgElement,
 } from '..';
 import styles from './listItemHeader.module.css';
 
 export interface ListItemHeaderProps extends ListItemLinkProps {
+  /** The color of the list item. */
+  color?: ListItemColor;
+  /** The theme of the list item. */
+  theme?: ListItemTheme;
+  /** Header is loading */
+  interactive?: boolean;
   /** Header is loading */
   loading?: boolean;
   /** Header size */
@@ -34,6 +43,8 @@ export interface ListItemHeaderProps extends ListItemLinkProps {
   collapsible?: boolean;
   /** Item is expanded */
   expanded?: boolean;
+  /** Whether to display the item with a link icon */
+  linkIcon?: boolean;
   /** Title */
   title?: string;
   /** Description */
@@ -44,20 +55,28 @@ export interface ListItemHeaderProps extends ListItemLinkProps {
   avatar?: AvatarProps;
   /** List item avatarGroup */
   avatarGroup?: AvatarGroupProps;
-  /** Optional chevron icon indicating behaviour */
-  chevron?: typeof ChevronDownIcon;
   /** Optional badge */
   badge?: BadgeProps | ReactNode | undefined;
   /** Custom controls */
   controls?: ReactNode;
   /** Custom label */
   children?: ReactNode;
+  /** Active state */
+  active?: boolean;
+  /** Used as decerning text for the ListItem without title, defaults to title */
+  ariaLabel?: string;
 }
 
 export const ListItemHeader = ({
   as,
+  interactive = true,
+  color,
+  theme,
   loading,
   disabled,
+  collapsible,
+  linkIcon,
+  expanded,
   select,
   href,
   onClick,
@@ -68,12 +87,13 @@ export const ListItemHeader = ({
   description,
   icon,
   avatar,
+  active,
   avatarGroup,
-  chevron,
   badge,
   controls,
   className,
   children,
+  ariaLabel,
 }: ListItemHeaderProps) => {
   /** Map ListItemSize to ListItemIconSize */
   const iconSizeMap: Record<ListItemSize, ListItemIconSize> = {
@@ -83,6 +103,15 @@ export const ListItemHeader = ({
     lg: 'lg',
     xl: 'xl',
   };
+
+  /** Set applicable Icon */
+  const applicableIcon = collapsible
+    ? expanded
+      ? ChevronUpIcon
+      : ChevronDownIcon
+    : linkIcon
+      ? ChevronRightIcon
+      : undefined;
 
   /** Set default icon size */
   const applicableIconSize = iconSizeMap[size];
@@ -98,15 +127,21 @@ export const ListItemHeader = ({
     return null;
   };
 
+  const listItemLabelId = useId();
+
   return (
-    <header className={styles.header} data-size={size}>
-      <div className={styles.link}>
-        {select && (
-          <ListItemSelect {...select} className={styles.select} size={applicableIconSize as ListItemIconSize} />
-        )}
+    <div className={styles.wrapper}>
+      <header
+        className={cx(styles.header, className)}
+        data-color={color}
+        data-theme={theme}
+        data-interactive={interactive}
+        data-size={size}
+        data-has-active-child={active}
+      >
         <ListItemLink
-          interactive={!!controls}
-          className={cx(styles.link, className)}
+          interactive={interactive}
+          className={cx(styles.link)}
           as={as}
           href={href}
           onClick={onClick}
@@ -114,8 +149,15 @@ export const ListItemHeader = ({
           tabIndex={tabIndex}
           loading={loading}
           disabled={disabled || loading}
-          size={size}
+          active={active}
+          describedby={listItemLabelId}
         >
+          <span className={styles.linkTitle}>{ariaLabel || title}</span>
+        </ListItemLink>
+        <div className={styles.content} data-size={size}>
+          {select && (
+            <ListItemSelect {...select} className={styles.select} size={applicableIconSize as ListItemIconSize} />
+          )}
           <ListItemIcon
             loading={loading}
             size={applicableIconSize as ListItemIconSize}
@@ -123,27 +165,21 @@ export const ListItemHeader = ({
             avatar={avatar}
             avatarGroup={avatarGroup}
           />
-          <ListItemLabel size={size} loading={loading} title={title} description={description}>
+          <ListItemLabel size={size} loading={loading} title={title} description={description} id={listItemLabelId}>
             {children}
           </ListItemLabel>
-          {controls && (
+        </div>
+        <ListItemControls className={styles.controls}>
+          {controls && !loading ? (
+            controls
+          ) : (
             <>
               {renderBadge()}
-              {chevron && <Icon svgElement={chevron} size={applicableIconSize as ListItemIconSize} />}
+              {applicableIcon && <Icon svgElement={applicableIcon} size={applicableIconSize as ListItemIconSize} />}
             </>
           )}
-        </ListItemLink>
-      </div>
-      <ListItemControls className={styles.controls}>
-        {controls && !loading ? (
-          controls
-        ) : (
-          <>
-            {renderBadge()}
-            {chevron && <Icon svgElement={chevron} size={applicableIconSize as ListItemIconSize} />}
-          </>
-        )}
-      </ListItemControls>
-    </header>
+        </ListItemControls>
+      </header>
+    </div>
   );
 };

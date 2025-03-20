@@ -51,25 +51,12 @@
   background-color: var(--ds-color-background-subtle);
 }
 
-.interactive[data-theme="subtle"]:hover {
-  background-color: var(--ds-color-surface-hover);
-}
-
 .item[data-theme="surface"] {
   background-color: var(--ds-color-surface-hover);
 }
 
-.interactive[data-theme="surface"]:hover {
-  background-color: var(--ds-color-surface-active);
-}
-
 .item[data-theme="base"] {
   background-color: var(--ds-color-base-default);
-  color: var(--ds-color-contrast-default);
-}
-
-.interactive[data-theme="base"]:hover {
-  background-color: var(--ds-color-base-hover);
   color: var(--ds-color-contrast-default);
 }
 

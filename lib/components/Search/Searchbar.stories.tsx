@@ -131,6 +131,7 @@ export const Expanded: Story = {
       },
       items: [
         {
+          as: 'a',
           type: 'scope',
           id: '1a',
           groupId: '1',
@@ -297,13 +298,17 @@ ControlledState.play = async ({
   await userEvent.type(searchInput, 'skatt');
   await userEvent.keyboard('{arrowdown}');
   await userEvent.keyboard('{arrowdown}');
-  const activeItem = suggestions.find((suggestion) => suggestion.querySelector('[data-active="true"]'));
-  await expect(activeItem).toBe(suggestions[2]);
+  const interactiveButtons = autocomplete.querySelectorAll('[data-active="true"]');
+  const updatedSuggestions = canvas.getAllByRole('listitem');
+  await expect(interactiveButtons).toHaveLength(1);
+  await expect(interactiveButtons[0]?.closest('li')).toBe(updatedSuggestions[2]);
 
   await userEvent.keyboard('{arrowup}');
   await userEvent.keyboard('{arrowup}');
-  const activeItem2 = suggestions.find((suggestion) => suggestion.querySelector('[data-active="true"]'));
-  await expect(activeItem2).toBe(suggestions[0]);
+  const interactiveButtons2 = autocomplete.querySelectorAll('[data-active="true"]');
+  const updatedSuggestions2 = canvas.getAllByRole('listitem');
+  await expect(interactiveButtons2).toHaveLength(1);
+  await expect(interactiveButtons2[0]?.closest('li')).toBe(updatedSuggestions2[0]);
 
   /* test keyboard enter should trigger selected item */
   await userEvent.keyboard('{enter}');

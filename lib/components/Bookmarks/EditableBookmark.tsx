@@ -1,4 +1,4 @@
-import { ChevronDownIcon, ChevronUpIcon } from '@navikt/aksel-icons';
+import { PencilIcon, XMarkIcon } from '@navikt/aksel-icons';
 import { type ChangeEvent, useState } from 'react';
 import { Button, type ButtonProps, Flex, IconButton, Section, TextField, type TextFieldProps } from '..';
 import { BookmarksListItem, type BookmarksListItemProps, type QueryItemProps, QueryLabel } from '..';
@@ -57,12 +57,13 @@ export const EditableBookmark = ({
       expanded={expanded}
       id={id}
       title={expanded ? title || untitled : title}
+      ariaLabel={title || untitled}
       params={params}
       controls={
         <IconButton
           variant="outline"
           size="sm"
-          icon={expanded ? ChevronUpIcon : ChevronDownIcon}
+          icon={expanded ? XMarkIcon : PencilIcon}
           onClick={onToggle}
           iconAltText={expandIconAltText}
         />
