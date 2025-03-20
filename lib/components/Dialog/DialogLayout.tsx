@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 import {
   Article,
   type BackButtonProps,
@@ -9,7 +9,7 @@ import {
   type PageMenuProps,
   PageNav,
   Section,
-} from '..';
+} from "..";
 
 export interface DialogLayoutProps {
   /** Back button */
@@ -26,9 +26,14 @@ export interface DialogLayoutProps {
  * Dialog layout with navigation,
  */
 
-export const DialogLayout = ({ backButton, contextMenu, pageMenu, children }: DialogLayoutProps) => {
+export const DialogLayout = ({
+  backButton,
+  contextMenu,
+  pageMenu,
+  children,
+}: DialogLayoutProps) => {
   return (
-    <PageBase spacing={0} bleed>
+    <PageBase theme="subtle" spacing={0} bleed>
       <Section theme="default" shadow="xs">
         <PageNav
           color="neutral"
@@ -40,7 +45,7 @@ export const DialogLayout = ({ backButton, contextMenu, pageMenu, children }: Di
           {children}
         </Article>
       </Section>
-      <PageMenu theme="subtle" items={pageMenu?.items} />
+      <PageMenu items={pageMenu?.items} />
     </PageBase>
   );
 };
