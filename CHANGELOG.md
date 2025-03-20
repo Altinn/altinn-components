@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.22.4](https://github.com/Altinn/altinn-components/compare/v0.22.3...v0.22.4) (2025-03-20)
+
+
+### Bug Fixes
+
+* transmission should be a but for interactive purposes ([#335](https://github.com/Altinn/altinn-components/issues/335)) ([1f9de1b](https://github.com/Altinn/altinn-components/commit/1f9de1b5bcad0076707343091a973c26be874ee6))
+* typography max width ([#330](https://github.com/Altinn/altinn-components/issues/330)) ([36164a8](https://github.com/Altinn/altinn-components/commit/36164a84ae4e3074a75b2c4465efd5a85d54f31d))
+
 ## [0.22.3](https://github.com/Altinn/altinn-components/compare/v0.22.2...v0.22.3) (2025-03-20)
 
 
