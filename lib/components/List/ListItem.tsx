@@ -95,7 +95,7 @@ export const ListItem = ({
       >
         {applicableLabel}
       </ListItemHeader>
-      {expanded && children}
+      {expanded ? children : null}
     </ListItemBase>
   );
 };
