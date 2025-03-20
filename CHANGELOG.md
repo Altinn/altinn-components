@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.22.3](https://github.com/Altinn/altinn-components/compare/v0.22.2...v0.22.3) (2025-03-20)
+
+
+### Bug Fixes
+
+* add children to transmission ([#333](https://github.com/Altinn/altinn-components/issues/333)) ([772387f](https://github.com/Altinn/altinn-components/commit/772387fe08db7aa28cb903f2ae71d598d007f8d4))
+* dialog shadow ([#331](https://github.com/Altinn/altinn-components/issues/331)) ([854dffd](https://github.com/Altinn/altinn-components/commit/854dffddb8699436c0a9c5ddfaad13c6819e4b20))
+* list item controls ([#327](https://github.com/Altinn/altinn-components/issues/327)) ([9a72ca8](https://github.com/Altinn/altinn-components/commit/9a72ca8da48483ca0ce6b5f7be1865bc83a949d7))
+
 ## [0.22.2](https://github.com/Altinn/altinn-components/compare/v0.22.1...v0.22.2) (2025-03-19)
 
 
