@@ -67,7 +67,7 @@ export const DialogBody = ({
       >
         {!loading && (
           <>
-            <Typography>{children}</Typography>
+            <Typography maxWidth="60ch">{children}</Typography>
             {seenByLog && <SeenByLog {...seenByLog} />}
           </>
         )}
