@@ -72,6 +72,8 @@ export const Transmission = ({
       onClick={() => setExpanded((prevState) => !prevState)}
       collapsible
       linkIcon
+      as="button"
+      ariaLabel={title}
     >
       <Section padding={4}>
         <Byline>
