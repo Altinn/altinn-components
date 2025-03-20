@@ -1,5 +1,5 @@
 'use client';
-import { type ReactNode, useState } from 'react';
+import { type ReactElement, type ReactNode, useState } from 'react';
 import {
   AttachmentList,
   type AttachmentListProps,
@@ -22,7 +22,7 @@ export type TransmissionType =
   | 'decision'
   | 'correction';
 
-export interface TransmissionProps extends ListItemProps {
+export interface TransmissionProps extends Omit<ListItemProps, 'children'> {
   id: string;
   datetime?: string;
   byline?: ReactNode;
@@ -34,6 +34,7 @@ export interface TransmissionProps extends ListItemProps {
   summary?: string;
   attachments?: AttachmentListProps;
   type?: TransmissionType;
+  children?: ReactNode | (() => ReactElement);
 }
 
 export const Transmission = ({
@@ -48,6 +49,7 @@ export const Transmission = ({
   summary,
   attachments,
   type,
+  children,
   ...item
 }: TransmissionProps) => {
   const [expanded, setExpanded] = useState<boolean>(false);
@@ -77,6 +79,7 @@ export const Transmission = ({
         </Byline>
         <Typography size="md">
           <p>{summary}</p>
+          {expanded ? (typeof children === 'function' ? children() : children) : null}
           {attachments?.items && <AttachmentList {...attachments} />}
         </Typography>
       </Section>

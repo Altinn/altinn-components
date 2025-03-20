@@ -57,10 +57,6 @@
   column-gap: inherit;
 }
 
-.controls {
-  position: relative;
-}
-
 /* hover */
 
 .header[data-interactive="true"]:hover {
@@ -70,12 +66,6 @@
 .header[data-interactive="true"]:hover .content h2 {
   text-decoration: underline;
 }
-
-/*
-.header[data-interactive="true"][data-theme="default"]:hover {
-  background-color: var(--ds-color-background-subtle);
-}
-*/
 
 .header[data-has-active-child="true"] {
   background-color: var(--ds-color-background-subtle);

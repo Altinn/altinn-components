@@ -19,7 +19,7 @@ export const DialogHistoryItem = ({ variant, byline, datetime, children, link, .
       return (
         <TimelineActivity byline={byline} datetime={datetime} spacing={2}>
           <ListBase>
-            <Transmission {...props} />
+            <Transmission {...props}>{children}</Transmission>
           </ListBase>
           {link && <TimelineLink {...link} icon={link?.icon || ArrowForwardFillIcon} />}
         </TimelineActivity>

@@ -100,6 +100,8 @@ export const ControlledState = (args: BookmarksSectionProps) => {
             [item.id]: e.target.value,
           }));
         },
+        as: 'a',
+        href: '#' + item.id,
         onToggle: () => onToggle(item.id),
         saveButton: {
           ...item.saveButton,

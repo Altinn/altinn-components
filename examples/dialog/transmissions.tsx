@@ -34,6 +34,15 @@ export const transmissions: DialogHistoryItemProps[] = [
       color: 'error',
       label: 'Avvist',
     },
+    children: (
+      <>
+        <h3>Ting du må rette på</h3>
+        <ul>
+          <li>Bruke riktig navn</li>
+          <li>Ikke lyve om alderen din</li>
+        </ul>
+      </>
+    ),
     attachments: {
       items: [
         {
