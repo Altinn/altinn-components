@@ -59,6 +59,7 @@ export const AutocompleteItem = ({ type, ...props }: AutocompleteItemProps) => {
           theme="default"
           shadow="none"
           tabIndex={-1}
+          linkIcon
         />
       );
     case 'suggest':
@@ -70,6 +71,7 @@ export const AutocompleteItem = ({ type, ...props }: AutocompleteItemProps) => {
           shadow="none"
           size="sm"
           tabIndex={-1}
+          linkIcon
         />
       );
     case 'bookmark':
@@ -84,7 +86,14 @@ export const AutocompleteItem = ({ type, ...props }: AutocompleteItemProps) => {
       );
     case 'dialog':
       return (
-        <DialogListItem {...(props as DialogListItemProps)} theme="default" shadow="none" size="sm" tabIndex={-1} />
+        <DialogListItem
+          {...(props as DialogListItemProps)}
+          theme="default"
+          shadow="none"
+          size="sm"
+          tabIndex={-1}
+          linkIcon
+        />
       );
     case 'information':
       return <ListItem {...(props as ListItemProps)} theme="default" shadow="none" tabIndex={-1} interactive={false} />;
