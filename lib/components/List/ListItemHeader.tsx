@@ -1,8 +1,4 @@
-import {
-  ChevronDownIcon,
-  ChevronRightIcon,
-  ChevronUpIcon,
-} from '@navikt/aksel-icons';
+import { ChevronDownIcon, ChevronRightIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 
 import cx from 'classnames';
 import { type ElementType, type ReactNode, isValidElement, useId } from 'react';
@@ -117,8 +113,8 @@ export const ListItemHeader = ({
       ? ChevronUpIcon
       : ChevronDownIcon
     : linkIcon
-    ? ChevronRightIcon
-    : undefined;
+      ? ChevronRightIcon
+      : undefined;
 
   /** Set default icon size */
   const applicableIconSize = iconSizeMap[size];
@@ -163,11 +159,7 @@ export const ListItemHeader = ({
         </ListItemLink>
         <div className={styles.content} data-size={size}>
           {select && (
-            <ListItemSelect
-              {...select}
-              className={styles.select}
-              size={applicableIconSize as ListItemIconSize}
-            />
+            <ListItemSelect {...select} className={styles.select} size={applicableIconSize as ListItemIconSize} />
           )}
           <ListItemIcon
             loading={loading}
@@ -193,12 +185,7 @@ export const ListItemHeader = ({
           ) : (
             <>
               {renderBadge()}
-              {applicableIcon && (
-                <Icon
-                  svgElement={applicableIcon}
-                  size={applicableIconSize as ListItemIconSize}
-                />
-              )}
+              {applicableIcon && <Icon svgElement={applicableIcon} size={applicableIconSize as ListItemIconSize} />}
             </>
           )}
         </ListItemControls>
