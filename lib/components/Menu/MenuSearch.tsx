@@ -32,7 +32,7 @@ export const MenuSearch = ({
         autoComplete="off"
       />
       <Icon svgElement={MagnifyingGlassIcon} className={styles.icon} />
-      {onClear && (
+      {onClear && !!value && (
         <IconButton
           icon={XMarkIcon}
           variant="solid"
