@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.22.5](https://github.com/Altinn/altinn-components/compare/v0.22.4...v0.22.5) (2025-03-24)
+
+
+### Bug Fixes
+
+* autocomplete suggest type did not respect as prop ([#338](https://github.com/Altinn/altinn-components/issues/338)) ([497a50e](https://github.com/Altinn/altinn-components/commit/497a50e728d506534c8907d9fe1d5daa9a4432ce))
+
 ## [0.22.4](https://github.com/Altinn/altinn-components/compare/v0.22.3...v0.22.4) (2025-03-20)
 
 
