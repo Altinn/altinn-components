@@ -1,7 +1,7 @@
 import { ChevronDownIcon, ChevronRightIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 
 import cx from 'classnames';
-import { ElementType, type ReactNode, isValidElement, useId } from 'react';
+import { type ElementType, type ReactNode, isValidElement, useId } from 'react';
 import {
   type AvatarGroupProps,
   type AvatarProps,
