@@ -17,6 +17,7 @@ export interface AccountMenuItem {
   accountNames?: string[];
   badge?: BadgeProps | undefined;
   alertBadge?: BadgeProps | undefined;
+  items?: AccountMenuItem[];
 }
 
 export interface AccountMenuProps {
@@ -40,6 +41,12 @@ export const AccountMenu = ({
     id: account.id || account.name,
     groupId: account.groupId || 'search',
     selected: account.selected ?? currentAccount?.id === account.id,
+    items: account.items?.map((item) => ({
+      id: item.id,
+      title: item.name,
+      badge: item.badge,
+    })),
+    expanded: (account.items?.length ?? 0) > 0,
     title: account.name,
     ...(account?.accountNames && {
       avatarGroup: {
