@@ -20,11 +20,13 @@ export const Scopes: Story = {
       {
         id: '1a',
         type: 'scope',
+        ariaLabel: 'Alt i innboks',
         href: '#',
         label: 'Alt i innboks',
       },
       {
         id: '1b',
+        ariaLabel: 'Alt i hele Altinn',
         type: 'scope',
         href: '#',
         label: 'Alt i hele Altinn',
@@ -40,6 +42,7 @@ export const ScopesAndQuery: Story = {
       {
         id: '1a',
         type: 'scope',
+        ariaLabel: 'Søk etter skatt i innboks',
         href: '#',
         label: (
           <span>
@@ -50,6 +53,7 @@ export const ScopesAndQuery: Story = {
       {
         id: '1b',
         type: 'scope',
+        ariaLabel: 'Søk etter skatt i hele Altinn',
         href: '#',
         label: (
           <span>
@@ -73,6 +77,7 @@ export const SuggestedFilters: Story = {
         id: '1a',
         groupId: '1',
         type: 'scope',
+        ariaLabel: 'Skatt inkasso i innboks',
         href: '#',
         badge: {
           label: '22 treff',
@@ -87,6 +92,7 @@ export const SuggestedFilters: Story = {
         id: '1b',
         groupId: '1',
         type: 'scope',
+        ariaLabel: 'Skatt inkasso i hele Altinn',
         href: '#',
         label: () => (
           <span>
@@ -153,6 +159,7 @@ export const SuggestedHits: Story = {
         id: '1a',
         groupId: '1',
         type: 'scope',
+        ariaLabel: 'Skatteoppgjør i innboks',
         href: '#',
         badge: {
           label: '24 treff',
@@ -167,6 +174,7 @@ export const SuggestedHits: Story = {
         id: '1b',
         groupId: '1',
         type: 'scope',
+        ariaLabel: 'Skatteoppgjør i hele Altinn',
         href: '#',
         label: () => (
           <span>
@@ -205,6 +213,7 @@ export const TooFewWords: Story = {
       {
         id: '1a',
         type: 'scope',
+        ariaLabel: 'Søk etter sk',
         href: '#',
         label: () => (
           <span>
@@ -215,6 +224,7 @@ export const TooFewWords: Story = {
       {
         id: '1b',
         type: 'scope',
+        ariaLabel: 'Søk etter sk',
         href: '#',
         label: () => (
           <span>
@@ -261,6 +271,7 @@ export const NoHits: Story = {
         id: '1a',
         groupId: '1',
         type: 'scope',
+        ariaLabel: 'Søk etter skatt i innboks',
         href: '#',
         disabled: true,
         badge: {
@@ -276,6 +287,7 @@ export const NoHits: Story = {
         id: '1b',
         groupId: '1',
         type: 'scope',
+        ariaLabel: 'Søk etter skatt i hele Altinn',
         href: '#',
         label: () => (
           <span>

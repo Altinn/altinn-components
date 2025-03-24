@@ -70,6 +70,7 @@ export const InboxScopes = (args: SearchbarProps) => {
     return {
       ...item,
       groupId: '1',
+      ariaLabel: `Søk etter ${q} i ${item.label}`,
       type: 'scope',
     };
   });
@@ -133,6 +134,7 @@ export const Expanded: Story = {
         {
           as: 'a',
           type: 'scope',
+          ariaLabel: 'alt i innboksen',
           id: '1a',
           groupId: '1',
           href: '#',
@@ -143,6 +145,7 @@ export const Expanded: Story = {
         },
         {
           type: 'scope',
+          ariaLabel: 'alt i Altinn',
           id: '1b',
           groupId: '1',
           href: '#',

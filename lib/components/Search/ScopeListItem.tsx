@@ -12,5 +12,5 @@ export interface ScopeListItemProps extends ListItemInputProps {
 }
 
 export const ScopeListItem = ({ as = 'a', label, ...rest }: ScopeListItemProps) => {
-  return <ListItem className={styles.item} label={label} {...rest} />;
+  return <ListItem className={styles.item} label={label} {...rest} as={as} />;
 };
