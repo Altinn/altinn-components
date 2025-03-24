@@ -1,7 +1,7 @@
 import { ChevronDownIcon, ChevronRightIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 
 import cx from 'classnames';
-import { type ReactNode, isValidElement, useId } from 'react';
+import { ElementType, type ReactNode, isValidElement, useId } from 'react';
 import {
   type AvatarGroupProps,
   type AvatarProps,
@@ -47,6 +47,8 @@ export interface ListItemHeaderProps extends ListItemLinkProps {
   linkIcon?: boolean;
   /** Title */
   title?: string;
+  /** Element type of the list-item header label. Defaults to h2*/
+  titleAs?: ElementType;
   /** Description */
   description?: string;
   /** List item icon */
@@ -94,6 +96,7 @@ export const ListItemHeader = ({
   className,
   children,
   ariaLabel,
+  titleAs,
 }: ListItemHeaderProps) => {
   /** Map ListItemSize to ListItemIconSize */
   const iconSizeMap: Record<ListItemSize, ListItemIconSize> = {
@@ -165,7 +168,7 @@ export const ListItemHeader = ({
             avatar={avatar}
             avatarGroup={avatarGroup}
           />
-          <ListItemLabel size={size} loading={loading} title={title} description={description} id={listItemLabelId}>
+          <ListItemLabel size={size} loading={loading} title={title} description={description} id={listItemLabelId} titleAs={titleAs}>
             {children}
           </ListItemLabel>
         </div>
