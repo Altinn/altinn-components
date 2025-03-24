@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.22.6](https://github.com/Altinn/altinn-components/compare/v0.22.5...v0.22.6) (2025-03-24)
+
+
+### Bug Fixes
+
+* autocomplete of type scope lost its as-prop on the way ([#340](https://github.com/Altinn/altinn-components/issues/340)) ([6e6759f](https://github.com/Altinn/altinn-components/commit/6e6759f5fa21586ae8a76a9346c5200bc0b39692))
+
 ## [0.22.5](https://github.com/Altinn/altinn-components/compare/v0.22.4...v0.22.5) (2025-03-24)
 
 
