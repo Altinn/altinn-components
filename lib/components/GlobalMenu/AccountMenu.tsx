@@ -25,6 +25,7 @@ export interface AccountMenuProps {
   accountSearch?: AccountSearchProps;
   currentAccount?: AccountMenuItem;
   onSelectAccount?: (id: string) => void;
+  isVirtualized?: boolean;
 }
 
 const defaultResultLabel = (hits: number) => `${hits} hits`;
@@ -35,6 +36,7 @@ export const AccountMenu = ({
   accountSearch,
   onSelectAccount,
   currentAccount,
+  isVirtualized,
 }: AccountMenuProps) => {
   const accountMenu: MenuItemProps[] = accounts.map((account) => ({
     id: account.id || account.name,
@@ -103,6 +105,7 @@ export const AccountMenu = ({
       search={accountSearch && accountSearchItem}
       groups={filterAccountGroups}
       items={accountSwitcher}
+      isVirtualized={isVirtualized}
     />
   );
 };
