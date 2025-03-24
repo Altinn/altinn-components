@@ -98,9 +98,13 @@ export const SuggestedFilters: Story = {
         id: '2a',
         groupId: '2',
         type: 'suggest',
-        href: '#',
         badge: {
           label: '22 treff',
+        },
+        as: 'button',
+        ariaLabel: 'Søk etter skatt + inkasso',
+        onClick: () => {
+          alert('22 treff');
         },
         params: [
           {
@@ -118,6 +122,7 @@ export const SuggestedFilters: Story = {
         groupId: '2',
         type: 'suggest',
         href: '#',
+        ariaLabel: 'Søk etter Skatteetaten',
         badge: {
           label: '9 treff',
         },

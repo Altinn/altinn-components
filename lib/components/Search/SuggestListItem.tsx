@@ -13,5 +13,5 @@ export interface SuggestListItemProps extends ListItemInputProps {
 }
 
 export const SuggestListItem = ({ as = 'a', params, ...rest }: SuggestListItemProps) => {
-  return <ListItem label={<QueryLabel params={params} />} {...rest} />;
+  return <ListItem label={<QueryLabel params={params} />} {...rest} as={as} />;
 };
