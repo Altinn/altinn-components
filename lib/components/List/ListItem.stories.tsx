@@ -380,6 +380,7 @@ export const OverrideTitleAs = (args: ListItemProps) => {
       <ListItem {...args} icon={HeadCloudIcon} titleAs="h2" title="Title as h2" />
       <ListItem {...args} icon={HeadCloudIcon} titleAs="h3" title="Title as h3" />
       <ListItem {...args} icon={HeadCloudIcon} titleAs="p" title="Title as p" />
+      <ListItem {...args} icon={HeadCloudIcon} titleAs="span" title="Title as span" />
     </ListBase>
   );
 };
