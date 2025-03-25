@@ -1,4 +1,4 @@
-import type { ReactElement, ReactNode } from 'react';
+import type { ElementType, ReactElement, ReactNode } from 'react';
 import type { AvatarGroupProps, AvatarProps } from '../Avatar';
 import type { BadgeProps } from '../Badge';
 import type { IconProps, SvgElement } from '../Icon';
@@ -14,6 +14,8 @@ export interface ListItemProps extends ListItemBaseProps, ListItemHeaderProps {
   loading?: boolean;
   /** Title */
   title?: string;
+  /** Element type of the list-item header label. Defaults to h2 */
+  titleAs?: ElementType;
   /** Optional description */
   description?: string;
   /** List item icon */
@@ -50,6 +52,7 @@ export const ListItem = ({
   avatar,
   avatarGroup,
   title,
+  titleAs,
   description,
   badge,
   linkIcon = false,
@@ -91,6 +94,7 @@ export const ListItem = ({
         avatarGroup={avatarGroup}
         badge={badge}
         controls={controls}
+        titleAs={titleAs}
         {...rest}
       >
         {applicableLabel}

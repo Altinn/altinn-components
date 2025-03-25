@@ -2,7 +2,10 @@ import { PackageIcon } from '@navikt/aksel-icons';
 import { ListItem, type ListItemProps } from '../List';
 
 export interface AccessPackageListItemProps
-  extends Pick<ListItemProps, 'color' | 'onClick' | 'as' | 'title' | 'description' | 'size' | 'controls' | 'loading'> {
+  extends Pick<
+    ListItemProps,
+    'color' | 'onClick' | 'as' | 'title' | 'description' | 'size' | 'controls' | 'loading' | 'titleAs'
+  > {
   id: string;
 }
 

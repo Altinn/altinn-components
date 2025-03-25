@@ -1,4 +1,4 @@
-import { ClockDashedIcon, CogIcon, PencilIcon, TeddyBearIcon } from '@navikt/aksel-icons';
+import { ClockDashedIcon, CogIcon, HeadCloudIcon, PencilIcon, TeddyBearIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import {
@@ -41,6 +41,7 @@ const meta = {
     id: 'id',
     as: 'button',
     title: 'Title',
+    titleAs: 'h2',
     onClick: () => alert('onClick'),
   },
 } satisfies Meta<typeof ListItem>;
@@ -369,6 +370,17 @@ export const CustomControls = (args: ListItemProps) => {
           </Button>
         }
       />
+    </ListBase>
+  );
+};
+
+export const OverrideTitleAs = (args: ListItemProps) => {
+  return (
+    <ListBase>
+      <ListItem {...args} icon={HeadCloudIcon} titleAs="h2" title="Title as h2" />
+      <ListItem {...args} icon={HeadCloudIcon} titleAs="h3" title="Title as h3" />
+      <ListItem {...args} icon={HeadCloudIcon} titleAs="p" title="Title as p" />
+      <ListItem {...args} icon={HeadCloudIcon} titleAs="span" title="Title as span" />
     </ListBase>
   );
 };
