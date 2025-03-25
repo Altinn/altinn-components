@@ -374,7 +374,7 @@ export const CustomControls = (args: ListItemProps) => {
   );
 };
 
-export const OverideTitleAs = (args: ListItemProps) => {
+export const OverrideTitleAs = (args: ListItemProps) => {
   return (
     <ListBase>
       <ListItem {...args} icon={HeadCloudIcon} titleAs="h2" title="Title as h2" />
