@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.22.7](https://github.com/Altinn/altinn-components/compare/v0.22.6...v0.22.7) (2025-03-25)
+
+
+### Bug Fixes
+
+* trigger release ([#346](https://github.com/Altinn/altinn-components/issues/346)) ([e4228d7](https://github.com/Altinn/altinn-components/commit/e4228d79aad1525873c3a6820c226ddb7a6f990f))
+
 ## [0.22.6](https://github.com/Altinn/altinn-components/compare/v0.22.5...v0.22.6) (2025-03-24)
 
 
