@@ -31,7 +31,7 @@ export const ToolbarSearch = ({
         onChange={onChange}
       />
       <Icon svgElement={MagnifyingGlassIcon} className={styles.icon} />
-      {onClear && (
+      {onClear && !!value && (
         <IconButton
           icon={XMarkIcon}
           variant="solid"
