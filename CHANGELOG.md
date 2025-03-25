@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.22.8](https://github.com/Altinn/altinn-components/compare/v0.22.7...v0.22.8) (2025-03-25)
+
+
+### Bug Fixes
+
+* add titleAs prop to AccessAreaListItem and AccessPackageListItem ([#348](https://github.com/Altinn/altinn-components/issues/348)) ([bdce74c](https://github.com/Altinn/altinn-components/commit/bdce74cb758c165825eaa287ec1ec528b4cb85ca))
+
 ## [0.22.7](https://github.com/Altinn/altinn-components/compare/v0.22.6...v0.22.7) (2025-03-25)
 
 
