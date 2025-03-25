@@ -5,7 +5,7 @@ import { ListItem } from '../List';
 import type { ListItemProps } from '../List';
 import styles from './accessAreaListItem.module.css';
 
-interface AccessAreaListItemDefaultProps extends Pick<ListItemProps, 'size' | 'onClick' | 'expanded' | 'loading'> {
+interface AccessAreaListItemDefaultProps extends Pick<ListItemProps, 'size' | 'onClick' | 'expanded' | 'loading' | 'titleAs'> {
   /** Id of the item */
   id: string;
   /** Name of the Access Area */
