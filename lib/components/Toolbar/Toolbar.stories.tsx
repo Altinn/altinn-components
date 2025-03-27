@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import { accountMenu, inboxFilters, inboxStatusFilter } from '../../../examples';
+import { accountMenu, accountMenuWithLongList, inboxFilters, inboxStatusFilter } from '../../../examples';
 import { type FilterState, Toolbar } from './Toolbar';
 
 const meta = {
@@ -76,6 +76,16 @@ export const WithSearch: Story = {
       placeholder: 'Søk i listen',
     },
     filters: [inboxStatusFilter],
+  },
+};
+
+export const LongListAccounts: Story = {
+  args: {
+    accountMenu: {
+      ...accountMenuWithLongList,
+      currentAccount: accountMenu.accounts?.[0],
+      isVirtualized: true,
+    },
   },
 };
 

@@ -30,6 +30,8 @@ export interface MenuListItemProps {
   expanded?: boolean;
   className?: string;
   children?: ReactNode;
+  style?: React.CSSProperties;
+  dataIndex?: number;
 }
 
 export const MenuBase = ({ as = 'nav', color, theme, className, children }: MenuBaseProps) => {
@@ -50,10 +52,17 @@ export const MenuList = ({ as = 'ul', role = 'group', className, children }: Men
   );
 };
 
-export const MenuListItem = ({ as = 'li', role = 'presentation', className, children }: MenuListItemProps) => {
+export const MenuListItem = ({
+  as = 'li',
+  role = 'presentation',
+  className,
+  children,
+  style,
+  dataIndex,
+}: MenuListItemProps) => {
   const Component = as;
   return (
-    <Component className={cx(styles.item, className)} role={role}>
+    <Component className={cx(styles.item, className)} role={role} style={style} data-index={dataIndex}>
       {children}
     </Component>
   );

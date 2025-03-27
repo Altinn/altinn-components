@@ -1,0 +1,11 @@
+.virtualScrollRef {
+  max-height: 400px;
+  overflow: auto;
+}
+
+.virtualMenuListItem {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}

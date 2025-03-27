@@ -5,6 +5,7 @@ import { ToolbarFilterBase } from './ToolbarFilterBase';
 
 export interface ToolbarAccountMenuProps extends AccountMenuProps {
   id?: string;
+  isVirtualized?: boolean;
 }
 
 export const ToolbarAccountMenu = ({
@@ -25,6 +26,7 @@ export const ToolbarAccountMenu = ({
       <DrawerOrDropdown open={expanded} drawerTitle="Endre konto" onClose={closeAll}>
         <AccountMenu
           {...rest}
+          key={currentId}
           onSelectAccount={(id: string) => {
             onSelectAccount?.(id);
             closeAll();
