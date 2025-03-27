@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.23.0](https://github.com/Altinn/altinn-components/compare/v0.22.8...v0.23.0) (2025-03-27)
+
+
+### Features
+
+* Implement virtualiser for MenuItems ([#337](https://github.com/Altinn/altinn-components/issues/337)) ([fa522d8](https://github.com/Altinn/altinn-components/commit/fa522d8629ea7b0b0d71c5e03644649ed7a737b8))
+
+
+### Bug Fixes
+
+* Remove 'clear' button when value is empty string ([#343](https://github.com/Altinn/altinn-components/issues/343)) ([014a90a](https://github.com/Altinn/altinn-components/commit/014a90ae5a43d12ad78226a21397a19944587c13))
+
 ## [0.22.8](https://github.com/Altinn/altinn-components/compare/v0.22.7...v0.22.8) (2025-03-25)
 
 
