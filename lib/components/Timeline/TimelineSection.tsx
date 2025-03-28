@@ -25,6 +25,7 @@ export interface TimelineSectionProps {
 
 export const TimelineSection = ({
   loading,
+  level,
   margin,
   spacing,
   as = 'li',
@@ -36,7 +37,7 @@ export const TimelineSection = ({
   children,
 }: TimelineSectionProps) => {
   return (
-    <TimelineBase loading={loading} border={border} color={color} as={as}>
+    <TimelineBase loading={loading} level={level} border={border} color={color} as={as}>
       {byline && (
         <Byline loading={loading} datetime={datetime}>
           {byline}
