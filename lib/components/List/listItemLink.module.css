@@ -16,3 +16,7 @@
 .link[aria-disabled="true"] {
   pointer-events: none;
 }
+
+.link[data-interactive="true"] {
+  cursor: pointer;
+}
