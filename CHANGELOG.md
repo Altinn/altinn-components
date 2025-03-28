@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.23.1](https://github.com/Altinn/altinn-components/compare/v0.23.0...v0.23.1) (2025-03-28)
+
+
+### Bug Fixes
+
+* account button padding ([#357](https://github.com/Altinn/altinn-components/issues/357)) ([e313f33](https://github.com/Altinn/altinn-components/commit/e313f3384a195ba6e13455967a9bc1fa61ef9b6b))
+* Include list virtualization in accounts in header menu ([#360](https://github.com/Altinn/altinn-components/issues/360)) ([06fe2b9](https://github.com/Altinn/altinn-components/commit/06fe2b908ee8b3295813c415b49cb0835432f92b))
+
 ## [0.23.0](https://github.com/Altinn/altinn-components/compare/v0.22.8...v0.23.0) (2025-03-27)
 
 
