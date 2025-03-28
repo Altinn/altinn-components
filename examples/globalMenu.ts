@@ -4,6 +4,7 @@ import { accountMenu } from './index';
 
 export const globalMenu: GlobalMenuProps = {
   ...accountMenu,
+  isVirtualized: true,
   menuLabel: 'Meny',
   backLabel: 'Tilbake',
   logoutButton: { label: 'Logg ut' },
