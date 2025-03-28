@@ -61,6 +61,7 @@ export const ListItem = ({
   selected,
   controls,
   children,
+  interactive,
   ...rest
 }: ListItemProps) => {
   /** Set label */
@@ -76,6 +77,7 @@ export const ListItem = ({
       expanded={expanded}
       title={title}
       loading={loading}
+      interactive={interactive}
     >
       <ListItemHeader
         className={className}
