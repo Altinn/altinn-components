@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.23.2](https://github.com/Altinn/altinn-components/compare/v0.23.1...v0.23.2) (2025-03-28)
+
+
+### Bug Fixes
+
+* smaller padding on mobile + max 2 lines list item title ([#362](https://github.com/Altinn/altinn-components/issues/362)) ([5c13c7d](https://github.com/Altinn/altinn-components/commit/5c13c7da08f4246cd1c3fd4f4dd39657a47f34ad))
+
 ## [0.23.1](https://github.com/Altinn/altinn-components/compare/v0.23.0...v0.23.1) (2025-03-28)
 
 
