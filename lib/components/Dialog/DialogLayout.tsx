@@ -36,7 +36,7 @@ export const DialogLayout = ({ backButton, contextMenu, pageMenu, children }: Di
           backButton={backButton}
           controls={contextMenu && <ContextMenu {...contextMenu} />}
         />
-        <Article padding={6} spacing={6}>
+        <Article padding="page" spacing={6}>
           {children}
         </Article>
       </Section>

@@ -2,23 +2,22 @@
   display: inline-flex;
   align-items: center;
   column-gap: 0.125em;
-  height: 1.5rem;
-  align-self: flex-start;
-}
-
-.reverse {
-  flex-direction: row-reverse;
+  align-items: flex-start;
 }
 
 .icon {
+  flex-shrink: 0;
+  flex-grow: 0;
   font-size: 1.25rem;
   width: 1.5rem;
   height: 1.5rem;
 }
 
 .label {
+  flex-shrink: 1;
   font-size: 14px;
   font-weight: normal;
   line-height: 1.125rem;
   padding: 0.1875rem 0;
+  white-space: inherit;
 }
