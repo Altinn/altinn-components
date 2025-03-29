@@ -228,6 +228,25 @@ export const CollapsibleExpanded = (args: ListItemProps) => {
   );
 };
 
+export const NonInteractive = (args: ListItemProps) => {
+  return (
+    <ListBase>
+      <ListItem
+        title="Non-interactive"
+        titleAs="h3"
+        as="div"
+        icon={{ theme: 'surface', svgElement: TeddyBearIcon }}
+        badge={{ label: 'Badge' }}
+        interactive={false}
+      >
+        <Section padding={4}>
+          <p>Item is expanded and selected</p>
+        </Section>
+      </ListItem>
+    </ListBase>
+  );
+};
+
 export const Theme = (args: ListItemProps) => {
   return (
     <ListBase>
