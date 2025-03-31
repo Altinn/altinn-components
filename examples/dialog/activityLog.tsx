@@ -13,9 +13,10 @@ export const activityLog: DialogHistoryProps = {
         {
           ...transmissions[1],
           link: {
+            as: 'div',
             label: (
               <>
-                Svar på <u>{transmissions[0].title}</u>
+                Svar på <a href="#a2">{transmissions[0].title}</a>
               </>
             ),
           },

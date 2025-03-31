@@ -13,6 +13,7 @@ import {
 } from '..';
 
 export interface TimelineSegmentProps extends TimelineBaseProps {
+  id?: string;
   loading?: boolean;
   icon?: SvgElement;
   datetime?: string;
@@ -34,11 +35,12 @@ export const TimelineSegment = ({
   spacing = 2,
   margin = 'bottom',
   children,
+  id,
   footer,
   ...props
 }: TimelineSegmentProps) => {
   return (
-    <TimelineBase loading={loading} color={color} icon={icon} as="li" {...props}>
+    <TimelineBase loading={loading} color={color} icon={icon} as="li" {...props} id={id}>
       <Section margin={margin} spacing={spacing}>
         {byline && (
           <Byline loading={loading} datetime={datetime}>
