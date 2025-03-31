@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.23.3](https://github.com/Altinn/altinn-components/compare/v0.23.2...v0.23.3) (2025-03-31)
+
+
+### Bug Fixes
+
+* ListItemBase was not passed interactive from parent, resulting in interactive always true ([#364](https://github.com/Altinn/altinn-components/issues/364)) ([985e0c4](https://github.com/Altinn/altinn-components/commit/985e0c4ad9ef885d3dedfac5e323e81c4439a6a9))
+
 ## [0.23.2](https://github.com/Altinn/altinn-components/compare/v0.23.1...v0.23.2) (2025-03-28)
 
 
