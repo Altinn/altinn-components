@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.24.0](https://github.com/Altinn/altinn-components/compare/v0.23.3...v0.24.0) (2025-03-31)
+
+
+### Features
+
+* locale switcher ([#367](https://github.com/Altinn/altinn-components/issues/367)) ([30dcd8f](https://github.com/Altinn/altinn-components/commit/30dcd8f52f9400f89d5092512e624cda19378adf))
+
+
+### Bug Fixes
+
+* add support for id on timeline segment in order to be able to support jump links ([#366](https://github.com/Altinn/altinn-components/issues/366)) ([d37db69](https://github.com/Altinn/altinn-components/commit/d37db69ca77b5fd014828f8126529133c63739f3))
+* snackbar z-index ([#368](https://github.com/Altinn/altinn-components/issues/368)) ([aff54a0](https://github.com/Altinn/altinn-components/commit/aff54a000dc5f72ccfe5a9e5d333d9e3ad539037))
+
 ## [0.23.3](https://github.com/Altinn/altinn-components/compare/v0.23.2...v0.23.3) (2025-03-31)
 
 
