@@ -1,5 +1,6 @@
 export * from './accountMenu';
 export * from './globalMenu';
+export * from './localeSwitcher';
 export * from './loginMenu';
 export * from './inboxMenu';
 export * from './inboxFilters';

@@ -14,16 +14,19 @@
 
 /* menu */
 
-.header[data-current-id="menu"] {
+.header[data-current-id="menu"],
+.header[data-current-id="locale"] {
   background-color: white;
 }
 
 @media (min-width: 1024px) {
-  .header[data-current-id="menu"] {
+  .header[data-current-id="menu"],
+  .header[data-current-id="locale"] {
     background-color: transparent;
   }
 
-  .header[data-current-id="menu"] .backdrop {
+  .header[data-current-id="menu"] .backdrop,
+  .header[data-current-id="locale"] .backdrop {
     display: block;
   }
 }
@@ -33,7 +36,7 @@
 .header {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: .15s;
+  transition-duration: 0.15s;
 }
 
 .header[data-current-id="search"] {
