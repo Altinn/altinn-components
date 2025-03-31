@@ -96,7 +96,16 @@ export const AutocompleteItem = ({ type, ...props }: AutocompleteItemProps) => {
         />
       );
     case 'information':
-      return <ListItem {...(props as ListItemProps)} theme="default" shadow="none" tabIndex={-1} interactive={false} />;
+      return (
+        <ListItem
+          as="div"
+          {...(props as ListItemProps)}
+          theme="default"
+          shadow="none"
+          tabIndex={-1}
+          interactive={false}
+        />
+      );
     default:
       return <ListItem {...(props as ListItemProps)} theme="default" shadow="none" size="sm" tabIndex={-1} />;
   }

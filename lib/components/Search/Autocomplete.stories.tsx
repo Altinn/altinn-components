@@ -297,6 +297,8 @@ export const NoHits: Story = {
       },
       {
         groupId: 'noHits',
+        interactive: false,
+        as: 'div',
         type: 'information',
         label: () => (
           <span>
