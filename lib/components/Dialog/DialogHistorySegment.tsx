@@ -29,6 +29,7 @@ export const DialogHistorySegment = ({
   expanded,
   expandLabel = 'Expand history',
   collapseLabel = 'Collapse history',
+  id,
 }: DialogHistorySegmentProps) => {
   const [open, setOpen] = useState<boolean>(expanded || !collapsible);
 
@@ -37,7 +38,7 @@ export const DialogHistorySegment = ({
   };
 
   return (
-    <TimelineSegment datetime={datetime} byline={byline} spacing={2}>
+    <TimelineSegment datetime={datetime} byline={byline} spacing={2} id={id}>
       {items.map((item) => (
         <Fragment key={item.id}>
           <DialogHistoryItem {...item} key={item.id} />

@@ -18,6 +18,7 @@ export interface TimelineBaseProps {
   iconColor?: Color;
   avatar?: AvatarProps;
   children?: ReactNode;
+  id?: string;
 }
 
 export const TimelineBase = ({
@@ -30,10 +31,11 @@ export const TimelineBase = ({
   iconColor,
   avatar,
   children,
+  id,
   ...props
 }: TimelineBaseProps) => {
   return (
-    <Flex as={as} className={styles.section} color={color} {...props}>
+    <Flex as={as} className={styles.section} color={color} {...props} id={id}>
       <aside className={styles.sidebar} data-level={level}>
         {(avatar && <Avatar {...avatar} size="sm" />) ||
           (icon && (
