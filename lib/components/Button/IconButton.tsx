@@ -13,6 +13,7 @@ export interface IconButtonProps {
   size?: ButtonSize;
   iconSize?: ButtonSize;
   variant?: ButtonVariant;
+  selected?: boolean;
   className?: string;
   onClick?: MouseEventHandler;
   dataTestId?: string;
@@ -25,6 +26,7 @@ export const IconButton = ({
   color,
   iconSize,
   className,
+  selected,
   onClick,
   dataTestId,
   iconAltText,
@@ -36,6 +38,7 @@ export const IconButton = ({
       size={size}
       className={cx(styles.button, className)}
       onClick={onClick}
+      selected={selected}
       data-testid={dataTestId}
       aria-label={iconAltText}
     >
