@@ -26,6 +26,7 @@ export interface FlexProps {
   children?: ReactNode;
   className?: string;
   style?: CSSProperties;
+  id?: string;
 }
 
 export const Flex = ({
