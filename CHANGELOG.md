@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.24.1](https://github.com/Altinn/altinn-components/compare/v0.24.0...v0.24.1) (2025-04-02)
+
+
+### Bug Fixes
+
+* small fixes to locale switcher ([#377](https://github.com/Altinn/altinn-components/issues/377)) ([998a100](https://github.com/Altinn/altinn-components/commit/998a100d745e40942ee6387da9781c463ba75752))
+* ToolbarSearch now hiding clear button when search is empty ([#352](https://github.com/Altinn/altinn-components/issues/352)) ([439265f](https://github.com/Altinn/altinn-components/commit/439265f58ea1a0877648c1a9ce2f0ad704e68da3))
+
 ## [0.24.0](https://github.com/Altinn/altinn-components/compare/v0.23.3...v0.24.0) (2025-03-31)
 
 
