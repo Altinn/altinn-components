@@ -49,11 +49,13 @@ export const Header = ({ menu, locale, search, currentAccount, logo = {}, badge 
       onClose={closeAll}
     >
       <HeaderLogo {...logo} className={styles.logo} />
-      <HeaderGroup className={styles.menu}>
-        <div style={{ position: 'relative' }}>
-          <LocaleButton onClick={onToggleLocale} expanded={currentId === 'locale'} />
-        </div>
-        <div style={{ position: 'relative' }}>
+      <HeaderGroup>
+        {locale && (
+          <div className={styles.relative}>
+            <LocaleButton onClick={onToggleLocale} expanded={currentId === 'locale'} />
+          </div>
+        )}
+        <div className={styles.relative}>
           <HeaderButton
             color="company"
             variant="solid"
@@ -97,7 +99,6 @@ export const Header = ({ menu, locale, search, currentAccount, logo = {}, badge 
           <Searchbar {...search} expanded={currentId === 'search'} onClose={onSearchClose} onFocus={onSearchFocus} />
         </HeaderSearch>
       )}
-
       {locale && (
         <DrawerBase layout="mobile" open={currentId === 'locale'} className={styles.drawer}>
           <LocaleSwitcher {...locale} />

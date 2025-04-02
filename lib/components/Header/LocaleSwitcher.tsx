@@ -17,7 +17,6 @@ export const LocaleSwitcher = ({ title = 'Select language', options, onChange }:
         <MenuListItem>
           <MenuHeader title={title} />
         </MenuListItem>
-
         {options.map((item) => (
           <MenuListItem key={item.value}>
             <MenuOption onChange={onChange} label={item.label} type="radio" value={item.value} checked={item.checked} />
