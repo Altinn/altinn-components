@@ -1,4 +1,5 @@
 import type { Meta } from '@storybook/react';
+import { type ChangeEvent, useState } from 'react';
 import { header, useAccountMenu, useInboxSearch } from '../../../examples';
 import { loginMenu } from '../../../examples';
 import { Header, type HeaderProps } from './Header';
@@ -32,4 +33,28 @@ export const Login = (args: HeaderProps) => {
   const search = useInboxSearch(args.search!);
 
   return <Header {...args} menu={{ ...loginMenu, menuLabel: 'Meny' }} search={search!} />;
+};
+
+export const ChangeLocale = (args: HeaderProps) => {
+  const [locale, setLocale] = useState<string>('nb');
+  const search = useInboxSearch(args.search!);
+
+  return (
+    <Header
+      {...args}
+      menu={{ ...loginMenu, menuLabel: 'Meny' }}
+      search={search!}
+      locale={{
+        title: 'Velg språk / Choose language',
+        options: [
+          { label: 'Norsk (bokmål)', value: 'nb', checked: locale === 'nb' },
+          { label: 'Norsk (nynorsk)', value: 'nn', checked: locale === 'nn' },
+          { label: 'English', value: 'en', checked: locale === 'en' },
+        ],
+        onChange: (event: ChangeEvent<HTMLInputElement>) => {
+          setLocale(event.target.value);
+        },
+      }}
+    />
+  );
 };
