@@ -1,6 +1,8 @@
 import { ArrowForwardFillIcon } from '@navikt/aksel-icons';
 import type { ReactNode } from 'react';
+import { Avatar } from '../Avatar';
 import { ListBase } from '../List';
+import { Flex } from '../Page';
 import { TimelineActivity, TimelineLink, type TimelineLinkProps } from '../Timeline';
 import { Transmission, type TransmissionProps } from '../Transmission';
 import { Typography } from '../Typography';
@@ -27,7 +29,10 @@ export const DialogHistoryItem = ({ variant, byline, datetime, children, link, .
     default:
       return (
         <TimelineActivity byline={byline} datetime={datetime}>
-          <Typography>{children}</Typography>
+          <Flex spacing={2} align="center">
+            {props.sender && <Avatar {...props.sender} />}
+            <Typography>{children}</Typography>
+          </Flex>
         </TimelineActivity>
       );
   }
