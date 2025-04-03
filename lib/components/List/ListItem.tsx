@@ -97,6 +97,7 @@ export const ListItem = ({
         badge={badge}
         controls={controls}
         titleAs={titleAs}
+        interactive={interactive}
         {...rest}
       >
         {applicableLabel}
