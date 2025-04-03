@@ -65,6 +65,9 @@ export const activityLog: DialogHistoryProps = {
           id: 'ddc58b65-2c26-4b06-ac08-56692bca1258',
           variant: 'activity',
           byline: '17. mars 2024 kl. 09.15',
+          sender: {
+            name: 'Davy Wathne',
+          },
           children: (
             <>
               Varsel sendt til <strong>Theresa Harmanen</strong>, <strong>Kim Rene Teige</strong> og{' '}
