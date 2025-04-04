@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.24.2](https://github.com/Altinn/altinn-components/compare/v0.24.1...v0.24.2) (2025-04-04)
+
+
+### Bug Fixes
+
+* gap for virtualized list items is now consistent ([#381](https://github.com/Altinn/altinn-components/issues/381)) ([e1255ac](https://github.com/Altinn/altinn-components/commit/e1255ac7a91ce5236e7ddcbd011ee3e550bcfea5))
+
 ## [0.24.1](https://github.com/Altinn/altinn-components/compare/v0.24.0...v0.24.1) (2025-04-02)
 
 
