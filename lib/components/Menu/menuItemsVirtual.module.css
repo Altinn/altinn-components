@@ -9,3 +9,7 @@
   left: 0;
   width: 100%;
 }
+
+.virtualMenuListItem > * {
+  margin: 0;
+}

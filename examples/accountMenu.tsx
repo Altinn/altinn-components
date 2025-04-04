@@ -12,6 +12,7 @@ export const accountMenu: AccountMenuProps = {
     },
     hidden: false,
   },
+  isVirtualized: false,
   accountGroups: {
     primary: {
       title: 'Deg selv og favoritter',
@@ -49,6 +50,15 @@ export const accountMenu: AccountMenuProps = {
       name: 'Sportsklubben Brann',
       badge: {
         label: '34',
+      },
+    },
+    {
+      id: 'party:daily-pot',
+      groupId: 'favourites',
+      type: 'company',
+      name: 'Daily Pot',
+      badge: {
+        label: '12',
       },
     },
     {

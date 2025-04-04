@@ -31,14 +31,16 @@ export default meta;
 export const Preview = (args: LayoutProps) => {
   const search: SearchbarProps = useInboxSearch(args.header!.search!);
   const menu: GlobalMenuProps = useAccountMenu(args.header!.menu!);
-
   return (
     <Layout
       {...args}
       header={{
         ...args.header,
         currentAccount: menu.currentAccount,
-        menu: menu,
+        menu: {
+          ...menu,
+          isVirtualized: false,
+        },
         search: search,
       }}
     />

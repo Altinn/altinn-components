@@ -67,11 +67,8 @@ export const MenuItemsVirtual = ({
 
   const virtualizer = useVirtualizer({
     count: flatMenu.length,
-    estimateSize: (index) => {
-      const entry = flatMenu[index];
-      if (!entry) return 0;
-      if (entry.type === 'title') return 44;
-      if (entry.type === 'separator') return 1;
+    gap: 8,
+    estimateSize: () => {
       return 44;
     },
     getScrollElement: () => scrollRef.current,
