@@ -1,5 +1,5 @@
 'use client';
-import { Fragment } from 'react';
+import { type ElementType, Fragment } from 'react';
 import { MenuHeader, MenuItem, MenuList, MenuListItem } from '../';
 import type { IconTheme, MenuItemColor, MenuItemProps, MenuItemSize, MenuItemTheme } from '../';
 import { useMenu } from '../../hooks';
@@ -26,6 +26,7 @@ export interface MenuItemsProps {
   defaultItemColor?: MenuItemColor;
   defaultItemTheme?: MenuItemTheme;
   defaultIconTheme?: IconTheme;
+  as?: ElementType;
 }
 
 export const MenuItems = ({
@@ -38,6 +39,7 @@ export const MenuItems = ({
   defaultItemColor,
   defaultItemTheme,
   defaultIconTheme,
+  as,
 }: MenuItemsProps) => {
   const { menu } = useMenu<MenuItemProps, MenuGroupProps>({
     items,
@@ -47,7 +49,7 @@ export const MenuItems = ({
   });
 
   return (
-    <MenuList expanded={expanded}>
+    <MenuList expanded={expanded} as={as}>
       {search && <MenuSearch {...search} />}
 
       {menu.map((group, groupIndex) => {
@@ -59,13 +61,11 @@ export const MenuItems = ({
           <Fragment key={groupIndex}>
             {/** Render a separator if this is a new group or a new level */}
             {(level > 0 || groupIndex) && divider ? <MenuListItem role="separator" /> : ''}
-
             {title && (
               <MenuListItem>
                 <MenuHeader title={title} />
               </MenuListItem>
             )}
-
             {group?.items
               .filter((item) => !item.props?.hidden)
               .map((item, index) => {
