@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { DsButton } from "./DsButton";
-import { PlusIcon } from "@navikt/aksel-icons";
+import { PlusIcon } from '@navikt/aksel-icons';
+import { DsButton } from './DsButton';
 
 const meta = {
-  title: "Atoms/DsButton/DsButtons",
+  title: 'Atoms/DsButton/DsButtons',
   component: DsButton,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {},
   args: {
-    children: "Button",
+    children: 'Button',
   },
 } satisfies Meta<typeof DsButton>;
 
@@ -22,9 +22,9 @@ export const Default: Story = {
 
 export const DSButton: Story = {
   args: {
-    children: "Button",
-    variant: "solid",
-    "data-size": "md",
+    children: 'Button',
+    variant: 'solid',
+    'data-size': 'md',
     loading: false,
     disabled: false,
   },
@@ -32,25 +32,25 @@ export const DSButton: Story = {
 
 export const Solid: Story = {
   args: {
-    variant: "solid",
+    variant: 'solid',
   },
 };
 
 export const Outline: Story = {
   args: {
-    variant: "outline",
+    variant: 'outline',
   },
 };
 
 export const Text: Story = {
   args: {
-    variant: "text",
+    variant: 'text',
   },
 };
 
 export const Dotted: Story = {
   args: {
-    variant: "dotted",
+    variant: 'dotted',
   },
 };
 
@@ -68,7 +68,7 @@ export const Disabled: Story = {
 
 export const Icon: Story = {
   args: {
-    variant: "solid",
+    variant: 'solid',
     icon: true,
     children: (
       <>

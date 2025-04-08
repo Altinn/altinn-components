@@ -1,19 +1,19 @@
-import { ArrowLeftIcon, ArrowRightIcon, XMarkIcon } from "@navikt/aksel-icons";
-import type { StoryObj } from "@storybook/react";
-import { DsButton, type DsButtonProps } from "./DsButton";
-import { MetaItem } from "../Meta";
+import { ArrowLeftIcon, ArrowRightIcon, XMarkIcon } from '@navikt/aksel-icons';
+import type { StoryObj } from '@storybook/react';
+import { MetaItem } from '../Meta';
+import { DsButton, type DsButtonProps } from './DsButton';
 
 const meta = {
-  title: "Atoms/DsButton/DsButtons",
-  tags: ["autodocs"],
+  title: 'Atoms/DsButton/DsButtons',
+  tags: ['autodocs'],
   parameters: {},
   args: {
-    "data-color": "primary",
+    'data-color': 'primary',
   },
   argTypes: {
-    "data-color": {
-      control: "radio",
-      options: ["primary", "secondary"],
+    'data-color': {
+      control: 'radio',
+      options: ['primary', 'secondary'],
     },
   },
 };
@@ -21,28 +21,23 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const sizes = ["sm", "md", "lg"] as DsButtonProps["data-size"][];
-const variants = [
-  "solid",
-  "outline",
-  "dotted",
-  "text",
-] as DsButtonProps["variant"][];
+const sizes = ['sm', 'md', 'lg'] as DsButtonProps['data-size'][];
+const variants = ['solid', 'outline', 'dotted', 'text'] as DsButtonProps['variant'][];
 
 export const VariantsAndSizes = (args: Story) => {
   return (
-    <div style={{ display: "flex", flexDirection: "column", rowGap: "1rem" }}>
+    <div style={{ display: 'flex', flexDirection: 'column', rowGap: '1rem' }}>
       {variants.map((variant) => {
         return (
           <div
             key={variant}
             style={{
-              display: "flex",
-              flexDirection: "column",
-              rowGap: "1rem",
-              alignItems: "start",
-              justifyContent: "space-between",
-              width: "100%",
+              display: 'flex',
+              flexDirection: 'column',
+              rowGap: '1rem',
+              alignItems: 'start',
+              justifyContent: 'space-between',
+              width: '100%',
             }}
           >
             <MetaItem>{variant}</MetaItem>
@@ -51,15 +46,14 @@ export const VariantsAndSizes = (args: Story) => {
                 <div
                   key={size}
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    columnGap: "1rem",
+                    display: 'flex',
+                    alignItems: 'center',
+                    columnGap: '1rem',
                   }}
                 >
                   <DsButton {...args} icon variant={variant} data-size={size}>
                     <XMarkIcon />
                   </DsButton>
-
 
                   <DsButton {...args} variant={variant} data-size={size}>
                     <ArrowLeftIcon />

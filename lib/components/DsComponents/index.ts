@@ -1,6 +1,6 @@
 export {
   Avatar as DsAvatar,
-  //   Button as DsButton,
+  // Button as DsButton,
   Badge as DsBadge,
   Breadcrumbs as DsBreadcrumbs,
   Spinner as DsSpinner,
@@ -41,5 +41,5 @@ export {
   Table as DsTable,
   ErrorSummary as DsErrorSummary,
   // Suggestion as DsSuggestion,
-  // MultiSuggestion as DsMultiSuggestion, 
-} from "@digdir/designsystemet-react";
+  // MultiSuggestion as DsMultiSuggestion,
+} from '@digdir/designsystemet-react';
