@@ -38,7 +38,6 @@ export const DropdownBase = ({
       data-shadow="md"
       data-placement={placement}
       data-padding={padding}
-      role="menu"
       data-expanded={open}
     >
       {children}
