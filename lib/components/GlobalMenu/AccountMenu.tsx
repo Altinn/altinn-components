@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import type { BadgeProps } from '../Badge';
+import type { AvatarProps, BadgeProps } from '../';
 import { Menu, type MenuItemGroups, type MenuItemProps, type MenuSearchProps } from '../Menu';
 
 export interface AccountSearchProps extends MenuSearchProps {
@@ -14,7 +14,7 @@ export interface AccountMenuItem {
   id: string;
   groupId?: string;
   selected?: boolean;
-  accountNames?: string[];
+  items?: AvatarProps[];
   badge?: BadgeProps | undefined;
   alertBadge?: BadgeProps | undefined;
 }
@@ -43,16 +43,16 @@ export const AccountMenu = ({
     groupId: account.groupId || 'search',
     selected: account.selected ?? currentAccount?.id === account.id,
     title: account.name,
-    ...(account?.accountNames && {
+    ...(account?.items && {
       avatarGroup: {
         size: 'sm',
-        items: account.accountNames.map((name) => ({
-          name,
-          type: account.type,
+        items: account.items.map((item) => ({
+          name: item.name,
+          type: item.type || account.type,
         })),
       },
     }),
-    ...(!account?.accountNames && {
+    ...(!account?.items && {
       avatar: {
         size: 'md',
         type: account.type,
