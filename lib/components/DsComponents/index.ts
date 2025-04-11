@@ -2,6 +2,8 @@ export {
   Alert as DsAlert,
   type AlertProps as DsAlertProps,
   Badge as DsBadge,
+  Button as DsButton,
+  type ButtonProps as DsButtonProps,
   Checkbox as DsCheckbox,
   Chip as DsChip,
   Combobox as DsCombobox,
