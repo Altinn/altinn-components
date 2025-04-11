@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 import {
   DsAlert,
   DsBadge,
@@ -11,18 +11,17 @@ import {
   DsLink,
   DsPagination,
   DsParagraph,
-  useDsPagination,
   DsPopover,
   DsSearch,
   DsSkeleton,
   DsSpinner,
   DsTabs,
-
-} from "./index";
+  useDsPagination,
+} from './index';
 
 const meta = {
-  title: "Atoms/DsComponents",
-  tags: ["autodocs"],
+  title: 'Atoms/DsComponents',
+  tags: ['autodocs'],
 } satisfies Meta;
 
 export default meta;
@@ -58,7 +57,7 @@ export const Checkbox: Story = {
 
 export const Chip: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
       <DsChip.Radio name="my-chip" defaultChecked>
         Chip Radio
       </DsChip.Radio>
@@ -87,18 +86,18 @@ export const Dialog: Story = {
       <DsDialog>
         <DsHeading
           style={{
-            marginBottom: "var(--ds-size-2)",
+            marginBottom: 'var(--ds-size-2)',
           }}
         >
           Dialog header
         </DsHeading>
         <DsParagraph
           style={{
-            marginBottom: "var(--ds-size-2)",
+            marginBottom: 'var(--ds-size-2)',
           }}
         >
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis
-          doloremque obcaecati assumenda odio ducimus sunt et.
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis doloremque obcaecati assumenda odio
+          ducimus sunt et.
         </DsParagraph>
         <DsParagraph data-size="sm">Dialog footer</DsParagraph>
       </DsDialog>
@@ -107,7 +106,11 @@ export const Dialog: Story = {
 };
 
 export const Link: Story = {
-  render: () => <DsLink href="#" target="_">Sample Link</DsLink>,
+  render: () => (
+    <DsLink href="#" target="_">
+      Sample Link
+    </DsLink>
+  ),
 };
 
 export const Pagination: Story = {
@@ -127,11 +130,8 @@ export const Pagination: Story = {
           </DsPagination.Item>
           {pages.map(({ page, itemKey, buttonProps }) => (
             <DsPagination.Item key={itemKey}>
-              {typeof page === "number" && (
-                <DsPagination.Button
-                  {...buttonProps}
-                  aria-label={`Side ${page}`}
-                >
+              {typeof page === 'number' && (
+                <DsPagination.Button {...buttonProps} aria-label={`Side ${page}`}>
                   {page}
                 </DsPagination.Button>
               )}
@@ -172,7 +172,7 @@ export const Search: Story = {
 
 export const Skeleton: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
       <DsSkeleton />
       <DsSkeleton width="100px" />
       <DsSkeleton height="20px" />
