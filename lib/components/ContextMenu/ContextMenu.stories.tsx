@@ -59,22 +59,22 @@ export const Default: Story = {
     await userEvent.click(button);
 
     // ensure that the context menu is visible
-    await expect(canvas.getByRole('menu')).toBeInTheDocument();
+    await expect(canvas.getByRole('group')).toBeInTheDocument();
 
     // close the context menu by pressing escape key
     await userEvent.keyboard('{Escape}');
-    await expect(canvas.queryByRole('menu')).not.toBeInTheDocument();
+    await expect(canvas.queryByRole('group')).not.toBeInTheDocument();
 
     // open the context menu again and close by clicking outside
     await userEvent.click(button);
     await userEvent.click(canvasElement);
-    await expect(canvas.queryByRole('menu')).not.toBeInTheDocument();
+    await expect(canvas.queryByRole('group')).not.toBeInTheDocument();
 
     // open the context menu again and select an item
     await userEvent.click(button);
     const item = canvas.getByText('Flytt til arkiv');
     await userEvent.click(item);
-    await expect(canvas.queryByRole('menu')).not.toBeInTheDocument();
+    await expect(canvas.queryByRole('group')).not.toBeInTheDocument();
   },
 };
 

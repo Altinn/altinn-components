@@ -14,6 +14,7 @@ export interface DropdownBaseProps {
   className?: string;
   children?: ReactNode;
   onClose?: () => void;
+  as?: 'nav' | 'div' | 'menu';
 }
 
 export const DropdownBase = ({
@@ -24,12 +25,13 @@ export const DropdownBase = ({
   className,
   children,
   onClose,
+  as = 'div',
 }: DropdownBaseProps) => {
   const ref = useRef<HTMLDivElement>(null);
   useClickOutside(ref, onClose);
-
+  const Component = as;
   return (
-    <div
+    <Component
       ref={ref}
       className={cx(styles.dropdown, className)}
       data-layout={layout}
@@ -38,10 +40,9 @@ export const DropdownBase = ({
       data-shadow="md"
       data-placement={placement}
       data-padding={padding}
-      role="menu"
       data-expanded={open}
     >
       {children}
-    </div>
+    </Component>
   );
 };
