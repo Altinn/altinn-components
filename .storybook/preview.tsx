@@ -1,11 +1,12 @@
 import { withThemeByDataAttribute } from "@storybook/addon-themes";
 import { Preview, StoryFn } from "@storybook/react";
 import { StoryDecorator } from "./StoryDecorator";
-import "../lib/css/global.css";
-import "./preview.css";
 
 import '@digdir/designsystemet-css/index.css';
 import '@digdir/designsystemet-theme';
+
+import "../lib/css/global.css";
+import "./preview.css";
 
 import { A11yParameters } from "@storybook/addon-a11y";
 import { Rule, getRules } from "axe-core";
