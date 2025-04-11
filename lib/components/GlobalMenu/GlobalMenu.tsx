@@ -4,6 +4,7 @@ import { Menu, type MenuItemGroups, type MenuItemProps, MenuListItem } from '../
 import { type Account, AccountButton } from './AccountButton';
 import { AccountMenu, type AccountMenuProps } from './AccountMenu';
 import { BackButton } from './BackButton';
+import { EndUserLabel } from './EndUserLabel';
 import { GlobalMenuBase, GlobalMenuFooter, GlobalMenuHeader } from './GlobalMenuBase';
 import { LogoutButton, type LogoutButtonProps } from './LogoutButton';
 
@@ -16,6 +17,7 @@ export interface GlobalMenuProps extends AccountMenuProps {
   changeLabel?: string;
   className?: string;
   currentAccount?: Account;
+  currentEndUserLabel?: string;
   onSelectAccount?: (id: string) => void;
   onClose?: () => void;
 }
@@ -29,6 +31,7 @@ export const GlobalMenu = ({
   changeLabel = 'Change',
   backLabel = 'Back',
   currentAccount,
+  currentEndUserLabel = 'Signed in',
   onSelectAccount,
   onClose,
   logoutButton,
@@ -79,21 +82,20 @@ export const GlobalMenu = ({
 
   if (currentAccount) {
     return (
-      <GlobalMenuBase>
-        <GlobalMenuHeader>
-          <AccountButton
-            account={currentAccount}
-            linkText={changeLabel}
-            multipleAccounts={accounts.length > 1}
-            onClick={onToggleAccounts}
-          />
-        </GlobalMenuHeader>
+      <GlobalMenuBase color={currentAccount?.type}>
+        <AccountButton
+          account={currentAccount}
+          linkText={changeLabel}
+          multipleAccounts={accounts.length > 1}
+          onClick={onToggleAccounts}
+        />
         <MenuListItem as="div" role="separator" />
         <Menu groups={groups} items={itemsWithToggle} theme="default" />
         {logoutButton && (
           <>
             <MenuListItem as="div" role="separator" />
             <GlobalMenuFooter>
+              {currentEndUserLabel && <EndUserLabel>{currentEndUserLabel}</EndUserLabel>}
               <LogoutButton {...logoutButton} />
             </GlobalMenuFooter>
           </>
@@ -109,6 +111,7 @@ export const GlobalMenu = ({
         <>
           <MenuListItem as="div" role="separator" />
           <GlobalMenuFooter>
+            {currentEndUserLabel && <EndUserLabel>{currentEndUserLabel}</EndUserLabel>}
             <LogoutButton {...logoutButton} />
           </GlobalMenuFooter>
         </>
