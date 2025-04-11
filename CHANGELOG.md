@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.24.3](https://github.com/Altinn/altinn-components/compare/v0.24.2...v0.24.3) (2025-04-11)
+
+
+### Miscellaneous Chores
+
+* add DS-components to library  ([#384](https://github.com/Altinn/altinn-components/issues/384)) ([6a3308e](https://github.com/Altinn/altinn-components/commit/6a3308e9b439967f3a3134d23ea2276c0aef4a4d))
+
 ## [0.24.2](https://github.com/Altinn/altinn-components/compare/v0.24.1...v0.24.2) (2025-04-04)
 
 
