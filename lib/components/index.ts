@@ -31,3 +31,4 @@ export * from './ResourceList';
 export * from './AccessAreaList';
 export * from './AccessPackageList';
 export * from './TextField';
+export * from './DsComponents';

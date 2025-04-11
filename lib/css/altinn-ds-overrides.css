@@ -36,4 +36,9 @@
   --ds-color-accent-text-default: var(--ds-color-company-text-default);
   --ds-color-accent-contrast-default: var(--ds-color-company-contrast-default);
   --ds-color-accent-contrast-subtle: var(--ds-color-company-contrast-subtle);
+
+  /* Override tokens from designSystem & altinn-components */
+  --ds-color-neutral-surface-default: #fff;
+  --ds-body-md-font-size: 1rem;
+  --ds-color-text-subtle: #10204a;
 }

@@ -2,17 +2,11 @@
   "name": "@altinn/altinn-components",
   "version": "0.24.2",
   "main": "dist/index.js",
-  "files": [
-    "dist/",
-    "!dist/stories/",
-    "!dist/components/*/*.stories.js"
-  ],
+  "files": ["dist/", "!dist/stories/", "!dist/components/*/*.stories.js"],
   "types": "dist/types/lib/index.d.ts",
   "type": "module",
   "description": "Reusable react components",
-  "sideEffects": [
-    "*.css"
-  ],
+  "sideEffects": ["*.css"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",
@@ -31,6 +25,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@digdir/designsystemet-css": "^1.0.3",
+    "@digdir/designsystemet-react": "^1.0.3",
+    "@digdir/designsystemet-theme": "^1.0.3",
     "@navikt/aksel-icons": "^7.9.2",
     "@tanstack/react-virtual": "^3.13.4",
     "classnames": "^2.5.1",
