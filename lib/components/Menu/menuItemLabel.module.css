@@ -4,22 +4,27 @@
   padding: 0 0.25rem;
 }
 
+.title {
+  font-weight: 400;
+}
+
+.title[data-weight="medium"] {
+  font-weight: 500;
+}
+
 .title[data-size="lg"] {
   font-size: 1.125rem;
   line-height: 1.25;
-  font-weight: 500;
 }
 
 .title[data-size="md"] {
   font-size: 1rem;
   line-height: 1.25;
-  font-weight: 400;
 }
 
 .title[data-size="sm"] {
   font-size: 1rem;
   line-height: 1.25;
-  font-weight: 400;
 }
 
 .description {

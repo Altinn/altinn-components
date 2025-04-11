@@ -1,10 +1,19 @@
-import { BookmarkIcon, Buildings2Icon, ChatExclamationmarkIcon, InboxIcon, MenuGridIcon } from '@navikt/aksel-icons';
+import {
+  BellIcon,
+  BookmarkIcon,
+  Buildings2Icon,
+  ChatExclamationmarkIcon,
+  HeartIcon,
+  InboxIcon,
+  MenuGridIcon,
+} from '@navikt/aksel-icons';
 import type { GlobalMenuProps } from '../lib';
 import { accountMenu } from './index';
 
 export const globalMenu: GlobalMenuProps = {
   ...accountMenu,
   isVirtualized: true,
+  currentEndUserLabel: 'Logget inn som Mathias Dyngeland',
   menuLabel: 'Meny',
   backLabel: 'Tilbake',
   logoutButton: { label: 'Logg ut' },
@@ -13,6 +22,9 @@ export const globalMenu: GlobalMenuProps = {
     apps: {
       defaultIconTheme: 'surface',
       divider: true,
+    },
+    profile: {
+      defaultItemColor: 'person',
     },
   },
   items: [
@@ -60,6 +72,29 @@ export const globalMenu: GlobalMenuProps = {
       size: 'sm',
       icon: ChatExclamationmarkIcon,
       title: 'Trenger du hjelp?',
+    },
+    {
+      id: 'profile',
+      groupId: 'profile',
+      size: 'sm',
+      avatar: {
+        name: 'Mathias Dyngeland',
+      },
+      title: 'Min profil',
+    },
+    {
+      id: 'profile',
+      groupId: 'profile',
+      size: 'sm',
+      icon: HeartIcon,
+      title: 'Aktører og favoritter',
+    },
+    {
+      id: 'profile',
+      groupId: 'profile',
+      size: 'sm',
+      icon: BellIcon,
+      title: 'Varslingsinnstillinger',
     },
   ],
 };
