@@ -21,7 +21,7 @@ import {
 } from "./index";
 
 const meta = {
-  title: "DS/Components",
+  title: "Atoms/DsComponents",
   tags: ["autodocs"],
 } satisfies Meta;
 
