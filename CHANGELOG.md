@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.24.4](https://github.com/Altinn/altinn-components/compare/v0.24.3...v0.24.4) (2025-04-11)
+
+
+### Bug Fixes
+
+* add support for account groups of companies and people ([#387](https://github.com/Altinn/altinn-components/issues/387)) ([96ab500](https://github.com/Altinn/altinn-components/commit/96ab500794ca48aa53a8d0b8b899e37acc8cea49))
+
 ## [0.24.3](https://github.com/Altinn/altinn-components/compare/v0.24.2...v0.24.3) (2025-04-11)
 
 
