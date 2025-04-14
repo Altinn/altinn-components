@@ -99,5 +99,5 @@
 }
 
 [data-theme="default"] .item[data-selected="true"] {
-  background-color: var(--ds-color-background-subtle);
+  background-color: var(--ds-color-background-tinted);
 }

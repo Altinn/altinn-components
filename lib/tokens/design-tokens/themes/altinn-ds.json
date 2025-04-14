@@ -53,13 +53,17 @@
         "$type": "color",
         "$value": "{altinn-ds.company.13}"
       },
-      "contrast-1": {
+      "14": {
         "$type": "color",
-        "$value": "{altinn-ds.company.contrast-1}"
+        "$value": "{altinn-ds.company.14}"
       },
-      "contrast-2": {
+      "15": {
         "$type": "color",
-        "$value": "{altinn-ds.company.contrast-2}"
+        "$value": "{altinn-ds.company.15}"
+      },
+      "16": {
+        "$type": "color",
+        "$value": "{altinn-ds.company.16}"
       }
     },
     "person": {
@@ -115,13 +119,17 @@
         "$type": "color",
         "$value": "{altinn-ds.person.13}"
       },
-      "contrast-1": {
+      "14": {
         "$type": "color",
-        "$value": "{altinn-ds.person.contrast-1}"
+        "$value": "{altinn-ds.person.14}"
       },
-      "contrast-2": {
+      "15": {
         "$type": "color",
-        "$value": "{altinn-ds.person.contrast-2}"
+        "$value": "{altinn-ds.person.15}"
+      },
+      "16": {
+        "$type": "color",
+        "$value": "{altinn-ds.person.16}"
       }
     },
     "neutral": {
@@ -177,13 +185,17 @@
         "$type": "color",
         "$value": "{altinn-ds.neutral.13}"
       },
-      "contrast-1": {
+      "14": {
         "$type": "color",
-        "$value": "{altinn-ds.neutral.contrast-1}"
+        "$value": "{altinn-ds.neutral.14}"
       },
-      "contrast-2": {
+      "15": {
         "$type": "color",
-        "$value": "{altinn-ds.neutral.contrast-2}"
+        "$value": "{altinn-ds.neutral.15}"
+      },
+      "16": {
+        "$type": "color",
+        "$value": "{altinn-ds.neutral.16}"
       }
     },
     "article": {
@@ -239,13 +251,17 @@
         "$type": "color",
         "$value": "{altinn-ds.article.13}"
       },
-      "contrast-1": {
+      "14": {
         "$type": "color",
-        "$value": "{altinn-ds.article.contrast-1}"
+        "$value": "{altinn-ds.article.14}"
       },
-      "contrast-2": {
+      "15": {
         "$type": "color",
-        "$value": "{altinn-ds.article.contrast-2}"
+        "$value": "{altinn-ds.article.15}"
+      },
+      "16": {
+        "$type": "color",
+        "$value": "{altinn-ds.article.16}"
       }
     },
     "alert": {
@@ -301,63 +317,69 @@
         "$type": "color",
         "$value": "{altinn-ds.alert.13}"
       },
-      "contrast-1": {
+      "14": {
         "$type": "color",
-        "$value": "{altinn-ds.alert.contrast-1}"
+        "$value": "{altinn-ds.alert.14}"
       },
-      "contrast-2": {
+      "15": {
         "$type": "color",
-        "$value": "{altinn-ds.alert.contrast-2}"
+        "$value": "{altinn-ds.alert.15}"
+      },
+      "16": {
+        "$type": "color",
+        "$value": "{altinn-ds.alert.16}"
       }
     }
   },
-  "font": {
-    "family": {
-      "$type": "fontFamilies",
-      "$value": "{altinn-ds.main}"
-    }
+  "font-family": {
+    "$type": "fontFamilies",
+    "$value": "{altinn-ds.font-family}"
   },
   "font-weight": {
     "medium": {
       "$type": "fontWeights",
-      "$value": "{altinn-ds.bold}"
+      "$value": "{altinn-ds.font-weight.medium}"
     },
     "semibold": {
       "$type": "fontWeights",
-      "$value": "{altinn-ds.extra-bold}"
+      "$value": "{altinn-ds.font-weight.semibold}"
     },
     "regular": {
       "$type": "fontWeights",
-      "$value": "{altinn-ds.regular}"
+      "$value": "{altinn-ds.font-weight.regular}"
     }
   },
   "border-radius": {
     "1": {
-      "$type": "borderRadius",
-      "$value": "min( {border-radius.base} , {border-radius.scale} *1)"
+      "$type": "dimension",
+      "$value": "min({border-radius.base}*0.5,{border-radius.scale})"
     },
     "2": {
-      "$type": "borderRadius",
-      "$value": "min( {border-radius.base} , {border-radius.scale} *2)"
+      "$type": "dimension",
+      "$value": "min({border-radius.base},{border-radius.scale}*2)"
     },
     "3": {
-      "$type": "borderRadius",
-      "$value": "min( {border-radius.base} , {border-radius.scale} *5)"
+      "$type": "dimension",
+      "$value": "min({border-radius.base}*2,{border-radius.scale}*5)"
     },
     "4": {
-      "$type": "borderRadius",
-      "$value": "{border-radius.base}"
+      "$type": "dimension",
+      "$value": "min({border-radius.base}*3,{border-radius.scale}*7)"
     },
     "5": {
-      "$type": "borderRadius",
+      "$type": "dimension",
+      "$value": "{border-radius.base}"
+    },
+    "6": {
+      "$type": "dimension",
       "$value": "9999"
     },
     "base": {
-      "$type": "borderRadius",
+      "$type": "dimension",
       "$value": "4"
     },
     "scale": {
-      "$type": "borderRadius",
+      "$type": "dimension",
       "$value": "4"
     }
   }

@@ -7,7 +7,7 @@
 }
 
 .border[data-seen="true"] {
-  border-color: var(--ds-color-neutral-surface-default);
+  border-color: var(--ds-color-neutral-surface-tinted);
 }
 
 .border[data-variant="draft"] {
@@ -18,11 +18,11 @@
 }
 
 .border[data-variant="sent"] {
-  border-color: var(--ds-color-neutral-surface-default);
+  border-color: var(--ds-color-neutral-surface-tinted);
 }
 
 .border[data-loading="true"] {
-  border-color: var(--ds-color-surface-default);
+  border-color: var(--ds-color-surface-tinted);
 }
 
 .border[data-size="xs"],
@@ -70,7 +70,7 @@
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.375;
-  color: var(--ds-color-text-default);
+  color: var(--ds-color-neutral-text-subtle);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   line-clamp: 2;

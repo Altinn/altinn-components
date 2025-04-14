@@ -16,7 +16,7 @@
 }
 
 .date[data-current-month="true"] {
-  background-color: var(--ds-color-background-subtle);
+  background-color: var(--ds-color-background-tinted);
   color: var(--ds-color-text-default);
 }
 

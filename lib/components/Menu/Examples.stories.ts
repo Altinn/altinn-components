@@ -11,12 +11,12 @@ import {
   PersonCircleIcon,
   PersonGroupIcon,
   TrashIcon,
-} from '@navikt/aksel-icons';
-import type { Meta, StoryObj } from '@storybook/react';
-import { Menu } from './Menu';
+} from "@navikt/aksel-icons";
+import type { Meta, StoryObj } from "@storybook/react";
+import { Menu } from "./Menu";
 
 const meta = {
-  title: 'Menu/Examples',
+  title: "Menu/Examples",
   component: Menu,
   parameters: {},
   args: {},
@@ -28,137 +28,145 @@ type Story = StoryObj<typeof meta>;
 export const InboxMenu: Story = {
   args: {
     groups: {},
-    defaultIconTheme: 'default',
+    defaultIconTheme: "default",
     items: [
       {
-        id: 'inbox',
-        groupId: '1',
-        size: 'lg',
+        id: "inbox",
+        groupId: "1",
+        size: "lg",
         icon: {
-          theme: 'base',
+          theme: "base",
           svgElement: InboxFillIcon,
         },
         iconBadge: {
-          size: 'xs',
-          color: 'alert',
-          theme: 'base',
-          label: '2 uleste',
+          size: "xs",
+          color: "alert",
+          theme: "base",
+          label: "2 uleste",
         },
         selected: true,
-        title: 'Innboks',
+        title: "Innboks",
         badge: {
-          label: '12',
+          label: "12",
         },
       },
       {
-        id: 'drafts',
-        groupId: '2',
+        id: "drafts",
+        groupId: "2",
         icon: DocPencilIcon,
-        title: 'Utkast',
+        title: "Utkast",
         badge: {
-          label: '2',
+          label: "2",
         },
       },
       {
-        id: 'sent',
-        groupId: '2',
+        id: "sent",
+        groupId: "2",
         icon: FileCheckmarkIcon,
-        title: 'Sendt',
+        title: "Sendt",
       },
       {
-        id: 'bookmarks',
-        groupId: '3',
+        id: "bookmarks",
+        groupId: "3",
         icon: BookmarkIcon,
-        title: 'Lagrede søk',
+        title: "Lagrede søk",
         badge: {
-          label: '5',
+          label: "5",
         },
       },
       {
-        id: 'trash',
-        groupId: '4',
+        id: "trash",
+        groupId: "4",
         icon: ArchiveIcon,
-        title: 'Arkivert',
+        title: "Arkivert",
         badge: {
-          label: '99+',
+          label: "99+",
         },
       },
       {
-        id: '6',
-        groupId: '4',
+        id: "6",
+        groupId: "4",
         icon: TrashIcon,
-        title: 'Papirkurv',
+        title: "Papirkurv",
         badge: {
-          label: '15',
+          label: "15",
         },
       },
     ],
   },
 };
 
+export const NeutralInboxMenu = {
+  args: {
+    ...InboxMenu.args,
+    color: "neutral",
+    theme: "subtle",
+  },
+};
+
 export const CompanyInboxMenu = {
   args: {
     ...InboxMenu.args,
-    color: 'company',
-    theme: 'subtle',
+    color: "company",
+    theme: "subtle",
   },
 };
 
 export const PersonInboxMenu = {
   args: {
     ...InboxMenu.args,
-    color: 'person',
-    theme: 'subtle',
+    color: "person",
+    theme: "subtle",
   },
 };
 
 export const CompanyMenu: Story = {
   args: {
-    theme: 'subtle',
-    color: 'company',
-    defaultIconTheme: 'default',
+    theme: "subtle",
+    color: "company",
+    defaultIconTheme: "default",
     groups: {},
     items: [
       {
-        id: 'company',
-        groupId: '1',
-        size: 'lg',
+        id: "company",
+        groupId: "1",
+        size: "lg",
         avatar: {
-          type: 'company',
-          name: 'Bergen Bar',
+          type: "company",
+          name: "Bergen Bar",
         },
-        title: 'Bergen Bar',
+        title: "Bergen Bar",
       },
       {
-        id: 'profil',
-        groupId: '2',
+        id: "profil",
+        groupId: "2",
         icon: Buildings2Icon,
-        title: 'Firmaprofil',
+        title: "Firmaprofil",
       },
       {
-        id: 'brukere',
-        groupId: '3',
+        id: "brukere",
+        groupId: "3",
         icon: PersonGroupIcon,
-        title: 'Brukere',
+        title: "Brukere",
       },
       {
-        id: 'varsling',
-        groupId: '3',
+        id: "varsling",
+        groupId: "3",
         icon: BellIcon,
         iconBadge: {
-          color: 'alert',
-          theme: 'base',
-          size: 'xs',
-          label: 'alert',
+          color: "alert",
+          theme: "base",
+          size: "xs",
+          label: "alert",
         },
         selected: true,
-        title: 'Varslinger',
+        title: "Varslinger",
       },
       {
-        id: 'logg',
-        groupId: '4',
+        id: "logg",
+        groupId: "4",
         icon: ClockDashedIcon,
-        title: 'Aktivitetslogg',
+        title: "Aktivitetslogg",
       },
     ],
   },
@@ -167,63 +175,63 @@ export const CompanyMenu: Story = {
 export const NeutralCompanyMenu = {
   args: {
     ...CompanyMenu.args,
-    color: 'neutral',
+    color: "neutral",
   },
 };
 
 export const PersonMenu: Story = {
   args: {
-    color: 'person',
-    theme: 'subtle',
-    defaultIconTheme: 'default',
+    color: "person",
+    theme: "subtle",
+    defaultIconTheme: "default",
     groups: {},
     items: [
       {
-        id: 'person',
-        groupId: '1',
-        size: 'lg',
+        id: "person",
+        groupId: "1",
+        size: "lg",
         avatar: {
-          type: 'person',
-          name: 'Erik Huseklepp',
+          type: "person",
+          name: "Erik Huseklepp",
         },
-        title: 'Erik Huseklepp',
+        title: "Erik Huseklepp",
       },
       {
-        id: 'profil',
-        groupId: '2',
+        id: "profil",
+        groupId: "2",
         icon: PersonCircleIcon,
-        title: 'Kontaktinformasjon',
+        title: "Kontaktinformasjon",
         selected: true,
       },
       {
-        id: 'varslinger',
-        groupId: '2',
+        id: "varslinger",
+        groupId: "2",
         icon: BellIcon,
         iconBadge: {
-          color: 'alert',
-          theme: 'base',
-          size: 'xs',
-          label: 'alert',
+          color: "alert",
+          theme: "base",
+          size: "xs",
+          label: "alert",
         },
-        title: 'Varslingsinnstillinger',
+        title: "Varslingsinnstillinger",
       },
       {
-        id: 'bookmarks',
-        groupId: '3',
+        id: "bookmarks",
+        groupId: "3",
         icon: BookmarkIcon,
-        title: 'Favoritter',
+        title: "Favoritter",
       },
       {
-        id: 'grupper',
-        groupId: '3',
+        id: "grupper",
+        groupId: "3",
         icon: HexagonGridIcon,
-        title: 'Grupper',
+        title: "Grupper",
       },
       {
-        id: 'logg',
-        groupId: '4',
+        id: "logg",
+        groupId: "4",
         icon: ClockDashedIcon,
-        title: 'Aktivitetslogg',
+        title: "Aktivitetslogg",
       },
     ],
   },
@@ -232,6 +240,6 @@ export const PersonMenu: Story = {
 export const NeutralPersonMenu = {
   args: {
     ...PersonMenu.args,
-    color: 'neutral',
+    color: "neutral",
   },
 };

@@ -9,7 +9,7 @@
 
 .header {
   background-color: var(--ds-color-base-default);
-  color: var(--ds-color-contrast-default);
+  color: var(--ds-color-base-contrast-default);
   height: 76px;
 }
 

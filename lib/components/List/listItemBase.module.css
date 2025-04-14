@@ -48,7 +48,7 @@
 }
 
 .item[data-theme="subtle"] {
-  background-color: var(--ds-color-background-subtle);
+  background-color: var(--ds-color-background-tinted);
 }
 
 .item[data-theme="surface"] {
@@ -57,13 +57,13 @@
 
 .item[data-theme="base"] {
   background-color: var(--ds-color-base-default);
-  color: var(--ds-color-contrast-default);
+  color: var(--ds-color-base-contrast-default);
 }
 
 /* expanded, selected, disabled */
 
 .item[data-active="true"] {
-  background-color: var(--ds-color-surface-default);
+  background-color: var(--ds-color-surface-tinted);
 }
 
 .item[aria-expanded="true"] {

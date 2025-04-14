@@ -1,25 +1,24 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
 import {
-  Button,
-  type ButtonProps,
+  ContactButtons,
+  type ContactButtonsProps,
   type Color,
-  Flex,
   Heading,
   Section,
   type Theme,
   Typography,
   type TypographyProps,
-} from '..';
+} from "..";
 
-export type ContactSectionVariant = 'inline' | 'card';
+export type ContactSectionVariant = "inline" | "card";
 
 export interface ContactSectionProps {
   id?: string;
   title?: string;
   description?: string;
   children?: ReactNode;
-  items: ButtonProps[];
+  items: ContactButtonsProps["items"];
   variant?: ContactSectionVariant;
   typographyProps?: TypographyProps;
   color?: Color;
@@ -27,7 +26,7 @@ export interface ContactSectionProps {
 }
 
 export const ContactSection = ({
-  variant = 'inline',
+  variant = "inline",
   theme,
   color,
   typographyProps,
@@ -41,19 +40,15 @@ export const ContactSection = ({
       direction="col"
       theme={theme}
       color={color}
-      padding={variant === 'card' ? 'page' : 0}
-      shadow={variant === 'card' ? 'xs' : 'none'}
+      padding={variant === "card" ? "page" : 0}
+      shadow={variant === "card" ? "xs" : "none"}
       spacing={4}
     >
       {title && <Heading size="lg">{title}</Heading>}
-      <Typography {...typographyProps}>{children || <p>{description}</p>}</Typography>
-      {items && (
-        <Flex spacing={2}>
-          {items.map((item, index) => {
-            return <Button {...item} variant="outline" key={index} />;
-          })}
-        </Flex>
-      )}
+      <Typography {...typographyProps}>
+        {children || <p>{description}</p>}
+      </Typography>
+      {items && <ContactButtons items={items} />}
     </Section>
   );
 };

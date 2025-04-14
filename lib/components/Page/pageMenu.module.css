@@ -23,12 +23,12 @@
 
 .menu[data-theme="base"] {
   background-color: var(--ds-color-base-default);
-  color: var(--ds-color-contrast-default);
+  color: var(--ds-color-base-contrast-default);
 }
 
 .item[data-theme="base"] {
   background-color: var(--ds-color-base-default);
-  color: var(--ds-color-contrast-default);
+  color: var(--ds-color-base-contrast-default);
 }
 
 .item[data-theme="base"]:hover {

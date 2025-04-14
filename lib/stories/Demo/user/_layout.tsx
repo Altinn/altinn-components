@@ -37,7 +37,7 @@ export const UserLayout = ({ children }: LayoutProps) => {
       hidden: articleId && true,
       menu: {
         defaultItemColor: "person",
-        defaultItemTheme: "subtle",
+        defaultIconTheme: "default",
         items: menuItems,
       },
     },

@@ -55,7 +55,7 @@
 .button[data-variant="solid"] {
   background-color: var(--ds-color-base-default);
   border-color: var(--ds-color-base-default);
-  color: var(--ds-color-contrast-default);
+  color: var(--ds-color-base-contrast-default);
 }
 
 .button[data-variant="solid"]:hover {
@@ -89,7 +89,7 @@
 .button[data-variant="outline"]:hover,
 .button[data-variant="dotted"]:hover,
 .button[data-variant="text"]:hover {
-  background-color: var(--ds-color-surface-default);
+  background-color: var(--ds-color-surface-tinted);
   color: var(--ds-color-text-default);
 }
 

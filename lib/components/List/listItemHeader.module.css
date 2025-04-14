@@ -68,7 +68,7 @@
 }
 
 .header[data-has-active-child="true"] {
-  background-color: var(--ds-color-background-subtle);
+  background-color: var(--ds-color-background-tinted);
 }
 
 .header[data-interactive="true"][data-theme="subtle"]:hover {
@@ -81,5 +81,5 @@
 
 .header[data-interactive="true"][data-theme="base"]:hover {
   background-color: var(--ds-color-base-hover);
-  color: var(--ds-color-contrast-default);
+  color: var(--ds-color-base-contrast-default);
 }

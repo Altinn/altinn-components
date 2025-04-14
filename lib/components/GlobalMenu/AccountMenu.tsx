@@ -1,7 +1,12 @@
-'use client';
-import { useState } from 'react';
-import type { AvatarProps, BadgeProps } from '../';
-import { Menu, type MenuItemGroups, type MenuItemProps, type MenuSearchProps } from '../Menu';
+"use client";
+import { useState } from "react";
+import type { AvatarProps, BadgeProps } from "../";
+import {
+  Menu,
+  type MenuItemGroups,
+  type MenuItemProps,
+  type MenuSearchProps,
+} from "../Menu";
 
 export interface AccountSearchProps extends MenuSearchProps {
   getResultsLabel?: (hits: number) => string;
@@ -9,7 +14,7 @@ export interface AccountSearchProps extends MenuSearchProps {
 }
 
 export interface AccountMenuItem {
-  type: 'person' | 'company';
+  type: "person" | "company";
   name: string;
   id: string;
   groupId?: string;
@@ -40,12 +45,12 @@ export const AccountMenu = ({
 }: AccountMenuProps) => {
   const accountMenu: MenuItemProps[] = accounts.map((account) => ({
     id: account.id || account.name,
-    groupId: account.groupId || 'search',
+    groupId: account.groupId || "search",
     selected: account.selected ?? currentAccount?.id === account.id,
     title: account.name,
     ...(account?.items && {
       avatarGroup: {
-        size: 'sm',
+        size: "sm",
         items: account.items.map((item) => ({
           name: item.name,
           type: item.type || account.type,
@@ -54,7 +59,7 @@ export const AccountMenu = ({
     }),
     ...(!account?.items && {
       avatar: {
-        size: 'md',
+        size: "md",
         type: account.type,
         name: account.name,
       },
@@ -64,15 +69,17 @@ export const AccountMenu = ({
     onClick: () => onSelectAccount?.(account.id || account.name),
   }));
 
-  const [filterString, setFilterString] = useState<string>('');
+  const [filterString, setFilterString] = useState<string>("");
 
   const filteredAccountMenu = filterString
     ? accountMenu
-        .filter((item) => item?.title?.toLowerCase().includes(filterString.toLowerCase()))
+        .filter((item) =>
+          item?.title?.toLowerCase().includes(filterString.toLowerCase())
+        )
         .map((item) => {
           return {
             ...item,
-            groupId: 'search',
+            groupId: "search",
           };
         })
     : accountMenu;
@@ -88,15 +95,18 @@ export const AccountMenu = ({
     : accountGroups;
 
   const accountSearchItem: MenuSearchProps = {
-    name: 'account-search',
+    name: "account-search",
     value: filterString,
-    placeholder: accountSearch?.placeholder ?? 'Find account',
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => setFilterString(event.target.value),
-    onClear: () => setFilterString(''),
+    placeholder: accountSearch?.placeholder ?? "Find account",
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
+      setFilterString(event.target.value),
+    onClear: () => setFilterString(""),
   };
 
   const accountSwitcher: MenuItemProps[] = [
-    ...(filteredAccountMenu.length > 0 ? filteredAccountMenu : [{ id: 'search', groupId: 'search', hidden: true }]),
+    ...(filteredAccountMenu.length > 0
+      ? filteredAccountMenu
+      : [{ id: "search", groupId: "search", hidden: true }]),
   ];
 
   return (

@@ -6,9 +6,8 @@
   background-color: var(--ds-color-background-subtle);
 }
 
-[data-theme="surface"],
-[data-theme="surface-default"] {
-  background-color: var(--ds-color-surface-default);
+[data-theme="surface"] {
+  background-color: var(--ds-color-surface-tinted);
 }
 
 [data-theme="surface-hover"] {
@@ -35,15 +34,15 @@
 [data-theme="base"],
 [data-theme="base-default"] {
   background-color: var(--ds-color-base-default);
-  color: var(--ds-color-contrast-default);
+  color: var(--ds-color-base-contrast-default);
 }
 
 [data-theme="base-hover"] {
   background-color: var(--ds-color-base-hover);
-  color: var(--ds-color-contrast-default);
+  color: var(--ds-color-base-contrast-default);
 }
 
 [data-theme="base-active"] {
   background-color: var(--ds-color-base-active);
-  color: var(--ds-color-contrast-default);
+  color: var(--ds-color-base-contrast-default);
 }

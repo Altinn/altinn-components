@@ -9,7 +9,7 @@
 }
 
 .label:hover {
-  background-color: var(--ds-color-surface-default);
+  background-color: var(--ds-color-surface-tinted);
 }
 
 .input {

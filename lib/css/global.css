@@ -1,13 +1,14 @@
 @import "@digdir/designsystemet-css/index.css";
 @import "@digdir/designsystemet-theme";
 
-@import "./altinn-ds.css";
+/*@import "./altinn-ds.css"; */
+@import "../tokens/design-tokens-build/altinn-ds.css";
 @import "./altinn-ds-overrides.css";
 @import "./altinn-theme.css";
 
-@import "./shadow.css";
 @import "./padding.css";
 @import "./spacing.css";
+@import "./shadow.css";
 
 * {
   font-family: "Inter", sans-serif;
