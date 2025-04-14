@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.24.5](https://github.com/Altinn/altinn-components/compare/v0.24.4...v0.24.5) (2025-04-14)
+
+
+### Bug Fixes
+
+* change role=menu for DropdownBase and DrawerBase for improved accessbility ([#383](https://github.com/Altinn/altinn-components/issues/383)) ([b603f9c](https://github.com/Altinn/altinn-components/commit/b603f9ce4a489f567562c4656a7a55eeba058399))
+* global menu details ([#388](https://github.com/Altinn/altinn-components/issues/388)) ([8c78e1f](https://github.com/Altinn/altinn-components/commit/8c78e1f62ba4f25543de9b72ba9de30d789f8934))
+
 ## [0.24.4](https://github.com/Altinn/altinn-components/compare/v0.24.3...v0.24.4) (2025-04-11)
 
 
