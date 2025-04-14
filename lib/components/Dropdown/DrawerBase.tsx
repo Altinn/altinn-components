@@ -11,11 +11,20 @@ export interface DrawerBaseProps {
   open?: boolean;
   className?: string;
   children?: ReactNode;
+  as?: 'nav' | 'div';
 }
 
-export const DrawerBase = ({ layout, placement = 'inline', open = false, className, children }: DrawerBaseProps) => {
+export const DrawerBase = ({
+  layout,
+  placement = 'inline',
+  open = false,
+  className,
+  children,
+  as = 'div',
+}: DrawerBaseProps) => {
+  const Component = as;
   return (
-    <div
+    <Component
       className={cx(styles.drawer, className)}
       data-placement={placement}
       data-layout={layout}
@@ -24,6 +33,6 @@ export const DrawerBase = ({ layout, placement = 'inline', open = false, classNa
       data-expanded={open}
     >
       {children}
-    </div>
+    </Component>
   );
 };
