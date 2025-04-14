@@ -62,11 +62,26 @@ export const accountMenu: AccountMenuProps = {
       },
     },
     {
+      id: 'customGroup',
+      groupId: 'groups',
+      type: 'person',
+      name: 'Landslaget og meg',
+      items: [
+        { type: 'company', name: 'Landslaget' },
+        { type: 'person', name: 'Mathias Dyngeland' },
+      ],
+      selected: false,
+      badge: {
+        size: 'xs',
+        label: '19',
+      },
+    },
+    {
       id: 'allAccounts',
       groupId: 'groups',
       type: 'company',
       name: 'Alle virksomheter',
-      accountNames: ['Keeperhansker AS', 'Stadion drift AS', 'Landslaget'],
+      items: [{ name: 'Keeperhansker AS' }, { name: 'Stadion drift AS' }, { name: 'Landslaget' }],
       selected: false,
       badge: {
         size: 'xs',
@@ -161,7 +176,9 @@ function generateAccounts(count = 10000) {
     };
 
     if (Math.random() > 0.7) {
-      account.alertBadge = { label: `${Math.floor(Math.random() * 10) + 1} uleste` };
+      account.alertBadge = {
+        label: `${Math.floor(Math.random() * 10) + 1} uleste`,
+      };
     }
 
     if (groupId === 'groups') {

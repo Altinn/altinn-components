@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.24.4](https://github.com/Altinn/altinn-components/compare/v0.24.3...v0.24.4) (2025-04-11)
+
+
+### Bug Fixes
+
+* add support for account groups of companies and people ([#387](https://github.com/Altinn/altinn-components/issues/387)) ([96ab500](https://github.com/Altinn/altinn-components/commit/96ab500794ca48aa53a8d0b8b899e37acc8cea49))
+
+## [0.24.3](https://github.com/Altinn/altinn-components/compare/v0.24.2...v0.24.3) (2025-04-11)
+
+
+### Miscellaneous Chores
+
+* add DS-components to library  ([#384](https://github.com/Altinn/altinn-components/issues/384)) ([6a3308e](https://github.com/Altinn/altinn-components/commit/6a3308e9b439967f3a3134d23ea2276c0aef4a4d))
+
 ## [0.24.2](https://github.com/Altinn/altinn-components/compare/v0.24.1...v0.24.2) (2025-04-04)
 
 
