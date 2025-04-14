@@ -32,7 +32,7 @@ export const inboxSection: DialogListProps = {
       updatedAt: '2025-03-04T07:17:00.000Z',
       updatedAtLabel: '4. mars 2025 kl. 08.17',
       seen: false,
-      badge: { theme: 'surface-hover', label: 'Ulest' },
+      badge: { theme: 'surface', label: 'Ulest' },
     },
     {
       id: 'nabovarsel',
@@ -61,7 +61,7 @@ export const inboxSection: DialogListProps = {
       seen: false,
       dueAt: '2025-05-31T21:59:59.999Z',
       dueAtLabel: 'Frist: 31. mai 2025',
-      badge: { theme: 'surface-hover', label: 'Ulest' },
+      badge: { theme: 'surface', label: 'Ulest' },
     },
     {
       id: 'tredjepart-1',
@@ -72,7 +72,7 @@ export const inboxSection: DialogListProps = {
       updatedAt: '2024-10-18T09:40:00.000Z',
       updatedAtLabel: '18. oktober 2024 kl. 11.40',
       seen: false,
-      badge: { theme: 'surface-hover', label: 'Ulest' },
+      badge: { theme: 'surface', label: 'Ulest' },
     },
   ],
 };

@@ -18,6 +18,7 @@ export * from './LayoutAction';
 export * from './List';
 export * from './Menu';
 export * from './Meta';
+export * from './Profile';
 export * from './RootProvider';
 export * from './Search';
 export * from './Snackbar';
@@ -31,4 +32,5 @@ export * from './ResourceList';
 export * from './AccessAreaList';
 export * from './AccessPackageList';
 export * from './TextField';
+
 export * from './DsComponents';

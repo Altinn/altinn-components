@@ -4,7 +4,7 @@ import { Skeleton } from '../Skeleton';
 import styles from './metaItemBase.module.css';
 
 export type MetaItemVariant = 'solid' | 'outline' | 'dotted' | 'rounded' | 'text';
-export type MetaItemSize = 'xs'; // | 'sm' | 'md';
+export type MetaItemSize = 'xs' | 'sm';
 export type MetaItemColor = 'subtle';
 
 export interface MetaItemBaseProps {

@@ -76,7 +76,7 @@
 }
 
 [data-theme="base"] .description {
-  color: var(--ds-color-contrast-subtle);
+  color: var(--ds-color-base-contrast-subtle);
 }
 
 [data-theme="surface"] .description {

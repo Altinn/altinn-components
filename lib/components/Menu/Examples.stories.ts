@@ -96,6 +96,14 @@ export const InboxMenu: Story = {
   },
 };
 
+export const NeutralInboxMenu = {
+  args: {
+    ...InboxMenu.args,
+    color: 'neutral',
+    theme: 'subtle',
+  },
+};
+
 export const CompanyInboxMenu = {
   args: {
     ...InboxMenu.args,

@@ -1,17 +1,47 @@
 [
   {
     "id": "8b2c8cc86611a34b135cb22948666779361fd729",
-    "name": "Default",
-    "$figmaCollectionId": "VariableCollectionId:36248:20757",
+    "name": "medium",
+    "$figmaStyleReferences": {},
     "selectedTokenSets": {
-      "primitives/size/default": "enabled"
+      "primitives/modes/size/medium": "source",
+      "primitives/modes/size/global": "enabled",
+      "primitives/modes/typography/size/medium": "enabled"
     },
+    "$figmaCollectionId": "VariableCollectionId:36248:20757",
+    "$figmaModeId": "41630:1",
+    "group": "Size"
+  },
+  {
+    "id": "d49b9eebeb48a4f165a74b7261733d0a73370f0e",
+    "name": "large",
+    "$figmaStyleReferences": {},
+    "selectedTokenSets": {
+      "primitives/modes/size/large": "source",
+      "primitives/modes/size/global": "enabled",
+      "primitives/modes/typography/size/large": "enabled"
+    },
+    "$figmaCollectionId": "VariableCollectionId:36248:20757",
+    "$figmaModeId": "41630:2",
+    "group": "Size"
+  },
+  {
+    "id": "fb11567729c298ca37c9da4e3a27716a23480824",
+    "name": "small",
+    "$figmaStyleReferences": {},
+    "selectedTokenSets": {
+      "primitives/modes/size/small": "source",
+      "primitives/modes/size/global": "enabled",
+      "primitives/modes/typography/size/small": "enabled"
+    },
+    "$figmaCollectionId": "VariableCollectionId:36248:20757",
+    "$figmaModeId": "41630:3",
     "group": "Size"
   },
   {
     "id": "84671d12e4ebd199b6140019399a20c77f467c06",
-    "$figmaCollectionId": "VariableCollectionId:36329:62335",
-    "$figmaModeId": "36329:4",
+    "$figmaCollectionId": "VariableCollectionId:36528:61712",
+    "$figmaModeId": "40960:6",
     "name": "altinn-ds",
     "selectedTokenSets": {
       "themes/altinn-ds": "enabled"
@@ -39,17 +69,6 @@
     "group": "Typography"
   },
   {
-    "name": "Light",
-    "selectedTokenSets": {
-      "primitives/modes/color-scheme/light/global": "enabled",
-      "primitives/modes/color-scheme/light/altinn-ds": "enabled"
-    },
-    "id": "0daa3ca0b427b9349da7e7dc00101b5668972926",
-    "$figmaCollectionId": "VariableCollectionId:34811:5472",
-    "$figmaModeId": "34811:0",
-    "group": "Color scheme"
-  },
-  {
     "name": "Dark",
     "selectedTokenSets": {
       "primitives/modes/color-scheme/dark/global": "enabled",
@@ -61,6 +80,17 @@
     "group": "Color scheme"
   },
   {
+    "name": "Light",
+    "selectedTokenSets": {
+      "primitives/modes/color-scheme/light/global": "enabled",
+      "primitives/modes/color-scheme/light/altinn-ds": "enabled"
+    },
+    "id": "0daa3ca0b427b9349da7e7dc00101b5668972926",
+    "$figmaCollectionId": "VariableCollectionId:34811:5472",
+    "$figmaModeId": "34811:0",
+    "group": "Color scheme"
+  },
+  {
     "id": "541629445ef90ad5363f9e88f52a1ccb617e6f84",
     "name": "Semantic",
     "selectedTokenSets": {
@@ -68,6 +98,8 @@
       "semantic/color": "enabled",
       "primitives/globals": "source"
     },
+    "$figmaCollectionId": "VariableCollectionId:34811:5976",
+    "$figmaModeId": "34811:5",
     "group": "Semantic"
   },
   {

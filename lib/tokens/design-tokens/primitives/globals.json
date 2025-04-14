@@ -4,9 +4,9 @@
       "$type": "borderWidth",
       "$value": "1px"
     },
-    "2": {
+    "3": {
       "$type": "borderWidth",
-      "$value": "2px"
+      "$value": "3px"
     }
   },
   "shadow": {
@@ -138,18 +138,6 @@
     "30": {
       "$type": "opacity",
       "$value": "30%"
-    }
-  },
-  "sizing": {
-    "scale": {
-      "$type": "sizing",
-      "$value": "4"
-    }
-  },
-  "spacing": {
-    "scale": {
-      "$type": "spacing",
-      "$value": "4"
     }
   }
 }

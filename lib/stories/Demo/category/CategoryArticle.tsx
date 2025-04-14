@@ -1,6 +1,12 @@
-import { useNavigation } from '..';
-import { Article, Button, PageBase, PageHeader, PageNav, Toolbar, Typography } from '../../../components';
-import {BookmarkIcon, PersonGroupIcon} from "@navikt/aksel-icons";
+import { useNavigation } from "..";
+import { skatt } from "../data/avatar";
+import {
+  Section,
+  ArticleHeader,
+  PageBase,
+  PageNav,
+  Typography,
+} from "../../../components";
 
 export const CategoryArticle = () => {
   const { article, breadcrumbs } = useNavigation();
@@ -9,22 +15,25 @@ export const CategoryArticle = () => {
   return (
     <PageBase spacing={4}>
       <PageNav breadcrumbs={breadcrumbs} />
-      <Article spacing={4}>
-        <PageHeader title={title}>
-          <Toolbar>
-            <Button color="person" icon={PersonGroupIcon} size="sm">
-              Gi fullmakt til <strong>{title}</strong>
-            </Button>
-            <Button color="neutral" variant="outline" icon={BookmarkIcon} size="sm">
-              Legg <strong>{title}</strong> til mine oppgaver
-            </Button>
-          </Toolbar>
-        </PageHeader>
+      <Section as="article" spacing={4}>
+        <ArticleHeader
+          title={title}
+          byline={{ avatar: skatt, children: <strong>Skatteetaten</strong> }}
+        >
+          <Typography>
+            <p>
+              Når du betaler ut lønn til ansatte, er det flere
+              rapporteringsplikter du må oppfylle overfor offentlige myndigheter
+              i Norge. De viktigste rapporteringspliktene inkluderer:
+            </p>
+          </Typography>
+        </ArticleHeader>
 
         <Typography>
           <p>
-            Når du betaler ut lønn til ansatte, er det flere rapporteringsplikter du må oppfylle overfor offentlige
-            myndigheter i Norge. De viktigste rapporteringspliktene inkluderer:
+            Når du betaler ut lønn til ansatte, er det flere
+            rapporteringsplikter du må oppfylle overfor offentlige myndigheter i
+            Norge. De viktigste rapporteringspliktene inkluderer:
           </p>
           <ol>
             <li>A-meldingen</li>
@@ -35,7 +44,7 @@ export const CategoryArticle = () => {
             <li>Rapportering av OTP (Obligatorisk tjenestepensjon)</li>
           </ol>
         </Typography>
-      </Article>
+      </Section>
     </PageBase>
   );
 };

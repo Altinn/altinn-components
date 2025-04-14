@@ -79,7 +79,7 @@ a.item:hover strong {
 .item[data-variant="solid"] {
   border-color: var(--ds-color-base-hover);
   background-color: var(--ds-color-base-hover);
-  color: var(--ds-color-contrast-default);
+  color: var(--ds-color-base-contrast-default);
 }
 
 .item[data-variant="rounded"],

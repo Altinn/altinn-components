@@ -1,10 +1,9 @@
 import type { ReactNode } from 'react';
 
 import {
-  Button,
-  type ButtonProps,
   type Color,
-  Flex,
+  ContactButtons,
+  type ContactButtonsProps,
   Heading,
   Section,
   type Theme,
@@ -19,7 +18,7 @@ export interface ContactSectionProps {
   title?: string;
   description?: string;
   children?: ReactNode;
-  items: ButtonProps[];
+  items: ContactButtonsProps['items'];
   variant?: ContactSectionVariant;
   typographyProps?: TypographyProps;
   color?: Color;
@@ -47,13 +46,7 @@ export const ContactSection = ({
     >
       {title && <Heading size="lg">{title}</Heading>}
       <Typography {...typographyProps}>{children || <p>{description}</p>}</Typography>
-      {items && (
-        <Flex spacing={2}>
-          {items.map((item, index) => {
-            return <Button {...item} variant="outline" key={index} />;
-          })}
-        </Flex>
-      )}
+      {items && <ContactButtons items={items} />}
     </Section>
   );
 };
