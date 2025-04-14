@@ -1,5 +1,6 @@
 import { ChevronRightIcon } from '@navikt/aksel-icons';
 import { MenuItemBase, MenuItemIcon, MenuItemLabel } from '../Menu';
+import styles from './accountButton.module.css';
 
 export type Account = {
   id: string;
@@ -27,7 +28,13 @@ export const AccountButton = ({ account, linkText, onClick, multipleAccounts }: 
             type: account.type,
           }}
         />
-        <MenuItemLabel size="lg" title={account?.name} description={account?.description} />
+        <MenuItemLabel
+          className={styles.label}
+          size="md"
+          title={account?.name}
+          weight="medium"
+          description={account?.description}
+        />
       </MenuItemBase>
     );
   }
@@ -35,13 +42,19 @@ export const AccountButton = ({ account, linkText, onClick, multipleAccounts }: 
   return (
     <MenuItemBase size="lg" as="div">
       <MenuItemIcon
-        size="lg"
+        size="xl"
         avatar={{
           name: account.name,
           type: account.type,
         }}
       />
-      <MenuItemLabel size="lg" title={account?.name} description={account?.description} />
+      <MenuItemLabel
+        className={styles.label}
+        size="md"
+        title={account?.name}
+        weight="medium"
+        description={account?.description}
+      />
     </MenuItemBase>
   );
 };
