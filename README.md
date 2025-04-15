@@ -9,8 +9,22 @@ Today these teams are [Team Arbeidsflate](https://github.com/digdir/dialogporten
 Note that this package is specifically designed to meet the unique needs of the aforementioned teams and is not intended to serve as a general-purpose library.
 We already have the amazing [Norwegian public sector's Design System](https://designsystemet.no/), and we aim to incorporate its elements wherever it makes sense, ensuring alignment and leveraging its strengths while adapting to the specific requirements of Altinn.
 
-Currently, we do not use components from the design system _directly_ but rely on its token structure and continue to explore opportunities for deeper integration.
-This approach helps us align with brand guidelines and the broader vision of a unified Altinn product.
+
+## Strategy for Adopting Designsystemet
+
+As of April 10th, 2024, we’ve decided to start importing components from the [Norwegian public sector’s Design System](https://designsystemet.no/) as needed. These components will be exported from our own library using the `DS<Component>` prefix.
+Consumers of `altinn-components` will be able to use these components directly, without needing `@digdir/designsystemet` as a dependency.
+
+This approach allows us to:
+
+- Avoid conflicts with existing components during the transition phase.
+- Experiment with and adapt the appearance and behavior to fit the Altinn brand.
+- Gradually replace legacy components: once a `DS<Component>` has been sufficiently customized and tested, we will remove the `DS` prefix and promote it to a first-class component.
+- Leverage the strengths of the Design System while maintaining full control over the visual consistency of our solutions.
+- Maintain a curated and well-integrated selection of components from the `@digdir/designsystemet` with the look and feel of Altinn.
+
+This strategy is a natural progression from our previous approach, where we did not use components from `@digdir/designsystemet` directly but relied on its token structure and explored opportunities for deeper integration.
+That approach helped us move faster and build understanding — and now we're ready to take the next step.
 
 ## Feedback and questions
 
