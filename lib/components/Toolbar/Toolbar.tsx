@@ -123,6 +123,7 @@ export const Toolbar = ({
             removable={item.removable}
             getSelectedLabel={getFilterLabel}
             buttonAltText={removeButtonAltText}
+            optionGroups={item.optionGroups}
           />
         );
       })}
