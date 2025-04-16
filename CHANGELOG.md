@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.24.6](https://github.com/Altinn/altinn-components/compare/v0.24.5...v0.24.6) (2025-04-16)
+
+
+### Bug Fixes
+
+* Close localeSwitcher after choosing language ([#396](https://github.com/Altinn/altinn-components/issues/396)) ([8fd87f6](https://github.com/Altinn/altinn-components/commit/8fd87f6fa9858eae540f3908d204b2e06103229b))
+* optionGroups not passed to ToolbarFilter ([#398](https://github.com/Altinn/altinn-components/issues/398)) ([825dd16](https://github.com/Altinn/altinn-components/commit/825dd16db62173f7d0f4db72396efed42bf6134d))
+
 ## [0.24.5](https://github.com/Altinn/altinn-components/compare/v0.24.4...v0.24.5) (2025-04-14)
 
 
