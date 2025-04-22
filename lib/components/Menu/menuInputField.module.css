@@ -35,7 +35,7 @@
 }
 
 .button[aria-selected="true"] {
-  background-color: var(--ds-color-background-subtle);
+  background-color: var(--ds-color-background-tinted);
   color: var(--ds-color-text-default);
 }
 
@@ -45,7 +45,7 @@
 
 .icon {
   border-left: 1px solid;
-  border-color: var(--ds-color-background-subtle);
+  border-color: var(--ds-color-background-tinted);
   display: flex;
   align-items: center;
   justify-content: center;

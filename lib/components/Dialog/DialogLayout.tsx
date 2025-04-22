@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
 import {
-  Article,
   type BackButtonProps,
   ContextMenu,
   type ContextMenuProps,
@@ -36,9 +35,9 @@ export const DialogLayout = ({ backButton, contextMenu, pageMenu, children }: Di
           backButton={backButton}
           controls={contextMenu && <ContextMenu {...contextMenu} />}
         />
-        <Article padding="page" spacing={6}>
+        <Section as="article" padding="page" spacing={6}>
           {children}
-        </Article>
+        </Section>
       </Section>
       <PageMenu items={pageMenu?.items} />
     </PageBase>

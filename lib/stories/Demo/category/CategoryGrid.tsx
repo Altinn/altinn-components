@@ -1,10 +1,10 @@
-import { Grid, ListItem } from '../../../components';
+import { Grid, ListItem } from "../../../components";
 
 export const CategoryGrid = ({ items }) => {
   return (
-    <Grid color="company" spacing={3} cols="1-2-3">
+    <Grid color="company" spacing={3} cols={3}>
       {items.map((item) => (
-        <ListItem key={item.id} {...item} theme="surface" size="xl" />
+        <ListItem key={item.id} {...item} theme="surface" size="lg" />
       ))}
     </Grid>
   );

@@ -52,7 +52,7 @@
 
 .item {
   background-color: var(--ds-color-base-default);
-  color: white;
+  color: var(--ds-color-base-contrast-default);
 }
 
 .item[data-color="neutral"] {

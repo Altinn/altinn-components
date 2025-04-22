@@ -5,7 +5,7 @@ import { PageHeader } from './PageHeader';
 const meta = {
   title: 'Page/PageHeader',
   component: PageHeader,
-  tags: ['autodocs', 'beta'],
+  tags: ['autodocs', 'deprecated'],
   parameters: {},
   args: {
     title: 'Page title',

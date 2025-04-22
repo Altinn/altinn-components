@@ -1,4 +1,26 @@
 :root {
+  --ds-spacing-scale: 0.25rem;
+  --ds-spacing-0: calc(var(--ds-spacing-scale) * 0);
+  --ds-spacing-1: calc(var(--ds-spacing-scale) * 1);
+  --ds-spacing-2: calc(var(--ds-spacing-scale) * 2);
+  --ds-spacing-3: calc(var(--ds-spacing-scale) * 3);
+  --ds-spacing-4: calc(var(--ds-spacing-scale) * 4);
+  --ds-spacing-5: calc(var(--ds-spacing-scale) * 5);
+  --ds-spacing-6: calc(var(--ds-spacing-scale) * 6);
+  --ds-spacing-7: calc(var(--ds-spacing-scale) * 7);
+  --ds-spacing-8: calc(var(--ds-spacing-scale) * 8);
+  --ds-spacing-9: calc(var(--ds-spacing-scale) * 9);
+  --ds-spacing-10: calc(var(--ds-spacing-scale) * 10);
+  --ds-spacing-11: calc(var(--ds-spacing-scale) * 11);
+  --ds-spacing-12: calc(var(--ds-spacing-scale) * 12);
+  --ds-spacing-13: calc(var(--ds-spacing-scale) * 13);
+  --ds-spacing-14: calc(var(--ds-spacing-scale) * 14);
+  --ds-spacing-15: calc(var(--ds-spacing-scale) * 15);
+  --ds-spacing-18: calc(var(--ds-spacing-scale) * 18);
+  --ds-spacing-22: calc(var(--ds-spacing-scale) * 22);
+  --ds-spacing-26: calc(var(--ds-spacing-scale) * 26);
+  --ds-spacing-30: calc(var(--ds-spacing-scale) * 30);
+
   [data-padding="1"] {
     padding: var(--ds-spacing-1);
   }

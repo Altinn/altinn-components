@@ -28,12 +28,17 @@
   border-radius: 2em;
 }
 
-.badge[data-variant="subtle"] {
-  background-color: var(--ds-color-surface-default);
+.badge[data-theme="subtle"] {
+  background-color: var(--ds-color-surface-tinted);
   color: var(--ds-color-text-subtle);
 }
 
-.badge[data-variant="strong"] {
+.badge[data-theme="surface"] {
+  background-color: var(--ds-color-surface-tinted);
+  color: var(--ds-color-text-subtle);
+}
+
+.badge[data-theme="base"] {
   background-color: var(--ds-color-base-default);
-  color: var(--ds-color-contrast-default);
+  color: var(--ds-color-base-contrast-default);
 }

@@ -1,4 +1,5 @@
 export * from './accountMenu';
+export * from './accountList';
 export * from './globalMenu';
 export * from './localeSwitcher';
 export * from './loginMenu';

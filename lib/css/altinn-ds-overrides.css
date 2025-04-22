@@ -1,29 +1,25 @@
 :root {
   /* COMPANY */
 
-  --ds-color-company-background-subtle: #e9f5ff;
-  --ds-color-company-surface-default: #d3eafd;
+  --ds-color-company-background-tinted: #e9f5ff;
+  --ds-color-company-surface-tinted: #d3eafd;
   --ds-color-company-surface-hover: #a5d6fb;
   --ds-color-company-surface-active: #78c1f9;
 
   /* PERSON */
 
-  --ds-color-person-background-subtle: #eaf7ef;
-  --ds-color-person-surface-default: #a8f3d0;
+  --ds-color-person-background-tinted: #eaf7ef;
+  --ds-color-person-surface-tinted: #a8f3d0;
   --ds-color-person-surface-hover: #6ee7b7;
   --ds-color-person-surface-active: #34d399;
-
-  /* ALERT */
-
-  --ds-color-alert-contrast-default: var(--ds-color-neutral-contrast-default);
-  --ds-color-alert-contrast-subtle: var(--ds-color-neutral-contrast-subtle);
-  --ds-color-alert-base-default: #d82c46;
 
   /* ACCENT = COMPANY */
 
   --ds-color-accent-background-default: var(--ds-color-company-background-default);
-  --ds-color-accent-background-subtle: var(--ds-color-company-background-subtle);
+  --ds-color-accent-background-tinted: var(--ds-color-company-background-tinted);
+
   --ds-color-accent-surface-default: var(--ds-color-company-surface-default);
+  --ds-color-accent-surface-tinted: var(--ds-color-company-surface-tinted);
   --ds-color-accent-surface-hover: var(--ds-color-company-surface-hover);
   --ds-color-accent-surface-active: var(--ds-color-company-surface-active);
   --ds-color-accent-border-default: var(--ds-color-company-border-default);
@@ -34,11 +30,10 @@
   --ds-color-accent-base-active: var(--ds-color-company-base-active);
   --ds-color-accent-text-subtle: var(--ds-color-company-text-subtle);
   --ds-color-accent-text-default: var(--ds-color-company-text-default);
-  --ds-color-accent-contrast-default: var(--ds-color-company-contrast-default);
-  --ds-color-accent-contrast-subtle: var(--ds-color-company-contrast-subtle);
+  --ds-color-accent-base-contrast-default: var(--ds-color-company-base-contrast-default);
+  --ds-color-accent-base-contrast-subtle: var(--ds-color-company-base-contrast-subtle);
 
   /* Override tokens from designSystem & altinn-components */
-  --ds-color-neutral-surface-default: #fff;
   --ds-body-md-font-size: 1rem;
   --ds-color-text-subtle: #10204a;
 }

@@ -37,3 +37,18 @@
   min-width: 44px;
   height: 44px;
 }
+
+.icon[data-theme="base"] {
+  background-color: var(--ds-color-base-default);
+  color: var(--ds-color-base-contrast-default);
+}
+
+.icon[data-theme="surface"] {
+  background-color: var(--ds-color-surface-tinted);
+  color: var(--ds-color-base-default);
+}
+
+.icon[data-theme="default"] {
+  background-color: var(--ds-color-background-default);
+  color: var(--ds-color-base-default);
+}

@@ -52,7 +52,7 @@ export const CategoryLayout = ({ children }: LayoutProps) => {
       color: "company" as LayoutColor,
       menu: {
         id: "categories",
-        defaultItemTheme: "surface",
+        defaultIconTheme: "surface",
         items,
       },
     } as LayoutSidebarProps;

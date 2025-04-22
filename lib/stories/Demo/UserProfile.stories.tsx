@@ -1,13 +1,13 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { App } from './';
-import { accounts } from './data';
+import type { Meta, StoryObj } from "@storybook/react";
+import { App } from "./";
+import { accounts } from "./data";
 
 const meta = {
-  title: 'Demo/UserProfile',
+  title: "Demo/UserProfile",
   component: App,
-  tags: ['autodocs', 'beta', 'skip-test'],
+  tags: ["beta", "skip-test"],
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
   args: {},
 } satisfies Meta<typeof App>;
@@ -19,7 +19,7 @@ export const Dashboard: Story = {
   args: {
     accounts,
     accountId: accounts[0].id,
-    pageId: 'user',
+    pageId: "user",
   },
 };
 
@@ -27,7 +27,7 @@ export const Settings: Story = {
   args: {
     accounts,
     accountId: accounts[0].id,
-    pageId: 'user/settings',
+    pageId: "user/settings",
   },
 };
 
@@ -35,10 +35,9 @@ export const ActivityLog: Story = {
   args: {
     accounts,
     accountId: accounts[0].id,
-    pageId: 'user/log',
+    pageId: "user/log",
   },
 };
-
 
 /*
 

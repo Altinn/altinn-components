@@ -38,7 +38,7 @@
 
 .border {
   border-left: 0.25rem solid;
-  border-color: var(--ds-color-surface-default);
+  border-color: var(--ds-color-surface-tinted);
   flex-grow: 1;
 }
 

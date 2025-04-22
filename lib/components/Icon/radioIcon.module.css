@@ -13,7 +13,7 @@
 .radio[data-checked="true"] {
   border-color: var(--ds-color-base-default);
   background-color: var(--ds-color-base-default);
-  color: var(--ds-color-background-subtle);
+  color: var(--ds-color-background-tinted);
 }
 
 .radio > svg {

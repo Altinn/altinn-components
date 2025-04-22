@@ -11,5 +11,5 @@
 }
 
 .base[data-theme="subtle"] {
-  background-color: var(--ds-color-background-subtle);
+  background-color: var(--ds-color-background-tinted);
 }

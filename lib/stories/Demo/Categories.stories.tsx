@@ -1,13 +1,13 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { App } from './';
-import { accounts } from './data';
+import type { Meta, StoryObj } from "@storybook/react";
+import { App } from "./";
+import { accounts } from "./data";
 
 const meta = {
-  title: 'Demo/Categories',
+  title: "Demo/Categories",
   component: App,
-  tags: ['autodocs', 'beta', 'skip-test'],
+  tags: ["beta", "skip-test"],
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
   args: {
     accounts,
@@ -20,31 +20,30 @@ type Story = StoryObj<typeof meta>;
 
 export const Categories: Story = {
   args: {
-    pageId: 'category',
+    pageId: "category",
   },
 };
 
 export const AccessPackage: Story = {
   args: {
-    pageId: 'category/skatt',
+    pageId: "category/skatt",
   },
 };
 
 export const CompanyAccessPackage: Story = {
   args: {
-    pageId: 'company/access/skatt',
+    pageId: "company/access/skatt",
   },
 };
 
 export const UserAccessPackage: Story = {
   args: {
-    pageId: 'company/users/palle/skatt',
+    pageId: "company/users/palle/skatt",
   },
 };
 
-
 export const CategoryPage: Story = {
   args: {
-    pageId: 'category/skatt/mva',
+    pageId: "category/skatt/mva",
   },
 };
