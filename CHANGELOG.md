@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.25.0](https://github.com/Altinn/altinn-components/compare/v0.24.8...v0.25.0) (2025-04-22)
+
+
+### Features
+
+* new css tokens ([#403](https://github.com/Altinn/altinn-components/issues/403)) ([fdf81b3](https://github.com/Altinn/altinn-components/commit/fdf81b378fa42a88eb8d7d35edc76a4c5b0904ef))
+
 ## [0.24.8](https://github.com/Altinn/altinn-components/compare/v0.24.7...v0.24.8) (2025-04-22)
 
 
