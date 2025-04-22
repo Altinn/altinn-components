@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.24.8](https://github.com/Altinn/altinn-components/compare/v0.24.7...v0.24.8) (2025-04-22)
+
+
+### Bug Fixes
+
+* generate new tokens + replace altinn.css ([#400](https://github.com/Altinn/altinn-components/issues/400)) ([ca493aa](https://github.com/Altinn/altinn-components/commit/ca493aaae925852bc31f34fc6d982aba0510ebf5))
+
 ## [0.24.7](https://github.com/Altinn/altinn-components/compare/v0.24.6...v0.24.7) (2025-04-22)
 
 
