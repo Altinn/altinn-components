@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.24.7](https://github.com/Altinn/altinn-components/compare/v0.24.6...v0.24.7) (2025-04-22)
+
+
+### Bug Fixes
+
+* add aria-busy to dialog list ([#399](https://github.com/Altinn/altinn-components/issues/399)) ([9090c6e](https://github.com/Altinn/altinn-components/commit/9090c6ec26374539b98ea1b93ab0322a2f9a2c06))
+
 ## [0.24.6](https://github.com/Altinn/altinn-components/compare/v0.24.5...v0.24.6) (2025-04-16)
 
 
