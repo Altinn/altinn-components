@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.25.1](https://github.com/Altinn/altinn-components/compare/v0.25.0...v0.25.1) (2025-04-23)
+
+
+### Bug Fixes
+
+* updated filters does not update toolbar + support custom names ([#405](https://github.com/Altinn/altinn-components/issues/405)) ([25d9552](https://github.com/Altinn/altinn-components/commit/25d9552e1b412e5c411bb9f10a47561fa096ad33))
+
 ## [0.25.0](https://github.com/Altinn/altinn-components/compare/v0.24.8...v0.25.0) (2025-04-22)
 
 
