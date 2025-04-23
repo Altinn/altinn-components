@@ -1,21 +1,20 @@
 'use client';
-import { type ReactNode, useMemo, useState } from 'react';
+import { type ReactNode, useEffect, useMemo, useState } from 'react';
 import { useRootContext } from '../RootProvider';
 import { ToolbarAccountMenu, type ToolbarAccountMenuProps } from './ToolbarAccountMenu.tsx';
 import { ToolbarAdd } from './ToolbarAdd';
 import { ToolbarBase } from './ToolbarBase';
 import { ToolbarFilter, type ToolbarFilterProps } from './ToolbarFilter.tsx';
-import type { ToolbarOptionType } from './ToolbarOptions.tsx';
 import { ToolbarSearch, type ToolbarSearchProps } from './ToolbarSearch.tsx';
 
-export type FilterState = Record<string, ToolbarFilterProps['value']>;
+export type FilterState = Record<string, (string | number)[] | undefined>;
 
 export interface ToolbarProps {
   accountMenu?: ToolbarAccountMenuProps;
   filters?: ToolbarFilterProps[];
   search?: ToolbarSearchProps;
   filterState?: FilterState;
-  getFilterLabel?: (name: string, value: ToolbarFilterProps['value']) => string;
+  getFilterLabel?: (name: string, value: (string | number)[] | undefined) => string;
   onFilterStateChange?: (state: FilterState) => void;
   showResultsLabel?: string;
   addFilterButtonLabel?: string;
@@ -38,9 +37,7 @@ export const Toolbar = ({
   addFilterButtonLabel,
 }: ToolbarProps) => {
   const { openId, closeAll } = useRootContext();
-  const [localFilterState, setLocalFilterState] = useState<Record<string, ToolbarFilterProps['value']>>(
-    filterState ?? {},
-  );
+  const [localFilterState, setLocalFilterState] = useState<FilterState>(filterState || {});
   const changeFilterState = typeof onFilterStateChange === 'function' ? onFilterStateChange : setLocalFilterState;
   const applicableFilterState = filterState || localFilterState;
 
@@ -49,6 +46,15 @@ export const Toolbar = ({
       ?.filter((item) => !(item.removable && typeof applicableFilterState[item.name] === 'undefined'))
       .map((item) => item.name) ?? [],
   );
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: we want to run this effect when applicableFilterState changes
+  useEffect(() => {
+    setVisibleFilterNames(
+      filters
+        ?.filter((item) => !(item.removable && typeof applicableFilterState[item.name] === 'undefined'))
+        .map((item) => item.name) ?? [],
+    );
+  }, [applicableFilterState]);
 
   const hiddenFilterNames = filters?.filter((item) => !visibleFilterNames.includes(item.name));
 
@@ -67,8 +73,11 @@ export const Toolbar = ({
     [filters, hiddenFilterNames],
   );
 
-  const onFilterChange = (name: string, value: ToolbarFilterProps['value'], optionType: ToolbarOptionType) => {
-    if (optionType === 'radio') {
+  const onFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value: v, type } = event.target;
+    const value = [v];
+
+    if (type === 'radio') {
       closeAll();
       changeFilterState({
         ...applicableFilterState,
@@ -78,8 +87,8 @@ export const Toolbar = ({
       changeFilterState({
         ...applicableFilterState,
         [name]: applicableFilterState[name]
-          ? applicableFilterState[name].some((v) => value?.includes(v))
-            ? applicableFilterState[name].filter((v) => !(value || []).includes(v))
+          ? applicableFilterState[name].some((v) => value?.includes(String(v)))
+            ? applicableFilterState[name].filter((v) => !(value || []).includes(String(v)))
             : [...applicableFilterState[name], ...(value || [])]
           : value,
       });
@@ -113,17 +122,17 @@ export const Toolbar = ({
               onFilterRemove(item.name);
             }}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              onFilterChange(item.name, [event.target.value], item.optionType);
+              onFilterChange(event);
             }}
             name={item.name}
             options={item.options}
             label={item.label}
-            value={applicableFilterState[item.name]}
             optionType={item.optionType}
             removable={item.removable}
             getSelectedLabel={getFilterLabel}
             buttonAltText={removeButtonAltText}
             optionGroups={item.optionGroups}
+            filterState={applicableFilterState}
           />
         );
       })}

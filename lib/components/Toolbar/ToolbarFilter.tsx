@@ -1,5 +1,5 @@
 import type { ChangeEventHandler, MouseEventHandler } from 'react';
-import { DrawerOrDropdown, useRootContext } from '../';
+import { DrawerOrDropdown, type FilterState, useRootContext } from '../';
 import type { MenuOptionProps } from '../Menu';
 import { ToolbarButton } from './ToolbarButton';
 import { ToolbarFilterBase } from './ToolbarFilterBase';
@@ -12,7 +12,7 @@ export interface ToolbarFilterProps {
   optionGroups?: { [key: string]: OptionGroup };
   label: string;
   id?: string;
-  value?: ToolbarFilterValue;
+  filterState?: FilterState;
   optionType: 'checkbox' | 'radio';
   removable?: boolean;
   getSelectedLabel?: (name: string, value?: ToolbarFilterValue) => string;
@@ -34,7 +34,7 @@ export const ToolbarFilter = ({
   removable,
   label,
   name,
-  value,
+  filterState,
   options,
   optionGroups,
   onChange,
@@ -46,14 +46,16 @@ export const ToolbarFilter = ({
   id = `toolbar-filter-${name}`,
 }: ToolbarFilterProps) => {
   const { currentId, toggleId, closeAll } = useRootContext();
-  const filterOptions = (options ?? []).map(
-    (item): MenuOptionProps => ({
-      ...item,
+  const filterOptions = (options ?? []).map((item): MenuOptionProps => {
+    const value = filterState?.[item.name || name];
+    return {
       name,
+      ...item,
       checked: Array.isArray(value) ? value.includes(item.value) : item.value === value,
-    }),
-  );
+    };
+  });
 
+  const value = filterState?.[name];
   const valueLabel = getSelectedLabel?.(name, value) ?? defaultGetSelectedLabel(name, value);
   const onToggle = () => toggleId(id);
   const expanded = currentId === id;
@@ -77,6 +79,7 @@ export const ToolbarFilter = ({
         drawerButton={{ onClick: onToggle, label: showResultsLabel }}
       >
         <ToolbarOptions
+          name={name}
           options={filterOptions}
           optionGroups={optionGroups}
           onChange={onChange}

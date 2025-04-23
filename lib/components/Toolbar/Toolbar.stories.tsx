@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { accountMenu, accountMenuWithLongList, inboxFilters, inboxStatusFilter } from '../../../examples';
 import { type FilterState, Toolbar } from './Toolbar';
 
@@ -90,9 +90,16 @@ export const LongListAccounts: Story = {
 };
 
 export const ControlledStateFilters = (args: typeof Toolbar) => {
-  const [filterState, setFilterState] = React.useState<FilterState>({
-    from: ['skatt', 'brreg'],
-  });
+  const [filterState, setFilterState] = React.useState<FilterState>({});
+
+  useEffect(() => {
+    setTimeout(() => {
+      setFilterState({
+        from: ['skatt', 'brreg'],
+      });
+    }, 1);
+  }, []);
+
   return (
     <Toolbar
       {...args}
@@ -118,6 +125,65 @@ export const ControlledStateAccount = () => {
         currentAccount: accountMenu.accounts?.find((account) => account.id === currentAccountId),
       }}
       filters={Default.args!.filters}
+      filterState={filterState}
+      onFilterStateChange={setFilterState}
+      removeButtonAltText="remove"
+    />
+  );
+};
+
+export const CombinedRadioCheckboxFilter = () => {
+  const [currentAccountId, setCurrentAccountId] = React.useState<string>('party:mathias');
+  const [filterState, setFilterState] = React.useState<FilterState>({});
+
+  return (
+    <Toolbar
+      accountMenu={{
+        ...accountMenu,
+        onSelectAccount: (id) => setCurrentAccountId(id),
+        currentAccount: accountMenu.accounts?.find((account) => account.id === currentAccountId),
+      }}
+      filters={[
+        {
+          name: 'custom',
+          label: 'Custom',
+          options: [
+            {
+              groupId: '1',
+              type: 'radio',
+              label: 'Radio 1',
+              value: 'radio-1',
+            },
+            {
+              groupId: '1',
+              type: 'radio',
+              label: 'Radio 2',
+              value: 'radio-2',
+            },
+            {
+              groupId: '1',
+              type: 'radio',
+              label: 'Radio 3',
+              value: 'radio-3',
+            },
+            {
+              groupId: '2',
+              name: 'show-hidden',
+              type: 'checkbox',
+              label: 'Show hidden',
+              value: 'hidden',
+            },
+            {
+              groupId: '2',
+              name: 'show-deleted',
+              type: 'checkbox',
+              label: 'Show deleted',
+              value: 'deleted',
+            },
+          ],
+          optionType: 'radio',
+        },
+      ]}
       filterState={filterState}
       onFilterStateChange={setFilterState}
       removeButtonAltText="remove"
