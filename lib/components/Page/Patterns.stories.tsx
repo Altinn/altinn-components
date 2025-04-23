@@ -1,11 +1,4 @@
-import {
-  BellIcon,
-  CardIcon,
-  ClockDashedIcon,
-  CogIcon,
-  HeartIcon,
-  HourglassIcon,
-} from "@navikt/aksel-icons";
+import { BellIcon, CardIcon, ClockDashedIcon, CogIcon, HeartIcon, HourglassIcon } from '@navikt/aksel-icons';
 import {
   AccordionSection,
   AccountList,
@@ -23,52 +16,47 @@ import {
   Section,
   Toolbar,
   Typography,
-} from "..";
-import {
-  accountListItems,
-  useAdminLayout,
-  useCategoryLayout,
-  useProfileLayout,
-} from "../../../examples/";
-import { skatt } from "../../../examples/avatar";
-import { dialogContact } from "../../../examples/dialog";
+} from '..';
+import { accountListItems, useAdminLayout, useCategoryLayout, useProfileLayout } from '../../../examples/';
+import { skatt } from '../../../examples/avatar';
+import { dialogContact } from '../../../examples/dialog';
 
 const meta = {
-  title: "Page/Patterns",
-  tags: ["beta"],
+  title: 'Page/Patterns',
+  tags: ['beta'],
   parameters: {
-    layout: "fullscreen",
+    layout: 'fullscreen',
   },
   args: {
     owner: skatt,
     contact: dialogContact,
     breadcrumbs: [
       {
-        label: "Forside",
+        label: 'Forside',
       },
       {
-        label: "Seksjon",
+        label: 'Seksjon',
       },
       {
-        label: "Side",
+        label: 'Side',
       },
     ],
-    title: "Sidetittel",
+    title: 'Sidetittel',
     sections: [
       {
-        id: "1",
-        title: "Section 1",
-        children: "Children 1",
+        id: '1',
+        title: 'Section 1',
+        children: 'Children 1',
       },
       {
-        id: "2",
-        title: "Section 2",
-        children: "Children 2",
+        id: '2',
+        title: 'Section 2',
+        children: 'Children 2',
       },
       {
-        id: "3",
-        title: "Section 3",
-        children: "Children 3",
+        id: '3',
+        title: 'Section 3',
+        children: 'Children 3',
       },
     ],
   },
@@ -81,10 +69,7 @@ export const ProfileDashboard = () => {
   return (
     <Layout {...layout}>
       <PageBase color="person">
-        <DashboardHeader
-          name="Mathias Dyngeland"
-          description="Født. XX.XX.XXXX YYYYYY"
-        >
+        <DashboardHeader name="Mathias Dyngeland" description="Født. XX.XX.XXXX YYYYYY">
           <Typography>
             <h6>E-post</h6>
             <p>mathias@brann.no</p>
@@ -94,16 +79,10 @@ export const ProfileDashboard = () => {
           <DashboardCard icon={{ svgElement: HeartIcon }} title="Mine aktører">
             Sett opp favoritter og grupper for aktørene dine.
           </DashboardCard>
-          <DashboardCard
-            icon={{ svgElement: BellIcon }}
-            title="Mine varslinger"
-          >
+          <DashboardCard icon={{ svgElement: BellIcon }} title="Mine varslinger">
             Endre innstilinger for varslinger.
           </DashboardCard>
-          <DashboardCard
-            icon={{ svgElement: CogIcon }}
-            title="Flere innstillinger"
-          >
+          <DashboardCard icon={{ svgElement: CogIcon }} title="Flere innstillinger">
             Språk og andre preferanser.
           </DashboardCard>
         </Grid>
@@ -122,34 +101,34 @@ export const ProfileAccounts = () => {
         <Section as="header" spacing={6}>
           <Heading size="xl">Mine aktører og favoritter</Heading>
           <Toolbar
-            search={{ name: "q", placeholder: "Søk i listen" }}
+            search={{ name: 'q', placeholder: 'Søk i listen' }}
             filters={[
               {
-                name: "type",
-                label: "Alle aktører",
-                optionType: "radio",
+                name: 'type',
+                label: 'Alle aktører',
+                optionType: 'radio',
                 options: [
                   {
-                    groupId: "1",
-                    label: "Virksomheter",
-                    value: "company",
+                    groupId: '1',
+                    label: 'Virksomheter',
+                    value: 'company',
                   },
                   {
-                    groupId: "1",
-                    label: "Personer",
-                    value: "person",
+                    groupId: '1',
+                    label: 'Personer',
+                    value: 'person',
                   },
                   {
-                    groupId: "1",
-                    label: "Grupper",
-                    value: "group",
+                    groupId: '1',
+                    label: 'Grupper',
+                    value: 'group',
                   },
                   {
-                    groupId: "2",
-                    type: "checkbox",
-                    name: "deleted",
-                    label: "Vis slettede enheter",
-                    value: "true",
+                    groupId: '2',
+                    type: 'checkbox',
+                    name: 'deleted',
+                    label: 'Vis slettede enheter',
+                    value: 'true',
                   },
                 ],
               },
@@ -158,17 +137,9 @@ export const ProfileAccounts = () => {
         </Section>
         <Section spacing={6}>
           <Heading size="lg">Favoritter og grupper</Heading>
-          <AccountList
-            items={accountListItems?.filter(
-              (item) => item.type === "group" || item.favourite
-            )}
-          />
+          <AccountList items={accountListItems?.filter((item) => item.type === 'group' || item.favourite)} />
           <Heading size="lg">Andre aktører</Heading>
-          <AccountList
-            items={accountListItems?.filter(
-              (item) => item.type !== "group" && !item.favourite
-            )}
-          />
+          <AccountList items={accountListItems?.filter((item) => item.type !== 'group' && !item.favourite)} />
         </Section>
       </PageBase>
     </Layout>
@@ -180,11 +151,7 @@ export const CompanyDashboard = () => {
   return (
     <Layout {...layout}>
       <PageBase color="company">
-        <DashboardHeader
-          type="company"
-          name="Bergen Bar"
-          description="Org nr. XXXXXXXXX"
-        >
+        <DashboardHeader type="company" name="Bergen Bar" description="Org nr. XXXXXXXXX">
           <Typography>
             <h6>Forretningsadresse</h6>
             <p>Lørenfaret 1C 0585 OSLO</p>
@@ -196,16 +163,10 @@ export const CompanyDashboard = () => {
           <DashboardCard icon={{ svgElement: HeartIcon }} title="Mine aktører">
             Sett opp favoritter og grupper for aktørene dine.
           </DashboardCard>
-          <DashboardCard
-            icon={{ svgElement: BellIcon }}
-            title="Mine varslinger"
-          >
+          <DashboardCard icon={{ svgElement: BellIcon }} title="Mine varslinger">
             Endre innstilinger for varslinger.
           </DashboardCard>
-          <DashboardCard
-            icon={{ svgElement: CogIcon }}
-            title="Flere innstillinger"
-          >
+          <DashboardCard icon={{ svgElement: CogIcon }} title="Flere innstillinger">
             Språk og andre preferanser.
           </DashboardCard>
         </Grid>
@@ -233,9 +194,9 @@ export const ServicePage = () => {
         <Section
           spacing={4}
           style={{
-            borderTop: "1px solid",
-            borderColor: "var(--ds-color-border-subtle)",
-            paddingTop: "1rem",
+            borderTop: '1px solid',
+            borderColor: 'var(--ds-color-border-subtle)',
+            paddingTop: '1rem',
           }}
         >
           <Metadata
@@ -244,15 +205,15 @@ export const ServicePage = () => {
             items={[
               {
                 icon: ClockDashedIcon,
-                label: "Frist: 11. mai 2024",
+                label: 'Frist: 11. mai 2024',
               },
               {
                 icon: HourglassIcon,
-                label: "Behandlingstid: 14 dager",
+                label: 'Behandlingstid: 14 dager',
               },
               {
                 icon: CardIcon,
-                label: "Gebyr: 500 kroner",
+                label: 'Gebyr: 500 kroner',
               },
             ]}
           />
@@ -265,8 +226,8 @@ export const ServicePage = () => {
           <ContactSection
             {...contact}
             typographyProps={{
-              size: "sm",
-              theme: "subtle",
+              size: 'sm',
+              theme: 'subtle',
             }}
             variant="card"
             theme="surface"
