@@ -26,4 +26,6 @@ export {
   Skeleton as DsSkeleton,
   Spinner as DsSpinner,
   Tabs as DsTabs,
+  ValidationMessage as DsValidationMessage,
+  type ValidationMessageProps as DsValidationMessageProps,
 } from '@digdir/designsystemet-react';
