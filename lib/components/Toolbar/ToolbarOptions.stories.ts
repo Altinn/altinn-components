@@ -15,6 +15,7 @@ type Story = StoryObj<typeof meta>;
 export const Checkboxes: Story = {
   args: {
     optionType: 'checkbox',
+    name: 'checkboxes',
     options: [
       {
         type: 'checkbox',
@@ -56,6 +57,7 @@ export const Checkboxes: Story = {
 
 export const Radio: Story = {
   args: {
+    name: 'radio',
     optionType: 'radio',
     options: [
       {

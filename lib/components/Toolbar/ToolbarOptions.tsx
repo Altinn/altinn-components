@@ -19,6 +19,7 @@ export interface OptionGroup {
 }
 
 export interface ToolbarOptionsProps {
+  name: string;
   options: MenuOptionProps[];
   onChange?: ChangeEventHandler;
   search?: MenuSearchProps;
@@ -26,7 +27,14 @@ export interface ToolbarOptionsProps {
   optionGroups?: { [key: string]: OptionGroup };
 }
 
-export const ToolbarOptions = ({ search, optionGroups = {}, options, onChange, optionType }: ToolbarOptionsProps) => {
+export const ToolbarOptions = ({
+  name,
+  search,
+  optionGroups = {},
+  options,
+  onChange,
+  optionType,
+}: ToolbarOptionsProps) => {
   const sections = options.reduce(
     (acc, option) => {
       const group = option.groupId || '';
@@ -53,18 +61,21 @@ export const ToolbarOptions = ({ search, optionGroups = {}, options, onChange, o
                   <MenuHeader title={title} />
                 </MenuListItem>
               )}
-              {sections[key]?.map((item) => (
-                <MenuListItem key={item.value}>
-                  <MenuOption
-                    onChange={onChange}
-                    label={item.label}
-                    badge={item.badge}
-                    type={item.type || optionGroups?.[key]?.optionType || optionType}
-                    value={item.value}
-                    checked={item.checked}
-                  />
-                </MenuListItem>
-              ))}
+              {sections[key]?.map((item) => {
+                return (
+                  <MenuListItem key={item.value}>
+                    <MenuOption
+                      onChange={onChange}
+                      label={item.label}
+                      badge={item.badge}
+                      name={item.name || name}
+                      type={item.type || optionGroups?.[key]?.optionType || optionType}
+                      value={item.value}
+                      checked={item.checked}
+                    />
+                  </MenuListItem>
+                );
+              })}
             </Fragment>
           );
         })}

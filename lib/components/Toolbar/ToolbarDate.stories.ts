@@ -9,7 +9,6 @@ const meta = {
   parameters: {},
   args: {
     label: 'Velg dato',
-    value: ['today'],
     optionType: 'radio',
     options: [
       {
