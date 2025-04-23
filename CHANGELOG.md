@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.25.2](https://github.com/Altinn/altinn-components/compare/v0.25.1...v0.25.2) (2025-04-23)
+
+
+### Bug Fixes
+
+* add DsValidationMessage component and update exports ([#407](https://github.com/Altinn/altinn-components/issues/407)) ([e8ca2a3](https://github.com/Altinn/altinn-components/commit/e8ca2a358280eabb8efba5ea32078870e05b7b86))
+
 ## [0.25.1](https://github.com/Altinn/altinn-components/compare/v0.25.0...v0.25.1) (2025-04-23)
 
 
