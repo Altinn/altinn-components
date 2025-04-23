@@ -16,6 +16,7 @@ import {
   DsSkeleton,
   DsSpinner,
   DsTabs,
+  DsValidationMessage,
   useDsPagination,
 } from './index';
 
@@ -194,4 +195,8 @@ export const Tabs: Story = {
       <DsTabs.Panel value="value3">content 3</DsTabs.Panel>
     </DsTabs>
   ),
+};
+
+export const ValidationMessage: Story = {
+  render: () => <DsValidationMessage>Validation message content</DsValidationMessage>,
 };
