@@ -5,32 +5,20 @@
   border-radius: 2px;
 }
 
-.icon {
-  font-size: 1.5rem;
-}
-
-/* xs 30 */
-
-.button[data-size="sm"] {
-  width: 1.875rem;
-  height: 1.875rem;
-}
-
-/* sm 36 */
-
-.button[data-size="sm"] {
+.button[data-size="xs"] {
   width: 2.25rem;
   height: 2.25rem;
 }
 
-/* md 44 */
-
-.button[data-size="md"] {
-  width: 2.75rem;
-  height: 2.75rem;
+.button[data-size="sm"] {
+  width: 2.625rem;
+  height: 2.625rem;
 }
 
-/* lg 56 */
+.button[data-size="md"] {
+  width: 3rem;
+  height: 3rem;
+}
 
 .button[data-size="lg"] {
   width: 3.5rem;

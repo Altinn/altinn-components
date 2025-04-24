@@ -1,23 +1,22 @@
 .label {
   line-height: 1;
   font-weight: 500;
-  padding: 0 .25em;
+  padding: 0 0.25em;
   white-space: nowrap;
 }
 
 .label[data-size="xs"] {
-  font-size: 0.75rem;
-  padding: 0 .5em;
-}
-
-.label[data-size="sm"] {
   font-size: 0.875rem;
 }
 
-.label[data-size="md"] {
+.label[data-size="sm"] {
   font-size: 1rem;
 }
 
-.label[data-size="lg"] {
+.label[data-size="md"] {
   font-size: 1.125rem;
+}
+
+.label[data-size="lg"] {
+  font-size: 1.25rem;
 }

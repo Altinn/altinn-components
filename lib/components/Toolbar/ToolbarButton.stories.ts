@@ -28,5 +28,6 @@ export const Add: Story = {
 export const Removable: Story = {
   args: {
     removable: true,
+    iconAltText: 'Remove',
   },
 };

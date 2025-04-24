@@ -296,7 +296,7 @@ export const OverridingIcon = (args: ListItemProps) => {
           <span style={{ position: 'relative' }}>
             <Avatar name="Alfa" size="md" />
             <span style={{ position: 'absolute', bottom: -2, right: -2 }}>
-              <Icon svgElement={TeddyBearIcon} size="xs" theme="subtle" />
+              <Icon svgElement={TeddyBearIcon} size="xs" theme="surface" />
             </span>
           </span>
         }
@@ -306,7 +306,7 @@ export const OverridingIcon = (args: ListItemProps) => {
         description="Custom icon with Icon + Avatar"
         icon={
           <span style={{ position: 'relative' }}>
-            <Icon svgElement={TeddyBearIcon} size="md" theme="subtle" />
+            <Icon svgElement={TeddyBearIcon} size="md" theme="surface" />
             <span style={{ position: 'absolute', bottom: -2, right: -2 }}>
               <Avatar name="Alfa" size="xs" />
             </span>
@@ -383,7 +383,7 @@ export const CustomControls = (args: ListItemProps) => {
         {...args}
         icon={TeddyBearIcon}
         controls={
-          <Button icon={PencilIcon} size="sm" variant="outline" onClick={() => alert('Button clicked')}>
+          <Button icon={PencilIcon} size="xs" variant="outline" onClick={() => alert('Button clicked')}>
             Rediger
           </Button>
         }

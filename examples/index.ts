@@ -17,3 +17,5 @@ export * from './profileMenu';
 export * from './useProfileLayout';
 export * from './useCategoryLayout';
 export * from './useAdminLayout';
+export * from './useInboxLayout';
+export * from './useInboxToolbar';

@@ -1,0 +1,20 @@
+import { Meta, Controls, Primary, Canvas } from "@storybook/blocks";
+import * as ButtonStories from "./Button.stories";
+
+<Meta title="Atoms/Button" />
+
+# Button
+
+Use Buttons to initialize actions. The label should indicate what action will occur when the user interacts with it.
+
+## Sizes
+
+Sizes range from xs to lg. Md is the default size.
+
+<Canvas of={ButtonStories.Sizes} />
+
+## Variants
+
+While Designsystemet uses variants according to importance (primary, secondary, tertiary), Altinn uses descriptive variants (solid, outline, dotted, text).
+
+<Canvas of={ButtonStories.Variants} />

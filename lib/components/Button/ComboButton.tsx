@@ -27,6 +27,7 @@ export const ComboButton = ({
   ariaLabel,
   onLabelClick,
   onIconClick,
+  iconAltText,
 }: ComboButtonProps) => {
   return (
     <ButtonBase
@@ -37,13 +38,14 @@ export const ComboButton = ({
       selected={selected}
       className={cx(styles.button, className)}
       ariaLabel={ariaLabel}
+      tabIndex={-1}
     >
-      <ButtonBase size={size} onClick={onIconClick} className={styles.secondary} ariaLabel={ariaLabel}>
-        <ButtonIcon icon={icon} size={size} />
-      </ButtonBase>
-      <span data-size={size} className={styles.divider} />
       <ButtonBase size={size} onClick={onLabelClick} className={styles.primary}>
         <ButtonLabel size={size}>{children}</ButtonLabel>
+      </ButtonBase>
+      <span data-size={size} className={styles.divider} />
+      <ButtonBase size={size} onClick={onIconClick} className={styles.secondary} ariaLabel={iconAltText}>
+        <ButtonIcon icon={icon} size={size} />
       </ButtonBase>
     </ButtonBase>
   );

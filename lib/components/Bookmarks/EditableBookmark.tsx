@@ -1,5 +1,5 @@
 import { PencilIcon, XMarkIcon } from '@navikt/aksel-icons';
-import { type ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import { Button, type ButtonProps, Flex, IconButton, Section, TextField, type TextFieldProps } from '..';
 import { BookmarksListItem, type BookmarksListItemProps, type QueryItemProps, QueryLabel } from '..';
 
@@ -62,7 +62,7 @@ export const EditableBookmark = ({
       controls={
         <IconButton
           variant="outline"
-          size="sm"
+          size="xs"
           icon={expanded ? XMarkIcon : PencilIcon}
           onClick={onToggle}
           iconAltText={expandIconAltText}
@@ -74,9 +74,10 @@ export const EditableBookmark = ({
         {titleField && (
           <TextField
             {...titleField}
+            size="sm"
             name="title"
             value={typeof inputValue === 'string' ? inputValue : internalValue}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            onChange={(e) => {
               if (typeof onChange === 'function') {
                 onChange(e);
               } else {
@@ -87,8 +88,8 @@ export const EditableBookmark = ({
         )}
         {(saveButton || removeButton) && (
           <Flex as="footer" direction="row" spacing={2}>
-            {saveButton && <Button {...saveButton} />}
-            {removeButton && <Button {...removeButton} variant="outline" />}
+            {saveButton && <Button {...saveButton} size="sm" />}
+            {removeButton && <Button {...removeButton} variant="outline" size="sm" />}
           </Flex>
         )}
       </Section>

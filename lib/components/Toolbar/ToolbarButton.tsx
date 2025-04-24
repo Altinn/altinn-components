@@ -9,6 +9,7 @@ export interface ToolbarButtonProps {
   as?: ElementType;
   type?: ToolbarButtonType;
   ariaLabel?: string;
+  iconAltText?: string;
   removable?: boolean;
   selected?: boolean;
   active?: boolean;
@@ -26,17 +27,19 @@ export const ToolbarButton = ({
   children,
   onToggle,
   onRemove,
+  iconAltText,
 }: ToolbarButtonProps) => {
   if (removable) {
     return (
       <ComboButton
         className={styles.removeButton}
         variant={active ? 'solid' : 'outline'}
-        size="sm"
+        size="xs"
         icon={XMarkIcon}
         selected={selected}
         onLabelClick={onToggle}
         onIconClick={onRemove}
+        iconAltText={iconAltText}
         ariaLabel={ariaLabel || 'remove'}
       >
         {children}
@@ -48,7 +51,7 @@ export const ToolbarButton = ({
     return (
       <Button
         variant="dotted"
-        size="sm"
+        size="xs"
         icon={PlusIcon}
         selected={selected}
         onClick={onToggle}
@@ -62,7 +65,7 @@ export const ToolbarButton = ({
   return (
     <Button
       variant={active ? 'solid' : 'outline'}
-      size="sm"
+      size="xs"
       icon={ChevronUpDownIcon}
       ariaLabel={ariaLabel}
       selected={selected}
