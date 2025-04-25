@@ -37,41 +37,40 @@ export const Toolbar = ({
   addFilterButtonLabel,
 }: ToolbarProps) => {
   const { openId, closeAll } = useRootContext();
-  const [localFilterState, setLocalFilterState] = useState<FilterState>(filterState || {});
-  const changeFilterState = typeof onFilterStateChange === 'function' ? onFilterStateChange : setLocalFilterState;
-  const applicableFilterState = filterState || localFilterState;
+  const applicableFilterState = filterState || {};
+  const changeFilterState = typeof onFilterStateChange === 'function' ? onFilterStateChange : () => {};
 
-  const [visibleFilterNames, setVisibleFilterNames] = useState<string[]>(
+  const [visibleFilterNames, setVisibleFilterNames] = useState<string[]>(() =>
     filters
-      ?.filter((item) => !(item.removable && typeof applicableFilterState[item.name] === 'undefined'))
-      .map((item) => item.name) ?? [],
+      .filter((item) => !item.removable || typeof applicableFilterState[item.name] !== 'undefined')
+      .map((item) => item.name),
   );
-
-  // biome-ignore lint/correctness/useExhaustiveDependencies: we want to run this effect when applicableFilterState changes
-  useEffect(() => {
-    setVisibleFilterNames(
-      filters
-        ?.filter((item) => !(item.removable && typeof applicableFilterState[item.name] === 'undefined'))
-        .map((item) => item.name) ?? [],
-    );
-  }, [applicableFilterState]);
-
-  const hiddenFilterNames = filters?.filter((item) => !visibleFilterNames.includes(item.name));
 
   const visibleFilters = useMemo(
     () =>
       visibleFilterNames
-        .map((name) => {
-          return filters.find((item) => item.name === name);
-        })
-        .filter((item) => typeof item !== 'undefined'),
+        .map((name) => filters.find((item) => item.name === name))
+        .filter((item): item is ToolbarFilterProps => typeof item !== 'undefined'),
     [filters, visibleFilterNames],
   );
 
   const hiddenFilters = useMemo(
-    () => filters.filter((item) => hiddenFilterNames.includes(item)),
-    [filters, hiddenFilterNames],
+    () => filters.filter((item) => !visibleFilterNames.includes(item.name)),
+    [filters, visibleFilterNames],
   );
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  useEffect(() => {
+    const externallyVisible = filters
+      .filter((item) => !item.removable || typeof applicableFilterState[item.name] !== 'undefined')
+      .map((item) => item.name);
+
+    setVisibleFilterNames((prev) => {
+      const newNames = externallyVisible.filter((name) => !prev.includes(name));
+      if (newNames.length === 0) return prev;
+      return [...prev, ...newNames];
+    });
+  }, [filters, applicableFilterState]);
 
   const onFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value: v, type } = event.target;
@@ -87,7 +86,7 @@ export const Toolbar = ({
       changeFilterState({
         ...applicableFilterState,
         [name]: applicableFilterState[name]
-          ? applicableFilterState[name].some((v) => value?.includes(String(v)))
+          ? applicableFilterState[name].some((v) => value.includes(String(v)))
             ? applicableFilterState[name].filter((v) => !(value || []).includes(String(v)))
             : [...applicableFilterState[name], ...(value || [])]
           : value,
@@ -96,7 +95,7 @@ export const Toolbar = ({
   };
 
   const onFilterRemove = (name: string) => {
-    setVisibleFilterNames((prevState) => prevState.filter((prevName) => prevName !== name));
+    setVisibleFilterNames((prev) => prev.filter((n) => n !== name));
     changeFilterState({
       ...applicableFilterState,
       [name]: undefined,
@@ -104,38 +103,38 @@ export const Toolbar = ({
   };
 
   const onFilterAdd = (name: string, id: string) => {
-    setVisibleFilterNames((prevState) => [...prevState, name]);
+    if (!visibleFilterNames.includes(name)) {
+      setVisibleFilterNames((prev) => [...prev, name]);
+    }
     openId(id);
+    changeFilterState({
+      ...applicableFilterState,
+      [name]: applicableFilterState[name] ?? [],
+    });
   };
 
   return (
     <ToolbarBase>
       {accountMenu && <ToolbarAccountMenu {...accountMenu} />}
       {search && <ToolbarSearch {...search} />}
-      {visibleFilters.map((item) => {
-        return (
-          <ToolbarFilter
-            id={getFilterId(item.name, item.id)}
-            showResultsLabel={showResultsLabel}
-            key={item.name}
-            onRemove={() => {
-              onFilterRemove(item.name);
-            }}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              onFilterChange(event);
-            }}
-            name={item.name}
-            options={item.options}
-            label={item.label}
-            optionType={item.optionType}
-            removable={item.removable}
-            getSelectedLabel={getFilterLabel}
-            buttonAltText={removeButtonAltText}
-            optionGroups={item.optionGroups}
-            filterState={applicableFilterState}
-          />
-        );
-      })}
+      {visibleFilters.map((item) => (
+        <ToolbarFilter
+          id={getFilterId(item.name, item.id)}
+          showResultsLabel={showResultsLabel}
+          key={item.name}
+          onRemove={() => onFilterRemove(item.name)}
+          onChange={onFilterChange}
+          name={item.name}
+          options={item.options}
+          label={item.label}
+          optionType={item.optionType}
+          removable={item.removable}
+          getSelectedLabel={getFilterLabel}
+          buttonAltText={removeButtonAltText}
+          optionGroups={item.optionGroups}
+          filterState={applicableFilterState}
+        />
+      ))}
       {hiddenFilters?.length > 0 && (
         <ToolbarAdd
           id="toolbar-filter-add"
@@ -146,9 +145,7 @@ export const Toolbar = ({
               id: filterId,
               title: item.label,
               name: item.name,
-              onClick: () => {
-                onFilterAdd(item.name, filterId);
-              },
+              onClick: () => onFilterAdd(item.name, filterId),
             };
           })}
         />
