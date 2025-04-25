@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.25.3](https://github.com/Altinn/altinn-components/compare/v0.25.2...v0.25.3) (2025-04-25)
+
+
+### Bug Fixes
+
+* ensure visible filters in toolbar stay consistent in the order they are added ([#410](https://github.com/Altinn/altinn-components/issues/410)) ([8944c53](https://github.com/Altinn/altinn-components/commit/8944c53f7f8b29769408759a227ac3317bbc2b55))
+
 ## [0.25.2](https://github.com/Altinn/altinn-components/compare/v0.25.1...v0.25.2) (2025-04-23)
 
 
