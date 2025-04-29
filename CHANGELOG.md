@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.25.4](https://github.com/Altinn/altinn-components/compare/v0.25.3...v0.25.4) (2025-04-29)
+
+
+### Bug Fixes
+
+* children for account list item not passed through account list ([#412](https://github.com/Altinn/altinn-components/issues/412)) ([08c38d3](https://github.com/Altinn/altinn-components/commit/08c38d38ad051a988e98c0e23c7bc654adb5c20c))
+
 ## [0.25.3](https://github.com/Altinn/altinn-components/compare/v0.25.2...v0.25.3) (2025-04-25)
 
 
