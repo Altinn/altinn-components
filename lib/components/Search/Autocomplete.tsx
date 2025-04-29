@@ -23,7 +23,14 @@ export const Autocomplete = ({ className, items, groups = {}, expanded, onSelect
   useEnterKey(() => {
     if (expanded) {
       const activeItem = ref.current?.querySelector('[data-active="true"]') as HTMLElement | null;
-      activeItem?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      if (activeItem) {
+        const isLink = activeItem.tagName === 'A' && activeItem.hasAttribute('href');
+        if (!isLink) {
+          activeItem.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+        } else {
+          activeItem.click();
+        }
+      }
       onSelect?.();
     }
   });
