@@ -7,12 +7,8 @@ export interface AccountListProps {
 export const AccountList = ({ items }: AccountListProps) => {
   return (
     <ListBase>
-      {items?.map((item) => {
-        return (
-          <AccountListItem {...item} key={item.id}>
-            Details
-          </AccountListItem>
-        );
+      {items.map((item) => {
+        return <AccountListItem {...item} key={item.id} />;
       })}
     </ListBase>
   );
