@@ -7,6 +7,8 @@ export {
   Checkbox as DsCheckbox,
   Chip as DsChip,
   Combobox as DsCombobox,
+  Switch as DsSwitch,
+  Textfield as DsTextfield,
   Details as DsDetails,
   Dialog as DsDialog,
   Heading as DsHeading,
