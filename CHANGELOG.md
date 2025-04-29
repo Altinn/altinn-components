@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.25.5](https://github.com/Altinn/altinn-components/compare/v0.25.4...v0.25.5) (2025-04-29)
+
+
+### Bug Fixes
+
+* add Switch and Textfield from DS ([#414](https://github.com/Altinn/altinn-components/issues/414)) ([bd59b23](https://github.com/Altinn/altinn-components/commit/bd59b23949513197beaaf3bf9bf14aa0e4419f9b))
+
 ## [0.25.4](https://github.com/Altinn/altinn-components/compare/v0.25.3...v0.25.4) (2025-04-29)
 
 
