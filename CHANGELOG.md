@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.25.6](https://github.com/Altinn/altinn-components/compare/v0.25.5...v0.25.6) (2025-04-30)
+
+
+### Bug Fixes
+
+* do not dispatch mouse events for active items when links in auto complete ([#416](https://github.com/Altinn/altinn-components/issues/416)) ([a7a7f67](https://github.com/Altinn/altinn-components/commit/a7a7f678fb992dbefd813046263f997d76f2b4d6))
+
 ## [0.25.5](https://github.com/Altinn/altinn-components/compare/v0.25.4...v0.25.5) (2025-04-29)
 
 
