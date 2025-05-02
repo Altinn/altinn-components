@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.26.0](https://github.com/Altinn/altinn-components/compare/v0.25.6...v0.26.0) (2025-05-02)
+
+
+### Features
+
+* Add skeleton to DashboardHeader and DashboardCards, pass className ([#419](https://github.com/Altinn/altinn-components/issues/419)) ([f62b3ed](https://github.com/Altinn/altinn-components/commit/f62b3ed3d0d5008a40a24d69772edfab53c2abcd))
+
 ## [0.25.6](https://github.com/Altinn/altinn-components/compare/v0.25.5...v0.25.6) (2025-04-30)
 
 
