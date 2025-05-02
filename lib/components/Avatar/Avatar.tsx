@@ -1,6 +1,7 @@
 'use client';
 import cx from 'classnames';
 import { type ReactElement, useState } from 'react';
+import { Skeleton } from '../Skeleton';
 import styles from './avatar.module.css';
 import { fromStringToColor } from './color';
 
@@ -30,6 +31,8 @@ export interface AvatarProps {
   outline?: boolean;
   /** Custom label to display inside the avatar. */
   customLabel?: string;
+  /** Whether the avatar is loading. */
+  loading?: boolean;
 }
 
 /**
@@ -43,6 +46,7 @@ export const Avatar = ({
   imageUrl,
   imageUrlAlt,
   customLabel,
+  loading,
   className,
 }: AvatarProps): ReactElement => {
   const [hasImageError, setHasImageError] = useState<boolean>(false);
@@ -53,12 +57,13 @@ export const Avatar = ({
   const initials = (name[0] ?? '').toUpperCase();
   const usingImageUrl = imageUrl && !hasImageError;
 
-  const inlineStyles = !usingImageUrl
-    ? {
-        backgroundColor,
-        color: foregroundColor,
-      }
-    : undefined;
+  const inlineStyles =
+    !loading && !usingImageUrl
+      ? {
+          backgroundColor,
+          color: foregroundColor,
+        }
+      : undefined;
 
   return (
     <div
@@ -66,18 +71,20 @@ export const Avatar = ({
       style={inlineStyles}
       aria-hidden
     >
-      {usingImageUrl ? (
-        <img
-          src={imageUrl}
-          className={styles.image}
-          alt={imageUrlAlt || imageUrl}
-          onError={() => {
-            setHasImageError(true);
-          }}
-        />
-      ) : (
-        <span>{customLabel || initials}</span>
-      )}
+      <Skeleton loading={loading} className={styles.avatarSkeleton} variant="circle">
+        {usingImageUrl ? (
+          <img
+            src={imageUrl}
+            className={styles.image}
+            alt={imageUrlAlt || imageUrl}
+            onError={() => {
+              setHasImageError(true);
+            }}
+          />
+        ) : (
+          <span>{customLabel || initials}</span>
+        )}
+      </Skeleton>
     </div>
   );
 };
