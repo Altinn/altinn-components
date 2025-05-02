@@ -3,7 +3,8 @@
   align-items: center;
   justify-content: center;
   white-space: nowrap;
-  flex-shrink: 0;
+  flex: 0 0 auto;
+  max-height: min-content;
 }
 
 .badge[data-size="xs"] {
