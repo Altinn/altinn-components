@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.26.1](https://github.com/Altinn/altinn-components/compare/v0.26.0...v0.26.1) (2025-05-05)
+
+
+### Bug Fixes
+
+* **badge:** prevent badge from growing in flex container ([#421](https://github.com/Altinn/altinn-components/issues/421)) ([d757101](https://github.com/Altinn/altinn-components/commit/d757101a12e415ae3ad6038d9a72b6d922800f7f))
+
 ## [0.26.0](https://github.com/Altinn/altinn-components/compare/v0.25.6...v0.26.0) (2025-05-02)
 
 
