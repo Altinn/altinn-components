@@ -1,12 +1,12 @@
 import { MenuBase, type MenuTheme } from './MenuBase';
 import type { MenuItemColor } from './MenuItemBase';
-import { MenuItems, type MenuItemsProps } from './MenuItems';
+import { MenuItems, type MenuItemsProps, type MenuItemsVirtualProps } from './MenuItems';
 import { MenuItemsVirtual } from './MenuItemsVirtual';
 
 export interface MenuProps extends MenuItemsProps {
   color?: MenuItemColor;
   theme?: MenuTheme;
-  isVirtualized?: boolean;
+  menuItemsVirtual?: MenuItemsVirtualProps;
 }
 
 export const Menu = ({
@@ -19,8 +19,10 @@ export const Menu = ({
   groups,
   items = [],
   search,
-  isVirtualized,
+  menuItemsVirtual,
 }: MenuProps) => {
+  const { isVirtualized } = menuItemsVirtual || {};
+
   if (isVirtualized) {
     return (
       <MenuBase color={color} theme={theme}>
@@ -32,6 +34,7 @@ export const Menu = ({
           defaultItemColor={defaultItemColor}
           defaultItemTheme={defaultItemTheme}
           defaultIconTheme={defaultIconTheme}
+          scrollRefStyles={menuItemsVirtual?.scrollRefStyles}
         />
       </MenuBase>
     );

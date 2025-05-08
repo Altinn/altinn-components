@@ -35,7 +35,7 @@ export const GlobalMenu = ({
   onSelectAccount,
   onClose,
   logoutButton,
-  isVirtualized,
+  menuItemsVirtual,
 }: GlobalMenuProps) => {
   const [selectingAccount, setSelectingAccount] = useState<boolean>(false);
 
@@ -81,7 +81,7 @@ export const GlobalMenu = ({
           accountGroups={accountGroups}
           accountSearch={accountSearch}
           onSelectAccount={handleSelectAccount}
-          isVirtualized={isVirtualized}
+          menuItemsVirtual={menuItemsVirtual}
         />
       </GlobalMenuBase>
     );

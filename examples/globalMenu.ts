@@ -12,7 +12,12 @@ import { accountMenu } from './index';
 
 export const globalMenu: GlobalMenuProps = {
   ...accountMenu,
-  isVirtualized: true,
+  menuItemsVirtual: {
+    isVirtualized: true,
+    scrollRefStyles: {
+      maxHeight: 'calc(90vh - 8rem)',
+    },
+  },
   currentEndUserLabel: 'Logget inn som Mathias Dyngeland',
   menuLabel: 'Meny',
   backLabel: 'Tilbake',
