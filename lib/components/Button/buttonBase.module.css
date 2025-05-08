@@ -27,6 +27,15 @@
   /* user select none */
   user-select: none;
   cursor: pointer;
+
+  /* flex */
+  display: inline-flex;
+  align-items: center;
+  border-radius: 2px;
+}
+
+.button[data-reverse="true"] {
+  flex-direction: row-reverse;
 }
 
 .button:disabled {
@@ -34,16 +43,18 @@
   pointer-events: none;
 }
 
+/* sizes */
+
 .button[data-size="xs"] {
-  height: 1.875rem; /* sm 30 */
+  height: 2.25rem; /* xs 36 */
 }
 
 .button[data-size="sm"] {
-  height: 2.25rem; /* sm 36 */
+  height: 2.625rem; /* sm 42 */
 }
 
 .button[data-size="md"] {
-  height: 2.75rem; /* md 44 */
+  height: 3rem; /* md 48 */
 }
 
 .button[data-size="lg"] {
@@ -60,10 +71,29 @@
 
 .button[data-variant="solid"]:hover {
   background-color: var(--ds-color-base-hover);
+  border-color: var(--ds-color-base-hover);
 }
 
 .button[data-variant="solid"]:active {
   background-color: var(--ds-color-base-active);
+  border-color: var(--ds-color-base-active);
+}
+
+/* tinted */
+
+.button[data-variant="tinted"] {
+  background-color: var(--ds-color-surface-tinted);
+  border-color: var(--ds-color-surface-tinted);
+  border-color: var(--ds-color-base-default);
+  color: var(--ds-color-base-surface-tinted);
+}
+
+.button[data-variant="tinted"]:hover {
+  background-color: var(--ds-color-surface-hover);
+}
+
+.button[data-variant="tinted"]:active {
+  background-color: var(--ds-color-surface-active);
 }
 
 /* primary outline, dotted + text */
@@ -89,7 +119,7 @@
 .button[data-variant="outline"]:hover,
 .button[data-variant="dotted"]:hover,
 .button[data-variant="text"]:hover {
-  background-color: var(--ds-color-surface-tinted);
+  background-color: var(--ds-color-surface-hover);
   color: var(--ds-color-text-default);
 }
 
@@ -106,4 +136,24 @@
 
 .button[data-variant="link"]:hover {
   color: var(--ds-color-base-hover);
+}
+
+/* focus from ds */
+
+.button:focus-visible {
+  /**
+   * We use both box-shadow and outline to ensure that the focus style is visible,
+   * in case box-shadow is overridden.
+   */
+  box-shadow: var(--_ds--focus, var(--dsc-focus-boxShadow));
+  outline: var(--_ds--focus, var(--dsc-focus-outline));
+  outline-offset: var(--_ds--focus, var(--ds-border-width-focus));
+
+  /**
+   * Using CSS custom properties toggle trick to ensure focus-visible is only shown on outermost element
+   * https://css-tricks.com/the-css-custom-property-toggle-trick/
+   */
+  * {
+    --_ds--focus: ;
+  }
 }

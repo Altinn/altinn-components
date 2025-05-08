@@ -19,9 +19,10 @@ export interface DialogActionsProps {
   maxItems?: number;
   /** Unique id for the dialog if multiple DialogAction are needed */
   id?: string;
+  expandAltLabel?: string;
 }
 
-export const DialogActions = ({ items, maxItems = 2, id = 'dialog-actions' }: DialogActionsProps) => {
+export const DialogActions = ({ items, maxItems = 2, id = 'dialog-actions', expandAltLabel }: DialogActionsProps) => {
   const { currentId, closeAll, toggleId } = useRootContext();
   const expanded = currentId === id;
 
@@ -51,10 +52,11 @@ export const DialogActions = ({ items, maxItems = 2, id = 'dialog-actions' }: Di
         <ComboButton
           variant="solid"
           icon={expanded ? ChevronUpIcon : ChevronDownIcon}
-          size="lg"
+          size="md"
           onIconClick={() => toggleId(id)}
           onLabelClick={sortedItems[0].onClick}
           ariaLabel={expanded ? 'chevron up icon' : 'chevron down icon'}
+          iconAltText={expandAltLabel}
         >
           {sortedItems[0].label}
         </ComboButton>
@@ -70,7 +72,7 @@ export const DialogActions = ({ items, maxItems = 2, id = 'dialog-actions' }: Di
       {sortedItems.map((item, index) => {
         const { priority, id: _, ...props } = item;
         return (
-          <Button key={'button-' + index} variant={priority === 'primary' ? 'solid' : 'outline'} size="lg" {...props}>
+          <Button key={'button-' + index} variant={priority === 'primary' ? 'solid' : 'outline'} size="md" {...props}>
             {item.label}
           </Button>
         );

@@ -32,7 +32,7 @@ export const PageNav = ({
       {breadcrumbs ? (
         <Breadcrumbs items={breadcrumbs} />
       ) : (
-        <Button {...backButton} variant="text" icon={ArrowLeftIcon}>
+        <Button {...backButton} variant="text" size="sm" icon={ArrowLeftIcon}>
           {backButton?.label || 'Back'}
         </Button>
       )}

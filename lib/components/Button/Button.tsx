@@ -8,7 +8,6 @@ import styles from './button.module.css';
 export interface ButtonProps extends Partial<ButtonBaseProps> {
   icon?: SvgElement;
   ariaLabel?: string;
-  reverse?: boolean;
   loading?: boolean;
   loadingText?: string;
   label?: string;
@@ -18,7 +17,6 @@ export const Button = ({
   variant = 'solid',
   color,
   size = 'md',
-  reverse = false,
   selected = false,
   icon,
   href,
@@ -39,7 +37,7 @@ export const Button = ({
         size={size}
         selected={selected}
         href={href}
-        className={cx(styles.button, { [styles.reverse]: reverse }, className)}
+        className={cx(styles.button, className)}
         {...rest}
         disabled
       >
@@ -58,7 +56,7 @@ export const Button = ({
       ariaLabel={ariaLabel}
       selected={selected}
       href={href}
-      className={cx(styles.button, { [styles.reverse]: reverse })}
+      className={cx(styles.button, className)}
       {...rest}
     >
       {icon && <ButtonIcon size={size} icon={icon} />}

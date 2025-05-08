@@ -13,7 +13,6 @@ const meta = {
     titleField: {
       label: 'Tittel',
       placeholder: 'Uten tittel',
-      helperText: 'Gi bokmerket et navn.',
     },
     description: 'Sist oppdatert 3 minutter siden',
     items: [
@@ -159,7 +158,6 @@ export const AsLink: Story = {
     titleField: {
       label: 'Tittel',
       placeholder: 'Uten tittel',
-      helperText: 'Gi bokmerket et navn.',
     },
     description: 'Sist oppdatert 3 minutter siden',
     items: [

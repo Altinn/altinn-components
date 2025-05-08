@@ -4,6 +4,18 @@
   padding: 0 0.25rem;
 }
 
+.label[data-size="lg"] {
+  font-size: 1.125rem;
+}
+
+.label[data-size="md"] {
+  font-size: 1rem;
+}
+
+.label[data-size="sm"] {
+  font-size: 1rem;
+}
+
 .title {
   font-weight: 400;
 }

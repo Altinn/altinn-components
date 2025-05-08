@@ -4,7 +4,7 @@ import type { Color } from '..';
 
 import styles from './buttonBase.module.css';
 
-export type ButtonVariant = 'solid' | 'outline' | 'dotted' | 'text' | 'link';
+export type ButtonVariant = 'solid' | 'tinted' | 'outline' | 'dotted' | 'text' | 'link';
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'custom';
 export type ButtonColor = Color | 'inherit';
 
@@ -16,6 +16,7 @@ export interface ButtonBaseProps extends React.HTMLAttributes<HTMLButtonElement>
   as?: ElementType;
   size?: ButtonSize;
   variant?: ButtonVariant;
+  reverse?: boolean;
   color?: ButtonColor;
   selected?: boolean;
   disabled?: boolean;
@@ -30,6 +31,7 @@ export const ButtonBase = ({
   color,
   className,
   children,
+  reverse,
   disabled = false,
   ariaLabel,
   size,
@@ -43,8 +45,9 @@ export const ButtonBase = ({
     <Component
       tabIndex={tabIndex}
       data-size={size}
-      data-variant={variant}
       data-color={color}
+      data-variant={variant}
+      data-reverse={reverse}
       data-selected={selected}
       aria-disabled={disabled}
       disabled={disabled}

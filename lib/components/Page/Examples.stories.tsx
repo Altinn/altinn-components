@@ -7,6 +7,9 @@ import {
   ContactSection,
   DashboardCard,
   DashboardHeader,
+  Dialog,
+  DialogHistory,
+  DialogList,
   Grid,
   Heading,
   Layout,
@@ -17,12 +20,23 @@ import {
   Toolbar,
   Typography,
 } from '..';
-import { accountListItems, useAdminLayout, useCategoryLayout, useProfileLayout } from '../../../examples/';
+import {
+  accountListItems,
+  activityLog,
+  dialog,
+  dialogTabs,
+  inboxSection,
+  useAdminLayout,
+  useCategoryLayout,
+  useInboxLayout,
+  useInboxToolbar,
+  useProfileLayout,
+} from '../../../examples/';
 import { skatt } from '../../../examples/avatar';
 import { dialogContact } from '../../../examples/dialog';
 
 const meta = {
-  title: 'Page/Patterns',
+  title: 'Page/Examples',
   tags: ['beta'],
   parameters: {
     layout: 'fullscreen',
@@ -175,6 +189,40 @@ export const CompanyDashboard = () => {
   );
 };
 
+export const CompanyInbox = () => {
+  const layout = useInboxLayout();
+  const toolbar = useInboxToolbar();
+  return (
+    <Layout {...layout}>
+      <PageBase color="company" margin="page">
+        <Toolbar {...toolbar} />
+        <DialogList {...inboxSection} />
+      </PageBase>
+    </Layout>
+  );
+};
+
+export const CompanyDialog = () => {
+  const layout = useInboxLayout();
+  return (
+    <Layout {...layout}>
+      <Dialog
+        {...dialog}
+        tabs={{
+          ...dialogTabs,
+          items: dialogTabs?.items?.map((item) => {
+            return {
+              ...item,
+              selected: item.id === 'activity-log',
+            };
+          }),
+        }}
+      >
+        <DialogHistory {...activityLog} />
+      </Dialog>
+    </Layout>
+  );
+};
 export const ServicePage = () => {
   const { breadcrumbs, contact, sections } = meta.args;
   const layout = useCategoryLayout();
@@ -218,7 +266,7 @@ export const ServicePage = () => {
             ]}
           />
           <footer data-color="article">
-            <Button size="lg">Endre og levere aksjonærregisteroppgaven</Button>
+            <Button size="md">Endre og levere aksjonærregisteroppgaven</Button>
           </footer>
         </Section>
         {sections && <AccordionSection items={sections} />}

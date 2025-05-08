@@ -29,7 +29,7 @@
 
 .header[data-size="sm"] {
   min-height: 52px;
-  padding: 0.5rem 0.625rem;
+  padding: 0.3125rem 0.625rem;
   column-gap: 0.5rem;
 }
 

@@ -31,6 +31,6 @@ export * from './Typography';
 export * from './ResourceList';
 export * from './AccessAreaList';
 export * from './AccessPackageList';
-export * from './TextField';
+export * from './Forms';
 
 export * from './DsComponents';

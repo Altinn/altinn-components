@@ -1,6 +1,6 @@
 import { Meta, Controls, Primary, Canvas } from "@storybook/blocks";
-import * as Patterns from "./Patterns.stories";
 import * as PageHeader from "./PageHeader.stories";
+import * as DashboardHeader from "./DashboardHeader.stories";
 
 <Meta title="Page" />
 
@@ -8,16 +8,10 @@ import * as PageHeader from "./PageHeader.stories";
 
 Page components includes a set of patterns and components that can help you build pages with consistency in spacing, padding and so on.
 
-## Using PageHeader
+## Dashboard components
 
-Page header with an icon representing a service.
+Dashboard header representing a person or a company.
 
-<Canvas of={PageHeader.Icon} />
+<Canvas of={DashboardHeader.Person} />
 
-User card.
-
-<Canvas of={PageHeader.UserCard} />
-
-Company card with tabs.
-
-<Canvas of={PageHeader.CardAndTabs} />
+<Canvas of={DashboardHeader.Company} />

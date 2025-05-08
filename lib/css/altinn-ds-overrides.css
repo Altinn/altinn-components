@@ -34,6 +34,6 @@
   --ds-color-accent-base-contrast-subtle: var(--ds-color-company-base-contrast-subtle);
 
   /* Override tokens from designSystem & altinn-components */
-  --ds-body-md-font-size: 1rem;
-  --ds-color-text-subtle: #10204a;
+  /*  --ds-body-md-font-size: 1rem;
+  --ds-color-text-subtle: #10204a; */
 }

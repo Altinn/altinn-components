@@ -34,6 +34,7 @@ export const Secondary: Story = {
 
 export const MultipleButtons: Story = {
   args: {
+    expandAltLabel: 'Show more actions',
     items: [
       {
         id: 'primary',

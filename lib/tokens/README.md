@@ -6,7 +6,7 @@ npx @digdir/designsystemet tokens create \
 --main-colors "company:#111d46" "person:#084826" \
 --neutral-color "#1E2B3C" \
 --support-colors "article:#0062ba" "alert:#d82c46" \
---border-radius 4 \
+--border-radius 2 \
 --theme "altinn-ds"
 
 ## Build colors

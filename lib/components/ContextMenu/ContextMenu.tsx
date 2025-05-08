@@ -22,7 +22,7 @@ export interface ContextMenuProps {
 export const ContextMenu = ({
   id = 'context-menu',
   placement = 'right',
-  size,
+  size = 'sm',
   groups = {},
   className,
   items,
@@ -51,7 +51,6 @@ export const ContextMenu = ({
         className={styles.button}
         size={size}
         icon={MenuElipsisHorizontalIcon}
-        iconSize="md"
         variant="text"
         color="neutral"
         onClick={onToggle}

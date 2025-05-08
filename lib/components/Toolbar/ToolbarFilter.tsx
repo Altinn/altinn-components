@@ -68,6 +68,7 @@ export const ToolbarFilter = ({
         active={Array.isArray(value) ? value.length > 0 : typeof value !== 'undefined'}
         onToggle={onToggle}
         ariaLabel={buttonAltText}
+        iconAltText={buttonAltText}
         onRemove={onRemove}
       >
         {valueLabel || label}
