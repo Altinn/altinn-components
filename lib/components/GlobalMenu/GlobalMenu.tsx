@@ -50,15 +50,22 @@ export const GlobalMenu = ({
   };
 
   const itemsWithToggle = useMemo(() => {
-    return items.map((item) => {
-      return {
-        ...item,
-        onClick: () => {
-          item.onClick?.();
-          onClose?.();
-        },
-      };
-    });
+    return items.map((item) => ({
+      ...item,
+      onClick: () => {
+        item.onClick?.();
+        onClose?.();
+      },
+      items: Array.isArray(item.items)
+        ? item.items.map((subItem) => ({
+            ...subItem,
+            onClick: () => {
+              subItem.onClick?.();
+              onClose?.();
+            },
+          }))
+        : undefined,
+    }));
   }, [items, onClose]);
 
   if (selectingAccount) {

@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/react';
 import { type ChangeEvent, useState } from 'react';
-import { header, useAccountMenu, useInboxSearch } from '../../../examples';
+import { header, inboxMenu, useAccountMenu, useInboxSearch } from '../../../examples';
 import { loginMenu } from '../../../examples';
 import { Header, type HeaderProps } from './Header';
 
@@ -33,6 +33,21 @@ export const Login = (args: HeaderProps) => {
   const search = useInboxSearch(args.search!);
 
   return <Header {...args} menu={{ ...loginMenu, menuLabel: 'Meny' }} search={search!} />;
+};
+
+export const SubItems = (args: HeaderProps) => {
+  const search = useInboxSearch(args.search!);
+  const menu = useAccountMenu(args.menu!);
+  const menuItems = [
+    {
+      ...menu.items[0],
+      items: inboxMenu.items.slice(1),
+      expanded: true,
+    },
+    ...menu.items.slice(1, 3),
+  ];
+
+  return <Header {...args} menu={{ ...menu, items: menuItems, menuLabel: 'Meny' }} search={search!} />;
 };
 
 export const ChangeLocale = (args: HeaderProps) => {
