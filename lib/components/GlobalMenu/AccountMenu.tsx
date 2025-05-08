@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import type { AvatarProps, BadgeProps } from '../';
 import { Menu, type MenuItemGroups, type MenuItemProps, type MenuSearchProps } from '../Menu';
-
+import type { MenuItemsVirtualProps } from '../Menu/MenuItems';
 export interface AccountSearchProps extends MenuSearchProps {
   getResultsLabel?: (hits: number) => string;
   hidden?: boolean;
@@ -25,7 +25,8 @@ export interface AccountMenuProps {
   accountSearch?: AccountSearchProps;
   currentAccount?: AccountMenuItem;
   onSelectAccount?: (id: string) => void;
-  isVirtualized?: boolean;
+  menuItemsVirtual?: MenuItemsVirtualProps;
+  scrollRefStyles?: React.CSSProperties;
 }
 
 const defaultResultLabel = (hits: number) => `${hits} hits`;
@@ -36,7 +37,7 @@ export const AccountMenu = ({
   accountSearch,
   onSelectAccount,
   currentAccount,
-  isVirtualized,
+  menuItemsVirtual,
 }: AccountMenuProps) => {
   const accountMenu: MenuItemProps[] = accounts.map((account) => ({
     id: account.id || account.name,
@@ -105,7 +106,7 @@ export const AccountMenu = ({
       search={accountSearch && accountSearchItem}
       groups={filterAccountGroups}
       items={accountSwitcher}
-      isVirtualized={isVirtualized}
+      menuItemsVirtual={menuItemsVirtual}
     />
   );
 };

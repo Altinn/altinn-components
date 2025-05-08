@@ -12,7 +12,12 @@ export const accountMenu: AccountMenuProps = {
     },
     hidden: false,
   },
-  isVirtualized: false,
+  menuItemsVirtual: {
+    isVirtualized: true,
+    scrollRefStyles: {
+      maxHeight: 'calc(90vh - 8rem)',
+    },
+  },
   accountGroups: {
     primary: {
       title: 'Deg selv og favoritter',
@@ -142,7 +147,7 @@ export const accountMenuWithLongList: AccountMenuProps = {
       title: 'Andre kontoer',
     },
   },
-  accounts: generateAccounts(10000),
+  accounts: generateAccounts(7000),
 };
 
 function generateAccounts(count = 10000) {

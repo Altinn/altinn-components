@@ -84,7 +84,12 @@ export const LongListAccounts: Story = {
     accountMenu: {
       ...accountMenuWithLongList,
       currentAccount: accountMenu.accounts?.[0],
-      isVirtualized: true,
+      menuItemsVirtual: {
+        isVirtualized: true,
+        scrollRefStyles: {
+          maxHeight: 'calc(90vh - 8rem)',
+        },
+      },
     },
   },
 };

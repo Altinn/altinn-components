@@ -27,6 +27,10 @@ interface ItemEntry {
 
 type MenuEntry = SeparatorEntry | TitleEntry | ItemEntry;
 
+interface MenuItemsVirtualProps extends MenuItemsProps {
+  scrollRefStyles?: React.CSSProperties;
+}
+
 export const MenuItemsVirtual = ({
   level = 0,
   search,
@@ -36,7 +40,8 @@ export const MenuItemsVirtual = ({
   defaultItemColor,
   defaultItemTheme,
   defaultIconTheme,
-}: MenuItemsProps) => {
+  scrollRefStyles,
+}: MenuItemsVirtualProps) => {
   const { menu } = useMenu<MenuItemProps, MenuGroupProps>({
     items,
     groups,
@@ -88,7 +93,7 @@ export const MenuItemsVirtual = ({
   return (
     <MenuList>
       {search && <MenuSearch {...search} />}
-      <div ref={scrollRef} className={styles.virtualScrollRef}>
+      <div ref={scrollRef} className={styles.virtualScrollRef} style={scrollRefStyles}>
         <div style={{ position: 'relative', height: `${virtualizer.getTotalSize()}px` }}>
           {virtualItems.map((virtualRow) => {
             const entry = flatMenu[virtualRow.index] as MenuEntry;

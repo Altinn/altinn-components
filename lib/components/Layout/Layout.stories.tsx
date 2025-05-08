@@ -39,7 +39,9 @@ export const Preview = (args: LayoutProps) => {
         currentAccount: menu.currentAccount,
         menu: {
           ...menu,
-          isVirtualized: false,
+          menuItemsVirtual: {
+            isVirtualized: true,
+          },
         },
         search: search,
       }}
