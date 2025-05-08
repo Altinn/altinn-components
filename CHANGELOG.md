@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.27.0](https://github.com/Altinn/altinn-components/compare/v0.26.1...v0.27.0) (2025-05-08)
+
+
+### Features
+
+* Import and adjust form component from DS ([#418](https://github.com/Altinn/altinn-components/issues/418)) ([9f6fe37](https://github.com/Altinn/altinn-components/commit/9f6fe3768e61b62880f84e81cc4ca44e1a8bba5a))
+
+
+### Bug Fixes
+
+* Add option for responsive virtualized list, refactor ([#426](https://github.com/Altinn/altinn-components/issues/426)) ([aa7929c](https://github.com/Altinn/altinn-components/commit/aa7929c3653d8059453ba4e630452da78e7f6c6b))
+* Add option for responsive virtualized list, refactor ([#426](https://github.com/Altinn/altinn-components/issues/426)) ([726a499](https://github.com/Altinn/altinn-components/commit/726a499a54ce5cd96009016efc17af4069369c00))
+* onClick on sub items in global menu should also close global menu ([#425](https://github.com/Altinn/altinn-components/issues/425)) ([d51f53a](https://github.com/Altinn/altinn-components/commit/d51f53a8ebd6e19f27bd88ac4bb5662043020b4e))
+
 ## [0.26.1](https://github.com/Altinn/altinn-components/compare/v0.26.0...v0.26.1) (2025-05-05)
 
 
