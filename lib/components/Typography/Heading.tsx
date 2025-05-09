@@ -1,30 +1,45 @@
-import cx from 'classnames';
-import type { ReactNode } from 'react';
-import { Skeleton, type TypographyProps } from '..';
-import styles from './heading.module.css';
+import cx from "classnames";
+import type { ReactNode } from "react";
+import { Skeleton, type TypographyProps } from "..";
+import styles from "./heading.module.css";
 
-export type HeadingSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export type HeadingWeight = 'normal' | 'medium' | 'bold';
-export type HeadingComponent = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'div' | 'span';
+export type HeadingSize = "xs" | "sm" | "md" | "lg" | "xl" | "inherit";
+export type HeadingWeight = "normal" | "medium" | "bold";
+export type HeadingLeading = "none" | "tight" | "normal";
+
+export type HeadingComponent =
+  | "h1"
+  | "h2"
+  | "h3"
+  | "h4"
+  | "h5"
+  | "h6"
+  | "p"
+  | "div"
+  | "span";
 
 export interface HeadingProps {
   loading?: boolean;
   as?: HeadingComponent;
   size?: HeadingSize;
   weight?: HeadingWeight;
-  color?: TypographyProps['color'];
-  theme?: TypographyProps['theme'];
+  leading?: HeadingLeading;
+  color?: TypographyProps["color"];
+  variant?: TypographyProps["variant"];
+  maxRows?: 2 | undefined;
   className?: string;
   children?: ReactNode;
 }
 
 export const Heading = ({
   loading,
-  as = 'h2',
-  size = 'md',
-  weight = 'medium',
+  as = "h2",
+  size = "md",
+  leading = "tight",
+  weight = "medium",
   color,
-  theme,
+  variant,
+  maxRows,
   className,
   children,
 }: HeadingProps) => {
@@ -35,9 +50,11 @@ export const Heading = ({
       <H
         className={cx(styles.heading, className)}
         data-size={size}
+        data-leading={leading}
         data-weight={weight}
         data-color={color}
-        data-theme={theme}
+        data-variant={variant}
+        data-max-rows={maxRows}
       >
         {children}
       </H>

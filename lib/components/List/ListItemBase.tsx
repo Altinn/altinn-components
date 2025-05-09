@@ -1,18 +1,13 @@
-import cx from 'classnames';
-import type { ElementType, HTMLProps, ReactNode } from 'react';
-import type { Color } from '..';
-import styles from './listItemBase.module.css';
+import cx from "classnames";
+import type { ElementType, HTMLProps, ReactNode } from "react";
+import type { Color } from "..";
+import styles from "./listItem.module.css";
 
-export type ListItemSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export type ListItemVariant = 'solid' | 'dotted';
-export type ListItemShadow = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-
+export type ListItemSize = "xs" | "sm" | "md" | "lg" | "xl";
+export type ListItemVariant = "default" | "border" | "tinted" | "inline";
 export type ListItemColor = Color;
-export type ListItemTheme = 'transparent' | 'default' | 'subtle' | 'surface' | 'base';
 
 export interface ListItemBaseProps {
-  /** The title of the list item. */
-  title?: string;
   /** If true, the list item is interactive and has a hover state. */
   interactive?: boolean;
   /** The element type to render as. */
@@ -21,14 +16,10 @@ export interface ListItemBaseProps {
   tabIndex?: number;
   /** The color of the list item. */
   color?: ListItemColor;
-  /** The theme of the list item. */
-  theme?: ListItemTheme;
   /** The variant of the list item. */
   variant?: ListItemVariant;
   /** The size of the list item. */
   size?: ListItemSize;
-  /** The shadow style of the list item. */
-  shadow?: ListItemShadow;
   /** Additional class names for the list item. */
   className?: string;
   /** If true, the list item shows a loading state. */
@@ -44,7 +35,7 @@ export interface ListItemBaseProps {
   /** If true, the list item is expanded. */
   expanded?: boolean;
   /** Mouse enter event handler. */
-  onMouseEnter?: HTMLProps<HTMLDivElement>['onMouseEnter'];
+  onMouseEnter?: HTMLProps<HTMLDivElement>["onMouseEnter"];
   /** The children elements of the list item. */
   children?: ReactNode;
 }
@@ -55,33 +46,22 @@ export const ListItemBase = ({
   size,
   variant,
   color,
-  theme,
-  shadow,
   hidden = false,
   selected,
   className,
   onMouseEnter,
   children,
 }: ListItemBaseProps) => {
-  const Component = as || 'li';
-  const appliedShadow = theme === 'transparent' ? 'none' : shadow;
-
-  const itemClass = cx(
-    styles.item,
-    className,
-    interactive && styles.interactive,
-    selected && styles.interactiveSelected,
-    hidden && styles.interactiveHidden,
-  );
+  const Component = as || "li";
 
   return (
     <Component
-      className={itemClass}
+      className={cx(styles.base, className)}
+      data-interactive={interactive}
+      data-selected={selected}
       data-variant={variant}
       data-color={color}
-      data-theme={theme}
       data-size={size}
-      data-shadow={appliedShadow}
       aria-hidden={hidden}
       onMouseEnter={onMouseEnter}
     >

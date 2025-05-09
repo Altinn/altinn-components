@@ -1,6 +1,6 @@
-import { PackageIcon } from '@navikt/aksel-icons';
-import type { Meta } from '@storybook/react';
-import { useState } from 'react';
+import { PackageIcon } from "@navikt/aksel-icons";
+import type { Meta } from "@storybook/react";
+import { useState } from "react";
 import {
   type AvatarProps,
   type BadgeProps,
@@ -11,12 +11,12 @@ import {
   type ListItemColor,
   Section,
   Typography,
-} from '../';
-import { categoryItems } from '../../../examples';
-import { brreg, nav, skatt } from '../../../examples/avatar';
+} from "../";
+import { categoryItems } from "../../../examples";
+import { brreg, nav, skatt } from "../../../examples/avatar";
 
 const meta: Meta<typeof List> = {
-  title: 'List/Patterns',
+  title: "List/Patterns",
   component: List,
   parameters: {},
   args: {},
@@ -31,15 +31,15 @@ interface DemoService {
 
 const services: DemoService[] = [
   {
-    title: 'Klage på myndighetenes fastsetting av formues- og inntektsskatt',
+    title: "Klage på myndighetenes fastsetting av formues- og inntektsskatt",
     owner: skatt,
   },
   {
-    title: 'Bekreftelse fra konkursregisteret',
+    title: "Bekreftelse fra konkursregisteret",
     owner: brreg,
   },
   {
-    title: 'Inntektsmelding',
+    title: "Inntektsmelding",
     owner: nav,
   },
 ];
@@ -52,21 +52,21 @@ interface DemoPerson {
 
 const people: DemoPerson[] = [
   {
-    name: 'Per Egil Ahlsen',
-    role: 'Daglig leder',
+    name: "Per Egil Ahlsen",
+    role: "Daglig leder",
   },
   {
-    name: 'Vidar Bahus',
-    role: 'Styremedlem',
+    name: "Vidar Bahus",
+    role: "Styremedlem",
     badge: {
-      color: 'accent',
-      theme: 'base',
-      label: 'Deg selv',
+      color: "accent",
+      theme: "base",
+      label: "Deg selv",
     },
   },
   {
-    name: 'Niklas Castro',
-    role: 'Regnskap',
+    name: "Niklas Castro",
+    role: "Regnskap",
   },
 ];
 
@@ -114,10 +114,9 @@ export const ListOfCategories = () => {
         <ListItem
           size="md"
           key={index}
-          icon={item.icon}
+          icon={{ svgElement: item.icon, theme: "tinted" }}
           title={item.title}
-          description={item?.items?.length + ' tjenester'}
-          theme="default"
+          description={item?.items?.length + " tjenester"}
         />
       ))}
     </ListBase>
@@ -139,28 +138,29 @@ export const MultilevelList = () => {
 
   const items = categoryItems
     .map((item, aIndex) => {
-      const aId = 'a' + (aIndex + 1);
+      const aId = "a" + (aIndex + 1);
 
       const bItems = item.items?.map((subItem, bIndex) => {
-        const bId = aId + 'b' + (bIndex + 1);
+        const bId = aId + "b" + (bIndex + 1);
 
         return {
           ...subItem,
           id: bId,
-          color: access[bId] ? 'company' : 'neutral',
+          color: access[bId] ? "company" : "neutral",
         };
       });
 
       const total = bItems?.length || 0;
-      const count = bItems?.filter((subItem) => subItem.color === 'company').length || 0;
+      const count =
+        bItems?.filter((subItem) => subItem.color === "company").length || 0;
 
-      const label = count ? `${count} av ${total}` : 'Gi tilgang';
+      const label = count ? `${count} av ${total}` : "Gi tilgang";
 
       return {
         ...item,
         id: aId,
-        color: count ? 'company' : 'neutral',
-        badge: { theme: 'surface', label },
+        color: count ? "company" : "neutral",
+        badge: { theme: "surface", label },
         items: bItems,
       };
     })
@@ -173,15 +173,14 @@ export const MultilevelList = () => {
         return (
           <ListItem
             color={item.color as ListItemColor}
-            theme="default"
+            icon={{ svgElement: item.icon, theme: "tinted" }}
             size="md"
-            icon={item.icon}
             title={item.title}
             badge={{
-              theme: 'surface',
+              theme: "surface",
               label: item.badge.label,
             }}
-            description={expanded ? '' : item?.items?.length + ' tjenester'}
+            description={expanded ? "" : item?.items?.length + " tjenester"}
             collapsible
             expanded={expanded}
             onClick={() => onToggle(item.id)}
@@ -190,24 +189,26 @@ export const MultilevelList = () => {
           >
             {expanded && (
               <Section padding={4} spacing={4}>
-                <Typography>Beskrivelse av område. Lorem ipsum dolor.</Typography>
+                <Typography>
+                  Beskrivelse av område. Lorem ipsum dolor.
+                </Typography>
                 <ListBase>
                   {item?.items?.map((child, index) => (
                     <ListItem
-                      key={'c' + index}
+                      key={"c" + index}
                       icon={PackageIcon}
-                      size="sm"
+                      size="xs"
                       color={child.color as ListItemColor}
-                      theme="subtle"
+                      variant="tinted"
                       title={child.title}
                       controls={
                         <ContextMenu
                           size="sm"
-                          id={'menu' + index}
+                          id={"menu" + index}
                           items={[
-                            { id: '1', title: 'Option 1' },
-                            { id: '2', title: 'Option 2' },
-                            { id: '3', title: 'Option 3' },
+                            { id: "1", title: "Option 1" },
+                            { id: "2", title: "Option 2" },
+                            { id: "3", title: "Option 3" },
                           ]}
                         />
                       }

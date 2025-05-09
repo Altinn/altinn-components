@@ -1,7 +1,15 @@
-import { Badge, ContextMenu, type ContextMenuProps, Flex, ListItem, ListItemControls, type ListItemProps } from '..';
+import {
+  Badge,
+  ContextMenu,
+  type ContextMenuProps,
+  Flex,
+  ListItem,
+  ListItemControls,
+  type ListItemProps,
+} from "..";
 
-import { HeartFillIcon, HeartIcon } from '@navikt/aksel-icons';
-export type AccountListItemType = 'person' | 'company' | 'group';
+import { HeartFillIcon, HeartIcon } from "@navikt/aksel-icons";
+export type AccountListItemType = "person" | "company" | "group";
 
 export interface AccountListItemProps extends ListItemProps {
   id?: string;
@@ -14,7 +22,7 @@ export interface AccountListItemProps extends ListItemProps {
 }
 
 export const AccountListItem = ({
-  size = 'md',
+  size = "md",
   expanded,
   type,
   avatar,
@@ -30,9 +38,13 @@ export const AccountListItem = ({
 }: AccountListItemProps) => {
   const controls = (
     <ListItemControls>
-      <Flex align="center" spacing={2} style={{ position: 'relative', fontSize: '1.25rem' }}>
+      <Flex
+        align="center"
+        spacing={2}
+        style={{ position: "relative", fontSize: "1.25rem" }}
+      >
         {label ? (
-          <Badge color={type === 'group' ? 'neutral' : type}>{label}</Badge>
+          <Badge color={type === "group" ? "neutral" : type}>{label}</Badge>
         ) : favourite ? (
           <HeartFillIcon aria-label={favouriteLabel} />
         ) : (
@@ -48,12 +60,14 @@ export const AccountListItem = ({
       {...item}
       size={size}
       avatar={avatar}
-      avatarGroup={avatarGroup && { ...avatarGroup, size: size === 'md' ? 'sm' : 'xs' }}
+      avatarGroup={
+        avatarGroup && { ...avatarGroup, size: size === "md" ? "sm" : "xs" }
+      }
       title={title}
       description={expanded ? undefined : description}
       expanded={expanded}
       selected={expanded}
-      badge={controls}
+      badge={!expanded && controls}
       linkIcon
     >
       {children}
