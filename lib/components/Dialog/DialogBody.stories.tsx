@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { DialogActions, DialogAttachments, DialogBody } from '..';
 
 const meta = {
-  title: 'Dialog/DialogBody',
+  title: 'Inbox/Dialog/DialogBody',
   component: DialogBody,
   tags: ['beta'],
   args: {

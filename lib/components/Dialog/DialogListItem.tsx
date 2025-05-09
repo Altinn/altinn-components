@@ -11,12 +11,10 @@ import {
   ListItem,
   ListItemLabel,
   type ListItemProps,
-  ListItemSelect,
-  type ListItemSelectProps,
   Skeleton,
 } from '..';
 
-export type DialogListItemSize = 'xs' | 'sm' | 'md' | 'lg';
+export type DialogListItemSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type DialogListItemState = 'normal' | 'trashed' | 'archived';
 export type DialogListItemTheme = 'default' | 'subtle' | 'transparent';
 
@@ -37,8 +35,6 @@ export interface DialogListItemProps extends ListItemProps {
   size?: DialogListItemSize;
   /** Custom controls */
   controls?: ListItemProps['controls'];
-  /** Select: Use to support batch operations */
-  select?: ListItemSelectProps;
   /** Selected: Use to support batch operations */
   selected?: boolean;
   /** Dialog state */
@@ -94,7 +90,7 @@ export interface DialogListItemProps extends ListItemProps {
  */
 
 export const DialogListItem = ({
-  size = 'lg',
+  size = 'xl',
   state = 'normal',
   loading,
   controls,
@@ -121,13 +117,12 @@ export const DialogListItem = ({
   title,
   description,
   summary,
-  theme = 'default',
+  variant = 'default',
   id,
   ...rest
 }: DialogListItemProps) => {
   const applicableState = trashedAt ? 'trashed' : archivedAt ? 'archived' : state;
-  const applicableTheme = selected ? 'subtle' : theme;
-  const applicableVariant = status?.value;
+  const applicableVariant = selected ? 'tinted' : variant;
 
   if (size === 'xs' || size === 'sm') {
     return (
@@ -136,11 +131,12 @@ export const DialogListItem = ({
         id={id}
         size={size}
         selected={selected}
-        theme={applicableTheme}
+        variant={applicableVariant}
+        ariaLabel={title}
         label={
           <div
             className={styles.border}
-            data-variant={applicableVariant}
+            data-status={status?.value}
             data-size={size}
             data-seen={seen}
             data-loading={loading}
@@ -162,15 +158,13 @@ export const DialogListItem = ({
       id={id}
       size={size}
       selected={selected}
-      theme={applicableTheme}
-      controls={
-        <div className={styles.controls}>{controls || (select && <ListItemSelect {...select} size="xl" />)}</div>
-      }
+      variant={applicableVariant}
+      controls={<div className={styles.controls}>{controls}</div>}
       title={title}
       label={
         <div
           className={styles.border}
-          data-variant={applicableVariant}
+          data-status={status?.value}
           data-size={size}
           data-seen={seen}
           data-loading={loading}
@@ -187,7 +181,7 @@ export const DialogListItem = ({
               recipientLabel={recipientLabel}
               grouped={grouped}
             />
-            {size === 'lg' && summary && (
+            {size === 'xl' && summary && (
               <Skeleton loading={loading}>
                 <p data-size={size} className={styles.summary}>
                   {summary || description}

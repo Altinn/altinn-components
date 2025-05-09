@@ -1,25 +1,18 @@
 import cx from 'classnames';
-import type { ChangeEventHandler } from 'react';
-import { CheckboxIcon } from '../Icon/';
-import type { ListItemSize } from './ListItemBase';
+import { type CheckboxProps, Input, Label } from '..';
 import styles from './listItemSelect.module.css';
 
-export type ListItemSelectProps = {
-  size?: ListItemSize;
-  checked?: boolean;
-  onChange?: ChangeEventHandler;
-  className?: string;
-};
+export type ListItemSelectProps = CheckboxProps;
 
 /**
- * Dialog checkbox
+ * List item checkbox
  */
 
-export const ListItemSelect = ({ size, checked = false, onChange, className }: ListItemSelectProps) => {
+export const ListItemSelect = ({ className, ...props }: CheckboxProps) => {
   return (
-    <label className={cx(styles.label, className)} data-size={size}>
-      <input type="checkbox" checked={checked} onChange={onChange} className={styles.input} />
-      <CheckboxIcon hover={true} checked={checked} className={styles.icon} />
-    </label>
+    <Label className={cx(styles.select, className)}>
+      <Input type="checkbox" {...props} className={styles.checkbox} />
+      <span style={{ position: 'absolute', opacity: 0, pointerEvents: 'none' }}>Select</span>
+    </Label>
   );
 };

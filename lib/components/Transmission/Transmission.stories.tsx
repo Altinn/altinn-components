@@ -1,10 +1,10 @@
 import type { Meta } from '@storybook/react';
-import { ListBase, Transmission, type TransmissionProps } from '..';
+import { List, Transmission, type TransmissionProps } from '..';
 import { transmissions } from '../../../examples';
 
 const transmissionProps = transmissions as TransmissionProps[];
 const meta = {
-  title: 'Transmission/Transmission',
+  title: 'Inbox/Transmission',
   component: Transmission,
   tags: ['beta'],
   parameters: {},
@@ -17,18 +17,18 @@ export default meta;
 
 export const Default = () => {
   return (
-    <ListBase spacing={2}>
+    <List spacing={2}>
       <Transmission {...(transmissions[0] as TransmissionProps)} />
-    </ListBase>
+    </List>
   );
 };
 
 export const UsingBadges = () => {
   return (
-    <ListBase spacing={2}>
+    <List spacing={2}>
       {transmissionProps.map((props) => (
         <Transmission {...props} key={props.id} />
       ))}
-    </ListBase>
+    </List>
   );
 };

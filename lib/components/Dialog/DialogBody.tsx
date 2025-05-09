@@ -54,7 +54,7 @@ export const DialogBody = ({
 }: DialogBodyProps) => {
   return (
     <Timeline>
-      <TimelineHeader loading={loading} avatar={sender}>
+      <TimelineHeader loading={loading} icon={sender}>
         <strong>{sender.name}</strong>
         {recipientLabel + ' ' + recipient?.name}
       </TimelineHeader>

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { DialogHeader } from './DialogHeader';
 
 const meta = {
-  title: 'Dialog/DialogHeader',
+  title: 'Inbox/Dialog/DialogHeader',
   component: DialogHeader,
   tags: ['beta'],
   parameters: {},

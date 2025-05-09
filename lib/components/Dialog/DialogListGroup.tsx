@@ -1,6 +1,6 @@
 import { CheckmarkIcon } from '@navikt/aksel-icons';
 import type { ReactNode } from 'react';
-import { Flex, Heading, ListBase, Section } from '../';
+import { Flex, Heading, List, Section } from '..';
 import { Button } from '../Button';
 
 export interface DialogListGroupProps {
@@ -22,7 +22,7 @@ export const DialogListGroup = ({ title, children, checkAllLabel }: DialogListGr
           )}
         </Flex>
       )}
-      <ListBase spacing={3}>{children}</ListBase>
+      <List spacing={3}>{children}</List>
     </Section>
   );
 };

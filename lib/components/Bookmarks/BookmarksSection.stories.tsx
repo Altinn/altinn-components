@@ -3,7 +3,7 @@ import { type ChangeEvent, useMemo, useState } from 'react';
 import { BookmarksSection, type BookmarksSectionProps } from './BookmarksSection';
 
 const meta = {
-  title: 'Bookmarks/BookmarksSection',
+  title: 'Inbox/BookmarksSection',
   component: BookmarksSection,
   tags: ['autodocs'],
   parameters: {},

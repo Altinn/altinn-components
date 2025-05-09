@@ -1,35 +1,33 @@
-import type { ElementType, ReactElement, ReactNode } from 'react';
-import type { AvatarGroupProps, AvatarProps } from '../Avatar';
-import type { BadgeProps } from '../Badge';
-import type { IconProps, SvgElement } from '../Icon';
+import type { ReactElement, ReactNode } from 'react';
 import { ListItemBase, type ListItemBaseProps } from './ListItemBase';
 import { ListItemHeader, type ListItemHeaderProps } from './ListItemHeader';
+import styles from './listItem.module.css';
+
+export type ListItemVariant = 'default' | 'subtle' | 'tinted';
 
 export interface ListItemProps extends ListItemBaseProps, ListItemHeaderProps {
   /** List item id */
   id?: string;
+  /** The variant of the list item. */
+  variant?: ListItemVariant;
   /** Custom className */
   className?: string;
   /** Element is loading, display a placeholder */
   loading?: boolean;
   /** Title */
-  title?: string;
-  /** Element type of the list-item header label. Defaults to h2 */
-  titleAs?: ElementType;
+  title?: ListItemHeaderProps['title'];
   /** Optional description */
-  description?: string;
+  description?: ListItemHeaderProps['description'];
+  /** Used as decerning text for the ListItem without title, defaults to title */
+  ariaLabel?: ListItemHeaderProps['ariaLabel'];
   /** List item icon */
-  icon?: SvgElement | IconProps | ReactNode | undefined;
-  /** List item avatar */
-  avatar?: AvatarProps;
-  /** List item avatarGroup */
-  avatarGroup?: AvatarGroupProps;
+  icon?: ListItemHeaderProps['icon'];
+  /** Optional badge */
+  badge?: ListItemHeaderProps['badge'];
+  /** Whether to display the item with a link icon */
+  linkIcon?: ListItemHeaderProps['linkIcon'];
   /** Custom label */
   label?: ReactNode | (() => ReactElement);
-  /** Optional badge */
-  badge?: BadgeProps | ReactNode | undefined;
-  /** Whether to display the item with a link icon */
-  linkIcon?: boolean;
 }
 
 export interface ListItemInputProps extends ListItemProps {
@@ -40,23 +38,20 @@ export interface ListItemInputProps extends ListItemProps {
 
 export const ListItem = ({
   className,
-  variant = 'solid',
   color,
-  theme = 'default',
+  variant = 'default',
   shadow = 'xs',
+  border = 'none',
   loading,
   collapsible,
   expanded,
-  size = 'sm',
+  size,
   icon,
-  avatar,
-  avatarGroup,
+  label,
   title,
-  titleAs,
   description,
   badge,
   linkIcon = false,
-  label,
   select,
   selected,
   controls,
@@ -70,35 +65,31 @@ export const ListItem = ({
 
   return (
     <ListItemBase
-      variant={variant}
+      className={styles.item}
+      size={size}
       color={color}
-      theme={theme}
+      variant={variant}
       shadow={shadow}
+      border={border}
       selected={selected}
       expanded={expanded}
-      title={title}
       loading={loading}
       interactive={interactive}
       id={id}
     >
       <ListItemHeader
-        className={className}
         color={color}
-        theme={theme}
         loading={loading}
         linkIcon={linkIcon}
         collapsible={collapsible}
         expanded={expanded}
         select={select}
-        size={size}
         title={title}
+        size={size}
         description={description}
         icon={icon}
-        avatar={avatar}
-        avatarGroup={avatarGroup}
         badge={badge}
         controls={controls}
-        titleAs={titleAs}
         interactive={interactive}
         {...rest}
       >

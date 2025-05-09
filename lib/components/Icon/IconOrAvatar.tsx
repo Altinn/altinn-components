@@ -1,21 +1,22 @@
+import { XMarkIcon } from '@navikt/aksel-icons';
 import { type ReactNode, isValidElement } from 'react';
 import {
   Avatar,
   AvatarGroup,
   type AvatarGroupProps,
   type AvatarProps,
-  type AvatarSize,
   type BadgeProps,
   Icon,
   type IconProps,
-  type IconSize,
   type IconTheme,
   type SvgElement,
 } from '..';
+import styles from './iconOrAvatar.module.css';
 
 export type IconOrAvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export interface IconOrAvatarProps {
+  loading?: boolean;
   size?: IconOrAvatarSize;
   icon?: IconProps | SvgElement | ReactNode;
   iconTheme?: IconTheme;
@@ -38,31 +39,37 @@ const isIconProps = (icon: IconProps | SvgElement | ReactNode): icon is IconProp
   return (icon as IconProps).svgElement !== undefined || (icon as IconProps).iconUrl !== undefined;
 };
 
-export const IconOrAvatar = ({ size, icon, iconTheme, avatar, avatarGroup }: IconOrAvatarProps) => {
+export const IconOrAvatar = ({ loading, size, icon, iconTheme, avatar, avatarGroup }: IconOrAvatarProps) => {
   if (!icon && !avatar && !avatarGroup) {
     return null;
+  }
+
+  if (loading) {
+    return <Icon className={styles.icon} svgElement={XMarkIcon} loading={true} />;
   }
 
   /** Icon can be custom, a svg or an Icon object. */
   if (icon) {
     if (isIconProps(icon)) {
-      return <Icon theme={icon.theme || iconTheme} size={icon.size || size} {...(icon as IconProps)} />;
+      return (
+        <Icon className={styles.icon} theme={icon.theme || iconTheme} variant="contain" {...(icon as IconProps)} />
+      );
     }
 
     if (isReactNode(icon)) {
       return icon;
     }
 
-    return <Icon svgElement={icon as SvgElement} theme={iconTheme} size={size as IconSize} />;
+    return <Icon className={styles.icon} svgElement={icon as SvgElement} variant="contain" theme={iconTheme} />;
   }
 
   /** Avatar or AvatarGroup */
 
   if (avatar) {
-    return <Avatar {...avatar} size={avatar.size || size} />;
+    return <Avatar {...avatar} size={avatar.size || size} className={styles.avatar} />;
   }
 
   if (avatarGroup) {
-    return <AvatarGroup {...avatarGroup} size={avatarGroup.size || (size as AvatarSize)} />;
+    return <AvatarGroup {...avatarGroup} className={styles.avatarGroup} />;
   }
 };

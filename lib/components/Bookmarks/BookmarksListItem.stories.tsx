@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { BookmarksListItem } from './BookmarksListItem';
 
 const meta = {
-  title: 'Bookmarks/BookmarksListItem',
+  title: 'Inbox/BookmarksListItem',
   component: BookmarksListItem,
   tags: ['autodocs'],
   parameters: {},

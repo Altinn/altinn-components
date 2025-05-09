@@ -1,69 +1,21 @@
-.label {
+.select {
+  position: relative;
+  z-index: 2;
   flex-shrink: 0;
-  display: inline-flex;
+  font-size: 1em;
+  display: flex;
   align-items: center;
   justify-content: center;
-  background-color: transparent;
   border-radius: 50%;
-  border: 0;
+  width: 2em;
+  height: 2em;
 }
 
-.label:hover {
+.select:hover {
   background-color: var(--ds-color-surface-tinted);
+  cursor: pointer;
 }
 
-.input {
-  display: none;
-}
-
-.icon {
-  color: var(--ds-color-base-default);
-}
-
-.icon [data-hover="true"] {
-  opacity: 0;
-}
-
-.label:hover [data-hover="true"] {
-  opacity: 1;
-}
-
-/* xs: 20 */
-
-.label[data-size="xs"] .icon {
-  width: 16px;
-  height: 16px;
-  margin: 2px;
-}
-
-/* sm: 24 */
-
-.label[data-size="sm"] .icon {
-  width: 16px;
-  height: 16px;
-  margin: 4px;
-}
-
-/* md: 32 */
-
-.label[data-size="md"] .icon {
-  width: 16px;
-  height: 16px;
-  margin: 8px;
-}
-
-/* lg: 36 */
-
-.label[data-size="lg"] .icon {
-  width: 18px;
-  height: 18px;
-  margin: 9px;
-}
-
-/* xl: 44 */
-
-.label[data-size="xl"] .icon {
-  width: 20px;
-  height: 20px;
-  margin: 12px;
+.checkbox {
+  font-size: 0.875rem;
 }

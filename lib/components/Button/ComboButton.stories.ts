@@ -2,7 +2,7 @@ import { ChevronDownIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComboButton } from './ComboButton';
 
-const meta = {
+const meta: Meta<typeof ComboButton> = {
   title: 'Atoms/Button/ComboButton',
   component: ComboButton,
   tags: ['autodocs'],
@@ -14,9 +14,10 @@ const meta = {
     iconAltText: 'chevron down',
     size: 'sm',
   },
-} satisfies Meta<typeof ComboButton>;
+};
 
 export default meta;
+
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {

@@ -1,10 +1,10 @@
 import { XMarkIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react';
-import { MetaItem } from '../Meta';
+import { MetaItem } from '../Metadata';
 import type { ButtonSize, ButtonVariant } from './ButtonBase.tsx';
 import { IconButton, type IconButtonProps } from './IconButton';
 
-const meta = {
+const meta: Meta<typeof IconButton> = {
   title: 'Atoms/Button/IconButton',
   component: IconButton,
   tags: ['autodocs'],
@@ -13,7 +13,7 @@ const meta = {
     icon: XMarkIcon,
     size: 'sm',
   },
-} satisfies Meta<typeof IconButton>;
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -29,10 +29,24 @@ const variants = ['outline', 'solid', 'dotted', 'text'] as ButtonVariant[];
 
 export const Sizes = (args: IconButtonProps) => {
   return (
-    <div style={{ display: 'flex', columnGap: '1rem', justifyContent: 'space-between', width: '100%' }}>
+    <div
+      style={{
+        display: 'flex',
+        columnGap: '1rem',
+        justifyContent: 'space-between',
+        width: '100%',
+      }}
+    >
       {variants.map((variant) => {
         return (
-          <div key={variant} style={{ display: 'flex', flexDirection: 'column', columnGap: '1rem' }}>
+          <div
+            key={variant}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              columnGap: '1rem',
+            }}
+          >
             <MetaItem>{variant}</MetaItem>
             {sizes.map((size) => {
               return (

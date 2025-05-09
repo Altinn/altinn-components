@@ -2,7 +2,7 @@ import { ArchiveIcon, ArrowRedoIcon, EyeIcon, TrashIcon } from '@navikt/aksel-ic
 import type { Meta, StoryObj } from '@storybook/react';
 import { PageMenu } from './PageMenu';
 
-const meta = {
+const meta: Meta<typeof PageMenu> = {
   title: 'Page/PageMenu',
   component: PageMenu,
   tags: ['autodocs', 'beta'],
@@ -31,7 +31,7 @@ const meta = {
       },
     ],
   },
-} satisfies Meta<typeof PageMenu>;
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;

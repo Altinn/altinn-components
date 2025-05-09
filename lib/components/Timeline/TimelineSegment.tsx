@@ -5,7 +5,6 @@ import {
   type FlexMargin,
   type FlexSpacing,
   Section,
-  type SvgElement,
   TimelineBase,
   type TimelineBaseProps,
   type TimelineBorder,
@@ -15,7 +14,7 @@ import {
 export interface TimelineSegmentProps extends TimelineBaseProps {
   id?: string;
   loading?: boolean;
-  icon?: SvgElement;
+  icon?: TimelineBaseProps['icon'];
   datetime?: string;
   border?: TimelineBorder;
   byline?: ReactNode;

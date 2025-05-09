@@ -10,7 +10,7 @@ const meta = {
   parameters: {},
   args: {
     as: 'header',
-    avatar: skatt,
+    icon: skatt,
     children: (
       <>
         <strong>Skatteetaten</strong>
@@ -25,7 +25,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Avatar: Story = {
   args: {
-    avatar: skatt,
+    icon: skatt,
     children: (
       <>
         <strong>Skatteetaten</strong>
@@ -37,7 +37,7 @@ export const Avatar: Story = {
 
 export const Icon: Story = {
   args: {
-    icon: TeddyBearFillIcon,
+    icon: { svgElement: TeddyBearFillIcon, theme: 'base' },
     children: (
       <>
         <strong>Skatteetaten</strong>

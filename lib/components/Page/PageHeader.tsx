@@ -41,8 +41,6 @@ export const PageHeader = ({
   title,
   description,
   icon,
-  avatar,
-  avatarGroup,
   tabs,
   theme,
   padding,
@@ -68,7 +66,7 @@ export const PageHeader = ({
       <Section as="header" theme={theme} shadow={shadow} bleed={bleed} {...rest}>
         {(backButton || breadcrumbs) && <PageNav backButton={backButton} breadcrumbs={breadcrumbs} padding={2} />}
         <Flex direction="row" align="center" padding="page" spacing={3}>
-          <ListItemIcon avatar={avatar} avatarGroup={avatarGroup} icon={icon} size="xl" />
+          <ListItemIcon icon={icon} size="xl" />
           <Flex direction="col">
             <Heading size={size}>{title}</Heading>
             {description && <Typography size="xs">{description}</Typography>}
@@ -84,7 +82,7 @@ export const PageHeader = ({
     <Section as="header" theme={theme} shadow={shadow} bleed={bleed} {...rest}>
       {(backButton || breadcrumbs) && <PageNav backButton={backButton} breadcrumbs={breadcrumbs} />}
       <Flex direction="row" align="center" padding={padding} spacing={3}>
-        <ListItemIcon avatar={avatar} avatarGroup={avatarGroup} icon={icon} size="xl" />
+        <ListItemIcon icon={icon} size="xl" />
         <Flex direction="col">
           <Heading size={size}>{title}</Heading>
           {description && <Typography size="xs">{description}</Typography>}

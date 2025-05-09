@@ -13,11 +13,25 @@
   --ds-color-person-surface-hover: #6ee7b7;
   --ds-color-person-surface-active: #34d399;
 
+  /* ARTICLE */
+
+  --ds-color-article-background-default: var(--ds-color-company-background-default);
+  --ds-color-article-background-tinted: var(--ds-color-company-background-tinted);
+  --ds-color-article-surface-default: var(--ds-color-company-surface-default);
+  --ds-color-article-surface-tinted: var(--ds-color-company-surface-tinted);
+  --ds-color-article-surface-hover: var(--ds-color-company-surface-hover);
+  --ds-color-article-surface-active: var(--ds-color-company-surface-active);
+  --ds-color-article-border-default: var(--ds-color-company-border-default);
+  --ds-color-article-border-subtle: var(--ds-color-company-border-subtle);
+  --ds-color-article-border-strong: var(--ds-color-company-border-strong);
+
+  --ds-color-article-text-subtle: var(--ds-color-company-text-subtle);
+  --ds-color-article-text-default: var(--ds-color-company-text-default);
+
   /* ACCENT = COMPANY */
 
   --ds-color-accent-background-default: var(--ds-color-company-background-default);
   --ds-color-accent-background-tinted: var(--ds-color-company-background-tinted);
-
   --ds-color-accent-surface-default: var(--ds-color-company-surface-default);
   --ds-color-accent-surface-tinted: var(--ds-color-company-surface-tinted);
   --ds-color-accent-surface-hover: var(--ds-color-company-surface-hover);

@@ -1,21 +1,20 @@
-export * from './accountMenu';
-export * from './accountList';
+export * from './accounts';
+
 export * from './globalMenu';
 export * from './localeSwitcher';
 export * from './loginMenu';
-export * from './inboxMenu';
-export * from './inboxFilters';
+
+export * from './inbox';
+export * from './bookmarks';
+export * from './profile';
+export * from './admin';
+export * from './portal';
+
+export * from './toolbar';
+export * from './settings';
+export * from './activityLog';
+
 export * from './header';
 export * from './footer';
-export * from './useInboxSearch';
-export * from './useAccountMenu';
-export * from './dialog';
-export * from './categoryItems';
 
-export * from './adminMenu';
-export * from './profileMenu';
-export * from './useProfileLayout';
-export * from './useCategoryLayout';
-export * from './useAdminLayout';
-export * from './useInboxLayout';
-export * from './useInboxToolbar';
+export * from './useLayout';

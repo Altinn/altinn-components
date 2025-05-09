@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { SeenByLog } from './SeenByLog';
 
 const meta = {
-  title: 'Dialog/SeenByLog',
+  title: 'Inbox/Dialog/SeenByLog',
   component: SeenByLog,
   tags: ['autodocs', 'beta'],
   parameters: {},

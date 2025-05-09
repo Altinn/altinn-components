@@ -4,7 +4,7 @@ import { Badge, type BadgeProps, type Color, Icon, type SvgElement } from '..';
 import styles from './menuItemBase.module.css';
 
 export type MenuItemColor = Color;
-export type MenuItemSize = 'xs' | 'sm' | 'md' | 'lg';
+export type MenuItemSize = 'sm' | 'md' | 'lg';
 export type MenuItemTheme = 'default' | 'subtle' | 'surface' | 'base';
 
 export interface MenuItemBaseProps {

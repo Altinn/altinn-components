@@ -59,7 +59,6 @@ export const Toolbar = ({
     [filters, visibleFilterNames],
   );
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     const externallyVisible = filters
       .filter((item) => !item.removable || typeof applicableFilterState[item.name] !== 'undefined')

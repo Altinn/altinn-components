@@ -1,6 +1,6 @@
 import type { ElementType, ReactNode } from 'react';
-import { Avatar, Flex, Icon, Skeleton } from '..';
-import type { AvatarProps, Color, SvgElement, Theme } from '..';
+import { Flex, TimelineIcon, type TimelineIconProps } from '..';
+import type { Color, Theme } from '..';
 import styles from './timelineBase.module.css';
 
 export type TimelineTheme = 'base' | 'surface';
@@ -14,9 +14,9 @@ export interface TimelineBaseProps {
   border?: TimelineBorder;
   color?: Color;
   theme?: Theme;
-  icon?: SvgElement;
-  iconColor?: Color;
-  avatar?: AvatarProps;
+  icon?: TimelineIconProps['icon'];
+  iconColor?: TimelineIconProps['color'];
+  iconTheme?: TimelineIconProps['theme'];
   children?: ReactNode;
   id?: string;
 }
@@ -29,7 +29,7 @@ export const TimelineBase = ({
   color,
   icon,
   iconColor,
-  avatar,
+  iconTheme,
   children,
   id,
   ...props
@@ -37,14 +37,7 @@ export const TimelineBase = ({
   return (
     <Flex as={as} className={styles.section} color={color} {...props} id={id}>
       <aside className={styles.sidebar} data-level={level}>
-        {(avatar && <Avatar {...avatar} size="sm" />) ||
-          (icon && (
-            <Skeleton loading={loading} variant="circle">
-              <span data-color={iconColor} className={styles.icon}>
-                <Icon svgElement={icon} size="sm" />
-              </span>
-            </Skeleton>
-          ))}
+        {icon && <TimelineIcon loading={loading} icon={icon} theme={iconTheme} color={iconColor} size="sm" />}
         <div className={styles.border} data-loading={loading} data-variant={border} data-color={color} />
       </aside>
       <div className={styles.content}>{children}</div>

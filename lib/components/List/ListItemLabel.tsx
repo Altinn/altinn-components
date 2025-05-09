@@ -1,5 +1,6 @@
-import type { ElementType, ReactNode } from 'react';
-import { Skeleton } from '../Skeleton';
+import cx from 'classnames';
+import { type ReactNode, isValidElement } from 'react';
+import { Heading, type HeadingProps } from '..';
 import type { ListItemSize } from './ListItemBase';
 import styles from './listItemLabel.module.css';
 
@@ -7,42 +8,91 @@ export interface ListItemLabelProps {
   id?: string;
   loading?: boolean;
   size?: ListItemSize;
-  title?: string;
-  titleAs?: ElementType;
-  weight?: 'bold' | 'normal';
-  description?: string;
+  title?: HeadingProps | ReactNode | string;
+  description?: HeadingProps | ReactNode | string;
   children?: ReactNode;
+  className?: string;
 }
+
+// Checks if object looks like HeadingProps
+const isHeadingProps = (heading: unknown): heading is HeadingProps => {
+  return typeof heading === 'object' && heading !== null && 'children' in heading;
+};
+
+function isReactNode(value: unknown): value is ReactNode {
+  return (
+    typeof value === 'string' ||
+    typeof value === 'number' ||
+    typeof value === 'boolean' ||
+    value === null ||
+    isValidElement(value)
+  );
+}
+
+const getTitleProps = (title: HeadingProps | ReactNode | string) => {
+  const defaultProps: HeadingProps = {
+    as: 'h2',
+    size: 'sm',
+    //    leading: "tight",
+  };
+
+  if (isHeadingProps(title)) {
+    return { ...defaultProps, ...title };
+  }
+  if (isReactNode(title)) {
+    return {
+      ...defaultProps,
+      children: title,
+    };
+  }
+  return null;
+};
+
+const getDescriptionProps = (description: HeadingProps | ReactNode | string) => {
+  const defaultProps: HeadingProps = {
+    as: 'h3',
+    size: 'xs',
+    weight: 'normal',
+    variant: 'subtle',
+    //    leading: "tight",
+  };
+
+  if (isHeadingProps(description)) {
+    return { ...defaultProps, ...description };
+  }
+  if (isReactNode(description)) {
+    return {
+      ...defaultProps,
+      children: description,
+    };
+  }
+  return null;
+};
 
 export const ListItemLabel = ({
   loading = false,
-  size = 'sm',
+  size,
   title,
-  titleAs = 'h2',
-  weight = 'bold',
   description,
   children,
   id,
+  className,
 }: ListItemLabelProps) => {
-  const TitleComponent = titleAs;
+  const titleProps = title && getTitleProps(title);
+  const descriptionProps = description && getDescriptionProps(description);
+
   return (
-    <span className={styles.label} data-size={size} id={id}>
+    <span className={cx(styles.label, className)} id={id} data-size={size}>
       {children ? (
         children
       ) : (
         <>
-          <Skeleton loading={loading}>
-            <TitleComponent className={styles.title} data-size={size} data-weight={weight}>
-              {title}
-            </TitleComponent>
-          </Skeleton>{' '}
-          {description && (
-            <Skeleton loading={loading}>
-              <p className={styles.description} data-size={size}>
-                {description}
-              </p>
-            </Skeleton>
+          {titleProps && (
+            <Heading {...titleProps} loading={loading}>
+              {titleProps.children}
+            </Heading>
           )}
+          {descriptionProps && <Heading {...descriptionProps} loading={loading} />}
         </>
       )}
     </span>

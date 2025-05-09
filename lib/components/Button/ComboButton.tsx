@@ -37,10 +37,9 @@ export const ComboButton = ({
       color={color}
       selected={selected}
       className={cx(styles.button, className)}
-      ariaLabel={ariaLabel}
       tabIndex={-1}
     >
-      <ButtonBase size={size} onClick={onLabelClick} className={styles.primary}>
+      <ButtonBase ariaLabel={ariaLabel} size={size} onClick={onLabelClick} className={styles.primary}>
         <ButtonLabel size={size}>{children}</ButtonLabel>
       </ButtonBase>
       <span data-size={size} className={styles.divider} />

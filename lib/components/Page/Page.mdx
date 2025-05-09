@@ -1,17 +1,51 @@
 import { Meta, Controls, Primary, Canvas } from "@storybook/blocks";
-import * as PageHeader from "./PageHeader.stories";
-import * as DashboardHeader from "./DashboardHeader.stories";
+import * as PageMenu from "./PageMenu.stories";
+import * as PageNav from "./PageNav.stories";
 
 <Meta title="Page" />
 
 # Building pages
 
-Page components includes a set of patterns and components that can help you build pages with consistency in spacing, padding and so on.
+Build pages using `PageBase` and spesific components or general purpuse components like `Section` and `Heading` to divide and create hiearchy.
 
-## Dashboard components
+```tsx
+return (
+  <PageBase>
+    <PageNav />
+    <Heading siz="xl" />
+    <Section>
+      <Heading siz="lg" />
+    </Section>
+    <Section>
+      <Heading siz="lg" />
+    </Section>
+  </PageBase>
+);
+```
 
-Dashboard header representing a person or a company.
+## List pages
 
-<Canvas of={DashboardHeader.Person} />
+Pages that contains lists of objects, for example a list of accounts or users.
 
-<Canvas of={DashboardHeader.Company} />
+```tsx
+return (
+  <PageBase>
+    <PageNav breadcrumbs />
+    <Heading siz="xl" />
+    <Toolbar />
+    <List />
+  </PageBase>
+);
+```
+
+## Dashboards
+
+Dashboard pages, used as a starting point for an area that focuses on a single person or company.
+
+## Settings pages
+
+Pages with settings, divided into groups.
+
+## Content pages
+
+Articles, topics and other pages with content.

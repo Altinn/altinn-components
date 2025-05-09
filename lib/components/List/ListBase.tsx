@@ -1,17 +1,18 @@
 import type { ReactNode } from 'react';
-import { type Color, Flex, type FlexPadding, type FlexSpacing } from '..';
+import { type Color, Flex, type FlexPadding, type FlexSpacing, type ListItemSize } from '..';
 
-export interface ListBaseProps {
+export interface ListProps {
   className?: string;
-  children: ReactNode;
+  color?: Color;
+  size?: ListItemSize;
   spacing?: FlexSpacing;
   padding?: FlexPadding;
-  color?: Color;
+  children: ReactNode;
 }
 
-export const ListBase = ({ spacing = 2, children, ...rest }: ListBaseProps) => {
+export const List = ({ size, spacing = 2, children, ...rest }: ListProps) => {
   return (
-    <Flex direction="col" spacing={spacing} as="ul" {...rest}>
+    <Flex direction="col" spacing={spacing} size={size} as="ul" {...rest}>
       {children}
     </Flex>
   );

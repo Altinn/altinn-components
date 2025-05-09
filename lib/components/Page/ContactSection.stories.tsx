@@ -2,10 +2,10 @@ import { EnvelopeOpenIcon, PersonChatIcon, PhoneIcon } from '@navikt/aksel-icons
 import type { Meta, StoryObj } from '@storybook/react';
 import { ContactSection } from './ContactSection';
 
-const meta = {
+const meta: Meta<typeof ContactSection> = {
   title: 'Page/ContactSection',
   component: ContactSection,
-  tags: ['autodocs', 'beta'],
+  tags: ['autodocs', 'deprecated'],
   parameters: {},
   args: {
     title: 'Trenger du hjelp?',
@@ -26,7 +26,7 @@ const meta = {
       },
     ],
   },
-} satisfies Meta<typeof ContactSection>;
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;
