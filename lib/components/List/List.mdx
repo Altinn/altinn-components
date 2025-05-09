@@ -1,7 +1,7 @@
 import { Meta, Controls, Primary, Canvas } from "@storybook/blocks";
 import * as ListStories from "./List.stories";
-import * as ListBaseStories from "./ListBase.stories";
 import * as ListItemStories from "./ListItem.stories";
+import * as BookmarkStories from "../Bookmarks/BookmarksSection.stories";
 
 <Meta title="List" />
 
@@ -9,19 +9,57 @@ import * as ListItemStories from "./ListItem.stories";
 
 Use lists to represent links to spesific objects, for example a list of people or a list of services.
 
-Build lists using `ListBase` and `ListItem`, or use the `List` component for simple, unified lists.
+Build lists using `List` and `ListItem`, or use `List` with `items` for simple, unified lists.
 
 ```tsx
-import { ListBase, ListItem } from "@altinn/altinn-components";
+import { List, ListItem } from "@altinn/altinn-components";
 
 return (
-  <ListBase>
+  <List>
     <ListItem />
     <ListItem />
     <ListItem />
-  </ListBase>
+  </List>
 );
 ```
+
+While lists can be modified to represent spesific needs, we should try to establish common patterns for similar tasks across Altinn.
+
+## Simple list
+
+List with icon and label.
+
+<Canvas of={ListStories.Default} />
+
+## List of people
+
+Lists of people, using avatars.
+
+<Canvas of={ListStories.ListOfPeople} />
+
+## List of services
+
+Lists of services, using the service owner logo as avatar.
+
+<Canvas of={ListStories.ListOfServices} />
+
+## List of categories
+
+Lists of categories, using an icon with a subtle color.
+
+<Canvas of={ListStories.ListOfCategories} />
+
+## Expanding, multilevel lists
+
+An expandable multilevel list. Parent items are medium sized, children are small. Selected items are indicated using color, while unselected items are gray. Custom controls to manipulate item.
+
+<Canvas of={ListStories.MultilevelList} />
+
+## Expanding an element to make changes
+
+Lists that can be manipulated when expanded, for example `Bookmarks`.
+
+<Canvas of={BookmarkStories.ControlledState} />
 
 ## ListItem
 
@@ -103,17 +141,11 @@ Make items selectable by using the `select` prop. Add `selected` to select the w
 
 <Canvas of={ListItemStories.Selectable} />
 
-## List components
-
-Unified, simple lists can be built using the `List` component.
-
-<Canvas of={ListStories.Default} />
-
 ## Props
 
-ListBase props.
+List props.
 
-<Controls of={ListBaseStories.Default} />
+<Canvas of={ListStories.Default} />
 
 ListItem props.
 

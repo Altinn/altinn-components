@@ -7,7 +7,6 @@ import {
   type BadgeProps,
   Byline,
   ListItem,
-  ListItemLabel,
   type ListItemProps,
   Section,
   Typography,
@@ -39,7 +38,7 @@ export interface TransmissionProps extends Omit<ListItemProps, 'children'> {
 
 export const Transmission = ({
   size = 'xs',
-  theme = 'subtle',
+  variant = 'subtle',
   color = 'neutral',
   title,
   createdAt,
@@ -57,7 +56,7 @@ export const Transmission = ({
   return (
     <ListItem
       {...item}
-      avatar={sender}
+      icon={sender}
       badge={
         badge && {
           ...badge,
@@ -65,9 +64,12 @@ export const Transmission = ({
         }
       }
       size={size}
-      theme={theme}
+      variant={variant}
       color={color}
-      label={<ListItemLabel title={title} weight={type === 'submission' ? 'normal' : 'bold'} />}
+      title={{
+        children: title,
+        weight: type === 'submission' ? 'normal' : 'bold',
+      }}
       expanded={expanded}
       onClick={() => setExpanded((prevState) => !prevState)}
       collapsible

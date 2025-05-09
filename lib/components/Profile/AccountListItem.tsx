@@ -1,10 +1,19 @@
-import { Badge, ContextMenu, type ContextMenuProps, Flex, ListItem, ListItemControls, type ListItemProps } from '..';
+import {
+  Badge,
+  ContextMenu,
+  type ContextMenuProps,
+  Flex,
+  ListItem,
+  ListItemControls,
+  type ListItemProps,
+} from "..";
 
-import { HeartFillIcon, HeartIcon } from '@navikt/aksel-icons';
-export type AccountListItemType = 'person' | 'company' | 'group';
+import { HeartFillIcon, HeartIcon } from "@navikt/aksel-icons";
+export type AccountListItemType = "person" | "company" | "group";
 
 export interface AccountListItemProps extends ListItemProps {
   id?: string;
+  title: string;
   type?: AccountListItemType;
   favourite?: boolean;
   contextMenu?: ContextMenuProps;
@@ -14,11 +23,10 @@ export interface AccountListItemProps extends ListItemProps {
 }
 
 export const AccountListItem = ({
-  size = 'md',
+  size,
   expanded,
   type,
-  avatar,
-  avatarGroup,
+  icon,
   title,
   description,
   label,
@@ -30,9 +38,13 @@ export const AccountListItem = ({
 }: AccountListItemProps) => {
   const controls = (
     <ListItemControls>
-      <Flex align="center" spacing={2} style={{ position: 'relative', fontSize: '1.25rem' }}>
+      <Flex
+        align="center"
+        spacing={2}
+        style={{ position: "relative", fontSize: "1.25rem" }}
+      >
         {label ? (
-          <Badge color={type === 'group' ? 'neutral' : type}>{label}</Badge>
+          <Badge color={type === "group" ? "neutral" : type}>{label}</Badge>
         ) : favourite ? (
           <HeartFillIcon aria-label={favouriteLabel} />
         ) : (
@@ -47,13 +59,12 @@ export const AccountListItem = ({
     <ListItem
       {...item}
       size={size}
-      avatar={avatar}
-      avatarGroup={avatarGroup && { ...avatarGroup, size: size === 'md' ? 'sm' : 'xs' }}
+      icon={icon}
       title={title}
       description={expanded ? undefined : description}
       expanded={expanded}
       selected={expanded}
-      badge={controls}
+      badge={!expanded && controls}
       linkIcon
     >
       {children}

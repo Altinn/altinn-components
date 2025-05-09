@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { TimelineActivity } from '..';
-import { skatt } from '../../../examples/avatar';
 
 const meta = {
   title: 'Timeline/TimelineActivity',
@@ -19,12 +18,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {},
-};
-
-export const Avatar: Story = {
-  args: {
-    avatar: skatt,
-  },
 };
 
 export const Loading: Story = {

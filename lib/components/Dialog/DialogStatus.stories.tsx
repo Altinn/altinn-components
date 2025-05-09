@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { DialogStatus, DialogStatusEnum, MetaBase } from '..';
 
 const meta = {
-  title: 'Dialog/Atoms/DialogStatus',
+  title: 'Inbox/Dialog/DialogStatus',
   component: DialogStatus,
   tags: ['autodocsi', 'beta'],
   parameters: {},

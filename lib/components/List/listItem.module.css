@@ -1,0 +1,28 @@
+/* variant */
+
+.item {
+  --dsc-item-height: 3em;
+  --dsc-item-px: 0.5em;
+  --dsc-item-py: 0.25em;
+  --dsc-item-my: 0.25em;
+}
+
+.item[data-variant="default"] {
+  --dsc-item-background: var(--ds-color-surface-default);
+  --dsc-item-background--active: var(--ds-color-surface-active);
+  --dsc-item-border-color: var(--ds-color-border-subtle);
+}
+
+.item[data-variant="subtle"] {
+  --dsc-item-background: var(--ds-color-background-tinted);
+  --dsc-item-background--active: var(--ds-color-surface-active);
+  --dsc-item-background--hover: var(--ds-color-surface-hover);
+  --dsc-item-border-color: var(--ds-color-border-subtle);
+}
+
+.item[data-variant="tinted"] {
+  --dsc-item-background: var(--ds-color-surface-tinted);
+  --dsc-item-background--active: var(--ds-color-surface-active);
+  --dsc-item-background--hover: var(--ds-color-surface-hover);
+  --dsc-item-border-color: var(--ds-color-border-subtle);
+}

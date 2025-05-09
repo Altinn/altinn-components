@@ -5,7 +5,7 @@ import { ContactSection } from './ContactSection';
 const meta = {
   title: 'Page/ContactSection',
   component: ContactSection,
-  tags: ['autodocs', 'beta'],
+  tags: ['autodocs', 'deprecated'],
   parameters: {},
   args: {
     title: 'Trenger du hjelp?',

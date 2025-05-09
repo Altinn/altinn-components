@@ -3,7 +3,7 @@ import React from 'react';
 import areaGroups from '../../../test-data/accesspackages.json';
 import type { Color } from '../../types';
 import { AccessPackageList } from '../AccessPackageList';
-import { ListBase } from '../List';
+import { List } from '../List';
 import { AccessAreaListItem, type AccessAreaListItemProps } from './AccessAreaListItem';
 
 const testArea = areaGroups[1].areas[1];
@@ -67,16 +67,16 @@ type Story = StoryObj<typeof meta>;
 
 export const AreaListItemStory: Story = {
   render: (args) => (
-    <ListBase>
+    <List>
       <AccessAreaListItem {...args}>{children(args.colorTheme)}</AccessAreaListItem>
-    </ListBase>
+    </List>
   ),
 };
 
 export const AreaWithPackages = (args: AccessAreaListItemProps) => {
   const [expanded, setExpanded] = React.useState<boolean>(false);
   return (
-    <ListBase>
+    <List>
       <AccessAreaListItem
         {...args}
         colorTheme="company"
@@ -86,7 +86,7 @@ export const AreaWithPackages = (args: AccessAreaListItemProps) => {
       >
         {children(args.colorTheme)}
       </AccessAreaListItem>
-    </ListBase>
+    </List>
   );
 };
 
@@ -98,7 +98,7 @@ export const AllAreas = (args: AccessAreaListItemProps) => {
         <div key={group.id} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
           <h2>{group.name}</h2>
           <p>{group.description}</p>
-          <ListBase>
+          <List>
             {group.areas.map((area) => (
               <AccessAreaListItem
                 id={area.id}
@@ -120,7 +120,7 @@ export const AllAreas = (args: AccessAreaListItemProps) => {
                 />
               </AccessAreaListItem>
             ))}
-          </ListBase>
+          </List>
         </div>
       ))}
     </div>

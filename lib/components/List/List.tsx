@@ -1,34 +1,31 @@
+import type { ReactNode } from 'react';
 import {
-  ListBase,
-  type ListBaseProps,
+  Flex,
+  type FlexPadding,
+  type FlexSpacing,
   ListItem,
   type ListItemColor,
   type ListItemProps,
   type ListItemSize,
-  type ListItemTheme,
 } from '..';
 
-export interface ListProps extends Omit<ListBaseProps, 'children'> {
+export interface ListProps {
+  className?: string;
+  color?: ListItemColor;
+  size?: ListItemSize;
+  spacing?: FlexSpacing;
+  padding?: FlexPadding;
+  children?: ReactNode;
   items?: ListItemProps[];
-  defaultItemColor?: ListItemColor;
-  defaultItemTheme?: ListItemTheme;
-  defaultItemSize?: ListItemSize;
 }
 
-export const List = ({ defaultItemSize, defaultItemTheme, defaultItemColor, items = [], ...rest }: ListProps) => {
+export const List = ({ children, spacing = 2, items = [], ...rest }: ListProps) => {
   return (
-    <ListBase {...rest}>
-      {items.map((item, index) => {
-        return (
-          <ListItem
-            {...item}
-            size={item?.size || defaultItemSize}
-            color={item?.color || defaultItemColor}
-            theme={item?.theme || defaultItemTheme}
-            key={`item-${item.id ?? index}`}
-          />
-        );
-      })}
-    </ListBase>
+    <Flex direction="col" as="ul" spacing={spacing} {...rest}>
+      {children ||
+        items.map((item, index) => {
+          return <ListItem {...item} key={`item-${item.id ?? index}`} />;
+        })}
+    </Flex>
   );
 };

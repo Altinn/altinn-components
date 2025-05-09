@@ -33,7 +33,6 @@ export const Dialog = ({ loading, backButton, contextMenu, pageMenu, header, bod
       {header && <DialogHeader loading={loading} {...header} />}
       {body && <DialogBody loading={loading} {...body} />}
       {tabs && <DialogTabs {...tabs} />}
-
       {children}
     </DialogLayout>
   );

@@ -36,7 +36,7 @@ export const Byline = ({
       {(avatarGroup || avatar) && (
         <Skeleton variant="circle" className={styles.avatar} loading={loading}>
           {avatarGroup ? (
-            <AvatarGroup {...avatarGroup} size={size} className={styles.avatar} />
+            <AvatarGroup {...avatarGroup} size={size} className={styles.avatarGroup} />
           ) : (
             avatar && <Avatar {...avatar} size={size} className={styles.avatar} />
           )}

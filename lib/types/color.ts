@@ -4,6 +4,7 @@ export type Color =
   | 'company'
   | 'person'
   | 'neutral'
+  | 'article'
   | 'success'
   | 'warning'
   | 'error'
@@ -13,6 +14,7 @@ export type Color =
 export type Theme =
   | 'transparent'
   | 'default'
+  | 'tinted'
   | 'subtle'
   | 'surface'
   | 'surface-default'

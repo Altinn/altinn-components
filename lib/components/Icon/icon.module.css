@@ -1,54 +1,21 @@
 .icon {
-  border-radius: 5%;
+  position: relative;
   display: flex;
-  align-items: center;
   justify-content: center;
-  height: 1em;
+  align-items: center;
+  border-radius: 5%;
+}
+
+.shape {
+  font-size: 1em;
   width: 1em;
+  height: 1em;
 }
 
-.icon[data-size="xs"] {
-  font-size: 1rem;
-  min-width: 20px;
-  height: 20px;
-}
-
-.icon[data-size="sm"] {
-  font-size: 1.25rem;
-  min-width: 24px;
-  height: 24px;
-}
-
-.icon[data-size="md"] {
-  font-size: 1.5rem;
-  min-width: 32px;
-  height: 32px;
-}
-
-.icon[data-size="lg"] {
-  font-size: 1.75rem;
-  min-width: 36px;
-  height: 36px;
-}
-
-.icon[data-size="xl"] {
-  font-size: 1.75rem;
-  /*  font-size: 1.875rem; */
-  min-width: 44px;
-  height: 44px;
-}
-
-.icon[data-theme="base"] {
-  background-color: var(--ds-color-base-default);
-  color: var(--ds-color-base-contrast-default);
-}
-
-.icon[data-theme="surface"] {
-  background-color: var(--ds-color-surface-tinted);
-  color: var(--ds-color-base-default);
-}
-
-.icon[data-theme="default"] {
-  background-color: var(--ds-color-background-default);
-  color: var(--ds-color-base-default);
+.svg,
+.image {
+  position: absolute;
+  display: block;
+  font-size: 1em;
+  margin: auto;
 }

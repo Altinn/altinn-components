@@ -1,66 +1,41 @@
 .avatar {
-  flex-grow: 0;
-  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.avatar[data-variant="circle"] {
+  border-radius: 50%;
+}
+
+.avatar[data-variant="square"] {
+  border-radius: 5%;
+}
+
+.avatar[data-outline="true"] {
+  outline: 1px solid #ffffff;
+  /*  outline-color: var(--ds-color-border-subtle); */
+  box-sizing: border-box;
+}
+
+.shape {
+  display: block;
+  font-size: 1em;
+  width: 1em;
+  height: 1em;
+}
+
+.label {
+  position: absolute;
+  inset: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  --avatar-font-size-xs: 0.75rem;
-  --avatar-font-size-sm: 0.875rem;
-  --avatar-font-size-md: 1.125rem;
-  --avatar-font-size-lg: 1.25rem;
-  --avatar-font-size-xl: 1.5rem;
-}
-
-.circle {
-  border-radius: 50%;
-}
-
-.square {
-  border-radius: 5%;
-}
-
-.outline {
-  outline: 1px solid #ffffff;
-  box-sizing: border-box;
-}
-
-.xs {
-  font-size: var(--avatar-font-size-xs);
-  width: 20px;
-  height: 20px;
-}
-
-.sm {
-  font-size: var(--avatar-font-size-sm);
-  width: 24px;
-  height: 24px;
-}
-
-.md {
-  font-size: var(--avatar-font-size-md);
-  width: 32px;
-  height: 32px;
-}
-
-.lg {
-  font-size: var(--avatar-font-size-lg);
-  width: 36px;
-  height: 36px;
-}
-
-.xl {
-  font-size: var(--avatar-font-size-xl);
-  width: 44px;
-  height: 44px;
+  font-size: 0.575em;
 }
 
 .image {
-  width: 100%;
-  height: 100%;
-}
-
-.avatarSkeleton {
+  display: block;
   width: 100%;
   height: 100%;
 }

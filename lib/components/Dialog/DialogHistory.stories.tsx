@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { activityLog, transmissionHistory } from '../../../examples/';
+import { dialogActivityLog, transmissionHistory } from '../../../examples';
 import { DialogHistory } from './DialogHistory';
 
 const meta = {
-  title: 'Dialog/DialogHistory',
+  title: 'Inbox/Dialog/DialogHistory',
   component: DialogHistory,
   tags: ['beta', 'skip-test'],
   parameters: {},
@@ -48,5 +48,5 @@ export const EverythingExpanded: Story = {
 };
 
 export const ActivityLog: Story = {
-  args: activityLog,
+  args: dialogActivityLog,
 };

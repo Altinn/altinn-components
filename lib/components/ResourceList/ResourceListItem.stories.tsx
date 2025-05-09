@@ -1,7 +1,7 @@
 import { PencilIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from '../Button';
-import { ListBase } from '../List';
+import { List } from '../List';
 import { ResourceListItem } from './ResourceListItem';
 
 const meta = {
@@ -37,13 +37,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: (args) => (
-    <ListBase>
+    <List>
       <ResourceListItem
         badge={{ label: 'New', color: 'success', theme: 'base' }}
         {...args}
         onClick={() => alert(`You clicked me - yay!`)}
       />
-    </ListBase>
+    </List>
   ),
   args: {},
 };

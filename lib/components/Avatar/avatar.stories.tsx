@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Avatar } from './';
+import { Avatar, type AvatarProps, type AvatarSize, type AvatarType, Flex, SizeEnum } from '..';
 
 const meta = {
   title: 'Avatar/Avatar',
@@ -9,9 +9,11 @@ const meta = {
     layout: 'centered',
   },
   args: {
+    style: {
+      fontSize: '2em',
+    },
     name: 'Jane Doe',
     type: 'person',
-    size: 'xl',
   },
 } satisfies Meta<typeof Avatar>;
 
@@ -22,7 +24,6 @@ export const Person: Story = {
   args: {
     type: 'person',
     name: 'Jane Doe',
-    size: 'xl',
   },
 };
 
@@ -39,4 +40,36 @@ export const Logo: Story = {
     imageUrl: 'https://avatars.githubusercontent.com/u/1536293?s=200&v=4',
     size: 'xl',
   },
+};
+
+export const Loading: Story = {
+  args: {
+    loading: true,
+  },
+};
+
+export const Sizes = ({ type = 'person', name = 'Alfa', imageUrl }: AvatarProps) => {
+  return (
+    <Flex spacing={2} align="end">
+      {Object.keys(SizeEnum).map((size) => {
+        return (
+          <Avatar type={type as AvatarType} name={name} size={size as AvatarSize} imageUrl={imageUrl} key={size} />
+        );
+      })}
+    </Flex>
+  );
+};
+
+export const People = () => {
+  return <Sizes name="Person" type="person" />;
+};
+
+export const Companies = () => {
+  return <Sizes name="Company" type="company" />;
+};
+
+export const Logos = () => {
+  return (
+    <Sizes type="company" name="Skatteetaten" imageUrl="https://avatars.githubusercontent.com/u/1536293?s=200&v=4" />
+  );
 };

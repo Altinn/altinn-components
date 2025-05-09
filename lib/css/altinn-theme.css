@@ -3,7 +3,11 @@
 }
 
 [data-theme="subtle"] {
-  background-color: var(--ds-color-background-subtle);
+  background-color: var(--ds-color-background-tinted);
+}
+
+[data-theme="tinted"] {
+  background-color: var(--ds-color-surface-tinted);
 }
 
 [data-theme="surface"] {

@@ -4,20 +4,23 @@
   border-color: var(--ds-color-surface-active);
   display: flex;
   flex-direction: column;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+  --dsc-item-my: 0;
 }
 
 .border[data-seen="true"] {
   border-color: var(--ds-color-neutral-surface-tinted);
 }
 
-.border[data-variant="draft"] {
+.border[data-status="draft"] {
   border-color: var(--ds-color-neutral-surface-active);
   border-left-width: 0.125rem;
   margin-left: 0.125rem;
   border-left-style: dashed;
 }
 
-.border[data-variant="sent"] {
+.border[data-status="sent"] {
   border-color: var(--ds-color-neutral-surface-tinted);
 }
 

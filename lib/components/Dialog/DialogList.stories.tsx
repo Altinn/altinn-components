@@ -3,7 +3,7 @@ import { DialogList } from '..';
 import { inboxSearchResults, inboxSection } from '../../../examples';
 
 const meta = {
-  title: 'Dialog/DialogList',
+  title: 'Inbox/DialogList',
   component: DialogList,
   tags: ['beta'],
   args: {

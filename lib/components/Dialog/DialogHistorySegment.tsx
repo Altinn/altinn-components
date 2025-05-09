@@ -3,13 +3,13 @@ import { ArrowDownIcon, ArrowUpIcon } from '@navikt/aksel-icons';
 import { Fragment, type ReactNode, useState } from 'react';
 import {
   DialogHistoryItem,
+  type DialogHistoryItemProps,
   Timeline,
   TimelineLink,
   TimelineSection,
   TimelineSegment,
   type TransmissionProps,
-} from '..';
-import type { DialogHistoryItemProps } from './DialogHistoryItem.tsx';
+} from '../index.ts';
 
 export interface DialogHistorySegmentProps extends TransmissionProps {
   items: DialogHistoryItemProps[];

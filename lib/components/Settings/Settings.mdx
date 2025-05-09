@@ -1,0 +1,26 @@
+import { Meta, Controls, Primary, Canvas } from "@storybook/blocks";
+import * as SettingsStories from "./Settings.stories";
+
+<Meta title="Settings" />
+
+# Settings
+
+Use `Settings`, `SettingsItem` to build a list of settings. By default it will render as a card.
+
+```tsx
+return (
+  <Settings>
+    <SettingsItem />
+    <Divider as="li" />
+    <SettingsItem />
+  </Settings>
+);
+```
+
+## CollapsibleSettings
+
+<Canvas of={SettingsStories.CollapsibleList} />
+
+## CompanySettings
+
+<Canvas of={SettingsStories.CompanySettings} />

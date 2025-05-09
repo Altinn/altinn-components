@@ -1,7 +1,22 @@
-.listIcon {
-  flex-shrink: 0;
+.wrapper {
+  pointer-events: none;
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-shrink: 0;
+  font-size: 2em;
+}
+
+.icon svg,
+.icon img {
+  display: block;
+  width: 1em;
+  height: 1em;
+  font-size: 0.825em;
+}
+
+.avatar {
+  font-size: 1em;
+}
+
+.avatarGroup {
+  font-size: 0.75em;
 }

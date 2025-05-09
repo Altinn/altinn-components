@@ -1,4 +1,4 @@
-import { BookmarksListItem, EditableBookmark, Heading, ListBase, Section, Typography } from '../';
+import { BookmarksListItem, EditableBookmark, Heading, List, Section, Typography } from '../';
 import type { EditableBookmarkProps, TextFieldProps } from '../';
 
 export interface BookmarksSectionProps {
@@ -26,12 +26,12 @@ export const BookmarksSection = ({
     <Section padding={6} theme="surface-hover" spacing={4} bleed>
       <Heading size="md">{title}</Heading>
       {loading ? (
-        <ListBase>
+        <List>
           <BookmarksListItem title={title} loading={loading} size="sm" />
-        </ListBase>
+        </List>
       ) : (
         items.length > 0 && (
-          <ListBase spacing="xs">
+          <List spacing="xs">
             {items.map((item) => (
               <EditableBookmark
                 {...item}
@@ -44,7 +44,7 @@ export const BookmarksSection = ({
                 size="sm"
               />
             ))}
-          </ListBase>
+          </List>
         )
       )}
       <Typography size="xs">{description}</Typography>

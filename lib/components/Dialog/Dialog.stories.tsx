@@ -1,9 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Dialog, DialogContact, DialogHistory, DialogSection } from '..';
-import { activityLog, dialog, dialogContact, dialogInfo, dialogTabs, transmissionHistory } from '../../../examples';
+import {
+  dialog,
+  dialogActivityLog,
+  dialogContact,
+  dialogInfo,
+  dialogTabs,
+  transmissionHistory,
+} from '../../../examples';
 
 const meta: Meta<typeof Dialog> = {
-  title: 'Dialog/Dialog',
+  title: 'Inbox/Dialog',
   component: Dialog,
   tags: ['autodocsi', 'beta'],
   parameters: {},
@@ -40,7 +47,7 @@ export const ActivityLog: Story = {
         };
       }),
     },
-    children: <DialogHistory {...activityLog} />,
+    children: <DialogHistory {...dialogActivityLog} />,
   },
 };
 

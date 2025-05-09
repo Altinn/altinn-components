@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { attachments } from '../../../examples/attachments.ts';
-import { DialogAttachments } from './DialogAttachments';
+import { DialogAttachments } from './DialogAttachments.tsx';
 
 const meta = {
-  title: 'Dialog/Atoms/DialogAttachments',
+  title: 'Inbox/Dialog/DialogAttachments',
   component: DialogAttachments,
   tags: ['autodocs', 'beta'],
   args: {

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { DialogActions } from './DialogActions';
 
 const meta = {
-  title: 'Dialog/Atoms/DialogActions',
+  title: 'Inbox/Dialog/DialogActions',
   component: DialogActions,
   tags: ['autodocsi', 'beta'],
   args: {

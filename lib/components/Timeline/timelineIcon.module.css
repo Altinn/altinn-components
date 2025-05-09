@@ -1,0 +1,30 @@
+.icon {
+  color: var(--ds-color-surface-active);
+}
+
+.icon[data-size="lg"] {
+  font-size: 2.25rem;
+}
+
+.icon[data-size="lg"] svg,
+.icon[data-size="lg"] img {
+  font-size: 1.75rem;
+}
+
+.icon[data-size="md"] {
+  font-size: 2rem;
+}
+
+.icon[data-size="md"] svg,
+.icon[data-size="md"] img {
+  font-size: 1.5rem;
+}
+
+.icon[data-size="sm"] {
+  font-size: 1.5rem;
+}
+
+.icon[data-size="sm"] svg,
+.icon[data-size="sm"] img {
+  font-size: 1.25rem;
+}

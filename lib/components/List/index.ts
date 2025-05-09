@@ -6,5 +6,4 @@ export * from './ListItemIcon';
 export * from './ListItemControls';
 export * from './ListItemSelect';
 export * from './ListItem';
-export * from './ListBase';
 export * from './List';

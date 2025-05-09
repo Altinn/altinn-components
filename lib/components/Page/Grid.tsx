@@ -3,7 +3,7 @@ import type { CSSProperties, ReactNode } from 'react';
 import type { Color, Range, Theme } from '..';
 import styles from './grid.module.css';
 
-export type GridElement = 'div' | 'section' | 'article' | 'header' | 'footer';
+export type GridElement = 'div' | 'section' | 'article' | 'header' | 'footer' | 'ul';
 export type GridCols = 2 | 3 | 4;
 export type GridSpacing = 'xs' | Range<11>;
 export type GridPadding = 'page' | Range<11>;

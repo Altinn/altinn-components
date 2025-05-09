@@ -1,7 +1,7 @@
 'use client';
 import { EyeIcon } from '@navikt/aksel-icons';
 import { useState } from 'react';
-import { type AvatarProps, Badge, Byline, ListBase, MetaBase, MetaItem, Section } from '..';
+import { type AvatarProps, Badge, Byline, List, MetaBase, MetaItem, Section } from '..';
 import styles from './SeenByLog.module.css';
 
 export interface SeenByLogItem extends AvatarProps {
@@ -40,7 +40,7 @@ export const SeenByLog = ({ collapsible, expanded, title, items, endUserLabel = 
         </MetaBase>
       )}
       {open && (
-        <ListBase className={styles.list}>
+        <List className={styles.list}>
           {items?.map((item) => {
             const { id, name, seenAt, seenAtLabel, isEndUser } = item;
 
@@ -53,7 +53,7 @@ export const SeenByLog = ({ collapsible, expanded, title, items, endUserLabel = 
               </li>
             );
           })}
-        </ListBase>
+        </List>
       )}
     </Section>
   );

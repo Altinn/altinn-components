@@ -22,8 +22,8 @@ export const AccountButton = ({ account, linkText, onClick, multipleAccounts }: 
     return (
       <MenuItemBase size="lg" onClick={onClick} linkText={linkText} linkIcon={ChevronRightIcon} as="button">
         <MenuItemIcon
-          size="xl"
-          avatar={{
+          size="lg"
+          icon={{
             name: account.name,
             type: account.type,
           }}
@@ -42,8 +42,8 @@ export const AccountButton = ({ account, linkText, onClick, multipleAccounts }: 
   return (
     <MenuItemBase size="lg" as="div">
       <MenuItemIcon
-        size="xl"
-        avatar={{
+        size="lg"
+        icon={{
           name: account.name,
           type: account.type,
         }}

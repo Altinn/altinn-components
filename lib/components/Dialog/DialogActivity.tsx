@@ -11,7 +11,7 @@ import {
   TransmissionList,
   type TransmissionProps,
   Typography,
-} from '../';
+} from '..';
 
 export interface DialogActivityBadge {
   label?: string;
@@ -46,7 +46,7 @@ export const DialogActivity = ({
   transmissions,
 }: DialogActivityProps) => {
   return (
-    <TimelineBase color={color} icon={icon} avatar={size === 'md' ? createdBy : undefined}>
+    <TimelineBase color={color} icon={size === 'md' ? createdBy : icon}>
       <Section style={{ marginBottom: '.5em' }}>
         {createdAtLabel && (
           <Byline datetime={createdAt}>

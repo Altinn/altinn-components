@@ -9,12 +9,14 @@ export type FlexJustify = 'initial' | 'start' | 'end' | 'center' | 'between';
 export type FlexSpacing = 'page' | 'xs' | Range<11>;
 export type FlexPadding = 'page' | Range<11>;
 export type FlexMargin = 0 | 'page' | 'section' | 'bottom';
+export type FlexSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export interface FlexProps {
   as?: ElementType;
   shadow?: Shadow;
   color?: Color;
   theme?: Theme;
+  size?: FlexSize;
   direction?: FlexDirection;
   reverse?: boolean;
   align?: FlexAlign;
@@ -32,6 +34,7 @@ export interface FlexProps {
 export const Flex = ({
   as = 'div',
   color,
+  size,
   theme = 'transparent',
   shadow = 'none',
   direction = 'row',
@@ -53,6 +56,7 @@ export const Flex = ({
     <Component
       className={cx(styles.flex, className)}
       style={style}
+      data-size={size}
       data-color={color}
       data-theme={theme}
       data-shadow={shadow}

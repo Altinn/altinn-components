@@ -1,4 +1,4 @@
-import { ListBase, type ListItemColor } from '../List';
+import { List, type ListItemColor } from '../List';
 import { AccessAreaListItem, type AccessAreaListItemProps } from './AccessAreaListItem';
 
 export interface AccessAreaListProps {
@@ -8,10 +8,10 @@ export interface AccessAreaListProps {
 
 export const AccessAreaList = ({ items, color }: AccessAreaListProps) => {
   return (
-    <ListBase color={color} spacing={1}>
+    <List color={color} spacing={1}>
       {items.map((item) => (
         <AccessAreaListItem key={item.id} {...item} />
       ))}
-    </ListBase>
+    </List>
   );
 };
