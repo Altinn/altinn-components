@@ -1,9 +1,6 @@
 import { XMarkIcon } from '@navikt/aksel-icons';
 import type { ReactNode } from 'react';
-import { IconOrAvatar, type IconOrAvatarProps } from '../';
-import styles from './listItemIcon.module.css';
-
-import { Icon, type IconSize } from '../Icon';
+import { Flex, Icon, IconOrAvatar, type IconOrAvatarProps, type IconSize } from '../';
 
 export type ListItemIconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
@@ -22,8 +19,8 @@ export const ListItemIcon = ({ loading, size = 'sm', icon, avatar, avatarGroup, 
   }
 
   return (
-    <span className={styles.listIcon}>
+    <Flex align="center" justify="center" style={{ flexShrink: 0 }}>
       {children || <IconOrAvatar size={size} icon={icon} avatar={avatar} avatarGroup={avatarGroup} />}
-    </span>
+    </Flex>
   );
 };

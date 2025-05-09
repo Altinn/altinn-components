@@ -1,7 +1,4 @@
-import type { ElementType, ReactElement, ReactNode } from 'react';
-import type { AvatarGroupProps, AvatarProps } from '../Avatar';
-import type { BadgeProps } from '../Badge';
-import type { IconProps, SvgElement } from '../Icon';
+import type { ReactElement, ReactNode } from 'react';
 import { ListItemBase, type ListItemBaseProps } from './ListItemBase';
 import { ListItemHeader, type ListItemHeaderProps } from './ListItemHeader';
 
@@ -13,23 +10,21 @@ export interface ListItemProps extends ListItemBaseProps, ListItemHeaderProps {
   /** Element is loading, display a placeholder */
   loading?: boolean;
   /** Title */
-  title?: string;
-  /** Element type of the list-item header label. Defaults to h2 */
-  titleAs?: ElementType;
+  title?: ListItemHeaderProps['title'];
   /** Optional description */
-  description?: string;
+  description?: ListItemHeaderProps['description'];
   /** List item icon */
-  icon?: SvgElement | IconProps | ReactNode | undefined;
+  icon?: ListItemHeaderProps['icon'];
   /** List item avatar */
-  avatar?: AvatarProps;
+  avatar?: ListItemHeaderProps['avatar'];
   /** List item avatarGroup */
-  avatarGroup?: AvatarGroupProps;
+  avatarGroup?: ListItemHeaderProps['avatarGroup'];
+  /** Optional badge */
+  badge?: ListItemHeaderProps['badge'];
+  /** Whether to display the item with a link icon */
+  linkIcon?: ListItemHeaderProps['linkIcon'];
   /** Custom label */
   label?: ReactNode | (() => ReactElement);
-  /** Optional badge */
-  badge?: BadgeProps | ReactNode | undefined;
-  /** Whether to display the item with a link icon */
-  linkIcon?: boolean;
 }
 
 export interface ListItemInputProps extends ListItemProps {
@@ -40,10 +35,9 @@ export interface ListItemInputProps extends ListItemProps {
 
 export const ListItem = ({
   className,
-  variant = 'solid',
+  variant = 'default',
   color,
-  theme = 'default',
-  shadow = 'xs',
+  shadow = true,
   loading,
   collapsible,
   expanded,
@@ -52,7 +46,6 @@ export const ListItem = ({
   avatar,
   avatarGroup,
   title,
-  titleAs,
   description,
   badge,
   linkIcon = false,
@@ -69,20 +62,18 @@ export const ListItem = ({
 
   return (
     <ListItemBase
-      variant={variant}
       color={color}
-      theme={theme}
+      variant={variant}
       shadow={shadow}
+      size={size}
       selected={selected}
       expanded={expanded}
-      title={title}
       loading={loading}
       interactive={interactive}
     >
       <ListItemHeader
         className={className}
         color={color}
-        theme={theme}
         loading={loading}
         linkIcon={linkIcon}
         collapsible={collapsible}
@@ -96,7 +87,6 @@ export const ListItem = ({
         avatarGroup={avatarGroup}
         badge={badge}
         controls={controls}
-        titleAs={titleAs}
         interactive={interactive}
         {...rest}
       >

@@ -13,6 +13,7 @@ export type Color =
 export type Theme =
   | 'transparent'
   | 'default'
+  | 'tinted'
   | 'subtle'
   | 'surface'
   | 'surface-default'

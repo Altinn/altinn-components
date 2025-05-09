@@ -1,11 +1,9 @@
 import cx from 'classnames';
 import type { ElementType, KeyboardEvent, KeyboardEventHandler, ReactNode } from 'react';
-import type { ListItemSize } from './ListItemBase';
 import styles from './listItemLink.module.css';
 
 export interface ListItemLinkProps {
   interactive?: boolean;
-  size?: ListItemSize;
   as?: ElementType;
   href?: string;
   onClick?: () => void;
@@ -22,7 +20,6 @@ export interface ListItemLinkProps {
 
 export const ListItemLink = ({
   interactive = false,
-  size,
   as,
   loading,
   disabled,
@@ -37,7 +34,7 @@ export const ListItemLink = ({
 }: ListItemLinkProps) => {
   if (!interactive) {
     return (
-      <div className={cx(styles.link, className)} data-size={size} aria-describedby={describedby}>
+      <div className={cx(styles.link, className)} aria-describedby={describedby}>
         {children}
       </div>
     );
@@ -58,7 +55,6 @@ export const ListItemLink = ({
       aria-disabled={loading || disabled}
       aria-selected={selected}
       aria-describedby={describedby}
-      data-size={size}
       data-active={active}
     >
       {children}

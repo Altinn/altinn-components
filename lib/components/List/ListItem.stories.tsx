@@ -14,7 +14,7 @@ import {
   Section,
 } from '../';
 
-const themes = ['default', 'subtle', 'surface', 'base', 'transparent'] as ListItemProps['theme'][];
+const variants = ['default', 'tinted', 'border', 'inline'] as ListItemProps['variant'][];
 
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as ListItemProps['size'][];
 
@@ -41,7 +41,6 @@ const meta = {
     id: 'id',
     as: 'button',
     title: 'Title',
-    titleAs: 'h2',
     onClick: () => alert('onClick'),
   },
 } satisfies Meta<typeof ListItem>;
@@ -233,7 +232,6 @@ export const NonInteractive = () => {
     <ListBase>
       <ListItem
         title="Non-interactive"
-        titleAs="h3"
         icon={{ theme: 'surface', svgElement: TeddyBearIcon }}
         badge={{ label: 'Badge' }}
         interactive={false}
@@ -246,19 +244,19 @@ export const NonInteractive = () => {
   );
 };
 
-export const Theme = (args: ListItemProps) => {
+export const Variants = (args: ListItemProps) => {
   return (
     <ListBase>
-      {themes?.map((theme) => {
+      {variants?.map((variant) => {
         return (
           <ListItem
             {...args}
             icon={TeddyBearIcon}
-            title={theme}
-            description={'theme:' + theme}
-            theme={theme}
+            title={variant}
+            description={'Variant:' + variant}
+            variant={variant}
             linkIcon
-            key={theme}
+            key={variant}
           />
         );
       })}
@@ -266,7 +264,7 @@ export const Theme = (args: ListItemProps) => {
   );
 };
 
-export const Size = (args: ListItemProps) => {
+export const Sizes = (args: ListItemProps) => {
   return (
     <ListBase>
       {sizes?.map((size) => {
@@ -275,7 +273,6 @@ export const Size = (args: ListItemProps) => {
             {...args}
             icon={{ svgElement: TeddyBearIcon, theme: 'surface' }}
             title={size}
-            description={'theme:' + size}
             size={size}
             linkIcon
             key={size}
@@ -395,10 +392,10 @@ export const CustomControls = (args: ListItemProps) => {
 export const OverrideTitleAs = (args: ListItemProps) => {
   return (
     <ListBase>
-      <ListItem {...args} icon={HeadCloudIcon} titleAs="h2" title="Title as h2" />
-      <ListItem {...args} icon={HeadCloudIcon} titleAs="h3" title="Title as h3" />
-      <ListItem {...args} icon={HeadCloudIcon} titleAs="p" title="Title as p" />
-      <ListItem {...args} icon={HeadCloudIcon} titleAs="span" title="Title as span" />
+      <ListItem {...args} icon={HeadCloudIcon} title="Title as h2" />
+      <ListItem {...args} icon={HeadCloudIcon} title={{ as: 'h3', children: 'Title as H3' }} />
+      <ListItem {...args} icon={HeadCloudIcon} title={{ as: 'p', children: 'Title as P' }} />
+      <ListItem {...args} icon={HeadCloudIcon} title={{ as: 'span', children: 'Title as span' }} />
     </ListBase>
   );
 };

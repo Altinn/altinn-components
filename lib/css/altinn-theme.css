@@ -6,6 +6,10 @@
   background-color: var(--ds-color-background-subtle);
 }
 
+[data-theme="tinted"] {
+  background-color: var(--ds-color-surface-tinted);
+}
+
 [data-theme="surface"] {
   background-color: var(--ds-color-surface-tinted);
 }

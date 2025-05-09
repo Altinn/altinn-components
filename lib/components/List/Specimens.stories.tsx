@@ -3,7 +3,7 @@ import type { Meta } from '@storybook/react';
 import { Fragment } from 'react';
 import { ListBase, ListItem, type ListItemProps, MetaItem } from '../';
 
-const themes = ['default', 'subtle', 'surface', 'base', 'transparent'] as ListItemProps['theme'][];
+const variants = ['default', 'tinted', 'border', 'inline'] as ListItemProps['variant'][];
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as ListItemProps['size'][];
 
 const meta = {
@@ -20,19 +20,19 @@ const meta = {
 export default meta;
 
 export const Theme = (args: ListItemProps) => {
-  return themes?.map((theme) => {
+  return variants?.map((variant) => {
     return (
-      <div key={theme}>
-        <MetaItem>{theme}</MetaItem>
+      <div key={variant}>
+        <MetaItem>{variant}</MetaItem>
         <ListBase>
           {sizes.map((size) => {
             return (
-              <Fragment key={theme}>
+              <Fragment key={variant}>
                 <ListItem
                   {...args}
                   icon={TeddyBearIcon}
-                  theme={theme}
-                  description={theme + '/' + size}
+                  variant={variant}
+                  description={variant + '/' + size}
                   size={size}
                   linkIcon
                 />
