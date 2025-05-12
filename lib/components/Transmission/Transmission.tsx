@@ -39,7 +39,7 @@ export interface TransmissionProps extends Omit<ListItemProps, 'children'> {
 
 export const Transmission = ({
   size = 'xs',
-  theme = 'subtle',
+  variant = 'tinted',
   color = 'neutral',
   title,
   createdAt,
@@ -65,9 +65,16 @@ export const Transmission = ({
         }
       }
       size={size}
-      theme={theme}
+      variant={variant}
       color={color}
-      label={<ListItemLabel title={title} weight={type === 'submission' ? 'normal' : 'bold'} />}
+      label={
+        <ListItemLabel
+          title={{
+            children: title,
+            weight: type === 'submission' ? 'normal' : 'bold',
+          }}
+        />
+      }
       expanded={expanded}
       onClick={() => setExpanded((prevState) => !prevState)}
       collapsible

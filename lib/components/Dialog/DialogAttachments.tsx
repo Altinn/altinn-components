@@ -12,7 +12,7 @@ export const DialogAttachments = ({ title = 'Attachments', items }: DialogAttach
 
   return (
     <Section spacing={1}>
-      <Heading as="h2" size="xs" weight="normal" theme="subtle">
+      <Heading as="h2" size="xs" weight="normal" variant="subtle">
         {title}
       </Heading>
       <AttachmentList items={items} />

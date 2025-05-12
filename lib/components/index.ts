@@ -8,6 +8,7 @@ export * from './Button';
 export * from './Byline';
 export * from './ContextMenu';
 export * from './Dialog';
+export * from './Divider';
 export * from './Dropdown';
 export * from './Footer';
 export * from './GlobalMenu';
@@ -32,5 +33,6 @@ export * from './ResourceList';
 export * from './AccessAreaList';
 export * from './AccessPackageList';
 export * from './Forms';
+export * from './Settings';
 
 export * from './DsComponents';

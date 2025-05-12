@@ -56,8 +56,8 @@ export const AutocompleteItem = ({ type, ...props }: AutocompleteItemProps) => {
         <ScopeListItem
           {...(props as ScopeAutocompleteItemProps)}
           color="company"
-          theme="default"
-          shadow="none"
+          variant="default"
+          shadow={false}
           tabIndex={-1}
           linkIcon
         />
@@ -67,8 +67,8 @@ export const AutocompleteItem = ({ type, ...props }: AutocompleteItemProps) => {
         <SuggestListItem
           {...(props as SuggestAutocompleteItemProps)}
           color="company"
-          theme="default"
-          shadow="none"
+          variant="default"
+          shadow={false}
           size="sm"
           tabIndex={-1}
           linkIcon
@@ -78,8 +78,8 @@ export const AutocompleteItem = ({ type, ...props }: AutocompleteItemProps) => {
       return (
         <BookmarksListItem
           {...(props as BookmarksListItemProps)}
-          theme="default"
-          shadow="none"
+          variant="default"
+          shadow={false}
           size="sm"
           tabIndex={-1}
         />
@@ -88,8 +88,8 @@ export const AutocompleteItem = ({ type, ...props }: AutocompleteItemProps) => {
       return (
         <DialogListItem
           {...(props as DialogListItemProps)}
-          theme="default"
-          shadow="none"
+          variant="default"
+          shadow={false}
           size="sm"
           tabIndex={-1}
           linkIcon
@@ -100,13 +100,13 @@ export const AutocompleteItem = ({ type, ...props }: AutocompleteItemProps) => {
         <ListItem
           as="div"
           {...(props as ListItemProps)}
-          theme="default"
-          shadow="none"
+          variant="default"
+          shadow={false}
           tabIndex={-1}
           interactive={false}
         />
       );
     default:
-      return <ListItem {...(props as ListItemProps)} theme="default" shadow="none" size="sm" tabIndex={-1} />;
+      return <ListItem {...(props as ListItemProps)} variant="default" shadow={false} size="sm" tabIndex={-1} />;
   }
 };

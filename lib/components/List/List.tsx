@@ -5,17 +5,17 @@ import {
   type ListItemColor,
   type ListItemProps,
   type ListItemSize,
-  type ListItemTheme,
+  type ListItemVariant,
 } from '..';
 
 export interface ListProps extends Omit<ListBaseProps, 'children'> {
   items?: ListItemProps[];
   defaultItemColor?: ListItemColor;
-  defaultItemTheme?: ListItemTheme;
+  defaultItemVariant?: ListItemVariant;
   defaultItemSize?: ListItemSize;
 }
 
-export const List = ({ defaultItemSize, defaultItemTheme, defaultItemColor, items = [], ...rest }: ListProps) => {
+export const List = ({ defaultItemSize, defaultItemVariant, defaultItemColor, items = [], ...rest }: ListProps) => {
   return (
     <ListBase {...rest}>
       {items.map((item, index) => {
@@ -24,7 +24,7 @@ export const List = ({ defaultItemSize, defaultItemTheme, defaultItemColor, item
             {...item}
             size={item?.size || defaultItemSize}
             color={item?.color || defaultItemColor}
-            theme={item?.theme || defaultItemTheme}
+            variant={item?.variant || defaultItemVariant}
             key={`item-${item.id ?? index}`}
           />
         );

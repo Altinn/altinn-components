@@ -121,12 +121,11 @@ export const DialogListItem = ({
   title,
   description,
   summary,
-  theme = 'default',
+  variant = 'default',
   ...rest
 }: DialogListItemProps) => {
   const applicableState = trashedAt ? 'trashed' : archivedAt ? 'archived' : state;
-  const applicableTheme = selected ? 'subtle' : theme;
-  const applicableVariant = status?.value;
+  const applicableVariant = selected ? 'tinted' : variant;
 
   if (size === 'xs' || size === 'sm') {
     return (
@@ -134,11 +133,11 @@ export const DialogListItem = ({
         {...rest}
         size={size}
         selected={selected}
-        theme={applicableTheme}
+        variant={applicableVariant}
         label={
           <div
             className={styles.border}
-            data-variant={applicableVariant}
+            data-status={status?.value}
             data-size={size}
             data-seen={seen}
             data-loading={loading}
@@ -159,7 +158,7 @@ export const DialogListItem = ({
       {...rest}
       size={size}
       selected={selected}
-      theme={applicableTheme}
+      variant={applicableVariant}
       controls={
         <div className={styles.controls}>{controls || (select && <ListItemSelect {...select} size="xl" />)}</div>
       }
@@ -167,7 +166,7 @@ export const DialogListItem = ({
       label={
         <div
           className={styles.border}
-          data-variant={applicableVariant}
+          data-status={status?.value}
           data-size={size}
           data-seen={seen}
           data-loading={loading}

@@ -5,6 +5,7 @@ import {
   type AvatarProps,
   type BadgeProps,
   ContextMenu,
+  type IconProps,
   List,
   ListBase,
   ListItem,
@@ -83,7 +84,7 @@ export const ListOfPeople = () => {
           badge={item?.badge}
           title={item.name}
           description={item.role}
-          theme="default"
+          variant="default"
         />
       ))}
     </ListBase>
@@ -100,7 +101,7 @@ export const ListOfServices = () => {
           avatar={item.owner}
           title={item.title}
           description={item.owner.name}
-          theme="subtle"
+          variant="tinted"
         />
       ))}
     </ListBase>
@@ -114,10 +115,10 @@ export const ListOfCategories = () => {
         <ListItem
           size="md"
           key={index}
-          icon={item.icon}
+          icon={{ svgElement: item.icon, theme: 'tinted' } as IconProps}
           title={item.title}
           description={item?.items?.length + ' tjenester'}
-          theme="default"
+          variant="border"
         />
       ))}
     </ListBase>
@@ -173,9 +174,8 @@ export const MultilevelList = () => {
         return (
           <ListItem
             color={item.color as ListItemColor}
-            theme="default"
+            icon={{ svgElement: item.icon, theme: 'tinted' } as IconProps}
             size="md"
-            icon={item.icon}
             title={item.title}
             badge={{
               theme: 'surface',
@@ -196,9 +196,9 @@ export const MultilevelList = () => {
                     <ListItem
                       key={'c' + index}
                       icon={PackageIcon}
-                      size="sm"
+                      size="xs"
                       color={child.color as ListItemColor}
-                      theme="subtle"
+                      variant="tinted"
                       title={child.title}
                       controls={
                         <ContextMenu

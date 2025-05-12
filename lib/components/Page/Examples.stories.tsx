@@ -275,7 +275,7 @@ export const ServicePage = () => {
             {...contact}
             typographyProps={{
               size: 'sm',
-              theme: 'subtle',
+              variant: 'subtle',
             }}
             variant="card"
             theme="surface"

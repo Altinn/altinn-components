@@ -53,7 +53,7 @@ export const AccountListItem = ({
       description={expanded ? undefined : description}
       expanded={expanded}
       selected={expanded}
-      badge={controls}
+      badge={!expanded && controls}
       linkIcon
     >
       {children}
