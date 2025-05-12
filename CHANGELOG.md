@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.27.1](https://github.com/Altinn/altinn-components/compare/v0.27.0...v0.27.1) (2025-05-12)
+
+
+### Bug Fixes
+
+* add ID to list item ([#428](https://github.com/Altinn/altinn-components/issues/428)) ([2d7fd25](https://github.com/Altinn/altinn-components/commit/2d7fd25adfef419e2b9057cf9c373e3cf1a4d573))
+
 ## [0.27.0](https://github.com/Altinn/altinn-components/compare/v0.26.1...v0.27.0) (2025-05-08)
 
 
