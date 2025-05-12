@@ -122,6 +122,7 @@ export const DialogListItem = ({
   description,
   summary,
   theme = 'default',
+  id,
   ...rest
 }: DialogListItemProps) => {
   const applicableState = trashedAt ? 'trashed' : archivedAt ? 'archived' : state;
@@ -132,6 +133,7 @@ export const DialogListItem = ({
     return (
       <ListItem
         {...rest}
+        id={id}
         size={size}
         selected={selected}
         theme={applicableTheme}
@@ -157,6 +159,7 @@ export const DialogListItem = ({
   return (
     <ListItem
       {...rest}
+      id={id}
       size={size}
       selected={selected}
       theme={applicableTheme}
