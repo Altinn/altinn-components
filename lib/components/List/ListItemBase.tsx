@@ -47,6 +47,8 @@ export interface ListItemBaseProps {
   onMouseEnter?: HTMLProps<HTMLDivElement>['onMouseEnter'];
   /** The children elements of the list item. */
   children?: ReactNode;
+  /** Id of list item. */
+  id?: string;
 }
 
 export const ListItemBase = ({
@@ -61,6 +63,7 @@ export const ListItemBase = ({
   selected,
   className,
   onMouseEnter,
+  id,
   children,
 }: ListItemBaseProps) => {
   const Component = as || 'li';
@@ -84,6 +87,7 @@ export const ListItemBase = ({
       data-shadow={appliedShadow}
       aria-hidden={hidden}
       onMouseEnter={onMouseEnter}
+      id={id}
     >
       {children}
     </Component>

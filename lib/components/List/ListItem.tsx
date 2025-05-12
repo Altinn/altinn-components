@@ -62,6 +62,7 @@ export const ListItem = ({
   controls,
   children,
   interactive,
+  id,
   ...rest
 }: ListItemProps) => {
   /** Set label */
@@ -78,6 +79,7 @@ export const ListItem = ({
       title={title}
       loading={loading}
       interactive={interactive}
+      id={id}
     >
       <ListItemHeader
         className={className}
