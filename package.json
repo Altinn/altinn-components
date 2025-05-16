@@ -81,5 +81,5 @@
   "lint-staged": {
     "**/*.*": "biome check --staged --no-errors-on-unmatched --write"
   },
-  "packageManager": "pnpm@9.13.0"
+  "packageManager": "pnpm@10.11.0"
 }
