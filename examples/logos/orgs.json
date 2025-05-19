@@ -1,0 +1,434 @@
+[
+    {
+        "id": "afs",
+        "orgNr": "995646137"
+    },
+    {
+        "id": "brg",
+        "orgNr": "974760673",
+        "meta": "https://orglogo.digdir.no/api/meta/974760673",
+        "logo": "https://orglogo.digdir.no/api/emblem/svg/974760673"
+    },
+    {
+        "id": "brm",
+        "orgNr": "989023578"
+    },
+    {
+        "id": "buf",
+        "orgNr": "986128433"
+    },
+    {
+        "id": "dat",
+        "orgNr": "974761211",
+        "meta": "https://orglogo.digdir.no/api/meta/974761211",
+        "logo": "https://orglogo.digdir.no/api/logo/50/974761211"
+    },
+    {
+        "id": "dibk",
+        "orgNr": "974760223"
+    },
+    {
+        "id": "digdir",
+        "orgNr": "991825827",
+        "meta": "https://orglogo.digdir.no/api/meta/991825827",
+        "logo": "https://orglogo.digdir.no/api/emblem/svg/991825827"
+    },
+    {
+        "id": "dihe",
+        "orgNr": "964983291"
+    },
+    {
+        "id": "dmf",
+        "orgNr": "974760282",
+        "meta": "https://orglogo.digdir.no/api/meta/974760282",
+        "logo": "https://orglogo.digdir.no/api/logo/50/974760282"
+    },
+    {
+        "id": "din",
+        "orgNr": "984195796",
+        "meta": "https://orglogo.digdir.no/api/meta/984195796",
+        "logo": "https://orglogo.digdir.no/api/logo/50/984195796"
+    },
+    {
+        "id": "dsb",
+        "orgNr": "974760983",
+        "meta": "https://orglogo.digdir.no/api/meta/974760983",
+        "logo": "https://orglogo.digdir.no/api/logo/50/974760983"
+    },
+    {
+        "id": "fd",
+        "orgNr": "971203420",
+        "meta": "https://orglogo.digdir.no/api/meta/971203420",
+        "logo": "https://orglogo.digdir.no/api/emblem/svg/971203420"
+    },
+    {
+        "id": "fhi",
+        "orgNr": "983744516",
+        "meta": "https://orglogo.digdir.no/api/meta/983744516",
+        "logo": "https://orglogo.digdir.no/api/emblem/svg/983744516"
+    },
+    {
+        "id": "fors",
+        "orgNr": "986105174"
+    },
+    {
+        "id": "gk",
+        "orgNr": "985847215"
+    },
+    {
+        "id": "hdir",
+        "orgNr": "983544622",
+        "meta": "https://orglogo.digdir.no/api/meta/983544622",
+        "logo": "https://orglogo.digdir.no/api/logo/50/983544622"
+    },
+    {
+        "id": "hemit",
+        "orgNr": "928033821"
+    },
+    {
+        "id": "hi",
+        "orgNr": "971349077",
+        "meta": "https://orglogo.digdir.no/api/meta/971349077",
+        "logo": "https://orglogo.digdir.no/api/emblem/svg/971349077"
+    },
+    {
+        "id": "hmrhf",
+        "orgNr": "997005562"
+    },
+    {
+        "id": "ikta",
+        "orgNr": "985359385"
+    },
+    {
+        "id": "indi",
+        "orgNr": "930283487"
+    },
+    {
+        "id": "k1103",
+        "orgNr": "964965226",
+        "meta": "https://orglogo.digdir.no/api/meta/964965226",
+        "logo": "https://orglogo.digdir.no/api/emblem/svg/964965226"
+    },
+    {
+        "id": "krt",
+        "orgNr": "840747972"
+    },
+    {
+        "id": "ksdigi",
+        "orgNr": "931796003"
+    },
+    {
+        "id": "kt",
+        "orgNr": "974761246",
+        "meta": "https://orglogo.digdir.no/api/meta/974761246",
+        "logo": "https://orglogo.digdir.no/api/logo/50/974761246"
+    },
+    {
+        "id": "kv",
+        "orgNr": "971040238",
+        "meta": "https://orglogo.digdir.no/api/meta/971040238",
+        "logo": "https://orglogo.digdir.no/api/emblem/svg/971040238"
+    },
+    {
+        "id": "kyv",
+        "orgNr": "874783242",
+        "meta": "https://orglogo.digdir.no/api/meta/874783242",
+        "logo": "https://orglogo.digdir.no/api/logo/50/874783242"
+    },
+    {
+        "id": "lt",
+        "orgNr": "981105516",
+        "meta": "https://orglogo.digdir.no/api/meta/981105516",
+        "logo": "https://orglogo.digdir.no/api/logo/50/981105516"
+    },
+    {
+        "id": "lts",
+        "orgNr": "982391490",
+        "meta": "https://orglogo.digdir.no/api/meta/982391490",
+        "logo": "https://orglogo.digdir.no/api/logo/50/982391490"
+    },
+    {
+        "id": "mat",
+        "orgNr": "985399077",
+        "meta": "https://orglogo.digdir.no/api/meta/985399077",
+        "logo": "https://orglogo.digdir.no/api/emblem/svg/985399077"
+    },
+    {
+        "id": "mdir",
+        "orgNr": "999601391",
+        "meta": "https://orglogo.digdir.no/api/meta/999601391",
+        "logo": "https://orglogo.digdir.no/api/emblem/svg/999601391"
+    },
+    {
+        "id": "nb",
+        "orgNr": "937884117"
+    },
+    {
+        "id": "nbib",
+        "orgNr": "976029100",
+        "meta": "https://orglogo.digdir.no/api/meta/976029100",
+        "logo": "https://orglogo.digdir.no/api/emblem/svg/976029100"
+    },
+    {
+        "id": "nfk",
+        "orgNr": "922092648"
+    },
+    {
+        "id": "nhn",
+        "orgNr": "994598759",
+        "meta": "https://orglogo.digdir.no/api/meta/994598759",
+        "logo": "https://orglogo.digdir.no/api/logo/50/994598759"
+    },
+    {
+        "id": "nkom",
+        "orgNr": "974446871",
+        "meta": "https://orglogo.digdir.no/api/meta/974446871",
+        "logo": "https://orglogo.digdir.no/api/logo/50/974446871"
+    },
+    {
+        "id": "nkr",
+        "orgNr": "971527412"
+    },
+    {
+        "id": "nav",
+        "orgNr": "889640782",
+        "meta": "https://orglogo.digdir.no/api/meta/889640782",
+        "logo": "https://orglogo.digdir.no/api/emblem/svg/889640782"
+    },
+    {
+        "id": "npd",
+        "orgNr": "870917732",
+        "meta": "https://orglogo.digdir.no/api/meta/870917732",
+        "logo": "https://orglogo.digdir.no/api/emblem/svg/870917732"
+    },
+    {
+        "id": "npe",
+        "orgNr": "984936923",
+        "meta": "https://orglogo.digdir.no/api/meta/984936923",
+        "logo": "https://orglogo.digdir.no/api/logo/50/984936923"
+    },
+    {
+        "id": "nsm",
+        "orgNr": "985165262"
+    },
+    {
+        "id": "oed",
+        "orgNr": "977161630"
+    },
+    {
+        "id": "ok",
+        "orgNr": "971183675"
+    },
+    {
+        "id": "oko",
+        "orgNr": "874761532"
+    },
+    {
+        "id": "pat",
+        "orgNr": "971526157",
+        "meta": "https://orglogo.digdir.no/api/meta/971526157",
+        "logo": "https://orglogo.digdir.no/api/logo/50/971526157"
+    },
+    {
+        "id": "rir",
+        "orgNr": "971042656",
+        "meta": "https://orglogo.digdir.no/api/meta/971042656",
+        "logo": "https://orglogo.digdir.no/api/logo/50/971042656"
+    },
+    {
+        "id": "ssikt",
+        "orgNr": "919824573"
+    },
+    {
+        "id": "sfd",
+        "orgNr": "974761262",
+        "meta": "https://orglogo.digdir.no/api/meta/974761262",
+        "logo": "https://orglogo.digdir.no/api/logo/50/974761262"
+    },
+    {
+        "id": "sfvt",
+        "orgNr": "974762501"
+    },
+    {
+        "id": "skd",
+        "orgNr": "974761076",
+        "meta": "https://orglogo.digdir.no/api/meta/974761076",
+        "logo": "https://orglogo.digdir.no/api/emblem/svg/974761076"
+    },
+    {
+        "id": "slv",
+        "orgNr": "974761122",
+        "meta": "https://orglogo.digdir.no/api/meta/974761122",
+        "logo": "https://orglogo.digdir.no/api/logo/50/974761122"
+    },
+    {
+        "id": "spk",
+        "orgNr": "974760967",
+        "meta": "https://orglogo.digdir.no/api/meta/974760967",
+        "logo": "https://orglogo.digdir.no/api/logo/50/974760967"
+    },
+    {
+        "id": "srf",
+        "orgNr": "986186999",
+        "meta": "https://orglogo.digdir.no/api/meta/986186999",
+        "logo": "https://orglogo.digdir.no/api/logo/50/986186999"
+    },
+    {
+        "id": "ssb",
+        "orgNr": "971526920",
+        "meta": "https://orglogo.digdir.no/api/meta/971526920",
+        "logo": "https://orglogo.digdir.no/api/emblem/svg/971526920"
+    },
+    {
+        "id": "staf",
+        "orgNr": "921627009"
+    },
+    {
+        "id": "stami",
+        "orgNr": "874761222",
+        "meta": "https://orglogo.digdir.no/api/meta/874761222",
+        "logo": "https://orglogo.digdir.no/api/logo/50/874761222"
+    },
+    {
+        "id": "svv",
+        "orgNr": "971032081",
+        "meta": "https://orglogo.digdir.no/api/meta/971032081",
+        "logo": "https://orglogo.digdir.no/api/emblem/svg/971032081"
+    },
+    {
+        "id": "tad",
+        "orgNr": "880455702",
+        "meta": "https://orglogo.digdir.no/api/meta/880455702",
+        "logo": "https://orglogo.digdir.no/api/emblem/svg/880455702"
+    },
+    {
+        "id": "tra",
+        "orgNr": "914459265"
+    },
+    {
+        "id": "ttd",
+        "orgNr": ""
+    },
+    {
+        "id": "udi",
+        "orgNr": "974760746",
+        "meta": "https://orglogo.digdir.no/api/meta/974760746",
+        "logo": "https://orglogo.digdir.no/api/logo/50/974760746"
+    },
+    {
+        "id": "udir",
+        "orgNr": "970018131",
+        "meta": "https://orglogo.digdir.no/api/meta/970018131",
+        "logo": "https://orglogo.digdir.no/api/emblem/svg/970018131"
+    },
+    {
+        "id": "valg",
+        "orgNr": "916132727",
+        "meta": "https://orglogo.digdir.no/api/meta/916132727",
+        "logo": "https://orglogo.digdir.no/api/logo/50/916132727"
+    },
+    {
+        "id": "dfo",
+        "orgNr": "986252932",
+        "meta": "https://orglogo.digdir.no/api/meta/986252932",
+        "logo": "https://orglogo.digdir.no/api/logo/50/986252932"
+    },
+    {
+        "id": "slk",
+        "orgNr": "960885406",
+        "meta": "https://orglogo.digdir.no/api/meta/960885406",
+        "logo": "https://orglogo.digdir.no/api/logo/50/960885406"
+    },
+    {
+        "id": "hb",
+        "orgNr": "942114184",
+        "meta": "https://orglogo.digdir.no/api/meta/942114184",
+        "logo": "https://orglogo.digdir.no/api/logo/50/942114184"
+    },
+    {
+        "id": "slf",
+        "orgNr": "981544315",
+        "meta": "https://orglogo.digdir.no/api/meta/981544315",
+        "logo": "https://orglogo.digdir.no/api/emblem/svg/981544315"
+    },
+    {
+        "id": "nve",
+        "orgNr": "970205039",
+        "meta": "https://orglogo.digdir.no/api/meta/970205039",
+        "logo": "https://orglogo.digdir.no/api/emblem/svg/970205039"
+    },
+    {
+        "id": "bk",
+        "orgNr": "964338531",
+        "meta": "https://orglogo.digdir.no/api/meta/964338531",
+        "logo": "https://orglogo.digdir.no/api/logo/50/964338531"
+    },
+    {
+        "id": "ks",
+        "orgNr": "971032146",
+        "meta": "https://orglogo.digdir.no/api/meta/971032146",
+        "logo": "https://orglogo.digdir.no/api/logo/50/971032146"
+    },
+    {
+        "id": "dpa",
+        "orgNr": "974761467"
+    },
+    {
+        "id": "pod",
+        "orgNr": "982531950",
+        "meta": "https://orglogo.digdir.no/api/meta/982531950",
+        "logo": "https://orglogo.digdir.no/api/logo/50/982531950"
+    },
+    {
+        "id": "sht",
+        "orgNr": "881143712"
+    },
+    {
+        "id": "eno",
+        "orgNr": "983609155",
+        "meta": "https://orglogo.digdir.no/api/meta/983609155",
+        "logo": "https://orglogo.digdir.no/api/logo/50/983609155"
+    },
+    {
+        "id": "k5501",
+        "orgNr": "942110464",
+        "meta": "https://orglogo.digdir.no/api/meta/942110464",
+        "logo": "https://orglogo.digdir.no/api/logo/50/942110464"
+    },
+    {
+        "id": "k3030",
+        "orgNr": "820710592"
+    },
+    {
+        "id": "nokut",
+        "orgNr": "985042667"
+    },
+    {
+        "id": "pol",
+        "orgNr": "915429785",
+        "meta": "https://orglogo.digdir.no/api/meta/915429785",
+        "logo": "https://orglogo.digdir.no/api/emblem/svg/915429785"
+    },
+    {
+        "id": "fjel",
+        "orgNr": "941856543"
+    },
+    {
+        "id": "rmt",
+        "orgNr": "975936333"
+    },
+    {
+        "id": "mna",
+        "orgNr": "957387969"
+    },
+    {
+        "id": "vigo",
+        "orgNr": "998283914",
+        "meta": "https://orglogo.digdir.no/api/meta/998283914",
+        "logo": "https://orglogo.digdir.no/api/logo/50/998283914"
+    },
+    {
+        "id": "tffa",
+        "orgNr": "960509811"
+    }
+]
