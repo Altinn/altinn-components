@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.28.0](https://github.com/Altinn/altinn-components/compare/v0.27.1...v0.28.0) (2025-05-21)
+
+
+### Features
+
+* settings item + list updates ([#427](https://github.com/Altinn/altinn-components/issues/427)) ([5b701b4](https://github.com/Altinn/altinn-components/commit/5b701b433d7a38c7352b125c208895e75ac9acf5))
+
 ## [0.27.1](https://github.com/Altinn/altinn-components/compare/v0.27.0...v0.27.1) (2025-05-12)
 
 
