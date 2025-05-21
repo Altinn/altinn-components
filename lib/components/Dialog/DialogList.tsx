@@ -1,5 +1,5 @@
-import { Section } from '../';
-import { DialogListGroup, type DialogListGroupProps, DialogListItem, type DialogListItemProps } from '../';
+import { Section } from '..';
+import { DialogListGroup, type DialogListGroupProps, DialogListItem, type DialogListItemProps } from '..';
 import { useMenu } from '../../hooks';
 
 export interface DialogListProps {

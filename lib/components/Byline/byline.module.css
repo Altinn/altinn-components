@@ -4,6 +4,18 @@
   column-gap: 0.5em;
 }
 
+.avatar {
+  font-size: 1.25rem;
+}
+
+.avatarGroup {
+  font-size: 1.25rem;
+}
+
+.avatar[data-size="lg"] {
+  font-size: 2.25rem;
+}
+
 .label {
   display: inline-flex;
   flex-wrap: wrap;

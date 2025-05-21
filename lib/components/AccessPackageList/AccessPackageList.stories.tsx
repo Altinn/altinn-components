@@ -28,6 +28,7 @@ export const AccessPackageListStory = (args: AccessPackageListProps) => {
       items={testArea.packages.map((p) => ({
         id: p.id,
         title: p.name,
+        ariaLabel: p.name,
         onClick: () => alert(`Package name: ${p.name}`),
       }))}
     />

@@ -1,6 +1,7 @@
 'use client';
 import cx from 'classnames';
 import { useMemo } from 'react';
+import type { CSSProperties } from 'react';
 import { Avatar, type AvatarProps, type AvatarSize, type AvatarType } from '.';
 import styles from './avatarGroup.module.css';
 
@@ -18,7 +19,13 @@ export interface AvatarGroupProps {
   size?: AvatarSize;
   /** Additional CSS class for styling the avatar group container. */
   className?: string;
+  /** Custom styles. */
+  style?: CSSProperties;
 }
+
+export const isAvatarGroupProps = (icon: unknown): icon is AvatarGroupProps => {
+  return typeof icon === 'object' && icon !== null && 'items' in icon;
+};
 
 /**
  * Avatar group component for displaying multiple avatars as a group.
@@ -27,8 +34,9 @@ export const AvatarGroup = ({
   items = [],
   maxItemsCount = 4,
   defaultType,
-  size = 'sm',
+  size,
   className,
+  style,
 }: AvatarGroupProps) => {
   const maxItems = useMemo(() => items.slice(0, maxItemsCount), [items, maxItemsCount]);
 
@@ -37,19 +45,18 @@ export const AvatarGroup = ({
   }
 
   return (
-    <ul className={cx(styles.reset, styles.group, styles[size], className)} data-count={maxItems?.length}>
+    <ul className={cx(styles.group, className)} data-size={size} data-count={maxItems?.length} style={style}>
       {maxItems.map((avatar, index) => {
         const lastLegalAvatarReached = index === maxItemsCount - 1;
         const customLabel = avatar.customLabel || lastLegalAvatarReached ? items.length.toString() : undefined;
         return (
-          <li className={cx(styles.reset, styles.item)} key={avatar.name}>
+          <li className={cx(styles.item)} key={avatar.name}>
             <Avatar
               name={avatar.name}
               customLabel={customLabel}
               imageUrl={avatar.imageUrl}
               imageUrlAlt={avatar.imageUrlAlt}
               type={avatar?.type || defaultType}
-              size={size}
               outline
             />
           </li>

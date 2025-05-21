@@ -5,6 +5,7 @@ export type AccountListItemType = 'person' | 'company' | 'group';
 
 export interface AccountListItemProps extends ListItemProps {
   id?: string;
+  title: string;
   type?: AccountListItemType;
   favourite?: boolean;
   contextMenu?: ContextMenuProps;
@@ -14,11 +15,10 @@ export interface AccountListItemProps extends ListItemProps {
 }
 
 export const AccountListItem = ({
-  size = 'md',
+  size,
   expanded,
   type,
-  avatar,
-  avatarGroup,
+  icon,
   title,
   description,
   label,
@@ -47,13 +47,12 @@ export const AccountListItem = ({
     <ListItem
       {...item}
       size={size}
-      avatar={avatar}
-      avatarGroup={avatarGroup && { ...avatarGroup, size: size === 'md' ? 'sm' : 'xs' }}
+      icon={icon}
       title={title}
       description={expanded ? undefined : description}
       expanded={expanded}
       selected={expanded}
-      badge={controls}
+      badge={!expanded && controls}
       linkIcon
     >
       {children}

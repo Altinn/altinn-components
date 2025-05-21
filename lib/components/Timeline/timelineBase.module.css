@@ -42,10 +42,6 @@
   flex-grow: 1;
 }
 
-.icon {
-  color: var(--ds-color-surface-active);
-}
-
 .border {
   border-color: var(--ds-color-surface-active);
   border-width: 0.125rem;

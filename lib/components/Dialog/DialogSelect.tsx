@@ -1,6 +1,6 @@
 import cx from 'classnames';
 import type { ChangeEventHandler } from 'react';
-import { CheckboxIcon } from '../Icon/';
+import { CheckboxIcon } from '../Icon';
 import styles from './dialogSelect.module.css';
 
 export type DialogSelectProps = {

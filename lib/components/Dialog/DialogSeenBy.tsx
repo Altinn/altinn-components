@@ -1,6 +1,6 @@
 import { EyeClosedIcon, EyeIcon } from '@navikt/aksel-icons';
 import type { ElementType, MouseEventHandler } from 'react';
-import { MetaItem, type MetaItemSize } from '../Meta';
+import { MetaItem, type MetaItemSize } from '../Metadata';
 
 export interface DialogSeenByProps {
   loading?: boolean;

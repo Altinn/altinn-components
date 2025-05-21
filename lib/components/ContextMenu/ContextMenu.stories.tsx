@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { expect, userEvent, within } from '@storybook/test';
 import { ContextMenu, type ContextMenuProps } from './ContextMenu';
 
-const meta = {
+const meta: Meta<typeof ContextMenu> = {
   title: 'Menu/ContextMenu',
   component: ContextMenu,
   tags: ['autodocs', 'beta'],
@@ -43,7 +43,7 @@ const meta = {
       },
     ],
   },
-} satisfies Meta<typeof ContextMenu>;
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;

@@ -3,11 +3,18 @@ import type { Meta } from '@storybook/react';
 import { Fragment, useState } from 'react';
 import { skatt } from '../../../examples/avatar';
 
-import { ContextMenu, DialogListItem, type DialogListItemProps, type DialogListItemSize } from '..';
-import { DialogStatusEnum, type DialogStatusValue } from './DialogStatus';
+import {
+  ContextMenu,
+  DialogListItem,
+  type DialogListItemProps,
+  type DialogListItemSize,
+  DialogStatusEnum,
+  type DialogStatusValue,
+  ListItemSelect,
+} from '..';
 
-import { ListBase } from '../List';
-import { MetaItem } from '../Meta';
+import { List } from '../List';
+import { MetaItem } from '../Metadata';
 
 const getStatusLabel = (value: string) => {
   switch (value) {
@@ -26,10 +33,10 @@ const getStatusLabel = (value: string) => {
   }
 };
 
-const sizes = ['lg', 'md', 'sm', 'xs'] as DialogListItemSize[];
+const sizes = ['xl', 'lg', 'md', 'sm', 'xs'] as DialogListItemSize[];
 
 const meta: Meta<typeof DialogListItem> = {
-  title: 'Dialog/DialogListItem',
+  title: 'Inbox/DialogListItem',
   component: DialogListItem,
   tags: ['autodocsi', 'beta'],
   argTypes: {},
@@ -51,16 +58,16 @@ export default meta;
 
 export const Default = {
   render: (args: DialogListItemProps) => (
-    <ListBase>
+    <List>
       <DialogListItem {...args} />
-    </ListBase>
+    </List>
   ),
   args: {},
 };
 
 export const GroupedAvatars = (args: DialogListItemProps) => {
   return (
-    <ListBase>
+    <List>
       <DialogListItem
         {...args}
         grouped={true}
@@ -77,23 +84,23 @@ export const GroupedAvatars = (args: DialogListItemProps) => {
           name: 'Designers Ltd',
         }}
       />
-    </ListBase>
+    </List>
   );
 };
 
 export const SeenVsUnseen = (args: DialogListItemProps) => {
   return (
-    <ListBase>
+    <List>
       <DialogListItem {...args} badge={{ theme: 'surface', label: 'Ny' }} />
       <DialogListItem {...args} seen={true} seenBy={{ seenByEndUser: true, label: 'Sett av deg' }} />
-    </ListBase>
+    </List>
   );
 };
 
 export const SeenBy = (args: DialogListItemProps) => {
   return (
     <>
-      <ListBase>
+      <List>
         <DialogListItem {...args} seen label="Ny" seenBy={{ seenByEndUser: true, label: 'Sett av deg' }} />
         <DialogListItem {...args} seenBy={{ seenByOthersCount: 4, label: 'Sett av 4' }} />
         <DialogListItem
@@ -105,24 +112,24 @@ export const SeenBy = (args: DialogListItemProps) => {
             label: 'Sett av deg + 4',
           }}
         />
-      </ListBase>
+      </List>
     </>
   );
 };
 
 export const InboxStatuses = (args: DialogListItemProps) => {
   return (
-    <ListBase>
+    <List>
       <DialogListItem {...args} status={{ value: 'requires-attention', label: 'Krever handling' }} />
       <DialogListItem {...args} status={{ value: 'in-progress', label: 'Under arbeid' }} />
       <DialogListItem {...args} status={{ value: 'completed', label: 'Avsluttet' }} />
-    </ListBase>
+    </List>
   );
 };
 
 export const DraftAndSent = (args: DialogListItemProps) => {
   return (
-    <ListBase>
+    <List>
       <DialogListItem
         {...args}
         summary={undefined}
@@ -135,13 +142,13 @@ export const DraftAndSent = (args: DialogListItemProps) => {
         badge={{ label: 'Sendt' }}
         //        status={{ value: "sent", label: "Sendt" }}
       />
-    </ListBase>
+    </List>
   );
 };
 
 export const ArchivedAndTrashed = (args: DialogListItemProps) => {
   return (
-    <ListBase>
+    <List>
       <DialogListItem
         {...args}
         color="neutral"
@@ -166,7 +173,7 @@ export const ArchivedAndTrashed = (args: DialogListItemProps) => {
         trashedAt="2024-11-27"
         trashedAtLabel="Slettet av Kjell Olsen, 27. nov 2024"
       />
-    </ListBase>
+    </List>
   );
 };
 
@@ -174,7 +181,7 @@ export const Statuses = (args: DialogListItemProps) => {
   return Object.keys(DialogStatusEnum).map((status: string) => {
     return (
       <Fragment key={status}>
-        <ListBase>
+        <List>
           <DialogListItem
             {...args}
             status={{
@@ -182,7 +189,7 @@ export const Statuses = (args: DialogListItemProps) => {
               label: getStatusLabel(status),
             }}
           />
-        </ListBase>
+        </List>
         <MetaItem>{status}</MetaItem>
       </Fragment>
     );
@@ -192,13 +199,13 @@ export const Statuses = (args: DialogListItemProps) => {
 const Loading = (args: DialogListItemProps) => {
   return (
     <>
-      <ListBase>
+      <List>
         <DialogListItem {...args} loading label="Ulest" />
-      </ListBase>
+      </List>
       <MetaItem>Loading</MetaItem>
-      <ListBase>
+      <List>
         <DialogListItem {...args} label="Ulest" />
-      </ListBase>
+      </List>
       <MetaItem>Loaded</MetaItem>
     </>
   );
@@ -213,20 +220,20 @@ export { Loading };
 export const Variants = (args: DialogListItemProps) => {
   return (
     <>
-      <ListBase>
+      <List>
         <DialogListItem {...args} label="Ulest" status={{ value: 'requires-attention', label: 'Krever handling' }} />
-      </ListBase>
+      </List>
       <MetaItem>Dialog is new and has not been seen by anybody</MetaItem>
-      <ListBase>
+      <List>
         <DialogListItem
           {...args}
           seen={true}
           seenBy={{ seenByEndUser: true, label: 'Sett av deg' }}
           status={{ value: 'requires-attention', label: 'Krever handling' }}
         />
-      </ListBase>
+      </List>
       <MetaItem>Dialog has been seen</MetaItem>
-      <ListBase>
+      <List>
         <DialogListItem
           {...args}
           label="Arkivert"
@@ -236,9 +243,9 @@ export const Variants = (args: DialogListItemProps) => {
           archivedAt="2024-11-27"
           archivedAtLabel="Arkivert av Kjell Olsen, 27. nov 2024"
         />
-      </ListBase>
+      </List>
       <MetaItem>Dialog has been moved to archive</MetaItem>
-      <ListBase>
+      <List>
         <DialogListItem
           {...args}
           label="Papirkurv"
@@ -248,7 +255,7 @@ export const Variants = (args: DialogListItemProps) => {
           trashedAt="2024-11-27"
           trashedAtLabel="Slettet av Kjell Olsen, 27. nov 2024"
         />
-      </ListBase>
+      </List>
       <MetaItem>Dialog has been moved to trash</MetaItem>
     </>
   );
@@ -257,14 +264,14 @@ export const Variants = (args: DialogListItemProps) => {
 export const DueAt = (args: DialogListItemProps) => {
   return (
     <>
-      <ListBase>
+      <List>
         <DialogListItem
           {...args}
           status={{ label: 'Krever handling', value: 'requires-attention' }}
           dueAt="2025-01-01"
           dueAtLabel="Frist: 1. januar 2025"
         />
-      </ListBase>
+      </List>
       <MetaItem>Dialog requires action wihtin a spesific due date.</MetaItem>
     </>
   );
@@ -273,9 +280,9 @@ export const DueAt = (args: DialogListItemProps) => {
 export const Attachments = (args: DialogListItemProps) => {
   return (
     <>
-      <ListBase>
+      <List>
         <DialogListItem {...args} attachmentsCount={2} />
-      </ListBase>
+      </List>
       <MetaItem>Dialog has attachments.</MetaItem>
     </>
   );
@@ -284,20 +291,20 @@ export const Attachments = (args: DialogListItemProps) => {
 export const TouchedBy = (args: DialogListItemProps) => {
   return (
     <>
-      <ListBase>
+      <List>
         <DialogListItem {...args} touchedBy={[{ name: 'Kari Nordmann' }]} />
-      </ListBase>
+      </List>
       <MetaItem>Dialog has been touched by a single actor.</MetaItem>
-      <ListBase>
+      <List>
         <DialogListItem {...args} touchedBy={[{ name: 'Kari Nordmann' }, { name: 'Ola Nordmann' }]} />
-      </ListBase>
+      </List>
       <MetaItem>Dialog has been touched by two actors.</MetaItem>
-      <ListBase>
+      <List>
         <DialogListItem
           {...args}
           touchedBy={[{ name: 'Kari Nordmann' }, { name: 'Ola Nordmann' }, { name: 'Per Nordmann' }]}
         />
-      </ListBase>
+      </List>
       <MetaItem>Dialog has been touched by a multiple actors.</MetaItem>
     </>
   );
@@ -306,19 +313,19 @@ export const TouchedBy = (args: DialogListItemProps) => {
 export const TextLength = (args: DialogListItemProps) => {
   return (
     <>
-      <ListBase>
+      <List>
         <DialogListItem
           {...args}
           title="Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur. Maecenas faucibus mollis interdum. Nullam id dolor id nibh ultricies vehicula ut id elit. Nullam id dolor id nibh ultricies vehicula ut id elit."
         />
-      </ListBase>
+      </List>
       <MetaItem>Long title</MetaItem>
-      <ListBase>
+      <List>
         <DialogListItem
           {...args}
           summary="Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Nullam id dolor id nibh ultricies vehicula ut id elit.\n\nCras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur. Maecenas faucibus mollis interdum. Nullam id dolor id nibh ultricies vehicula ut id elit. Nullam id dolor id nibh ultricies vehicula ut id elit."
         />
-      </ListBase>
+      </List>
       <MetaItem>Long summary</MetaItem>
     </>
   );
@@ -363,18 +370,14 @@ export const Selectable = (args: DialogListItemProps) => {
   return Object.values(items)?.map((item) => {
     return (
       <Fragment key={item?.id}>
-        <ListBase>
+        <List>
           <DialogListItem
             {...args}
             title={item.title}
-            onClick={item.selected ? () => onSelect(item) : undefined}
             selected={item.selected}
-            select={{
-              checked: item?.selected,
-              onChange: () => onSelect(item),
-            }}
+            controls={<ListItemSelect onChange={() => onSelect(item)} checked={item?.selected} aria-label={item.id} />}
           />
-        </ListBase>
+        </List>
         <MetaItem>selected:{item.selected ? 'true' : 'false'}</MetaItem>
       </Fragment>
     );
@@ -385,9 +388,9 @@ export const Sizes = (args: DialogListItemProps) => {
   return sizes?.map((size) => {
     return (
       <Fragment key={size}>
-        <ListBase>
+        <List>
           <DialogListItem {...args} size={size} status={{ value: 'in-progress', label: 'Under arbeid' }} />
-        </ListBase>
+        </List>
         <MetaItem>{size}</MetaItem>
       </Fragment>
     );
@@ -396,15 +399,21 @@ export const Sizes = (args: DialogListItemProps) => {
 
 export const AsLink = (args: DialogListItemProps) => {
   return (
-    <ListBase>
-      <DialogListItem {...args} status={{ value: 'in-progress', label: 'Under arbeid' }} as="a" href="//vg.no" />
-    </ListBase>
+    <List>
+      <DialogListItem
+        {...args}
+        status={{ value: 'in-progress', label: 'Under arbeid' }}
+        ariaLabel="Title"
+        as="a"
+        href="//vg.no"
+      />
+    </List>
   );
 };
 
 export const CustomControls = (args: DialogListItemProps) => {
   return (
-    <ListBase>
+    <List>
       <DialogListItem
         {...args}
         status={{ value: 'in-progress', label: 'Under arbeid' }}
@@ -418,9 +427,10 @@ export const CustomControls = (args: DialogListItemProps) => {
             ]}
           />
         }
+        ariaLabel="Title"
         as="a"
         href="//vg.no"
       />
-    </ListBase>
+    </List>
   );
 };

@@ -1,4 +1,4 @@
-import { Byline, ListBase, Transmission, type TransmissionProps } from '..';
+import { Byline, List, Transmission, type TransmissionProps } from '..';
 
 export interface TransmissionListProps {
   items: TransmissionProps[];
@@ -11,20 +11,20 @@ export const TransmissionList = ({ items }: TransmissionListProps) => {
   }
 
   return (
-    <ListBase>
+    <List>
       {items.map((item, index) => {
         const { datetime, byline, createdAtLabel } = item;
         return (
           <li key={item.id}>
-            <ListBase>
+            <List>
               <Byline as="li" datetime={datetime}>
                 {byline || createdAtLabel}
               </Byline>
               <Transmission {...item} key={index} />
-            </ListBase>
+            </List>
           </li>
         );
       })}
-    </ListBase>
+    </List>
   );
 };

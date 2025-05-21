@@ -50,7 +50,7 @@ export const HeaderButton = ({
     return (
       <ButtonBase {...buttonProps} as={as} variant={variant} color={color} className={cx(styles.button, className)}>
         <span className={styles.label}>{label}</span>
-        <AvatarGroup {...avatarGroup} size="sm" className={styles.avatarGroup} />
+        <AvatarGroup {...avatarGroup} className={styles.avatarGroup} />
         {badge && <Badge {...badge} className={styles.badge} />}
       </ButtonBase>
     );
@@ -60,7 +60,7 @@ export const HeaderButton = ({
     return (
       <ButtonBase {...buttonProps} as={as} variant={variant} color={color} className={cx(styles.button, className)}>
         <span className={styles.label}>{label}</span>
-        <Avatar type={avatar?.type} name={avatar?.name} size="lg" />
+        <Avatar type={avatar?.type} name={avatar?.name} style={{ fontSize: '2.25rem' }} />
         {badge && <Badge {...badge} className={styles.badge} />}
       </ButtonBase>
     );

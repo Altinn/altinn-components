@@ -1,10 +1,11 @@
 import { ChevronDownIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 import type { ElementType, ReactNode } from 'react';
-import type { AvatarGroupProps, AvatarProps, BadgeProps, IconOrAvatarSize, IconProps, IconTheme, SvgElement } from '..';
+import type { AvatarGroupProps, AvatarProps, BadgeProps, SvgElement } from '..';
 import {
   MenuItemBase,
   type MenuItemColor,
   MenuItemIcon,
+  type MenuItemIconProps,
   MenuItemLabel,
   type MenuItemSize,
   type MenuItemTheme,
@@ -29,9 +30,9 @@ export interface MenuItemProps {
   groupId?: string | number;
   title?: string;
   description?: string;
-  icon?: SvgElement | IconProps | ReactNode;
-  iconTheme?: IconTheme;
-  iconBadge?: BadgeProps | undefined;
+  icon?: MenuItemIconProps['icon'];
+  iconTheme?: MenuItemIconProps['theme'];
+  iconBadge?: MenuItemIconProps['badge'];
   avatar?: AvatarProps;
   avatarGroup?: AvatarGroupProps;
   badge?: BadgeProps | undefined;
@@ -41,14 +42,6 @@ export interface MenuItemProps {
   label?: ReactNode;
   items?: MenuItemProps[];
 }
-
-/** Map MenuItemSize to MenuItemIconSize */
-const iconSizeMap: Record<MenuItemSize, IconOrAvatarSize> = {
-  xs: 'sm',
-  sm: 'sm',
-  md: 'md',
-  lg: 'xl',
-};
 
 export const MenuItem = ({
   as = 'a',
@@ -71,8 +64,6 @@ export const MenuItem = ({
   ...rest
 }: MenuItemProps) => {
   const applicableLinkIcon = collapsible && expanded ? ChevronUpIcon : collapsible ? ChevronDownIcon : linkIcon;
-  /** Set icon size */
-  const applicableIconSize = iconSizeMap[size];
 
   return (
     <MenuItemBase
@@ -86,14 +77,7 @@ export const MenuItem = ({
       expanded={expanded}
       {...rest}
     >
-      <MenuItemIcon
-        size={applicableIconSize}
-        icon={icon}
-        iconTheme={iconTheme}
-        iconBadge={iconBadge}
-        avatar={avatar}
-        avatarGroup={avatarGroup}
-      />
+      <MenuItemIcon size={size} icon={icon} theme={iconTheme} badge={iconBadge} />
       <MenuItemLabel title={title} description={description} size={size}>
         {label}
       </MenuItemLabel>

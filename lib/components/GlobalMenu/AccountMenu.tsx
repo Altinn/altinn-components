@@ -45,8 +45,7 @@ export const AccountMenu = ({
     selected: account.selected ?? currentAccount?.id === account.id,
     title: account.name,
     ...(account?.items && {
-      avatarGroup: {
-        size: 'sm',
+      icon: {
         items: account.items.map((item) => ({
           name: item.name,
           type: item.type || account.type,
@@ -54,8 +53,7 @@ export const AccountMenu = ({
       },
     }),
     ...(!account?.items && {
-      avatar: {
-        size: 'md',
+      icon: {
         type: account.type,
         name: account.name,
       },

@@ -1,0 +1,8 @@
+.item {
+  --dsc-item-px: 0;
+  --dsc-item-my: 0.5em;
+  --dsc-item-background: transparent;
+  --dsc-item-background-hover: none;
+  --dsc-item-outline-color: transparent;
+  --dsc-item-border-color: transparent;
+}

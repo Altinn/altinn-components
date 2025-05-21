@@ -5,8 +5,7 @@ import { ListItem } from '../List';
 import type { ListItemProps } from '../List';
 import styles from './accessAreaListItem.module.css';
 
-interface AccessAreaListItemDefaultProps
-  extends Pick<ListItemProps, 'size' | 'onClick' | 'expanded' | 'loading' | 'titleAs'> {
+interface AccessAreaListItemDefaultProps extends Pick<ListItemProps, 'size' | 'onClick' | 'expanded' | 'loading'> {
   /** Id of the item */
   id: string;
   /** Name of the Access Area */
@@ -49,6 +48,7 @@ export const AccessAreaListItem = ({
       as="button"
       icon={themedIcon}
       title={name}
+      ariaLabel={name}
       size={size}
       collapsible={!loading}
       expanded={expanded}

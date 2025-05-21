@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Button, Flex, Layout, LayoutAction, type LayoutActionProps } from '..';
 import { footer, header } from '../../../examples';
 
-const meta = {
+const meta: Meta<typeof LayoutAction> = {
   title: 'Layout/LayoutAction',
   component: LayoutAction,
   tags: ['beta'],
@@ -36,7 +36,7 @@ const meta = {
       ],
     },
   },
-} satisfies Meta<typeof LayoutAction>;
+};
 
 export default meta;
 

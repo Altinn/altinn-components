@@ -1,4 +1,6 @@
 .link {
+  position: absolute;
+  inset: 0;
   padding: 0;
   border: 0;
   background-color: transparent;
@@ -11,12 +13,18 @@
   -moz-osx-font-smoothing: inherit;
   appearance: none;
   user-select: none;
-}
 
-.link[aria-disabled="true"] {
-  pointer-events: none;
-}
+  & > * {
+    opacity: 0;
+    user-select: none;
+    pointer-events: none;
+  }
 
-.link[data-interactive="true"] {
-  cursor: pointer;
+  &[aria-disabled="true"] {
+    pointer-events: none;
+  }
+
+  &[data-interactive="true"] {
+    cursor: pointer;
+  }
 }

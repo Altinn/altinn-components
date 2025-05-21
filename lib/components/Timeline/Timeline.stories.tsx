@@ -67,7 +67,7 @@ export const GroupedLog = () => {
 export const UsingAvatars = () => {
   return (
     <Timeline>
-      <TimelineSegment avatar={skatt} color="company">
+      <TimelineSegment icon={skatt} color="company">
         <TimelineActivity
           byline={
             <>
@@ -84,7 +84,7 @@ export const UsingAvatars = () => {
         <TimelineActivity byline="08:00">Activity 2.</TimelineActivity>
       </TimelineSegment>
       <TimelineSegment
-        avatar={{
+        icon={{
           type: 'person',
           name: 'Kari Nordmann',
         }}
@@ -107,7 +107,7 @@ export const UsingAvatars = () => {
 export const CollapsingElements = () => {
   return (
     <Timeline>
-      <TimelineSegment avatar={skatt} color="company">
+      <TimelineSegment icon={skatt} color="company">
         <TimelineActivity
           byline={
             <>
@@ -124,7 +124,7 @@ export const CollapsingElements = () => {
         </div>
       </TimelineSegment>
       <TimelineSegment
-        avatar={{
+        icon={{
           type: 'person',
           name: 'Kari Nordmann',
         }}
@@ -147,7 +147,7 @@ export const CollapsingElements = () => {
 export const DialogHistory = () => {
   return (
     <Timeline>
-      <TimelineHeader avatar={skatt}>
+      <TimelineHeader icon={skatt}>
         <strong>Skattetaten</strong> til Kari Nordmann
       </TimelineHeader>
       <TimelineSection margin="bottom" byline="26. februar, kl. 08.00">

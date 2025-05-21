@@ -26,7 +26,7 @@ export const ResourceListItem = ({
 }: ResourceListItemProps) => {
   return (
     <ListItem
-      avatar={{
+      icon={{
         name: ownerName,
         imageUrl: ownerLogoUrl,
         imageUrlAlt: ownerLogoUrlAlt,

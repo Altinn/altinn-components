@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Byline } from './Byline';
 
 const meta = {
-  title: 'Byline/Byline',
+  title: 'Typography/Byline',
   component: Byline,
   tags: ['autodocs'],
   parameters: {},

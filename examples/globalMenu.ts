@@ -82,7 +82,7 @@ export const globalMenu: GlobalMenuProps = {
       id: 'profile',
       groupId: 'profile',
       size: 'sm',
-      avatar: {
+      icon: {
         name: 'Mathias Dyngeland',
       },
       title: 'Min profil',

@@ -1,6 +1,6 @@
 'use client';
 import cx from 'classnames';
-import { type ReactElement, useState } from 'react';
+import { type CSSProperties, type ReactElement, useState } from 'react';
 import { Skeleton } from '../Skeleton';
 import styles from './avatar.module.css';
 import { fromStringToColor } from './color';
@@ -31,16 +31,22 @@ export interface AvatarProps {
   outline?: boolean;
   /** Custom label to display inside the avatar. */
   customLabel?: string;
+  /** Custom styles. */
+  style?: CSSProperties;
   /** Whether the avatar is loading. */
   loading?: boolean;
 }
+
+export const isAvatarProps = (icon: unknown): icon is AvatarProps => {
+  return typeof icon === 'object' && icon !== null && 'name' in icon;
+};
 
 /**
  * Avatar component to display user or company avatars with various customization options.
  */
 export const Avatar = ({
   type = 'person',
-  size = 'sm',
+  size,
   name = 'Avatar',
   outline = false,
   imageUrl,
@@ -48,6 +54,7 @@ export const Avatar = ({
   customLabel,
   loading,
   className,
+  style = {},
 }: AvatarProps): ReactElement => {
   const [hasImageError, setHasImageError] = useState<boolean>(false);
   const variant: AvatarVariant = type === 'person' ? 'circle' : 'square';
@@ -60,30 +67,35 @@ export const Avatar = ({
   const inlineStyles =
     !loading && !usingImageUrl
       ? {
+          ...style,
           backgroundColor,
           color: foregroundColor,
         }
-      : undefined;
+      : style;
 
   return (
     <div
-      className={cx(styles.avatar, styles[variant], styles[size], { [styles.outline]: outline }, className)}
+      className={cx(styles.avatar, { [styles.outline]: outline }, className)}
       style={inlineStyles}
+      data-variant={variant}
+      data-size={size}
+      data-outline={outline}
       aria-hidden
     >
-      <Skeleton loading={loading} className={styles.avatarSkeleton} variant="circle">
-        {usingImageUrl ? (
-          <img
-            src={imageUrl}
-            className={styles.image}
-            alt={imageUrlAlt || imageUrl}
-            onError={() => {
-              setHasImageError(true);
-            }}
-          />
-        ) : (
-          <span>{customLabel || initials}</span>
-        )}
+      <Skeleton loading={loading} className={styles.shape} variant="circle">
+        <div className={styles.shape}>
+          {usingImageUrl && (
+            <img
+              src={imageUrl}
+              className={styles.image}
+              alt={imageUrlAlt || imageUrl}
+              onError={() => {
+                setHasImageError(true);
+              }}
+            />
+          )}
+        </div>
+        {!usingImageUrl && <span className={styles.label}>{customLabel || initials}</span>}
       </Skeleton>
     </div>
   );

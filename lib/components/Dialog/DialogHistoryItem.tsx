@@ -1,6 +1,6 @@
 import { ArrowForwardFillIcon } from '@navikt/aksel-icons';
 import type { ReactNode } from 'react';
-import { ListBase } from '../List';
+import { List } from '../List';
 import { TimelineActivity, TimelineLink, type TimelineLinkProps } from '../Timeline';
 import { Transmission, type TransmissionProps } from '../Transmission';
 import { Typography } from '../Typography';
@@ -18,9 +18,9 @@ export const DialogHistoryItem = ({ variant, byline, datetime, children, link, .
     case 'transmission':
       return (
         <TimelineActivity byline={byline} datetime={datetime} spacing={2}>
-          <ListBase>
+          <List>
             <Transmission {...props}>{children}</Transmission>
-          </ListBase>
+          </List>
           {link && <TimelineLink {...link} icon={link?.icon || ArrowForwardFillIcon} />}
         </TimelineActivity>
       );

@@ -1,9 +1,9 @@
 import { TeddyBearIcon } from '@navikt/aksel-icons';
 import type { Meta } from '@storybook/react';
 import { Fragment } from 'react';
-import { ListBase, ListItem, type ListItemProps, MetaItem } from '../';
+import { List, ListItem, type ListItemProps } from '../';
 
-const themes = ['default', 'subtle', 'surface', 'base', 'transparent'] as ListItemProps['theme'][];
+const variants = ['default', 'subtle', 'tinted'] as ListItemProps['variant'][];
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as ListItemProps['size'][];
 
 const meta = {
@@ -14,59 +14,113 @@ const meta = {
   args: {
     id: 'id',
     title: 'Title',
+    description: 'Description',
   },
 } satisfies Meta<typeof ListItem>;
 
 export default meta;
 
-export const Theme = (args: ListItemProps) => {
-  return themes?.map((theme) => {
-    return (
-      <div key={theme}>
-        <MetaItem>{theme}</MetaItem>
-        <ListBase>
-          {sizes.map((size) => {
-            return (
-              <Fragment key={theme}>
-                <ListItem
-                  {...args}
-                  icon={TeddyBearIcon}
-                  theme={theme}
-                  description={theme + '/' + size}
-                  size={size}
-                  linkIcon
-                />
-              </Fragment>
-            );
-          })}
-        </ListBase>
-      </div>
-    );
-  });
+export const Variant = (args: ListItemProps) => {
+  return (
+    <List>
+      {variants.map((variant) => {
+        return (
+          <Fragment key={variant}>
+            <ListItem {...args} icon={TeddyBearIcon} variant={variant} label={variant} linkIcon />
+          </Fragment>
+        );
+      })}
+    </List>
+  );
+};
+
+export const Options = ({ variant = 'default', ...args }: ListItemProps) => {
+  return (
+    <List>
+      <ListItem {...args} icon={TeddyBearIcon} variant={variant} label={variant} linkIcon />
+      <ListItem
+        {...args}
+        icon={{ theme: 'tinted', svgElement: TeddyBearIcon }}
+        variant={variant}
+        title={variant}
+        description="icon as iconProps"
+        linkIcon
+      />
+      <ListItem
+        {...args}
+        icon={{ name: 'Alfa', type: 'company' }}
+        variant={variant}
+        title={variant}
+        description="icon as avatarProps"
+        linkIcon
+      />
+      <ListItem
+        {...args}
+        icon={{
+          items: [{ name: 'Alfa' }, { name: 'Beta' }, { name: 'Charlie' }],
+        }}
+        variant={variant}
+        title={variant}
+        description="icon as avatarGroupProps"
+        linkIcon
+      />
+      <ListItem
+        {...args}
+        icon={TeddyBearIcon}
+        variant={variant}
+        title={variant}
+        description="shadow:none"
+        shadow="none"
+        linkIcon
+      />
+      <ListItem
+        {...args}
+        icon={TeddyBearIcon}
+        variant={variant}
+        title={variant}
+        description="shadow:none, border:solid"
+        shadow="none"
+        border="solid"
+        linkIcon
+      />
+      <ListItem
+        {...args}
+        icon={TeddyBearIcon}
+        variant={variant}
+        title={variant}
+        description="shadow:none, border:dotted"
+        shadow="none"
+        border="dotted"
+        linkIcon
+      />
+    </List>
+  );
 };
 
 export const Size = (args: ListItemProps) => {
-  return sizes?.map((size) => {
-    return (
-      <div key={size}>
-        <MetaItem>{size}</MetaItem>
-        <ListBase>
-          <ListItem {...args} description={undefined} size={size} linkIcon />
-          <ListItem {...args} size={size} linkIcon />
-          <ListItem {...args} select={{ checked: true }} size={size} linkIcon />
-          <ListItem {...args} icon={TeddyBearIcon} size={size} linkIcon />
-          <ListItem {...args} icon={{ svgElement: TeddyBearIcon, theme: 'surface' }} size={size} linkIcon />
-          <ListItem {...args} avatar={{ name: 'Avatar' }} size={size} linkIcon />
-          <ListItem
-            {...args}
-            avatarGroup={{
-              items: [{ name: 'Alfa' }, { name: 'Beta' }, { name: 'Charlie' }],
-            }}
-            size={size}
-            linkIcon
-          />
-        </ListBase>
-      </div>
-    );
-  });
+  return (
+    <List>
+      {sizes.map((size) => {
+        return (
+          <Fragment key={size}>
+            <ListItem {...args} label={size} icon={TeddyBearIcon} size={size} linkIcon />
+          </Fragment>
+        );
+      })}
+    </List>
+  );
+};
+
+export const VariantSize = (args: ListItemProps) => {
+  return (
+    <List>
+      {sizes.map((size) => {
+        return (
+          <li key={size}>
+            <Variant {...args} size={size} />
+          </li>
+        );
+      })}
+    </List>
+  );
 };

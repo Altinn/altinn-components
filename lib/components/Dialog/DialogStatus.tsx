@@ -1,4 +1,4 @@
-import { MetaItem, type MetaItemSize, MetaProgress } from '../Meta';
+import { MetaItem, type MetaItemSize, MetaProgress } from '../Metadata';
 
 export enum DialogStatusEnum {
   /** Used to indicate user-initiated dialogs not yet sent. */

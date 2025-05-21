@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { AvatarGroup, type AvatarGroupProps, Flex } from '..';
 
-const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as AvatarGroupProps['size'][];
-
 const meta = {
   title: 'Avatar/AvatarGroup',
   component: AvatarGroup,
@@ -10,7 +8,11 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
-  args: {},
+  args: {
+    style: {
+      fontSize: '2em',
+    },
+  },
 } satisfies Meta<typeof AvatarGroup>;
 
 export default meta;
@@ -65,21 +67,15 @@ export const CompanyAndPerson: Story = {
   },
 };
 
-export const MaxItemsCount = () => {
+export const MaxItemsCount = (args: AvatarGroupProps) => {
   const items = [{ name: 'A' }, { name: 'B' }, { name: 'C' }, { name: 'D' }];
 
   return (
-    <Flex spacing={2} align="end">
-      {sizes?.map((size) => {
-        return (
-          <Flex direction="col" align="start" spacing={1} key={size}>
-            <AvatarGroup items={items} maxItemsCount={1} size={size} />
-            <AvatarGroup items={items} maxItemsCount={2} size={size} />
-            <AvatarGroup items={items} maxItemsCount={3} size={size} />
-            <AvatarGroup items={items} maxItemsCount={4} size={size} />
-          </Flex>
-        );
-      })}
+    <Flex direction="col" align="start" spacing={2}>
+      <AvatarGroup {...args} items={items} maxItemsCount={1} />
+      <AvatarGroup {...args} items={items} maxItemsCount={2} />
+      <AvatarGroup {...args} items={items} maxItemsCount={3} />
+      <AvatarGroup {...args} items={items} maxItemsCount={4} />
     </Flex>
   );
 };

@@ -3,7 +3,7 @@ import { skatt } from '../../../examples/avatar';
 import { DialogByline } from './DialogByline';
 
 const meta = {
-  title: 'Dialog/Atoms/DialogByline',
+  title: 'Inbox/Dialog/DialogByline',
   component: DialogByline,
   tags: ['autodocsi', 'beta'],
   args: {
