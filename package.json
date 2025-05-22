@@ -57,7 +57,7 @@
     "@storybook/test": "^8.6.14",
     "@storybook/test-runner": "^0.22.0",
     "@types/react": "^19.1.5",
-    "@types/react-dom": "^18.3.7",
+    "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react-swc": "^3.9.0",
     "axe-core": "^4.10.3",
     "axe-playwright": "^2.1.0",
