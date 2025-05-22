@@ -31,3 +31,13 @@
 .header[data-has-active-child="true"] {
   background-color: var(--ds-color-background-tinted);
 }
+
+.linkIcon {
+  flex-shrink: 0;
+  min-width: 1.5em;
+  min-height: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
