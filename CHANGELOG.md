@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.28.1](https://github.com/Altinn/altinn-components/compare/v0.28.0...v0.28.1) (2025-05-22)
+
+
+### Miscellaneous Chores
+
+* update dependencies ([#435](https://github.com/Altinn/altinn-components/issues/435)) ([3f7291b](https://github.com/Altinn/altinn-components/commit/3f7291b7d9310d538874dd1711cfb47d22974062))
+
 ## [0.28.0](https://github.com/Altinn/altinn-components/compare/v0.27.1...v0.28.0) (2025-05-21)
 
 
