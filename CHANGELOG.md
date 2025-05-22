@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.28.2](https://github.com/Altinn/altinn-components/compare/v0.28.1...v0.28.2) (2025-05-22)
+
+
+### Bug Fixes
+
+* list item chevron ([#434](https://github.com/Altinn/altinn-components/issues/434)) ([5bddf44](https://github.com/Altinn/altinn-components/commit/5bddf44d532873bbfc3ca9db1ef2b9668a9e5dcf))
+
 ## [0.28.1](https://github.com/Altinn/altinn-components/compare/v0.28.0...v0.28.1) (2025-05-22)
 
 
