@@ -26,8 +26,10 @@ export const AccountListItem = ({
   contextMenu,
   favouriteLabel,
   children,
+  interactive,
   ...item
 }: AccountListItemProps) => {
+
   const controls = (
     <ListItemControls>
       <Flex align="center" spacing={2} style={{ position: 'relative', fontSize: '1.25rem' }}>
@@ -54,6 +56,7 @@ export const AccountListItem = ({
       selected={expanded}
       badge={!expanded && controls}
       linkIcon
+      interactive={interactive}
     >
       {children}
     </ListItem>

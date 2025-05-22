@@ -62,7 +62,6 @@ export const ListItem = ({
 }: ListItemProps) => {
   /** Set label */
   const applicableLabel = typeof label === 'function' ? label() : label;
-
   return (
     <ListItemBase
       className={styles.item}
