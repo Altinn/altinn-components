@@ -144,7 +144,16 @@ export const ListItemHeader = ({
         ) : (
           <>
             {renderBadge()}
-            {applicableIcon && <Icon svgElement={applicableIcon} style={{ fontSize: '1.5rem' }} />}
+            {applicableIcon && (
+              <span className={styles.linkIcon}>
+                <Icon
+                  svgElement={applicableIcon}
+                  style={{
+                    fontSize: '1.5rem',
+                  }}
+                />
+              </span>
+            )}
           </>
         )}
       </ListItemControls>
