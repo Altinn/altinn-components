@@ -31,12 +31,16 @@ export const ListItemLink = ({
   const Component = as || 'div';
 
   if (Component === 'div') {
-    return <div className={cx(styles.link, className)}>{ariaLabel}</div>;
+    return (
+      <div className={cx(styles.link, className)}>
+        <span>{ariaLabel}</span>
+      </div>
+    );
   }
 
   return (
     <Component
-      className={cx(styles.link, styles.interactive, className)}
+      className={cx(styles.link, className)}
       href={href}
       onKeyPress={(e: KeyboardEvent) => {
         e.key === 'Enter' && onClick?.();

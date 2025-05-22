@@ -29,7 +29,6 @@ export const AccountListItem = ({
   interactive,
   ...item
 }: AccountListItemProps) => {
-
   const controls = (
     <ListItemControls>
       <Flex align="center" spacing={2} style={{ position: 'relative', fontSize: '1.25rem' }}>
