@@ -7,6 +7,7 @@ import {
   MenuItemIcon,
   type MenuItemIconProps,
   MenuItemLabel,
+  type MenuItemLabelProps,
   type MenuItemSize,
   type MenuItemTheme,
 } from './';
@@ -28,8 +29,8 @@ export interface MenuItemProps {
   selected?: boolean;
   disabled?: boolean;
   groupId?: string | number;
-  title?: string;
-  description?: string;
+  title?: MenuItemLabelProps['title'];
+  description?: MenuItemLabelProps['description'];
   icon?: MenuItemIconProps['icon'];
   iconTheme?: MenuItemIconProps['theme'];
   iconBadge?: MenuItemIconProps['badge'];

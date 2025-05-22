@@ -42,14 +42,14 @@ export const Sizes = () => {
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
               </SelectField>
-              <Button size={size}>Button</Button>
+              <Button>Button</Button>
               <Button icon={XMarkIcon} size={size}>
                 Button
               </Button>
               <Button icon={XMarkIcon} size={size} reverse>
                 Button
               </Button>
-              <IconButton size={size} icon={XMarkIcon} iconAltText={'x-icon'} />
+              <IconButton icon={XMarkIcon} iconAltText={'x-icon'} />
             </div>
             <TextareaField label="Textarea" size={size} />
             <Radio size={size} label="Radio" />
@@ -62,8 +62,8 @@ export const Sizes = () => {
                 columnGap: '.5em',
               }}
             >
-              <Button size={size}>Primary</Button>
-              <ComboButton size={size} icon={ChevronDownIcon} variant="outline" iconAltText="open">
+              <Button>Primary</Button>
+              <ComboButton icon={ChevronDownIcon} variant="outline" iconAltText="open">
                 Secondary
               </ComboButton>
             </footer>

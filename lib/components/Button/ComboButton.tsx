@@ -1,33 +1,37 @@
 import cx from 'classnames';
 import type { MouseEventHandler } from 'react';
-import type { SvgElement } from '../Icon';
-import { ButtonBase, type ButtonBaseProps } from './ButtonBase';
-import { ButtonIcon } from './ButtonIcon';
-import { ButtonLabel } from './ButtonLabel';
+import type { ButtonBaseProps, ButtonIconProps, ButtonSize } from '..';
+import { ButtonBase, ButtonIcon, ButtonLabel } from '..';
 
 import styles from './comboButton.module.css';
 
 export interface ComboButtonProps extends Omit<ButtonBaseProps, 'onClick'> {
-  icon: SvgElement;
+  icon: ButtonIconProps['icon'];
+  iconSize?: ButtonSize;
   iconAltText?: string;
   ariaLabel?: string;
   onIconClick?: MouseEventHandler<HTMLButtonElement>;
   onLabelClick?: MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
+  label?: string;
+  labelSize?: ButtonSize;
 }
 
 export const ComboButton = ({
   variant = 'solid',
   color,
-  size = 'md',
+  size,
   selected = false,
   icon,
+  iconSize,
+  iconAltText,
+  label,
+  labelSize,
   children,
   className,
   ariaLabel,
   onLabelClick,
   onIconClick,
-  iconAltText,
 }: ComboButtonProps) => {
   return (
     <ButtonBase
@@ -40,11 +44,16 @@ export const ComboButton = ({
       tabIndex={-1}
     >
       <ButtonBase ariaLabel={ariaLabel} size={size} onClick={onLabelClick} className={styles.primary}>
-        <ButtonLabel size={size}>{children}</ButtonLabel>
+        <ButtonLabel size={labelSize}>{children || label}</ButtonLabel>
       </ButtonBase>
       <span data-size={size} className={styles.divider} />
-      <ButtonBase size={size} onClick={onIconClick} className={styles.secondary} ariaLabel={iconAltText}>
-        <ButtonIcon icon={icon} size={size} />
+      <ButtonBase
+        onClick={onIconClick}
+        className={styles.secondary}
+        ariaLabel={iconAltText}
+        size={iconSize || labelSize}
+      >
+        {icon && <ButtonIcon icon={icon} />}
       </ButtonBase>
     </ButtonBase>
   );
