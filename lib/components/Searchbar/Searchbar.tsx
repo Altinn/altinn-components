@@ -1,6 +1,6 @@
-import { Autocomplete, type AutocompleteProps, SearchField, type SearchFieldProps, SearchbarBase } from '..';
+import { Autocomplete, type AutocompleteProps, SearchbarBase, SearchbarField, type SearchbarFieldProps } from '..';
 
-export interface SearchbarProps extends SearchFieldProps {
+export interface SearchbarProps extends SearchbarFieldProps {
   className?: string;
   autocomplete?: AutocompleteProps;
   expanded?: boolean;
@@ -17,7 +17,7 @@ export const Searchbar = ({
 }: SearchbarProps) => {
   return (
     <SearchbarBase className={className} expanded={expanded} autocomplete={!!autocomplete}>
-      <SearchField {...search} expanded={expanded} onClose={onClose} tabIndex={tabIndex} />
+      <SearchbarField {...search} expanded={expanded} onClose={onClose} tabIndex={tabIndex} />
       {autocomplete && <Autocomplete {...autocomplete} expanded={expanded} onSelect={onClose} />}
     </SearchbarBase>
   );

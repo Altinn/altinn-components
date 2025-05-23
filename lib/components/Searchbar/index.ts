@@ -1,6 +1,6 @@
 export * from './Searchbar';
 export * from './SearchbarBase';
-export * from './SearchField';
+export * from './SearchbarField';
 
 export * from './AutocompleteBase';
 export * from './AutocompleteGroup';
