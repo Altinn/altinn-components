@@ -3,9 +3,9 @@ import { MagnifyingGlassIcon, XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import { type ChangeEventHandler, type FocusEventHandler, useRef } from 'react';
 import { Icon, IconButton } from '..';
-import styles from './searchField.module.css';
+import styles from './searchbarField.module.css';
 
-export interface SearchFieldProps {
+export interface SearchbarFieldProps {
   name: string;
   value?: string;
   className?: string;
@@ -22,7 +22,7 @@ export interface SearchFieldProps {
   tabIndex?: number;
 }
 
-export const SearchField = ({
+export const SearchbarField = ({
   className,
   expanded,
   name = 'q',
@@ -37,7 +37,7 @@ export const SearchField = ({
   onClose,
   onEnter,
   tabIndex,
-}: SearchFieldProps) => {
+}: SearchbarFieldProps) => {
   const ref = useRef<HTMLInputElement>(null);
 
   const handleOnKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {

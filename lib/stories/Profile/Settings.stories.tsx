@@ -249,6 +249,7 @@ export const CollapsibleList = () => {
         title={badge ? "Varslinger er på" : "Varslinger er skrudd av"}
         collapsible
         expanded={expandedId === "1"}
+        as="button"
         onClick={() => onToggle("1")}
         badge={badge}
         linkIcon
@@ -283,6 +284,7 @@ export const CollapsibleList = () => {
         icon={SunIcon}
         title={"Modus: " + settings.mode}
         linkIcon
+        as="button"
         onClick={() => onToggle("2")}
       >
         <Section padding={6} spacing={6}>
@@ -307,6 +309,7 @@ export const CollapsibleList = () => {
         icon={GlobeIcon}
         title={"Språk/language: " + settings.locale}
         linkIcon
+        as="button"
         onClick={() => onToggle("locale")}
       >
         <Section padding={6} spacing={6}>

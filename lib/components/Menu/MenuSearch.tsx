@@ -1,6 +1,5 @@
-import { MagnifyingGlassIcon, XMarkIcon } from '@navikt/aksel-icons';
 import type { ChangeEventHandler } from 'react';
-import { Icon, IconButton } from '../';
+import { SearchField } from '../';
 import styles from './menuSearch.module.css';
 
 export interface MenuSearchProps {
@@ -13,35 +12,23 @@ export interface MenuSearchProps {
 }
 
 export const MenuSearch = ({
-  value,
   name,
+  value,
   placeholder = 'Search',
   clearButtonAltText = 'Clear search',
   onChange,
   onClear,
 }: MenuSearchProps) => {
   return (
-    <div className={styles.field}>
-      <input
-        type="search"
-        value={value}
-        name={name}
-        placeholder={placeholder}
-        className={styles.input}
-        onChange={onChange}
-        autoComplete="off"
-      />
-      <Icon svgElement={MagnifyingGlassIcon} className={styles.icon} />
-      {onClear && !!value && (
-        <IconButton
-          icon={XMarkIcon}
-          variant="solid"
-          size="custom"
-          className={styles.clear}
-          onClick={onClear}
-          iconAltText={clearButtonAltText}
-        />
-      )}
-    </div>
+    <SearchField
+      size="xs"
+      name={name}
+      value={value}
+      placeholder={placeholder}
+      onChange={onChange}
+      onClear={onClear}
+      clearButtonAltText={clearButtonAltText}
+      className={styles.field}
+    />
   );
 };
