@@ -36,6 +36,29 @@ export interface ListItemInputProps extends ListItemProps {
   items?: ListItemProps[];
 }
 
+/**
+ * `ListItem` is a compound component that combines `ListItemBase` and `ListItemHeader`
+ * to render a stylized, optionally interactive list item with support for various visual states
+ * such as loading, selection, and expansion. It supports customization of appearance through variants,
+ * shadows, borders, and iconography.
+ *
+ * @param {Object} props - Component props
+ * @param {string} [props.id] - Unique identifier for the list item.
+ * @param {'default' | 'subtle' | 'tinted'} [props.variant='default'] - Visual style variant of the item.
+ * @param {string} [props.className] - Custom class name for additional styling.
+ * @param {boolean} [props.loading] - Whether to show a loading placeholder.
+ * @param {ReactNode | () => ReactElement} [props.label] - Custom label, can be a node or a function returning a ReactElement.
+ * @param {ReactNode} [props.title] - Title content of the item.
+ * @param {ReactNode} [props.description] - Optional description beneath the title.
+ * @param {string} [props.ariaLabel] - ARIA label used for accessibility, defaults to `title` if not provided.
+ * @param {ReactNode} [props.icon] - Icon element displayed alongside the content.
+ * @param {ReactNode} [props.badge] - Optional badge displayed near the title.
+ * @param {boolean} [props.linkIcon=false] - Whether to display a link icon.
+ * @param {...ListItemBaseProps} props - Additional props inherited from `ListItemBase` for layout and interaction.
+ * @param {...ListItemHeaderProps} props - Additional props inherited from `ListItemHeader` for header controls and behavior.
+ *
+ * @returns {ReactElement} Rendered ListItem component.
+ */
 export const ListItem = ({
   className,
   color,
@@ -59,10 +82,8 @@ export const ListItem = ({
   interactive,
   id,
   ...rest
-}: ListItemProps) => {
-  /** Set label */
+}: ListItemProps): ReactElement => {
   const applicableLabel = typeof label === 'function' ? label() : label;
-
   return (
     <ListItemBase
       className={styles.item}

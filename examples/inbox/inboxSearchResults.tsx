@@ -12,6 +12,7 @@ export const inboxSearchResults: DialogListProps = {
     {
       id: 'enova-progress',
       groupId: 'inbox',
+      as: 'a',
       title: 'Støtte til energitiltak',
       status: { value: 'in-progress', label: 'Under arbeid' },
       summary: 'Søknad er sendt til behandling. Forventet behandlingstid: 2 uker.',
