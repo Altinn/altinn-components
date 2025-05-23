@@ -113,7 +113,6 @@ export const ListItemHeader = ({
       data-has-active-child={active}
     >
       <ListItemLink
-        interactive={interactive}
         as={as}
         href={href}
         onClick={onClick}
@@ -122,10 +121,8 @@ export const ListItemHeader = ({
         loading={loading}
         disabled={disabled || loading}
         active={active}
-        describedby={listItemLabelId}
-      >
-        <span>{ariaLabel}</span>
-      </ListItemLink>
+        ariaLabel={ariaLabel}
+      />
       {select && <ListItemSelect {...select} className={styles.select} />}
       <ListItemIcon loading={loading} icon={icon} />
       <ListItemLabel

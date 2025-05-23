@@ -1,25 +1,22 @@
 import cx from 'classnames';
-import type { ElementType, KeyboardEvent, KeyboardEventHandler, ReactNode } from 'react';
+import type { ElementType, KeyboardEvent, KeyboardEventHandler } from 'react';
 import styles from './listItemLink.module.css';
 
 export interface ListItemLinkProps {
-  interactive?: boolean;
   as?: ElementType;
   href?: string;
   onClick?: () => void;
   onKeyPress?: KeyboardEventHandler;
+  ariaLabel?: string;
   tabIndex?: number;
   loading?: boolean;
   disabled?: boolean;
   selected?: boolean;
   className?: string;
-  children?: ReactNode;
   active?: boolean;
-  describedby?: string;
 }
 
 export const ListItemLink = ({
-  interactive = false,
   as,
   loading,
   disabled,
@@ -28,36 +25,33 @@ export const ListItemLink = ({
   onClick,
   onKeyPress,
   className,
-  children,
   active,
-  describedby,
+  ariaLabel,
 }: ListItemLinkProps) => {
-  if (!interactive) {
+  const Component = as || 'div';
+
+  if (Component === 'div') {
     return (
-      <div className={cx(styles.link, className)} aria-describedby={describedby}>
-        {children}
+      <div className={cx(styles.link, className)}>
+        <span>{ariaLabel}</span>
       </div>
     );
   }
 
-  const Component = as || 'div';
-
   return (
     <Component
-      className={cx(styles.link, styles.interactive, className)}
+      className={cx(styles.link, className)}
       href={href}
       onKeyPress={(e: KeyboardEvent) => {
         e.key === 'Enter' && onClick?.();
         onKeyPress?.(e);
       }}
       onClick={onClick}
-      data-interactive={interactive}
+      data-interactive="true"
       aria-disabled={loading || disabled}
       aria-selected={selected}
-      aria-describedby={describedby}
+      aria-label={ariaLabel}
       data-active={active}
-    >
-      {children}
-    </Component>
+    />
   );
 };

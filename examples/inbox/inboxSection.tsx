@@ -28,6 +28,9 @@ export const inboxSection: DialogListProps = {
     {
       id: 'regnskap-2025',
       groupId: '2025-03',
+      as: 'a',
+      ariaLabel: 'Årsregnskap 2025',
+      href: '//brreg.no',
       title: 'Årsregnskap 2025',
       status: { value: 'completed', label: 'Avsluttet' },
       summary: 'Årsregnskapet for 2025 er godkjent.',

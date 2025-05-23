@@ -34,6 +34,7 @@ export const Expanded: Story = {
   args: {
     collapsible: true,
     expanded: true,
+    interactive: false,
     children: (
       <Section color="company" padding={6} spacing={2}>
         <Flex spacing={2}>
