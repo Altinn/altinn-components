@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.28.2](https://github.com/Altinn/altinn-components/compare/v0.28.1...v0.28.2) (2025-05-23)
+
+
+### Bug Fixes
+
+* aria-label fix for interactive elements in list item ([#440](https://github.com/Altinn/altinn-components/issues/440)) ([a397116](https://github.com/Altinn/altinn-components/commit/a3971163491f66ed32a5ec9c9b2146b8fb9edf08))
+* button size inherits from parent ([#439](https://github.com/Altinn/altinn-components/issues/439)) ([c070bb9](https://github.com/Altinn/altinn-components/commit/c070bb9766416fbf03ba8b97393d24e25ef1ca57))
+* list item chevron ([#434](https://github.com/Altinn/altinn-components/issues/434)) ([5bddf44](https://github.com/Altinn/altinn-components/commit/5bddf44d532873bbfc3ca9db1ef2b9668a9e5dcf))
+* props definition and jsdoc for ListItem ([#441](https://github.com/Altinn/altinn-components/issues/441)) ([16e12ce](https://github.com/Altinn/altinn-components/commit/16e12ce4063a3d41e27951300a44da443036661a))
+
+
+### Miscellaneous Chores
+
+* **main:** release 0.28.2 ([#437](https://github.com/Altinn/altinn-components/issues/437)) ([b6a08f1](https://github.com/Altinn/altinn-components/commit/b6a08f146a1791913ee624dc3e7de869f9490738))
+* revert release please version ([#448](https://github.com/Altinn/altinn-components/issues/448)) ([df8e86e](https://github.com/Altinn/altinn-components/commit/df8e86e0cdb361f1fb3a947a1b245a6ce3b84011))
+
 ## [0.28.2](https://github.com/Altinn/altinn-components/compare/v0.28.1...v0.28.2) (2025-05-22)
 
 
