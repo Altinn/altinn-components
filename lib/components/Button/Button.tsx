@@ -1,30 +1,29 @@
 import cx from 'classnames';
-import type { SvgElement } from '../Icon';
-import { ButtonBase, type ButtonBaseProps } from './ButtonBase';
-import { ButtonIcon } from './ButtonIcon';
-import { ButtonLabel } from './ButtonLabel';
+import { ButtonBase, type ButtonBaseProps, ButtonIcon, type ButtonIconProps, ButtonLabel, type ButtonSize } from '..';
 import styles from './button.module.css';
 
 export interface ButtonProps extends Partial<ButtonBaseProps> {
-  icon?: SvgElement;
+  icon?: ButtonIconProps['icon'];
+  iconSize?: ButtonSize;
   ariaLabel?: string;
   loading?: boolean;
-  loadingText?: string;
   label?: string;
+  labelSize?: ButtonSize;
 }
 
 export const Button = ({
   variant = 'solid',
   color,
-  size = 'md',
+  size,
   selected = false,
   icon,
+  iconSize,
   href,
   label,
+  labelSize,
   children,
   className,
   loading,
-  loadingText = 'Loading ...',
   ariaLabel,
   ...rest
 }: ButtonProps) => {
@@ -41,9 +40,7 @@ export const Button = ({
         {...rest}
         disabled
       >
-        <span className={styles.label} data-size={size}>
-          <span className={styles.loading}>{loadingText}</span>
-        </span>
+        <ButtonLabel size={labelSize}>{children || label}</ButtonLabel>
       </ButtonBase>
     );
   }
@@ -59,8 +56,8 @@ export const Button = ({
       className={cx(styles.button, className)}
       {...rest}
     >
-      {icon && <ButtonIcon size={size} icon={icon} />}
-      <ButtonLabel size={size}>{children || label}</ButtonLabel>
+      {icon && <ButtonIcon icon={icon} size={iconSize || labelSize} />}
+      <ButtonLabel size={labelSize}>{children || label}</ButtonLabel>
     </ButtonBase>
   );
 };

@@ -51,16 +51,14 @@ export const IconOrAvatar = ({ loading, size, icon, iconTheme, avatar, avatarGro
   /** Icon can be custom, a svg or an Icon object. */
   if (icon) {
     if (isIconProps(icon)) {
-      return (
-        <Icon className={styles.icon} theme={icon.theme || iconTheme} variant="contain" {...(icon as IconProps)} />
-      );
+      return <Icon className={styles.icon} theme={icon.theme || iconTheme} {...(icon as IconProps)} />;
     }
 
     if (isReactNode(icon)) {
       return icon;
     }
 
-    return <Icon className={styles.icon} svgElement={icon as SvgElement} variant="contain" theme={iconTheme} />;
+    return <Icon className={styles.icon} svgElement={icon as SvgElement} theme={iconTheme} />;
   }
 
   /** Avatar or AvatarGroup */

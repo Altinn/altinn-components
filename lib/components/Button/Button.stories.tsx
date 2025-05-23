@@ -51,6 +51,7 @@ export const Text: Story = {
 export const Loading: Story = {
   args: {
     loading: true,
+    children: 'Loading ...',
   },
 };
 
@@ -81,6 +82,39 @@ export const Sizes = (args: Story) => {
       <Button {...args} size="lg">
         Button Lg
       </Button>
+    </div>
+  );
+};
+
+export const LabelSize = (args: Story) => {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        columnGap: '1rem',
+      }}
+    >
+      <Button {...args} size="md" icon={PlusIcon}>
+        Medium
+      </Button>
+      <Button {...args} icon={PlusIcon} size="md" labelSize="sm">
+        Md/Sm
+      </Button>
+      <Button {...args} size="lg" icon={PlusIcon}>
+        Large
+      </Button>
+      <Button {...args} icon={PlusIcon} size="lg" labelSize="md">
+        Lg/Md
+      </Button>
+      <ComboButton {...args} icon={XMarkIcon} size="lg" variant="tinted" iconAltText="close">
+        Large
+      </ComboButton>
+      <ComboButton {...args} icon={XMarkIcon} size="lg" labelSize="md" variant="tinted" iconAltText="close">
+        Large/Md
+      </ComboButton>
+      <IconButton {...args} iconAltText="Lg" icon={PlusIcon} size="lg" />
+      <IconButton {...args} iconAltText="Lg/Md" icon={PlusIcon} size="lg" iconSize="md" />
     </div>
   );
 };
