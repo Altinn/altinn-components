@@ -1,9 +1,14 @@
 .flex {
+  row-gap: var(--dsc-spacing);
+  column-gap: var(--dsc-spacing);
+
   display: flex;
   list-style: none;
   padding: 0;
   margin: 0;
 }
+
+/* spacing */
 
 .flex[data-direction="col"] {
   flex-direction: column;
@@ -61,16 +66,6 @@
     padding-left: var(--ds-spacing-4);
     padding-right: var(--ds-spacing-4);
   }
-}
-
-/* spacing */
-
-.flex[data-spacing="xs"] {
-  gap: 0.125rem;
-}
-
-.flex[data-spacing="page"] {
-  gap: 1.5rem;
 }
 
 /* margin */

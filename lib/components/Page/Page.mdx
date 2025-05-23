@@ -23,6 +23,20 @@ return (
 );
 ```
 
+## Section, List and Grid
+
+Layout components share similar props for `color`, `size`, which is inherited to it's children.
+
+Use `Section` to divide pages into appropriate pieces. Section can be extended using `padding` and `spacing` props.
+
+Use `List` and `Grid` to present content in lists or grid, respectively. Both have a default `spacing`, relative to it's `size`.
+
+If none of these works, you can use `Flex`, which is a general purpuse layout component, containing shared props and styles that are used to build more spesific components.
+
+## Heading and Typography
+
+Use `Heading` for headings. Use `Typography` for bodytext including paragraphs, lists, and headings.
+
 ## List pages
 
 Pages that contains lists of objects, for example a list of accounts or users.

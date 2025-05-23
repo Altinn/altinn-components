@@ -1,3 +1,4 @@
+import cx from 'classnames';
 import type { ReactNode } from 'react';
 import {
   Flex,
@@ -8,6 +9,7 @@ import {
   type ListItemProps,
   type ListItemSize,
 } from '..';
+import styles from './list.module.css';
 
 export interface ListProps {
   className?: string;
@@ -19,9 +21,9 @@ export interface ListProps {
   items?: ListItemProps[];
 }
 
-export const List = ({ children, spacing = 2, items = [], ...rest }: ListProps) => {
+export const List = ({ children, className, spacing, items = [], ...rest }: ListProps) => {
   return (
-    <Flex direction="col" as="ul" spacing={spacing} {...rest}>
+    <Flex direction="col" as="ul" spacing={spacing} className={cx(styles.list, className)} {...rest}>
       {children ||
         items.map((item, index) => {
           return <ListItem {...item} key={`item-${item.id ?? index}`} />;

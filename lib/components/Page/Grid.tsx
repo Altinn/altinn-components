@@ -1,23 +1,20 @@
 import cx from 'classnames';
 import type { CSSProperties, ReactNode } from 'react';
-import type { Color, Range, Theme } from '..';
+import type { Color, Range, Size, Theme } from '..';
 import styles from './grid.module.css';
 
-export type GridElement = 'div' | 'section' | 'article' | 'header' | 'footer' | 'ul';
+export type GridElement = 'div' | 'section' | 'article' | 'header' | 'footer' | 'ol' | 'ul';
 export type GridCols = 2 | 3 | 4;
-export type GridSpacing = 'xs' | Range<11>;
-export type GridPadding = 'page' | Range<11>;
-export type GridMargin = 'page' | 'section';
+export type GridSpacing = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | Range<11>;
 
 export interface GridProps {
   as?: GridElement;
   color?: Color;
   theme?: Theme;
+  size?: Size;
   cols?: GridCols;
   reverse?: boolean;
   spacing?: GridSpacing;
-  padding?: GridPadding;
-  margin?: GridMargin;
   children?: ReactNode;
   className?: string;
   style?: CSSProperties;
@@ -25,13 +22,12 @@ export interface GridProps {
 
 export const Grid = ({
   as = 'div',
+  size,
   theme,
   color,
   cols = 2,
   reverse = false,
   spacing,
-  padding,
-  margin,
   className,
   style,
   children,
@@ -43,12 +39,11 @@ export const Grid = ({
       className={cx(styles.grid, className)}
       style={style}
       data-theme={theme}
+      data-size={size}
       data-color={color}
       data-cols={cols}
       data-reverse={reverse}
       data-spacing={spacing}
-      data-padding={padding}
-      data-margin={margin}
     >
       {children}
     </Component>
