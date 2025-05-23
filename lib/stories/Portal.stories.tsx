@@ -81,8 +81,11 @@ export const Search = () => {
   return (
     <Layout {...layout}>
       <PageBase color="company">
+        <Breadcrumbs
+          items={[{ label: "Forside", href: "#" }, { label: "Søk: Query" }]}
+        />
         <Toolbar {...toolbar} />
-        <Section as="ul">
+        <List>
           {results?.items?.map((item, index) => {
             return (
               <Fragment key={index}>
@@ -91,7 +94,7 @@ export const Search = () => {
               </Fragment>
             );
           })}
-        </Section>
+        </List>
         <ArticleContact
           title="Står du fortsatt fast fast?"
           items={[

@@ -1,0 +1,4 @@
+.list {
+  --dsc-spacing: var(--dsc-spacing-md);
+  row-gap: var(--dsc-spacing);
+}

@@ -6,7 +6,7 @@ import styles from './flex.module.css';
 export type FlexDirection = 'col' | 'row';
 export type FlexAlign = 'initial' | 'start' | 'end' | 'center' | 'stretch';
 export type FlexJustify = 'initial' | 'start' | 'end' | 'center' | 'between';
-export type FlexSpacing = 'page' | 'xs' | Range<11>;
+export type FlexSpacing = 'page' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | Range<11>;
 export type FlexPadding = 'page' | Range<11>;
 export type FlexMargin = 0 | 'page' | 'section' | 'bottom';
 export type FlexSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';

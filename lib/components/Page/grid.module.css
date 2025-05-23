@@ -1,8 +1,11 @@
 .grid {
+  --dsc-spacing: var(--dsc-spacing-md);
+
   display: grid;
   list-style: none;
   padding: 0;
   margin: 0;
+  gap: var(--dsc-spacing);
 }
 
 /* cols */
@@ -46,12 +49,6 @@
     padding-left: var(--ds-spacing-4);
     padding-right: var(--ds-spacing-4);
   }
-}
-
-/* spacing */
-
-.grid[data-spacing="xs"] {
-  gap: 0.125rem;
 }
 
 /* margin */
