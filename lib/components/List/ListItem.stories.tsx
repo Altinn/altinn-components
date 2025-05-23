@@ -363,7 +363,7 @@ export const OverridingIcon = (args: ListItemProps) => {
         description="Custom icon with Icon + Avatar"
         icon={
           <span>
-            <Icon svgElement={TeddyBearIcon} theme="surface" variant="contain" />
+            <Icon svgElement={TeddyBearIcon} theme="surface" />
             <Avatar
               name="Alfa"
               style={{

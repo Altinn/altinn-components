@@ -4,9 +4,9 @@ import type { ButtonSize } from './ButtonBase';
 import styles from './buttonLabel.module.css';
 
 export interface ButtonLabelProps {
-  size: ButtonSize;
+  size?: ButtonSize;
   className?: string;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 export const ButtonLabel = ({ className, size, children }: ButtonLabelProps) => {

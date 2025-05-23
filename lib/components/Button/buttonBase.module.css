@@ -1,17 +1,41 @@
 .button {
-  border: 1px solid;
-  border-color: transparent;
+  --dsc-button-background--active: transparent;
+  --dsc-button-background--hover: transparent;
+  --dsc-button-background: transparent;
+  --dsc-button-color: inherit;
+  --dsc-button-color--hover: inherit;
+
+  --dsc-button-border-width: var(--ds-border-width-default);
+  --dsc-button-border-style: solid;
+  --dsc-button-border-color: transparent;
+  --dsc-button-border-radius: 2px; /*var(--ds-border-radius-default); */
+
+  --dsc-button-gap: var(--ds-size-2);
+  --dsc-button-padding: var(--ds-size-2) var(--ds-size-4);
+  --dsc-button-size: var(--ds-size-12);
+
+  border-style: var(--dsc-button-border-style);
+  border-width: var(--dsc-button-border-width);
+  border-color: var(--dsc-button-border-color);
+  border-radius: var(--dsc-button-border-radius);
+
+  background: var(--dsc-button-background);
+  color: var(--dsc-button-color);
+
   margin: 0;
   padding: 0;
-  width: auto;
-  overflow: visible;
 
-  background: transparent;
+  min-width: var(--dsc-button-size);
+  min-height: var(--dsc-button-size);
+  height: fit-content; /* If placed in flex container */
+
+  align-items: center;
+  justify-content: center;
+
+  overflow: visible;
   text-decoration: none;
 
   /* inherit font & color from ancestor */
-  color: inherit;
-  font: inherit;
   text-align: inherit;
 
   /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
@@ -31,52 +55,65 @@
   /* flex */
   display: inline-flex;
   align-items: center;
-  border-radius: 2px;
 }
 
-.button[data-reverse="true"] {
-  flex-direction: row-reverse;
+.button:not([data-size]) {
+  font-size: inherit; /* Ensure inheriting font-size when <button> */
 }
 
-.button:disabled {
-  opacity: 0.5;
-  pointer-events: none;
+.button:is(:disabled, [aria-disabled="true"]) {
+  cursor: not-allowed;
+  opacity: var(--ds-opacity-disabled);
+
+  /* When both aria-disabled and aria-busy is true, opacity should be 1 and cursor should be progress */
+  &[aria-busy="true"] {
+    opacity: 1;
+    cursor: progress;
+  }
 }
 
-/* sizes */
-
-.button[data-size="xs"] {
-  height: 2.25rem; /* xs 36 */
+@media (hover: hover) and (pointer: fine) {
+  /* Only use hover for non-touch devices to prevent sticky-hovering, using :where to prevent adding specificity */
+  .button:where(:not(:disabled, [aria-disabled="true"], [aria-busy="true"])):hover {
+    background: var(--dsc-button-background--hover);
+    color: var(--dsc-button-color--hover);
+  }
 }
 
-.button[data-size="sm"] {
-  height: 2.625rem; /* sm 42 */
-}
-
-.button[data-size="md"] {
-  height: 3rem; /* md 48 */
-}
-
-.button[data-size="lg"] {
-  height: 3.5rem; /* lg 56 */
+.button:where(:not(:disabled, [aria-disabled="true"], [aria-busy="true"])):active {
+  background: var(--dsc-button-background--active);
 }
 
 /* solid */
 
 .button[data-variant="solid"] {
-  background-color: var(--ds-color-base-default);
-  border-color: var(--ds-color-base-default);
-  color: var(--ds-color-base-contrast-default);
+  --dsc-button-background--active: var(--ds-color-base-active);
+  --dsc-button-background--hover: var(--ds-color-base-hover);
+  --dsc-button-background: var(--ds-color-base-default);
+  --dsc-button-color: var(--ds-color-base-contrast-default);
+  --dsc-button-color--hover: var(--ds-color-base-contrast-default);
+  --dsc-button-border-color: var(--ds-color-base-default);
 }
 
-.button[data-variant="solid"]:hover {
-  background-color: var(--ds-color-base-hover);
-  border-color: var(--ds-color-base-hover);
+/* outline, border, text */
+
+.button[data-variant="outline"],
+.button[data-variant="dotted"],
+.button[data-variant="text"] {
+  --dsc-button-background: transparent;
+  --dsc-button-background--active: var(--ds-color-surface-active);
+  --dsc-button-background--hover: var(--ds-color-surface-hover);
+  --dsc-button-color: var(--ds-color-text-subtle);
+  --dsc-button-color--hover: var(--ds-color-text-default);
 }
 
-.button[data-variant="solid"]:active {
-  background-color: var(--ds-color-base-active);
-  border-color: var(--ds-color-base-active);
+.button[data-variant="outline"],
+.button[data-variant="dotted"] {
+  --dsc-button-border-color: var(--ds-color-border-strong);
+}
+
+.button[data-variant="dotted"] {
+  --dsc-button-border-style: dotted;
 }
 
 /* tinted */
@@ -98,6 +135,7 @@
 
 /* primary outline, dotted + text */
 
+/*
 .button[data-variant="outline"],
 .button[data-variant="dotted"] {
   border-color: var(--ds-color-base-default);
@@ -137,6 +175,8 @@
 .button[data-variant="link"]:hover {
   color: var(--ds-color-base-hover);
 }
+
+*/
 
 /* focus from ds */
 
