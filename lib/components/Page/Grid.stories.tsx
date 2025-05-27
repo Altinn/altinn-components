@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Grid, ListItem } from '../';
+import { Grid, ListItem, type ListItemProps } from '../';
 import { categoryItems } from '../../../examples';
 
 const meta = {
@@ -12,7 +12,7 @@ const meta = {
     children: (
       <>
         {categoryItems?.map((item) => (
-          <ListItem {...item} key={item?.href} linkIcon={true} />
+          <ListItem {...(item as ListItemProps)} key={item?.href} linkIcon={true} />
         ))}
       </>
     ),
@@ -30,7 +30,7 @@ export const Large: Story = {
       <>
         {categoryItems?.map((item) => (
           <ListItem
-            {...item}
+            {...(item as ListItemProps)}
             title={{ children: item.title, size: 'md', weight: 'bold' }}
             variant="subtle"
             key={item?.href}
@@ -49,7 +49,7 @@ export const Small: Story = {
     children: (
       <>
         {categoryItems?.map((item) => (
-          <ListItem {...item} title={item.title} variant="subtle" key={item?.href} linkIcon={true} />
+          <ListItem {...(item as ListItemProps)} title={item.title} variant="subtle" key={item?.href} linkIcon={true} />
         ))}
       </>
     ),

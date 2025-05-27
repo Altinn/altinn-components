@@ -17,6 +17,7 @@ export interface ButtonBaseProps extends React.HTMLAttributes<HTMLButtonElement>
   size?: ButtonSize;
   variant?: ButtonVariant;
   reverse?: boolean;
+  rounded?: boolean;
   color?: ButtonColor;
   selected?: boolean;
   disabled?: boolean;
@@ -31,12 +32,13 @@ export const ButtonBase = ({
   color,
   className,
   children,
-  reverse,
   disabled = false,
   ariaLabel,
   size,
   selected,
   variant,
+  reverse = false,
+  rounded = false,
   tabIndex = 0,
   ...rest
 }: ButtonBaseProps) => {
@@ -48,6 +50,7 @@ export const ButtonBase = ({
       data-color={color}
       data-variant={variant}
       data-reverse={reverse}
+      data-rounded={rounded}
       data-selected={selected}
       aria-disabled={disabled}
       disabled={disabled}

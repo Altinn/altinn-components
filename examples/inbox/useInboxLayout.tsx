@@ -1,14 +1,11 @@
-import { footer, header, inboxMenu, inboxMenuItems, useAccountMenu } from '../';
-import type { GlobalMenuProps, LayoutProps } from '../../lib';
+import { useLayout, inboxMenu, inboxMenuItems } from "../";
+import type { LayoutProps } from "../../lib";
 
 interface InboxLayoutProps extends LayoutProps {
   pageId?: string;
 }
 
-export const useInboxLayout = ({ pageId = 'inbox' }): InboxLayoutProps => {
-  const menu: GlobalMenuProps = useAccountMenu(header!.menu!);
-  const currentAccount = menu.currentAccount;
-
+export const useInboxLayout = ({ pageId = "inbox" }): InboxLayoutProps => {
   const menuItems = inboxMenuItems.map((item) => {
     return {
       ...item,
@@ -16,20 +13,18 @@ export const useInboxLayout = ({ pageId = 'inbox' }): InboxLayoutProps => {
     };
   });
 
-  return {
-    //    color: "company",
-    pageId,
-    theme: 'subtle',
+  const layout = useLayout({
+    theme: "subtle",
     sidebar: {
-      menu: { ...inboxMenu, items: menuItems },
-    },
-    footer,
-    header: {
-      ...header,
-      currentAccount,
       menu: {
-        ...menu,
+        ...inboxMenu,
+        items: menuItems,
       },
     },
+  });
+
+  return {
+    ...layout,
+    pageId,
   };
 };

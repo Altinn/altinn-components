@@ -1,66 +1,32 @@
-import { HeartFillIcon, HeartIcon, InboxIcon, PlusIcon } from '@navikt/aksel-icons';
-import type { AccountListItemProps } from '../../lib';
-import { accountMenu } from './accountMenu';
+import type { AccountListItemProps } from "../../lib";
+import { accounts, getAccountItems } from "./";
 
-export const accountListItems: AccountListItemProps[] = accountMenu.accounts!.map((item, index) => {
-  const { id, type, name, items } = item;
+export const accountListGroups = {
+  primary: {
+    title: "Deg selv",
+  },
+  favourites: {
+    title: "Favoritter",
+  },
+  groups: {
+    title: "Grupper",
+  },
+  secondary: {
+    title: "Andre kontoer",
+  },
+};
 
-  const favourite = !index;
-
-  const contextMenu = {
-    id: id + '-menu',
-    items: [
-      {
-        id: 'inbox',
-        groupId: 'apps',
-        icon: InboxIcon,
-        title: 'Gå til Innboks',
-      },
-      {
-        id: 'fav',
-        groupId: 'context',
-        icon: favourite ? HeartFillIcon : HeartIcon,
-        title: favourite ? 'Fjern fra favoritter' : 'Legg til favoritter',
-      },
-      {
-        id: 'new-group',
-        groupId: 'new',
-        icon: PlusIcon,
-        title: 'Ny gruppe',
-      },
-    ],
-    groups: {
-      apps: {
-        title: name,
-      },
-    },
-  };
-
-  if (items) {
-    return {
-      id,
-      type: 'group',
-      title: name,
-      description: 'Gruppe',
-      label: items.length + ' aktører',
-      icon: {
-        items,
-      },
-      contextMenu,
-    };
-  }
+export const getAccountList = ({
+  accounts,
+}: {
+  accounts?: AccountListItemProps[];
+}) => {
+  const items = getAccountItems({ accounts });
 
   return {
-    id,
-    type,
-    title: name,
-    label: !index ? 'Deg' : '',
-    favourite,
-    description: type === 'person' ? 'Fødselsnr: XX.XX.XXXX XXXXXX' : 'Org nr. XXXXXXXXXXX',
-    icon: {
-      type,
-      name,
-    },
-    contextMenu,
+    items,
+    groups: accountListGroups,
   };
-});
+};
+
+export const accountList = getAccountList({ accounts });

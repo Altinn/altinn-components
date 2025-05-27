@@ -1,7 +1,7 @@
 import type { Meta } from '@storybook/react';
 import { Flex } from '..';
-import type { GlobalMenuProps, LayoutProps, SearchbarProps } from '../';
-import { footer, header, inboxMenu, useAccountMenu, useInboxSearch } from '../../../examples';
+import type { LayoutProps } from '../';
+import { footer, header, inboxMenu, useLayout } from '../../../examples';
 
 import { Layout } from './Layout';
 
@@ -13,6 +13,7 @@ const meta = {
     layout: 'fullscreen',
   },
   args: {
+    theme: 'subtle',
     header,
     footer,
     sidebar: {
@@ -29,62 +30,32 @@ const meta = {
 export default meta;
 
 export const Preview = (args: LayoutProps) => {
-  const search: SearchbarProps = useInboxSearch(args.header!.search!);
-  const menu: GlobalMenuProps = useAccountMenu(args.header!.menu!);
-  return (
-    <Layout
-      {...args}
-      header={{
-        ...args.header,
-        currentAccount: menu.currentAccount,
-        menu: {
-          ...menu,
-          menuItemsVirtual: {
-            isVirtualized: true,
-          },
-        },
-        search: search,
-      }}
-    />
-  );
+  const layout = useLayout(args);
+  return <Layout {...layout}>{args.children}</Layout>;
 };
 
 export const HiddenSidebar = (args: LayoutProps) => {
-  const search: SearchbarProps = useInboxSearch(args.header!.search!);
-  const menu: GlobalMenuProps = useAccountMenu(args.header!.menu!);
+  const layout = useLayout(args);
 
   return (
     <Layout
-      {...args}
+      {...layout}
       sidebar={{
         ...args.sidebar,
         hidden: true,
       }}
-      header={{
-        ...args.header,
-        currentAccount: menu.currentAccount,
-        menu: menu,
-        search: search,
-      }}
-    />
+    >
+      {args.children}
+    </Layout>
   );
 };
 
 export const Fullscreen = (args: LayoutProps) => {
-  const search: SearchbarProps = useInboxSearch(args.header!.search!);
-  const menu: GlobalMenuProps = useAccountMenu(args.header!.menu!);
+  const layout = useLayout(args);
 
   return (
-    <Layout
-      {...args}
-      theme="default"
-      sidebar={undefined}
-      header={{
-        ...args.header,
-        currentAccount: menu.currentAccount,
-        menu: menu,
-        search: search,
-      }}
-    />
+    <Layout {...layout} theme="default" sidebar={undefined}>
+      {args.children}
+    </Layout>
   );
 };

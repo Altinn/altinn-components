@@ -2,6 +2,8 @@ export * from '../types/';
 
 export * from './Attachment';
 export * from './Avatar';
+export * from './Account';
+
 export * from './Badge';
 export * from './Bookmarks';
 export * from './Button';
@@ -19,7 +21,6 @@ export * from './LayoutAction';
 export * from './List';
 export * from './Menu';
 export * from './Metadata';
-export * from './Profile';
 export * from './RootProvider';
 export * from './Search';
 export * from './Searchbar';

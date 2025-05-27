@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import type { AvatarProps, BadgeProps } from '../';
+import type { AvatarProps, BadgeProps } from '..';
 import { Menu, type MenuItemGroups, type MenuItemProps, type MenuSearchProps } from '../Menu';
 import type { MenuItemsVirtualProps } from '../Menu/MenuItems';
 export interface AccountSearchProps extends MenuSearchProps {

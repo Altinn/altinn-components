@@ -4,7 +4,7 @@ import { InboxIcon } from '@navikt/aksel-icons';
 import { HeaderButton } from './HeaderButton';
 
 const meta = {
-  title: 'Atoms/Button/HeaderButton',
+  title: 'Layout/Header/HeaderButton',
   component: HeaderButton,
   tags: ['autodocs'],
   parameters: {

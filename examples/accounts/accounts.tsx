@@ -1,110 +1,99 @@
-import type { AccountMenuProps } from '../../lib';
+/**
+ * This file defines a set of account objects that can be used  to build menus and lists.
+ */
 
-export const accounts: AccountMenuProps['accounts'] = [
+import type { AccountListItemProps } from "../../lib";
+
+export const accounts: AccountListItemProps[] = [
   {
-    id: 'party:mathias',
-    groupId: 'primary',
-    type: 'person',
-    name: 'Mathias Dyngeland',
-    badge: {
-      label: '12',
-    },
-    alertBadge: {
-      label: '7 uleste',
-    },
+    id: "user",
+    type: "person",
+    name: "Mathias Dyngeland",
+    uniqueId: "071095XXXXX",
+    isCurrentEndUser: true,
   },
   {
-    id: 'party:bergenbar',
-    groupId: 'favourites',
-    type: 'company',
-    name: 'Bergen bar',
-    badge: {
-      label: '2',
-    },
+    id: "brann",
+    type: "company",
+    name: "Sportsklubben Brann",
+    uniqueId: "934908988",
+    favourite: true,
   },
   {
-    id: 'party:diaspora',
-    groupId: 'favourites',
-    type: 'company',
-    name: 'Diaspora Bergensis',
-    badge: {
-      label: '34',
-    },
+    id: "brann-2",
+    type: "company",
+    name: "Sportsklubben Brann",
+    uniqueId: "971877057",
+    parentId: "brann",
   },
   {
-    id: 'party:brann',
-    groupId: 'favourites',
-    type: 'company',
-    name: 'Sportsklubben Brann',
-    badge: {
-      label: '34',
-    },
+    id: "nff",
+    type: "company",
+    name: "Norges Fotballforbund",
+    uniqueId: "963460449",
+    favourite: true,
   },
   {
-    id: 'party:daily-pot',
-    groupId: 'favourites',
-    type: 'company',
-    name: 'Daily Pot',
-    badge: {
-      label: '12',
-    },
+    id: "nff-2",
+    type: "company",
+    name: "Norges Fotballforbund",
+    uniqueId: "974127245",
+    parentId: "nff",
   },
   {
-    id: 'customGroup',
-    groupId: 'groups',
-    type: 'person',
-    name: 'Landslaget og meg',
-    items: [
-      { type: 'company', name: 'Landslaget' },
-      { type: 'person', name: 'Mathias Dyngeland' },
-    ],
-    selected: false,
-    badge: {
-      size: 'xs',
-      label: '19',
-    },
+    id: "diaspora",
+    type: "company",
+    name: "Diaspora Bergensis",
+    uniqueId: "428 743 989",
   },
   {
-    id: 'allAccounts',
-    groupId: 'groups',
-    type: 'company',
-    name: 'Alle virksomheter',
-    items: [{ name: 'Keeperhansker AS' }, { name: 'Stadion drift AS' }, { name: 'Landslaget' }],
-    selected: false,
-    badge: {
-      size: 'xs',
-      label: '19',
-    },
+    id: "diaspora-2",
+    type: "company",
+    name: "Diaspora Bergensis",
+    uniqueId: "498 665 381",
+    parentId: "diaspora",
   },
   {
-    id: 'party:keeperhansker',
-    groupId: 'secondary',
-    type: 'company',
-    name: 'Keeperhansker AS',
-    badge: {
-      label: '34',
-    },
-    alertBadge: {
-      label: '2 uleste',
-    },
+    id: "bbb",
+    type: "company",
+    name: "Brann Bataljonen Bergen",
+    uniqueId: "985813841",
   },
   {
-    id: 'party:stadiondrift',
-    groupId: 'secondary',
-    type: 'company',
-    name: 'Stadion drift AS',
-    badge: {
-      label: '34',
-    },
+    id: "bbb-2",
+    type: "company",
+    name: "Brann Bataljonen Bergen",
+    uniqueId: "994485199",
+    parentId: "bbb",
   },
   {
-    id: 'party:landslaget',
-    groupId: 'secondary',
-    type: 'company',
-    name: 'Landslaget',
-    badge: {
-      size: 'xs',
-      label: '34',
-    },
+    id: "group:1",
+    type: "group",
+    name: "Mine lag",
+    accountIds: ["nff", "brann"],
+  },
+  {
+    id: "group:2",
+    type: "group",
+    name: "Supportergrupper",
+    accountIds: ["bbb", "diaspora"],
   },
 ];
+
+export const accounts2 = [
+  {
+    id: "user",
+    type: "person",
+    name: "Mathias Dyngeland",
+    uniqueId: "071095XXXXX",
+    isCurrentEndUser: true,
+  },
+  {
+    id: "diaspora",
+    type: "company",
+    name: "Diaspora Bergensis",
+    uniqueId: "428 743 989",
+  },
+];
+
+export const defaultAccounts = accounts;

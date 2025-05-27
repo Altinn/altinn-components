@@ -27,7 +27,7 @@ import {
   TextField,
   Typography,
 } from '..';
-import { accountListItems, useSettings } from '../../../examples';
+import { accountList, useSettings } from '../../../examples';
 
 const meta = {
   title: 'Settings/Settings',
@@ -239,13 +239,13 @@ export const AccountSettings = () => {
   return (
     <Settings>
       <List>
-        {accountListItems.map((item, index) => {
+        {accountList.items?.map((item, index) => {
           return (
             <Fragment key={item.id}>
               {index > 0 && <Divider />}
 
               <SettingsItem
-                icon={item.icon}
+                icon={item.icon as SettingsItemProps['icon']}
                 title={item.title}
                 description={item.description as SettingsItemProps['description']}
                 badge={

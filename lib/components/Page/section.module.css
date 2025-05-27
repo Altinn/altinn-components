@@ -1,0 +1,11 @@
+.section[data-variant="default"] {
+  --dsc-item-background: var(--ds-color-surface-default);
+}
+
+.section[data-variant="subtle"] {
+  --dsc-item-background: var(--ds-color-background-tinted);
+}
+
+.section[data-variant="tinted"] {
+  --dsc-item-background: var(--ds-color-surface-tinted);
+}
