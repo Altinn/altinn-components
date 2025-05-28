@@ -1,19 +1,18 @@
-import { footer, header, profileMenu, profileMenuItems, useAccountMenu } from '../';
-import type { BreadcrumbsLinkProps, GlobalMenuProps, LayoutProps } from '../../lib';
+import { footer, profileMenu, profileMenuItems, useLayout } from "../";
+import type { BreadcrumbsLinkProps, LayoutProps } from "../../lib";
 
 interface ProfileLayoutProps extends LayoutProps {
   pageId?: string;
   breadcrumbs?: BreadcrumbsLinkProps[];
 }
 
-export const useProfileLayout = ({ pageId = 'profile' }): ProfileLayoutProps => {
-  const menu: GlobalMenuProps = useAccountMenu(header!.menu!);
-  const currentAccount = menu.currentAccount;
-
-  const baseHref = '/?path=/story/demo-profile';
+export const useProfileLayout = ({
+  pageId = "profile",
+}): ProfileLayoutProps => {
+  const baseHref = "/?path=/story/demo-profile";
 
   const menuItems = profileMenuItems.map((item, index) => {
-    const href = (index && [baseHref, item.id].join('--')) || baseHref;
+    const href = (index && [baseHref, item.id].join("--")) || baseHref;
 
     return {
       ...item,
@@ -24,32 +23,31 @@ export const useProfileLayout = ({ pageId = 'profile' }): ProfileLayoutProps => 
 
   const page = menuItems?.find((item) => item.selected);
 
+  const layout = useLayout({
+    color: "neutral",
+    theme: "subtle",
+    sidebar: {
+      menu: { ...profileMenu, items: menuItems },
+    },
+  });
+
+  const currentAccount = layout.header?.currentAccount;
+
   const breadcrumbs = [
     {
-      label: 'Forside',
+      label: "Forside",
     },
     {
-      label: currentAccount?.name || 'Seksjon',
+      label: currentAccount?.name || "Seksjon",
     },
     {
-      label: page?.title || 'Side',
+      label: page?.title || "Side",
     },
   ];
 
   return {
+    ...layout,
     breadcrumbs,
-    color: 'neutral',
-    theme: 'subtle',
-    sidebar: {
-      menu: { ...profileMenu, items: menuItems },
-    },
     footer,
-    header: {
-      ...header,
-      currentAccount,
-      menu: {
-        ...menu,
-      },
-    },
   };
 };

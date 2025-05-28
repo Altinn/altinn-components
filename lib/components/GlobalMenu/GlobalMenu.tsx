@@ -1,14 +1,14 @@
 'use client';
 import { useMemo, useState } from 'react';
+import { type Account, AccountButton, AccountMenu, type AccountMenuProps } from '../';
 import { Menu, type MenuItemGroups, type MenuItemProps, MenuListItem } from '../Menu';
-import { type Account, AccountButton } from './AccountButton';
-import { AccountMenu, type AccountMenuProps } from './AccountMenu';
 import { BackButton } from './BackButton';
 import { EndUserLabel } from './EndUserLabel';
 import { GlobalMenuBase, GlobalMenuFooter, GlobalMenuHeader } from './GlobalMenuBase';
 import { LogoutButton, type LogoutButtonProps } from './LogoutButton';
 
-export interface GlobalMenuProps extends AccountMenuProps {
+export interface GlobalMenuProps {
+  accountMenu?: AccountMenuProps;
   items: MenuItemProps[];
   groups?: MenuItemGroups;
   menuLabel?: string;
@@ -23,9 +23,7 @@ export interface GlobalMenuProps extends AccountMenuProps {
 }
 
 export const GlobalMenu = ({
-  accounts = [],
-  accountGroups = {},
-  accountSearch,
+  accountMenu,
   items = [],
   groups,
   changeLabel = 'Change',
@@ -35,7 +33,6 @@ export const GlobalMenu = ({
   onSelectAccount,
   onClose,
   logoutButton,
-  menuItemsVirtual,
 }: GlobalMenuProps) => {
   const [selectingAccount, setSelectingAccount] = useState<boolean>(false);
 
@@ -75,14 +72,9 @@ export const GlobalMenu = ({
           <BackButton onClick={onToggleAccounts} label={backLabel} />
         </GlobalMenuHeader>
         <MenuListItem as="div" role="separator" />
-        <AccountMenu
-          currentAccount={currentAccount}
-          accounts={accounts}
-          accountGroups={accountGroups}
-          accountSearch={accountSearch}
-          onSelectAccount={handleSelectAccount}
-          menuItemsVirtual={menuItemsVirtual}
-        />
+        {accountMenu && (
+          <AccountMenu {...accountMenu} currentAccount={currentAccount} onSelectAccount={handleSelectAccount} />
+        )}
       </GlobalMenuBase>
     );
   }
@@ -93,7 +85,7 @@ export const GlobalMenu = ({
         <AccountButton
           account={currentAccount}
           linkText={changeLabel}
-          multipleAccounts={accounts.length > 1}
+          multipleAccounts={accountMenu && accountMenu?.items?.length > 1}
           onClick={onToggleAccounts}
         />
         <MenuListItem as="div" role="separator" />

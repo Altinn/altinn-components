@@ -1,73 +1,103 @@
-import { useState } from 'react';
-import { accountListItems, useAccountListToolbar } from '../';
+import { useState } from "react";
+import {
+  defaultAccounts,
+  accountListGroups,
+  getAccountItems,
+  useAccountListToolbar,
+} from "../";
+import type { AccountListProps, AccountListItemProps } from "../../lib";
 
-export const useAccountList = () => {
-  const [expandedId, setExpandedId] = useState<string>('');
+type UseAccountListProps = {
+  accounts?: AccountListItemProps[];
+  accountId?: string;
+  items?: AccountListItemProps[];
+} & Omit<AccountListProps, "items">;
+
+export const useAccountList = ({
+  accounts = defaultAccounts,
+  ...props
+}: UseAccountListProps) => {
+  const items = props?.items || getAccountItems({ accounts });
+  const groups = props?.groups || accountListGroups;
+
+  const defaultFavouriteIds = items
+    ?.filter((item) => item.favourite)
+    .map((item) => item.id) as string[];
+
+  const [favouriteIds, setFavouriteIds] =
+    useState<string[]>(defaultFavouriteIds);
+
+  const [expandedId, setExpandedId] = useState<string>("");
 
   const onToggle = (id: string) => {
+    console.log("onToggle", id);
     setExpandedId((prevState) => {
       if (prevState === id) {
-        return '';
+        return "";
       }
       return id;
     });
   };
 
+  const onToggleFavourite = (id: string) => {
+    setFavouriteIds((prevState) => {
+      if (prevState.includes(id)) {
+        return prevState.filter((favId) => favId !== id);
+      }
+      return [...prevState, id];
+    });
+  };
+
   const toolbar = useAccountListToolbar();
-  const items = accountListItems.map((item, index) => {
-    const itemId = item?.id || 'index' + index;
-
-    return {
-      ...item,
-      collapsible: true,
-      expanded: itemId === expandedId,
-      onClick: () => onToggle(itemId),
-    };
-  });
-
   const search = toolbar?.search;
   const q = search?.value;
 
+  const filteredItems = items
+    ?.filter((item) => {
+      if (!q) return true;
+      return item.name.toLowerCase().includes(q.toLowerCase());
+    })
+    .map((item) => {
+      return {
+        ...item,
+        collapsible: true,
+        expanded: item.id === expandedId,
+        as: "button",
+        ariaLabel: item.name,
+        favourite: favouriteIds.includes(item.id),
+        onToggleFavourite: () => onToggleFavourite(item.id),
+        onClick: () => onToggle(item.id),
+      };
+    });
+
+  // search result
+
   if (q) {
-    const filteredItems = items.filter((item) => item.title.toLowerCase().includes(q.toLowerCase()));
-
-    const count = filteredItems.length;
-
-    const title = count > 0 ? count + ' treff' : 'Ingen treff';
+    const hits = filteredItems.length;
+    const hitsTitle = hits ? `${hits} treff` : "Ingen treff";
 
     return {
       toolbar,
-      items,
-      results: {
-        title,
-        items: filteredItems,
+      items: filteredItems?.map((item) => ({
+        ...item,
+        groupId: "search",
+      })),
+      groups: {
+        search: {
+          title: hitsTitle,
+        },
       },
     };
   }
 
-  const breadcrumbs = [
-    {
-      label: 'Forside',
-    },
-    {
-      label: 'Seksjon',
-    },
-    {
-      label: 'Side',
-    },
-  ];
-
-  const favourites = items?.filter((item) => item.type === 'group' || item.favourite);
-
-  const otherItems = items?.filter((item) => item.type !== 'group' && !item.favourite);
+  // grouped results
 
   return {
-    breadcrumbs,
     toolbar,
-    items,
-    favourites,
-    otherItems,
+    items: filteredItems,
+    groups,
     expandedId,
     onToggle,
+    onToggleFavourite,
   };
 };

@@ -109,7 +109,7 @@ export const MoreSettings = () => {
 };
 
 export const AccountSettings = () => {
-  const { items, expandedId, onToggle } = useAccountList();
+  const { items, expandedId, onToggle } = useAccountList({});
 
   return (
     <Settings>

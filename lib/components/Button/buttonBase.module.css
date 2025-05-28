@@ -133,50 +133,11 @@
   background-color: var(--ds-color-surface-active);
 }
 
-/* primary outline, dotted + text */
+/* rounded */
 
-/*
-.button[data-variant="outline"],
-.button[data-variant="dotted"] {
-  border-color: var(--ds-color-base-default);
+.button[data-rounded="true"] {
+  border-radius: 50%;
 }
-
-.button[data-variant="outline"] {
-  border-style: solid;
-}
-
-.button[data-variant="dotted"] {
-  border-style: dotted;
-}
-
-.button[data-variant="text"] {
-  border-color: transparent;
-  color: var(--ds-color-text-subtle);
-}
-
-.button[data-variant="outline"]:hover,
-.button[data-variant="dotted"]:hover,
-.button[data-variant="text"]:hover {
-  background-color: var(--ds-color-surface-hover);
-  color: var(--ds-color-text-default);
-}
-
-.button[data-variant="outline"]:active,
-.button[data-variant="dotted"]:active,
-.button[data-variant="text"]:active {
-  background-color: var(--ds-color-surface-active);
-}
-
-.button[data-variant="link"] {
-  border: none;
-  color: var(--ds-color-text-subtle);
-}
-
-.button[data-variant="link"]:hover {
-  color: var(--ds-color-base-hover);
-}
-
-*/
 
 /* focus from ds */
 

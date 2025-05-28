@@ -1,6 +1,6 @@
 import { ChevronDownIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 import type { ElementType, ReactNode } from 'react';
-import type { AvatarGroupProps, AvatarProps, BadgeProps, SvgElement } from '..';
+import type { BadgeProps, SvgElement } from '..';
 import {
   MenuItemBase,
   type MenuItemColor,
@@ -34,8 +34,6 @@ export interface MenuItemProps {
   icon?: MenuItemIconProps['icon'];
   iconTheme?: MenuItemIconProps['theme'];
   iconBadge?: MenuItemIconProps['badge'];
-  avatar?: AvatarProps;
-  avatarGroup?: AvatarGroupProps;
   badge?: BadgeProps | undefined;
   linkIcon?: SvgElement;
   linkText?: string;
@@ -54,8 +52,6 @@ export const MenuItem = ({
   icon,
   iconTheme,
   iconBadge,
-  avatar,
-  avatarGroup,
   title,
   description,
   badge,

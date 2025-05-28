@@ -1,23 +1,57 @@
-import { useState } from 'react';
-import type { Account, GlobalMenuProps } from '../../lib';
+import { useState } from "react";
+import type {
+  Account,
+  AccountMenuProps,
+  AccountListItemProps,
+} from "../../lib";
 
-interface UseAccountMenuProps extends GlobalMenuProps {
+import {
+  defaultAccounts,
+  accountMenuGroups,
+  accountMenuSearch,
+  getAccountItems,
+} from "./";
+
+type UseAccountMenuProps = {
   accountId?: string;
-}
+  accounts?: AccountListItemProps[];
+  items?: AccountListItemProps[];
+} & Omit<AccountMenuProps, "items">;
 
-export const useAccountMenu = ({ accountId, accounts, ...props }: UseAccountMenuProps) => {
-  const defaultAccount = accounts?.find((item) => item.id === accountId) || accounts?.[0];
+export const useAccountMenu = ({
+  accountId,
+  accounts = defaultAccounts,
+  ...props
+}: UseAccountMenuProps) => {
+  const items = props?.items || getAccountItems({ accounts });
+  const groups = props?.groups || accountMenuGroups;
+  const search = props?.search || accountMenuSearch;
 
-  const [currentAccount, setCurrentAccount] = useState<Account | undefined>(defaultAccount);
+  /* if no accountId, return first account */
+  const defaultAccount =
+    items?.find((item) => item.id === accountId) ||
+    items?.find((item) => item.type === accountId) ||
+    items?.[0];
+
+  const [currentAccount, setCurrentAccount] = useState<Account | undefined>(
+    defaultAccount as Account | undefined
+  );
 
   const onSelectAccount = (id: string) => {
-    const account = accounts?.find((item) => item.id === id);
-    setCurrentAccount(account);
+    const account = items?.find((item) => item.id === id);
+    setCurrentAccount({
+      id: account?.id,
+      name: account?.name,
+      type: account?.type,
+      description: account?.description,
+    } as Account);
   };
 
   return {
     ...props,
-    accounts,
+    items,
+    groups,
+    search,
     currentAccount,
     onSelectAccount,
   };

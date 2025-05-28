@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { List, ListItem } from '../';
+import { List, ListItem, type ListItemProps } from '../';
 import { categoryItems } from '../../../examples';
 
 const meta = {
@@ -11,7 +11,7 @@ const meta = {
     children: (
       <>
         {categoryItems?.map((item) => (
-          <ListItem {...item} key={item?.href} variant="subtle" linkIcon={true} />
+          <ListItem {...(item as ListItemProps)} key={item?.href} variant="subtle" linkIcon={true} />
         ))}
       </>
     ),

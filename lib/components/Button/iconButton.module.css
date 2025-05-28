@@ -4,3 +4,7 @@
   height: var(--ds-button-size);
   flex-shrink: 0;
 }
+
+.button[data-rounded="true"] {
+  border-radius: 50%;
+}

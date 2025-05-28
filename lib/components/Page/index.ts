@@ -2,7 +2,6 @@ export * from './PageBase';
 export * from './PageNav';
 export * from './PageMenu';
 export * from './PageTabs';
-export * from './PageHeader';
 export * from './PageDetails';
 
 export * from './Flex';

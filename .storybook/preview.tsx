@@ -42,7 +42,25 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ["Docs", "Layout", "Search", "Menu", "List", "Timeline", "Dialog", ["Dialog", "DialogHeader", "DialogBody", "DialogHistory", "DialogMetadata", "DialogList", "DialogListItem"]],
+        order: [
+          "Docs",
+          "Layout",
+          "Account",
+          "Search",
+          "Menu",
+          "List",
+          "Timeline",
+          "Dialog",
+          [
+            "Dialog",
+            "DialogHeader",
+            "DialogBody",
+            "DialogHistory",
+            "DialogMetadata",
+            "DialogList",
+            "DialogListItem",
+          ],
+        ],
       },
     },
   },

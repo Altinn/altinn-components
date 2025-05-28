@@ -1,13 +1,11 @@
 import type { Meta } from '@storybook/react';
-import { type ChangeEvent, useState } from 'react';
-import { header, inboxMenu, useAccountMenu, useInboxSearch } from '../../../examples';
-import { loginMenu } from '../../../examples';
-import { Header, type HeaderProps } from './Header';
+import { type GlobalMenuProps, Header, type HeaderProps } from '../';
+import { header, inboxMenu, useHeader } from '../../../examples';
 
 const meta = {
   title: 'Layout/Header',
   component: Header,
-  //  tags: ["autodocs"],
+  tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
   },
@@ -22,54 +20,36 @@ const meta = {
 
 export default meta;
 
-export const CurrentAccount = (args: HeaderProps) => {
-  const search = useInboxSearch(args.search!);
-  const menu = useAccountMenu(args.menu!);
-
-  return <Header {...args} currentAccount={menu.currentAccount} menu={menu} search={search!} />;
-};
-
 export const Login = (args: HeaderProps) => {
-  const search = useInboxSearch(args.search!);
-
-  return <Header {...args} menu={{ ...loginMenu, menuLabel: 'Meny' }} search={search!} />;
+  const header = useHeader({ ...args, accountId: null });
+  return <Header {...(header as HeaderProps)} />;
 };
 
-export const SubItems = (args: HeaderProps) => {
-  const search = useInboxSearch(args.search!);
-  const menu = useAccountMenu(args.menu!);
+export const CurrentEndUser = (args: HeaderProps) => {
+  const header = useHeader({ ...args });
+  return <Header {...(header as HeaderProps)} />;
+};
+
+export const CompanyAccount = (args: HeaderProps) => {
+  const header = useHeader({ ...args, accountId: 'company' });
+  return <Header {...(header as HeaderProps)} />;
+};
+
+export const SubmenuExpanded = (args: HeaderProps) => {
+  const header = useHeader({ ...args });
   const menuItems = [
     {
-      ...menu.items[0],
+      ...args.menu.items[0],
       items: inboxMenu.items.slice(1),
       expanded: true,
     },
-    ...menu.items.slice(1, 3),
+    ...args.menu.items.slice(1, 3),
   ];
 
-  return <Header {...args} menu={{ ...menu, items: menuItems, menuLabel: 'Meny' }} search={search!} />;
-};
+  const globalMenu = {
+    ...header.menu,
+    items: menuItems,
+  } as GlobalMenuProps;
 
-export const ChangeLocale = (args: HeaderProps) => {
-  const [locale, setLocale] = useState<string>('nb');
-  const search = useInboxSearch(args.search!);
-
-  return (
-    <Header
-      {...args}
-      menu={{ ...loginMenu, menuLabel: 'Meny' }}
-      search={search!}
-      locale={{
-        title: 'Velg språk / Choose language',
-        options: [
-          { label: 'Norsk (bokmål)', value: 'nb', checked: locale === 'nb' },
-          { label: 'Norsk (nynorsk)', value: 'nn', checked: locale === 'nn' },
-          { label: 'English', value: 'en', checked: locale === 'en' },
-        ],
-        onChange: (event: ChangeEvent<HTMLInputElement>) => {
-          setLocale(event.target.value);
-        },
-      }}
-    />
-  );
+  return <Header {...header} menu={globalMenu as GlobalMenuProps} />;
 };

@@ -1,10 +1,22 @@
 import cx from 'classnames';
 import { type ReactNode, isValidElement } from 'react';
-import { type ButtonSize, Icon, type IconProps, type SvgElement, isIconProps } from '..';
+import {
+  Avatar,
+  AvatarGroup,
+  type AvatarGroupProps,
+  type AvatarProps,
+  type ButtonSize,
+  Icon,
+  type IconProps,
+  type SvgElement,
+  isAvatarGroupProps,
+  isAvatarProps,
+  isIconProps,
+} from '..';
 import styles from './buttonIcon.module.css';
 
 export interface ButtonIconProps {
-  icon: IconProps | SvgElement;
+  icon?: IconProps | SvgElement | AvatarProps | AvatarGroupProps;
   iconAltText?: string;
   size?: ButtonSize;
   altText?: string;
@@ -24,7 +36,9 @@ function isReactNode(value: unknown): value is ReactNode {
 export const ButtonIcon = ({ icon, size, iconAltText, className }: ButtonIconProps) => {
   return (
     <span className={cx(styles.wrapper, className)} data-size={size} aria-label={iconAltText}>
-      {(isIconProps(icon) && <Icon {...(icon as IconProps)} className={styles.icon} />) ||
+      {(isAvatarProps(icon) && <Avatar {...icon} />) ||
+        (isAvatarGroupProps(icon) && <AvatarGroup {...icon} className={styles.avatarGroup} />) ||
+        (isIconProps(icon) && <Icon {...(icon as IconProps)} className={styles.icon} />) ||
         (isReactNode(icon) && icon) || <Icon svgElement={icon as SvgElement} className={styles.icon} />}
     </span>
   );

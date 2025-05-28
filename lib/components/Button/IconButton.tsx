@@ -9,6 +9,7 @@ export interface IconButtonProps {
   size?: ButtonSize;
   iconSize?: ButtonSize;
   variant?: ButtonVariant;
+  rounded?: boolean; // Optional, used to indicate if the button should have rounded corners
   selected?: boolean;
   className?: string;
   onClick?: MouseEventHandler;
@@ -17,6 +18,7 @@ export interface IconButtonProps {
 
 export const IconButton = ({
   variant = 'solid',
+  rounded = false,
   size,
   icon,
   iconSize,
@@ -30,6 +32,7 @@ export const IconButton = ({
   return (
     <ButtonBase
       variant={variant}
+      rounded={rounded}
       color={color}
       size={size}
       className={className}

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AccountListItem, Button, Divider, Flex, List, Section } from '..';
+import { AccountListItem, type AccountListItemProps, Button, Divider, Flex, List, Section } from '..';
 import * as SettingsStories from '../Settings/Settings.stories';
 const meta = {
-  title: 'Profile/AccountListItem',
+  title: 'Account/AccountListItem',
   component: AccountListItem,
   tags: ['autodocs'],
   parameters: {},
@@ -27,7 +27,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    collapsible: true,
+  } as AccountListItemProps,
 };
 
 export const Expanded: Story = {
@@ -52,5 +54,5 @@ export const Expanded: Story = {
         <SettingsStories.CompanySettings />
       </Section>
     ),
-  },
+  } as AccountListItemProps,
 };

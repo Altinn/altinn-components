@@ -1,7 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React, { useEffect } from 'react';
-import { accountMenu, accountMenuWithLongList, inboxFilters, inboxStatusFilter } from '../../../examples';
-import { type FilterState, Toolbar } from './Toolbar';
+import { type AccountMenuProps, type FilterState, Toolbar } from '..';
+import {
+  accountMenu,
+  accountMenuWithLongList,
+  inboxFilters,
+  inboxStatusFilter,
+  useAccountMenu,
+} from '../../../examples';
 
 const meta = {
   title: 'Toolbar/Toolbar',
@@ -20,8 +26,8 @@ export const Default: Story = {
   args: {
     accountMenu: {
       ...accountMenu,
-      currentAccount: accountMenu.accounts?.[0],
-    },
+      currentAccount: accountMenu.items?.[0],
+    } as AccountMenuProps,
     filters: inboxFilters,
   },
 };
@@ -63,8 +69,8 @@ export const WithAccountMenu: Story = {
   args: {
     accountMenu: {
       ...accountMenu,
-      currentAccount: accountMenu.accounts?.[0],
-    },
+      currentAccount: accountMenu.items?.[0],
+    } as AccountMenuProps,
     filters: inboxFilters,
   },
 };
@@ -83,14 +89,14 @@ export const LongListAccounts: Story = {
   args: {
     accountMenu: {
       ...accountMenuWithLongList,
-      currentAccount: accountMenu.accounts?.[0],
+      currentAccount: accountMenu.items?.[0],
       menuItemsVirtual: {
         isVirtualized: true,
         scrollRefStyles: {
           maxHeight: 'calc(90vh - 8rem)',
         },
       },
-    },
+    } as AccountMenuProps,
   },
 };
 
@@ -117,18 +123,17 @@ export const ControlledStateFilters = (args: typeof Toolbar) => {
 };
 
 export const ControlledStateAccount = () => {
-  const [currentAccountId, setCurrentAccountId] = React.useState<string>('party:mathias');
+  const accountMenu = useAccountMenu({
+    accountId: 'company',
+  });
+
   const [filterState, setFilterState] = React.useState<FilterState>({
     from: ['skatt', 'brreg'],
   });
 
   return (
     <Toolbar
-      accountMenu={{
-        ...accountMenu,
-        onSelectAccount: (id) => setCurrentAccountId(id),
-        currentAccount: accountMenu.accounts?.find((account) => account.id === currentAccountId),
-      }}
+      accountMenu={accountMenu as AccountMenuProps}
       filters={Default.args!.filters}
       filterState={filterState}
       onFilterStateChange={setFilterState}
@@ -138,16 +143,15 @@ export const ControlledStateAccount = () => {
 };
 
 export const CombinedRadioCheckboxFilter = () => {
-  const [currentAccountId, setCurrentAccountId] = React.useState<string>('party:mathias');
+  const accountMenu = useAccountMenu({
+    accountId: 'company',
+  });
+
   const [filterState, setFilterState] = React.useState<FilterState>({});
 
   return (
     <Toolbar
-      accountMenu={{
-        ...accountMenu,
-        onSelectAccount: (id) => setCurrentAccountId(id),
-        currentAccount: accountMenu.accounts?.find((account) => account.id === currentAccountId),
-      }}
+      accountMenu={accountMenu as AccountMenuProps}
       filters={[
         {
           name: 'custom',

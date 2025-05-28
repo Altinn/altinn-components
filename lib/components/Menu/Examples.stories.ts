@@ -131,7 +131,7 @@ export const CompanyMenu: Story = {
         id: 'company',
         groupId: '1',
         size: 'lg',
-        avatar: {
+        icon: {
           type: 'company',
           name: 'Bergen Bar',
         },
@@ -190,7 +190,7 @@ export const PersonMenu: Story = {
         id: 'person',
         groupId: '1',
         size: 'lg',
-        avatar: {
+        icon: {
           type: 'person',
           name: 'Erik Huseklepp',
         },
