@@ -15,23 +15,22 @@ export interface AccountListItemProps extends ListItemProps, AccountListItemCont
   parentId?: string; // Optional, used for hierarchical relationships
   accountIds?: string[]; // Optional, used for grouping accounts
   isCurrentEndUser?: boolean; // Indicates if this account is the current end user
-  endUserLabel?: string; // Label for the end user, if any
-  accountLabel?: string; // Label for the badge, if any
+  isDeleted?: boolean; // Indicates that the account has been deleted
   contextMenu?: ContextMenuProps;
   label?: string;
 }
 
 export const AccountListItem = ({
   id,
+  type,
   size,
   expanded,
-  type,
   icon,
   title,
   description,
   isCurrentEndUser,
-  endUserLabel = 'Your account',
-  accountLabel,
+  isDeleted,
+  badge,
   favourite = false,
   favouriteLabel,
   onToggleFavourite,
@@ -53,10 +52,12 @@ export const AccountListItem = ({
         !expanded && (
           <AccountListItemControls
             id={id}
+            type={type}
             favourite={favourite}
             favouriteLabel={favouriteLabel}
+            badge={badge}
             isCurrentEndUser={isCurrentEndUser}
-            accountLabel={isCurrentEndUser ? endUserLabel : accountLabel}
+            isDeleted={isDeleted}
             onToggleFavourite={onToggleFavourite}
             contextMenu={contextMenu}
           />

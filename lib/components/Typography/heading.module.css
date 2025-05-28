@@ -45,6 +45,10 @@
   font-size: 1em;
 }
 
+.heading[data-size="xxs"] {
+  font-size: 0.75rem;
+}
+
 .heading[data-size="xs"] {
   font-size: 0.875rem;
 }

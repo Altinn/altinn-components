@@ -7,7 +7,7 @@ import {
   ListItemBase,
   type ListItemBaseProps,
   ListItemHeader,
-  type ListItemHeaderProps,
+  type ListItemLinkProps,
 } from '..';
 import styles from './searchItem.module.css';
 
@@ -16,7 +16,7 @@ export interface SearchCategory {
   icon?: IconProps;
 }
 
-export interface SearchItemProps extends ListItemBaseProps, ListItemHeaderProps {
+export interface SearchItemProps extends ListItemBaseProps, ListItemLinkProps {
   id?: string;
   title?: ReactNode;
   summary?: ReactNode;

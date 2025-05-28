@@ -1,6 +1,6 @@
 'use client';
 import { useMemo, useState } from 'react';
-import { type Account, AccountButton, AccountMenu, type AccountMenuProps } from '../';
+import { type Account, AccountMenu, type AccountMenuProps, CurrentAccount } from '../';
 import { Menu, type MenuItemGroups, type MenuItemProps, MenuListItem } from '../Menu';
 import { BackButton } from './BackButton';
 import { EndUserLabel } from './EndUserLabel';
@@ -80,13 +80,16 @@ export const GlobalMenu = ({
   }
 
   if (currentAccount) {
+    const multipleAccounts = accountMenu && accountMenu?.items?.length > 1;
+
     return (
       <GlobalMenuBase color={currentAccount?.type}>
-        <AccountButton
+        <CurrentAccount
           account={currentAccount}
           linkText={changeLabel}
-          multipleAccounts={accountMenu && accountMenu?.items?.length > 1}
-          onClick={onToggleAccounts}
+          multipleAccounts={multipleAccounts}
+          as={multipleAccounts ? 'button' : 'div'}
+          onClick={multipleAccounts ? onToggleAccounts : undefined}
         />
         <MenuListItem as="div" role="separator" />
         <Menu groups={groups} items={itemsWithToggle} theme="default" />

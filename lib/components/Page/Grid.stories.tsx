@@ -31,7 +31,11 @@ export const Large: Story = {
         {categoryItems?.map((item) => (
           <ListItem
             {...(item as ListItemProps)}
-            title={{ children: item.title, size: 'md', weight: 'bold' }}
+            title={{
+              children: item.title as string,
+              size: 'md',
+              weight: 'bold',
+            }}
             variant="subtle"
             key={item?.href}
             linkIcon={true}

@@ -13,7 +13,7 @@ import {
 } from "./";
 
 type UseAccountMenuProps = {
-  accountId?: string;
+  accountId?: string | null;
   accounts?: AccountListItemProps[];
   items?: AccountListItemProps[];
 } & Omit<AccountMenuProps, "items">;
@@ -23,9 +23,11 @@ export const useAccountMenu = ({
   accounts = defaultAccounts,
   ...props
 }: UseAccountMenuProps) => {
-  const items = props?.items || getAccountItems({ accounts });
   const groups = props?.groups || accountMenuGroups;
   const search = props?.search || accountMenuSearch;
+
+  /* get items */
+  const items = props?.items || getAccountItems({ accounts });
 
   /* if no accountId, return first account */
   const defaultAccount =

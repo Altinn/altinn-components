@@ -1,7 +1,8 @@
-import { ChevronDownIcon, ChevronUpIcon } from '@navikt/aksel-icons';
+import { ChevronDownIcon, ChevronRightIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 import type { ElementType, ReactNode } from 'react';
-import type { BadgeProps, SvgElement } from '..';
 import {
+  type BadgeProps,
+  Icon,
   MenuItemBase,
   type MenuItemColor,
   MenuItemIcon,
@@ -10,7 +11,9 @@ import {
   type MenuItemLabelProps,
   type MenuItemSize,
   type MenuItemTheme,
-} from './';
+} from '../';
+
+import styles from './menuItem.module.css';
 
 export interface MenuItemProps {
   id: string;
@@ -35,8 +38,9 @@ export interface MenuItemProps {
   iconTheme?: MenuItemIconProps['theme'];
   iconBadge?: MenuItemIconProps['badge'];
   badge?: BadgeProps | undefined;
-  linkIcon?: SvgElement;
-  linkText?: string;
+  /** Custom controls */
+  controls?: ReactNode;
+  linkIcon?: boolean;
   className?: string;
   label?: ReactNode;
   items?: MenuItemProps[];
@@ -55,29 +59,44 @@ export const MenuItem = ({
   title,
   description,
   badge,
-  linkText,
+  controls,
   linkIcon,
   label,
   ...rest
 }: MenuItemProps) => {
-  const applicableLinkIcon = collapsible && expanded ? ChevronUpIcon : collapsible ? ChevronDownIcon : linkIcon;
+  /** Set applicable Icon */
+  const applicableIcon = collapsible
+    ? expanded
+      ? ChevronUpIcon
+      : ChevronDownIcon
+    : linkIcon
+      ? ChevronRightIcon
+      : undefined;
 
   return (
-    <MenuItemBase
-      as={as}
-      size={size}
-      theme={theme}
-      badge={badge}
-      linkText={linkText}
-      linkIcon={applicableLinkIcon}
-      color={color}
-      expanded={expanded}
-      {...rest}
-    >
+    <MenuItemBase as={as} size={size} theme={theme} color={color} expanded={expanded} {...rest}>
       <MenuItemIcon size={size} icon={icon} theme={iconTheme} badge={iconBadge} />
-      <MenuItemLabel title={title} description={description} size={size}>
+      <MenuItemLabel title={title} description={description} size={size} badge={badge}>
         {label}
       </MenuItemLabel>
+      <span className={styles.controls}>
+        {controls ? (
+          <span style={{ position: 'relative' }}>{controls}</span>
+        ) : (
+          <>
+            {applicableIcon && (
+              <span className={styles.linkIcon}>
+                <Icon
+                  svgElement={applicableIcon}
+                  style={{
+                    fontSize: '1.5rem',
+                  }}
+                />
+              </span>
+            )}
+          </>
+        )}
+      </span>
     </MenuItemBase>
   );
 };

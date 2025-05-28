@@ -1,6 +1,6 @@
 import * as SettingsStories from "./Profile/Settings.stories";
-import * as AccountsStories from "./Profile/Accounts.stories";
 import * as ActivityLogStories from "../components/ActivityLog/ActivityLog.stories";
+import * as AccountListStories from "../components/Account/AccountList.stories";
 import { BellIcon, CogIcon, PersonRectangleIcon } from "@navikt/aksel-icons";
 
 import {
@@ -71,7 +71,7 @@ export const Accounts = () => {
     <Layout {...layout}>
       <PageBase>
         <Breadcrumbs items={breadcrumbs} />
-        <AccountsStories.Accounts />
+        <AccountListStories.AccountSettings />
       </PageBase>
     </Layout>
   );

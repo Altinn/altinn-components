@@ -1,10 +1,11 @@
 import {
-  Heading,
   ListItemBase,
   type ListItemBaseProps,
   ListItemHeader,
   type ListItemHeaderProps,
   ListItemLabel,
+  type ListItemLabelProps,
+  getAriaLabelFromTitle,
 } from '..';
 
 import styles from './settingsItem.module.css';
@@ -13,11 +14,10 @@ export interface SettingsItemProps extends ListItemBaseProps, ListItemHeaderProp
   id?: string;
   collapsible?: boolean;
   expanded?: boolean;
-  icon?: ListItemHeaderProps['icon'];
   label?: ListItemHeaderProps['children'];
-  value?: string | number;
-  title?: string;
-  description?: string;
+  title?: ListItemLabelProps['title'];
+  value?: ListItemLabelProps['value'];
+  description?: ListItemLabelProps['description'];
 }
 
 export const SettingsItem = ({
@@ -30,35 +30,15 @@ export const SettingsItem = ({
   value,
   description,
   children,
-  ...item
+  ...props
 }: SettingsItemProps) => {
+  const ariaLabel = props.ariaLabel || getAriaLabelFromTitle(title);
+
   return (
     <ListItemBase className={styles.item} color={color} size={size} expanded={expanded}>
-      <ListItemHeader ariaLabel={title} {...item} className={styles.header} icon={icon}>
-        <ListItemLabel className={styles.label}>
-          {title && value ? (
-            <>
-              <Heading as="h3" size="xs" variant="subtle" weight="normal">
-                {title}
-              </Heading>
-              <Heading weight="normal" size="sm">
-                {value}
-              </Heading>
-            </>
-          ) : title ? (
-            <>
-              <Heading weight="normal" size="sm">
-                {title || value}
-              </Heading>
-              {description && (
-                <Heading as="h3" size="xs" variant="subtle" weight="normal">
-                  {description}
-                </Heading>
-              )}
-            </>
-          ) : (
-            label
-          )}
+      <ListItemHeader {...props} ariaLabel={ariaLabel} className={styles.header} icon={icon}>
+        <ListItemLabel className={styles.label} title={title} value={value} description={description}>
+          {label}
         </ListItemLabel>
       </ListItemHeader>
       {expanded && children}

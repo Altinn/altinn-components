@@ -9,6 +9,7 @@ export interface ListItemLabelProps {
   loading?: boolean;
   size?: ListItemSize;
   title?: HeadingProps | ReactNode | string;
+  value?: HeadingProps | ReactNode | string;
   description?: HeadingProps | ReactNode | string;
   children?: ReactNode;
   className?: string;
@@ -73,11 +74,30 @@ export const ListItemLabel = ({
   loading = false,
   size,
   title,
+  value,
   description,
   children,
   id,
   className,
 }: ListItemLabelProps) => {
+  if (title && value) {
+    const titleProps = title && getDescriptionProps(title);
+    const descriptionProps = value && getTitleProps(value);
+
+    return (
+      <span className={cx(styles.label, className)} id={id} data-size={size}>
+        {children ? (
+          children
+        ) : (
+          <>
+            {titleProps && <Heading {...titleProps} loading={loading} />}
+            {descriptionProps && <Heading {...descriptionProps} loading={loading} />}
+          </>
+        )}
+      </span>
+    );
+  }
+
   const titleProps = title && getTitleProps(title);
   const descriptionProps = description && getDescriptionProps(description);
 
@@ -87,11 +107,7 @@ export const ListItemLabel = ({
         children
       ) : (
         <>
-          {titleProps && (
-            <Heading {...titleProps} loading={loading}>
-              {titleProps.children}
-            </Heading>
-          )}
+          {titleProps && <Heading {...titleProps} loading={loading} />}
           {descriptionProps && <Heading {...descriptionProps} loading={loading} />}
         </>
       )}

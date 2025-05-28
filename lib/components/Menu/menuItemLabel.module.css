@@ -1,7 +1,8 @@
 .label {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  padding: 0 0.25rem;
+  padding: 0 0.125rem;
 }
 
 .label[data-size="lg"] {
@@ -17,29 +18,7 @@
 }
 
 .title {
-  font-weight: 400;
-}
-
-.title[data-weight="medium"] {
-  font-weight: 500;
-}
-
-.title[data-size="lg"] {
-  font-size: 1.125rem;
-  line-height: 1.25;
-}
-
-.title[data-size="md"] {
-  font-size: 1rem;
-  line-height: 1.25;
-}
-
-.title[data-size="sm"] {
-  font-size: 1rem;
-  line-height: 1.25;
-}
-
-.description {
-  font-size: 0.875rem;
-  color: var(--ds-color-text-subtle);
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.5em;
 }

@@ -1,4 +1,4 @@
-export * from './AccountButton';
+export * from './CurrentAccount';
 export * from './GlobalMenu';
 export * from './BackButton';
 export * from './LogoutButton';

@@ -1,17 +1,15 @@
-import type { HeaderProps, AccountListItemProps } from "../../lib";
+import type { HeaderProps, AccountListItemProps, Account } from "../../lib";
 import {
   defaultAccounts,
   useInboxSearch,
-  useAccountMenu,
+  useGlobalMenu,
   useLocale,
-  globalMenu,
-  loginMenu,
   localeSwitcher,
 } from "../";
 
 interface UseHeaderProps extends HeaderProps {
+  accountId?: string | null;
   accounts?: AccountListItemProps[];
-  accountId?: string | null | undefined;
 }
 
 export const useHeader = ({
@@ -28,42 +26,17 @@ export const useHeader = ({
     name: "search",
     placeholder: "Søk i Altinn",
   };
+
   const search = useInboxSearch(searchProps);
 
-  /* if no accountId, return login menu */
-  if (accountId === null || accountId === undefined) {
-    return {
-      menu: loginMenu,
-      locale,
-      search,
-    };
-  }
+  /* setup globalMenu */
 
-  /* setup account menu */
-  const accountMenu = accounts && useAccountMenu({ accounts, accountId });
-
-  /* first account is user */
-  const currentEndUser = accountMenu?.items[0];
-  const currentEndUserLabel =
-    currentEndUser && "Logget inn som " + currentEndUser.name;
-
-  /* current account */
-  const currentAccount = accountMenu?.currentAccount;
-
-  /* set menu from props or default */
-  const globalMenuProps = args?.menu || currentAccount ? globalMenu : loginMenu;
-
-  const menu = {
-    ...globalMenuProps,
-    accountMenu,
-    onSelectAccount: accountMenu?.onSelectAccount,
-    currentEndUserLabel,
-  };
+  const menu = useGlobalMenu({ ...args.menu, accountId, accounts });
 
   return {
     menu,
     locale,
     search,
-    currentAccount,
+    currentAccount: menu?.currentAccount as Account,
   };
 };

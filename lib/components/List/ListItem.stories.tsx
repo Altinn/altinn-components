@@ -419,7 +419,6 @@ export const CustomControls = (args: ListItemProps) => {
         badge={
           <ContextMenu
             id="menu-2"
-            size="sm"
             items={[
               { id: 'settings', title: 'Innstillinger', icon: CogIcon },
               { id: 'log', title: 'Aktivitetslogg', icon: ClockDashedIcon },
@@ -433,7 +432,6 @@ export const CustomControls = (args: ListItemProps) => {
         controls={
           <ContextMenu
             id="menu"
-            size="sm"
             items={[
               { id: 'settings', title: 'Innstillinger', icon: CogIcon },
               { id: 'log', title: 'Aktivitetslogg', icon: ClockDashedIcon },

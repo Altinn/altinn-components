@@ -38,10 +38,10 @@ export const useProfileLayout = ({
       label: "Forside",
     },
     {
-      label: currentAccount?.name || "Seksjon",
+      label: (currentAccount?.name as string) || "Seksjon",
     },
     {
-      label: page?.title || "Side",
+      label: (page?.title as string) || "Side",
     },
   ];
 

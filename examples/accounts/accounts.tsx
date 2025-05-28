@@ -66,6 +66,22 @@ export const accounts: AccountListItemProps[] = [
     uniqueId: "994485199",
     parentId: "bbb",
   },
+
+  {
+    id: "vif",
+    type: "company",
+    name: "Vålerengens idrettsforening",
+    uniqueId: "983906729",
+    isDeleted: true,
+  },
+  {
+    id: "sogndal",
+    type: "company",
+    name: "Sogndal idrettslag",
+    uniqueId: "983981178",
+    isDeleted: true,
+  },
+
   {
     id: "group:1",
     type: "group",

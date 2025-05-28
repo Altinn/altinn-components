@@ -25,7 +25,7 @@ export const Login = (args: HeaderProps) => {
   return <Header {...(header as HeaderProps)} />;
 };
 
-export const CurrentEndUser = (args: HeaderProps) => {
+export const CurrentAccount = (args: HeaderProps) => {
   const header = useHeader({ ...args });
   return <Header {...(header as HeaderProps)} />;
 };

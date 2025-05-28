@@ -5,6 +5,11 @@
   white-space: nowrap;
   flex: 0 0 auto;
   max-height: min-content;
+  --dsc-badge-background: var(--ds-color-base-default);
+  --dsc-badge-color: var(--ds-color-base-contrast-default);
+
+  background-color: var(--dsc-badge-background);
+  color: var(--dsc-badge-color);
 }
 
 .badge[data-size="xs"] {
@@ -29,6 +34,20 @@
   border-radius: 2em;
 }
 
+/** variants */
+
+.badge[data-variant="base"] {
+  --dsc-badge-background: var(--ds-color-base-default);
+  --dsc-badge-color: var(--ds-color-base-contrast-default);
+}
+
+.badge[data-variant="tinted"] {
+  --dsc-badge-background: var(--ds-color-surface-tinted);
+  --dsc-badge-color: var(--ds-color-text-default);
+}
+
+/*
+
 .badge[data-theme="subtle"] {
   background-color: var(--ds-color-surface-tinted);
   color: var(--ds-color-text-subtle);
@@ -43,3 +62,4 @@
   background-color: var(--ds-color-base-default);
   color: var(--ds-color-base-contrast-default);
 }
+*/
