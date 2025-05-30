@@ -32,9 +32,9 @@ export const AccountMenu = ({
   currentAccount,
   menuItemsVirtual,
 }: AccountMenuProps) => {
-  const accountMenu: MenuItemProps[] = items.map((item) => ({
+  const accountMenu: AccountMenuItemProps[] = items.map((item) => ({
     ...item,
-    title: item.name,
+    title: item?.title || item.name,
     groupId: item.groupId || 'search',
     selected: item.selected ?? currentAccount?.id === item.id,
     onClick: () => onSelectAccount?.(item.id),
@@ -44,7 +44,7 @@ export const AccountMenu = ({
 
   const filteredAccountMenu = filterString
     ? accountMenu
-        .filter((item) => item?.title?.toLowerCase().includes(filterString.toLowerCase()))
+        .filter((item) => item?.name?.toLowerCase().includes(filterString.toLowerCase()))
         .map((item) => {
           return {
             ...item,

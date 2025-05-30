@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { AccountMenu, type AccountMenuProps } from '..';
-import { accountMenu } from '../../../examples';
+import { accountMenu, defaultAccounts, useAccountMenu } from '../../../examples';
 
 const meta = {
   title: 'Account/AccountMenu',
@@ -14,17 +14,32 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
-};
-
-export const WithoutGroups: Story = {
   args: {
     items: accountMenu.items.filter((item) => item.type !== 'group') as AccountMenuProps['items'],
+    onSelectAccount: (id: string) => console.log('ID', id),
   },
+};
+
+export const Controlled = () => {
+  const accountMenu = useAccountMenu({ accounts: defaultAccounts });
+  return <AccountMenu {...(accountMenu as AccountMenuProps)} />;
 };
 
 export const WithoutSubunits: Story = {
   args: {
-    items: accountMenu.items.filter((item) => !item.parentId) as AccountMenuProps['items'],
+    items: accountMenu.items
+      .filter((item) => !item.parentId)
+      .map((item) => {
+        return {
+          ...item,
+          description: undefined,
+        };
+      }) as AccountMenuProps['items'],
+  },
+};
+
+export const WithGroups: Story = {
+  args: {
+    items: accountMenu.items as AccountMenuProps['items'],
   },
 };

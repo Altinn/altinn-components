@@ -420,7 +420,6 @@ export const CustomControls = (args: DialogListItemProps) => {
         controls={
           <ContextMenu
             id="menu-2"
-            size="sm"
             items={[
               { id: 'settings', title: 'Innstillinger', icon: CogIcon },
               { id: 'log', title: 'Aktivitetslogg', icon: ClockDashedIcon },

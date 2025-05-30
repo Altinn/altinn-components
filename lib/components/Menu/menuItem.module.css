@@ -42,12 +42,20 @@
 
 /* content */
 
-.content {
+.action {
   display: flex;
-  width: 100%;
+  justify-content: center;
   align-items: center;
-  column-gap: 6px;
-  padding: 6px;
+  padding: 10px;
+}
+
+.linkText {
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.linkIcon {
+  font-size: 1.5rem;
 }
 
 .item {
@@ -84,12 +92,4 @@
 
 [data-theme="default"] .item[data-selected="true"] {
   background-color: var(--ds-color-background-tinted);
-}
-
-.content {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  column-gap: 0.5em;
-  padding: 0.5;
 }

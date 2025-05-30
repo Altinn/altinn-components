@@ -1,6 +1,9 @@
 import { ArchiveIcon, ArrowRedoIcon, ClockDashedIcon, EyeClosedIcon, TrashIcon } from '@navikt/aksel-icons';
+import { TeddyBearIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, userEvent, within } from '@storybook/test';
+import { DialogListItem, type DialogListItemProps, List, ListItem, type ListItemProps } from '..';
+import { inboxSearchResults } from '../../../examples';
 import { ContextMenu, type ContextMenuProps } from './ContextMenu';
 
 const meta: Meta<typeof ContextMenu> = {
@@ -78,11 +81,34 @@ export const Default: Story = {
   },
 };
 
-export const MultipleContextMenus = (props: ContextMenuProps) => {
+export const ListControls = (args: ContextMenuProps) => {
   return (
-    <>
-      <ContextMenu key="context-menu-1" {...props} id="context-menu-1" />
-      <ContextMenu key="context-menu-2" {...props} id="context-menu-2" />
-    </>
+    <List>
+      <ListItem
+        title="As badge"
+        icon={TeddyBearIcon as ListItemProps['icon']}
+        linkIcon
+        badge={<ContextMenu {...args} placement="right" id="menu-1" />}
+      />
+      <ListItem
+        title="As controls"
+        icon={TeddyBearIcon as ListItemProps['icon']}
+        controls={<ContextMenu {...args} placement="right" id="menu-2" />}
+      />
+    </List>
+  );
+};
+
+export const DialogControls = (args: ContextMenuProps) => {
+  const dialog1 = inboxSearchResults.items[0] as DialogListItemProps;
+  const dialog2 = inboxSearchResults.items[1] as DialogListItemProps;
+  const dialog3 = inboxSearchResults.items[2] as DialogListItemProps;
+
+  return (
+    <List>
+      <DialogListItem {...dialog1} controls={<ContextMenu {...args} placement="right" id="menu-1" />} />
+      <DialogListItem {...dialog2} controls={<ContextMenu {...args} placement="right" id="menu-2" />} />
+      <DialogListItem {...dialog3} controls={<ContextMenu {...args} placement="right" id="menu-3" />} />
+    </List>
   );
 };

@@ -5,6 +5,7 @@ export * from "./localeSwitcher";
 export * from "./header";
 export * from "./footer";
 
+export * from "./useGlobalMenu";
 export * from "./useHeader";
 export * from "./useLayout";
 export * from "./useLocale";

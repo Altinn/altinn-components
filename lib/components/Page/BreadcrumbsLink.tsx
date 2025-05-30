@@ -7,7 +7,7 @@ export interface BreadcrumbsLinkProps extends React.HTMLAttributes<HTMLButtonEle
   selected?: boolean;
   disabled?: boolean;
   href?: string;
-  label?: string;
+  label?: ReactNode | string;
   className?: string;
   children?: ReactNode;
 }

@@ -61,7 +61,11 @@ export const Home = () => {
           {categoryItems?.map((item) => (
             <ListItem
               {...item}
-              title={{ children: item.title, size: "md", weight: "bold" }}
+              title={{
+                children: item.title as string,
+                size: "md",
+                weight: "bold",
+              }}
               variant="subtle"
               size="lg"
               key={item?.href}
@@ -125,7 +129,7 @@ export const Category = () => {
     <Layout {...layout}>
       <Article>
         <Breadcrumbs items={breadcrumbs} />
-        <ArticleHeader title={category?.title}>
+        <ArticleHeader title={category?.title as string}>
           <Typography>
             <p>
               Skjemaet brukes til å melde fra om at du tar ansvar for gravferden
@@ -209,7 +213,7 @@ export const Topic = () => {
                 <Divider as="li" />
                 <SearchItem
                   key={item.id}
-                  title={item.title}
+                  title={item.title as string}
                   summary="Lorem ipsum dolor sit amet"
                 />
               </Fragment>

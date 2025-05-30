@@ -8,13 +8,10 @@ import { useClickOutside } from '../../hooks';
 import { useRootContext } from '../RootProvider';
 import styles from './contextMenu.module.css';
 
-export type ContextMenuSize = 'sm' | 'md';
-
 export interface ContextMenuProps {
   id?: string;
   items: MenuItemProps[];
   placement?: DropdownPlacement;
-  size?: ContextMenuSize;
   groups?: MenuItemGroups;
   className?: string;
 }
@@ -22,7 +19,6 @@ export interface ContextMenuProps {
 export const ContextMenu = ({
   id = 'context-menu',
   placement = 'right',
-  size = 'sm',
   groups = {},
   className,
   items,
@@ -48,11 +44,10 @@ export const ContextMenu = ({
   return (
     <div className={cx(styles.toggle, className)} data-color="neutral" ref={ref}>
       <IconButton
-        className={styles.button}
-        size={size}
+        size="xs"
+        rounded
         icon={MenuElipsisHorizontalIcon}
         variant="text"
-        color="neutral"
         onClick={onToggle}
         iconAltText={`Open ${id}`}
       />

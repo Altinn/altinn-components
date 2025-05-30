@@ -194,7 +194,7 @@ export const MultilevelList = () => {
             expanded={expanded}
             onClick={() => onToggle(item.id)}
             as="button"
-            ariaLabel={item.title}
+            ariaLabel={item.title as string}
             key={item.id}
           >
             {expanded && (
@@ -211,7 +211,6 @@ export const MultilevelList = () => {
                       title={child.title}
                       controls={
                         <ContextMenu
-                          size="sm"
                           id={'menu' + index}
                           items={[
                             { id: '1', title: 'Option 1' },

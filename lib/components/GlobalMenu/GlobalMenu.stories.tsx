@@ -31,7 +31,7 @@ export const Default = (args: GlobalMenuProps) => {
   return <GlobalMenu {...args} currentAccount={{ ...currentAccount }} onSelectAccount={onSelectAccount} />;
 };
 
-export const Company = (args: GlobalMenuProps) => {
+export const CompanyAccount = (args: GlobalMenuProps) => {
   const accounts = args?.accountMenu?.items!;
   const [currentAccount, setCurrentAccount] = useState<Account>(accounts[1] as Account);
 
@@ -43,6 +43,19 @@ export const Company = (args: GlobalMenuProps) => {
   };
 
   return <GlobalMenu {...args} currentAccount={currentAccount} onSelectAccount={onSelectAccount} />;
+};
+
+export const SingleAccount = (args: GlobalMenuProps) => {
+  const accountMenu = args?.accountMenu!;
+  const currentAccount = accountMenu?.items[0] as Account;
+
+  return (
+    <GlobalMenu
+      {...args}
+      accountMenu={{ ...accountMenu, items: [currentAccount] }}
+      currentAccount={{ ...currentAccount }}
+    />
+  );
 };
 
 export const Login: Story = {

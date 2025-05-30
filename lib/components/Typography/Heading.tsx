@@ -3,7 +3,7 @@ import type { CSSProperties, ReactNode } from 'react';
 import { Skeleton, type TypographyProps } from '..';
 import styles from './heading.module.css';
 
-export type HeadingSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'inherit';
+export type HeadingSize = 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'inherit';
 export type HeadingWeight = 'normal' | 'medium' | 'bold';
 export type HeadingLeading = 'none' | 'tight' | 'normal';
 
@@ -47,7 +47,7 @@ export const Heading = ({
         data-leading={leading}
         data-weight={weight}
         data-color={color}
-        data-variant={variant}
+        data-variant={(size === 'xxs' && 'default') || variant}
         data-max-rows={maxRows}
       >
         {children}

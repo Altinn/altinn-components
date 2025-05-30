@@ -6,7 +6,9 @@ const meta = {
   component: SettingsItem,
   tags: ['beta', 'autodocs'],
   parameters: {},
-  args: {},
+  args: {
+    ariaLabel: 'Title',
+  },
   decorators: [
     (Story) => (
       <List>
