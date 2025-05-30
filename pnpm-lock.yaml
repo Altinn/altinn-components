@@ -13,7 +13,7 @@ importers:
         version: 1.0.6
       '@digdir/designsystemet-react':
         specifier: ^1.0.6
-        version: 1.0.6(@types/react@19.1.5)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.6(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@digdir/designsystemet-theme':
         specifier: ^1.0.6
         version: 1.0.6
@@ -44,7 +44,7 @@ importers:
         version: 8.6.14(storybook@8.6.14)
       '@storybook/addon-essentials':
         specifier: ^8.6.14
-        version: 8.6.14(@types/react@19.1.5)(storybook@8.6.14)
+        version: 8.6.14(@types/react@19.1.6)(storybook@8.6.14)
       '@storybook/addon-interactions':
         specifier: ^8.6.14
         version: 8.6.14(storybook@8.6.14)
@@ -74,13 +74,13 @@ importers:
         version: 0.22.0(@types/node@22.15.21)(storybook@8.6.14)
       '@types/react':
         specifier: ^19.1.5
-        version: 19.1.5
+        version: 19.1.6
       '@types/react-dom':
         specifier: ^18.3.7
-        version: 18.3.7(@types/react@19.1.5)
+        version: 18.3.7(@types/react@19.1.6)
       '@vitejs/plugin-react-swc':
         specifier: ^3.9.0
-        version: 3.9.0(vite@5.4.19(@types/node@22.15.21))
+        version: 3.10.0(vite@5.4.19(@types/node@22.15.21))
       axe-core:
         specifier: ^4.10.3
         version: 4.10.3
@@ -914,6 +914,9 @@ packages:
       '@types/react':
         optional: true
 
+  '@rolldown/pluginutils@1.0.0-beta.9':
+    resolution: {integrity: sha512-e9MeMtVWo186sgvFFJOPGy7/d2j2mZhLJIdVW0C/xDluuOvymEATqz6zKsP0ZmXGzQtqlyjz5sC1sYQUoJG98w==}
+
   '@rollup/pluginutils@5.1.4':
     resolution: {integrity: sha512-USm05zrsFxYLPdWWq+K3STlWiT/3ELn3RcV5hJMghpeAIhxfsUIg6mt12CBJBInWMV4VneoV7SfGv8xIwo2qNQ==}
     engines: {node: '>=14.0.0'}
@@ -1421,8 +1424,8 @@ packages:
     peerDependencies:
       '@types/react': ^18.0.0
 
-  '@types/react@19.1.5':
-    resolution: {integrity: sha512-piErsCVVbpMMT2r7wbawdZsq4xMvIAhQuac2gedQHysu1TZYEigE6pnFfgZT+/jQnrRuF5r+SHzuehFjfRjr4g==}
+  '@types/react@19.1.6':
+    resolution: {integrity: sha512-JeG0rEWak0N6Itr6QUx+X60uQmN+5t3j9r/OVDtWzFXKaj6kD1BwJzOksD0FF6iWxZlbE1kB0q9vtnU2ekqa1Q==}
 
   '@types/resolve@1.20.6':
     resolution: {integrity: sha512-A4STmOXPhMUtHH+S6ymgE2GiBSMqf4oTvcQZMcHzokuTLVYzXTB8ttjcgxOVaAp2lGwEdzZ0J+cRbbeevQj1UQ==}
@@ -1454,8 +1457,8 @@ packages:
   '@u-elements/u-tags@0.1.4':
     resolution: {integrity: sha512-5VbqbFatd42ZY6Zf2d5MGvOIsJdflf5+ixpR4B5YT97dustT9csAS6SEHrUFgGdFzJDpASIbZdojsnU1j7GArA==}
 
-  '@vitejs/plugin-react-swc@3.9.0':
-    resolution: {integrity: sha512-jYFUSXhwMCYsh/aQTgSGLIN3Foz5wMbH9ahb0Zva//UzwZYbMiZd7oT3AU9jHT9DLswYDswsRwPU9jVF3yA48Q==}
+  '@vitejs/plugin-react-swc@3.10.0':
+    resolution: {integrity: sha512-ZmkdHw3wo/o/Rk05YsXZs/DJAfY2CdQ5DUAjoWji+PEr+hYADdGMCGgEAILbiKj+CjspBTuTACBcWDrmC8AUfw==}
     peerDependencies:
       vite: ^4 || ^5 || ^6
 
@@ -4151,12 +4154,12 @@ snapshots:
 
   '@digdir/designsystemet-css@1.0.6': {}
 
-  '@digdir/designsystemet-react@1.0.6(@types/react@19.1.5)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@digdir/designsystemet-react@1.0.6(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@floating-ui/dom': 1.7.0
       '@floating-ui/react': 0.26.23(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@navikt/aksel-icons': 7.22.0
-      '@radix-ui/react-slot': 1.2.3(@types/react@19.1.5)(react@19.1.0)
+      '@radix-ui/react-slot': 1.2.3(@types/react@19.1.6)(react@19.1.0)
       '@tanstack/react-virtual': 3.13.9(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@u-elements/u-datalist': 0.1.5
       '@u-elements/u-details': 0.1.1
@@ -4555,10 +4558,10 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@mdx-js/react@3.1.0(@types/react@19.1.5)(react@19.1.0)':
+  '@mdx-js/react@3.1.0(@types/react@19.1.6)(react@19.1.0)':
     dependencies:
       '@types/mdx': 2.0.13
-      '@types/react': 19.1.5
+      '@types/react': 19.1.6
       react: 19.1.0
 
   '@microsoft/api-extractor-model@7.30.6(@types/node@22.15.21)':
@@ -4618,18 +4621,20 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@radix-ui/react-compose-refs@1.1.2(@types/react@19.1.5)(react@19.1.0)':
+  '@radix-ui/react-compose-refs@1.1.2(@types/react@19.1.6)(react@19.1.0)':
     dependencies:
       react: 19.1.0
     optionalDependencies:
-      '@types/react': 19.1.5
+      '@types/react': 19.1.6
 
-  '@radix-ui/react-slot@1.2.3(@types/react@19.1.5)(react@19.1.0)':
+  '@radix-ui/react-slot@1.2.3(@types/react@19.1.6)(react@19.1.0)':
     dependencies:
-      '@radix-ui/react-compose-refs': 1.1.2(@types/react@19.1.5)(react@19.1.0)
+      '@radix-ui/react-compose-refs': 1.1.2(@types/react@19.1.6)(react@19.1.0)
       react: 19.1.0
     optionalDependencies:
-      '@types/react': 19.1.5
+      '@types/react': 19.1.6
+
+  '@rolldown/pluginutils@1.0.0-beta.9': {}
 
   '@rollup/pluginutils@5.1.4(rollup@4.41.0)':
     dependencies:
@@ -4782,9 +4787,9 @@ snapshots:
       storybook: 8.6.14
       ts-dedent: 2.2.0
 
-  '@storybook/addon-docs@8.6.14(@types/react@19.1.5)(storybook@8.6.14)':
+  '@storybook/addon-docs@8.6.14(@types/react@19.1.6)(storybook@8.6.14)':
     dependencies:
-      '@mdx-js/react': 3.1.0(@types/react@19.1.5)(react@19.1.0)
+      '@mdx-js/react': 3.1.0(@types/react@19.1.6)(react@19.1.0)
       '@storybook/blocks': 8.6.14(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(storybook@8.6.14)
       '@storybook/csf-plugin': 8.6.14(storybook@8.6.14)
       '@storybook/react-dom-shim': 8.6.14(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(storybook@8.6.14)
@@ -4795,12 +4800,12 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  '@storybook/addon-essentials@8.6.14(@types/react@19.1.5)(storybook@8.6.14)':
+  '@storybook/addon-essentials@8.6.14(@types/react@19.1.6)(storybook@8.6.14)':
     dependencies:
       '@storybook/addon-actions': 8.6.14(storybook@8.6.14)
       '@storybook/addon-backgrounds': 8.6.14(storybook@8.6.14)
       '@storybook/addon-controls': 8.6.14(storybook@8.6.14)
-      '@storybook/addon-docs': 8.6.14(@types/react@19.1.5)(storybook@8.6.14)
+      '@storybook/addon-docs': 8.6.14(@types/react@19.1.6)(storybook@8.6.14)
       '@storybook/addon-highlight': 8.6.14(storybook@8.6.14)
       '@storybook/addon-measure': 8.6.14(storybook@8.6.14)
       '@storybook/addon-outline': 8.6.14(storybook@8.6.14)
@@ -5179,11 +5184,11 @@ snapshots:
     dependencies:
       undici-types: 6.21.0
 
-  '@types/react-dom@18.3.7(@types/react@19.1.5)':
+  '@types/react-dom@18.3.7(@types/react@19.1.6)':
     dependencies:
-      '@types/react': 19.1.5
+      '@types/react': 19.1.6
 
-  '@types/react@19.1.5':
+  '@types/react@19.1.6':
     dependencies:
       csstype: 3.1.3
 
@@ -5211,8 +5216,9 @@ snapshots:
 
   '@u-elements/u-tags@0.1.4': {}
 
-  '@vitejs/plugin-react-swc@3.9.0(vite@5.4.19(@types/node@22.15.21))':
+  '@vitejs/plugin-react-swc@3.10.0(vite@5.4.19(@types/node@22.15.21))':
     dependencies:
+      '@rolldown/pluginutils': 1.0.0-beta.9
       '@swc/core': 1.11.29
       vite: 5.4.19(@types/node@22.15.21)
     transitivePeerDependencies:
