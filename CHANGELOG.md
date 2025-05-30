@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.29.0](https://github.com/Altinn/altinn-components/compare/v0.28.2...v0.29.0) (2025-05-30)
+
+
+### Features
+
+* account stories ([#454](https://github.com/Altinn/altinn-components/issues/454)) ([b859601](https://github.com/Altinn/altinn-components/commit/b8596010d07724b159bac4d4e9ba69c8e386bac0))
+
+
+### Bug Fixes
+
+* accountMenu + accountList stories ([#452](https://github.com/Altinn/altinn-components/issues/452)) ([7a4981b](https://github.com/Altinn/altinn-components/commit/7a4981bdc643825f12e03a428dfd41cdf67c9a2f))
+* grid sizing, default spacing for list + grid ([#443](https://github.com/Altinn/altinn-components/issues/443)) ([4e82761](https://github.com/Altinn/altinn-components/commit/4e8276162e1be0f227ea75c2fe9ba1a995ffd7d9))
+* Replace toolbar/menu search with common form components based on DS ([#451](https://github.com/Altinn/altinn-components/issues/451)) ([6e417c1](https://github.com/Altinn/altinn-components/commit/6e417c1d4c7452ba18472bfca8f9d12ccb428110))
+
 ## [0.28.2](https://github.com/Altinn/altinn-components/compare/v0.28.1...v0.28.2) (2025-05-23)
 
 
