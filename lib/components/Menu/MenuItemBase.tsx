@@ -8,6 +8,7 @@ export type MenuItemSize = 'sm' | 'md' | 'lg';
 export type MenuItemTheme = 'default' | 'subtle' | 'surface' | 'base';
 
 export interface MenuItemBaseProps {
+  interactive?: boolean;
   as?: ElementType;
   color?: MenuItemColor;
   theme?: MenuItemTheme;
@@ -26,6 +27,7 @@ export interface MenuItemBaseProps {
 }
 
 export const MenuItemBase = ({
+  interactive = true,
   as,
   color,
   theme,
@@ -46,6 +48,7 @@ export const MenuItemBase = ({
     <Component
       tabIndex={disabled ? '-1' : (tabIndex ?? 0)}
       className={cx(styles.item, className)}
+      data-interactive={interactive}
       data-size={size}
       data-color={color}
       data-theme={theme}

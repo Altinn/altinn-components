@@ -1,4 +1,4 @@
-.icon {
+.wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,4 +27,12 @@
   width: 1em;
   height: 1em;
   font-size: 1.5em;
+}
+
+.avatar {
+  font-size: 1.5em;
+}
+
+.avatarGroup {
+  font-size: 1.125em;
 }

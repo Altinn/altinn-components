@@ -58,6 +58,14 @@
   background-color: transparent;
 }
 
+.item {
+  pointer-events: none;
+}
+
+.item[data-interactive="true"] {
+  pointer-events: all;
+}
+
 /* subtle bg */
 
 [data-theme="subtle"] .item:hover {

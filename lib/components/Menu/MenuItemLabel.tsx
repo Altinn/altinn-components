@@ -95,7 +95,9 @@ export const MenuItemLabel = ({ className, size = 'sm', title, badge, descriptio
               {badge && <Badge {...badge} />}
             </Heading>
           )}
-          {descriptionProps && <Heading {...descriptionProps} size={descriptionProps.size || 'xxs'} />}
+          {descriptionProps && (
+            <Heading {...descriptionProps} size={descriptionProps.size || size === 'lg' ? 'xs' : 'xxs'} />
+          )}
         </>
       )}
     </span>

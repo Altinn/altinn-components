@@ -1,13 +1,12 @@
 'use client';
 import type { BadgeProps } from '../Badge';
 import { DrawerBase, DropdownBase } from '../Dropdown';
-import { GlobalMenu, type GlobalMenuProps } from '../GlobalMenu';
+import { GlobalMenu, GlobalMenuButton, type GlobalMenuProps } from '../GlobalMenu';
 import type { Account } from '../GlobalMenu';
 import { useRootContext } from '../RootProvider';
 import { Searchbar, type SearchbarProps } from '../Searchbar';
 import { LocaleButton, LocaleSwitcher, type LocaleSwitcherProps } from './';
 import { HeaderBase } from './HeaderBase';
-import { HeaderButton } from './HeaderButton';
 import { HeaderGroup } from './HeaderGroup';
 import { HeaderLogo, type HeaderLogoProps } from './HeaderLogo';
 import { HeaderSearch } from './HeaderSearch';
@@ -56,16 +55,9 @@ export const Header = ({ menu, locale, search, currentAccount, logo = {}, badge 
           </div>
         )}
         <div className={styles.relative}>
-          <HeaderButton
-            color="company"
-            variant="solid"
+          <GlobalMenuButton
             badge={badge}
-            avatar={
-              currentAccount && {
-                type: currentAccount.type,
-                name: currentAccount.name,
-              }
-            }
+            currentAccount={currentAccount}
             onClick={onToggleMenu}
             expanded={currentId === 'menu'}
             label={menu?.menuLabel}

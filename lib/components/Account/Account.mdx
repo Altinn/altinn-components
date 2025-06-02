@@ -1,25 +1,48 @@
 import { Meta, Controls, Primary, Canvas } from "@storybook/blocks";
-import { Flex, HeaderButton } from "../";
+import * as AccountStories from "./Account.stories";
 import * as AccountMenuStories from "./AccountMenu.stories";
+import * as HeaderStories from "../Header/Header.stories";
+import * as GlobalMenuStories from "../GlobalMenu/GlobalMenu.stories";
+import * as ToolbarStories from "../Toolbar/Toolbar.stories";
 
 <Meta title="Account" />
 
-# Account
+# The Account
 
-WORK IN PROGRESS!
+An `Account` is a representation of a person or a company. Signing in will give access to your personal account.
 
-An account is
+Depending on role and privileges granted by others, a user might have access to multiple accounts, both companies and other people.
+
+To distinguish between different people and companies, accounts are followed by a unique `Avatar`. People accounts use light coloured circles, while companies use dark coloured squares.
+
+## Signing in
+
+Before signing in, the `GlobalMenuButton` will display a padlock, indicating that the user should login.
+
+<Canvas of={AccountStories.Login} />
 
 ## Current account
 
-The current end user is presented using an avatar in the Header.
+User is signed in to their personal account. The current account avatar is displayed in the `GlobalMenuButton`.
 
-## AccountMenu
+<Canvas of={AccountStories.CurrentAccount} />
 
-The account menu is used to switch between accounts. It can be accessed from the global menu, or via a toolbar for easy access in context.
+User is signed in on behalf of a company. The company avatar is displayed in the `GlobalMenuButton`.
+
+<Canvas of={AccountStories.CompanyAccount} />
+
+## Global menu
+
+The `GlobalMenu` follows the current account, giving access to different parts of the application. Personal settings should allways be available, even when representing someone else.
+
+<Canvas of={GlobalMenuStories.CompanyAccount} />
+
+## Switching accounts
+
+The `AccountMenu` is used to switch between accounts. It can be accessed from the `GlobalMenu` or in context where appropriate.
 
 <Canvas of={AccountMenuStories.Default} />
 
-### AccountMenu in Header
+In some cases, where switching accounts is a primary tasks, the accountMenu can be included in context, using the `Toolbar`.
 
-### AccountMenu in Toolbar
+<Canvas of={ToolbarStories.WithAccountMenu} />

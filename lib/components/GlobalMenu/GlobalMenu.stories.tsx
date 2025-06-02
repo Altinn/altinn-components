@@ -17,7 +17,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default = (args: GlobalMenuProps) => {
+export const CurrentAccount = (args: GlobalMenuProps) => {
   const accounts = args?.accountMenu?.items!;
   const [currentAccount, setCurrentAccount] = useState<Account>(accounts[0] as Account);
 
