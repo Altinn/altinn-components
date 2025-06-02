@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.29.1](https://github.com/Altinn/altinn-components/compare/v0.29.0...v0.29.1) (2025-06-02)
+
+
+### Bug Fixes
+
+* account stories ([#458](https://github.com/Altinn/altinn-components/issues/458)) ([5643696](https://github.com/Altinn/altinn-components/commit/5643696968658f9b787e6062ab5c06053b50d5a1))
+
 ## [0.29.0](https://github.com/Altinn/altinn-components/compare/v0.28.2...v0.29.0) (2025-05-30)
 
 
