@@ -1,5 +1,5 @@
 import type { Meta } from '@storybook/react';
-import { type GlobalMenuProps, Header, type HeaderProps } from '../';
+import { type Account, type GlobalMenuProps, Header, type HeaderProps } from '../';
 import { header, inboxMenu, useHeader } from '../../../examples';
 
 const meta = {
@@ -31,8 +31,9 @@ export const CurrentAccount = (args: HeaderProps) => {
 };
 
 export const CompanyAccount = (args: HeaderProps) => {
-  const header = useHeader({ ...args, accountId: 'company' });
-  return <Header {...(header as HeaderProps)} />;
+  const header = useHeader({ ...args });
+  const currentAccount = header?.menu?.accountMenu?.items[1] as Account;
+  return <Header {...(header as HeaderProps)} currentAccount={currentAccount} />;
 };
 
 export const SubmenuExpanded = (args: HeaderProps) => {

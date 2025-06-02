@@ -1,5 +1,3 @@
-import { ChevronRightIcon } from '@navikt/aksel-icons';
-import { Button } from '../Button';
 import { MenuItem } from '../Menu';
 
 export type Account = {
@@ -13,25 +11,19 @@ export type CurrentAccountProps = {
   account: Account;
   description?: string;
   as?: 'button' | 'div';
-  linkText?: string;
   onClick?: () => void;
   multipleAccounts?: boolean;
 };
 
-export const CurrentAccount = ({ account, as, onClick, linkText }: CurrentAccountProps) => {
+export const CurrentAccount = ({ account, multipleAccounts, as, onClick }: CurrentAccountProps) => {
   return (
     <MenuItem
       id="account"
       size="lg"
-      as={as}
+      interactive={!!multipleAccounts}
+      as={!multipleAccounts ? 'div' : as}
       onClick={onClick}
-      controls={
-        linkText && (
-          <Button as="div" icon={ChevronRightIcon} reverse variant="outline" size="xs">
-            {linkText}
-          </Button>
-        )
-      }
+      linkIcon={multipleAccounts}
       icon={{
         name: account.name,
         type: account.type,

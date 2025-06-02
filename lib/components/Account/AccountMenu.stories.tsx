@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AccountMenu, type AccountMenuProps } from '..';
-import { accountMenu, defaultAccounts, useAccountMenu } from '../../../examples';
+import { AccountMenu, type AccountMenuProps, Heading, PageBase, Toolbar } from '..';
+import { accountMenu, defaultAccounts, useAccountList, useAccountMenu } from '../../../examples';
 
 const meta = {
   title: 'Account/AccountMenu',
@@ -42,4 +42,26 @@ export const WithGroups: Story = {
   args: {
     items: accountMenu.items as AccountMenuProps['items'],
   },
+};
+
+export const WithToolbar = () => {
+  const { toolbar, items, groups } = useAccountList({
+    accounts: defaultAccounts,
+  });
+
+  const menuItems = items?.map((item) => {
+    return {
+      ...item,
+      collapsible: false,
+      linkIcon: true,
+    };
+  }) as AccountMenuProps['items'];
+
+  return (
+    <PageBase>
+      <Heading>Velg aktør før du går videre</Heading>
+      <Toolbar {...toolbar} />
+      {items && <AccountMenu groups={groups} items={menuItems} />}
+    </PageBase>
+  );
 };

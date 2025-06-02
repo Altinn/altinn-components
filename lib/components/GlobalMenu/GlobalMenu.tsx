@@ -26,7 +26,6 @@ export const GlobalMenu = ({
   accountMenu,
   items = [],
   groups,
-  changeLabel = 'Change',
   backLabel = 'Back',
   currentAccount,
   currentEndUserLabel = 'Signed in',
@@ -86,7 +85,6 @@ export const GlobalMenu = ({
       <GlobalMenuBase color={currentAccount?.type}>
         <CurrentAccount
           account={currentAccount}
-          linkText={changeLabel}
           multipleAccounts={multipleAccounts}
           as={multipleAccounts ? 'button' : 'div'}
           onClick={multipleAccounts ? onToggleAccounts : undefined}

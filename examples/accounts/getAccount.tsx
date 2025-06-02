@@ -100,10 +100,11 @@ export const getAccountItem = ({
 
   const getAccountDescription = () => {
     if (type === "company" && parentId) {
-      return "Org. nr: " + uniqueId + " →  Underenhet";
+      const parentAccount = accounts.find((a) => a.id === parentId);
+
+      return "Org. nr: " + uniqueId + ", del av " + parentAccount?.name;
 
       /*
-      const parentAccount = accounts.find((a) => a.id === parentId);
       return (
         "Org. nr: " + uniqueId + " →  Underenhet av " + parentAccount?.uniqueId
       );*/

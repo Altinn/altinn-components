@@ -19,6 +19,7 @@ export interface MenuItemProps {
   id: string;
   type?: string;
   tabIndex?: number;
+  interactive?: boolean;
   as?: ElementType;
   size?: MenuItemSize;
   color?: MenuItemColor;
