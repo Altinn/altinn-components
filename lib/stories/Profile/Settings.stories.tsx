@@ -1,4 +1,5 @@
 import {
+  CogIcon,
   BellIcon,
   BellDotIcon,
   PaperplaneIcon,
@@ -12,19 +13,23 @@ import {
   PersonRectangleIcon,
 } from "@navikt/aksel-icons";
 import type { Meta } from "@storybook/react";
-import { useState, Fragment } from "react";
-import { useSettings, useAccountList } from "../../../examples";
+import { useState } from "react";
+import {
+  useSettings,
+  useAccountSettings,
+  defaultAccounts,
+} from "../../../examples";
 import {
   Divider,
   Fieldset,
   Radio,
   Section,
-  Settings,
   List,
+  SettingsSection,
   SettingsItem,
   Switch,
-  TextField,
   Typography,
+  SettingsItemProps,
 } from "../../components";
 
 const meta = {
@@ -32,120 +37,112 @@ const meta = {
   tags: ["beta", "autodocs"],
   parameters: {},
   args: {},
-} satisfies Meta<typeof Settings>;
+} satisfies Meta<typeof SettingsSection>;
 
 export default meta;
 
-export const ContactSettings = () => {
+export const DashboardSettings = () => {
   return (
-    <Settings>
-      <List size="sm">
-        <SettingsItem
-          icon={{ svgElement: PaperplaneIcon }}
-          title="Primær e-postadresse"
-          value="mathias@dyngeland.no"
-          badge={
-            <Typography size="xs">
-              Endre i kontakt- og reservasjonsregisteret
-            </Typography>
-          }
-          linkIcon
-        />
-        <Divider />
-        <SettingsItem
-          icon={{ svgElement: MobileIcon }}
-          title="SMS-varslinger"
-          value="99055456"
-          badge={
-            <Typography size="xs">
-              Endre i kontakt- og reservasjonsregisteret
-            </Typography>
-          }
-          linkIcon
-        />
-        <Divider />
-        <SettingsItem
-          icon={{ svgElement: HouseHeartIcon }}
-          title="Postadresse"
-          value="Idrettsveien 1, 5052 Bergen"
-          badge={<Typography size="xs">Endre i Folkeregisteret</Typography>}
-          linkIcon
-        />
-      </List>{" "}
-    </Settings>
+    <List size="sm">
+      <SettingsItem
+        as="a"
+        href="/iframe.html?id=demo-profile--notifications-page"
+        icon={BellIcon}
+        title="Varslinger er på"
+        description="Alle varslinger"
+        badge={{ label: "SMS og Epost" }}
+        linkIcon
+      />
+      <Divider as="li" />
+      <SettingsItem
+        icon={CogIcon}
+        title="Flere innstillinger"
+        linkIcon
+        as="a"
+        href="/iframe.html?id=demo-profile--settings-page"
+      />
+    </List>
+  );
+};
+
+export const ContactSettings = () => {
+  const { items } = useAccountSettings({
+    accounts: defaultAccounts,
+  });
+
+  const user = items[0];
+
+  const settingsItems = [
+    {
+      id: "phone",
+      groupId: "1",
+      icon: MobileIcon,
+      title: "SMS-varslinger",
+      value: user?.phone,
+      badge: {
+        variant: "text",
+        label: "Endre mobil",
+      },
+    },
+    {
+      id: "email",
+      groupId: "1",
+      icon: PaperplaneIcon,
+      title: "Varslinger på e-post",
+      value: user?.email,
+      badge: {
+        variant: "text",
+        label: "Endre e-post",
+      },
+    },
+    {
+      id: "address",
+      groupId: "2",
+      icon: HouseHeartIcon,
+      title: "Adresse",
+      value: user?.address || "Idrettsveien 1, 5052 Bergen",
+      badge: {
+        variant: "text",
+        label: "Endre adresse",
+      },
+    },
+  ].map((item) => {
+    return {
+      ...item,
+      linkIcon: true,
+      as: "button",
+    };
+  });
+
+  return (
+    <List size="sm">
+      <SettingsItem {...(settingsItems[0] as SettingsItemProps)} />
+      <SettingsItem {...(settingsItems[1] as SettingsItemProps)} />
+      <Divider as="li" />
+      <SettingsItem {...(settingsItems[2] as SettingsItemProps)} />
+    </List>
   );
 };
 
 export const MoreSettings = () => {
   return (
-    <Settings>
-      <List>
-        <SettingsItem
-          as="a"
-          href="/?path=/story/demo-profile--notifications"
-          icon={BellIcon}
-          title="Varslingsinngstillinger"
-          badge={{ label: "12 aktører" }}
-          linkIcon
-        />
-        <Divider as="li" />
-        <SettingsItem
-          icon={PersonRectangleIcon}
-          title="Kontaktprofiler"
-          badge={{ label: "3 profiler" }}
-          linkIcon
-        />
-        <Divider as="li" />
-        <SettingsItem icon={SunIcon} title="Modus: Lys" linkIcon />
-        <Divider />
-        <SettingsItem
-          icon={GlobeIcon}
-          title="Språk/language: Bokmål"
-          linkIcon
-        />
-      </List>
-    </Settings>
-  );
-};
-
-export const AccountSettings = () => {
-  const { items, expandedId, onToggle } = useAccountList({});
-
-  return (
-    <Settings>
-      <List size="sm">
-        {items
-          ?.filter((item) => item.type === "company")
-          .map((item, index) => {
-            const itemId = item.id || "i" + index;
-            return (
-              <Fragment key={item.id}>
-                {index > 0 && <Divider />}
-
-                <SettingsItem
-                  as="button"
-                  linkIcon
-                  expanded={itemId === expandedId}
-                  collapsible
-                  onClick={() => onToggle?.(itemId)}
-                  icon={item.icon}
-                  title={item.title}
-                  description={undefined}
-                  badge={
-                    index === 2 && {
-                      label: "E-post og SMS",
-                    }
-                  }
-                >
-                  <Section padding={6}>
-                    <CompanyNotifications />
-                  </Section>
-                </SettingsItem>
-              </Fragment>
-            );
-          })}
-      </List>
-    </Settings>
+    <List>
+      <SettingsItem
+        as="a"
+        href="/iframe.html?id=demo-profile--notifications-page"
+        icon={BellIcon}
+        title="Varslingsinnstillinger"
+        badge={{ label: "12 aktører" }}
+        linkIcon
+      />
+      <Divider as="li" />
+      <SettingsItem
+        icon={PersonRectangleIcon}
+        title="Kontaktprofiler"
+        badge={{ label: "3 profiler" }}
+        linkIcon
+      />
+    </List>
   );
 };
 
@@ -156,52 +153,49 @@ export const NotificationSettings = () => {
     email: "on",
   });
   return (
-    <Settings>
-      <List>
-        <SettingsItem
-          icon={settings.alerts ? BellDotIcon : BellIcon}
-          title={settings.alerts ? "Varslinger er på" : "Ingen varslinger"}
-          controls={
-            <Switch
-              name="alerts"
-              onChange={onChange}
-              checked={!!settings?.alerts}
-              reverse
-              size="sm"
-              label={
-                <span data-size="xs">
-                  {settings.alerts ? "Skru av " : "Skru på "}
-                </span>
-              }
-            />
-          }
-        />
-        {settings.alerts && (
-          <>
-            <Divider as="li" />
-            <SettingsItem
-              icon={{ svgElement: PaperplaneIcon, theme: "default" }}
-              title="Varslingsadresse for e-post"
-              value="mathias.dyngeland@gmail.com"
-              badge={<span data-size="xs">Endre epost</span>}
-              linkIcon
-            />
-            <Divider as="li" />
-            <SettingsItem
-              icon={{ svgElement: MobileIcon, theme: "default" }}
-              title="SMS-varslinger"
-              value="99009900"
-              badge={<span data-size="xs">Endre mobilnummer</span>}
-              linkIcon
-            />
-          </>
-        )}
-      </List>
-    </Settings>
+    <List>
+      <SettingsItem
+        icon={settings.alerts ? BellDotIcon : BellIcon}
+        title={settings.alerts ? "Varslinger er på" : "Ingen varslinger"}
+        controls={
+          <Switch
+            name="alerts"
+            onChange={onChange}
+            checked={!!settings?.alerts}
+            reverse
+            size="sm"
+            label={
+              <span data-size="xs">
+                {settings.alerts ? "Skru av " : "Skru på "}
+              </span>
+            }
+          />
+        }
+      />
+      {settings.alerts && (
+        <>
+          <Divider as="li" />
+          <SettingsItem
+            icon={PaperplaneIcon}
+            title="Varslingsadresse for e-post"
+            value="mathias.dyngeland@gmail.com"
+            badge={<span data-size="xs">Endre epost</span>}
+            linkIcon
+          />
+          <SettingsItem
+            icon={MobileIcon}
+            title="SMS-varslinger"
+            value="99009900"
+            badge={<span data-size="xs">Endre mobilnummer</span>}
+            linkIcon
+          />
+        </>
+      )}
+    </List>
   );
 };
 
-export const SettingsList = () => {
+export const EtceteraSettings = () => {
   return (
     <List size="sm">
       <SettingsItem
@@ -218,8 +212,8 @@ export const SettingsList = () => {
   );
 };
 
-export const CollapsibleList = () => {
-  const [expandedId, setExpandedId] = useState<string | null>("locale");
+export const CollapsibleSettings = () => {
+  const [expandedId, setExpandedId] = useState<string>("");
 
   const localeOptions: string[] = ["Bokmål", "Nynorsk", "English", "España"];
   const modeOptions: string[] = ["Auto", "Lys", "Mørk"];
@@ -231,58 +225,18 @@ export const CollapsibleList = () => {
     phone: "SMS",
   });
 
-  const badgeLabel =
-    (settings.email && settings.phone && "E-post og SMS") ||
-    (settings.email && "E-post") ||
-    (settings.phone && "SMS");
-
-  const badge = badgeLabel && { label: badgeLabel };
-
   const onToggle = (id: string) => {
-    setExpandedId((prevState) => (prevState === id ? null : id));
+    setExpandedId((prevState) => (prevState === id ? "" : id));
   };
 
   return (
-    <List size="sm" spacing={0}>
-      <SettingsItem
-        icon={BellIcon}
-        title={badge ? "Varslinger er på" : "Varslinger er skrudd av"}
-        collapsible
-        expanded={expandedId === "1"}
-        as="button"
-        onClick={() => onToggle("1")}
-        badge={badge}
-        linkIcon
-      >
-        <Section padding={6} spacing={6}>
-          <Fieldset>
-            <Switch
-              label="Varsle på e-post"
-              name="email"
-              value="E-post"
-              checked={!!settings.email}
-              onChange={onChange}
-            />
-            {settings.email && <TextField placeholder="E-postadresse" />}
-          </Fieldset>
-          <Fieldset>
-            <Switch
-              label="Varsle på SMS"
-              name="phone"
-              value="SMS"
-              checked={!!settings.phone}
-              onChange={onChange}
-            />
-            {settings.phone && <TextField placeholder="Mobiltelefon" />}
-          </Fieldset>
-        </Section>
-      </SettingsItem>
-      <Divider as="li" />
+    <List size="sm">
       <SettingsItem
         collapsible
         expanded={expandedId === "2"}
         icon={SunIcon}
-        title={"Modus: " + settings.mode}
+        title="Modus"
+        badge={{ label: settings.mode as string }}
         linkIcon
         as="button"
         onClick={() => onToggle("2")}
@@ -307,7 +261,8 @@ export const CollapsibleList = () => {
         collapsible
         expanded={expandedId === "locale"}
         icon={GlobeIcon}
-        title={"Språk/language: " + settings.locale}
+        title="Språk/language"
+        badge={{ label: settings.locale as string }}
         linkIcon
         as="button"
         onClick={() => onToggle("locale")}
@@ -383,38 +338,5 @@ export const PersonSettings = () => {
         linkIcon
       />
     </List>
-  );
-};
-
-export const CompanyNotifications = () => {
-  const { settings, onChange } = useSettings({
-    email: "E-post",
-    phone: "SMS",
-  });
-
-  return (
-    <div data-size="sm">
-      <Fieldset>
-        <Switch
-          label="Varsle på e-post"
-          name="email"
-          value="E-post"
-          checked={!!settings.email}
-          onChange={onChange}
-        />
-        {settings.email && <TextField placeholder="E-postadresse" />}
-      </Fieldset>
-      <Divider />
-      <Fieldset>
-        <Switch
-          label="Varsle på SMS"
-          name="phone"
-          value="SMS"
-          checked={!!settings.phone}
-          onChange={onChange}
-        />
-        {settings.phone && <TextField placeholder="Mobiltelefon" />}
-      </Fieldset>
-    </div>
   );
 };

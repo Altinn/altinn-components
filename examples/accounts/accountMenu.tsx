@@ -1,24 +1,24 @@
-import type { AccountListItemProps } from "../../lib";
-import { accounts, getAccountItems, generateAccounts } from "./";
+import type { AccountListItemProps } from '../../lib';
+import { accounts, generateAccounts, getAccountItems } from './';
 
 export const accountMenuSearch = {
-  placeholder: "Finn konto",
-  name: "search-account",
+  placeholder: 'Finn konto',
+  name: 'search-account',
   getResultsLabel: (hits = 0) => {
     if (hits) {
-      return hits + " treff";
+      return hits + ' treff';
     }
-    return "Ingen treff";
+    return 'Ingen treff';
   },
   hidden: false,
 };
 
 export const accountMenuGroups = {
   primary: {
-    title: "Deg selv og favoritter",
+    title: 'Deg selv og favoritter',
   },
   secondary: {
-    title: "Andre kontoer",
+    title: 'Andre kontoer',
   },
 };
 

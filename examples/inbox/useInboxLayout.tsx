@@ -1,11 +1,11 @@
-import { useLayout, inboxMenu, inboxMenuItems } from "../";
-import type { LayoutProps } from "../../lib";
+import { inboxMenu, inboxMenuItems, useLayout } from '../';
+import type { LayoutProps } from '../../lib';
 
 interface InboxLayoutProps extends LayoutProps {
   pageId?: string;
 }
 
-export const useInboxLayout = ({ pageId = "inbox" }): InboxLayoutProps => {
+export const useInboxLayout = ({ pageId = 'inbox' }): InboxLayoutProps => {
   const menuItems = inboxMenuItems.map((item) => {
     return {
       ...item,
@@ -14,7 +14,7 @@ export const useInboxLayout = ({ pageId = "inbox" }): InboxLayoutProps => {
   });
 
   const layout = useLayout({
-    theme: "subtle",
+    theme: 'subtle',
     sidebar: {
       menu: {
         ...inboxMenu,

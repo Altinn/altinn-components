@@ -4,8 +4,10 @@ import {
   HandshakeIcon,
   HeartFillIcon,
   HeartIcon,
+  HouseIcon,
   InboxIcon,
-  PencilIcon,
+  MobileIcon,
+  PaperplaneIcon,
   PlusIcon,
 } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react';
@@ -14,6 +16,7 @@ import {
   AccountList,
   type AccountListItemProps,
   type AccountListProps,
+  type BadgeProps,
   Button,
   Divider,
   Flex,
@@ -22,9 +25,8 @@ import {
   Section,
   SettingsItem,
   Toolbar,
-  Typography,
 } from '..';
-import { accountList, defaultAccounts, useAccountList } from '../../../examples';
+import { accountList, defaultAccounts, useAccountList, useAccountSettings } from '../../../examples';
 
 const meta = {
   title: 'Account/AccountList',
@@ -97,20 +99,48 @@ const getContextMenu = ({ name, id, isCurrentEndUser, favourite = false, onToggl
   };
 };
 
-export const AccountSettings = () => {
-  const { toolbar, items, groups, onToggleFavourite } = useAccountList({
+export const Controlled = () => {
+  const { toolbar, items, groups, onToggle, onToggleFavourite } = useAccountList({
+    accounts: defaultAccounts,
+  });
+
+  const controlledItems = items?.map((item) => {
+    return {
+      ...item,
+      onClick: () => onToggle(item.id),
+      onToggleFavourite: () => onToggleFavourite(item.id),
+      contextMenu: getContextMenu(item as AccountListItemProps),
+    };
+  });
+
+  return (
+    <Section spacing={6}>
+      <Toolbar {...toolbar} />
+      {items && <AccountList groups={groups} items={controlledItems as AccountListItemProps[]} />}
+    </Section>
+  );
+};
+
+export const Collapsible = () => {
+  const { toolbar, items, groups, expandedId, onToggle, onToggleFavourite } = useAccountList({
     accounts: defaultAccounts,
   });
 
   const collapsibleItems = items?.map((item) => {
-    if (item.expanded) {
+    if (expandedId === item.id) {
       return {
         ...item,
+        collapsible: true,
+        expanded: true,
+        onClick: () => onToggle(item.id),
         children: <AccountDetails {...(item as AccountListItemProps)} onToggleFavourite={onToggleFavourite} />,
       };
     }
     return {
       ...item,
+      collapsible: true,
+      onClick: () => onToggle(item.id),
+      onToggleFavourite: () => onToggleFavourite(item.id),
       contextMenu: getContextMenu(item as AccountListItemProps),
     };
   });
@@ -123,41 +153,83 @@ export const AccountSettings = () => {
   );
 };
 
-const AccountDetails = ({ type, ...props }: AccountListItemProps) => {
-  switch (type) {
-    case 'company':
-      return <CompanyDetails {...(props as AccountListItemProps)} />;
-    case 'person':
-      return <PersonDetails {...(props as AccountListItemProps)} />;
+interface AccountDetailsProps extends AccountListItemProps {
+  smsAlerts?: boolean;
+  emailAlerts?: boolean;
+  email?: string;
+  phone?: string;
+  address?: string;
+}
+
+const AccountDetails = (props: AccountDetailsProps) => {
+  if (props.isCurrentEndUser) {
+    return <UserDetails {...props} />;
+  }
+
+  switch (props.type) {
     case 'group':
-      return <GroupDetails {...(props as AccountListItemProps)} />;
+      return <GroupDetails {...props} />;
+    case 'company':
+      return <CompanyDetails {...props} />;
+    case 'person':
+      return <PersonDetails {...props} />;
     default:
-      return <PersonDetails {...(props as AccountListItemProps)} />;
+      return <PersonDetails {...props} />;
   }
 };
 
-export const AccountToolbar = ({ id, isCurrentEndUser, favourite, onToggleFavourite }: AccountListItemProps) => {
+export const AccountToolbar = ({ id, type, isCurrentEndUser, favourite, onToggleFavourite }: AccountDetailsProps) => {
   return (
     <Flex spacing={2} size="xs">
       {!isCurrentEndUser && (
-        <Button icon={favourite ? HeartFillIcon : HeartIcon} onClick={() => onToggleFavourite?.(id)} variant="outline">
+        <Button
+          variant={favourite ? 'tinted' : 'outline'}
+          icon={favourite ? HeartFillIcon : HeartIcon}
+          onClick={() => onToggleFavourite?.(id)}
+        >
           {favourite ? 'Fjern favoritt' : 'Legg til favoritt'}
         </Button>
       )}
       <Button icon={InboxIcon} variant="outline">
         Gå til Innboks
       </Button>
-      <Button icon={HandshakeIcon} variant="outline">
-        Tilgangsstyring
-      </Button>
+      {type !== 'group' && (
+        <Button icon={HandshakeIcon} variant="outline">
+          Tilgangsstyring
+        </Button>
+      )}
     </Flex>
   );
 };
 
-export const CompanyDetails = ({ id, parentId, uniqueId, ...props }: AccountListItemProps) => {
-  const { items } = useAccountList({
-    accounts: defaultAccounts as AccountListItemProps[],
-  });
+export const NotificationSettings = ({
+  smsAlerts = true,
+  emailAlerts = false,
+  email = 'dirk@digdir.no',
+  phone = '92020222',
+}: AccountDetailsProps) => {
+  const badge =
+    smsAlerts && emailAlerts
+      ? { label: 'SMS og E-post' }
+      : smsAlerts
+        ? { label: 'SMS' }
+        : emailAlerts
+          ? { label: 'E-post' }
+          : { variant: 'text', label: 'Sett opp varsling' };
+
+  const title = smsAlerts || emailAlerts ? 'Varslinger er på' : 'Ingen varslinger';
+
+  const value = smsAlerts && emailAlerts ? [email, phone].join(', ') : smsAlerts ? phone : emailAlerts && email;
+
+  return (
+    <List size="sm">
+      <SettingsItem icon={BellIcon} title={title} value={value} badge={badge as BadgeProps} linkIcon />
+    </List>
+  );
+};
+
+export const CompanyDetails = ({ id, parentId, uniqueId = 'XXXXXXXXX', ...props }: AccountDetailsProps) => {
+  const { items } = useAccountSettings({ accounts: defaultAccounts });
 
   const parentAccount = items?.find((item) => item.id === parentId);
 
@@ -165,7 +237,9 @@ export const CompanyDetails = ({ id, parentId, uniqueId, ...props }: AccountList
     <Section color="company" padding={6} spacing={2}>
       <AccountToolbar {...props} id={id} />
       <Divider />
-      <List spacing={0} size="sm">
+      <NotificationSettings {...props} id={id} />
+      <List size="sm">
+        <Divider as="li" />
         <SettingsItem
           icon={{ svgElement: Buildings2Icon, theme: 'default' }}
           title="Organisasjonsnummer"
@@ -183,19 +257,10 @@ export const CompanyDetails = ({ id, parentId, uniqueId, ...props }: AccountList
             />
           </>
         )}
-        <Divider as="li" />
         <SettingsItem
           icon={{ svgElement: HandshakeIcon, theme: 'default' }}
           title="Rolle og rettigheter"
           value="Daglig leder"
-          linkIcon
-        />
-        <Divider as="li" />
-        <SettingsItem
-          color="neutral"
-          icon={{ svgElement: BellIcon, theme: 'default' }}
-          title="Ingen varslinger"
-          badge={<Typography size="xs">Sett opp varsling</Typography>}
           linkIcon
         />
       </List>
@@ -203,17 +268,73 @@ export const CompanyDetails = ({ id, parentId, uniqueId, ...props }: AccountList
   );
 };
 
-export const PersonDetails = ({ id, ...props }: AccountListItemProps) => {
+export const PersonDetails = ({
+  id,
+  uniqueId = 'XXXXXX YYYYYY',
+  isCurrentEndUser,
+  address,
+  ...props
+}: AccountDetailsProps) => {
   return (
-    <Section color="company" padding={6} spacing={2}>
+    <Section color="person" padding={6} spacing={2}>
       <AccountToolbar {...props} id={id} />
-
       <Divider />
+      <NotificationSettings {...props} id={id} />
+      <List size="sm">
+        <Divider as="li" />
+        <SettingsItem icon={Buildings2Icon} title="Fødselsnummer" value={uniqueId} linkIcon />
+        <SettingsItem
+          icon={{ svgElement: HandshakeIcon, theme: 'default' }}
+          title="Rolle og rettigheter"
+          value="Verge"
+          linkIcon
+        />
+      </List>
     </Section>
   );
 };
 
-export const GroupDetails = ({ accountIds }: AccountListItemProps) => {
+export const UserDetails = ({
+  id = 'user',
+  uniqueId = 'XXXXXX YYYYYY',
+  phone = '99009900',
+  address = 'Strømsveien 102, 0162 Oslo',
+  email = 'dirk@digdir.no',
+  ...props
+}: AccountDetailsProps) => {
+  return (
+    <Section color="person" padding={6} spacing={2}>
+      <AccountToolbar {...props} id={id} isCurrentEndUser={true} />
+      <Divider />
+      <List size="sm">
+        <SettingsItem
+          icon={MobileIcon}
+          title="Varslinger på SMS"
+          value={phone}
+          badge={{ label: 'Endre mobil', variant: 'text' }}
+          linkIcon
+        />
+        <SettingsItem
+          icon={PaperplaneIcon}
+          title="Varslinger på e-post"
+          value={email}
+          badge={{ label: 'Endre e-post', variant: 'text' }}
+          linkIcon
+        />
+        <Divider as="li" />
+        <SettingsItem
+          icon={HouseIcon}
+          title="Adresse"
+          value={address}
+          badge={{ label: 'Endre Adresse', variant: 'text' }}
+          linkIcon
+        />
+      </List>
+    </Section>
+  );
+};
+
+export const GroupDetails = ({ id = 'group', accountIds }: AccountDetailsProps) => {
   const { items } = useAccountList({
     accounts: defaultAccounts as AccountListItemProps[],
   });
@@ -224,14 +345,7 @@ export const GroupDetails = ({ accountIds }: AccountListItemProps) => {
 
   return (
     <Section color="company" padding={6} spacing={2}>
-      <Flex spacing={2} size="xs">
-        <Button icon={InboxIcon} variant="outline">
-          Innboks
-        </Button>
-        <Button icon={PencilIcon} variant="outline">
-          Rediger gruppe
-        </Button>
-      </Flex>
+      <AccountToolbar name="group" type="group" id={id} />
       <Divider />
       <Section spacing={4}>
         <Heading size="sm">6 medlemmer</Heading>

@@ -1,6 +1,6 @@
 import { Section, type SectionProps } from '..';
 
-export interface SettingsProps extends SectionProps {
+export interface SettingsSectionProps extends SectionProps {
   as?: SectionProps['as'];
   color?: SectionProps['color'];
   theme?: SectionProps['theme'];
@@ -8,7 +8,7 @@ export interface SettingsProps extends SectionProps {
   children?: SectionProps['children'];
 }
 
-export const Settings = ({
+export const SettingsSection = ({
   size = 'sm',
   theme = 'default',
   padding = 4,
@@ -17,7 +17,7 @@ export const Settings = ({
   as,
   color,
   children,
-}: SettingsProps) => {
+}: SettingsSectionProps) => {
   return (
     <Section as={as} size={size} color={color} theme={theme} padding={padding} spacing={spacing} shadow={shadow}>
       {children}

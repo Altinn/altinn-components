@@ -36,6 +36,15 @@
 
 /** variants */
 
+.badge[data-variant="text"],
+.badge[data-variant="text"][data-size="sm"] {
+  --dsc-badge-background: "transparent";
+  --dsc-badge-color: var(--ds-color-text-subtle);
+  font-size: 0.875rem;
+  font-weight: 400;
+  padding: 0.5em 0;
+}
+
 .badge[data-variant="base"] {
   --dsc-badge-background: var(--ds-color-base-default);
   --dsc-badge-color: var(--ds-color-base-contrast-default);

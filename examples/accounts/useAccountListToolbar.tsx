@@ -1,5 +1,6 @@
 import { type ChangeEvent, useState } from 'react';
-import type { FilterState, ToolbarFilterProps, ToolbarProps } from '../../lib';
+import type { AccountListItemProps, FilterState, ToolbarFilterProps, ToolbarProps } from '../../lib';
+import type { AccountDataListProps } from './accounts';
 
 export const accountTypeFilter: ToolbarFilterProps = {
   name: 'type',
@@ -33,7 +34,12 @@ export const accountTypeFilter: ToolbarFilterProps = {
 
 export const accountListFilters = [accountTypeFilter];
 
-export const useAccountListToolbar = (): ToolbarProps => {
+interface UseAccountListToolbar extends ToolbarProps {
+  results: AccountDataListProps;
+  active: boolean;
+}
+
+export const useAccountListToolbar = (items?: AccountListItemProps[]): UseAccountListToolbar => {
   const [filterState, setFilterState] = useState<FilterState>({});
 
   const [q, setQ] = useState<string>('');
@@ -52,7 +58,42 @@ export const useAccountListToolbar = (): ToolbarProps => {
     onClear,
   };
 
+  // results
+
+  const filteredItems = items
+    ?.filter((item) => {
+      if (!q) return true;
+      return item.name.toLowerCase().includes(q.toLowerCase());
+    })
+    .map((item) => {
+      return {
+        ...item,
+        groupId: 'search',
+      };
+    });
+
+  // search result
+
+  const hits = filteredItems?.length;
+  const hitsTitle = hits ? `${hits} treff` : 'Ingen treff';
+
+  const results = {
+    items: filteredItems?.map((item) => ({
+      ...item,
+      groupId: 'search',
+    })) as AccountListItemProps[],
+    groups: {
+      search: {
+        title: hitsTitle,
+      },
+    },
+  };
+
+  const active = q !== '';
+
   return {
+    active,
+    results,
     search,
     filters: accountListFilters,
     filterState,

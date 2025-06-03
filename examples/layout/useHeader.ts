@@ -1,30 +1,20 @@
-import type { HeaderProps, AccountListItemProps, Account } from "../../lib";
-import {
-  defaultAccounts,
-  useInboxSearch,
-  useGlobalMenu,
-  useLocale,
-  localeSwitcher,
-} from "../";
+import { defaultAccounts, localeSwitcher, useGlobalMenu, useInboxSearch, useLocale } from '../';
+import type { Account, AccountListItemProps, HeaderProps } from '../../lib';
 
 interface UseHeaderProps extends HeaderProps {
   accountId?: string | null;
   accounts?: AccountListItemProps[];
 }
 
-export const useHeader = ({
-  accountId = "user",
-  accounts = defaultAccounts,
-  ...args
-}: UseHeaderProps) => {
+export const useHeader = ({ accountId = 'user', accounts = defaultAccounts, ...args }: UseHeaderProps) => {
   /* setup locale */
   const localeProps = args?.locale || localeSwitcher;
   const locale = useLocale(localeProps);
 
   /* setup search */
   const searchProps = args?.search || {
-    name: "search",
-    placeholder: "Søk i Altinn",
+    name: 'search',
+    placeholder: 'Søk i Altinn',
   };
 
   const search = useInboxSearch(searchProps);

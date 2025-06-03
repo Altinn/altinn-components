@@ -1,5 +1,5 @@
-import { footer, header as defaultHeader, useHeader } from "..";
-import type { LayoutProps, HeaderProps, AccountListItemProps } from "../../lib";
+import { header as defaultHeader, footer, useHeader } from '..';
+import type { AccountListItemProps, HeaderProps, LayoutProps } from '../../lib';
 
 interface UseLayoutProps extends LayoutProps {
   accounts?: AccountListItemProps[];
@@ -8,8 +8,8 @@ interface UseLayoutProps extends LayoutProps {
 export const useLayout = ({
   accounts,
   accountId,
-  color = "company",
-  theme = "default",
+  color = 'company',
+  theme = 'default',
   header = defaultHeader,
   sidebar,
 }: UseLayoutProps): LayoutProps => {

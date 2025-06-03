@@ -11,6 +11,11 @@ const meta = {
 export default meta;
 
 export const Default = () => {
+  const { items } = useActivityLog();
+  return <ActivityLog items={items} />;
+};
+
+export const Controlled = () => {
   const { toolbar, items } = useActivityLog();
   return (
     <Section spacing={6}>

@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { defaultAccounts, inboxFilters, useAccountMenu } from "../";
-import type { FilterState, ToolbarProps } from "../../lib";
+import { useState } from 'react';
+import { defaultAccounts, inboxFilters, useAccountMenu } from '../';
+import type { FilterState, ToolbarProps } from '../../lib';
 
 export const useInboxToolbar = (): ToolbarProps => {
   const [filterState, setFilterState] = useState<FilterState>({
-    from: ["skatt", "brreg"],
+    from: ['skatt', 'brreg'],
   });
 
   const accountMenu = useAccountMenu({
@@ -16,6 +16,6 @@ export const useInboxToolbar = (): ToolbarProps => {
     filters: inboxFilters,
     filterState,
     onFilterStateChange: setFilterState,
-    removeButtonAltText: "remove",
+    removeButtonAltText: 'remove',
   } as ToolbarProps;
 };

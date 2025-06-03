@@ -9,6 +9,10 @@
   box-shadow: none;
 }
 
+.item + .item {
+  margin-top: 0.5em;
+}
+
 .label {
   margin: 0;
 }

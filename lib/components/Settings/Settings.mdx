@@ -5,15 +5,19 @@ import * as SettingsStories from "./Settings.stories";
 
 # Settings
 
-Use `Settings`, `SettingsItem` to build a list of settings. By default it will render as a card.
+Use `SettingsSection`, `List` and `SettingsItem` to build settings sections.
 
 ```tsx
 return (
-  <Settings>
-    <SettingsItem />
-    <Divider as="li" />
-    <SettingsItem />
-  </Settings>
+  <SettingsSection>
+    <List>
+      <SettingsItem />
+      <Divider as="li" />
+      <SettingsItem />
+      <Divider as="li">
+      <SettingsList items={[items]}>
+    </List>
+  </SettingsSection>
 );
 ```
 
