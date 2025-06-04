@@ -1,7 +1,7 @@
 import * as SettingsStories from "./Profile/Settings.stories";
 import * as ActivityLogStories from "../components/ActivityLog/ActivityLog.stories";
 import * as AccountListStories from "../components/Account/AccountList.stories";
-import { BellIcon, CogIcon, PersonRectangleIcon } from "@navikt/aksel-icons";
+import * as AccountSettingsStories from "../components/Account/AccountSettingsList.stories";
 
 import {
   Heading,
@@ -9,9 +9,8 @@ import {
   PageBase,
   Breadcrumbs,
   DashboardHeader,
-  List,
-  SettingsItem,
-  Divider,
+  SettingsSection,
+  Toolbar,
 } from "../components";
 import { useProfileLayout } from "../../examples";
 
@@ -26,58 +25,35 @@ const meta = {
 
 export default meta;
 
-export const Dashboard = () => {
+export const DashboardPage = () => {
   const { breadcrumbs, ...layout } = useProfileLayout({});
   return (
     <Layout {...layout}>
-      <DashboardHeader type="person" name="Mathias Dyngeland">
-        <List size="sm">
-          <SettingsItem
-            icon={PersonRectangleIcon}
-            title="mathias@dyngeland.no"
-            description="99009900"
-            linkIcon
-            as="a"
-            badge={<span data-size="xs">Endre profil</span>}
-            href="/?path=/story/demo-profile--settings"
-          />
-          <Divider />
-          <SettingsItem
-            as="a"
-            href="/?path=/story/demo-profile--notifications"
-            icon={BellIcon}
-            title="Varslinger er på"
-            description="Alle varslinger"
-            badge={{ label: "SMS og Epost" }}
-            linkIcon
-          />
-          <Divider />
-          <SettingsItem
-            icon={CogIcon}
-            title="Flere innstillinger"
-            linkIcon
-            as="a"
-            href="/?path=/story/demo-profile--settings"
-          />
-        </List>
+      <DashboardHeader
+        type="person"
+        name="Mathias Dyngeland"
+        description="Fødselsnr: XXXXXX YYYYYY"
+      >
+        <SettingsStories.DashboardSettings />
       </DashboardHeader>
     </Layout>
   );
 };
 
-export const Accounts = () => {
+export const AccountsPage = () => {
   const { breadcrumbs, ...layout } = useProfileLayout({ pageId: "accounts" });
   return (
     <Layout {...layout}>
       <PageBase>
         <Breadcrumbs items={breadcrumbs} />
-        <AccountListStories.AccountSettings />
+        <Heading size="xl">Mine aktører</Heading>
+        <AccountListStories.Collapsible />
       </PageBase>
     </Layout>
   );
 };
 
-export const Users = () => {
+export const UsersPage = () => {
   const { breadcrumbs, ...layout } = useProfileLayout({ pageId: "users" });
   return (
     <Layout {...layout}>
@@ -89,7 +65,7 @@ export const Users = () => {
   );
 };
 
-export const Access = () => {
+export const AccessPage = () => {
   const { breadcrumbs, ...layout } = useProfileLayout({ pageId: "access" });
   return (
     <Layout {...layout}>
@@ -101,37 +77,53 @@ export const Access = () => {
   );
 };
 
-export const Settings = () => {
+export const SettingsPage = () => {
   const { breadcrumbs, ...layout } = useProfileLayout({ pageId: "settings" });
   return (
     <Layout {...layout}>
       <PageBase>
         <Breadcrumbs items={breadcrumbs} />
-        <Heading size="xl">Kontaktinformasjon</Heading>
-        <SettingsStories.ContactSettings />
+        <Heading size="xl">Innstillinger</Heading>
+        <Toolbar
+          search={{ name: "search", placeholder: "Søk i innstillinger" }}
+        />
+        <Heading size="lg">Kontaktinformasjon</Heading>
+        <SettingsSection>
+          <SettingsStories.ContactSettings />
+        </SettingsSection>
+        <Heading size="lg">Varslinger</Heading>
+        <SettingsSection>
+          <SettingsStories.MoreSettings />
+        </SettingsSection>
         <Heading size="lg">Flere innstillinger</Heading>
-        <SettingsStories.MoreSettings />
+        <SettingsSection>
+          <SettingsStories.CollapsibleSettings />
+        </SettingsSection>
       </PageBase>
     </Layout>
   );
 };
 
-export const Notifications = () => {
+export const NotificationsPage = () => {
   const { breadcrumbs, ...layout } = useProfileLayout({ pageId: "settings" });
   return (
     <Layout {...layout}>
       <PageBase>
         <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">Varslingsinnstillinger</Heading>
-        <SettingsStories.NotificationSettings />
+        <SettingsSection>
+          <SettingsStories.NotificationSettings />
+        </SettingsSection>
         <Heading size="lg">Varslinger per aktør</Heading>
-        <SettingsStories.AccountSettings />
+        <SettingsSection>
+          <AccountSettingsStories.Collapsible />
+        </SettingsSection>
       </PageBase>
     </Layout>
   );
 };
 
-export const Log = () => {
+export const ActivityLogPage = () => {
   const { breadcrumbs, ...layout } = useProfileLayout({
     pageId: "log",
   });
@@ -140,7 +132,7 @@ export const Log = () => {
       <PageBase>
         <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">Aktivitetslogg</Heading>
-        <ActivityLogStories.Default />
+        <ActivityLogStories.Controlled />
       </PageBase>
     </Layout>
   );

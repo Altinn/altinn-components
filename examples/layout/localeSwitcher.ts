@@ -1,22 +1,22 @@
-import type { LocaleSwitcherProps } from "../../lib";
+import type { LocaleSwitcherProps } from '../../lib';
 
 export const localeOptions = [
   {
-    value: "nb",
-    label: "Bokmål",
+    value: 'nb',
+    label: 'Bokmål',
     checked: true,
   },
   {
-    value: "nn",
-    label: "Nynorsk",
+    value: 'nn',
+    label: 'Nynorsk',
   },
   {
-    value: "en",
-    label: "English",
+    value: 'en',
+    label: 'English',
   },
 ];
 
 export const localeSwitcher: LocaleSwitcherProps = {
-  title: "Språk/language",
+  title: 'Språk/language',
   options: localeOptions,
 };

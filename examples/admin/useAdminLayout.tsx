@@ -1,5 +1,5 @@
-import { adminMenu, adminMenuItems, useLayout } from "../";
-import type { AvatarProps, BreadcrumbsLinkProps, LayoutProps } from "../../lib";
+import { adminMenu, adminMenuItems, useLayout } from '../';
+import type { AvatarProps, BreadcrumbsLinkProps, LayoutProps } from '../../lib';
 
 export type AdminSettings = Record<string, string>;
 
@@ -12,17 +12,14 @@ interface AdminLayoutProps {
   settings?: AdminSettings;
 }
 
-export const useAdminLayout = ({
-  accountId = "party:diaspora",
-  pageId = "admin",
-}): AdminLayoutProps => {
-  const baseHref = "/?path=/story/demo-admin";
+export const useAdminLayout = ({ accountId = 'party:diaspora', pageId = 'admin' }): AdminLayoutProps => {
+  const baseHref = '/?path=/story/demo-admin';
 
-  const layout = useLayout({ color: "neutral", theme: "subtle", accountId });
+  const layout = useLayout({ color: 'neutral', theme: 'subtle', accountId });
   const account = layout?.header?.menu?.currentAccount;
 
   const menuItems = adminMenuItems.map((item, index) => {
-    const href = (index && [baseHref, item.id].join("--")) || baseHref;
+    const href = (index && [baseHref, item.id].join('--')) || baseHref;
 
     return {
       ...item,
@@ -36,22 +33,22 @@ export const useAdminLayout = ({
 
   const breadcrumbs: BreadcrumbsLinkProps[] = [
     {
-      label: "Forside",
+      label: 'Forside',
     },
     {
-      label: "Seksjon",
+      label: 'Seksjon',
     },
     {
-      label: (page?.title as string) || "Side",
+      label: (page?.title as string) || 'Side',
     },
   ];
 
   const settings = {
-    companyId: "928914038",
-    companyType: "Forening/lag/innretning",
-    address: "Høyenhallsvingen 16, 0667 Oslo",
-    email: "post@diasporabergensis.no",
-    phone: "+47 99010203",
+    companyId: '928914038',
+    companyType: 'Forening/lag/innretning',
+    address: 'Høyenhallsvingen 16, 0667 Oslo',
+    email: 'post@diasporabergensis.no',
+    phone: '+47 99010203',
   };
 
   return {

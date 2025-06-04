@@ -1,2 +1,3 @@
-export * from './Settings';
+export * from './SettingsSection';
 export * from './SettingsItem';
+export * from './SettingsList';

@@ -18,12 +18,12 @@ export const DashboardHeader = ({ type, name, title, description, loading, child
         <div style={{ position: 'relative' }}>
           <Avatar style={{ fontSize: '2.75rem' }} type={type} name={name} loading={loading} />
         </div>
-        <Flex direction="col">
+        <Flex direction="col" spacing={0}>
           <Heading size="lg" loading={loading}>
             {title || name}
           </Heading>
-          <Typography variant="subtle" size="xs" loading={loading}>
-            <p>{description || type}</p>
+          <Typography as="p" variant="subtle" size="xs" loading={loading}>
+            {description || type}
           </Typography>
         </Flex>
       </Flex>

@@ -1,6 +1,6 @@
-import { useState } from "react";
-import type { Account, AccountListItemProps, GlobalMenuProps } from "../../lib";
-import { defaultAccounts, getAccountMenu, globalMenu, loginMenu } from "../";
+import { useState } from 'react';
+import { defaultAccounts, getAccountMenu, globalMenu, loginMenu } from '../';
+import type { Account, AccountListItemProps, GlobalMenuProps } from '../../lib';
 
 interface UseGlobalMenuProps extends GlobalMenuProps {
   accountId?: string | null;
@@ -8,9 +8,9 @@ interface UseGlobalMenuProps extends GlobalMenuProps {
 }
 
 export const useGlobalMenu = ({
-  accountId = "user",
+  accountId = 'user',
   accounts = defaultAccounts,
-  menuLabel = "Meny",
+  menuLabel = 'Meny',
   ...props
 }: UseGlobalMenuProps) => {
   if (!accountId) {
@@ -28,9 +28,7 @@ export const useGlobalMenu = ({
     accountMenu?.items?.find((item) => item.type === accountId) ||
     currentEndUser;
 
-  const [currentAccount, setCurrentAccount] = useState<Account | undefined>(
-    defaultAccount as Account | undefined
-  );
+  const [currentAccount, setCurrentAccount] = useState<Account | undefined>(defaultAccount as Account | undefined);
 
   const onSelectAccount = (id: string) => {
     const account = accountMenu?.items?.find((item) => item.id === id);

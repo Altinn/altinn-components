@@ -13,7 +13,7 @@ import { useAdminLayout } from "../../../examples";
 import {
   Divider,
   Heading,
-  Settings,
+  SettingsSection,
   List,
   SettingsItem,
   Typography,
@@ -26,7 +26,7 @@ const meta = {
   tags: ["beta", "autodocs"],
   parameters: {},
   args: {},
-} satisfies Meta<typeof Settings>;
+} satisfies Meta<typeof SettingsSection>;
 
 export default meta;
 
@@ -34,7 +34,7 @@ export const PrimarySettings = () => {
   const { settings } = useAdminLayout({});
 
   return (
-    <Settings>
+    <SettingsSection>
       <List size="sm">
         <SettingsItem
           icon={{ svgElement: Buildings2Icon }}
@@ -52,13 +52,13 @@ export const PrimarySettings = () => {
           linkIcon
         />
       </List>
-    </Settings>
+    </SettingsSection>
   );
 };
 
 export const SecondarySettings = () => {
   return (
-    <Settings>
+    <SettingsSection>
       <List>
         <SettingsItem
           as="a"
@@ -84,7 +84,7 @@ export const SecondarySettings = () => {
           linkIcon
         />
       </List>
-    </Settings>
+    </SettingsSection>
   );
 };
 
@@ -96,7 +96,7 @@ export const RoleSettings = () => {
   };
 
   return (
-    <Settings>
+    <SettingsSection>
       <Heading>Regnskapsfører og revisor</Heading>
       <List>
         <SettingsItem
@@ -177,6 +177,6 @@ export const RoleSettings = () => {
         </Button>
         <Typography size="xs">Kilde: Brønnøysundregistrene</Typography>
       </Flex>
-    </Settings>
+    </SettingsSection>
   );
 };

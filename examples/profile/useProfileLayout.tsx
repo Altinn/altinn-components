@@ -1,18 +1,27 @@
-import { footer, profileMenu, profileMenuItems, useLayout } from "../";
-import type { BreadcrumbsLinkProps, LayoutProps } from "../../lib";
+import { footer, profileMenu, profileMenuItems, useLayout } from '../';
+import type { BreadcrumbsLinkProps, LayoutProps } from '../../lib';
 
 interface ProfileLayoutProps extends LayoutProps {
   pageId?: string;
   breadcrumbs?: BreadcrumbsLinkProps[];
 }
 
-export const useProfileLayout = ({
-  pageId = "profile",
-}): ProfileLayoutProps => {
-  const baseHref = "/?path=/story/demo-profile";
+export const useProfileLayout = ({ pageId = 'profile' }): ProfileLayoutProps => {
+  const baseHref = '/iframe.html?id=';
 
-  const menuItems = profileMenuItems.map((item, index) => {
-    const href = (index && [baseHref, item.id].join("--")) || baseHref;
+  const storybookPages = {
+    profile: 'demo-profile--dashboard-page',
+    accounts: 'demo-profile--accounts-page',
+    settings: 'demo-profile--settings-page',
+    access: 'demo-profile--access-page',
+    users: 'demo-profile--users-page',
+    'activity-log': 'demo-profile--activity-log-page',
+  };
+
+  const menuItems = profileMenuItems.map((item) => {
+    const storyBookId = storybookPages?.[item.id as keyof typeof storybookPages];
+
+    const href = storyBookId && [baseHref, storyBookId].join('');
 
     return {
       ...item,
@@ -24,8 +33,8 @@ export const useProfileLayout = ({
   const page = menuItems?.find((item) => item.selected);
 
   const layout = useLayout({
-    color: "neutral",
-    theme: "subtle",
+    color: 'neutral',
+    theme: 'subtle',
     sidebar: {
       menu: { ...profileMenu, items: menuItems },
     },
@@ -35,13 +44,13 @@ export const useProfileLayout = ({
 
   const breadcrumbs = [
     {
-      label: "Forside",
+      label: 'Forside',
     },
     {
-      label: (currentAccount?.name as string) || "Seksjon",
+      label: (currentAccount?.name as string) || 'Seksjon',
     },
     {
-      label: (page?.title as string) || "Side",
+      label: (page?.title as string) || 'Side',
     },
   ];
 

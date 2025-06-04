@@ -9,7 +9,6 @@ export interface AccountListItemProps extends ListItemProps, AccountListItemCont
   type: AccountListItemType;
   name: string;
   title?: string;
-
   groupId?: string; // Optional, used for grouping accounts
   uniqueId?: string; // Organization number or personal identification number
   parentId?: string; // Optional, used for hierarchical relationships

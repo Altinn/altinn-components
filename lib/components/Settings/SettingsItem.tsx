@@ -12,6 +12,7 @@ import styles from './settingsItem.module.css';
 
 export interface SettingsItemProps extends ListItemBaseProps, ListItemHeaderProps {
   id?: string;
+  groupId?: string;
   collapsible?: boolean;
   expanded?: boolean;
   label?: ListItemHeaderProps['children'];

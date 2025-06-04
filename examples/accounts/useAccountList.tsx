@@ -1,43 +1,59 @@
-import { useState } from "react";
+import { useState } from 'react';
 import {
-  defaultAccounts,
+  type AccountDataGroups,
+  type AccountDataProps,
+  type AccountSettingsById,
   accountListGroups,
+  defaultAccounts,
   getAccountItems,
   useAccountListToolbar,
-} from "../";
-import type { AccountListProps, AccountListItemProps } from "../../lib";
+} from '../';
 
-type UseAccountListProps = {
-  accounts?: AccountListItemProps[];
+interface UseAccountListProps {
+  accounts?: AccountDataProps[];
   accountId?: string;
-  items?: AccountListItemProps[];
-} & Omit<AccountListProps, "items">;
+  groups?: AccountDataGroups;
+}
 
-export const useAccountList = ({
-  accounts = defaultAccounts,
-  ...props
-}: UseAccountListProps) => {
-  const items = props?.items || getAccountItems({ accounts });
+export const useAccountList = ({ accounts = defaultAccounts, ...props }: UseAccountListProps) => {
+  const items = getAccountItems({ accounts });
   const groups = props?.groups || accountListGroups;
 
-  const defaultFavouriteIds = items
-    ?.filter((item) => item.favourite)
-    .map((item) => item.id) as string[];
+  /* editable settings */
 
-  const [favouriteIds, setFavouriteIds] =
-    useState<string[]>(defaultFavouriteIds);
+  const defaultAccount = items[0];
+  const defaultSettings: AccountSettingsById = {};
 
-  const [expandedId, setExpandedId] = useState<string>("");
+  items?.map((item) => {
+    const { id, smsAlerts, emailAlerts, email, phone } = item;
 
-  const onToggle = (id: string) => {
-    console.log("onToggle", id);
-    setExpandedId((prevState) => {
-      if (prevState === id) {
-        return "";
-      }
-      return id;
+    defaultSettings[id] = {
+      smsAlerts,
+      emailAlerts,
+      email: email || defaultAccount?.email,
+      phone: phone || defaultAccount?.phone,
+    };
+  });
+
+  const [settingsById, setSettingsById] = useState(defaultSettings || {});
+
+  const onSettingsChange = (id: string, settings = {}) => {
+    setSettingsById((prevState) => {
+      return {
+        ...prevState,
+        [id]: {
+          ...prevState[id],
+          ...settings,
+        },
+      };
     });
   };
+
+  /** toggle favourites */
+
+  const defaultFavouriteIds = items?.filter((item) => item.favourite).map((item) => item.id) as string[];
+
+  const [favouriteIds, setFavouriteIds] = useState<string[]>(defaultFavouriteIds);
 
   const onToggleFavourite = (id: string) => {
     setFavouriteIds((prevState) => {
@@ -48,56 +64,48 @@ export const useAccountList = ({
     });
   };
 
-  const toolbar = useAccountListToolbar();
-  const search = toolbar?.search;
-  const q = search?.value;
+  /** expand/collapse */
 
-  const filteredItems = items
-    ?.filter((item) => {
-      if (!q) return true;
-      return item.name.toLowerCase().includes(q.toLowerCase());
-    })
-    .map((item) => {
-      return {
-        ...item,
-        collapsible: true,
-        expanded: item.id === expandedId,
-        as: "button",
-        ariaLabel: item.name,
-        favourite: favouriteIds.includes(item.id),
-        onToggleFavourite: () => onToggleFavourite(item.id),
-        onClick: () => onToggle(item.id),
-      };
+  const [expandedId, setExpandedId] = useState<string>('');
+
+  const onToggle = (id: string) => {
+    console.log('onToggle', id);
+    setExpandedId((prevState) => {
+      if (prevState === id) {
+        return '';
+      }
+      return id;
     });
+  };
 
-  // search result
+  /** setup items */
 
-  if (q) {
-    const hits = filteredItems.length;
-    const hitsTitle = hits ? `${hits} treff` : "Ingen treff";
+  const defaultItems = items.map((item) => {
+    const settings = settingsById[item.id] || {};
 
     return {
-      toolbar,
-      items: filteredItems?.map((item) => ({
-        ...item,
-        groupId: "search",
-      })),
-      groups: {
-        search: {
-          title: hitsTitle,
-        },
-      },
+      ...item,
+      ...settings,
+      as: 'button',
+      ariaLabel: item.name,
+      favourite: favouriteIds.includes(item.id),
     };
-  }
+  });
+
+  const { active, results, ...toolbar } = useAccountListToolbar(defaultItems as AccountDataProps[]);
+
+  // use results or default items
+  const listItems = active ? results.items : defaultItems;
+  const listGroups = active ? results.groups : groups;
 
   // grouped results
-
   return {
     toolbar,
-    items: filteredItems,
-    groups,
+    items: listItems,
+    groups: listGroups,
     expandedId,
     onToggle,
     onToggleFavourite,
+    onSettingsChange,
   };
 };

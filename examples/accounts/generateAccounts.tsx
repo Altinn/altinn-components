@@ -1,13 +1,13 @@
 export function generateAccounts(count = 10000) {
-  const groups = ["primary", "favourites", "secondary", "groups"];
-  const types: Array<"person" | "company"> = ["person", "company"];
+  const groups = ['primary', 'favourites', 'secondary', 'groups'];
+  const types: Array<'person' | 'company'> = ['person', 'company'];
   const names = [
-    "Mathias Dyngeland",
-    "Bergen bar",
-    "Sportsklubben Brann",
-    "Keeperhansker AS",
-    "Stadion drift AS",
-    "Landslaget",
+    'Mathias Dyngeland',
+    'Bergen bar',
+    'Sportsklubben Brann',
+    'Keeperhansker AS',
+    'Stadion drift AS',
+    'Landslaget',
   ];
 
   return Array.from({ length: count }, (_, i) => {
@@ -24,7 +24,7 @@ export function generateAccounts(count = 10000) {
         label: `${Math.floor(Math.random() * 50) + 1}`,
       },
       alertBadge: { label: `${Math.floor(Math.random() * 10) + 1} uleste` },
-      accountNames: [""],
+      accountNames: [''],
       selected: false,
     };
 
@@ -34,11 +34,8 @@ export function generateAccounts(count = 10000) {
       };
     }
 
-    if (groupId === "groups") {
-      account.accountNames = names.slice(
-        0,
-        Math.floor(Math.random() * names.length) + 1
-      );
+    if (groupId === 'groups') {
+      account.accountNames = names.slice(0, Math.floor(Math.random() * names.length) + 1);
       account.selected = false;
     }
 

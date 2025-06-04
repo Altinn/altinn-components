@@ -4,7 +4,7 @@ import type { Color, Theme } from '..';
 import styles from './badge.module.css';
 
 export type BadgeColor = Color;
-export type BadgeVariant = 'tinted' | 'base';
+export type BadgeVariant = 'tinted' | 'base' | 'text';
 /** Theme is deprecated, use variant instead */
 export type BadgeTheme = Theme;
 export type BadgeSize = 'sm' | 'xs';
