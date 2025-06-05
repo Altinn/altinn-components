@@ -10,7 +10,7 @@ import {
   PaperplaneIcon,
   PlusIcon,
 } from '@navikt/aksel-icons';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Fragment } from 'react';
 import {
   AccountList,

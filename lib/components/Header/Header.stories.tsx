@@ -1,4 +1,4 @@
-import type { Meta } from '@storybook/react';
+import type { Meta } from '@storybook/react-vite';
 import { type Account, type GlobalMenuProps, Header, type HeaderProps } from '../';
 import { header, inboxMenu, useHeader } from '../../../examples';
 

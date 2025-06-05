@@ -7,12 +7,11 @@ const config: StorybookConfig = {
   ],
   addons: [
     "@storybook/addon-links",
-    "@storybook/addon-essentials",
     "@storybook/addon-themes",
     "@chromatic-com/storybook",
-    "@storybook/addon-interactions",
     "@storybook/addon-a11y",
     "storybook-addon-tag-badges",
+    "@storybook/addon-docs"
   ],
   framework: {
     name: "@storybook/react-vite",

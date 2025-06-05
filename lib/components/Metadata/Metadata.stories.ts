@@ -1,5 +1,5 @@
 import { CardIcon, ClockDashedIcon, HourglassIcon } from '@navikt/aksel-icons';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Metadata } from './Metadata';
 
 const meta: Meta<typeof Metadata> = {

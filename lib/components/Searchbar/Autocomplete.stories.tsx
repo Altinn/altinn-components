@@ -1,5 +1,5 @@
 import { InboxIcon, SignLanguageTwoHandsIcon } from '@navikt/aksel-icons';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Autocomplete, type AutocompleteItemProps } from '..';
 
 const meta = {

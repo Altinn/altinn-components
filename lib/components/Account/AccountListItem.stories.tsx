@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { AccountListItem, type AccountListItemProps, Button, Divider, Flex, List, Section } from '..';
 import * as SettingsStories from '../Settings/Settings.stories';
 const meta = {

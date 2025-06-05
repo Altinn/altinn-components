@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { expect, userEvent, within } from '@storybook/test';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { type ChangeEvent, useState } from 'react';
+import { expect, userEvent, within } from 'storybook/test';
 import { type AutocompleteItemProps, type AutocompleteProps, Searchbar, type SearchbarProps, Section } from '..';
 
 const meta = {

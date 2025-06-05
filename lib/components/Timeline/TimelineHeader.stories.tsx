@@ -1,5 +1,5 @@
 import { TeddyBearFillIcon } from '@navikt/aksel-icons';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { TimelineHeader } from '..';
 import { skatt } from '../../../examples/avatar';
 

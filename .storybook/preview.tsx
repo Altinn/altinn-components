@@ -1,5 +1,5 @@
 import { withThemeByDataAttribute } from "@storybook/addon-themes";
-import { Preview, StoryFn } from "@storybook/react";
+import { Preview, StoryFn } from "@storybook/react-vite";
 import { StoryDecorator } from "./StoryDecorator";
 
 import "../lib/css/global.css";
@@ -8,7 +8,7 @@ import "./preview.css";
 import { A11yParameters } from "@storybook/addon-a11y";
 import { Rule, getRules } from "axe-core";
 
-/** @type { import('@storybook/react').Preview } */
+/** @type { import('@storybook/react-vite').Preview } */
 
 const enabledTags = [
   "wcag2a",
@@ -25,10 +25,12 @@ const enabledRules: Rule[] = getRules(enabledTags).map((ruleMetadata) => ({
 }));
 
 const a11y: A11yParameters = {
-  config: {
-    rules: enabledRules,
+  a11y: {
+    context: "#story-in-story-decorator-root",
+    config: {
+      rules: enabledRules,
+    }
   },
-  element: "#story-in-story-decorator-root",
 };
 
 const preview: Preview = {

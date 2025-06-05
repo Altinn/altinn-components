@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useEffect } from 'react';
 import { type AccountMenuProps, type FilterState, Toolbar } from '..';
 import {

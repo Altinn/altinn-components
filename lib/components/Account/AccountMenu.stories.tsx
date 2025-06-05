@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { AccountMenu, type AccountMenuProps, Heading, PageBase, Toolbar } from '..';
 import { accountMenu, defaultAccounts, useAccountList, useAccountMenu } from '../../../examples';
 

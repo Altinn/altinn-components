@@ -1,5 +1,5 @@
 import { ChevronDownIcon } from '@navikt/aksel-icons';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ComboButton } from './ComboButton';
 
 const meta: Meta<typeof ComboButton> = {

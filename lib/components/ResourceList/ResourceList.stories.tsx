@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import resources from '../../../test-data/resources.json';
 import { ResourceList } from './ResourceList';
 

@@ -1,5 +1,5 @@
 import { BellIcon, Buildings2Icon, CogIcon } from '@navikt/aksel-icons';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { DashboardHeader, Divider, List, SettingsItem } from '../';
 
 const meta = {

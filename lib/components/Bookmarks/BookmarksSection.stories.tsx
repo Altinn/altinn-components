@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { type ChangeEvent, useMemo, useState } from 'react';
 import { BookmarksSection, type BookmarksSectionProps } from './BookmarksSection';
 
