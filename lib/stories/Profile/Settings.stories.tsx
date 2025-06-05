@@ -46,7 +46,7 @@ export const DashboardSettings = () => {
     <List size="sm">
       <SettingsItem
         as="a"
-        href="/iframe.html?id=demo-profile--notifications-page"
+        href="?id=demo-profile--notifications-page"
         icon={BellIcon}
         title="Varslinger er på"
         description="Alle varslinger"
@@ -59,7 +59,7 @@ export const DashboardSettings = () => {
         title="Flere innstillinger"
         linkIcon
         as="a"
-        href="/iframe.html?id=demo-profile--settings-page"
+        href="?id=demo-profile--settings-page"
       />
     </List>
   );
@@ -129,7 +129,7 @@ export const MoreSettings = () => {
     <List>
       <SettingsItem
         as="a"
-        href="/iframe.html?id=demo-profile--notifications-page"
+        href="?id=demo-profile--notifications-page"
         icon={BellIcon}
         title="Varslingsinnstillinger"
         badge={{ label: "12 aktører" }}

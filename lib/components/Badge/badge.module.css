@@ -36,13 +36,9 @@
 
 /** variants */
 
-.badge[data-variant="text"],
-.badge[data-variant="text"][data-size="sm"] {
-  --dsc-badge-background: "transparent";
-  --dsc-badge-color: var(--ds-color-text-subtle);
-  font-size: 0.875rem;
-  font-weight: 400;
-  padding: 0.5em 0;
+.badge[data-variant="tinted"] {
+  --dsc-badge-background: var(--ds-color-surface-tinted);
+  --dsc-badge-color: var(--ds-color-text-default);
 }
 
 .badge[data-variant="base"] {
@@ -50,9 +46,14 @@
   --dsc-badge-color: var(--ds-color-base-contrast-default);
 }
 
-.badge[data-variant="tinted"] {
-  --dsc-badge-background: var(--ds-color-surface-tinted);
-  --dsc-badge-color: var(--ds-color-text-default);
+.badge[data-variant="text"],
+.badge[data-variant="text"][data-size="xs"],
+.badge[data-variant="text"][data-size="sm"] {
+  --dsc-badge-background: "transparent";
+  --dsc-badge-color: var(--ds-color-text-subtle);
+  font-size: 0.875rem;
+  font-weight: 400;
+  padding: 0.5em 0;
 }
 
 /*

@@ -21,7 +21,7 @@ export const Default: Story = {
 export const Alert: Story = {
   args: {
     color: 'alert',
-    theme: 'base',
+    variant: 'base',
   },
 };
 
@@ -29,7 +29,7 @@ export const AlertXs: Story = {
   args: {
     ...Alert.args,
     size: 'xs',
-    theme: 'base',
+    variant: 'base',
   },
 };
 
@@ -44,6 +44,13 @@ export const UnreadCountXs: Story = {
   args: {
     ...UnreadCount.args,
     size: 'xs',
-    theme: 'base',
+    variant: 'base',
+  },
+};
+
+export const TextBadge: Story = {
+  args: {
+    label: 'Text badge',
+    variant: 'text',
   },
 };
