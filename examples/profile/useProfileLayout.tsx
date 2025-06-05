@@ -7,7 +7,7 @@ interface ProfileLayoutProps extends LayoutProps {
 }
 
 export const useProfileLayout = ({ pageId = 'profile' }): ProfileLayoutProps => {
-  const baseHref = '/iframe.html?id=';
+  const baseHref = '?id=';
 
   const storybookPages = {
     profile: 'demo-profile--dashboard-page',
