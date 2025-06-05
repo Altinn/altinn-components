@@ -1,5 +1,5 @@
 import { TeddyBearIcon } from '@navikt/aksel-icons';
-import type { Meta } from '@storybook/react';
+import type { Meta } from '@storybook/react-vite';
 import { Fragment } from 'react';
 import { List, ListItem, type ListItemProps } from '../';
 

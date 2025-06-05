@@ -82,7 +82,7 @@ export const SnackbarProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     const activeMessage = storedMessages.find((item) => (item.duration ?? defaultDuration) > 0);
     const duration = activeMessage?.duration || defaultDuration;
     if (activeMessage) {
-      closingTime.current = setTimeout(() => {
+      closingTime.current = window.setTimeout(() => {
         closeSnackbarItem(activeMessage.id);
       }, duration);
     }

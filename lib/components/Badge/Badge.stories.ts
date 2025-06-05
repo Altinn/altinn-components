@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Badge } from './Badge';
 
 const meta = {
@@ -44,7 +44,6 @@ export const UnreadCountXs: Story = {
   args: {
     ...UnreadCount.args,
     size: 'xs',
-    variant: 'base',
   },
 };
 

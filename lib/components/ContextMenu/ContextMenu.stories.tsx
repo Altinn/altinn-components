@@ -1,7 +1,7 @@
 import { ArchiveIcon, ArrowRedoIcon, ClockDashedIcon, EyeClosedIcon, TrashIcon } from '@navikt/aksel-icons';
 import { TeddyBearIcon } from '@navikt/aksel-icons';
-import type { Meta, StoryObj } from '@storybook/react';
-import { expect, userEvent, within } from '@storybook/test';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, userEvent, within } from 'storybook/test';
 import { DialogListItem, type DialogListItemProps, List, ListItem, type ListItemProps } from '..';
 import { inboxSearchResults } from '../../../examples';
 import { ContextMenu, type ContextMenuProps } from './ContextMenu';

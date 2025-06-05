@@ -1,6 +1,6 @@
 import { Avatar, AvatarGroup, type AvatarSize, type AvatarType, Flex, SizeEnum } from '..';
 
-import type { Meta } from '@storybook/react';
+import type { Meta } from '@storybook/react-vite';
 
 const meta = {
   title: 'Avatar/Specimens',

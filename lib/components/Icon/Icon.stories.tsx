@@ -1,5 +1,5 @@
 import { InboxFillIcon } from '@navikt/aksel-icons';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Flex, Icon, type IconProps, type IconSize, SizeEnum } from '..';
 
 const meta: Meta<typeof Icon> = {

@@ -1,4 +1,4 @@
-import type { Meta } from '@storybook/react';
+import type { Meta } from '@storybook/react-vite';
 import areaGroups from '../../../test-data/accesspackages.json';
 import { AccessPackageList, type AccessPackageListProps } from './AccessPackageList';
 

@@ -1,4 +1,4 @@
-import type { Meta } from '@storybook/react';
+import type { Meta } from '@storybook/react-vite';
 import { Flex } from '..';
 import type { LayoutProps } from '../';
 import { footer, header, inboxMenu, useLayout } from '../../../examples';

@@ -1,5 +1,5 @@
 import { XMarkIcon } from '@navikt/aksel-icons';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MetaItem } from '../Metadata';
 import type { ButtonSize, ButtonVariant } from './ButtonBase.tsx';
 import { IconButton, type IconButtonProps } from './IconButton';

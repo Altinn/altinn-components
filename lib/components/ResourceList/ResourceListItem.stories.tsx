@@ -1,5 +1,5 @@
 import { PencilIcon } from '@navikt/aksel-icons';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Button } from '../Button';
 import { List } from '../List';
 import { ResourceListItem } from './ResourceListItem';

@@ -11,7 +11,7 @@ import {
   PersonRectangleIcon,
   SunIcon,
 } from '@navikt/aksel-icons';
-import type { Meta } from '@storybook/react';
+import type { Meta } from '@storybook/react-vite';
 import { useState } from 'react';
 import { Divider, Fieldset, List, Radio, Section, SettingsItem, Switch, TextField, Typography } from '..';
 

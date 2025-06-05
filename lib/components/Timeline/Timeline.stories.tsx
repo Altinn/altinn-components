@@ -1,5 +1,5 @@
 import { DiamondFillIcon, TeddyBearFillIcon } from '@navikt/aksel-icons';
-import type { Meta } from '@storybook/react';
+import type { Meta } from '@storybook/react-vite';
 import {
   AttachmentList,
   Button,

@@ -1,4 +1,4 @@
-import type { Meta } from '@storybook/react';
+import type { Meta } from '@storybook/react-vite';
 import { List, Transmission, type TransmissionProps } from '..';
 import { transmissions } from '../../../examples';
 

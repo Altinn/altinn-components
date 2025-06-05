@@ -1,5 +1,5 @@
 import { ArrowRedoIcon, ClockDashedIcon } from '@navikt/aksel-icons';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ContextMenu, PageNav } from '../';
 
 const meta = {

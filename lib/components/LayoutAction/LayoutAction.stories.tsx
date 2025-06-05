@@ -1,5 +1,5 @@
 import { ArchiveIcon, ArrowRedoIcon, EyeIcon, TrashIcon } from '@navikt/aksel-icons';
-import type { Meta } from '@storybook/react';
+import type { Meta } from '@storybook/react-vite';
 import { useState } from 'react';
 import { Button, Flex, Layout, LayoutAction, type LayoutActionProps } from '..';
 import { footer, header } from '../../../examples';
