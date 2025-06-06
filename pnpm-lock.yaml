@@ -10,13 +10,13 @@ importers:
     dependencies:
       '@digdir/designsystemet-css':
         specifier: ^1.0.6
-        version: 1.0.6
+        version: 1.0.8
       '@digdir/designsystemet-react':
         specifier: ^1.0.6
-        version: 1.0.6(@types/react@19.1.5)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.8(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@digdir/designsystemet-theme':
         specifier: ^1.0.6
-        version: 1.0.6
+        version: 1.0.8
       '@navikt/aksel-icons':
         specifier: ^7.22.0
         version: 7.22.0
@@ -44,7 +44,7 @@ importers:
         version: 9.0.4(storybook@9.0.4(@testing-library/dom@10.4.0))
       '@storybook/addon-docs':
         specifier: ^9.0.4
-        version: 9.0.4(@types/react@19.1.5)(storybook@9.0.4(@testing-library/dom@10.4.0))
+        version: 9.0.4(@types/react@19.1.6)(storybook@9.0.4(@testing-library/dom@10.4.0))
       '@storybook/addon-links':
         specifier: ^9.0.4
         version: 9.0.4(react@19.1.0)(storybook@9.0.4(@testing-library/dom@10.4.0))
@@ -62,13 +62,13 @@ importers:
         version: 0.22.0(@types/node@22.15.21)(storybook@9.0.4(@testing-library/dom@10.4.0))
       '@types/react':
         specifier: ^19.1.5
-        version: 19.1.5
+        version: 19.1.6
       '@types/react-dom':
         specifier: ^18.3.7
-        version: 18.3.7(@types/react@19.1.5)
+        version: 18.3.7(@types/react@19.1.6)
       '@vitejs/plugin-react-swc':
         specifier: ^3.9.0
-        version: 3.9.0(vite@5.4.19(@types/node@22.15.21))
+        version: 3.10.1(vite@5.4.19(@types/node@22.15.21))
       axe-core:
         specifier: ^4.10.3
         version: 4.10.3
@@ -325,8 +325,8 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
 
-  '@babel/runtime@7.27.1':
-    resolution: {integrity: sha512-1x3D2xEk2fRo3PAhwQwu5UubzgiVWSXTBfWpVd2Mx2AzRqJuDJCsgaDVZ7HB5iGzDW1Hl1sWN2mFyKjmR9uAog==}
+  '@babel/runtime@7.27.6':
+    resolution: {integrity: sha512-vbavdySgbTTrmFE+EsiqUTzlOr5bzlnJtUv9PynGCAKvfQqjIXbvFdumPM/GxMDfyuGMJaJAU6TO4zc1Jf1i8Q==}
     engines: {node: '>=6.9.0'}
 
   '@babel/template@7.27.2':
@@ -403,17 +403,17 @@ packages:
     peerDependencies:
       storybook: ^0.0.0-0 || ^9.0.0 || ^9.1.0-0
 
-  '@digdir/designsystemet-css@1.0.6':
-    resolution: {integrity: sha512-Vis61mOZizZR7GblxsBwxsxtrlouNzHg77Djk1vRgPiPsaJcLWE6FT3P5j2oFWQUhLYaPhcX/Xuy3Mhs7x3oQQ==}
+  '@digdir/designsystemet-css@1.0.8':
+    resolution: {integrity: sha512-5CPZs6TeVgtaikoVpPSfc/a7PC1v6zTwHLufsL0F1P8kPlhRyuWEoTMYZvw1fs71aHQ+3EPWJKQQppO6TM57EQ==}
 
-  '@digdir/designsystemet-react@1.0.6':
-    resolution: {integrity: sha512-tzO8wU7DvlUHJKy1jS5YC5mxa7/061o7w3Z//UULNyXYd42kKKH0GykgfjKVSKDb20Txcs6OJ2kXxpRmsOBtsA==}
+  '@digdir/designsystemet-react@1.0.8':
+    resolution: {integrity: sha512-kUSyLyHl0nFewm4dUSZERoUSPJok2BPiwj2n6tqwGrEINAm4HuOc+VmUs3dXelVM/M/Tf7gDr5m8tJOe8BczkQ==}
     peerDependencies:
       react: '>=18.3.1 || ^19.0.0'
       react-dom: '>=18.3.1 || ^19.0.0'
 
-  '@digdir/designsystemet-theme@1.0.6':
-    resolution: {integrity: sha512-Cj8aaQ5GtnJTdzHmOHap0B9ldGItRQ3NKpqlz4VF+wda0YQIgXlsiWi01ayYhU344u1gSGxdj3Dh3gg9GMOAfw==}
+  '@digdir/designsystemet-theme@1.0.8':
+    resolution: {integrity: sha512-2h00326L1QKY+liO2gp/dVilyyoNkJGugXYuA0RC054tHvahONf2Qcu6TpuSmihijPGp6VIVU+wiL5Abj4lADQ==}
 
   '@esbuild/aix-ppc64@0.21.5':
     resolution: {integrity: sha512-1SDgH6ZSPTlggy1yI6+Dbkiz8xzpHJEVAlF/AM1tHPLsf5STom9rwtjE4hKAF20FfXXNTFqEYXyJNWh1GiZedQ==}
@@ -703,14 +703,14 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@floating-ui/core@1.7.0':
-    resolution: {integrity: sha512-FRdBLykrPPA6P76GGGqlex/e7fbe0F1ykgxHYNXQsH/iTEtjMj/f9bpY5oQqbjt5VgZvgz/uKXbGuROijh3VLA==}
+  '@floating-ui/core@1.7.1':
+    resolution: {integrity: sha512-azI0DrjMMfIug/ExbBaeDVJXcY0a7EPvPjb2xAJPa4HeimBX+Z18HK8QQR3jb6356SnDDdxx+hinMLcJEDdOjw==}
 
-  '@floating-ui/dom@1.7.0':
-    resolution: {integrity: sha512-lGTor4VlXcesUMh1cupTUTDoCxMb0V6bm3CnxHzQcw8Eaf1jQbgQX4i02fYgT0vJ82tb5MZ4CZk1LRGkktJCzg==}
+  '@floating-ui/dom@1.7.1':
+    resolution: {integrity: sha512-cwsmW/zyw5ltYTUeeYJ60CnQuPqmGwuGVhG9w0PRaRKkAyi38BT5CKrpIbb+jtahSwUl04cWzSx9ZOIxeS6RsQ==}
 
-  '@floating-ui/react-dom@2.1.2':
-    resolution: {integrity: sha512-06okr5cgPzMNBy+Ycse2A6udMi4bqwW/zgBF/rwjcNqWkyr82Mcg8b0vjX8OJpZFy/FKjJmw6wV7t44kK6kW7A==}
+  '@floating-ui/react-dom@2.1.3':
+    resolution: {integrity: sha512-huMBfiU9UnQ2oBwIhgzyIiSpVgvlDstU8CX0AF+wS+KzmYMs0J2a3GwuFHV1Lz+jlrQGeC1fF+Nv0QoumyV0bA==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -904,6 +904,9 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
+
+  '@rolldown/pluginutils@1.0.0-beta.9':
+    resolution: {integrity: sha512-e9MeMtVWo186sgvFFJOPGy7/d2j2mZhLJIdVW0C/xDluuOvymEATqz6zKsP0ZmXGzQtqlyjz5sC1sYQUoJG98w==}
 
   '@rollup/pluginutils@5.1.4':
     resolution: {integrity: sha512-USm05zrsFxYLPdWWq+K3STlWiT/3ELn3RcV5hJMghpeAIhxfsUIg6mt12CBJBInWMV4VneoV7SfGv8xIwo2qNQ==}
@@ -1168,8 +1171,20 @@ packages:
     cpu: [arm64]
     os: [darwin]
 
+  '@swc/core-darwin-arm64@1.11.31':
+    resolution: {integrity: sha512-NTEaYOts0OGSbJZc0O74xsji+64JrF1stmBii6D5EevWEtrY4wlZhm8SiP/qPrOB+HqtAihxWIukWkP2aSdGSQ==}
+    engines: {node: '>=10'}
+    cpu: [arm64]
+    os: [darwin]
+
   '@swc/core-darwin-x64@1.11.29':
     resolution: {integrity: sha512-S3eTo/KYFk+76cWJRgX30hylN5XkSmjYtCBnM4jPLYn7L6zWYEPajsFLmruQEiTEDUg0gBEWLMNyUeghtswouw==}
+    engines: {node: '>=10'}
+    cpu: [x64]
+    os: [darwin]
+
+  '@swc/core-darwin-x64@1.11.31':
+    resolution: {integrity: sha512-THSGaSwT96JwXDwuXQ6yFBbn+xDMdyw7OmBpnweAWsh5DhZmQkALEm1DgdQO3+rrE99MkmzwAfclc0UmYro/OA==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [darwin]
@@ -1180,8 +1195,20 @@ packages:
     cpu: [arm]
     os: [linux]
 
+  '@swc/core-linux-arm-gnueabihf@1.11.31':
+    resolution: {integrity: sha512-laKtQFnW7KHgE57Hx32os2SNAogcuIDxYE+3DYIOmDMqD7/1DCfJe6Rln2N9WcOw6HuDbDpyQavIwZNfSAa8vQ==}
+    engines: {node: '>=10'}
+    cpu: [arm]
+    os: [linux]
+
   '@swc/core-linux-arm64-gnu@1.11.29':
     resolution: {integrity: sha512-sLoaciOgUKQF1KX9T6hPGzvhOQaJn+3DHy4LOHeXhQqvBgr+7QcZ+hl4uixPKTzxk6hy6Hb0QOvQEdBAAR1gXw==}
+    engines: {node: '>=10'}
+    cpu: [arm64]
+    os: [linux]
+
+  '@swc/core-linux-arm64-gnu@1.11.31':
+    resolution: {integrity: sha512-T+vGw9aPE1YVyRxRr1n7NAdkbgzBzrXCCJ95xAZc/0+WUwmL77Z+js0J5v1KKTRxw4FvrslNCOXzMWrSLdwPSA==}
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
@@ -1192,8 +1219,20 @@ packages:
     cpu: [arm64]
     os: [linux]
 
+  '@swc/core-linux-arm64-musl@1.11.31':
+    resolution: {integrity: sha512-Mztp5NZkyd5MrOAG+kl+QSn0lL4Uawd4CK4J7wm97Hs44N9DHGIG5nOz7Qve1KZo407Y25lTxi/PqzPKHo61zQ==}
+    engines: {node: '>=10'}
+    cpu: [arm64]
+    os: [linux]
+
   '@swc/core-linux-x64-gnu@1.11.29':
     resolution: {integrity: sha512-i62vBVoPaVe9A3mc6gJG07n0/e7FVeAvdD9uzZTtGLiuIfVfIBta8EMquzvf+POLycSk79Z6lRhGPZPJPYiQaA==}
+    engines: {node: '>=10'}
+    cpu: [x64]
+    os: [linux]
+
+  '@swc/core-linux-x64-gnu@1.11.31':
+    resolution: {integrity: sha512-DDVE0LZcXOWwOqFU1Xi7gdtiUg3FHA0vbGb3trjWCuI1ZtDZHEQYL4M3/2FjqKZtIwASrDvO96w91okZbXhvMg==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
@@ -1204,8 +1243,20 @@ packages:
     cpu: [x64]
     os: [linux]
 
+  '@swc/core-linux-x64-musl@1.11.31':
+    resolution: {integrity: sha512-mJA1MzPPRIfaBUHZi0xJQ4vwL09MNWDeFtxXb0r4Yzpf0v5Lue9ymumcBPmw/h6TKWms+Non4+TDquAsweuKSw==}
+    engines: {node: '>=10'}
+    cpu: [x64]
+    os: [linux]
+
   '@swc/core-win32-arm64-msvc@1.11.29':
     resolution: {integrity: sha512-po+WHw+k9g6FAg5IJ+sMwtA/fIUL3zPQ4m/uJgONBATCVnDDkyW6dBA49uHNVtSEvjvhuD8DVWdFP847YTcITw==}
+    engines: {node: '>=10'}
+    cpu: [arm64]
+    os: [win32]
+
+  '@swc/core-win32-arm64-msvc@1.11.31':
+    resolution: {integrity: sha512-RdtakUkNVAb/FFIMw3LnfNdlH1/ep6KgiPDRlmyUfd0WdIQ3OACmeBegEFNFTzi7gEuzy2Yxg4LWf4IUVk8/bg==}
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [win32]
@@ -1216,14 +1267,35 @@ packages:
     cpu: [ia32]
     os: [win32]
 
+  '@swc/core-win32-ia32-msvc@1.11.31':
+    resolution: {integrity: sha512-hErXdCGsg7swWdG1fossuL8542I59xV+all751mYlBoZ8kOghLSKObGQTkBbuNvc0sUKWfWg1X0iBuIhAYar+w==}
+    engines: {node: '>=10'}
+    cpu: [ia32]
+    os: [win32]
+
   '@swc/core-win32-x64-msvc@1.11.29':
     resolution: {integrity: sha512-Q8cs2BDV9wqDvqobkXOYdC+pLUSEpX/KvI0Dgfun1F+LzuLotRFuDhrvkU9ETJA6OnD2+Fn/ieHgloiKA/Mn/g==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [win32]
 
+  '@swc/core-win32-x64-msvc@1.11.31':
+    resolution: {integrity: sha512-5t7SGjUBMMhF9b5j17ml/f/498kiBJNf4vZFNM421UGUEETdtjPN9jZIuQrowBkoFGJTCVL/ECM4YRtTH30u/A==}
+    engines: {node: '>=10'}
+    cpu: [x64]
+    os: [win32]
+
   '@swc/core@1.11.29':
     resolution: {integrity: sha512-g4mThMIpWbNhV8G2rWp5a5/Igv8/2UFRJx2yImrLGMgrDDYZIopqZ/z0jZxDgqNA1QDx93rpwNF7jGsxVWcMlA==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@swc/helpers': '>=0.5.17'
+    peerDependenciesMeta:
+      '@swc/helpers':
+        optional: true
+
+  '@swc/core@1.11.31':
+    resolution: {integrity: sha512-mAby9aUnKRjMEA7v8cVZS9Ah4duoRBnX7X6r5qrhTxErx+68MoY1TPrVwj/66/SWN3Bl+jijqAqoB8Qx0QE34A==}
     engines: {node: '>=10'}
     peerDependencies:
       '@swc/helpers': '>=0.5.17'
@@ -1242,6 +1314,9 @@ packages:
 
   '@swc/types@0.1.21':
     resolution: {integrity: sha512-2YEtj5HJVbKivud9N4bpPBAyZhj4S2Ipe5LkUG94alTpr7in/GU/EARgPAd3BwU+YOmFVJC2+kjqhGRi3r0ZpQ==}
+
+  '@swc/types@0.1.22':
+    resolution: {integrity: sha512-D13mY/ZA4PPEFSy6acki9eBT/3WgjMoRqNcdpIvjaYLQ44Xk5BdaL7UkDxAh6Z9UOe7tCCp67BVmZCojYp9owg==}
 
   '@tanstack/react-virtual@3.13.9':
     resolution: {integrity: sha512-SPWC8kwG/dWBf7Py7cfheAPOxuvIv4fFQ54PdmYbg7CpXfsKxkucak43Q0qKsxVthhUJQ1A7CIMAIplq4BjVwA==}
@@ -1325,8 +1400,8 @@ packages:
     peerDependencies:
       '@types/react': ^18.0.0
 
-  '@types/react@19.1.5':
-    resolution: {integrity: sha512-piErsCVVbpMMT2r7wbawdZsq4xMvIAhQuac2gedQHysu1TZYEigE6pnFfgZT+/jQnrRuF5r+SHzuehFjfRjr4g==}
+  '@types/react@19.1.6':
+    resolution: {integrity: sha512-JeG0rEWak0N6Itr6QUx+X60uQmN+5t3j9r/OVDtWzFXKaj6kD1BwJzOksD0FF6iWxZlbE1kB0q9vtnU2ekqa1Q==}
 
   '@types/resolve@1.20.6':
     resolution: {integrity: sha512-A4STmOXPhMUtHH+S6ymgE2GiBSMqf4oTvcQZMcHzokuTLVYzXTB8ttjcgxOVaAp2lGwEdzZ0J+cRbbeevQj1UQ==}
@@ -1355,8 +1430,8 @@ packages:
   '@u-elements/u-tags@0.1.4':
     resolution: {integrity: sha512-5VbqbFatd42ZY6Zf2d5MGvOIsJdflf5+ixpR4B5YT97dustT9csAS6SEHrUFgGdFzJDpASIbZdojsnU1j7GArA==}
 
-  '@vitejs/plugin-react-swc@3.9.0':
-    resolution: {integrity: sha512-jYFUSXhwMCYsh/aQTgSGLIN3Foz5wMbH9ahb0Zva//UzwZYbMiZd7oT3AU9jHT9DLswYDswsRwPU9jVF3yA48Q==}
+  '@vitejs/plugin-react-swc@3.10.1':
+    resolution: {integrity: sha512-FmQvN3yZGyD9XW6IyxE86Kaa/DnxSsrDQX1xCR1qojNpBLaUop+nLYFvhCkJsq8zOupNjCRA9jyhPGOJsSkutA==}
     peerDependencies:
       vite: ^4 || ^5 || ^6
 
@@ -3866,7 +3941,7 @@ snapshots:
       '@babel/core': 7.27.1
       '@babel/helper-plugin-utils': 7.27.1
 
-  '@babel/runtime@7.27.1': {}
+  '@babel/runtime@7.27.6': {}
 
   '@babel/template@7.27.2':
     dependencies:
@@ -3940,14 +4015,14 @@ snapshots:
       - '@chromatic-com/cypress'
       - '@chromatic-com/playwright'
 
-  '@digdir/designsystemet-css@1.0.6': {}
+  '@digdir/designsystemet-css@1.0.8': {}
 
-  '@digdir/designsystemet-react@1.0.6(@types/react@19.1.5)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@digdir/designsystemet-react@1.0.8(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@floating-ui/dom': 1.7.0
+      '@floating-ui/dom': 1.7.1
       '@floating-ui/react': 0.26.23(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@navikt/aksel-icons': 7.22.0
-      '@radix-ui/react-slot': 1.2.3(@types/react@19.1.5)(react@19.1.0)
+      '@radix-ui/react-slot': 1.2.3(@types/react@19.1.6)(react@19.1.0)
       '@tanstack/react-virtual': 3.13.9(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@u-elements/u-datalist': 0.1.5
       '@u-elements/u-details': 0.1.1
@@ -3958,7 +4033,7 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  '@digdir/designsystemet-theme@1.0.6': {}
+  '@digdir/designsystemet-theme@1.0.8': {}
 
   '@esbuild/aix-ppc64@0.21.5':
     optional: true
@@ -4104,24 +4179,24 @@ snapshots:
   '@esbuild/win32-x64@0.25.4':
     optional: true
 
-  '@floating-ui/core@1.7.0':
+  '@floating-ui/core@1.7.1':
     dependencies:
       '@floating-ui/utils': 0.2.9
 
-  '@floating-ui/dom@1.7.0':
+  '@floating-ui/dom@1.7.1':
     dependencies:
-      '@floating-ui/core': 1.7.0
+      '@floating-ui/core': 1.7.1
       '@floating-ui/utils': 0.2.9
 
-  '@floating-ui/react-dom@2.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@floating-ui/react-dom@2.1.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@floating-ui/dom': 1.7.0
+      '@floating-ui/dom': 1.7.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
   '@floating-ui/react@0.26.23(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@floating-ui/react-dom': 2.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@floating-ui/react-dom': 2.1.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@floating-ui/utils': 0.2.9
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -4346,10 +4421,10 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@mdx-js/react@3.1.0(@types/react@19.1.5)(react@19.1.0)':
+  '@mdx-js/react@3.1.0(@types/react@19.1.6)(react@19.1.0)':
     dependencies:
       '@types/mdx': 2.0.13
-      '@types/react': 19.1.5
+      '@types/react': 19.1.6
       react: 19.1.0
 
   '@microsoft/api-extractor-model@7.30.6(@types/node@22.15.21)':
@@ -4411,18 +4486,20 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@radix-ui/react-compose-refs@1.1.2(@types/react@19.1.5)(react@19.1.0)':
+  '@radix-ui/react-compose-refs@1.1.2(@types/react@19.1.6)(react@19.1.0)':
     dependencies:
       react: 19.1.0
     optionalDependencies:
-      '@types/react': 19.1.5
+      '@types/react': 19.1.6
 
-  '@radix-ui/react-slot@1.2.3(@types/react@19.1.5)(react@19.1.0)':
+  '@radix-ui/react-slot@1.2.3(@types/react@19.1.6)(react@19.1.0)':
     dependencies:
-      '@radix-ui/react-compose-refs': 1.1.2(@types/react@19.1.5)(react@19.1.0)
+      '@radix-ui/react-compose-refs': 1.1.2(@types/react@19.1.6)(react@19.1.0)
       react: 19.1.0
     optionalDependencies:
-      '@types/react': 19.1.5
+      '@types/react': 19.1.6
+
+  '@rolldown/pluginutils@1.0.0-beta.9': {}
 
   '@rollup/pluginutils@5.1.4(rollup@4.41.0)':
     dependencies:
@@ -4550,9 +4627,9 @@ snapshots:
       axe-core: 4.10.3
       storybook: 9.0.4(@testing-library/dom@10.4.0)
 
-  '@storybook/addon-docs@9.0.4(@types/react@19.1.5)(storybook@9.0.4(@testing-library/dom@10.4.0))':
+  '@storybook/addon-docs@9.0.4(@types/react@19.1.6)(storybook@9.0.4(@testing-library/dom@10.4.0))':
     dependencies:
-      '@mdx-js/react': 3.1.0(@types/react@19.1.5)(react@19.1.0)
+      '@mdx-js/react': 3.1.0(@types/react@19.1.6)(react@19.1.0)
       '@storybook/csf-plugin': 9.0.4(storybook@9.0.4(@testing-library/dom@10.4.0))
       '@storybook/icons': 1.4.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@storybook/react-dom-shim': 9.0.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(storybook@9.0.4(@testing-library/dom@10.4.0))
@@ -4696,31 +4773,61 @@ snapshots:
   '@swc/core-darwin-arm64@1.11.29':
     optional: true
 
+  '@swc/core-darwin-arm64@1.11.31':
+    optional: true
+
   '@swc/core-darwin-x64@1.11.29':
+    optional: true
+
+  '@swc/core-darwin-x64@1.11.31':
     optional: true
 
   '@swc/core-linux-arm-gnueabihf@1.11.29':
     optional: true
 
+  '@swc/core-linux-arm-gnueabihf@1.11.31':
+    optional: true
+
   '@swc/core-linux-arm64-gnu@1.11.29':
+    optional: true
+
+  '@swc/core-linux-arm64-gnu@1.11.31':
     optional: true
 
   '@swc/core-linux-arm64-musl@1.11.29':
     optional: true
 
+  '@swc/core-linux-arm64-musl@1.11.31':
+    optional: true
+
   '@swc/core-linux-x64-gnu@1.11.29':
+    optional: true
+
+  '@swc/core-linux-x64-gnu@1.11.31':
     optional: true
 
   '@swc/core-linux-x64-musl@1.11.29':
     optional: true
 
+  '@swc/core-linux-x64-musl@1.11.31':
+    optional: true
+
   '@swc/core-win32-arm64-msvc@1.11.29':
+    optional: true
+
+  '@swc/core-win32-arm64-msvc@1.11.31':
     optional: true
 
   '@swc/core-win32-ia32-msvc@1.11.29':
     optional: true
 
+  '@swc/core-win32-ia32-msvc@1.11.31':
+    optional: true
+
   '@swc/core-win32-x64-msvc@1.11.29':
+    optional: true
+
+  '@swc/core-win32-x64-msvc@1.11.31':
     optional: true
 
   '@swc/core@1.11.29':
@@ -4739,6 +4846,22 @@ snapshots:
       '@swc/core-win32-ia32-msvc': 1.11.29
       '@swc/core-win32-x64-msvc': 1.11.29
 
+  '@swc/core@1.11.31':
+    dependencies:
+      '@swc/counter': 0.1.3
+      '@swc/types': 0.1.22
+    optionalDependencies:
+      '@swc/core-darwin-arm64': 1.11.31
+      '@swc/core-darwin-x64': 1.11.31
+      '@swc/core-linux-arm-gnueabihf': 1.11.31
+      '@swc/core-linux-arm64-gnu': 1.11.31
+      '@swc/core-linux-arm64-musl': 1.11.31
+      '@swc/core-linux-x64-gnu': 1.11.31
+      '@swc/core-linux-x64-musl': 1.11.31
+      '@swc/core-win32-arm64-msvc': 1.11.31
+      '@swc/core-win32-ia32-msvc': 1.11.31
+      '@swc/core-win32-x64-msvc': 1.11.31
+
   '@swc/counter@0.1.3': {}
 
   '@swc/jest@0.2.38(@swc/core@1.11.29)':
@@ -4749,6 +4872,10 @@ snapshots:
       jsonc-parser: 3.3.1
 
   '@swc/types@0.1.21':
+    dependencies:
+      '@swc/counter': 0.1.3
+
+  '@swc/types@0.1.22':
     dependencies:
       '@swc/counter': 0.1.3
 
@@ -4763,7 +4890,7 @@ snapshots:
   '@testing-library/dom@10.4.0':
     dependencies:
       '@babel/code-frame': 7.27.1
-      '@babel/runtime': 7.27.1
+      '@babel/runtime': 7.27.6
       '@types/aria-query': 5.0.4
       aria-query: 5.3.0
       chalk: 4.1.2
@@ -4846,11 +4973,11 @@ snapshots:
     dependencies:
       undici-types: 6.21.0
 
-  '@types/react-dom@18.3.7(@types/react@19.1.5)':
+  '@types/react-dom@18.3.7(@types/react@19.1.6)':
     dependencies:
-      '@types/react': 19.1.5
+      '@types/react': 19.1.6
 
-  '@types/react@19.1.5':
+  '@types/react@19.1.6':
     dependencies:
       csstype: 3.1.3
 
@@ -4876,9 +5003,10 @@ snapshots:
 
   '@u-elements/u-tags@0.1.4': {}
 
-  '@vitejs/plugin-react-swc@3.9.0(vite@5.4.19(@types/node@22.15.21))':
+  '@vitejs/plugin-react-swc@3.10.1(vite@5.4.19(@types/node@22.15.21))':
     dependencies:
-      '@swc/core': 1.11.29
+      '@rolldown/pluginutils': 1.0.0-beta.9
+      '@swc/core': 1.11.31
       vite: 5.4.19(@types/node@22.15.21)
     transitivePeerDependencies:
       - '@swc/helpers'
