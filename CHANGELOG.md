@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.29.2](https://github.com/Altinn/altinn-components/compare/v0.29.1...v0.29.2) (2025-06-05)
+
+
+### Bug Fixes
+
+* badge stories ([#468](https://github.com/Altinn/altinn-components/issues/468)) ([f7f7a4a](https://github.com/Altinn/altinn-components/commit/f7f7a4a4e76f7c39fb8e7b99f65e86984df088b4))
+* profile + account settings ([#461](https://github.com/Altinn/altinn-components/issues/461)) ([535e790](https://github.com/Altinn/altinn-components/commit/535e790a3eb87f49bf610228e35835fb2f62b221))
+
+
+### Miscellaneous Chores
+
+* upgrade to storybook 9 ([#469](https://github.com/Altinn/altinn-components/issues/469)) ([ce81a0c](https://github.com/Altinn/altinn-components/commit/ce81a0cc7d38f2d151515f6bceb8c8292443d7e0))
+
 ## [0.29.1](https://github.com/Altinn/altinn-components/compare/v0.29.0...v0.29.1) (2025-06-02)
 
 
