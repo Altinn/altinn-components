@@ -1,23 +1,20 @@
 .button {
   display: inline-flex;
+  column-gap: 0.25em;
   align-items: center;
-  column-gap: 0.125em;
-  align-items: flex-start;
-}
-
-.icon {
-  flex-shrink: 0;
-  flex-grow: 0;
-  font-size: 1.25rem;
-  width: 1.5rem;
-  height: 1.5rem;
+  justify-content: flex-start;
+  font-size: 0.875rem;
+  min-height: auto;
 }
 
 .label {
   flex-shrink: 1;
-  font-size: 14px;
   font-weight: normal;
-  line-height: 1.125rem;
-  padding: 0.1875rem 0;
   white-space: inherit;
+
+  padding: 0.3125rem;
+}
+
+.button a {
+  color: inherit;
 }
