@@ -12,7 +12,7 @@ export interface TimelineLinkProps extends Partial<ButtonBaseProps> {
 }
 
 export const TimelineLink = ({
-  size = 'custom',
+  size = 'xs',
   color = 'company',
   icon,
   reverse,
