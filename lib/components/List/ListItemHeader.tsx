@@ -105,7 +105,7 @@ export const ListItemHeader = ({
   const listItemLabelId = useId();
 
   return (
-    <header
+    <div
       className={cx(styles.header, className)}
       data-color={color}
       data-interactive={interactive}
@@ -154,6 +154,6 @@ export const ListItemHeader = ({
           </>
         )}
       </ListItemControls>
-    </header>
+    </div>
   );
 };
