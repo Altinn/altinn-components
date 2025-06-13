@@ -6,8 +6,6 @@ import styles from './snackbarItem.module.css';
 
 export enum SnackbarColorEnum {
   accent = 'accent',
-  neutral = 'neutral',
-  alert = 'alert',
   success = 'success',
   warning = 'warning',
   danger = 'danger',
@@ -33,7 +31,7 @@ export const SnackbarItem = ({
   as,
   message,
   className,
-  color = 'accent',
+  color,
   icon = BellFillIcon,
   iconAltText = 'Bell icon',
   dismissable = true,
@@ -44,15 +42,13 @@ export const SnackbarItem = ({
 
   return (
     <Component className={cx(styles.item, className)} data-color={color} {...rest}>
-      <div className={styles.media}>
-        <Icon svgElement={icon} className={styles.icon} />
-      </div>
+      <Icon svgElement={icon} className={styles.icon} />
       <div className={styles.content}>{message}</div>
       {dismissable && (
         <div className={styles.action}>
           <IconButton
             icon={XMarkIcon}
-            variant="outline"
+            variant="solid"
             onClick={onDismiss}
             className={styles.dismiss}
             iconAltText="close"
