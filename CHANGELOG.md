@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.29.3](https://github.com/Altinn/altinn-components/compare/v0.29.2...v0.29.3) (2025-06-13)
+
+
+### Bug Fixes
+
+* change list item header to div ([#473](https://github.com/Altinn/altinn-components/issues/473)) ([7b34683](https://github.com/Altinn/altinn-components/commit/7b3468350811e7d6ccbedf3dc83dbce24542ec1c))
+* snackbar close button ([#476](https://github.com/Altinn/altinn-components/issues/476)) ([20437d8](https://github.com/Altinn/altinn-components/commit/20437d8ab872ea4ea05972bc10a613d846b614e3))
+* TimelineLink ([#471](https://github.com/Altinn/altinn-components/issues/471)) ([aed4446](https://github.com/Altinn/altinn-components/commit/aed44469fcad2345f7cae11a8fc77c38a319e83a))
+
 ## [0.29.2](https://github.com/Altinn/altinn-components/compare/v0.29.1...v0.29.2) (2025-06-05)
 
 
