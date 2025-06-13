@@ -1,13 +1,14 @@
 'use client';
 import { type CSSProperties, useState } from 'react';
 import { Menu, type MenuItemProps, type MenuProps, type MenuSearchProps } from '../';
-import type { MenuItemsVirtualProps } from '../Menu/MenuItems';
-interface AccountSearchProps extends MenuSearchProps {
+import type { MenuItemsVirtualProps } from '../Menu';
+
+export interface AccountSearchProps extends MenuSearchProps {
   getResultsLabel?: (hits: number) => string;
   hidden?: boolean;
 }
 
-interface AccountMenuItemProps extends MenuItemProps {
+export interface AccountMenuItemProps extends MenuItemProps {
   id: string;
   type: 'person' | 'company' | 'group';
   name: string;
