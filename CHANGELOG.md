@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.29.4](https://github.com/Altinn/altinn-components/compare/v0.29.3...v0.29.4) (2025-06-13)
+
+
+### Bug Fixes
+
+* export missing types for AccountMenu ([#477](https://github.com/Altinn/altinn-components/issues/477)) ([d8a827d](https://github.com/Altinn/altinn-components/commit/d8a827deff55a9a622ffe3bc756c707522255347))
+
 ## [0.29.3](https://github.com/Altinn/altinn-components/compare/v0.29.2...v0.29.3) (2025-06-13)
 
 
