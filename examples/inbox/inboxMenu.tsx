@@ -17,7 +17,7 @@ export const inboxMenuItems: MenuItemProps[] = [
     iconBadge: {
       size: 'xs',
       theme: 'base',
-      color: 'alert',
+      color: 'danger',
       label: '2 uleste',
     },
     selected: true,

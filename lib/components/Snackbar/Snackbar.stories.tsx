@@ -24,7 +24,7 @@ export const Default = () => {
           onClick={() =>
             openSnackbar({
               message: 'Message',
-              color: 'alert',
+              color: 'danger',
               duration: 1000,
               dismissable: true,
             })
@@ -48,7 +48,7 @@ export const Default = () => {
           onClick={() =>
             openSnackbar({
               message: 'Message',
-              color: 'alert',
+              color: 'danger',
               duration: 1000 * 10,
               dismissable: false,
             })

@@ -20,17 +20,14 @@
   padding: 0.625rem;
 }
 
-.media {
+.icon {
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 1.5rem;
   width: 2.75rem;
   height: 2.75rem;
-}
-
-.icon {
-  font-size: 1.5rem;
 }
 
 .content {
@@ -53,9 +50,4 @@
 .item {
   background-color: var(--ds-color-base-default);
   color: var(--ds-color-base-contrast-default);
-}
-
-.item[data-color="neutral"] {
-  background-color: var(--ds-color-background-default);
-  color: var(--ds-color-text-default);
 }
