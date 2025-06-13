@@ -27,7 +27,7 @@ const meta = {
         groupId: 'a',
         name: 'date',
         label: 'Denne måneden',
-        value: 'this-week',
+        value: 'this-month',
       },
       {
         groupId: 'b',

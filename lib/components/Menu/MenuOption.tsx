@@ -37,18 +37,8 @@ export const MenuOption = ({
 }: MenuOptionProps) => {
   return (
     <MenuItemBase disabled={disabled} selected={checked} size={size} as={Label} {...rest}>
-      <Input
-        //        className={styles.input}
-        size="xs"
-        name={name}
-        value={value}
-        type={type}
-        checked={checked}
-        onChange={onChange}
-      />
-      <MenuItemLabel title={title} description={description} size={size} badge={badge}>
-        {label}
-      </MenuItemLabel>
+      <Input size="xs" name={name} value={value} type={type} checked={checked} onChange={onChange} />
+      <MenuItemLabel title={label} description={description} size={size} badge={badge} />
     </MenuItemBase>
   );
 };
