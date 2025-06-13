@@ -78,7 +78,6 @@ export function getAriaLabelFromTitle(title: HeadingProps | ReactNode | string) 
 export const MenuItemLabel = ({ className, size = 'sm', title, badge, description, children }: MenuItemLabelProps) => {
   const titleProps = title && getTitleProps(title);
   const descriptionProps = description && getDescriptionProps(description);
-
   return (
     <span className={cx(styles.label, className)} data-size={size}>
       {children ? (

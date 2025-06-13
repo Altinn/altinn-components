@@ -55,7 +55,6 @@ export const ToolbarOptions = ({
           return (
             <Fragment key={key}>
               {groupIndex && divider ? <MenuListItem role="separator" /> : ''}
-
               {title && (
                 <MenuListItem>
                   <MenuHeader title={title} />
