@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.29.5](https://github.com/Altinn/altinn-components/compare/v0.29.4...v0.29.5) (2025-06-13)
+
+
+### Bug Fixes
+
+* missing badge in MenuOption ([#479](https://github.com/Altinn/altinn-components/issues/479)) ([da8df3a](https://github.com/Altinn/altinn-components/commit/da8df3afdd666889d250b978dce3561d345f08df))
+
 ## [0.29.4](https://github.com/Altinn/altinn-components/compare/v0.29.3...v0.29.4) (2025-06-13)
 
 
