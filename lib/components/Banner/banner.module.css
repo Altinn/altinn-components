@@ -1,0 +1,41 @@
+.banner {
+  background-color: var(--ds-color-base-default);
+  color: var(--ds-color-base-contrast-default);
+  margin-top: 0;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 0.5rem;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.title {
+  margin: 0;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+}
+.infoIcon {
+  min-height: 1.5rem;
+  max-height: 1.5rem;
+  min-width: 1.5rem;
+  max-width: 1.5rem;
+  margin-right: 0.5rem;
+  vertical-align: bottom;
+}
+
+.closeIcon {
+  min-height: 1.5rem;
+  max-height: 1.5rem;
+  min-width: 1.5rem;
+  max-width: 1.5rem;
+  color: var(--ds-color-warning-text-default);
+  font-size: 1.5rem;
+}
