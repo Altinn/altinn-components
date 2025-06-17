@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.30.0](https://github.com/Altinn/altinn-components/compare/v0.29.5...v0.30.0) (2025-06-17)
+
+
+### Features
+
+* add banner component ([#482](https://github.com/Altinn/altinn-components/issues/482)) ([5c0d1c1](https://github.com/Altinn/altinn-components/commit/5c0d1c12b1f960d24bfbfcac14683f36e277db02))
+
 ## [0.29.5](https://github.com/Altinn/altinn-components/compare/v0.29.4...v0.29.5) (2025-06-13)
 
 
