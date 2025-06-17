@@ -1,0 +1,47 @@
+import { Meta, Canvas } from "@storybook/addon-docs/blocks";
+import * as BannerStories from "./Banner.stories";
+
+<Meta title="Banner" />
+
+# The Banner
+
+A `Banner` is a component designed to display important information or announcements to users. It’s commonly used to highlight updates, promotions, or specific notices, such as a Beta Banner to inform users about ongoing changes or testing phases.
+
+## Usage
+
+The `Banner` can be used to convey various types of messages, but the component itself is confined to presenting the message.
+Any parent component or consumer of the `Banner` should handle the logic for when and how to display it, e.g. text and color, depending on the context.
+
+<Canvas of={BannerStories.Colors} />
+
+### Real usage example of a Beta Banner in Arbeidsflate:
+```jsx
+
+import { useState } from 'react';
+import { Banner } from './Banner';
+
+const BETA_BANNER_KEY = 'arbeidsflate:show_beta_banner';
+
+export const BetaBanner = () => {
+  const isPreviouslyDismissed = localStorage.getItem(BETA_BANNER_KEY) === 'true';
+  const [showBetaBanner, setShowBetaBanner] = useState(!isPreviouslyDismissed);
+
+  const handleClose = () => {
+    setShowBetaBanner(false);
+    localStorage.setItem(BETA_BANNER_KEY, 'true');
+  };
+
+  if (!showBetaBanner) return null;
+
+  return (
+    <Banner
+      onClose={handleClose}
+      closeTitle="close"
+      text="This is a beta version of Arbeidsflate. We are continuously working on improvements and new features. Please report any issues you encounter."
+      color="warning"
+    />
+  );
+};
+
+
+```
