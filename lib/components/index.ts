@@ -5,6 +5,7 @@ export * from './Avatar';
 export * from './Account';
 
 export * from './Badge';
+export * from './Banner';
 export * from './Bookmarks';
 export * from './Button';
 export * from './Byline';
