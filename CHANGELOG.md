@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.30.1](https://github.com/Altinn/altinn-components/compare/v0.30.0...v0.30.1) (2025-06-17)
+
+
+### Bug Fixes
+
+* export banner ([#486](https://github.com/Altinn/altinn-components/issues/486)) ([0848045](https://github.com/Altinn/altinn-components/commit/084804503cbae3542b0c75f1b41e1786d20ef09f))
+
 ## [0.30.0](https://github.com/Altinn/altinn-components/compare/v0.29.5...v0.30.0) (2025-06-17)
 
 
