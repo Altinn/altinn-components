@@ -57,7 +57,9 @@ export const Button = ({
       {...rest}
     >
       {icon && <ButtonIcon icon={icon} size={iconSize || labelSize} />}
-      <ButtonLabel size={labelSize}>{children || label}</ButtonLabel>
+      <ButtonLabel className={styles.label} size={labelSize}>
+        {children || label}
+      </ButtonLabel>
     </ButtonBase>
   );
 };

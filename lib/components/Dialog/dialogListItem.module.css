@@ -14,10 +14,7 @@
 }
 
 .border[data-status="draft"] {
-  border-color: var(--ds-color-neutral-surface-active);
-  border-left-width: 0.125rem;
-  margin-left: 0.125rem;
-  border-left-style: dashed;
+  border-color: var(--ds-color-neutral-surface-tinted);
 }
 
 .border[data-status="sent"] {
@@ -101,11 +98,11 @@
   width: 100%;
 }
 
-.touchedBy {
+.seenBy {
   position: absolute;
   right: 0;
   bottom: 0;
-  margin: 8px;
+  margin-right: -0.5rem;
 }
 
 /* Title */

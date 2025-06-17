@@ -76,8 +76,6 @@ export const inboxSection: DialogListProps = {
       id: 'tredjepart-1',
       groupId: '2024-01',
       title: 'Tredjepartsopplysninger for boligselskap 2023',
-      summary:
-        'Her finner du alle innsendinger og tilbakemeldinger for tredjepartsopplysninger for boligselskap for inntektsåret 2023. Skjema åpner 2. januar 2024, og fristen for å levere er 31. januar 2024.',
       updatedAt: '2024-10-18T09:40:00.000Z',
       updatedAtLabel: '18. oktober 2024 kl. 11.40',
       seen: false,
