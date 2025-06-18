@@ -1,12 +1,12 @@
 import { MetaItem, type MetaItemSize, MetaProgress } from '../Metadata';
 
 export enum DialogStatusEnum {
+  /** No explicit status. This is the default. */
+  'not-applicable' = 'NOT_APPLICABLE',
   /** Used to indicate user-initiated dialogs not yet sent. */
   draft = 'DRAFT',
-  /** Sent by the service owner. In a serial process, this is used after a submission is made. */
-  sent = 'SENT',
-  /** The dialogue is considered new. Typically used for simple messages that do not require any interaction, or as an initial step for dialogues. This is the default. */
-  new = 'NEW',
+  /** Awaiting action by the service owner. Indicates that the dialog is in a state where the party representative has no further tasks, and the responsibility lies with the service owner. */
+  awaiting = 'AWAITING',
   /** The dialogue was completed. This typically means that the dialogue is moved to a GUI archive or similar. */
   completed = 'COMPLETED',
   /** Started. In a serial process, this is used to indicate that, for example, a form filling is ongoing. */
@@ -28,20 +28,25 @@ export interface DialogStatusProps {
  * Dialog status.
  */
 
-export const DialogStatus = ({ loading, size = 'xs', value = 'new', label }: DialogStatusProps) => {
+export const DialogStatus = ({ loading, size = 'xs', value = 'not-applicable', label }: DialogStatusProps) => {
   if (loading) {
     return null;
   }
 
   switch (value) {
-    case 'new':
-      return null;
     case 'draft':
       return (
         <MetaItem size={size} variant="dotted">
           {label || value}
         </MetaItem>
       );
+    case 'awaiting':
+      return (
+        <MetaItem size={size} variant="outline">
+          {label || value}
+        </MetaItem>
+      );
+
     case 'requires-attention':
       return <MetaItem variant="solid">{label || value}</MetaItem>;
     case 'in-progress':
@@ -57,10 +62,6 @@ export const DialogStatus = ({ loading, size = 'xs', value = 'new', label }: Dia
         </MetaProgress>
       );
     default:
-      return (
-        <MetaItem size={size} variant="outline">
-          {label || value}
-        </MetaItem>
-      );
+      return null;
   }
 };
