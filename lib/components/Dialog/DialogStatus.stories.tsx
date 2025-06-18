@@ -34,9 +34,9 @@ export const Draft: Story = {
   },
 };
 
-export const Sent: Story = {
+export const Awaiting: Story = {
   args: {
-    value: 'sent',
+    value: 'awaiting',
     label: 'Sendt',
   },
 };

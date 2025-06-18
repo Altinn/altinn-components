@@ -28,7 +28,7 @@ export const Draft: Story = {
 export const Sent: Story = {
   args: {
     status: {
-      value: 'sent',
+      value: 'awaiting',
       label: 'Sendt',
     },
   },

@@ -20,7 +20,7 @@ const getStatusLabel = (value: string) => {
   switch (value) {
     case 'draft':
       return 'Utkast';
-    case 'sent':
+    case 'awaiting':
       return 'Sendt';
     case 'requires-attention':
       return 'Krever handling';
@@ -130,18 +130,8 @@ export const InboxStatuses = (args: DialogListItemProps) => {
 export const DraftAndSent = (args: DialogListItemProps) => {
   return (
     <List>
-      <DialogListItem
-        {...args}
-        summary={undefined}
-        badge={{ label: 'Utkast' }}
-        //        status={{ value: "draft", label: "Utkast" }}
-      />
-      <DialogListItem
-        {...args}
-        summary={undefined}
-        badge={{ label: 'Sendt' }}
-        //        status={{ value: "sent", label: "Sendt" }}
-      />
+      <DialogListItem {...args} summary={undefined} badge={{ label: 'Utkast' }} />
+      <DialogListItem {...args} summary={undefined} badge={{ label: 'Sendt' }} />
     </List>
   );
 };

@@ -33,9 +33,9 @@ The most prominent status is `requires-attention`, representing a state where an
 
 <Canvas of={DialogListItem.InboxStatuses} />
 
-## Draft and sent
+## Drafts and sent folder
 
-Processes that have been initiated by the end user, for example by filling out a form, should not appear in the main inbox. These types of dialogs should have the `draft` or `sent` status and should be mapped to the "Drafts" og "Sent" folders respectively.
+Processes that have been initiated by the end user, for example by filling out a form, should not appear in the main inbox before they receive a response. These types of dialogs should be mapped to the "Drafts" og "Sent" folders respectively.
 
 <Canvas of={DialogListItem.DraftAndSent} />
 
