@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.30.2](https://github.com/Altinn/altinn-components/compare/v0.30.1...v0.30.2) (2025-06-18)
+
+
+### Bug Fixes
+
+* dialog status mapping ([#489](https://github.com/Altinn/altinn-components/issues/489)) ([aad7e64](https://github.com/Altinn/altinn-components/commit/aad7e6476d0801fa4e5470a4707c39c2f17afe3e))
+
 ## [0.30.1](https://github.com/Altinn/altinn-components/compare/v0.30.0...v0.30.1) (2025-06-17)
 
 
