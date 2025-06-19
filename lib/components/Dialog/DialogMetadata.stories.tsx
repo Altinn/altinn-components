@@ -129,3 +129,10 @@ export const ActivityLog: Story = {
     },
   },
 };
+
+export const SentAndReceivedCount: Story = {
+  args: {
+    sentCount: 2,
+    receivedCount: 4,
+  },
+};

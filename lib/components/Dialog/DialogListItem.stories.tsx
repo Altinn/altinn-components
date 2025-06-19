@@ -1,6 +1,6 @@
-import { ClockDashedIcon, CogIcon } from '@navikt/aksel-icons';
 import type { Meta } from '@storybook/react-vite';
 import { Fragment, useState } from 'react';
+import { contextMenu } from '../../../examples';
 import { skatt } from '../../../examples/avatar';
 
 import {
@@ -474,18 +474,124 @@ export const CustomControls = (args: DialogListItemProps) => {
       <DialogListItem
         {...args}
         status={{ value: 'in-progress', label: 'Under arbeid' }}
-        controls={
-          <ContextMenu
-            id="menu-2"
-            items={[
-              { id: 'settings', title: 'Innstillinger', icon: CogIcon },
-              { id: 'log', title: 'Aktivitetslogg', icon: ClockDashedIcon },
-            ]}
-          />
-        }
+        controls={<ContextMenu {...contextMenu} />}
         ariaLabel="Title"
         as="a"
         href="//vg.no"
+      />
+    </List>
+  );
+};
+
+export const TransmissionsUnseen = (args: DialogListItemProps) => {
+  return (
+    <List>
+      <DialogListItem
+        {...args}
+        summary={undefined}
+        title="Tredjepartsopplysninger for boligsameie"
+        badge={{
+          label: 'Ny tilbakemelding',
+        }}
+        sentCount={2}
+        receivedCount={4}
+        controls={<ContextMenu {...contextMenu} />}
+        ariaLabel="Title"
+      />
+    </List>
+  );
+};
+
+export const TransmissionsSeen = (args: DialogListItemProps) => {
+  return (
+    <List>
+      <DialogListItem
+        {...args}
+        seen={true}
+        summary={undefined}
+        title="Tredjepartsopplysninger for boligsameie"
+        sentCount={2}
+        receivedCount={4}
+        controls={<ContextMenu {...contextMenu} />}
+        ariaLabel="Title"
+      />
+    </List>
+  );
+};
+
+export const TransmissionsWithSummary = (args: DialogListItemProps) => {
+  return (
+    <List>
+      <DialogListItem
+        {...args}
+        summary="Tredjepartsopplysninger er lukket for innsendinger."
+        status={{
+          label: 'Avsluttet',
+          value: 'completed',
+        }}
+        seen={true}
+        title="Tredjepartsopplysninger for boligsameie"
+        sentCount={2}
+        receivedCount={4}
+        controls={<ContextMenu {...contextMenu} />}
+        ariaLabel="Title"
+      />
+    </List>
+  );
+};
+
+export const DraftDialog = (args: DialogListItemProps) => {
+  return (
+    <List>
+      <DialogListItem
+        {...args}
+        summary={undefined}
+        draftsLabel="Utkast"
+        updatedAtLabel="Endre Blindheim, 25. november 2024 kl 15.30"
+        seen={true}
+        title="Søknad om endring av navn"
+        controls={<ContextMenu {...contextMenu} />}
+        ariaLabel="Title"
+      />
+    </List>
+  );
+};
+
+export const MultipleDrafts = (args: DialogListItemProps) => {
+  return (
+    <List>
+      <DialogListItem
+        {...args}
+        summary={undefined}
+        draftsLabel="3 utkast"
+        updatedAtLabel="Lagret 25. november 2024 kl 15.30"
+        seen={true}
+        title="Søknad om endring av navn"
+        controls={<ContextMenu {...contextMenu} />}
+        ariaLabel="Title"
+      />
+    </List>
+  );
+};
+
+export const StatusAndDraft = (args: DialogListItemProps) => {
+  return (
+    <List>
+      <DialogListItem
+        {...args}
+        summary="Navneendring er klar til signering."
+        status={{
+          value: 'requires-attention',
+          label: 'Krever handling',
+        }}
+        draftsLabel="Utkast"
+        updatedAtLabel="25. november 2024 kl 15.30"
+        dueAt="01.12.2024"
+        dueAtLabel="1. desember 2024"
+        seen={true}
+        title="Søknad om endring av navn"
+        controls={<ContextMenu {...contextMenu} />}
+        ariaLabel="Title"
       />
     </List>
   );

@@ -42,6 +42,12 @@ export interface DialogListItemProps extends ListItemProps {
   state?: DialogListItemState;
   /** Dialog status */
   status?: DialogStatusProps;
+  /** Drafts label */
+  draftsLabel?: string;
+  /** Number of submissions sent */
+  sentCount?: number;
+  /** Number of received transmissions */
+  receivedCount?: number;
   /** Dialog Recipient  */
   recipient?: AvatarProps;
   /** Dialog Recipient  */
@@ -114,6 +120,9 @@ export const DialogListItem = ({
   seen = false,
   seenBy,
   seenByLog,
+  draftsLabel,
+  sentCount,
+  receivedCount,
   attachmentsCount,
   title,
   description,
@@ -194,6 +203,9 @@ export const DialogListItem = ({
             className={styles.footer}
             loading={loading}
             status={status}
+            draftsLabel={draftsLabel}
+            sentCount={sentCount}
+            receivedCount={receivedCount}
             updatedAt={updatedAt}
             updatedAtLabel={updatedAtLabel}
             archivedAt={archivedAt}

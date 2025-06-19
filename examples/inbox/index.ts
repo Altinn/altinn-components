@@ -24,3 +24,4 @@ export * from './useInboxToolbar';
 export * from './useInboxDialog';
 
 export * from './seenByLog';
+export * from './contextMenu';

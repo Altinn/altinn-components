@@ -1,4 +1,12 @@
-import { ArchiveIcon, ClockDashedIcon, FilesIcon, PaperclipIcon, TrashIcon } from '@navikt/aksel-icons';
+import {
+  ArchiveIcon,
+  ArrowDownIcon,
+  CheckmarkIcon,
+  ClockDashedIcon,
+  FilesIcon,
+  PaperclipIcon,
+  TrashIcon,
+} from '@navikt/aksel-icons';
 import {
   type AvatarProps,
   DialogActivityLog,
@@ -39,6 +47,12 @@ export type DialogMetadataProps = {
   seenBy?: DialogSeenByProps;
   /** Number of attachments */
   attachmentsCount?: number;
+  /** Drafts label */
+  draftsLabel?: string;
+  /** Number of submissions sent */
+  sentCount?: number;
+  /** Number of received transmissions */
+  receivedCount?: number;
   /** Attachments label */
   attachmentsLabel?: string;
   /** Transmissions label */
@@ -67,6 +81,9 @@ export const DialogMetadata = ({
   archivedAt,
   archivedAtLabel,
   seenBy,
+  draftsLabel,
+  sentCount = 0,
+  receivedCount = 0,
   attachmentsCount = 0,
   attachmentsLabel,
   transmissionsLabel,
@@ -75,6 +92,21 @@ export const DialogMetadata = ({
   return (
     <MetaBase className={className} size="xs">
       {status && <DialogStatus loading={loading} size="xs" {...status} />}
+      {draftsLabel && (
+        <MetaItem size="xs" variant="dotted">
+          {draftsLabel}
+        </MetaItem>
+      )}
+      {sentCount > 0 && (
+        <MetaItem size="xs" variant="outline" icon={CheckmarkIcon}>
+          {sentCount}
+        </MetaItem>
+      )}
+      {receivedCount > 0 && (
+        <MetaItem size="xs" variant="outline" icon={ArrowDownIcon}>
+          {receivedCount}
+        </MetaItem>
+      )}
       {updatedAt && (
         <MetaTimestamp loading={loading} datetime={updatedAt} size="xs">
           <strong>{sender && sender.name + ', '}</strong>
