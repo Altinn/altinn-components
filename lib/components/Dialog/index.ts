@@ -26,8 +26,8 @@ export * from './DialogSeenBy';
 export * from './DialogSelect';
 export * from './DialogStatus';
 export * from './DialogHeading';
-export * from './DialogTouchedBy';
 
 export * from './DialogAttachments';
 
 export * from './SeenByLog';
+export * from './SeenByLogButton';

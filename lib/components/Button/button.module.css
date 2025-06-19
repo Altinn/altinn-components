@@ -8,3 +8,14 @@
 .button[data-reverse="true"] {
   flex-direction: row-reverse;
 }
+
+/* link */
+
+.button[data-variant="link"] {
+  padding: 0;
+  border: 0;
+}
+
+.button[data-variant="link"]:hover .label {
+  text-decoration: underline;
+}

@@ -71,6 +71,7 @@ export const Transmission = ({
         weight: type === 'submission' ? 'normal' : 'bold',
       }}
       expanded={expanded}
+      selected={expanded}
       onClick={() => setExpanded((prevState) => !prevState)}
       collapsible
       linkIcon

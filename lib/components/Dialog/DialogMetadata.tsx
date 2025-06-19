@@ -7,8 +7,6 @@ import {
   type DialogSeenByProps,
   DialogStatus,
   type DialogStatusProps,
-  DialogTouchedBy,
-  type DialogTouchedByProps,
   MetaBase,
   MetaItem,
   MetaTimestamp,
@@ -39,8 +37,6 @@ export type DialogMetadataProps = {
   trashedAtLabel?: string;
   /** Who have seen the dialog after latest update */
   seenBy?: DialogSeenByProps;
-  /** Who have seen the dialog after latest update */
-  touchedBy?: DialogTouchedByProps;
   /** Number of attachments */
   attachmentsCount?: number;
   /** Attachments label */
@@ -71,7 +67,6 @@ export const DialogMetadata = ({
   archivedAt,
   archivedAtLabel,
   seenBy,
-  touchedBy,
   attachmentsCount = 0,
   attachmentsLabel,
   transmissionsLabel,
@@ -114,8 +109,6 @@ export const DialogMetadata = ({
         (seenBy && <DialogSeenBy size="xs" {...seenBy} loading={loading} />)}
 
       {activityLog && <DialogActivityLog {...activityLog} loading={loading} size="xs" />}
-
-      {touchedBy && <DialogTouchedBy {...touchedBy} loading={loading} size="xs" />}
     </MetaBase>
   );
 };

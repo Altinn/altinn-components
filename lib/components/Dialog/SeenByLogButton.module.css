@@ -1,0 +1,20 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: start;
+  column-gap: 0.25em;
+  border: 0;
+  min-width: 0;
+}
+
+.icon {
+  font-size: 1.25rem;
+}
+
+.button:hover .label {
+  text-decoration: underline;
+}
+
+.label {
+  font-weight: normal;
+}

@@ -1,3 +1,21 @@
+.button {
+  display: flex;
+  column-gap: 0.25em;
+  border: 0;
+}
+
+.icon {
+  font-size: 1.25rem;
+}
+
+.button:hover .label {
+  text-decoration: underline;
+}
+
+.label {
+  font-weight: normal;
+}
+
 .list {
   display: flex;
   flex-direction: column;

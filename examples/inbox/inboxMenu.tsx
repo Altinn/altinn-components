@@ -4,6 +4,7 @@ import {
   DocPencilIcon,
   FileCheckmarkIcon,
   InboxFillIcon,
+  PlusIcon,
   TrashIcon,
 } from '@navikt/aksel-icons';
 import type { MenuItemProps, MenuProps } from '../../lib';
@@ -27,6 +28,12 @@ export const inboxMenuItems: MenuItemProps[] = [
     },
   },
   {
+    id: 'compose',
+    groupId: '2',
+    icon: PlusIcon,
+    title: 'Nytt skjema',
+  },
+  {
     id: 'drafts',
     groupId: '2',
     icon: DocPencilIcon,
@@ -40,6 +47,9 @@ export const inboxMenuItems: MenuItemProps[] = [
     groupId: '2',
     icon: FileCheckmarkIcon,
     title: 'Sendt',
+    badge: {
+      label: '3',
+    },
   },
   {
     id: 'bookmarks',
@@ -59,7 +69,6 @@ export const inboxMenuItems: MenuItemProps[] = [
   {
     id: 'trash',
     groupId: '4',
-    //    disabled: true,
     icon: TrashIcon,
     title: 'Papirkurv',
   },

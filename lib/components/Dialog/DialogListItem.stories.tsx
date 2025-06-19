@@ -92,7 +92,22 @@ export const SeenVsUnseen = (args: DialogListItemProps) => {
   return (
     <List>
       <DialogListItem {...args} badge={{ theme: 'surface', label: 'Ny' }} />
-      <DialogListItem {...args} seen={true} seenBy={{ seenByEndUser: true, label: 'Sett av deg' }} />
+      <DialogListItem
+        {...args}
+        seen={true}
+        seenByLog={{
+          title: 'Sett av deg',
+          items: [
+            {
+              id: '1',
+              name: 'Mathias Dyngeland',
+              seenAt: '2025-01-01',
+              seenAtLabel: 'I dag',
+            },
+          ],
+        }}
+        seenBy={{ seenByEndUser: true, label: 'Sett av deg' }}
+      />
     </List>
   );
 };
@@ -101,15 +116,89 @@ export const SeenBy = (args: DialogListItemProps) => {
   return (
     <>
       <List>
-        <DialogListItem {...args} seen label="Ny" seenBy={{ seenByEndUser: true, label: 'Sett av deg' }} />
-        <DialogListItem {...args} seenBy={{ seenByOthersCount: 4, label: 'Sett av 4' }} />
+        <DialogListItem
+          {...args}
+          seen
+          label="Ny"
+          seenBy={{ seenByEndUser: true, label: 'Sett av deg' }}
+          seenByLog={{
+            title: 'Sett av deg',
+            items: [
+              {
+                id: '1',
+                name: 'Mathias Dyngeland',
+                seenAt: '2025-01-01',
+                seenAtLabel: 'I dag',
+                isEndUser: true,
+              },
+            ],
+          }}
+        />
+        <DialogListItem
+          {...args}
+          seenBy={{ seenByOthersCount: 4, label: 'Sett av 4' }}
+          seenByLog={{
+            title: 'Sett av 4',
+            items: [
+              {
+                id: '1',
+                name: 'Mathias Dyngeland',
+                seenAt: '2025-01-01',
+                seenAtLabel: 'I dag',
+                isEndUser: true,
+              },
+              {
+                id: '2',
+                name: 'Selma Panengstuen',
+                seenAt: '2025-01-01',
+                seenAtLabel: 'I dag',
+              },
+              {
+                id: '3',
+                name: 'Felix Horn Myhre',
+                seenAt: '2025-01-01',
+                seenAtLabel: 'I dag',
+              },
+              {
+                id: '4',
+                name: 'Fredrik Pallesen Knudsen',
+                seenAt: '2025-01-01',
+                seenAtLabel: 'I dag',
+              },
+            ],
+          }}
+        />
         <DialogListItem
           {...args}
           seen
           seenBy={{
-            seenByOthersCount: 4,
+            seenByOthersCount: 2,
             seenByEndUser: true,
-            label: 'Sett av deg + 4',
+            label: 'Sett av deg+2',
+          }}
+          seenByLog={{
+            title: 'Sett av deg+2',
+            items: [
+              {
+                id: '1',
+                name: 'Mathias Dyngeland',
+                seenAt: '2025-01-01',
+                seenAtLabel: 'I dag',
+              },
+              {
+                id: '2',
+                name: 'Mathias Dyngeland',
+                seenAt: '2025-01-01',
+                seenAtLabel: 'I dag',
+                isEndUser: true,
+              },
+              {
+                id: '4',
+                name: 'Fredrik Pallesen Knudsen',
+                seenAt: '2025-01-01',
+                seenAtLabel: 'I dag',
+              },
+            ],
           }}
         />
       </List>
@@ -274,28 +363,6 @@ export const Attachments = (args: DialogListItemProps) => {
         <DialogListItem {...args} attachmentsCount={2} />
       </List>
       <MetaItem>Dialog has attachments.</MetaItem>
-    </>
-  );
-};
-
-export const TouchedBy = (args: DialogListItemProps) => {
-  return (
-    <>
-      <List>
-        <DialogListItem {...args} touchedBy={[{ name: 'Kari Nordmann' }]} />
-      </List>
-      <MetaItem>Dialog has been touched by a single actor.</MetaItem>
-      <List>
-        <DialogListItem {...args} touchedBy={[{ name: 'Kari Nordmann' }, { name: 'Ola Nordmann' }]} />
-      </List>
-      <MetaItem>Dialog has been touched by two actors.</MetaItem>
-      <List>
-        <DialogListItem
-          {...args}
-          touchedBy={[{ name: 'Kari Nordmann' }, { name: 'Ola Nordmann' }, { name: 'Per Nordmann' }]}
-        />
-      </List>
-      <MetaItem>Dialog has been touched by a multiple actors.</MetaItem>
     </>
   );
 };

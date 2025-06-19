@@ -12,6 +12,8 @@ import {
 import {
   inboxSearchResults,
   inboxSection,
+  inboxDrafts,
+  inboxSent,
   useBookmarks,
   useInboxDialog,
   useInboxLayout,
@@ -29,7 +31,7 @@ const meta = {
 
 export default meta;
 
-export const Inbox = () => {
+export const InboxPage = () => {
   const layout = useInboxLayout({});
   const toolbar = useInboxToolbar();
   return (
@@ -42,7 +44,7 @@ export const Inbox = () => {
   );
 };
 
-export const Search = () => {
+export const SearchPage = () => {
   const layout = useInboxLayout({});
   const toolbar = useInboxToolbar();
   return (
@@ -55,33 +57,33 @@ export const Search = () => {
   );
 };
 
-export const Drafts = () => {
+export const DraftsPage = () => {
   const layout = useInboxLayout({ pageId: "drafts" });
   const toolbar = useInboxToolbar();
   return (
     <Layout {...layout}>
       <PageBase margin="page">
         <Toolbar {...toolbar} />
-        <DialogList {...inboxSection} />
+        <DialogList {...inboxDrafts} />
       </PageBase>
     </Layout>
   );
 };
 
-export const Sent = () => {
+export const SentPage = () => {
   const layout = useInboxLayout({ pageId: "sent" });
   const toolbar = useInboxToolbar();
   return (
     <Layout {...layout}>
       <PageBase margin="page">
         <Toolbar {...toolbar} />
-        <DialogList {...inboxSection} />
+        <DialogList {...inboxSent} />
       </PageBase>
     </Layout>
   );
 };
 
-export const Bookmarks = () => {
+export const BookmarksPage = () => {
   const layout = useInboxLayout({ pageId: "bookmarks" });
   const toolbar = useInboxToolbar();
   const bookmarks = useBookmarks();
@@ -91,6 +93,24 @@ export const Bookmarks = () => {
         <Toolbar {...toolbar} />
         <BookmarksSection {...bookmarks} />
       </PageBase>
+    </Layout>
+  );
+};
+
+export const ArchivePage = () => {
+  const layout = useInboxLayout({ pageId: "archive" });
+  return (
+    <Layout {...layout}>
+      <PageBase color="company" margin="page"></PageBase>
+    </Layout>
+  );
+};
+
+export const TrashPage = () => {
+  const layout = useInboxLayout({ pageId: "trash" });
+  return (
+    <Layout {...layout}>
+      <PageBase color="company" margin="page"></PageBase>
     </Layout>
   );
 };

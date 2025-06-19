@@ -7,10 +7,11 @@ import {
   DialogMetadata,
   type DialogSeenByProps,
   type DialogStatusProps,
-  type DialogTouchedByActor,
   ListItem,
   ListItemLabel,
   type ListItemProps,
+  SeenByLogButton,
+  type SeenByLogProps,
   Skeleton,
 } from '..';
 
@@ -71,8 +72,8 @@ export interface DialogListItemProps extends ListItemProps {
   seen?: boolean;
   /** Dialog is seen by the user */
   seenBy?: DialogSeenByProps;
-  /** List of users that have touched the dialog */
-  touchedBy?: DialogTouchedByActor[];
+  /** Seen by log */
+  seenByLog?: SeenByLogProps;
   /** Number of attachments */
   attachmentsCount?: number;
   /** Group id */
@@ -112,7 +113,7 @@ export const DialogListItem = ({
   dueAtLabel,
   seen = false,
   seenBy,
-  touchedBy,
+  seenByLog,
   attachmentsCount,
   title,
   description,
@@ -203,11 +204,10 @@ export const DialogListItem = ({
             dueAtLabel={dueAtLabel}
             attachmentsCount={attachmentsCount}
             seenBy={seenBy}
-            touchedBy={{
-              touchedBy,
-              className: styles.touchedBy,
-            }}
           />
+          {seenByLog && (
+            <SeenByLogButton className={styles.seenBy} ariaLabel={seenByLog.title} items={seenByLog.items} />
+          )}
         </div>
       }
     />
