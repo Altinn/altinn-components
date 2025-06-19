@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.30.3](https://github.com/Altinn/altinn-components/compare/v0.30.2...v0.30.3) (2025-06-19)
+
+
+### Bug Fixes
+
+* dialog signals for transmissions sent + received ([#493](https://github.com/Altinn/altinn-components/issues/493)) ([b622427](https://github.com/Altinn/altinn-components/commit/b622427f82a5e427e0b7d4c9ec8dcd2ef778dd74))
+* seen by with avatars ([#484](https://github.com/Altinn/altinn-components/issues/484)) ([df937a6](https://github.com/Altinn/altinn-components/commit/df937a6abbd2708eb6a450c19c586e5065e3e25b))
+
 ## [0.30.2](https://github.com/Altinn/altinn-components/compare/v0.30.1...v0.30.2) (2025-06-18)
 
 
