@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.31.0](https://github.com/Altinn/altinn-components/compare/v0.30.3...v0.31.0) (2025-06-20)
+
+
+### Features
+
+* inbox-demo-nav ([#494](https://github.com/Altinn/altinn-components/issues/494)) ([6d704b0](https://github.com/Altinn/altinn-components/commit/6d704b07476e3e134339eed2e7f3572eb74c2ec8))
+
 ## [0.30.3](https://github.com/Altinn/altinn-components/compare/v0.30.2...v0.30.3) (2025-06-19)
 
 
