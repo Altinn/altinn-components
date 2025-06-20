@@ -22,6 +22,7 @@ export * from './useInboxSearch';
 export * from './useInboxLayout';
 export * from './useInboxToolbar';
 export * from './useInboxDialog';
+export * from './useInbox';
 
 export * from './seenByLog';
 export * from './contextMenu';

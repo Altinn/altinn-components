@@ -11,13 +11,13 @@ import {
 } from "../components";
 import {
   inboxSearchResults,
-  inboxSection,
   inboxDrafts,
   inboxSent,
   useBookmarks,
   useInboxDialog,
   useInboxLayout,
   useInboxToolbar,
+  useInbox,
 } from "../../examples";
 
 const meta = {
@@ -32,13 +32,30 @@ const meta = {
 export default meta;
 
 export const InboxPage = () => {
-  const layout = useInboxLayout({});
-  const toolbar = useInboxToolbar();
+  const { layout, toolbar, results, dialog, dialogId } = useInbox({});
+
+  if (dialog) {
+    return (
+      <Layout {...layout}>
+        <DialogLayout
+          backButton={dialog?.backButton}
+          contextMenu={dialog?.contextMenu}
+          pageMenu={dialog?.pageMenu}
+        >
+          <DialogHeader {...dialog} />
+        </DialogLayout>
+      </Layout>
+    );
+  }
+
   return (
     <Layout {...layout}>
+      {dialogId}
       <PageBase margin="page">
         <Toolbar {...toolbar} />
-        <DialogList {...inboxSection} />
+        {results && (
+          <DialogList items={results.items} groups={results?.groups} />
+        )}
       </PageBase>
     </Layout>
   );
@@ -58,8 +75,8 @@ export const SearchPage = () => {
 };
 
 export const DraftsPage = () => {
-  const layout = useInboxLayout({ pageId: "drafts" });
-  const toolbar = useInboxToolbar();
+  const { layout, toolbar } = useInbox({ pageId: "drafts" });
+
   return (
     <Layout {...layout}>
       <PageBase margin="page">

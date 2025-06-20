@@ -1,5 +1,5 @@
 import type { ChangeEventHandler } from 'react';
-import { Input, Label } from '..';
+import { Input } from '..';
 import type { BadgeProps } from '../Badge';
 import { MenuItemBase, type MenuItemBaseProps, type MenuItemSize } from './MenuItemBase';
 import { MenuItemLabel } from './MenuItemLabel';
@@ -36,7 +36,7 @@ export const MenuOption = ({
   ...rest
 }: MenuOptionProps) => {
   return (
-    <MenuItemBase disabled={disabled} selected={checked} size={size} as={Label} {...rest}>
+    <MenuItemBase disabled={disabled} selected={checked} size={size} as="label" {...rest}>
       <Input size="xs" name={name} value={value} type={type} checked={checked} onChange={onChange} />
       <MenuItemLabel title={label} description={description} size={size} badge={badge} />
     </MenuItemBase>

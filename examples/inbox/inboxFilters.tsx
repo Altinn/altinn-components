@@ -21,7 +21,7 @@ export const inboxDateFilter: ToolbarFilterProps = {
       groupId: 'a',
       name: 'date',
       label: 'Denne måneden',
-      value: 'this-week',
+      value: 'this-month',
     },
     {
       groupId: 'b',
@@ -118,22 +118,6 @@ export const inboxFilters: ToolbarFilterProps[] = [
       {
         value: 'oslo',
         label: 'Oslo kommune',
-      },
-    ],
-  },
-  {
-    removable: true,
-    name: 'to',
-    optionType: 'radio',
-    label: 'Velg mottaker',
-    options: [
-      {
-        value: 'ola',
-        label: 'Ola Nordmann',
-      },
-      {
-        value: 'kari',
-        label: 'Kari Nordmann',
       },
     ],
   },
