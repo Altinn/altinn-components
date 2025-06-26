@@ -35,32 +35,34 @@ export type DialogMetadataProps = {
   dueAt?: string;
   /** Due date label */
   dueAtLabel?: string;
+  /** Dialog is moved to archive */
+  archived?: boolean;
   /** Archived date time */
   archivedAt?: string;
   /** Archived label */
   archivedAtLabel?: string;
+  /** Dialog is moved to trash */
+  trashed?: boolean;
   /** Deleted at date time */
   trashedAt?: string;
   /** Deleted label */
   trashedAtLabel?: string;
   /** Who have seen the dialog after latest update */
   seenBy?: DialogSeenByProps;
-  /** Number of attachments */
-  attachmentsCount?: number;
   /** Drafts label */
   draftsLabel?: string;
   /** Number of submissions sent */
   sentCount?: number;
   /** Number of received transmissions */
   receivedCount?: number;
+  /** Attachments count */
+  attachmentsCount?: number;
   /** Attachments label */
   attachmentsLabel?: string;
   /** Transmissions label */
   transmissionsLabel?: string;
   /** Activity Log */
   activityLog?: DialogActivityLogProps;
-  /** Clickable items */
-  onClick?: () => void;
 };
 
 /**
@@ -76,10 +78,10 @@ export const DialogMetadata = ({
   updatedAtLabel,
   dueAt,
   dueAtLabel,
-  trashedAt,
-  trashedAtLabel,
   archivedAt,
   archivedAtLabel,
+  trashedAt,
+  trashedAtLabel,
   seenBy,
   draftsLabel,
   sentCount = 0,
@@ -118,7 +120,7 @@ export const DialogMetadata = ({
           {dueAtLabel}
         </MetaTimestamp>
       )}
-      {(attachmentsLabel || attachmentsCount > 0) && (
+      {attachmentsCount > 0 && (
         <MetaItem loading={loading} size="xs" icon={PaperclipIcon}>
           {attachmentsLabel || attachmentsCount}
         </MetaItem>

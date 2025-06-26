@@ -17,11 +17,32 @@ In list views including more than a single recipient, both sender and recipient 
 
 <Canvas of={DialogListItem.GroupedAvatars} />
 
-## Seen vs. unseen
+## Signals for new and unread dialogs
 
-New dialogs are unseen until they have been opened by the current user. In list views, new dialogs are indicated using three clues; it has a coloured border, a stronger title weight and an optional `badge`, emphasising that the dialog is "New". When a dialog is opened the dialog is marked as seen by the end user, the border and title weight is neutralised, and the badge is removed.
+New dialogs are unseen until they have been opened by the current user. In list views, new dialogs are indicated using three clues; it has a coloured border, a stronger title weight and a small badge, emphasising that the dialog has unopened content. When a dialog is opened the dialog the border and title weight is neutralised, but the badge might remain if some content is unopened.
 
-<Canvas of={DialogListItem.SeenVsUnseen} />
+The coloured border and title weight are triggered by the `unread` property, while the badge is displayed if the dialog has a `badge` property.
+
+<Canvas of={DialogListItem.Unread} />
+
+Dialogs that have been opened, but still have unread content, are indicated using a badge.
+
+<Canvas of={DialogListItem.UnopenedContent} />
+
+When a dialog is marked as unread, the `unread` property should be set to true, adding the coloured border and strong title. This is useful in cases where a user has opened a dialog, but later wants to return to it,
+or indicate for others that the dialog is important.
+
+<Canvas of={DialogListItem.MarkedAsUnread} />
+
+## Seen by
+
+When a dialog is opened, it is marked as seen by the end user.
+
+<Canvas of={DialogListItem.SeenByEndUser} />
+
+In shared inboxes, multiple people might have seen the dialog.
+
+<Canvas of={DialogListItem.SeenByMultiple} />
 
 ## Requires attention, in progress, completed
 
@@ -31,34 +52,41 @@ The inbox will include dialogs with four different statuses; `new`, `requires-at
 
 The most prominent status is `requires-attention`, representing a state where an action needs to happen before a process can continue. Other statuses include `in-progress`, and `completed`, indicating that a dialog in a waiting state, or that it has reached a conclusion.
 
-<Canvas of={DialogListItem.InboxStatuses} />
+<Canvas of={DialogListItem.RequiresAttention} />
+<Canvas of={DialogListItem.InProgress} />
+<Canvas of={DialogListItem.Completed} />
 
-## Drafts and sent folder
+## Drafts
 
-Processes that have been initiated by the end user, for example by filling out a form, should not appear in the main inbox before they receive a response. These types of dialogs should be mapped to the "Drafts" og "Sent" folders respectively.
+Dialogs that contain drafts are indicated using the `draftsLabel`. A draft can be a dialog initiated by the user, by filling out a form.
 
-<Canvas of={DialogListItem.DraftAndSent} />
+<Canvas of={DialogListItem.Draft} />
+
+In the future a draft might be part of a process where the user has not yet completed a reply.
+
+<Canvas of={DialogListItem.DraftAndStatus} />
+
+These types of dialogs should be mapped to the "Drafts" folders.
+
+## Outgoing and incoming transmissions
+
+Dialogs containing transmissions should include metadata indicating how many transmissions have been sent or received. Use the `sentCount` and `receivedCount` properties to indicate how many transmissions have been sent or received, respectively.
+
+A dialog including a single outogoing transmission:
+
+<Canvas of={DialogListItem.SentCount} />
+
+A dialog including a incoming transmission:
+
+<Canvas of={DialogListItem.ReceivedCount} />
+
+Dialog with transmissions, but without summary and status.
+
+<Canvas of={DialogListItem.Transmissions} />
 
 ## Archived and trashed
 
 To clean up the inbox, users can move dialogs to archived or trashed. Archived dialogs should be mapped to the "Archived" folder, while trashed dialogs should be mapped to the "Trash" folder.
 
-<Canvas of={DialogListItem.ArchivedAndTrashed} />
-
-## Dialog metadata
-
-Dialogs can include additional metadata to indicate due date, number of attachments and/or who have seen the dialog. DueDate + attachments:
-
-<Canvas of={DialogMetadata.DueDate} />
-
-Single attachment + seen by end user:
-
-<Canvas of={DialogMetadata.SeenByEndUser} />
-
-Seen by others.
-
-<Canvas of={DialogMetadata.SeenByOthers} />
-
-Seen by end user and others.
-
-<Canvas of={DialogMetadata.SeenByEndUserAndOthers} />
+<Canvas of={DialogListItem.Archived} />
+<Canvas of={DialogListItem.Trashed} />

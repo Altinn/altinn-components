@@ -137,7 +137,7 @@ export const ListItemHeader = ({
       </ListItemLabel>
       <ListItemControls className={styles.controls}>
         {controls && !loading ? (
-          <span style={{ position: 'relative' }}>{controls}</span>
+          <span>{controls}</span>
         ) : (
           <>
             {renderBadge()}

@@ -25,7 +25,6 @@ export * from './DialogActivityLog';
 export * from './DialogSeenBy';
 export * from './DialogSelect';
 export * from './DialogStatus';
-export * from './DialogHeading';
 
 export * from './DialogAttachments';
 

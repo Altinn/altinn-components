@@ -1,12 +1,13 @@
 import {
   type AvatarProps,
+  Badge,
   type BadgeProps,
   type Color,
   DialogByline,
-  DialogHeading,
   DialogMetadata,
+  type DialogMetadataProps,
   type DialogSeenByProps,
-  type DialogStatusProps,
+  Heading,
   ListItem,
   ListItemLabel,
   type ListItemProps,
@@ -21,13 +22,19 @@ export type DialogListItemTheme = 'default' | 'subtle' | 'transparent';
 
 import styles from './dialogListItem.module.css';
 
-export interface DialogListItemProps extends ListItemProps {
+export interface DialogListItemProps extends ListItemProps, DialogMetadataProps {
   /** Dialog title */
   title: string;
   /** Dialog id */
   id?: string;
   /** Dialog sender */
   sender?: AvatarProps;
+  /** Dialog Recipient  */
+  recipient?: AvatarProps;
+  /** Dialog Recipient  */
+  recipientLabel?: string;
+  /** Group recipient, show both sender and recipient avatars */
+  grouped?: boolean;
   /** Dialog description */
   description?: string;
   /** Dialog summary (will override description) */
@@ -40,48 +47,20 @@ export interface DialogListItemProps extends ListItemProps {
   selected?: boolean;
   /** Dialog state */
   state?: DialogListItemState;
-  /** Dialog status */
-  status?: DialogStatusProps;
-  /** Drafts label */
-  draftsLabel?: string;
-  /** Number of submissions sent */
-  sentCount?: number;
-  /** Number of received transmissions */
-  receivedCount?: number;
-  /** Dialog Recipient  */
-  recipient?: AvatarProps;
-  /** Dialog Recipient  */
-  recipientLabel?: string;
-  /** Group recipient, show both sender and recipient avatars */
-  grouped?: boolean;
-  /** Updated datetime */
-  updatedAt?: string;
-  /** Updated at label */
-  updatedAtLabel?: string;
-  /** Dialog due date */
-  dueAt?: string;
-  /** Dialog due date label */
-  dueAtLabel?: string;
-  /** Archived date time */
-  archivedAt?: string;
-  /** Archived label */
-  archivedAtLabel?: string;
-  /** Deleted at date time */
-  trashedAt?: string;
-  /** Deleted label */
-  trashedAtLabel?: string;
   /** Tab index */
   tabIndex?: number;
   /** Custom badge */
   badge?: BadgeProps;
-  /** Dialog has been seen */
-  seen?: boolean;
+  /** Dialog has not been opened or is marked as unread */
+  unread?: boolean;
   /** Dialog is seen by the user */
   seenBy?: DialogSeenByProps;
   /** Seen by log */
   seenByLog?: SeenByLogProps;
   /** Number of attachments */
   attachmentsCount?: number;
+  /** Attachments label */
+  attachmentsLabel?: string;
   /** Group id */
   groupId?: string;
   /** Theme */
@@ -110,20 +89,23 @@ export const DialogListItem = ({
   grouped = false,
   updatedAt,
   updatedAtLabel,
+  archived,
   archivedAt,
   archivedAtLabel,
+  trashed,
   trashedAt,
   trashedAtLabel,
   badge,
   dueAt,
   dueAtLabel,
-  seen = false,
+  unread,
   seenBy,
   seenByLog,
   draftsLabel,
   sentCount,
   receivedCount,
   attachmentsCount,
+  attachmentsLabel,
   title,
   description,
   summary,
@@ -131,7 +113,6 @@ export const DialogListItem = ({
   id,
   ...rest
 }: DialogListItemProps) => {
-  const applicableState = trashedAt ? 'trashed' : archivedAt ? 'archived' : state;
   const applicableVariant = selected ? 'tinted' : variant;
 
   if (size === 'xs' || size === 'sm') {
@@ -148,7 +129,9 @@ export const DialogListItem = ({
             className={styles.border}
             data-status={status?.value}
             data-size={size}
-            data-seen={seen}
+            data-unread={unread}
+            data-archived={archived}
+            data-trashed={trashed}
             data-loading={loading}
           >
             <ListItemLabel loading={loading} size={size} title={title} description={summary || description} />
@@ -176,13 +159,18 @@ export const DialogListItem = ({
           className={styles.border}
           data-status={status?.value}
           data-size={size}
-          data-seen={seen}
+          data-unread={unread}
+          data-archived={archived}
+          data-trashed={trashed}
           data-loading={loading}
         >
           <header className={styles.header} data-size={size}>
-            <DialogHeading loading={loading} size={size} state={applicableState} badge={badge} seen={seen}>
-              {title}
-            </DialogHeading>
+            <span className={styles.heading}>
+              <Heading weight={unread ? 'bold' : 'normal'} loading={loading} maxRows={2} className={styles.title}>
+                {title}
+              </Heading>
+              {badge && <Badge variant="tinted" size="xs" {...badge} />}
+            </span>
             <DialogByline
               size="xs"
               loading={loading}
@@ -215,6 +203,7 @@ export const DialogListItem = ({
             dueAt={dueAt}
             dueAtLabel={dueAtLabel}
             attachmentsCount={attachmentsCount}
+            attachmentsLabel={attachmentsLabel}
             seenBy={seenBy}
           />
           {seenByLog && (

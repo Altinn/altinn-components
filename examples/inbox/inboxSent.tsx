@@ -13,7 +13,6 @@ export const inboxSent: DialogListProps = {
       updatedAt: '2025-03-07T23:27:37.384Z',
       updatedAtLabel: '8. mars 2025 kl. 00.27',
       sender: enova,
-      seen: true,
     },
     {
       id: 'sent-2',
@@ -26,7 +25,6 @@ export const inboxSent: DialogListProps = {
         label: 'Krever handling',
       },
       sender: enova,
-      seen: true,
     },
     {
       id: 'import-draft',
@@ -34,7 +32,6 @@ export const inboxSent: DialogListProps = {
       title: 'Dispensasjon for import av kjæledyr',
       updatedAt: '2024-10-18T09:40:00.000Z',
       updatedAtLabel: '18. oktober 2024 kl. 11.40',
-      seen: true,
       sender: mattilsynet,
     },
   ],
