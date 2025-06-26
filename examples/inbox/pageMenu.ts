@@ -1,4 +1,4 @@
-import { ArchiveIcon, ArrowRedoIcon, EyeIcon, TrashIcon } from '@navikt/aksel-icons';
+import { ArchiveIcon, ArrowRedoIcon, EyeClosedIcon, TrashIcon } from '@navikt/aksel-icons';
 import type { PageMenuProps } from '../../lib';
 
 export const pageMenu: PageMenuProps = {
@@ -11,8 +11,8 @@ export const pageMenu: PageMenuProps = {
     },
     {
       id: '2',
-      icon: EyeIcon,
-      title: 'Marker som lest',
+      icon: EyeClosedIcon,
+      title: 'Marker som ulest',
     },
     {
       id: '3',

@@ -5,7 +5,7 @@ import type { ButtonSize, ButtonVariant } from './ButtonBase.tsx';
 import { IconButton, type IconButtonProps } from './IconButton';
 
 const meta: Meta<typeof IconButton> = {
-  title: 'Atoms/Button/IconButton',
+  title: 'Components/Button/IconButton',
   component: IconButton,
   tags: ['autodocs'],
   parameters: {},

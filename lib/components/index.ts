@@ -40,5 +40,6 @@ export * from './Settings';
 export * from './Dashboard';
 export * from './ActivityLog';
 export * from './Article';
+export * from './Modal';
 
 export * from './DsComponents';

@@ -17,8 +17,6 @@ const meta = {
       type: 'person',
       name: 'Recipient name',
     },
-    updatedAt: '1999-05-26 22:59:00',
-    updatedAtLabel: '25. mai 1999 kl 22.59',
     children: <p>Dialog summary.</p>,
     seenByLog: {
       collapsible: true,
