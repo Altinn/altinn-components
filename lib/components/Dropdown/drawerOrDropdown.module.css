@@ -1,19 +1,35 @@
-.dropdown[data-expanded="true"] {
+.drawerOrDropdown {
+  background-color: var(--ds-color-background-default);
   display: none;
 }
 
-.drawer[data-expanded="true"] {
+.drawerOrDropdown[data-expanded="true"] {
+  position: fixed;
+  top: 5.5rem;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
   display: block;
   z-index: 2;
 }
 
 @media (min-width: 1024px) {
-  .drawer[data-expanded="true"] {
+  .header,
+  .footer {
     display: none;
   }
 
-  .dropdown[data-expanded="true"] {
-    display: block;
-    z-index: 2;
+  .drawerOrDropdown[data-expanded="true"] {
+    position: absolute;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: 0;
+    min-width: 16rem;
+    max-width: 24rem;
+    margin-top: 0.5rem;
+    border-radius: 0.375rem;
+    overflow: hidden;
   }
 }

@@ -20,6 +20,7 @@ export interface GlobalMenuProps {
   currentEndUserLabel?: string;
   onSelectAccount?: (id: string) => void;
   onClose?: () => void;
+  ariaLabel?: string;
 }
 
 export const GlobalMenu = ({
@@ -32,6 +33,7 @@ export const GlobalMenu = ({
   onSelectAccount,
   onClose,
   logoutButton,
+  ariaLabel = 'Menu',
 }: GlobalMenuProps) => {
   const [selectingAccount, setSelectingAccount] = useState<boolean>(false);
 
@@ -66,7 +68,7 @@ export const GlobalMenu = ({
 
   if (selectingAccount) {
     return (
-      <GlobalMenuBase>
+      <GlobalMenuBase aria-label={ariaLabel}>
         <GlobalMenuHeader>
           <BackButton onClick={onToggleAccounts} label={backLabel} />
         </GlobalMenuHeader>
@@ -82,7 +84,7 @@ export const GlobalMenu = ({
     const multipleAccounts = accountMenu && accountMenu?.items?.length > 1;
 
     return (
-      <GlobalMenuBase color={currentAccount?.type}>
+      <GlobalMenuBase aria-label={ariaLabel} color={currentAccount?.type}>
         <CurrentAccount
           account={currentAccount}
           multipleAccounts={multipleAccounts}
@@ -105,7 +107,7 @@ export const GlobalMenu = ({
   }
 
   return (
-    <GlobalMenuBase>
+    <GlobalMenuBase aria-label={ariaLabel}>
       <Menu groups={groups} items={itemsWithToggle} />
       {logoutButton && (
         <>

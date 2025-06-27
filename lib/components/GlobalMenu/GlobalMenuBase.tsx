@@ -2,10 +2,10 @@ import type { ReactNode } from 'react';
 import type { Color } from '../';
 import styles from './globalMenuBase.module.css';
 
-export interface GlobalMenuBaseProps {
+export type GlobalMenuBaseProps = {
   color?: Color;
   children: ReactNode;
-}
+} & React.HTMLAttributes<HTMLElement>;
 
 export interface GlobalMenuHeaderProps {
   children: ReactNode;
@@ -15,9 +15,9 @@ export interface GlobalMenuFooterProps {
   children: ReactNode;
 }
 
-export const GlobalMenuBase = ({ color = 'company', children }: GlobalMenuBaseProps) => {
+export const GlobalMenuBase = ({ color = 'company', children, ...rest }: GlobalMenuBaseProps) => {
   return (
-    <nav className={styles.nav} data-theme="default" data-color={color}>
+    <nav className={styles.nav} data-theme="default" data-color={color} {...rest}>
       {children}
     </nav>
   );

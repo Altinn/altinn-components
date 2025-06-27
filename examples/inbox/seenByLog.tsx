@@ -48,5 +48,6 @@ export const getSeenByLog = (count = 1) => {
 
   return {
     items,
+    title: ' Sett av deg+',
   };
 };

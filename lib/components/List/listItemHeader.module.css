@@ -34,7 +34,6 @@
 
 .linkIcon {
   flex-shrink: 0;
-  min-width: 1.5em;
   min-width: 2em;
   min-height: 2em;
   display: flex;

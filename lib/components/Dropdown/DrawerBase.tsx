@@ -3,11 +3,9 @@ import type { ReactNode } from 'react';
 import styles from './drawerBase.module.css';
 
 export type DrawerPlacement = 'inline' | 'bottom';
-export type DrawerLayout = 'mobile' | 'desktop';
 
 export interface DrawerBaseProps {
   placement?: DrawerPlacement;
-  layout?: DrawerLayout;
   open?: boolean;
   className?: string;
   children?: ReactNode;
@@ -15,7 +13,6 @@ export interface DrawerBaseProps {
 }
 
 export const DrawerBase = ({
-  layout,
   placement = 'inline',
   open = false,
   className,
@@ -27,8 +24,7 @@ export const DrawerBase = ({
     <Component
       className={cx(styles.drawer, className)}
       data-placement={placement}
-      data-layout={layout}
-      data-theme="default"
+      data-variant="default"
       data-color="company"
       data-expanded={open}
     >

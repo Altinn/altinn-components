@@ -52,6 +52,7 @@ export const Unread = {
 export const SeenByEndUser = {
   args: {
     seenByLog: {
+      title: 'Sett av bruker',
       items: [
         {
           id: '1',
@@ -254,15 +255,13 @@ export const Selectable = (args: DialogListItemProps) => {
   return Object.values(items)?.map((item) => {
     return (
       <Fragment key={item?.id}>
-        <List>
-          <DialogListItem
-            {...args}
-            title={item.title}
-            selected={item.selected}
-            controls={<ListItemSelect onChange={() => onSelect(item)} checked={item?.selected} aria-label={item.id} />}
-          />
-        </List>
-        <MetaItem>selected:{item.selected ? 'true' : 'false'}</MetaItem>
+        <DialogListItem
+          {...args}
+          title={item.title}
+          selected={item.selected}
+          controls={<ListItemSelect onChange={() => onSelect(item)} checked={item?.selected} aria-label={item.id} />}
+        />
+        <MetaItem as={'li'}>selected:{item.selected ? 'true' : 'false'}</MetaItem>
       </Fragment>
     );
   });
@@ -272,10 +271,9 @@ export const Sizes = (args: DialogListItemProps) => {
   return sizes?.map((size) => {
     return (
       <Fragment key={size}>
-        <List>
-          <DialogListItem {...args} size={size} status={{ value: 'in-progress', label: 'Under arbeid' }} />
-        </List>
-        <MetaItem>{size}</MetaItem>
+        <DialogListItem {...args} size={size} status={{ value: 'in-progress', label: 'Under arbeid' }} />
+
+        <MetaItem as={'li'}>{size}</MetaItem>
       </Fragment>
     );
   });
@@ -283,29 +281,25 @@ export const Sizes = (args: DialogListItemProps) => {
 
 export const AsLink = (args: DialogListItemProps) => {
   return (
-    <List>
-      <DialogListItem
-        {...args}
-        status={{ value: 'in-progress', label: 'Under arbeid' }}
-        ariaLabel="Title"
-        as="a"
-        href="//vg.no"
-      />
-    </List>
+    <DialogListItem
+      {...args}
+      status={{ value: 'in-progress', label: 'Under arbeid' }}
+      ariaLabel="Title"
+      as="a"
+      href="//vg.no"
+    />
   );
 };
 
 export const CustomControls = (args: DialogListItemProps) => {
   return (
-    <List>
-      <DialogListItem
-        {...args}
-        status={{ value: 'in-progress', label: 'Under arbeid' }}
-        controls={<ContextMenu {...contextMenu} />}
-        ariaLabel="Title"
-        as="a"
-        href="//vg.no"
-      />
-    </List>
+    <DialogListItem
+      {...args}
+      status={{ value: 'in-progress', label: 'Under arbeid' }}
+      controls={<ContextMenu {...contextMenu} />}
+      ariaLabel="Title"
+      as="a"
+      href="//vg.no"
+    />
   );
 };

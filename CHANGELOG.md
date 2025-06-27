@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.31.0](https://github.com/Altinn/altinn-components/compare/v0.30.3...v0.31.0) (2025-06-27)
+
+
+### Features
+
+* dialog and transmission updates ([#498](https://github.com/Altinn/altinn-components/issues/498)) ([13334bd](https://github.com/Altinn/altinn-components/commit/13334bd201cf6d54aac06cca3f65ce7f63b24cc4))
+* inbox-demo-nav ([#494](https://github.com/Altinn/altinn-components/issues/494)) ([6d704b0](https://github.com/Altinn/altinn-components/commit/6d704b07476e3e134339eed2e7f3572eb74c2ec8))
+
+
+### Bug Fixes
+
+* Accessibility GlobalMenu ([#501](https://github.com/Altinn/altinn-components/issues/501)) ([f86bd79](https://github.com/Altinn/altinn-components/commit/f86bd79e0e9a42cae05048b7b4579963037e24fe))
+* drawer or dropdown + radio bug ([#502](https://github.com/Altinn/altinn-components/issues/502)) ([1cef8ec](https://github.com/Altinn/altinn-components/commit/1cef8ecf297eeeef676b157c07c510d73115cd37))
+
 ## [0.30.3](https://github.com/Altinn/altinn-components/compare/v0.30.2...v0.30.3) (2025-06-19)
 
 
