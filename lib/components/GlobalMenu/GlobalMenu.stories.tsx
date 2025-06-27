@@ -52,6 +52,7 @@ export const SingleAccount = (args: GlobalMenuProps) => {
   return (
     <GlobalMenu
       {...args}
+      ariaLabel="Menu Single Account"
       accountMenu={{ ...accountMenu, items: [currentAccount] }}
       currentAccount={{ ...currentAccount }}
     />
