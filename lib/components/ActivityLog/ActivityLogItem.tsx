@@ -1,18 +1,26 @@
 import type { ReactNode } from 'react';
-import { TimelineActivity, TimelineSegment, Typography } from '..';
+import { TimelineActivity } from '../Timeline';
+import { Typography } from '../Typography';
 
 export interface ActivityLogItemProps {
-  id: string;
+  id?: string;
   byline?: string;
   datetime?: string;
   children?: ReactNode;
+  summary?: ReactNode;
 }
-export const ActivityLogItem = ({ byline, datetime, children }: ActivityLogItemProps) => {
-  return (
-    <TimelineSegment>
-      <TimelineActivity byline={byline} datetime={datetime}>
-        <Typography>{children}</Typography>
+export const ActivityLogItem = ({ byline, datetime, children, summary, ...props }: ActivityLogItemProps) => {
+  if (children) {
+    return (
+      <TimelineActivity byline={byline} datetime={datetime} {...props}>
+        {children}
       </TimelineActivity>
-    </TimelineSegment>
+    );
+  }
+
+  return (
+    <TimelineActivity byline={byline} datetime={datetime} {...props}>
+      <Typography>{summary}</Typography>
+    </TimelineActivity>
   );
 };

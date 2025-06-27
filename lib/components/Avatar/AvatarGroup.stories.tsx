@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { AvatarGroup, type AvatarGroupProps, Flex } from '..';
 
 const meta = {
-  title: 'Avatar/AvatarGroup',
+  title: 'Components/AvatarGroup',
   component: AvatarGroup,
   tags: ['autodocs', 'stable'],
   parameters: {

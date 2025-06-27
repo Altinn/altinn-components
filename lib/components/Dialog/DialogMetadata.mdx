@@ -8,18 +8,38 @@ import * as DialogMetadata from "./DialogMetadata.stories";
 
 # Dialog metadata
 
-Dialogs can include a `status` and additional metadata to indicate due date, number of attachments and/or who have seen the dialog. DueDate + attachments:
+Dialog metadata should include a status and timestamp, and may contain additional metadata to indicate due date, number of attachments. Number of outgoing and/or incoming transmissions is presented next to the status.
 
-<Canvas of={DialogMetadata.DueDate} />
+## Status
 
-Single attachment + seen by end user:
+Dialog is in draft mode:
 
-<Canvas of={DialogMetadata.SeenByEndUser} />
+<Canvas of={DialogMetadata.Draft} />
 
-Seen by others.
+Requires attention and has a due date:
 
-<Canvas of={DialogMetadata.SeenByOthers} />
+<Canvas of={DialogMetadata.RequiresAttention} />
 
-Seen by end user and others.
+Dialog is in progress, contains a single outgoing transmission and an attachment:
 
-<Canvas of={DialogMetadata.SeenByEndUserAndOthers} />
+<Canvas of={DialogMetadata.InProgress} />
+
+Dialog is completed, contains both outgoing and incoming transmisios and an attachment:
+
+<Canvas of={DialogMetadata.Completed} />
+
+## No particular status
+
+Dialog has no particular status:
+
+<Canvas of={DialogMetadata.NotApplicable} />
+
+Dialog has no particular status, but contains transmissions:
+
+<Canvas of={DialogMetadata.Transmissions} />
+
+## Activity log
+
+Dialog is open. Metadata contains a link to the activity log.
+
+<Canvas of={DialogMetadata.ActivityLog} />

@@ -1,4 +1,4 @@
-import { ActivityLog, Section, Toolbar } from '..';
+import { ActivityLog, ModalBase, ModalHeader, Section, Toolbar } from '..';
 import { useActivityLog } from '../../../examples';
 
 const meta = {
@@ -22,5 +22,26 @@ export const Controlled = () => {
       <Toolbar {...toolbar} />
       <ActivityLog items={items} />
     </Section>
+  );
+};
+
+export const Modal = () => {
+  const { toolbar, items } = useActivityLog();
+
+  const onClose = () => {
+    alert('Close modal');
+  };
+
+  return (
+    <ModalBase open={true} onClose={onClose} variant="content">
+      <div style={{ position: 'sticky', top: 0, zIndex: 1 }}>
+        <ModalHeader title="Aktivitetslogg for dialog" onClose={onClose}>
+          <Toolbar {...toolbar} />
+        </ModalHeader>
+      </div>
+      <Section padding={4} spacing={6}>
+        <ActivityLog items={items} />
+      </Section>
+    </ModalBase>
   );
 };

@@ -2,9 +2,9 @@
 
 import { useEffect, useRef } from 'react';
 import type { BackdropColor } from '../';
-import styles from './modal.module.css';
+import styles from './modalBase.module.css';
 
-export interface ModalProps {
+export interface ModalBaseProps {
   open: boolean;
   onClose: () => void;
   children?: React.ReactNode;
@@ -14,7 +14,7 @@ export interface ModalProps {
   color?: 'default' | 'primary' | 'secondary' | 'tertiary' | 'inherit';
 }
 
-export const Modal = ({
+export const ModalBase = ({
   open,
   onClose,
   children,
@@ -22,7 +22,7 @@ export const Modal = ({
   size,
   color,
   variant = 'default',
-}: ModalProps) => {
+}: ModalBaseProps) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -55,7 +55,7 @@ export const Modal = ({
       className={styles.modal}
       data-variant={variant}
     >
-      <section aria-label="modal content" data-size={size} data-color={color}>
+      <section className={styles.content} aria-label="modal content" data-size={size} data-color={color}>
         {children}
       </section>
     </dialog>

@@ -1,25 +1,23 @@
-import { ClockDashedIcon } from '@navikt/aksel-icons';
-import type { ElementType, MouseEventHandler } from 'react';
-import { MetaItem, type MetaItemSize } from '../Metadata';
+import { ActivityLog, type ActivityLogProps, ModalBase, ModalHeader, Section, Toolbar, type ToolbarProps } from '../';
 
-export interface DialogActivityLogProps {
-  loading?: boolean;
-  size?: MetaItemSize;
-  label?: string;
-  as?: ElementType;
-  onClick?: MouseEventHandler;
-  href?: string;
+export interface DialogActivityLogProps extends ActivityLogProps {
+  title: string;
+  toolbar?: ToolbarProps;
+  open: boolean;
+  onClose: () => void;
 }
 
-export const DialogActivityLog = ({
-  size = 'xs',
-  label = 'Activity log',
-  onClick,
-  ...rest
-}: DialogActivityLogProps) => {
+export const DialogActivityLog = ({ title, toolbar, items, open, onClose }: DialogActivityLogProps) => {
   return (
-    <MetaItem {...rest} size={size} icon={ClockDashedIcon}>
-      {label}
-    </MetaItem>
+    <ModalBase open={open} onClose={onClose} variant="content">
+      <div style={{ position: 'sticky', top: 0, zIndex: 1 }}>
+        <ModalHeader title={title} onClose={onClose}>
+          {toolbar && <Toolbar {...toolbar} />}
+        </ModalHeader>
+      </div>
+      <Section padding={4} spacing={6}>
+        <ActivityLog items={items} />
+      </Section>
+    </ModalBase>
   );
 };

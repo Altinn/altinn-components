@@ -2,38 +2,72 @@ import type { ReactNode } from 'react';
 import {
   DialogBody,
   type DialogBodyProps,
+  DialogContact,
+  type DialogContactProps,
   DialogHeader,
   type DialogHeaderProps,
+  DialogHistory,
+  type DialogHistoryProps,
   DialogLayout,
   type DialogLayoutProps,
-  DialogTabs,
-  type DialogTabsProps,
+  DialogSection,
+  type DialogSectionProps,
+  Divider,
 } from '..';
 
-export interface DialogProps extends DialogLayoutProps {
+export interface DialogProps extends DialogLayoutProps, DialogHeaderProps, DialogBodyProps {
   /** Dialog is loading */
   loading?: boolean;
-  /** Dialog header */
-  header?: DialogHeaderProps;
-  /** Dialog body */
-  body?: DialogBodyProps;
-  /** Tabs */
-  tabs?: DialogTabsProps;
-  /** Tabpanel */
+  /** Dialog title */
+  title: string;
+  /** Dialog history */
+  history?: DialogHistoryProps;
+  /** Dialog history */
+  additionalInfo?: DialogSectionProps;
+  /** Dialog history */
+  contact?: DialogContactProps;
+  /** Content */
   children?: ReactNode;
 }
 
 /**
- * Full representation of a dialog, including attachments, actions and history,
+ * Full representation of a dialog, including attachments, actions, history, additional information, and contact information.
  */
 
-export const Dialog = ({ loading, backButton, contextMenu, pageMenu, header, body, tabs, children }: DialogProps) => {
+export const Dialog = ({
+  loading,
+  backButton,
+  contextMenu,
+  pageMenu,
+  sender,
+  title,
+  history,
+  additionalInfo,
+  contact,
+  children,
+  ...props
+}: DialogProps) => {
   return (
     <DialogLayout backButton={backButton} contextMenu={contextMenu} pageMenu={pageMenu}>
-      {header && <DialogHeader loading={loading} {...header} />}
-      {body && <DialogBody loading={loading} {...body} />}
-      {tabs && <DialogTabs {...tabs} />}
-      {children}
+      {title && <DialogHeader loading={loading} {...props} title={title} />}
+      {children && (
+        <DialogBody loading={loading} sender={sender} {...props}>
+          {children}
+        </DialogBody>
+      )}
+      {history && <DialogHistory {...history} />}
+      {additionalInfo && (
+        <>
+          <Divider />
+          <DialogSection {...additionalInfo} />
+        </>
+      )}
+      {contact && (
+        <>
+          <Divider />
+          <DialogContact {...contact} />
+        </>
+      )}
     </DialogLayout>
   );
 };

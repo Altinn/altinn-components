@@ -4,7 +4,7 @@ export interface DialogHeaderProps extends DialogMetadataProps {
   /** Loading state */
   loading?: boolean;
   /** Dialog title */
-  title?: string;
+  title: string;
   /** Dialog status */
   status?: DialogStatusProps;
   /** Drafts label */
@@ -34,25 +34,25 @@ export const DialogHeader = ({
   updatedAtLabel,
   dueAt,
   dueAtLabel,
+  activityLog,
 }: DialogHeaderProps) => {
   return (
-    <Section as="header" spacing={3}>
+    <Section as="header" spacing={3} align="start">
       <Heading loading={loading} size="xl">
         {title}
       </Heading>
-      {(status || updatedAt || dueAt) && (
-        <DialogMetadata
-          loading={loading}
-          status={status}
-          draftsLabel={draftsLabel}
-          sentCount={sentCount}
-          receivedCount={receivedCount}
-          updatedAt={updatedAt}
-          updatedAtLabel={updatedAtLabel}
-          dueAt={dueAt}
-          dueAtLabel={dueAtLabel}
-        />
-      )}
+      <DialogMetadata
+        loading={loading}
+        status={status}
+        draftsLabel={draftsLabel}
+        sentCount={sentCount}
+        receivedCount={receivedCount}
+        updatedAt={updatedAt}
+        updatedAtLabel={updatedAtLabel}
+        dueAt={dueAt}
+        dueAtLabel={dueAtLabel}
+        activityLog={activityLog}
+      />
     </Section>
   );
 };
