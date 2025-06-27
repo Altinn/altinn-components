@@ -1,4 +1,4 @@
-import { ArchiveIcon, ArrowRedoIcon, ClockDashedIcon, EyeIcon, TrashIcon } from '@navikt/aksel-icons';
+import { ArchiveIcon, ArrowRedoIcon, ClockDashedIcon, EyeClosedIcon, TrashIcon } from '@navikt/aksel-icons';
 import type { ContextMenuProps } from '../../lib';
 
 export const contextMenu: ContextMenuProps = {
@@ -6,33 +6,84 @@ export const contextMenu: ContextMenuProps = {
   items: [
     {
       groupId: '1',
-      id: '1',
+      id: 'share',
       icon: ArrowRedoIcon,
       title: 'Del og gi tilgang',
     },
     {
       groupId: '1',
-      id: '2',
-      icon: EyeIcon,
-      title: 'Marker som lest',
+      id: 'unread',
+      icon: EyeClosedIcon,
+      title: 'Marker som ulest',
     },
     {
       groupId: '2',
-      id: '3',
+      id: 'archive',
       icon: ArchiveIcon,
       title: 'Flytt til arkiv',
     },
     {
       groupId: '2',
-      id: '4',
+      id: 'trash',
       icon: TrashIcon,
       title: 'Flytt til papirkurv',
     },
     {
       groupId: '3',
-      id: '4',
+      id: 'log',
       icon: ClockDashedIcon,
       title: 'Aktivitetslogg',
     },
   ],
+};
+
+interface GetContextMenuProps {
+  id: string;
+  unread: boolean;
+  archived: boolean;
+  trashed: boolean;
+  onUnread?: (id: string) => void;
+  onArchive?: (id: string) => void;
+  onTrash?: (id: string) => void;
+}
+
+export const getContextMenu = ({
+  id,
+  unread,
+  archived,
+  trashed,
+  onUnread,
+  onArchive,
+  onTrash,
+}: GetContextMenuProps): ContextMenuProps => {
+  const items = contextMenu.items.map((item) => {
+    switch (item.id) {
+      case 'unread':
+        return {
+          ...item,
+          disabled: unread,
+          onClick: () => onUnread?.(id),
+        };
+      case 'archive':
+        return {
+          ...item,
+          disabled: archived,
+          onClick: () => onArchive?.(id),
+        };
+      case 'trash':
+        return {
+          ...item,
+          disabled: trashed,
+          onClick: () => onTrash?.(id),
+        };
+      default:
+        return item;
+    }
+  });
+
+  return {
+    ...contextMenu,
+    id: `context-menu-${id}`,
+    items,
+  };
 };

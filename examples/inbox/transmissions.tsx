@@ -1,10 +1,9 @@
-import type { DialogHistoryItemProps } from '../../lib';
+import type { TransmissionListProps } from '../../lib';
 
-export const transmissions: DialogHistoryItemProps[] = [
+export const transmissions: TransmissionListProps['items'] = [
   {
     id: 't1',
-    variant: 'transmission',
-    type: 'submission',
+    type: { value: 'submission', label: 'Innsending' },
     byline: '13. mars 2024 kl. 08.00',
     sender: { type: 'person', name: 'Mia Hundvin' },
     createdAt: '2024-03-13T07:00:00.000Z',
@@ -18,8 +17,7 @@ export const transmissions: DialogHistoryItemProps[] = [
   {
     id: 't2',
     byline: '14. mars 2024 kl. 08.05',
-    variant: 'transmission',
-    type: 'rejection',
+    type: { value: 'rejection', label: 'Avvist' },
     sender: {
       type: 'company',
       name: 'Statistisk sentralbyrå',
@@ -30,9 +28,9 @@ export const transmissions: DialogHistoryItemProps[] = [
     createdAtLabel: '14. mars 2024 kl. 08.05',
     title: 'Bedriftsdata er avvist',
     summary: 'Rapporteringen av bedriftsdata er avvist.',
+    unread: true,
     badge: {
-      color: 'error',
-      label: 'Avvist',
+      color: 'company',
     },
     children: (
       <>
@@ -54,13 +52,12 @@ export const transmissions: DialogHistoryItemProps[] = [
   },
   {
     id: 't3',
-    variant: 'transmission',
     byline: '16. mars 2024 kl. 08.30',
     sender: { type: 'person', name: 'Knut Hamsun' },
     createdAt: '2024-03-16T07:30:00.000Z',
     createdAtLabel: '16. mars 2024 kl. 08.30',
     title: 'Korrigerte bedriftsdata er sendt inn.',
-    type: 'submission',
+    type: { value: 'submission' },
     summary: undefined,
     attachments: {
       items: [{ label: 'Kvittering på innsendte data.pdf', href: '#-0' }],
@@ -68,8 +65,7 @@ export const transmissions: DialogHistoryItemProps[] = [
   },
   {
     id: 't4',
-    variant: 'transmission',
-    type: 'acceptance',
+    type: { value: 'acceptance', label: 'Godkjent' },
     byline: '17. mars 2024 kl. 08.50',
     sender: {
       type: 'company',
@@ -82,8 +78,7 @@ export const transmissions: DialogHistoryItemProps[] = [
     title: 'Bedriftsdata er godkjent',
     summary: 'Rapporteringen av bedriftsdata er godkjent.',
     badge: {
-      color: 'success',
-      label: 'Godkjent',
+      color: 'company',
     },
     attachments: {
       items: [

@@ -7,17 +7,17 @@ export const seenByLog: SeenByLogProps = {
     {
       id: '1',
       type: 'person',
-      name: 'Felix Horn Myhre',
-      seenAt: '2025-01-01 08:30',
-      seenAtLabel: '1. januar kl 08.30',
-    },
-    {
-      id: '2',
-      type: 'person',
       name: 'Mathias Dyngeland',
       isEndUser: true,
       seenAt: '2025-02-03 08:45',
       seenAtLabel: '6. januar kl 08.45',
+    },
+    {
+      id: '2',
+      type: 'person',
+      name: 'Felix Horn Myhre',
+      seenAt: '2025-01-01 08:30',
+      seenAtLabel: '1. januar kl 08.30',
     },
     {
       id: '3',
@@ -41,4 +41,12 @@ export const seenByLog: SeenByLogProps = {
       seenAtLabel: '17. mai kl 08.15',
     },
   ],
+};
+
+export const getSeenByLog = (count = 1) => {
+  const items = seenByLog.items.slice(0, count);
+
+  return {
+    items,
+  };
 };

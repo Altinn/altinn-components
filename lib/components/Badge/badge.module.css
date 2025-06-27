@@ -36,8 +36,13 @@
 
 /** variants */
 
-.badge[data-variant="tinted"] {
+.badge[data-variant="subtle"] {
   --dsc-badge-background: var(--ds-color-surface-tinted);
+  --dsc-badge-color: var(--ds-color-text-default);
+}
+
+.badge[data-variant="tinted"] {
+  --dsc-badge-background: var(--ds-color-surface-active);
   --dsc-badge-color: var(--ds-color-text-default);
 }
 
@@ -55,21 +60,3 @@
   font-weight: 400;
   padding: 0.5em 0;
 }
-
-/*
-
-.badge[data-theme="subtle"] {
-  background-color: var(--ds-color-surface-tinted);
-  color: var(--ds-color-text-subtle);
-}
-
-.badge[data-theme="surface"] {
-  background-color: var(--ds-color-surface-tinted);
-  color: var(--ds-color-text-subtle);
-}
-
-.badge[data-theme="base"] {
-  background-color: var(--ds-color-base-default);
-  color: var(--ds-color-base-contrast-default);
-}
-*/

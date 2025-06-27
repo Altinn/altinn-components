@@ -31,7 +31,7 @@ export const DialogByline = ({
 
   return (
     <Byline loading={loading} size={size} avatar={sender} avatarGroup={avatarGroup}>
-      <strong>{sender?.name}</strong> {recipientLabel + ' ' + recipient?.name}
+      <strong>{sender?.name}</strong> {recipient && recipientLabel + ' ' + recipient?.name}
     </Byline>
   );
 };

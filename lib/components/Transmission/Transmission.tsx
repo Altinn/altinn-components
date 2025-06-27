@@ -4,51 +4,50 @@ import {
   AttachmentList,
   type AttachmentListProps,
   type AvatarProps,
+  Badge,
   type BadgeProps,
-  Byline,
   ListItem,
   type ListItemProps,
   Section,
+  SeenByLog,
+  type SeenByLogProps,
   Typography,
 } from '..';
-
-export type TransmissionType =
-  | 'submission'
-  | 'acceptance'
-  | 'rejection'
-  | 'request'
-  | 'alert'
-  | 'decision'
-  | 'correction';
+import { TransmissionType, type TransmissionTypeProps } from './TransmissionType';
+import styles from './transmission.module.css';
 
 export interface TransmissionProps extends Omit<ListItemProps, 'children'> {
   id: string;
+  type?: TransmissionTypeProps;
+  unread?: boolean;
+  badge?: BadgeProps;
   datetime?: string;
   byline?: ReactNode;
-  badge?: BadgeProps;
   createdAt?: string;
   createdAtLabel?: string;
   sender?: AvatarProps;
   title?: string;
   summary?: string;
   attachments?: AttachmentListProps;
-  type?: TransmissionType;
+  /** Transmission is seen by the end user or others */
+  seenByLog?: SeenByLogProps;
   children?: ReactNode | (() => ReactElement);
 }
 
 export const Transmission = ({
+  type,
+  unread,
   size = 'xs',
-  variant = 'subtle',
   color = 'neutral',
   title,
   createdAt,
   createdAtLabel,
-  badge,
+  badge = { label: 'Ulest' },
   sender,
   summary,
   attachments,
-  type,
   children,
+  seenByLog,
   ...item
 }: TransmissionProps) => {
   const [expanded, setExpanded] = useState<boolean>(false);
@@ -57,18 +56,22 @@ export const Transmission = ({
     <ListItem
       {...item}
       icon={sender}
-      badge={
-        badge && {
-          ...badge,
-          theme: badge?.theme || 'surface',
-        }
-      }
+      badge={type && <TransmissionType value={type?.value} label={type?.label} />}
       size={size}
-      variant={variant}
+      variant={unread ? 'subtle' : 'default'}
+      border={expanded ? 'none' : 'solid'}
+      shadow="none"
       color={color}
       title={{
-        children: title,
-        weight: type === 'submission' ? 'normal' : 'bold',
+        as: 'span',
+        className: styles.title,
+        children: (
+          <>
+            <h2>{title}</h2>
+            {unread && <Badge variant="tinted" size="xs" {...badge} />}
+          </>
+        ),
+        weight: unread ? 'bold' : 'normal',
       }}
       expanded={expanded}
       selected={expanded}
@@ -79,14 +82,17 @@ export const Transmission = ({
       ariaLabel={title}
     >
       <Section padding={4}>
+        {/*
         <Byline>
-          <strong>{sender?.name + ', '}</strong> {createdAtLabel}
+          <strong>{sender?.name + ", "}</strong> {createdAtLabel}
         </Byline>
+        */}
         <Typography size="md">
-          <p>{summary}</p>
+          {summary && <p>{summary}</p>}
           {expanded ? (typeof children === 'function' ? children() : children) : null}
           {attachments?.items && <AttachmentList {...attachments} />}
         </Typography>
+        {seenByLog && <SeenByLog {...seenByLog} />}
       </Section>
     </ListItem>
   );

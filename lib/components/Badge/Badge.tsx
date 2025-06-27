@@ -4,7 +4,7 @@ import type { Color, Theme } from '..';
 import styles from './badge.module.css';
 
 export type BadgeColor = Color;
-export type BadgeVariant = 'tinted' | 'base' | 'text';
+export type BadgeVariant = 'subtle' | 'outline' | 'tinted' | 'base' | 'text';
 /** Theme is deprecated, use variant instead */
 export type BadgeTheme = Theme;
 export type BadgeSize = 'sm' | 'xs';
@@ -19,7 +19,7 @@ export interface BadgeProps {
   children?: ReactNode;
 }
 
-export const Badge = ({ label, color, variant = 'tinted', theme, size = 'sm', className, children }: BadgeProps) => {
+export const Badge = ({ label, color, variant = 'subtle', theme, size = 'sm', className, children }: BadgeProps) => {
   return (
     <span
       className={cx(styles.badge, className)}
@@ -27,6 +27,7 @@ export const Badge = ({ label, color, variant = 'tinted', theme, size = 'sm', cl
       data-variant={variant}
       data-theme={theme}
       data-size={size}
+      {...(size === 'xs' && { 'aria-hidden': true })}
     >
       <span className={styles.label}>{label || children}</span>
     </span>

@@ -13,7 +13,6 @@ export const inboxDrafts: DialogListProps = {
       updatedAt: '2025-03-07T23:27:37.384Z',
       updatedAtLabel: 'Anna Aahjem, 8. mars 2025 kl. 00.27',
       sender: enova,
-      seen: true,
     },
     {
       id: 'import-draft',
@@ -22,7 +21,6 @@ export const inboxDrafts: DialogListProps = {
       status: { value: 'draft', label: 'Utkast' },
       updatedAt: '2024-10-18T09:40:00.000Z',
       updatedAtLabel: 'Felix Horn Myhre, 18. oktober 2024 kl. 11.40',
-      seen: true,
       sender: mattilsynet,
     },
   ],

@@ -1,9 +1,11 @@
 'use client';
+import { useState } from 'react';
 
-import { DialogHistorySegment, type DialogHistorySegmentProps, Timeline } from '..';
+import { Button, DialogHistorySegment, type DialogHistorySegmentProps, Section, Timeline } from '..';
 
 export interface DialogHistoryProps {
   items: DialogHistorySegmentProps[];
+  maxItems?: number;
   collapsible?: boolean;
   expanded?: boolean;
   expandLabel?: string;
@@ -12,8 +14,7 @@ export interface DialogHistoryProps {
 
 export const DialogHistory = ({
   items,
-  collapsible,
-  expanded,
+  maxItems,
   expandLabel = 'Expand history',
   collapseLabel = 'Collapse history',
 }: DialogHistoryProps) => {
@@ -21,20 +22,28 @@ export const DialogHistory = ({
     return null;
   }
 
+  const [expanded, setExpanded] = useState(false);
+
+  const onToggle = () => {
+    setExpanded((prev) => !prev);
+  };
+
+  const collapsedItems = maxItems ? items.slice(0, maxItems) : items;
+  const displayedItems = expanded ? items : collapsedItems;
+  const toggle = maxItems && items.length > maxItems;
+
   return (
-    <Timeline>
-      {items.map((item, index) => {
-        return (
-          <DialogHistorySegment
-            {...item}
-            collapsible={item.collapsible || collapsible}
-            expanded={item.expanded || expanded}
-            expandLabel={item.expandLabel || expandLabel}
-            collapseLabel={item.collapseLabel || collapseLabel}
-            key={index}
-          />
-        );
-      })}
-    </Timeline>
+    <Section spacing={4}>
+      <Timeline>
+        {displayedItems.map((item, index) => {
+          return <DialogHistorySegment {...item} key={index} />;
+        })}
+      </Timeline>
+      {toggle && (
+        <Button variant="outline" onClick={onToggle}>
+          {expanded ? collapseLabel : expandLabel}
+        </Button>
+      )}
+    </Section>
   );
 };

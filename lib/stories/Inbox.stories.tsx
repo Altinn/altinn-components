@@ -1,24 +1,16 @@
+import * as DialogStories from "./Dialog/Dialog.stories";
+
 import {
   BookmarksSection,
-  DialogBody,
   DialogHeader,
   DialogLayout,
   DialogList,
-  DialogTabs,
   Layout,
   PageBase,
   Toolbar,
+  Typography,
 } from "../components";
-import {
-  inboxSearchResults,
-  inboxDrafts,
-  inboxSent,
-  useBookmarks,
-  useInboxDialog,
-  useInboxLayout,
-  useInboxToolbar,
-  useInbox,
-} from "../../examples";
+import { useBookmarks, useInbox } from "../../examples";
 
 const meta = {
   title: "Demo/Inbox",
@@ -32,7 +24,7 @@ const meta = {
 export default meta;
 
 export const InboxPage = () => {
-  const { layout, toolbar, results, dialog, dialogId } = useInbox({});
+  const { layout, toolbar, results, dialog } = useInbox({});
 
   if (dialog) {
     return (
@@ -50,7 +42,6 @@ export const InboxPage = () => {
 
   return (
     <Layout {...layout}>
-      {dialogId}
       <PageBase margin="page">
         <Toolbar {...toolbar} />
         {results && (
@@ -62,47 +53,69 @@ export const InboxPage = () => {
 };
 
 export const SearchPage = () => {
-  const layout = useInboxLayout({});
-  const toolbar = useInboxToolbar();
+  const { layout, toolbar, results } = useInbox({});
   return (
     <Layout {...layout}>
       <PageBase margin="page">
         <Toolbar {...toolbar} />
-        <DialogList {...inboxSearchResults} />
+        {results && (
+          <DialogList items={results.items} groups={results?.groups} />
+        )}
       </PageBase>
     </Layout>
   );
 };
 
 export const DraftsPage = () => {
-  const { layout, toolbar } = useInbox({ pageId: "drafts" });
+  const { layout, toolbar, results } = useInbox({ pageId: "drafts" });
 
   return (
     <Layout {...layout}>
       <PageBase margin="page">
         <Toolbar {...toolbar} />
-        <DialogList {...inboxDrafts} />
+        <Typography size="sm">
+          <p>
+            <strong>
+              Her finner du dialoger du jobber med, men som ikke er sendt.
+            </strong>
+          </p>
+        </Typography>
+        {results && (
+          <DialogList items={results.items} groups={results?.groups} />
+        )}
       </PageBase>
     </Layout>
   );
 };
 
 export const SentPage = () => {
-  const layout = useInboxLayout({ pageId: "sent" });
-  const toolbar = useInboxToolbar();
+  const { layout, toolbar, results } = useInbox({
+    pageId: "sent",
+  });
+
   return (
     <Layout {...layout}>
       <PageBase margin="page">
         <Toolbar {...toolbar} />
-        <DialogList {...inboxSent} />
+        <Typography size="sm">
+          <p>
+            <strong>
+              Her finner du dialoger hvor du har sendt noe fra deg.
+            </strong>
+          </p>
+        </Typography>
+        {results && (
+          <DialogList items={results.items} groups={results?.groups} />
+        )}
       </PageBase>
     </Layout>
   );
 };
 
 export const BookmarksPage = () => {
-  const layout = useInboxLayout({ pageId: "bookmarks" });
-  const toolbar = useInboxToolbar();
+  const { layout, toolbar } = useInbox({
+    pageId: "bookmarks",
+  });
   const bookmarks = useBookmarks();
   return (
     <Layout {...layout}>
@@ -115,59 +128,73 @@ export const BookmarksPage = () => {
 };
 
 export const ArchivePage = () => {
-  const layout = useInboxLayout({ pageId: "archive" });
+  const { layout, toolbar, results } = useInbox({
+    pageId: "archive",
+  });
+
   return (
     <Layout {...layout}>
-      <PageBase color="company" margin="page"></PageBase>
+      <PageBase color="company" margin="page">
+        {toolbar && <Toolbar {...toolbar} />}
+        <Typography size="sm">
+          <p>
+            <strong>Her finner du dialoger du har valgt å arkivere.</strong> Det
+            er ikke et journal- og arkivsystem. Om dialogen blir oppdatert vil
+            du finne den igjen i innboksen.
+          </p>
+        </Typography>
+        {results && (
+          <DialogList items={results.items} groups={results?.groups} />
+        )}
+      </PageBase>
     </Layout>
   );
 };
 
 export const TrashPage = () => {
-  const layout = useInboxLayout({ pageId: "trash" });
+  const { layout, toolbar, results } = useInbox({ pageId: "trash" });
+
   return (
     <Layout {...layout}>
-      <PageBase color="company" margin="page"></PageBase>
+      <PageBase color="company" margin="page">
+        {toolbar && <Toolbar {...toolbar} />}
+        <Typography size="sm">
+          <p>
+            <strong>Her finner du dialoger du har lagt i papirkurven.</strong>{" "}
+            Om dialogen blir oppdatert vil du finne den igjen i innboksen.
+          </p>
+        </Typography>
+        {results && (
+          <DialogList items={results.items} groups={results?.groups} />
+        )}
+      </PageBase>
     </Layout>
   );
 };
 
-export const Dialog = ({ tabId = "history" }) => {
-  const layout = useInboxLayout({});
-  const {
-    loading,
-    backButton,
-    contextMenu,
-    pageMenu,
-    header,
-    body,
-    tabs,
-    children,
-  } = useInboxDialog({ tabId });
+export const DialogStatusAttention = () => {
+  const { layout } = useInbox({});
   return (
     <Layout {...layout}>
-      <DialogLayout
-        backButton={backButton}
-        contextMenu={contextMenu}
-        pageMenu={pageMenu}
-      >
-        {header && <DialogHeader loading={loading} {...header} />}
-        {body && <DialogBody loading={loading} {...body} />}
-        {tabs && <DialogTabs {...tabs} />}
-        {children}
-      </DialogLayout>
+      <DialogStories.StatusAttention />
     </Layout>
   );
 };
 
-export const DialogInfo = () => {
-  return <Dialog tabId="info" />;
+export const DialogStatusTransmissions = () => {
+  const { layout } = useInbox({});
+  return (
+    <Layout {...layout}>
+      <DialogStories.StatusTransmissions />
+    </Layout>
+  );
 };
 
-export const DialogActivityLog = () => {
-  return <Dialog tabId="activity-log" />;
-};
-
-export const DialogContact = () => {
-  return <Dialog tabId="contact" />;
+export const DialogTransmissions = () => {
+  const { layout } = useInbox({});
+  return (
+    <Layout {...layout}>
+      <DialogStories.Transmissions />
+    </Layout>
+  );
 };
