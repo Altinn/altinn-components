@@ -1,13 +1,13 @@
 import {
+  Badge,
+  type BadgeProps,
   DialogMetadata,
   type DialogMetadataProps,
   type DialogStatusProps,
-  Badge,
-  type BadgeProps,
-  Heading,
   Flex,
+  Heading,
   Section,
-} from "..";
+} from '..';
 
 export interface DialogHeaderProps extends DialogMetadataProps {
   /** Loading state */

@@ -29,6 +29,20 @@ export const Default: Story = {
   },
 };
 
+export const NoContent: Story = {
+  render: (args: ModalBaseProps) => {
+    const [open, setOpen] = useState<boolean>(false);
+    return (
+      <Flex padding={4}>
+        <Button onClick={() => setOpen(true)}>Open Modal</Button>
+        <ModalBase {...args} open={open} onClose={() => setOpen(false)}>
+          <p>This is some content</p>
+        </ModalBase>
+      </Flex>
+    );
+  },
+};
+
 export const Content: Story = {
   render: (args: ModalBaseProps) => {
     const [open, setOpen] = useState<boolean>(false);
