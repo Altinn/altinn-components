@@ -2,6 +2,10 @@
   display: none;
 }
 
+.drawer[data-variant="default"] {
+  background-color: var(--ds-color-background-default);
+}
+
 .drawer[data-expanded="true"] {
   display: block;
   width: 100%;

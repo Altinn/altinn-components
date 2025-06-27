@@ -92,12 +92,12 @@ export const Header = ({ menu, locale, search, currentAccount, logo = {}, badge 
         </HeaderSearch>
       )}
       {locale && (
-        <DrawerBase layout="mobile" open={currentId === 'locale'} className={styles.drawer}>
+        <DrawerBase open={currentId === 'locale'} className={styles.drawer}>
           <LocaleSwitcher {...locale} />
         </DrawerBase>
       )}
       {menu && (
-        <DrawerBase layout="mobile" open={currentId === 'menu'} className={styles.drawer}>
+        <DrawerBase open={currentId === 'menu'} className={styles.drawer}>
           <GlobalMenu {...menu} currentAccount={currentAccount} onClose={closeAll} />
         </DrawerBase>
       )}
