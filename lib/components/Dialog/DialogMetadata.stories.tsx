@@ -8,7 +8,7 @@ const meta = {
   parameters: {},
   args: {
     updatedAt: '1999-05-26',
-    updatedAtLabel: '26. mai 1999',
+    updatedAtLabel: '26. mai 1999 kl 22:45',
   },
 } satisfies Meta<typeof DialogMetadata>;
 
@@ -17,122 +17,71 @@ type Story = StoryObj<typeof meta>;
 
 export const Draft: Story = {
   args: {
-    status: {
-      value: 'draft',
-      label: 'Utkast',
-    },
-    updatedAtLabel: 'Ole Gunnar Solskjær, 26. mai 1999',
+    draftsLabel: 'Utkast',
   },
 };
 
-export const Sent: Story = {
-  args: {
-    status: {
-      value: 'awaiting',
-      label: 'Sendt',
-    },
-  },
-};
-
-export const DueDate: Story = {
+export const RequiresAttention: Story = {
   args: {
     status: {
       value: 'requires-attention',
       label: 'Krever handling',
     },
-    attachmentsCount: 3,
     dueAt: '2000-01-01',
     dueAtLabel: 'Frist: 1. januar 2001',
   },
 };
 
-export const SeenByEndUser: Story = {
+export const InProgress: Story = {
+  args: {
+    status: {
+      value: 'in-progress',
+      label: 'Under arbeid',
+    },
+    sentCount: 1,
+    attachmentsCount: 1,
+  },
+};
+
+export const Completed: Story = {
   args: {
     status: {
       value: 'completed',
       label: 'Avsluttet',
     },
+    sentCount: 1,
     attachmentsCount: 1,
-    seenBy: {
-      seenByEndUser: true,
-      seenByOthersCount: 0,
-      label: 'Sett av deg',
-    },
+    receivedCount: 1,
   },
 };
 
-export const SeenByOthers: Story = {
+export const NotApplicable: Story = {
   args: {
     status: {
-      value: 'in-progress',
-      label: 'Under arbeid',
-    },
-    seenBy: {
-      seenByEndUser: false,
-      seenByOthersCount: 4,
-      label: 'Sett av 4',
+      value: 'not-applicable',
     },
   },
 };
 
-export const SeenByEndUserAndOthers: Story = {
+export const Transmissions: Story = {
   args: {
     status: {
-      value: 'in-progress',
-      label: 'Under arbeid',
+      value: 'not-applicable',
     },
-    seenBy: {
-      seenByEndUser: true,
-      seenByOthersCount: 4,
-      label: 'Sett av deg + 4',
-    },
-  },
-};
-
-export const SeenByAndActivityLog: Story = {
-  args: {
-    updatedAt: undefined,
-    updatedAtLabel: undefined,
-    seenBy: {
-      seenByEndUser: true,
-      seenByOthersCount: 4,
-      label: 'Sett av deg + 4',
-      as: 'button',
-    },
-    activityLog: {
-      label: 'Aktivitetslogg',
-      as: 'button',
-    },
-  },
-};
-
-export const SeenByLog: Story = {
-  args: {
-    updatedAt: undefined,
-    updatedAtLabel: undefined,
-    seenBy: {
-      seenByEndUser: true,
-      seenByOthersCount: 4,
-      label: 'Sett av deg + 4',
-      as: 'button',
-    },
+    sentCount: 2,
+    receivedCount: 4,
   },
 };
 
 export const ActivityLog: Story = {
   args: {
-    updatedAt: undefined,
-    updatedAtLabel: undefined,
+    status: {
+      value: 'completed',
+      label: 'Avsluttet',
+    },
     activityLog: {
       label: 'Aktivitetslogg',
-      as: 'button',
+      onClick: () => alert('Open activity log'),
     },
-  },
-};
-
-export const SentAndReceivedCount: Story = {
-  args: {
-    sentCount: 2,
-    receivedCount: 4,
   },
 };

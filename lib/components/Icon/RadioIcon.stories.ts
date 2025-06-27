@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { RadioIcon } from './RadioIcon';
 
 const meta = {
-  title: 'Atoms/Icon/RadioIcon',
+  title: 'Components/Icon/RadioIcon',
   component: RadioIcon,
   tags: ['autodocs'],
   parameters: {},

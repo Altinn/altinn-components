@@ -3,7 +3,7 @@ import { Avatar, AvatarGroup, type AvatarSize, type AvatarType, Flex, SizeEnum }
 import type { Meta } from '@storybook/react-vite';
 
 const meta = {
-  title: 'Avatar/Specimens',
+  title: 'Components/Avatar/Specimens',
   component: Avatar,
   parameters: {},
   args: {},

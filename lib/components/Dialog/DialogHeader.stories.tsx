@@ -8,6 +8,8 @@ const meta = {
   parameters: {},
   args: {
     title: 'Title',
+    updatedAt: '1999-05-26',
+    updatedAtLabel: '26. mai 1999',
     status: {
       value: 'requires-attention',
       label: 'Krever handling',

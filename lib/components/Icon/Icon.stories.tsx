@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Flex, Icon, type IconProps, type IconSize, SizeEnum } from '..';
 
 const meta: Meta<typeof Icon> = {
-  title: 'Atoms/Icon/Icon',
+  title: 'Components/Icon',
   component: Icon,
   tags: ['autodocs'],
   parameters: {},

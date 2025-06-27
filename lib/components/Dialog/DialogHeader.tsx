@@ -1,10 +1,21 @@
-import { DialogMetadata, type DialogMetadataProps, type DialogStatusProps, Heading, Section } from '..';
+import {
+  Badge,
+  type BadgeProps,
+  DialogMetadata,
+  type DialogMetadataProps,
+  type DialogStatusProps,
+  Flex,
+  Heading,
+  Section,
+} from '..';
 
 export interface DialogHeaderProps extends DialogMetadataProps {
   /** Loading state */
   loading?: boolean;
   /** Dialog title */
-  title?: string;
+  title: string;
+  /** Badge */
+  badge?: BadgeProps;
   /** Dialog status */
   status?: DialogStatusProps;
   /** Drafts label */
@@ -26,6 +37,7 @@ export interface DialogHeaderProps extends DialogMetadataProps {
 export const DialogHeader = ({
   loading,
   title,
+  badge,
   status,
   draftsLabel,
   sentCount,
@@ -34,25 +46,28 @@ export const DialogHeader = ({
   updatedAtLabel,
   dueAt,
   dueAtLabel,
+  activityLog,
 }: DialogHeaderProps) => {
   return (
-    <Section as="header" spacing={3}>
+    <Section as="header" spacing={3} align="start">
       <Heading loading={loading} size="xl">
-        {title}
+        <Flex align="center">
+          <span>{title}</span>
+          {badge && <Badge {...badge} />}
+        </Flex>
       </Heading>
-      {(status || updatedAt || dueAt) && (
-        <DialogMetadata
-          loading={loading}
-          status={status}
-          draftsLabel={draftsLabel}
-          sentCount={sentCount}
-          receivedCount={receivedCount}
-          updatedAt={updatedAt}
-          updatedAtLabel={updatedAtLabel}
-          dueAt={dueAt}
-          dueAtLabel={dueAtLabel}
-        />
-      )}
+      <DialogMetadata
+        loading={loading}
+        status={status}
+        draftsLabel={draftsLabel}
+        sentCount={sentCount}
+        receivedCount={receivedCount}
+        updatedAt={updatedAt}
+        updatedAtLabel={updatedAtLabel}
+        dueAt={dueAt}
+        dueAtLabel={dueAtLabel}
+        activityLog={activityLog}
+      />
     </Section>
   );
 };

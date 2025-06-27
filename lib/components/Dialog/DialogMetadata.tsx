@@ -1,16 +1,21 @@
 import {
   ArchiveIcon,
   ArrowDownIcon,
+  CalendarIcon,
   CheckmarkIcon,
   ClockDashedIcon,
   FilesIcon,
   PaperclipIcon,
   TrashIcon,
 } from '@navikt/aksel-icons';
+
+interface DialogMetadataButtonProps {
+  label: string;
+  onClick?: () => void;
+}
+
 import {
   type AvatarProps,
-  DialogActivityLog,
-  type DialogActivityLogProps,
   DialogSeenBy,
   type DialogSeenByProps,
   DialogStatus,
@@ -62,7 +67,7 @@ export type DialogMetadataProps = {
   /** Transmissions label */
   transmissionsLabel?: string;
   /** Activity Log */
-  activityLog?: DialogActivityLogProps;
+  activityLog?: DialogMetadataButtonProps;
 };
 
 /**
@@ -116,7 +121,7 @@ export const DialogMetadata = ({
         </MetaTimestamp>
       )}
       {dueAt && dueAtLabel && (
-        <MetaTimestamp loading={loading} datetime={dueAt} size="xs" icon={ClockDashedIcon}>
+        <MetaTimestamp loading={loading} datetime={dueAt} size="xs" icon={CalendarIcon}>
           {dueAtLabel}
         </MetaTimestamp>
       )}
@@ -142,7 +147,17 @@ export const DialogMetadata = ({
         )) ||
         (seenBy && <DialogSeenBy size="xs" {...seenBy} loading={loading} />)}
 
-      {activityLog && <DialogActivityLog {...activityLog} loading={loading} size="xs" />}
+      {activityLog && (
+        <MetaItem
+          loading={loading}
+          size="xs"
+          icon={ClockDashedIcon}
+          as={activityLog?.onClick ? 'button' : 'span'}
+          onClick={activityLog?.onClick}
+        >
+          {activityLog?.label || 'Activity log'}
+        </MetaItem>
+      )}
     </MetaBase>
   );
 };
