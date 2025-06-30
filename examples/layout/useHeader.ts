@@ -6,7 +6,7 @@ interface UseHeaderProps extends HeaderProps {
   accounts?: AccountListItemProps[];
 }
 
-export const useHeader = ({ accountId = 'user', accounts = defaultAccounts, ...args }: UseHeaderProps) => {
+export const useHeader = ({ accountId, accounts = defaultAccounts, ...args }: UseHeaderProps) => {
   /* setup locale */
   const localeProps = args?.locale || localeSwitcher;
   const locale = useLocale(localeProps);
