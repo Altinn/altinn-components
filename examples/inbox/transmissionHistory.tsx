@@ -22,7 +22,7 @@ export const transmissionHistory: DialogHistoryProps = {
       id: 't2',
       items: [
         {
-          children: <TransmissionList items={[transmissions[1], transmissions[0]]} />,
+          children: <TransmissionList items={[{ ...transmissions[1], unread: false }, transmissions[0]]} />,
         },
       ],
     },
@@ -30,7 +30,7 @@ export const transmissionHistory: DialogHistoryProps = {
       id: 't3',
       items: [
         {
-          children: <TransmissionList items={[transmissions[1], transmissions[0]]} />,
+          children: <TransmissionList items={[{ ...transmissions[1], unread: false }, transmissions[0]]} />,
         },
       ],
     },
@@ -38,7 +38,7 @@ export const transmissionHistory: DialogHistoryProps = {
       id: 't4',
       items: [
         {
-          children: <TransmissionList items={[transmissions[1], transmissions[0]]} />,
+          children: <TransmissionList items={[{ ...transmissions[1], unread: false }, transmissions[0]]} />,
         },
       ],
     },

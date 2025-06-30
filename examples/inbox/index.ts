@@ -2,10 +2,10 @@ export * from './dialogLayout';
 export * from './dialogHeader';
 export * from './dialogBody';
 export * from './dialogTabs';
-export * from './dialog';
 export * from './dialogActivityLog';
 export * from './dialogContact';
 export * from './dialogInfo';
+export * from './dialog';
 
 export * from './transmissions';
 export * from './transmissionHistory';

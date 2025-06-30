@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ProgressIcon } from './ProgressIcon';
 
 const meta = {
-  title: 'Atoms/Icon/ProgressIcon',
+  title: 'Components/Icon/ProgressIcon',
   component: ProgressIcon,
   tags: ['autodocs'],
   parameters: {},

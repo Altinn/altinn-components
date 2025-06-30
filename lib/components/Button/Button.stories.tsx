@@ -11,9 +11,9 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Button, type ButtonSize, type ButtonVariant, ComboButton, IconButton, MetaItem } from '../';
 
 const meta = {
-  title: 'Atoms/Button/Button',
+  title: 'Components/Button',
   component: Button,
-  tags: ['autodocs'],
+  //  tags: ["autodocs"],
   parameters: {},
   args: {
     children: 'Button',

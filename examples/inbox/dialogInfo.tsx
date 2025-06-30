@@ -1,6 +1,7 @@
 import type { DialogSectionProps } from '../../lib';
 
 export const dialogInfo: DialogSectionProps = {
+  title: 'Mer informasjon',
   children: (
     <p>
       Din bedrift er pålagt å rapportere inn bedriftsdata innen 31. oktober. Vi bruker svarene dine kun til å utarbeide

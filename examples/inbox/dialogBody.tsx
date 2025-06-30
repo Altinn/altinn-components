@@ -13,8 +13,6 @@ export const dialogBody: DialogBodyProps = {
     type: 'person',
     name: 'Mottakers navn',
   },
-  updatedAt: '1999-05-26 22:59:00',
-  updatedAtLabel: '25. mai 1999 kl 22.59',
   children: (
     <>
       <p>Rapportering av bedriftsdata er godkjent.</p>

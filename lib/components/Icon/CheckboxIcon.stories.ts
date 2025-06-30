@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { CheckboxIcon } from './CheckboxIcon';
 
 const meta = {
-  title: 'Atoms/Icon/CheckboxIcon',
+  title: 'Components/Icon/CheckboxIcon',
   component: CheckboxIcon,
   tags: ['autodocs'],
   parameters: {},

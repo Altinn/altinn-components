@@ -20,7 +20,7 @@ export interface BannerProps {
   closeTitle?: string;
   /* text content of the banner */
   text?: string | React.ReactNode;
-  /* variant of the banner */
+  /* color of the banner */
   color?: BannerColor;
   /* Sticky banner (default is true)*/
   sticky?: boolean;
