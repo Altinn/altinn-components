@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.32.0](https://github.com/Altinn/altinn-components/compare/v0.31.0...v0.32.0) (2025-06-30)
+
+
+### Features
+
+* Modal component ([#499](https://github.com/Altinn/altinn-components/issues/499)) ([e21364e](https://github.com/Altinn/altinn-components/commit/e21364e538ae472e730a65362c4e64ee0fb4454d))
+
 ## [0.31.0](https://github.com/Altinn/altinn-components/compare/v0.30.3...v0.31.0) (2025-06-27)
 
 
