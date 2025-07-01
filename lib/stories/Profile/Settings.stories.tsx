@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
   CogIcon,
   BellIcon,
@@ -13,7 +15,6 @@ import {
   PersonRectangleIcon,
 } from "@navikt/aksel-icons";
 import type { Meta } from "@storybook/react-vite";
-import { useState } from "react";
 import {
   useSettings,
   useAccountSettings,
@@ -29,7 +30,10 @@ import {
   SettingsItem,
   Switch,
   Typography,
-  SettingsItemProps,
+  Modal,
+  type SettingsItemProps,
+  ButtonGroup,
+  Button,
 } from "../../components";
 
 const meta = {
@@ -72,6 +76,8 @@ export const ContactSettings = () => {
 
   const user = items[0];
 
+  const [openId, setOpenId] = useState<string>("");
+
   const settingsItems = [
     {
       id: "phone",
@@ -111,16 +117,45 @@ export const ContactSettings = () => {
       ...item,
       linkIcon: true,
       as: "button",
+      onClick: () => setOpenId(item.id),
     };
   });
 
   return (
-    <List size="sm">
-      <SettingsItem {...(settingsItems[0] as SettingsItemProps)} />
-      <SettingsItem {...(settingsItems[1] as SettingsItemProps)} />
-      <Divider as="li" />
-      <SettingsItem {...(settingsItems[2] as SettingsItemProps)} />
-    </List>
+    <>
+      <Modal
+        open={openId === "email" || openId === "phone"}
+        onClose={() => setOpenId("")}
+      >
+        <Typography>
+          <h1>Endre epost eller telefon</h1>
+          <p>
+            E-post og mobiltelefon endres i et felles kontaktregister som stat
+            og kommune skal bruke når de kontakter deg.
+          </p>
+          <ButtonGroup>
+            <Button>Gå videre</Button>
+            <Button variant="outline">Avbryt</Button>
+          </ButtonGroup>
+        </Typography>
+      </Modal>
+      <Modal open={openId === "address"} onClose={() => setOpenId("")}>
+        <Typography>
+          <h1>Endre adresse</h1>
+          <p>Adresseendring meldes til Folkeregisteret.</p>
+          <ButtonGroup>
+            <Button>Gå videre</Button>
+            <Button variant="outline">Avbryt</Button>
+          </ButtonGroup>
+        </Typography>
+      </Modal>
+      <List size="sm">
+        <SettingsItem {...(settingsItems[0] as SettingsItemProps)} />
+        <SettingsItem {...(settingsItems[1] as SettingsItemProps)} />
+        <Divider as="li" />
+        <SettingsItem {...(settingsItems[2] as SettingsItemProps)} />
+      </List>
+    </>
   );
 };
 

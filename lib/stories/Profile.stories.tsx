@@ -16,7 +16,7 @@ import { useProfileLayout } from "../../examples";
 
 const meta = {
   title: "Demo/Profile",
-  tags: ["beta", "autodocs"],
+  tags: ["beta"],
   parameters: {
     layout: "fullscreen",
   },

@@ -1,0 +1,32 @@
+import { Meta, Controls, Primary, Canvas } from "@storybook/addon-docs/blocks";
+import * as ProfileStories from "./Profile.stories.tsx";
+
+<Meta title="Demo/Profile" />
+
+# Profile
+
+Profile pages for user settings and account management. It should be accessible from the main menu.
+
+## Dashboard
+
+The Dashboard is the starting point for the profile settings. It show an overview of the current user and important settings. (Work-in-progress.)
+
+<Canvas of={ProfileStories.DashboardPage} />
+
+## Accounts
+
+Overview of actors and groups. From this page the user can edit favourite actors and add or remove actors from groups. Expanding an account should shows more details, grouped into relevant parts.
+
+<Canvas of={ProfileStories.AccountsPage} />
+
+## Settings
+
+Overview of settings. Complex settings like notifactions per actor will link to a separate page, while simpler settings might be accessed directly from a modal or by expanding an individual setting.
+
+<Canvas of={ProfileStories.SettingsPage} />
+
+## Notification settings
+
+Notification settings and notification settings per actor. Settings per actor are opened in i modal. The same setting can be accessed via the Accounts page.
+
+<Canvas of={ProfileStories.NotificationsPage} />

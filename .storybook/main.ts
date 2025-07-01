@@ -4,6 +4,7 @@ const config: StorybookConfig = {
     "../lib/components/**/*.@(mdx)",
     "../lib/components/**/*.stories.@(ts|tsx)",
     "../lib/stories/**/*.stories.@(ts|tsx)",
+    "../lib/stories/**/*.@(mdx)",
   ],
   addons: [
     "@storybook/addon-links",
@@ -11,7 +12,7 @@ const config: StorybookConfig = {
     "@chromatic-com/storybook",
     "@storybook/addon-a11y",
     "storybook-addon-tag-badges",
-    "@storybook/addon-docs"
+    "@storybook/addon-docs",
   ],
   framework: {
     name: "@storybook/react-vite",
