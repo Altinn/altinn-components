@@ -1,8 +1,9 @@
-import { ActivityLog, ModalBase, ModalBody, ModalHeader, Section, Toolbar } from '..';
+import { useState } from 'react';
+import { ActivityLog, Button, ModalBase, ModalBody, ModalHeader, Section, Toolbar } from '..';
 import { useActivityLog } from '../../../examples';
 
 const meta = {
-  title: 'ActivityLog',
+  title: 'Timeline/ActivityLog',
   tags: ['beta'],
   parameters: {},
   args: {},
@@ -25,22 +26,48 @@ export const Controlled = () => {
   );
 };
 
-export const Modal = () => {
-  const { toolbar, items } = useActivityLog();
+export const ActivityLogModal = () => {
+  const { items } = useActivityLog();
+  const [open, setOpen] = useState<boolean>(true);
 
   const onClose = () => {
-    alert('Close modal');
+    setOpen(false);
   };
 
   return (
-    <ModalBase open={true} onClose={onClose} variant="content">
-      <ModalHeader title="Aktivitetslogg for dialog" onClose={onClose} />
-      <ModalBody style={{ position: 'sticky', top: 0, zIndex: 1 }}>
-        <Toolbar {...toolbar} />
-      </ModalBody>
-      <ModalBody>
-        <ActivityLog items={items} />
-      </ModalBody>
-    </ModalBase>
+    <>
+      <Button onClick={() => setOpen(true)}>Open Modal</Button>
+      <ModalBase open={open} onClose={onClose} variant="content">
+        <ModalHeader title="Aktivitetslogg for dialog" onClose={onClose} />
+        <ModalBody>
+          <ActivityLog items={items} />
+        </ModalBody>
+      </ModalBase>
+    </>
+  );
+};
+
+export const ActivityLogModalAdvanced = () => {
+  const { toolbar, items } = useActivityLog();
+
+  const [open, setOpen] = useState<boolean>(true);
+
+  const onClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Open Modal</Button>
+      <ModalBase open={open} onClose={onClose} variant="content">
+        <ModalHeader title="Aktivitetslogg for dialog" onClose={onClose} sticky={false} />
+        <ModalBody>
+          <div style={{ position: 'sticky', top: '1.5em', zIndex: 2 }}>
+            <Toolbar {...toolbar} />
+          </div>
+          <ActivityLog items={items} />
+        </ModalBody>
+      </ModalBase>
+    </>
   );
 };

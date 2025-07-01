@@ -1,9 +1,11 @@
 .modal {
   padding: 0;
-  min-width: 450px;
+  width: 100%;
+  max-width: 450px;
+  border: none;
+  background-color: white;
   border-radius: 0.5rem;
   box-shadow: var(--ds-shadow-xs);
-  border: none;
 }
 .modal[data-backdrop-color="inherit"]::backdrop {
   background-color: rgba(17, 29, 70, 0.25);
@@ -15,12 +17,16 @@
 
 .modal[data-variant="full"] {
   width: 100%;
+  max-width: none;
   height: 100%;
-  min-width: unset;
   min-height: unset;
 }
 
 .modal[data-variant="content"] {
-  width: 1056px;
+  max-width: 1056px;
   margin: auto;
+}
+
+.content {
+  position: relative;
 }

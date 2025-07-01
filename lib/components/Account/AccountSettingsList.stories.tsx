@@ -1,6 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import type { ChangeEvent } from 'react';
-import { Fieldset, Section, type SettingsItemProps, SettingsList, type SettingsListProps, Switch, TextField } from '..';
+import { useState } from 'react';
+import type { ChangeEvent, ReactNode } from 'react';
+import {
+  AccountNotificationSettings,
+  type AccountNotificationSettingsProps,
+  Button,
+  ButtonGroup,
+  ModalBase,
+  ModalBody,
+  ModalHeader,
+  Section,
+  SettingsItem,
+  type SettingsItemProps,
+  SettingsList,
+  type SettingsListProps,
+} from '..';
 import { accountSettings, defaultAccounts, useAccountSettings } from '../../../examples';
 
 const meta = {
@@ -19,11 +33,45 @@ export const Default: Story = {
 };
 
 export const Controlled = () => {
-  const { items, groups } = useAccountSettings({
+  const { items, groups, onSettingsChange } = useAccountSettings({
     accounts: defaultAccounts,
   });
 
-  return <SettingsList groups={groups} items={items as SettingsListProps['items']} />;
+  const [id, setId] = useState<string>('');
+
+  const onClose = () => {
+    setId('');
+  };
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { type, checked, name, value } = e.target;
+
+    if (type === 'checkbox') {
+      onSettingsChange(id, { [name]: checked });
+    } else {
+      onSettingsChange(id, { [name]: value });
+    }
+  };
+
+  const item = id && items.find((item) => item.id === id);
+
+  const modalItems = items?.map((item) => {
+    const { id } = item;
+
+    return {
+      ...item,
+      onClick: () => setId(id),
+    };
+  });
+
+  return (
+    <>
+      <SettingsList groups={groups} items={modalItems as SettingsListProps['items']} />
+      <AccountSettingsModal {...item} open={!!item} onClose={onClose}>
+        <AccountNotificationSettings {...(item as AccountNotificationSettingsProps)} onChange={onChange} />
+      </AccountSettingsModal>
+    </>
+  );
 };
 
 export const Collapsible = () => {
@@ -50,7 +98,11 @@ export const Collapsible = () => {
         collapsible: true,
         expanded: true,
         onClick: () => onToggle(item.id),
-        children: <AccountDetails {...(item as AccountDetailsProps)} onChange={onChange} />,
+        children: (
+          <Section padding={6}>
+            <AccountNotificationSettings {...(item as AccountNotificationSettingsProps)} onChange={onChange} />
+          </Section>
+        ),
       };
     }
     return {
@@ -63,31 +115,37 @@ export const Collapsible = () => {
   return <SettingsList groups={groups} items={collapsibleItems as SettingsListProps['items']} />;
 };
 
-interface AccountDetailsProps extends SettingsItemProps {
-  phone?: string;
-  email?: string;
-  smsAlerts?: boolean;
-  emailAlerts?: boolean;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+interface AccountSettingsModalProps {
+  title?: SettingsItemProps['title'];
+  icon?: SettingsItemProps['icon'];
+  description?: SettingsItemProps['description'];
+  open: boolean;
+  onClose: () => void;
+  children?: ReactNode;
 }
 
-const AccountDetails = ({ phone, email, smsAlerts = false, emailAlerts = false, onChange }: AccountDetailsProps) => {
+const AccountSettingsModal = ({
+  icon,
+  title = 'Navn på aktør',
+  description,
+  open = false,
+  onClose,
+  children,
+}: AccountSettingsModalProps) => {
   return (
-    <Section padding={6} spacing={6}>
-      <Fieldset>
-        <Switch label="Varsle på SMS" name="smsAlerts" value="SMS" checked={!!smsAlerts} onChange={onChange} />
-        {smsAlerts && <TextField name="phone" placeholder="Mobiltelefon" value={phone} onChange={onChange} />}
-      </Fieldset>
-      <Fieldset>
-        <Switch
-          label="Varsle på e-post"
-          name="emailAlerts"
-          value="E-post"
-          checked={!!emailAlerts}
-          onChange={onChange}
-        />
-        {emailAlerts && <TextField name="email" placeholder="E-postadresse" value={email} onChange={onChange} />}
-      </Fieldset>
-    </Section>
+    <ModalBase open={open} onClose={onClose}>
+      <ModalHeader onClose={onClose}>
+        <SettingsItem icon={icon} title={title} description={description} interactive={false} />
+      </ModalHeader>
+      <ModalBody>
+        {children}
+        <ButtonGroup>
+          <Button onClick={onClose}>Lagre</Button>
+          <Button variant="outline" onClick={onClose}>
+            Avbryt
+          </Button>
+        </ButtonGroup>
+      </ModalBody>
+    </ModalBase>
   );
 };

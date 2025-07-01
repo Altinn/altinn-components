@@ -11,19 +11,26 @@ import {
   PlusIcon,
 } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Fragment } from 'react';
+import { type ChangeEvent, Fragment, type ReactNode, useState } from 'react';
 import {
   AccountList,
   type AccountListItemProps,
   type AccountListProps,
+  AccountNotificationSettings,
+  type AccountNotificationSettingsProps,
   type BadgeProps,
   Button,
+  ButtonGroup,
   Divider,
   Flex,
   Heading,
   List,
+  ModalBase,
+  ModalBody,
+  ModalHeader,
   Section,
   SettingsItem,
+  type SettingsItemProps,
   Toolbar,
 } from '..';
 import { accountList, defaultAccounts, useAccountList, useAccountSettings } from '../../../examples';
@@ -122,18 +129,34 @@ export const Controlled = () => {
 };
 
 export const Collapsible = () => {
-  const { toolbar, items, groups, expandedId, onToggle, onToggleFavourite } = useAccountList({
+  const { toolbar, items, groups, expandedId, onToggle, onToggleFavourite, onSettingsChange } = useAccountList({
     accounts: defaultAccounts,
   });
 
   const collapsibleItems = items?.map((item) => {
     if (expandedId === item.id) {
+      const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const { type, checked, name, value } = e.target;
+
+        if (type === 'checkbox') {
+          onSettingsChange(item.id, { [name]: checked });
+        } else {
+          onSettingsChange(item.id, { [name]: value });
+        }
+      };
+
       return {
         ...item,
         collapsible: true,
         expanded: true,
         onClick: () => onToggle(item.id),
-        children: <AccountDetails {...(item as AccountListItemProps)} onToggleFavourite={onToggleFavourite} />,
+        children: (
+          <AccountDetails
+            {...(item as AccountListItemProps)}
+            onToggleFavourite={onToggleFavourite}
+            onChange={onChange}
+          />
+        ),
       };
     }
     return {
@@ -159,6 +182,7 @@ interface AccountDetailsProps extends AccountListItemProps {
   email?: string;
   phone?: string;
   address?: string;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const AccountDetails = (props: AccountDetailsProps) => {
@@ -207,6 +231,7 @@ export const NotificationSettings = ({
   emailAlerts = false,
   email = 'dirk@digdir.no',
   phone = '92020222',
+  onClick,
 }: AccountDetailsProps) => {
   const badge =
     smsAlerts && emailAlerts
@@ -218,26 +243,53 @@ export const NotificationSettings = ({
           : { variant: 'text', label: 'Sett opp varsling' };
 
   const title = smsAlerts || emailAlerts ? 'Varslinger er på' : 'Ingen varslinger';
-
   const value = smsAlerts && emailAlerts ? [email, phone].join(', ') : smsAlerts ? phone : emailAlerts && email;
 
   return (
     <List size="sm">
-      <SettingsItem icon={BellIcon} title={title} value={value} badge={badge as BadgeProps} linkIcon />
+      <SettingsItem
+        as="button"
+        onClick={onClick}
+        icon={BellIcon}
+        title={title}
+        value={value}
+        badge={badge as BadgeProps}
+        linkIcon
+      />
     </List>
   );
 };
 
-export const CompanyDetails = ({ id, parentId, uniqueId = 'XXXXXXXXX', ...props }: AccountDetailsProps) => {
+export const CompanyDetails = ({
+  id,
+  parentId,
+  uniqueId = 'XXXXXXXXX',
+  title,
+  description,
+  icon,
+  onChange,
+  ...props
+}: AccountDetailsProps) => {
   const { items } = useAccountSettings({ accounts: defaultAccounts });
 
   const parentAccount = items?.find((item) => item.id === parentId);
 
+  const [open, setOpen] = useState(false);
+
   return (
     <Section color="company" padding={6} spacing={2}>
+      <AccountSettingsModal
+        title={title}
+        description={description}
+        icon={icon}
+        onClose={() => setOpen(false)}
+        open={open}
+      >
+        <AccountNotificationSettings {...(props as AccountNotificationSettingsProps)} onChange={onChange} />
+      </AccountSettingsModal>
       <AccountToolbar {...props} id={id} />
       <Divider />
-      <NotificationSettings {...props} id={id} />
+      <NotificationSettings {...props} id={id} onClick={() => setOpen(true)} />
       <List size="sm">
         <Divider as="li" />
         <SettingsItem
@@ -369,5 +421,42 @@ export const GroupDetails = ({ id = 'group', accountIds }: AccountDetailsProps) 
         </List>
       </Section>
     </Section>
+  );
+};
+
+interface AccountSettingsModalProps {
+  title?: SettingsItemProps['title'];
+  icon?: SettingsItemProps['icon'];
+  description?: SettingsItemProps['description'];
+  open: boolean;
+  onClose: () => void;
+  children?: ReactNode;
+}
+
+const AccountSettingsModal = ({
+  icon,
+  title = 'Navn på aktør',
+  description,
+  open = false,
+  onClose,
+  children,
+}: AccountSettingsModalProps) => {
+  return (
+    <ModalBase open={open} onClose={onClose}>
+      <ModalHeader onClose={onClose}>
+        <List>
+          <SettingsItem icon={icon} title={title} description={description} interactive={false} />
+        </List>
+      </ModalHeader>
+      <ModalBody>
+        {children}
+        <ButtonGroup>
+          <Button onClick={onClose}>Lagre og avslutt</Button>
+          <Button variant="outline" onClick={onClose}>
+            Avbryt
+          </Button>
+        </ButtonGroup>
+      </ModalBody>
+    </ModalBase>
   );
 };
