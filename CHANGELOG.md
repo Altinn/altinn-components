@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.33.1](https://github.com/Altinn/altinn-components/compare/v0.33.0...v0.33.1) (2025-07-01)
+
+
+### Bug Fixes
+
+* profil stories + modals ([#508](https://github.com/Altinn/altinn-components/issues/508)) ([829b96d](https://github.com/Altinn/altinn-components/commit/829b96d8da7364f1a23d4cb5158c19ae6de6f988))
+
 ## [0.33.0](https://github.com/Altinn/altinn-components/compare/v0.32.0...v0.33.0) (2025-07-01)
 
 
