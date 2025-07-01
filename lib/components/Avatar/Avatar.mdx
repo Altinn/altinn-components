@@ -1,7 +1,8 @@
-import { Meta, Controls, Primary, Canvas } from "@storybook/addon-docs/blocks";
-import * as Examples from "./Examples.stories";
+import { Meta, Canvas } from "@storybook/addon-docs/blocks";
+import * as AvatarStories from "./Avatar.stories";
+import * as AvatarGroupStories from "./AvatarGroup.stories";
 
-<Meta title="Avatar" />
+<Meta title="Components/Avatar" />
 
 # Using avatars
 
@@ -12,20 +13,22 @@ in components like ListItem and MenuItem.
 
 People avatars are circular and uses a light background color.
 
-<Canvas of={Examples.PeopleAvatars} />
+<Canvas of={AvatarStories.Person} />
 
 Avatar groups.
 
-<Canvas of={Examples.PeopleAvatarGroups} />
+<Canvas of={AvatarGroupStories.People} />
 
 ## Companies
 
 Company avatars are square and uses a dark background color.
 
-<Canvas of={Examples.CompanyAvatars} />
+<Canvas of={AvatarStories.Company} />
+
+Companies can also be idenitfied by their logo.
+
+<Canvas of={AvatarStories.Logo} />
 
 Avatar groups.
 
-<Canvas of={Examples.CompanyAvatarGroups} />
-
-Companies can also be idenitfied by their logo.
+<Canvas of={AvatarGroupStories.Companies} />

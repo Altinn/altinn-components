@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { DialogHistory, TransmissionList } from '..';
-import { transmissions } from '../../../examples';
+import { DialogHistory, SeenByLog, TransmissionList } from '..';
+import { seenByLog, transmissions } from '../../../examples';
 
 const meta = {
   title: 'Inbox/Dialog/DialogHistory',
@@ -60,5 +60,43 @@ export const Transmissions: Story = {
       },
     ],
     maxItems: 2,
+  },
+};
+
+export const MultipleActivities: Story = {
+  args: {
+    items: [
+      {
+        byline: 'I dag kl 12:00',
+        datetime: '2023-10-01T12:00:00Z',
+        summary: 'Dialogen ble slettet.',
+      },
+      {
+        id: '1',
+        items: [
+          {
+            byline: 'I dag kl 12:00',
+            datetime: '2023-10-01T12:00:00Z',
+            summary: 'Dialogen ble slettet.',
+          },
+          {
+            children: <TransmissionList items={[transmissions[1], transmissions[2]]} />,
+          },
+          {
+            byline: 'Kl 10:00',
+            datetime: '2023-10-01T12:00:00Z',
+            summary: 'Dialogen ble opprettet.',
+          },
+          {
+            children: <SeenByLog {...seenByLog} />,
+          },
+        ],
+      },
+      {
+        byline: 'I dag kl 12:00',
+        datetime: '2023-10-01T12:00:00Z',
+        summary: 'Dialogen ble opprettet.',
+      },
+    ],
   },
 };

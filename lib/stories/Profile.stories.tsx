@@ -116,7 +116,7 @@ export const NotificationsPage = () => {
         </SettingsSection>
         <Heading size="lg">Varslinger per aktør</Heading>
         <SettingsSection>
-          <AccountSettingsStories.Collapsible />
+          <AccountSettingsStories.Controlled />
         </SettingsSection>
       </PageBase>
     </Layout>

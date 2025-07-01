@@ -4,7 +4,7 @@ import { Avatar, type AvatarProps, type AvatarSize, type AvatarType, Flex, SizeE
 const meta = {
   title: 'Components/Avatar',
   component: Avatar,
-  tags: ['autodocs', 'stable'],
+  tags: ['stable'],
   parameters: {
     layout: 'centered',
   },
