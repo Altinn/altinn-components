@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.33.0](https://github.com/Altinn/altinn-components/compare/v0.32.0...v0.33.0) (2025-07-01)
+
+
+### Features
+
+* error pages ([#505](https://github.com/Altinn/altinn-components/issues/505)) ([f2317a7](https://github.com/Altinn/altinn-components/commit/f2317a7817c362884caa7430567f53b461540a46))
+* modal part 2 ([#507](https://github.com/Altinn/altinn-components/issues/507)) ([336a7f7](https://github.com/Altinn/altinn-components/commit/336a7f7819a37d7a31d12431bf8f78b9229f38ab))
+
 ## [0.32.0](https://github.com/Altinn/altinn-components/compare/v0.31.0...v0.32.0) (2025-06-30)
 
 
