@@ -26,8 +26,8 @@ export const ModalBase = ({
   backdropColor = 'inherit',
   size,
   color,
-  padding,
-  spacing,
+  padding = 0,
+  spacing = 0,
   variant = 'default',
 }: ModalBaseProps) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
