@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.33.2](https://github.com/Altinn/altinn-components/compare/v0.33.1...v0.33.2) (2025-07-02)
+
+
+### Bug Fixes
+
+* account list labels + profile docs ([#510](https://github.com/Altinn/altinn-components/issues/510)) ([8e5da60](https://github.com/Altinn/altinn-components/commit/8e5da6090ae9a580980462c6169e391a36a2ae9d))
+* inbox bulk mode story ([#512](https://github.com/Altinn/altinn-components/issues/512)) ([3f8ad5c](https://github.com/Altinn/altinn-components/commit/3f8ad5c6f290839b9bf9b583c355993922369e80))
+
 ## [0.33.1](https://github.com/Altinn/altinn-components/compare/v0.33.0...v0.33.1) (2025-07-01)
 
 
