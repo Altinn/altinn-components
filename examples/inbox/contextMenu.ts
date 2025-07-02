@@ -1,4 +1,11 @@
-import { ArchiveIcon, ArrowRedoIcon, ClockDashedIcon, EyeClosedIcon, TrashIcon } from '@navikt/aksel-icons';
+import {
+  ArchiveIcon,
+  ArrowRedoIcon,
+  CheckmarkIcon,
+  ClockDashedIcon,
+  EyeClosedIcon,
+  TrashIcon,
+} from '@navikt/aksel-icons';
 import type { ContextMenuProps } from '../../lib';
 
 export const contextMenu: ContextMenuProps = {
@@ -29,6 +36,12 @@ export const contextMenu: ContextMenuProps = {
       title: 'Flytt til papirkurv',
     },
     {
+      groupId: '2',
+      id: 'select',
+      icon: CheckmarkIcon,
+      title: 'Legg i liste ...',
+    },
+    {
       groupId: '3',
       id: 'log',
       icon: ClockDashedIcon,
@@ -45,6 +58,7 @@ interface GetContextMenuProps {
   onUnread?: (id: string) => void;
   onArchive?: (id: string) => void;
   onTrash?: (id: string) => void;
+  onSelect?: (id: string) => void;
 }
 
 export const getContextMenu = ({
@@ -55,6 +69,7 @@ export const getContextMenu = ({
   onUnread,
   onArchive,
   onTrash,
+  onSelect,
 }: GetContextMenuProps): ContextMenuProps => {
   const items = contextMenu.items.map((item) => {
     switch (item.id) {
@@ -75,6 +90,12 @@ export const getContextMenu = ({
           ...item,
           disabled: trashed,
           onClick: () => onTrash?.(id),
+        };
+      case 'select':
+        return {
+          ...item,
+          disabled: trashed,
+          onClick: () => onSelect?.(id),
         };
       default:
         return item;

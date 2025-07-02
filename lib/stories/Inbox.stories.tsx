@@ -9,6 +9,9 @@ import {
   PageBase,
   Toolbar,
   Typography,
+  ActionHeader,
+  ActionFooter,
+  PageMenu,
 } from "../components";
 import { useBookmarks, useInbox } from "../../examples";
 
@@ -24,7 +27,16 @@ const meta = {
 export default meta;
 
 export const InboxPage = () => {
-  const { layout, toolbar, results, dialog } = useInbox({});
+  const {
+    layout,
+    toolbar,
+    results,
+    dialog,
+    bulkMode,
+    bulkIds,
+    bulkMenu,
+    unselectAll,
+  } = useInbox({});
 
   if (dialog) {
     return (
@@ -42,12 +54,23 @@ export const InboxPage = () => {
 
   return (
     <Layout {...layout}>
+      <ActionHeader
+        hidden={!bulkMode}
+        title={bulkIds?.length + " valgt"}
+        dismissable={true}
+        onDismiss={unselectAll}
+      />
       <PageBase margin="page">
         <Toolbar {...toolbar} />
         {results && (
           <DialogList items={results.items} groups={results?.groups} />
         )}
       </PageBase>
+      <ActionFooter hidden={!bulkMode}>
+        {bulkMenu && (
+          <PageMenu items={bulkMenu.items} id="action" theme="base" />
+        )}
+      </ActionFooter>
     </Layout>
   );
 };
