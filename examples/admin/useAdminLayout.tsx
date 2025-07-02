@@ -12,14 +12,23 @@ interface AdminLayoutProps {
   settings?: AdminSettings;
 }
 
-export const useAdminLayout = ({ accountId = 'party:diaspora', pageId = 'admin' }): AdminLayoutProps => {
-  const baseHref = '/?path=/story/demo-admin';
+export const useAdminLayout = ({ accountId = 'diaspora', pageId = 'admin' }): AdminLayoutProps => {
+  const baseHref = '?id=';
+
+  const storybookPages = {
+    profile: 'demo-admin--dashboard-page',
+    settings: 'demo-admin--settings-page',
+    access: 'demo-admin--access-page',
+    users: 'demo-admin--users-page',
+    'activity-log': 'demo-admin--activity-log-page',
+  };
 
   const layout = useLayout({ color: 'neutral', theme: 'subtle', accountId });
   const account = layout?.header?.menu?.currentAccount;
 
   const menuItems = adminMenuItems.map((item, index) => {
-    const href = (index && [baseHref, item.id].join('--')) || baseHref;
+    const storyBookId = storybookPages?.[item.id as keyof typeof storybookPages];
+    const href = storyBookId && [baseHref, storyBookId].join('');
 
     return {
       ...item,

@@ -140,7 +140,7 @@ const AccountSettingsModal = ({
       <ModalBody>
         {children}
         <ButtonGroup>
-          <Button onClick={onClose}>Lagre</Button>
+          <Button onClick={onClose}>Lagre og avslutt</Button>
           <Button variant="outline" onClick={onClose}>
             Avbryt
           </Button>

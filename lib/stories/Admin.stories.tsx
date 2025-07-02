@@ -11,6 +11,8 @@ import {
   List,
   SettingsItem,
   Divider,
+  SettingsSection,
+  Toolbar,
 } from "../components";
 import { useAdminLayout } from "../../examples";
 
@@ -25,7 +27,7 @@ const meta = {
 
 export default meta;
 
-export const Dashboard = () => {
+export const DashboardPage = () => {
   const { settings, account, layout } = useAdminLayout({});
   return (
     <Layout {...layout}>
@@ -40,8 +42,8 @@ export const Dashboard = () => {
             title="Forretningsadresse"
             value={settings?.address}
             linkIcon
-            as="a"
             badge={<span data-size="xs">Endre</span>}
+            as="a"
             href="/?path=/story/demo-profile--settings"
           />
           <Divider />
@@ -50,7 +52,7 @@ export const Dashboard = () => {
             href="/?path=/story/demo-profile--notifications"
             icon={BellIcon}
             title="Varslingsadresser"
-            description="kontakt@digdir.no, + 47 99999999"
+            value="kontakt@digdir.no, + 47 99999999"
             badge={<span data-size="xs">Endre</span>}
             linkIcon
           />
@@ -68,7 +70,7 @@ export const Dashboard = () => {
   );
 };
 
-export const Users = () => {
+export const UsersPage = () => {
   const { account, breadcrumbs, layout } = useAdminLayout({ pageId: "users" });
   return (
     <Layout {...layout}>
@@ -80,7 +82,7 @@ export const Users = () => {
   );
 };
 
-export const Access = () => {
+export const AccessPage = () => {
   const { account, breadcrumbs, layout } = useAdminLayout({ pageId: "access" });
   return (
     <Layout {...layout}>
@@ -92,7 +94,7 @@ export const Access = () => {
   );
 };
 
-export const Requests = () => {
+export const RequestsPage = () => {
   const { breadcrumbs, layout } = useAdminLayout({ pageId: "requests" });
   return (
     <Layout {...layout}>
@@ -104,7 +106,7 @@ export const Requests = () => {
   );
 };
 
-export const ApiSettings = () => {
+export const ApiSettingsPage = () => {
   const { breadcrumbs, layout } = useAdminLayout({ pageId: "api-settings" });
   return (
     <Layout {...layout}>
@@ -116,7 +118,7 @@ export const ApiSettings = () => {
   );
 };
 
-export const ReverseAccess = () => {
+export const ReverseAccessPage = () => {
   const { breadcrumbs, layout } = useAdminLayout({ pageId: "reverse-access" });
   return (
     <Layout {...layout}>
@@ -128,7 +130,7 @@ export const ReverseAccess = () => {
   );
 };
 
-export const ClientAdmin = () => {
+export const ClientAdminPage = () => {
   const { breadcrumbs, layout } = useAdminLayout({ pageId: "client-admin" });
   return (
     <Layout {...layout}>
@@ -140,7 +142,7 @@ export const ClientAdmin = () => {
   );
 };
 
-export const Settings = () => {
+export const SettingsPage = () => {
   const { account, breadcrumbs, layout } = useAdminLayout({
     pageId: "settings",
   });
@@ -149,17 +151,27 @@ export const Settings = () => {
       <PageBase>
         <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">Innstillinger for {account?.name}</Heading>
-        <SettingsStories.PrimarySettings />
-        <Heading size="lg">Flere innstillinger</Heading>
-        <SettingsStories.SecondarySettings />
+        <Toolbar search={{ name: "search", placeholder: "Søk" }} />
+        <Heading size="lg">Kontaktinformasjon</Heading>
+        <SettingsSection>
+          <SettingsStories.PrimarySettings />
+        </SettingsSection>
+        <Heading size="lg">Regnskapsfører og revisor</Heading>
+        <SettingsSection>
+          <SettingsStories.AccountantSettings />
+        </SettingsSection>
+        <Heading size="lg">Styremedlemmer</Heading>
+        <SettingsSection>
+          <SettingsStories.RoleSettings />
+        </SettingsSection>
       </PageBase>
     </Layout>
   );
 };
 
-export const Log = () => {
+export const ActivityLogPage = () => {
   const { breadcrumbs, layout } = useAdminLayout({
-    pageId: "log",
+    pageId: "activity-log",
   });
   return (
     <Layout {...layout}>

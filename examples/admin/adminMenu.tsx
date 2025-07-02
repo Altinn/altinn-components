@@ -68,7 +68,7 @@ export const adminMenuItems: MenuItemProps[] = [
     title: 'Innstillinger',
   },
   {
-    id: 'log',
+    id: 'activity-log',
     groupId: '10',
     icon: ClockDashedIcon,
     title: 'Aktivitetslogg',

@@ -111,12 +111,35 @@ export const NotificationsPage = () => {
       <PageBase>
         <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">Varslingsinnstillinger</Heading>
+        <Toolbar search={{ name: "search", placeholder: "Søk" }} />
+        <Heading size="lg">Primære varslingsadresser</Heading>
         <SettingsSection>
           <SettingsStories.NotificationSettings />
         </SettingsSection>
         <Heading size="lg">Varslinger per aktør</Heading>
         <SettingsSection>
           <AccountSettingsStories.Controlled />
+        </SettingsSection>
+      </PageBase>
+    </Layout>
+  );
+};
+
+export const AddressesPage = () => {
+  const { breadcrumbs, ...layout } = useProfileLayout({ pageId: "settings" });
+  return (
+    <Layout {...layout}>
+      <PageBase>
+        <Breadcrumbs items={breadcrumbs} />
+        <Heading size="xl">Kontaktinformasjon</Heading>
+        <Toolbar search={{ name: "search", placeholder: "Søk" }} />
+        <Heading size="lg">Primære kontaktinformasjon</Heading>
+        <SettingsSection>
+          <SettingsStories.ContactSettings />
+        </SettingsSection>
+        <Heading size="lg">Alternative varslingsadresser</Heading>
+        <SettingsSection>
+          <SettingsStories.ContactProfiles />
         </SettingsSection>
       </PageBase>
     </Layout>

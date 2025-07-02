@@ -20,7 +20,6 @@ export const useProfileLayout = ({ pageId = 'profile' }): ProfileLayoutProps => 
 
   const menuItems = profileMenuItems.map((item) => {
     const storyBookId = storybookPages?.[item.id as keyof typeof storybookPages];
-
     const href = storyBookId && [baseHref, storyBookId].join('');
 
     return {

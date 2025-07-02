@@ -13,6 +13,7 @@ import {
   SunIcon,
   HouseHeartIcon,
   PersonRectangleIcon,
+  PlusIcon,
 } from "@navikt/aksel-icons";
 import type { Meta } from "@storybook/react-vite";
 import {
@@ -32,6 +33,9 @@ import {
   Typography,
   Modal,
   type SettingsItemProps,
+  ContextMenu,
+  ListItemControls,
+  Badge,
   ButtonGroup,
   Button,
 } from "../../components";
@@ -172,11 +176,66 @@ export const MoreSettings = () => {
       />
       <Divider as="li" />
       <SettingsItem
+        as="a"
+        href="?id=demo-profile--addresses-page"
         icon={PersonRectangleIcon}
         title="Kontaktprofiler"
         badge={{ label: "3 profiler" }}
         linkIcon
       />
+    </List>
+  );
+};
+
+export const ContactProfiles = () => {
+  const Controls = ({ id, label }: { id: string; label: string }) => {
+    return (
+      <ListItemControls>
+        <Badge>{label}</Badge>
+        <ContextMenu
+          id={id}
+          items={[
+            {
+              id: "1",
+              label: "Rediger profil",
+            },
+            {
+              id: "2",
+              label: "Slett profil",
+            },
+          ]}
+        />
+      </ListItemControls>
+    );
+  };
+
+  return (
+    <List>
+      <SettingsItem
+        icon={PersonRectangleIcon}
+        title="E-post"
+        value="mathias@hotmail.com"
+        badge={<Controls id="1" label="2 aktører" />}
+        linkIcon
+      />
+      <Divider as="li" />
+      <SettingsItem
+        icon={PersonRectangleIcon}
+        title="E-post"
+        value="mathias@brann.no"
+        badge={<Controls id="2" label="4 aktører" />}
+        linkIcon
+      />
+      <Divider as="li" />
+      <SettingsItem
+        icon={PersonRectangleIcon}
+        title="E-post"
+        value="mathias@gmail.com"
+        badge={<Controls id="3" label="1 aktør" />}
+        linkIcon
+      />
+      <Divider as="li" />
+      <SettingsItem icon={PlusIcon} title="Legg til kontaktprofil" />
     </List>
   );
 };
@@ -211,17 +270,17 @@ export const NotificationSettings = () => {
         <>
           <Divider as="li" />
           <SettingsItem
-            icon={PaperplaneIcon}
-            title="Varslingsadresse for e-post"
-            value="mathias.dyngeland@gmail.com"
-            badge={<span data-size="xs">Endre epost</span>}
-            linkIcon
-          />
-          <SettingsItem
             icon={MobileIcon}
             title="SMS-varslinger"
             value="99009900"
-            badge={<span data-size="xs">Endre mobilnummer</span>}
+            badge={<span data-size="xs">Endre mobil</span>}
+            linkIcon
+          />
+          <SettingsItem
+            icon={PaperplaneIcon}
+            title="Varslinger på e-post"
+            value="mathias.dyngeland@gmail.com"
+            badge={<span data-size="xs">Endre epost</span>}
             linkIcon
           />
         </>
