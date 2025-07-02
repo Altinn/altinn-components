@@ -128,6 +128,7 @@ export const DialogListItem = ({
           <div
             className={styles.border}
             data-status={status?.value}
+            data-selected={selected}
             data-size={size}
             data-unread={unread}
             data-archived={archived}
@@ -157,6 +158,7 @@ export const DialogListItem = ({
       label={
         <div
           className={styles.border}
+          data-selected={selected}
           data-status={status?.value}
           data-size={size}
           data-unread={unread}

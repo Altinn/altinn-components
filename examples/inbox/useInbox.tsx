@@ -1,10 +1,13 @@
+import { ArchiveIcon, ArrowRedoIcon, EyeClosedIcon, TrashIcon } from '@navikt/aksel-icons';
 import { useState } from 'react';
 import { inboxSection, useInboxLayout, useInboxSearch, useInboxToolbar } from '../';
+import { ListItemSelect } from '../../lib';
 import type {
   DialogLayoutProps,
   DialogListItemProps,
   DialogListProps,
   LayoutProps,
+  MenuProps,
   SearchbarProps,
   ToolbarProps,
 } from '../../lib';
@@ -27,6 +30,10 @@ export interface UseInboxProps extends LayoutProps {
   search?: SearchbarProps;
   toolbar?: ToolbarProps;
   results?: DialogListProps;
+  bulkMode?: boolean;
+  bulkMenu?: MenuProps;
+  bulkIds?: string[];
+  unselectAll?: () => void;
 }
 
 export const useInbox = ({ pageId = 'inbox', ...props }: UseInboxProps): UseInboxProps => {
@@ -45,6 +52,7 @@ export const useInbox = ({ pageId = 'inbox', ...props }: UseInboxProps): UseInbo
 
   const seen = dialogs.filter((item) => item?.seenByLog).map((item) => item.id) || [];
 
+  const [bulkIds, setBulkIds] = useState<string[]>(props.bulkIds || []);
   const [seenIds, setSeenIds] = useState(seen);
   const [unreadIds, setUnreadIds] = useState<string[]>([]);
   const [archivedIds, setArchivedIds] = useState(archived);
@@ -82,6 +90,17 @@ export const useInbox = ({ pageId = 'inbox', ...props }: UseInboxProps): UseInbo
     });
   };
 
+  const onSelect = (id: string) => {
+    setBulkIds((prevState) => {
+      const selected = prevState.includes(id);
+      const prev = prevState.filter((prevId) => prevId !== id);
+      if (selected) {
+        return prev;
+      }
+      return [...prev, id];
+    });
+  };
+
   const items = dialogs
     ?.filter((item) => typeof item.id === 'string')
     .map((item) => {
@@ -89,11 +108,13 @@ export const useInbox = ({ pageId = 'inbox', ...props }: UseInboxProps): UseInbo
 
       const trashed = trashedIds.includes(id);
       const archived = archivedIds.includes(id);
+      const selected = bulkIds.includes(id);
 
       return {
         ...item,
         trashed,
         archived,
+        selected,
       };
     })
     ?.filter((item) => {
@@ -145,6 +166,7 @@ export const useInbox = ({ pageId = 'inbox', ...props }: UseInboxProps): UseInbo
         onUnread,
         onArchive,
         onTrash,
+        onSelect,
       });
 
       return {
@@ -172,6 +194,60 @@ export const useInbox = ({ pageId = 'inbox', ...props }: UseInboxProps): UseInbo
     }) as DialogListItemProps[];
 
   const dialog = (dialogId && items?.find((item) => item.id === dialogId)) || undefined;
+
+  const bulkMenu = {
+    items: [
+      {
+        id: '1',
+        icon: ArrowRedoIcon,
+        title: 'Del og gi tilgang',
+      },
+      {
+        id: '2',
+        icon: EyeClosedIcon,
+        title: 'Marker som ulest',
+      },
+      {
+        id: '3',
+        icon: ArchiveIcon,
+        title: 'Flytt til arkiv',
+      },
+      {
+        id: '4',
+        icon: TrashIcon,
+        title: 'Flytt til papirkurv',
+      },
+    ],
+  };
+
+  if (bulkIds?.length > 0) {
+    return {
+      bulkMode: true,
+      bulkMenu,
+      bulkIds,
+      unselectAll: () => setBulkIds([]),
+      pageId,
+      layout: {
+        ...layout,
+        sidebar: {
+          hidden: true,
+        },
+      },
+      search,
+      results: {
+        groups,
+        items: items.map((item) => {
+          return {
+            ...item,
+            onClick: () => onSelect(item.id!),
+            controls: (
+              <ListItemSelect aria-labelledby={item.id!} checked={item?.selected} onClick={() => onSelect(item.id!)} />
+            ),
+          };
+        }),
+      },
+    };
+  }
 
   return {
     pageId,
