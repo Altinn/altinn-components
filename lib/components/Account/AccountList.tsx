@@ -9,14 +9,21 @@ export interface AccountListGroupProps {
 export interface AccountListProps {
   items: AccountListItemProps[];
   groups?: Record<string, AccountListGroupProps>;
+  emptyTitle?: string;
+  emptyDescription?: string;
 }
 
-export const AccountList = ({ items, groups }: AccountListProps) => {
+export const AccountList = ({
+  items,
+  groups,
+  emptyTitle = 'Ingen treff',
+  emptyDescription = 'Søket ga ingen treff',
+}: AccountListProps) => {
   if (!items || items.length === 0) {
     return (
       <Section>
-        <Heading size="lg">Ingen treff</Heading>
-        <Typography>Ingen treff på søket ditt.</Typography>
+        <Heading size="lg">{emptyTitle}</Heading>
+        <Typography>{emptyDescription}</Typography>
       </Section>
     );
   }
