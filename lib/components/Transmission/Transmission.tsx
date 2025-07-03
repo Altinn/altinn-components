@@ -50,7 +50,7 @@ export const Transmission = ({
   seenByLog,
   ...item
 }: TransmissionProps) => {
-  const [expanded, setExpanded] = useState<boolean>(false);
+  const [expanded, setExpanded] = useState<boolean>(item.expanded || false);
 
   return (
     <ListItem

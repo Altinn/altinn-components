@@ -4,8 +4,9 @@ import type { AutocompleteItemProps, AutocompleteProps, SearchbarProps } from '.
 export const useInboxSearch = ({
   name = 'inbox-search',
   placeholder = 'Søk i innboks',
+  value,
 }: SearchbarProps): SearchbarProps => {
-  const [q, setQ] = useState<string>('');
+  const [q, setQ] = useState<string>(value || '');
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setQ(event.target.value);
   };

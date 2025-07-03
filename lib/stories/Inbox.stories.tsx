@@ -2,8 +2,7 @@ import * as DialogStories from "./Dialog/Dialog.stories";
 
 import {
   BookmarksSection,
-  DialogHeader,
-  DialogLayout,
+  Dialog,
   DialogList,
   Layout,
   PageBase,
@@ -41,13 +40,7 @@ export const InboxPage = () => {
   if (dialog) {
     return (
       <Layout {...layout}>
-        <DialogLayout
-          backButton={dialog?.backButton}
-          contextMenu={dialog?.contextMenu}
-          pageMenu={dialog?.pageMenu}
-        >
-          <DialogHeader {...dialog} />
-        </DialogLayout>
+        <Dialog {...dialog} />
       </Layout>
     );
   }
@@ -76,7 +69,16 @@ export const InboxPage = () => {
 };
 
 export const SearchPage = () => {
-  const { layout, toolbar, results } = useInbox({});
+  const { layout, toolbar, results, dialog } = useInbox({ q: "godkjent" });
+
+  if (dialog) {
+    return (
+      <Layout {...layout}>
+        <Dialog {...dialog} />
+      </Layout>
+    );
+  }
+
   return (
     <Layout {...layout}>
       <PageBase margin="page">
@@ -90,7 +92,15 @@ export const SearchPage = () => {
 };
 
 export const DraftsPage = () => {
-  const { layout, toolbar, results } = useInbox({ pageId: "drafts" });
+  const { layout, toolbar, results, dialog } = useInbox({ pageId: "drafts" });
+
+  if (dialog) {
+    return (
+      <Layout {...layout}>
+        <Dialog {...dialog} />
+      </Layout>
+    );
+  }
 
   return (
     <Layout {...layout}>
@@ -112,9 +122,17 @@ export const DraftsPage = () => {
 };
 
 export const SentPage = () => {
-  const { layout, toolbar, results } = useInbox({
+  const { layout, toolbar, results, dialog } = useInbox({
     pageId: "sent",
   });
+
+  if (dialog) {
+    return (
+      <Layout {...layout}>
+        <Dialog {...dialog} />
+      </Layout>
+    );
+  }
 
   return (
     <Layout {...layout}>
@@ -151,9 +169,17 @@ export const BookmarksPage = () => {
 };
 
 export const ArchivePage = () => {
-  const { layout, toolbar, results } = useInbox({
+  const { layout, toolbar, results, dialog } = useInbox({
     pageId: "archive",
   });
+
+  if (dialog) {
+    return (
+      <Layout {...layout}>
+        <Dialog {...dialog} />
+      </Layout>
+    );
+  }
 
   return (
     <Layout {...layout}>
@@ -175,7 +201,15 @@ export const ArchivePage = () => {
 };
 
 export const TrashPage = () => {
-  const { layout, toolbar, results } = useInbox({ pageId: "trash" });
+  const { layout, toolbar, results, dialog } = useInbox({ pageId: "trash" });
+
+  if (dialog) {
+    return (
+      <Layout {...layout}>
+        <Dialog {...dialog} badge={{ color: "neutral", label: "Papirkurv" }} />
+      </Layout>
+    );
+  }
 
   return (
     <Layout {...layout}>

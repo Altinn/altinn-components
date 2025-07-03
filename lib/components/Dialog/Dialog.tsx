@@ -43,6 +43,7 @@ export const Dialog = ({
   title,
   history,
   additionalInfo,
+  seenByLog,
   contact,
   children,
   ...props
@@ -51,7 +52,7 @@ export const Dialog = ({
     <DialogLayout backButton={backButton} contextMenu={contextMenu} pageMenu={pageMenu}>
       {title && <DialogHeader loading={loading} {...props} title={title} />}
       {children && (
-        <DialogBody loading={loading} sender={sender} {...props}>
+        <DialogBody loading={loading} sender={sender} seenByLog={seenByLog} {...props}>
           {children}
         </DialogBody>
       )}

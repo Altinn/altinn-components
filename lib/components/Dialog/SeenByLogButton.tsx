@@ -16,6 +16,10 @@ export interface SeenByLogButtonProps {
  */
 
 export const SeenByLogButton = ({ ariaLabel, items, children, className, onClick }: SeenByLogButtonProps) => {
+  if (!items) {
+    return;
+  }
+
   return (
     <ButtonBase
       ariaLabel={ariaLabel}

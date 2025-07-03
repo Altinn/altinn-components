@@ -52,9 +52,9 @@ export const contextMenu: ContextMenuProps = {
 
 interface GetContextMenuProps {
   id: string;
-  unread: boolean;
-  archived: boolean;
-  trashed: boolean;
+  unread?: boolean;
+  archived?: boolean;
+  trashed?: boolean;
   onUnread?: (id: string) => void;
   onArchive?: (id: string) => void;
   onTrash?: (id: string) => void;

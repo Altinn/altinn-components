@@ -11,6 +11,8 @@ export enum TransmissionTypeEnum {
   /** Outgoing transmissions should not display anything */
   submission = 'submission',
   correction = 'correction',
+  /** Proposal for draft transmission */
+  draft = 'draft',
 }
 
 export type TransmissionTypeValue = keyof typeof TransmissionTypeEnum;

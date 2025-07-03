@@ -1,5 +1,4 @@
 import type { DialogListProps } from '../../lib';
-
 import { dialogs } from './dialogs/';
 
 export const inboxSection: DialogListProps = {
@@ -13,5 +12,10 @@ export const inboxSection: DialogListProps = {
     '2025-02': { title: 'Februar 2025' },
     '2024-01': { title: '2024' },
   },
-  items: dialogs,
+  items: dialogs?.map((item) => {
+    return {
+      ...item,
+      groupId: item?.updatedAt?.slice(0, 5),
+    };
+  }),
 };

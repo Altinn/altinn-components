@@ -64,7 +64,7 @@ export const inboxMenuItems: MenuItemProps[] = [
     id: 'archive',
     groupId: '4',
     icon: ArchiveIcon,
-    title: 'Arkivert',
+    title: 'Arkiv',
   },
   {
     id: 'trash',

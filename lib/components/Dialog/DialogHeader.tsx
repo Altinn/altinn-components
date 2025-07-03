@@ -44,6 +44,7 @@ export const DialogHeader = ({
   receivedCount,
   updatedAt,
   updatedAtLabel,
+  attachmentsCount,
   dueAt,
   dueAtLabel,
   activityLog,
@@ -66,6 +67,7 @@ export const DialogHeader = ({
         updatedAtLabel={updatedAtLabel}
         dueAt={dueAt}
         dueAtLabel={dueAtLabel}
+        attachmentsCount={attachmentsCount}
         activityLog={activityLog}
       />
     </Section>
