@@ -29,7 +29,14 @@ export interface DialogBodyProps {
 
 /** DialogBody represents the body, or main part of a dialog, including sender and recipient.  */
 
-export const DialogBody = ({ loading, sender, recipient, recipientLabel, children, seenByLog }: DialogBodyProps) => {
+export const DialogBody = ({
+  loading,
+  sender,
+  recipient,
+  recipientLabel = 'to',
+  children,
+  seenByLog,
+}: DialogBodyProps) => {
   return (
     <Timeline>
       <TimelineHeader loading={loading} icon={sender}>
@@ -42,7 +49,7 @@ export const DialogBody = ({ loading, sender, recipient, recipientLabel, childre
             <Typography maxWidth="60ch" style={{ marginTop: '0.5em' }}>
               {children}
             </Typography>
-            {seenByLog && <SeenByLog {...seenByLog} />}
+            {seenByLog && <SeenByLog {...seenByLog} collapsible={true} />}
           </>
         )}
       </TimelineSection>

@@ -43,11 +43,79 @@ export const seenByLog: SeenByLogProps = {
   ],
 };
 
-export const getSeenByLog = (count = 1) => {
+export const getSeenByLogX = (count = 1) => {
   const items = seenByLog.items.slice(0, count);
 
   return {
     items,
     title: ' Sett av deg+',
+  };
+};
+
+export function sortSeenByLog(items: SeenByLogProps['items'], reverse = false): SeenByLogProps['items'] {
+  return items.slice().sort((a, b) => {
+    const aVal = a.seenAt || 'a';
+    const bVal = b.seenAt || 'a';
+
+    if (aVal === bVal) return 0;
+    if (aVal === undefined) return 1;
+    if (bVal === undefined) return -1;
+
+    if (aVal < bVal) return reverse ? 1 : -1;
+    return reverse ? -1 : 1;
+  });
+}
+
+export const getSeenByLog = (items?: SeenByLogProps['items']) => {
+  if (!items) {
+    return [];
+  }
+
+  const seenByLogItems =
+    items?.map((item, index) => {
+      const id = index + '-' + 1;
+
+      const date = new Date(item?.seenAt);
+      const seenAtLabel = date.toLocaleDateString('no-NB', {
+        year: 'numeric',
+        month: 'long',
+      });
+
+      return { ...item, id, type: 'person', name: item.name, seenAtLabel };
+    }) || [];
+
+  const uniqueItems = Array.from(new Map(seenByLogItems.map((p) => [p.name, p])).values());
+
+  if (!uniqueItems.length) {
+    return undefined;
+  }
+
+  const seenByEndUser = uniqueItems?.find((item) => item.isEndUser);
+  const seenByOthers = uniqueItems?.filter((item) => !item?.isEndUser) || [];
+
+  let who: string;
+
+  if (seenByEndUser && seenByOthers?.length > 0) {
+    who = 'deg + {count}';
+  } else if (seenByEndUser) {
+    who = 'deg';
+  } else {
+    who = '{count}';
+  }
+
+  const title = 'Sett av {who}'?.replace('{who}', who).replace('{count}', seenByOthers?.length.toString());
+
+  const sortedItems = sortSeenByLog(uniqueItems as SeenByLogProps['items']);
+  const seen = seenByEndUser || items?.length > 0;
+
+  if (!seen) {
+    return {};
+  }
+
+  return {
+    items: sortedItems,
+    seen,
+    seenByEndUser,
+    title,
   };
 };

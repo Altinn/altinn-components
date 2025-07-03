@@ -5,7 +5,7 @@ export const dialogContact: DialogContactProps = {
   title: 'Kontakt oss',
   children: (
     <p>
-      Har du spørsmål angående saken din? Ta kontakt med SSB. Kundesenteret er betjent mandag–fredag mellom 09-15. Oppgi
+      Har du spørsmål angående saken din? Ta kontakt med oss. Kundesenteret er betjent mandag–fredag mellom 09-15. Oppgi
       referansenummer XXXX-345.
     </p>
   ),

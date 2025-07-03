@@ -54,12 +54,15 @@ const pair4 = pair2.map((item) => ({
 export const tredjepart = {
   id: 'tredjepart',
   groupId: '2025-02',
-  title: 'Tredjepartsopplysninger for boligselskap 2023',
-  sentCount: 2,
-  receivedCount: 3,
+  status: {
+    value: 'not-applicable',
+  },
+  sentCount: 4,
+  receivedCount: 4,
   updatedAt: '2024-10-18T09:40:00.000Z',
   updatedAtLabel: '18. oktober 2024 kl. 11.40',
-  badge: { theme: 'surface', label: 'Ulest' },
+  title: 'Tredjepartsopplysninger for boligselskap 2023',
+  badge: { variant: 'tinted', label: 'Ulest' },
   sender: skatt,
   history: {
     items: [

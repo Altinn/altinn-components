@@ -1,8 +1,9 @@
 import { ArchiveIcon, ArrowRedoIcon, EyeClosedIcon, TrashIcon } from '@navikt/aksel-icons';
 import { useState } from 'react';
-import { inboxSection, useInboxLayout, useInboxSearch, useInboxToolbar } from '../';
+import { useInboxLayout, useInboxSearch, useInboxToolbar } from '../';
 import { ListItemSelect } from '../../lib';
 import type {
+  DialogContactProps,
   DialogLayoutProps,
   DialogListItemProps,
   DialogListProps,
@@ -11,18 +12,19 @@ import type {
   SearchbarProps,
   ToolbarProps,
 } from '../../lib';
-import { getContextMenu } from './';
-import { dialogs } from './dialogs';
-
 import { ContextMenu } from '../../lib';
+import { dialogContact, getContextMenu, getSeenByLog } from './';
+import { dialogs, getDialogList } from './dialogs';
 
 interface UseInboxDialogProps extends DialogListItemProps {
   backButton?: DialogLayoutProps['backButton'];
   contextMenu?: DialogLayoutProps['contextMenu'];
   pageMenu?: DialogLayoutProps['pageMenu'];
+  contact?: DialogContactProps;
 }
 
 export interface UseInboxProps extends LayoutProps {
+  q?: string;
   pageId?: string;
   dialogId?: string;
   dialog?: UseInboxDialogProps;
@@ -36,20 +38,17 @@ export interface UseInboxProps extends LayoutProps {
   unselectAll?: () => void;
 }
 
-export const useInbox = ({ pageId = 'inbox', ...props }: UseInboxProps): UseInboxProps => {
+export const useInbox = ({ pageId = 'inbox', q, ...props }: UseInboxProps): UseInboxProps => {
   const layout = useInboxLayout({ pageId });
   const toolbar = useInboxToolbar();
   const search = useInboxSearch({
     name: 'search',
     placeholder: 'Søk i innboksen',
+    value: q,
   });
 
-  const groups = inboxSection?.groups;
-
   const archived = dialogs.filter((item) => item?.archived).map((item) => item.id) || [];
-
   const trashed = dialogs.filter((item) => item?.trashed).map((item) => item.id) || [];
-
   const seen = dialogs.filter((item) => item?.seenByLog).map((item) => item.id) || [];
 
   const [bulkIds, setBulkIds] = useState<string[]>(props.bulkIds || []);
@@ -101,7 +100,9 @@ export const useInbox = ({ pageId = 'inbox', ...props }: UseInboxProps): UseInbo
     });
   };
 
-  const items = dialogs
+  const list = getDialogList(dialogs, q);
+
+  const items = list.items
     ?.filter((item) => typeof item.id === 'string')
     .map((item) => {
       const { id } = item as { id: string };
@@ -118,6 +119,10 @@ export const useInbox = ({ pageId = 'inbox', ...props }: UseInboxProps): UseInbo
       };
     })
     ?.filter((item) => {
+      if (q) {
+        return true;
+      }
+
       if (pageId === 'drafts' && !item.draftsLabel) {
         return false;
       }
@@ -130,11 +135,19 @@ export const useInbox = ({ pageId = 'inbox', ...props }: UseInboxProps): UseInbo
         return false;
       }
 
-      if (pageId === 'trash' && !item.archived) {
+      if (pageId === 'trash' && !item.trashed) {
         return false;
       }
 
-      if (item.archived || item.trashed) {
+      if (pageId !== 'drafts' && item.draftsLabel) {
+        return false;
+      }
+
+      if (pageId !== 'archive' && item.archived) {
+        return false;
+      }
+
+      if (pageId !== 'trash' && item.trashed) {
         return false;
       }
 
@@ -147,14 +160,18 @@ export const useInbox = ({ pageId = 'inbox', ...props }: UseInboxProps): UseInbo
         archived: boolean;
       };
 
-      const seenByLogItems =
-        item.seenByLog?.items ||
-        (seenIds.includes(id) && [
-          {
-            seenAt: '2023-10-01T12:00:00Z',
-            name: 'Mathias Dyngeland',
-          },
-        ]);
+      const seenByLog = seenIds.includes(id)
+        ? getSeenByLog([
+            ...(item?.seenByLog?.items || []),
+            {
+              id: 'user',
+              seenAt: '2023-10-01T12:00:00Z',
+              seenAtLabel: '',
+              name: 'Mathias Dyngeland',
+              isEndUser: true,
+            },
+          ])
+        : getSeenByLog(item?.seenByLog?.items);
 
       const unread = unreadIds.includes(id) || !seenIds.includes(id);
 
@@ -177,23 +194,46 @@ export const useInbox = ({ pageId = 'inbox', ...props }: UseInboxProps): UseInbo
         trashedAtLabel: trashed ? 'Arkivert' : undefined,
         href: undefined,
         recipient: layout?.header?.currentAccount,
-        unread,
-        seenByLog: seenByLogItems && {
-          ...item.seenByLog,
-          items: seenByLogItems,
-        },
+        unread: trashed || archived ? false : unread,
+        seenByLog,
         ariaLabel: item.title,
         controls: <ContextMenu {...contextMenu} />,
-        badge: unread && {
-          size: 'xs',
-          label: 'Ny',
-        },
+        badge:
+          (archived && {
+            variant: 'subtle',
+            color: 'neutral',
+            label: 'Arkiv',
+            size: 'sm',
+          }) ||
+          (trashed && {
+            variant: 'subtle',
+            color: 'neutral',
+            label: 'Papirkurv',
+            size: 'sm',
+          }) ||
+          (unread && {
+            size: 'xs',
+            label: 'Ny',
+          }),
         as: 'button',
         onClick: () => item.id && onDialogId(item.id),
       };
     }) as DialogListItemProps[];
 
   const dialog = (dialogId && items?.find((item) => item.id === dialogId)) || undefined;
+
+  const contextMenu =
+    dialog &&
+    getContextMenu({
+      id: dialogId,
+      unread: dialog?.unread,
+      trashed: dialog?.trashed,
+      archived: dialog?.archived,
+      onUnread,
+      onArchive,
+      onTrash,
+      onSelect,
+    });
 
   const bulkMenu = {
     items: [
@@ -229,13 +269,17 @@ export const useInbox = ({ pageId = 'inbox', ...props }: UseInboxProps): UseInbo
       pageId,
       layout: {
         ...layout,
+        header: {
+          ...layout?.header,
+          search,
+        },
         sidebar: {
           hidden: true,
         },
-      },
+      } as LayoutProps,
       search,
       results: {
-        groups,
+        groups: list.groups,
         items: items.map((item) => {
           return {
             ...item,
@@ -254,16 +298,24 @@ export const useInbox = ({ pageId = 'inbox', ...props }: UseInboxProps): UseInbo
     dialogId,
     dialog: dialog && {
       ...dialog,
+      contextMenu,
+      contact: dialogContact,
       backButton: {
         onClick: () => onDialogId(''),
         label: 'Tilbake',
       },
     },
-    layout,
+    layout: {
+      ...layout,
+      header: {
+        ...layout?.header,
+        search,
+      },
+    } as LayoutProps,
     search,
     toolbar,
     results: {
-      groups,
+      groups: list.groups,
       items,
     },
   };

@@ -1,107 +1,140 @@
-import type { DialogListItemProps } from '../../../lib';
-import { brreg, enova, mattilsynet, oslo, skatt, ssb } from '../../avatar';
-import { getSeenByLog } from '../seenByLog';
+import type { ReactNode } from 'react';
+import type {
+  DialogContactProps,
+  DialogHistoryProps,
+  DialogListItemProps,
+  DialogListProps,
+  DialogSectionProps,
+} from '../../../lib';
+import { getSeenByLog, seenByLog } from '../seenByLog';
+import { brregArchived, brregCompleted, brregTrashed } from './brreg';
+import { enovaDraft, enovaProgress, enovaSent } from './enova';
+import { mattilsynetAttention, mattilsynetDraft } from './mattilsynet';
+import { nabovarsel } from './oslo';
+import { tredjepart } from './skatt';
+import { ssbAttention } from './ssb';
 
-export const dialogs: DialogListItemProps[] = [
+export interface DialogDataProps extends DialogListItemProps {
+  /** Dialog history */
+  history?: DialogHistoryProps;
+  /** Dialog history */
+  additionalInfo?: DialogSectionProps;
+  /** Dialog history */
+  contact?: DialogContactProps;
+  /** Content */
+  children?: ReactNode;
+}
+
+export const dialogs: DialogDataProps[] = [
   {
-    id: 'enova-progress',
-    groupId: '2025-03',
-    title: 'Støtte til energitiltak',
-    status: { value: 'in-progress', label: 'Under arbeid' },
-    summary: 'Søknad er sendt til behandling. Forventet behandlingstid: 2 uker.',
-    updatedAt: '2025-03-07T23:27:37.384Z',
-    updatedAtLabel: '8. mars 2025 kl. 00.27',
-    sender: enova,
-    sentCount: 1,
-    dueAt: undefined,
-    dueAtLabel: undefined,
-    seenByLog: getSeenByLog(2),
+    ...nabovarsel,
+    seenByLog: getSeenByLog(seenByLog.items),
   },
   {
-    id: 'bedriftsdata-attention',
-    groupId: '2025-03',
-    title: 'Rapportering av bedriftsdata',
-    status: { value: 'requires-attention', label: 'Krever handling' },
-    summary: 'Du må levere bedriftsdata innen 31. mai.',
-    updatedAt: '2025-02-14T23:27:37.383Z',
-    updatedAtLabel: '15. februar 2025 kl. 00.27',
-    attachmentsCount: 1,
-    dueAt: '2025-05-31T21:59:59.999Z',
-    dueAtLabel: 'Frist: 31. mai 2025',
-    sender: ssb,
-    badge: { theme: 'surface', label: 'Ulest' },
+    ...mattilsynetDraft,
+    seenByLog: getSeenByLog(seenByLog.items.slice(0, 1)),
+  },
+  mattilsynetAttention,
+  {
+    ...enovaDraft,
+    seenByLog: getSeenByLog(seenByLog.items.slice(0, 1)),
   },
   {
-    id: 'regnskap-2025',
-    groupId: '2025-02',
-    as: 'a',
-    ariaLabel: 'Årsregnskap 2025',
-    href: '//brreg.no',
-    title: 'Årsregnskap 2025',
-    status: { value: 'completed', label: 'Avsluttet' },
-    summary: 'Årsregnskapet for 2025 er godkjent.',
-    updatedAt: '2025-03-04T07:17:00.000Z',
-    updatedAtLabel: '4. mars 2025 kl. 08.17',
-    sentCount: 1,
-    receivedCount: 1,
-    sender: brreg,
-    badge: { theme: 'surface', label: 'Ulest' },
+    ...enovaProgress,
+    seenByLog: getSeenByLog(seenByLog.items.slice(0, 2)),
   },
   {
-    id: 'tredjepart',
-    groupId: '2025-02',
-    title: 'Tredjepartsopplysninger for boligselskap 2023',
-    sentCount: 2,
-    receivedCount: 3,
-    updatedAt: '2024-10-18T09:40:00.000Z',
-    updatedAtLabel: '18. oktober 2024 kl. 11.40',
-    badge: { theme: 'surface', label: 'Ulest' },
-    sender: skatt,
+    ...enovaSent,
+    seenByLog: getSeenByLog(seenByLog.items.slice(0, 3)),
   },
-  {
-    id: 'nabovarsel',
-    groupId: '2025-02',
-    ariaLabel: 'Nabovarsel for Louises gate 15',
-    title: 'Nabovarsel for Louises gate 15',
-    status: undefined,
-    summary: 'Nabovarsel for byggeplaner i for Louises gate 15, 0169 Oslo (gårdsnr. 118, bruksnr. 366).',
-    updatedAt: '2025-02-18T08:54:00.000Z',
-    updatedAtLabel: '18. februar 2025 kl. 09.54',
-    attachmentsCount: 6,
-    sender: oslo,
-    dueAt: undefined,
-    dueAtLabel: undefined,
-    seenByLog: getSeenByLog(3),
-  },
-  {
-    id: 'sent-2',
-    title: 'Melding om elulykke',
-    updatedAt: '2025-02-07T22:27:37.384Z',
-    updatedAtLabel: '22. februar 2025 kl. 22.27',
-    sentCount: 1,
-    status: {
-      value: 'requires-attention',
-      label: 'Krever handling',
-    },
-    sender: enova,
-    seenByLog: getSeenByLog(1),
-  },
-  {
-    id: 'enova-draft',
-    title: 'Støtte til fjernvarme',
-    draftsLabel: 'Utkast',
-    updatedAt: '2025-03-07T23:27:37.384Z',
-    updatedAtLabel: 'Anna Aahjem, 8. mars 2025 kl. 00.27',
-    sender: enova,
-    seenByLog: getSeenByLog(1),
-  },
-  {
-    id: 'import-draft',
-    title: 'Dispensasjon for import av kjæledyr',
-    draftsLabel: 'Utkast',
-    updatedAt: '2024-10-18T09:40:00.000Z',
-    updatedAtLabel: 'Felix Horn Myhre, 18. oktober 2024 kl. 11.40',
-    sender: mattilsynet,
-    seenByLog: getSeenByLog(1),
-  },
-];
+  ssbAttention,
+  { ...brregArchived, seenByLog: getSeenByLog(seenByLog.items.slice(0, 3)) },
+  brregTrashed,
+  brregCompleted,
+  tredjepart,
+] as DialogDataProps[];
+
+export function sortDialogsByKey<DialogDataProps>(
+  items: DialogDataProps[],
+  key: keyof DialogDataProps,
+  reverse = false,
+): DialogDataProps[] {
+  return items.slice().sort((a, b) => {
+    const aVal = a[key] || 'a';
+    const bVal = b[key] || 'a';
+
+    if (aVal === bVal) return 0;
+    if (aVal === undefined) return 1;
+    if (bVal === undefined) return -1;
+
+    if (aVal < bVal) return reverse ? 1 : -1;
+    return reverse ? -1 : 1;
+  });
+}
+
+function capitalizeFirstLetter(val: string) {
+  return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+}
+
+export const getDialogGroup = ({ updatedAt = '2000-01-01' }: DialogDataProps) => {
+  const groupId = updatedAt?.slice(0, 7) || 'q';
+
+  const date = new Date(updatedAt);
+  const title = date.toLocaleDateString('no-NB', {
+    year: 'numeric',
+    month: 'long',
+  });
+
+  return {
+    groupId,
+    title: capitalizeFirstLetter(title),
+  };
+};
+
+function matchAnyWord(input: string, words: string[]): boolean {
+  const lowerInput = input.toLowerCase();
+  return words.some((word) => word.toLowerCase().includes(lowerInput));
+}
+
+export function getDialogList(data: DialogDataProps[], q?: string): DialogListProps {
+  const groups: DialogListProps['groups'] = {};
+
+  const sortedItems = sortDialogsByKey(data, 'updatedAt', true);
+
+  const items =
+    sortedItems
+      .filter((item) => {
+        if (!q) {
+          return true;
+        }
+
+        const words = [item?.title || '', item?.summary || '', item?.sender?.name || ''];
+
+        if (matchAnyWord(q, words)) {
+          return true;
+        }
+
+        return false;
+      })
+      .map((item) => {
+        const { groupId, title } = getDialogGroup(item);
+
+        groups[groupId] = {
+          title: title,
+        };
+
+        return {
+          ...item,
+          groupId: q ? 'q' : groupId,
+        };
+      }) || [];
+
+  groups.q = {
+    title: items.length + ' treff',
+  };
+
+  return {
+    items,
+    groups,
+  };
+}
