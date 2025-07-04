@@ -1,6 +1,12 @@
 import type { ElementType, ReactNode } from 'react';
-import { MetaItemBase, MetaItemIcon, MetaItemLabel, type MetaItemSize, type MetaItemVariant } from '..';
-import type { SvgElement } from '../Icon';
+import {
+  MetaItemBase,
+  MetaItemIcon,
+  type MetaItemIconProps,
+  MetaItemLabel,
+  type MetaItemSize,
+  type MetaItemVariant,
+} from '..';
 
 export interface MetaItemProps {
   loading?: boolean;
@@ -12,7 +18,7 @@ export interface MetaItemProps {
   /** Variant */
   variant?: MetaItemVariant;
   /** Icon name */
-  icon?: SvgElement;
+  icon?: MetaItemIconProps['icon'];
   /** Label */
   children?: ReactNode;
   /** classname */

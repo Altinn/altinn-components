@@ -1,12 +1,6 @@
-import cx from 'classnames';
-import type { ReactNode } from 'react';
-import { AvatarGroup, type AvatarProps, ButtonBase, ButtonLabel } from '..';
-import styles from './SeenByLogButton.module.css';
+import { MetaItem, MetaItemLabel, type MetaItemProps } from '..';
 
-export interface SeenByLogButtonProps {
-  ariaLabel?: string;
-  children?: ReactNode;
-  items: AvatarProps[];
+export interface SeenByLogButtonProps extends MetaItemProps {
   className?: string;
   onClick?: () => void;
 }
@@ -15,21 +9,10 @@ export interface SeenByLogButtonProps {
  * SeenByLog Button
  */
 
-export const SeenByLogButton = ({ ariaLabel, items, children, className, onClick }: SeenByLogButtonProps) => {
-  if (!items) {
-    return;
-  }
-
+export const SeenByLogButton = ({ icon, children, className, onClick }: SeenByLogButtonProps) => {
   return (
-    <ButtonBase
-      ariaLabel={ariaLabel}
-      className={cx(styles.button, className)}
-      variant="link"
-      size="xs"
-      onClick={onClick}
-    >
-      <AvatarGroup items={items} className={styles.icon} />
-      {children && <ButtonLabel className={styles.label}>{children}</ButtonLabel>}
-    </ButtonBase>
+    <MetaItem as="button" size="xs" className={className} icon={icon} onClick={onClick}>
+      {children && <MetaItemLabel size="xs">{children}</MetaItemLabel>}
+    </MetaItem>
   );
 };

@@ -10,6 +10,7 @@ import styles from './contextMenu.module.css';
 
 export interface ContextMenuProps {
   id?: string;
+  ariaLabel?: string;
   items: MenuItemProps[];
   placement?: DropdownPlacement;
   groups?: MenuItemGroups;
@@ -18,6 +19,7 @@ export interface ContextMenuProps {
 
 export const ContextMenu = ({
   id = 'context-menu',
+  ariaLabel,
   placement = 'right',
   groups = {},
   className,
@@ -49,7 +51,7 @@ export const ContextMenu = ({
         icon={MenuElipsisHorizontalIcon}
         variant="text"
         onClick={onToggle}
-        iconAltText={`Open ${id}`}
+        iconAltText={ariaLabel || `Open ${id}`}
       />
       <DropdownBase placement={placement} open={expanded}>
         <MenuItems groups={groups} items={itemsWithToggle} />
