@@ -184,6 +184,12 @@ export const Archived = {
     archived: true,
     archivedAt: '2024-11-27',
     archivedAtLabel: 'Arkivert',
+    badge: {
+      size: 'sm',
+      color: 'neutral',
+      variant: 'subtle',
+      label: 'Arkiv',
+    },
   },
 };
 
@@ -193,6 +199,12 @@ export const Trashed = {
     trashed: true,
     trashedAt: '2024-11-27',
     trashedAtLabel: 'Papirkurv',
+    badge: {
+      size: 'sm',
+      color: 'neutral',
+      variant: 'subtle',
+      label: 'Papirkurv',
+    },
   },
 };
 
