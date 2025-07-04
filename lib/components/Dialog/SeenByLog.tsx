@@ -33,7 +33,7 @@ export const SeenByLog = ({ collapsible, expanded, title, items, endUserLabel = 
     <Section spacing={2}>
       {title && (
         <div>
-          <SeenByLogButton items={items} onClick={onToggle}>
+          <SeenByLogButton icon={{ items }} onClick={onToggle}>
             {title}
           </SeenByLogButton>
         </div>

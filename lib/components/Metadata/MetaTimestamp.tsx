@@ -1,6 +1,12 @@
 import type { ReactNode } from 'react';
-import { MetaItemBase, MetaItemIcon, MetaItemLabel, type MetaItemSize, type MetaItemVariant } from '..';
-import type { SvgElement } from '../Icon';
+import {
+  MetaItemBase,
+  MetaItemIcon,
+  type MetaItemIconProps,
+  MetaItemLabel,
+  type MetaItemSize,
+  type MetaItemVariant,
+} from '..';
 
 export interface MetaTimestampProps {
   loading?: boolean;
@@ -11,7 +17,7 @@ export interface MetaTimestampProps {
   /** Datetime in ISO format */
   datetime?: string;
   /** Icon name */
-  icon?: SvgElement;
+  icon?: MetaItemIconProps['icon'];
   /** Label */
   children?: ReactNode;
 }

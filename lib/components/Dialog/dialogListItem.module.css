@@ -91,13 +91,14 @@
 
 .footer {
   width: 100%;
+  padding-right: 2rem;
 }
 
 .seenBy {
   position: absolute;
   right: 0;
   bottom: 0;
-  margin-right: -0.5rem;
+  margin: 0.25rem -1rem;
 }
 
 .heading {

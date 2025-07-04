@@ -6,12 +6,11 @@ import {
   DialogByline,
   DialogMetadata,
   type DialogMetadataProps,
-  type DialogSeenByProps,
   Heading,
   ListItem,
   ListItemLabel,
   type ListItemProps,
-  SeenByLogButton,
+  MetaItem,
   type SeenByLogProps,
   Skeleton,
 } from '..';
@@ -53,8 +52,6 @@ export interface DialogListItemProps extends ListItemProps, DialogMetadataProps 
   badge?: BadgeProps;
   /** Dialog has not been opened or is marked as unread */
   unread?: boolean;
-  /** Dialog is seen by the user */
-  seenBy?: DialogSeenByProps;
   /** Seen by log */
   seenByLog?: SeenByLogProps;
   /** Number of attachments */
@@ -99,7 +96,6 @@ export const DialogListItem = ({
   dueAt,
   dueAtLabel,
   unread,
-  seenBy,
   seenByLog,
   draftsLabel,
   sentCount,
@@ -206,11 +202,8 @@ export const DialogListItem = ({
             dueAtLabel={dueAtLabel}
             attachmentsCount={attachmentsCount}
             attachmentsLabel={attachmentsLabel}
-            seenBy={seenBy}
           />
-          {seenByLog && (
-            <SeenByLogButton className={styles.seenBy} ariaLabel={seenByLog.title} items={seenByLog.items} />
-          )}
+          {seenByLog && <MetaItem className={styles.seenBy} icon={{ items: seenByLog.items }} />}
         </div>
       }
     />

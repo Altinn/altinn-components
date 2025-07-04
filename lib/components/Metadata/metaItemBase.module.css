@@ -41,6 +41,11 @@ a.item:hover strong {
   cursor: pointer;
 }
 
+button.item:hover,
+a.item:hover {
+  text-decoration: underline;
+}
+
 .item[data-size="xs"] {
   font-size: 0.875rem;
   height: 1.5rem;

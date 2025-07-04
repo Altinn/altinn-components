@@ -14,16 +14,7 @@ interface DialogMetadataButtonProps {
   onClick?: () => void;
 }
 
-import {
-  type AvatarProps,
-  DialogSeenBy,
-  type DialogSeenByProps,
-  DialogStatus,
-  type DialogStatusProps,
-  MetaBase,
-  MetaItem,
-  MetaTimestamp,
-} from '..';
+import { type AvatarProps, DialogStatus, type DialogStatusProps, MetaBase, MetaItem, MetaTimestamp } from '..';
 export type DialogMetadataProps = {
   className?: string;
   /** Metadata is loading */
@@ -52,8 +43,6 @@ export type DialogMetadataProps = {
   trashedAt?: string;
   /** Deleted label */
   trashedAtLabel?: string;
-  /** Who have seen the dialog after latest update */
-  seenBy?: DialogSeenByProps;
   /** Drafts label */
   draftsLabel?: string;
   /** Number of submissions sent */
@@ -87,7 +76,6 @@ export const DialogMetadata = ({
   archivedAtLabel,
   trashedAt,
   trashedAtLabel,
-  seenBy,
   draftsLabel,
   sentCount = 0,
   receivedCount = 0,
@@ -144,8 +132,7 @@ export const DialogMetadata = ({
           <MetaTimestamp loading={loading} datetime={archivedAt} size="xs" icon={ArchiveIcon}>
             {archivedAtLabel}
           </MetaTimestamp>
-        )) ||
-        (seenBy && <DialogSeenBy size="xs" {...seenBy} loading={loading} />)}
+        ))}
 
       {activityLog && (
         <MetaItem
