@@ -27,9 +27,13 @@ export const ContextMenu = ({
 }: ContextMenuProps) => {
   const { currentId, toggleId, closeAll } = useRootContext();
   const ref = useRef<HTMLDivElement>(null);
-  useClickOutside(ref, () => closeAll());
   const onToggle = () => toggleId(id);
   const expanded = currentId === id;
+  useClickOutside(ref, () => {
+    if (expanded) {
+      toggleId(id);
+    }
+  });
 
   const itemsWithToggle = useMemo(() => {
     return items.map((item) => {
@@ -53,9 +57,11 @@ export const ContextMenu = ({
         onClick={onToggle}
         iconAltText={ariaLabel || `Open ${id}`}
       />
-      <DropdownBase placement={placement} open={expanded}>
-        <MenuItems groups={groups} items={itemsWithToggle} />
-      </DropdownBase>
+      {expanded && (
+        <DropdownBase placement={placement} open={expanded}>
+          <MenuItems groups={groups} items={itemsWithToggle} />
+        </DropdownBase>
+      )}
     </div>
   );
 };
