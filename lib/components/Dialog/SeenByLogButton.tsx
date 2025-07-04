@@ -9,9 +9,9 @@ export interface SeenByLogButtonProps extends MetaItemProps {
  * SeenByLog Button
  */
 
-export const SeenByLogButton = ({ icon, children, className, onClick }: SeenByLogButtonProps) => {
+export const SeenByLogButton = ({ as, icon, children, className, onClick }: SeenByLogButtonProps) => {
   return (
-    <MetaItem as="button" size="xs" className={className} icon={icon} onClick={onClick}>
+    <MetaItem as={as} size="xs" className={className} icon={icon} onClick={onClick}>
       {children && <MetaItemLabel size="xs">{children}</MetaItemLabel>}
     </MetaItem>
   );

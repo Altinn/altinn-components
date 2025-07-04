@@ -4,9 +4,10 @@ import {
   CheckmarkIcon,
   ClockDashedIcon,
   EyeClosedIcon,
+  EyeIcon,
   TrashIcon,
 } from '@navikt/aksel-icons';
-import type { ContextMenuProps } from '../../lib';
+import type { ContextMenuProps, SeenByLogProps } from '../../lib';
 
 export const contextMenu: ContextMenuProps = {
   id: 'context-menu',
@@ -43,7 +44,13 @@ export const contextMenu: ContextMenuProps = {
     },
     {
       groupId: '3',
-      id: 'log',
+      id: 'seen-by-log',
+      icon: EyeIcon,
+      title: 'Sett av',
+    },
+    {
+      groupId: '3',
+      id: 'activity-log',
       icon: ClockDashedIcon,
       title: 'Aktivitetslogg',
     },
@@ -55,10 +62,12 @@ interface GetContextMenuProps {
   unread?: boolean;
   archived?: boolean;
   trashed?: boolean;
+  seenByLog?: SeenByLogProps;
   onUnread?: (id: string) => void;
   onArchive?: (id: string) => void;
   onTrash?: (id: string) => void;
   onSelect?: (id: string) => void;
+  onModal?: (id: string, type: string) => void;
 }
 
 export const getContextMenu = ({
@@ -66,10 +75,12 @@ export const getContextMenu = ({
   unread,
   archived,
   trashed,
+  seenByLog,
   onUnread,
   onArchive,
   onTrash,
   onSelect,
+  onModal,
 }: GetContextMenuProps): ContextMenuProps => {
   const items = contextMenu.items.map((item) => {
     switch (item.id) {
@@ -96,6 +107,19 @@ export const getContextMenu = ({
           ...item,
           disabled: trashed,
           onClick: () => onSelect?.(id),
+        };
+      case 'seen-by-log':
+        return {
+          ...item,
+          hidden: !seenByLog?.items,
+          icon: { items: seenByLog?.items },
+          label: seenByLog?.title,
+          onClick: () => onModal?.(id, 'seen-by-log'),
+        };
+      case 'activity-log':
+        return {
+          ...item,
+          onClick: () => onModal?.(id, 'activity-log'),
         };
       default:
         return item;

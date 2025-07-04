@@ -11,8 +11,14 @@ import {
   ActionHeader,
   ActionFooter,
   PageMenu,
+  ModalBase,
+  ModalHeader,
+  ModalBody,
+  ActivityLog,
+  SeenByLog,
+  SeenByLogProps,
 } from "../components";
-import { useBookmarks, useInbox } from "../../examples";
+import { useBookmarks, useInbox, useActivityLog } from "../../examples";
 
 const meta = {
   title: "Demo/Inbox",
@@ -34,36 +40,55 @@ export const InboxPage = () => {
     bulkMode,
     bulkIds,
     bulkMenu,
+    modal,
+    closeModal,
     unselectAll,
   } = useInbox({});
 
-  if (dialog) {
-    return (
-      <Layout {...layout}>
-        <Dialog {...dialog} />
-      </Layout>
-    );
-  }
+  const activityLog = useActivityLog();
 
   return (
     <Layout {...layout}>
-      <ActionHeader
-        hidden={!bulkMode}
-        title={bulkIds?.length + " valgt"}
-        dismissable={true}
-        onDismiss={unselectAll}
-      />
-      <PageBase margin="page">
-        <Toolbar {...toolbar} />
-        {results && (
-          <DialogList items={results.items} groups={results?.groups} />
-        )}
-      </PageBase>
-      <ActionFooter hidden={!bulkMode}>
-        {bulkMenu && (
-          <PageMenu items={bulkMenu.items} id="action" theme="base" />
-        )}
-      </ActionFooter>
+      {dialog ? (
+        <Dialog {...dialog} />
+      ) : (
+        <>
+          <ActionHeader
+            hidden={!bulkMode}
+            title={bulkIds?.length + " valgt"}
+            dismissable={true}
+            onDismiss={unselectAll}
+          />
+          <PageBase margin="page">
+            <Toolbar {...toolbar} />
+            {results && (
+              <DialogList items={results.items} groups={results?.groups} />
+            )}
+          </PageBase>
+          <ActionFooter hidden={!bulkMode}>
+            {bulkMenu && (
+              <PageMenu items={bulkMenu.items} id="action" theme="base" />
+            )}
+          </ActionFooter>
+        </>
+      )}
+
+      {modal && (
+        <ModalBase open={true} onClose={closeModal!!} variant="content">
+          <ModalHeader title={modal?.title} onClose={closeModal} />
+          <ModalBody>
+            {modal?.type === "seen-by-log" ? (
+              <SeenByLog
+                {...(modal?.seenByLog as SeenByLogProps)}
+                title={undefined}
+                collapsible={false}
+              />
+            ) : (
+              activityLog && <ActivityLog {...activityLog} />
+            )}
+          </ModalBody>
+        </ModalBase>
+      )}
     </Layout>
   );
 };

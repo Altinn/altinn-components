@@ -81,7 +81,7 @@ export const Transmission = ({
       as="button"
       ariaLabel={title}
     >
-      <Section padding={4}>
+      <Section padding={4} spacing={4}>
         {/*
         <Byline>
           <strong>{sender?.name + ", "}</strong> {createdAtLabel}
