@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.33.4](https://github.com/Altinn/altinn-components/compare/v0.33.3...v0.33.4) (2025-07-04)
+
+
+### Bug Fixes
+
+* context menu was closing all other menus ([#517](https://github.com/Altinn/altinn-components/issues/517)) ([2779775](https://github.com/Altinn/altinn-components/commit/2779775458603dc8ea37cf140b994c5446a743bc))
+
 ## [0.33.3](https://github.com/Altinn/altinn-components/compare/v0.33.2...v0.33.3) (2025-07-04)
 
 
