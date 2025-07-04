@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.33.3](https://github.com/Altinn/altinn-components/compare/v0.33.2...v0.33.3) (2025-07-04)
+
+
+### Bug Fixes
+
+* dialog stories with content ([#514](https://github.com/Altinn/altinn-components/issues/514)) ([ceaaaec](https://github.com/Altinn/altinn-components/commit/ceaaaecedb9f9a5488fbab03b3fee39082a6c0f7))
+* seen by log ([#516](https://github.com/Altinn/altinn-components/issues/516)) ([2312108](https://github.com/Altinn/altinn-components/commit/231210843aa98c7af9bdd2c6e1a553e0ef36f4ba))
+
 ## [0.33.2](https://github.com/Altinn/altinn-components/compare/v0.33.1...v0.33.2) (2025-07-02)
 
 
