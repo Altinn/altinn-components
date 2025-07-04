@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { SeenByLog } from './SeenByLog';
+import { useState } from 'react';
+import { Button, List, ModalBase, ModalBody, ModalHeader, SeenByLog, type SeenByLogProps, Transmission } from '../';
+import { skatt } from '../../../examples/avatar';
 
 const meta = {
   title: 'Inbox/Dialog/SeenByLog',
@@ -59,4 +61,58 @@ export const Collapsible: Story = {
   args: {
     collapsible: true,
   },
+};
+
+export const NoTitle: Story = {
+  args: {
+    title: undefined,
+  },
+};
+
+export const SeenByLogModal = (args: SeenByLogProps) => {
+  const [open, setOpen] = useState<boolean>(true);
+
+  const onClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Open Modal</Button>
+      <ModalBase open={open} onClose={onClose} variant="content">
+        <ModalHeader title="Hvem har sett dialogen?" onClose={onClose} />
+        <ModalBody>
+          <SeenByLog items={args.items} />
+        </ModalBody>
+      </ModalBase>
+    </>
+  );
+};
+
+export const TransmissionSeenBy = (args: SeenByLogProps) => {
+  return (
+    <List>
+      <Transmission
+        id="1"
+        seenByLog={{ ...args, collapsible: true }}
+        sender={skatt}
+        title="Forsendelsen er godkjent."
+        type={{ value: 'acceptance', label: 'Godkjent' }}
+        attachments={{
+          items: [
+            {
+              href: '#',
+              label: 'Dokument 1.pdf',
+            },
+            {
+              href: '#',
+              label: 'Dokument 2.pdf',
+            },
+          ],
+        }}
+      >
+        <p>Forsendelsen din er godkjent.</p>
+      </Transmission>
+    </List>
+  );
 };

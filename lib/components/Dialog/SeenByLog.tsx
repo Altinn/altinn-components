@@ -1,20 +1,12 @@
 'use client';
-import { useState } from 'react';
-import { type AvatarProps, Badge, Byline, List, Section, SeenByLogButton } from '..';
-import styles from './SeenByLog.module.css';
-
-export interface SeenByLogItem extends AvatarProps {
-  id: string;
-  seenAt: string;
-  seenAtLabel: string;
-  isEndUser?: boolean;
-}
+import { Fragment, useState } from 'react';
+import { Divider, Flex, List, Section, SeenByLogButton, SeenByLogItem, type SeenByLogItemProps } from '..';
 
 export interface SeenByLogProps {
   title?: string;
   collapsible?: boolean;
   expanded?: boolean;
-  items: SeenByLogItem[];
+  items: SeenByLogItemProps[];
   endUserLabel?: string;
 }
 
@@ -23,33 +15,36 @@ export interface SeenByLogProps {
  */
 
 export const SeenByLog = ({ collapsible, expanded, title, items, endUserLabel = 'You' }: SeenByLogProps) => {
-  const [open, setOpen] = useState<boolean>(expanded || !collapsible);
+  const [open, setOpen] = useState<boolean>(expanded || (!collapsible && true));
 
   const onToggle = () => {
     setOpen((prevState) => !prevState);
   };
 
   return (
-    <Section spacing={2}>
+    <Section spacing={1}>
       {title && (
-        <div>
-          <SeenByLogButton icon={{ items }} onClick={onToggle}>
-            {title}
-          </SeenByLogButton>
-        </div>
+        <Flex>
+          {collapsible ? (
+            <SeenByLogButton icon={{ items }} as="button" onClick={onToggle}>
+              {title}
+            </SeenByLogButton>
+          ) : (
+            <SeenByLogButton icon={{ items }} as="div">
+              {title}
+            </SeenByLogButton>
+          )}
+        </Flex>
       )}
+      {title && open && <Divider />}
       {open && (
-        <List className={styles.list}>
-          {items?.map((item) => {
-            const { id, name, seenAt, seenAtLabel, isEndUser } = item;
-
+        <List size="sm" spacing={1}>
+          {items?.map((item, index) => {
             return (
-              <li key={id} className={styles.item}>
-                <Byline size="sm" datetime={seenAt} avatar={{ name, type: 'person' }}>
-                  <strong>{name + ','}</strong> {seenAtLabel}
-                </Byline>
-                {isEndUser && <Badge theme="surface">{endUserLabel}</Badge>}
-              </li>
+              <Fragment key={item.id}>
+                {index > 0 && <Divider />}
+                <SeenByLogItem {...item} key={item.id} endUserLabel={endUserLabel} />
+              </Fragment>
             );
           })}
         </List>

@@ -30,3 +30,4 @@ export * from './DialogAttachments';
 
 export * from './SeenByLog';
 export * from './SeenByLogButton';
+export * from './SeenByLogItem';

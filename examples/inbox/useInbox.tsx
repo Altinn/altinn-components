@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useInboxLayout, useInboxSearch, useInboxToolbar } from '../';
 import { ListItemSelect } from '../../lib';
 import type {
+  ActivityLogProps,
   DialogContactProps,
   DialogLayoutProps,
   DialogListItemProps,
@@ -10,6 +11,7 @@ import type {
   LayoutProps,
   MenuProps,
   SearchbarProps,
+  SeenByLogProps,
   ToolbarProps,
 } from '../../lib';
 import { ContextMenu } from '../../lib';
@@ -21,6 +23,14 @@ interface UseInboxDialogProps extends DialogListItemProps {
   contextMenu?: DialogLayoutProps['contextMenu'];
   pageMenu?: DialogLayoutProps['pageMenu'];
   contact?: DialogContactProps;
+}
+
+interface UseInboxModalProps {
+  id?: string;
+  type?: string;
+  title?: string;
+  activityLog?: ActivityLogProps;
+  seenByLog?: SeenByLogProps;
 }
 
 export interface UseInboxProps extends LayoutProps {
@@ -36,6 +46,9 @@ export interface UseInboxProps extends LayoutProps {
   bulkMenu?: MenuProps;
   bulkIds?: string[];
   unselectAll?: () => void;
+  modalId?: string;
+  modal?: UseInboxModalProps;
+  closeModal?: () => void;
 }
 
 export const useInbox = ({ pageId = 'inbox', q, ...props }: UseInboxProps): UseInboxProps => {
@@ -58,6 +71,8 @@ export const useInbox = ({ pageId = 'inbox', q, ...props }: UseInboxProps): UseI
   const [trashedIds, setTrashedIds] = useState(trashed);
 
   const [dialogId, setDialogId] = useState(props?.dialogId || '');
+  const [modalId, setModalId] = useState<string>('');
+  const [modalType, setModalType] = useState<string>('');
 
   const onDialogId = (id: string) => {
     setSeenIds((prevState) => {
@@ -98,6 +113,11 @@ export const useInbox = ({ pageId = 'inbox', q, ...props }: UseInboxProps): UseI
       }
       return [...prev, id];
     });
+  };
+
+  const onModal = (id: string, type: string) => {
+    setModalId(id);
+    setModalType(type);
   };
 
   const list = getDialogList(dialogs, q);
@@ -180,10 +200,12 @@ export const useInbox = ({ pageId = 'inbox', q, ...props }: UseInboxProps): UseI
         unread,
         trashed,
         archived,
+        seenByLog: seenByLog as SeenByLogProps,
         onUnread,
         onArchive,
         onTrash,
         onSelect,
+        onModal,
       });
 
       return {
@@ -229,10 +251,12 @@ export const useInbox = ({ pageId = 'inbox', q, ...props }: UseInboxProps): UseI
       unread: dialog?.unread,
       trashed: dialog?.trashed,
       archived: dialog?.archived,
+      seenByLog: dialog?.seenByLog,
       onUnread,
       onArchive,
       onTrash,
       onSelect,
+      onModal,
     });
 
   const bulkMenu = {
@@ -293,7 +317,19 @@ export const useInbox = ({ pageId = 'inbox', q, ...props }: UseInboxProps): UseI
     };
   }
 
+  const modalDialog = (modalId && items?.find((item) => item.id === modalId)) || undefined;
+
+  const modal = modalDialog && {
+    id: modalId,
+    type: modalType,
+    title: modalDialog?.title,
+    seenByLog: modalDialog?.seenByLog,
+  };
+
   return {
+    modal,
+    modalId,
+    closeModal: () => setModalId(''),
     pageId,
     dialogId,
     dialog: dialog && {

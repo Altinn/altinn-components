@@ -1,5 +1,9 @@
 .icon {
   position: relative;
+  min-width: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .icon[data-size="lg"] {
@@ -30,7 +34,7 @@
 }
 
 .avatarGroup {
-  font-size: 0.75em;
+  font-size: 0.625em;
 }
 
 .badge {
