@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.33.5](https://github.com/Altinn/altinn-components/compare/v0.33.4...v0.33.5) (2025-07-04)
+
+
+### Bug Fixes
+
+* seen by log modal ([#519](https://github.com/Altinn/altinn-components/issues/519)) ([7231ad8](https://github.com/Altinn/altinn-components/commit/7231ad825cd1f3a9534965ae9cf7d91a7159fa4d))
+
 ## [0.33.4](https://github.com/Altinn/altinn-components/compare/v0.33.3...v0.33.4) (2025-07-04)
 
 
