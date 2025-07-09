@@ -2,7 +2,7 @@ import type { BadgeProps } from '../Badge';
 import { ListItem } from '../List';
 import type { ListItemProps } from '../List';
 
-export interface ResourceListItemProps extends Pick<ListItemProps, 'size' | 'controls' | 'as' | 'onClick' | 'loading'> {
+export interface ResourceListItemProps extends Pick<ListItemProps, 'size' | 'controls' | 'as' | 'onClick' | 'loading' | 'shadow'> {
   /** Unique identifier for the resource item */
   id: string;
   /** Name of the owner of the resource */
