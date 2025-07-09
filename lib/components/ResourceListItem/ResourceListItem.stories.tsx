@@ -1,45 +1,46 @@
-import { PencilIcon } from "@navikt/aksel-icons";
-import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Button } from "../Button";
-import { List } from "../List";
-import { ResourceListItem } from "./ResourceListItem";
-import resources from "../../../test-data/resources.json";
+import { PencilIcon } from '@navikt/aksel-icons';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import resources from '../../../test-data/resources.json';
+import { Button } from '../Button';
+import { List } from '../List';
+import { ResourceListItem } from './ResourceListItem';
 
 const resourceList = resources.map((resource) => (
   <ResourceListItem
+    key={resource.identifier}
     id={resource.identifier}
-    ownerName={resource.ownerName ?? ""}
+    ownerName={resource.ownerName ?? ''}
     resourceName={resource.resourceName}
-    ownerLogoUrl={resource.ownerImageUrl ?? ""}
+    ownerLogoUrl={resource.ownerImageUrl ?? ''}
     ownerLogoUrlAlt={`${resource.ownerName} logo`}
   />
 ));
 
 const meta = {
-  title: "Access/ResourceListItem",
+  title: 'Access/ResourceListItem',
   component: ResourceListItem,
-  tags: ["autodocs", "beta"],
+  tags: ['autodocs', 'beta'],
   parameters: {},
   args: {
-    size: "md",
-    id: "se_5733_1",
+    size: 'md',
+    id: 'se_5733_1',
     loading: false,
-    resourceName: "Avtale om oppbevaring om eksplosiver",
-    ownerName: "Direktoratet for samfunnssikkerhet og beredskap",
-    ownerLogoUrl: "https://altinncdn.no/orgs/dsb/dsb.png",
-    shadow: "xs",
+    resourceName: 'Avtale om oppbevaring om eksplosiver',
+    ownerName: 'Direktoratet for samfunnssikkerhet og beredskap',
+    ownerLogoUrl: 'https://altinncdn.no/orgs/dsb/dsb.png',
+    shadow: 'xs',
   },
   argTypes: {
     size: {
-      options: ["xs", "sm", "md", "lg", "xl"],
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
       control: {
-        type: "inline-radio",
+        type: 'inline-radio',
       },
     },
     shadow: {
-      options: ["none", "xs", "sm", "md", "lg"],
+      options: ['none', 'xs', 'sm', 'md', 'lg'],
       control: {
-        type: "inline-radio",
+        type: 'inline-radio',
       },
     },
   },
@@ -52,14 +53,9 @@ export const Default: Story = {
   render: (args) => (
     <List>
       <ResourceListItem
-        badge={{ label: "New", color: "success", theme: "base" }}
+        badge={{ label: 'New', color: 'success', theme: 'base' }}
         controls={
-          <Button
-            icon={PencilIcon}
-            variant="text"
-            size="sm"
-            onClick={() => alert("Endre")}
-          >
+          <Button icon={PencilIcon} variant="text" size="sm" onClick={() => alert('Endre')}>
             Endre
           </Button>
         }
