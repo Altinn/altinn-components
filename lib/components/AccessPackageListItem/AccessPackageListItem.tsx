@@ -1,37 +1,19 @@
-import { PackageIcon } from "@navikt/aksel-icons";
-import { ListItem, type ListItemProps } from "../List";
+import { PackageIcon } from '@navikt/aksel-icons';
+import { ListItem, type ListItemProps } from '../List';
 
 export interface AccessPackageListItemProps
   extends Pick<
     ListItemProps,
-    | "color"
-    | "onClick"
-    | "as"
-    | "title"
-    | "description"
-    | "size"
-    | "controls"
-    | "loading"
-    | "shadow"
+    'color' | 'onClick' | 'as' | 'title' | 'description' | 'size' | 'controls' | 'loading' | 'shadow'
   > {
   id: string;
 }
 
 export const AccessPackageListItem = ({
-  as = "button",
+  as = 'button',
   title,
-  color = "neutral",
+  color = 'neutral',
   ...props
 }: AccessPackageListItemProps) => {
-  return (
-    <ListItem
-      icon={PackageIcon}
-      as={as}
-      size="sm"
-      title={title}
-      color={color}
-      variant="tinted"
-      {...props}
-    />
-  );
+  return <ListItem icon={PackageIcon} as={as} size="sm" title={title} color={color} variant="tinted" {...props} />;
 };
