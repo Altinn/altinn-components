@@ -102,6 +102,9 @@ export const ListItemHeader = ({
     return null;
   };
 
+  /** Default aria-label to title */
+  const setAriaLabel = ariaLabel ?? typeof(title) === 'string' ? title as string : undefined;
+
   const listItemLabelId = useId();
 
   return (
@@ -121,7 +124,7 @@ export const ListItemHeader = ({
         loading={loading}
         disabled={disabled || loading}
         active={active}
-        ariaLabel={ariaLabel}
+        ariaLabel={setAriaLabel}
       />
       {select && <ListItemSelect {...select} className={styles.select} />}
       <ListItemIcon loading={loading} icon={icon} />
