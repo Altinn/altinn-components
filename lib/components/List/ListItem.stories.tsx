@@ -18,6 +18,10 @@ const variants = ['default', 'subtle', 'tinted'] as ListItemProps['variant'][];
 
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as ListItemProps['size'][];
 
+const shadows = ['none', 'xs', 'sm', 'md', 'lg'] as ListItemProps['shadow'][];
+
+const borders = ['none', 'solid', 'dotted'] as ListItemProps['border'][];
+
 const avatarGroupsProps = {
   items: [
     {
@@ -274,18 +278,17 @@ export const Variants = (args: ListItemProps) => {
 export const Shadows = (args: ListItemProps) => {
   return (
     <List>
-      {variants?.map((variant) => {
+      {shadows?.map((shadow) => {
         return (
           <>
             <ListItem
               {...args}
               icon={TeddyBearIcon}
-              title={variant}
-              description={'Variant:' + variant}
-              variant={variant}
-              shadow="xs"
+              title={shadow}
+              description={'Shadow:' + shadow}
+              shadow={shadow}
               linkIcon
-              key={variant}
+              key={shadow}
             />
           </>
         );
@@ -297,18 +300,17 @@ export const Shadows = (args: ListItemProps) => {
 export const Border = (args: ListItemProps) => {
   return (
     <List>
-      {variants?.map((variant) => {
+      {borders?.map((border) => {
         return (
           <>
             <ListItem
               {...args}
               icon={TeddyBearIcon}
-              title={variant}
-              description={'Variant:' + variant}
-              variant={variant}
-              border="solid"
+              title={border}
+              description={'Border:' + border}
+              border={border}
               linkIcon
-              key={variant}
+              key={border}
             />
           </>
         );
@@ -325,7 +327,8 @@ export const Sizes = (args: ListItemProps) => {
           <ListItem
             {...args}
             icon={{ svgElement: TeddyBearIcon, theme: 'surface' }}
-            label={size}
+            title={size}
+            description={'Size: ' + size}
             size={size}
             linkIcon
             key={size}
