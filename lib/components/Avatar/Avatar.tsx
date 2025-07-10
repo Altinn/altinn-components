@@ -89,7 +89,7 @@ export const Avatar = ({
       aria-hidden
     >
       <Skeleton loading={loading} className={styles.shape} variant="circle">
-        <div className={styles.shape} style={innerContainerStyle}>
+        <div className={styles.shape} style={usingImageUrl ? innerContainerStyle : {}}>
           {usingImageUrl && (
             <img
               src={imageUrl}
