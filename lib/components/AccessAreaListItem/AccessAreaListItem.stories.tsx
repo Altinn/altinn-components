@@ -8,12 +8,6 @@ import { AccessAreaListItem, type AccessAreaListItemProps } from './AccessAreaLi
 
 const testArea = areaGroups[1].areas[1];
 
-/* eslint-disable react/no-danger */
-const svgStringToComponent = (dataString: string, altText: string): React.FC<React.SVGProps<SVGSVGElement>> => {
-  // biome-ignore lint/security/noDangerouslySetInnerHtml: SVG content is from test data
-  return (props) => <svg aria-label={altText} dangerouslySetInnerHTML={{ __html: dataString }} {...props} />;
-};
-
 const children = (colorTheme: Color | undefined) => (
   <>
     {testArea.description && <p>{testArea.description}</p>}
@@ -33,11 +27,11 @@ const meta = {
     id: testArea.id,
     size: 'md',
     name: testArea.name,
-    iconUrl: 'https://www.svgrepo.com/show/457192/home.svg',
+    iconUrl: testArea.icon,
     badgeText: '2 of 7',
     colorTheme: 'company',
     loading: false,
-    shadow: 'xs',
+    shadow: 'sm',
   },
   argTypes: {
     expanded: {
@@ -108,12 +102,13 @@ export const AllAreas = (args: AccessAreaListItemProps) => {
                 id={area.id}
                 key={area.id}
                 name={area.name}
-                icon={svgStringToComponent(area.icon, area.name)}
+                iconUrl={area.icon}
                 colorTheme="neutral"
                 size={args.size}
                 expanded={expanded === area.id}
                 onClick={() => setExpanded((prev) => (prev === area.id ? null : area.id))}
                 badgeText={`0 of ${area.packages.length}`}
+                shadow="sm"
               >
                 {area.description && <p>{area.description}</p>}
                 <List spacing={2}>
