@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.33.7](https://github.com/Altinn/altinn-components/compare/v0.33.6...v0.33.7) (2025-07-10)
+
+
+### Bug Fixes
+
+* DialogListItem avatar safari fix ([#525](https://github.com/Altinn/altinn-components/issues/525)) ([399b494](https://github.com/Altinn/altinn-components/commit/399b494ce81fac1326ff31107541749d0a46af8c))
+
 ## [0.33.6](https://github.com/Altinn/altinn-components/compare/v0.33.5...v0.33.6) (2025-07-10)
 
 
