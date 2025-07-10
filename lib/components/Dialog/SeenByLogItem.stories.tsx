@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { List } from '../List';
 import { SeenByLogItem } from './SeenByLogItem';
 
 const meta = {
@@ -13,6 +14,13 @@ const meta = {
     seenAt: '2025-01-01 08:30',
     seenAtLabel: '1. januar kl 08.30',
   },
+  decorators: [
+    (Story) => (
+      <List>
+        <Story />
+      </List>
+    ),
+  ],
 } satisfies Meta<typeof SeenByLogItem>;
 
 export default meta;

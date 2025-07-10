@@ -5,3 +5,4 @@ export * from './skatt';
 export * from './nav';
 export * from './enova';
 export * from './mattilsynet';
+export * from './digdir';
