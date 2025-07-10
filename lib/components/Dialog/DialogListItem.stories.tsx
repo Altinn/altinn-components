@@ -1,7 +1,7 @@
 import type { Meta } from '@storybook/react-vite';
 import { Fragment, useState } from 'react';
 import { contextMenu, seenByLog } from '../../../examples';
-import { skatt } from '../../../examples/avatar';
+import { digdir, skatt } from '../../../examples/avatar';
 
 import { ContextMenu, DialogListItem, type DialogListItemProps, type DialogListItemSize, ListItemSelect } from '..';
 
@@ -40,6 +40,12 @@ export default meta;
 
 export const Default = {
   args: {},
+};
+
+export const WideLogo = {
+  args: {
+    sender: digdir,
+  },
 };
 
 export const Unread = {

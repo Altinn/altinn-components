@@ -35,6 +35,8 @@ export interface AvatarProps {
   style?: CSSProperties;
   /** Whether the avatar is loading. */
   loading?: boolean;
+
+  innerContainerStyle?: CSSProperties;
 }
 
 export const isAvatarProps = (icon: unknown): icon is AvatarProps => {
@@ -55,6 +57,7 @@ export const Avatar = ({
   loading,
   className,
   style = {},
+  innerContainerStyle = {},
 }: AvatarProps): ReactElement => {
   const [hasImageError, setHasImageError] = useState<boolean>(false);
   const variant: AvatarVariant = type === 'person' ? 'circle' : 'square';
@@ -83,7 +86,7 @@ export const Avatar = ({
       aria-hidden
     >
       <Skeleton loading={loading} className={styles.shape} variant="circle">
-        <div className={styles.shape}>
+        <div className={styles.shape} style={innerContainerStyle}>
           {usingImageUrl && (
             <img
               src={imageUrl}
