@@ -44,6 +44,7 @@ export const Byline = ({
                 size={size}
                 className={styles.avatar}
                 innerContainerStyle={{ width: 'fit-content' }}
+                avatarImageStyle={{ height: '1em', width: 'auto' }}
               />
             )
           )}
