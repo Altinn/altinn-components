@@ -19,5 +19,5 @@
     "types": ["./typings.d.ts", "vite/client"]
   },
   "include": ["./lib/**/*.ts", "./lib/**/*.tsx", "./lib/hooks/*.tsx", "./**/*.d.ts"],
-  "exclude": ["./lib/components/AccessAreaList/AccessAreaListItem.stories.tsx"]
+  "exclude": ["lib/components/AccessAreaListItem/AccessAreaListItem.stories.tsx"]
 }
