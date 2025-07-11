@@ -48,6 +48,12 @@ export const WideLogo = {
   },
 };
 
+export const WithoutLogo = {
+  args: {
+    sender: { ...digdir, imageUrl: '' },
+  },
+};
+
 export const Unread = {
   args: {
     unread: true,
