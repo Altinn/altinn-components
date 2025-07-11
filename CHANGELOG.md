@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.33.8](https://github.com/Altinn/altinn-components/compare/v0.33.7...v0.33.8) (2025-07-11)
+
+
+### Bug Fixes
+
+* Fix avatar initials not showing when no img provided ([#527](https://github.com/Altinn/altinn-components/issues/527)) ([6ec304b](https://github.com/Altinn/altinn-components/commit/6ec304b1c87912ca72ad5a9ed2f8564cff061627))
+
 ## [0.33.7](https://github.com/Altinn/altinn-components/compare/v0.33.6...v0.33.7) (2025-07-10)
 
 
