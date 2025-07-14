@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.33.8](https://github.com/Altinn/altinn-components/compare/v0.33.7...v0.33.8) (2025-07-11)
+
+
+### Bug Fixes
+
+* Fix avatar initials not showing when no img provided ([#527](https://github.com/Altinn/altinn-components/issues/527)) ([6ec304b](https://github.com/Altinn/altinn-components/commit/6ec304b1c87912ca72ad5a9ed2f8564cff061627))
+
+## [0.33.7](https://github.com/Altinn/altinn-components/compare/v0.33.6...v0.33.7) (2025-07-10)
+
+
+### Bug Fixes
+
+* DialogListItem avatar safari fix ([#525](https://github.com/Altinn/altinn-components/issues/525)) ([399b494](https://github.com/Altinn/altinn-components/commit/399b494ce81fac1326ff31107541749d0a46af8c))
+
+## [0.33.6](https://github.com/Altinn/altinn-components/compare/v0.33.5...v0.33.6) (2025-07-10)
+
+
+### Bug Fixes
+
+* dialog list item stories ([#521](https://github.com/Altinn/altinn-components/issues/521)) ([fb5877b](https://github.com/Altinn/altinn-components/commit/fb5877becc96108f27880b082c96f7be56d3ecf5))
+* wide logos on DialogListItem ([#524](https://github.com/Altinn/altinn-components/issues/524)) ([f361265](https://github.com/Altinn/altinn-components/commit/f361265e241ca2f5b22a61e7b014a4f22ce07f58))
+
 ## [0.33.5](https://github.com/Altinn/altinn-components/compare/v0.33.4...v0.33.5) (2025-07-04)
 
 

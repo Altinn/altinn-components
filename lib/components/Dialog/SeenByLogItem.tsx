@@ -17,7 +17,7 @@ export const SeenByLogItem = ({ name, seenAt, seenAtLabel, isEndUser, endUserLab
   const badge = isEndUser && { label: endUserLabel };
 
   return (
-    <Flex align="center" spacing={2}>
+    <Flex align="center" spacing={2} as={'li'}>
       <Byline size="sm" datetime={seenAt} avatar={{ name, type: 'person' }}>
         <strong>{name + ','}</strong> {seenAtLabel}
       </Byline>

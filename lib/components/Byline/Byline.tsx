@@ -38,7 +38,15 @@ export const Byline = ({
           {avatarGroup ? (
             <AvatarGroup {...avatarGroup} size={size} className={styles.avatarGroup} />
           ) : (
-            avatar && <Avatar {...avatar} size={size} className={styles.avatar} />
+            avatar && (
+              <Avatar
+                {...avatar}
+                size={size}
+                className={styles.avatar}
+                innerContainerStyle={{ width: 'fit-content' }}
+                avatarImageStyle={{ height: '1em', width: 'auto' }}
+              />
+            )
           )}
         </Skeleton>
       )}
