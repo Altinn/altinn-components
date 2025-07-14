@@ -1,13 +1,10 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
-import React from "react";
-import areaGroups from "../../../test-data/accesspackages.json";
-import type { Color } from "../../types";
-import { AccessPackageListItem } from "../AccessPackageListItem";
-import { List } from "../List";
-import {
-  AccessAreaListItem,
-  type AccessAreaListItemProps,
-} from "./AccessAreaListItem";
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import React from 'react';
+import areaGroups from '../../../test-data/accesspackages.json';
+import type { Color } from '../../types';
+import { AccessPackageListItem } from '../AccessPackageListItem';
+import { List } from '../List';
+import { AccessAreaListItem, type AccessAreaListItemProps } from './AccessAreaListItem';
 
 const testArea = areaGroups[1].areas[1];
 
@@ -16,60 +13,55 @@ const children = (colorTheme: Color | undefined) => (
     {testArea.description && <p>{testArea.description}</p>}
     <List spacing={2}>
       {testArea.packages.map((pkg, index) => (
-        <AccessPackageListItem
-          id={pkg.id}
-          key={pkg.id}
-          title={pkg.name}
-          color={index < 2 ? colorTheme : "neutral"}
-        />
+        <AccessPackageListItem id={pkg.id} key={pkg.id} title={pkg.name} color={index < 2 ? colorTheme : 'neutral'} />
       ))}
     </List>
   </>
 );
 
 const meta = {
-  title: "Access/AccessAreaListItem",
+  title: 'Access/AccessAreaListItem',
   component: AccessAreaListItem,
-  tags: ["autodocs", "beta"],
+  tags: ['autodocs', 'beta'],
   args: {
     id: testArea.id,
-    size: "md",
+    size: 'md',
     name: testArea.name,
     iconUrl: testArea.icon,
-    badgeText: "2 of 7",
-    colorTheme: "company",
+    badgeText: '2 of 7',
+    colorTheme: 'company',
     loading: false,
-    shadow: "sm",
-    border: "none",
+    shadow: 'sm',
+    border: 'none',
   },
   argTypes: {
     expanded: {
       control: {
-        type: "boolean",
+        type: 'boolean',
       },
     },
     size: {
-      options: ["sm", "md", "lg"],
+      options: ['sm', 'md', 'lg'],
       control: {
-        type: "inline-radio",
+        type: 'inline-radio',
       },
     },
     colorTheme: {
-      options: ["neutral", "company", "person"],
+      options: ['neutral', 'company', 'person'],
       control: {
-        type: "select",
+        type: 'select',
       },
     },
     shadow: {
-      options: ["none", "xs", "sm", "md", "lg"],
+      options: ['none', 'xs', 'sm', 'md', 'lg'],
       control: {
-        type: "inline-radio",
+        type: 'inline-radio',
       },
     },
     border: {
-      options: ["none", "solid", "dotted"],
+      options: ['none', 'solid', 'dotted'],
       control: {
-        type: "select",
+        type: 'select',
       },
     },
   },
@@ -81,9 +73,7 @@ type Story = StoryObj<typeof meta>;
 export const AreaListItemStory: Story = {
   render: (args) => (
     <List>
-      <AccessAreaListItem {...args}>
-        {children(args.colorTheme)}
-      </AccessAreaListItem>
+      <AccessAreaListItem {...args}>{children(args.colorTheme)}</AccessAreaListItem>
     </List>
   ),
 };
@@ -110,10 +100,7 @@ export const AllAreas = (args: AccessAreaListItemProps) => {
   return (
     <div>
       {areaGroups.map((group) => (
-        <div
-          key={group.id}
-          style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
-        >
+        <div key={group.id} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
           <h2>{group.name}</h2>
           <p>{group.description}</p>
           <List spacing={2}>
@@ -126,20 +113,14 @@ export const AllAreas = (args: AccessAreaListItemProps) => {
                 colorTheme="neutral"
                 size={args.size}
                 expanded={expanded === area.id}
-                onClick={() =>
-                  setExpanded((prev) => (prev === area.id ? null : area.id))
-                }
+                onClick={() => setExpanded((prev) => (prev === area.id ? null : area.id))}
                 badgeText={`0 of ${area.packages.length}`}
                 shadow="sm"
               >
                 {area.description && <p>{area.description}</p>}
                 <List spacing={2}>
                   {area.packages.map((pkg) => (
-                    <AccessPackageListItem
-                      id={pkg.id}
-                      key={pkg.id}
-                      title={pkg.name}
-                    />
+                    <AccessPackageListItem id={pkg.id} key={pkg.id} title={pkg.name} />
                   ))}
                 </List>
               </AccessAreaListItem>
