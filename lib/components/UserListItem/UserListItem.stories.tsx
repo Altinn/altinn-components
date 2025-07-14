@@ -1,7 +1,6 @@
 import { EyeIcon, TrashIcon } from '@navikt/aksel-icons';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta } from '@storybook/react-vite';
 import { useState } from 'react';
-import { Button } from '../Button';
 import { ContextMenu } from '../ContextMenu';
 import { List } from '../List';
 import { UserListItem, type UserListItemProps } from './UserListItem';
