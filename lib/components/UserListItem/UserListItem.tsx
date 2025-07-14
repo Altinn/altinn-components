@@ -1,5 +1,4 @@
 import { TokenIcon } from '@navikt/aksel-icons';
-import { ArrowDownRightIcon } from '@navikt/aksel-icons';
 import { Avatar, type AvatarGroupProps, type AvatarProps } from '../Avatar';
 import { Badge } from '../Badge';
 import type { IconProps, SvgElement } from '../Icon';
