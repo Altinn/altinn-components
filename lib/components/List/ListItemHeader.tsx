@@ -1,11 +1,7 @@
-import {
-  ChevronDownIcon,
-  ChevronRightIcon,
-  ChevronUpIcon,
-} from "@navikt/aksel-icons";
+import { ChevronDownIcon, ChevronRightIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 
-import cx from "classnames";
-import { type ReactNode, isValidElement, useId } from "react";
+import cx from 'classnames';
+import { type ReactNode, isValidElement, useId } from 'react';
 import {
   Badge,
   type BadgeProps,
@@ -21,8 +17,8 @@ import {
   ListItemSelect,
   type ListItemSelectProps,
   type ListItemSize,
-} from "..";
-import styles from "./listItemHeader.module.css";
+} from '..';
+import styles from './listItemHeader.module.css';
 
 export interface ListItemHeaderProps extends ListItemLinkProps {
   /** The color of the list item. */
@@ -44,11 +40,11 @@ export interface ListItemHeaderProps extends ListItemLinkProps {
   /** Whether to display the item with a link icon */
   linkIcon?: boolean;
   /** Title */
-  title?: ListItemLabelProps["title"];
+  title?: ListItemLabelProps['title'];
   /** Description */
-  description?: ListItemLabelProps["description"];
+  description?: ListItemLabelProps['description'];
   /** List item icon */
-  icon?: ListItemIconProps["icon"];
+  icon?: ListItemIconProps['icon'];
   /** Optional badge */
   badge?: BadgeProps | ReactNode | undefined;
   /** Custom controls */
@@ -92,12 +88,12 @@ export const ListItemHeader = ({
       ? ChevronUpIcon
       : ChevronDownIcon
     : linkIcon
-    ? ChevronRightIcon
-    : undefined;
+      ? ChevronRightIcon
+      : undefined;
 
   /** Badge can be custom, or a Badge object. */
   const renderBadge = (): ReactNode => {
-    if (badge && !loading && typeof badge === "object" && "label" in badge) {
+    if (badge && !loading && typeof badge === 'object' && 'label' in badge) {
       return <Badge {...(badge as BadgeProps)} />;
     }
     if (isValidElement(badge)) {
@@ -107,8 +103,7 @@ export const ListItemHeader = ({
   };
 
   /** Default aria-label to title */
-  const setAriaLabel =
-    ariaLabel ?? typeof title === "string" ? (title as string) : undefined;
+  const setAriaLabel = (ariaLabel ?? typeof title === 'string') ? (title as string) : undefined;
 
   const listItemLabelId = useId();
 
@@ -154,7 +149,7 @@ export const ListItemHeader = ({
                 <Icon
                   svgElement={applicableIcon}
                   style={{
-                    fontSize: "1.5rem",
+                    fontSize: '1.5rem',
                   }}
                 />
               </span>
