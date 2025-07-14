@@ -32,7 +32,7 @@ function isReactNode(value: unknown): value is ReactNode {
 
 const getTitleProps = (title: HeadingProps | ReactNode | string) => {
   const defaultProps: HeadingProps = {
-    as: 'h2',
+    as: 'h3',
     size: 'sm',
     //    leading: "tight",
   };
@@ -51,7 +51,7 @@ const getTitleProps = (title: HeadingProps | ReactNode | string) => {
 
 const getDescriptionProps = (description: HeadingProps | ReactNode | string) => {
   const defaultProps: HeadingProps = {
-    as: 'h3',
+    as: 'span',
     size: 'xs',
     weight: 'normal',
     variant: 'subtle',
@@ -81,8 +81,8 @@ export const ListItemLabel = ({
   className,
 }: ListItemLabelProps) => {
   if (title && value) {
-    const titleProps = title && getDescriptionProps(title);
-    const descriptionProps = value && getTitleProps(value);
+    const titleProps = title && getTitleProps(title);
+    const descriptionProps = value && getDescriptionProps(value);
 
     return (
       <span className={cx(styles.label, className)} id={id} data-size={size}>
