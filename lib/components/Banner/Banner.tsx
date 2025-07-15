@@ -39,13 +39,15 @@ export const Banner = ({ closeTitle = 'close', onClose, text, color, sticky = tr
         <InformationSquareIcon className={styles.infoIcon} aria-hidden />
         <span>{text}</span>
       </div>
-      <IconButton
-        icon={XMarkIcon}
-        variant="solid"
-        onClick={onClose}
-        className={styles.dismiss}
-        iconAltText={closeTitle}
-      />
+      {!!onClose && (
+        <IconButton
+          icon={XMarkIcon}
+          variant="solid"
+          onClick={onClose}
+          className={styles.dismiss}
+          iconAltText={closeTitle}
+        />
+      )}
     </section>
   );
 };

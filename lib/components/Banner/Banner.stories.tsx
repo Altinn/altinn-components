@@ -23,6 +23,14 @@ export const Default: Story = {
   args: {},
 };
 
+export const WithoutCloseButton = () => {
+  return (
+    <Flex direction="col" spacing={3}>
+      <Banner text="Dette banneret har ingen lukke-knapp" />
+    </Flex>
+  );
+};
+
 export const Colors = (args: BannerProps) => {
   const colors = Object.keys(BannerColorEnum) as BannerColor[];
 
