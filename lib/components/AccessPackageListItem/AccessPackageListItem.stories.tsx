@@ -16,6 +16,8 @@ const meta = {
     color: 'neutral',
     loading: false,
     shadow: 'xs',
+    border: 'none',
+    as: 'button',
   },
   argTypes: {
     size: {
@@ -34,6 +36,18 @@ const meta = {
       options: ['none', 'xs', 'sm', 'md', 'lg'],
       control: {
         type: 'inline-radio',
+      },
+    },
+    as: {
+      options: ['button', 'div', 'a'],
+      control: {
+        type: 'select',
+      },
+    },
+    border: {
+      options: ['none', 'solid', 'dashed'],
+      control: {
+        type: 'select',
       },
     },
   },

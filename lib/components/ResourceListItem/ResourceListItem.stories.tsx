@@ -29,6 +29,8 @@ const meta = {
     ownerName: 'Direktoratet for samfunnssikkerhet og beredskap',
     ownerLogoUrl: 'https://altinncdn.no/orgs/dsb/dsb.png',
     shadow: 'xs',
+    border: 'none',
+    as: 'div',
   },
   argTypes: {
     size: {
@@ -41,6 +43,18 @@ const meta = {
       options: ['none', 'xs', 'sm', 'md', 'lg'],
       control: {
         type: 'inline-radio',
+      },
+    },
+    as: {
+      options: ['div', 'button', 'a', 'span'],
+      control: {
+        type: 'select',
+      },
+    },
+    border: {
+      options: ['none', 'solid', 'dashed'],
+      control: {
+        type: 'select',
       },
     },
   },

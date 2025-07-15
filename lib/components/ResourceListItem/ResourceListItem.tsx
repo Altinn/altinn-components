@@ -3,7 +3,7 @@ import { ListItem } from '../List';
 import type { ListItemProps } from '../List';
 
 export interface ResourceListItemProps
-  extends Pick<ListItemProps, 'size' | 'controls' | 'as' | 'onClick' | 'loading' | 'shadow'> {
+  extends Pick<ListItemProps, 'size' | 'controls' | 'as' | 'onClick' | 'loading' | 'shadow' | 'border'> {
   /** Unique identifier for the resource item */
   id: string;
   /** Name of the owner of the resource */
