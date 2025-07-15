@@ -103,7 +103,7 @@ export const ListItemHeader = ({
   };
 
   /** Default aria-label to title */
-  const setAriaLabel = (ariaLabel ?? typeof title === 'string') ? (title as string) : undefined;
+  const setAriaLabel = ariaLabel !== undefined ? ariaLabel : typeof title === 'string' ? (title as string) : undefined;
 
   const listItemLabelId = useId();
 

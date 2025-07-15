@@ -11,6 +11,7 @@ const meta = {
   tags: ['autodocs', 'beta'],
   parameters: {},
   args: {
+    id: 'user-1',
     size: 'md',
     loading: false,
     name: 'Julie Josefine Beritsen',
@@ -23,6 +24,11 @@ const meta = {
     as: 'div',
     interactive: true,
     subUnit: false,
+    titleAs: 'h3',
+    border: 'none',
+    color: 'company',
+    expanded: false,
+    children: <p>Custom content</p>,
   },
   argTypes: {
     size: {
@@ -42,14 +48,66 @@ const meta = {
       control: {
         type: 'inline-radio',
       },
-      as: {
-        type: 'select',
-        options: ['div', 'button', 'a', 'span'],
-      },
-      // Disable complex controls
-      children: { control: false },
-      onClick: { control: false },
     },
+    as: {
+      options: ['div', 'button', 'a', 'span'],
+      control: {
+        type: 'select',
+      },
+    },
+    titleAs: {
+      options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'div', 'span'],
+      control: {
+        type: 'select',
+      },
+    },
+    border: {
+      options: ['none', 'solid', 'dotted'],
+      control: {
+        type: 'inline-radio',
+      },
+    },
+    color: {
+      options: ['inherit', 'accent', 'company', 'person', 'neutral'],
+      control: {
+        type: 'select',
+      },
+    },
+    loading: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    interactive: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    linkIcon: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    collapsible: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    expanded: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    subUnit: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    // Disable complex controls
+    children: { control: false },
+    onClick: { control: false },
+    controls: { control: false },
+    id: { control: false },
   },
 } satisfies Meta<typeof UserListItem>;
 
@@ -71,8 +129,11 @@ export const MultipleRoles = (args: UserListItemProps) => {
         name="Narvesen AS"
         type="company"
         description="Organisasjonsnummer: 123456789"
-        roleNames={['Regnskapsfører', 'Styrets leder']}
-        interactive={false}
+        roleNames={['Regnskapsfører', 'Klientadministrator', 'Hovedadministrator']}
+        interactive={true}
+        linkIcon={true}
+        onClick={() => alert(`You clicked the link - yay!`)}
+        as={'a'}
       />
     </List>
   );
@@ -128,6 +189,57 @@ export const WithSubUnits = (args: UserListItemProps) => {
           </List>
         </div>
       </UserListItem>
+    </List>
+  );
+};
+
+export const DifferentHeadingLevelsAndSizes = (args: UserListItemProps) => {
+  return (
+    <List>
+      <UserListItem
+        {...args}
+        name="XLarge h1 org"
+        type="company"
+        description="Organisasjonsnummer: 123456680"
+        interactive={false}
+        titleAs="h1"
+        size="xl"
+      />
+      <UserListItem
+        {...args}
+        name="Large h2 org"
+        type="company"
+        description="Organisasjonsnummer: 123456669"
+        interactive={false}
+        titleAs="h2"
+        size="lg"
+      />
+      <UserListItem
+        {...args}
+        name="Medium h3 org (default)"
+        type="company"
+        description="Organisasjonsnummer: 123456670"
+        interactive={false}
+        size="md"
+      />
+      <UserListItem
+        {...args}
+        name="Small h4 org"
+        type="company"
+        description="Organisasjonsnummer: 123456641"
+        interactive={false}
+        size="sm"
+        titleAs="h4"
+      />
+      <UserListItem
+        {...args}
+        name="Xsmall h5 org"
+        type="company"
+        description="Organisasjonsnummer: 123456621"
+        interactive={false}
+        size="xs"
+        titleAs="h5"
+      />
     </List>
   );
 };

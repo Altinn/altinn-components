@@ -83,6 +83,7 @@ export const ListItemLabel = ({
   if (title && value) {
     const titleProps = title && getTitleProps(title);
     const descriptionProps = value && getDescriptionProps(value);
+    console.log('value', value); // Debugging line, can be removed later
 
     return (
       <span className={cx(styles.label, className)} id={id} data-size={size}>
@@ -101,6 +102,8 @@ export const ListItemLabel = ({
   const titleProps = title && getTitleProps(title);
   const descriptionProps = description && getDescriptionProps(description);
 
+  console.log('titleProps', titleProps); // Debugging line, can be removed later
+  console.log('descriptionProps', descriptionProps); // Debugging line, can be removed later
   return (
     <span className={cx(styles.label, className)} id={id} data-size={size}>
       {children ? (

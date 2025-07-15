@@ -15,6 +15,8 @@ export interface UserListItemProps
     | 'onClick'
     | 'loading'
     | 'shadow'
+    | 'border'
+    | 'color'
     | 'linkIcon'
     | 'expanded'
     | 'collapsible'
@@ -34,8 +36,8 @@ export interface UserListItemProps
   description?: string;
   /** Roles of the user to be displayed */
   roleNames?: string[];
-  /** The explicit level of the title, if diverting from the default size-adjusted level */
-  titleAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  /** The explicit heading or tag of the title, if diverting from the default heading */
+  titleAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'div' | 'span';
   /** Display as subUnit */
   subUnit?: boolean;
 }
@@ -47,6 +49,7 @@ export const UserListItem = ({
   roleNames,
   titleAs = 'h3',
   subUnit = false,
+  loading = false,
   ...props
 }: UserListItemProps) => {
   let icon: IconProps | SvgElement | AvatarProps | AvatarGroupProps;
@@ -67,19 +70,25 @@ export const UserListItem = ({
 
   const subUnitAvatar = subUnit && <Avatar name={name} type={'company'} className={styles.subUnitAvatar} />;
 
-  const badges = roleNames ? (
-    <div className={styles.badges}>
-      {roleNames.map((role) => (
-        <Badge label={role} key={role}>
-          {role}
-        </Badge>
-      ))}
-    </div>
-  ) : undefined;
+  const badges =
+    !loading && roleNames ? (
+      <div className={styles.badges}>
+        {roleNames.map((role) => (
+          <Badge label={role} key={role} color={props.color}>
+            {role}
+          </Badge>
+        ))}
+      </div>
+    ) : undefined;
 
   const label = (
     <div className={styles.label} data-size={props.size}>
-      <ListItemLabel title={{ children: name, as: titleAs }} description={description} size={props.size} />
+      <ListItemLabel
+        title={{ children: name, as: titleAs }}
+        description={description}
+        size={props.size}
+        loading={loading}
+      />
       {badges}
     </div>
   );
@@ -90,6 +99,7 @@ export const UserListItem = ({
       ariaLabel={name}
       label={label}
       description={description}
+      loading={loading}
       {...props}
     />
   );
