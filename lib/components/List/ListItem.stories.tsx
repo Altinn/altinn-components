@@ -459,6 +459,7 @@ export const OverrideTitleAs = (args: ListItemProps) => {
       <ListItem {...args} icon={HeadCloudIcon} title={{ as: 'h3', children: 'Title as H3' }} />
       <ListItem {...args} icon={HeadCloudIcon} title={{ as: 'p', children: 'Title as P' }} />
       <ListItem {...args} icon={HeadCloudIcon} title={{ as: 'span', children: 'Title as span' }} />
+      <ListItem {...args} icon={HeadCloudIcon} title={{ as: 'h2', children: 'Title as H2' }} />
     </List>
   );
 };
