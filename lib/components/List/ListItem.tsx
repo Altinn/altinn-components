@@ -84,6 +84,7 @@ export const ListItem = ({
   ...rest
 }: ListItemProps): ReactElement => {
   const applicableLabel = typeof label === 'function' ? label() : label;
+  const renderChildren = expanded ? children : null
   return (
     <ListItemBase
       className={styles.item}
@@ -116,7 +117,7 @@ export const ListItem = ({
       >
         {applicableLabel}
       </ListItemHeader>
-      {expanded ? children : null}
+      {renderChildren}
     </ListItemBase>
   );
 };
