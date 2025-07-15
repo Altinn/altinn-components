@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.34.0](https://github.com/Altinn/altinn-components/compare/v0.33.8...v0.34.0) (2025-07-15)
+
+
+### Features
+
+* Banner only showing 'X' if a onClose prop is provided ([#530](https://github.com/Altinn/altinn-components/issues/530)) ([7f150d3](https://github.com/Altinn/altinn-components/commit/7f150d36833db1f131097f8a9ce33a8977f7f9ae))
+
 ## [0.33.8](https://github.com/Altinn/altinn-components/compare/v0.33.7...v0.33.8) (2025-07-11)
 
 
