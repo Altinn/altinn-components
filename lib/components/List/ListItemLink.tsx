@@ -38,6 +38,9 @@ export const ListItemLink = ({
     );
   }
 
+  // Only apply aria-label if the component has an href or is not an anchor element
+  const shouldApplyAriaLabel = href || (Component !== 'a' && ariaLabel);
+
   return (
     <Component
       className={cx(styles.link, className)}
@@ -50,7 +53,7 @@ export const ListItemLink = ({
       data-interactive="true"
       aria-disabled={loading || disabled}
       aria-selected={selected}
-      aria-label={ariaLabel}
+      {...(shouldApplyAriaLabel && { 'aria-label': ariaLabel })}
       data-active={active}
     />
   );

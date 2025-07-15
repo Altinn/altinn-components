@@ -42,7 +42,11 @@ const meta = {
 export default meta;
 
 export const AccessPackageListStory = (args: AccessPackageListItemProps) => {
-  return <AccessPackageListItem {...args} />;
+  return (
+    <List>
+      <AccessPackageListItem {...args} />
+    </List>
+  );
 };
 
 export const ListOfPackages = () => {
