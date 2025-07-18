@@ -1,6 +1,7 @@
 import { ClockDashedIcon, CogIcon, HeadCloudIcon, PencilIcon, TeddyBearIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
+import { expect, userEvent, within } from 'storybook/test';
 import {
   Avatar,
   AvatarGroup,
@@ -526,4 +527,144 @@ export const OverrideTitleAs = (args: ListItemProps) => {
       <ListItem {...args} icon={HeadCloudIcon} title={{ as: 'span', children: 'Title as span' }} />
     </List>
   );
+};
+
+export const InteractiveWithControls = (args: ListItemProps) => {
+  const [listItemClicks, setListItemClicks] = useState(0);
+  const [buttonClicks, setButtonClicks] = useState(0);
+
+  const handleListItemClick = () => {
+    setListItemClicks((prev) => prev + 1);
+  };
+
+  const handleButtonClick = () => {
+    setButtonClicks((prev) => prev + 1);
+  };
+
+  return (
+    <Section>
+      <List>
+        <ListItem
+          {...args}
+          icon={TeddyBearIcon}
+          title="Interactive ListItem with Controls"
+          description={`ListItem clicks: ${listItemClicks}, Button clicks: ${buttonClicks}`}
+          onClick={handleListItemClick}
+          controls={
+            <Button icon={PencilIcon} size="xs" variant="outline" onClick={handleButtonClick}>
+              Edit
+            </Button>
+          }
+          as="button"
+        />
+      </List>
+    </Section>
+  );
+};
+
+InteractiveWithControls.play = async ({
+  canvasElement,
+}: {
+  canvasElement: HTMLElement;
+}) => {
+  const canvas = within(canvasElement);
+
+  // Get the elements
+  const listItemHeader = canvas.getByText('Interactive ListItem with Controls');
+  const controlButton = canvas.getByText('Edit');
+  const listItem = listItemHeader.closest('button') as HTMLElement;
+
+  // Verify initial state
+  await expect(listItemHeader).toBeVisible();
+  await expect(controlButton).toBeVisible();
+  await expect(listItem).toBeVisible();
+  await expect(listItem).toHaveTextContent('ListItem clicks: 0, Button clicks: 0');
+
+  // Click the control button
+  await userEvent.click(controlButton);
+  await expect(listItem).toHaveTextContent('ListItem clicks: 0, Button clicks: 1');
+
+  // Click the main list item (but not the control button area)
+  await userEvent.click(listItem);
+  await expect(listItem).toHaveTextContent('ListItem clicks: 1, Button clicks: 1');
+
+  // Click the control button again
+  await userEvent.click(controlButton);
+  await expect(listItem).toHaveTextContent('ListItem clicks: 1, Button clicks: 2');
+
+  // Click the list item again
+  await userEvent.click(listItem);
+  await expect(listItem).toHaveTextContent('ListItem clicks: 2, Button clicks: 2');
+};
+
+export const KeyboardNavigation = (args: ListItemProps) => {
+  const [interactions, setInteractions] = useState<string[]>([]);
+
+  const handleListItemClick = () => {
+    setInteractions((prev) => [...prev, 'listitem-click']);
+  };
+
+  const handleButtonClick = () => {
+    setInteractions((prev) => [...prev, 'button-click']);
+  };
+
+  const handleKeyPress = () => {
+    setInteractions((prev) => [...prev, 'listitem-keypress']);
+  };
+
+  return (
+    <Section>
+      <List>
+        <ListItem
+          {...args}
+          icon={TeddyBearIcon}
+          title="Keyboard Navigation Test"
+          description={`Interactions: ${interactions.join(', ')}`}
+          onClick={handleListItemClick}
+          onKeyPress={handleKeyPress}
+          controls={
+            <Button icon={PencilIcon} size="xs" variant="outline" onClick={handleButtonClick}>
+              Edit
+            </Button>
+          }
+          as="button"
+        />
+      </List>
+    </Section>
+  );
+};
+
+KeyboardNavigation.play = async ({
+  canvasElement,
+}: {
+  canvasElement: HTMLElement;
+}) => {
+  const canvas = within(canvasElement);
+
+  // Get the elements
+  const listItemButton = canvas.getByRole('button', {
+    name: /Keyboard Navigation Test/i,
+  });
+  const controlButton = canvas.getByRole('button', {
+    name: /Edit/i,
+  });
+
+  // Focus the list item and press Enter
+  listItemButton.focus();
+  await userEvent.keyboard('{Enter}');
+  await expect(listItemButton).toHaveTextContent('listitem-keypress');
+  await expect(listItemButton).toHaveTextContent('listitem-click');
+
+  // Tab to the control button and press Enter
+  await userEvent.keyboard('{Tab}');
+  await expect(controlButton).toHaveFocus();
+  await userEvent.keyboard('{Enter}');
+  await expect(listItemButton).toHaveTextContent('button-click');
+
+  // Tab back to list item and press space (should trigger click)
+  await userEvent.keyboard('{Shift>}{Tab}{/Shift}');
+  await expect(listItemButton).toHaveFocus();
+  await userEvent.keyboard(' ');
+  await expect(listItemButton).toHaveTextContent('listitem-click');
+  await expect(listItemButton).toHaveTextContent('listitem-keypress');
 };
