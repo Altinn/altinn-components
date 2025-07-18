@@ -4,6 +4,8 @@
   gap: 0.5rem;
   flex-wrap: wrap;
   justify-content: start;
+  margin-bottom: auto;
+  margin-top: calc(var(--dsc-item-my) * 0.85);
 }
 
 .label {

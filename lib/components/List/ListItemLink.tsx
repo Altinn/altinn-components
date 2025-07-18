@@ -14,6 +14,7 @@ export interface ListItemLinkProps {
   selected?: boolean;
   className?: string;
   active?: boolean;
+  children?: React.ReactNode;
 }
 
 export const ListItemLink = ({
@@ -27,13 +28,14 @@ export const ListItemLink = ({
   className,
   active,
   ariaLabel,
+  children,
 }: ListItemLinkProps) => {
   const Component = as || 'div';
 
   if (Component === 'div') {
     return (
-      <div className={cx(styles.link, className)}>
-        <span>{ariaLabel}</span>
+      <div className={cx(styles.link, className)} aria-label={ariaLabel}>
+        {children}
       </div>
     );
   }
@@ -55,6 +57,8 @@ export const ListItemLink = ({
       aria-selected={selected}
       {...(shouldApplyAriaLabel && { 'aria-label': ariaLabel })}
       data-active={active}
-    />
+    >
+      {children}
+    </Component>
   );
 };

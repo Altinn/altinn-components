@@ -128,7 +128,7 @@ export const MultipleRoles = (args: UserListItemProps) => {
         {...args}
         name="Narvesen AS"
         type="company"
-        description="Organisasjonsnummer: 123456789"
+        description="Org.nr.: 123456789"
         roleNames={['Regnskapsfører', 'Klientadministrator', 'Hovedadministrator']}
         interactive={true}
         linkIcon={true}
@@ -200,7 +200,7 @@ export const DifferentHeadingLevelsAndSizes = (args: UserListItemProps) => {
         {...args}
         name="XLarge h1 org"
         type="company"
-        description="Organisasjonsnummer: 123456680"
+        description="Org.nr. 123456680"
         interactive={false}
         titleAs="h1"
         size="xl"
@@ -209,7 +209,7 @@ export const DifferentHeadingLevelsAndSizes = (args: UserListItemProps) => {
         {...args}
         name="Large h2 org"
         type="company"
-        description="Organisasjonsnummer: 123456669"
+        description="Org.nr. 123456669"
         interactive={false}
         titleAs="h2"
         size="lg"
@@ -218,7 +218,7 @@ export const DifferentHeadingLevelsAndSizes = (args: UserListItemProps) => {
         {...args}
         name="Medium h3 org (default)"
         type="company"
-        description="Organisasjonsnummer: 123456670"
+        description="Org.nr. 123456670"
         interactive={false}
         size="md"
       />
@@ -226,7 +226,7 @@ export const DifferentHeadingLevelsAndSizes = (args: UserListItemProps) => {
         {...args}
         name="Small h4 org"
         type="company"
-        description="Organisasjonsnummer: 123456641"
+        description="Org.nr. 123456641"
         interactive={false}
         size="sm"
         titleAs="h4"
@@ -235,7 +235,7 @@ export const DifferentHeadingLevelsAndSizes = (args: UserListItemProps) => {
         {...args}
         name="Xsmall h5 org"
         type="company"
-        description="Organisasjonsnummer: 123456621"
+        description="Org.nr. 123456621"
         interactive={false}
         size="xs"
         titleAs="h5"
@@ -278,7 +278,7 @@ export const WithControls = (args: UserListItemProps) => {
         {...args}
         name="Bankmarked AS"
         type="company"
-        description="Organisasjonsnummer: 987654321"
+        description="Org.nr.: 987654321"
         roleNames={['Regnskapsfører']}
         controls={menu('3')}
         linkIcon={true}

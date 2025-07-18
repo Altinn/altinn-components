@@ -50,7 +50,7 @@ export const isAvatarProps = (icon: unknown): icon is AvatarProps => {
  */
 export const Avatar = ({
   type = 'person',
-  size,
+  size = 'sm',
   name = 'Avatar',
   outline = false,
   imageUrl,

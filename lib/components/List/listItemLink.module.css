@@ -1,5 +1,14 @@
 .link {
-  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: row;
+
+  width: 100%;
+
+  column-gap: var(--dsc-item-spacing);
+  --dsc-item-spacing: 0.5em;
+
   inset: 0;
   padding: 0;
   border: 0;
@@ -13,12 +22,6 @@
   -moz-osx-font-smoothing: inherit;
   appearance: none;
   user-select: none;
-
-  & > * {
-    opacity: 0;
-    user-select: none;
-    pointer-events: none;
-  }
 
   &[aria-disabled="true"] {
     pointer-events: none;

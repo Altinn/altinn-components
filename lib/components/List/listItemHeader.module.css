@@ -41,3 +41,11 @@
   justify-content: center;
   pointer-events: none;
 }
+
+.badgeAndIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--dsc-item-spacing);
+  margin-left: auto;
+}
