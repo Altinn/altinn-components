@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.35.0](https://github.com/Altinn/altinn-components/compare/v0.34.0...v0.35.0) (2025-07-18)
+
+
+### Features
+
+* Add UserListItem and update other Access management ListItem components ([#523](https://github.com/Altinn/altinn-components/issues/523)) ([5ef4c56](https://github.com/Altinn/altinn-components/commit/5ef4c563b3612c313bc2ab1a582ad0207c4192c7))
+
 ## [0.34.0](https://github.com/Altinn/altinn-components/compare/v0.33.8...v0.34.0) (2025-07-15)
 
 
