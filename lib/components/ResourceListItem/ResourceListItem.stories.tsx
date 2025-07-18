@@ -31,6 +31,7 @@ const meta = {
     shadow: 'xs',
     border: 'none',
     as: 'div',
+    titleAs: 'h3',
   },
   argTypes: {
     size: {
@@ -57,6 +58,12 @@ const meta = {
         type: 'select',
       },
     },
+    titleAs: {
+      options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'div', 'span'],
+      control: {
+        type: 'select',
+      },
+    },
   },
 } satisfies Meta<typeof ResourceListItem>;
 
@@ -69,8 +76,8 @@ export const Default: Story = {
       <ResourceListItem
         badge={{ label: 'New', color: 'success', theme: 'base' }}
         controls={
-          <Button icon={PencilIcon} variant="text" size="sm" onClick={() => alert('Endre')}>
-            Endre
+          <Button icon={PencilIcon} variant="text" size="sm" onClick={() => alert('Edit')}>
+            Edit
           </Button>
         }
         {...args}

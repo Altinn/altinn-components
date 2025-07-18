@@ -35,6 +35,7 @@ export * from './Typography';
 export * from './ResourceListItem';
 export * from './AccessAreaListItem';
 export * from './AccessPackageListItem';
+export * from './UserListItem';
 export * from './Forms';
 export * from './Settings';
 export * from './Dashboard';

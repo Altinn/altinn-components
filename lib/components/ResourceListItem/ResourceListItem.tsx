@@ -3,7 +3,10 @@ import { ListItem } from '../List';
 import type { ListItemProps } from '../List';
 
 export interface ResourceListItemProps
-  extends Pick<ListItemProps, 'size' | 'controls' | 'as' | 'onClick' | 'loading' | 'shadow' | 'border'> {
+  extends Pick<
+    ListItemProps,
+    'size' | 'controls' | 'as' | 'onClick' | 'loading' | 'shadow' | 'border' | 'interactive'
+  > {
   /** Unique identifier for the resource item */
   id: string;
   /** Name of the owner of the resource */
@@ -16,6 +19,8 @@ export interface ResourceListItemProps
   ownerLogoUrlAlt?: string;
   /** Badge properties for the resource item (optional) */
   badge?: BadgeProps;
+  /** Title element for the resource item (optional) */
+  titleAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'div' | 'span';
 }
 
 export const ResourceListItem = ({
@@ -23,6 +28,7 @@ export const ResourceListItem = ({
   resourceName,
   ownerLogoUrlAlt,
   ownerLogoUrl,
+  titleAs = 'h3',
   ...props
 }: ResourceListItemProps) => {
   return (
@@ -33,7 +39,7 @@ export const ResourceListItem = ({
         imageUrlAlt: ownerLogoUrlAlt,
         type: 'company',
       }}
-      title={resourceName}
+      title={{ children: resourceName, as: titleAs }}
       description={ownerName}
       {...props}
     />

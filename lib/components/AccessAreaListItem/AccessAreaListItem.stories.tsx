@@ -13,7 +13,7 @@ const children = (colorTheme: Color | undefined) => (
     {testArea.description && <p>{testArea.description}</p>}
     <List spacing={2}>
       {testArea.packages.map((pkg, index) => (
-        <AccessPackageListItem id={pkg.id} key={pkg.id} title={pkg.name} color={index < 2 ? colorTheme : 'neutral'} />
+        <AccessPackageListItem id={pkg.id} key={pkg.id} name={pkg.name} color={index < 2 ? colorTheme : 'neutral'} />
       ))}
     </List>
   </>
@@ -27,6 +27,7 @@ const meta = {
     id: testArea.id,
     size: 'md',
     name: testArea.name,
+    titleAs: 'h3',
     iconUrl: testArea.icon,
     badgeText: '2 of 7',
     colorTheme: 'company',
@@ -41,7 +42,7 @@ const meta = {
       },
     },
     size: {
-      options: ['sm', 'md', 'lg'],
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
       control: {
         type: 'inline-radio',
       },
@@ -60,6 +61,12 @@ const meta = {
     },
     border: {
       options: ['none', 'solid', 'dotted'],
+      control: {
+        type: 'select',
+      },
+    },
+    titleAs: {
+      options: ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span'],
       control: {
         type: 'select',
       },
@@ -120,7 +127,7 @@ export const AllAreas = (args: AccessAreaListItemProps) => {
                 {area.description && <p>{area.description}</p>}
                 <List spacing={2}>
                   {area.packages.map((pkg) => (
-                    <AccessPackageListItem id={pkg.id} key={pkg.id} title={pkg.name} />
+                    <AccessPackageListItem id={pkg.id} key={pkg.id} name={pkg.name} />
                   ))}
                 </List>
               </AccessAreaListItem>

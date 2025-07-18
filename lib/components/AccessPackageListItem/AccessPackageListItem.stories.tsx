@@ -11,17 +11,18 @@ const meta = {
   tags: ['autodocs', 'beta'],
   args: {
     id: testArea.packages[0].id,
-    title: testArea.packages[0].name,
+    name: testArea.packages[0].name,
     size: 'md',
     color: 'neutral',
     loading: false,
     shadow: 'xs',
     border: 'none',
     as: 'button',
+    titleAs: 'h3',
   },
   argTypes: {
     size: {
-      options: ['sm', 'md', 'lg'],
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
       control: {
         type: 'inline-radio',
       },
@@ -50,6 +51,12 @@ const meta = {
         type: 'select',
       },
     },
+    titleAs: {
+      options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'div', 'span'],
+      control: {
+        type: 'select',
+      },
+    },
   },
 } satisfies Meta<typeof AccessPackageListItem>;
 
@@ -65,7 +72,7 @@ export const AccessPackageListStory = (args: AccessPackageListItemProps) => {
 
 export const ListOfPackages = () => {
   const items = testArea.packages.map((p) => (
-    <AccessPackageListItem id={p.id} key={p.id} title={p.name} onClick={() => alert(`Package name: ${p.name}`)} />
+    <AccessPackageListItem id={p.id} key={p.id} name={p.name} onClick={() => alert(`Package name: ${p.name}`)} />
   ));
   return <List spacing={2}>{items}</List>;
 };
