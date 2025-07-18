@@ -33,15 +33,11 @@ export const ListItemLink = ({
   const Component = as || 'div';
 
   if (Component === 'div') {
-    return (
-      <div className={cx(styles.link, className)} aria-label={ariaLabel}>
-        {children}
-      </div>
-    );
+    return <div className={cx(styles.link, className)}>{children}</div>;
   }
 
   // Only apply aria-label if the component has an href or is not an anchor element
-  const shouldApplyAriaLabel = href || (Component !== 'a' && ariaLabel);
+  const shouldApplyAriaLabel = (!loading && href) || (Component !== 'a' && ariaLabel);
 
   return (
     <Component
