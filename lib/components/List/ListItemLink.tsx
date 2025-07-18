@@ -14,6 +14,7 @@ export interface ListItemLinkProps {
   selected?: boolean;
   className?: string;
   active?: boolean;
+  children?: React.ReactNode;
 }
 
 export const ListItemLink = ({
@@ -27,16 +28,16 @@ export const ListItemLink = ({
   className,
   active,
   ariaLabel,
+  children,
 }: ListItemLinkProps) => {
   const Component = as || 'div';
 
   if (Component === 'div') {
-    return (
-      <div className={cx(styles.link, className)}>
-        <span>{ariaLabel}</span>
-      </div>
-    );
+    return <div className={cx(styles.link, className)}>{children}</div>;
   }
+
+  // Only apply aria-label if the component has an href or is not an anchor element
+  const shouldApplyAriaLabel = (!loading && href) || (Component !== 'a' && ariaLabel);
 
   return (
     <Component
@@ -50,8 +51,10 @@ export const ListItemLink = ({
       data-interactive="true"
       aria-disabled={loading || disabled}
       aria-selected={selected}
-      aria-label={ariaLabel}
+      {...(shouldApplyAriaLabel && { 'aria-label': ariaLabel })}
       data-active={active}
-    />
+    >
+      {children}
+    </Component>
   );
 };

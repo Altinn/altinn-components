@@ -5,11 +5,14 @@ import { ListItem } from '../List';
 import type { ListItemProps } from '../List';
 import styles from './accessAreaListItem.module.css';
 
-interface AccessAreaListItemDefaultProps extends Pick<ListItemProps, 'size' | 'onClick' | 'expanded' | 'loading'> {
+interface AccessAreaListItemDefaultProps
+  extends Pick<ListItemProps, 'size' | 'onClick' | 'expanded' | 'loading' | 'shadow' | 'border'> {
   /** Id of the item */
   id: string;
   /** Name of the Access Area */
   name: string;
+  /** The http tag to be used for the title (default is h3)  */
+  titleAs?: 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'div' | 'span';
   /** Color theme of the Access Area */
   colorTheme?: Color;
   /** Optional Badge to display things like the number of packages a user has in the area */
@@ -33,6 +36,7 @@ export const AccessAreaListItem = ({
   badgeText,
   colorTheme,
   loading,
+  titleAs = 'h3',
   ...props
 }: AccessAreaListItemProps) => {
   const themedIcon = {
@@ -47,7 +51,7 @@ export const AccessAreaListItem = ({
     <ListItem
       as="button"
       icon={themedIcon}
-      title={name}
+      title={{ children: name, as: titleAs }}
       ariaLabel={name}
       size={size}
       collapsible={!loading}

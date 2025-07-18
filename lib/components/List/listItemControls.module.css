@@ -4,6 +4,7 @@
   white-space: nowrap;
   flex-wrap: nowrap;
   gap: 0.25rem;
+  margin-left: auto;
 }
 
 .controls:empty {

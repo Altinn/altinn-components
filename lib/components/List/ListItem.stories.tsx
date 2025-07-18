@@ -1,6 +1,7 @@
 import { ClockDashedIcon, CogIcon, HeadCloudIcon, PencilIcon, TeddyBearIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
+import { expect, userEvent, within } from 'storybook/test';
 import {
   Avatar,
   AvatarGroup,
@@ -17,6 +18,10 @@ import {
 const variants = ['default', 'subtle', 'tinted'] as ListItemProps['variant'][];
 
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as ListItemProps['size'][];
+
+const shadows = ['none', 'xs', 'sm', 'md', 'lg'] as ListItemProps['shadow'][];
+
+const borders = ['none', 'solid', 'dotted'] as ListItemProps['border'][];
 
 const avatarGroupsProps = {
   items: [
@@ -35,14 +40,83 @@ const avatarGroupsProps = {
 const meta = {
   title: 'List/ListItem',
   component: ListItem,
-  //  tags: ["autodocs"],
   parameters: {},
   args: {
-    id: 'id',
-    as: 'button',
     title: 'Title',
-    ariaLabel: 'Aria label',
-    onClick: () => alert('onClick'),
+    description: 'Description',
+    variant: 'default',
+    size: 'md',
+    shadow: 'xs',
+    border: 'none',
+    loading: false,
+    selected: false,
+    expanded: false,
+    collapsible: false,
+    linkIcon: true,
+    interactive: true,
+    disabled: false,
+    icon: {
+      theme: 'surface',
+      svgElement: TeddyBearIcon,
+    },
+    badge: {
+      theme: 'subtle',
+      label: 'New',
+    },
+  },
+  argTypes: {
+    variant: {
+      control: 'select',
+      options: variants,
+    },
+    size: {
+      control: 'select',
+      options: sizes,
+    },
+    shadow: {
+      control: 'select',
+      options: shadows,
+    },
+    border: {
+      control: 'select',
+      options: borders,
+    },
+    title: {
+      control: 'text',
+    },
+    description: {
+      control: 'text',
+    },
+    loading: {
+      control: 'boolean',
+    },
+    selected: {
+      control: 'boolean',
+    },
+    expanded: {
+      control: 'boolean',
+    },
+    collapsible: {
+      control: 'boolean',
+    },
+    linkIcon: {
+      control: 'boolean',
+    },
+    interactive: {
+      control: 'boolean',
+    },
+    disabled: {
+      control: 'boolean',
+    },
+    as: {
+      control: 'select',
+      options: ['button', 'div', 'a', 'li'],
+    },
+    // Disable complex controls
+    icon: { control: false },
+    badge: { control: false },
+    children: { control: false },
+    onClick: { control: false },
   },
 } satisfies Meta<typeof ListItem>;
 
@@ -55,30 +129,19 @@ export const Default: Story = {
       <ListItem {...args} />
     </List>
   ),
-  args: {
-    icon: {
-      theme: 'surface',
-      svgElement: TeddyBearIcon,
-    },
-    badge: {
-      theme: 'subtle',
-      label: 'New',
-    },
-    linkIcon: true,
-  },
 };
 
-export const IconTypes = (args: ListItemProps) => {
-  return (
+export const IconTypes: Story = {
+  render: (args) => (
     <List>
       <ListItem {...args} icon={TeddyBearIcon} />
       <ListItem {...args} icon={{ theme: 'surface', svgElement: TeddyBearIcon }} />
     </List>
-  );
+  ),
 };
 
-export const Avatars = (args: ListItemProps) => {
-  return (
+export const Avatars: Story = {
+  render: (args) => (
     <List>
       <ListItem
         {...args}
@@ -104,7 +167,7 @@ export const Avatars = (args: ListItemProps) => {
         }}
       />
     </List>
-  );
+  ),
 };
 
 export const AvatarGroups = (args: ListItemProps) => {
@@ -151,13 +214,16 @@ export const Badges = (args: ListItemProps) => {
   );
 };
 
-export const LoadingState = (args: ListItemProps) => {
-  return (
+export const LoadingState: Story = {
+  render: (args) => (
     <List>
-      <ListItem {...args} icon={TeddyBearIcon} loading={true} />
-      <ListItem {...args} icon={TeddyBearIcon} loading={false} />
+      <ListItem {...args} loading={true} />
+      <ListItem {...args} loading={false} />
     </List>
-  );
+  ),
+  args: {
+    icon: TeddyBearIcon,
+  },
 };
 
 export const Selectable = (args: ListItemProps) => {
@@ -248,44 +314,41 @@ export const NonInteractive = () => {
   );
 };
 
-export const Variants = (args: ListItemProps) => {
-  return (
+export const Variants: Story = {
+  render: (args) => (
     <List>
-      {variants?.map((variant) => {
-        return (
-          <>
-            <ListItem
-              {...args}
-              icon={TeddyBearIcon}
-              title={variant}
-              description={'Variant:' + variant}
-              variant={variant}
-              shadow="none"
-              linkIcon
-              key={variant}
-            />
-          </>
-        );
-      })}
+      {variants?.map((variant) => (
+        <ListItem
+          key={variant}
+          {...args}
+          title={variant}
+          description={`Variant: ${variant}`}
+          variant={variant}
+          shadow="none"
+          linkIcon
+        />
+      ))}
     </List>
-  );
+  ),
+  args: {
+    icon: TeddyBearIcon,
+  },
 };
 
 export const Shadows = (args: ListItemProps) => {
   return (
     <List>
-      {variants?.map((variant) => {
+      {shadows?.map((shadow) => {
         return (
           <>
             <ListItem
               {...args}
               icon={TeddyBearIcon}
-              title={variant}
-              description={'Variant:' + variant}
-              variant={variant}
-              shadow="xs"
+              title={shadow}
+              description={'Shadow:' + shadow}
+              shadow={shadow}
               linkIcon
-              key={variant}
+              key={shadow}
             />
           </>
         );
@@ -297,18 +360,17 @@ export const Shadows = (args: ListItemProps) => {
 export const Border = (args: ListItemProps) => {
   return (
     <List>
-      {variants?.map((variant) => {
+      {borders?.map((border) => {
         return (
           <>
             <ListItem
               {...args}
               icon={TeddyBearIcon}
-              title={variant}
-              description={'Variant:' + variant}
-              variant={variant}
-              border="solid"
+              title={border}
+              description={'Border:' + border}
+              border={border}
               linkIcon
-              key={variant}
+              key={border}
             />
           </>
         );
@@ -325,7 +387,8 @@ export const Sizes = (args: ListItemProps) => {
           <ListItem
             {...args}
             icon={{ svgElement: TeddyBearIcon, theme: 'surface' }}
-            label={size}
+            title={size}
+            description={'Size: ' + size}
             size={size}
             linkIcon
             key={size}
@@ -344,7 +407,7 @@ export const OverridingIcon = (args: ListItemProps) => {
         description="Custom icon with Avatar + Icon"
         icon={
           <span>
-            <Avatar name="Alfa" />
+            <Avatar name="Alfa" size="md" />
             <Icon
               svgElement={TeddyBearIcon}
               theme="surface"
@@ -366,11 +429,11 @@ export const OverridingIcon = (args: ListItemProps) => {
             <Icon svgElement={TeddyBearIcon} theme="surface" />
             <Avatar
               name="Alfa"
+              size="xs"
               style={{
                 position: 'absolute',
                 bottom: -4,
                 right: -4,
-                fontSize: '.5em',
               }}
             />
           </span>
@@ -429,6 +492,7 @@ export const CustomControls = (args: ListItemProps) => {
       <ListItem
         {...args}
         icon={TeddyBearIcon}
+        badge={{ label: 'New', theme: 'subtle' }}
         controls={
           <ContextMenu
             id="menu"
@@ -447,6 +511,8 @@ export const CustomControls = (args: ListItemProps) => {
             Rediger
           </Button>
         }
+        onClick={() => alert('ListItem clicked')}
+        as={'button'}
       />
     </List>
   );
@@ -461,4 +527,144 @@ export const OverrideTitleAs = (args: ListItemProps) => {
       <ListItem {...args} icon={HeadCloudIcon} title={{ as: 'span', children: 'Title as span' }} />
     </List>
   );
+};
+
+export const InteractiveWithControls = (args: ListItemProps) => {
+  const [listItemClicks, setListItemClicks] = useState(0);
+  const [buttonClicks, setButtonClicks] = useState(0);
+
+  const handleListItemClick = () => {
+    setListItemClicks((prev) => prev + 1);
+  };
+
+  const handleButtonClick = () => {
+    setButtonClicks((prev) => prev + 1);
+  };
+
+  return (
+    <Section>
+      <List>
+        <ListItem
+          {...args}
+          icon={TeddyBearIcon}
+          title="Interactive ListItem with Controls"
+          description={`ListItem clicks: ${listItemClicks}, Button clicks: ${buttonClicks}`}
+          onClick={handleListItemClick}
+          controls={
+            <Button icon={PencilIcon} size="xs" variant="outline" onClick={handleButtonClick}>
+              Edit
+            </Button>
+          }
+          as="button"
+        />
+      </List>
+    </Section>
+  );
+};
+
+InteractiveWithControls.play = async ({
+  canvasElement,
+}: {
+  canvasElement: HTMLElement;
+}) => {
+  const canvas = within(canvasElement);
+
+  // Get the elements
+  const listItemHeader = canvas.getByText('Interactive ListItem with Controls');
+  const controlButton = canvas.getByText('Edit');
+  const listItem = listItemHeader.closest('button') as HTMLElement;
+
+  // Verify initial state
+  await expect(listItemHeader).toBeVisible();
+  await expect(controlButton).toBeVisible();
+  await expect(listItem).toBeVisible();
+  await expect(listItem).toHaveTextContent('ListItem clicks: 0, Button clicks: 0');
+
+  // Click the control button
+  await userEvent.click(controlButton);
+  await expect(listItem).toHaveTextContent('ListItem clicks: 0, Button clicks: 1');
+
+  // Click the main list item (but not the control button area)
+  await userEvent.click(listItem);
+  await expect(listItem).toHaveTextContent('ListItem clicks: 1, Button clicks: 1');
+
+  // Click the control button again
+  await userEvent.click(controlButton);
+  await expect(listItem).toHaveTextContent('ListItem clicks: 1, Button clicks: 2');
+
+  // Click the list item again
+  await userEvent.click(listItem);
+  await expect(listItem).toHaveTextContent('ListItem clicks: 2, Button clicks: 2');
+};
+
+export const KeyboardNavigation = (args: ListItemProps) => {
+  const [interactions, setInteractions] = useState<string[]>([]);
+
+  const handleListItemClick = () => {
+    setInteractions((prev) => [...prev, 'listitem-click']);
+  };
+
+  const handleButtonClick = () => {
+    setInteractions((prev) => [...prev, 'button-click']);
+  };
+
+  const handleKeyPress = () => {
+    setInteractions((prev) => [...prev, 'listitem-keypress']);
+  };
+
+  return (
+    <Section>
+      <List>
+        <ListItem
+          {...args}
+          icon={TeddyBearIcon}
+          title="Keyboard Navigation Test"
+          description={`Interactions: ${interactions.join(', ')}`}
+          onClick={handleListItemClick}
+          onKeyPress={handleKeyPress}
+          controls={
+            <Button icon={PencilIcon} size="xs" variant="outline" onClick={handleButtonClick}>
+              Edit
+            </Button>
+          }
+          as="button"
+        />
+      </List>
+    </Section>
+  );
+};
+
+KeyboardNavigation.play = async ({
+  canvasElement,
+}: {
+  canvasElement: HTMLElement;
+}) => {
+  const canvas = within(canvasElement);
+
+  // Get the elements
+  const listItemButton = canvas.getByRole('button', {
+    name: /Keyboard Navigation Test/i,
+  });
+  const controlButton = canvas.getByRole('button', {
+    name: /Edit/i,
+  });
+
+  // Focus the list item and press Enter
+  listItemButton.focus();
+  await userEvent.keyboard('{Enter}');
+  await expect(listItemButton).toHaveTextContent('listitem-keypress');
+  await expect(listItemButton).toHaveTextContent('listitem-click');
+
+  // Tab to the control button and press Enter
+  await userEvent.keyboard('{Tab}');
+  await expect(controlButton).toHaveFocus();
+  await userEvent.keyboard('{Enter}');
+  await expect(listItemButton).toHaveTextContent('button-click');
+
+  // Tab back to list item and press space (should trigger click)
+  await userEvent.keyboard('{Shift>}{Tab}{/Shift}');
+  await expect(listItemButton).toHaveFocus();
+  await userEvent.keyboard(' ');
+  await expect(listItemButton).toHaveTextContent('listitem-click');
+  await expect(listItemButton).toHaveTextContent('listitem-keypress');
 };

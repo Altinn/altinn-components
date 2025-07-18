@@ -9,9 +9,6 @@ const meta = {
     layout: 'centered',
   },
   args: {
-    style: {
-      fontSize: '2em',
-    },
     name: 'Jane Doe',
     type: 'person',
   },

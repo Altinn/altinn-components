@@ -102,6 +102,9 @@ export const ListItemHeader = ({
     return null;
   };
 
+  /** Default aria-label to title */
+  const setAriaLabel = ariaLabel !== undefined ? ariaLabel : typeof title === 'string' ? (title as string) : undefined;
+
   const listItemLabelId = useId();
 
   return (
@@ -121,25 +124,23 @@ export const ListItemHeader = ({
         loading={loading}
         disabled={disabled || loading}
         active={active}
-        ariaLabel={ariaLabel}
-      />
-      {select && <ListItemSelect {...select} className={styles.select} />}
-      <ListItemIcon loading={loading} icon={icon} />
-      <ListItemLabel
-        size={size}
-        loading={loading}
-        title={title}
-        description={description}
-        id={listItemLabelId}
-        className={styles.label}
+        ariaLabel={setAriaLabel}
       >
-        {children}
-      </ListItemLabel>
-      <ListItemControls className={styles.controls}>
-        {controls && !loading ? (
-          <span>{controls}</span>
-        ) : (
-          <>
+        {select && <ListItemSelect {...select} className={styles.select} />}
+        <ListItemIcon loading={loading} icon={icon} />
+        <ListItemLabel
+          size={size}
+          loading={loading}
+          title={title}
+          description={description}
+          id={listItemLabelId}
+          className={styles.label}
+        >
+          {children}
+        </ListItemLabel>
+
+        {!controls && !loading && (
+          <div className={styles.badgeAndIcon}>
             {renderBadge()}
             {applicableIcon && (
               <span className={styles.linkIcon}>
@@ -151,9 +152,11 @@ export const ListItemHeader = ({
                 />
               </span>
             )}
-          </>
+          </div>
         )}
-      </ListItemControls>
+      </ListItemLink>
+
+      <ListItemControls className={styles.controls}>{controls && !loading && <span>{controls}</span>}</ListItemControls>
     </div>
   );
 };

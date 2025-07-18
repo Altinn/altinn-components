@@ -48,7 +48,7 @@ export const getAccountItem = ({
 
     if (parentId) {
       return (
-        <span style={{ position: 'relative' }}>
+        <span style={{ position: 'relative', display: 'inline-block' }}>
           <Avatar name={name} type={type} />
           <div
             data-theme="default"
@@ -56,11 +56,10 @@ export const getAccountItem = ({
               display: 'flex',
               position: 'absolute',
               fontSize: '.5em',
-              bottom: 0,
-              right: 0,
+              bottom: '0',
+              right: '0',
               padding: '.125em',
-              marginBottom: '-.25em',
-              marginRight: '-.5em',
+              transform: 'translate(40%, 40%)',
             }}
           >
             <ArrowDownRightIcon style={{ fontSize: '1em' }} aria-label="Subunit" />
