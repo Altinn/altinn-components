@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.35.1](https://github.com/Altinn/altinn-components/compare/v0.35.0...v0.35.1) (2025-07-23)
+
+
+### Bug Fixes
+
+* fix wide logos on timelineHeader component ([#533](https://github.com/Altinn/altinn-components/issues/533)) ([2746791](https://github.com/Altinn/altinn-components/commit/27467918a4ee5c1d51a767d6f3e94b95daf8f977))
+
 ## [0.35.0](https://github.com/Altinn/altinn-components/compare/v0.34.0...v0.35.0) (2025-07-18)
 
 
