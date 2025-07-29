@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.35.3](https://github.com/Altinn/altinn-components/compare/v0.35.2...v0.35.3) (2025-07-29)
+
+
+### Bug Fixes
+
+* context menu closures ([#537](https://github.com/Altinn/altinn-components/issues/537)) ([249333e](https://github.com/Altinn/altinn-components/commit/249333e6de9b07fd8bf2298b4f072bb781660e6f))
+
 ## [0.35.2](https://github.com/Altinn/altinn-components/compare/v0.35.1...v0.35.2) (2025-07-29)
 
 
