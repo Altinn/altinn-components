@@ -1,7 +1,7 @@
 'use client';
 import { MenuElipsisHorizontalIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
-import { useMemo, useRef } from 'react';
+import { useRef } from 'react';
 import { DropdownBase, type DropdownPlacement, IconButton, type MenuItemProps } from '../';
 import { type MenuItemGroups, MenuItems } from '../';
 import { useClickOutside } from '../../hooks';
@@ -35,17 +35,15 @@ export const ContextMenu = ({
     }
   });
 
-  const itemsWithToggle = useMemo(() => {
-    return items.map((item) => {
-      return {
-        ...item,
-        onClick: () => {
-          item.onClick?.();
-          closeAll();
-        },
-      };
-    });
-  }, [items, closeAll]);
+  const itemsWithToggle = items.map((item) => {
+    return {
+      ...item,
+      onClick: () => {
+        item.onClick?.();
+        closeAll();
+      },
+    };
+  });
 
   return (
     <div className={cx(styles.toggle, className)} data-color="neutral" ref={ref}>
