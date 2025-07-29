@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.35.2](https://github.com/Altinn/altinn-components/compare/v0.35.1...v0.35.2) (2025-07-29)
+
+
+### Bug Fixes
+
+* 2358, context menu not working for specific dialog ([#535](https://github.com/Altinn/altinn-components/issues/535)) ([e02c21b](https://github.com/Altinn/altinn-components/commit/e02c21b35b8251e5149a5717fb8577cb5d047e18))
+
 ## [0.35.1](https://github.com/Altinn/altinn-components/compare/v0.35.0...v0.35.1) (2025-07-23)
 
 
