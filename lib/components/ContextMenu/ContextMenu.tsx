@@ -35,11 +35,12 @@ export const ContextMenu = ({
     }
   });
 
-  const itemsWithToggle = items.map((item) => {
+  const itemsWithToggle = items.map((item, index) => {
     return {
       ...item,
       onClick: () => {
-        item.onClick?.();
+        const currentItem = items[index];
+        currentItem.onClick?.();
         closeAll();
       },
     };
