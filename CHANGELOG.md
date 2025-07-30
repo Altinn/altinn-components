@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.35.4](https://github.com/Altinn/altinn-components/compare/v0.35.3...v0.35.4) (2025-07-30)
+
+
+### Bug Fixes
+
+* Fix modal opening from contextMenu ([#539](https://github.com/Altinn/altinn-components/issues/539)) ([45e9019](https://github.com/Altinn/altinn-components/commit/45e9019cf61ae51a7d8061623b4dac3d2a5fb87d))
+
 ## [0.35.3](https://github.com/Altinn/altinn-components/compare/v0.35.2...v0.35.3) (2025-07-29)
 
 
