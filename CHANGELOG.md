@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.35.5](https://github.com/Altinn/altinn-components/compare/v0.35.4...v0.35.5) (2025-07-31)
+
+
+### Bug Fixes
+
+* Using item id instead of index for keys when mapping ([#541](https://github.com/Altinn/altinn-components/issues/541)) ([c202ec8](https://github.com/Altinn/altinn-components/commit/c202ec8c4a88cf00447979e4e2025977f41d47f7))
+
 ## [0.35.4](https://github.com/Altinn/altinn-components/compare/v0.35.3...v0.35.4) (2025-07-30)
 
 
