@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.35.6](https://github.com/Altinn/altinn-components/compare/v0.35.5...v0.35.6) (2025-07-31)
+
+
+### Bug Fixes
+
+* Unique ids as key values ([#545](https://github.com/Altinn/altinn-components/issues/545)) ([d198b03](https://github.com/Altinn/altinn-components/commit/d198b03d8af20230f882e77a12bcbd11e9d545fa))
+* Wider logos on transmissions looks off ([#543](https://github.com/Altinn/altinn-components/issues/543)) ([70ddc4a](https://github.com/Altinn/altinn-components/commit/70ddc4a957473449c0300313e41150afd885b5cc))
+
 ## [0.35.5](https://github.com/Altinn/altinn-components/compare/v0.35.4...v0.35.5) (2025-07-31)
 
 
