@@ -17,7 +17,7 @@ export const ActivityLogSegment = ({ id, items, datetime, byline, children, summ
       {summary && <Typography>{summary}</Typography>}
       {children}
       {items?.map((item) => (
-        <ActivityLogItem {...item} key={item.id} />
+        <ActivityLogItem {...item} key={'activity-log-item' + item.id} />
       ))}
     </TimelineSegment>
   );
