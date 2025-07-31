@@ -24,10 +24,10 @@ export const DialogList = ({ items, groups = {}, sortGroupBy, isLoading }: Dialo
         const groupProps = group.props || {};
 
         return (
-          <DialogListGroup {...groupProps} key={groupIndex}>
+          <DialogListGroup {...groupProps} key={'dialog-list-item' + groupIndex}>
             {group?.items.map((item, index) => {
               const itemProps = item.props || {};
-              return <DialogListItem {...itemProps} key={index} />;
+              return <DialogListItem {...itemProps} key={'dialog-list-item' + index} />;
             })}
           </DialogListGroup>
         );

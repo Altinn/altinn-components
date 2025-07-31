@@ -36,7 +36,7 @@ export const ActivityLog = ({
     <Section spacing={4}>
       <Timeline>
         {displayedItems.map((item) => {
-          return <ActivityLogSegment {...item} key={item.id} />;
+          return <ActivityLogSegment {...item} key={'activitylog-segment-' + item.id} />;
         })}
       </Timeline>
       {toggle && (
