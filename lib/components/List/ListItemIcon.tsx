@@ -48,14 +48,7 @@ export const ListItemIcon = ({ loading, size, icon, theme, badge }: ListItemIcon
 
   return (
     <div className={styles.wrapper} data-size={size}>
-      {(isAvatarProps(icon) && (
-        <Avatar
-          {...icon}
-          className={styles.avatar}
-          innerContainerStyle={{ width: 'fit-content' }}
-          avatarImageStyle={{ height: '1em', width: 'auto' }}
-        />
-      )) ||
+      {(isAvatarProps(icon) && <Avatar {...icon} className={styles.avatar} />) ||
         (isAvatarGroupProps(icon) && <AvatarGroup {...icon} className={styles.avatarGroup} />) ||
         (isIconProps(icon) && <Icon {...(icon as IconProps)} theme={icon.theme || theme} className={styles.icon} />) ||
         (isReactNode(icon) && icon) || <Icon theme={theme} svgElement={icon as SvgElement} className={styles.icon} />}

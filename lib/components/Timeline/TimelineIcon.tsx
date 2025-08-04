@@ -47,13 +47,7 @@ export const TimelineIcon = ({ loading, size, color, theme, icon }: TimelineIcon
 
   return (
     <div className={styles.icon} data-color={color} data-size={size}>
-      {(isAvatarProps(icon) && (
-        <Avatar
-          {...icon}
-          innerContainerStyle={{ width: 'unset', height: '1em' }}
-          avatarImageStyle={{ height: '1.75rem', width: 'auto', marginTop: '0.25rem' }}
-        />
-      )) ||
+      {(isAvatarProps(icon) && <Avatar {...icon} />) ||
         (isAvatarGroupProps(icon) && <AvatarGroup {...icon} className={styles.avatarGroup} />) ||
         (isIconProps(icon) && <Icon {...(icon as IconProps)} theme={theme} />) ||
         (isReactNode(icon) && icon) || <Icon theme={theme} svgElement={icon as SvgElement} />}
