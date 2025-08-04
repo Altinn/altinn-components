@@ -123,16 +123,6 @@ export const WithAttachments: Story = {
   },
 };
 
-export const WithWideLogo: Story = {
-  args: {
-    sender: {
-      type: 'company',
-      name: 'Skatteetaten',
-      imageUrl: 'https://altinncdn.no/orgs/ttd/ttd.png',
-    },
-  },
-};
-
 export const WithActions: Story = {
   args: {
     children: (
