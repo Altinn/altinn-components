@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.35.7](https://github.com/Altinn/altinn-components/compare/v0.35.6...v0.35.7) (2025-08-04)
+
+
+### Miscellaneous Chores
+
+* restore wider logos related changes as unwanted ([#547](https://github.com/Altinn/altinn-components/issues/547)) ([2aa20b0](https://github.com/Altinn/altinn-components/commit/2aa20b029eaab3c0dee13cc6177f804ce73476e4))
+
 ## [0.35.6](https://github.com/Altinn/altinn-components/compare/v0.35.5...v0.35.6) (2025-07-31)
 
 
