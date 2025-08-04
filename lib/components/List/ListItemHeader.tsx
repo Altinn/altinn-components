@@ -94,7 +94,7 @@ export const ListItemHeader = ({
   /** Badge can be custom, or a Badge object. */
   const renderBadge = (): ReactNode => {
     if (badge && !loading && typeof badge === 'object' && 'label' in badge) {
-      return <Badge {...(badge as BadgeProps)} />;
+      return <Badge {...(badge as BadgeProps)} className={styles.badge} />;
     }
     if (isValidElement(badge)) {
       return badge;
@@ -125,7 +125,9 @@ export const ListItemHeader = ({
         disabled={disabled || loading}
         active={active}
         ariaLabel={setAriaLabel}
+        className={styles.link}
       >
+        <div className={styles.linkFocus} aria-hidden="true" />
         {select && <ListItemSelect {...select} className={styles.select} />}
         <ListItemIcon loading={loading} icon={icon} />
         <ListItemLabel
@@ -138,25 +140,22 @@ export const ListItemHeader = ({
         >
           {children}
         </ListItemLabel>
-
-        {!controls && !loading && (
-          <div className={styles.badgeAndIcon}>
-            {renderBadge()}
-            {applicableIcon && (
-              <span className={styles.linkIcon}>
-                <Icon
-                  svgElement={applicableIcon}
-                  style={{
-                    fontSize: '1.5rem',
-                  }}
-                />
-              </span>
-            )}
-          </div>
-        )}
       </ListItemLink>
 
-      <ListItemControls className={styles.controls}>{controls && !loading && <span>{controls}</span>}</ListItemControls>
+      <ListItemControls className={styles.controls}>
+        {controls && !loading && <span>{controls}</span>}
+        {renderBadge()}
+        {applicableIcon && (
+          <span className={styles.linkIcon}>
+            <Icon
+              svgElement={applicableIcon}
+              style={{
+                fontSize: '1.5rem',
+              }}
+            />
+          </span>
+        )}
+      </ListItemControls>
     </div>
   );
 };

@@ -3,6 +3,9 @@
   position: relative;
   flex-shrink: 0;
   font-size: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .icon svg,
