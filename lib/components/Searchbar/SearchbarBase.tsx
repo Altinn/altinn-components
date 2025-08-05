@@ -7,12 +7,24 @@ export interface SearchbarBaseProps {
   children: ReactNode;
   expanded?: boolean;
   autocomplete?: boolean;
+  onBlurCapture?: React.FocusEventHandler<HTMLDivElement>;
 }
 
-export const SearchbarBase = ({ className, children, expanded = false, autocomplete = false }: SearchbarBaseProps) => {
+export const SearchbarBase = ({
+  className,
+  children,
+  expanded = false,
+  onBlurCapture,
+  autocomplete = false,
+}: SearchbarBaseProps) => {
   const searchBaseStyles = cx(styles.searchbar, className, expanded && styles.searchbarExpanded);
   return (
-    <div className={searchBaseStyles} data-autocomplete={autocomplete} data-color="neutral">
+    <div
+      className={searchBaseStyles}
+      data-autocomplete={autocomplete}
+      data-color="neutral"
+      onBlurCapture={onBlurCapture}
+    >
       {children}
     </div>
   );

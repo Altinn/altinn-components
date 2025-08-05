@@ -7,6 +7,10 @@
   color: currentColor;
 }
 
+.field[data-expanded="true"] {
+  background-color: white;
+}
+
 .icon {
   position: absolute;
   left: 0;
@@ -19,10 +23,7 @@
   background-color: transparent;
   font-size: inherit;
   flex-grow: 1;
-  padding-left: 3rem;
-  padding-right: 1rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding: 1rem 1rem 1rem 3rem;
   border: 2px solid;
   border-radius: 0.25rem;
   outline: none;
@@ -45,6 +46,9 @@
 }
 
 .clear {
+  background-color: var(--ds-color-neutral-surface-active);
+  border: var(--ds-color-neutral-surface-active);
+  color: var(--ds-color-neutral-base-default);
   position: absolute;
   right: 0;
   margin: 1rem;

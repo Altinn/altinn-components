@@ -29,6 +29,7 @@ export const ListItemLink = ({
   active,
   ariaLabel,
   children,
+  tabIndex = 0,
 }: ListItemLinkProps) => {
   const Component = as || 'div';
 
@@ -53,6 +54,7 @@ export const ListItemLink = ({
       aria-selected={selected}
       {...(shouldApplyAriaLabel && { 'aria-label': ariaLabel })}
       data-active={active}
+      tabIndex={loading || disabled ? -1 : tabIndex}
     >
       {children}
     </Component>

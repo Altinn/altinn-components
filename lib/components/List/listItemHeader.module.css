@@ -32,6 +32,18 @@
   background-color: var(--ds-color-background-tinted);
 }
 
+.label {
+  flex-grow: 1;
+}
+
+.link {
+  outline: none;
+}
+
+.badge {
+  pointer-events: none;
+}
+
 .linkIcon {
   flex-shrink: 0;
   min-width: 2em;
@@ -42,10 +54,27 @@
   pointer-events: none;
 }
 
-.badgeAndIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--dsc-item-spacing);
-  margin-left: auto;
+.linkFocus {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.link:focus-visible .linkFocus {
+  /**
+   * We use both box-shadow and outline to ensure that the focus style is visible,
+   * in case box-shadow is overridden.
+   */
+  box-shadow: var(--_ds--focus, var(--dsc-focus-boxShadow));
+  outline: var(--_ds--focus, var(--dsc-focus-outline));
+
+  /**
+   * Using CSS custom properties toggle trick to ensure focus-visible is only shown on outermost element
+   * https://css-tricks.com/the-css-custom-property-toggle-trick/
+   */
+  * {
+    --_ds--focus: ;
+  }
 }
