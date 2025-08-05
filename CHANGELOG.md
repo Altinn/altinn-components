@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.36.0](https://github.com/Altinn/altinn-components/compare/v0.35.9...v0.36.0) (2025-08-05)
+
+
+### Features
+
+* add support for unread dialog body + timeline section and segment ([#556](https://github.com/Altinn/altinn-components/issues/556)) ([698cb15](https://github.com/Altinn/altinn-components/commit/698cb154e2c7b24924868d745a2afec03e5aa274))
+
+
+### Bug Fixes
+
+* escape function reopening searchbar ([#555](https://github.com/Altinn/altinn-components/issues/555)) ([2d9b5d9](https://github.com/Altinn/altinn-components/commit/2d9b5d929f6abc555244aa2299bf3b2b6f3ed243))
+
 ## [0.35.9](https://github.com/Altinn/altinn-components/compare/v0.35.8...v0.35.9) (2025-08-05)
 
 
