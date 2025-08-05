@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.35.9](https://github.com/Altinn/altinn-components/compare/v0.35.8...v0.35.9) (2025-08-05)
+
+
+### Bug Fixes
+
+* escape function reopening searchbar ([#553](https://github.com/Altinn/altinn-components/issues/553)) ([df3ad17](https://github.com/Altinn/altinn-components/commit/df3ad1737f03f4dddd086911e0fb4871f8886693))
+* searchfield enhanchments ([#552](https://github.com/Altinn/altinn-components/issues/552)) ([dcaddcb](https://github.com/Altinn/altinn-components/commit/dcaddcb64d6e867caabbeb5f35bc1e0f6c00984d))
+
 ## [0.35.8](https://github.com/Altinn/altinn-components/compare/v0.35.7...v0.35.8) (2025-08-05)
 
 
