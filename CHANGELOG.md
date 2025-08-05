@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.35.8](https://github.com/Altinn/altinn-components/compare/v0.35.7...v0.35.8) (2025-08-05)
+
+
+### Bug Fixes
+
+* list-item-focus ([#549](https://github.com/Altinn/altinn-components/issues/549)) ([1af2758](https://github.com/Altinn/altinn-components/commit/1af2758567f855b522d2052e60f2b4efe6e37b9f))
+
 ## [0.35.7](https://github.com/Altinn/altinn-components/compare/v0.35.6...v0.35.7) (2025-08-04)
 
 
