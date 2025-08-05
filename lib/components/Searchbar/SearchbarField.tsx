@@ -51,7 +51,7 @@ export const SearchbarField = ({
   };
 
   return (
-    <div className={cx(styles.field, className)} data-expanded={expanded}>
+    <div className={cx(styles.field, className)}>
       <input
         ref={ref}
         onFocus={onFocus}
@@ -67,6 +67,7 @@ export const SearchbarField = ({
         autoComplete="off"
         aria-autocomplete="list"
         tabIndex={tabIndex ?? 0}
+        data-expanded={expanded}
         data-testid="searchbar-input"
       />
       <Icon svgElement={MagnifyingGlassIcon} className={styles.icon} />
@@ -84,6 +85,7 @@ export const SearchbarField = ({
         (expanded && (
           <IconButton
             icon={XMarkIcon}
+            size="sm"
             variant="text"
             className={styles.dismiss}
             onClick={onClose}

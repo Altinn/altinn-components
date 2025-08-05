@@ -7,10 +7,6 @@
   color: currentColor;
 }
 
-.field[data-expanded="true"] {
-  background-color: white;
-}
-
 .icon {
   position: absolute;
   left: 0;
@@ -34,25 +30,36 @@
   appearance: none;
 }
 
+.input[data-expanded="true"],
 .input:focus,
 .input:not(:placeholder-shown) {
   background-color: var(--ds-color-background-default);
 }
 
-.dismiss {
-  position: absolute;
-  right: 0;
-  margin: 0.375rem;
-}
-
 .clear {
-  background-color: var(--ds-color-neutral-surface-active);
-  border: var(--ds-color-neutral-surface-active);
-  color: var(--ds-color-neutral-base-default);
+  background-color: var(--ds-color-surface-tinted);
+  color: var(--ds-color-base-default);
+  border: 0;
   position: absolute;
   right: 0;
-  margin: 1rem;
+  margin: 0.75rem;
   border-radius: 100%;
   width: 1.5rem;
   height: 1.5rem;
+}
+
+.clear:focus-visible {
+  outline-offset: 0;
+  outline-width: 2px;
+}
+
+.dismiss {
+  position: absolute;
+  right: 0;
+  margin: 0.5rem;
+}
+
+.dismiss:focus-visible {
+  outline-offset: 0;
+  outline-width: 2px;
 }
