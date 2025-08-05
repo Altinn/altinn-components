@@ -46,6 +46,7 @@
   border-color: var(--ds-color-surface-active);
   border-width: 0.125rem;
   flex-grow: 1;
+  transition: border-color 500ms ease-out;
 }
 
 .border[data-variant="hidden"] {

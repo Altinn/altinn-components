@@ -13,6 +13,8 @@ import {
 export interface DialogBodyProps {
   /** Loading */
   loading?: boolean;
+  /** Unread */
+  unread?: boolean;
   /** Sender */
   sender?: AvatarProps;
   /** Recipient  */
@@ -31,6 +33,7 @@ export interface DialogBodyProps {
 
 export const DialogBody = ({
   loading,
+  unread,
   sender,
   recipient,
   recipientLabel = 'to',
@@ -43,7 +46,7 @@ export const DialogBody = ({
         <strong>{sender?.name}</strong>
         {recipientLabel + ' ' + recipient?.name}
       </TimelineHeader>
-      <TimelineSection loading={loading} spacing={4} color={loading ? 'neutral' : undefined}>
+      <TimelineSection unread={unread} loading={loading} spacing={4} color={loading ? 'neutral' : undefined}>
         {!loading && (
           <>
             <Typography maxWidth="60ch" style={{ marginTop: '0.5em' }}>
