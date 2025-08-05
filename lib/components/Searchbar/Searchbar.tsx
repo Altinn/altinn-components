@@ -22,7 +22,9 @@ export const Searchbar = ({
       autocomplete={!!autocomplete}
       onBlurCapture={(e) => {
         const dataTestIdValue = e.target?.attributes?.getNamedItem('data-testid')?.value;
-
+        if (e.relatedTarget === null) {
+          return;
+        }
         if (
           dataTestIdValue === 'search-button-clear' ||
           dataTestIdValue === 'search-button-close' ||
