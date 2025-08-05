@@ -1,6 +1,5 @@
 .virtualScrollRef {
   max-height: 400px;
-  overflow: auto;
 }
 
 .virtualMenuListItem {

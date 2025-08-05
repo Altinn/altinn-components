@@ -51,7 +51,7 @@ export const SearchbarField = ({
   };
 
   return (
-    <div className={cx(styles.field, className)}>
+    <div className={cx(styles.field, className)} data-expanded={expanded}>
       <input
         ref={ref}
         onFocus={onFocus}

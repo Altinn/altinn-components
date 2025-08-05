@@ -100,3 +100,20 @@
   align-items: center;
   column-gap: 0.5em;
 }
+
+.item:focus-visible {
+  /**
+   * We use both box-shadow and outline to ensure that the focus style is visible,
+   * in case box-shadow is overridden.
+   */
+  box-shadow: var(--_ds--focus, var(--dsc-focus-boxShadow));
+  outline: var(--_ds--focus, var(--dsc-focus-outline));
+
+  /**
+   * Using CSS custom properties toggle trick to ensure focus-visible is only shown on outermost element
+   * https://css-tricks.com/the-css-custom-property-toggle-trick/
+   */
+  * {
+    --_ds--focus: ;
+  }
+}

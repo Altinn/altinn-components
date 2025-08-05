@@ -44,6 +44,15 @@ export const WithGroups: Story = {
   },
 };
 
+export const VirtualizedMenu: Story = {
+  args: {
+    items: accountMenu.items as AccountMenuProps['items'],
+    menuItemsVirtual: {
+      isVirtualized: true,
+    },
+  },
+};
+
 export const WithToolbar = () => {
   const { toolbar, items, groups } = useAccountList({
     accounts: defaultAccounts,

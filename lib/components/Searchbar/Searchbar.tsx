@@ -16,7 +16,26 @@ export const Searchbar = ({
   ...search
 }: SearchbarProps) => {
   return (
-    <SearchbarBase className={className} expanded={expanded} autocomplete={!!autocomplete}>
+    <SearchbarBase
+      className={className}
+      expanded={expanded}
+      autocomplete={!!autocomplete}
+      onBlurCapture={(e) => {
+        const dataTestIdValue = e.target?.attributes?.getNamedItem('data-testid')?.value;
+
+        if (
+          dataTestIdValue === 'search-button-clear' ||
+          dataTestIdValue === 'search-button-close' ||
+          (dataTestIdValue === 'searchbar-input' &&
+            e.relatedTarget?.getAttribute('data-testid') !== 'searchbar-input' &&
+            e.relatedTarget?.getAttribute('data-testid') !== 'search-button-clear' &&
+            e.relatedTarget?.getAttribute('data-testid') !== 'search-button-close' &&
+            e.relatedTarget?.getAttribute('data-testid') !== 'autocomplete-list')
+        ) {
+          onClose?.();
+        }
+      }}
+    >
       <SearchbarField {...search} expanded={expanded} onClose={onClose} tabIndex={tabIndex} />
       {autocomplete && <Autocomplete {...autocomplete} expanded={expanded} onSelect={onClose} />}
     </SearchbarBase>
