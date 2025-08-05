@@ -24,27 +24,19 @@
 .clear {
   font-size: inherit;
   position: absolute;
-  top: 1px;
-  right: 1px;
-  margin: 0.25em;
+  top: 0;
+  right: 0;
+  margin: 0.375em;
   border: 0;
   border-radius: 100%;
-  width: 2em;
-  height: 2em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
-  background-color: var(--ds-color-background-tinted);
+  font-size: 0.75em;
+
+  background-color: var(--ds-color-surface-tinted);
   color: var(--ds-color-base-default);
 }
 
-.clear:hover {
-  background-color: var(--ds-color-surface-active);
-  color: var(--ds-color-base-default);
-  cursor: pointer;
-}
-
-.clear .clearIcon {
-  font-size: 1.5em;
+.clear:focus-visible {
+  outline-offset: 0;
+  outline-width: 2px;
 }
