@@ -25,6 +25,12 @@ export const contextMenu: ContextMenuProps = {
       title: 'Marker som ulest',
     },
     {
+      groupId: '1',
+      id: 'read',
+      icon: EyeIcon,
+      title: 'Marker som lest',
+    },
+    {
       groupId: '2',
       id: 'archive',
       icon: ArchiveIcon,
@@ -63,6 +69,7 @@ interface GetContextMenuProps {
   archived?: boolean;
   trashed?: boolean;
   seenByLog?: SeenByLogProps;
+  onRead?: (id: string) => void;
   onUnread?: (id: string) => void;
   onArchive?: (id: string) => void;
   onTrash?: (id: string) => void;
@@ -76,6 +83,7 @@ export const getContextMenu = ({
   archived,
   trashed,
   seenByLog,
+  onRead,
   onUnread,
   onArchive,
   onTrash,
@@ -89,6 +97,12 @@ export const getContextMenu = ({
           ...item,
           disabled: unread,
           onClick: () => onUnread?.(id),
+        };
+      case 'read':
+        return {
+          ...item,
+          disabled: !unread,
+          onClick: () => onRead?.(id),
         };
       case 'archive':
         return {
@@ -128,7 +142,15 @@ export const getContextMenu = ({
 
   return {
     ...contextMenu,
+    items: items.filter((item) => {
+      if (item.id === 'read' && !unread) {
+        return false;
+      }
+      if (item.id === 'unread' && unread) {
+        return false;
+      }
+      return item;
+    }),
     id: `context-menu-${id}`,
-    items,
   };
 };

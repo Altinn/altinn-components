@@ -9,11 +9,20 @@ export interface DialogHistorySegmentProps {
   byline?: string;
   children?: ReactNode;
   summary?: ReactNode;
+  unread?: boolean;
 }
 
-export const DialogHistorySegment = ({ id, items, datetime, byline, children, summary }: DialogHistorySegmentProps) => {
+export const DialogHistorySegment = ({
+  id,
+  items,
+  datetime,
+  byline,
+  children,
+  summary,
+  unread,
+}: DialogHistorySegmentProps) => {
   return (
-    <TimelineSegment datetime={datetime} byline={byline} spacing={2} id={id}>
+    <TimelineSegment unread={unread} datetime={datetime} byline={byline} spacing={2} id={id}>
       {summary && <Typography>{summary}</Typography>}
       {children}
       {items?.map((item) => (

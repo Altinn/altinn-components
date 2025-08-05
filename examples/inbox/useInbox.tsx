@@ -90,6 +90,13 @@ export const useInbox = ({ pageId = 'inbox', q, ...props }: UseInboxProps): UseI
     });
   };
 
+  const onRead = (id: string) => {
+    setUnreadIds((prevState) => {
+      const prev = prevState.filter((prevId) => prevId !== id);
+      return prev;
+    });
+  };
+
   const onArchive = (id: string) => {
     setArchivedIds((prevState) => {
       const prev = prevState.filter((prevId) => prevId !== id);
@@ -201,6 +208,7 @@ export const useInbox = ({ pageId = 'inbox', q, ...props }: UseInboxProps): UseI
         trashed,
         archived,
         seenByLog: seenByLog as SeenByLogProps,
+        onRead,
         onUnread,
         onArchive,
         onTrash,
@@ -252,6 +260,7 @@ export const useInbox = ({ pageId = 'inbox', q, ...props }: UseInboxProps): UseI
       trashed: dialog?.trashed,
       archived: dialog?.archived,
       seenByLog: dialog?.seenByLog,
+      onRead,
       onUnread,
       onArchive,
       onTrash,

@@ -14,6 +14,7 @@ import {
 export interface TimelineSegmentProps extends TimelineBaseProps {
   id?: string;
   loading?: boolean;
+  unread?: boolean;
   icon?: TimelineBaseProps['icon'];
   datetime?: string;
   border?: TimelineBorder;
@@ -27,10 +28,11 @@ export interface TimelineSegmentProps extends TimelineBaseProps {
 
 export const TimelineSegment = ({
   loading,
+  unread,
   datetime,
   byline,
   icon = CircleFillIcon,
-  color = 'neutral',
+  color,
   spacing = 2,
   margin = 'bottom',
   children,
@@ -39,7 +41,7 @@ export const TimelineSegment = ({
   ...props
 }: TimelineSegmentProps) => {
   return (
-    <TimelineBase loading={loading} color={color} icon={icon} as="li" {...props} id={id}>
+    <TimelineBase loading={loading} color={unread ? color : 'neutral'} icon={icon} as="li" {...props} id={id}>
       <Section margin={margin} spacing={spacing}>
         {byline && (
           <Byline loading={loading} datetime={datetime}>
