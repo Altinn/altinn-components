@@ -16,7 +16,7 @@ export interface ListItemLabelProps {
 }
 
 // Checks if object looks like HeadingProps
-const isHeadingProps = (heading: unknown): heading is HeadingProps => {
+export const isHeadingProps = (heading: unknown): heading is HeadingProps => {
   return typeof heading === 'object' && heading !== null && 'children' in heading;
 };
 

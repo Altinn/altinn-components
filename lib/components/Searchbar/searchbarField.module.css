@@ -30,10 +30,15 @@
   appearance: none;
 }
 
-.input[data-expanded="true"],
+.input[aria-expanded="true"],
 .input:focus,
 .input:not(:placeholder-shown) {
   background-color: var(--ds-color-background-default);
+}
+
+.input[aria-expanded="true"][aria-controls] {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .clear {

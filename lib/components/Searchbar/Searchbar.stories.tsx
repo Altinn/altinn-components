@@ -19,7 +19,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    expanded: false,
+  },
 };
 
 export const GlobalSearch = () => {
@@ -112,12 +114,6 @@ export const InboxScopesExpanded = () => {
       <InboxScopes name="search" expanded value="skatt" />
     </Section>
   );
-};
-
-export const Query: Story = {
-  args: {
-    value: 'query',
-  },
 };
 
 export const Expanded: Story = {
@@ -278,7 +274,7 @@ ControlledState.play = async ({
   canvasElement: HTMLElement;
 }) => {
   const canvas = within(canvasElement);
-  const searchInput = canvas.getByRole('searchbox');
+  const searchInput = canvas.getByRole('combobox');
   await userEvent.type(searchInput, 'skatt');
 
   /* suggestions const of scopes and search results */

@@ -42,8 +42,16 @@ export const Searchbar = ({
         }
       }}
     >
-      <SearchbarField {...search} expanded={expanded} onClose={onClose} tabIndex={tabIndex} />
-      {autocomplete && <Autocomplete {...autocomplete} expanded={expanded} onSelect={onClose} />}
+      <SearchbarField
+        {...search}
+        expanded={expanded}
+        onClose={onClose}
+        tabIndex={tabIndex}
+        {...(autocomplete && { controlsId: 'searchbar-autocomplete' })}
+      />
+      {autocomplete && (
+        <Autocomplete {...autocomplete} expanded={expanded} onSelect={onClose} id="searchbar-autocomplete" />
+      )}
     </SearchbarBase>
   );
 };

@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useMenu } from '../../hooks/index.ts';
+import { useMenu } from '../../hooks';
 import { useEnterKey } from '../../hooks/useEnterKey.ts';
 import {
   AutocompleteBase,
@@ -10,6 +10,7 @@ import {
 } from '../index.ts';
 
 export interface AutocompleteProps {
+  id?: string;
   items: AutocompleteItemProps[];
   groups?: Record<string, AutocompleteGroupProps>;
   onSelect?: () => void;
@@ -17,7 +18,7 @@ export interface AutocompleteProps {
   className?: string;
 }
 
-export const Autocomplete = ({ className, items, groups = {}, expanded, onSelect }: AutocompleteProps) => {
+export const Autocomplete = ({ className, items, id, groups = {}, expanded, onSelect }: AutocompleteProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEnterKey(() => {
@@ -43,7 +44,7 @@ export const Autocomplete = ({ className, items, groups = {}, expanded, onSelect
   });
 
   return (
-    <AutocompleteBase className={className} expanded={expanded} ref={ref}>
+    <AutocompleteBase className={className} expanded={expanded} ref={ref} id={id}>
       {menu.map((group, index) => {
         return (
           <AutocompleteGroup {...group.props} key={index}>
