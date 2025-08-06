@@ -20,6 +20,8 @@ export interface SearchbarFieldProps {
   onClose?: () => void;
   onEnter?: () => void;
   tabIndex?: number;
+  /* used to link the search input with the autocomplete */
+  controlsId?: string;
 }
 
 export const SearchbarField = ({
@@ -37,6 +39,7 @@ export const SearchbarField = ({
   onClose,
   onEnter,
   tabIndex,
+  controlsId,
 }: SearchbarFieldProps) => {
   const ref = useRef<HTMLInputElement>(null);
 
@@ -62,13 +65,17 @@ export const SearchbarField = ({
         placeholder={placeholder}
         className={styles.input}
         onKeyUp={handleOnKeyUp}
-        type="search"
-        aria-haspopup
+        type="text"
         autoComplete="off"
+        autoCapitalize="off"
+        enterKeyHint="search"
+        spellCheck={false}
         aria-autocomplete="list"
         tabIndex={tabIndex ?? 0}
-        data-expanded={expanded}
+        aria-expanded={expanded}
         data-testid="searchbar-input"
+        aria-controls={controlsId}
+        role="combobox"
       />
       <Icon svgElement={MagnifyingGlassIcon} className={styles.icon} />
       {(value && (

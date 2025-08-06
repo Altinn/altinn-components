@@ -1,6 +1,6 @@
 import cx from 'classnames';
 import { type ReactNode, isValidElement } from 'react';
-import { Badge, type BadgeProps, Heading, type HeadingProps } from '..';
+import { Badge, type BadgeProps, Heading, type HeadingProps, isHeadingProps } from '..';
 import type { MenuItemSize } from './MenuItemBase';
 import styles from './menuItemLabel.module.css';
 
@@ -13,11 +13,6 @@ export interface MenuItemLabelProps {
   badge?: BadgeProps;
   children?: ReactNode;
 }
-
-// Checks if object looks like HeadingProps
-const isHeadingProps = (heading: unknown): heading is HeadingProps => {
-  return typeof heading === 'object' && heading !== null && 'children' in heading;
-};
 
 function isReactNode(value: unknown): value is ReactNode {
   return (
