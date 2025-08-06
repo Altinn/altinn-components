@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.36.1](https://github.com/Altinn/altinn-components/compare/v0.36.0...v0.36.1) (2025-08-06)
+
+
+### Bug Fixes
+
+* introduce aria controls and clean up aria attributes for search field in searchbar ([#558](https://github.com/Altinn/altinn-components/issues/558)) ([5624139](https://github.com/Altinn/altinn-components/commit/5624139c6c3518ea014036b0c3e4e13ec83bb186))
+
 ## [0.36.0](https://github.com/Altinn/altinn-components/compare/v0.35.9...v0.36.0) (2025-08-05)
 
 
