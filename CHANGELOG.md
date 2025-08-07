@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.36.2](https://github.com/Altinn/altinn-components/compare/v0.36.1...v0.36.2) (2025-08-07)
+
+
+### Bug Fixes
+
+* ensure logical keyboard navigation order in global layout ([#561](https://github.com/Altinn/altinn-components/issues/561)) ([df2f09d](https://github.com/Altinn/altinn-components/commit/df2f09d1568e9ba0efb7436a2b607d7bdd3e3856))
+
 ## [0.36.1](https://github.com/Altinn/altinn-components/compare/v0.36.0...v0.36.1) (2025-08-06)
 
 
