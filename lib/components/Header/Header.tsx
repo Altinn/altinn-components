@@ -11,6 +11,7 @@ import { HeaderGroup } from './HeaderGroup';
 import { HeaderLogo, type HeaderLogoProps } from './HeaderLogo';
 import { HeaderSearch } from './HeaderSearch';
 
+import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
 import styles from './header.module.css';
 
 export interface HeaderProps {
@@ -41,6 +42,8 @@ export const Header = ({ menu, locale, search, currentAccount, logo = {}, badge 
     toggleId('locale');
   };
 
+  const isDesktop = useIsDesktop();
+
   return (
     <HeaderBase
       currentId={currentId}
@@ -48,6 +51,11 @@ export const Header = ({ menu, locale, search, currentAccount, logo = {}, badge 
       onClose={closeAll}
     >
       <HeaderLogo {...logo} className={styles.logo} />
+      {search && isDesktop && (
+        <HeaderSearch expanded={currentId === 'search'}>
+          <Searchbar {...search} expanded={currentId === 'search'} onClose={onSearchClose} onFocus={onSearchFocus} />
+        </HeaderSearch>
+      )}
       <HeaderGroup>
         {locale && (
           <div className={styles.relative}>
@@ -86,7 +94,7 @@ export const Header = ({ menu, locale, search, currentAccount, logo = {}, badge 
           )}
         </div>
       </HeaderGroup>
-      {search && (
+      {search && !isDesktop && (
         <HeaderSearch expanded={currentId === 'search'}>
           <Searchbar {...search} expanded={currentId === 'search'} onClose={onSearchClose} onFocus={onSearchFocus} />
         </HeaderSearch>
