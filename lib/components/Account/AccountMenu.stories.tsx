@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { AccountMenu, type AccountMenuProps, Heading, PageBase, Toolbar } from '..';
 import { accountMenu, defaultAccounts, useAccountList, useAccountMenu } from '../../../examples';
+import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
 
 const meta = {
   title: 'Account/AccountMenu',
@@ -44,13 +45,38 @@ export const WithGroups: Story = {
   },
 };
 
-export const VirtualizedMenu: Story = {
-  args: {
-    items: accountMenu.items as AccountMenuProps['items'],
-    menuItemsVirtual: {
-      isVirtualized: true,
-    },
-  },
+export const VirtualizedMenu = () => {
+  const isDesktop = useIsDesktop();
+  const { items, groups } = useAccountList({
+    accounts: defaultAccounts,
+  });
+
+  const menuItems = items?.map((item) => {
+    return {
+      ...item,
+      collapsible: false,
+      linkIcon: true,
+    };
+  }) as AccountMenuProps['items'];
+
+  return (
+    <PageBase>
+      <Heading>Velg aktør før du går videre</Heading>
+      {items && (
+        <AccountMenu
+          groups={groups}
+          items={menuItems}
+          menuItemsVirtual={{
+            isVirtualized: true,
+            scrollRefStyles: {
+              maxHeight: isDesktop ? 'calc(100vh - 6rem)' : 'calc(100vh - 5rem)',
+              paddingBottom: '0.5rem',
+            },
+          }}
+        />
+      )}
+    </PageBase>
+  );
 };
 
 export const WithToolbar = () => {
