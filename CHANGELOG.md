@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.36.3](https://github.com/Altinn/altinn-components/compare/v0.36.2...v0.36.3) (2025-08-11)
+
+
+### Bug Fixes
+
+* content in virtualized list now automatically overflows ([#568](https://github.com/Altinn/altinn-components/issues/568)) ([d367ab2](https://github.com/Altinn/altinn-components/commit/d367ab2090fb363b15adc16738cbb5e2849a2819))
+* **storybook:** add custom theme and set brand title to include name and version of library ([#565](https://github.com/Altinn/altinn-components/issues/565)) ([d345351](https://github.com/Altinn/altinn-components/commit/d345351ade9ce94e5a3515b78d5b20a89e976d8a))
+
 ## [0.36.2](https://github.com/Altinn/altinn-components/compare/v0.36.1...v0.36.2) (2025-08-07)
 
 
