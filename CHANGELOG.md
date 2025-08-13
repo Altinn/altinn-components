@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.36.4](https://github.com/Altinn/altinn-components/compare/v0.36.3...v0.36.4) (2025-08-13)
+
+
+### Bug Fixes
+
+* **ListItem:** add pointer-event none to linkFocus ([#571](https://github.com/Altinn/altinn-components/issues/571)) ([6aa892d](https://github.com/Altinn/altinn-components/commit/6aa892d834792ed264028059609d83ec8a9829a0))
+
 ## [0.36.3](https://github.com/Altinn/altinn-components/compare/v0.36.2...v0.36.3) (2025-08-11)
 
 
