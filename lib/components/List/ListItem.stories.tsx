@@ -479,7 +479,7 @@ export const CustomControls = (args: ListItemProps) => {
         {...args}
         icon={TeddyBearIcon}
         linkIcon
-        as="li"
+        as="a"
         onClick={() => alert('ListItem clicked')}
         badge={
           <ContextMenu
@@ -496,7 +496,7 @@ export const CustomControls = (args: ListItemProps) => {
         icon={TeddyBearIcon}
         badge={{ label: 'New', theme: 'subtle' }}
         onClick={() => alert('ListItem clicked')}
-        as="li"
+        as="a"
         controls={
           <ContextMenu
             id="menu"
