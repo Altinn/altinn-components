@@ -13,6 +13,7 @@ import {
   ListItem,
   type ListItemProps,
   Section,
+  Switch,
 } from '../';
 
 const variants = ['default', 'subtle', 'tinted'] as ListItemProps['variant'][];
@@ -515,8 +516,53 @@ export const CustomControls = (args: ListItemProps) => {
             Rediger
           </Button>
         }
+        badge={undefined}
         onClick={() => alert('ListItem clicked')}
         as={'button'}
+      />
+
+      <ListItem
+        {...args}
+        interactive={false}
+        icon={TeddyBearIcon}
+        controls={
+          <Button icon={PencilIcon} size="xs" variant="outline" onClick={() => alert('Button clicked')}>
+            Rediger
+          </Button>
+        }
+        linkIcon={false}
+        badge={undefined}
+        onClick={() => alert('ListItem clicked')}
+        as={'button'}
+      />
+
+      <ListItem
+        {...args}
+        interactive={false}
+        icon={TeddyBearIcon}
+        controls={
+          <>
+            <Button icon={PencilIcon} size="xs" variant="outline" onClick={() => alert('Button 1')}>
+              1
+            </Button>
+            <Button icon={PencilIcon} size="xs" variant="outline" onClick={() => alert('Button 2')}>
+              2
+            </Button>
+            <Button icon={PencilIcon} size="xs" variant="outline" onClick={() => alert('Button 3')}>
+              3
+            </Button>
+          </>
+        }
+        linkIcon={false}
+        badge={undefined}
+      />
+      <ListItem
+        {...args}
+        interactive={false}
+        icon={TeddyBearIcon}
+        controls={<Switch label="Yes, go!" size="sm" />}
+        linkIcon={false}
+        badge={undefined}
       />
     </List>
   );
