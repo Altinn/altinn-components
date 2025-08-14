@@ -56,7 +56,6 @@
   display: inline-flex;
   align-items: center;
 
-  z-index: 2;
 }
 
 .button:not([data-size]) {
