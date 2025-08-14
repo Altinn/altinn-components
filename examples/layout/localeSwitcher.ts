@@ -19,4 +19,7 @@ export const localeOptions = [
 export const localeSwitcher: LocaleSwitcherProps = {
   title: 'Språk/language',
   options: localeOptions,
+  onSelect: (value) => {
+    console.info('locale changed to ' + value);
+  },
 };

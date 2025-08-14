@@ -1,17 +1,18 @@
 'use client';
 import { useEffect } from 'react';
 
-export const useEnterKey = (onEnter?: () => void): void => {
+export const useEnterKey = (onEnter?: (e: KeyboardEvent) => void): void => {
   useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
+    const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Enter') {
-        onEnter?.();
+        onEnter?.(event);
       }
     };
-    document.addEventListener('keydown', handleEscape);
+
+    document.addEventListener('keydown', handleKeyDown, true);
 
     return () => {
-      document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener('keydown', handleKeyDown, true);
     };
   }, [onEnter]);
 };

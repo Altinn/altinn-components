@@ -15,32 +15,34 @@ export const Searchbar = ({
   tabIndex,
   ...search
 }: SearchbarProps) => {
+  const onBlurCapture = (e: React.FocusEvent<HTMLDivElement>) => {
+    const dataTestIdValue = e.target?.attributes?.getNamedItem('data-testid')?.value;
+    const autocompleteParent = e?.relatedTarget?.closest('[data-autocomplete="true"]');
+
+    // If the related target is part of the autocomplete or if it is null (e.g., escape key pressed),
+    if (autocompleteParent || e.relatedTarget === null) {
+      return;
+    }
+
+    if (
+      dataTestIdValue === 'search-button-clear' ||
+      dataTestIdValue === 'search-button-close' ||
+      (dataTestIdValue === 'searchbar-input' &&
+        e.relatedTarget?.getAttribute('data-testid') !== 'searchbar-input' &&
+        e.relatedTarget?.getAttribute('data-testid') !== 'search-button-clear' &&
+        e.relatedTarget?.getAttribute('data-testid') !== 'search-button-close' &&
+        e.relatedTarget?.getAttribute('data-testid') !== 'autocomplete-list')
+    ) {
+      onClose?.();
+    }
+  };
+
   return (
     <SearchbarBase
       className={className}
       expanded={expanded}
       autocomplete={!!autocomplete}
-      onBlurCapture={(e) => {
-        const dataTestIdValue = e.target?.attributes?.getNamedItem('data-testid')?.value;
-        const autocompleteParent = e?.relatedTarget?.closest('[data-autocomplete="true"]');
-
-        // If the related target is part of the autocomplete or if it is null (e.g., escape key pressed),
-        if (autocompleteParent || e.relatedTarget === null) {
-          return;
-        }
-
-        if (
-          dataTestIdValue === 'search-button-clear' ||
-          dataTestIdValue === 'search-button-close' ||
-          (dataTestIdValue === 'searchbar-input' &&
-            e.relatedTarget?.getAttribute('data-testid') !== 'searchbar-input' &&
-            e.relatedTarget?.getAttribute('data-testid') !== 'search-button-clear' &&
-            e.relatedTarget?.getAttribute('data-testid') !== 'search-button-close' &&
-            e.relatedTarget?.getAttribute('data-testid') !== 'autocomplete-list')
-        ) {
-          onClose?.();
-        }
-      }}
+      onBlurCapture={onBlurCapture}
     >
       <SearchbarField
         {...search}
