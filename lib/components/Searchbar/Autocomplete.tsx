@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 import { useMenu } from '../../hooks';
-import { useEnterKey } from '../../hooks/useEnterKey.ts';
 import {
   AutocompleteBase,
   AutocompleteGroup,
@@ -21,26 +20,13 @@ export interface AutocompleteProps {
 export const Autocomplete = ({ className, items, id, groups = {}, expanded, onSelect }: AutocompleteProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
-  useEnterKey(() => {
-    if (expanded) {
-      const activeItem = ref.current?.querySelector('[data-active="true"]') as HTMLElement | null;
-      if (activeItem) {
-        const isLink = activeItem.tagName === 'A' && activeItem.hasAttribute('href');
-        if (!isLink) {
-          activeItem.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-        } else {
-          activeItem.click();
-        }
-      }
-      onSelect?.();
-    }
-  });
-
   const { menu, setActiveIndex } = useMenu<AutocompleteItemProps, AutocompleteGroupProps>({
     items,
     groups,
     groupByKey: 'groupId',
-    keyboardEvents: true,
+    keyboardEvents: expanded,
+    onSelect,
+    ref,
   });
 
   return (
