@@ -1,5 +1,5 @@
 import { ChevronDownIcon, ChevronRightIcon, ChevronUpIcon } from '@navikt/aksel-icons';
-import type { ElementType, ReactNode } from 'react';
+import type { ElementType, MouseEventHandler, ReactNode } from 'react';
 import {
   type BadgeProps,
   Icon,
@@ -45,6 +45,7 @@ export interface MenuItemProps {
   className?: string;
   label?: ReactNode;
   items?: MenuItemProps[];
+  onMouseEnter?: MouseEventHandler;
 }
 
 export const MenuItem = ({
