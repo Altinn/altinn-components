@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.36.5](https://github.com/Altinn/altinn-components/compare/v0.36.4...v0.36.5) (2025-08-14)
+
+
+### Bug Fixes
+
+* list item click area ([#576](https://github.com/Altinn/altinn-components/issues/576)) ([d9a52f7](https://github.com/Altinn/altinn-components/commit/d9a52f764b8da92f9f43ae4bad7c7c0cfaef5cfc))
+
 ## [0.36.4](https://github.com/Altinn/altinn-components/compare/v0.36.3...v0.36.4) (2025-08-13)
 
 
