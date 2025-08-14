@@ -127,7 +127,8 @@ export const ListItemHeader = ({
         ariaLabel={setAriaLabel}
         className={styles.link}
       >
-        <div className={styles.linkFocus} aria-hidden="true" />
+        {interactive && <div className={styles.linkFocus} aria-hidden="true" />}
+
         {select && <ListItemSelect {...select} className={styles.select} />}
         <ListItemIcon loading={loading} icon={icon} />
         <ListItemLabel
@@ -143,7 +144,7 @@ export const ListItemHeader = ({
       </ListItemLink>
 
       <ListItemControls className={styles.controls}>
-        {controls && !loading && <span>{controls}</span>}
+        {controls && !loading && <span className={styles.customControls}>{controls}</span>}
         {renderBadge()}
         {applicableIcon && (
           <span className={styles.linkIcon}>
