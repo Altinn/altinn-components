@@ -29,7 +29,7 @@ const meta = {
     name: testArea.name,
     titleAs: 'h3',
     iconUrl: testArea.icon,
-    badgeText: '2 of 7',
+    badge: '2 of 7',
     colorTheme: 'company',
     loading: false,
     shadow: 'sm',
@@ -94,7 +94,7 @@ export const AreaWithPackages = (args: AccessAreaListItemProps) => {
         colorTheme="company"
         expanded={expanded}
         onClick={() => setExpanded(!expanded)}
-        badgeText={`2 of ${testArea.packages.length}`}
+        badge={`2 of ${testArea.packages.length}`}
       >
         {children(args.colorTheme)}
       </AccessAreaListItem>
@@ -121,7 +121,7 @@ export const AllAreas = (args: AccessAreaListItemProps) => {
                 size={args.size}
                 expanded={expanded === area.id}
                 onClick={() => setExpanded((prev) => (prev === area.id ? null : area.id))}
-                badgeText={`0 of ${area.packages.length}`}
+                badge={`0 of ${area.packages.length}`}
                 shadow="sm"
               >
                 {area.description && <p>{area.description}</p>}
