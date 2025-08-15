@@ -43,7 +43,7 @@ export const AccessAreaListItem = ({
     color: colorTheme,
     altText: '',
   } as IconProps;
-  
+
   return (
     <ListItem
       as="button"
