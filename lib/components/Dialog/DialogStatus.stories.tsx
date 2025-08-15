@@ -20,7 +20,9 @@ type Story = StoryObj<typeof meta>;
 export const Default = () => {
   return (
     <MetaBase>
+      <DialogStatus value="draft" label="Utkast" />
       <DialogStatus value="requires-attention" label="Krever handling" />
+      <DialogStatus value="awaiting" label="Avventer" />
       <DialogStatus value="in-progress" label="Under arbeid" />
       <DialogStatus value="completed" label="Avsluttet" />
     </MetaBase>
@@ -37,7 +39,7 @@ export const Draft: Story = {
 export const Awaiting: Story = {
   args: {
     value: 'awaiting',
-    label: 'Sendt',
+    label: 'Avventer',
   },
 };
 

@@ -8,10 +8,6 @@
   font-size: 1.25em;
 }
 
-.icon:hover {
-  color: var(--color-primary);
-}
-
 .avatarGroup {
   font-size: 1.25rem;
 }
