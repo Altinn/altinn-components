@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.36.6](https://github.com/Altinn/altinn-components/compare/v0.36.5...v0.36.6) (2025-08-15)
+
+
+### Bug Fixes
+
+* dialog status awaiting ([#579](https://github.com/Altinn/altinn-components/issues/579)) ([f52a62a](https://github.com/Altinn/altinn-components/commit/f52a62aab3f4bd61a195d42667e29ca36e09b22f))
+
 ## [0.36.5](https://github.com/Altinn/altinn-components/compare/v0.36.4...v0.36.5) (2025-08-14)
 
 
