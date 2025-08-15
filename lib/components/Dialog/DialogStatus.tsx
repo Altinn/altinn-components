@@ -1,4 +1,5 @@
-import { MetaItem, type MetaItemSize, MetaProgress } from '../Metadata';
+import { HourglassIcon } from '@navikt/aksel-icons';
+import { MetaItem, type MetaItemSize, MetaProgress } from '../';
 
 export enum DialogStatusEnum {
   /** No explicit status. This is the default. */
@@ -40,15 +41,14 @@ export const DialogStatus = ({ loading, size = 'xs', value = 'not-applicable', l
           {label || value}
         </MetaItem>
       );
+    case 'requires-attention':
+      return <MetaItem variant="solid">{label || value}</MetaItem>;
     case 'awaiting':
       return (
-        <MetaItem size={size} variant="outline">
+        <MetaItem size={size} variant="outline" icon={HourglassIcon}>
           {label || value}
         </MetaItem>
       );
-
-    case 'requires-attention':
-      return <MetaItem variant="solid">{label || value}</MetaItem>;
     case 'in-progress':
       return (
         <MetaProgress size={size} variant="outline" progress={75}>
