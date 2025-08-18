@@ -75,6 +75,10 @@
   flex-direction: row;
 }
 
+.header mark {
+  background-color: var(--ds-color-surface-tinted);
+}
+
 .summary {
   font-size: var(--dsc-summary-font-size);
   font-weight: 400;

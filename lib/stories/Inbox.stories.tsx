@@ -94,7 +94,9 @@ export const InboxPage = () => {
 };
 
 export const SearchPage = () => {
-  const { layout, toolbar, results, dialog } = useInbox({ q: "godkjent" });
+  const { layout, toolbar, results, dialog } = useInbox({
+    q: "regnskap",
+  });
 
   if (dialog) {
     return (
@@ -105,11 +107,15 @@ export const SearchPage = () => {
   }
 
   return (
-    <Layout {...layout}>
+    <Layout {...layout} color={undefined}>
       <PageBase margin="page">
         <Toolbar {...toolbar} />
         {results && (
-          <DialogList items={results.items} groups={results?.groups} />
+          <DialogList
+            items={results.items}
+            groups={results?.groups}
+            highlightWords={["regnskap"]}
+          />
         )}
       </PageBase>
     </Layout>

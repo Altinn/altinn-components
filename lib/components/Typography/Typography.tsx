@@ -2,6 +2,7 @@ import cx from 'classnames';
 import type { CSSProperties, ElementType, ReactNode } from 'react';
 import { Skeleton } from '../Skeleton';
 import styles from './typography.module.css';
+import { useHighlightedText } from './useHighlightedText';
 
 export type TypographyColor = 'neutral' | 'company' | 'person' | 'article';
 export type TypographyVariant = 'default' | 'subtle';
@@ -10,6 +11,7 @@ export type TypographySize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export interface TypographyProps {
   loading?: boolean;
   loadingText?: string;
+  highlightWords?: string[];
   as?: ElementType;
   size?: TypographySize;
   color?: TypographyColor;
@@ -24,6 +26,7 @@ export interface TypographyProps {
 export const Typography = ({
   loading,
   loadingText = 'Loading ...',
+  highlightWords,
   as = 'div',
   size = 'md',
   color,
@@ -35,6 +38,8 @@ export const Typography = ({
   ...restProps
 }: TypographyProps) => {
   const Component = as;
+
+  const content = useHighlightedText(children, highlightWords || []);
 
   return (
     <Component
@@ -48,7 +53,7 @@ export const Typography = ({
       data-variant={variant}
       {...restProps}
     >
-      {(loading && <Skeleton loading={loading}>{loadingText}</Skeleton>) || children}
+      {(loading && <Skeleton loading={loading}>{loadingText}</Skeleton>) || content}
     </Component>
   );
 };
