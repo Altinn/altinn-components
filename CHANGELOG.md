@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.36.7](https://github.com/Altinn/altinn-components/compare/v0.36.6...v0.36.7) (2025-08-18)
+
+
+### Miscellaneous Chores
+
+* update props to package- and area-li ([#581](https://github.com/Altinn/altinn-components/issues/581)) ([48bfa48](https://github.com/Altinn/altinn-components/commit/48bfa48ac25d2997f066b895f25df15c0670d696))
+
 ## [0.36.6](https://github.com/Altinn/altinn-components/compare/v0.36.5...v0.36.6) (2025-08-15)
 
 
