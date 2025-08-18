@@ -1,7 +1,9 @@
+'use client';
 import cx from 'classnames';
 import type { CSSProperties, ReactNode } from 'react';
 import { Skeleton, type TypographyProps } from '..';
 import styles from './heading.module.css';
+import { useHighlightedText } from './useHighlightedText';
 
 export type HeadingSize = 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'inherit';
 export type HeadingWeight = 'normal' | 'medium' | 'bold';
@@ -11,6 +13,7 @@ export type HeadingComponent = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | '
 
 export interface HeadingProps {
   loading?: boolean;
+  highlightWords?: string[];
   as?: HeadingComponent;
   size?: HeadingSize;
   weight?: HeadingWeight;
@@ -25,6 +28,7 @@ export interface HeadingProps {
 
 export const Heading = ({
   loading,
+  highlightWords = [],
   as = 'h2',
   size,
   leading = 'tight',
@@ -38,6 +42,8 @@ export const Heading = ({
 }: HeadingProps) => {
   const H = as;
 
+  const content = useHighlightedText(children, highlightWords || []);
+
   return (
     <Skeleton loading={loading}>
       <H
@@ -50,7 +56,7 @@ export const Heading = ({
         data-variant={(size === 'xxs' && 'default') || variant}
         data-max-rows={maxRows}
       >
-        {children}
+        {content}
       </H>
     </Skeleton>
   );

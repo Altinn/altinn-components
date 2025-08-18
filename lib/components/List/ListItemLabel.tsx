@@ -34,7 +34,6 @@ const getTitleProps = (title: HeadingProps | ReactNode | string) => {
   const defaultProps: HeadingProps = {
     as: 'h3',
     size: 'sm',
-    //    leading: "tight",
   };
 
   if (isHeadingProps(title)) {
@@ -55,7 +54,6 @@ const getDescriptionProps = (description: HeadingProps | ReactNode | string) => 
     size: 'xs',
     weight: 'normal',
     variant: 'subtle',
-    //    leading: "tight",
   };
 
   if (isHeadingProps(description)) {

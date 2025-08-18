@@ -315,3 +315,19 @@ export const CustomControls = (args: DialogListItemProps) => {
     />
   );
 };
+
+export const HighlightWords = (args: DialogListItemProps) => {
+  return (
+    <DialogListItem
+      {...args}
+      status={{ value: 'in-progress', label: 'Under arbeid' }}
+      controls={<ContextMenu {...contextMenu} />}
+      title="Title with highlighted text"
+      summary="Summary with highlighted text"
+      highlightWords={['title', 'highlight']}
+      ariaLabel="Title"
+      as="a"
+      href="//vg.no"
+    />
+  );
+};

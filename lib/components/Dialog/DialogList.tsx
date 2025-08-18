@@ -6,10 +6,11 @@ export interface DialogListProps {
   items: DialogListItemProps[];
   groups?: Record<string, DialogListGroupProps>;
   sortGroupBy?: (a: [string, DialogListItemProps[]], b: [string, DialogListItemProps[]]) => number;
+  highlightWords?: string[];
   isLoading?: boolean;
 }
 
-export const DialogList = ({ items, groups = {}, sortGroupBy, isLoading }: DialogListProps) => {
+export const DialogList = ({ items, groups = {}, sortGroupBy, highlightWords, isLoading }: DialogListProps) => {
   const { menu } = useMenu<DialogListItemProps, DialogListGroupProps>({
     items,
     groups,
@@ -27,7 +28,7 @@ export const DialogList = ({ items, groups = {}, sortGroupBy, isLoading }: Dialo
           <DialogListGroup {...groupProps} key={'dialog-list-item' + groupIndex}>
             {group?.items.map((item, index) => {
               const itemProps = item.props || {};
-              return <DialogListItem {...itemProps} key={'dialog-list-item' + index} />;
+              return <DialogListItem {...itemProps} highlightWords={highlightWords} key={'dialog-list-item' + index} />;
             })}
           </DialogListGroup>
         );

@@ -12,7 +12,6 @@ import {
   type ListItemProps,
   MetaItem,
   type SeenByLogProps,
-  Skeleton,
 } from '..';
 
 export type DialogListItemSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -22,6 +21,8 @@ export type DialogListItemTheme = 'default' | 'subtle' | 'transparent';
 import styles from './dialogListItem.module.css';
 
 export interface DialogListItemProps extends ListItemProps, DialogMetadataProps {
+  /** Highlight words, ie. search terms */
+  highlightWords?: string[];
   /** Dialog title */
   title: string;
   /** Dialog id */
@@ -105,6 +106,7 @@ export const DialogListItem = ({
   title,
   description,
   summary,
+  highlightWords,
   variant = 'default',
   id,
   ...rest
@@ -164,7 +166,14 @@ export const DialogListItem = ({
         >
           <header className={styles.header} data-size={size}>
             <span className={styles.heading}>
-              <Heading weight={unread ? 'bold' : 'normal'} loading={loading} maxRows={2} className={styles.title}>
+              <Heading
+                as="h2"
+                highlightWords={highlightWords}
+                weight={unread ? 'bold' : 'normal'}
+                loading={loading}
+                maxRows={2}
+                className={styles.title}
+              >
                 {title}
               </Heading>
               {badge && <Badge variant="tinted" size="xs" {...badge} />}
@@ -177,12 +186,17 @@ export const DialogListItem = ({
               recipientLabel={recipientLabel}
               grouped={grouped}
             />
-            {size === 'xl' && summary && (
-              <Skeleton loading={loading}>
-                <p data-size={size} className={styles.summary}>
-                  {summary || description}
-                </p>
-              </Skeleton>
+            {summary && (
+              <Heading
+                as="h3"
+                highlightWords={highlightWords}
+                weight="normal"
+                className={styles.summary}
+                loading={loading}
+                maxRows={2}
+              >
+                {summary}
+              </Heading>
             )}
           </header>
           <DialogMetadata
