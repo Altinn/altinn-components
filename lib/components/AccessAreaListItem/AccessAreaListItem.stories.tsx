@@ -1,19 +1,27 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
+import type { BadgeProps } from '../..';
 import areaGroups from '../../../test-data/accesspackages.json';
 import type { Color } from '../../types';
 import { AccessPackageListItem } from '../AccessPackageListItem';
+import { AvatarGroup, type AvatarGroupProps } from '../Avatar';
 import { List } from '../List';
 import { AccessAreaListItem, type AccessAreaListItemProps } from './AccessAreaListItem';
 
 const testArea = areaGroups[1].areas[1];
 
-const children = (colorTheme: Color | undefined) => (
+const children = (colorTheme: Color | undefined, showBadge?: boolean) => (
   <>
     {testArea.description && <p>{testArea.description}</p>}
     <List spacing={2}>
       {testArea.packages.map((pkg, index) => (
-        <AccessPackageListItem id={pkg.id} key={pkg.id} name={pkg.name} color={index < 2 ? colorTheme : 'neutral'} />
+        <AccessPackageListItem
+          id={pkg.id}
+          key={pkg.id}
+          name={pkg.name}
+          color={index < 2 ? colorTheme : 'neutral'}
+          badge={showBadge ? <AvatarGroup items={avatarItems as AvatarGroupProps['items']} /> : undefined}
+        />
       ))}
     </List>
   </>
@@ -29,7 +37,7 @@ const meta = {
     name: testArea.name,
     titleAs: 'h3',
     iconUrl: testArea.icon,
-    badgeText: '2 of 7',
+    badge: { label: '2 of 7' } as BadgeProps,
     colorTheme: 'company',
     loading: false,
     shadow: 'sm',
@@ -85,6 +93,29 @@ export const AreaListItemStory: Story = {
   ),
 };
 
+const avatarItems = [
+  {
+    name: 'Linda Lavhøy',
+    type: 'person',
+  },
+  {
+    name: 'Digdir',
+    type: 'company',
+  },
+  {
+    name: 'Kari Nordmann',
+    type: 'person',
+  },
+  {
+    name: 'Test AS',
+    type: 'company',
+  },
+  {
+    name: 'Kjell Hansen',
+    type: 'person',
+  },
+];
+
 export const AreaWithPackages = (args: AccessAreaListItemProps) => {
   const [expanded, setExpanded] = React.useState<boolean>(false);
   return (
@@ -94,9 +125,26 @@ export const AreaWithPackages = (args: AccessAreaListItemProps) => {
         colorTheme="company"
         expanded={expanded}
         onClick={() => setExpanded(!expanded)}
-        badgeText={`2 of ${testArea.packages.length}`}
+        badge={{ label: `2 of ${testArea.packages.length}` }}
       >
         {children(args.colorTheme)}
+      </AccessAreaListItem>
+    </List>
+  );
+};
+
+export const AreaWithPermissions = (args: AccessAreaListItemProps) => {
+  const [expanded, setExpanded] = React.useState<boolean>(false);
+  return (
+    <List spacing={2}>
+      <AccessAreaListItem
+        {...args}
+        colorTheme="company"
+        expanded={expanded}
+        onClick={() => setExpanded(!expanded)}
+        badge={<AvatarGroup maxItemsCount={4} items={avatarItems as AvatarGroupProps['items']} />}
+      >
+        {children(args.colorTheme, true)}
       </AccessAreaListItem>
     </List>
   );
@@ -121,7 +169,7 @@ export const AllAreas = (args: AccessAreaListItemProps) => {
                 size={args.size}
                 expanded={expanded === area.id}
                 onClick={() => setExpanded((prev) => (prev === area.id ? null : area.id))}
-                badgeText={`0 of ${area.packages.length}`}
+                badge={{ label: `0 of ${area.packages.length}` }}
                 shadow="sm"
               >
                 {area.description && <p>{area.description}</p>}

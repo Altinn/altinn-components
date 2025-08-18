@@ -1,3 +1,4 @@
+import { ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
 import type { Meta } from '@storybook/react-vite';
 import areaGroups from '../../../test-data/accesspackages.json';
 import { List } from '../List';
@@ -66,6 +67,14 @@ export const AccessPackageListStory = (args: AccessPackageListItemProps) => {
   return (
     <List>
       <AccessPackageListItem {...args} />
+    </List>
+  );
+};
+
+export const AccessPackageWithBadge = (args: AccessPackageListItemProps) => {
+  return (
+    <List>
+      <AccessPackageListItem {...args} badge={<ExclamationmarkTriangleIcon title="warning" />} />
     </List>
   );
 };
