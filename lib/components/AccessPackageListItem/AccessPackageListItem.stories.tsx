@@ -74,7 +74,7 @@ export const AccessPackageListStory = (args: AccessPackageListItemProps) => {
 export const AccessPackageWithBadge = (args: AccessPackageListItemProps) => {
   return (
     <List>
-      <AccessPackageListItem {...args} badge={<ExclamationmarkTriangleIcon />} />
+      <AccessPackageListItem {...args} badge={<ExclamationmarkTriangleIcon title="warning" />} />
     </List>
   );
 };
