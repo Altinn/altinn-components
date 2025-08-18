@@ -1,15 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
-import React from "react";
-import areaGroups from "../../../test-data/accesspackages.json";
-import type { Color } from "../../types";
-import { AccessPackageListItem } from "../AccessPackageListItem";
-import { List } from "../List";
-import {
-  AccessAreaListItem,
-  type AccessAreaListItemProps,
-} from "./AccessAreaListItem";
-import { AvatarGroup, AvatarGroupProps } from "../Avatar";
-import { BadgeProps } from "../..";
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import React from 'react';
+import type { BadgeProps } from '../..';
+import areaGroups from '../../../test-data/accesspackages.json';
+import type { Color } from '../../types';
+import { AccessPackageListItem } from '../AccessPackageListItem';
+import { AvatarGroup, type AvatarGroupProps } from '../Avatar';
+import { List } from '../List';
+import { AccessAreaListItem, type AccessAreaListItemProps } from './AccessAreaListItem';
 
 const testArea = areaGroups[1].areas[1];
 
@@ -22,12 +19,8 @@ const children = (colorTheme: Color | undefined, showBadge?: boolean) => (
           id={pkg.id}
           key={pkg.id}
           name={pkg.name}
-          color={index < 2 ? colorTheme : "neutral"}
-          badge={
-            showBadge ? (
-              <AvatarGroup items={avatarItems as AvatarGroupProps["items"]} />
-            ) : undefined
-          }
+          color={index < 2 ? colorTheme : 'neutral'}
+          badge={showBadge ? <AvatarGroup items={avatarItems as AvatarGroupProps['items']} /> : undefined}
         />
       ))}
     </List>
@@ -35,55 +28,55 @@ const children = (colorTheme: Color | undefined, showBadge?: boolean) => (
 );
 
 const meta = {
-  title: "Access/AccessAreaListItem",
+  title: 'Access/AccessAreaListItem',
   component: AccessAreaListItem,
-  tags: ["autodocs", "beta"],
+  tags: ['autodocs', 'beta'],
   args: {
     id: testArea.id,
-    size: "md",
+    size: 'md',
     name: testArea.name,
-    titleAs: "h3",
+    titleAs: 'h3',
     iconUrl: testArea.icon,
-    badge: { label: "2 of 7" } as BadgeProps,
-    colorTheme: "company",
+    badge: { label: '2 of 7' } as BadgeProps,
+    colorTheme: 'company',
     loading: false,
-    shadow: "sm",
-    border: "none",
+    shadow: 'sm',
+    border: 'none',
   },
   argTypes: {
     expanded: {
       control: {
-        type: "boolean",
+        type: 'boolean',
       },
     },
     size: {
-      options: ["xs", "sm", "md", "lg", "xl"],
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
       control: {
-        type: "inline-radio",
+        type: 'inline-radio',
       },
     },
     colorTheme: {
-      options: ["neutral", "company", "person"],
+      options: ['neutral', 'company', 'person'],
       control: {
-        type: "select",
+        type: 'select',
       },
     },
     shadow: {
-      options: ["none", "xs", "sm", "md", "lg"],
+      options: ['none', 'xs', 'sm', 'md', 'lg'],
       control: {
-        type: "inline-radio",
+        type: 'inline-radio',
       },
     },
     border: {
-      options: ["none", "solid", "dotted"],
+      options: ['none', 'solid', 'dotted'],
       control: {
-        type: "select",
+        type: 'select',
       },
     },
     titleAs: {
-      options: ["p", "h1", "h2", "h3", "h4", "h5", "h6", "div", "span"],
+      options: ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span'],
       control: {
-        type: "select",
+        type: 'select',
       },
     },
   },
@@ -95,33 +88,31 @@ type Story = StoryObj<typeof meta>;
 export const AreaListItemStory: Story = {
   render: (args) => (
     <List>
-      <AccessAreaListItem {...args}>
-        {children(args.colorTheme)}
-      </AccessAreaListItem>
+      <AccessAreaListItem {...args}>{children(args.colorTheme)}</AccessAreaListItem>
     </List>
   ),
 };
 
 const avatarItems = [
   {
-    name: "Linda Lavhøy",
-    type: "person",
+    name: 'Linda Lavhøy',
+    type: 'person',
   },
   {
-    name: "Digdir",
-    type: "company",
+    name: 'Digdir',
+    type: 'company',
   },
   {
-    name: "Kari Nordmann",
-    type: "person",
+    name: 'Kari Nordmann',
+    type: 'person',
   },
   {
-    name: "Test AS",
-    type: "company",
+    name: 'Test AS',
+    type: 'company',
   },
   {
-    name: "Kjell Hansen",
-    type: "person",
+    name: 'Kjell Hansen',
+    type: 'person',
   },
 ];
 
@@ -151,12 +142,7 @@ export const AreaWithPermissions = (args: AccessAreaListItemProps) => {
         colorTheme="company"
         expanded={expanded}
         onClick={() => setExpanded(!expanded)}
-        badge={
-          <AvatarGroup
-            maxItemsCount={4}
-            items={avatarItems as AvatarGroupProps["items"]}
-          />
-        }
+        badge={<AvatarGroup maxItemsCount={4} items={avatarItems as AvatarGroupProps['items']} />}
       >
         {children(args.colorTheme, true)}
       </AccessAreaListItem>
@@ -169,10 +155,7 @@ export const AllAreas = (args: AccessAreaListItemProps) => {
   return (
     <div>
       {areaGroups.map((group) => (
-        <div
-          key={group.id}
-          style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
-        >
+        <div key={group.id} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
           <h2>{group.name}</h2>
           <p>{group.description}</p>
           <List spacing={2}>
@@ -185,20 +168,14 @@ export const AllAreas = (args: AccessAreaListItemProps) => {
                 colorTheme="neutral"
                 size={args.size}
                 expanded={expanded === area.id}
-                onClick={() =>
-                  setExpanded((prev) => (prev === area.id ? null : area.id))
-                }
+                onClick={() => setExpanded((prev) => (prev === area.id ? null : area.id))}
                 badge={{ label: `0 of ${area.packages.length}` }}
                 shadow="sm"
               >
                 {area.description && <p>{area.description}</p>}
                 <List spacing={2}>
                   {area.packages.map((pkg) => (
-                    <AccessPackageListItem
-                      id={pkg.id}
-                      key={pkg.id}
-                      name={pkg.name}
-                    />
+                    <AccessPackageListItem id={pkg.id} key={pkg.id} name={pkg.name} />
                   ))}
                 </List>
               </AccessAreaListItem>
