@@ -2,6 +2,7 @@ import type { Meta } from '@storybook/react-vite';
 import areaGroups from '../../../test-data/accesspackages.json';
 import { List } from '../List';
 import { AccessPackageListItem, type AccessPackageListItemProps } from './AccessPackageListItem';
+import { ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
 
 const testArea = areaGroups[0].areas[1];
 
@@ -66,6 +67,14 @@ export const AccessPackageListStory = (args: AccessPackageListItemProps) => {
   return (
     <List>
       <AccessPackageListItem {...args} />
+    </List>
+  );
+};
+
+export const AccessPackageWithBadge = (args: AccessPackageListItemProps) => {
+  return (
+    <List>
+      <AccessPackageListItem {...args} badge={<ExclamationmarkTriangleIcon />} />
     </List>
   );
 };
