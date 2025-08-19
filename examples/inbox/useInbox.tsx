@@ -53,11 +53,12 @@ export interface UseInboxProps extends LayoutProps {
 
 export const useInbox = ({ pageId = 'inbox', q, ...props }: UseInboxProps): UseInboxProps => {
   const layout = useInboxLayout({ pageId });
-  const toolbar = useInboxToolbar();
+
   const search = useInboxSearch({
     name: 'search',
     placeholder: 'Søk i innboksen',
     value: q,
+    items: dialogs,
   });
 
   const archived = dialogs.filter((item) => item?.archived).map((item) => item.id) || [];
@@ -334,6 +335,8 @@ export const useInbox = ({ pageId = 'inbox', q, ...props }: UseInboxProps): UseI
     title: modalDialog?.title,
     seenByLog: modalDialog?.seenByLog,
   };
+
+  const toolbar = useInboxToolbar({ items });
 
   return {
     modal,

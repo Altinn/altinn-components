@@ -1,11 +1,16 @@
 import { type ChangeEvent, useState } from 'react';
-import type { AutocompleteItemProps, AutocompleteProps, SearchbarProps } from '../../lib';
+import type { AutocompleteItemProps, AutocompleteProps, DialogListItemProps, SearchbarProps } from '../../lib';
+
+interface UseInboxSearchProps extends SearchbarProps {
+  items?: DialogListItemProps[];
+}
 
 export const useInboxSearch = ({
   name = 'inbox-search',
   placeholder = 'Søk i innboks',
   value,
-}: SearchbarProps): SearchbarProps => {
+  items,
+}: UseInboxSearchProps): SearchbarProps => {
   const [q, setQ] = useState<string>(value || '');
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setQ(event.target.value);
@@ -17,57 +22,72 @@ export const useInboxSearch = ({
       groupId: '1',
       id: 'inbox',
       href: '#',
-      label: q
-        ? () => {
-            return (
-              <span>
-                <mark>{q}</mark> i innboksen
-              </span>
-            );
-          }
-        : 'Alt i innboksen',
-    },
-    {
-      type: 'scope',
-      groupId: '1',
-      id: 'global',
-      href: '#',
-      label: q
-        ? () => {
-            return (
-              <span>
-                <mark>{q}</mark> i hele Altinn
-              </span>
-            );
-          }
-        : 'Alt i hele Altinn',
+      label: q ? (
+        <span>
+          <mark>{q}</mark> i innboksen
+        </span>
+      ) : (
+        'Alt i innboksen'
+      ),
     },
   ];
 
+  const bookmarks = [
+    {
+      type: 'bookmark',
+      params: [
+        { type: 'search', label: 'Skatt' },
+        { type: 'filter', label: 'Krever handling' },
+      ],
+    },
+    {
+      type: 'bookmark',
+      params: [
+        { type: 'filter', label: 'Brønnøysundregistrene' },
+        { type: 'filter', label: 'Krever handling' },
+      ],
+    },
+  ].map((bookmark, index) => ({
+    ...bookmark,
+    id: 'bookmark-' + (index + 1),
+    groupId: '2',
+    linkIcon: true,
+    href: '#',
+  }));
+
+  const bookmarkSuggestions = q
+    ? bookmarks.filter((item) => item.params.some((param) => param.label.toLowerCase().includes(q.toLowerCase())))
+    : bookmarks;
+
   const suggestions = q
-    ? [
-        {
-          type: 'dialog',
-          groupId: '2',
-          href: 'http://www.altinn.no',
-          title: 'Skattemelding 2024',
-        },
-        {
-          type: 'dialog',
-          groupId: '2',
-          href: 'http://www.altinn.no',
-          title: 'Skattemelding 2025',
-        },
-      ].filter((item) => item.title.toLowerCase().includes((q ?? '').toLowerCase()))
+    ? items
+        ?.filter((item: DialogListItemProps) => item.title.toLowerCase().includes(q.toLowerCase()))
+        ?.slice(0, 5)
+        ?.map((item: DialogListItemProps) => ({
+          groupId: '3',
+          href: '#',
+          icon: item?.sender,
+          title: item?.title,
+          description: item?.summary,
+          linkIcon: true,
+        })) || []
     : [];
 
   const autocomplete: AutocompleteProps = {
     groups: {
       2: {
-        title: `${suggestions.length} treff i innboksen`,
+        title: '',
+      },
+      3: {
+        title: 'Anbefalte treff',
       },
     },
-    items: [...scopes, ...suggestions] as AutocompleteItemProps[],
+    items: [...scopes, ...bookmarkSuggestions, ...suggestions] as AutocompleteItemProps[],
+  };
+
+  const onEnter = () => {
+    console.log('Search entered:', q);
+    window.location.href = '/iframe.html?id=demo-inbox--search-page&viewMode=story' + `&q=${encodeURIComponent(q)}`;
   };
 
   return {
@@ -76,6 +96,7 @@ export const useInboxSearch = ({
     value: q,
     onChange,
     onClear: () => setQ(''),
+    onEnter,
     autocomplete,
   };
 };

@@ -55,7 +55,6 @@ export const AutocompleteItem = ({ type, ...props }: AutocompleteItemProps) => {
       return (
         <ScopeListItem
           {...(props as ScopeAutocompleteItemProps)}
-          color="company"
           variant="default"
           shadow="none"
           size="sm"
@@ -67,7 +66,6 @@ export const AutocompleteItem = ({ type, ...props }: AutocompleteItemProps) => {
       return (
         <SuggestListItem
           {...(props as SuggestAutocompleteItemProps)}
-          color="company"
           variant="default"
           shadow="none"
           size="sm"
