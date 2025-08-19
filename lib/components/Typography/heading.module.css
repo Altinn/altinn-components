@@ -4,6 +4,15 @@
   margin: 0;
 }
 
+.heading[data-max-rows="1"] {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .heading[data-max-rows="2"] {
   display: -webkit-box;
   -webkit-line-clamp: 2;

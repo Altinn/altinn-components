@@ -1,4 +1,4 @@
-import { defaultAccounts, localeSwitcher, useGlobalMenu, useInboxSearch, useLocale } from '../';
+import { defaultAccounts, localeSwitcher, useGlobalMenu, useLocale, useSearchbar } from '../';
 import type { Account, AccountListItemProps, HeaderProps } from '../../lib';
 
 interface UseHeaderProps extends HeaderProps {
@@ -17,7 +17,7 @@ export const useHeader = ({ accountId, accounts = defaultAccounts, ...args }: Us
     placeholder: 'Søk i Altinn',
   };
 
-  const search = useInboxSearch(searchProps);
+  const search = useSearchbar(searchProps);
 
   /* setup globalMenu */
 

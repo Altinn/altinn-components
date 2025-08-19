@@ -1,3 +1,4 @@
+import cx from 'classnames';
 import type { ReactElement, ReactNode } from 'react';
 import { ListItemBase, type ListItemBaseProps } from './ListItemBase';
 import { ListItemHeader, type ListItemHeaderProps } from './ListItemHeader';
@@ -86,7 +87,7 @@ export const ListItem = ({
   const applicableLabel = typeof label === 'function' ? label() : label;
   return (
     <ListItemBase
-      className={styles.item}
+      className={cx(styles.item, className)}
       size={size}
       color={color}
       variant={variant}

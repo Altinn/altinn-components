@@ -7,6 +7,8 @@ import {
   Layout,
   PageBase,
   Toolbar,
+  Section,
+  Heading,
   Typography,
   ActionHeader,
   ActionFooter,
@@ -93,9 +95,41 @@ export const InboxPage = () => {
   );
 };
 
+interface SearchQueryProps {
+  query: { q: string };
+}
+
+const NoHitsSection = ({ query }: SearchQueryProps) => (
+  <Section spacing={3} margin="section">
+    <Heading size="lg">Ingen treff</Heading>
+    <Typography size="sm">
+      <p>Søk etter &laquo;{query?.q}&raquo; ga ingen treff.</p>
+      <p>
+        <strong>Vi jobber med å gjøre søket bedre!</strong> I mellomtiden kan du
+        prøve følgende:
+      </p>
+      <ul>
+        <li>Søk på nytt med et annet søkeord.</li>
+        <li>
+          I fritekst kan du søke på <strong>ett søkeord</strong> eller{" "}
+          <strong>hele setninger</strong>.
+        </li>
+        <li>Bruk filter for å begrense trefflisten.</li>
+        <li>
+          Du kan filtere på <strong>tjenesteeier</strong>,{" "}
+          <strong>status</strong> og <strong>oppdatert dato</strong>.
+        </li>
+      </ul>
+    </Typography>
+  </Section>
+);
+
 export const SearchPage = () => {
+  let params = new URL(document.location.toString()).searchParams;
+  let q = params.get("q") || "";
+
   const { layout, toolbar, results, dialog } = useInbox({
-    q: "regnskap",
+    q,
   });
 
   if (dialog) {
@@ -110,13 +144,30 @@ export const SearchPage = () => {
     <Layout {...layout} color={undefined}>
       <PageBase margin="page">
         <Toolbar {...toolbar} />
-        {results && (
+        {results?.items?.length ? (
           <DialogList
             items={results.items}
             groups={results?.groups}
-            highlightWords={["regnskap"]}
+            highlightWords={[q]}
           />
+        ) : (
+          <NoHitsSection query={{ q }} />
         )}
+      </PageBase>
+    </Layout>
+  );
+};
+
+export const NoHitsPage = () => {
+  const { layout, toolbar } = useInbox({
+    q: "bergen",
+  });
+
+  return (
+    <Layout {...layout} color={undefined}>
+      <PageBase margin="page">
+        <Toolbar {...toolbar} />
+        <NoHitsSection query={{ q: "bergen" }} />
       </PageBase>
     </Layout>
   );
@@ -137,16 +188,16 @@ export const DraftsPage = () => {
     <Layout {...layout}>
       <PageBase margin="page">
         <Toolbar {...toolbar} />
-        <Typography size="sm">
-          <p>
-            <strong>
-              Her finner du dialoger du jobber med, men som ikke er sendt.
-            </strong>
-          </p>
-        </Typography>
-        {results && (
-          <DialogList items={results.items} groups={results?.groups} />
-        )}
+        <Section spacing={3} margin="section">
+          <Heading size="lg">{results?.items?.length + " utkast"}</Heading>
+          <Typography size="sm">
+            <p>
+              Her finner du dialoger <strong>som inneholder utkast</strong>, for
+              eksempel skjemaer du jobber med.
+            </p>
+          </Typography>
+          {results && <DialogList items={results.items} />}
+        </Section>
       </PageBase>
     </Layout>
   );
@@ -169,16 +220,18 @@ export const SentPage = () => {
     <Layout {...layout}>
       <PageBase margin="page">
         <Toolbar {...toolbar} />
-        <Typography size="sm">
-          <p>
-            <strong>
-              Her finner du dialoger hvor du har sendt noe fra deg.
-            </strong>
-          </p>
-        </Typography>
-        {results && (
-          <DialogList items={results.items} groups={results?.groups} />
-        )}
+        <Section spacing={3} margin="section">
+          <Heading size="lg">
+            {results?.items?.length + " treff i sendt"}
+          </Heading>
+          <Typography size="sm">
+            <p>
+              Her finner du dialoger som inneholder{" "}
+              <strong>ting du har sendt fra deg.</strong>
+            </p>
+          </Typography>
+          {results && <DialogList items={results.items} />}
+        </Section>
       </PageBase>
     </Layout>
   );
@@ -216,16 +269,19 @@ export const ArchivePage = () => {
     <Layout {...layout}>
       <PageBase color="company" margin="page">
         {toolbar && <Toolbar {...toolbar} />}
-        <Typography size="sm">
-          <p>
-            <strong>Her finner du dialoger du har valgt å arkivere.</strong> Det
-            er ikke et journal- og arkivsystem. Om dialogen blir oppdatert vil
-            du finne den igjen i innboksen.
-          </p>
-        </Typography>
-        {results && (
-          <DialogList items={results.items} groups={results?.groups} />
-        )}
+        <Section spacing={3} margin="section">
+          <Heading size="lg">
+            {results?.items?.length + " treff i arkivet"}
+          </Heading>
+          <Typography size="sm">
+            <p>
+              <strong>Her finner du dialoger du har valgt å arkivere.</strong>{" "}
+              Det er ikke et journal- og arkivsystem. Om dialogen blir oppdatert
+              vil du finne den igjen i innboksen.
+            </p>
+          </Typography>
+          {results && <DialogList items={results.items} />}
+        </Section>
       </PageBase>
     </Layout>
   );
@@ -246,15 +302,18 @@ export const TrashPage = () => {
     <Layout {...layout}>
       <PageBase color="company" margin="page">
         {toolbar && <Toolbar {...toolbar} />}
-        <Typography size="sm">
-          <p>
-            <strong>Her finner du dialoger du har lagt i papirkurven.</strong>{" "}
-            Om dialogen blir oppdatert vil du finne den igjen i innboksen.
-          </p>
-        </Typography>
-        {results && (
-          <DialogList items={results.items} groups={results?.groups} />
-        )}
+        <Section spacing={3} margin="section">
+          <Heading size="lg">
+            {results?.items?.length + " treff i papirkurven"}
+          </Heading>
+          <Typography size="sm">
+            <p>
+              <strong>Her finner du dialoger du har lagt i papirkurven.</strong>{" "}
+              Om dialogen blir oppdatert vil du finne den igjen i innboksen.
+            </p>
+          </Typography>
+          {results && <DialogList items={results.items} />}
+        </Section>
       </PageBase>
     </Layout>
   );
