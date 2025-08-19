@@ -1,4 +1,4 @@
-import { defaultAccounts, header as defaultHeader, footer, useHeader } from '..';
+import { defaultAccounts, header as defaultHeader, footer, skipLink, useHeader } from '..';
 import type { AccountListItemProps, HeaderProps, LayoutProps } from '../../lib';
 
 interface UseLayoutProps extends LayoutProps {
@@ -18,6 +18,7 @@ export const useLayout = ({
   return {
     color,
     theme,
+    skipLink,
     footer,
     header: headerProps as HeaderProps,
     sidebar,
