@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.37.0](https://github.com/Altinn/altinn-components/compare/v0.36.7...v0.37.0) (2025-08-19)
+
+
+### Features
+
+* hightlightWords ([#583](https://github.com/Altinn/altinn-components/issues/583)) ([d80e9a2](https://github.com/Altinn/altinn-components/commit/d80e9a27913158dd4fdc48f7b160f6ea8bb4f11a))
+
+
+### Bug Fixes
+
+* inbox stories ([#593](https://github.com/Altinn/altinn-components/issues/593)) ([04f96cf](https://github.com/Altinn/altinn-components/commit/04f96cf3edc7c7a341c7e518bae95dcf1b603e50))
+* Remove outer scrollbar from accountList ([#591](https://github.com/Altinn/altinn-components/issues/591)) ([f4eebb7](https://github.com/Altinn/altinn-components/commit/f4eebb738ae204c52995b6da5db1f43cc63c713e))
+
 ## [0.36.7](https://github.com/Altinn/altinn-components/compare/v0.36.6...v0.36.7) (2025-08-18)
 
 
