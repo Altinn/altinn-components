@@ -86,6 +86,10 @@
   background-color: var(--ds-color-surface-hover);
 }
 
+[data-theme="default"] [data-active="true"] {
+  background-color: var(--ds-color-surface-hover);
+}
+
 [data-theme="default"] .item:active {
   background-color: var(--ds-color-surface-active);
 }

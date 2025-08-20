@@ -1,5 +1,5 @@
 import cx from 'classnames';
-import type { ElementType, ReactNode } from 'react';
+import type { ElementType, MouseEventHandler, ReactNode } from 'react';
 import type { Color } from '..';
 import styles from './menuBase.module.css';
 
@@ -22,6 +22,8 @@ export interface MenuListProps {
   expanded?: boolean;
   className?: string;
   children?: ReactNode;
+  ref?: React.Ref<HTMLUListElement>;
+  onMouseEnter?: MouseEventHandler;
 }
 
 export interface MenuListItemProps {
@@ -43,10 +45,10 @@ export const MenuBase = ({ as = 'nav', color, theme, className, children }: Menu
   );
 };
 
-export const MenuList = ({ as = 'ul', role = 'group', className, children }: MenuListProps) => {
+export const MenuList = ({ as = 'ul', role = 'group', className, children, ref, onMouseEnter }: MenuListProps) => {
   const Component = as;
   return (
-    <Component className={cx(styles.list, className)} role={role}>
+    <Component className={cx(styles.list, className)} role={role} ref={ref} onMouseEnter={onMouseEnter}>
       {children}
     </Component>
   );

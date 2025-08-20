@@ -14,6 +14,7 @@ export interface IconButtonProps {
   className?: string;
   onClick?: MouseEventHandler;
   dataTestId?: string;
+  onBlurCapture?: React.FocusEventHandler<HTMLButtonElement>;
 }
 
 export const IconButton = ({
@@ -28,6 +29,7 @@ export const IconButton = ({
   selected,
   onClick,
   dataTestId,
+  onBlurCapture,
 }: IconButtonProps) => {
   return (
     <ButtonBase
@@ -40,6 +42,7 @@ export const IconButton = ({
       selected={selected}
       data-testid={dataTestId}
       aria-label={iconAltText}
+      onBlurCapture={onBlurCapture}
     >
       {icon && <ButtonIcon icon={icon} size={iconSize} />}
     </ButtonBase>

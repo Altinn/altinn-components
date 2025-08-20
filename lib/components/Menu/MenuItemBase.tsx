@@ -1,5 +1,5 @@
 import cx from 'classnames';
-import type { ElementType, KeyboardEvent, KeyboardEventHandler, ReactNode } from 'react';
+import type { ElementType, KeyboardEvent, KeyboardEventHandler, MouseEventHandler, ReactNode } from 'react';
 import type { Color } from '..';
 import styles from './menuItemBase.module.css';
 
@@ -24,6 +24,7 @@ export interface MenuItemBaseProps {
   selected?: boolean;
   expanded?: boolean;
   children?: ReactNode;
+  onMouseEnter?: MouseEventHandler;
 }
 
 export const MenuItemBase = ({
@@ -41,14 +42,16 @@ export const MenuItemBase = ({
   selected,
   disabled = false,
   children,
+  active,
+  onMouseEnter,
 }: MenuItemBaseProps) => {
   const Component = as || 'a';
-
   return (
     <Component
       tabIndex={disabled ? '-1' : (tabIndex ?? 0)}
       className={cx(styles.item, className)}
       data-interactive={interactive}
+      data-active={active}
       data-size={size}
       data-color={color}
       data-theme={theme}
@@ -61,6 +64,7 @@ export const MenuItemBase = ({
         onKeyPress?.(e);
       }}
       onClick={onClick}
+      onMouseEnter={onMouseEnter}
     >
       <span className={styles.content}>{children}</span>
     </Component>

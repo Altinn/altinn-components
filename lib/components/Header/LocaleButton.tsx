@@ -8,9 +8,10 @@ export interface LocaleButtonProps {
   id?: string;
   expanded?: boolean;
   onClick?: MouseEventHandler;
+  onBlurCapture?: React.FocusEventHandler<HTMLButtonElement>;
 }
 
-export const LocaleButton = ({ id = 'language-switcher', expanded, onClick }: LocaleButtonProps) => {
+export const LocaleButton = ({ id = 'language-switcher', expanded, onClick, onBlurCapture }: LocaleButtonProps) => {
   return (
     <IconButton
       className={styles.button}
@@ -22,6 +23,7 @@ export const LocaleButton = ({ id = 'language-switcher', expanded, onClick }: Lo
       color="company"
       onClick={onClick}
       iconAltText={`Open ${id}`}
+      onBlurCapture={onBlurCapture}
     />
   );
 };

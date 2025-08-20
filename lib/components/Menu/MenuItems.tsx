@@ -1,5 +1,5 @@
 'use client';
-import { type ElementType, Fragment } from 'react';
+import { type ElementType, Fragment, useRef } from 'react';
 import { MenuHeader, MenuItem, MenuList, MenuListItem } from '../';
 import type { IconTheme, MenuItemColor, MenuItemProps, MenuItemSize, MenuItemTheme } from '../';
 import { useMenu } from '../../hooks';
@@ -32,6 +32,8 @@ export interface MenuItemsProps {
   defaultItemTheme?: MenuItemTheme;
   defaultIconTheme?: IconTheme;
   as?: ElementType;
+  keyboardEvents?: boolean;
+  onSelect?: () => void;
 }
 
 export const MenuItems = ({
@@ -45,18 +47,22 @@ export const MenuItems = ({
   defaultItemTheme,
   defaultIconTheme,
   as,
+  keyboardEvents,
+  onSelect = () => {},
 }: MenuItemsProps) => {
+  const ref = useRef<HTMLUListElement>(null);
   const { menu } = useMenu<MenuItemProps, MenuGroupProps>({
     items,
     groups,
     groupByKey: 'groupId',
-    keyboardEvents: false,
+    keyboardEvents: keyboardEvents ?? false,
+    onSelect,
+    ref,
   });
 
   return (
-    <MenuList expanded={expanded} as={as}>
+    <MenuList expanded={expanded} as={as} ref={ref}>
       {search && <MenuSearch {...search} />}
-
       {menu.map((group, groupIndex) => {
         const groupProps: MenuGroupProps = group?.props || {};
         const { title, divider = true } = groupProps;
@@ -74,7 +80,7 @@ export const MenuItems = ({
             {group?.items
               .filter((item) => !item.props?.hidden)
               .map((item, index) => {
-                const { active } = item;
+                const { active, onMouseEnter } = item;
                 const { groupId: _, ...itemProps } = item.props || {};
                 const { expanded } = itemProps;
                 const nextItem = group?.items[index + 1];
@@ -87,7 +93,8 @@ export const MenuItems = ({
                       theme={itemProps?.theme || groupProps?.defaultItemTheme || defaultItemTheme}
                       iconTheme={itemProps?.iconTheme || groupProps?.defaultIconTheme || defaultIconTheme}
                       active={active}
-                      tabIndex={itemProps?.disabled ? -1 : 0}
+                      tabIndex={itemProps?.disabled ? -1 : (itemProps.tabIndex ?? 0)}
+                      onMouseEnter={onMouseEnter}
                     />
                     {expanded && itemProps?.items && (
                       <>
