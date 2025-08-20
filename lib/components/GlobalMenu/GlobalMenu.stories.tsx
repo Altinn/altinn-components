@@ -1,3 +1,4 @@
+import { InformationSquareIcon, LeaveIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 import type { Account } from '..';
@@ -64,4 +65,47 @@ export const Login: Story = {
     ...loginMenu,
     logoutButton: undefined,
   },
+};
+
+export const InterimMenu = (args: GlobalMenuProps) => {
+  const accounts = args?.accountMenu?.items!;
+  const [currentAccount, setCurrentAccount] = useState<Account>(accounts[1] as Account);
+
+  const onSelectAccount = (id: string) => {
+    const account = accounts?.find((item) => item.id === id);
+    if (account) {
+      setCurrentAccount(account as Account);
+    }
+  };
+
+  const inboxMenuItem = args?.items?.find((item) => item.id === 'inbox');
+
+  const items = [
+    {
+      ...inboxMenuItem,
+      title: 'Innboks',
+      badge: {
+        label: 'Beta',
+      },
+    },
+    {
+      id: 'm2',
+      icon: InformationSquareIcon,
+      title: 'Om Innboks Beta',
+    },
+    {
+      id: 'm2',
+      icon: LeaveIcon,
+      title: 'Avslutt beta',
+    },
+  ];
+
+  return (
+    <GlobalMenu
+      {...args}
+      items={items as GlobalMenuProps['items']}
+      currentAccount={currentAccount}
+      onSelectAccount={onSelectAccount}
+    />
+  );
 };
