@@ -5,7 +5,7 @@ import { GlobalMenu, GlobalMenuButton, type GlobalMenuProps } from '../GlobalMen
 import type { Account } from '../GlobalMenu';
 import { useRootContext } from '../RootProvider';
 import { Searchbar, type SearchbarProps } from '../Searchbar';
-import { LocaleButton, LocaleSwitcher, type LocaleSwitcherProps } from './';
+import { LocaleSwitcher, type LocaleSwitcherProps } from './';
 import { HeaderBase } from './HeaderBase';
 import { HeaderGroup } from './HeaderGroup';
 import { HeaderLogo, type HeaderLogoProps } from './HeaderLogo';
@@ -38,10 +38,6 @@ export const Header = ({ menu, locale, search, currentAccount, logo = {}, badge 
     toggleId('menu');
   };
 
-  const onToggleLocale = () => {
-    toggleId('locale');
-  };
-
   const isDesktop = useIsDesktop();
 
   return (
@@ -57,11 +53,7 @@ export const Header = ({ menu, locale, search, currentAccount, logo = {}, badge 
         </HeaderSearch>
       )}
       <HeaderGroup>
-        {locale && (
-          <div className={styles.relative}>
-            <LocaleButton onClick={onToggleLocale} expanded={currentId === 'locale'} />
-          </div>
-        )}
+        {locale && <LocaleSwitcher {...locale} />}
         <div className={styles.relative}>
           <GlobalMenuButton
             badge={badge}
@@ -70,17 +62,6 @@ export const Header = ({ menu, locale, search, currentAccount, logo = {}, badge 
             expanded={currentId === 'menu'}
             label={menu?.menuLabel}
           />
-          {locale && (
-            <DropdownBase
-              layout="desktop"
-              padding
-              placement="right"
-              open={currentId === 'locale'}
-              className={styles.dropdown}
-            >
-              <LocaleSwitcher {...locale} />
-            </DropdownBase>
-          )}
           {menu && (
             <DropdownBase
               layout="desktop"
@@ -98,11 +79,6 @@ export const Header = ({ menu, locale, search, currentAccount, logo = {}, badge 
         <HeaderSearch expanded={currentId === 'search'}>
           <Searchbar {...search} expanded={currentId === 'search'} onClose={onSearchClose} onFocus={onSearchFocus} />
         </HeaderSearch>
-      )}
-      {locale && (
-        <DrawerBase open={currentId === 'locale'} className={styles.drawer}>
-          <LocaleSwitcher {...locale} />
-        </DrawerBase>
       )}
       {menu && (
         <DrawerBase open={currentId === 'menu'} className={styles.drawer}>

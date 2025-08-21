@@ -217,11 +217,13 @@ export const ControlledState = (args: SearchbarProps) => {
           type: 'dialog',
           href: '#skatt-2024',
           title: 'Skattemelding 2024',
+          onClick: () => alert('skatt24'),
         },
         {
           type: 'dialog',
           href: '#skatt-2024',
           title: 'Skattemelding 2025',
+          onClick: () => alert('skatt24'),
         },
       ]
         .filter((item) => item.title.toLowerCase().includes((q ?? '').toLowerCase()))

@@ -1,5 +1,6 @@
 .drawer[data-expanded="true"] {
   display: block;
+  width: 100%;
 }
 
 .dropdown[data-expanded="true"] {

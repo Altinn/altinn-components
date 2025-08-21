@@ -5,8 +5,8 @@ import { Backdrop } from './Backdrop';
 import styles from './drawerOrDropdown.module.css';
 
 export interface DrawerOrDropdownProps {
-  drawerTitle: string;
   children: ReactNode;
+  drawerTitle?: string;
   open?: boolean;
   onClose?: MouseEventHandler;
   drawerButton?: DrawerButtonProps;
