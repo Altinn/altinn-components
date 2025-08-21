@@ -1,7 +1,7 @@
 import type { Meta } from '@storybook/react-vite';
 import { Flex } from '..';
 import type { LayoutProps } from '../';
-import { footer, header, inboxMenu, useLayout } from '../../../examples';
+import { footer, header, inboxMenu, skipLink, useLayout } from '../../../examples';
 
 import { useState } from 'react';
 import { Banner } from '../Banner';
@@ -16,14 +16,16 @@ const meta = {
   },
   args: {
     theme: 'subtle',
+    skipLink,
     header,
     footer,
     sidebar: {
       menu: inboxMenu,
     },
     children: (
-      <Flex align="center" justify="center" style={{ border: '1px dashed', width: '100%', height: '100%' }}>
+      <Flex align="center" justify="center" style={{ border: '1px dashed', width: '100%', height: '100%', gap: 5 }}>
         Content
+        <a href="https://altinn.no">with a focusable item</a>
       </Flex>
     ),
   },

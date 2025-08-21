@@ -10,3 +10,4 @@ export * from './useHeader';
 export * from './useSearchbar';
 export * from './useLayout';
 export * from './useLocale';
+export * from './skipLink';

@@ -5,6 +5,7 @@ import { Footer, type FooterProps } from '../Footer';
 import { Header, type HeaderProps } from '../Header';
 import { Menu, type MenuProps } from '../Menu';
 import { useRootContext } from '../RootProvider';
+import { SkipLink, type SkipLinkProps } from '../SkipLink';
 
 interface SidebarProps {
   color?: LayoutColor;
@@ -25,12 +26,23 @@ export interface LayoutProps {
   sidebar?: SidebarProps;
   content?: ContentProps;
   children?: ReactNode;
+  skipLink?: SkipLinkProps;
 }
 
-export const Layout = ({ color, theme = 'subtle', header, footer, sidebar, content = {}, children }: LayoutProps) => {
+export const Layout = ({
+  color,
+  theme = 'subtle',
+  header,
+  footer,
+  sidebar,
+  content = {},
+  children,
+  skipLink,
+}: LayoutProps) => {
   const { currentId } = useRootContext();
   return (
     <LayoutBase color={color} theme={theme} currentId={currentId}>
+      {skipLink && <SkipLink {...skipLink} />}
       {header && <Header {...header} />}
       <LayoutBody currentId={currentId}>
         {sidebar && (
@@ -39,7 +51,9 @@ export const Layout = ({ color, theme = 'subtle', header, footer, sidebar, conte
             {sidebar?.children}
           </LayoutSidebar>
         )}
-        <LayoutContent color={content?.color}>{children}</LayoutContent>
+        <LayoutContent color={content?.color} id="main-content">
+          {children}
+        </LayoutContent>
       </LayoutBody>
       {footer && <Footer {...footer} />}
     </LayoutBase>
