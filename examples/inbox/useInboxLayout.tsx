@@ -1,11 +1,17 @@
 import { inboxMenu, inboxMenuItems, useLayout } from '../';
-import type { LayoutProps } from '../../lib';
+import type { LayoutProps, MenuProps } from '../../lib';
+
+interface InboxStorybookPageProps {
+  [key: string]: string;
+}
 
 interface InboxLayoutProps extends LayoutProps {
   pageId?: string;
+  items?: MenuProps['items'];
+  pages?: InboxStorybookPageProps;
 }
 
-export const useInboxLayout = ({ pageId = 'inbox' }): InboxLayoutProps => {
+export const useInboxLayout = ({ pageId = 'inbox', items = inboxMenuItems, pages = {} }): InboxLayoutProps => {
   const baseHref = '?id=';
 
   const storybookPages = {
@@ -15,9 +21,10 @@ export const useInboxLayout = ({ pageId = 'inbox' }): InboxLayoutProps => {
     bookmarks: 'demo-inbox--bookmarks-page',
     archive: 'demo-inbox--archive-page',
     trash: 'demo-inbox--trash-page',
+    ...pages,
   };
 
-  const menuItems = inboxMenuItems.map((item) => {
+  const menuItems = items.map((item) => {
     const storyBookId = storybookPages?.[item.id as keyof typeof storybookPages];
     const href = storyBookId && [baseHref, storyBookId].join('');
 
