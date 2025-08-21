@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.38.0](https://github.com/Altinn/altinn-components/compare/v0.37.0...v0.38.0) (2025-08-21)
+
+
+### Features
+
+* add skiplink component ([#594](https://github.com/Altinn/altinn-components/issues/594)) ([753c2b0](https://github.com/Altinn/altinn-components/commit/753c2b05efe2238c79fda51786ff441efc409a57))
+* make locale switcher and context menu more accessible ([#575](https://github.com/Altinn/altinn-components/issues/575)) ([0ecf72b](https://github.com/Altinn/altinn-components/commit/0ecf72bd8cb6fb68d455abc43c6139fcc214d1da))
+
 ## [0.37.0](https://github.com/Altinn/altinn-components/compare/v0.36.7...v0.37.0) (2025-08-19)
 
 
