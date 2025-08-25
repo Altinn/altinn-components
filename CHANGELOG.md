@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.38.1](https://github.com/Altinn/altinn-components/compare/v0.38.0...v0.38.1) (2025-08-25)
+
+
+### Bug Fixes
+
+* beta-modal ([#598](https://github.com/Altinn/altinn-components/issues/598)) ([2829c38](https://github.com/Altinn/altinn-components/commit/2829c38448167891032d931eae286e7a487c56af))
+* Menu + AccountMenu, support for highlightedWords ([#602](https://github.com/Altinn/altinn-components/issues/602)) ([badba86](https://github.com/Altinn/altinn-components/commit/badba8638392b17c9f45f8f9b9ad9d174d8314ca))
+* wording ([badba86](https://github.com/Altinn/altinn-components/commit/badba8638392b17c9f45f8f9b9ad9d174d8314ca))
+
 ## [0.38.0](https://github.com/Altinn/altinn-components/compare/v0.37.0...v0.38.0) (2025-08-21)
 
 
