@@ -22,7 +22,7 @@ export const DashboardHeader = ({ type, name, title, description, loading, child
           <Heading size="lg" loading={loading}>
             {title || name}
           </Heading>
-          <Typography as="p" variant="subtle" size="xs" loading={loading}>
+          <Typography as="section" variant="subtle" size="xs" loading={loading}>
             {description || type}
           </Typography>
         </Flex>
