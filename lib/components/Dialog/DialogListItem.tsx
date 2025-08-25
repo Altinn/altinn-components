@@ -8,7 +8,6 @@ import {
   type DialogMetadataProps,
   Heading,
   ListItem,
-  ListItemLabel,
   type ListItemProps,
   MetaItem,
   type SeenByLogProps,
@@ -122,24 +121,10 @@ export const DialogListItem = ({
         selected={selected}
         variant={applicableVariant}
         ariaLabel={title}
-        label={
-          <div
-            className={styles.border}
-            data-status={status?.value}
-            data-selected={selected}
-            data-size={size}
-            data-unread={unread}
-            data-archived={archived}
-            data-trashed={trashed}
-            data-loading={loading}
-          >
-            <ListItemLabel loading={loading} size={size} title={title} description={summary || description} />
-          </div>
-        }
-        badge={
-          <DialogMetadata loading={loading} sender={sender} updatedAt={updatedAt} updatedAtLabel={updatedAtLabel} />
-        }
+        icon={sender}
         title={title}
+        description={summary || description}
+        highlightWords={highlightWords}
       />
     );
   }

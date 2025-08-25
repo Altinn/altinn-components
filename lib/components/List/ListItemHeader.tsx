@@ -21,6 +21,8 @@ import {
 import styles from './listItemHeader.module.css';
 
 export interface ListItemHeaderProps extends ListItemLinkProps {
+  /** Highlight words, ie. search terms */
+  highlightWords?: string[];
   /** The color of the list item. */
   color?: ListItemColor;
   /** Header is loading */
@@ -59,6 +61,7 @@ export interface ListItemHeaderProps extends ListItemLinkProps {
 
 export const ListItemHeader = ({
   as,
+  highlightWords,
   interactive = true,
   color,
   loading,
@@ -134,6 +137,7 @@ export const ListItemHeader = ({
         <ListItemLabel
           size={size}
           loading={loading}
+          highlightWords={highlightWords}
           title={title}
           description={description}
           id={listItemLabelId}

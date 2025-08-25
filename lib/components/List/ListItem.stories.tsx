@@ -192,6 +192,23 @@ export const AvatarGroups = (args: ListItemProps) => {
   );
 };
 
+export const HighlightWords = (args: ListItemProps) => {
+  return (
+    <List>
+      <ListItem
+        {...args}
+        highlightWords={['huseklepp', 'brann']}
+        title="Erik Huseklepp"
+        description="Tidligere Brann-spiller."
+        icon={{
+          type: 'person',
+          name: 'Erik Huseklepp',
+        }}
+      />
+    </List>
+  );
+};
+
 export const Badges = (args: ListItemProps) => {
   const [expanded, setExpanded] = useState(false);
 
