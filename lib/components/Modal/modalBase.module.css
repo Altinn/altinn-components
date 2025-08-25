@@ -15,16 +15,21 @@
   background-color: transparent;
 }
 
-.modal[data-variant="full"] {
-  width: 100%;
-  max-width: none;
-  height: 100%;
-  min-height: unset;
+.modal[data-variant="default"] {
+  max-width: 640px;
+  margin: auto;
 }
 
 .modal[data-variant="content"] {
   max-width: 988px;
   margin: auto;
+}
+
+.modal[data-variant="full"] {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  min-height: unset;
 }
 
 .content {
