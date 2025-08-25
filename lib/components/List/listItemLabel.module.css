@@ -8,3 +8,7 @@
   margin-top: var(--dsc-item-my);
   margin-bottom: var(--dsc-item-my);
 }
+
+.label mark {
+  background-color: var(--ds-color-surface-tinted);
+}

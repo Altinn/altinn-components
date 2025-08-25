@@ -11,6 +11,7 @@ export interface ListItemLabelProps {
   title?: HeadingProps | ReactNode | string;
   value?: HeadingProps | ReactNode | string;
   description?: HeadingProps | ReactNode | string;
+  highlightWords?: string[];
   children?: ReactNode;
   className?: string;
 }
@@ -70,6 +71,7 @@ const getDescriptionProps = (description: HeadingProps | ReactNode | string) => 
 
 export const ListItemLabel = ({
   loading = false,
+  highlightWords,
   size,
   title,
   value,
@@ -88,8 +90,8 @@ export const ListItemLabel = ({
           children
         ) : (
           <>
-            {titleProps && <Heading {...titleProps} loading={loading} />}
-            {descriptionProps && <Heading {...descriptionProps} loading={loading} />}
+            {titleProps && <Heading {...titleProps} loading={loading} highlightWords={highlightWords} />}
+            {descriptionProps && <Heading {...descriptionProps} loading={loading} highlightWords={highlightWords} />}
           </>
         )}
       </span>
@@ -105,8 +107,8 @@ export const ListItemLabel = ({
         children
       ) : (
         <>
-          {titleProps && <Heading {...titleProps} loading={loading} />}
-          {descriptionProps && <Heading {...descriptionProps} loading={loading} />}
+          {titleProps && <Heading {...titleProps} loading={loading} highlightWords={highlightWords} />}
+          {descriptionProps && <Heading {...descriptionProps} loading={loading} highlightWords={highlightWords} />}
         </>
       )}
     </span>
