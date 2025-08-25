@@ -45,11 +45,17 @@ export const AccountMenu = ({
 
   const filteredAccountMenu = filterString
     ? accountMenu
-        .filter((item) => item?.name?.toLowerCase().includes(filterString.toLowerCase()))
+        .filter(
+          (item) =>
+            item?.name?.toLowerCase().includes(filterString.toLowerCase()) ||
+            item?.description?.toString()?.toLowerCase().includes(filterString.toLowerCase()),
+        )
         .map((item) => {
           return {
             ...item,
             groupId: 'search',
+            title: item?.title || item.name,
+            highlightWords: [filterString],
           };
         })
     : accountMenu;
@@ -74,6 +80,8 @@ export const AccountMenu = ({
   const accountSwitcher: MenuItemProps[] = [
     ...(filteredAccountMenu.length > 0 ? filteredAccountMenu : [{ id: 'search', groupId: 'search', hidden: true }]),
   ];
+
+  console.log('items', accountSwitcher);
 
   return (
     <Menu

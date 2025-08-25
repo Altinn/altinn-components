@@ -129,9 +129,12 @@ export const Controlled = () => {
     accounts: defaultAccounts,
   });
 
+  const q = toolbar.search?.value?.toLowerCase() || '';
+
   const controlledItems = items?.map((item) => {
     return {
       ...item,
+      highlightWords: q ? [q] : undefined,
       onClick: () => onToggle(item.id),
       onToggleFavourite: () => onToggleFavourite(item.id),
       contextMenu: getContextMenu(item),

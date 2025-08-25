@@ -81,7 +81,7 @@ export const BetaText = () => {
         items={[
           {
             href: "#",
-            label: "Altinn.no",
+            label: "Innboks Beta",
           },
           {
             label: "Om nye Altinn",

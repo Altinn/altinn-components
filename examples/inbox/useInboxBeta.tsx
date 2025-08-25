@@ -8,10 +8,10 @@ import {
   InboxFillIcon,
   InformationSquareIcon,
   TrashIcon,
-} from '@navikt/aksel-icons';
-import { useState } from 'react';
-import { useInboxLayout, useInboxSearch, useInboxToolbar } from '../';
-import { ListItemSelect } from '../../lib';
+} from "@navikt/aksel-icons";
+import { useState } from "react";
+import { useInboxLayout, useInboxSearch, useInboxToolbar } from "../";
+import { ListItemSelect } from "../../lib";
 import type {
   ActivityLogProps,
   DialogContactProps,
@@ -23,15 +23,15 @@ import type {
   SearchbarProps,
   SeenByLogProps,
   ToolbarProps,
-} from '../../lib';
-import { ContextMenu } from '../../lib';
-import { dialogContact, getContextMenu, getSeenByLog } from './';
-import { dialogs, getDialogList } from './dialogs';
+} from "../../lib";
+import { ContextMenu } from "../../lib";
+import { dialogContact, getContextMenu, getSeenByLog } from "./";
+import { dialogs, getDialogList } from "./dialogs";
 
 interface UseInboxDialogProps extends DialogListItemProps {
-  backButton?: DialogLayoutProps['backButton'];
-  contextMenu?: DialogLayoutProps['contextMenu'];
-  pageMenu?: DialogLayoutProps['pageMenu'];
+  backButton?: DialogLayoutProps["backButton"];
+  contextMenu?: DialogLayoutProps["contextMenu"];
+  pageMenu?: DialogLayoutProps["pageMenu"];
   contact?: DialogContactProps;
 }
 
@@ -61,66 +61,70 @@ interface UseInboxProps extends LayoutProps {
   closeModal?: () => void;
 }
 
-export const useInboxBeta = ({ pageId = 'inbox', q, ...props }: UseInboxProps): UseInboxProps => {
+export const useInboxBeta = ({
+  pageId = "inbox",
+  q,
+  ...props
+}: UseInboxProps): UseInboxProps => {
   const pages = {
-    inbox: 'demo-inboxbeta--inbox',
-    drafts: 'demo-inboxbeta--inbox',
-    sent: 'demo-inboxbeta--inbox',
-    bookmarks: 'demo-inboxbeta--inbox',
-    archive: 'demo-inboxbeta--inbox',
-    trash: 'demo-inboxbeta--inbox',
-    information: 'demo-inboxbeta--information',
+    inbox: "demo-inboxbeta--inbox",
+    drafts: "demo-inboxbeta--inbox",
+    sent: "demo-inboxbeta--inbox",
+    bookmarks: "demo-inboxbeta--inbox",
+    archive: "demo-inboxbeta--inbox",
+    trash: "demo-inboxbeta--inbox",
+    information: "demo-inboxbeta--information",
   };
 
   const layout = useInboxLayout({
     items: [
       {
-        id: 'inbox',
-        groupId: '1',
-        size: 'lg',
-        icon: { svgElement: InboxFillIcon, theme: 'base' },
+        id: "inbox",
+        groupId: "1",
+        size: "lg",
+        icon: { svgElement: InboxFillIcon, theme: "base" },
         selected: true,
-        title: 'Innboks',
+        title: "Innboks",
         badge: {
-          label: 'Beta',
+          label: "Beta",
         },
       },
       {
-        id: 'drafts',
-        groupId: '2',
+        id: "drafts",
+        groupId: "2",
         icon: DocPencilIcon,
-        title: 'Utkast',
+        title: "Utkast",
       },
       {
-        id: 'sent',
-        groupId: '2',
+        id: "sent",
+        groupId: "2",
         icon: FileCheckmarkIcon,
-        title: 'Sendt',
+        title: "Sendt",
       },
       {
-        id: 'bookmarks',
-        groupId: '3',
+        id: "bookmarks",
+        groupId: "3",
         icon: BookmarkIcon,
-        title: 'Lagrede søk',
+        title: "Lagrede søk",
       },
       {
-        id: 'archive',
-        groupId: '4',
+        id: "archive",
+        groupId: "4",
         icon: ArchiveIcon,
-        title: 'Arkiv',
+        title: "Arkiv",
       },
       {
-        id: 'trash',
-        groupId: '4',
+        id: "trash",
+        groupId: "4",
         icon: TrashIcon,
-        title: 'Papirkurv',
+        title: "Papirkurv",
       },
       {
-        groupId: 'shortcuts',
-        id: 'information',
-        size: 'sm',
+        groupId: "shortcuts",
+        id: "information",
+        size: "sm",
         icon: InformationSquareIcon,
-        title: 'Om Innboks Beta',
+        title: "Om nye Altinn",
       },
     ],
     pages,
@@ -129,7 +133,8 @@ export const useInboxBeta = ({ pageId = 'inbox', q, ...props }: UseInboxProps): 
 
   const sidebar = layout?.sidebar || {};
   const sidebarItems = sidebar?.menu?.items || [];
-  const shortcuts = sidebarItems.filter((item) => item.groupId === 'shortcuts') || [];
+  const shortcuts =
+    sidebarItems.filter((item) => item.groupId === "shortcuts") || [];
 
   const betaSidebar = {
     ...sidebar,
@@ -137,8 +142,8 @@ export const useInboxBeta = ({ pageId = 'inbox', q, ...props }: UseInboxProps): 
       ...sidebar?.menu,
       groups: {
         shortcuts: {
-          title: 'Snarveier',
-          defaultIconTheme: 'undefined',
+          title: "Snarveier",
+          defaultIconTheme: "undefined",
         },
       },
     },
@@ -151,7 +156,7 @@ export const useInboxBeta = ({ pageId = 'inbox', q, ...props }: UseInboxProps): 
     items: [
       {
         ...sidebarItems[0],
-        icon: { theme: 'tinted', svgElement: InboxFillIcon },
+        icon: { theme: "tinted", svgElement: InboxFillIcon },
       },
       ...shortcuts,
     ],
@@ -163,15 +168,18 @@ export const useInboxBeta = ({ pageId = 'inbox', q, ...props }: UseInboxProps): 
   };
 
   const search = useInboxSearch({
-    name: 'search',
-    placeholder: 'Søk i innboksen',
+    name: "search",
+    placeholder: "Søk i innboksen",
     value: q,
     items: dialogs,
   });
 
-  const archived = dialogs.filter((item) => item?.archived).map((item) => item.id) || [];
-  const trashed = dialogs.filter((item) => item?.trashed).map((item) => item.id) || [];
-  const seen = dialogs.filter((item) => item?.seenByLog).map((item) => item.id) || [];
+  const archived =
+    dialogs.filter((item) => item?.archived).map((item) => item.id) || [];
+  const trashed =
+    dialogs.filter((item) => item?.trashed).map((item) => item.id) || [];
+  const seen =
+    dialogs.filter((item) => item?.seenByLog).map((item) => item.id) || [];
 
   const [bulkIds, setBulkIds] = useState<string[]>(props.bulkIds || []);
   const [seenIds, setSeenIds] = useState(seen);
@@ -179,9 +187,9 @@ export const useInboxBeta = ({ pageId = 'inbox', q, ...props }: UseInboxProps): 
   const [archivedIds, setArchivedIds] = useState(archived);
   const [trashedIds, setTrashedIds] = useState(trashed);
 
-  const [dialogId, setDialogId] = useState(props?.dialogId || '');
-  const [modalId, setModalId] = useState<string>('');
-  const [modalType, setModalType] = useState<string>('');
+  const [dialogId, setDialogId] = useState(props?.dialogId || "");
+  const [modalId, setModalId] = useState<string>("");
+  const [modalType, setModalType] = useState<string>("");
 
   const onDialogId = (id: string) => {
     setSeenIds((prevState) => {
@@ -239,7 +247,7 @@ export const useInboxBeta = ({ pageId = 'inbox', q, ...props }: UseInboxProps): 
   const list = getDialogList(dialogs, q);
 
   const items = list.items
-    ?.filter((item) => typeof item.id === 'string')
+    ?.filter((item) => typeof item.id === "string")
     .map((item) => {
       const { id } = item as { id: string };
 
@@ -259,31 +267,31 @@ export const useInboxBeta = ({ pageId = 'inbox', q, ...props }: UseInboxProps): 
         return true;
       }
 
-      if (pageId === 'drafts' && !item.draftsLabel) {
+      if (pageId === "drafts" && !item.draftsLabel) {
         return false;
       }
 
-      if (pageId === 'sent' && !item.sentCount) {
+      if (pageId === "sent" && !item.sentCount) {
         return false;
       }
 
-      if (pageId === 'archive' && !item.archived) {
+      if (pageId === "archive" && !item.archived) {
         return false;
       }
 
-      if (pageId === 'trash' && !item.trashed) {
+      if (pageId === "trash" && !item.trashed) {
         return false;
       }
 
-      if (pageId !== 'drafts' && item.draftsLabel) {
+      if (pageId !== "drafts" && item.draftsLabel) {
         return false;
       }
 
-      if (pageId !== 'archive' && item.archived) {
+      if (pageId !== "archive" && item.archived) {
         return false;
       }
 
-      if (pageId !== 'trash' && item.trashed) {
+      if (pageId !== "trash" && item.trashed) {
         return false;
       }
 
@@ -300,10 +308,10 @@ export const useInboxBeta = ({ pageId = 'inbox', q, ...props }: UseInboxProps): 
         ? getSeenByLog([
             ...(item?.seenByLog?.items || []),
             {
-              id: 'user',
-              seenAt: '2023-10-01T12:00:00Z',
-              seenAtLabel: '',
-              name: 'Mathias Dyngeland',
+              id: "user",
+              seenAt: "2023-10-01T12:00:00Z",
+              seenAtLabel: "",
+              name: "Mathias Dyngeland",
               isEndUser: true,
             },
           ])
@@ -328,9 +336,9 @@ export const useInboxBeta = ({ pageId = 'inbox', q, ...props }: UseInboxProps): 
       return {
         ...item,
         archived,
-        archivedAtLabel: archived ? 'Arkivert' : undefined,
+        archivedAtLabel: archived ? "Arkivert" : undefined,
         trashed,
-        trashedAtLabel: trashed ? 'Arkivert' : undefined,
+        trashedAtLabel: trashed ? "Arkivert" : undefined,
         href: undefined,
         recipient: layout?.header?.currentAccount,
         unread: trashed || archived ? false : unread,
@@ -339,27 +347,28 @@ export const useInboxBeta = ({ pageId = 'inbox', q, ...props }: UseInboxProps): 
         controls: <ContextMenu {...contextMenu} />,
         badge:
           (archived && {
-            variant: 'subtle',
-            color: 'neutral',
-            label: 'Arkiv',
-            size: 'sm',
+            variant: "subtle",
+            color: "neutral",
+            label: "Arkiv",
+            size: "sm",
           }) ||
           (trashed && {
-            variant: 'subtle',
-            color: 'neutral',
-            label: 'Papirkurv',
-            size: 'sm',
+            variant: "subtle",
+            color: "neutral",
+            label: "Papirkurv",
+            size: "sm",
           }) ||
           (unread && {
-            size: 'xs',
-            label: 'Ny',
+            size: "xs",
+            label: "Ny",
           }),
-        as: 'button',
+        as: "button",
         onClick: () => item.id && onDialogId(item.id),
       };
     }) as DialogListItemProps[];
 
-  const dialog = (dialogId && items?.find((item) => item.id === dialogId)) || undefined;
+  const dialog =
+    (dialogId && items?.find((item) => item.id === dialogId)) || undefined;
 
   const contextMenu =
     dialog &&
@@ -380,24 +389,24 @@ export const useInboxBeta = ({ pageId = 'inbox', q, ...props }: UseInboxProps): 
   const bulkMenu = {
     items: [
       {
-        id: '1',
+        id: "1",
         icon: ArrowRedoIcon,
-        title: 'Del og gi tilgang',
+        title: "Del og gi tilgang",
       },
       {
-        id: '2',
+        id: "2",
         icon: EyeClosedIcon,
-        title: 'Marker som ulest',
+        title: "Marker som ulest",
       },
       {
-        id: '3',
+        id: "3",
         icon: ArchiveIcon,
-        title: 'Flytt til arkiv',
+        title: "Flytt til arkiv",
       },
       {
-        id: '4',
+        id: "4",
         icon: TrashIcon,
-        title: 'Flytt til papirkurv',
+        title: "Flytt til papirkurv",
       },
     ],
   };
@@ -427,7 +436,11 @@ export const useInboxBeta = ({ pageId = 'inbox', q, ...props }: UseInboxProps): 
             ...item,
             onClick: () => onSelect(item.id!),
             controls: (
-              <ListItemSelect aria-labelledby={item.id!} checked={item?.selected} onClick={() => onSelect(item.id!)} />
+              <ListItemSelect
+                aria-labelledby={item.id!}
+                checked={item?.selected}
+                onClick={() => onSelect(item.id!)}
+              />
             ),
           };
         }),
@@ -435,7 +448,8 @@ export const useInboxBeta = ({ pageId = 'inbox', q, ...props }: UseInboxProps): 
     };
   }
 
-  const modalDialog = (modalId && items?.find((item) => item.id === modalId)) || undefined;
+  const modalDialog =
+    (modalId && items?.find((item) => item.id === modalId)) || undefined;
 
   const modal = modalDialog && {
     id: modalId,
@@ -449,7 +463,7 @@ export const useInboxBeta = ({ pageId = 'inbox', q, ...props }: UseInboxProps): 
   return {
     modal,
     modalId,
-    closeModal: () => setModalId(''),
+    closeModal: () => setModalId(""),
     pageId,
     dialogId,
     dialog: dialog && {
@@ -457,8 +471,8 @@ export const useInboxBeta = ({ pageId = 'inbox', q, ...props }: UseInboxProps): 
       contextMenu,
       contact: dialogContact,
       backButton: {
-        onClick: () => onDialogId(''),
-        label: 'Tilbake',
+        onClick: () => onDialogId(""),
+        label: "Tilbake",
       },
     },
     layout: {

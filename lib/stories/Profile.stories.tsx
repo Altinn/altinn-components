@@ -53,6 +53,27 @@ export const AccountsPage = () => {
   );
 };
 
+export const AlertsPage = () => {
+  const { breadcrumbs, ...layout } = useProfileLayout({ pageId: "alerts" });
+  return (
+    <Layout {...layout}>
+      <PageBase>
+        <Breadcrumbs items={breadcrumbs} />
+        <Heading size="xl">Mine varslinger</Heading>
+        <Toolbar search={{ name: "search", placeholder: "Søk" }} />
+        <Heading size="lg">Primære varslingsadresser</Heading>
+        <SettingsSection>
+          <SettingsStories.NotificationSettings />
+        </SettingsSection>
+        <Heading size="lg">Varslinger per aktør</Heading>
+        <SettingsSection>
+          <AccountSettingsStories.Controlled />
+        </SettingsSection>
+      </PageBase>
+    </Layout>
+  );
+};
+
 export const UsersPage = () => {
   const { breadcrumbs, ...layout } = useProfileLayout({ pageId: "users" });
   return (
