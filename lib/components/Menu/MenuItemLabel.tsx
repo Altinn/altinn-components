@@ -8,6 +8,7 @@ export interface MenuItemLabelProps {
   className?: string;
   size?: MenuItemSize;
   label?: string;
+  highlightWords?: string[];
   title?: HeadingProps | ReactNode | string;
   description?: HeadingProps | ReactNode | string;
   badge?: BadgeProps;
@@ -70,7 +71,15 @@ export function getAriaLabelFromTitle(title: HeadingProps | ReactNode | string) 
   return;
 }
 
-export const MenuItemLabel = ({ className, size = 'sm', title, badge, description, children }: MenuItemLabelProps) => {
+export const MenuItemLabel = ({
+  className,
+  size = 'sm',
+  title,
+  badge,
+  description,
+  highlightWords,
+  children,
+}: MenuItemLabelProps) => {
   const titleProps = title && getTitleProps(title);
   const descriptionProps = description && getDescriptionProps(description);
   return (
@@ -82,15 +91,20 @@ export const MenuItemLabel = ({ className, size = 'sm', title, badge, descriptio
           {titleProps && (
             <Heading
               {...titleProps}
+              highlightWords={highlightWords}
               className={styles.title}
               weight={titleProps?.weight || size === 'lg' ? 'medium' : 'normal'}
             >
-              {titleProps.children}
+              <span>{titleProps.children}</span>
               {badge && <Badge {...badge} />}
             </Heading>
           )}
           {descriptionProps && (
-            <Heading {...descriptionProps} size={descriptionProps.size || size === 'lg' ? 'xs' : 'xxs'} />
+            <Heading
+              {...descriptionProps}
+              highlightWords={highlightWords}
+              size={descriptionProps.size || size === 'lg' ? 'xs' : 'xxs'}
+            />
           )}
         </>
       )}

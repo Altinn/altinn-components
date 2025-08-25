@@ -35,6 +35,7 @@ export interface MenuItemProps {
   groupId?: string | number;
   title?: MenuItemLabelProps['title'];
   description?: MenuItemLabelProps['description'];
+  highlightWords?: MenuItemLabelProps['highlightWords'];
   icon?: MenuItemIconProps['icon'];
   iconTheme?: MenuItemIconProps['theme'];
   iconBadge?: MenuItemIconProps['badge'];
@@ -60,6 +61,7 @@ export const MenuItem = ({
   iconBadge,
   title,
   description,
+  highlightWords,
   badge,
   controls,
   linkIcon,
@@ -78,7 +80,7 @@ export const MenuItem = ({
   return (
     <MenuItemBase as={as} size={size} theme={theme} color={color} expanded={expanded} {...rest}>
       <MenuItemIcon size={size} icon={icon} theme={iconTheme} badge={iconBadge} />
-      <MenuItemLabel title={title} description={description} size={size} badge={badge}>
+      <MenuItemLabel title={title} description={description} highlightWords={highlightWords} size={size} badge={badge}>
         {label}
       </MenuItemLabel>
       <span className={styles.controls}>

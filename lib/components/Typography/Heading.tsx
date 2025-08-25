@@ -42,7 +42,11 @@ export const Heading = ({
 }: HeadingProps) => {
   const H = as;
 
+  console.log('CHILDREN', children);
+
   const content = useHighlightedText(children, highlightWords || []);
+
+  console.log('CHILDREN', content);
 
   return (
     <Skeleton loading={loading}>

@@ -37,6 +37,16 @@ function processNode(node: ReactNode, regex: RegExp): ProcessResult {
     return highlightTextInString(node, regex);
   }
 
+  if (Array.isArray(node)) {
+    let anyChanged = false;
+    const processed = node.map((child) => {
+      const res = processNode(child, regex);
+      if (res.changed) anyChanged = true;
+      return res.node;
+    });
+    return { node: processed, changed: anyChanged };
+  }
+
   if (isValidElement(node)) {
     const el = node as ReactElement<{ children?: ReactNode }>;
     const type = typeof el.type === 'string' ? el.type : undefined;

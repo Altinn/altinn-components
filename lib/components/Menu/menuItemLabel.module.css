@@ -22,3 +22,7 @@
   align-items: center;
   column-gap: 0.5em;
 }
+
+.label mark {
+  background-color: var(--ds-color-surface-tinted);
+}

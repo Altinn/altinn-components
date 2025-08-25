@@ -1,4 +1,4 @@
-import { ClockDashedIcon, CogIcon, HandshakeIcon, HeartIcon, PadlockUnlockedIcon } from '@navikt/aksel-icons';
+import { BellIcon, ClockDashedIcon, CogIcon, HandshakeIcon, HeartIcon, PadlockUnlockedIcon } from '@navikt/aksel-icons';
 import type { MenuItemProps, MenuProps } from '../../lib';
 
 export const profileMenuItems: MenuItemProps[] = [
@@ -17,14 +17,12 @@ export const profileMenuItems: MenuItemProps[] = [
     icon: HeartIcon,
     title: 'Mine aktører',
   },
-  /*
   {
-    id: "alerts",
-    groupId: "2",
+    id: 'alerts',
+    groupId: '2',
     icon: BellIcon,
-    title: "Mine varslinger",
+    title: 'Mine varslinger',
   },
-  */
   {
     id: 'users',
     groupId: '4',
