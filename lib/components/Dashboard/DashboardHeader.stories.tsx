@@ -48,3 +48,25 @@ export const Person: Story = {
     ),
   },
 };
+
+export const LoadingState: Story = {
+  args: {
+    loading: true,
+    type: 'person',
+    name: 'Mathias Dyngeland',
+    description: 'Fødselsnr: XX.XX.XXXX XXXXXX',
+    children: (
+      <List size="sm" spacing={0}>
+        <SettingsItem
+          icon={BellIcon}
+          title="Varslinger er på"
+          description="Alle varslinger"
+          badge={{ label: 'SMS og Epost' }}
+          linkIcon
+        />
+        <Divider />
+        <SettingsItem icon={CogIcon} title="Flere innstillinger" linkIcon />
+      </List>
+    ),
+  },
+};
