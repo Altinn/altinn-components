@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.38.2](https://github.com/Altinn/altinn-components/compare/v0.38.1...v0.38.2) (2025-08-25)
+
+
+### Bug Fixes
+
+* loading state for description should render as section instead of pas it can contain react node ([#603](https://github.com/Altinn/altinn-components/issues/603)) ([faea5a1](https://github.com/Altinn/altinn-components/commit/faea5a17c7283c31466255fc2267821b8ea09cd7))
+
 ## [0.38.1](https://github.com/Altinn/altinn-components/compare/v0.38.0...v0.38.1) (2025-08-25)
 
 
