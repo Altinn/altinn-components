@@ -193,3 +193,20 @@ export const Information = () => {
     </Layout>
   );
 };
+
+export const InformationStandalone = () => {
+  const { layout } = useInboxBeta({ pageId: "s1" });
+
+  return (
+    <Layout
+      header={layout?.header}
+      footer={layout?.footer}
+      sidebar={{ hidden: true }}
+      color="neutral"
+      theme="default"
+    >
+      <BetaText />
+      <BetaModal open={false} />
+    </Layout>
+  );
+};

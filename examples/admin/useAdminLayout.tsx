@@ -24,7 +24,7 @@ export const useAdminLayout = ({ accountId = 'diaspora', pageId = 'admin' }): Ad
   };
 
   const layout = useLayout({ color: 'neutral', theme: 'subtle', accountId });
-  const account = layout?.header?.menu?.currentAccount;
+  const account = layout?.header?.globalMenu?.currentAccount;
 
   const menuItems = adminMenuItems.map((item, index) => {
     const storyBookId = storybookPages?.[item.id as keyof typeof storybookPages];

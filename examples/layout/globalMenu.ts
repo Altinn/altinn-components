@@ -1,36 +1,30 @@
 import {
+  ArchiveIcon,
   BellIcon,
   BookmarkIcon,
   Buildings2Icon,
   ChatExclamationmarkIcon,
+  DocPencilIcon,
+  FileCheckmarkIcon,
   HeartIcon,
   InboxIcon,
   MenuGridIcon,
+  TrashIcon,
 } from '@navikt/aksel-icons';
 import { accountMenu } from '../';
-import type { AccountMenuProps, GlobalMenuProps } from '../../lib';
+import type { AccountMenuProps, GlobalMenuProps, MenuProps } from '../../lib';
 
-export const globalMenu: GlobalMenuProps = {
-  accountMenu: {
-    ...(accountMenu as AccountMenuProps),
-    menuItemsVirtual: {
-      isVirtualized: true,
-      scrollRefStyles: {
-        maxHeight: 'calc(90vh - 8rem)',
-      },
-    },
-  },
-  currentEndUserLabel: 'Logget inn som Mathias Dyngeland',
-  menuLabel: 'Meny',
-  backLabel: 'Tilbake',
-  logoutButton: { label: 'Logg ut' },
-  changeLabel: 'Endre',
+export const desktopMenu: MenuProps = {
+  defaultIconTheme: 'surface',
   groups: {
     apps: {
-      defaultIconTheme: 'surface',
       divider: true,
     },
+    help: {
+      defaultIconTheme: 'transparent',
+    },
     profile: {
+      defaultIconTheme: 'transparent',
       defaultItemColor: 'person',
     },
   },
@@ -104,4 +98,78 @@ export const globalMenu: GlobalMenuProps = {
       title: 'Varslingsinnstillinger',
     },
   ],
+};
+
+const mobileMenuItems = desktopMenu.items?.map((item) => {
+  if (item.id === 'inbox') {
+    return {
+      ...item,
+      expanded: true,
+      items: [
+        {
+          id: 'drafts',
+          groupId: '2',
+          icon: DocPencilIcon,
+          title: 'Utkast',
+          badge: {
+            label: '2',
+          },
+        },
+        {
+          id: 'sent',
+          groupId: '2',
+          icon: FileCheckmarkIcon,
+          title: 'Sendt',
+          badge: {
+            label: '3',
+          },
+        },
+        {
+          id: 'bookmarks',
+          groupId: '3',
+          icon: BookmarkIcon,
+          title: 'Lagrede søk',
+          badge: {
+            label: '5',
+          },
+        },
+        {
+          id: 'archive',
+          groupId: '4',
+          icon: ArchiveIcon,
+          title: 'Arkiv',
+        },
+        {
+          id: 'trash',
+          groupId: '4',
+          icon: TrashIcon,
+          title: 'Papirkurv',
+        },
+      ],
+    };
+  }
+  return item;
+});
+
+export const mobileMenu = {
+  ...desktopMenu,
+  items: mobileMenuItems,
+};
+
+export const globalMenu: GlobalMenuProps = {
+  accountMenu: {
+    ...(accountMenu as AccountMenuProps),
+    menuItemsVirtual: {
+      isVirtualized: true,
+      scrollRefStyles: {
+        maxHeight: 'calc(90vh - 8rem)',
+      },
+    },
+  },
+  menu: desktopMenu,
+  currentEndUserLabel: 'Logget inn som Mathias Dyngeland',
+  menuLabel: 'Meny',
+  backLabel: 'Tilbake',
+  logoutButton: { label: 'Logg ut' },
+  changeLabel: 'Endre',
 };

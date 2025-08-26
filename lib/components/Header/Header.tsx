@@ -1,4 +1,6 @@
 'use client';
+import { HeaderBase, HeaderGroup, HeaderLogo, type HeaderLogoProps, HeaderSearch, type MenuProps } from '../';
+import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
 import type { BadgeProps } from '../Badge';
 import { DrawerBase, DropdownBase } from '../Dropdown';
 import { GlobalMenu, GlobalMenuButton, type GlobalMenuProps } from '../GlobalMenu';
@@ -6,16 +8,14 @@ import type { Account } from '../GlobalMenu';
 import { useRootContext } from '../RootProvider';
 import { Searchbar, type SearchbarProps } from '../Searchbar';
 import { LocaleSwitcher, type LocaleSwitcherProps } from './';
-import { HeaderBase } from './HeaderBase';
-import { HeaderGroup } from './HeaderGroup';
-import { HeaderLogo, type HeaderLogoProps } from './HeaderLogo';
-import { HeaderSearch } from './HeaderSearch';
-
-import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
 import styles from './header.module.css';
 
 export interface HeaderProps {
-  menu: GlobalMenuProps;
+  globalMenu: GlobalMenuProps;
+  /** Use to override globalMenu.menu on desktop */
+  desktopMenu?: MenuProps;
+  /** Use to override globalMenu.menu on mobile */
+  mobileMenu?: MenuProps;
   locale?: LocaleSwitcherProps;
   search?: SearchbarProps;
   currentAccount?: Account;
@@ -23,7 +23,16 @@ export interface HeaderProps {
   logo?: HeaderLogoProps;
 }
 
-export const Header = ({ menu, locale, search, currentAccount, logo = {}, badge }: HeaderProps) => {
+export const Header = ({
+  globalMenu,
+  desktopMenu,
+  mobileMenu,
+  locale,
+  search,
+  currentAccount,
+  logo = {},
+  badge,
+}: HeaderProps) => {
   const { currentId, toggleId, openId, closeAll } = useRootContext();
 
   const onSearchFocus = () => {
@@ -60,9 +69,9 @@ export const Header = ({ menu, locale, search, currentAccount, logo = {}, badge 
             currentAccount={currentAccount}
             onClick={onToggleMenu}
             expanded={currentId === 'menu'}
-            label={menu?.menuLabel}
+            label={globalMenu?.menuLabel}
           />
-          {menu && (
+          {globalMenu && (
             <DropdownBase
               layout="desktop"
               padding
@@ -70,7 +79,12 @@ export const Header = ({ menu, locale, search, currentAccount, logo = {}, badge 
               open={currentId === 'menu'}
               className={styles.dropdown}
             >
-              <GlobalMenu {...menu} currentAccount={currentAccount} onClose={closeAll} />
+              <GlobalMenu
+                {...globalMenu}
+                menu={desktopMenu || globalMenu?.menu}
+                currentAccount={currentAccount}
+                onClose={closeAll}
+              />
             </DropdownBase>
           )}
         </div>
@@ -80,9 +94,14 @@ export const Header = ({ menu, locale, search, currentAccount, logo = {}, badge 
           <Searchbar {...search} expanded={currentId === 'search'} onClose={onSearchClose} onFocus={onSearchFocus} />
         </HeaderSearch>
       )}
-      {menu && (
+      {globalMenu && (
         <DrawerBase open={currentId === 'menu'} className={styles.drawer}>
-          <GlobalMenu {...menu} currentAccount={currentAccount} onClose={closeAll} />
+          <GlobalMenu
+            {...globalMenu}
+            menu={mobileMenu || globalMenu?.menu}
+            currentAccount={currentAccount}
+            onClose={closeAll}
+          />
         </DrawerBase>
       )}
     </HeaderBase>
