@@ -24,6 +24,7 @@ export interface MenuListProps {
   children?: ReactNode;
   ref?: React.Ref<HTMLUListElement>;
   onMouseEnter?: MouseEventHandler;
+  onMouseLeave?: MouseEventHandler;
 }
 
 export interface MenuListItemProps {
@@ -34,6 +35,8 @@ export interface MenuListItemProps {
   children?: ReactNode;
   style?: React.CSSProperties;
   dataIndex?: number;
+  onMouseEnter?: MouseEventHandler;
+  onMouseLeave?: MouseEventHandler;
 }
 
 export const MenuBase = ({ as = 'nav', color, theme, className, children }: MenuBaseProps) => {
@@ -45,10 +48,24 @@ export const MenuBase = ({ as = 'nav', color, theme, className, children }: Menu
   );
 };
 
-export const MenuList = ({ as = 'ul', role = 'group', className, children, ref, onMouseEnter }: MenuListProps) => {
+export const MenuList = ({
+  as = 'ul',
+  role = 'group',
+  className,
+  children,
+  ref,
+  onMouseEnter,
+  onMouseLeave,
+}: MenuListProps) => {
   const Component = as;
   return (
-    <Component className={cx(styles.list, className)} role={role} ref={ref} onMouseEnter={onMouseEnter}>
+    <Component
+      className={cx(styles.list, className)}
+      role={role}
+      ref={ref}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
       {children}
     </Component>
   );
@@ -61,10 +78,19 @@ export const MenuListItem = ({
   children,
   style,
   dataIndex,
+  onMouseEnter,
+  onMouseLeave,
 }: MenuListItemProps) => {
   const Component = as;
   return (
-    <Component className={cx(styles.item, className)} role={role} style={style} data-index={dataIndex}>
+    <Component
+      className={cx(styles.item, className)}
+      role={role}
+      style={style}
+      data-index={dataIndex}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
       {children}
     </Component>
   );
