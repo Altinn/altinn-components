@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.38.4](https://github.com/Altinn/altinn-components/compare/v0.38.3...v0.38.4) (2025-08-26)
+
+
+### Bug Fixes
+
+* remove logging in header ([#608](https://github.com/Altinn/altinn-components/issues/608)) ([ba4143e](https://github.com/Altinn/altinn-components/commit/ba4143e242a74cdc6b5408b76a60cb257da6f240))
+
 ## [0.38.3](https://github.com/Altinn/altinn-components/compare/v0.38.2...v0.38.3) (2025-08-26)
 
 
