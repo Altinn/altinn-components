@@ -1,7 +1,7 @@
 'use client';
 import { useMemo, useState } from 'react';
 import { type Account, AccountMenu, type AccountMenuProps, CurrentAccount } from '../';
-import { Menu, type MenuItemGroups, type MenuItemProps, MenuListItem } from '../Menu';
+import { Menu, MenuListItem, type MenuProps } from '../Menu';
 import { BackButton } from './BackButton';
 import { EndUserLabel } from './EndUserLabel';
 import { GlobalMenuBase, GlobalMenuFooter, GlobalMenuHeader } from './GlobalMenuBase';
@@ -9,8 +9,7 @@ import { LogoutButton, type LogoutButtonProps } from './LogoutButton';
 
 export interface GlobalMenuProps {
   accountMenu?: AccountMenuProps;
-  items: MenuItemProps[];
-  groups?: MenuItemGroups;
+  menu?: MenuProps;
   menuLabel?: string;
   backLabel?: string;
   logoutButton?: LogoutButtonProps;
@@ -25,8 +24,7 @@ export interface GlobalMenuProps {
 
 export const GlobalMenu = ({
   accountMenu,
-  items = [],
-  groups,
+  menu,
   backLabel = 'Back',
   currentAccount,
   currentEndUserLabel = 'Signed in',
@@ -48,7 +46,7 @@ export const GlobalMenu = ({
   };
 
   const itemsWithToggle = useMemo(() => {
-    return items.map((item) => ({
+    return (menu?.items ?? []).map((item) => ({
       ...item,
       onClick: () => {
         item.onClick?.();
@@ -64,7 +62,7 @@ export const GlobalMenu = ({
           }))
         : undefined,
     }));
-  }, [items, onClose]);
+  }, [menu, onClose]);
 
   if (selectingAccount) {
     return (
@@ -85,14 +83,18 @@ export const GlobalMenu = ({
 
     return (
       <GlobalMenuBase aria-label={ariaLabel} color={currentAccount?.type}>
-        <CurrentAccount
-          account={currentAccount}
-          multipleAccounts={multipleAccounts}
-          as={multipleAccounts ? 'button' : 'div'}
-          onClick={multipleAccounts ? onToggleAccounts : undefined}
-        />
-        <MenuListItem as="div" role="separator" />
-        <Menu groups={groups} items={itemsWithToggle} theme="default" />
+        {currentAccount && (
+          <>
+            <CurrentAccount
+              account={currentAccount}
+              multipleAccounts={multipleAccounts}
+              as={multipleAccounts ? 'button' : 'div'}
+              onClick={multipleAccounts ? onToggleAccounts : undefined}
+            />
+            <MenuListItem as="div" role="separator" />
+          </>
+        )}
+        {menu && <Menu {...menu} items={itemsWithToggle} />}
         {logoutButton && (
           <>
             <MenuListItem as="div" role="separator" />
@@ -108,7 +110,7 @@ export const GlobalMenu = ({
 
   return (
     <GlobalMenuBase aria-label={ariaLabel}>
-      <Menu groups={groups} items={itemsWithToggle} />
+      {menu && <Menu {...menu} items={itemsWithToggle} />}
       {logoutButton && (
         <>
           <MenuListItem as="div" role="separator" />

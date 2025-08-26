@@ -21,12 +21,12 @@ export const useHeader = ({ accountId, accounts = defaultAccounts, ...args }: Us
 
   /* setup globalMenu */
 
-  const menu = useGlobalMenu({ ...args.menu, accountId, accounts });
+  const globalMenu = useGlobalMenu({ ...args.globalMenu, accountId, accounts });
 
   return {
-    menu,
+    globalMenu,
     locale,
     search,
-    currentAccount: menu?.currentAccount as Account,
+    currentAccount: globalMenu?.currentAccount as Account,
   };
 };

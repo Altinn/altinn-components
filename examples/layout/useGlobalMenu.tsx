@@ -14,7 +14,7 @@ export const useGlobalMenu = ({
   ...props
 }: UseGlobalMenuProps) => {
   if (!accountId) {
-    return { ...loginMenu, menuLabel };
+    return { menu: loginMenu, menuLabel };
   }
 
   const accountMenu = props?.accountMenu || getAccountMenu({ accounts });

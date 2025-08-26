@@ -2,8 +2,8 @@ import { InformationSquareIcon, LeaveIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 import type { Account } from '..';
-import { globalMenu, loginMenu } from '../../../examples';
-import { GlobalMenu, type GlobalMenuProps } from './GlobalMenu';
+import { GlobalMenu, type GlobalMenuProps, type MenuProps } from '../';
+import { globalMenu, loginMenu, mobileMenu } from '../../../examples';
 
 const meta = {
   title: 'Layout/GlobalMenu',
@@ -46,6 +46,20 @@ export const CompanyAccount = (args: GlobalMenuProps) => {
   return <GlobalMenu {...args} currentAccount={currentAccount} onSelectAccount={onSelectAccount} />;
 };
 
+export const MobileMenu = (args: GlobalMenuProps) => {
+  const accounts = args?.accountMenu?.items!;
+  const [currentAccount, setCurrentAccount] = useState<Account>(accounts[1] as Account);
+
+  const onSelectAccount = (id: string) => {
+    const account = accounts?.find((item) => item.id === id);
+    if (account) {
+      setCurrentAccount(account as Account);
+    }
+  };
+
+  return <GlobalMenu {...args} menu={mobileMenu} currentAccount={currentAccount} onSelectAccount={onSelectAccount} />;
+};
+
 export const SingleAccount = (args: GlobalMenuProps) => {
   const accountMenu = args?.accountMenu!;
   const currentAccount = accountMenu?.items[0] as Account;
@@ -62,7 +76,7 @@ export const SingleAccount = (args: GlobalMenuProps) => {
 
 export const Login: Story = {
   args: {
-    ...loginMenu,
+    menu: loginMenu,
     logoutButton: undefined,
   },
 };
@@ -78,7 +92,7 @@ export const InterimMenu = (args: GlobalMenuProps) => {
     }
   };
 
-  const inboxMenuItem = args?.items?.find((item) => item.id === 'inbox');
+  const inboxMenuItem = args?.menu?.items?.find((item) => item.id === 'inbox');
 
   const items = [
     {
@@ -103,7 +117,12 @@ export const InterimMenu = (args: GlobalMenuProps) => {
   return (
     <GlobalMenu
       {...args}
-      items={items as GlobalMenuProps['items']}
+      menu={
+        {
+          ...args?.menu,
+          items: items,
+        } as MenuProps
+      }
       currentAccount={currentAccount}
       onSelectAccount={onSelectAccount}
     />

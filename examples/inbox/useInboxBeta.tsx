@@ -152,10 +152,7 @@ export const useInboxBeta = ({ pageId = 'inbox', q, ...props }: UseInboxProps): 
     },
   };
 
-  const interimHeader = layout?.header;
-
-  const interimGlobalMenu = {
-    ...interimHeader?.menu,
+  const interimMenu = {
     items: [
       {
         ...sidebarItems[0],
@@ -166,8 +163,9 @@ export const useInboxBeta = ({ pageId = 'inbox', q, ...props }: UseInboxProps): 
   };
 
   const betaHeader = {
-    ...interimHeader,
-    menu: interimGlobalMenu,
+    ...layout?.header,
+    desktopMenu: interimMenu,
+    mobileMenu: interimMenu,
   };
 
   const search = useInboxSearch({
