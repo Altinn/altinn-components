@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.38.3](https://github.com/Altinn/altinn-components/compare/v0.38.2...v0.38.3) (2025-08-26)
+
+
+### Bug Fixes
+
+* menu should lose its active state on mouse enter leave ([#605](https://github.com/Altinn/altinn-components/issues/605)) ([22fb4b3](https://github.com/Altinn/altinn-components/commit/22fb4b306677a4e39bea3b2e5cf6b0a0e71c274f))
+
 ## [0.38.2](https://github.com/Altinn/altinn-components/compare/v0.38.1...v0.38.2) (2025-08-25)
 
 
