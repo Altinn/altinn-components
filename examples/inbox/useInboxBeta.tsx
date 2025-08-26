@@ -7,6 +7,7 @@ import {
   FileCheckmarkIcon,
   InboxFillIcon,
   InformationSquareIcon,
+  LeaveIcon,
   TrashIcon,
 } from '@navikt/aksel-icons';
 import { useState } from 'react';
@@ -121,6 +122,13 @@ export const useInboxBeta = ({ pageId = 'inbox', q, ...props }: UseInboxProps): 
         size: 'sm',
         icon: InformationSquareIcon,
         title: 'Om nye Altinn',
+      },
+      {
+        groupId: 'shortcuts',
+        id: 'exit-beta',
+        size: 'sm',
+        icon: LeaveIcon,
+        title: 'Avslutt beta',
       },
     ],
     pages,
