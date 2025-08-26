@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.38.6](https://github.com/Altinn/altinn-components/compare/v0.38.5...v0.38.6) (2025-08-26)
+
+
+### Bug Fixes
+
+* header-menu-props ([#613](https://github.com/Altinn/altinn-components/issues/613)) ([bc53a1e](https://github.com/Altinn/altinn-components/commit/bc53a1e58b5e6ff714b9dd31f4b3f79d340a074c))
+
 ## [0.38.5](https://github.com/Altinn/altinn-components/compare/v0.38.4...v0.38.5) (2025-08-26)
 
 
