@@ -81,8 +81,6 @@ export const AccountMenu = ({
     ...(filteredAccountMenu.length > 0 ? filteredAccountMenu : [{ id: 'search', groupId: 'search', hidden: true }]),
   ];
 
-  console.log('items', accountSwitcher);
-
   return (
     <Menu
       theme="default"
