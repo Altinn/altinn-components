@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.38.5](https://github.com/Altinn/altinn-components/compare/v0.38.4...v0.38.5) (2025-08-26)
+
+
+### Bug Fixes
+
+* Add description to DialogListGroup ([2436bed](https://github.com/Altinn/altinn-components/commit/2436bed866bbc1ad3bf5006bc121ec4ca2552ac8))
+* DialogList ([#612](https://github.com/Altinn/altinn-components/issues/612)) ([2436bed](https://github.com/Altinn/altinn-components/commit/2436bed866bbc1ad3bf5006bc121ec4ca2552ac8))
+* remove more logging ([#610](https://github.com/Altinn/altinn-components/issues/610)) ([5c73b8b](https://github.com/Altinn/altinn-components/commit/5c73b8bb50e1fabd249c483239c0fff51868a4ce))
+
 ## [0.38.4](https://github.com/Altinn/altinn-components/compare/v0.38.3...v0.38.4) (2025-08-26)
 
 
