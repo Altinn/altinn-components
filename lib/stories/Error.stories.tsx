@@ -143,6 +143,62 @@ export const PageNotFound = () => {
   );
 };
 
+export const UnknownError = () => {
+  const layout = useLayout({
+    accountId: "user",
+  });
+  return (
+    <Layout {...layout} sidebar={{ hidden: true }}>
+      <Article>
+        <Breadcrumbs
+          items={[{ label: "Forside", href: "#" }, { label: "Feilmelding" }]}
+        />
+        <ArticleHeader title="Oops, noe gikk galt">
+          <Typography>
+            <p>
+              Det har oppstått en ukjent feil. Du kan prøve å laste siden på
+              nytt, eller gå tilbake til forsiden.
+            </p>
+            <ul>
+              <li>
+                <a href="#">Gå tilbake og prøv igjen.</a>
+              </li>
+              <li>
+                <a href="#">Gå til Altinn.no</a>
+              </li>
+            </ul>
+          </Typography>
+        </ArticleHeader>
+      </Article>
+    </Layout>
+  );
+};
+
+export const DownForMaintenance = () => {
+  const layout = useLayout({
+    accountId: "user",
+  });
+  return (
+    <Layout {...layout} sidebar={{ hidden: true }}>
+      <Article>
+        <Breadcrumbs
+          items={[{ label: "Forside", href: "#" }, { label: "Informasjon" }]}
+        />
+        <ArticleHeader title="Siden er nede for vedlikehold">
+          <Typography>
+            <p>Prøv igjen 3. september kl 12.00.</p>
+            <ul>
+              <li>
+                <a href="#">Til Altinn.no</a>
+              </li>
+            </ul>
+          </Typography>
+        </ArticleHeader>
+      </Article>
+    </Layout>
+  );
+};
+
 export const LoginError = () => {
   const layout = useLayout({
     accountId: null,

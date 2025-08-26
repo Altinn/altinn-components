@@ -120,6 +120,9 @@ const NoHitsSection = ({ query }: SearchQueryProps) => (
           <strong>status</strong> og <strong>oppdatert dato</strong>.
         </li>
       </ul>
+      <p>
+        <a href="#">Hvor finner jeg de gamle meldingene mine?</a>
+      </p>
     </Typography>
   </Section>
 );
@@ -146,8 +149,15 @@ export const SearchPage = () => {
         <Toolbar {...toolbar} />
         {results?.items?.length ? (
           <DialogList
-            items={results.items}
-            groups={results?.groups}
+            items={results.items?.map((item) => {
+              return { ...item, groupId: "q" };
+            })}
+            groups={{
+              q: {
+                title: results?.items?.length + " treff",
+                description: `Søkeresultat for "${q}"`,
+              },
+            }}
             highlightWords={[q]}
           />
         ) : (
@@ -188,16 +198,25 @@ export const DraftsPage = () => {
     <Layout {...layout}>
       <PageBase margin="page">
         <Toolbar {...toolbar} />
-        <Section spacing={3} margin="section">
-          <Heading size="lg">{results?.items?.length + " utkast"}</Heading>
-          <Typography size="sm">
-            <p>
-              Her finner du dialoger <strong>som inneholder utkast</strong>, for
-              eksempel skjemaer du jobber med.
-            </p>
-          </Typography>
-          {results && <DialogList items={results.items} />}
-        </Section>
+        {results && (
+          <DialogList
+            groups={{
+              drafts: {
+                title: results?.items?.length + " utkast",
+                description: (
+                  <p>
+                    Her finner du dialoger{" "}
+                    <strong>som inneholder utkast</strong>, for eksempel
+                    skjemaer du jobber med.
+                  </p>
+                ),
+              },
+            }}
+            items={results.items?.map((item) => {
+              return { ...item, groupId: "drafts" };
+            })}
+          />
+        )}
       </PageBase>
     </Layout>
   );
@@ -220,18 +239,24 @@ export const SentPage = () => {
     <Layout {...layout}>
       <PageBase margin="page">
         <Toolbar {...toolbar} />
-        <Section spacing={3} margin="section">
-          <Heading size="lg">
-            {results?.items?.length + " treff i sendt"}
-          </Heading>
-          <Typography size="sm">
-            <p>
-              Her finner du dialoger som inneholder{" "}
-              <strong>ting du har sendt fra deg.</strong>
-            </p>
-          </Typography>
-          {results && <DialogList items={results.items} />}
-        </Section>
+        {results && (
+          <DialogList
+            groups={{
+              sent: {
+                title: results?.items?.length + " treff i sendt",
+                description: (
+                  <p>
+                    Her finner du dialoger som inneholder{" "}
+                    <strong>ting du har sendt fra deg.</strong>
+                  </p>
+                ),
+              },
+            }}
+            items={results.items?.map((item) => {
+              return { ...item, groupId: "sent" };
+            })}
+          />
+        )}
       </PageBase>
     </Layout>
   );
@@ -269,19 +294,27 @@ export const ArchivePage = () => {
     <Layout {...layout}>
       <PageBase color="company" margin="page">
         {toolbar && <Toolbar {...toolbar} />}
-        <Section spacing={3} margin="section">
-          <Heading size="lg">
-            {results?.items?.length + " treff i arkivet"}
-          </Heading>
-          <Typography size="sm">
-            <p>
-              <strong>Her finner du dialoger du har valgt å arkivere.</strong>{" "}
-              Det er ikke et journal- og arkivsystem. Om dialogen blir oppdatert
-              vil du finne den igjen i innboksen.
-            </p>
-          </Typography>
-          {results && <DialogList items={results.items} />}
-        </Section>
+        {results && (
+          <DialogList
+            groups={{
+              archived: {
+                title: results?.items?.length + " treff i arkivet",
+                description: (
+                  <p>
+                    <strong>
+                      Her finner du dialoger du har valgt å arkivere.
+                    </strong>{" "}
+                    Det er ikke et journal- og arkivsystem. Om dialogen blir
+                    oppdatert vil du finne den igjen i innboksen.
+                  </p>
+                ),
+              },
+            }}
+            items={results.items?.map((item) => {
+              return { ...item, groupId: "archived" };
+            })}
+          />
+        )}
       </PageBase>
     </Layout>
   );
@@ -302,18 +335,27 @@ export const TrashPage = () => {
     <Layout {...layout}>
       <PageBase color="company" margin="page">
         {toolbar && <Toolbar {...toolbar} />}
-        <Section spacing={3} margin="section">
-          <Heading size="lg">
-            {results?.items?.length + " treff i papirkurven"}
-          </Heading>
-          <Typography size="sm">
-            <p>
-              <strong>Her finner du dialoger du har lagt i papirkurven.</strong>{" "}
-              Om dialogen blir oppdatert vil du finne den igjen i innboksen.
-            </p>
-          </Typography>
-          {results && <DialogList items={results.items} />}
-        </Section>
+        {results && (
+          <DialogList
+            groups={{
+              trashed: {
+                title: results?.items?.length + " treff i papirkurven",
+                description: (
+                  <p>
+                    <strong>
+                      Her finner du dialoger du har lagt i papirkurven.
+                    </strong>{" "}
+                    Om dialogen blir oppdatert vil du finne den igjen i
+                    innboksen.
+                  </p>
+                ),
+              },
+            }}
+            items={results.items?.map((item) => {
+              return { ...item, groupId: "trashed" };
+            })}
+          />
+        )}
       </PageBase>
     </Layout>
   );

@@ -1,26 +1,20 @@
-import { CheckmarkIcon } from '@navikt/aksel-icons';
 import type { ReactNode } from 'react';
-import { Flex, Heading, List, Section } from '..';
-import { Button } from '../Button';
+import { Heading, List, Section, Typography } from '..';
 
 export interface DialogListGroupProps {
-  title?: string;
+  title?: string | ReactNode;
+  description?: string | ReactNode;
   children?: ReactNode;
-  checkAllLabel?: string;
 }
 
-export const DialogListGroup = ({ title, children, checkAllLabel }: DialogListGroupProps) => {
+export const DialogListGroup = ({ title, description, children }: DialogListGroupProps) => {
   return (
     <Section spacing={3}>
-      {title && (
-        <Flex direction="row" align="center" justify="between">
-          <Heading size="lg">{title}</Heading>
-          {checkAllLabel && (
-            <Button variant="text" icon={CheckmarkIcon} size="sm">
-              {checkAllLabel}
-            </Button>
-          )}
-        </Flex>
+      {title && <Heading size="lg">{title}</Heading>}
+      {description && (
+        <Typography size="sm" style={{ marginBottom: '.5em' }}>
+          {description}
+        </Typography>
       )}
       <List spacing={3}>{children}</List>
     </Section>
