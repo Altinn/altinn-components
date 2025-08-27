@@ -50,6 +50,7 @@ export const UserListItem = ({
   titleAs = 'h3',
   subUnit = false,
   loading = false,
+  interactive = true,
   ...props
 }: UserListItemProps) => {
   let icon: IconProps | SvgElement | AvatarProps | AvatarGroupProps;
@@ -100,6 +101,8 @@ export const UserListItem = ({
       label={label}
       description={description}
       loading={loading}
+      tabIndex={interactive ? 0 : -1}
+      interactive={interactive}
       {...props}
     />
   );
