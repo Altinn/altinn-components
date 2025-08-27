@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.38.8](https://github.com/Altinn/altinn-components/compare/v0.38.7...v0.38.8) (2025-08-27)
+
+
+### Bug Fixes
+
+* beta text adjustments ([#617](https://github.com/Altinn/altinn-components/issues/617)) ([67216da](https://github.com/Altinn/altinn-components/commit/67216da40e76920541430a5c05d276cea43e33b8))
+
 ## [0.38.7](https://github.com/Altinn/altinn-components/compare/v0.38.6...v0.38.7) (2025-08-27)
 
 
