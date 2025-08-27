@@ -32,7 +32,7 @@ export interface DialogBodyProps {
 /** DialogBody represents the body, or main part of a dialog, including sender and recipient.  */
 
 export const DialogBody = ({
-  loading,
+  loading = false,
   unread,
   sender,
   recipient,

@@ -70,6 +70,7 @@ export const useInboxSearch = ({
           title: item?.title,
           description: item?.summary,
           linkIcon: true,
+          highlightWords: [q],
         })) || []
     : [];
 

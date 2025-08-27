@@ -1,4 +1,5 @@
 import * as DialogStories from "./Dialog/Dialog.stories";
+import * as BetaStories from "./Beta/Beta.stories";
 
 import {
   BookmarksSection,
@@ -21,6 +22,7 @@ import {
   SeenByLogProps,
 } from "../components";
 import { useBookmarks, useInbox, useActivityLog } from "../../examples";
+import { useState } from "react";
 
 const meta = {
   title: "Demo/Inbox",
@@ -99,37 +101,125 @@ interface SearchQueryProps {
   query: { q: string };
 }
 
+const EmptyLink = () => (
+  <p>
+    <a href="#">Hvor finner jeg de gamle meldingene mine?</a>
+  </p>
+);
+
+const EmptySection = () => (
+  <Section spacing={3} margin="section">
+    <Heading size="lg">Innboksen er tom</Heading>
+    <Typography size="sm">
+      <p>
+        <strong>Vi jobber med å flytte meldinger.</strong> Etterhvert vil du
+        kunne se flere elementer i din nye innboks.
+      </p>
+      <EmptyLink />
+    </Typography>
+  </Section>
+);
+
+const EmptyDraftsSection = () => (
+  <Section spacing={3} margin="section">
+    <Heading size="lg">Du har ingen utkast</Heading>
+    <Typography size="sm">
+      <p>
+        Her finner du dialoger <strong>som inneholder utkast</strong>, for
+        eksempel skjemaer du jobber med.
+      </p>
+      <EmptyLink />
+    </Typography>
+  </Section>
+);
+
+const EmptySentSection = () => (
+  <Section spacing={3} margin="section">
+    <Heading size="lg">Du har ikke sendt noe fra deg</Heading>
+    <Typography size="sm">
+      <p>
+        Her finner du dialoger som inneholder ting du har{" "}
+        <strong>sendt fra deg</strong>.
+      </p>
+      <EmptyLink />
+    </Typography>
+  </Section>
+);
+
+const EmptyArchiveSection = () => (
+  <Section spacing={3} margin="section">
+    <Heading size="lg">Arkivet er tomt</Heading>
+    <Typography size="sm">
+      <p>
+        <strong>Her finner du dialoger du har valgt å arkivere.</strong> Dette
+        er ikke et journal- og arkivsystem. Om dialogen blir oppdatert vil du
+        finne den igjen i innboksen.
+      </p>
+      <EmptyLink />
+    </Typography>
+  </Section>
+);
+
+const EmptyTrashSection = () => (
+  <Section spacing={3} margin="section">
+    <Heading size="lg">Papirkurven er tom</Heading>
+    <Typography size="sm">
+      <p>
+        <strong>Her finner du dialoger du har lagt i papirkurven.</strong> Om
+        dialogen blir oppdatert vil du finne den igjen i innboksen.
+      </p>
+      <EmptyLink />
+    </Typography>
+  </Section>
+);
+
+const SearchTips = () => (
+  <>
+    <p>
+      <strong>Vi jobber med å gjøre søket bedre.</strong> Inntil videre kan du
+      prøve følgende:
+    </p>
+    <ul>
+      <li>
+        I fritekst kan du søke på <strong>ett søkeord</strong> eller{" "}
+        <strong>hele setninger</strong>.
+      </li>
+      <li>Bruk filter for å begrense trefflisten.</li>
+      <li>
+        Du kan filtere på <strong>tjenesteeier</strong>, <strong>status</strong>{" "}
+        og <strong>oppdatert dato</strong>.
+      </li>
+    </ul>
+    <EmptyLink />
+  </>
+);
+
 const NoHitsSection = ({ query }: SearchQueryProps) => (
   <Section spacing={3} margin="section">
     <Heading size="lg">Ingen treff</Heading>
     <Typography size="sm">
       <p>Søk etter &laquo;{query?.q}&raquo; ga ingen treff.</p>
-      <p>
-        <strong>Vi jobber med å gjøre søket bedre!</strong> I mellomtiden kan du
-        prøve følgende:
-      </p>
-      <ul>
-        <li>Søk på nytt med et annet søkeord.</li>
-        <li>
-          I fritekst kan du søke på <strong>ett søkeord</strong> eller{" "}
-          <strong>hele setninger</strong>.
-        </li>
-        <li>Bruk filter for å begrense trefflisten.</li>
-        <li>
-          Du kan filtere på <strong>tjenesteeier</strong>,{" "}
-          <strong>status</strong> og <strong>oppdatert dato</strong>.
-        </li>
-      </ul>
-      <p>
-        <a href="#">Hvor finner jeg de gamle meldingene mine?</a>
-      </p>
+      <SearchTips />
     </Typography>
   </Section>
 );
 
+export const InboxEmptyPage = () => {
+  const { layout, toolbar } = useInbox({});
+
+  return (
+    <Layout {...layout}>
+      <PageBase margin="page">
+        <Toolbar {...toolbar} />
+        <EmptySection />
+      </PageBase>
+    </Layout>
+  );
+};
+
 export const SearchPage = () => {
   let params = new URL(document.location.toString()).searchParams;
-  let q = params.get("q") || "";
+  let q = params.get("q") || "regnskap";
 
   const { layout, toolbar, results, dialog } = useInbox({
     q,
@@ -143,8 +233,54 @@ export const SearchPage = () => {
     );
   }
 
+  const query = layout?.header?.search?.value;
+  const hits = results?.items?.length || 0;
+
+  const title = <span>{hits} treff</span>;
+  const description = (
+    <span>
+      Søk etter «{query}» ga {hits} treff.
+    </span>
+  );
+
+  const [expanded, setExpanded] = useState(false);
+  const onToggle = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setExpanded(!expanded);
+  };
+
+  const descriptionTips = expanded ? (
+    <>
+      <p>
+        {description}{" "}
+        <a href="#" onClick={onToggle}>
+          Skjul søketips ↑
+        </a>
+      </p>
+      <SearchTips />
+    </>
+  ) : (
+    <p>
+      {description}{" "}
+      <a href="#" onClick={onToggle}>
+        Vis søketips ↓
+      </a>
+    </p>
+  );
+
+  if (!hits) {
+    return (
+      <Layout {...layout}>
+        <PageBase margin="page">
+          <Toolbar {...toolbar} />
+          <NoHitsSection query={{ q }} />
+        </PageBase>
+      </Layout>
+    );
+  }
+
   return (
-    <Layout {...layout} color={undefined}>
+    <Layout {...layout}>
       <PageBase margin="page">
         <Toolbar {...toolbar} />
         {results?.items?.length ? (
@@ -154,8 +290,8 @@ export const SearchPage = () => {
             })}
             groups={{
               q: {
-                title: results?.items?.length + " treff",
-                description: `Søkeresultat for "${q}"`,
+                title: title,
+                description: descriptionTips,
               },
             }}
             highlightWords={[q]}
@@ -168,16 +304,19 @@ export const SearchPage = () => {
   );
 };
 
-export const NoHitsPage = () => {
+export const SearchEmptyPage = () => {
+  let params = new URL(document.location.toString()).searchParams;
+  let q = params.get("q") || "bergen";
+
   const { layout, toolbar } = useInbox({
-    q: "bergen",
+    q,
   });
 
   return (
-    <Layout {...layout} color={undefined}>
+    <Layout {...layout}>
       <PageBase margin="page">
         <Toolbar {...toolbar} />
-        <NoHitsSection query={{ q: "bergen" }} />
+        <NoHitsSection query={{ q }} />
       </PageBase>
     </Layout>
   );
@@ -217,6 +356,19 @@ export const DraftsPage = () => {
             })}
           />
         )}
+      </PageBase>
+    </Layout>
+  );
+};
+
+export const DraftsEmptyPage = () => {
+  const { layout, toolbar } = useInbox({ pageId: "drafts" });
+
+  return (
+    <Layout {...layout}>
+      <PageBase margin="page">
+        <Toolbar {...toolbar} />
+        <EmptyDraftsSection />
       </PageBase>
     </Layout>
   );
@@ -262,16 +414,14 @@ export const SentPage = () => {
   );
 };
 
-export const BookmarksPage = () => {
-  const { layout, toolbar } = useInbox({
-    pageId: "bookmarks",
-  });
-  const bookmarks = useBookmarks();
+export const SentEmptyPage = () => {
+  const { layout, toolbar } = useInbox({ pageId: "sent" });
+
   return (
     <Layout {...layout}>
-      <PageBase color="company" margin="page">
+      <PageBase margin="page">
         <Toolbar {...toolbar} />
-        <BookmarksSection {...bookmarks} />
+        <EmptySentSection />
       </PageBase>
     </Layout>
   );
@@ -292,7 +442,7 @@ export const ArchivePage = () => {
 
   return (
     <Layout {...layout}>
-      <PageBase color="company" margin="page">
+      <PageBase margin="page">
         {toolbar && <Toolbar {...toolbar} />}
         {results && (
           <DialogList
@@ -304,7 +454,7 @@ export const ArchivePage = () => {
                     <strong>
                       Her finner du dialoger du har valgt å arkivere.
                     </strong>{" "}
-                    Det er ikke et journal- og arkivsystem. Om dialogen blir
+                    Dette er ikke et journal- og arkivsystem. Om dialogen blir
                     oppdatert vil du finne den igjen i innboksen.
                   </p>
                 ),
@@ -315,6 +465,19 @@ export const ArchivePage = () => {
             })}
           />
         )}
+      </PageBase>
+    </Layout>
+  );
+};
+
+export const ArchiveEmptyPage = () => {
+  const { layout, toolbar } = useInbox({ pageId: "archive" });
+
+  return (
+    <Layout {...layout}>
+      <PageBase margin="page">
+        <Toolbar {...toolbar} />
+        <EmptyArchiveSection />
       </PageBase>
     </Layout>
   );
@@ -333,7 +496,7 @@ export const TrashPage = () => {
 
   return (
     <Layout {...layout}>
-      <PageBase color="company" margin="page">
+      <PageBase margin="page">
         {toolbar && <Toolbar {...toolbar} />}
         {results && (
           <DialogList
@@ -356,6 +519,19 @@ export const TrashPage = () => {
             })}
           />
         )}
+      </PageBase>
+    </Layout>
+  );
+};
+
+export const TrashEmptyPage = () => {
+  const { layout, toolbar } = useInbox({ pageId: "trash" });
+
+  return (
+    <Layout {...layout}>
+      <PageBase margin="page">
+        <Toolbar {...toolbar} />
+        <EmptyTrashSection />
       </PageBase>
     </Layout>
   );
@@ -384,6 +560,59 @@ export const DialogTransmissions = () => {
   return (
     <Layout {...layout}>
       <DialogStories.Transmissions />
+    </Layout>
+  );
+};
+
+export const BookmarksPage = () => {
+  const { layout, toolbar } = useInbox({
+    pageId: "bookmarks",
+  });
+  const bookmarks = useBookmarks();
+  return (
+    <Layout {...layout}>
+      <PageBase margin="page">
+        <Toolbar {...toolbar} />
+        <BookmarksSection {...bookmarks} />
+      </PageBase>
+    </Layout>
+  );
+};
+
+export const InboxBetaPage = () => {
+  const { layout, toolbar, results } = useInbox({});
+
+  return (
+    <Layout {...layout}>
+      <PageBase margin="page">
+        <Toolbar {...toolbar} />
+        {results && (
+          <DialogList items={results.items} groups={results?.groups} />
+        )}
+      </PageBase>
+      <BetaStories.BetaModal open={true} />
+    </Layout>
+  );
+};
+
+export const AboutPage = () => {
+  const { layout } = useInbox({ pageId: "about" });
+
+  return (
+    <Layout {...layout}>
+      <BetaStories.About />
+      <BetaStories.BetaModal open={false} />
+    </Layout>
+  );
+};
+
+export const AboutInboxPage = () => {
+  const { layout } = useInbox({ pageId: "about" });
+
+  return (
+    <Layout {...layout}>
+      <BetaStories.AboutInbox />
+      <BetaStories.BetaModal open={false} />
     </Layout>
   );
 };
