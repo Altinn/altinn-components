@@ -61,7 +61,7 @@ export const BetaModal = ({
           </ButtonGroup>
           <Typography size="sm">
             <p>
-              <a href="#">Hvorfor oppdaterer vi Altinn?</a>
+              <a href="#">Hvorfor oppdaterer vi innboksen?</a>
             </p>
           </Typography>
         </Modal>
@@ -191,12 +191,13 @@ export const AboutInbox = () => {
           <p>
             Du ser nå på en tidlig versjon av den nye innboksen i Altinn. På
             sikt vil den erstatte dagens innboks og vi jobber med å overføre
-            gamle meldinger, men foreløpig må du forholde deg til innboksen du
-            kjenner fra før.
+            gamle meldinger.
           </p>
           <p>
-            Den nye innboksen er en del av den nye plattformen til Altinn.{" "}
-            <a href="#">Les mer om nye Altinn.</a>
+            Den nye innboksen er en del av{" "}
+            <a href="?id=demo-inbox--about-page">
+              den nye plattformen til Altinn.
+            </a>
           </p>
           <h2>Bedre dialoger</h2>
           <p>
@@ -238,15 +239,24 @@ export const AboutInbox = () => {
               innbokser kan du søke på flere av dem samtidig.
             </li>
           </ul>
-          <h2>Hvor finner jeg de gamle meldingene mine?</h2>
+          <h2>Finner jeg alt i den nye innboksen?</h2>
           <p>
             <strong>
               Siden Altinn brukes av mange offentlige virksomheter og alt må
               fungere sammen, rulles endringene ut gradvis.
-            </strong>
+            </strong>{" "}
             Du kan derfor oppleve at gamle meldinger mangler eller ser
-            annerledes ut i den nye innboksen. Foreløpig må du også forholde deg
-            til innboksen du kjenner fra før.
+            annerledes ut i den nye innboksen.
+          </p>
+          <p>
+            Alt innhold er ikke overført ennå, og inntil alle tjenesteeiere har
+            tatt i bruk den nye innboksen må du også forholde deg til{" "}
+            <a href="#">innboksen du kjenner fra før</a>.
+          </p>
+          <h2>Gi oss tilbakemelding</h2>
+          <p>
+            Har du spørsmål eller tilbakemeldinger, kontakt oss på{" "}
+            <a href="mailto:brukerservice@altinn.no">brukerservice@altinn.no</a>
           </p>
         </Typography>
       </Article>

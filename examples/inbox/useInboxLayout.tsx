@@ -21,7 +21,8 @@ export const useInboxLayout = ({ pageId = 'inbox', items = inboxBetaMenuItems, p
     bookmarks: 'demo-inbox--bookmarks-page',
     archive: 'demo-inbox--archive-page',
     trash: 'demo-inbox--trash-page',
-    about: 'demo-inbox--about',
+    about: 'demo-inbox--about-page',
+    'about-inbox': 'demo-inbox--about-inbox-page',
     ...pages,
   };
 
