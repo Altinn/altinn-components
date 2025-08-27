@@ -4,6 +4,8 @@ import {
   DocPencilIcon,
   FileCheckmarkIcon,
   InboxFillIcon,
+  InformationSquareIcon,
+  LeaveIcon,
   PlusIcon,
   TrashIcon,
 } from '@navikt/aksel-icons';
@@ -15,12 +17,6 @@ export const inboxMenuItems: MenuItemProps[] = [
     groupId: '1',
     size: 'lg',
     icon: { svgElement: InboxFillIcon, theme: 'base' },
-    iconBadge: {
-      size: 'xs',
-      theme: 'base',
-      color: 'danger',
-      label: '2 uleste',
-    },
     selected: true,
     title: 'Innboks',
     badge: {
@@ -74,8 +70,78 @@ export const inboxMenuItems: MenuItemProps[] = [
   },
 ];
 
+export const inboxBetaMenuItems: MenuItemProps[] = [
+  {
+    id: 'inbox',
+    groupId: '1',
+    size: 'lg',
+    icon: { svgElement: InboxFillIcon, theme: 'base' },
+    selected: true,
+    title: 'Innboks',
+    badge: {
+      label: 'Beta',
+    },
+  },
+  {
+    id: 'compose',
+    groupId: '2',
+    icon: PlusIcon,
+    title: 'Nytt skjema',
+  },
+  {
+    id: 'drafts',
+    groupId: '2',
+    icon: DocPencilIcon,
+    title: 'Utkast',
+  },
+  {
+    id: 'sent',
+    groupId: '2',
+    icon: FileCheckmarkIcon,
+    title: 'Sendt',
+  },
+  {
+    id: 'bookmarks',
+    groupId: '3',
+    icon: BookmarkIcon,
+    title: 'Lagrede søk',
+  },
+  {
+    id: 'archive',
+    groupId: '4',
+    icon: ArchiveIcon,
+    title: 'Arkiv',
+  },
+  {
+    id: 'trash',
+    groupId: '4',
+    icon: TrashIcon,
+    title: 'Papirkurv',
+  },
+  {
+    groupId: 'shortcuts',
+    id: 'about',
+    size: 'sm',
+    icon: InformationSquareIcon,
+    title: 'Om nye Altinn',
+  },
+  {
+    groupId: 'shortcuts',
+    id: 'exit-beta',
+    size: 'sm',
+    icon: LeaveIcon,
+    title: 'Avslutt beta',
+  },
+];
+
 export const inboxMenu: MenuProps = {
-  groups: {},
+  groups: {
+    shortcuts: {
+      title: 'Snarveier',
+      defaultIconTheme: 'transparent',
+      defaultItemSize: 'sm',
+    },
+  },
   defaultIconTheme: 'default',
   items: inboxMenuItems,
 };

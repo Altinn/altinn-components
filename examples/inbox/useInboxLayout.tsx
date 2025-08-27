@@ -1,4 +1,4 @@
-import { inboxMenu, inboxMenuItems, useLayout } from '../';
+import { inboxBetaMenuItems, inboxMenu, useLayout } from '../';
 import type { LayoutProps, MenuProps } from '../../lib';
 
 interface InboxStorybookPageProps {
@@ -11,7 +11,7 @@ interface InboxLayoutProps extends LayoutProps {
   pages?: InboxStorybookPageProps;
 }
 
-export const useInboxLayout = ({ pageId = 'inbox', items = inboxMenuItems, pages = {} }): InboxLayoutProps => {
+export const useInboxLayout = ({ pageId = 'inbox', items = inboxBetaMenuItems, pages = {} }): InboxLayoutProps => {
   const baseHref = '?id=';
 
   const storybookPages = {
@@ -21,6 +21,7 @@ export const useInboxLayout = ({ pageId = 'inbox', items = inboxMenuItems, pages
     bookmarks: 'demo-inbox--bookmarks-page',
     archive: 'demo-inbox--archive-page',
     trash: 'demo-inbox--trash-page',
+    about: 'demo-inbox--about',
     ...pages,
   };
 

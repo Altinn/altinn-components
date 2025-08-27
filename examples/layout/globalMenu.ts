@@ -6,8 +6,9 @@ import {
   ChatExclamationmarkIcon,
   DocPencilIcon,
   FileCheckmarkIcon,
+  HandshakeFillIcon,
   HeartIcon,
-  InboxIcon,
+  InboxFillIcon,
   MenuGridIcon,
   TrashIcon,
 } from '@navikt/aksel-icons';
@@ -33,7 +34,7 @@ export const desktopMenu: MenuProps = {
       id: 'inbox',
       groupId: 'apps',
       size: 'lg',
-      icon: InboxIcon,
+      icon: InboxFillIcon,
       title: 'Innboks',
       selected: true,
       badge: {
@@ -50,8 +51,8 @@ export const desktopMenu: MenuProps = {
       id: 'access',
       groupId: 'apps',
       size: 'lg',
-      icon: BookmarkIcon,
-      title: 'Tilganger',
+      icon: HandshakeFillIcon,
+      title: 'Fullmakter',
     },
     {
       id: 'access',
@@ -95,7 +96,7 @@ export const desktopMenu: MenuProps = {
       groupId: 'profile',
       size: 'sm',
       icon: BellIcon,
-      title: 'Varslingsinnstillinger',
+      title: 'Varslinger',
     },
   ],
 };
@@ -162,7 +163,9 @@ export const globalMenu: GlobalMenuProps = {
     menuItemsVirtual: {
       isVirtualized: true,
       scrollRefStyles: {
+        minWidth: '20rem',
         maxHeight: 'calc(90vh - 8rem)',
+        marginBottom: '.5rem',
       },
     },
   },

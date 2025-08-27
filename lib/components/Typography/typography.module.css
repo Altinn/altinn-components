@@ -115,7 +115,13 @@ p.typography {
 
 .typography ul:not([class]),
 .typography ol:not([class]) {
-  list-style-position: inside;
-  padding-left: 1rem;
-  margin: 1em 0;
+  list-style-position: outside;
+  padding-left: 1.5em;
+  margin: 1.5em 0;
+}
+
+.typography ul:not([class]) li,
+.typography ol:not([class]) li {
+  padding-left: 0.5em;
+  margin: 0.5em 0;
 }

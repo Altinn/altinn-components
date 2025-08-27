@@ -11,8 +11,9 @@ export interface TimelineBaseProps {
   as?: ElementType;
   loading?: boolean;
   level?: number;
-  border?: TimelineBorder;
   color?: Color;
+  border?: TimelineBorder;
+  borderColor?: Color;
   theme?: Theme;
   icon?: TimelineIconProps['icon'];
   iconColor?: TimelineIconProps['color'];
@@ -25,6 +26,7 @@ export const TimelineBase = ({
   as = 'section',
   loading,
   border = 'solid',
+  borderColor,
   level = 1,
   color,
   icon,
@@ -38,7 +40,7 @@ export const TimelineBase = ({
     <Flex as={as} className={styles.section} color={color} {...props} id={id}>
       <aside className={styles.sidebar} data-level={level}>
         {icon && <TimelineIcon loading={loading} icon={icon} theme={iconTheme} color={iconColor} size="sm" />}
-        <div className={styles.border} data-loading={loading} data-variant={border} data-color={color} />
+        <div className={styles.border} data-loading={loading} data-variant={border} data-color={borderColor || color} />
       </aside>
       <div className={styles.content}>{children}</div>
     </Flex>

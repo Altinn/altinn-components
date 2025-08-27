@@ -338,6 +338,11 @@ export const useInbox = ({ pageId = 'inbox', q, ...props }: UseInboxProps): UseI
 
   const toolbar = useInboxToolbar({ items });
 
+  const accountMenu = layout?.header?.globalMenu?.accountMenu;
+  const currentAccount = layout?.header?.globalMenu?.currentAccount;
+  const onSelectAccount = layout?.header?.globalMenu?.onSelectAccount;
+  const color = currentAccount?.type || 'neutral';
+
   return {
     modal,
     modalId,
@@ -355,13 +360,21 @@ export const useInbox = ({ pageId = 'inbox', q, ...props }: UseInboxProps): UseI
     },
     layout: {
       ...layout,
+      color,
       header: {
         ...layout?.header,
         search,
       },
     } as LayoutProps,
     search,
-    toolbar,
+    toolbar: {
+      ...toolbar,
+      accountMenu: {
+        ...accountMenu,
+        onSelectAccount,
+        currentAccount,
+      } as ToolbarProps['accountMenu'],
+    },
     results: {
       groups: list.groups,
       items,

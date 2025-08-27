@@ -1,24 +1,20 @@
 import {
   Heading,
-  Layout,
   PageBase,
   Breadcrumbs,
   Article,
   Typography,
-  DialogList,
-  Toolbar,
   Modal,
   ButtonGroup,
   Button,
   Checkbox,
   FloatingActionButton,
-} from "../components";
+} from "../../components";
 import { InformationSquareIcon } from "@navikt/aksel-icons";
 import { useState } from "react";
-import { useInboxBeta } from "../../examples";
 
 const meta = {
-  title: "Demo/InboxBeta",
+  title: "Demo/Inbox/Beta",
   tags: ["beta"],
   parameters: {
     layout: "fullscreen",
@@ -28,7 +24,13 @@ const meta = {
 
 export default meta;
 
-export const BetaModal = ({ open = false }: { open?: boolean }) => {
+export const BetaModal = ({
+  checkbox = false,
+  open = true,
+}: {
+  checkbox?: boolean;
+  open?: boolean;
+}) => {
   const [modal, setModal] = useState(open);
 
   const onToggle = () => {
@@ -52,7 +54,7 @@ export const BetaModal = ({ open = false }: { open?: boolean }) => {
               håper likevel du vil prøve.
             </p>
           </Typography>
-          <Checkbox checked label="Vis meg hva som er nytt" />
+          {checkbox && <Checkbox checked label="Vis meg hva som er nytt" />}
           <ButtonGroup>
             <Button onClick={onToggle}>Prøv ny innboks</Button>
             <Button variant="outline">Tilbake til vanlig innboks</Button>
@@ -75,7 +77,7 @@ export const BetaModal = ({ open = false }: { open?: boolean }) => {
   );
 };
 
-export const BetaText = () => {
+export const About = () => {
   return (
     <PageBase>
       <Breadcrumbs
@@ -93,7 +95,7 @@ export const BetaText = () => {
         <Heading size="xl">
           Om nye Altinn – enklere, tryggere og mer moderne
         </Heading>
-        <Typography>
+        <Typography maxWidth="65ch">
           <p>
             Altinn har vært en viktig digital portal for innbyggere og
             virksomheter i over 20 år. Teknologien begynner å bli utdatert.
@@ -167,46 +169,87 @@ export const BetaText = () => {
   );
 };
 
-export const Inbox = () => {
-  const { layout, toolbar, results } = useInboxBeta({});
-
+export const AboutInbox = () => {
   return (
-    <Layout {...layout}>
-      <PageBase margin="page">
-        <Toolbar {...toolbar} />
-        {results && (
-          <DialogList items={results.items} groups={results?.groups} />
-        )}
-      </PageBase>
-      <BetaModal open={true} />
-    </Layout>
-  );
-};
-
-export const Information = () => {
-  const { layout } = useInboxBeta({ pageId: "s1" });
-
-  return (
-    <Layout {...layout}>
-      <BetaText />
-      <BetaModal open={false} />
-    </Layout>
-  );
-};
-
-export const InformationStandalone = () => {
-  const { layout } = useInboxBeta({ pageId: "s1" });
-
-  return (
-    <Layout
-      header={layout?.header}
-      footer={layout?.footer}
-      sidebar={{ hidden: true }}
-      color="neutral"
-      theme="default"
-    >
-      <BetaText />
-      <BetaModal open={false} />
-    </Layout>
+    <PageBase>
+      <Breadcrumbs
+        items={[
+          {
+            href: "#",
+            label: "Innboks Beta",
+          },
+          {
+            label: "Om ny innboks",
+          },
+        ]}
+      />
+      <Article>
+        <Heading size="xl">
+          Ny innboks – bedre dialoger, enklere å finne frem
+        </Heading>
+        <Typography maxWidth="65ch">
+          <p>
+            Du ser nå på en tidlig versjon av den nye innboksen i Altinn. På
+            sikt vil den erstatte dagens innboks og vi jobber med å overføre
+            gamle meldinger, men foreløpig må du forholde deg til innboksen du
+            kjenner fra før.
+          </p>
+          <p>
+            Den nye innboksen er en del av den nye plattformen til Altinn.{" "}
+            <a href="#">Les mer om nye Altinn.</a>
+          </p>
+          <h2>Bedre dialoger</h2>
+          <p>
+            Ideen med Altinn er å samle all digital dialog med det offentlige,
+            men det er ikke alltid enkelt å holde rede på alle meldingene du
+            får. I den nye innboksen kan etatene samle meldinger som inngår i
+            samme sakskompleks i én dialog. I tillegg får du mer informasjon som
+            skal gjøre det enklere å holde oversikt
+          </p>
+          <ul>
+            <li>
+              <strong>Er saken ferdig eller krever den handling?</strong>{" "}
+              Dialoger kan markeres med status som hjelper deg å forstå hva som
+              er viktigst.
+            </li>
+            <li>
+              <strong>Hva har skjedd?</strong> Hva er nytt, når ble dialogen
+              oppdatert? Hvem har sett dialogen? Mer informasjon gjør det
+              enklere å skille de ulike dialogene fra hverandre
+            </li>
+          </ul>
+          <h2>Enklere å finne frem</h2>
+          <p>
+            Vi vet at mange har store, komplekse innbokser. Derfor jobber vi med
+            å gjøre det lettere å finne frem til gamle dialoger.
+          </p>
+          <ul>
+            <li>
+              <strong>Bedre søk:</strong> Foreløpig kan du bare søke på
+              enkeltord, men vi jobber med å forbedre søkeopplevelsen.
+            </li>
+            <li>
+              <strong>Bedre filtreringsmuligheter:</strong> Leter du etter en
+              dialog fra en bestemt etat eller med en spesiell status? Bruk
+              filter for å begrense resultatet.
+            </li>
+            <li>
+              <strong>Søk på tvers:</strong> Har du tilganger til mange
+              innbokser kan du søke på flere av dem samtidig.
+            </li>
+          </ul>
+          <h2>Hvor finner jeg de gamle meldingene mine?</h2>
+          <p>
+            <strong>
+              Siden Altinn brukes av mange offentlige virksomheter og alt må
+              fungere sammen, rulles endringene ut gradvis.
+            </strong>
+            Du kan derfor oppleve at gamle meldinger mangler eller ser
+            annerledes ut i den nye innboksen. Foreløpig må du også forholde deg
+            til innboksen du kjenner fra før.
+          </p>
+        </Typography>
+      </Article>
+    </PageBase>
   );
 };

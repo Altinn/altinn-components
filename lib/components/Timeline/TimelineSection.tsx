@@ -14,6 +14,7 @@ export interface TimelineSectionProps {
   unread?: boolean;
   level?: TimelineBaseProps['level'];
   border?: TimelineBaseProps['border'];
+  borderColor?: TimelineBaseProps['borderColor'];
   color?: TimelineBaseProps['color'];
   typographyProps?: TypographyProps;
   margin?: SectionProps['margin'];
@@ -39,7 +40,14 @@ export const TimelineSection = ({
   children,
 }: TimelineSectionProps) => {
   return (
-    <TimelineBase loading={loading} level={level} border={border} color={unread ? color : 'neutral'} as={as}>
+    <TimelineBase
+      loading={loading}
+      level={level}
+      border={border}
+      color={color}
+      borderColor={unread ? color : 'neutral'}
+      as={as}
+    >
       {byline && (
         <Byline loading={loading} datetime={datetime}>
           {byline}
