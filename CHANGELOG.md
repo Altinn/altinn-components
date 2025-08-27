@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.38.7](https://github.com/Altinn/altinn-components/compare/v0.38.6...v0.38.7) (2025-08-27)
+
+
+### Bug Fixes
+
+* dialog body color + inbox demos ([#615](https://github.com/Altinn/altinn-components/issues/615)) ([30184e0](https://github.com/Altinn/altinn-components/commit/30184e034f66bdb945ff284a5b35b41d77002020))
+
 ## [0.38.6](https://github.com/Altinn/altinn-components/compare/v0.38.5...v0.38.6) (2025-08-26)
 
 
