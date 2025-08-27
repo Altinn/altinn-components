@@ -103,7 +103,9 @@ interface SearchQueryProps {
 
 const EmptyLink = () => (
   <p>
-    <a href="#">Hvor finner jeg de gamle meldingene mine?</a>
+    <a href="?id=demo-inbox--about-inbox-page">
+      Hvor finner jeg de gamle meldingene mine?
+    </a>
   </p>
 );
 
@@ -607,7 +609,7 @@ export const AboutPage = () => {
 };
 
 export const AboutInboxPage = () => {
-  const { layout } = useInbox({ pageId: "about" });
+  const { layout } = useInbox({ pageId: "about-inbox" });
 
   return (
     <Layout {...layout}>

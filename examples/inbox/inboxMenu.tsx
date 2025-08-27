@@ -120,10 +120,10 @@ export const inboxBetaMenuItems: MenuItemProps[] = [
   },
   {
     groupId: 'shortcuts',
-    id: 'about',
+    id: 'about-inbox',
     size: 'sm',
     icon: InformationSquareIcon,
-    title: 'Om nye Altinn',
+    title: 'Om ny innboks',
   },
   {
     groupId: 'shortcuts',
