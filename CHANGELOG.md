@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.38.10](https://github.com/Altinn/altinn-components/compare/v0.38.9...v0.38.10) (2025-08-28)
+
+
+### Bug Fixes
+
+* context menu color ([#622](https://github.com/Altinn/altinn-components/issues/622)) ([1e459e8](https://github.com/Altinn/altinn-components/commit/1e459e83edd0ad78ee409ef1d81395f6863a75b6))
+
 ## [0.38.9](https://github.com/Altinn/altinn-components/compare/v0.38.8...v0.38.9) (2025-08-28)
 
 
