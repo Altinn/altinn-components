@@ -15,6 +15,7 @@ export interface ListItemLinkProps {
   className?: string;
   active?: boolean;
   children?: React.ReactNode;
+  interactive?: boolean;
 }
 
 export const ListItemLink = ({
@@ -30,6 +31,7 @@ export const ListItemLink = ({
   ariaLabel,
   children,
   tabIndex = 0,
+  interactive,
 }: ListItemLinkProps) => {
   const Component = as || 'div';
 
@@ -49,7 +51,7 @@ export const ListItemLink = ({
         onKeyPress?.(e);
       }}
       onClick={onClick}
-      data-interactive="true"
+      data-interactive={interactive}
       aria-disabled={loading || disabled}
       aria-selected={selected}
       {...(shouldApplyAriaLabel && { 'aria-label': ariaLabel })}
