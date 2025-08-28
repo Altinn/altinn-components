@@ -76,7 +76,7 @@ export const ContextMenu = ({
   };
 
   return (
-    <div className={cx(styles.toggle, className)} data-color="neutral" ref={ref} data-testid={dataTestId}>
+    <div className={cx(styles.toggle, className)} ref={ref} data-testid={dataTestId}>
       <IconButton
         size="xs"
         rounded
