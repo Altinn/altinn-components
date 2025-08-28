@@ -36,7 +36,6 @@ export const DropdownBase = ({
       className={cx(styles.dropdown, className)}
       data-layout={layout}
       data-theme="default"
-      data-color="company"
       data-shadow="md"
       data-placement={placement}
       data-padding={padding}
