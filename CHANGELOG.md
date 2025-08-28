@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.38.9](https://github.com/Altinn/altinn-components/compare/v0.38.8...v0.38.9) (2025-08-28)
+
+
+### Bug Fixes
+
+* article color ([#620](https://github.com/Altinn/altinn-components/issues/620)) ([508ae72](https://github.com/Altinn/altinn-components/commit/508ae727831e57c4a07e0f1ac3a29710e13ce9cb))
+
 ## [0.38.8](https://github.com/Altinn/altinn-components/compare/v0.38.7...v0.38.8) (2025-08-27)
 
 
