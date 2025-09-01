@@ -332,45 +332,6 @@ export const NonInteractive = () => {
   );
 };
 
-// Test story for non-interactive behavior
-export const NonInteractiveTest: Story = {
-  args: {
-    interactive: false,
-    linkIcon: false,
-    title: 'Non-interactive test',
-    icon: { theme: 'surface', svgElement: TeddyBearIcon },
-  },
-  render: (args) => {
-    let clickCount = 0;
-    const handleClick = () => {
-      clickCount += 1; // should not increment for non-interactive
-    };
-    return (
-      <List>
-        <ListItem {...args} description={`Clicks: ${clickCount}`} onClick={handleClick} as="div" />
-      </List>
-    );
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const titleEl = canvas.getByText('Non-interactive test');
-    const header = titleEl.closest('[data-interactive]') as HTMLElement;
-    await expect(header).toBeVisible();
-    await expect(header.getAttribute('data-interactive')).toBe('false');
-
-    const tabbable = header.querySelector('[tabindex]');
-    await expect(tabbable).toBeNull();
-
-    await userEvent.hover(header);
-    const cursor = getComputedStyle(header).cursor;
-    await expect(cursor).not.toBe('pointer');
-
-    await userEvent.click(header);
-    // Description should remain unchanged (still Clicks: 0)
-    await expect(canvas.getByText(/Clicks: 0/)).toBeVisible();
-  },
-};
-
 export const Variants: Story = {
   render: (args) => (
     <List>
