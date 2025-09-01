@@ -4,7 +4,17 @@ import { ListItem, type ListItemProps } from '../List';
 export interface AccessPackageListItemProps
   extends Pick<
     ListItemProps,
-    'color' | 'onClick' | 'as' | 'description' | 'size' | 'controls' | 'loading' | 'shadow' | 'border' | 'badge'
+    | 'color'
+    | 'onClick'
+    | 'as'
+    | 'description'
+    | 'size'
+    | 'controls'
+    | 'loading'
+    | 'shadow'
+    | 'border'
+    | 'badge'
+    | 'interactive'
   > {
   id: string;
   name: string;
