@@ -27,7 +27,6 @@ export const AccessPackageListItem = ({
   color = 'neutral',
   titleAs = 'h4',
   size = 'sm',
-  interactive = true,
   ...props
 }: AccessPackageListItemProps) => {
   return (
@@ -39,8 +38,6 @@ export const AccessPackageListItem = ({
       color={color}
       size={size}
       variant="tinted"
-      tabIndex={interactive ? 0 : -1}
-      interactive={interactive}
       {...props}
     />
   );
