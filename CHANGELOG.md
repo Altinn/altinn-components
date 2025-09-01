@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.38.11](https://github.com/Altinn/altinn-components/compare/v0.38.10...v0.38.11) (2025-09-01)
+
+
+### Bug Fixes
+
+* not interactive list-item in tab-index with cursor pointer ([#618](https://github.com/Altinn/altinn-components/issues/618)) ([1a49eca](https://github.com/Altinn/altinn-components/commit/1a49ecad00bac46fcca992785dfe8fe310b29be7))
+
 ## [0.38.10](https://github.com/Altinn/altinn-components/compare/v0.38.9...v0.38.10) (2025-08-28)
 
 
