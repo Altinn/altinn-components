@@ -126,7 +126,6 @@ export const ListItemHeader = ({
         tabIndex={tabIndex}
         loading={loading}
         disabled={disabled || loading}
-        interactive={interactive}
         active={active}
         ariaLabel={setAriaLabel}
         className={styles.link}
