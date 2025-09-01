@@ -52,6 +52,7 @@ export const profileMenuItems: MenuItemProps[] = [
 export const profileMenu: MenuProps = {
   groups: {},
   color: 'person',
+  variant: 'subtle',
   defaultIconTheme: 'default',
   items: profileMenuItems,
 };

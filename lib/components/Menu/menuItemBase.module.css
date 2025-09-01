@@ -54,10 +54,6 @@
   background-color: transparent;
 }
 
-.item[data-theme] {
-  background-color: transparent;
-}
-
 .item {
   pointer-events: none;
 }
@@ -66,36 +62,33 @@
   pointer-events: all;
 }
 
-/* subtle bg */
-
-[data-theme="subtle"] .item:hover {
-  background-color: var(--ds-color-surface-hover);
-}
-
-[data-theme="subtle"] .item:active {
-  background-color: var(--ds-color-surface-active);
-}
-
-[data-theme="subtle"] .item[data-selected="true"] {
-  background-color: var(--ds-color-background-default);
-}
-
 /* default bg */
 
-[data-theme="default"] .item:hover {
+.item:hover,
+.item[data-active="true"] {
   background-color: var(--ds-color-surface-hover);
 }
 
-[data-theme="default"] [data-active="true"] {
-  background-color: var(--ds-color-surface-hover);
-}
-
-[data-theme="default"] .item:active {
+.item:active {
   background-color: var(--ds-color-surface-active);
 }
 
-[data-theme="default"] .item[data-selected="true"] {
+.item[data-selected="true"] {
   background-color: var(--ds-color-background-tinted);
+}
+
+/* subtle bg */
+
+[data-variant="subtle"] .item:hover {
+  background-color: var(--ds-color-surface-hover);
+}
+
+[data-variant="subtle"] .item:active {
+  background-color: var(--ds-color-surface-active);
+}
+
+[data-variant="subtle"] .item[data-selected="true"] {
+  background-color: var(--ds-color-background-default);
 }
 
 .content {

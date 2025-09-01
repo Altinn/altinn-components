@@ -7,6 +7,7 @@ import {
   Flex,
   Heading,
   Section,
+  Skeleton,
 } from '..';
 
 export interface DialogHeaderProps extends DialogMetadataProps {
@@ -51,9 +52,11 @@ export const DialogHeader = ({
 }: DialogHeaderProps) => {
   return (
     <Section as="header" spacing={3} align="start">
-      <Heading loading={loading} size="xl">
+      <Heading size="xl">
         <Flex align="center">
-          <span>{title}</span>
+          <span>
+            <Skeleton loading={loading}>{title}</Skeleton>
+          </span>
           {badge && <Badge {...badge} />}
         </Flex>
       </Heading>

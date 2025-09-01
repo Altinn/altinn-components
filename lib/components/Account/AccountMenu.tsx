@@ -83,7 +83,7 @@ export const AccountMenu = ({
 
   return (
     <Menu
-      theme="default"
+      variant="default"
       search={search && accountSearchItem}
       groups={filterAccountGroups}
       items={accountSwitcher}

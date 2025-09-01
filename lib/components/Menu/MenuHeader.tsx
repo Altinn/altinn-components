@@ -6,8 +6,8 @@ export interface MenuHeaderProps {
 
 export const MenuHeader = ({ title }: MenuHeaderProps) => {
   return (
-    <header className={styles.header}>
-      <h2 className={styles.title}>{title}</h2>
-    </header>
+    <div className={styles.header}>
+      <span className={styles.title}>{title}</span>
+    </div>
   );
 };

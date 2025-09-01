@@ -1,7 +1,7 @@
 'use client';
 import { type ElementType, Fragment, useRef } from 'react';
 import { MenuHeader, MenuItem, MenuList, MenuListItem } from '../';
-import type { IconTheme, MenuItemColor, MenuItemProps, MenuItemSize, MenuItemTheme } from '../';
+import type { IconTheme, MenuItemColor, MenuItemProps, MenuItemSize, MenuItemVariant } from '../';
 import { useMenu } from '../../hooks';
 import { MenuSearch, type MenuSearchProps } from './MenuSearch';
 
@@ -10,7 +10,7 @@ export interface MenuGroupProps {
   divider?: boolean;
   defaultItemSize?: MenuItemSize;
   defaultItemColor?: MenuItemColor;
-  defaultItemTheme?: MenuItemTheme;
+  defaultItemVariant?: MenuItemVariant;
   defaultIconTheme?: IconTheme;
 }
 
@@ -29,7 +29,7 @@ export interface MenuItemsProps {
   groups?: MenuItemGroups;
   defaultItemSize?: MenuItemSize;
   defaultItemColor?: MenuItemColor;
-  defaultItemTheme?: MenuItemTheme;
+  defaultItemVariant?: MenuItemVariant;
   defaultIconTheme?: IconTheme;
   as?: ElementType;
   keyboardEvents?: boolean;
@@ -44,7 +44,7 @@ export const MenuItems = ({
   groups = {},
   defaultItemSize,
   defaultItemColor,
-  defaultItemTheme,
+  defaultItemVariant,
   defaultIconTheme,
   as,
   keyboardEvents,
@@ -90,7 +90,7 @@ export const MenuItems = ({
                       {...itemProps}
                       size={itemProps?.size || groupProps?.defaultItemSize || defaultItemSize}
                       color={itemProps?.color || groupProps?.defaultItemColor || defaultItemColor}
-                      theme={itemProps?.theme || groupProps?.defaultItemTheme || defaultItemTheme}
+                      variant={itemProps?.variant || groupProps?.defaultItemVariant || defaultItemVariant}
                       iconTheme={itemProps?.iconTheme || groupProps?.defaultIconTheme || defaultIconTheme}
                       active={active}
                       tabIndex={itemProps?.disabled ? -1 : (itemProps.tabIndex ?? 0)}
@@ -105,7 +105,7 @@ export const MenuItems = ({
                           groups={groups}
                           defaultItemSize={defaultItemSize}
                           defaultItemColor={defaultItemColor}
-                          defaultItemTheme={defaultItemTheme}
+                          defaultItemVariant={defaultItemVariant}
                           defaultIconTheme={defaultIconTheme}
                         />
                         {/** Render a separator if expanded and there are items underneath */}

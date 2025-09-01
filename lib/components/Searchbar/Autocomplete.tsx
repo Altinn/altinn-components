@@ -1,65 +1,79 @@
-import { useRef } from 'react';
+import { Fragment, useRef } from 'react';
+import { type MenuGroupProps, MenuHeader, MenuList, MenuListItem, type MenuListRole } from '../';
 import { useMenu } from '../../hooks';
-import {
-  AutocompleteBase,
-  AutocompleteGroup,
-  type AutocompleteGroupProps,
-  AutocompleteItem,
-  type AutocompleteItemProps,
-} from '../index.ts';
+import { AutocompleteBase, AutocompleteItem, type AutocompleteItemProps } from '../index.ts';
 
 export interface AutocompleteProps {
   id?: string;
   items: AutocompleteItemProps[];
-  groups?: Record<string, AutocompleteGroupProps>;
+  groups?: Record<string, MenuGroupProps>;
   onSelect?: () => void;
   expanded?: boolean;
   className?: string;
+  keyboardEvents?: boolean;
 }
 
-export const Autocomplete = ({ className, items, id, groups = {}, expanded, onSelect }: AutocompleteProps) => {
+export const Autocomplete = ({
+  className,
+  items,
+  id,
+  groups = {},
+  expanded,
+  keyboardEvents,
+  onSelect,
+}: AutocompleteProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
-  const { menu, setActiveIndex } = useMenu<AutocompleteItemProps, AutocompleteGroupProps>({
+  const { menu, setActiveIndex } = useMenu<AutocompleteItemProps, MenuGroupProps>({
     items,
     groups,
     groupByKey: 'groupId',
-    keyboardEvents: expanded,
+    keyboardEvents,
     onSelect,
     ref,
   });
 
   return (
     <AutocompleteBase className={className} expanded={expanded} ref={ref} id={id}>
-      {menu.map((group, index) => {
-        return (
-          <AutocompleteGroup {...group.props} key={index}>
-            <ul>
-              {group.items.map((item, index) => {
-                const {
-                  active,
-                  menuIndex,
-                  props: { groupId, onClick, ...itemProps },
-                } = item;
-                return (
-                  <AutocompleteItem
-                    as="button"
-                    key={index}
-                    tabIndex={-1}
-                    onMouseEnter={() => setActiveIndex(menuIndex)}
-                    {...itemProps}
-                    onClick={() => {
-                      onClick?.();
-                      onSelect?.();
-                    }}
-                    active={active}
-                  />
-                );
-              })}
-            </ul>
-          </AutocompleteGroup>
-        );
-      })}
+      <MenuList role={'menu' as MenuListRole}>
+        {menu.map((group, groupIndex) => {
+          const groupProps: MenuGroupProps = group?.props || {};
+          const { title, divider = true } = groupProps;
+
+          return (
+            <Fragment key={groupIndex}>
+              {/** Render a separator if this is a new group or a new level */}
+              {groupIndex && divider ? <MenuListItem role="separator" /> : ''}
+              {title && (
+                <MenuListItem>
+                  <MenuHeader title={title} />
+                </MenuListItem>
+              )}
+              {group?.items
+                .filter((item) => !item.props?.hidden)
+                .map((item, index) => {
+                  const { active, onMouseEnter } = item;
+                  const { groupId: _, onClick, ...itemProps } = item.props || {};
+                  const { expanded } = itemProps;
+                  return (
+                    <MenuListItem key={index} expanded={expanded} onMouseLeave={() => setActiveIndex(-1)}>
+                      <AutocompleteItem
+                        {...itemProps}
+                        active={keyboardEvents && active}
+                        tabIndex={-1}
+                        onMouseEnter={onMouseEnter}
+                        onClick={() => {
+                          onClick?.();
+                          onSelect?.();
+                        }}
+                      />
+                    </MenuListItem>
+                  );
+                })}
+            </Fragment>
+          );
+        })}
+      </MenuList>
     </AutocompleteBase>
   );
 };

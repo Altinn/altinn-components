@@ -38,7 +38,7 @@ export const MenuItemsVirtual = ({
   groups = {},
   defaultItemSize,
   defaultItemColor,
-  defaultItemTheme,
+  defaultItemVariant,
   defaultIconTheme,
   scrollRefStyles,
 }: MenuItemsVirtualProps) => {
@@ -94,7 +94,12 @@ export const MenuItemsVirtual = ({
     <MenuList>
       {search && <MenuSearch {...search} />}
       <div ref={scrollRef} className={styles.virtualScrollRef} style={scrollRefStyles}>
-        <div style={{ position: 'relative', height: `${virtualizer.getTotalSize()}px` }}>
+        <div
+          style={{
+            position: 'relative',
+            height: `${virtualizer.getTotalSize()}px`,
+          }}
+        >
           {virtualItems.map((virtualRow) => {
             const entry = flatMenu[virtualRow.index] as MenuEntry;
             if (!entry) return null;
@@ -112,7 +117,7 @@ export const MenuItemsVirtual = ({
                     {...entry.itemProps}
                     size={entry.itemProps.size || defaultItemSize}
                     color={entry.itemProps.color || defaultItemColor}
-                    theme={entry.itemProps.theme || defaultItemTheme}
+                    variant={entry.itemProps.variant || defaultItemVariant}
                     iconTheme={entry.itemProps.iconTheme || defaultIconTheme}
                     active={entry.active}
                     tabIndex={entry.itemProps.disabled ? -1 : 0}

@@ -9,10 +9,6 @@
   width: 100%;
 }
 
-.menu[data-theme="subtle"] {
-  background-color: var(--ds-color-background-tinted);
-}
-
 .list {
   list-style: none;
   padding: 0;

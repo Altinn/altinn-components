@@ -3,16 +3,18 @@ import type { ElementType, KeyboardEvent, KeyboardEventHandler, MouseEventHandle
 import type { Color } from '..';
 import styles from './menuItemBase.module.css';
 
-export type MenuItemColor = Color;
 export type MenuItemSize = 'sm' | 'md' | 'lg';
-export type MenuItemTheme = 'default' | 'subtle' | 'surface' | 'base';
+export type MenuItemColor = Color;
+export type MenuItemVariant = 'default' | 'subtle' | 'surface' | 'base';
 
 export interface MenuItemBaseProps {
   interactive?: boolean;
+  ariaLabel?: string;
+  role?: string;
   as?: ElementType;
-  color?: MenuItemColor;
-  theme?: MenuItemTheme;
   size?: MenuItemSize;
+  color?: MenuItemColor;
+  variant?: MenuItemVariant;
   className?: string;
   href?: string;
   onClick?: () => void;
@@ -29,9 +31,11 @@ export interface MenuItemBaseProps {
 
 export const MenuItemBase = ({
   interactive = true,
+  ariaLabel,
+  role,
   as,
   color,
-  theme,
+  variant,
   size,
   className,
   href,
@@ -50,11 +54,13 @@ export const MenuItemBase = ({
     <Component
       tabIndex={disabled ? '-1' : (tabIndex ?? 0)}
       className={cx(styles.item, className)}
+      role={role}
+      aria-label={ariaLabel}
       data-interactive={interactive}
       data-active={active}
       data-size={size}
       data-color={color}
-      data-theme={theme}
+      data-variant={variant}
       aria-hidden={hidden}
       aria-disabled={disabled}
       data-selected={selected}

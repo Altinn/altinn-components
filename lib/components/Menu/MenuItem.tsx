@@ -1,38 +1,27 @@
 import { ChevronDownIcon, ChevronRightIcon, ChevronUpIcon } from '@navikt/aksel-icons';
-import type { ElementType, MouseEventHandler, ReactNode } from 'react';
+import type { ReactElement, ReactNode } from 'react';
 import {
   type BadgeProps,
   Icon,
   MenuItemBase,
-  type MenuItemColor,
+  type MenuItemBaseProps,
   MenuItemIcon,
   type MenuItemIconProps,
   MenuItemLabel,
   type MenuItemLabelProps,
-  type MenuItemSize,
-  type MenuItemTheme,
 } from '../';
 
 import styles from './menuItem.module.css';
 
-export interface MenuItemProps {
-  id: string;
+export interface MenuItemProps extends MenuItemBaseProps {
+  id?: string;
   type?: string;
-  tabIndex?: number;
-  interactive?: boolean;
-  as?: ElementType;
-  size?: MenuItemSize;
-  color?: MenuItemColor;
-  theme?: MenuItemTheme;
-  href?: string;
-  onClick?: () => void;
-  hidden?: boolean;
-  active?: boolean;
+  groupId?: string | number;
+  loading?: boolean;
   collapsible?: boolean;
   expanded?: boolean;
   selected?: boolean;
   disabled?: boolean;
-  groupId?: string | number;
   title?: MenuItemLabelProps['title'];
   description?: MenuItemLabelProps['description'];
   highlightWords?: MenuItemLabelProps['highlightWords'];
@@ -44,16 +33,15 @@ export interface MenuItemProps {
   controls?: ReactNode;
   linkIcon?: boolean;
   className?: string;
-  label?: ReactNode;
+  label?: ReactNode | (() => ReactElement);
   items?: MenuItemProps[];
-  onMouseEnter?: MouseEventHandler;
 }
 
 export const MenuItem = ({
   as = 'a',
   size = 'md',
   color,
-  theme,
+  variant,
   collapsible,
   expanded,
   icon,
@@ -64,10 +52,14 @@ export const MenuItem = ({
   highlightWords,
   badge,
   controls,
+  loading,
   linkIcon,
   label,
+  ariaLabel,
   ...rest
 }: MenuItemProps) => {
+  const applicableLabel = typeof label === 'function' ? label() : label;
+
   /** Set applicable Icon */
   const applicableIcon = collapsible
     ? expanded
@@ -78,27 +70,38 @@ export const MenuItem = ({
       : undefined;
 
   return (
-    <MenuItemBase as={as} size={size} theme={theme} color={color} expanded={expanded} {...rest}>
-      <MenuItemIcon size={size} icon={icon} theme={iconTheme} badge={iconBadge} />
-      <MenuItemLabel title={title} description={description} highlightWords={highlightWords} size={size} badge={badge}>
-        {label}
+    <MenuItemBase
+      as={as}
+      size={size}
+      variant={variant}
+      color={color}
+      expanded={expanded}
+      ariaLabel={ariaLabel}
+      hidden={loading}
+      {...rest}
+    >
+      <MenuItemIcon loading={loading} size={size} icon={icon} theme={iconTheme} badge={iconBadge} />
+      <MenuItemLabel
+        loading={loading}
+        title={title}
+        description={description}
+        highlightWords={highlightWords}
+        size={size}
+        badge={badge}
+      >
+        {applicableLabel}
       </MenuItemLabel>
       <span className={styles.controls}>
-        {controls ? (
-          <span style={{ position: 'relative' }}>{controls}</span>
-        ) : (
-          <>
-            {applicableIcon && (
-              <span className={styles.linkIcon}>
-                <Icon
-                  svgElement={applicableIcon}
-                  style={{
-                    fontSize: '1.5rem',
-                  }}
-                />
-              </span>
-            )}
-          </>
+        {!loading && controls}
+        {applicableIcon && (
+          <span className={styles.linkIcon}>
+            <Icon
+              svgElement={applicableIcon}
+              style={{
+                fontSize: '1.5rem',
+              }}
+            />
+          </span>
         )}
       </span>
     </MenuItemBase>

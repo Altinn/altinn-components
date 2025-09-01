@@ -9,9 +9,9 @@ export interface QueryItemProps {
 
 export const QueryItem = ({ type = 'search', label }: QueryItemProps) => {
   return (
-    <mark className={styles.item} data-type={type}>
+    <span className={styles.item} data-type={type}>
       {label}
-    </mark>
+    </span>
   );
 };
 

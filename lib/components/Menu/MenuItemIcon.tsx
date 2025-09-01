@@ -43,7 +43,11 @@ export const MenuItemIcon = ({ loading, size, icon, theme, badge }: MenuItemIcon
   }
 
   if (loading) {
-    return <Icon className={styles.icon} svgElement={XMarkIcon} loading={true} />;
+    return (
+      <div className={styles.icon} data-size={size}>
+        <Icon svgElement={XMarkIcon} loading={true} />
+      </div>
+    );
   }
 
   return (

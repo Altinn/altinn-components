@@ -1,12 +1,13 @@
 import { defaultAccounts, localeSwitcher, useGlobalMenu, useLocale, useSearchbar } from '../';
-import type { Account, AccountListItemProps, HeaderProps } from '../../lib';
+import type { Account, AccountListItemProps, HeaderProps, MenuProps } from '../../lib';
 
 interface UseHeaderProps extends HeaderProps {
   accountId?: string | null;
   accounts?: AccountListItemProps[];
+  menu?: MenuProps;
 }
 
-export const useHeader = ({ accountId, accounts = defaultAccounts, ...args }: UseHeaderProps) => {
+export const useHeader = ({ accountId, accounts = defaultAccounts, menu, ...args }: UseHeaderProps) => {
   /* setup locale */
   const localeProps = args?.locale || localeSwitcher;
   const locale = useLocale(localeProps);
@@ -21,7 +22,12 @@ export const useHeader = ({ accountId, accounts = defaultAccounts, ...args }: Us
 
   /* setup globalMenu */
 
-  const globalMenu = useGlobalMenu({ ...args.globalMenu, accountId, accounts });
+  const globalMenu = useGlobalMenu({
+    ...args.globalMenu,
+    accountId,
+    accounts,
+    menu,
+  });
 
   return {
     globalMenu,

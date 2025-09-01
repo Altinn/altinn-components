@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Autocomplete, type AutocompleteProps, SearchbarBase, SearchbarField, type SearchbarFieldProps } from '..';
 
 export interface SearchbarProps extends SearchbarFieldProps {
@@ -15,6 +16,8 @@ export const Searchbar = ({
   tabIndex,
   ...search
 }: SearchbarProps) => {
+  const [inputHasFocus, setInputFocus] = useState<boolean>(false);
+
   const onBlurCapture = (e: React.FocusEvent<HTMLDivElement>) => {
     const dataTestIdValue = e.target?.attributes?.getNamedItem('data-testid')?.value;
     const autocompleteParent = e?.relatedTarget?.closest('[data-autocomplete="true"]');
@@ -50,9 +53,27 @@ export const Searchbar = ({
         onClose={onClose}
         tabIndex={tabIndex}
         {...(autocomplete && { controlsId: 'searchbar-autocomplete' })}
+        onFocus={(event) => {
+          search?.onFocus?.(event);
+          if (!inputHasFocus) {
+            setInputFocus(true);
+          }
+        }}
+        onBlur={(event) => {
+          search?.onBlur?.(event);
+          if (inputHasFocus) {
+            setInputFocus(false);
+          }
+        }}
       />
       {autocomplete && (
-        <Autocomplete {...autocomplete} expanded={expanded} onSelect={onClose} id="searchbar-autocomplete" />
+        <Autocomplete
+          {...autocomplete}
+          expanded={expanded}
+          keyboardEvents={inputHasFocus}
+          onSelect={onClose}
+          id="searchbar-autocomplete"
+        />
       )}
     </SearchbarBase>
   );

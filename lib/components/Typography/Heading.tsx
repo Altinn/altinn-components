@@ -44,19 +44,17 @@ export const Heading = ({
   const content = useHighlightedText(children, highlightWords || []);
 
   return (
-    <Skeleton loading={loading}>
-      <H
-        className={cx(styles.heading, className)}
-        style={style}
-        data-size={size}
-        data-leading={leading}
-        data-weight={weight}
-        data-color={color}
-        data-variant={(size === 'xxs' && 'default') || variant}
-        data-max-rows={maxRows}
-      >
-        {content}
-      </H>
-    </Skeleton>
+    <H
+      className={cx(styles.heading, className)}
+      style={style}
+      data-size={size}
+      data-leading={leading}
+      data-weight={weight}
+      data-color={color}
+      data-variant={(size === 'xxs' && 'default') || variant}
+      data-max-rows={maxRows}
+    >
+      <Skeleton loading={loading}>{content}</Skeleton>
+    </H>
   );
 };

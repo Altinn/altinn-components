@@ -8,6 +8,7 @@ export interface MenuItemLabelProps {
   className?: string;
   size?: MenuItemSize;
   label?: string;
+  loading?: boolean;
   highlightWords?: string[];
   title?: HeadingProps | ReactNode | string;
   description?: HeadingProps | ReactNode | string;
@@ -78,6 +79,7 @@ export const MenuItemLabel = ({
   badge,
   description,
   highlightWords,
+  loading,
   children,
 }: MenuItemLabelProps) => {
   const titleProps = title && getTitleProps(title);
@@ -91,6 +93,7 @@ export const MenuItemLabel = ({
           {titleProps && (
             <Heading
               {...titleProps}
+              loading={loading}
               highlightWords={highlightWords}
               className={styles.title}
               weight={titleProps?.weight || size === 'lg' ? 'medium' : 'normal'}
@@ -102,6 +105,7 @@ export const MenuItemLabel = ({
           {descriptionProps && (
             <Heading
               {...descriptionProps}
+              loading={loading}
               highlightWords={highlightWords}
               size={descriptionProps.size || size === 'lg' ? 'xs' : 'xxs'}
             />
