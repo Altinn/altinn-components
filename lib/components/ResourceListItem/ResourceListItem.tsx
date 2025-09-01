@@ -29,7 +29,6 @@ export const ResourceListItem = ({
   ownerLogoUrlAlt,
   ownerLogoUrl,
   titleAs = 'h3',
-  interactive,
   ...props
 }: ResourceListItemProps) => {
   return (
@@ -42,8 +41,6 @@ export const ResourceListItem = ({
       }}
       title={{ children: resourceName, as: titleAs }}
       description={ownerName}
-      tabIndex={interactive ? 0 : -1}
-      interactive={interactive ?? false}
       {...props}
     />
   );
