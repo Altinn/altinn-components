@@ -151,12 +151,14 @@ export const Expanded: Story = {
           },
         },
         {
+          id: 'd1',
           type: 'dialog',
           groupId: '2',
           href: '#',
           title: 'Skattemelding 2024',
         },
         {
+          id: 'd2',
           type: 'dialog',
           groupId: '2',
           href: '#',
@@ -214,14 +216,14 @@ export const ControlledState = (args: SearchbarProps) => {
   const suggestions: AutocompleteItemProps[] = q
     ? [
         {
+          id: 'd1',
           type: 'dialog',
-          href: '#skatt-2024',
           title: 'Skattemelding 2024',
           onClick: () => alert('skatt24'),
         },
         {
+          id: 'd2',
           type: 'dialog',
-          href: '#skatt-2024',
           title: 'Skattemelding 2025',
           onClick: () => alert('skatt24'),
         },
@@ -236,11 +238,11 @@ export const ControlledState = (args: SearchbarProps) => {
         })
     : [];
 
-  const autocompleteItems: AutocompleteItemProps[] = [...scopes, ...suggestions].map((item) => {
+  const autocompleteItems: AutocompleteItemProps[] = [...scopes, ...suggestions].map((item, index) => {
     return {
       ...item,
       onClick: () => {
-        console.info('clicked', JSON.stringify(item));
+        console.info('clicked item at index:' + index, JSON.stringify(item));
       },
     };
   });
@@ -280,13 +282,13 @@ ControlledState.play = async ({
   await userEvent.type(searchInput, 'skatt');
 
   /* suggestions const of scopes and search results */
-  const autocomplete = canvas.getByRole('navigation');
-  const suggestions = canvas.getAllByRole('listitem');
+  const autocomplete = canvas.getByRole('menu');
+  const suggestions = canvas.getAllByRole('menuitem');
   await expect(autocomplete).toBeVisible();
   await expect(suggestions).toHaveLength(4);
 
   /* click on search result should close autocomplete */
-  const firstSearchResult = suggestions[2].querySelector('button')!;
+  const firstSearchResult = suggestions[2];
   await userEvent.click(firstSearchResult);
   await expect(autocomplete).not.toBeVisible();
 
@@ -300,16 +302,16 @@ ControlledState.play = async ({
   await userEvent.keyboard('{arrowdown}');
   await userEvent.keyboard('{arrowdown}');
   const interactiveButtons = autocomplete.querySelectorAll('[data-active="true"]');
-  const updatedSuggestions = canvas.getAllByRole('listitem');
+  const updatedSuggestions = canvas.getAllByRole('menuitem');
   await expect(interactiveButtons).toHaveLength(1);
-  await expect(interactiveButtons[0]?.closest('li')).toBe(updatedSuggestions[2]);
+  await expect(interactiveButtons[0]).toBe(updatedSuggestions[2]);
 
   await userEvent.keyboard('{arrowup}');
   await userEvent.keyboard('{arrowup}');
   const interactiveButtons2 = autocomplete.querySelectorAll('[data-active="true"]');
-  const updatedSuggestions2 = canvas.getAllByRole('listitem');
+  const updatedSuggestions2 = canvas.getAllByRole('menuitem');
   await expect(interactiveButtons2).toHaveLength(1);
-  await expect(interactiveButtons2[0]?.closest('li')).toBe(updatedSuggestions2[0]);
+  await expect(interactiveButtons2[0]).toBe(updatedSuggestions2[0]);
 
   /* test keyboard enter should trigger selected item */
   await userEvent.keyboard('{enter}');

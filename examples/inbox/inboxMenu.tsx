@@ -135,6 +135,7 @@ export const inboxBetaMenuItems: MenuItemProps[] = [
 ];
 
 export const inboxMenu: MenuProps = {
+  variant: 'subtle',
   groups: {
     shortcuts: {
       title: 'Snarveier',

@@ -20,7 +20,6 @@ export const LocaleButton = ({ id = 'language-switcher', expanded, onClick, onBl
       iconSize="md"
       variant="text"
       selected={expanded}
-      color="company"
       onClick={onClick}
       iconAltText={`Open ${id}`}
       onBlurCapture={onBlurCapture}

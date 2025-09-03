@@ -15,9 +15,9 @@ export interface GlobalMenuFooterProps {
   children: ReactNode;
 }
 
-export const GlobalMenuBase = ({ color = 'company', children, ...rest }: GlobalMenuBaseProps) => {
+export const GlobalMenuBase = ({ color, children, ...rest }: GlobalMenuBaseProps) => {
   return (
-    <nav className={styles.nav} data-theme="default" data-color={color} {...rest}>
+    <nav className={styles.nav} data-color={color} {...rest}>
       {children}
     </nav>
   );

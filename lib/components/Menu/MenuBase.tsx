@@ -4,13 +4,13 @@ import type { Color } from '..';
 import styles from './menuBase.module.css';
 
 export type MenuColor = Color;
-export type MenuTheme = 'transparent' | 'default' | 'subtle';
-export type MenuListRole = 'presentation' | 'group';
+export type MenuVariant = 'transparent' | 'default' | 'subtle';
+export type MenuListRole = 'presentation' | 'group' | 'list';
 export type MenuListItemRole = 'presentation' | 'group' | 'separator';
 
 export interface MenuBaseProps {
   as?: ElementType;
-  theme?: MenuTheme;
+  variant?: MenuVariant;
   color?: MenuColor;
   className?: string;
   children?: ReactNode;
@@ -39,10 +39,10 @@ export interface MenuListItemProps {
   onMouseLeave?: MouseEventHandler;
 }
 
-export const MenuBase = ({ as = 'nav', color, theme, className, children }: MenuBaseProps) => {
+export const MenuBase = ({ as = 'nav', color, variant, className, children }: MenuBaseProps) => {
   const Component = as;
   return (
-    <Component className={cx(styles.menu, className)} data-color={color} data-theme={theme}>
+    <Component className={cx(styles.menu, className)} data-color={color} data-variant={variant}>
       {children}
     </Component>
   );

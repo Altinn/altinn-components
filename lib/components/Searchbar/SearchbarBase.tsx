@@ -19,12 +19,7 @@ export const SearchbarBase = ({
 }: SearchbarBaseProps) => {
   const searchBaseStyles = cx(styles.searchbar, className, expanded && styles.searchbarExpanded);
   return (
-    <div
-      className={searchBaseStyles}
-      data-autocomplete={autocomplete}
-      data-color="neutral"
-      onBlurCapture={onBlurCapture}
-    >
+    <div className={searchBaseStyles} data-autocomplete={autocomplete} onBlurCapture={onBlurCapture}>
       {children}
     </div>
   );

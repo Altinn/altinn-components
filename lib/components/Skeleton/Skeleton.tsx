@@ -33,7 +33,7 @@ export const Skeleton = ({
         data-variant={variant}
         aria-hidden
       >
-        <div aria-hidden="true">{children}</div>
+        <span aria-hidden="true">{children}</span>
       </Component>
     );
   }

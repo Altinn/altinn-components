@@ -1,112 +1,66 @@
-import {
-  BookmarksListItem,
-  type BookmarksListItemProps,
-  DialogListItem,
-  type DialogListItemProps,
-  ListItem,
-  type ListItemProps,
-  ScopeListItem,
-  type ScopeListItemProps,
-  SuggestListItem,
-  type SuggestListItemProps,
-} from '..';
-import type { BadgeProps } from '../Badge';
+import { Badge, type BadgeProps, MenuItem, type MenuItemProps, type QueryItemProps, QueryLabel } from '..';
+
+import styles from './autocompleteItem.module.css';
 
 export type AutocompleteItemType = 'scope' | 'suggest' | 'dialog' | 'bookmark' | 'information';
 
-export interface AutoCompleteItemWithType {
-  type: AutocompleteItemType;
-  onClick?: () => void;
-  groupId?: string;
-  active?: boolean;
+export interface AutocompleteItemProps extends MenuItemProps {
+  type?: AutocompleteItemType;
+  /** Badge */
+  badge?: BadgeProps;
+  /** Query params */
+  params?: QueryItemProps[];
 }
 
-export interface ScopeAutocompleteItemProps extends AutoCompleteItemWithType, ScopeListItemProps {
-  type: 'scope';
-}
-
-export interface SuggestAutocompleteItemProps extends AutoCompleteItemWithType, SuggestListItemProps {
-  type: 'suggest';
-}
-
-export interface DialogAutocompleteItemProps extends AutoCompleteItemWithType, DialogListItemProps {
-  type: 'dialog';
-}
-
-export interface BookmarkAutocompleteItemProps extends AutoCompleteItemWithType, BookmarksListItemProps {
-  type: 'bookmark';
-}
-
-export interface InformationAutocompleteItemProps extends AutoCompleteItemWithType, ListItemProps {
-  type: 'information';
-  badge?: BadgeProps | undefined;
-}
-
-export type AutocompleteItemProps =
-  | ScopeAutocompleteItemProps
-  | SuggestAutocompleteItemProps
-  | DialogAutocompleteItemProps
-  | BookmarkAutocompleteItemProps
-  | InformationAutocompleteItemProps;
-
-export const AutocompleteItem = ({ type, ...props }: AutocompleteItemProps) => {
-  switch (type) {
-    case 'scope':
-      return (
-        <ScopeListItem
-          {...(props as ScopeAutocompleteItemProps)}
-          variant="default"
-          shadow="none"
-          size="sm"
-          tabIndex={-1}
-          linkIcon
-        />
-      );
-    case 'suggest':
-      return (
-        <SuggestListItem
-          {...(props as SuggestAutocompleteItemProps)}
-          variant="default"
-          shadow="none"
-          size="sm"
-          tabIndex={-1}
-          linkIcon
-        />
-      );
-    case 'bookmark':
-      return (
-        <BookmarksListItem
-          {...(props as BookmarksListItemProps)}
-          variant="default"
-          shadow="none"
-          size="sm"
-          tabIndex={-1}
-        />
-      );
-    case 'dialog':
-      return (
-        <DialogListItem
-          {...(props as DialogListItemProps)}
-          variant="default"
-          shadow="none"
-          size="sm"
-          tabIndex={-1}
-          linkIcon
-        />
-      );
-    case 'information':
-      return (
-        <ListItem
-          as="div"
-          {...(props as ListItemProps)}
-          variant="default"
-          shadow="none"
-          tabIndex={-1}
-          size="sm"
-          interactive={false}
-        />
-      );
-    default:
-      return <ListItem {...(props as ListItemProps)} variant="default" shadow="none" size="sm" tabIndex={-1} />;
+export const AutocompleteItem = ({
+  interactive = true,
+  role = 'menuitem',
+  params,
+  badge,
+  label,
+  size = 'md',
+  ...props
+}: AutocompleteItemProps) => {
+  /** params is a bookmark or suggested search */
+  if (params) {
+    return (
+      <MenuItem
+        {...props}
+        role={role}
+        interactive={interactive}
+        label={<QueryLabel params={params} />}
+        controls={badge && <Badge {...badge} />}
+        linkIcon={interactive}
+        size={size || 'md'}
+      />
+    );
   }
+
+  /** custom label */
+  if (label) {
+    return (
+      <MenuItem
+        {...props}
+        role={role}
+        interactive={interactive}
+        label={label}
+        className={styles.item}
+        controls={badge && <Badge {...badge} />}
+        linkIcon={interactive}
+        size={size || 'md'}
+      />
+    );
+  }
+
+  /** generic menu item, aka a  */
+  return (
+    <MenuItem
+      {...props}
+      role={role}
+      interactive={interactive}
+      controls={badge && <Badge {...badge} />}
+      linkIcon={interactive}
+      size={size}
+    />
+  );
 };

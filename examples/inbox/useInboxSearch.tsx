@@ -66,7 +66,6 @@ export const useInboxSearch = ({
         ?.map((item: DialogListItemProps) => ({
           groupId: '3',
           href: '#',
-          icon: item?.sender,
           title: item?.title,
           description: item?.summary,
           linkIcon: true,

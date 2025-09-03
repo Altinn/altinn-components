@@ -33,7 +33,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    theme: 'subtle',
+    variant: 'subtle',
     items: [
       {
         id: '1',
@@ -57,7 +57,7 @@ export const Default: Story = {
 
 export const CreatingHiearchy: Story = {
   args: {
-    theme: 'subtle',
+    variant: 'subtle',
     defaultIconTheme: 'default',
     groups: {
       shortcuts: {
@@ -105,7 +105,7 @@ export const CreatingHiearchy: Story = {
 
 export const AddingBadges: Story = {
   args: {
-    theme: 'default',
+    variant: 'default',
     defaultIconTheme: 'tinted',
     groups: {
       companyGroup: {
@@ -152,7 +152,7 @@ export const AddingBadges: Story = {
 
 export const NestingItems: Story = {
   args: {
-    theme: 'default',
+    variant: 'default',
     defaultIconTheme: 'surface',
     groups: {
       'level-1': {
@@ -208,7 +208,7 @@ export const NestingItems: Story = {
 
 export const AccountRelationships: Story = {
   args: {
-    theme: 'default',
+    variant: 'default',
     items: [
       {
         id: 'user',
@@ -285,7 +285,7 @@ export const AccountRelationships: Story = {
 export const PersonMenu: Story = {
   args: {
     color: 'person',
-    theme: 'subtle',
+    variant: 'subtle',
     defaultIconTheme: 'default',
     groups: {},
     items: [
@@ -344,7 +344,7 @@ export const InboxMenu: Story = {
   args: {
     groups: {},
     color: 'company',
-    theme: 'subtle',
+    variant: 'subtle',
     defaultIconTheme: 'default',
     items: [
       {
@@ -415,7 +415,7 @@ export const InboxMenu: Story = {
 
 export const CompanyMenu: Story = {
   args: {
-    theme: 'subtle',
+    variant: 'subtle',
     color: 'company',
     defaultIconTheme: 'default',
     groups: {},

@@ -53,7 +53,7 @@ export const Typography = ({
       data-variant={variant}
       {...restProps}
     >
-      {(loading && <Skeleton loading={loading}>{loadingText}</Skeleton>) || content}
+      <Skeleton loading={loading}>{content}</Skeleton>
     </Component>
   );
 };

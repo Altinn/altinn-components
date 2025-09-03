@@ -15,6 +15,77 @@ import {
 import { accountMenu } from '../';
 import type { AccountMenuProps, GlobalMenuProps, MenuProps } from '../../lib';
 
+export const desktopMenuItems: MenuProps['items'] = [
+  {
+    id: 'inbox',
+    groupId: 'apps',
+    size: 'lg',
+    icon: InboxFillIcon,
+    title: 'Innboks',
+    selected: true,
+    badge: {
+      label: '4',
+    },
+    iconBadge: {
+      color: 'alert',
+      theme: 'base',
+      size: 'xs',
+      label: '2',
+    },
+  },
+  {
+    id: 'admin',
+    groupId: 'apps',
+    size: 'lg',
+    icon: HandshakeFillIcon,
+    title: 'Fullmakter',
+  },
+  {
+    id: 'forms',
+    groupId: 'apps',
+    size: 'lg',
+    icon: MenuGridIcon,
+    title: 'Alle skjema',
+  },
+  {
+    id: 'startup',
+    groupId: 'help',
+    size: 'sm',
+    icon: Buildings2Icon,
+    title: 'Starte og drive bedrift',
+  },
+  {
+    id: 'help',
+    groupId: 'help',
+    size: 'sm',
+    icon: ChatExclamationmarkIcon,
+    title: 'Trenger du hjelp?',
+  },
+  {
+    id: 'profile',
+    groupId: 'profile',
+    size: 'sm',
+    icon: {
+      name: 'Mathias Dyngeland',
+    },
+    title: 'Min profil',
+  },
+  {
+    id: 'accounts',
+    groupId: 'profile',
+    size: 'sm',
+    icon: HeartIcon,
+    title: 'Aktører og favoritter',
+  },
+  {
+    id: 'alerts',
+    groupId: 'profile',
+    size: 'sm',
+    icon: BellIcon,
+    title: 'Varslinger',
+  },
+];
+
 export const desktopMenu: MenuProps = {
   defaultIconTheme: 'surface',
   groups: {
@@ -29,76 +100,7 @@ export const desktopMenu: MenuProps = {
       defaultItemColor: 'person',
     },
   },
-  items: [
-    {
-      id: 'inbox',
-      groupId: 'apps',
-      size: 'lg',
-      icon: InboxFillIcon,
-      title: 'Innboks',
-      selected: true,
-      badge: {
-        label: '4',
-      },
-      iconBadge: {
-        color: 'alert',
-        theme: 'base',
-        size: 'xs',
-        label: '2',
-      },
-    },
-    {
-      id: 'access',
-      groupId: 'apps',
-      size: 'lg',
-      icon: HandshakeFillIcon,
-      title: 'Fullmakter',
-    },
-    {
-      id: 'access',
-      groupId: 'apps',
-      size: 'lg',
-      icon: MenuGridIcon,
-      title: 'Alle skjema',
-    },
-    {
-      id: 'startup',
-      groupId: 'help',
-      size: 'sm',
-      icon: Buildings2Icon,
-      title: 'Starte og drive bedrift',
-    },
-    {
-      id: 'help',
-      groupId: 'help',
-      size: 'sm',
-      icon: ChatExclamationmarkIcon,
-      title: 'Trenger du hjelp?',
-    },
-    {
-      id: 'profile',
-      groupId: 'profile',
-      size: 'sm',
-      icon: {
-        name: 'Mathias Dyngeland',
-      },
-      title: 'Min profil',
-    },
-    {
-      id: 'profile',
-      groupId: 'profile',
-      size: 'sm',
-      icon: HeartIcon,
-      title: 'Aktører og favoritter',
-    },
-    {
-      id: 'profile',
-      groupId: 'profile',
-      size: 'sm',
-      icon: BellIcon,
-      title: 'Varslinger',
-    },
-  ],
+  items: desktopMenuItems,
 };
 
 const mobileMenuItems = desktopMenu.items?.map((item) => {

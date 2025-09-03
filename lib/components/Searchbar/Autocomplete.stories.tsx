@@ -1,4 +1,4 @@
-import { InboxIcon, SignLanguageTwoHandsIcon } from '@navikt/aksel-icons';
+import { SignLanguageTwoHandsIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Autocomplete, type AutocompleteItemProps } from '..';
 
@@ -183,6 +183,7 @@ export const SuggestedHits: Story = {
         ),
       },
       {
+        id: 'd1',
         groupId: '3',
         type: 'dialog',
         href: '#',
@@ -190,6 +191,7 @@ export const SuggestedHits: Story = {
         description: 'Skatteoppgjøret ditt er klart.',
       },
       {
+        id: 'd2',
         groupId: '3',
         type: 'dialog',
         href: '#',
@@ -197,6 +199,7 @@ export const SuggestedHits: Story = {
         description: 'Skatteoppgjøret ditt er klart.',
       },
       {
+        id: 'd3',
         groupId: '3',
         type: 'dialog',
         href: '#',
@@ -204,6 +207,28 @@ export const SuggestedHits: Story = {
         description: 'Skatteoppgjøret ditt er ferdigstilt.',
       },
     ],
+  },
+};
+
+export const LoadingResults: Story = {
+  args: {
+    groups: {
+      '3': {
+        title: 'Søker etter «skatt» ...',
+      },
+    },
+    items: SuggestedHits.args.items.map((item) => {
+      if (item.groupId === '3') {
+        return {
+          ...item,
+          as: 'div',
+          interactive: false,
+          loading: true,
+        };
+      }
+
+      return item;
+    }) as AutocompleteItemProps[],
   },
 };
 
@@ -233,30 +258,6 @@ export const TooFewWords: Story = {
         ),
       },
     ],
-  },
-};
-
-export const LoadingResults: Story = {
-  args: {
-    groups: {
-      '3': {
-        title: 'Søker etter «skatt» ...',
-      },
-    },
-    items: SuggestedHits.args.items.map((item) => {
-      if (item.groupId === '3') {
-        return {
-          ...item,
-          as: 'div',
-          interactive: false,
-          type: null,
-          icon: InboxIcon,
-          loading: true,
-        };
-      }
-
-      return item;
-    }) as AutocompleteItemProps[],
   },
 };
 
@@ -298,6 +299,7 @@ export const NoHits: Story = {
         ),
       },
       {
+        id: 'info',
         groupId: 'noHits',
         interactive: false,
         as: 'div',

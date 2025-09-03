@@ -10,6 +10,7 @@ interface UseGlobalMenuProps extends GlobalMenuProps {
 export const useGlobalMenu = ({
   accountId = 'user',
   accounts = defaultAccounts,
+  menu = globalMenu.menu,
   menuLabel = 'Meny',
   ...props
 }: UseGlobalMenuProps) => {
@@ -43,6 +44,7 @@ export const useGlobalMenu = ({
   return {
     ...globalMenu,
     ...props,
+    menu,
     menuLabel,
     accountMenu,
     currentAccount,

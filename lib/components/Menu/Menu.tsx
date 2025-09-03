@@ -1,19 +1,19 @@
-import { MenuBase, type MenuTheme } from './MenuBase';
+import { MenuBase, type MenuVariant } from './MenuBase';
 import type { MenuItemColor } from './MenuItemBase';
 import { MenuItems, type MenuItemsProps, type MenuItemsVirtualProps } from './MenuItems';
 import { MenuItemsVirtual } from './MenuItemsVirtual';
 
 export interface MenuProps extends MenuItemsProps {
   color?: MenuItemColor;
-  theme?: MenuTheme;
+  variant?: MenuVariant;
   menuItemsVirtual?: MenuItemsVirtualProps;
 }
 
 export const Menu = ({
   color,
-  theme,
+  variant,
   defaultItemColor /** Should inherit from parent? */,
-  defaultItemTheme /** Should inherit from parent? */,
+  defaultItemVariant /** Should inherit from parent? */,
   defaultItemSize,
   defaultIconTheme,
   groups,
@@ -25,14 +25,14 @@ export const Menu = ({
 
   if (isVirtualized) {
     return (
-      <MenuBase color={color} theme={theme}>
+      <MenuBase color={color} variant={variant}>
         <MenuItemsVirtual
           search={search}
           items={items}
           groups={groups}
           defaultItemSize={defaultItemSize}
           defaultItemColor={defaultItemColor}
-          defaultItemTheme={defaultItemTheme}
+          defaultItemVariant={defaultItemVariant}
           defaultIconTheme={defaultIconTheme}
           scrollRefStyles={menuItemsVirtual?.scrollRefStyles}
         />
@@ -41,14 +41,14 @@ export const Menu = ({
   }
 
   return (
-    <MenuBase color={color} theme={theme}>
+    <MenuBase color={color} variant={variant}>
       <MenuItems
         search={search}
         items={items}
         groups={groups}
         defaultItemSize={defaultItemSize}
         defaultItemColor={defaultItemColor}
-        defaultItemTheme={defaultItemTheme}
+        defaultItemVariant={defaultItemVariant}
         defaultIconTheme={defaultIconTheme}
       />
     </MenuBase>

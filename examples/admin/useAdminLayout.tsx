@@ -1,4 +1,4 @@
-import { adminMenu, adminMenuItems, useLayout } from '../';
+import { adminMenu, adminMenuItems, desktopMenu, desktopMenuItems, useLayout } from '../';
 import type { AvatarProps, BreadcrumbsLinkProps, LayoutProps } from '../../lib';
 
 export type AdminSettings = Record<string, string>;
@@ -16,14 +16,38 @@ export const useAdminLayout = ({ accountId = 'diaspora', pageId = 'admin' }): Ad
   const baseHref = '?id=';
 
   const storybookPages = {
-    profile: 'demo-admin--dashboard-page',
+    admin: 'demo-admin--dashboard-page',
+    profile: 'demo-profile--dashboard-page',
+    accounts: 'demo-profile--accounts-page',
+    alerts: 'demo-profile--alerts-page',
+    inbox: 'demo-inbox--inbox-page',
     settings: 'demo-admin--settings-page',
     access: 'demo-admin--access-page',
     users: 'demo-admin--users-page',
     'activity-log': 'demo-admin--activity-log-page',
   };
 
-  const layout = useLayout({ color: 'neutral', theme: 'subtle', accountId });
+  const desktopItems = desktopMenuItems.map((item) => {
+    const storyBookId = storybookPages?.[item.id as keyof typeof storybookPages];
+    const href = storyBookId && [baseHref, storyBookId].join('');
+
+    return {
+      ...item,
+      href,
+      selected: item.id === 'admin',
+    };
+  });
+
+  const layout = useLayout({
+    color: 'neutral',
+    theme: 'subtle',
+    accountId,
+    menu: {
+      ...desktopMenu,
+      items: desktopItems,
+    },
+  });
+
   const account = layout?.header?.globalMenu?.currentAccount;
 
   const menuItems = adminMenuItems.map((item, index) => {
@@ -69,6 +93,7 @@ export const useAdminLayout = ({ accountId = 'diaspora', pageId = 'admin' }): Ad
       sidebar: {
         menu: {
           ...adminMenu,
+          variant: 'subtle',
           items: menuItems,
         },
       },

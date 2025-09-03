@@ -11,6 +11,7 @@
   appearance: none;
   user-select: none;
   cursor: pointer;
+  background-color: transparent;
 
   position: relative;
   width: 100%;
@@ -42,28 +43,21 @@
 
 /* content */
 
-.action {
+.controls {
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 10px;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+  gap: 0.25rem;
+  margin-left: auto;
 }
 
-.linkText {
-  font-size: 0.875rem;
-  white-space: nowrap;
+.controls:empty {
+  display: none;
 }
 
 .linkIcon {
   font-size: 1.5rem;
-}
-
-.item {
-  background-color: transparent;
-}
-
-.item[data-theme] {
-  background-color: transparent;
 }
 
 /* subtle bg */

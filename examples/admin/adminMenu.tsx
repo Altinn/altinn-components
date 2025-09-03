@@ -15,7 +15,7 @@ export const adminMenuItems: MenuItemProps[] = [
     id: 'admin',
     groupId: '1',
     size: 'lg',
-    title: 'Administrasjon',
+    title: 'Fullmakter',
     icon: {
       type: 'company',
       name: 'Bergen Bar',
