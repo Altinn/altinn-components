@@ -1,6 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import React, { useEffect } from 'react';
-import { type AccountMenuProps, type FilterState, Toolbar } from '..';
+import React, { useEffect, useState } from 'react';
+import {
+  AccountMenu,
+  type AccountMenuProps,
+  DrawerOrDropdown,
+  type FilterState,
+  Menu,
+  type MenuProps,
+  Toolbar,
+  ToolbarBase,
+  ToolbarButton,
+  ToolbarFilterBase,
+} from '..';
 import {
   accountMenu,
   accountMenuWithLongList,
@@ -8,6 +19,8 @@ import {
   inboxStatusFilter,
   useAccountMenu,
 } from '../../../examples';
+
+import { ArrowDownRightIcon, Buildings2Icon } from '@navikt/aksel-icons';
 
 const meta = {
   title: 'Toolbar/Toolbar',
@@ -197,5 +210,93 @@ export const CombinedRadioCheckboxFilter = () => {
       onFilterStateChange={setFilterState}
       removeButtonAltText="remove"
     />
+  );
+};
+
+export const SelectSubaccount = () => {
+  const accountMenu = useAccountMenu({
+    accountId: 'diaspora',
+  });
+
+  const [primaryId, setPrimaryId] = useState('company');
+  const [secondaryId, setSecondaryId] = useState('company');
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+
+  const onToggle = (id: string) => {
+    setExpandedId(expandedId === id ? null : id);
+  };
+
+  const currentAccount = accountMenu?.items?.find((item) => item.id === primaryId) || accountMenu?.items?.[0];
+
+  const primaryItems = accountMenu?.items
+    ?.filter((item) => !item.parentId && !item.accountIds)
+    ?.map((item) => ({
+      ...item,
+      selected: item.id === currentAccount?.id,
+    }));
+
+  const secondaryItems =
+    currentAccount &&
+    accountMenu?.items
+      ?.filter((item) => item.id.startsWith(currentAccount.id))
+      ?.map((item) => {
+        return {
+          ...item,
+          selected: item.id === secondaryId,
+          icon: item.id === currentAccount.id ? Buildings2Icon : ArrowDownRightIcon,
+          // For demo purposes only, should use a proper translation function
+          title: item.id === currentAccount.id ? 'Hovedenhet' : 'Underenhet',
+          description: 'Org nr: ' + item.uniqueId,
+          groupId: null,
+        };
+      });
+
+  const secondaryItem = secondaryItems?.find((item) => item.selected);
+
+  return (
+    <ToolbarBase>
+      <ToolbarFilterBase expanded={expandedId === 'primary'}>
+        <ToolbarButton type="switch" onToggle={() => onToggle('primary')} active={!!currentAccount}>
+          {currentAccount?.name}
+        </ToolbarButton>
+        <DrawerOrDropdown open={expandedId === 'primary'} drawerTitle="Endre konto" onClose={() => setExpandedId(null)}>
+          <AccountMenu
+            {...accountMenu}
+            items={primaryItems as AccountMenuProps['items']}
+            onSelectAccount={(id: string) => {
+              setPrimaryId(id);
+              setSecondaryId(id);
+              setExpandedId(null);
+            }}
+          />
+        </DrawerOrDropdown>
+      </ToolbarFilterBase>
+      {secondaryItems?.length > 1 && (
+        <ToolbarFilterBase expanded={expandedId === 'secondary'}>
+          <ToolbarButton type="switch" onToggle={() => onToggle('secondary')} active={!!currentAccount}>
+            {secondaryItem?.title}
+          </ToolbarButton>
+          <DrawerOrDropdown
+            open={expandedId === 'secondary'}
+            drawerTitle="Endre konto"
+            onClose={() => setExpandedId(null)}
+          >
+            <Menu
+              items={
+                secondaryItems?.map((item) => {
+                  return {
+                    ...item,
+                    onClick: () => {
+                      setSecondaryId(item.id);
+                      setExpandedId(null);
+                    },
+                  };
+                }) as unknown as MenuProps['items']
+              }
+            />
+          </DrawerOrDropdown>
+        </ToolbarFilterBase>
+      )}
+    </ToolbarBase>
   );
 };
