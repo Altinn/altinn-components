@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.38.12](https://github.com/Altinn/altinn-components/compare/v0.38.11...v0.38.12) (2025-09-04)
+
+
+### Bug Fixes
+
+* autocomplete + menu items ([#626](https://github.com/Altinn/altinn-components/issues/626)) ([36d44da](https://github.com/Altinn/altinn-components/commit/36d44da175838e04c53eddcfb44ca9b87fff931d))
+* grouped inbox stories ([a6a52c9](https://github.com/Altinn/altinn-components/commit/a6a52c92debb67377d46693603e907696a146f2d))
+* keyboard events should only be enabled when input field in search bar is active ([36d44da](https://github.com/Altinn/altinn-components/commit/36d44da175838e04c53eddcfb44ca9b87fff931d))
+* loading menu item loading state ([36d44da](https://github.com/Altinn/altinn-components/commit/36d44da175838e04c53eddcfb44ca9b87fff931d))
+* toolbar nested account menu ([#627](https://github.com/Altinn/altinn-components/issues/627)) ([f2d47db](https://github.com/Altinn/altinn-components/commit/f2d47db58de64a95309d46714091e3f18d95ae54))
+
 ## [0.38.11](https://github.com/Altinn/altinn-components/compare/v0.38.10...v0.38.11) (2025-09-01)
 
 
