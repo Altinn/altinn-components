@@ -35,6 +35,7 @@ interface UseInboxModalProps {
 
 export interface UseInboxProps extends LayoutProps {
   q?: string;
+  accountId?: string;
   pageId?: string;
   dialogId?: string;
   dialog?: UseInboxDialogProps;
@@ -51,8 +52,8 @@ export interface UseInboxProps extends LayoutProps {
   closeModal?: () => void;
 }
 
-export const useInbox = ({ pageId = 'inbox', q, ...props }: UseInboxProps): UseInboxProps => {
-  const layout = useInboxLayout({ pageId });
+export const useInbox = ({ accountId, pageId = 'inbox', q, ...props }: UseInboxProps): UseInboxProps => {
+  const layout = useInboxLayout({ accountId, pageId });
 
   const search = useInboxSearch({
     name: 'search',
@@ -341,7 +342,10 @@ export const useInbox = ({ pageId = 'inbox', q, ...props }: UseInboxProps): UseI
   const accountMenu = layout?.header?.globalMenu?.accountMenu;
   const currentAccount = layout?.header?.globalMenu?.currentAccount;
   const onSelectAccount = layout?.header?.globalMenu?.onSelectAccount;
-  const color = currentAccount?.type || 'neutral';
+
+  const groupView = currentAccount?.type !== 'person' && currentAccount?.type !== 'company';
+
+  const color = (groupView && 'neutral') || currentAccount?.type || 'neutral';
 
   return {
     modal,
@@ -377,7 +381,13 @@ export const useInbox = ({ pageId = 'inbox', q, ...props }: UseInboxProps): UseI
     },
     results: {
       groups: list.groups,
-      items,
+      items: items?.map((item) => {
+        return {
+          ...(item as DialogListItemProps),
+          color: groupView ? 'company' : item?.color,
+          grouped: groupView,
+        };
+      }),
     },
   };
 };
