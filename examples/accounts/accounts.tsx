@@ -65,6 +65,7 @@ export const accounts: AccountDataProps[] = [
     name: 'Sportsklubben Brann',
     uniqueId: '971877057',
     parentId: 'brann',
+    phone: '99007700',
     email: 'mathias@brann.no',
   },
   {
@@ -86,7 +87,11 @@ export const accounts: AccountDataProps[] = [
     id: 'diaspora',
     type: 'company',
     name: 'Diaspora Bergensis',
+    email: 'mathias@hotmail.com',
+    phone: '99007700',
     uniqueId: '428743989',
+    emailAlerts: true,
+    smsAlerts: true,
   },
   {
     id: 'diaspora-2',

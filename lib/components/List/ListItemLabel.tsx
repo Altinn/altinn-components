@@ -81,8 +81,8 @@ export const ListItemLabel = ({
   className,
 }: ListItemLabelProps) => {
   if (title && value) {
-    const titleProps = title && getTitleProps(title);
-    const descriptionProps = value && getDescriptionProps(value);
+    const titleProps = title && getDescriptionProps(title);
+    const valueProps = value && getTitleProps(value);
 
     return (
       <span className={cx(styles.label, className)} id={id} data-size={size}>
@@ -91,7 +91,7 @@ export const ListItemLabel = ({
         ) : (
           <>
             {titleProps && <Heading {...titleProps} loading={loading} highlightWords={highlightWords} />}
-            {descriptionProps && <Heading {...descriptionProps} loading={loading} highlightWords={highlightWords} />}
+            {valueProps && <Heading {...valueProps} loading={loading} highlightWords={highlightWords} />}
           </>
         )}
       </span>

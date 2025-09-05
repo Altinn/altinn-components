@@ -3,7 +3,6 @@ import { useState } from "react";
 import {
   CogIcon,
   BellIcon,
-  BellDotIcon,
   PaperplaneIcon,
   MobileIcon,
   Buildings2Icon,
@@ -13,7 +12,7 @@ import {
   SunIcon,
   HouseHeartIcon,
   PersonRectangleIcon,
-  PlusIcon,
+  HeartIcon,
 } from "@navikt/aksel-icons";
 import type { Meta } from "@storybook/react-vite";
 import {
@@ -25,19 +24,21 @@ import {
   Divider,
   Fieldset,
   Radio,
-  Section,
   List,
   SettingsSection,
   SettingsItem,
-  Switch,
+  SettingsModal,
+  Heading,
   Typography,
-  Modal,
-  type SettingsItemProps,
-  ContextMenu,
-  ListItemControls,
-  Badge,
+  TextField,
+  TextareaField,
   ButtonGroup,
   Button,
+  MetaItem,
+  type MetaItemProps,
+  type SettingsItemProps,
+  type SettingsModalProps,
+  type AccountListItemProps,
 } from "../../components";
 
 const meta = {
@@ -54,11 +55,28 @@ export const DashboardSettings = () => {
     <List size="sm">
       <SettingsItem
         as="a"
-        href="?id=demo-profile--notifications-page"
+        href="?id=demo-profile--accounts-page"
+        icon={HeartIcon}
+        title="Aktører, grupper og favoritter"
+        badge={{ label: "3 profiler" }}
+        linkIcon
+      />
+      <Divider as="li" />
+      <SettingsItem
+        as="a"
+        href="?id=demo-profile--contact-page"
+        icon={PersonRectangleIcon}
+        title="Kontaktinformasjon"
+        badge={{ label: "3 profiler" }}
+        linkIcon
+      />
+      <Divider as="li" />
+      <SettingsItem
+        as="a"
+        href="?id=demo-profile--alerts-page"
         icon={BellIcon}
-        title="Varslinger er på"
-        description="Alle varslinger"
-        badge={{ label: "SMS og Epost" }}
+        title="Varslinger"
+        badge={{ label: "12 aktører" }}
         linkIcon
       />
       <Divider as="li" />
@@ -73,13 +91,87 @@ export const DashboardSettings = () => {
   );
 };
 
+const PhoneSettingsModal = ({ open, onClose }: SettingsModalProps) => {
+  const user = defaultAccounts[0];
+  return (
+    <SettingsModal
+      icon={MobileIcon}
+      title="Endre mobiltelefon"
+      open={open}
+      onClose={onClose}
+    >
+      <TextField label="Mobiltelefon" value={user?.phone} size="sm" readOnly />
+      <Typography size="sm">
+        <p>
+          Altin bruker kontaktinformasjon fra Kontakt- og
+          reservasjonsregisteret, et felles kontaktregister for stat og kommune.
+          Gå videre for å endre.
+        </p>
+      </Typography>
+      <ButtonGroup size="md">
+        <Button>Gå videre</Button>
+        <Button variant="outline">Avbryt</Button>
+      </ButtonGroup>
+    </SettingsModal>
+  );
+};
+
+const EmailSettingsModal = ({ open, onClose }: SettingsModalProps) => {
+  const user = defaultAccounts[0];
+  return (
+    <SettingsModal
+      icon={PaperplaneIcon}
+      title="Endre mobiltelefon"
+      open={open}
+      onClose={onClose}
+    >
+      <TextField label="E-postadresse" value={user?.email} size="sm" readOnly />
+      <Typography size="sm">
+        <p>
+          Altin bruker kontaktinformasjon fra Kontakt- og
+          reservasjonsregisteret, et felles kontaktregister for stat og kommune.
+          Gå videre for å endre.
+        </p>
+      </Typography>
+      <ButtonGroup size="md">
+        <Button>Gå videre</Button>
+        <Button variant="outline">Avbryt</Button>
+      </ButtonGroup>
+    </SettingsModal>
+  );
+};
+
+const AddressSettingsModal = ({ open, onClose }: SettingsModalProps) => {
+  const user = defaultAccounts[0];
+  return (
+    <SettingsModal
+      icon={HouseHeartIcon}
+      title="Endre adresse"
+      open={open}
+      onClose={onClose}
+    >
+      <TextareaField
+        label="Adresse"
+        value={user?.address}
+        size="sm"
+        readOnly
+      ></TextareaField>
+      <Typography size="sm">
+        <p>
+          Altinn bruker adressen din fra Folkeregisteret. Gå videre for å endre
+          adresse.
+        </p>
+      </Typography>
+      <ButtonGroup size="md">
+        <Button>Gå videre</Button>
+        <Button variant="outline">Avbryt</Button>
+      </ButtonGroup>
+    </SettingsModal>
+  );
+};
+
 export const ContactSettings = () => {
-  const { items } = useAccountSettings({
-    accounts: defaultAccounts,
-  });
-
-  const user = items[0];
-
+  const user = defaultAccounts[0];
   const [openId, setOpenId] = useState<string>("");
 
   const settingsItems = [
@@ -87,74 +179,57 @@ export const ContactSettings = () => {
       id: "phone",
       groupId: "1",
       icon: MobileIcon,
-      title: "SMS-varslinger",
+      title: "Mobiltelefon",
       value: user?.phone,
-      badge: {
-        variant: "text",
-        label: "Endre mobil",
-      },
+      badgeLabel: "Endre mobil",
     },
     {
       id: "email",
       groupId: "1",
       icon: PaperplaneIcon,
-      title: "Varslinger på e-post",
+      title: "E-postadresse",
+      badgeLabel: "Endre e-post",
       value: user?.email,
-      badge: {
-        variant: "text",
-        label: "Endre e-post",
-      },
     },
     {
       id: "address",
       groupId: "2",
       icon: HouseHeartIcon,
       title: "Adresse",
+      badgeLabel: "Endre adresse",
       value: user?.address || "Idrettsveien 1, 5052 Bergen",
-      badge: {
-        variant: "text",
-        label: "Endre adresse",
-      },
     },
   ].map((item) => {
     return {
       ...item,
-      linkIcon: true,
       as: "button",
+      linkIcon: true,
+      badge: {
+        variant: "text",
+        label: item.badgeLabel,
+      },
       onClick: () => setOpenId(item.id),
     };
   });
 
   return (
     <>
-      <Modal
-        open={openId === "email" || openId === "phone"}
+      <PhoneSettingsModal
+        open={openId === "phone"}
         onClose={() => setOpenId("")}
-      >
-        <Typography>
-          <h1>Endre epost eller telefon</h1>
-          <p>
-            E-post og mobiltelefon endres i et felles kontaktregister som stat
-            og kommune skal bruke når de kontakter deg.
-          </p>
-          <ButtonGroup>
-            <Button>Gå videre</Button>
-            <Button variant="outline">Avbryt</Button>
-          </ButtonGroup>
-        </Typography>
-      </Modal>
-      <Modal open={openId === "address"} onClose={() => setOpenId("")}>
-        <Typography>
-          <h1>Endre adresse</h1>
-          <p>Adresseendring meldes til Folkeregisteret.</p>
-          <ButtonGroup>
-            <Button>Gå videre</Button>
-            <Button variant="outline">Avbryt</Button>
-          </ButtonGroup>
-        </Typography>
-      </Modal>
+      />
+      <EmailSettingsModal
+        open={openId === "email"}
+        onClose={() => setOpenId("")}
+      />
+      <AddressSettingsModal
+        open={openId === "address"}
+        onClose={() => setOpenId("")}
+      />
+
       <List size="sm">
         <SettingsItem {...(settingsItems[0] as SettingsItemProps)} />
+        <Divider as="li" />
         <SettingsItem {...(settingsItems[1] as SettingsItemProps)} />
         <Divider as="li" />
         <SettingsItem {...(settingsItems[2] as SettingsItemProps)} />
@@ -163,151 +238,213 @@ export const ContactSettings = () => {
   );
 };
 
-export const MoreSettings = () => {
+const AlertSettingsModal = ({ open, onClose }: SettingsModalProps) => {
   return (
-    <List>
-      <SettingsItem
-        as="a"
-        href="?id=demo-profile--notifications-page"
-        icon={BellIcon}
-        title="Varslingsinnstillinger"
-        badge={{ label: "12 aktører" }}
-        linkIcon
+    <SettingsModal
+      icon={BellIcon}
+      title="Endre varslingsadresser"
+      open={open}
+      onClose={onClose}
+    >
+      <TextField label="Mobiltelefon" value="99005599" size="sm" readOnly />
+      <TextField
+        label="E-postadresse"
+        value="mathias@hotmail.com"
+        size="sm"
+        readOnly
       />
-      <Divider as="li" />
-      <SettingsItem
-        as="a"
-        href="?id=demo-profile--addresses-page"
-        icon={PersonRectangleIcon}
-        title="Kontaktprofiler"
-        badge={{ label: "3 profiler" }}
-        linkIcon
+      <Typography size="sm">
+        <p>
+          Altin bruker kontaktinformasjon fra Kontakt- og
+          reservasjonsregisteret, et felles kontaktregister for stat og kommune.
+          Gå videre for å endre.
+        </p>
+      </Typography>
+      <ButtonGroup size="md">
+        <Button>Gå videre</Button>
+        <Button variant="outline">Avbryt</Button>
+      </ButtonGroup>
+    </SettingsModal>
+  );
+};
+
+export const AlertSettings = () => {
+  const user = defaultAccounts[0];
+  const [open, setOpen] = useState<boolean>(false);
+
+  return (
+    <>
+      <AlertSettingsModal open={open} onClose={() => setOpen(false)} />
+
+      <List size="sm">
+        <SettingsItem
+          color="person"
+          icon={MobileIcon}
+          title="Mobiltelefon"
+          value={user.phone}
+          badge={{
+            label: "SMS",
+          }}
+          as="button"
+          onClick={() => setOpen(true)}
+          linkIcon
+        />
+        <Divider as="li" />
+        <SettingsItem
+          color="person"
+          icon={PaperplaneIcon}
+          title="E-postadresse"
+          value={user.email}
+          badge={{
+            label: "E-post",
+          }}
+          as="button"
+          onClick={() => setOpen(true)}
+          linkIcon
+        />
+      </List>
+    </>
+  );
+};
+
+export const LinkSettings = () => {
+  return (
+    <>
+      <List color="person">
+        <SettingsItem
+          as="a"
+          href="?id=demo-profile--accounts-page"
+          icon={HeartIcon}
+          title="Aktører, grupper og favoritter"
+          badge={{ label: "3 profiler" }}
+          linkIcon
+        />
+        <Divider as="li" />
+        <SettingsItem
+          as="a"
+          href="?id=demo-profile--contact-page"
+          icon={PersonRectangleIcon}
+          title="Kontaktinformasjon"
+          badge={{ label: "3 profiler" }}
+          linkIcon
+        />
+        <Divider as="li" />
+        <SettingsItem
+          as="a"
+          href="?id=demo-profile--alerts-page"
+          icon={BellIcon}
+          title="Varslinger"
+          badge={{ label: "12 aktører" }}
+          linkIcon
+        />
+      </List>
+    </>
+  );
+};
+
+interface ContactProfileModalProps extends SettingsModalProps {
+  type?: string;
+  value?: string;
+  items?: AccountListItemProps[];
+}
+
+const ContactProfileModal = ({
+  type,
+  value,
+  items,
+  open,
+  onClose,
+}: ContactProfileModalProps) => {
+  return (
+    <SettingsModal
+      icon={PersonRectangleIcon}
+      title="Endre varslingsadresse"
+      open={open}
+      onClose={onClose}
+    >
+      <TextField
+        label={type === "email" ? "E-postadresse" : "Mobiltelefon"}
+        value={value}
+        size="sm"
       />
-    </List>
+
+      <MetaItem
+        size="xs"
+        icon={items?.length && ({ items } as MetaItemProps["icon"])}
+      >
+        Brukes av {items?.length} aktører:
+      </MetaItem>
+
+      <Heading>Brukes av {items?.length} aktører:</Heading>
+
+      <List size="xs">
+        {items?.map((item, index) => {
+          return (
+            <>
+              {index > 0 && <Divider as="li" />}
+              <SettingsItem title={item?.name} icon={item} />
+            </>
+          );
+        })}
+      </List>
+
+      <Typography size="sm">
+        <p>Endringen vil oppdatere varslingsadresser på alle aktørene over.</p>
+      </Typography>
+
+      <ButtonGroup size="md">
+        <Button onClick={onClose}>Lagre og avslutt</Button>
+        <Button variant="outline">Avbryt</Button>
+      </ButtonGroup>
+    </SettingsModal>
   );
 };
 
 export const ContactProfiles = () => {
-  const Controls = ({ id, label }: { id: string; label: string }) => {
-    return (
-      <ListItemControls>
-        <Badge>{label}</Badge>
-        <ContextMenu
-          id={id}
-          items={[
-            {
-              id: "1",
-              label: "Rediger profil",
-            },
-            {
-              id: "2",
-              label: "Slett profil",
-            },
-          ]}
-        />
-      </ListItemControls>
-    );
-  };
-
-  return (
-    <List>
-      <SettingsItem
-        icon={PersonRectangleIcon}
-        title="E-post"
-        value="mathias@hotmail.com"
-        badge={<Controls id="1" label="2 aktører" />}
-        linkIcon
-      />
-      <Divider as="li" />
-      <SettingsItem
-        icon={PersonRectangleIcon}
-        title="E-post"
-        value="mathias@brann.no"
-        badge={<Controls id="2" label="4 aktører" />}
-        linkIcon
-      />
-      <Divider as="li" />
-      <SettingsItem
-        icon={PersonRectangleIcon}
-        title="E-post"
-        value="mathias@gmail.com"
-        badge={<Controls id="3" label="1 aktør" />}
-        linkIcon
-      />
-      <Divider as="li" />
-      <SettingsItem icon={PlusIcon} title="Legg til kontaktprofil" />
-    </List>
-  );
-};
-
-export const NotificationSettings = () => {
-  const { settings, onChange } = useSettings({
-    alerts: "on",
-    mobile: "on",
-    email: "on",
+  const { contactList } = useAccountSettings({
+    accounts: defaultAccounts,
   });
+
+  const [openId, setOpenId] = useState<string>("");
+
+  const profile =
+    (openId && contactList?.find((item) => item.value === openId)) || {};
+
   return (
-    <List>
-      <SettingsItem
-        icon={settings.alerts ? BellDotIcon : BellIcon}
-        title={settings.alerts ? "Varslinger er på" : "Ingen varslinger"}
-        controls={
-          <Switch
-            name="alerts"
-            onChange={onChange}
-            checked={!!settings?.alerts}
-            reverse
-            size="sm"
-            label={
-              <span data-size="xs">
-                {settings.alerts ? "Skru av " : "Skru på "}
-              </span>
-            }
-          />
-        }
+    <>
+      <ContactProfileModal
+        {...profile}
+        open={openId ? true : false}
+        onClose={() => setOpenId("")}
       />
-      {settings.alerts && (
-        <>
-          <Divider as="li" />
-          <SettingsItem
-            icon={MobileIcon}
-            title="SMS-varslinger"
-            value="99009900"
-            badge={<span data-size="xs">Endre mobil</span>}
-            linkIcon
-          />
-          <SettingsItem
-            icon={PaperplaneIcon}
-            title="Varslinger på e-post"
-            value="mathias.dyngeland@gmail.com"
-            badge={<span data-size="xs">Endre epost</span>}
-            linkIcon
-          />
-        </>
-      )}
-    </List>
+      <List color="person">
+        {contactList?.map((item, index) => {
+          return (
+            <>
+              {index > 0 && <Divider as="li" />}
+              <SettingsItem
+                icon={PersonRectangleIcon}
+                title={
+                  item?.type === "email" ? "E-postadresse" : "Mobiltelefon"
+                }
+                value={item.value}
+                badge={{
+                  label: item?.items.length + " aktører",
+                }}
+                as="button"
+                onClick={() => setOpenId(item.value)}
+                linkIcon
+              />
+            </>
+          );
+        })}
+      </List>
+    </>
   );
 };
 
-export const EtceteraSettings = () => {
-  return (
-    <List size="sm">
-      <SettingsItem
-        icon={PersonRectangleIcon}
-        title="Kontaktprofiler"
-        badge={{ label: "3 profiler" }}
-        linkIcon
-      />
-      <Divider as="li" />
-      <SettingsItem icon={SunIcon} title="Modus: Lys" linkIcon />
-      <Divider />
-      <SettingsItem icon={GlobeIcon} title="Språk/language: Bokmål" linkIcon />
-    </List>
-  );
-};
-
-export const CollapsibleSettings = () => {
-  const [expandedId, setExpandedId] = useState<string>("");
+export const MoreSettings = () => {
+  const [modalId, setModalId] = useState<string>("");
 
   const localeOptions: string[] = ["Bokmål", "Nynorsk", "English", "España"];
   const modeOptions: string[] = ["Auto", "Lys", "Mørk"];
@@ -319,64 +456,70 @@ export const CollapsibleSettings = () => {
     phone: "SMS",
   });
 
-  const onToggle = (id: string) => {
-    setExpandedId((prevState) => (prevState === id ? "" : id));
+  const onClose = () => {
+    setModalId("");
   };
 
   return (
-    <List size="sm">
-      <SettingsItem
-        collapsible
-        expanded={expandedId === "2"}
+    <>
+      <SettingsModal
+        open={modalId === "mode"}
+        onClose={onClose}
         icon={SunIcon}
-        title="Modus"
-        badge={{ label: settings.mode as string }}
-        linkIcon
-        as="button"
-        onClick={() => onToggle("2")}
+        title="Endre modus"
       >
-        <Section padding={6} spacing={6}>
-          <Fieldset>
-            {modeOptions.map((value) => (
-              <Radio
-                key={value}
-                name="mode"
-                label={value}
-                value={value}
-                checked={settings.mode === value}
-                onChange={onChange}
-              />
-            ))}
-          </Fieldset>
-        </Section>
-      </SettingsItem>
-      <Divider as="li" />
-      <SettingsItem
-        collapsible
-        expanded={expandedId === "locale"}
+        <Fieldset>
+          {modeOptions.map((value) => (
+            <Radio
+              key={value}
+              name="mode"
+              label={value}
+              value={value}
+              checked={settings.mode === value}
+              onChange={onChange}
+            />
+          ))}
+        </Fieldset>
+      </SettingsModal>
+      <SettingsModal
+        open={modalId === "locale"}
+        onClose={onClose}
         icon={GlobeIcon}
-        title="Språk/language"
-        badge={{ label: settings.locale as string }}
-        linkIcon
-        as="button"
-        onClick={() => onToggle("locale")}
+        title="Endre språk/language"
       >
-        <Section padding={6} spacing={6}>
-          <Fieldset>
-            {localeOptions.map((value) => (
-              <Radio
-                key={value}
-                name="locale"
-                label={value}
-                value={value}
-                checked={settings.locale === value}
-                onChange={onChange}
-              />
-            ))}
-          </Fieldset>
-        </Section>
-      </SettingsItem>
-    </List>
+        <Fieldset>
+          {localeOptions.map((value) => (
+            <Radio
+              key={value}
+              name="locale"
+              label={value}
+              value={value}
+              checked={settings.locale === value}
+              onChange={onChange}
+            />
+          ))}
+        </Fieldset>
+      </SettingsModal>
+      <List size="sm">
+        <SettingsItem
+          icon={SunIcon}
+          title="Modus"
+          value={settings.mode}
+          linkIcon
+          as="button"
+          onClick={() => setModalId("mode")}
+        />
+        <Divider as="li" />
+        <SettingsItem
+          icon={GlobeIcon}
+          title="Språk/language"
+          value={settings?.locale}
+          linkIcon
+          as="button"
+          onClick={() => setModalId("locale")}
+        />
+      </List>
+    </>
   );
 };
 

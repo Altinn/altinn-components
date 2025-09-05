@@ -15,6 +15,7 @@ export const useProfileLayout = ({ pageId = 'profile' }): ProfileLayoutProps => 
     profile: 'demo-profile--dashboard-page',
     accounts: 'demo-profile--accounts-page',
     alerts: 'demo-profile--alerts-page',
+    contact: 'demo-profile--contact-page',
     settings: 'demo-profile--settings-page',
     access: 'demo-profile--access-page',
     users: 'demo-profile--users-page',

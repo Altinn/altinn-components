@@ -1,0 +1,25 @@
+.wrapper {
+  pointer-events: none;
+  position: relative;
+  flex-shrink: 0;
+  font-size: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon svg,
+.icon img {
+  display: block;
+  width: 1em;
+  height: 1em;
+  font-size: 0.825em;
+}
+
+.avatar {
+  font-size: 1em;
+}
+
+.avatarGroup {
+  font-size: 0.75em;
+}

@@ -29,13 +29,15 @@ export const DashboardPage = () => {
   const { breadcrumbs, ...layout } = useProfileLayout({});
   return (
     <Layout {...layout}>
-      <DashboardHeader
-        type="person"
-        name="Mathias Dyngeland"
-        description="Fødselsnr: XXXXXX YYYYYY"
-      >
-        <SettingsStories.DashboardSettings />
-      </DashboardHeader>
+      <PageBase color="person">
+        <DashboardHeader
+          type="person"
+          name="Mathias Dyngeland"
+          description="Fødselsnr: XXXXXX YYYYYY"
+        >
+          <SettingsStories.DashboardSettings />
+        </DashboardHeader>
+      </PageBase>
     </Layout>
   );
 };
@@ -57,17 +59,38 @@ export const AlertsPage = () => {
   const { breadcrumbs, ...layout } = useProfileLayout({ pageId: "alerts" });
   return (
     <Layout {...layout}>
-      <PageBase>
+      <PageBase color="person">
         <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">Mine varslinger</Heading>
         <Toolbar search={{ name: "search", placeholder: "Søk" }} />
         <Heading size="lg">Primære varslingsadresser</Heading>
         <SettingsSection>
-          <SettingsStories.NotificationSettings />
+          <SettingsStories.AlertSettings />
         </SettingsSection>
         <Heading size="lg">Varslinger per aktør</Heading>
         <SettingsSection>
-          <AccountSettingsStories.Controlled />
+          <AccountSettingsStories.ControlledValue />
+        </SettingsSection>
+      </PageBase>
+    </Layout>
+  );
+};
+
+export const ContactPage = () => {
+  const { breadcrumbs, ...layout } = useProfileLayout({ pageId: "contact" });
+  return (
+    <Layout {...layout}>
+      <PageBase color="person">
+        <Breadcrumbs items={breadcrumbs} />
+        <Heading size="xl">Kontaktinformasjon</Heading>
+        <Toolbar search={{ name: "search", placeholder: "Søk" }} />
+        <Heading size="lg">Primær kontaktinformasjon</Heading>
+        <SettingsSection>
+          <SettingsStories.ContactSettings />
+        </SettingsSection>
+        <Heading size="lg">Varslingsadresser i bruk</Heading>
+        <SettingsSection>
+          <SettingsStories.ContactProfiles />
         </SettingsSection>
       </PageBase>
     </Layout>
@@ -78,7 +101,7 @@ export const UsersPage = () => {
   const { breadcrumbs, ...layout } = useProfileLayout({ pageId: "users" });
   return (
     <Layout {...layout}>
-      <PageBase>
+      <PageBase color="person">
         <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">Brukere med fullmakt til din profil</Heading>
       </PageBase>
@@ -108,59 +131,13 @@ export const SettingsPage = () => {
         <Toolbar
           search={{ name: "search", placeholder: "Søk i innstillinger" }}
         />
-        <Heading size="lg">Kontaktinformasjon</Heading>
-        <SettingsSection>
-          <SettingsStories.ContactSettings />
-        </SettingsSection>
         <Heading size="lg">Varslinger</Heading>
         <SettingsSection>
-          <SettingsStories.MoreSettings />
+          <SettingsStories.LinkSettings />
         </SettingsSection>
         <Heading size="lg">Flere innstillinger</Heading>
         <SettingsSection>
-          <SettingsStories.CollapsibleSettings />
-        </SettingsSection>
-      </PageBase>
-    </Layout>
-  );
-};
-
-export const NotificationsPage = () => {
-  const { breadcrumbs, ...layout } = useProfileLayout({ pageId: "settings" });
-  return (
-    <Layout {...layout}>
-      <PageBase>
-        <Breadcrumbs items={breadcrumbs} />
-        <Heading size="xl">Varslingsinnstillinger</Heading>
-        <Toolbar search={{ name: "search", placeholder: "Søk" }} />
-        <Heading size="lg">Primære varslingsadresser</Heading>
-        <SettingsSection>
-          <SettingsStories.NotificationSettings />
-        </SettingsSection>
-        <Heading size="lg">Varslinger per aktør</Heading>
-        <SettingsSection>
-          <AccountSettingsStories.Controlled />
-        </SettingsSection>
-      </PageBase>
-    </Layout>
-  );
-};
-
-export const AddressesPage = () => {
-  const { breadcrumbs, ...layout } = useProfileLayout({ pageId: "settings" });
-  return (
-    <Layout {...layout}>
-      <PageBase>
-        <Breadcrumbs items={breadcrumbs} />
-        <Heading size="xl">Kontaktinformasjon</Heading>
-        <Toolbar search={{ name: "search", placeholder: "Søk" }} />
-        <Heading size="lg">Primære kontaktinformasjon</Heading>
-        <SettingsSection>
-          <SettingsStories.ContactSettings />
-        </SettingsSection>
-        <Heading size="lg">Alternative varslingsadresser</Heading>
-        <SettingsSection>
-          <SettingsStories.ContactProfiles />
+          <SettingsStories.MoreSettings />
         </SettingsSection>
       </PageBase>
     </Layout>
@@ -169,7 +146,7 @@ export const AddressesPage = () => {
 
 export const ActivityLogPage = () => {
   const { breadcrumbs, ...layout } = useProfileLayout({
-    pageId: "log",
+    pageId: "activity-log",
   });
   return (
     <Layout {...layout}>
