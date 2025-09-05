@@ -418,7 +418,7 @@ export const UserDetails = ({
       <List size="sm">
         <SettingsItem
           icon={MobileIcon}
-          title="Varslinger på SMS"
+          title="Mobiltelefon"
           value={phone}
           badge={{ label: 'Endre mobil', variant: 'text' }}
           onClick={() => onModal?.(id, 'contact')}
@@ -427,7 +427,7 @@ export const UserDetails = ({
         />
         <SettingsItem
           icon={PaperplaneIcon}
-          title="Varslinger på e-post"
+          title="E-postadresse"
           value={email}
           badge={{ label: 'Endre e-post', variant: 'text' }}
           onClick={() => onModal?.(id, 'contact')}
@@ -506,11 +506,7 @@ const AccountModal = ({
 }: AccountModalProps) => {
   return (
     <ModalBase open={open} onClose={onClose}>
-      <ModalHeader onClose={onClose}>
-        <List>
-          <SettingsItem icon={icon} title={title} description={description} interactive={false} />
-        </List>
-      </ModalHeader>
+      <ModalHeader icon={icon} title={title as string} description={description as string} onClose={onClose} />
       <ModalBody>{children}</ModalBody>
     </ModalBase>
   );

@@ -87,6 +87,7 @@ export const useAccountList = ({ accounts = defaultAccounts, ...props }: UseAcco
       ...item,
       ...settings,
       as: 'button',
+      color: item?.type,
       ariaLabel: item.name,
       favourite: favouriteIds.includes(item.id),
     };
