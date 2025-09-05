@@ -1,4 +1,4 @@
-import { BellIcon, ClockDashedIcon, CogIcon, HandshakeIcon, HeartIcon, PadlockUnlockedIcon } from '@navikt/aksel-icons';
+import { BellIcon, ClockDashedIcon, CogIcon, HeartIcon, PersonRectangleIcon } from '@navikt/aksel-icons';
 import type { MenuItemProps, MenuProps } from '../../lib';
 
 export const profileMenuItems: MenuItemProps[] = [
@@ -24,17 +24,25 @@ export const profileMenuItems: MenuItemProps[] = [
     title: 'Mine varslinger',
   },
   {
-    id: 'users',
-    groupId: '4',
+    id: 'contact',
+    groupId: '2',
+    icon: PersonRectangleIcon,
+    title: 'Kontaktinformasjon',
+  },
+  /*
+  {
+    id: "users",
+    groupId: "4",
     icon: HandshakeIcon,
-    title: 'Gi fullmakt',
+    title: "Gi fullmakt",
   },
   {
-    id: 'access',
-    groupId: '4',
+    id: "access",
+    groupId: "4",
     icon: PadlockUnlockedIcon,
-    title: 'Gi tilgang',
+    title: "Gi tilgang",
   },
+  */
   {
     id: 'settings',
     groupId: '9',

@@ -9,8 +9,6 @@ import {
   ModalBase,
   ModalBody,
   ModalHeader,
-  Section,
-  SettingsItem,
   type SettingsItemProps,
   SettingsList,
   type SettingsListProps,
@@ -60,6 +58,7 @@ export const Controlled = () => {
 
     return {
       ...item,
+      value: null,
       onClick: () => setId(id),
     };
   });
@@ -74,45 +73,49 @@ export const Controlled = () => {
   );
 };
 
-export const Collapsible = () => {
-  const { items, groups, expandedId, onToggle, onSettingsChange } = useAccountSettings({
+export const ControlledValue = () => {
+  const { items, groups, onSettingsChange } = useAccountSettings({
     accounts: defaultAccounts,
   });
 
-  const collapsibleItems = items?.map((item) => {
-    const { id } = item;
+  const [id, setId] = useState<string>('');
 
-    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-      const { type, checked, name, value } = e.target;
+  const onClose = () => {
+    setId('');
+  };
 
-      if (type === 'checkbox') {
-        onSettingsChange(id, { [name]: checked });
-      } else {
-        onSettingsChange(id, { [name]: value });
-      }
-    };
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { type, checked, name, value } = e.target;
 
-    if (item.id === expandedId) {
+    if (type === 'checkbox') {
+      onSettingsChange(id, { [name]: checked });
+    } else {
+      onSettingsChange(id, { [name]: value });
+    }
+  };
+
+  const item = id && items.find((item) => item.id === id);
+
+  const modalItems = items
+    ?.filter((item) => !item.parentId)
+    .map((item) => {
+      const { id } = item;
+
       return {
         ...item,
-        collapsible: true,
-        expanded: true,
-        onClick: () => onToggle(item.id),
-        children: (
-          <Section padding={6}>
-            <AccountNotificationSettings {...(item as AccountNotificationSettingsProps)} onChange={onChange} />
-          </Section>
-        ),
+        description: undefined,
+        onClick: () => setId(id),
       };
-    }
-    return {
-      ...item,
-      collapsible: true,
-      onClick: () => onToggle(item.id),
-    };
-  });
+    });
 
-  return <SettingsList groups={groups} items={collapsibleItems as SettingsListProps['items']} />;
+  return (
+    <>
+      <SettingsList groups={groups} items={modalItems as SettingsListProps['items']} />
+      <AccountSettingsModal {...item} open={!!item} onClose={onClose}>
+        <AccountNotificationSettings {...(item as AccountNotificationSettingsProps)} onChange={onChange} />
+      </AccountSettingsModal>
+    </>
+  );
 };
 
 interface AccountSettingsModalProps {
@@ -134,9 +137,7 @@ const AccountSettingsModal = ({
 }: AccountSettingsModalProps) => {
   return (
     <ModalBase open={open} onClose={onClose}>
-      <ModalHeader onClose={onClose}>
-        <SettingsItem icon={icon} title={title} description={description} interactive={false} />
-      </ModalHeader>
+      <ModalHeader icon={icon} title={title as string} description={description as string} onClose={onClose} />
       <ModalBody>
         {children}
         <ButtonGroup>

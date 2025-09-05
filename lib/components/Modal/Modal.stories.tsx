@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { type ChangeEvent, useState } from 'react';
 import {
+  AccountNotificationSettings,
   Button,
   ButtonGroup,
   Checkbox,
@@ -17,6 +18,8 @@ import {
   TextField,
   Typography,
 } from '../';
+
+import { BellIcon } from '@navikt/aksel-icons';
 
 const meta: Meta<typeof ModalBase> = {
   title: 'Components/Modal',
@@ -343,4 +346,94 @@ export const Full: Story = {
       </Flex>
     );
   },
+};
+
+export const CompanyModal = (args: ModalBaseProps) => {
+  const [open, setOpen] = useState<boolean>(true);
+
+  const [formData, setFormData] = useState({
+    smsAlerts: true,
+    phone: '99005544',
+  });
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { type, checked, name, value } = e.target;
+
+    if (type === 'checkbox') {
+      setFormData((prevState) => {
+        return {
+          ...prevState,
+          [name]: checked,
+        };
+      });
+    } else {
+      setFormData((prevState) => {
+        return {
+          ...prevState,
+          [name]: value,
+        };
+      });
+    }
+  };
+
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Open modal</Button>
+      <ModalBase {...args} open={open} onClose={() => setOpen(false)}>
+        <ModalHeader icon={{ type: 'company', name: 'Bergen Bar' }} title="Bergen Bar" onClose={() => setOpen(false)} />
+        <ModalBody>
+          <AccountNotificationSettings {...args} {...formData} onChange={onChange} />
+          <ButtonGroup>
+            <Button>Lagre og avslutt</Button>
+            <Button variant="outline">Avbryt</Button>
+          </ButtonGroup>
+        </ModalBody>
+      </ModalBase>
+    </>
+  );
+};
+
+export const SettingsModal = (args: ModalBaseProps) => {
+  const [open, setOpen] = useState<boolean>(true);
+
+  const [formData, setFormData] = useState({
+    smsAlerts: true,
+    phone: '99005544',
+  });
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { type, checked, name, value } = e.target;
+
+    if (type === 'checkbox') {
+      setFormData((prevState) => {
+        return {
+          ...prevState,
+          [name]: checked,
+        };
+      });
+    } else {
+      setFormData((prevState) => {
+        return {
+          ...prevState,
+          [name]: value,
+        };
+      });
+    }
+  };
+
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Open modal</Button>
+      <ModalBase {...args} open={open} onClose={() => setOpen(false)}>
+        <ModalHeader icon={BellIcon} title="Bergen Bar" onClose={() => setOpen(false)} />
+        <ModalBody>
+          <AccountNotificationSettings {...args} {...formData} onChange={onChange} />
+          <ButtonGroup>
+            <Button>Lagre og avslutt</Button>
+            <Button variant="outline">Avbryt</Button>
+          </ButtonGroup>
+        </ModalBody>
+      </ModalBase>
+    </>
+  );
 };
