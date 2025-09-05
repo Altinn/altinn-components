@@ -31,7 +31,7 @@ export const ModalHeader = ({
             {icon && <ModalIcon icon={icon} />}
             <Flex direction="col" spacing={0}>
               {title && (
-                <Heading as="h2" size="lg">
+                <Heading as="h2" size={description ? 'md' : 'lg'}>
                   {title}
                 </Heading>
               )}

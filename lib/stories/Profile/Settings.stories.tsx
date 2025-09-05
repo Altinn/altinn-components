@@ -51,38 +51,38 @@ const meta = {
 export default meta;
 
 export const DashboardSettings = () => {
+  const user = defaultAccounts[0];
   return (
-    <List size="sm">
+    <List size="sm" color="person">
       <SettingsItem
-        as="a"
-        href="?id=demo-profile--accounts-page"
         icon={HeartIcon}
-        title="Aktører, grupper og favoritter"
-        badge={{ label: "3 profiler" }}
-        linkIcon
-      />
-      <Divider as="li" />
-      <SettingsItem
-        as="a"
-        href="?id=demo-profile--contact-page"
-        icon={PersonRectangleIcon}
-        title="Kontaktinformasjon"
-        badge={{ label: "3 profiler" }}
-        linkIcon
-      />
-      <Divider as="li" />
-      <SettingsItem
+        title="Mine aktører"
+        value="2 favoritter, 14 virksomheter"
+        badge={{
+          variant: "text",
+          label: "Favoritter og grupper",
+        }}
         as="a"
         href="?id=demo-profile--alerts-page"
+        linkIcon
+      />
+      <Divider as="li" />
+      <SettingsItem
         icon={BellIcon}
-        title="Varslinger"
-        badge={{ label: "12 aktører" }}
+        title="Mine varslingsadresser"
+        value={user.email + ",  " + user.phone}
+        badge={{
+          variant: "text",
+          label: "Endre varslinger",
+        }}
+        as="a"
+        href="?id=demo-profile--alerts-page"
         linkIcon
       />
       <Divider as="li" />
       <SettingsItem
         icon={CogIcon}
-        title="Flere innstillinger"
+        title="Alle innstillinger"
         linkIcon
         as="a"
         href="?id=demo-profile--settings-page"
@@ -150,12 +150,7 @@ const AddressSettingsModal = ({ open, onClose }: SettingsModalProps) => {
       open={open}
       onClose={onClose}
     >
-      <TextareaField
-        label="Adresse"
-        value={user?.address}
-        size="sm"
-        readOnly
-      ></TextareaField>
+      <TextareaField label="Adresse" value={user?.address} size="sm" readOnly />
       <Typography size="sm">
         <p>
           Altinn bruker adressen din fra Folkeregisteret. Gå videre for å endre
@@ -315,16 +310,7 @@ export const LinkSettings = () => {
           as="a"
           href="?id=demo-profile--accounts-page"
           icon={HeartIcon}
-          title="Aktører, grupper og favoritter"
-          badge={{ label: "3 profiler" }}
-          linkIcon
-        />
-        <Divider as="li" />
-        <SettingsItem
-          as="a"
-          href="?id=demo-profile--contact-page"
-          icon={PersonRectangleIcon}
-          title="Kontaktinformasjon"
+          title="Mine aktører"
           badge={{ label: "3 profiler" }}
           linkIcon
         />
@@ -333,7 +319,7 @@ export const LinkSettings = () => {
           as="a"
           href="?id=demo-profile--alerts-page"
           icon={BellIcon}
-          title="Varslinger"
+          title="Mine varslinger"
           badge={{ label: "12 aktører" }}
           linkIcon
         />
@@ -443,7 +429,7 @@ export const ContactProfiles = () => {
   );
 };
 
-export const MoreSettings = () => {
+export const ViewSettings = () => {
   const [modalId, setModalId] = useState<string>("");
 
   const localeOptions: string[] = ["Bokmål", "Nynorsk", "English", "España"];
@@ -502,21 +488,21 @@ export const MoreSettings = () => {
       </SettingsModal>
       <List size="sm">
         <SettingsItem
-          icon={SunIcon}
-          title="Modus"
-          value={settings.mode}
-          linkIcon
-          as="button"
-          onClick={() => setModalId("mode")}
-        />
-        <Divider as="li" />
-        <SettingsItem
           icon={GlobeIcon}
           title="Språk/language"
           value={settings?.locale}
           linkIcon
           as="button"
           onClick={() => setModalId("locale")}
+        />
+        <Divider as="li" />
+        <SettingsItem
+          icon={SunIcon}
+          title="Modus"
+          value={settings.mode}
+          linkIcon
+          as="button"
+          onClick={() => setModalId("mode")}
         />
       </List>
     </>

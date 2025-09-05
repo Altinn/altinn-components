@@ -3,16 +3,16 @@ import { accounts, getAccountItems } from './';
 
 export const accountListGroups = {
   primary: {
-    title: 'Deg selv',
-  },
-  favourites: {
     title: 'Favoritter',
   },
+  favourites: {
+    //    title: 'Favoritter',
+  },
   groups: {
-    title: 'Grupper',
+    //    title: 'Grupper',
   },
   secondary: {
-    title: 'Andre kontoer',
+    title: 'Andre aktører',
   },
 };
 

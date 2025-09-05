@@ -1,6 +1,5 @@
 import * as SettingsStories from "./Admin/Settings.stories";
 import * as ActivityLogStories from "../components/ActivityLog/ActivityLog.stories";
-import { BellIcon, Buildings2Icon, CogIcon } from "@navikt/aksel-icons";
 
 import {
   Heading,
@@ -8,9 +7,6 @@ import {
   PageBase,
   Breadcrumbs,
   DashboardHeader,
-  List,
-  SettingsItem,
-  Divider,
   SettingsSection,
   Toolbar,
 } from "../components";
@@ -36,35 +32,7 @@ export const DashboardPage = () => {
         name={account?.name || "Company"}
         description={settings?.companyId}
       >
-        <List size="sm">
-          <SettingsItem
-            icon={Buildings2Icon}
-            title="Forretningsadresse"
-            value={settings?.address}
-            linkIcon
-            badge={<span data-size="xs">Endre</span>}
-            as="a"
-            href="/?path=/story/demo-profile--settings"
-          />
-          <Divider />
-          <SettingsItem
-            as="a"
-            href="/?path=/story/demo-profile--notifications"
-            icon={BellIcon}
-            title="Varslingsadresser"
-            value="kontakt@digdir.no, + 47 99999999"
-            badge={<span data-size="xs">Endre</span>}
-            linkIcon
-          />
-          <Divider />
-          <SettingsItem
-            icon={CogIcon}
-            title="Flere innstillinger"
-            linkIcon
-            as="a"
-            href="/?path=/story/demo-profile--settings"
-          />
-        </List>
+        <SettingsStories.DashboardSettings />
       </DashboardHeader>
     </Layout>
   );
@@ -148,21 +116,17 @@ export const SettingsPage = () => {
   });
   return (
     <Layout {...layout}>
-      <PageBase>
+      <PageBase color="company">
         <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">Innstillinger for {account?.name}</Heading>
         <Toolbar search={{ name: "search", placeholder: "Søk" }} />
-        <Heading size="lg">Kontaktinformasjon</Heading>
+        <Heading size="lg">Varslingsadresser for virksomheten</Heading>
         <SettingsSection>
-          <SettingsStories.PrimarySettings />
+          <SettingsStories.AlertSettings />
         </SettingsSection>
-        <Heading size="lg">Regnskapsfører og revisor</Heading>
+        <Heading size="lg">Virksomhetsopplysninger</Heading>
         <SettingsSection>
-          <SettingsStories.AccountantSettings />
-        </SettingsSection>
-        <Heading size="lg">Styremedlemmer</Heading>
-        <SettingsSection>
-          <SettingsStories.RoleSettings />
+          <SettingsStories.CompanySettings />
         </SettingsSection>
       </PageBase>
     </Layout>

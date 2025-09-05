@@ -4,7 +4,7 @@ import {
   HandshakeIcon,
   HeartFillIcon,
   HeartIcon,
-  HouseIcon,
+  HouseHeartIcon,
   InboxIcon,
   MobileIcon,
   PaperplaneIcon,
@@ -25,13 +25,13 @@ import {
   Flex,
   Heading,
   List,
-  Modal,
-  ModalBase,
-  ModalBody,
-  ModalHeader,
   Section,
   SettingsItem,
   type SettingsItemProps,
+  SettingsModal,
+  type SettingsModalProps,
+  TextField,
+  TextareaField,
   Toolbar,
   Typography,
 } from '..';
@@ -154,6 +154,41 @@ interface ModalProps {
   type?: string;
 }
 
+const AddressSettingsModal = ({ open, onClose }: SettingsModalProps) => {
+  const user = defaultAccounts[0];
+  return (
+    <SettingsModal icon={HouseHeartIcon} title="Endre adresse" open={open} onClose={onClose}>
+      <TextareaField label="Adresse" value={user?.address} size="sm" readOnly />
+      <Typography size="sm">
+        <p>Altinn bruker adressen din fra Folkeregisteret. Gå videre for å endre adresse.</p>
+      </Typography>
+      <ButtonGroup size="md">
+        <Button>Gå videre</Button>
+        <Button variant="outline">Avbryt</Button>
+      </ButtonGroup>
+    </SettingsModal>
+  );
+};
+
+const AlertSettingsModal = ({ open, onClose }: SettingsModalProps) => {
+  return (
+    <SettingsModal icon={BellIcon} title="Endre varslingsadresser" open={open} onClose={onClose}>
+      <TextField label="Mobiltelefon" value="99005599" size="sm" readOnly />
+      <TextField label="E-postadresse" value="mathias@hotmail.com" size="sm" readOnly />
+      <Typography size="sm">
+        <p>
+          Altin bruker kontaktinformasjon fra Kontakt- og reservasjonsregisteret, et felles kontaktregister for stat og
+          kommune. Gå videre for å endre.
+        </p>
+      </Typography>
+      <ButtonGroup size="md">
+        <Button>Gå videre</Button>
+        <Button variant="outline">Avbryt</Button>
+      </ButtonGroup>
+    </SettingsModal>
+  );
+};
+
 export const Collapsible = () => {
   const { toolbar, items, groups, expandedId, onToggle, onToggleFavourite, onSettingsChange } = useAccountList({
     accounts: defaultAccounts,
@@ -162,7 +197,6 @@ export const Collapsible = () => {
   const [modal, setModal] = useState<ModalProps>({});
 
   const onModal = (id: string, type: string) => {
-    console.log('XX', id);
     setModal({
       id,
       type,
@@ -209,28 +243,8 @@ export const Collapsible = () => {
     <Section spacing={6}>
       <Toolbar {...toolbar} />
       {items && <AccountList groups={groups} items={collapsibleItems as AccountListItemProps[]} />}
-      {modalId && modal?.type === 'contact' && (
-        <Modal open={true} onClose={onClose}>
-          <Typography>
-            <h1>Endre mobil og e-post</h1>
-            <p>Mobiltelefon og e-post endres i kontakt- og reservasjonsregisteret.</p>
-            <ButtonGroup>
-              <Button>Gå videre</Button>
-            </ButtonGroup>
-          </Typography>
-        </Modal>
-      )}
-      {modalId && modal?.type === 'address' && (
-        <Modal open={true} onClose={onClose}>
-          <Typography>
-            <h1>Endre adresse</h1>
-            <p>Adresseendring gjøres hos Skatteetaten i Folkeregisteret.</p>
-            <ButtonGroup>
-              <Button>Gå videre</Button>
-            </ButtonGroup>
-          </Typography>
-        </Modal>
-      )}{' '}
+      {modalId && modal?.type === 'contact' && <AlertSettingsModal open={true} onClose={onClose} />}
+      {modalId && modal?.type === 'address' && <AddressSettingsModal open={true} onClose={onClose} />}
       {modalId && modal?.type === 'groups' && (
         <AccountGroupsModal {...modalItem} items={items as AccountListItemProps[]} open={true} onClose={onClose} />
       )}
@@ -436,7 +450,7 @@ export const UserDetails = ({
         />
         <Divider as="li" />
         <SettingsItem
-          icon={HouseIcon}
+          icon={HouseHeartIcon}
           title="Adresse"
           value={address}
           badge={{ label: 'Endre adresse', variant: 'text' }}
@@ -505,10 +519,15 @@ const AccountModal = ({
   children,
 }: AccountModalProps) => {
   return (
-    <ModalBase open={open} onClose={onClose}>
-      <ModalHeader icon={icon} title={title as string} description={description as string} onClose={onClose} />
-      <ModalBody>{children}</ModalBody>
-    </ModalBase>
+    <SettingsModal
+      open={open}
+      onClose={onClose}
+      icon={icon}
+      title={title as string}
+      description={description as string}
+    >
+      {children}
+    </SettingsModal>
   );
 };
 

@@ -79,9 +79,10 @@ export const useAdminLayout = ({ accountId = 'diaspora', pageId = 'admin' }): Ad
   const settings = {
     companyId: '928914038',
     companyType: 'Forening/lag/innretning',
-    address: 'Høyenhallsvingen 16, 0667 Oslo',
+    address: 'c/o Paal Zandstra Krokeide, Høyenhallsvingen 16, 0667 Oslo',
     email: 'post@diasporabergensis.no',
     phone: '+47 99010203',
+    naceCode: '94.992 Aktiviteter i andre medlemsorganisasjoner ellers',
   };
 
   return {
