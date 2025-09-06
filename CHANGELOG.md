@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.38.13](https://github.com/Altinn/altinn-components/compare/v0.38.12...v0.38.13) (2025-09-06)
+
+
+### Bug Fixes
+
+* company settings stories ([#632](https://github.com/Altinn/altinn-components/issues/632)) ([647fece](https://github.com/Altinn/altinn-components/commit/647fecee66531939ce1abc3d040aa02a95491693))
+* profile and settings ([#630](https://github.com/Altinn/altinn-components/issues/630)) ([1ff8d76](https://github.com/Altinn/altinn-components/commit/1ff8d76f6c99f5624a63aec29417d11decc1c046))
+
 ## [0.38.12](https://github.com/Altinn/altinn-components/compare/v0.38.11...v0.38.12) (2025-09-04)
 
 
