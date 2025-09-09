@@ -1,13 +1,16 @@
+import { useState } from "react";
 import {
   BellIcon,
   Buildings2Icon,
-  GlobeIcon,
   PersonIcon,
   PersonSuitIcon,
   PaperplaneIcon,
   MobileIcon,
-  SunIcon,
-  PersonRectangleIcon,
+  CogIcon,
+  BriefcaseIcon,
+  GlobeIcon,
+  HardHatIcon,
+  PlusIcon,
 } from "@navikt/aksel-icons";
 import type { Meta } from "@storybook/react-vite";
 import { useAdminLayout } from "../../../examples";
@@ -16,7 +19,14 @@ import {
   SettingsSection,
   List,
   SettingsItem,
+  SettingsModal,
+  ButtonGroup,
+  Button,
   Typography,
+  TextField,
+  Fieldset,
+  type SettingsModalProps,
+  Legend,
 } from "../../components";
 
 const meta = {
@@ -28,58 +38,201 @@ const meta = {
 
 export default meta;
 
-export const PrimarySettings = () => {
+const EmailSettingsModal = ({ open, onClose }: SettingsModalProps) => {
   const { settings } = useAdminLayout({});
 
+  const [items, setItems] = useState<string[]>(
+    settings?.email ? [settings?.email] : []
+  );
+
+  const onAdd = (item: string) => {
+    setItems((prevState) => {
+      return [...prevState, item];
+    });
+  };
+
+  return (
+    <SettingsModal
+      icon={PaperplaneIcon}
+      title="Varslinger på e-post"
+      open={open}
+      onClose={onClose}
+    >
+      <Fieldset>
+        <Legend>Virksomhetens e-postadresser for varslinger:</Legend>
+        {items?.map((value) => {
+          return (
+            <TextField placeholder="Mobilnummer" value={value} size="sm" />
+          );
+        })}
+      </Fieldset>
+
+      <Button variant="outline" icon={PlusIcon} onClick={() => onAdd("")}>
+        Legg til flere
+      </Button>
+
+      <Typography size="sm">
+        <p>Altin bruker adressene til å varsle virksomheten om nytt innhold.</p>
+      </Typography>
+      <ButtonGroup size="md">
+        <Button>Lagre og avslutt</Button>
+        <Button variant="outline">Avbryt</Button>
+      </ButtonGroup>
+    </SettingsModal>
+  );
+};
+
+const PhoneSettingsModal = ({ open, onClose }: SettingsModalProps) => {
+  const [items, setItems] = useState<string[]>([""]);
+
+  const onAdd = (item: string) => {
+    setItems((prevState) => {
+      return [...prevState, item];
+    });
+  };
+
+  return (
+    <SettingsModal
+      icon={PaperplaneIcon}
+      title="Varslinger på SMS"
+      open={open}
+      onClose={onClose}
+    >
+      <Fieldset>
+        <Legend>Virksomhetens mobilnummer for varslinger på SMS:</Legend>
+        {items?.map((value) => {
+          return (
+            <TextField placeholder="Mobilnummer" value={value} size="sm" />
+          );
+        })}
+      </Fieldset>
+
+      <Button variant="outline" icon={PlusIcon} onClick={() => onAdd("")}>
+        Legg til flere
+      </Button>
+
+      <Typography size="sm">
+        <p>Altin bruker adressene til å varsle virksomheten om nytt innhold.</p>
+      </Typography>
+      <ButtonGroup size="md">
+        <Button>Lagre og avslutt</Button>
+        <Button variant="outline">Avbryt</Button>
+      </ButtonGroup>
+    </SettingsModal>
+  );
+};
+
+export const DashboardSettings = () => {
+  const { settings } = useAdminLayout({});
   return (
     <List size="sm">
       <SettingsItem
-        icon={{ svgElement: PaperplaneIcon }}
-        title="Varslinger på e-post"
-        value={[settings?.email, settings?.phone].join(", ")}
-        badge={<Typography size="xs">Endre</Typography>}
-        linkIcon
-      />
-      <SettingsItem
-        icon={{ svgElement: MobileIcon }}
-        title="SMS-varslinger"
-        badge={<Typography size="xs">Endre</Typography>}
-        linkIcon
-      />
-      <Divider as="li" />
-      <SettingsItem
-        icon={{ svgElement: Buildings2Icon }}
+        icon={Buildings2Icon}
         title="Forretningsadresse"
         value={settings?.address}
-        badge={<Typography size="xs">Endre hos brreg.no</Typography>}
         linkIcon
+        badge={<span data-size="xs">Endre på brreg.no</span>}
+        as="a"
+        href="/?path=/story/demo-profile--settings"
+      />
+      <Divider />
+      <SettingsItem
+        as="a"
+        href="/?path=/story/demo-profile--notifications"
+        icon={BellIcon}
+        title="Varslingsadresser for virksomheten"
+        value={[settings?.email, settings?.phone].join(", ")}
+        badge={<span data-size="xs">Endre</span>}
+        linkIcon
+      />
+      <Divider />
+      <SettingsItem
+        icon={CogIcon}
+        title="Flere innstillinger"
+        linkIcon
+        as="a"
+        href="/?path=/story/demo-profile--settings"
       />
     </List>
   );
 };
 
-export const SecondarySettings = () => {
+export const AlertSettings = () => {
+  const { settings } = useAdminLayout({});
+  const [openId, setOpenId] = useState<string>("");
+
+  return (
+    <>
+      <EmailSettingsModal
+        open={openId === "email"}
+        onClose={() => setOpenId("")}
+      />
+      <PhoneSettingsModal
+        open={openId === "phone"}
+        onClose={() => setOpenId("")}
+      />
+      <List size="sm">
+        <SettingsItem
+          icon={{ svgElement: PaperplaneIcon }}
+          title="Varslinger på e-post"
+          value={[settings?.email].join(", ")}
+          badge={{ label: "1 adresse" }}
+          as="button"
+          onClick={() => setOpenId("email")}
+          linkIcon
+        />
+        <Divider as="li" />
+        <SettingsItem
+          icon={{ svgElement: MobileIcon }}
+          title="Varslinger på SMS"
+          badge={{
+            variant: "text",
+            label: "Legg til",
+          }}
+          as="button"
+          onClick={() => setOpenId("phone")}
+          linkIcon
+        />
+      </List>
+    </>
+  );
+};
+
+export const CompanySettings = () => {
+  const { settings } = useAdminLayout({});
   return (
     <List>
       <SettingsItem
-        as="a"
-        href="/?path=/story/demo-profile--notifications"
-        icon={BellIcon}
-        title="Varslingsinngstillinger"
-        badge={{ label: "12 aktører" }}
+        icon={{ svgElement: Buildings2Icon }}
+        title="Organisasjonsnummer"
+        value={settings?.companyId}
+        badge={{ label: "Brreg.no", variant: "text" }}
         linkIcon
       />
       <Divider as="li" />
       <SettingsItem
-        icon={PersonRectangleIcon}
-        title="Kontaktprofiler"
-        badge={{ label: "3 profiler" }}
+        icon={{ svgElement: GlobeIcon }}
+        title="Forretningsadresse"
+        value={settings?.address}
+        badge={{ label: "Brreg.no", variant: "text" }}
         linkIcon
       />
       <Divider as="li" />
-      <SettingsItem icon={SunIcon} title="Modus: Lys" linkIcon />
-      <Divider />
-      <SettingsItem icon={GlobeIcon} title="Språk/language: Bokmål" linkIcon />
+      <SettingsItem
+        icon={{ svgElement: BriefcaseIcon }}
+        title="Organisasjonsform"
+        value={settings?.companyType}
+        badge={{ label: "Brreg.no", variant: "text" }}
+        linkIcon
+      />
+      <Divider as="li" />
+      <SettingsItem
+        icon={{ svgElement: HardHatIcon }}
+        title="Næringskode"
+        value={settings?.naceCode}
+        badge={{ label: "Brreg.no", variant: "text" }}
+        linkIcon
+      />
     </List>
   );
 };
@@ -91,7 +244,7 @@ export const AccountantSettings = () => {
         icon={{ svgElement: PersonSuitIcon }}
         title="Regnskapsfører"
         value="Rask regnskap AS"
-        badge={<Typography size="xs">Endre hos brreg.no</Typography>}
+        badge={{ label: "Brreg.no", variant: "text" }}
         linkIcon
       />
       <Divider as="li" />
@@ -99,7 +252,7 @@ export const AccountantSettings = () => {
         icon={{ svgElement: PersonSuitIcon }}
         title="Regnskapsfører"
         value="Rask regnskap AS"
-        badge={<Typography size="xs">Endre hos brreg.no</Typography>}
+        badge={{ label: "Brreg.no", variant: "text" }}
         linkIcon
       />
     </List>

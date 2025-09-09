@@ -63,13 +63,17 @@ export const AlertsPage = () => {
         <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">Mine varslinger</Heading>
         <Toolbar search={{ name: "search", placeholder: "Søk" }} />
-        <Heading size="lg">Primære varslingsadresser</Heading>
+        <Heading size="lg">Mine varslingsadresser</Heading>
         <SettingsSection>
           <SettingsStories.AlertSettings />
         </SettingsSection>
         <Heading size="lg">Varslinger per aktør</Heading>
         <SettingsSection>
           <AccountSettingsStories.ControlledValue />
+        </SettingsSection>
+        <Heading size="lg">Varslingsadresser i bruk</Heading>
+        <SettingsSection>
+          <SettingsStories.ContactProfiles />
         </SettingsSection>
       </PageBase>
     </Layout>
@@ -125,19 +129,23 @@ export const SettingsPage = () => {
   const { breadcrumbs, ...layout } = useProfileLayout({ pageId: "settings" });
   return (
     <Layout {...layout}>
-      <PageBase>
+      <PageBase color="person">
         <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">Innstillinger</Heading>
         <Toolbar
           search={{ name: "search", placeholder: "Søk i innstillinger" }}
         />
-        <Heading size="lg">Varslinger</Heading>
+        <Heading size="lg">Kontaktinformasjon</Heading>
         <SettingsSection>
-          <SettingsStories.LinkSettings />
+          <SettingsStories.ContactSettings />
+        </SettingsSection>
+        <Heading size="lg">Preferanser i Altinn</Heading>
+        <SettingsSection>
+          <SettingsStories.ViewSettings />
         </SettingsSection>
         <Heading size="lg">Flere innstillinger</Heading>
         <SettingsSection>
-          <SettingsStories.MoreSettings />
+          <SettingsStories.LinkSettings />
         </SettingsSection>
       </PageBase>
     </Layout>
@@ -150,7 +158,7 @@ export const ActivityLogPage = () => {
   });
   return (
     <Layout {...layout}>
-      <PageBase>
+      <PageBase color="person">
         <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">Aktivitetslogg</Heading>
         <ActivityLogStories.Controlled />

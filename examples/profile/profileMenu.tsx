@@ -1,4 +1,4 @@
-import { BellIcon, ClockDashedIcon, CogIcon, HeartIcon, PersonRectangleIcon } from '@navikt/aksel-icons';
+import { BellIcon, ClockDashedIcon, CogIcon, HeartIcon } from '@navikt/aksel-icons';
 import type { MenuItemProps, MenuProps } from '../../lib';
 
 export const profileMenuItems: MenuItemProps[] = [
@@ -23,13 +23,13 @@ export const profileMenuItems: MenuItemProps[] = [
     icon: BellIcon,
     title: 'Mine varslinger',
   },
+  /*
   {
     id: 'contact',
     groupId: '2',
     icon: PersonRectangleIcon,
     title: 'Kontaktinformasjon',
   },
-  /*
   {
     id: "users",
     groupId: "4",
