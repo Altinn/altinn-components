@@ -9,9 +9,5 @@ export interface SnackbarBaseProps {
 }
 
 export const SnackbarBase = ({ children }: SnackbarBaseProps) => {
-  return (
-    <section role="alert" className={styles.stack}>
-      {children}
-    </section>
-  );
+  return <section className={styles.stack}>{children}</section>;
 };
