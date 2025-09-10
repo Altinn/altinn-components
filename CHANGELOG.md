@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.38.13](https://github.com/Altinn/altinn-components/compare/v0.38.12...v0.38.13) (2025-09-10)
+
+
+### Bug Fixes
+
+* Added overflow/word wrapping to LayoutContent ([#629](https://github.com/Altinn/altinn-components/issues/629)) ([50a8f22](https://github.com/Altinn/altinn-components/commit/50a8f22db13a1567b31cd78e11e87927738a4db4))
+* Announce snackbar messages to screen readers ([#633](https://github.com/Altinn/altinn-components/issues/633)) ([9c34c7d](https://github.com/Altinn/altinn-components/commit/9c34c7ddf1a227652d9230c22d74e32e84bdb702))
+* company settings stories ([#632](https://github.com/Altinn/altinn-components/issues/632)) ([647fece](https://github.com/Altinn/altinn-components/commit/647fecee66531939ce1abc3d040aa02a95491693))
+* profile and settings ([#630](https://github.com/Altinn/altinn-components/issues/630)) ([1ff8d76](https://github.com/Altinn/altinn-components/commit/1ff8d76f6c99f5624a63aec29417d11decc1c046))
+* **testing:** adds data-testids to sidebar and account menu switch in toolbar for testing ([#635](https://github.com/Altinn/altinn-components/issues/635)) ([848f977](https://github.com/Altinn/altinn-components/commit/848f9779023ed5feb18192f3d7e1a567c5cafd84))
+
 ## [0.38.12](https://github.com/Altinn/altinn-components/compare/v0.38.11...v0.38.12) (2025-09-04)
 
 
