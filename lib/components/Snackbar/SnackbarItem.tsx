@@ -41,8 +41,8 @@ export const SnackbarItem = ({
   const Component = as || 'div';
 
   return (
-    <Component className={cx(styles.item, className)} data-color={color} {...rest}>
-      <Icon svgElement={icon} className={styles.icon} />
+    <Component className={cx(styles.item, className)} data-color={color} role="alert" {...rest}>
+      <Icon svgElement={icon} className={styles.icon} aria-hidden="true" />
       <div className={styles.content}>{message}</div>
       {dismissable && (
         <div className={styles.action}>
