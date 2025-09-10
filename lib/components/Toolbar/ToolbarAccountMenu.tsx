@@ -6,12 +6,14 @@ import { ToolbarFilterBase } from './ToolbarFilterBase';
 export interface ToolbarAccountMenuProps extends AccountMenuProps {
   id?: string;
   isVirtualized?: boolean;
+  buttonTestId?: string;
 }
 
 export const ToolbarAccountMenu = ({
   currentAccount,
   id = 'toolbar-accounts',
   onSelectAccount,
+  buttonTestId,
   ...rest
 }: ToolbarAccountMenuProps) => {
   const { currentId, toggleId, closeAll } = useRootContext();
@@ -20,7 +22,7 @@ export const ToolbarAccountMenu = ({
 
   return (
     <ToolbarFilterBase expanded={expanded}>
-      <ToolbarButton type="switch" onToggle={onToggle} active={!!currentAccount}>
+      <ToolbarButton type="switch" onToggle={onToggle} active={!!currentAccount} dataTestId={buttonTestId}>
         {currentAccount?.name}
       </ToolbarButton>
       <DrawerOrDropdown open={expanded} drawerTitle="Endre konto" onClose={closeAll}>
