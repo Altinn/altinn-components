@@ -16,6 +16,7 @@ export interface ToolbarButtonProps {
   children?: ReactNode;
   onToggle?: MouseEventHandler;
   onRemove?: MouseEventHandler;
+  dataTestId?: string;
 }
 
 export const ToolbarButton = ({
@@ -28,6 +29,7 @@ export const ToolbarButton = ({
   onToggle,
   onRemove,
   iconAltText,
+  dataTestId,
 }: ToolbarButtonProps) => {
   if (removable) {
     return (
@@ -64,6 +66,7 @@ export const ToolbarButton = ({
 
   return (
     <Button
+      dataTestId={dataTestId}
       variant={active ? 'solid' : 'outline'}
       size="xs"
       icon={ChevronUpDownIcon}

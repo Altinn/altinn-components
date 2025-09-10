@@ -27,6 +27,7 @@ export interface MenuItemBaseProps {
   expanded?: boolean;
   children?: ReactNode;
   onMouseEnter?: MouseEventHandler;
+  dataTestId?: string;
 }
 
 export const MenuItemBase = ({
@@ -48,6 +49,7 @@ export const MenuItemBase = ({
   children,
   active,
   onMouseEnter,
+  dataTestId,
 }: MenuItemBaseProps) => {
   const Component = as || 'a';
   return (
@@ -71,6 +73,7 @@ export const MenuItemBase = ({
       }}
       onClick={onClick}
       onMouseEnter={onMouseEnter}
+      data-testid={dataTestId}
     >
       <span className={styles.content}>{children}</span>
     </Component>

@@ -114,7 +114,7 @@ export const Toolbar = ({
 
   return (
     <ToolbarBase>
-      {accountMenu && <ToolbarAccountMenu {...accountMenu} />}
+      {accountMenu && <ToolbarAccountMenu buttonTestId="account-menu-button" {...accountMenu} />}
       {search && <ToolbarSearch {...search} />}
       {visibleFilters.map((item) => (
         <ToolbarFilter
