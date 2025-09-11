@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.38.14](https://github.com/Altinn/altinn-components/compare/v0.38.13...v0.38.14) (2025-09-11)
+
+
+### Bug Fixes
+
+* combo button closing all other contextual menus ([#637](https://github.com/Altinn/altinn-components/issues/637)) ([2f0a3ce](https://github.com/Altinn/altinn-components/commit/2f0a3ce135bb8c1573686e97870ddfaedd2c7791))
+
 ## [0.38.13](https://github.com/Altinn/altinn-components/compare/v0.38.12...v0.38.13) (2025-09-10)
 
 
