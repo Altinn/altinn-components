@@ -60,9 +60,11 @@ export const DialogActions = ({ items, maxItems = 2, id = 'dialog-actions', expa
         >
           {sortedItems[0].label}
         </ComboButton>
-        <DropdownBase open={expanded} onClose={closeAll}>
-          <Menu items={remainingItems} />
-        </DropdownBase>
+        {expanded && (
+          <DropdownBase open={expanded} onClose={closeAll}>
+            <Menu items={remainingItems} />
+          </DropdownBase>
+        )}
       </section>
     );
   }

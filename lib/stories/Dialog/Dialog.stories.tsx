@@ -318,7 +318,9 @@ export const StatusAttention = () => {
           ]}
         />
         <DialogActions
-          items={[{ id: "1", priority: "primary", label: "Til rapportering" }]}
+          items={[
+              { id: "1", priority: "primary", label: "Til rapportering" },
+          ]}
         />
       </DialogBody>
 
