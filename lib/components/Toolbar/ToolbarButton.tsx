@@ -1,11 +1,12 @@
 import { ChevronUpDownIcon, PlusIcon, XMarkIcon } from '@navikt/aksel-icons';
+import type { AriaAttributes } from 'react';
 import type { ElementType, MouseEventHandler, ReactNode } from 'react';
 import { Button, ComboButton } from '../Button';
 import styles from './toolbarButton.module.css';
 
 export type ToolbarButtonType = 'add' | 'select' | 'switch';
 
-export interface ToolbarButtonProps {
+export type ToolbarButtonProps = {
   as?: ElementType;
   type?: ToolbarButtonType;
   ariaLabel?: string;
@@ -17,7 +18,7 @@ export interface ToolbarButtonProps {
   onToggle?: MouseEventHandler;
   onRemove?: MouseEventHandler;
   dataTestId?: string;
-}
+} & AriaAttributes;
 
 export const ToolbarButton = ({
   type = 'select',
@@ -30,6 +31,7 @@ export const ToolbarButton = ({
   onRemove,
   iconAltText,
   dataTestId,
+  'aria-expanded': ariaExpanded,
 }: ToolbarButtonProps) => {
   if (removable) {
     return (
@@ -42,7 +44,9 @@ export const ToolbarButton = ({
         onLabelClick={onToggle}
         onIconClick={onRemove}
         iconAltText={iconAltText}
-        ariaLabel={ariaLabel || 'remove'}
+        ariaLabel={typeof children !== 'string' ? ariaLabel : undefined}
+        aria-expanded={ariaExpanded}
+        dataTestId={dataTestId}
       >
         {children}
       </ComboButton>
@@ -58,6 +62,8 @@ export const ToolbarButton = ({
         selected={selected}
         onClick={onToggle}
         ariaLabel={ariaLabel || 'add'}
+        aria-expanded={ariaExpanded}
+        dataTestId={dataTestId}
       >
         {children}
       </Button>
@@ -73,6 +79,7 @@ export const ToolbarButton = ({
       ariaLabel={ariaLabel}
       selected={selected}
       onClick={onToggle}
+      aria-expanded={ariaExpanded}
       reverse
     >
       {children}

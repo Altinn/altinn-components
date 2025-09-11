@@ -66,15 +66,16 @@
 
 .item:hover,
 .item[data-active="true"] {
-  background-color: var(--ds-color-surface-hover);
-}
-
-.item:active {
-  background-color: var(--ds-color-surface-active);
-}
-
-.item[data-selected="true"] {
   background-color: var(--ds-color-background-tinted);
+}
+
+.item[data-active="true"] {
+  outline: 2px solid black;
+}
+
+.item[data-selected="true"],
+.item:active {
+  background-color: var(--ds-color-surface-hover);
 }
 
 /* subtle bg */

@@ -1,5 +1,13 @@
 import { useState } from 'react';
-import { Autocomplete, type AutocompleteProps, SearchbarBase, SearchbarField, type SearchbarFieldProps } from '..';
+import {
+  Autocomplete,
+  type AutocompleteProps,
+  SearchbarBase,
+  SearchbarField,
+  type SearchbarFieldProps,
+  useRootContext,
+} from '..';
+import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
 
 export interface SearchbarProps extends SearchbarFieldProps {
   className?: string;
@@ -17,6 +25,8 @@ export const Searchbar = ({
   ...search
 }: SearchbarProps) => {
   const [inputHasFocus, setInputFocus] = useState<boolean>(false);
+  const { previousId, openId } = useRootContext();
+  const isDesktop = useIsDesktop();
 
   const onBlurCapture = (e: React.FocusEvent<HTMLDivElement>) => {
     const dataTestIdValue = e.target?.attributes?.getNamedItem('data-testid')?.value;
@@ -36,7 +46,11 @@ export const Searchbar = ({
         e.relatedTarget?.getAttribute('data-testid') !== 'search-button-close' &&
         e.relatedTarget?.getAttribute('data-testid') !== 'autocomplete-list')
     ) {
-      onClose?.();
+      if (isDesktop || previousId !== 'menu') {
+        onClose?.();
+      } else {
+        openId('menu');
+      }
     }
   };
 

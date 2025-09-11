@@ -41,15 +41,17 @@ export const MenuItemsVirtual = ({
   defaultItemVariant,
   defaultIconTheme,
   scrollRefStyles,
+  keyboardEvents,
 }: MenuItemsVirtualProps) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
   const { menu } = useMenu<MenuItemProps, MenuGroupProps>({
     items,
     groups,
     groupByKey: 'groupId',
-    keyboardEvents: false,
+    keyboardEvents,
+    ref: scrollRef,
   });
-
-  const scrollRef = useRef<HTMLDivElement>(null);
 
   const flatMenu = menu.flatMap((group, groupIndex) => {
     const groupProps: MenuGroupProps = group?.props || {};
@@ -58,10 +60,10 @@ export const MenuItemsVirtual = ({
     const items = group?.items?.filter((item) => !item.props?.hidden) || [];
 
     return [
-      ...(groupIndex > 0 || level > 0 ? [{ type: 'separator' }] : []),
-      ...(title ? [{ type: 'title', title }] : []),
+      ...(groupIndex > 0 || level > 0 ? [{ type: 'separator' as const }] : []),
+      ...(title ? [{ type: 'title' as const, title }] : []),
       ...items.map((item, index) => ({
-        type: 'item',
+        type: 'item' as const,
         itemProps: item.props || {},
         active: item.active,
         hasChildren: item.props?.expanded && item.props?.items,
@@ -83,12 +85,104 @@ export const MenuItemsVirtual = ({
   // biome-ignore lint/correctness/useExhaustiveDependencies: This hook does not specify all of its dependencies
   useEffect(() => {
     for (const virtualItem of virtualItems) {
-      const element = document.querySelector(`[data-index="${virtualItem.index}"]`);
+      const element =
+        (scrollRef.current?.querySelector(`[data-index="${virtualItem.index}"]`) as HTMLElement | null) ??
+        (scrollRef.current?.querySelector(`[dataindex="${virtualItem.index}"]`) as HTMLElement | null) ??
+        (scrollRef.current?.querySelector(`[dataIndex="${virtualItem.index}"]`) as HTMLElement | null);
       if (element) {
         virtualizer.measureElement(element);
       }
     }
   }, [virtualItems]);
+
+  // --- keyboard-only neighbor-aware auto scroll (UP/DOWN) ---
+  const lastInputWasKeyboardRef = useRef(false);
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        lastInputWasKeyboardRef.current = true;
+      }
+    };
+    const onMouseLike = () => {
+      lastInputWasKeyboardRef.current = false;
+    };
+
+    document.addEventListener('keydown', onKeyDown, true);
+
+    const scroller = scrollRef.current;
+    scroller?.addEventListener('wheel', onMouseLike, { passive: true });
+    scroller?.addEventListener('mousedown', onMouseLike, true);
+    scroller?.addEventListener('mousemove', onMouseLike, true);
+    scroller?.addEventListener('touchstart', onMouseLike, { passive: true });
+
+    return () => {
+      document.removeEventListener('keydown', onKeyDown, true);
+      scroller?.removeEventListener('wheel', onMouseLike as EventListener);
+      scroller?.removeEventListener('mousedown', onMouseLike as EventListener);
+      scroller?.removeEventListener('mousemove', onMouseLike as EventListener);
+      scroller?.removeEventListener('touchstart', onMouseLike as EventListener);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!keyboardEvents) return;
+    if (!lastInputWasKeyboardRef.current) return;
+
+    const container = scrollRef.current;
+    if (!container) return;
+
+    const PAD = 6;
+
+    const targetIndex = flatMenu.findIndex((entry) => entry.type === 'item' && entry.active);
+    if (targetIndex < 0) return;
+
+    const getRow = (i: number) =>
+      (container.querySelector<HTMLElement>(`[data-index="${i}"]`) ||
+        container.querySelector<HTMLElement>(`[dataindex="${i}"]`) ||
+        container.querySelector<HTMLElement>(`[dataIndex="${i}"]`)) ??
+      null;
+
+    const activeEl = getRow(targetIndex);
+
+    if (!activeEl) {
+      virtualizer.scrollToIndex(targetIndex, { align: 'auto' });
+      lastInputWasKeyboardRef.current = false;
+      return;
+    }
+
+    const contRect = container.getBoundingClientRect();
+    const activeRect = activeEl.getBoundingClientRect();
+
+    const prevEl = getRow(targetIndex - 1);
+    const nextEl = getRow(targetIndex + 1);
+
+    if (nextEl) {
+      const nextRect = nextEl.getBoundingClientRect();
+      if (nextRect.bottom > contRect.bottom) {
+        container.scrollTop += nextRect.bottom - contRect.bottom + PAD;
+        lastInputWasKeyboardRef.current = false;
+        return;
+      }
+    }
+
+    if (prevEl) {
+      const prevRect = prevEl.getBoundingClientRect();
+      if (prevRect.top < contRect.top) {
+        container.scrollTop -= contRect.top - prevRect.top + PAD;
+        lastInputWasKeyboardRef.current = false;
+        return;
+      }
+    }
+
+    if (activeRect.top < contRect.top + PAD) {
+      container.scrollTop -= contRect.top + PAD - activeRect.top;
+    } else if (activeRect.bottom > contRect.bottom - PAD) {
+      container.scrollTop += activeRect.bottom - (contRect.bottom - PAD);
+    }
+
+    lastInputWasKeyboardRef.current = false;
+  }, [flatMenu, keyboardEvents, virtualizer]);
 
   return (
     <MenuList>
@@ -120,7 +214,7 @@ export const MenuItemsVirtual = ({
                     variant={entry.itemProps.variant || defaultItemVariant}
                     iconTheme={entry.itemProps.iconTheme || defaultIconTheme}
                     active={entry.active}
-                    tabIndex={entry.itemProps.disabled ? -1 : 0}
+                    tabIndex={entry.itemProps.disabled || keyboardEvents ? -1 : 0}
                   />
                 )}
               </MenuListItem>

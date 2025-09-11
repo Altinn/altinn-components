@@ -9,6 +9,7 @@ export interface ButtonProps extends Partial<ButtonBaseProps> {
   loading?: boolean;
   label?: string;
   labelSize?: ButtonSize;
+  autoFocus?: boolean;
 }
 
 export const Button = ({

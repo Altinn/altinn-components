@@ -18,8 +18,8 @@ importers:
         specifier: ^1.0.6
         version: 1.0.6
       '@navikt/aksel-icons':
-        specifier: ^7.22.0
-        version: 7.22.0
+        specifier: ^7.30.1
+        version: 7.30.1
       '@tanstack/react-virtual':
         specifier: ^3.13.9
         version: 3.13.9(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -325,8 +325,8 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
 
-  '@babel/runtime@7.27.1':
-    resolution: {integrity: sha512-1x3D2xEk2fRo3PAhwQwu5UubzgiVWSXTBfWpVd2Mx2AzRqJuDJCsgaDVZ7HB5iGzDW1Hl1sWN2mFyKjmR9uAog==}
+  '@babel/runtime@7.28.4':
+    resolution: {integrity: sha512-Q/N6JNWvIvPnLDvjlE1OUBLPQHH6l3CltCEsHIujp45zQUSSh8K+gHnaEX45yAT1nyngnINhvWtzN+Nb9D8RAQ==}
     engines: {node: '>=6.9.0'}
 
   '@babel/template@7.27.2':
@@ -858,8 +858,8 @@ packages:
   '@microsoft/tsdoc@0.15.1':
     resolution: {integrity: sha512-4aErSrCR/On/e5G2hDP0wjooqDdauzEbIq8hIkIe5pXV0rtWJZvdCEKL0ykZxex+IxIwBp0eGeV48hQN07dXtw==}
 
-  '@navikt/aksel-icons@7.22.0':
-    resolution: {integrity: sha512-1hCTk4/zKjYD0pfvrHYOqQmP0r+8XyRG8tenSSVAtnOlyEYvWfUdQwczfGv0VbjYp/UPaSQbkWhpj5z48KF3SA==}
+  '@navikt/aksel-icons@7.30.1':
+    resolution: {integrity: sha512-y0/3btgxqivn+6Blt33TpM9nQgeNe6qOAeSRUDSOuCwu8MsJUEfhOhm2jz7/ei/QoBAHIH7tjmjlJmGgZNEWHw==}
 
   '@neoconfetti/react@1.0.0':
     resolution: {integrity: sha512-klcSooChXXOzIm+SE5IISIAn3bYzYfPjbX7D7HoqZL84oAfgREeSg5vSIaSFH+DaGzzvImTyWe1OyrJ67vik4A==}
@@ -3866,7 +3866,7 @@ snapshots:
       '@babel/core': 7.27.1
       '@babel/helper-plugin-utils': 7.27.1
 
-  '@babel/runtime@7.27.1': {}
+  '@babel/runtime@7.28.4': {}
 
   '@babel/template@7.27.2':
     dependencies:
@@ -3946,7 +3946,7 @@ snapshots:
     dependencies:
       '@floating-ui/dom': 1.7.0
       '@floating-ui/react': 0.26.23(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@navikt/aksel-icons': 7.22.0
+      '@navikt/aksel-icons': 7.30.1
       '@radix-ui/react-slot': 1.2.3(@types/react@19.1.5)(react@19.1.0)
       '@tanstack/react-virtual': 3.13.9(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@u-elements/u-datalist': 0.1.5
@@ -4387,7 +4387,7 @@ snapshots:
 
   '@microsoft/tsdoc@0.15.1': {}
 
-  '@navikt/aksel-icons@7.22.0': {}
+  '@navikt/aksel-icons@7.30.1': {}
 
   '@neoconfetti/react@1.0.0': {}
 
@@ -4763,7 +4763,7 @@ snapshots:
   '@testing-library/dom@10.4.0':
     dependencies:
       '@babel/code-frame': 7.27.1
-      '@babel/runtime': 7.27.1
+      '@babel/runtime': 7.28.4
       '@types/aria-query': 5.0.4
       aria-query: 5.3.0
       chalk: 4.1.2

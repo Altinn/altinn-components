@@ -29,6 +29,13 @@ export const MenuSearch = ({
       onClear={onClear}
       clearButtonAltText={clearButtonAltText}
       className={styles.field}
+      autoComplete="off"
+      autoFocus={true}
+      onKeyDown={(e) => {
+        if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+          e.preventDefault();
+        }
+      }}
     />
   );
 };
