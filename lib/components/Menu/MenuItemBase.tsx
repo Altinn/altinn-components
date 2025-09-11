@@ -1,7 +1,17 @@
 import cx from 'classnames';
-import type { ElementType, KeyboardEvent, KeyboardEventHandler, MouseEventHandler, ReactNode } from 'react';
+import {
+  type ElementType,
+  type KeyboardEvent,
+  type KeyboardEventHandler,
+  type MouseEventHandler,
+  type ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import type { Color } from '..';
 import styles from './menuItemBase.module.css';
+import { HTML } from 'mdast';
 
 export type MenuItemSize = 'sm' | 'md' | 'lg';
 export type MenuItemColor = Color;
@@ -52,6 +62,14 @@ export const MenuItemBase = ({
   dataTestId,
 }: MenuItemBaseProps) => {
   const Component = as || 'a';
+  const ref = useRef<HTMLDivElement>(null);
+
+  /*useEffect(() => {
+    if (active) {
+      ref.current?.focus();
+    }
+  }, [active]);*/
+
   return (
     <Component
       tabIndex={disabled ? '-1' : (tabIndex ?? 0)}
@@ -74,6 +92,7 @@ export const MenuItemBase = ({
       onClick={onClick}
       onMouseEnter={onMouseEnter}
       data-testid={dataTestId}
+      ref={ref}
     >
       <span className={styles.content}>{children}</span>
     </Component>

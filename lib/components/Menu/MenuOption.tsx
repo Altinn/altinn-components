@@ -19,6 +19,7 @@ export interface MenuOptionProps extends MenuItemBaseProps {
   disabled?: boolean;
   onChange?: ChangeEventHandler;
   type?: MenuOptionType;
+  hidden?: boolean;
 }
 
 export const MenuOption = ({
@@ -37,7 +38,7 @@ export const MenuOption = ({
 }: MenuOptionProps) => {
   return (
     <MenuItemBase disabled={disabled} selected={checked} size={size} as="label" {...rest}>
-      <Input size="xs" name={name} value={value} type={type} checked={checked} onChange={onChange} />
+      <Input size="xs" name={name} value={value} type={type} checked={checked} onChange={onChange} tabIndex={-1} />
       <MenuItemLabel title={label} description={description} size={size} badge={badge} />
     </MenuItemBase>
   );

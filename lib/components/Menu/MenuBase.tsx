@@ -14,6 +14,7 @@ export interface MenuBaseProps {
   color?: MenuColor;
   className?: string;
   children?: ReactNode;
+  ref?: React.Ref<HTMLUListElement>;
 }
 
 export interface MenuListProps {
@@ -39,10 +40,10 @@ export interface MenuListItemProps {
   onMouseLeave?: MouseEventHandler;
 }
 
-export const MenuBase = ({ as = 'nav', color, variant, className, children }: MenuBaseProps) => {
+export const MenuBase = ({ as = 'nav', color, variant, className, children, ref }: MenuBaseProps) => {
   const Component = as;
   return (
-    <Component className={cx(styles.menu, className)} data-color={color} data-variant={variant}>
+    <Component className={cx(styles.menu, className)} data-color={color} data-variant={variant} ref={ref}>
       {children}
     </Component>
   );
