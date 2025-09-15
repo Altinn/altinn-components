@@ -2,9 +2,6 @@ import type { Meta } from '@storybook/react-vite';
 import { Flex } from '..';
 import type { LayoutProps } from '../';
 import { footer, header, inboxMenu, skipLink, useLayout } from '../../../examples';
-
-import { useState } from 'react';
-import { Banner } from '../Banner';
 import { Layout } from './Layout';
 
 const meta = {
@@ -61,25 +58,5 @@ export const Fullscreen = (args: LayoutProps) => {
     <Layout {...layout} theme="default" sidebar={undefined}>
       {args.children}
     </Layout>
-  );
-};
-
-export const WithBanner = (args: LayoutProps) => {
-  const layout = useLayout(args);
-  const [showBanner, setShowBanner] = useState<boolean>(true);
-
-  return (
-    <>
-      {showBanner && (
-        <Banner
-          text="Velkommen til vår nye beta. Vi jobber fortsatt med å utvikling, så alt er ennå ikke på plass og det kan være noen feil her og der. Løsningen er under testing og vil bare bli bedre. Takk for tålmodigheten og ha en fin dag!"
-          color="warning"
-          onClose={() => setShowBanner(false)}
-        />
-      )}
-      <Layout {...layout} theme="default">
-        {args.children}
-      </Layout>
-    </>
   );
 };
