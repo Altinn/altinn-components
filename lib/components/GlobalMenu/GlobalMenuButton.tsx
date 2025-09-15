@@ -41,7 +41,14 @@ export const GlobalMenuButton = ({
     return (
       <ButtonBase {...buttonProps} as={as} variant={variant} color={color} className={cx(styles.button, className)}>
         <ButtonLabel>{label}</ButtonLabel>
-        <ButtonIcon className={styles.avatar} icon={{ type: currentAccount.type, name: currentAccount.name }} />
+        <ButtonIcon
+          className={styles.avatar}
+          icon={{
+            type: currentAccount.type,
+            name: currentAccount.name,
+            outline: true,
+          }}
+        />
         {badge && <Badge {...badge} className={styles.badge} />}
       </ButtonBase>
     );
