@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.38.15](https://github.com/Altinn/altinn-components/compare/v0.38.14...v0.38.15) (2025-09-15)
+
+
+### Bug Fixes
+
+* add outline to globalMenu button avatar ([#640](https://github.com/Altinn/altinn-components/issues/640)) ([75c4333](https://github.com/Altinn/altinn-components/commit/75c4333904c8990004475ea6a28342d64f1eb3ef))
+* unwanted data-active attribution for elemenets without keyboard events ([#642](https://github.com/Altinn/altinn-components/issues/642)) ([0c11eba](https://github.com/Altinn/altinn-components/commit/0c11ebaeb5964ae199de06d6da6eb3200f2e7b59))
+
 ## [0.38.14](https://github.com/Altinn/altinn-components/compare/v0.38.13...v0.38.14) (2025-09-11)
 
 
