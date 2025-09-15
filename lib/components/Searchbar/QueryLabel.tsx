@@ -1,5 +1,6 @@
 import styles from './queryLabel.module.css';
 export type QueryItemType = 'search' | 'filter';
+export type QueryItemSize = 'sm' | 'xs';
 
 export interface QueryItemProps {
   type?: QueryItemType;
@@ -17,11 +18,12 @@ export const QueryItem = ({ type = 'search', label }: QueryItemProps) => {
 
 export interface QueryLabelProps {
   params?: QueryItemProps[];
+  size?: QueryItemSize;
 }
 
-export const QueryLabel = ({ params = [] }: QueryLabelProps) => {
+export const QueryLabel = ({ params = [], size = 'sm' }: QueryLabelProps) => {
   return (
-    <div className={styles.label}>
+    <div className={styles.label} data-size={size}>
       {params.map((item, index) => (
         <div className={styles.group} key={index}>
           <QueryItem {...item} />

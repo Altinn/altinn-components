@@ -1,6 +1,6 @@
-import { BellIcon } from '@navikt/aksel-icons';
+import { BellIcon, MagnifyingGlassIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { List, SettingsItem } from '..';
+import { Button, List, QueryLabel, SettingsItem } from '..';
 const meta = {
   title: 'Settings/SettingsItem',
   component: SettingsItem,
@@ -80,5 +80,48 @@ export const Person: Story = {
     badge: {
       label: '6 profiler',
     },
+  },
+};
+
+export const SavedSearch: Story = {
+  args: {
+    icon: MagnifyingGlassIcon,
+    label: (
+      <QueryLabel
+        size="sm"
+        params={[
+          { type: 'search', label: 'skatt' },
+          { type: 'filter', label: 'Krever handling' },
+          { type: 'filter', label: 'Ikke sett' },
+        ]}
+      />
+    ),
+    controls: (
+      <Button size="xs" variant="outline">
+        Endre
+      </Button>
+    ),
+  },
+};
+
+export const SavedSearchWithTitle: Story = {
+  args: {
+    icon: MagnifyingGlassIcon,
+    title: 'Viktige dialoger om skatt',
+    description: (
+      <QueryLabel
+        size="xs"
+        params={[
+          { type: 'search', label: 'skatt' },
+          { type: 'filter', label: 'Krever handling' },
+          { type: 'filter', label: 'Ikke sett' },
+        ]}
+      />
+    ),
+    controls: (
+      <Button size="xs" variant="outline">
+        Endre
+      </Button>
+    ),
   },
 };

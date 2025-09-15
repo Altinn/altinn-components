@@ -3,6 +3,8 @@ import * as BetaStories from "./Beta/Beta.stories";
 
 import {
   BookmarksSection,
+  BookmarksSettingsSection,
+  type BookmarksSettingsSectionProps,
   Dialog,
   DialogList,
   Layout,
@@ -566,7 +568,7 @@ export const DialogTransmissions = () => {
   );
 };
 
-export const BookmarksPage = () => {
+export const BookmarksBackupPage = () => {
   const { layout, toolbar } = useInbox({
     pageId: "bookmarks",
   });
@@ -576,6 +578,23 @@ export const BookmarksPage = () => {
       <PageBase margin="page">
         <Toolbar {...toolbar} />
         <BookmarksSection {...bookmarks} />
+      </PageBase>
+    </Layout>
+  );
+};
+
+export const BookmarksPage = () => {
+  const { layout, toolbar } = useInbox({
+    pageId: "bookmarks",
+  });
+  const bookmarks = useBookmarks();
+  return (
+    <Layout {...layout}>
+      <PageBase margin="page">
+        <Toolbar {...toolbar} />
+        <BookmarksSettingsSection
+          {...(bookmarks as BookmarksSettingsSectionProps)}
+        />
       </PageBase>
     </Layout>
   );

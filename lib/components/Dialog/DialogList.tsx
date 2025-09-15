@@ -20,7 +20,7 @@ export const DialogList = ({ items, groups = {}, sortGroupBy, highlightWords, is
   });
 
   return (
-    <Section spacing={3} margin="section" aria-busy={isLoading}>
+    <Section spacing={6} aria-busy={isLoading}>
       {menu?.map((group, groupIndex) => {
         const groupProps = group.props || {};
 

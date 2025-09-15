@@ -1,4 +1,5 @@
 import { Section, type SectionProps } from '..';
+import styles from './settingsSection.module.css';
 
 export interface SettingsSectionProps extends SectionProps {
   as?: SectionProps['as'];
@@ -19,7 +20,16 @@ export const SettingsSection = ({
   children,
 }: SettingsSectionProps) => {
   return (
-    <Section as={as} size={size} color={color} theme={theme} padding={padding} spacing={spacing} shadow={shadow}>
+    <Section
+      as={as}
+      size={size}
+      color={color}
+      theme={theme}
+      padding={padding}
+      spacing={spacing}
+      shadow={shadow}
+      className={styles.section}
+    >
       {children}
     </Section>
   );

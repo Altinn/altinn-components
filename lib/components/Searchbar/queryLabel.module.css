@@ -1,4 +1,17 @@
 .label {
+  --dsc-item-font-size: 0.875rem;
+  --dsc-item-padding-x: 0.5em;
+  --dsc-item-padding-y: 0.25em;
+}
+
+.label[data-size="xs"] {
+  --dsc-item-font-size: 0.75rem;
+  --dsc-item-padding-x: 0.25em;
+  --dsc-item-padding-y: 0;
+}
+
+.label {
+  font-size: var(--dsc-item-font-size);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -17,7 +30,6 @@
 }
 
 .item {
-  font-size: 0.875em;
   display: block;
   overflow: hidden;
 }
@@ -26,7 +38,7 @@
   background-color: transparent;
   font-weight: 500;
   border-bottom: 1px solid;
-  padding: 0.25em 0;
+  padding: var(--dsc-item-padding-y) 0;
 }
 
 .item[data-type="search"]:before {
@@ -41,6 +53,6 @@
   background-color: transparent;
   border: 1px solid;
   font-weight: 500;
-  padding: 0.25em 0.5em;
+  padding: var(--dsc-item-padding-y) var(--dsc-item-padding-x);
   border-radius: 2px;
 }

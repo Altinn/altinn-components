@@ -67,13 +67,12 @@ export const AlertsPage = () => {
         <SettingsSection>
           <SettingsStories.AlertSettings />
         </SettingsSection>
+        <SettingsSection>
+          <SettingsStories.ContactProfiles />
+        </SettingsSection>
         <Heading size="lg">Varslinger per aktør</Heading>
         <SettingsSection>
           <AccountSettingsStories.ControlledValue />
-        </SettingsSection>
-        <Heading size="lg">Varslingsadresser i bruk</Heading>
-        <SettingsSection>
-          <SettingsStories.ContactProfiles />
         </SettingsSection>
       </PageBase>
     </Layout>
