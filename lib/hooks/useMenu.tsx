@@ -78,9 +78,16 @@ export const useMenu = <T, V>({
         items: groupItems.map((item) => ({
           menuIndex: flatItems.indexOf(item),
           active: activeIndex === flatItems.indexOf(item),
-          onMouseEnter: () => {
-            setActiveIndex(flatItems.indexOf(item));
-          },
+          onMouseEnter: keyboardEvents
+            ? () => {
+                setActiveIndex(flatItems.indexOf(item));
+              }
+            : undefined,
+          onMouseLeave: keyboardEvents
+            ? () => {
+                setActiveIndex(-1);
+              }
+            : undefined,
           props: item,
         })),
         props: {
