@@ -8,7 +8,7 @@ export type ButtonVariant = 'solid' | 'tinted' | 'outline' | 'dotted' | 'text' |
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'custom';
 export type ButtonColor = Color | 'inherit';
 
-export interface ButtonBaseProps extends React.HTMLAttributes<HTMLButtonElement> {
+export interface ButtonBaseProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Change the default rendered element for the one passed as a child, merging their props and behavior.
    * @default false
