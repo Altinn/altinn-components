@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.38.16](https://github.com/Altinn/altinn-components/compare/v0.38.15...v0.38.16) (2025-09-16)
+
+
+### Bug Fixes
+
+* **props:** Make ButtonBaseProps extend React.ButtonHTMLAttributes&lt;HTMLButtonElement&gt; which adds button-specific props like type, disabled, form ... ([#644](https://github.com/Altinn/altinn-components/issues/644)) ([18c6f31](https://github.com/Altinn/altinn-components/commit/18c6f31d5197025db472fb13e45aeed063def729))
+
 ## [0.38.15](https://github.com/Altinn/altinn-components/compare/v0.38.14...v0.38.15) (2025-09-15)
 
 
