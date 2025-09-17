@@ -31,6 +31,7 @@ export const SettingsItem = ({
   value,
   description,
   children,
+  highlightWords,
   ...props
 }: SettingsItemProps) => {
   const ariaLabel = props.ariaLabel || getAriaLabelFromTitle(title);
@@ -38,7 +39,13 @@ export const SettingsItem = ({
   return (
     <ListItemBase className={styles.item} color={color} size={size} expanded={expanded}>
       <ListItemHeader {...props} ariaLabel={ariaLabel} className={styles.header} icon={icon}>
-        <ListItemLabel className={styles.label} title={title} value={value} description={description}>
+        <ListItemLabel
+          highlightWords={highlightWords}
+          className={styles.label}
+          title={title}
+          value={value}
+          description={description}
+        >
           {label}
         </ListItemLabel>
       </ListItemHeader>

@@ -1,12 +1,16 @@
 .item {
   --dsc-item-px: 0;
   --dsc-item-py: 0;
-  --dsc-item-height: 2rem;
+  --dsc-item-height: 3rem;
   --dsc-item-background: transparent;
   --dsc-item-background-hover: none;
   --dsc-item-outline-color: transparent;
   --dsc-item-border-color: transparent;
   box-shadow: none;
+}
+
+.item + [aria-hidden] {
+  margin-block: 0;
 }
 
 .item + .item {
@@ -15,4 +19,15 @@
 
 .label {
   margin: 0;
+}
+
+.header {
+  width: auto;
+  padding: 0 0.5rem;
+  margin: 0 -0.5rem;
+}
+
+.header mark {
+  background-color: transparent;
+  text-decoration: underline;
 }

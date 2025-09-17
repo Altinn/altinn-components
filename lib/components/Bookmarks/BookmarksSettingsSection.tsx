@@ -39,7 +39,8 @@ export interface BookmarksSettingsSectionProps {
   items: EditableBookmarkSettingsItemProps[];
   untitled?: string;
   expandedId?: string;
-  onToggle?: (id: string) => void;
+  onEdit?: (id: string) => void;
+  onDelete?: (id: string) => void;
   loading?: boolean;
   titleField?: TextFieldProps;
 }
@@ -53,7 +54,8 @@ export const BookmarksSettingsSection = ({
 
   titleField,
   expandedId,
-  onToggle,
+  onEdit,
+  onDelete,
 }: BookmarksSettingsSectionProps) => {
   const modalProps = expandedId && items?.find((item) => item.id === expandedId);
 
@@ -78,7 +80,8 @@ export const BookmarksSettingsSection = ({
                     {...item}
                     key={item.id}
                     loading={loading || item.loading}
-                    onToggle={() => onToggle?.(item.id)}
+                    onEdit={() => onEdit?.(item.id)}
+                    onDelete={() => onDelete?.(item.id)}
                     expanded={expandedId === item.id}
                   />
                 </>
@@ -90,7 +93,7 @@ export const BookmarksSettingsSection = ({
       {modalProps && (
         <BookmarksSettingsModal
           open={true}
-          onClose={() => onToggle?.('')}
+          onClose={() => onEdit?.('')}
           untitled={untitled}
           titleField={titleField}
           title={modalProps?.title as string}

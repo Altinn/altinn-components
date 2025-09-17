@@ -14,8 +14,10 @@ export interface BookmarksSettingsItemProps extends SettingsItemProps {
   params?: QueryItemProps[];
   /** Context menu */
   contextMenu?: ContextMenuProps;
-  /** Toggle function */
-  onToggle?: () => void;
+  /** Edit function */
+  onEdit?: () => void;
+  /** Delete function */
+  onDelete?: () => void;
 }
 
 export const BookmarksSettingsItem = ({
@@ -23,7 +25,8 @@ export const BookmarksSettingsItem = ({
   loading,
   title,
   params,
-  onToggle,
+  onEdit,
+  onDelete,
   contextMenu,
   ...rest
 }: BookmarksSettingsItemProps) => {
@@ -33,12 +36,12 @@ export const BookmarksSettingsItem = ({
       {
         icon: PencilIcon,
         title: 'Rediger tittel',
-        onClick: onToggle,
+        onClick: onEdit,
       },
       {
         icon: TrashIcon,
         title: 'Slett søk',
-        onClick: onToggle,
+        onClick: onDelete,
       },
     ],
   };
@@ -54,20 +57,6 @@ export const BookmarksSettingsItem = ({
       label={!title && !loading && <QueryLabel params={params} />}
       controls={applicableContextMenu && <ContextMenu {...applicableContextMenu} />}
       linkIcon
-      /*
-      controls={
-        onToggle && (
-          <Button
-            size="xs"
-            variant="outline"
-            onClick={onToggle}
-            icon={PencilIcon}
-          >
-            Endre
-          </Button>
-        )
-      }
-        */
     />
   );
 };
