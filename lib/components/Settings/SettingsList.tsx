@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { Divider, List, SettingsItem, type SettingsItemProps } from '..';
+import { Divider, Flex, Heading, List, SettingsItem, type SettingsItemProps, SettingsSection } from '..';
 
 export interface SettingsGroupProps {
   title?: string;
@@ -28,34 +28,40 @@ export const SettingsList = ({ items, groups }: SettingsListProps) => {
       ?.filter((group) => group.items.length > 0);
 
     return (
-      <>
-        {groupedItems.map((group, index) => {
+      <Flex as="div" spacing="page" direction="col">
+        {groupedItems.map((group) => {
           return (
-            <List size="sm" key={group.groupId}>
-              {index > 0 && <Divider />}
-              {group.items.map((item, index) => (
-                <Fragment key={item.id}>
-                  {index > 0 && <Divider />}
-                  <SettingsItem {...item} />
-                </Fragment>
-              ))}
-            </List>
+            <Fragment key={group.groupId}>
+              {group?.title && <Heading size="lg">{group?.title}</Heading>}
+              <SettingsSection>
+                <List size="sm">
+                  {group.items.map((item, index) => (
+                    <Fragment key={item.id}>
+                      {index > 0 && <Divider />}
+                      <SettingsItem {...item} />
+                    </Fragment>
+                  ))}
+                </List>
+              </SettingsSection>
+            </Fragment>
           );
         })}
-      </>
+      </Flex>
     );
   }
 
   return (
-    <List size="sm">
-      {items
-        .filter((item) => !item?.hidden)
-        .map((item, index) => (
-          <Fragment key={item.id}>
-            {index > 0 && <Divider />}
-            <SettingsItem {...item} />
-          </Fragment>
-        ))}
-    </List>
+    <SettingsSection>
+      <List size="sm">
+        {items
+          .filter((item) => !item?.hidden)
+          .map((item, index) => (
+            <Fragment key={item.id}>
+              {index > 0 && <Divider />}
+              <SettingsItem {...item} />
+            </Fragment>
+          ))}
+      </List>
+    </SettingsSection>
   );
 };

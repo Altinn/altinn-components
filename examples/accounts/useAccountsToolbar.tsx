@@ -34,12 +34,12 @@ export const accountTypeFilter: ToolbarFilterProps = {
 
 export const accountListFilters = [accountTypeFilter];
 
-interface UseAccountListToolbar extends ToolbarProps {
+interface UseAccountsToolbar extends ToolbarProps {
   results: AccountDataListProps;
   active: boolean;
 }
 
-export const useAccountListToolbar = (items?: AccountListItemProps[]): UseAccountListToolbar => {
+export const useAccountsToolbar = (items?: AccountListItemProps[]): UseAccountsToolbar => {
   const [filterState, setFilterState] = useState<FilterState>({});
 
   const [q, setQ] = useState<string>('');
@@ -58,12 +58,32 @@ export const useAccountListToolbar = (items?: AccountListItemProps[]): UseAccoun
     onClear,
   };
 
-  // results
+  // filters
+
+  let filtersActive = 0;
 
   const filteredItems = items
     ?.filter((item) => {
-      if (!q) return true;
-      return item.name.toLowerCase().includes(q.toLowerCase());
+      if (q && !item.name.toLowerCase().includes(q.toLowerCase())) {
+        return false;
+      }
+
+      let hits = 1;
+
+      if (filterState?.type && filterState?.type?.length > 0 && !filterState?.type?.includes(item.type)) {
+        filtersActive++;
+        hits = 0;
+      }
+
+      if (filterState?.deleted && filterState?.deleted?.length > 0 && !item?.isDeleted) {
+        hits = 0;
+      }
+
+      if (hits > 0) {
+        return true;
+      }
+
+      return false;
     })
     .map((item) => {
       return {
@@ -89,7 +109,7 @@ export const useAccountListToolbar = (items?: AccountListItemProps[]): UseAccoun
     },
   };
 
-  const active = q !== '';
+  const active = q !== '' || filtersActive > 0;
 
   return {
     active,

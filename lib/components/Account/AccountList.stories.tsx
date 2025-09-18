@@ -10,7 +10,7 @@ import {
   PaperplaneIcon,
   PlusIcon,
 } from '@navikt/aksel-icons';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta } from '@storybook/react-vite';
 import { type ChangeEvent, Fragment, type ReactNode, useState } from 'react';
 import {
   AccountList,
@@ -35,7 +35,13 @@ import {
   Toolbar,
   Typography,
 } from '..';
-import { accountList, defaultAccounts, useAccountList, useAccountSettings } from '../../../examples';
+import {
+  type UseAccountsProps,
+  accountList,
+  defaultAccounts,
+  useAccountList,
+  useAccountSettings,
+} from '../../../examples';
 
 const meta = {
   title: 'Account/AccountList',
@@ -46,19 +52,6 @@ const meta = {
 } satisfies Meta<typeof AccountList>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Default: Story = {
-  args: {
-    items: accountList.items?.filter((item) => item.type !== 'group'),
-  },
-};
-
-export const WithGroups: Story = {
-  args: {
-    items: accountList.items,
-  },
-};
 
 interface GetContextMenuProps {
   id: string;
@@ -124,9 +117,10 @@ const getContextMenu = ({
   };
 };
 
-export const Controlled = () => {
+export const Default = ({ includeGroups = false }: UseAccountsProps) => {
   const { toolbar, items, groups, onToggle, onToggleFavourite } = useAccountList({
     accounts: defaultAccounts,
+    includeGroups,
   });
 
   const q = toolbar.search?.value?.toLowerCase() || '';
@@ -137,13 +131,11 @@ export const Controlled = () => {
       highlightWords: q ? [q] : undefined,
       onClick: () => onToggle(item.id),
       onToggleFavourite: () => onToggleFavourite(item.id),
-      contextMenu: getContextMenu(item),
     };
   });
 
   return (
     <Section spacing={6}>
-      <Toolbar {...toolbar} />
       {items && <AccountList groups={groups} items={controlledItems as AccountListItemProps[]} />}
     </Section>
   );
@@ -189,9 +181,16 @@ const AlertSettingsModal = ({ open, onClose }: SettingsModalProps) => {
   );
 };
 
-export const Collapsible = () => {
+interface ControlledProps {
+  includeGroups?: boolean;
+  contextMenu?: boolean;
+  collapsible?: boolean;
+}
+
+export const Controlled = ({ includeGroups = false, collapsible = false, contextMenu = false }: ControlledProps) => {
   const { toolbar, items, groups, expandedId, onToggle, onToggleFavourite, onSettingsChange } = useAccountList({
     accounts: defaultAccounts,
+    includeGroups,
   });
 
   const [modal, setModal] = useState<ModalProps>({});
@@ -218,13 +217,21 @@ export const Collapsible = () => {
     }
   };
 
-  const collapsibleItems = items?.map((item) => {
-    if (expandedId === item.id) {
+  const q = toolbar?.search?.value;
+  const results = toolbar?.results;
+
+  const listGroups = toolbar?.active ? results?.groups : groups;
+  const listItems = toolbar?.active ? results?.items : items;
+
+  const collapsibleItems = listItems?.map((item) => {
+    if (collapsible && expandedId === item.id) {
       return {
         ...item,
-        collapsible: true,
+        collapsible,
         expanded: true,
+        as: 'button',
         onClick: () => onToggle(item.id),
+        highlightWords: q?.split(' '),
         children: (
           <AccountDetails {...(item as AccountListItemProps)} onToggleFavourite={onToggleFavourite} onModal={onModal} />
         ),
@@ -232,17 +239,19 @@ export const Collapsible = () => {
     }
     return {
       ...item,
-      collapsible: true,
+      as: 'button',
+      highlightWords: q?.split(' '),
+      collapsible,
       onClick: () => onToggle(item.id),
       onToggleFavourite: () => onToggleFavourite(item.id),
-      contextMenu: getContextMenu({ ...item, onModal }),
+      contextMenu: contextMenu && getContextMenu({ ...item, onModal }),
     };
   });
 
   return (
     <Section spacing={6}>
       <Toolbar {...toolbar} />
-      {items && <AccountList groups={groups} items={collapsibleItems as AccountListItemProps[]} />}
+      <AccountList groups={listGroups} items={collapsibleItems as AccountListItemProps[]} />
       {modalId && modal?.type === 'contact' && <AlertSettingsModal open={true} onClose={onClose} />}
       {modalId && modal?.type === 'address' && <AddressSettingsModal open={true} onClose={onClose} />}
       {modalId && modal?.type === 'groups' && (
@@ -253,6 +262,14 @@ export const Collapsible = () => {
       )}
     </Section>
   );
+};
+
+export const Collapsible = () => {
+  return <Controlled collapsible={true} contextMenu={true} />;
+};
+
+export const CollapsibleWithGroups = () => {
+  return <Controlled includeGroups={true} collapsible={true} contextMenu={true} />;
 };
 
 interface AccountDetailsProps extends AccountListItemProps {
@@ -353,7 +370,7 @@ export const CompanyDetails = ({
 }: AccountDetailsProps) => {
   const { items } = useAccountSettings({ accounts: defaultAccounts });
 
-  const parentAccount = items?.find((item) => item.id === parentId);
+  const parentAccount = items?.find((item) => 'id' in item && item.id === parentId);
 
   return (
     <Section color="company" padding={6} spacing={2}>
@@ -374,7 +391,7 @@ export const CompanyDetails = ({
             <SettingsItem
               icon={{ svgElement: Buildings2Icon, theme: 'default' }}
               title="Overordnet organisasjon"
-              value={parentAccount.name}
+              value={parentAccount.title}
               linkIcon
             />
           </>

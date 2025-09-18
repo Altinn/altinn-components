@@ -11,8 +11,11 @@ export const accountListGroups = {
   groups: {
     //    title: 'Grupper',
   },
-  secondary: {
-    title: 'Andre aktører',
+  people: {
+    title: 'Personer',
+  },
+  companies: {
+    title: 'Virksomheter',
   },
 };
 

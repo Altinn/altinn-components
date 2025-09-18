@@ -218,8 +218,8 @@ export const SelectSubaccount = () => {
     accountId: 'diaspora',
   });
 
-  const [primaryId, setPrimaryId] = useState('company');
-  const [secondaryId, setSecondaryId] = useState('company');
+  const [primaryId, setPrimaryId] = useState('diaspora');
+  const [secondaryId, setSecondaryId] = useState('diaspora');
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
   const onToggle = (id: string) => {
@@ -229,7 +229,7 @@ export const SelectSubaccount = () => {
   const currentAccount = accountMenu?.items?.find((item) => item.id === primaryId) || accountMenu?.items?.[0];
 
   const primaryItems = accountMenu?.items
-    ?.filter((item) => !item.parentId && !item.accountIds)
+    ?.filter((item) => !item.parentId)
     ?.map((item) => ({
       ...item,
       selected: item.id === currentAccount?.id,
@@ -248,6 +248,7 @@ export const SelectSubaccount = () => {
           title: item.id === currentAccount.id ? 'Hovedenhet' : 'Underenhet',
           description: 'Org nr: ' + item.uniqueId,
           groupId: null,
+          controls: undefined,
         };
       });
 

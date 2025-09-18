@@ -1,15 +1,14 @@
 import {
   ArchiveIcon,
-  BellIcon,
   BookmarkIcon,
   Buildings2Icon,
   ChatExclamationmarkIcon,
   DocPencilIcon,
   FileCheckmarkIcon,
   HandshakeFillIcon,
-  HeartIcon,
   InboxFillIcon,
   MenuGridIcon,
+  PersonCircleIcon,
   TrashIcon,
 } from '@navikt/aksel-icons';
 import { accountMenu } from '../';
@@ -65,24 +64,8 @@ export const desktopMenuItems: MenuProps['items'] = [
     id: 'profile',
     groupId: 'profile',
     size: 'sm',
-    icon: {
-      name: 'Mathias Dyngeland',
-    },
+    icon: PersonCircleIcon,
     title: 'Min profil',
-  },
-  {
-    id: 'accounts',
-    groupId: 'profile',
-    size: 'sm',
-    icon: HeartIcon,
-    title: 'Aktører og favoritter',
-  },
-  {
-    id: 'alerts',
-    groupId: 'profile',
-    size: 'sm',
-    icon: BellIcon,
-    title: 'Varslinger',
   },
 ];
 
@@ -96,6 +79,7 @@ export const desktopMenu: MenuProps = {
       defaultIconTheme: 'transparent',
     },
     profile: {
+      title: 'Logget inn som Mathias Dyngeland',
       defaultIconTheme: 'transparent',
       defaultItemColor: 'person',
     },

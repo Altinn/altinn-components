@@ -1,5 +1,5 @@
 /**
- * This file defines a set of account objects that can be used  to build menus and lists.
+ * This file defines a set of account objects that can be used to build menus and lists.
  */
 
 import type { AccountListItemProps, MenuGroupProps } from '../../lib';
@@ -50,6 +50,24 @@ export const accounts: AccountDataProps[] = [
     smsAlerts: true,
   },
   {
+    id: 'freyr',
+    type: 'person',
+    name: 'Freyr Alexandersson',
+    uniqueId: '071095XXXXX',
+    email: 'mathias@brann.no',
+    favourite: true,
+    emailAlerts: true,
+    smsAlerts: true,
+  },
+  {
+    id: 'staale',
+    type: 'person',
+    name: 'Ståle Solbakken',
+    uniqueId: '071095XXXXX',
+    emailAlerts: false,
+    smsAlerts: true,
+  },
+  {
     id: 'brann',
     type: 'company',
     name: 'Sportsklubben Brann',
@@ -73,7 +91,6 @@ export const accounts: AccountDataProps[] = [
     type: 'company',
     name: 'Norges Fotballforbund',
     uniqueId: '963460449',
-    favourite: true,
     smsAlerts: true,
   },
   {
@@ -113,12 +130,19 @@ export const accounts: AccountDataProps[] = [
     uniqueId: '994485199',
     parentId: 'bbb',
   },
-
   {
     id: 'vif',
     type: 'company',
-    name: 'Vålerengens idrettsforening',
-    uniqueId: '983906729',
+    name: 'Vålerenga fotball',
+    uniqueId: '968218743',
+    isDeleted: true,
+  },
+  {
+    id: 'vif-2',
+    type: 'company',
+    name: 'Vålerenga fotball',
+    uniqueId: '972202223',
+    parentId: 'vif',
     isDeleted: true,
   },
   {
@@ -128,7 +152,48 @@ export const accounts: AccountDataProps[] = [
     uniqueId: '983981178',
     isDeleted: true,
   },
-
+  {
+    id: 'sogndal-2',
+    type: 'company',
+    name: 'Sogndal idrettslag',
+    uniqueId: '999434169',
+    parentId: 'sogndal',
+    isDeleted: true,
+  },
+  {
+    id: 'kanvas',
+    type: 'company',
+    name: 'Stiftelsen Kanvas',
+    uniqueId: '971272643',
+  },
+  {
+    id: 'abra-cadabra',
+    type: 'company',
+    name: 'Abra Cadabra Kanvas-barnehage',
+    uniqueId: '989540637',
+    parentId: 'kanvas',
+  },
+  {
+    id: 'betha-thorsen',
+    type: 'company',
+    name: 'Betha Thorsens Kanvas-barnehage',
+    uniqueId: '993800007',
+    parentId: 'kanvas',
+  },
+  {
+    id: 'appelsin',
+    type: 'company',
+    name: 'Den Blå Appelsin Kanvas-barnehage',
+    uniqueId: '975316947',
+    parentId: 'kanvas',
+  },
+  {
+    id: 'eplehagen',
+    type: 'company',
+    name: 'Eplehagen Kanvas-barnehage',
+    uniqueId: '975316947',
+    parentId: 'kanvas',
+  },
   {
     id: 'group:1',
     type: 'group',
@@ -140,22 +205,6 @@ export const accounts: AccountDataProps[] = [
     type: 'group',
     name: 'Supportergrupper',
     accountIds: ['bbb', 'diaspora'],
-  },
-];
-
-export const accounts2 = [
-  {
-    id: 'user',
-    type: 'person',
-    name: 'Mathias Dyngeland',
-    uniqueId: '071095XXXXX',
-    isCurrentEndUser: true,
-  },
-  {
-    id: 'diaspora',
-    type: 'company',
-    name: 'Diaspora Bergensis',
-    uniqueId: '428 743 989',
   },
 ];
 

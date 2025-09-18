@@ -11,6 +11,7 @@ export interface AccountListItemProps extends ListItemProps, AccountListItemCont
   title?: string;
   groupId?: string; // Optional, used for grouping accounts
   uniqueId?: string; // Organization number or personal identification number
+  parentName?: string; // Optional, used for hierarchical relationships
   parentId?: string; // Optional, used for hierarchical relationships
   accountIds?: string[]; // Optional, used for grouping accounts
   isCurrentEndUser?: boolean; // Indicates if this account is the current end user
