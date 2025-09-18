@@ -28,7 +28,8 @@ import {
   SettingsSection,
   SettingsItem,
   SettingsModal,
-  Heading,
+  Byline,
+  Section,
   Typography,
   TextField,
   TextareaField,
@@ -334,6 +335,48 @@ interface ContactProfileModalProps extends SettingsModalProps {
   items?: AccountListItemProps[];
 }
 
+const ContactProfileList = ({ items }: { items?: AccountListItemProps[] }) => {
+  const [expanded, setExpanded] = useState<boolean>(false);
+
+  const onToggle = () => {
+    setExpanded((prevState) => !prevState);
+  };
+
+  return (
+    <Section spacing={1}>
+      <MetaItem
+        as="button"
+        onClick={onToggle}
+        size="xs"
+        icon={items?.length && ({ items } as MetaItemProps["icon"])}
+      >
+        Brukes av {items?.length} aktører
+      </MetaItem>
+
+      {expanded && (
+        <>
+          <Divider />
+          <List size="sm" spacing={1}>
+            {items?.map((item, index) => {
+              return (
+                <>
+                  {index > 0 && <Divider as="li" />}
+                  <Byline
+                    size="sm"
+                    avatar={{ name: item.name, type: "company" }}
+                  >
+                    <strong>{item?.name}</strong>
+                  </Byline>
+                </>
+              );
+            })}
+          </List>
+        </>
+      )}
+    </Section>
+  );
+};
+
 const ContactProfileModal = ({
   type,
   value,
@@ -354,25 +397,7 @@ const ContactProfileModal = ({
         size="sm"
       />
 
-      <MetaItem
-        size="xs"
-        icon={items?.length && ({ items } as MetaItemProps["icon"])}
-      >
-        Brukes av {items?.length} aktører:
-      </MetaItem>
-
-      <Heading>Brukes av {items?.length} aktører:</Heading>
-
-      <List size="xs">
-        {items?.map((item, index) => {
-          return (
-            <>
-              {index > 0 && <Divider as="li" />}
-              <SettingsItem title={item?.name} icon={item} />
-            </>
-          );
-        })}
-      </List>
+      <ContactProfileList items={items} />
 
       <Typography size="sm">
         <p>Endringen vil oppdatere varslingsadresser på alle aktørene over.</p>
@@ -408,6 +433,7 @@ export const ContactProfiles = () => {
           return (
             <>
               {index > 0 && <Divider as="li" />}
+
               <SettingsItem
                 icon={PersonRectangleIcon}
                 title={

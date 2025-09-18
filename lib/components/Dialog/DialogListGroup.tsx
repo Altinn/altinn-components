@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Heading, List, Section, Typography } from '..';
+import { Flex, Heading, List, Section, Typography } from '..';
 
 export interface DialogListGroupProps {
   title?: string | ReactNode;
@@ -9,13 +9,15 @@ export interface DialogListGroupProps {
 
 export const DialogListGroup = ({ title, description, children }: DialogListGroupProps) => {
   return (
-    <Section spacing={3}>
-      {title && <Heading size="lg">{title}</Heading>}
-      {description && (
-        <Typography size="sm" style={{ marginBottom: '.5em' }}>
-          {description}
-        </Typography>
-      )}
+    <Section spacing={4}>
+      <Flex direction="col" spacing={2}>
+        {title && <Heading size="lg">{title}</Heading>}
+        {description && (
+          <Typography size="sm" style={{ marginBottom: '.5em' }}>
+            {description}
+          </Typography>
+        )}
+      </Flex>
       <List spacing={3}>{children}</List>
     </Section>
   );

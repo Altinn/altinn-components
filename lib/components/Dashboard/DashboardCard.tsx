@@ -1,12 +1,12 @@
 import { Card } from '@digdir/designsystemet-react';
 import type { ReactNode } from 'react';
-import { DashboardIcon, type DashboardIconProps, Heading } from '..';
-import { Skeleton } from '..';
+import { Heading, MenuItemIcon, type MenuItemIconProps, Typography } from '..';
 
 export interface DashboardCardProps {
   color?: 'company' | 'person';
   theme?: 'default' | 'tinted';
-  icon?: DashboardIconProps;
+  icon?: MenuItemIconProps;
+  href?: string;
   title?: ReactNode;
   children?: ReactNode;
   className?: string;
@@ -18,6 +18,7 @@ export function DashboardCard({
   theme = 'tinted',
   icon,
   title,
+  href,
   children,
   loading,
   className,
@@ -32,12 +33,14 @@ export function DashboardCard({
           rowGap: '1rem',
         }}
       >
-        {icon && <DashboardIcon loading={loading} icon={icon} size="lg" theme="default" />}
+        {icon && <MenuItemIcon loading={loading} icon={icon} size="lg" theme="default" />}
         <Heading size="lg" loading={loading}>
-          {title}
+          {href ? <a href={href}>{title}</a> : title}
         </Heading>
       </header>
-      <Skeleton loading={loading}>{children}</Skeleton>
+      <Typography size="sm" loading={loading}>
+        {children}
+      </Typography>
     </Card>
   );
 }

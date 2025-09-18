@@ -28,18 +28,21 @@ export const SettingsList = ({ items, groups }: SettingsListProps) => {
       ?.filter((group) => group.items.length > 0);
 
     return (
-      <List size="sm">
+      <>
         {groupedItems.map((group, index) => {
           return (
-            <Fragment key={group.groupId}>
+            <List size="sm" key={group.groupId}>
               {index > 0 && <Divider />}
-              {group.items.map((item) => (
-                <SettingsItem {...item} key={item.id} />
+              {group.items.map((item, index) => (
+                <Fragment key={item.id}>
+                  {index > 0 && <Divider />}
+                  <SettingsItem {...item} />
+                </Fragment>
               ))}
-            </Fragment>
+            </List>
           );
         })}
-      </List>
+      </>
     );
   }
 
@@ -47,8 +50,11 @@ export const SettingsList = ({ items, groups }: SettingsListProps) => {
     <List size="sm">
       {items
         .filter((item) => !item?.hidden)
-        .map((item) => (
-          <SettingsItem {...item} key={item.id} />
+        .map((item, index) => (
+          <Fragment key={item.id}>
+            {index > 0 && <Divider />}
+            <SettingsItem {...item} />
+          </Fragment>
         ))}
     </List>
   );

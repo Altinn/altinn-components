@@ -1,3 +1,4 @@
+import { type ChangeEvent, useState } from "react";
 import * as SettingsStories from "./Profile/Settings.stories";
 import * as ActivityLogStories from "../components/ActivityLog/ActivityLog.stories";
 import * as AccountListStories from "../components/Account/AccountList.stories";
@@ -9,10 +10,26 @@ import {
   PageBase,
   Breadcrumbs,
   DashboardHeader,
+  DashboardCard,
+  type DashboardCardProps,
   SettingsSection,
   Toolbar,
+  Grid,
+  SettingsList,
+  type SettingsListProps,
 } from "../components";
 import { useProfileLayout } from "../../examples";
+import {
+  HeartIcon,
+  BellIcon,
+  CogIcon,
+  MobileIcon,
+  PaperplaneIcon,
+  HouseHeartIcon,
+  SunIcon,
+  ReceiptIcon,
+  EnterIcon,
+} from "@navikt/aksel-icons";
 
 const meta = {
   title: "Demo/Profile",
@@ -34,9 +51,33 @@ export const DashboardPage = () => {
           type="person"
           name="Mathias Dyngeland"
           description="Fødselsnr: XXXXXX YYYYYY"
-        >
-          <SettingsStories.DashboardSettings />
-        </DashboardHeader>
+        />
+        <Grid cols={3}>
+          <DashboardCard
+            href="/iframe.html?id=demo-profile--accounts-page"
+            icon={HeartIcon as DashboardCardProps["icon"]}
+            title="Mine aktører"
+          >
+            <p>Mine aktører, favoritter og grupper.</p>
+          </DashboardCard>
+          <DashboardCard
+            href="/iframe.html?id=demo-profile--alerts-page"
+            icon={BellIcon as DashboardCardProps["icon"]}
+            title="Mine varslinger"
+          >
+            <p>Mine varslingsadresser og varslinger per aktør.</p>
+          </DashboardCard>
+          <DashboardCard
+            href="/iframe.html?id=demo-profile--settings-page"
+            icon={CogIcon as DashboardCardProps["icon"]}
+            title="Innstillinger"
+          >
+            <p>Kontaktinformasjon og andre innstillinger.</p>
+          </DashboardCard>
+        </Grid>
+        <SettingsSection>
+          <SettingsStories.ContactSettings />
+        </SettingsSection>
       </PageBase>
     </Layout>
   );
@@ -67,13 +108,12 @@ export const AlertsPage = () => {
         <SettingsSection>
           <SettingsStories.AlertSettings />
         </SettingsSection>
+        <SettingsSection>
+          <SettingsStories.ContactProfiles />
+        </SettingsSection>
         <Heading size="lg">Varslinger per aktør</Heading>
         <SettingsSection>
           <AccountSettingsStories.ControlledValue />
-        </SettingsSection>
-        <Heading size="lg">Varslingsadresser i bruk</Heading>
-        <SettingsSection>
-          <SettingsStories.ContactProfiles />
         </SettingsSection>
       </PageBase>
     </Layout>
@@ -125,28 +165,121 @@ export const AccessPage = () => {
   );
 };
 
+interface SettingsSearchProps extends SettingsListProps {
+  q?: string;
+}
+
+const SettingsSearch = ({ items, q = "" }: SettingsSearchProps) => {
+  const filteredItems = items
+    ?.filter((item) => {
+      const { title, value } = item;
+
+      if (
+        typeof title === "string" &&
+        title.toLowerCase().includes(q.toLowerCase())
+      ) {
+        return true;
+      }
+      if (
+        typeof value === "string" &&
+        value.toLowerCase().includes(q.toLowerCase())
+      ) {
+        return true;
+      }
+
+      return false;
+    })
+    .map((item, index) => {
+      return {
+        ...item,
+        groupId: "g" + index,
+        highlightWords: [q],
+      };
+    });
+
+  return (
+    <>
+      <Heading size="lg">{filteredItems?.length + " treff"}</Heading>
+      <SettingsSection>
+        <SettingsList items={filteredItems} />{" "}
+      </SettingsSection>
+    </>
+  );
+};
+
 export const SettingsPage = () => {
   const { breadcrumbs, ...layout } = useProfileLayout({ pageId: "settings" });
+
+  const [q, setQ] = useState("");
+
+  const onSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setQ(e.target.value);
+  };
+
+  const items = [
+    {
+      icon: MobileIcon,
+      title: "Mobiltelefon",
+      value: "99007700",
+    },
+    {
+      icon: PaperplaneIcon,
+      title: "E-postadresse",
+      value: "mathias@hotmail.com",
+    },
+    {
+      icon: HouseHeartIcon,
+      title: "Adresse",
+      value: "Inndalsveien 28, 5063 Bergen",
+    },
+    {
+      icon: EnterIcon,
+      title: "Forhåndsvalgt aktør",
+      value: "Diaspora Bergensis",
+    },
+    {
+      icon: ReceiptIcon,
+      title: "Kvittering på e-post",
+    },
+    {
+      icon: SunIcon,
+      title: "Modus",
+      value: "Auto",
+    },
+  ];
+
   return (
     <Layout {...layout}>
       <PageBase color="person">
         <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">Innstillinger</Heading>
         <Toolbar
-          search={{ name: "search", placeholder: "Søk i innstillinger" }}
+          search={{
+            name: "search",
+            placeholder: "Søk i innstillinger",
+            value: q,
+            onChange: onSearchChange,
+          }}
         />
-        <Heading size="lg">Kontaktinformasjon</Heading>
-        <SettingsSection>
-          <SettingsStories.ContactSettings />
-        </SettingsSection>
-        <Heading size="lg">Preferanser i Altinn</Heading>
-        <SettingsSection>
-          <SettingsStories.ViewSettings />
-        </SettingsSection>
-        <Heading size="lg">Flere innstillinger</Heading>
-        <SettingsSection>
-          <SettingsStories.LinkSettings />
-        </SettingsSection>
+        {q ? (
+          <SettingsSearch items={items} q={q} />
+        ) : (
+          <>
+            {" "}
+            <Heading size="lg">Kontaktinformasjon</Heading>
+            <SettingsSection>
+              <SettingsStories.ContactSettings />
+            </SettingsSection>
+            <Heading size="lg">Preferanser i Altinn</Heading>
+            <SettingsSection>
+              <SettingsStories.ViewSettings />
+            </SettingsSection>
+            <Heading size="lg">Flere innstillinger</Heading>
+            <SettingsSection>
+              <SettingsStories.LinkSettings />
+            </SettingsSection>
+          </>
+        )}
       </PageBase>
     </Layout>
   );
