@@ -21,6 +21,7 @@ export interface AccountMenuProps extends MenuProps {
   onSelectAccount?: (id: string) => void;
   menuItemsVirtual?: MenuItemsVirtualProps;
   scrollRefStyles?: CSSProperties;
+  keyboardEvents?: boolean;
 }
 
 const defaultResultsLabel = (hits: number) => `${hits} hits`;
@@ -32,6 +33,7 @@ export const AccountMenu = ({
   onSelectAccount,
   currentAccount,
   menuItemsVirtual,
+  keyboardEvents,
 }: AccountMenuProps) => {
   const accountMenu: AccountMenuItemProps[] = items.map((item) => ({
     ...item,
@@ -88,6 +90,7 @@ export const AccountMenu = ({
       groups={filterAccountGroups}
       items={accountSwitcher}
       menuItemsVirtual={menuItemsVirtual}
+      keyboardEvents={keyboardEvents}
     />
   );
 };

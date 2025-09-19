@@ -1,5 +1,6 @@
-import type { ChangeEventHandler, MouseEventHandler } from 'react';
-import { DrawerOrDropdown, type FilterState, useRootContext } from '../';
+import type { MouseEventHandler } from 'react';
+import { DrawerOrDropdown, type FilterChangePayload, type FilterState, useRootContext } from '../';
+import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
 import type { MenuOptionProps } from '../Menu';
 import { ToolbarButton } from './ToolbarButton';
 import { ToolbarFilterBase } from './ToolbarFilterBase';
@@ -18,7 +19,7 @@ export interface ToolbarFilterProps {
   getSelectedLabel?: (name: string, value?: ToolbarFilterValue) => string;
   buttonAltText?: string;
   className?: string;
-  onChange?: ChangeEventHandler;
+  onChange?: (payload: FilterChangePayload) => void;
   onRemove?: MouseEventHandler;
   showResultsLabel?: string;
 }
@@ -46,6 +47,7 @@ export const ToolbarFilter = ({
   id = `toolbar-filter-${name}`,
 }: ToolbarFilterProps) => {
   const { currentId, toggleId, closeAll } = useRootContext();
+  const isDekstop = useIsDesktop();
   const filterOptions = (options ?? []).map((item): MenuOptionProps => {
     const value = filterState?.[item.name || name];
     return {
@@ -60,8 +62,16 @@ export const ToolbarFilter = ({
   const onToggle = () => toggleId(id);
   const expanded = currentId === id;
 
+  const onBlurCapture = (e: React.FocusEvent<HTMLElement>) => {
+    const nextFocused = e.relatedTarget as HTMLElement | null;
+
+    if (!nextFocused || !e.currentTarget.contains(nextFocused)) {
+      closeAll();
+    }
+  };
+
   return (
-    <ToolbarFilterBase expanded={expanded}>
+    <ToolbarFilterBase expanded={expanded} onBlurCapture={onBlurCapture} dataTestId={'filter-base-' + id}>
       <ToolbarButton
         type="select"
         removable={removable}
@@ -70,6 +80,7 @@ export const ToolbarFilter = ({
         ariaLabel={buttonAltText}
         iconAltText={buttonAltText}
         onRemove={onRemove}
+        dataTestId={id}
       >
         {valueLabel || label}
       </ToolbarButton>
@@ -77,7 +88,10 @@ export const ToolbarFilter = ({
         open={expanded}
         drawerTitle={label}
         onClose={closeAll}
-        drawerButton={{ onClick: onToggle, label: showResultsLabel }}
+        drawerButton={{
+          onClick: onToggle,
+          label: showResultsLabel,
+        }}
       >
         <ToolbarOptions
           name={name}
@@ -85,6 +99,7 @@ export const ToolbarFilter = ({
           optionGroups={optionGroups}
           onChange={onChange}
           optionType={optionType}
+          keyboardEvents={expanded && isDekstop}
         />
       </DrawerOrDropdown>
     </ToolbarFilterBase>

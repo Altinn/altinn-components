@@ -69,7 +69,6 @@ export const ContextMenu = ({
 
   const onBlurCapture = (e: React.FocusEvent<HTMLButtonElement>) => {
     const contextMenuParent = e?.relatedTarget?.closest(`[data-testid="${dataTestId}"]`);
-
     if (!contextMenuParent) {
       closeAll();
     }
