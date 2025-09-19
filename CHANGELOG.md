@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.38.17](https://github.com/Altinn/altinn-components/compare/v0.38.16...v0.38.17) (2025-09-19)
+
+
+### Bug Fixes
+
+* settings details + bookmarks as settings ([#646](https://github.com/Altinn/altinn-components/issues/646)) ([33a1e1c](https://github.com/Altinn/altinn-components/commit/33a1e1cea3b9c2ac03b2359dd53872439fa9f335))
+* **wcag:** keyboard nav for toolbar ([#647](https://github.com/Altinn/altinn-components/issues/647)) ([0b12390](https://github.com/Altinn/altinn-components/commit/0b12390bf8abcd319bebf82cae634965654602da))
+
 ## [0.38.16](https://github.com/Altinn/altinn-components/compare/v0.38.15...v0.38.16) (2025-09-16)
 
 
