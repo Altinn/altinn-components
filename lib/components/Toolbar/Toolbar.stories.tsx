@@ -113,26 +113,28 @@ export const LongListAccounts: Story = {
   },
 };
 
-export const ControlledStateFilters = (args: typeof Toolbar) => {
-  const [filterState, setFilterState] = React.useState<FilterState>({});
+export const ControlledStateFilters: Story = {
+  render: (args) => {
+    const [filterState, setFilterState] = React.useState<FilterState>({});
 
-  useEffect(() => {
-    setTimeout(() => {
-      setFilterState({
-        from: ['skatt', 'brreg'],
-      });
-    }, 1);
-  }, []);
+    useEffect(() => {
+      setTimeout(() => {
+        setFilterState({
+          from: ['skatt', 'brreg'],
+        });
+      }, 1);
+    }, []);
 
-  return (
-    <Toolbar
-      {...args}
-      filters={Default.args!.filters}
-      filterState={filterState}
-      onFilterStateChange={setFilterState}
-      removeButtonAltText="remove"
-    />
-  );
+    return (
+      <Toolbar
+        {...args}
+        filters={Default.args!.filters}
+        filterState={filterState}
+        onFilterStateChange={setFilterState}
+        removeButtonAltText="remove filter"
+      />
+    );
+  },
 };
 
 export const ControlledStateAccount = () => {

@@ -7,6 +7,7 @@ export interface MenuProps extends MenuItemsProps {
   color?: MenuItemColor;
   variant?: MenuVariant;
   menuItemsVirtual?: MenuItemsVirtualProps;
+  keyboardEvents?: boolean;
 }
 
 export const Menu = ({
@@ -20,9 +21,9 @@ export const Menu = ({
   items = [],
   search,
   menuItemsVirtual,
+  keyboardEvents,
 }: MenuProps) => {
   const { isVirtualized } = menuItemsVirtual || {};
-
   if (isVirtualized) {
     return (
       <MenuBase color={color} variant={variant}>
@@ -35,6 +36,7 @@ export const Menu = ({
           defaultItemVariant={defaultItemVariant}
           defaultIconTheme={defaultIconTheme}
           scrollRefStyles={menuItemsVirtual?.scrollRefStyles}
+          keyboardEvents={keyboardEvents}
         />
       </MenuBase>
     );
@@ -50,6 +52,7 @@ export const Menu = ({
         defaultItemColor={defaultItemColor}
         defaultItemVariant={defaultItemVariant}
         defaultIconTheme={defaultIconTheme}
+        keyboardEvents={keyboardEvents}
       />
     </MenuBase>
   );

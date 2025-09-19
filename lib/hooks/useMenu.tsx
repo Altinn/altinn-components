@@ -7,6 +7,7 @@ export interface UseMenuItemProps<T> {
   props: T;
   active?: boolean;
   onMouseEnter?: MouseEventHandler;
+  onMouseLeave?: MouseEventHandler;
 }
 
 export interface UseMenuGroup<T, V> {
@@ -28,6 +29,7 @@ export interface UseMenuInput<T, V> {
   keyboardEvents?: boolean;
   sortGroupBy?: (a: [string, T[]], b: [string, T[]]) => number;
   onSelect?: () => void;
+  autoFocus?: boolean;
 }
 
 export const useMenu = <T, V>({
@@ -43,9 +45,9 @@ export const useMenu = <T, V>({
 
   useEnterKey(() => {
     if (keyboardEvents) {
-      const activeItem = (ref && 'current' in ref ? ref.current : null)?.querySelector(
-        '[data-active="true"]',
-      ) as HTMLElement | null;
+      const currentRef = ref && 'current' in ref ? ref.current : null;
+      const activeItem = currentRef?.querySelector('[data-active="true"]') as HTMLElement | null;
+
       if (activeItem) {
         const isLink = activeItem.tagName === 'A' && activeItem.hasAttribute('href');
         if (!isLink) {

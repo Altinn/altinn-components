@@ -11,6 +11,8 @@
   left: 0;
   display: block;
   z-index: 2;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 @media (min-width: 1024px) {

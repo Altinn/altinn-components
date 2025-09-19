@@ -47,7 +47,7 @@ export const MenuItems = ({
   defaultItemVariant,
   defaultIconTheme,
   as,
-  keyboardEvents,
+  keyboardEvents = false,
   onSelect = () => {},
 }: MenuItemsProps) => {
   const ref = useRef<HTMLUListElement>(null);
@@ -55,7 +55,7 @@ export const MenuItems = ({
     items,
     groups,
     groupByKey: 'groupId',
-    keyboardEvents: keyboardEvents ?? false,
+    keyboardEvents,
     onSelect,
     ref,
   });
@@ -93,7 +93,7 @@ export const MenuItems = ({
                       variant={itemProps?.variant || groupProps?.defaultItemVariant || defaultItemVariant}
                       iconTheme={itemProps?.iconTheme || groupProps?.defaultIconTheme || defaultIconTheme}
                       active={active}
-                      tabIndex={itemProps?.disabled ? -1 : (itemProps.tabIndex ?? 0)}
+                      tabIndex={itemProps?.disabled || keyboardEvents ? -1 : (itemProps.tabIndex ?? 0)}
                       onMouseEnter={onMouseEnter}
                     />
                     {expanded && itemProps?.items && (

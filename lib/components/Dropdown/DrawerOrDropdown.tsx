@@ -26,7 +26,15 @@ export const DrawerOrDropdown = ({
         <DrawerHeader className={styles.header} title={drawerTitle} onClose={onClose} />
         <DrawerBody>{children}</DrawerBody>
         <DrawerFooter className={styles.footer}>
-          {drawerButton && <DrawerButton onClick={drawerButton?.onClick}>{drawerButton?.label}</DrawerButton>}
+          {drawerButton && (
+            <DrawerButton
+              onClick={drawerButton?.onClick}
+              onFocus={drawerButton?.onFocus}
+              onBlurCapture={drawerButton.onBlurCapture}
+            >
+              {drawerButton?.label}
+            </DrawerButton>
+          )}
         </DrawerFooter>
       </div>
     </>
