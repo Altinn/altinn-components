@@ -4,6 +4,7 @@ import {
   ClockDashedIcon,
   CogIcon,
   DatabaseIcon,
+  HandshakeFillIcon,
   LinkIcon,
   PadlockUnlockedIcon,
   PersonGroupIcon,
@@ -16,10 +17,7 @@ export const adminMenuItems: MenuItemProps[] = [
     groupId: '1',
     size: 'lg',
     title: 'Fullmakter',
-    icon: {
-      type: 'company',
-      name: 'Bergen Bar',
-    },
+    icon: { svgElement: HandshakeFillIcon, theme: 'base' },
   },
   {
     id: 'users',

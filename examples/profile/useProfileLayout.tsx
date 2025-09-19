@@ -1,9 +1,10 @@
 import { desktopMenu, desktopMenuItems, footer, profileMenu, profileMenuItems, useLayout } from '../';
-import type { BreadcrumbsLinkProps, LayoutProps } from '../../lib';
+import type { Account, BreadcrumbsLinkProps, LayoutProps } from '../../lib';
 
 interface ProfileLayoutProps extends LayoutProps {
   pageId?: string;
   breadcrumbs?: BreadcrumbsLinkProps[];
+  account?: Account;
 }
 
 export const useProfileLayout = ({ pageId = 'profile' }): ProfileLayoutProps => {
@@ -58,14 +59,14 @@ export const useProfileLayout = ({ pageId = 'profile' }): ProfileLayoutProps => 
     },
   });
 
-  const currentAccount = layout.header?.currentAccount;
+  const account = layout.header?.currentAccount;
 
   const breadcrumbs = [
     {
       label: 'Forside',
     },
     {
-      label: (currentAccount?.name as string) || 'Seksjon',
+      label: (account?.name as string) || 'Seksjon',
     },
     {
       label: (page?.title as string) || 'Side',
@@ -74,6 +75,7 @@ export const useProfileLayout = ({ pageId = 'profile' }): ProfileLayoutProps => 
 
   return {
     ...layout,
+    account,
     breadcrumbs,
     footer,
   };

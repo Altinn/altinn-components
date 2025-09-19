@@ -8,8 +8,9 @@ import { fromStringToColor } from './color';
 export type AvatarType = 'company' | 'person' | 'custom';
 export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
-type AvatarVariant = 'square' | 'circle';
-type AvatarColor = 'dark' | 'light';
+export type AvatarShape = 'square' | 'circle';
+export type AvatarColor = 'dark' | 'light';
+export type AvatarVariant = 'solid' | 'outline';
 
 /**
  * Props for the Avatar component.
@@ -19,6 +20,12 @@ export interface AvatarProps {
   name: string;
   /** The type of avatar. */
   type?: AvatarType;
+  /** Avatar shape. */
+  shape?: AvatarColor;
+  /** Avatar color. */
+  color?: AvatarColor;
+  /** The type of avatar. */
+  variant?: AvatarVariant;
   /** The size of the avatar. */
   size?: AvatarSize;
   /** Additional class names to apply to the avatar. */
@@ -48,7 +55,10 @@ export const Avatar = ({
   type = 'person',
   size,
   name = 'Avatar',
-  outline = false,
+  shape,
+  color,
+  variant = 'solid',
+  outline = true,
   imageUrl,
   imageUrlAlt,
   customLabel,
@@ -57,10 +67,10 @@ export const Avatar = ({
   style = {},
 }: AvatarProps): ReactElement => {
   const [hasImageError, setHasImageError] = useState<boolean>(false);
-  const variant: AvatarVariant = type === 'person' ? 'circle' : 'square';
-  const color: AvatarColor = type === 'person' ? 'light' : 'dark';
+  const applicableShape: AvatarShape = shape || type === 'person' ? 'circle' : 'square';
+  const applicableColor: AvatarColor = color || type === 'person' ? 'light' : 'dark';
 
-  const { backgroundColor, foregroundColor } = fromStringToColor(name, color);
+  const { backgroundColor, foregroundColor } = fromStringToColor(name, applicableColor);
   const initials = (name[0] ?? '').toUpperCase();
   const usingImageUrl = imageUrl && !hasImageError;
 
@@ -68,8 +78,8 @@ export const Avatar = ({
     !loading && !usingImageUrl
       ? {
           ...style,
-          backgroundColor,
-          color: foregroundColor,
+          backgroundColor: variant === 'outline' ? foregroundColor : backgroundColor,
+          color: variant === 'outline' ? backgroundColor : foregroundColor,
         }
       : style;
 
@@ -78,6 +88,7 @@ export const Avatar = ({
       className={cx(styles.avatar, { [styles.outline]: outline }, className)}
       style={inlineStyles}
       data-variant={variant}
+      data-shape={applicableShape}
       data-size={size}
       data-outline={outline}
       aria-hidden

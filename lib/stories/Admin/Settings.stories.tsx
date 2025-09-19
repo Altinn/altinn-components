@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ChangeEvent } from "react";
 import {
   BellIcon,
   Buildings2Icon,
@@ -10,22 +10,29 @@ import {
   BriefcaseIcon,
   GlobeIcon,
   HardHatIcon,
+  HashtagIcon,
   PlusIcon,
+  ChevronRightIcon,
 } from "@navikt/aksel-icons";
 import type { Meta } from "@storybook/react-vite";
-import { useAdminLayout } from "../../../examples";
+import { useAdminLayout, useAccountMenu } from "../../../examples";
 import {
+  PageBase,
+  Heading,
+  Toolbar,
+  SettingsList,
+  type SettingsListProps,
+  SettingsModal,
+  type SettingsModalProps,
   Divider,
   SettingsSection,
   List,
   SettingsItem,
-  SettingsModal,
   ButtonGroup,
   Button,
   Typography,
   TextField,
   Fieldset,
-  type SettingsModalProps,
   Legend,
 } from "../../components";
 
@@ -38,7 +45,10 @@ const meta = {
 
 export default meta;
 
-const EmailSettingsModal = ({ open, onClose }: SettingsModalProps) => {
+export const CompanyEmailSettingsModal = ({
+  open = true,
+  onClose,
+}: SettingsModalProps) => {
   const { settings } = useAdminLayout({});
 
   const [items, setItems] = useState<string[]>(
@@ -72,7 +82,9 @@ const EmailSettingsModal = ({ open, onClose }: SettingsModalProps) => {
       </Button>
 
       <Typography size="sm">
-        <p>Altin bruker adressene til å varsle virksomheten om nytt innhold.</p>
+        <p>
+          Altinn bruker adressene til å varsle virksomheten om nytt innhold.
+        </p>
       </Typography>
       <ButtonGroup size="md">
         <Button>Lagre og avslutt</Button>
@@ -82,7 +94,10 @@ const EmailSettingsModal = ({ open, onClose }: SettingsModalProps) => {
   );
 };
 
-const PhoneSettingsModal = ({ open, onClose }: SettingsModalProps) => {
+export const CompanyPhoneSettingsModal = ({
+  open,
+  onClose,
+}: SettingsModalProps) => {
   const [items, setItems] = useState<string[]>([""]);
 
   const onAdd = (item: string) => {
@@ -112,7 +127,9 @@ const PhoneSettingsModal = ({ open, onClose }: SettingsModalProps) => {
       </Button>
 
       <Typography size="sm">
-        <p>Altin bruker adressene til å varsle virksomheten om nytt innhold.</p>
+        <p>
+          Altinn bruker adressene til å varsle virksomheten om nytt innhold.
+        </p>
       </Typography>
       <ButtonGroup size="md">
         <Button>Lagre og avslutt</Button>
@@ -163,11 +180,11 @@ export const AlertSettings = () => {
 
   return (
     <>
-      <EmailSettingsModal
+      <CompanyEmailSettingsModal
         open={openId === "email"}
         onClose={() => setOpenId("")}
       />
-      <PhoneSettingsModal
+      <CompanyPhoneSettingsModal
         open={openId === "phone"}
         onClose={() => setOpenId("")}
       />
@@ -198,7 +215,7 @@ export const AlertSettings = () => {
   );
 };
 
-export const CompanySettings = () => {
+export const CompanySettingsX = () => {
   const { settings } = useAdminLayout({});
   return (
     <List>
@@ -313,4 +330,198 @@ export const RoleSettings = () => {
       />
     </List>
   );
+};
+
+export const SearchSettings = () => {
+  const accountMenu = useAccountMenu({
+    accountId: "diaspora",
+  });
+
+  const currentAccount = accountMenu?.currentAccount;
+
+  const title = "Innstillinger for " + currentAccount?.name;
+
+  const items = [
+    {
+      groupId: "companyAlerts",
+      id: "companyEmail",
+      icon: BellIcon,
+      title: "Varslinger på e-post",
+      value: "post@diasporabergensis.no",
+      badge: {
+        label: "1 adresse",
+      },
+    },
+    {
+      groupId: "companyAlerts",
+      id: "companyPhone",
+      icon: BellIcon,
+      title: "Varslinger på sms",
+    },
+    {
+      groupId: "companyInfo",
+      id: "companyId",
+      icon: HashtagIcon,
+      title: "Organisasjonsnummer",
+      value: "928 914 038",
+    },
+    {
+      groupId: "companyInfo",
+      id: "companyAddress",
+      icon: Buildings2Icon,
+      title: "Forretningsadresse",
+      value: "c/o Paal Zandstra Krokeide, Høyenhallsvingen 16, 0667 Oslo",
+      controls: (
+        <Button variant="link" icon={ChevronRightIcon} reverse size="xs">
+          Endre
+        </Button>
+      ),
+    },
+    {
+      groupId: "companyInfo",
+      id: "companyType",
+      icon: BriefcaseIcon,
+      title: "Organisasjonsform",
+      value: "Forening/lag/innretning",
+      controls: (
+        <Button variant="link" icon={ChevronRightIcon} reverse size="xs">
+          Endre
+        </Button>
+      ),
+    },
+    {
+      groupId: "companyInfo",
+      id: "naceCode",
+      icon: HardHatIcon,
+      title: "Næringskode",
+      value: "94.992 Aktiviteter i andre medlemsorganisasjoner",
+      controls: (
+        <Button variant="link" icon={ChevronRightIcon} reverse size="xs">
+          Endre
+        </Button>
+      ),
+    },
+  ];
+
+  const groups = {
+    companyAlerts: {
+      title: "Varslingsadresser for virksomheten",
+    },
+    companyInfo: {
+      title: "Opplysninger om virksomehten",
+    },
+  };
+
+  const [id, setId] = useState<string>("");
+
+  const onClose = () => {
+    setId("");
+  };
+
+  const searchGroups = groups;
+  const searchGroupsIds = Object.keys(searchGroups);
+
+  const searchItems = items.map((item) => {
+    const { id } = item;
+
+    return {
+      ...item,
+      description: undefined,
+      as: "button",
+      onClick: () => id && setId(id),
+    };
+  });
+
+  const [q, setQ] = useState("");
+
+  const onSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setQ(e.target.value);
+  };
+
+  const filteredItems = searchItems
+    ?.filter((item) => {
+      const { title, value, groupId } = item;
+
+      if (groupId && !searchGroupsIds.includes(groupId)) {
+        return false;
+      }
+
+      if (
+        typeof title === "string" &&
+        title.toLowerCase().includes(q.toLowerCase())
+      ) {
+        return true;
+      }
+      if (
+        typeof value === "string" &&
+        value.toLowerCase().includes(q.toLowerCase())
+      ) {
+        return true;
+      }
+
+      return false;
+    })
+    .map((item) => {
+      return {
+        ...item,
+        groupId: "search",
+        highlightWords: [q],
+      };
+    });
+
+  const item = (id && items.find((item) => item.id === id)) || {
+    title: "",
+    description: "",
+  };
+
+  return (
+    <PageBase>
+      {title && (
+        <>
+          <Heading size="xl">{title}</Heading>
+          <Toolbar
+            accountMenu={accountMenu}
+            search={{
+              name: "search",
+              placeholder: "Søk i innstillinger",
+              value: q,
+              onChange: onSearchChange,
+            }}
+          />
+        </>
+      )}
+
+      {q ? (
+        <SettingsList
+          groups={{
+            search: {
+              title: filteredItems?.length + " treff",
+            },
+          }}
+          items={filteredItems as SettingsListProps["items"]}
+        />
+      ) : (
+        <SettingsList
+          groups={searchGroups}
+          items={searchItems as SettingsListProps["items"]}
+        />
+      )}
+      {(id === "companyEmail" && (
+        <CompanyEmailSettingsModal open={!!id} onClose={onClose} />
+      )) ||
+        (id === "companyPhone" && (
+          <CompanyPhoneSettingsModal open={!!id} onClose={onClose} />
+        )) || (
+          <SettingsModal
+            {...(item as SettingsModalProps)}
+            open={!!id}
+            onClose={onClose}
+          />
+        )}
+    </PageBase>
+  );
+};
+
+export const AdminSettings = () => {
+  return <SearchSettings />;
 };

@@ -1,8 +1,9 @@
-import { MenuItem } from '../Menu';
+import { type AvatarProps, MenuItem } from '../';
 
 export type Account = {
   id: string;
   type: 'person' | 'company';
+  icon?: AvatarProps;
   name: string;
   description?: string;
 };
@@ -24,10 +25,7 @@ export const CurrentAccount = ({ account, multipleAccounts, as, onClick }: Curre
       as={!multipleAccounts ? 'div' : as}
       onClick={onClick}
       linkIcon={multipleAccounts}
-      icon={{
-        name: account.name,
-        type: account.type,
-      }}
+      icon={account?.icon}
       title={{ children: account?.name, size: 'sm', weight: 'medium' }}
       description={account?.description}
     />

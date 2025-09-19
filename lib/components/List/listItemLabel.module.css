@@ -10,5 +10,6 @@
 }
 
 .label mark {
-  background-color: var(--ds-color-surface-tinted);
+  background-color: transparent;
+  text-decoration: underline;
 }

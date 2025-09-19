@@ -1,14 +1,19 @@
 .avatar {
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
-.avatar[data-variant="circle"] {
+.avatar[data-shape="circle"] {
   border-radius: 50%;
 }
 
-.avatar[data-variant="square"] {
+.avatar[data-shape="square"] {
   border-radius: 5%;
+}
+
+.avatar[data-variant="outline"] {
+  border: 1px solid;
 }
 
 .avatar[data-outline="true"] {

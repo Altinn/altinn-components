@@ -7,8 +7,7 @@ import {
   PageBase,
   Breadcrumbs,
   DashboardHeader,
-  SettingsSection,
-  Toolbar,
+  type DashboardHeaderProps,
 } from "../components";
 import { useAdminLayout } from "../../examples";
 
@@ -28,8 +27,8 @@ export const DashboardPage = () => {
   return (
     <Layout {...layout}>
       <DashboardHeader
-        type="company"
-        name={account?.name || "Company"}
+        icon={account?.icon as DashboardHeaderProps["icon"]}
+        title={account?.name || "Company"}
         description={settings?.companyId}
       >
         <SettingsStories.DashboardSettings />
@@ -111,23 +110,14 @@ export const ClientAdminPage = () => {
 };
 
 export const SettingsPage = () => {
-  const { account, breadcrumbs, layout } = useAdminLayout({
+  const { breadcrumbs, layout } = useAdminLayout({
     pageId: "settings",
   });
   return (
     <Layout {...layout}>
       <PageBase color="company">
         <Breadcrumbs items={breadcrumbs} />
-        <Heading size="xl">Innstillinger for {account?.name}</Heading>
-        <Toolbar search={{ name: "search", placeholder: "Søk" }} />
-        <Heading size="lg">Varslingsadresser for virksomheten</Heading>
-        <SettingsSection>
-          <SettingsStories.AlertSettings />
-        </SettingsSection>
-        <Heading size="lg">Virksomhetsopplysninger</Heading>
-        <SettingsSection>
-          <SettingsStories.CompanySettings />
-        </SettingsSection>
+        <SettingsStories.AdminSettings />
       </PageBase>
     </Layout>
   );

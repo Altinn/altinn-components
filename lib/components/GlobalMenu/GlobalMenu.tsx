@@ -3,7 +3,6 @@ import { useMemo, useState } from 'react';
 import { type Account, AccountMenu, type AccountMenuProps, CurrentAccount } from '../';
 import { Menu, MenuListItem, type MenuProps } from '../Menu';
 import { BackButton } from './BackButton';
-import { EndUserLabel } from './EndUserLabel';
 import { GlobalMenuBase, GlobalMenuFooter, GlobalMenuHeader } from './GlobalMenuBase';
 import { LogoutButton, type LogoutButtonProps } from './LogoutButton';
 
@@ -27,7 +26,6 @@ export const GlobalMenu = ({
   menu,
   backLabel = 'Back',
   currentAccount,
-  currentEndUserLabel = 'Signed in',
   onSelectAccount,
   onClose,
   logoutButton,
@@ -96,13 +94,9 @@ export const GlobalMenu = ({
         )}
         {menu && <Menu {...menu} items={itemsWithToggle} />}
         {logoutButton && (
-          <>
-            <MenuListItem as="div" role="separator" />
-            <GlobalMenuFooter>
-              {currentEndUserLabel && <EndUserLabel>{currentEndUserLabel}</EndUserLabel>}
-              <LogoutButton {...logoutButton} />
-            </GlobalMenuFooter>
-          </>
+          <GlobalMenuFooter>
+            <LogoutButton {...logoutButton} />
+          </GlobalMenuFooter>
         )}
       </GlobalMenuBase>
     );
@@ -112,13 +106,9 @@ export const GlobalMenu = ({
     <GlobalMenuBase aria-label={ariaLabel}>
       {menu && <Menu {...menu} items={itemsWithToggle} />}
       {logoutButton && (
-        <>
-          <MenuListItem as="div" role="separator" />
-          <GlobalMenuFooter>
-            {currentEndUserLabel && <EndUserLabel>{currentEndUserLabel}</EndUserLabel>}
-            <LogoutButton {...logoutButton} />
-          </GlobalMenuFooter>
-        </>
+        <GlobalMenuFooter>
+          <LogoutButton {...logoutButton} />
+        </GlobalMenuFooter>
       )}
     </GlobalMenuBase>
   );

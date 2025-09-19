@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { AccountMenu, type AccountMenuProps, Heading, PageBase, Toolbar } from '..';
-import { accountMenu, defaultAccounts, useAccountList, useAccountMenu } from '../../../examples';
+import type { Meta } from '@storybook/react-vite';
+import { AccountMenu, type AccountMenuProps } from '..';
+import { accountMenu, defaultAccounts, useAccountMenu } from '../../../examples';
 import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
 
 const meta = {
@@ -12,60 +12,44 @@ const meta = {
 } satisfies Meta<typeof AccountMenu>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  args: {
-    items: accountMenu.items.filter((item) => item.type !== 'group') as AccountMenuProps['items'],
-    onSelectAccount: (id: string) => console.log('ID', id),
-  },
+export const Default = () => {
+  const { items, groups, search } = useAccountMenu({
+    accounts: defaultAccounts?.map((item) => {
+      return { ...item, favourite: false };
+    }),
+  });
+  return <AccountMenu search={search} groups={groups} items={items} />;
 };
 
-export const Controlled = () => {
-  const accountMenu = useAccountMenu({ accounts: defaultAccounts });
-  return <AccountMenu {...(accountMenu as AccountMenuProps)} />;
+export const WithFavourites = () => {
+  const { items, groups, search } = useAccountMenu({
+    accounts: defaultAccounts?.filter((item) => item.type !== 'group'),
+  });
+  return <AccountMenu search={search} groups={groups} items={items} />;
 };
 
-export const WithoutSubunits: Story = {
-  args: {
-    items: accountMenu.items
-      .filter((item) => !item.parentId)
-      .map((item) => {
-        return {
-          ...item,
-          description: undefined,
-        };
-      }) as AccountMenuProps['items'],
-  },
-};
-
-export const WithGroups: Story = {
-  args: {
-    items: accountMenu.items as AccountMenuProps['items'],
-  },
+export const WithGroups = () => {
+  const { items, groups, search } = useAccountMenu({
+    accounts: defaultAccounts,
+    includeGroups: true,
+  });
+  return <AccountMenu search={search} groups={groups} items={items} />;
 };
 
 export const VirtualizedMenu = () => {
   const isDesktop = useIsDesktop();
-  const { items, groups } = useAccountList({
+  const { items, groups, search } = useAccountMenu({
     accounts: defaultAccounts,
   });
 
-  const menuItems = items?.map((item) => {
-    return {
-      ...item,
-      collapsible: false,
-      linkIcon: true,
-    };
-  }) as AccountMenuProps['items'];
-
   return (
-    <PageBase>
-      <Heading>Velg aktør før du går videre</Heading>
+    <>
       {items && (
         <AccountMenu
+          search={search}
           groups={groups}
-          items={menuItems}
+          items={items}
           menuItemsVirtual={{
             isVirtualized: true,
             scrollRefStyles: {
@@ -75,28 +59,6 @@ export const VirtualizedMenu = () => {
           }}
         />
       )}
-    </PageBase>
-  );
-};
-
-export const WithToolbar = () => {
-  const { toolbar, items, groups } = useAccountList({
-    accounts: defaultAccounts,
-  });
-
-  const menuItems = items?.map((item) => {
-    return {
-      ...item,
-      collapsible: false,
-      linkIcon: true,
-    };
-  }) as AccountMenuProps['items'];
-
-  return (
-    <PageBase>
-      <Heading>Velg aktør før du går videre</Heading>
-      <Toolbar {...toolbar} />
-      {items && <AccountMenu groups={groups} items={menuItems} />}
-    </PageBase>
+    </>
   );
 };

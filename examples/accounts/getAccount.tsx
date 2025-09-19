@@ -1,6 +1,4 @@
-import { ArrowDownRightIcon } from '@navikt/aksel-icons';
 import { type AccountDataGroups, type AccountDataProps, accounts } from '.';
-import { Avatar } from '../../lib';
 
 export const getAccountItem = ({
   id = 'company',
@@ -18,20 +16,6 @@ export const getAccountItem = ({
   emailAlerts,
   address,
 }: AccountDataProps) => {
-  const getAccountGroupId = () => {
-    if (isCurrentEndUser) {
-      return 'primary';
-    }
-    if (favourite) {
-      return 'favourites';
-    }
-    if (type === 'group') {
-      return 'groups';
-    }
-
-    return 'secondary';
-  };
-
   const getAccountIcon = () => {
     if (type === 'group') {
       const avatarGroup = accountIds
@@ -47,25 +31,11 @@ export const getAccountItem = ({
     }
 
     if (parentId) {
-      return (
-        <span style={{ position: 'relative', display: 'inline-block' }}>
-          <Avatar name={name} type={type} />
-          <div
-            data-theme="default"
-            style={{
-              display: 'flex',
-              position: 'absolute',
-              fontSize: '.5em',
-              bottom: '0',
-              right: '0',
-              padding: '.125em',
-              transform: 'translate(40%, 40%)',
-            }}
-          >
-            <ArrowDownRightIcon style={{ fontSize: '1em' }} aria-label="Subunit" />
-          </div>
-        </span>
-      );
+      return {
+        type,
+        name,
+        variant: 'outline',
+      };
     }
 
     return {
@@ -100,7 +70,7 @@ export const getAccountItem = ({
     if (type === 'company' && parentId) {
       const parentAccount = accounts.find((a) => a.id === parentId);
 
-      return 'Org. nr: ' + uniqueId + ', del av ' + parentAccount?.name;
+      return '↳ Org. nr: ' + uniqueId + ', del av ' + parentAccount?.name;
 
       /*
       return (
@@ -117,12 +87,12 @@ export const getAccountItem = ({
 
   const icon = getAccountIcon();
   const description = getAccountDescription();
-  const groupId = getAccountGroupId();
   const badge = getAccountBadge();
+
+  const parent = accounts.find((a) => a.id === parentId);
 
   return {
     id,
-    groupId,
     type,
     name,
     icon,
@@ -130,6 +100,7 @@ export const getAccountItem = ({
     badge,
     title: name,
     description,
+    parentName: parent?.name,
     parentId,
     accountIds,
     isDeleted,
@@ -169,48 +140,104 @@ export const getAccountItems = ({
   const unordered = accounts?.map((item) => getAccountItem(item));
   const items = sortAccountsByKey(unordered as AccountDataProps[], 'name');
 
-  const primaryAccounts = items?.filter((item) => item.groupId === 'primary') as AccountDataProps[];
-
-  const favouriteAccounts = items?.filter((item) => item.groupId === 'favourites') as AccountDataProps[];
-
-  const groupAccounts = items?.filter((item) => item.groupId === 'groups') as AccountDataProps[];
-
-  const secondaryAccounts = items?.filter((item) => item.groupId === 'secondary') as AccountDataProps[];
-
-  const sortedAccounts = [...primaryAccounts, ...favouriteAccounts, ...groupAccounts, ...secondaryAccounts];
-
-  return sortedAccounts;
+  return items;
 };
 
 export const groupAccountsByParent = (accounts: AccountDataProps[]) => {
-  const groups: AccountDataGroups = {};
+  const groups: AccountDataGroups = {
+    a1: {
+      title: 'Favoritter',
+    },
+    a2: { title: '' },
+    a3: { title: '' },
+    a4: { title: '' },
+    b1: {
+      title: 'Personer',
+    },
+    b2: {
+      title: '',
+    },
+    c1: {
+      title: 'Virksomheter',
+    },
+    c2: {
+      title: '',
+    },
+  };
 
-  const sortedItems = sortAccountsByKey(accounts as AccountDataProps[], 'name');
+  const unordered = [...accounts]?.map((item) => getAccountItem(item));
 
-  /** Remove current user and groups and group by relationships */
+  const sortedByName = sortAccountsByKey(unordered as AccountDataProps[], 'name');
+  const sortedByParentId = sortAccountsByKey(sortedByName as AccountDataProps[], 'parentId');
 
-  const items: AccountDataProps[] = sortedItems
-    ?.filter((item) => item.type !== 'group' && !item.isCurrentEndUser)
-    ?.map((item) => {
-      const { id, name, parentId } = item;
+  /** Group accounts by relationships */
 
-      if (parentId) {
-        return {
-          ...item,
-          groupId: parentId,
-        };
-      }
+  const groupedItems: AccountDataProps[] = sortedByParentId?.map((item) => {
+    const { id, name, type, favourite, parentName, isCurrentEndUser } = item;
 
-      groups[id] = {
-        title: name,
+    if (isCurrentEndUser) {
+      return {
+        ...item,
+        groupId: 'a1',
+      };
+    }
+
+    if (type === 'person') {
+      return {
+        ...item,
+        groupId: favourite ? 'a2' : 'b1',
+      };
+    }
+
+    if (type === 'company') {
+      const groupName = parentName || name;
+      const groupId = 'c1' + groupName;
+
+      groups[groupId] = {
+        title: '',
       };
 
       return {
         ...item,
-        groupId: id,
-        badge: undefined,
+        groupId: favourite ? 'a3' : groupId,
       };
-    });
+    }
+
+    if (type === 'group' && id === 'all-people') {
+      return {
+        ...item,
+        groupId: 'b2',
+      };
+    }
+
+    if (type === 'group' && id === 'all-companies') {
+      return {
+        ...item,
+        groupId: 'c2',
+      };
+    }
+
+    if (type === 'group') {
+      return {
+        ...item,
+        groupId: 'a4',
+      };
+    }
+
+    return item;
+  });
+
+  /* set title of first company group */
+
+  const firstCompanyGroup = groupedItems?.find((item) => item.type === 'company' && !item.favourite);
+
+  if (firstCompanyGroup?.groupId) {
+    groups[firstCompanyGroup.groupId] = {
+      title: 'Virksomheter',
+    };
+  }
+
+  const items = sortAccountsByKey(groupedItems as AccountDataProps[], 'groupId');
 
   return {
     items,
