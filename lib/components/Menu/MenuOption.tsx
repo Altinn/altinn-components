@@ -1,5 +1,4 @@
 import { CheckmarkIcon } from '@navikt/aksel-icons';
-import type { MouseEventHandler } from 'react';
 import { Badge, type BadgeProps, MenuItem } from '..';
 import type { MenuItemBaseProps, MenuItemSize } from './MenuItemBase';
 
@@ -16,7 +15,6 @@ export interface MenuOptionProps extends MenuItemBaseProps {
   badge?: BadgeProps | undefined;
   checked?: boolean;
   disabled?: boolean;
-  onMouseEnter?: MouseEventHandler;
   type?: MenuOptionType;
   hidden?: boolean;
   role?: string;
@@ -68,7 +66,6 @@ export const MenuOption = ({
       as="div"
       active={active}
       tabIndex={-1}
-      onMouseEnter={onMouseEnter}
       onClick={onClick}
       role={role}
       label={<Label />}

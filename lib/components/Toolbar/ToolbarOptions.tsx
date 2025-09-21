@@ -84,6 +84,7 @@ export const ToolbarOptions = ({
                     <MenuListItem
                       key={index}
                       expanded={expanded}
+                      onMouseEnter={onMouseEnter}
                       onMouseLeave={() => setActiveIndex(-1)}
                       role={type === 'radio' ? 'menuitemradio' : 'menuitemcheckbox'}
                       aria-checked={checked ?? false}
@@ -97,7 +98,6 @@ export const ToolbarOptions = ({
                         type={applicableType}
                         value={value}
                         checked={checked}
-                        onMouseEnter={onMouseEnter}
                         onClick={() => {
                           onChange?.({
                             name: applicableName,

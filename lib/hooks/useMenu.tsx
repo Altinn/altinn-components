@@ -43,10 +43,13 @@ export const useMenu = <T, V>({
 }: UseMenuInput<T, V>): UseMenuOutput<T, V> => {
   const [activeIndex, setActiveIndex] = useState<number>(-1);
 
-  useEnterKey(() => {
+  useEnterKey((e) => {
     if (keyboardEvents) {
       const currentRef = ref && 'current' in ref ? ref.current : null;
       const activeItem = currentRef?.querySelector('[data-active="true"]') as HTMLElement | null;
+
+      e.stopPropagation();
+      e.preventDefault();
 
       if (activeItem) {
         const isLink = activeItem.tagName === 'A' && activeItem.hasAttribute('href');

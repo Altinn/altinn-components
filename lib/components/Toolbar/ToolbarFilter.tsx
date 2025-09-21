@@ -47,7 +47,7 @@ export const ToolbarFilter = ({
   id = `toolbar-filter-${name}`,
 }: ToolbarFilterProps) => {
   const { currentId, toggleId, closeAll } = useRootContext();
-  const isDekstop = useIsDesktop();
+  const isDesktop = useIsDesktop();
   const filterOptions = (options ?? []).map((item): MenuOptionProps => {
     const value = filterState?.[item.name || name];
     return {
@@ -64,23 +64,25 @@ export const ToolbarFilter = ({
 
   const onBlurCapture = (e: React.FocusEvent<HTMLElement>) => {
     const nextFocused = e.relatedTarget as HTMLElement | null;
-
     if (!nextFocused || !e.currentTarget.contains(nextFocused)) {
       closeAll();
     }
   };
+
+  const active = Array.isArray(value) ? value.length > 0 : typeof value !== 'undefined';
 
   return (
     <ToolbarFilterBase expanded={expanded} onBlurCapture={onBlurCapture} dataTestId={'filter-base-' + id}>
       <ToolbarButton
         type="select"
         removable={removable}
-        active={Array.isArray(value) ? value.length > 0 : typeof value !== 'undefined'}
+        active={active}
         onToggle={onToggle}
         ariaLabel={buttonAltText}
         iconAltText={buttonAltText}
         onRemove={onRemove}
         dataTestId={id}
+        tabIndex={expanded ? -1 : 0}
       >
         {valueLabel || label}
       </ToolbarButton>
@@ -99,7 +101,7 @@ export const ToolbarFilter = ({
           optionGroups={optionGroups}
           onChange={onChange}
           optionType={optionType}
-          keyboardEvents={expanded && isDekstop}
+          keyboardEvents={expanded && isDesktop}
         />
       </DrawerOrDropdown>
     </ToolbarFilterBase>
