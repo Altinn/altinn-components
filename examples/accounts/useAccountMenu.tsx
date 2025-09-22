@@ -1,43 +1,58 @@
-import { useState } from 'react';
-import type { Account, AccountListItemProps, AccountMenuProps } from '../../lib';
+import { HeartFillIcon, HeartIcon } from '@navikt/aksel-icons';
+import { Badge, type BadgeProps, IconButton } from '../../lib';
+import type { AccountMenuProps } from '../../lib';
+import { type UseAccountsProps, useAccounts } from './';
 
-import { accountMenuGroups, accountMenuSearch, defaultAccounts, getAccountItems } from './';
+export const useAccountMenu = ({ accountId, accounts, includeGroups = false }: UseAccountsProps) => {
+  const { groups, items, currentAccount, onSelectAccount, onToggleFavourite } = useAccounts({
+    accountId,
+    accounts,
+    includeGroups,
+  });
 
-type UseAccountMenuProps = {
-  accountId?: string | null;
-  accounts?: AccountListItemProps[];
-  items?: AccountListItemProps[];
-} & Omit<AccountMenuProps, 'items'>;
-
-export const useAccountMenu = ({ accountId, accounts = defaultAccounts, ...props }: UseAccountMenuProps) => {
-  const groups = props?.groups || accountMenuGroups;
-  const search = props?.search || accountMenuSearch;
-
-  /* get items */
-  const items = props?.items || getAccountItems({ accounts });
-
-  /* if no accountId, return first account */
-  const defaultAccount =
-    items?.find((item) => item.id === accountId) || items?.find((item) => item.type === accountId) || items?.[0];
-
-  const [currentAccount, setCurrentAccount] = useState<Account | undefined>(defaultAccount as Account | undefined);
-
-  const onSelectAccount = (id: string) => {
-    const account = items?.find((item) => item.id === id);
-    setCurrentAccount({
-      id: account?.id,
-      name: account?.name,
-      type: account?.type,
-      description: account?.description,
-    } as Account);
+  const search = {
+    placeholder: 'Finn konto',
+    name: 'search-account',
+    getResultsLabel: (hits = 0) => {
+      if (hits) {
+        return hits + ' treff';
+      }
+      return 'Ingen treff';
+    },
+    hidden: false,
   };
 
+  const itemsWithFavourite = items?.map((item) => {
+    const { id, favourite, badge } = item;
+
+    const onFavourite = (e: React.MouseEvent) => {
+      e.stopPropagation();
+      onToggleFavourite?.(id);
+    };
+
+    return {
+      ...item,
+      badge: undefined,
+      controls: badge ? (
+        <Badge {...(badge as BadgeProps)} />
+      ) : (
+        <IconButton
+          rounded
+          variant="text"
+          icon={favourite ? HeartFillIcon : HeartIcon}
+          iconAltText={'Favoritt'}
+          onClick={onFavourite}
+          size="xs"
+        />
+      ),
+    };
+  });
+
   return {
-    ...props,
-    items,
+    items: itemsWithFavourite,
     groups,
     search,
     currentAccount,
     onSelectAccount,
-  };
+  } as AccountMenuProps;
 };

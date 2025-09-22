@@ -52,7 +52,7 @@ export const MenuItemIcon = ({ loading, size, icon, theme, badge }: MenuItemIcon
 
   return (
     <div className={styles.icon} data-size={size}>
-      {(isAvatarProps(icon) && <Avatar {...icon} />) ||
+      {(isAvatarProps(icon) && <Avatar {...icon} className={styles.avatar} />) ||
         (isAvatarGroupProps(icon) && <AvatarGroup {...icon} className={styles.avatarGroup} />) ||
         (isIconProps(icon) && <Icon {...(icon as IconProps)} theme={icon?.theme || theme} />) ||
         (isReactNode(icon) && icon) || <Icon theme={theme} svgElement={icon as SvgElement} />}

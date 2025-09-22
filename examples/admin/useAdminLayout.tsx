@@ -1,11 +1,11 @@
 import { adminMenu, adminMenuItems, desktopMenu, desktopMenuItems, useLayout } from '../';
-import type { AvatarProps, BreadcrumbsLinkProps, LayoutProps } from '../../lib';
+import type { Account, BreadcrumbsLinkProps, LayoutProps } from '../../lib';
 
 export type AdminSettings = Record<string, string>;
 
 interface AdminLayoutProps {
   accountId?: string;
-  account?: AvatarProps;
+  account?: Account;
   pageId?: string;
   breadcrumbs?: BreadcrumbsLinkProps[];
   layout: LayoutProps;
@@ -50,14 +50,13 @@ export const useAdminLayout = ({ accountId = 'diaspora', pageId = 'admin' }): Ad
 
   const account = layout?.header?.globalMenu?.currentAccount;
 
-  const menuItems = adminMenuItems.map((item, index) => {
+  const menuItems = adminMenuItems.map((item) => {
     const storyBookId = storybookPages?.[item.id as keyof typeof storybookPages];
     const href = storyBookId && [baseHref, storyBookId].join('');
 
     return {
       ...item,
       href,
-      icon: (!index && account) || item?.icon,
       selected: item.id === pageId,
     };
   });
@@ -94,8 +93,15 @@ export const useAdminLayout = ({ accountId = 'diaspora', pageId = 'admin' }): Ad
       sidebar: {
         menu: {
           ...adminMenu,
+          color: account?.type,
           variant: 'subtle',
-          items: menuItems,
+          items: menuItems?.filter((item) => {
+            if (account?.type === 'person' && item.groupId === '5') {
+              return false;
+            }
+
+            return true;
+          }),
         },
       },
     },

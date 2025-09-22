@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
 }
 
 .icon[data-size="lg"] {
@@ -31,6 +32,12 @@
 .icon[data-size="sm"] svg,
 .icon[data-size="sm"] img {
   font-size: 1.25rem;
+}
+
+.avatar {
+  font-size: 1em;
+  width: 1em;
+  height: 1em;
 }
 
 .avatarGroup {

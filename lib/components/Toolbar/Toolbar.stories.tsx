@@ -6,6 +6,7 @@ import {
   DrawerOrDropdown,
   type FilterState,
   Menu,
+  type MenuItemProps,
   type MenuProps,
   Toolbar,
   ToolbarBase,
@@ -215,13 +216,21 @@ export const CombinedRadioCheckboxFilter = () => {
   );
 };
 
+interface AccountMenuItemExtendedProps extends MenuItemProps {
+  id: string;
+  type: 'person' | 'company' | 'group';
+  name: string;
+  parentId?: string;
+  uniqueId?: string;
+}
+
 export const SelectSubaccount = () => {
   const accountMenu = useAccountMenu({
     accountId: 'diaspora',
   });
 
-  const [primaryId, setPrimaryId] = useState('company');
-  const [secondaryId, setSecondaryId] = useState('company');
+  const [primaryId, setPrimaryId] = useState('diaspora');
+  const [secondaryId, setSecondaryId] = useState('diaspora');
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
   const onToggle = (id: string) => {
@@ -230,8 +239,10 @@ export const SelectSubaccount = () => {
 
   const currentAccount = accountMenu?.items?.find((item) => item.id === primaryId) || accountMenu?.items?.[0];
 
-  const primaryItems = accountMenu?.items
-    ?.filter((item) => !item.parentId && !item.accountIds)
+  const items = accountMenu?.items as AccountMenuItemExtendedProps[];
+
+  const primaryItems = items
+    ?.filter((item) => !item.parentId)
     ?.map((item) => ({
       ...item,
       selected: item.id === currentAccount?.id,
@@ -239,7 +250,7 @@ export const SelectSubaccount = () => {
 
   const secondaryItems =
     currentAccount &&
-    accountMenu?.items
+    items
       ?.filter((item) => item.id.startsWith(currentAccount.id))
       ?.map((item) => {
         return {
@@ -250,6 +261,7 @@ export const SelectSubaccount = () => {
           title: item.id === currentAccount.id ? 'Hovedenhet' : 'Underenhet',
           description: 'Org nr: ' + item.uniqueId,
           groupId: null,
+          controls: undefined,
         };
       });
 

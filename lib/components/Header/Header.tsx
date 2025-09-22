@@ -75,6 +75,7 @@ export const Header = ({
             <DropdownBase
               layout="desktop"
               padding
+              size="lg"
               placement="right"
               open={currentId === 'menu'}
               className={styles.dropdown}

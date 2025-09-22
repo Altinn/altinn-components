@@ -1,11 +1,11 @@
 import { Card } from '@digdir/designsystemet-react';
 import type { ReactNode } from 'react';
-import { Heading, MenuItemIcon, type MenuItemIconProps, Typography } from '..';
+import { DashboardIcon, type DashboardIconProps, Heading, Typography } from '..';
 
 export interface DashboardCardProps {
   color?: 'company' | 'person';
   theme?: 'default' | 'tinted';
-  icon?: MenuItemIconProps;
+  icon?: DashboardIconProps;
   href?: string;
   title?: ReactNode;
   children?: ReactNode;
@@ -33,7 +33,7 @@ export function DashboardCard({
           rowGap: '1rem',
         }}
       >
-        {icon && <MenuItemIcon loading={loading} icon={icon} size="lg" theme="default" />}
+        {icon && <DashboardIcon loading={loading} icon={icon} theme="default" />}
         <Heading size="lg" loading={loading}>
           {href ? <a href={href}>{title}</a> : title}
         </Heading>
