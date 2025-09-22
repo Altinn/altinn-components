@@ -40,7 +40,7 @@ export const ToolbarAccountMenu = ({
       >
         {currentAccount?.name}
       </ToolbarButton>
-      <DrawerOrDropdown open={expanded} drawerTitle="Endre konto" onClose={closeAll}>
+      <DrawerOrDropdown open={expanded} size="lg" drawerTitle="Endre konto" onClose={closeAll}>
         <AccountMenu
           {...rest}
           keyboardEvents={expanded && isDesktop}

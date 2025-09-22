@@ -5,12 +5,14 @@ import styles from './dropdownBase.module.css';
 
 export type DropdownPlacement = 'left' | 'right';
 export type DropdownLayout = 'mobile' | 'desktop';
+export type DropdownSize = 'auto' | 'lg';
 
 export interface DropdownBaseProps {
   placement?: DropdownPlacement;
   layout?: DropdownLayout;
   padding?: boolean;
   open?: boolean;
+  size?: DropdownSize;
   className?: string;
   children?: ReactNode;
   onClose?: () => void;
@@ -19,6 +21,7 @@ export interface DropdownBaseProps {
 
 export const DropdownBase = ({
   layout,
+  size = 'auto',
   placement = 'left',
   padding = true,
   open = false,
@@ -37,6 +40,7 @@ export const DropdownBase = ({
       data-layout={layout}
       data-theme="default"
       data-shadow="md"
+      data-size={size}
       data-placement={placement}
       data-padding={padding}
       data-expanded={open}

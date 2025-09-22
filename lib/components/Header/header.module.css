@@ -9,7 +9,6 @@
 
 @media (min-width: 1024px) {
   .dropdown[data-expanded="true"] {
-    width: 320px;
     display: block;
   }
   .drawer[data-expanded="true"] {

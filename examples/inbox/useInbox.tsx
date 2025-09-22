@@ -375,6 +375,9 @@ export const useInbox = ({ accountId, pageId = 'inbox', q, ...props }: UseInboxP
       ...toolbar,
       accountMenu: {
         ...accountMenu,
+        menuItemsVirtual: {
+          isVirtualized: true,
+        },
         onSelectAccount,
         currentAccount,
       } as ToolbarProps['accountMenu'],

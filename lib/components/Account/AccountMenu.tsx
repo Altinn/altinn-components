@@ -12,8 +12,6 @@ export interface AccountMenuItemProps extends MenuItemProps {
   id: string;
   type: 'person' | 'company' | 'group';
   name: string;
-  parentId?: string;
-  uniqueId?: string;
 }
 
 export interface AccountMenuProps extends MenuProps {

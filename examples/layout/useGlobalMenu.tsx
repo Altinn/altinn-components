@@ -1,4 +1,4 @@
-import { defaultAccounts, globalMenu, loginMenu, useAccounts } from '../';
+import { defaultAccounts, globalMenu, loginMenu, useAccountMenu } from '../';
 import type { AccountListItemProps, GlobalMenuProps } from '../../lib';
 
 interface UseGlobalMenuProps extends GlobalMenuProps {
@@ -17,19 +17,11 @@ export const useGlobalMenu = ({
     return { menu: loginMenu, menuLabel };
   }
 
-  const { onSelectAccount, currentAccount, ...accountMenu } = useAccounts({
+  const { onSelectAccount, currentAccount, ...accountMenu } = useAccountMenu({
     accountId,
     accounts,
     includeGroups: false,
   });
-
-  console.log('C', currentAccount);
-
-  //  const accountMenu = props?.accountMenu || getAccountMenu({ accounts });
-
-  /* first account is current user
-  const currentEndUser = accountMenu?.items?.[0];
- */
 
   return {
     ...globalMenu,

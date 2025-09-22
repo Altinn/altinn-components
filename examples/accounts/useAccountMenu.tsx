@@ -25,6 +25,11 @@ export const useAccountMenu = ({ accountId, accounts, includeGroups = false }: U
   const itemsWithFavourite = items?.map((item) => {
     const { id, favourite, badge } = item;
 
+    const onFavourite = (e: React.MouseEvent) => {
+      e.stopPropagation();
+      onToggleFavourite?.(id);
+    };
+
     return {
       ...item,
       badge: undefined,
@@ -36,7 +41,7 @@ export const useAccountMenu = ({ accountId, accounts, includeGroups = false }: U
           variant="text"
           icon={favourite ? HeartFillIcon : HeartIcon}
           iconAltText={'Favoritt'}
-          onClick={() => onToggleFavourite?.(id)}
+          onClick={onFavourite}
           size="xs"
         />
       ),

@@ -29,6 +29,10 @@
   overflow: hidden;
 }
 
+.dropdown[data-size="lg"] {
+  width: 20rem;
+}
+
 @media (max-width: 1023px) {
   .dropdown[data-expanded="true"][data-layout="desktop"] {
     display: none;

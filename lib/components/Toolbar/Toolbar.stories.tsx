@@ -6,6 +6,7 @@ import {
   DrawerOrDropdown,
   type FilterState,
   Menu,
+  type MenuItemProps,
   type MenuProps,
   Toolbar,
   ToolbarBase,
@@ -215,6 +216,14 @@ export const CombinedRadioCheckboxFilter = () => {
   );
 };
 
+interface AccountMenuItemExtendedProps extends MenuItemProps {
+  id: string;
+  type: 'person' | 'company' | 'group';
+  name: string;
+  parentId?: string;
+  uniqueId?: string;
+}
+
 export const SelectSubaccount = () => {
   const accountMenu = useAccountMenu({
     accountId: 'diaspora',
@@ -230,7 +239,9 @@ export const SelectSubaccount = () => {
 
   const currentAccount = accountMenu?.items?.find((item) => item.id === primaryId) || accountMenu?.items?.[0];
 
-  const primaryItems = accountMenu?.items
+  const items = accountMenu?.items as AccountMenuItemExtendedProps[];
+
+  const primaryItems = items
     ?.filter((item) => !item.parentId)
     ?.map((item) => ({
       ...item,
@@ -239,7 +250,7 @@ export const SelectSubaccount = () => {
 
   const secondaryItems =
     currentAccount &&
-    accountMenu?.items
+    items
       ?.filter((item) => item.id.startsWith(currentAccount.id))
       ?.map((item) => {
         return {
