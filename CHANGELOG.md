@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.38.18](https://github.com/Altinn/altinn-components/compare/v0.38.17...v0.38.18) (2025-09-22)
+
+
+### Bug Fixes
+
+* avatar variant + account stories ([#646](https://github.com/Altinn/altinn-components/issues/646)) ([#649](https://github.com/Altinn/altinn-components/issues/649)) ([1d47782](https://github.com/Altinn/altinn-components/commit/1d4778256a56c6c0f87099d3c2f34b1c5e4ca1ce))
+* Simplify MenuItemsVirtual ([#652](https://github.com/Altinn/altinn-components/issues/652)) ([281e384](https://github.com/Altinn/altinn-components/commit/281e3844969b86f055a1781b18911656d74e70f0))
+* small improvements to toolbar keyboard nav ([#650](https://github.com/Altinn/altinn-components/issues/650)) ([5682e49](https://github.com/Altinn/altinn-components/commit/5682e49c4bbbf8d8827f1b3de06098f804bc231d))
+
 ## [0.38.17](https://github.com/Altinn/altinn-components/compare/v0.38.16...v0.38.17) (2025-09-19)
 
 
