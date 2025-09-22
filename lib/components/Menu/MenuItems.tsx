@@ -16,11 +16,6 @@ export interface MenuGroupProps {
 
 export type MenuItemGroups = Record<string, MenuGroupProps>;
 
-export interface MenuItemsVirtualProps {
-  isVirtualized?: boolean;
-  scrollRefStyles?: React.CSSProperties;
-}
-
 export interface MenuItemsProps {
   level?: number;
   expanded?: boolean;
