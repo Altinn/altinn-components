@@ -31,11 +31,16 @@ export const CurrentAccount = (args: HeaderProps) => {
 };
 
 export const CompanyAccount = (args: HeaderProps) => {
-  const header = useHeader({ ...args, accountId: 'company' });
+  const header = useHeader({ ...args, accountId: 'diaspora' });
+  return <Header {...(header as HeaderProps)} />;
+};
+
+export const SubcompanyAccount = (args: HeaderProps) => {
+  const header = useHeader({ ...args, accountId: 'diaspora-2' });
   return <Header {...(header as HeaderProps)} />;
 };
 
 export const MobileMenu = (args: HeaderProps) => {
-  const header = useHeader({ ...args, accountId: 'company' });
+  const header = useHeader({ ...args, accountId: 'diaspora' });
   return <Header {...(header as HeaderProps)} mobileMenu={mobileMenu} />;
 };
