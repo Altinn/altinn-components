@@ -1,7 +1,6 @@
 'use client';
 import { type CSSProperties, useState } from 'react';
 import { Menu, type MenuItemProps, type MenuProps, type MenuSearchProps } from '../';
-import type { MenuItemsVirtualProps } from '../Menu';
 
 export interface AccountSearchProps extends MenuSearchProps {
   getResultsLabel?: (hits: number) => string;
@@ -19,7 +18,6 @@ export interface AccountMenuProps extends MenuProps {
   search?: AccountSearchProps;
   currentAccount?: AccountMenuItemProps;
   onSelectAccount?: (id: string) => void;
-  menuItemsVirtual?: MenuItemsVirtualProps;
   scrollRefStyles?: CSSProperties;
   keyboardEvents?: boolean;
 }
@@ -32,7 +30,7 @@ export const AccountMenu = ({
   search,
   onSelectAccount,
   currentAccount,
-  menuItemsVirtual,
+  isVirtualized,
   keyboardEvents,
 }: AccountMenuProps) => {
   const accountMenu: AccountMenuItemProps[] = items.map((item) => ({
@@ -89,7 +87,7 @@ export const AccountMenu = ({
       search={search && accountSearchItem}
       groups={filterAccountGroups}
       items={accountSwitcher}
-      menuItemsVirtual={menuItemsVirtual}
+      isVirtualized={isVirtualized}
       keyboardEvents={keyboardEvents}
     />
   );

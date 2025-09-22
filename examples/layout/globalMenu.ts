@@ -146,14 +146,7 @@ export const mobileMenu = {
 export const globalMenu: GlobalMenuProps = {
   accountMenu: {
     ...(accountMenu as AccountMenuProps),
-    menuItemsVirtual: {
-      isVirtualized: true,
-      scrollRefStyles: {
-        minWidth: '20rem',
-        maxHeight: 'calc(90vh - 8rem)',
-        marginBottom: '.5rem',
-      },
-    },
+    isVirtualized: true,
   },
   menu: desktopMenu,
   currentEndUserLabel: 'Logget inn som Mathias Dyngeland',

@@ -480,7 +480,10 @@ export const SearchSettings = () => {
         <>
           <Heading size="xl">{title}</Heading>
           <Toolbar
-            accountMenu={accountMenu}
+            accountMenu={{
+              ...accountMenu,
+              isVirtualized: true,
+            }}
             search={{
               name: "search",
               placeholder: "Søk i innstillinger",

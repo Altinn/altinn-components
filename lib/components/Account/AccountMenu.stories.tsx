@@ -1,7 +1,6 @@
 import type { Meta } from '@storybook/react-vite';
 import { AccountMenu, type AccountMenuProps } from '..';
 import { accountMenu, defaultAccounts, useAccountMenu } from '../../../examples';
-import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
 
 const meta = {
   title: 'Account/AccountMenu',
@@ -38,27 +37,9 @@ export const WithGroups = () => {
 };
 
 export const VirtualizedMenu = () => {
-  const isDesktop = useIsDesktop();
   const { items, groups, search } = useAccountMenu({
     accounts: defaultAccounts,
   });
 
-  return (
-    <>
-      {items && (
-        <AccountMenu
-          search={search}
-          groups={groups}
-          items={items}
-          menuItemsVirtual={{
-            isVirtualized: true,
-            scrollRefStyles: {
-              maxHeight: isDesktop ? 'calc(100vh - 6rem)' : 'calc(100vh - 5rem)',
-              paddingBottom: '0.5rem',
-            },
-          }}
-        />
-      )}
-    </>
-  );
+  return <>{items && <AccountMenu search={search} groups={groups} items={items} isVirtualized={true} />}</>;
 };

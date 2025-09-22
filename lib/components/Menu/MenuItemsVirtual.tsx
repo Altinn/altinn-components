@@ -1,6 +1,6 @@
 'use client';
 import { useVirtualizer } from '@tanstack/react-virtual';
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { MenuHeader, MenuItem, MenuList, MenuListItem } from '../';
 import type { MenuItemProps } from '../';
 import { useMenu } from '../../hooks';
@@ -27,10 +27,6 @@ interface ItemEntry {
 
 type MenuEntry = SeparatorEntry | TitleEntry | ItemEntry;
 
-interface MenuItemsVirtualProps extends MenuItemsProps {
-  scrollRefStyles?: React.CSSProperties;
-}
-
 export const MenuItemsVirtual = ({
   level = 0,
   search,
@@ -40,10 +36,33 @@ export const MenuItemsVirtual = ({
   defaultItemColor,
   defaultItemVariant,
   defaultIconTheme,
-  scrollRefStyles,
   keyboardEvents,
-}: MenuItemsVirtualProps) => {
+}: MenuItemsProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  // calculate scroll ref styles
+
+  const scrollTop = scrollRef.current?.getBoundingClientRect().top;
+
+  const [windowHeight, setWindowHeight] = useState<number>(window.innerHeight);
+
+  useEffect(() => {
+    const changeWindowSize = () => {
+      setWindowHeight(window.innerHeight);
+    };
+    window.addEventListener('resize', changeWindowSize);
+    return () => {
+      window.removeEventListener('resize', changeWindowSize);
+    };
+  }, []);
+
+  const scrollMaxHeight = useMemo(() => {
+    return (scrollTop && windowHeight - scrollTop - 8) || 400;
+  }, [windowHeight, scrollTop]);
+
+  const scrollRefStyles = {
+    maxHeight: scrollMaxHeight <= 300 ? 300 : scrollMaxHeight,
+  };
 
   const { menu } = useMenu<MenuItemProps, MenuGroupProps>({
     items,
@@ -186,8 +205,19 @@ export const MenuItemsVirtual = ({
 
   return (
     <MenuList>
-      {search && <MenuSearch {...search} />}
       <div ref={scrollRef} className={styles.virtualScrollRef} style={scrollRefStyles}>
+        {search && (
+          <div
+            style={{
+              position: 'sticky',
+              top: 0,
+              zIndex: 10,
+              marginTop: '-0.5rem',
+            }}
+          >
+            <MenuSearch {...search} />
+          </div>
+        )}
         <div
           style={{
             position: 'relative',

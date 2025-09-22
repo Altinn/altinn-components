@@ -28,7 +28,10 @@ export const useGlobalMenu = ({
     ...props,
     menu,
     menuLabel,
-    accountMenu,
+    accountMenu: {
+      ...accountMenu,
+      isVirtualized: true,
+    },
     currentAccount,
     onSelectAccount,
   } as GlobalMenuProps;
