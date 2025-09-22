@@ -29,12 +29,17 @@ const a11y: A11yParameters = {
     context: "#story-in-story-decorator-root",
     config: {
       rules: enabledRules,
-    }
+    },
   },
 };
 
 const preview: Preview = {
   parameters: {
+    docs: {
+      source: {
+        type: "code",
+      },
+    },
     a11y,
     controls: {
       matchers: {
