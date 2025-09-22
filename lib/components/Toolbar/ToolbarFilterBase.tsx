@@ -15,7 +15,6 @@ export const ToolbarFilterBase = ({
   dataTestId,
 }: ToolbarFilterBaseProps) => {
   const filterBaseStyles = cx(styles.base, expanded && styles.expanded);
-
   return (
     <div onBlurCapture={onBlurCapture} className={filterBaseStyles} data-testid={dataTestId}>
       {children}

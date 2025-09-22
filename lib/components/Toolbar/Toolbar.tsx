@@ -118,6 +118,10 @@ export const Toolbar = ({
       ...applicableFilterState,
       [name]: applicableFilterState[name] ?? [],
     });
+    requestAnimationFrame(() => {
+      const el: HTMLButtonElement | null = document.querySelector(`[data-testid="${id}"]`);
+      el?.focus();
+    });
   };
 
   return (
@@ -127,24 +131,27 @@ export const Toolbar = ({
       {/* Optional input filter field */}
       {search && <ToolbarSearch {...search} />}
       {/* Buttons showing applied filters, either as placeholder or selected value(s), with dropdown in order to select value(s) */}
-      {visibleFilters.map((item) => (
-        <ToolbarFilter
-          id={getFilterId(item.name, item.id)}
-          showResultsLabel={showResultsLabel}
-          key={item.name}
-          onRemove={() => onFilterRemove(item.name)}
-          onChange={onFilterChange}
-          name={item.name}
-          options={item.options}
-          label={item.label}
-          optionType={item.optionType}
-          removable={item.removable}
-          getSelectedLabel={getFilterLabel}
-          buttonAltText={removeButtonAltText}
-          optionGroups={item.optionGroups}
-          filterState={applicableFilterState}
-        />
-      ))}
+      {visibleFilters.map((item) => {
+        return (
+          <ToolbarFilter
+            id={getFilterId(item.name, item.id)}
+            showResultsLabel={showResultsLabel}
+            key={item.name}
+            onRemove={() => onFilterRemove(item.name)}
+            onChange={onFilterChange}
+            name={item.name}
+            options={item.options}
+            label={item.label}
+            optionType={item.optionType}
+            removable={item.removable}
+            getSelectedLabel={getFilterLabel}
+            buttonAltText={removeButtonAltText}
+            optionGroups={item.optionGroups}
+            filterState={applicableFilterState}
+          />
+        );
+      })}
+
       {hiddenFilters?.length > 0 && (
         <ToolbarAdd
           id="toolbar-filter-add"
@@ -157,7 +164,6 @@ export const Toolbar = ({
               title: item.label,
               name: item.name,
               onClick: () => onFilterAdd(item.name, filterId),
-              as: 'button',
             };
           })}
         />

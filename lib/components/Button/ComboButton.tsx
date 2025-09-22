@@ -16,6 +16,7 @@ export interface ComboButtonProps extends Omit<ButtonBaseProps, 'onClick'> {
   label?: string;
   labelSize?: ButtonSize;
   dataTestId?: string;
+  tabIndex?: number;
 }
 
 export const ComboButton = ({
@@ -34,6 +35,7 @@ export const ComboButton = ({
   onLabelClick,
   onIconClick,
   dataTestId,
+  tabIndex = 0,
 }: ComboButtonProps) => {
   return (
     <ButtonBase
@@ -51,6 +53,7 @@ export const ComboButton = ({
         onClick={onLabelClick}
         className={styles.primary}
         dataTestId={dataTestId}
+        tabIndex={tabIndex}
       >
         <ButtonLabel size={labelSize}>{children || label}</ButtonLabel>
       </ButtonBase>
@@ -60,6 +63,7 @@ export const ComboButton = ({
         className={styles.secondary}
         ariaLabel={iconAltText}
         size={iconSize || labelSize}
+        tabIndex={tabIndex}
       >
         {icon && <ButtonIcon icon={icon} />}
       </ButtonBase>

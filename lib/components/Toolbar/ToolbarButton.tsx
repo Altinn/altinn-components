@@ -18,6 +18,7 @@ export type ToolbarButtonProps = {
   onToggle?: MouseEventHandler;
   onRemove?: MouseEventHandler;
   dataTestId?: string;
+  tabIndex?: number;
 } & AriaAttributes;
 
 export const ToolbarButton = ({
@@ -31,6 +32,7 @@ export const ToolbarButton = ({
   onRemove,
   iconAltText,
   dataTestId,
+  tabIndex,
   'aria-expanded': ariaExpanded,
 }: ToolbarButtonProps) => {
   if (removable) {
@@ -47,6 +49,7 @@ export const ToolbarButton = ({
         ariaLabel={typeof children !== 'string' ? ariaLabel : undefined}
         aria-expanded={ariaExpanded}
         dataTestId={dataTestId}
+        tabIndex={tabIndex}
       >
         {children}
       </ComboButton>
@@ -64,6 +67,7 @@ export const ToolbarButton = ({
         ariaLabel={ariaLabel || 'add'}
         aria-expanded={ariaExpanded}
         dataTestId={dataTestId}
+        tabIndex={tabIndex}
       >
         {children}
       </Button>
