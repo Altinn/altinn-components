@@ -3,10 +3,11 @@ import { defaultAccounts, useAccountMenu } from '../';
 import type { DialogListItemProps, FilterState, ToolbarProps } from '../../lib';
 
 interface UseInboxToolbarProps {
+  accountId?: string;
   items?: DialogListItemProps[];
 }
 
-export const useInboxToolbar = ({ items }: UseInboxToolbarProps): ToolbarProps => {
+export const useInboxToolbar = ({ accountId, items }: UseInboxToolbarProps): ToolbarProps => {
   const [filterState, setFilterState] = useState<FilterState>({
     //    from: ["skatt", "brreg"],
   });
@@ -101,7 +102,9 @@ export const useInboxToolbar = ({ items }: UseInboxToolbarProps): ToolbarProps =
   // setup account menu
 
   const accountMenu = useAccountMenu({
+    accountId,
     accounts: defaultAccounts,
+    includeGroups: true,
   });
 
   // onFilterStateChange
