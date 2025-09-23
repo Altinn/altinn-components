@@ -35,13 +35,7 @@ import {
   Toolbar,
   Typography,
 } from '..';
-import {
-  type UseAccountsProps,
-  accountList,
-  defaultAccounts,
-  useAccountList,
-  useAccountSettings,
-} from '../../../examples';
+import { type UseAccountsProps, accountList, defaultAccounts, useAccountList, useSettings } from '../../../examples';
 
 const meta = {
   title: 'Account/AccountList',
@@ -368,7 +362,7 @@ export const CompanyDetails = ({
   onModal,
   ...props
 }: AccountDetailsProps) => {
-  const { items } = useAccountSettings({ accounts: defaultAccounts });
+  const { items } = useSettings({ accounts: defaultAccounts });
 
   const parentAccount = items?.find((item) => 'id' in item && item.id === parentId);
 

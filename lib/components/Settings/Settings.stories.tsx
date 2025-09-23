@@ -15,7 +15,7 @@ import type { Meta } from '@storybook/react-vite';
 import { useState } from 'react';
 import { Divider, Fieldset, List, Radio, Section, SettingsItem, Switch, TextField, Typography } from '..';
 
-import { useSettings } from '../../../examples';
+import { useSettingsData } from '../../../examples';
 
 const meta = {
   title: 'Settings/Settings',
@@ -44,15 +44,14 @@ export const CollapsibleList = () => {
   const localeOptions: string[] = ['Bokmål', 'Nynorsk', 'English', 'España'];
   const modeOptions: string[] = ['Auto', 'Lys', 'Mørk'];
 
-  const { settings, onChange } = useSettings({
+  const { data, onChange } = useSettingsData({
     locale: localeOptions[0],
     mode: modeOptions[0],
     email: 'E-post',
     phone: 'SMS',
   });
 
-  const badgeLabel =
-    (settings.email && settings.phone && 'E-post og SMS') || (settings.email && 'E-post') || (settings.phone && 'SMS');
+  const badgeLabel = (data.email && data.phone && 'E-post og SMS') || (data.email && 'E-post') || (data.phone && 'SMS');
 
   const badge = badgeLabel && { label: badgeLabel };
 
@@ -73,18 +72,12 @@ export const CollapsibleList = () => {
       >
         <Section padding={6} spacing={6}>
           <Fieldset>
-            <Switch
-              label="Varsle på e-post"
-              name="email"
-              value="E-post"
-              checked={!!settings.email}
-              onChange={onChange}
-            />
-            {settings.email && <TextField placeholder="E-postadresse" />}
+            <Switch label="Varsle på e-post" name="email" value="E-post" checked={!!data.email} onChange={onChange} />
+            {data.email && <TextField placeholder="E-postadresse" />}
           </Fieldset>
           <Fieldset>
-            <Switch label="Varsle på SMS" name="phone" value="SMS" checked={!!settings.phone} onChange={onChange} />
-            {settings.phone && <TextField placeholder="Mobiltelefon" />}
+            <Switch label="Varsle på SMS" name="phone" value="SMS" checked={!!data.phone} onChange={onChange} />
+            {data.phone && <TextField placeholder="Mobiltelefon" />}
           </Fieldset>
         </Section>
       </SettingsItem>
@@ -93,7 +86,7 @@ export const CollapsibleList = () => {
         collapsible
         expanded={expandedId === '2'}
         icon={SunIcon}
-        title={'Modus: ' + settings.mode}
+        title={'Modus: ' + data.mode}
         linkIcon
         onClick={() => onToggle('2')}
       >
@@ -105,7 +98,7 @@ export const CollapsibleList = () => {
                 name="mode"
                 label={value}
                 value={value}
-                checked={settings.mode === value}
+                checked={data.mode === value}
                 onChange={onChange}
               />
             ))}
@@ -117,7 +110,7 @@ export const CollapsibleList = () => {
         collapsible
         expanded={expandedId === 'locale'}
         icon={GlobeIcon}
-        title={'Språk/language: ' + settings.locale}
+        title={'Språk/language: ' + data.locale}
         linkIcon
         onClick={() => onToggle('locale')}
       >
@@ -129,7 +122,7 @@ export const CollapsibleList = () => {
                 name="locale"
                 label={value}
                 value={value}
-                checked={settings.locale === value}
+                checked={data.locale === value}
                 onChange={onChange}
               />
             ))}
@@ -189,7 +182,7 @@ export const ContactSettings = () => {
 };
 
 export const NotificationSettings = () => {
-  const { settings, onChange } = useSettings({
+  const { data, onChange } = useSettingsData({
     alerts: 'on',
     mobile: 'on',
     email: 'on',
@@ -197,20 +190,20 @@ export const NotificationSettings = () => {
   return (
     <List size="sm">
       <SettingsItem
-        icon={settings.alerts ? BellDotIcon : BellIcon}
-        title={settings.alerts ? 'Varslinger er på' : 'Ingen varslinger'}
+        icon={data.alerts ? BellDotIcon : BellIcon}
+        title={data.alerts ? 'Varslinger er på' : 'Ingen varslinger'}
         controls={
           <Switch
             name="alerts"
             onChange={onChange}
-            checked={!!settings?.alerts}
+            checked={!!data?.alerts}
             reverse
             size="sm"
-            label={<span data-size="xs">{settings.alerts ? 'Skru av ' : 'Skru på '}</span>}
+            label={<span data-size="xs">{data.alerts ? 'Skru av ' : 'Skru på '}</span>}
           />
         }
       />
-      {settings.alerts && (
+      {data.alerts && (
         <>
           <Divider as="li" />
           <SettingsItem

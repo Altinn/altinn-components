@@ -6,6 +6,19 @@ interface UseLayoutProps extends LayoutProps {
   accountId?: string | null;
   menu?: MenuProps;
 }
+
+function getAccountIdFromUrl(): string {
+  const parsedUrl = new URL(window.location.href);
+  const accountId = parsedUrl.searchParams.get('accountId') ?? '';
+  return accountId;
+}
+
+function getAccountIdUrl(accountId: string): string {
+  const url = new URL(window.location.href);
+  url.searchParams.set('accountId', accountId);
+  return url.toString();
+}
+
 export const useLayout = ({
   accounts = defaultAccounts,
   accountId,
@@ -15,14 +28,32 @@ export const useLayout = ({
   sidebar,
   menu,
 }: UseLayoutProps): LayoutProps => {
-  const headerProps = useHeader({ ...header, accounts, accountId, menu });
+  const applicableAccountId = getAccountIdFromUrl() || accountId;
+
+  const headerProps = useHeader({
+    ...header,
+    accounts,
+    accountId: applicableAccountId,
+    menu,
+  });
+
+  const onSelectAccount = (id: string) => {
+    const accountUrl = getAccountIdUrl(id);
+    window.location.href = accountUrl;
+  };
 
   return {
     color,
     theme,
     skipLink,
     footer,
-    header: headerProps as HeaderProps,
+    header: {
+      ...headerProps,
+      globalMenu: {
+        ...headerProps?.globalMenu,
+        onSelectAccount,
+      },
+    } as HeaderProps,
     sidebar,
   };
 };

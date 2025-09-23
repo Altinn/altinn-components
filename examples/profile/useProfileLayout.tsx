@@ -1,13 +1,14 @@
-import { desktopMenu, desktopMenuItems, footer, profileMenu, profileMenuItems, useLayout } from '../';
+import { desktopMenu, desktopMenuItems, profileMenu, profileMenuItems, useLayout } from '../';
 import type { Account, BreadcrumbsLinkProps, LayoutProps } from '../../lib';
 
 interface ProfileLayoutProps extends LayoutProps {
+  accountId?: string;
   pageId?: string;
   breadcrumbs?: BreadcrumbsLinkProps[];
   account?: Account;
 }
 
-export const useProfileLayout = ({ pageId = 'profile' }): ProfileLayoutProps => {
+export const useProfileLayout = ({ accountId = 'user', pageId = 'profile' }): ProfileLayoutProps => {
   const baseHref = '?id=';
 
   const storybookPages = {
@@ -25,7 +26,7 @@ export const useProfileLayout = ({ pageId = 'profile' }): ProfileLayoutProps => 
 
   const menuItems = profileMenuItems.map((item) => {
     const storyBookId = storybookPages?.[item.id as keyof typeof storybookPages];
-    const href = storyBookId && [baseHref, storyBookId].join('');
+    const href = storyBookId && [baseHref, storyBookId].join('') + '&accountId=' + accountId;
 
     return {
       ...item,
@@ -34,11 +35,9 @@ export const useProfileLayout = ({ pageId = 'profile' }): ProfileLayoutProps => 
     };
   });
 
-  const page = menuItems?.find((item) => item.selected);
-
   const desktopItems = desktopMenuItems.map((item) => {
     const storyBookId = storybookPages?.[item.id as keyof typeof storybookPages];
-    const href = storyBookId && [baseHref, storyBookId].join('');
+    const href = storyBookId && [baseHref, storyBookId].join('') + '&accountId=' + accountId;
 
     return {
       ...item,
@@ -48,6 +47,7 @@ export const useProfileLayout = ({ pageId = 'profile' }): ProfileLayoutProps => 
   });
 
   const layout = useLayout({
+    accountId,
     color: 'neutral',
     theme: 'subtle',
     menu: {
@@ -55,28 +55,12 @@ export const useProfileLayout = ({ pageId = 'profile' }): ProfileLayoutProps => 
       items: desktopItems,
     },
     sidebar: {
-      menu: { ...profileMenu, items: menuItems },
+      menu: {
+        ...profileMenu,
+        items: menuItems,
+      },
     },
   });
 
-  const account = layout.header?.currentAccount;
-
-  const breadcrumbs = [
-    {
-      label: 'Forside',
-    },
-    {
-      label: (account?.name as string) || 'Seksjon',
-    },
-    {
-      label: (page?.title as string) || 'Side',
-    },
-  ];
-
-  return {
-    ...layout,
-    account,
-    breadcrumbs,
-    footer,
-  };
+  return layout;
 };

@@ -90,6 +90,7 @@ export const ToolbarOptions = ({
                       aria-checked={checked ?? false}
                     >
                       <MenuOption
+                        {...itemProps}
                         active={active}
                         tabIndex={keyboardEvents ? -1 : 0}
                         label={itemProps.label}

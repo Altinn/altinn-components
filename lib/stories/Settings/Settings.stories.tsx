@@ -8,14 +8,23 @@ import {
   HouseHeartIcon,
   PersonRectangleIcon,
   ExternalLinkIcon,
+  PlusIcon,
 } from "@navikt/aksel-icons";
 import type { Meta } from "@storybook/react-vite";
-import { useAccountSettings, defaultAccounts } from "../../../examples";
+import {
+  useSettings,
+  useAdmin,
+  useSettingsToolbar,
+  defaultAccounts,
+  type UseSettingsProps,
+} from "../../../examples";
+import { brreg } from "../../../examples/avatar";
 import {
   PageBase,
   Toolbar,
   Divider,
   Fieldset,
+  Legend,
   Radio,
   List,
   Heading,
@@ -39,7 +48,7 @@ import {
 } from "../../components";
 
 const meta = {
-  title: "Demo/Profile/Settings",
+  title: "Demo/Settings",
   tags: ["beta", "autodocs"],
   parameters: {},
   args: {},
@@ -93,6 +102,127 @@ const ContactProfileList = ({ items }: { items?: AccountListItemProps[] }) => {
         </>
       )}
     </Section>
+  );
+};
+
+interface SettingsValueModalProps extends SettingsModalProps {
+  value?: string;
+}
+
+export const CompanyInfoModal = ({
+  open = true,
+  onClose,
+}: SettingsModalProps) => {
+  return (
+    <SettingsModal
+      icon={brreg}
+      title="Endre opplysninger for virksomheten"
+      open={open}
+      onClose={onClose}
+    >
+      <Typography size="sm">
+        <p>
+          Hvis det har skjedd endringer i informasjonen som er registrert på
+          selskapet, må du melde fra om dette i Samordnet registermelding.
+        </p>
+        <p>
+          Samordet registermelding finner du på <a href="#">brreg.no</a>.
+        </p>
+      </Typography>
+      <ButtonGroup size="md">
+        <Button variant="outline" icon={ExternalLinkIcon} reverse>
+          Samordnet registermelding
+        </Button>
+      </ButtonGroup>
+    </SettingsModal>
+  );
+};
+
+export const CompanyEmailSettingsModal = ({
+  title = "Varslinger på e-post",
+  icon = BellIcon,
+  value = "post@diasporabergensis.no",
+  open = true,
+  onClose,
+}: SettingsValueModalProps) => {
+  const initialItems = value?.split(",") || [];
+  const [items, setItems] = useState<string[]>(initialItems);
+
+  const onAdd = (item: string) => {
+    setItems((prevState) => {
+      return [...prevState, item];
+    });
+  };
+
+  return (
+    <SettingsModal icon={icon} title={title} open={open} onClose={onClose}>
+      <Fieldset>
+        <Legend>Virksomhetens e-postadresser for varslinger:</Legend>
+        {items?.map((value) => {
+          return (
+            <TextField placeholder="Mobilnummer" value={value} size="sm" />
+          );
+        })}
+      </Fieldset>
+
+      <Button variant="outline" icon={PlusIcon} onClick={() => onAdd("")}>
+        Legg til flere
+      </Button>
+
+      <Typography size="sm">
+        <p>
+          Altinn bruker adressene til å varsle virksomheten om nytt innhold.
+        </p>
+      </Typography>
+      <ButtonGroup size="md">
+        <Button>Lagre og avslutt</Button>
+        <Button variant="outline">Avbryt</Button>
+      </ButtonGroup>
+    </SettingsModal>
+  );
+};
+
+export const CompanyPhoneSettingsModal = ({
+  title = "Varslinger på SMS",
+  icon = BellIcon,
+  value,
+  open = true,
+  onClose,
+}: SettingsValueModalProps) => {
+  const initialItems = value?.split(",") || [""];
+  const [items, setItems] = useState<string[]>(initialItems);
+
+  const onAdd = (item: string) => {
+    setItems((prevState) => {
+      return [...prevState, item];
+    });
+  };
+
+  return (
+    <SettingsModal icon={icon} title={title} open={open} onClose={onClose}>
+      <Fieldset>
+        <Legend>Virksomhetens mobilnummer for varslinger på SMS:</Legend>
+        {items?.map((value) => {
+          return (
+            <TextField placeholder="Mobilnummer" value={value} size="sm" />
+          );
+        })}
+      </Fieldset>
+
+      <Button variant="outline" icon={PlusIcon} onClick={() => onAdd("")}>
+        Legg til flere
+      </Button>
+
+      <Typography size="sm">
+        <p>
+          Altinn bruker adressene til å varsle virksomheten om nytt innhold.
+        </p>
+      </Typography>
+      <ButtonGroup size="md">
+        <Button>Lagre og avslutt</Button>
+        <Button variant="outline">Avbryt</Button>
+      </ButtonGroup>
+    </SettingsModal>
   );
 };
 
@@ -361,6 +491,24 @@ const SearchSettingsModal = ({
           />
         </>
       );
+    case "companyInfo":
+      return <CompanyInfoModal {...item} open={open} onClose={onClose} />;
+
+    case "companyAlerts":
+      return (
+        <>
+          <CompanyPhoneSettingsModal
+            {...item}
+            open={open && id === "companyPhone"}
+            onClose={onClose}
+          />
+          <CompanyEmailSettingsModal
+            {...item}
+            open={open && id === "companyEmail"}
+            onClose={onClose}
+          />
+        </>
+      );
     case "other":
       return (
         <>
@@ -382,14 +530,12 @@ const SearchSettingsModal = ({
   );
 };
 
-interface SearchSettingsProps {
-  title?: string;
-  groups?: SettingsListProps["groups"];
-}
+export const SearchSettings = ({ query = {}, groups }: UseSettingsProps) => {
+  const groupIds = (groups && Object.keys(groups)) || [];
 
-export const SearchSettings = ({ title, groups }: SearchSettingsProps) => {
-  const { items, onSettingsChange, ...settings } = useAccountSettings({
+  const { onSettingsChange, results, ...settings } = useSettings({
     accounts: defaultAccounts,
+    query: { ...query, groupIds },
   });
 
   const [id, setId] = useState<string>("");
@@ -398,10 +544,7 @@ export const SearchSettings = ({ title, groups }: SearchSettingsProps) => {
     setId("");
   };
 
-  const searchGroups = groups || settings?.groups;
-  const searchGroupsIds = Object.keys(searchGroups);
-
-  const searchItems = items.map((item) => {
+  const items = settings?.items.map((item) => {
     const { id } = item;
 
     return {
@@ -412,77 +555,22 @@ export const SearchSettings = ({ title, groups }: SearchSettingsProps) => {
     };
   });
 
-  const [q, setQ] = useState("");
-
-  const onSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setQ(e.target.value);
-  };
-
-  const filteredItems = searchItems
-    ?.filter((item) => {
-      const { title, value, groupId } = item;
-
-      if (groupId && !searchGroupsIds.includes(groupId)) {
-        return false;
-      }
-
-      if (
-        typeof title === "string" &&
-        title.toLowerCase().includes(q.toLowerCase())
-      ) {
-        return true;
-      }
-      if (
-        typeof value === "string" &&
-        value.toLowerCase().includes(q.toLowerCase())
-      ) {
-        return true;
-      }
-
-      return false;
-    })
-    .map((item) => {
-      return {
-        ...item,
-        groupId: "search",
-        highlightWords: [q],
-      };
-    });
-
   const item = (id && items.find((item) => item.id === id)) || {
     title: "",
     description: "",
   };
 
   return (
-    <PageBase>
-      {title && (
-        <>
-          <Heading size="xl">{title}</Heading>
-          <Toolbar
-            search={{
-              name: "search",
-              placeholder: "Søk i innstillinger",
-              value: q,
-              onChange: onSearchChange,
-            }}
-          />
-        </>
-      )}
-
-      {q ? (
+    <>
+      {query?.q ? (
         <SettingsList
-          groups={{
-            search: {
-              title: filteredItems?.length + " treff",
-            },
-          }}
-          items={filteredItems as SettingsListProps["items"]}
+          groups={results?.groups}
+          items={results?.items as SettingsListProps["items"]}
         />
       ) : (
         <SettingsList
-          groups={searchGroups}
-          items={searchItems as SettingsListProps["items"]}
+          groups={groups || settings?.groups}
+          items={items as SettingsListProps["items"]}
         />
       )}
       <SearchSettingsModal
@@ -492,46 +580,123 @@ export const SearchSettings = ({ title, groups }: SearchSettingsProps) => {
         open={!!id}
         onClose={onClose}
       />
-    </PageBase>
+    </>
   );
 };
 
 export const AlertSettings = () => {
+  const toolbar = useSettingsToolbar({});
+
   return (
-    <SearchSettings
-      title="Mine varslinger"
-      groups={{
-        alerts: {
-          title: "Varslingsinnstillinger",
-        },
-        profile: {
-          title: "Varslingsprofiler",
-        },
-        person: {
-          title: "Personer",
-        },
-        company: {
-          title: "Virksomheter",
-        },
-      }}
-    />
+    <PageBase>
+      <Heading size="xl">Mine varslinger</Heading>
+      <Toolbar {...toolbar} />
+      <SearchSettings
+        query={{
+          q: toolbar?.search?.value,
+        }}
+        groups={{
+          alerts: {
+            title: "Varslingsinnstillinger",
+          },
+          profile: {
+            title: "Varslingsprofiler",
+          },
+          person: {
+            title: "Personer",
+          },
+          company: {
+            title: "Virksomheter",
+          },
+        }}
+      />
+    </PageBase>
   );
 };
 
-export const AllSettings = () => {
+export const AccountSettings = () => {
+  const toolbar = useSettingsToolbar({});
+
   return (
-    <SearchSettings
-      title="Innstillinger"
-      groups={{
-        contact: {
-          title: "Kontaktinformasjon",
-        },
-        other: {
-          title: "Flere innstillinger",
-        },
-      }}
-    />
+    <PageBase>
+      <Heading size="xl">Innstillinger</Heading>
+      <Toolbar {...toolbar} />
+      <SearchSettings
+        query={{
+          q: toolbar?.search?.value,
+        }}
+        groups={{
+          contact: {
+            title: "Kontaktinformasjon",
+          },
+          other: {
+            title: "Flere innstillinger",
+          },
+        }}
+      />
+    </PageBase>
   );
+};
+
+export const PersonSettings = () => {
+  const { accountMenu, currentAccount } = useAdmin({
+    defaultAccountId: "person",
+  });
+  const toolbar = useSettingsToolbar({ accountMenu });
+
+  return (
+    <PageBase color="person">
+      <Heading size="xl">Innstillinger for {currentAccount?.name}</Heading>
+      <Toolbar {...toolbar} />
+      <SearchSettings
+        query={{
+          q: toolbar?.search?.value,
+        }}
+        groups={{
+          contact: {
+            title: "Kontaktinformasjon",
+          },
+        }}
+      />
+    </PageBase>
+  );
+};
+
+export const CompanySettings = () => {
+  const { accountMenu, currentAccount } = useAdmin({
+    defaultAccountId: "diaspora",
+  });
+  const toolbar = useSettingsToolbar({ accountMenu });
+
+  return (
+    <PageBase color="company">
+      <Heading size="xl">Innstillinger for {currentAccount?.name}</Heading>
+      <Toolbar {...toolbar} />
+      <SearchSettings
+        query={{
+          q: toolbar?.search?.value,
+        }}
+        groups={{
+          companyAlerts: {
+            title: "Varslingsadresser for virksomheten",
+          },
+          companyInfo: {
+            title: "Opplysninger om virksomheten",
+          },
+        }}
+      />
+    </PageBase>
+  );
+};
+
+export const AdminSettings = () => {
+  const { currentAccount } = useAdmin({ defaultAccountId: "diaspora" });
+
+  if (currentAccount?.type === "person") {
+    return <PersonSettings />;
+  }
+
+  return <CompanySettings />;
 };
 
 export const DashboardSettings = () => {
