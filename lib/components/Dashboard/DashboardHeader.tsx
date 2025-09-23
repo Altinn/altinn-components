@@ -3,7 +3,7 @@ import { DashboardIcon, type DashboardIconProps, Flex, Heading, Section, Typogra
 import { Skeleton } from '..';
 
 export interface DashboardHeaderProps {
-  icon?: DashboardIconProps;
+  icon?: DashboardIconProps['icon'];
   title?: string;
   description?: string;
   children?: ReactNode;

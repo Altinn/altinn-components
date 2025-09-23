@@ -337,11 +337,12 @@ export const useInbox = ({ accountId, pageId = 'inbox', q, ...props }: UseInboxP
     seenByLog: modalDialog?.seenByLog,
   };
 
-  const toolbar = useInboxToolbar({ items });
+  const toolbar = useInboxToolbar({ accountId, items });
 
-  const accountMenu = layout?.header?.globalMenu?.accountMenu;
-  const currentAccount = layout?.header?.globalMenu?.currentAccount;
-  const onSelectAccount = layout?.header?.globalMenu?.onSelectAccount;
+  const accountMenu = toolbar?.accountMenu;
+  const defaultAccount = toolbar?.accountMenu?.items[0];
+  const currentAccount = toolbar?.accountMenu?.currentAccount;
+  const onSelectAccount = toolbar?.accountMenu?.onSelectAccount;
 
   const groupView = currentAccount?.type !== 'person' && currentAccount?.type !== 'company';
 
@@ -367,6 +368,15 @@ export const useInbox = ({ accountId, pageId = 'inbox', q, ...props }: UseInboxP
       color,
       header: {
         ...layout?.header,
+        globalMenu: {
+          ...layout?.header?.globalMenu,
+          accountMenu: {
+            ...accountMenu,
+            items: accountMenu?.items?.filter((item) => item.type !== 'group'),
+          },
+          onSelectAccount,
+        },
+        currentAccount: groupView ? defaultAccount : currentAccount,
         search,
       },
     } as LayoutProps,
