@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.38.19](https://github.com/Altinn/altinn-components/compare/v0.38.18...v0.38.19) (2025-09-23)
+
+
+### Bug Fixes
+
+* add default parameters to preview that fixes storybook crash issues ([9c2e75a](https://github.com/Altinn/altinn-components/commit/9c2e75ac8080e102f9c36289a298fdb302264840))
+* DashboardHeader iconProps ([#656](https://github.com/Altinn/altinn-components/issues/656)) ([ceb2013](https://github.com/Altinn/altinn-components/commit/ceb2013090107ad1087fbc2a7f9b4072ea5947c1))
+* storybook crash issues ([#653](https://github.com/Altinn/altinn-components/issues/653)) ([9c2e75a](https://github.com/Altinn/altinn-components/commit/9c2e75ac8080e102f9c36289a298fdb302264840))
+
 ## [0.38.18](https://github.com/Altinn/altinn-components/compare/v0.38.17...v0.38.18) (2025-09-22)
 
 
