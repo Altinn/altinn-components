@@ -1,15 +1,9 @@
 import { adminMenu, adminMenuItems, desktopMenu, desktopMenuItems, useLayout } from '../';
-import type { Account, BreadcrumbsLinkProps, LayoutProps } from '../../lib';
+import type { LayoutProps } from '../../lib';
 
-export type AdminSettings = Record<string, string>;
-
-interface AdminLayoutProps {
+interface AdminLayoutProps extends LayoutProps {
   accountId?: string;
-  account?: Account;
   pageId?: string;
-  breadcrumbs?: BreadcrumbsLinkProps[];
-  layout: LayoutProps;
-  settings?: AdminSettings;
 }
 
 export const useAdminLayout = ({ accountId = 'diaspora', pageId = 'admin' }): AdminLayoutProps => {
@@ -29,12 +23,23 @@ export const useAdminLayout = ({ accountId = 'diaspora', pageId = 'admin' }): Ad
 
   const desktopItems = desktopMenuItems.map((item) => {
     const storyBookId = storybookPages?.[item.id as keyof typeof storybookPages];
-    const href = storyBookId && [baseHref, storyBookId].join('');
+    const href = storyBookId && [baseHref, storyBookId].join('') + '&accountId=' + accountId;
 
     return {
       ...item,
       href,
       selected: item.id === 'admin',
+    };
+  });
+
+  const menuItems = adminMenuItems.map((item) => {
+    const storyBookId = storybookPages?.[item.id as keyof typeof storybookPages];
+    const href = storyBookId && [baseHref, storyBookId].join('') + '&accountId=' + accountId;
+
+    return {
+      ...item,
+      href,
+      selected: item.id === pageId,
     };
   });
 
@@ -48,61 +53,23 @@ export const useAdminLayout = ({ accountId = 'diaspora', pageId = 'admin' }): Ad
     },
   });
 
-  const account = layout?.header?.globalMenu?.currentAccount;
-
-  const menuItems = adminMenuItems.map((item) => {
-    const storyBookId = storybookPages?.[item.id as keyof typeof storybookPages];
-    const href = storyBookId && [baseHref, storyBookId].join('');
-
-    return {
-      ...item,
-      href,
-      selected: item.id === pageId,
-    };
-  });
-
-  const page = menuItems?.find((item) => item.selected);
-
-  const breadcrumbs: BreadcrumbsLinkProps[] = [
-    {
-      label: 'Forside',
-    },
-    {
-      label: 'Seksjon',
-    },
-    {
-      label: (page?.title as string) || 'Side',
-    },
-  ];
-
-  const settings = {
-    companyId: '928914038',
-    companyType: 'Forening/lag/innretning',
-    address: 'c/o Paal Zandstra Krokeide, Høyenhallsvingen 16, 0667 Oslo',
-    email: 'post@diasporabergensis.no',
-    phone: '+47 99010203',
-    naceCode: '94.992 Aktiviteter i andre medlemsorganisasjoner ellers',
-  };
+  const currentAccount = layout?.header?.currentAccount;
 
   return {
-    breadcrumbs,
-    account,
-    settings,
-    layout: {
-      ...layout,
-      sidebar: {
-        menu: {
-          ...adminMenu,
-          color: account?.type,
-          variant: 'subtle',
-          items: menuItems?.filter((item) => {
-            if (account?.type === 'person' && item.groupId === '5') {
-              return false;
-            }
+    ...layout,
+    color: currentAccount?.type,
+    sidebar: {
+      menu: {
+        ...adminMenu,
+        color: currentAccount?.type,
+        variant: 'subtle',
+        items: menuItems?.filter((item) => {
+          if (currentAccount?.type === 'person' && item.groupId === '5') {
+            return false;
+          }
 
-            return true;
-          }),
-        },
+          return true;
+        }),
       },
     },
   };

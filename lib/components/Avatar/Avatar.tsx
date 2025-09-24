@@ -16,6 +16,8 @@ export type AvatarVariant = 'solid' | 'outline';
  * Props for the Avatar component.
  */
 export interface AvatarProps {
+  /** Optional Id */
+  id?: string;
   /** The name to display in the avatar. */
   name: string;
   /** The type of avatar. */
@@ -87,14 +89,13 @@ export const Avatar = ({
     <div
       className={cx(styles.avatar, { [styles.outline]: outline }, className)}
       style={inlineStyles}
-      data-variant={variant}
       data-shape={applicableShape}
       data-size={size}
       data-outline={outline}
       aria-hidden
     >
       <Skeleton loading={loading} className={styles.shape} variant="circle">
-        <div className={styles.shape}>
+        <div className={styles.shape} data-variant={variant}>
           {usingImageUrl && (
             <img
               src={imageUrl}

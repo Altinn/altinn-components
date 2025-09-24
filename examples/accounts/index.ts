@@ -7,7 +7,6 @@ export * from './useAccountsToolbar';
 
 export * from './useAccountMenu';
 export * from './useAccountList';
-export * from './useAccountSettings';
 
 export * from './accountMenu';
 export * from './accountList';

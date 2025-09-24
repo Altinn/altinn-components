@@ -195,13 +195,13 @@ export const accounts: AccountDataProps[] = [
     parentId: 'kanvas',
   },
   {
-    id: 'group:1',
+    id: 'group-1',
     type: 'group',
     name: 'Mine lag',
-    accountIds: ['nff', 'brann'],
+    accountIds: ['nff', 'brann', 'sogndal', 'vif'],
   },
   {
-    id: 'group:2',
+    id: 'group-2',
     type: 'group',
     name: 'Supportergrupper',
     accountIds: ['bbb', 'diaspora'],

@@ -1,0 +1,75 @@
+import { useProfileLayout } from '../';
+import type { Account, BreadcrumbsLinkProps, LayoutProps } from '../../lib';
+
+interface UseProfileProps {
+  defaultAccountId?: string;
+  pageId?: string;
+  breadcrumbs?: BreadcrumbsLinkProps[];
+  currentAccount?: Account;
+  layout?: LayoutProps;
+}
+
+function getAccountIdFromUrl(): string {
+  const parsedUrl = new URL(window.location.href);
+  const accountId = parsedUrl.searchParams.get('accountId') ?? '';
+  return accountId;
+}
+
+function getAccountIdUrl(accountId: string): string {
+  const url = new URL(window.location.href);
+  url.searchParams.set('accountId', accountId);
+
+  // redirect to admin
+
+  if (accountId !== 'user') {
+    url.searchParams.set('id', 'demo-admin--dashboard-page');
+  }
+
+  return url.toString();
+}
+
+export const useProfile = ({ defaultAccountId = 'user', pageId = 'profile' }): UseProfileProps => {
+  const accountId = getAccountIdFromUrl() || defaultAccountId;
+
+  const onSelectAccount = (id: string) => {
+    const accountUrl = getAccountIdUrl(id);
+    window.location.href = accountUrl;
+  };
+
+  const layout = useProfileLayout({
+    accountId,
+    pageId,
+  });
+
+  const globalMenu = layout?.header?.globalMenu;
+  const menu = layout?.sidebar?.menu;
+  const currentAccount = globalMenu?.currentAccount;
+  const page = menu?.items?.find((item) => item.selected);
+
+  const breadcrumbs = [
+    {
+      label: 'Forside',
+    },
+    {
+      label: (currentAccount?.name as string) || 'Seksjon',
+    },
+    {
+      label: (page?.title as string) || 'Side',
+    },
+  ];
+
+  return {
+    layout: {
+      ...layout,
+      header: {
+        ...layout.header,
+        globalMenu: {
+          ...layout.header?.globalMenu,
+          onSelectAccount,
+        },
+      },
+    },
+    currentAccount,
+    breadcrumbs,
+  };
+};

@@ -4,6 +4,7 @@ import { useInboxLayout, useInboxSearch, useInboxToolbar } from '../';
 import { ListItemSelect } from '../../lib';
 import type {
   ActivityLogProps,
+  AvatarProps,
   DialogContactProps,
   DialogLayoutProps,
   DialogListItemProps,
@@ -34,8 +35,8 @@ interface UseInboxModalProps {
 }
 
 export interface UseInboxProps extends LayoutProps {
+  defaultAccountId?: string;
   q?: string;
-  accountId?: string;
   pageId?: string;
   dialogId?: string;
   dialog?: UseInboxDialogProps;
@@ -52,15 +53,32 @@ export interface UseInboxProps extends LayoutProps {
   closeModal?: () => void;
 }
 
-export const useInbox = ({ accountId, pageId = 'inbox', q, ...props }: UseInboxProps): UseInboxProps => {
-  const layout = useInboxLayout({ accountId, pageId });
+function getAccountIdFromUrl(): string {
+  const parsedUrl = new URL(window.location.href);
+  const accountId = parsedUrl.searchParams.get('accountId') ?? '';
+  return accountId;
+}
 
-  const search = useInboxSearch({
-    name: 'search',
-    placeholder: 'Søk i innboksen',
-    value: q,
-    items: dialogs,
-  });
+function getAccountIdUrl(accountId: string): string {
+  const url = new URL(window.location.href);
+  url.searchParams.set('accountId', accountId);
+  return url.toString();
+}
+
+export const useInbox = ({
+  defaultAccountId = 'user',
+  pageId = 'inbox',
+  q,
+  ...props
+}: UseInboxProps): UseInboxProps => {
+  const accountId = getAccountIdFromUrl() || defaultAccountId;
+
+  const onSelectAccount = (id: string) => {
+    const accountUrl = getAccountIdUrl(id);
+    window.location.href = accountUrl;
+  };
+
+  const layout = useInboxLayout({ accountId, pageId });
 
   const archived = dialogs.filter((item) => item?.archived).map((item) => item.id) || [];
   const trashed = dialogs.filter((item) => item?.trashed).map((item) => item.id) || [];
@@ -131,7 +149,7 @@ export const useInbox = ({ accountId, pageId = 'inbox', q, ...props }: UseInboxP
 
   const list = getDialogList(dialogs, q);
 
-  const items = list.items
+  const listItems = list.items
     ?.filter((item) => typeof item.id === 'string')
     .map((item) => {
       const { id } = item as { id: string };
@@ -252,7 +270,7 @@ export const useInbox = ({ accountId, pageId = 'inbox', q, ...props }: UseInboxP
       };
     }) as DialogListItemProps[];
 
-  const dialog = (dialogId && items?.find((item) => item.id === dialogId)) || undefined;
+  const dialog = (dialogId && listItems?.find((item) => item.id === dialogId)) || undefined;
 
   const contextMenu =
     dialog &&
@@ -295,7 +313,60 @@ export const useInbox = ({ accountId, pageId = 'inbox', q, ...props }: UseInboxP
     ],
   };
 
+  // create toolbar
+
+  const toolbar = useInboxToolbar({ accountId, items: listItems });
+
+  const accountMenu = toolbar?.accountMenu;
+  const defaultAccount = toolbar?.accountMenu?.items[0];
+  const currentAccount = toolbar?.accountMenu?.currentAccount;
+
+  // duplicate items if grouped view
+
+  const groupIds = toolbar?.filterState?.groupIds || [accountId];
+
+  const itemsByGroupId: { [key: string]: DialogListItemProps } = {};
+
+  listItems?.map((item) => {
+    groupIds?.map((id) => {
+      const itemId = [id, item.id].join('-');
+
+      const recipient = accountMenu?.items.find((item) => item.id === id);
+
+      itemsByGroupId[itemId] = {
+        ...item,
+        recipient: recipient?.icon as AvatarProps,
+        color: recipient?.type as DialogListItemProps['color'],
+        id: itemId,
+        grouped: true,
+      };
+    });
+  });
+
+  const items = Object.values(itemsByGroupId) as DialogListItemProps[];
+  //  const items = sortDialogsByKey(groupItems, "updatedAtLabel", true);
+
+  const search = useInboxSearch({
+    accountId,
+    name: 'search',
+    placeholder: 'Søk i innboksen',
+    value: q,
+    items,
+  });
+
+  // bulk
+
   if (bulkIds?.length > 0) {
+    const bulkItems = items?.map((item) => {
+      return {
+        ...item,
+        onClick: () => onSelect(item.id!),
+        controls: (
+          <ListItemSelect aria-labelledby={item.id!} checked={item?.selected} onClick={() => onSelect(item.id!)} />
+        ),
+      };
+    });
+
     return {
       bulkMode: true,
       bulkMenu,
@@ -315,15 +386,7 @@ export const useInbox = ({ accountId, pageId = 'inbox', q, ...props }: UseInboxP
       search,
       results: {
         groups: list.groups,
-        items: items.map((item) => {
-          return {
-            ...item,
-            onClick: () => onSelect(item.id!),
-            controls: (
-              <ListItemSelect aria-labelledby={item.id!} checked={item?.selected} onClick={() => onSelect(item.id!)} />
-            ),
-          };
-        }),
+        items: bulkItems,
       },
     };
   }
@@ -337,15 +400,9 @@ export const useInbox = ({ accountId, pageId = 'inbox', q, ...props }: UseInboxP
     seenByLog: modalDialog?.seenByLog,
   };
 
-  const toolbar = useInboxToolbar({ accountId, items });
-
-  const accountMenu = toolbar?.accountMenu;
-  const defaultAccount = toolbar?.accountMenu?.items[0];
-  const currentAccount = toolbar?.accountMenu?.currentAccount;
-  const onSelectAccount = toolbar?.accountMenu?.onSelectAccount;
+  //  set group view stuff
 
   const groupView = currentAccount?.type !== 'person' && currentAccount?.type !== 'company';
-
   const color = (groupView && 'neutral') || currentAccount?.type || 'neutral';
 
   return {
@@ -372,6 +429,7 @@ export const useInbox = ({ accountId, pageId = 'inbox', q, ...props }: UseInboxP
           ...layout?.header?.globalMenu,
           accountMenu: {
             ...accountMenu,
+            isVirtualized: true,
             items: accountMenu?.items?.filter((item) => item.type !== 'group'),
           },
           onSelectAccount,
@@ -392,13 +450,7 @@ export const useInbox = ({ accountId, pageId = 'inbox', q, ...props }: UseInboxP
     },
     results: {
       groups: list.groups,
-      items: items?.map((item) => {
-        return {
-          ...(item as DialogListItemProps),
-          color: groupView ? 'company' : item?.color,
-          grouped: groupView,
-        };
-      }),
+      items,
     },
   };
 };

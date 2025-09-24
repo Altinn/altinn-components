@@ -23,10 +23,22 @@ export const useGlobalMenu = ({
     includeGroups: false,
   });
 
+  // filter out admin if userId === "user"
+
+  const applicableMenuItems = menu?.items?.filter((item) => {
+    if (currentAccount?.id === 'user' && item.id === 'admin') {
+      return false;
+    }
+    return true;
+  });
+
   return {
     ...globalMenu,
     ...props,
-    menu,
+    menu: {
+      ...menu,
+      items: applicableMenuItems,
+    },
     menuLabel,
     accountMenu: {
       ...accountMenu,

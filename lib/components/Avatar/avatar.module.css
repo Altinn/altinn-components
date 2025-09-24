@@ -12,10 +12,6 @@
   border-radius: 5%;
 }
 
-.avatar[data-variant="outline"] {
-  border: 1px solid;
-}
-
 .avatar[data-outline="true"] {
   outline: 1px solid #ffffff;
   /*  outline-color: var(--ds-color-border-subtle); */
@@ -27,6 +23,10 @@
   font-size: 1em;
   width: 1em;
   height: 1em;
+}
+
+.shape[data-variant="outline"] {
+  border: 1px solid;
 }
 
 .label {

@@ -1,15 +1,9 @@
-import * as SettingsStories from "./Admin/Settings.stories";
+import * as DashboardStories from "./Dashboard/Dashboard.stories";
+import * as SettingsStories from "./Settings/Settings.stories";
 import * as ActivityLogStories from "../components/ActivityLog/ActivityLog.stories";
 
-import {
-  Heading,
-  Layout,
-  PageBase,
-  Breadcrumbs,
-  DashboardHeader,
-  type DashboardHeaderProps,
-} from "../components";
-import { useAdminLayout } from "../../examples";
+import { Heading, Layout, PageBase, Breadcrumbs, Toolbar } from "../components";
+import { useAdmin } from "../../examples";
 
 const meta = {
   title: "Demo/Admin",
@@ -23,99 +17,118 @@ const meta = {
 export default meta;
 
 export const DashboardPage = () => {
-  const { settings, account, layout } = useAdminLayout({});
+  const { currentAccount, layout } = useAdmin({});
+
   return (
     <Layout {...layout}>
-      <DashboardHeader
-        icon={account?.icon as DashboardHeaderProps["icon"]}
-        title={account?.name || "Company"}
-        description={settings?.companyId}
-      >
-        <SettingsStories.DashboardSettings />
-      </DashboardHeader>
+      {currentAccount?.type === "company" ? (
+        <DashboardStories.CompanyDashboard />
+      ) : (
+        <DashboardStories.PersonDashboard />
+      )}
     </Layout>
   );
 };
 
 export const UsersPage = () => {
-  const { account, breadcrumbs, layout } = useAdminLayout({ pageId: "users" });
+  const { currentAccount, breadcrumbs, layout, toolbar } = useAdmin({
+    pageId: "users",
+  });
   return (
     <Layout {...layout}>
-      <PageBase>
+      <PageBase color={currentAccount?.type}>
         <Breadcrumbs items={breadcrumbs} />
-        <Heading size="xl">Brukere med fullmakt til {account?.name}</Heading>
+        <Heading size="xl">
+          Brukere med fullmakt til {currentAccount?.name}
+        </Heading>
+        <Toolbar {...toolbar} />
       </PageBase>
     </Layout>
   );
 };
 
 export const AccessPage = () => {
-  const { account, breadcrumbs, layout } = useAdminLayout({ pageId: "access" });
+  const { currentAccount, breadcrumbs, layout, toolbar } = useAdmin({
+    pageId: "access",
+  });
   return (
     <Layout {...layout}>
-      <PageBase>
+      <PageBase color={currentAccount?.type}>
         <Breadcrumbs items={breadcrumbs} />
-        <Heading size="xl">Tilganger til {account?.name}</Heading>
+        <Heading size="xl">Tilganger til {currentAccount?.name}</Heading>
+        <Toolbar {...toolbar} />
       </PageBase>
     </Layout>
   );
 };
 
 export const RequestsPage = () => {
-  const { breadcrumbs, layout } = useAdminLayout({ pageId: "requests" });
+  const { currentAccount, breadcrumbs, layout, toolbar } = useAdmin({
+    pageId: "requests",
+  });
   return (
     <Layout {...layout}>
-      <PageBase>
+      <PageBase color={currentAccount?.type}>
         <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">Tittel</Heading>
+        <Toolbar {...toolbar} />
       </PageBase>
     </Layout>
   );
 };
 
 export const ApiSettingsPage = () => {
-  const { breadcrumbs, layout } = useAdminLayout({ pageId: "api-settings" });
+  const { currentAccount, breadcrumbs, layout, toolbar } = useAdmin({
+    pageId: "api-settings",
+  });
   return (
     <Layout {...layout}>
-      <PageBase>
+      <PageBase color={currentAccount?.type}>
         <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">Tittel</Heading>
+        <Toolbar {...toolbar} />
       </PageBase>
     </Layout>
   );
 };
 
 export const ReverseAccessPage = () => {
-  const { breadcrumbs, layout } = useAdminLayout({ pageId: "reverse-access" });
+  const { currentAccount, breadcrumbs, layout, toolbar } = useAdmin({
+    pageId: "reverse-access",
+  });
   return (
     <Layout {...layout}>
-      <PageBase>
+      <PageBase color={currentAccount?.type}>
         <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">Tittel</Heading>
+        <Toolbar {...toolbar} />
       </PageBase>
     </Layout>
   );
 };
 
 export const ClientAdminPage = () => {
-  const { breadcrumbs, layout } = useAdminLayout({ pageId: "client-admin" });
+  const { currentAccount, breadcrumbs, layout, toolbar } = useAdmin({
+    pageId: "client-admin",
+  });
   return (
     <Layout {...layout}>
-      <PageBase>
+      <PageBase color={currentAccount?.type}>
         <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">Tittel</Heading>
+        <Toolbar {...toolbar} />
       </PageBase>
     </Layout>
   );
 };
 
 export const SettingsPage = () => {
-  const { breadcrumbs, layout } = useAdminLayout({
+  const { currentAccount, breadcrumbs, layout } = useAdmin({
     pageId: "settings",
   });
   return (
     <Layout {...layout}>
-      <PageBase color="company">
+      <PageBase color={currentAccount?.type}>
         <Breadcrumbs items={breadcrumbs} />
         <SettingsStories.AdminSettings />
       </PageBase>
@@ -124,12 +137,12 @@ export const SettingsPage = () => {
 };
 
 export const ActivityLogPage = () => {
-  const { breadcrumbs, layout } = useAdminLayout({
+  const { currentAccount, breadcrumbs, layout } = useAdmin({
     pageId: "activity-log",
   });
   return (
     <Layout {...layout}>
-      <PageBase>
+      <PageBase color={currentAccount?.type}>
         <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">Aktivitetslogg</Heading>
         <ActivityLogStories.Default />
