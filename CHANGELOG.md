@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.38.20](https://github.com/Altinn/altinn-components/compare/v0.38.19...v0.38.20) (2025-09-24)
+
+
+### Bug Fixes
+
+* support closing modal with esc key ([#659](https://github.com/Altinn/altinn-components/issues/659)) ([5655053](https://github.com/Altinn/altinn-components/commit/565505382b0942a0bdec650e0ffe1ecf0fdfb3e5))
+
 ## [0.38.19](https://github.com/Altinn/altinn-components/compare/v0.38.18...v0.38.19) (2025-09-23)
 
 

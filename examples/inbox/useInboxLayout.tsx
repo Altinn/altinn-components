@@ -38,7 +38,7 @@ export const useInboxLayout = ({
 
   const menuItems = items.map((item) => {
     const storyBookId = storybookPages?.[item.id as keyof typeof storybookPages];
-    const href = storyBookId && [baseHref, storyBookId].join('');
+    const href = storyBookId && [baseHref, storyBookId].join('') + '&accountId=' + accountId;
 
     return {
       ...item,
@@ -49,7 +49,7 @@ export const useInboxLayout = ({
 
   const desktopItems = desktopMenuItems.map((item) => {
     const storyBookId = storybookPages?.[item.id as keyof typeof storybookPages];
-    const href = storyBookId && [baseHref, storyBookId].join('');
+    const href = storyBookId && [baseHref, storyBookId].join('') + '&accountId=' + accountId;
 
     return {
       ...item,
@@ -57,7 +57,6 @@ export const useInboxLayout = ({
       selected: item.id === 'inbox',
     };
   });
-
   const layout = useLayout({
     theme: 'subtle',
     accountId,

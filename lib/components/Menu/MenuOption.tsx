@@ -1,5 +1,5 @@
 import { CheckmarkIcon } from '@navikt/aksel-icons';
-import { Badge, type BadgeProps, MenuItem } from '..';
+import { Badge, type BadgeProps, MenuItem, type MenuItemProps } from '..';
 import type { MenuItemBaseProps, MenuItemSize } from './MenuItemBase';
 
 import styles from './menuOption.module.css';
@@ -9,6 +9,9 @@ export type MenuOptionType = 'checkbox' | 'radio';
 export interface MenuOptionProps extends MenuItemBaseProps {
   value: string | number;
   label: string;
+  icon?: MenuItemProps['icon'];
+  title?: MenuItemProps['title'];
+  description?: MenuItemProps['description'];
   groupId?: string;
   size?: MenuItemSize;
   name?: string;
@@ -27,6 +30,9 @@ export const MenuOption = ({
   active,
   value,
   label,
+  title,
+  description,
+  icon,
   badge,
   checked = false,
   disabled,
@@ -58,6 +64,24 @@ export const MenuOption = ({
     }
   };
 
+  if (label) {
+    return (
+      <MenuItem
+        disabled={disabled}
+        selected={checked}
+        size={size}
+        as="div"
+        active={active}
+        tabIndex={-1}
+        onClick={onClick}
+        role={role}
+        label={<Label />}
+        controls={badge && <Badge {...badge} />}
+        {...rest}
+      />
+    );
+  }
+
   return (
     <MenuItem
       disabled={disabled}
@@ -68,7 +92,9 @@ export const MenuOption = ({
       tabIndex={-1}
       onClick={onClick}
       role={role}
-      label={<Label />}
+      icon={icon}
+      title={title}
+      description={description}
       controls={badge && <Badge {...badge} />}
       {...rest}
     />

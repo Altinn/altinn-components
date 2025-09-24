@@ -1,20 +1,10 @@
-import * as SettingsStories from "./Profile/Settings.stories";
+import * as DashboardStories from "./Dashboard/Dashboard.stories";
+import * as SettingsStories from "./Settings/Settings.stories";
 import * as ActivityLogStories from "../components/ActivityLog/ActivityLog.stories";
 import * as AccountListStories from "../components/Account/AccountList.stories";
 
-import {
-  Heading,
-  Layout,
-  PageBase,
-  Breadcrumbs,
-  DashboardHeader,
-  type DashboardHeaderProps,
-  DashboardCard,
-  type DashboardCardProps,
-  Grid,
-} from "../components";
-import { useProfileLayout } from "../../examples";
-import { HeartIcon, BellIcon, CogIcon } from "@navikt/aksel-icons";
+import { Heading, Layout, PageBase, Breadcrumbs } from "../components";
+import { useProfile } from "../../examples";
 
 const meta = {
   title: "Demo/Profile",
@@ -28,47 +18,16 @@ const meta = {
 export default meta;
 
 export const DashboardPage = () => {
-  const { breadcrumbs, account, ...layout } = useProfileLayout({});
+  const { layout } = useProfile({});
   return (
     <Layout {...layout}>
-      <PageBase color="person">
-        <DashboardHeader
-          icon={account?.icon as DashboardHeaderProps["icon"]}
-          title={account?.name}
-          description={account?.description}
-        />
-        <Grid cols={3}>
-          <DashboardCard
-            href="/iframe.html?id=demo-profile--accounts-page"
-            icon={HeartIcon as DashboardCardProps["icon"]}
-            title="Mine aktører"
-          >
-            <p>Mine aktører, favoritter og grupper.</p>
-          </DashboardCard>
-          <DashboardCard
-            href="/iframe.html?id=demo-profile--alerts-page"
-            icon={BellIcon as DashboardCardProps["icon"]}
-            title="Mine varslinger"
-          >
-            <p>Mine varslingsadresser og varslinger per aktør.</p>
-          </DashboardCard>
-          <DashboardCard
-            href="/iframe.html?id=demo-profile--settings-page"
-            icon={CogIcon as DashboardCardProps["icon"]}
-            title="Innstillinger"
-          >
-            <p>Kontaktinformasjon og andre innstillinger.</p>
-          </DashboardCard>
-        </Grid>
-
-        <SettingsStories.DashboardSettings />
-      </PageBase>
+      <DashboardStories.UserDashboard />
     </Layout>
   );
 };
 
 export const AccountsPage = () => {
-  const { breadcrumbs, ...layout } = useProfileLayout({ pageId: "accounts" });
+  const { breadcrumbs, layout } = useProfile({ pageId: "accounts" });
   return (
     <Layout {...layout}>
       <PageBase>
@@ -81,7 +40,7 @@ export const AccountsPage = () => {
 };
 
 export const AlertsPage = () => {
-  const { breadcrumbs, ...layout } = useProfileLayout({ pageId: "alerts" });
+  const { breadcrumbs, layout } = useProfile({ pageId: "alerts" });
   return (
     <Layout {...layout}>
       <PageBase color="person">
@@ -93,20 +52,20 @@ export const AlertsPage = () => {
 };
 
 export const SettingsPage = () => {
-  const { breadcrumbs, ...layout } = useProfileLayout({ pageId: "settings" });
+  const { breadcrumbs, layout } = useProfile({ pageId: "settings" });
 
   return (
     <Layout {...layout}>
       <PageBase color="person">
         <Breadcrumbs items={breadcrumbs} />
-        <SettingsStories.AllSettings />
+        <SettingsStories.AccountSettings />
       </PageBase>
     </Layout>
   );
 };
 
 export const ActivityLogPage = () => {
-  const { breadcrumbs, ...layout } = useProfileLayout({
+  const { breadcrumbs, layout } = useProfile({
     pageId: "activity-log",
   });
   return (
@@ -121,7 +80,7 @@ export const ActivityLogPage = () => {
 };
 
 export const UsersPage = () => {
-  const { breadcrumbs, ...layout } = useProfileLayout({ pageId: "users" });
+  const { breadcrumbs, layout } = useProfile({ pageId: "users" });
   return (
     <Layout {...layout}>
       <PageBase color="person">
@@ -133,7 +92,7 @@ export const UsersPage = () => {
 };
 
 export const AccessPage = () => {
-  const { breadcrumbs, ...layout } = useProfileLayout({ pageId: "access" });
+  const { breadcrumbs, layout } = useProfile({ pageId: "access" });
   return (
     <Layout {...layout}>
       <PageBase>

@@ -37,7 +37,14 @@ export const ModalBase = ({
     const handleClosedby = (event: Event) => {
       const { clientY: y, clientX: x, target } = event as MouseEvent;
       if (event instanceof KeyboardEvent) {
-        return closedBy === 'none' && event.key === 'Escape' && event.preventDefault();
+        if (event.key === 'Escape') {
+          if (closedBy === 'none') {
+            event.preventDefault();
+            return;
+          }
+          onClose();
+          return;
+        }
       }
       if (window.getSelection()?.toString()) return;
       if (dialog && target === dialog && closedBy === 'any') {
@@ -61,7 +68,7 @@ export const ModalBase = ({
       dialog?.removeEventListener('click', handleClosedby);
       dialog?.removeEventListener('keydown', handleClosedby);
     };
-  }, [closedBy]);
+  }, [closedBy, onClose]);
 
   useEffect(() => {
     const dialog = dialogRef.current;

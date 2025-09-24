@@ -146,7 +146,7 @@ export const getAccountItems = ({
 export const groupAccountsByParent = (accounts: AccountDataProps[]) => {
   const groups: AccountDataGroups = {
     a1: {
-      title: 'Favoritter',
+      title: 'Deg selv',
     },
     a2: { title: '' },
     a3: { title: '' },
@@ -168,6 +168,7 @@ export const groupAccountsByParent = (accounts: AccountDataProps[]) => {
   const unordered = [...accounts]?.map((item) => getAccountItem(item));
 
   const sortedByName = sortAccountsByKey(unordered as AccountDataProps[], 'name');
+
   const sortedByParentId = sortAccountsByKey(sortedByName as AccountDataProps[], 'parentId');
 
   /** Group accounts by relationships */
@@ -227,9 +228,27 @@ export const groupAccountsByParent = (accounts: AccountDataProps[]) => {
     return item;
   });
 
+  /* set title of first favourite group */
+
+  const favourites = groupedItems?.filter((item) => item.favourite);
+
+  const sortedFavourites = sortAccountsByKey(favourites as AccountDataProps[], 'groupId');
+
+  const firstFavouriteGroup = sortedFavourites[0];
+
+  if (firstFavouriteGroup?.groupId) {
+    groups[firstFavouriteGroup.groupId] = {
+      title: 'Favoritter',
+    };
+  }
+
   /* set title of first company group */
 
-  const firstCompanyGroup = groupedItems?.find((item) => item.type === 'company' && !item.favourite);
+  const companies = groupedItems?.filter((item) => item.type === 'company' && !item.favourite);
+
+  const sortedCompanies = sortAccountsByKey(companies as AccountDataProps[], 'groupId');
+
+  const firstCompanyGroup = sortedCompanies[0];
 
   if (firstCompanyGroup?.groupId) {
     groups[firstCompanyGroup.groupId] = {

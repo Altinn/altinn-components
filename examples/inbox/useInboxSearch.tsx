@@ -2,10 +2,12 @@ import { type ChangeEvent, useState } from 'react';
 import type { AutocompleteItemProps, AutocompleteProps, DialogListItemProps, SearchbarProps } from '../../lib';
 
 interface UseInboxSearchProps extends SearchbarProps {
+  accountId?: string;
   items?: DialogListItemProps[];
 }
 
 export const useInboxSearch = ({
+  accountId,
   name = 'inbox-search',
   placeholder = 'Søk i innboks',
   value,
@@ -87,7 +89,11 @@ export const useInboxSearch = ({
 
   const onEnter = () => {
     console.log('Search entered:', q);
-    window.location.href = '/iframe.html?id=demo-inbox--search-page&viewMode=story' + `&q=${encodeURIComponent(q)}`;
+    window.location.href =
+      '/iframe.html?id=demo-inbox--search-page&viewMode=story' +
+      `&q=${encodeURIComponent(q)}` +
+      '&accountId=' +
+      accountId;
   };
 
   return {
