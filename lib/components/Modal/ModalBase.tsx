@@ -42,12 +42,9 @@ export const ModalBase = ({
             event.preventDefault();
             return;
           }
-          if (closedBy === 'any') {
-            onClose();
-            return;
-          }
+          onClose();
+          return;
         }
-        return;
       }
       if (window.getSelection()?.toString()) return;
       if (dialog && target === dialog && closedBy === 'any') {
