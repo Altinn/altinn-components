@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.39.0](https://github.com/Altinn/altinn-components/compare/v0.38.20...v0.39.0) (2025-09-24)
+
+
+### Features
+
+* add function for normalizing full name ([#658](https://github.com/Altinn/altinn-components/issues/658)) ([dbaaf76](https://github.com/Altinn/altinn-components/commit/dbaaf76cfe07198ea884a29ffa25b9dedc6ae2d7))
+
+
+### Bug Fixes
+
+* demo stories + fixes ([#661](https://github.com/Altinn/altinn-components/issues/661)) ([b346c63](https://github.com/Altinn/altinn-components/commit/b346c6333b2989aa283016b3e88551a4124d490e))
+
 ## [0.38.20](https://github.com/Altinn/altinn-components/compare/v0.38.19...v0.38.20) (2025-09-24)
 
 
