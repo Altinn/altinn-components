@@ -20,6 +20,10 @@ describe('formatDisplayName', () => {
     expect(formatDisplayName({ fullName: 'test as', type: 'company' })).toBe('Test AS');
   });
 
+  it('formats a company name and uppercases legal entity suffix', () => {
+    expect(formatDisplayName({ fullName: 'WORK AS FRIENDS AS', type: 'company' })).toBe('Work As Friends AS');
+  });
+
   it('handles company names with hyphenation and suffix', () => {
     expect(formatDisplayName({ fullName: 'test testy-test da', type: 'company' })).toBe('Test Testy-Test DA');
   });

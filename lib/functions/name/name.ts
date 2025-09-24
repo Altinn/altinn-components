@@ -22,20 +22,21 @@ interface FormatDisplayNameInput {
 export const formatDisplayName = ({ fullName, type, reverseNameOrder }: FormatDisplayNameInput): string => {
   if (!fullName) return '';
 
-  const legalEntityTypes = ['enk', 'as', 'da', 'sa'];
-  let words = fullName
-    .toLowerCase()
-    .split(' ')
-    .map((word) => {
-      if (type === 'company' && legalEntityTypes.includes(word)) {
-        return word.toUpperCase();
-      }
+  const legalEntityTypes = ['enk', 'as', 'da', 'sa', 'asa', 'ba', 'ans', 'sti', 'nuf'];
+  const parts = fullName.toLowerCase().split(' ');
 
-      return word
-        .split('-')
-        .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-        .join('-');
-    });
+  let words = parts.map((word, idx) => {
+    const isLastWord = idx === parts.length - 1;
+
+    if (type === 'company' && isLastWord && legalEntityTypes.includes(word)) {
+      return word.toUpperCase();
+    }
+
+    return word
+      .split('-')
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+      .join('-');
+  });
 
   if (type === 'person' && reverseNameOrder && words.length > 1) {
     const [first, ...rest] = words;
