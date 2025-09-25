@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.39.1](https://github.com/Altinn/altinn-components/compare/v0.39.0...v0.39.1) (2025-09-25)
+
+
+### Bug Fixes
+
+* **deps:** update test/dev deps to resolve form-data vulnerability ([#664](https://github.com/Altinn/altinn-components/issues/664)) ([c0707d2](https://github.com/Altinn/altinn-components/commit/c0707d2e1f8a773464f0de22f41e0d8e2bce1011))
+* **deps:** update to vite 5.4.20 (security patch) ([#665](https://github.com/Altinn/altinn-components/issues/665)) ([9d1d97d](https://github.com/Altinn/altinn-components/commit/9d1d97dfd1dc3d8c222c4ee64e7a388747b7db80))
+* **deps:** update to vite-plugin-static-copy 2.3.2 (security patch) ([#667](https://github.com/Altinn/altinn-components/issues/667)) ([760b725](https://github.com/Altinn/altinn-components/commit/760b725fb7de00b9f231815bea58b2a08ad2b1ab))
+
 ## [0.39.0](https://github.com/Altinn/altinn-components/compare/v0.38.20...v0.39.0) (2025-09-24)
 
 
