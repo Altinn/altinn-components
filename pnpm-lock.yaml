@@ -58,8 +58,8 @@ importers:
         specifier: ^9.0.4
         version: 9.0.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(rollup@4.41.0)(storybook@9.0.4(@testing-library/dom@10.4.0))(typescript@5.8.3)(vite@5.4.19(@types/node@22.15.21))
       '@storybook/test-runner':
-        specifier: ^0.22.0
-        version: 0.22.0(@types/node@22.15.21)(storybook@9.0.4(@testing-library/dom@10.4.0))
+        specifier: ^0.22.1
+        version: 0.22.1(@types/node@22.15.21)(storybook@9.0.4(@testing-library/dom@10.4.0))
       '@testing-library/react':
         specifier: ^16.3.0
         version: 16.3.0(@testing-library/dom@10.4.0)(@types/react-dom@18.3.7(@types/react@19.1.5))(@types/react@19.1.5)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1156,8 +1156,8 @@ packages:
       typescript:
         optional: true
 
-  '@storybook/test-runner@0.22.0':
-    resolution: {integrity: sha512-fKY6MTE/bcvMaulKXy+z0fPmRXJx1REkYMOMcGn8zn6uffyBigGgaVf/sZ+AZfibwvjzg/StWhJ9HvAM8pc14g==}
+  '@storybook/test-runner@0.22.1':
+    resolution: {integrity: sha512-F5omZH0Pj2Y0UXSqShl1RuPrnhLBbb/yPFnZbVWDSPWZHDSX+dfBuu1T2zVfJplNKd04RzJuMbWHPFtZ0mimSw==}
     engines: {node: ^16.10.0 || ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
@@ -1574,8 +1574,8 @@ packages:
     peerDependencies:
       playwright: '>1.0.0'
 
-  axios@1.9.0:
-    resolution: {integrity: sha512-re4CqKTJaURpzbLHtIi6XpDv20/CnpXOtjRY5/CU32L8gU8ek9UIivcfvSWvmKEngmVbrUtPpdDwWDWL7DNHvg==}
+  axios@1.12.2:
+    resolution: {integrity: sha512-vMJzPewAlRyOgxV2dU0Cuz2O8zzzx9VYtbJOaBgXFeLc4IV/Eg50n4LowmehOOR61S8ZMpc2K5Sa7g6A4jfkUw==}
 
   babel-jest@29.7.0:
     resolution: {integrity: sha512-BrvGY3xZSwEcCzKvKsCi2GgHqDqsYkOP4/by5xCgIwGXQxIEh+8ew3gmrE1y7XRR6LHZIj6yLYnUi/mm2KXKBg==}
@@ -2137,8 +2137,8 @@ packages:
     resolution: {integrity: sha512-gIXjKqtFuWEgzFRJA9WCQeSJLZDjgJUOMCMzxtvFq/37KojM1BFGufqsCy0r4qSQmYLsZYMeyRqzIWOMup03sw==}
     engines: {node: '>=14'}
 
-  form-data@4.0.2:
-    resolution: {integrity: sha512-hGfm/slu0ZabnNt4oaRZ6uREyfCj6P4fT/n6A1rGV+Z0VdGXjfOhVUpkn6qVQONHGIFwmveGXyDs75+nr6FM8w==}
+  form-data@4.0.4:
+    resolution: {integrity: sha512-KrGhL9Q4zjj0kiUt5OO4Mr/A/jlI2jDYs5eHBpYHPcBEVSiipAvn2Ko2HnPe20rmcuuvMHNdZFp+4IlGTMF0Ow==}
     engines: {node: '>= 6'}
 
   fromentries@1.3.2:
@@ -4814,7 +4814,7 @@ snapshots:
     optionalDependencies:
       typescript: 5.8.3
 
-  '@storybook/test-runner@0.22.0(@types/node@22.15.21)(storybook@9.0.4(@testing-library/dom@10.4.0))':
+  '@storybook/test-runner@0.22.1(@types/node@22.15.21)(storybook@9.0.4(@testing-library/dom@10.4.0))':
     dependencies:
       '@babel/core': 7.27.1
       '@babel/generator': 7.27.1
@@ -5266,10 +5266,10 @@ snapshots:
       picocolors: 1.1.1
       playwright: 1.52.0
 
-  axios@1.9.0:
+  axios@1.12.2:
     dependencies:
       follow-redirects: 1.15.9
-      form-data: 4.0.2
+      form-data: 4.0.4
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
@@ -5855,11 +5855,12 @@ snapshots:
       cross-spawn: 7.0.6
       signal-exit: 4.1.0
 
-  form-data@4.0.2:
+  form-data@4.0.4:
     dependencies:
       asynckit: 0.4.0
       combined-stream: 1.0.8
       es-set-tostringtag: 2.1.0
+      hasown: 2.0.2
       mime-types: 2.1.35
 
   fromentries@1.3.2: {}
@@ -7810,7 +7811,7 @@ snapshots:
 
   wait-on@7.2.0:
     dependencies:
-      axios: 1.9.0
+      axios: 1.12.2
       joi: 17.13.3
       lodash: 4.17.21
       minimist: 1.2.8
