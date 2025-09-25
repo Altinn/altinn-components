@@ -112,8 +112,8 @@ importers:
         specifier: ^2.2.2
         version: 2.2.2(vite@5.4.20(@types/node@22.15.21))
       vite-plugin-static-copy:
-        specifier: ^2.3.1
-        version: 2.3.1(vite@5.4.20(@types/node@22.15.21))
+        specifier: ^2.3.2
+        version: 2.3.2(vite@5.4.20(@types/node@22.15.21))
       vitest:
         specifier: ^3.2.4
         version: 3.2.4(@types/debug@4.1.12)(@types/node@22.15.21)
@@ -3626,8 +3626,8 @@ packages:
     peerDependencies:
       vite: '*'
 
-  vite-plugin-static-copy@2.3.1:
-    resolution: {integrity: sha512-EfsPcBm3ewg3UMG8RJaC0ADq6/qnUZnokXx4By4+2cAcipjT9i0Y0owIJGqmZI7d6nxk4qB1q5aXOwNuSyPdyA==}
+  vite-plugin-static-copy@2.3.2:
+    resolution: {integrity: sha512-iwrrf+JupY4b9stBttRWzGHzZbeMjAHBhkrn67MNACXJVjEMRpCI10Q3AkxdBkl45IHaTfw/CNVevzQhP7yTwg==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
       vite: ^5.0.0 || ^6.0.0
@@ -7750,7 +7750,7 @@ snapshots:
       picocolors: 1.1.1
       vite: 5.4.20(@types/node@22.15.21)
 
-  vite-plugin-static-copy@2.3.1(vite@5.4.20(@types/node@22.15.21)):
+  vite-plugin-static-copy@2.3.2(vite@5.4.20(@types/node@22.15.21)):
     dependencies:
       chokidar: 3.6.0
       fast-glob: 3.3.3
