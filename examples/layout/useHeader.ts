@@ -44,7 +44,7 @@ export const useHeader = ({ accountId, accounts = defaultAccounts, menu, ...args
     if (item.items) {
       return {
         ...item,
-        selected: true,
+        selected: item?.expanded,
         expanded: false,
       };
     }

@@ -43,11 +43,11 @@ export const useProfileLayout = ({ accountId = 'user', pageId = 'profile' }): Pr
 
     const expanded = item.id === 'profile';
 
-    if (expanded && mobileMenuChildren?.length > 0) {
+    if (expanded) {
       return {
         ...item,
         href,
-        expanded: true,
+        expanded,
         selected: item.id === pageId,
         items: mobileMenuChildren?.map((item) => {
           return {
@@ -60,6 +60,7 @@ export const useProfileLayout = ({ accountId = 'user', pageId = 'profile' }): Pr
 
     return {
       ...item,
+      selected: item.id === pageId,
       href,
     };
   });
