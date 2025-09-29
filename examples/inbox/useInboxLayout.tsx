@@ -47,22 +47,29 @@ export const useInboxLayout = ({
     };
   });
 
+  const mobileMenuChildren = menuItems?.slice(1)?.filter((item) => item.groupId !== 'shortcuts'); // all except top node and shortcuts
+
   const desktopItems = desktopMenuItems.map((item) => {
     const storyBookId = storybookPages?.[item.id as keyof typeof storybookPages];
     const href = storyBookId && [baseHref, storyBookId].join('') + '&accountId=' + accountId;
 
+    const expanded = item.id === 'inbox';
+
     return {
       ...item,
       href,
-      selected: item.id === 'inbox',
+      selected: item.id === pageId,
+      expanded,
+      items: expanded && mobileMenuChildren,
     };
   });
+
   const layout = useLayout({
     theme: 'subtle',
     accountId,
     menu: {
       ...desktopMenu,
-      items: desktopItems,
+      items: desktopItems as MenuProps['items'],
     },
     sidebar: {
       menu: {

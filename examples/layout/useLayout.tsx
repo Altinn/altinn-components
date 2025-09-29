@@ -49,6 +49,7 @@ export const useLayout = ({
     footer,
     header: {
       ...headerProps,
+      mobileMenu: headerProps?.mobileMenu,
       globalMenu: {
         ...headerProps?.globalMenu,
         onSelectAccount,
