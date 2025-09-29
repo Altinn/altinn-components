@@ -1,5 +1,5 @@
 import { desktopMenu, desktopMenuItems, profileMenu, profileMenuItems, useLayout } from '../';
-import type { Account, BreadcrumbsLinkProps, LayoutProps } from '../../lib';
+import type { Account, BreadcrumbsLinkProps, LayoutProps, MenuProps } from '../../lib';
 
 interface ProfileLayoutProps extends LayoutProps {
   accountId?: string;
@@ -35,14 +35,32 @@ export const useProfileLayout = ({ accountId = 'user', pageId = 'profile' }): Pr
     };
   });
 
+  const mobileMenuChildren = menuItems?.slice(1)?.filter((item) => item.groupId !== 'shortcuts'); // all except top node and shortcuts
+
   const desktopItems = desktopMenuItems.map((item) => {
     const storyBookId = storybookPages?.[item.id as keyof typeof storybookPages];
     const href = storyBookId && [baseHref, storyBookId].join('') + '&accountId=' + accountId;
 
+    const expanded = item.id === 'profile';
+
+    if (expanded && mobileMenuChildren?.length > 0) {
+      return {
+        ...item,
+        href,
+        expanded: true,
+        selected: item.id === pageId,
+        items: mobileMenuChildren?.map((item) => {
+          return {
+            ...item,
+            size: 'sm',
+          };
+        }),
+      };
+    }
+
     return {
       ...item,
       href,
-      selected: item.id === 'profile',
     };
   });
 
@@ -52,7 +70,7 @@ export const useProfileLayout = ({ accountId = 'user', pageId = 'profile' }): Pr
     theme: 'subtle',
     menu: {
       ...desktopMenu,
-      items: desktopItems,
+      items: desktopItems as MenuProps['items'],
     },
     sidebar: {
       menu: {

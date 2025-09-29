@@ -29,8 +29,42 @@ export const useHeader = ({ accountId, accounts = defaultAccounts, menu, ...args
     menu,
   });
 
+  /* setup mobileMenu */
+  const mobileMenuItems = globalMenu?.menu?.items?.map((item) => {
+    if (item.items) {
+      return {
+        ...item,
+        expanded: true,
+      };
+    }
+    return item;
+  });
+
+  const desktopMenuItems = globalMenu?.menu?.items?.map((item) => {
+    if (item.items) {
+      return {
+        ...item,
+        selected: true,
+        expanded: false,
+      };
+    }
+    return item;
+  });
+
+  const mobileMenu = {
+    ...globalMenu?.menu,
+    items: mobileMenuItems,
+  };
+
+  const desktopMenu = {
+    ...globalMenu?.menu,
+    items: desktopMenuItems,
+  };
+
   return {
     globalMenu,
+    mobileMenu,
+    desktopMenu,
     locale,
     search,
     currentAccount: globalMenu?.currentAccount as Account,

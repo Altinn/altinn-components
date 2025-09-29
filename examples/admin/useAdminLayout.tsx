@@ -1,5 +1,5 @@
 import { adminMenu, adminMenuItems, desktopMenu, desktopMenuItems, useLayout } from '../';
-import type { LayoutProps } from '../../lib';
+import type { LayoutProps, MenuProps } from '../../lib';
 
 interface AdminLayoutProps extends LayoutProps {
   accountId?: string;
@@ -21,17 +21,6 @@ export const useAdminLayout = ({ accountId = 'diaspora', pageId = 'admin' }): Ad
     'activity-log': 'demo-admin--activity-log-page',
   };
 
-  const desktopItems = desktopMenuItems.map((item) => {
-    const storyBookId = storybookPages?.[item.id as keyof typeof storybookPages];
-    const href = storyBookId && [baseHref, storyBookId].join('') + '&accountId=' + accountId;
-
-    return {
-      ...item,
-      href,
-      selected: item.id === 'admin',
-    };
-  });
-
   const menuItems = adminMenuItems.map((item) => {
     const storyBookId = storybookPages?.[item.id as keyof typeof storybookPages];
     const href = storyBookId && [baseHref, storyBookId].join('') + '&accountId=' + accountId;
@@ -43,13 +32,30 @@ export const useAdminLayout = ({ accountId = 'diaspora', pageId = 'admin' }): Ad
     };
   });
 
+  const mobileMenuChildren = menuItems?.slice(1)?.filter((item) => item.groupId !== 'shortcuts'); // all except top node and shortcuts
+
+  const desktopItems = desktopMenuItems.map((item) => {
+    const storyBookId = storybookPages?.[item.id as keyof typeof storybookPages];
+    const href = storyBookId && [baseHref, storyBookId].join('') + '&accountId=' + accountId;
+
+    const expanded = item.id === 'admin';
+
+    return {
+      ...item,
+      href,
+      expanded,
+      selected: item.id === pageId,
+      items: expanded && mobileMenuChildren,
+    };
+  });
+
   const layout = useLayout({
     color: 'neutral',
     theme: 'subtle',
     accountId,
     menu: {
       ...desktopMenu,
-      items: desktopItems,
+      items: desktopItems as MenuProps['items'],
     },
   });
 

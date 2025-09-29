@@ -51,7 +51,7 @@ export const useProfile = ({ defaultAccountId = 'user', pageId = 'profile' }): U
       label: 'Forside',
     },
     {
-      label: (currentAccount?.name as string) || 'Seksjon',
+      label: 'Min profil',
     },
     {
       label: (page?.title as string) || 'Side',
