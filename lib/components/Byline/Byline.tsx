@@ -31,6 +31,8 @@ export const Byline = ({
   ...props
 }: BylineProps) => {
   const Component = as || 'div';
+  const Label = datetime ? 'time' : 'span';
+
   return (
     <Component {...props} className={styles.byline} data-color={color} data-size={size}>
       {(avatarGroup || avatar) && (
@@ -42,9 +44,9 @@ export const Byline = ({
           )}
         </Skeleton>
       )}
-      <time data-size={size} dateTime={datetime} className={styles.label}>
+      <Label data-size={size} dateTime={datetime} className={styles.label}>
         <Skeleton loading={loading}>{children}</Skeleton>
-      </time>
+      </Label>
     </Component>
   );
 };

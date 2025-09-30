@@ -14,7 +14,6 @@
 
 .avatar[data-outline="true"] {
   outline: 1px solid #ffffff;
-  /*  outline-color: var(--ds-color-border-subtle); */
   box-sizing: border-box;
 }
 
