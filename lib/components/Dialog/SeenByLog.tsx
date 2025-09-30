@@ -7,6 +7,7 @@ export interface SeenByLogProps {
   collapsible?: boolean;
   expanded?: boolean;
   items: SeenByLogItemProps[];
+  size?: 'sm' | 'md';
   endUserLabel?: string;
 }
 
@@ -14,7 +15,14 @@ export interface SeenByLogProps {
  * SeenByLog
  */
 
-export const SeenByLog = ({ collapsible, expanded, title, items, endUserLabel = 'You' }: SeenByLogProps) => {
+export const SeenByLog = ({
+  collapsible,
+  expanded,
+  title,
+  items,
+  size = 'sm',
+  endUserLabel = 'You',
+}: SeenByLogProps) => {
   const [open, setOpen] = useState<boolean>(expanded || (!collapsible && true));
 
   const onToggle = () => {
@@ -38,12 +46,12 @@ export const SeenByLog = ({ collapsible, expanded, title, items, endUserLabel = 
       )}
       {title && open && <Divider />}
       {open && (
-        <List size="sm" spacing={1}>
+        <List size={size} spacing={1}>
           {items?.map((item, index) => {
             return (
               <Fragment key={item.id}>
                 {index > 0 && <Divider />}
-                <SeenByLogItem {...item} key={item.id} endUserLabel={endUserLabel} />
+                <SeenByLogItem {...item} key={item.id} size={size} endUserLabel={endUserLabel} />
               </Fragment>
             );
           })}
