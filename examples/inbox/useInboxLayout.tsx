@@ -72,6 +72,7 @@ export const useInboxLayout = ({
       items: desktopItems as MenuProps['items'],
     },
     sidebar: {
+      sticky: true,
       menu: {
         ...inboxMenu,
         items: menuItems,

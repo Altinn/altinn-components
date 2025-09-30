@@ -11,12 +11,13 @@ import styles from './layoutSidebar.module.css';
 export interface LayoutSidebarProps {
   color?: LayoutColor;
   hidden?: boolean;
+  sticky?: boolean;
   children?: ReactNode;
 }
 
-export const LayoutSidebar = ({ color, hidden = false, children }: LayoutSidebarProps) => {
+export const LayoutSidebar = ({ color, hidden = false, sticky, children }: LayoutSidebarProps) => {
   return (
-    <aside className={styles.sidebar} data-color={color} aria-hidden={hidden}>
+    <aside className={styles.sidebar} data-color={color} data-sticky={sticky} aria-hidden={hidden}>
       {children}
     </aside>
   );
