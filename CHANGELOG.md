@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.40.1](https://github.com/Altinn/altinn-components/compare/v0.40.0...v0.40.1) (2025-09-30)
+
+
+### Bug Fixes
+
+* accountList toggle keep badge ([#675](https://github.com/Altinn/altinn-components/issues/675)) ([e18b5a2](https://github.com/Altinn/altinn-components/commit/e18b5a2efdc867b9da238f2bf1b4700aa61b4ead))
+* Add missing Alert export ([#674](https://github.com/Altinn/altinn-components/issues/674)) ([cb214de](https://github.com/Altinn/altinn-components/commit/cb214debd85c60c5a20147372f9ba5d79c7eeec8))
+
 ## [0.40.0](https://github.com/Altinn/altinn-components/compare/v0.39.1...v0.40.0) (2025-09-30)
 
 
