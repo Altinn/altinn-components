@@ -14,6 +14,11 @@
   flex-shrink: 0;
 }
 
+.avatar[data-size="md"] {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
 .avatar[data-size="lg"] {
   font-size: 2.25rem;
 }

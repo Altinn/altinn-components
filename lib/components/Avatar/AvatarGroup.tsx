@@ -38,7 +38,7 @@ export const AvatarGroup = ({
   className,
   style,
 }: AvatarGroupProps) => {
-  const maxItems = useMemo(() => items.slice(0, maxItemsCount), [items, maxItemsCount]);
+  const maxItems = useMemo(() => items.slice(0, maxItemsCount).reverse(), [items, maxItemsCount]);
 
   if (items.length === 0) {
     return <div className={styles.avatarGroup} />;
