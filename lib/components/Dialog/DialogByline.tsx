@@ -1,4 +1,4 @@
-import { type AvatarProps, Byline, type BylineSize } from "..";
+import { type AvatarProps, Byline, type BylineSize } from '..';
 
 export interface DialogBylineProps {
   sender?: AvatarProps;
@@ -13,10 +13,10 @@ export interface DialogBylineProps {
 export const DialogByline = ({
   sender,
   recipient,
-  recipientLabel = "to",
+  recipientLabel = 'to',
   grouped = false,
   loading,
-  size = "xs",
+  size = 'xs',
 }: DialogBylineProps) => {
   if (!sender && !recipient) {
     return null;
@@ -30,14 +30,8 @@ export const DialogByline = ({
       : undefined;
 
   return (
-    <Byline
-      loading={loading}
-      size={size}
-      avatar={sender}
-      avatarGroup={avatarGroup}
-    >
-      <strong>{sender?.name}</strong>{" "}
-      {recipient && recipientLabel + " " + recipient?.name}
+    <Byline loading={loading} size={size} avatar={sender} avatarGroup={avatarGroup}>
+      <strong>{sender?.name}</strong> {recipient && recipientLabel + ' ' + recipient?.name}
     </Byline>
   );
 };
