@@ -49,19 +49,17 @@ export const AccountListItem = ({
       expanded={expanded}
       selected={expanded}
       controls={
-        !expanded && (
-          <AccountListItemControls
-            id={id}
-            type={type}
-            favourite={favourite}
-            favouriteLabel={favouriteLabel}
-            badge={badge}
-            isCurrentEndUser={isCurrentEndUser}
-            isDeleted={isDeleted}
-            onToggleFavourite={onToggleFavourite}
-            contextMenu={contextMenu}
-          />
-        )
+        <AccountListItemControls
+          id={id}
+          type={type}
+          favourite={favourite}
+          favouriteLabel={favouriteLabel}
+          badge={badge}
+          isCurrentEndUser={isCurrentEndUser}
+          isDeleted={isDeleted}
+          onToggleFavourite={onToggleFavourite}
+          contextMenu={!expanded ? contextMenu : undefined}
+        />
       }
       linkIcon
       interactive={interactive}

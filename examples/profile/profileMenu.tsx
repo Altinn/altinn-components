@@ -1,4 +1,10 @@
-import { BellIcon, ClockDashedIcon, CogIcon, HeartIcon } from '@navikt/aksel-icons';
+import {
+  BellIcon,
+  ClockDashedIcon,
+  CogIcon,
+  HeartIcon,
+  //  HandshakeIcon,
+} from '@navikt/aksel-icons';
 import type { MenuItemProps, MenuProps } from '../../lib';
 
 export const profileMenuItems: MenuItemProps[] = [
@@ -25,16 +31,16 @@ export const profileMenuItems: MenuItemProps[] = [
   },
   /*
   {
-    id: 'contact',
-    groupId: '2',
-    icon: PersonRectangleIcon,
-    title: 'Kontaktinformasjon',
-  },
-  {
     id: "users",
     groupId: "4",
     icon: HandshakeIcon,
     title: "Gi fullmakt",
+  },
+  {
+    id: 'contact',
+    groupId: '2',
+    icon: PersonRectangleIcon,
+    title: 'Kontaktinformasjon',
   },
   {
     id: "access",
