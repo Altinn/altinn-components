@@ -87,7 +87,7 @@ export const Avatar = ({
 
   return (
     <div
-      className={cx(styles.avatar, { [styles.outline]: outline }, className)}
+      className={cx(styles.avatar, className)}
       style={inlineStyles}
       data-shape={applicableShape}
       data-size={size}
