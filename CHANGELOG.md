@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.40.0](https://github.com/Altinn/altinn-components/compare/v0.39.1...v0.40.0) (2025-09-30)
+
+
+### Features
+
+* Add Alert component ([#673](https://github.com/Altinn/altinn-components/issues/673)) ([eafcd46](https://github.com/Altinn/altinn-components/commit/eafcd4632270912c977d46cd559acf9da03ef486))
+
+
+### Bug Fixes
+
+* add mobile menu to demo ([#670](https://github.com/Altinn/altinn-components/issues/670)) ([5849671](https://github.com/Altinn/altinn-components/commit/58496710e5fddab7c288f315078be1d40f944951))
+* mobile menu demo bug ([#672](https://github.com/Altinn/altinn-components/issues/672)) ([1523ec9](https://github.com/Altinn/altinn-components/commit/1523ec97c5ff81fc13eb48aa06edc2d2b120e38a))
+
 ## [0.39.1](https://github.com/Altinn/altinn-components/compare/v0.39.0...v0.39.1) (2025-09-25)
 
 
