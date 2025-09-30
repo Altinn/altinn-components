@@ -74,6 +74,7 @@ export const useProfileLayout = ({ accountId = 'user', pageId = 'profile' }): Pr
       items: desktopItems as MenuProps['items'],
     },
     sidebar: {
+      sticky: true,
       menu: {
         ...profileMenu,
         items: menuItems,

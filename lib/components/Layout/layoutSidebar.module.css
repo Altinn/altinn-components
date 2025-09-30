@@ -8,10 +8,16 @@
 
 @media (min-width: 1024px) {
   .sidebar {
+    align-self: flex-start;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
     width: 224px;
+  }
+
+  .sidebar[data-sticky="true"] {
+    position: sticky;
+    top: 0;
   }
 
   .sidebar[aria-hidden="true"] {

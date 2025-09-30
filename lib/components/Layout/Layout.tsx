@@ -1,17 +1,23 @@
 'use client';
 import type { ReactNode } from 'react';
-import { LayoutBase, LayoutBody, type LayoutColor, LayoutContent, LayoutSidebar, type LayoutTheme } from '.';
+import {
+  LayoutBase,
+  LayoutBody,
+  type LayoutColor,
+  LayoutContent,
+  LayoutSidebar,
+  type LayoutSidebarProps,
+  type LayoutTheme,
+} from '.';
 import { Footer, type FooterProps } from '../Footer';
 import { Header, type HeaderProps } from '../Header';
 import { Menu, type MenuProps } from '../Menu';
 import { useRootContext } from '../RootProvider';
 import { SkipLink, type SkipLinkProps } from '../SkipLink';
 
-interface SidebarProps {
-  color?: LayoutColor;
+interface SidebarProps extends LayoutSidebarProps {
   menu?: MenuProps;
   children?: ReactNode;
-  hidden?: boolean;
 }
 
 interface ContentProps {

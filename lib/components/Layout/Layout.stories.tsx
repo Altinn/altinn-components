@@ -1,8 +1,8 @@
 import type { Meta } from '@storybook/react-vite';
 import { Flex } from '..';
 import type { LayoutProps } from '../';
+import { Layout, List, type ListItemProps, PageBase } from '../';
 import { footer, header, inboxMenu, skipLink, useLayout } from '../../../examples';
-import { Layout } from './Layout';
 
 const meta = {
   title: 'Layout/Layout',
@@ -20,7 +20,16 @@ const meta = {
       menu: inboxMenu,
     },
     children: (
-      <Flex align="center" justify="center" style={{ border: '1px dashed', width: '100%', height: '100%', gap: 5 }}>
+      <Flex
+        align="center"
+        justify="center"
+        style={{
+          border: '1px dashed',
+          width: '100%',
+          height: '100%',
+          gap: 5,
+        }}
+      >
         Content
         <a href="https://altinn.no">with a focusable item</a>
       </Flex>
@@ -33,6 +42,40 @@ export default meta;
 export const Preview = (args: LayoutProps) => {
   const layout = useLayout(args);
   return <Layout {...layout}>{args.children}</Layout>;
+};
+
+export const StickySidebar = (args: LayoutProps) => {
+  const layout = useLayout(args);
+
+  return (
+    <Layout
+      {...layout}
+      sidebar={{
+        ...args.sidebar,
+        sticky: true,
+      }}
+    >
+      <PageBase>
+        <List
+          items={
+            Array.from({ length: 30 }, (_, i) => {
+              const avatar = {
+                type: 'person',
+                name: i + 'Item ' + i * i,
+              };
+
+              return {
+                id: 'i' + i,
+                groupId: i > 10 ? '2' : '1',
+                icon: avatar,
+                title: `Item ${i + 1}`,
+              };
+            }) as ListItemProps[]
+          }
+        />
+      </PageBase>
+    </Layout>
+  );
 };
 
 export const HiddenSidebar = (args: LayoutProps) => {
