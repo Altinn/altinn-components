@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.41.0](https://github.com/Altinn/altinn-components/compare/v0.40.1...v0.41.0) (2025-09-30)
+
+
+### Features
+
+* sticky sidebar ([#677](https://github.com/Altinn/altinn-components/issues/677)) ([de3aecb](https://github.com/Altinn/altinn-components/commit/de3aecb593914fc0a831eaa1adcfcb1457f94d48))
+
+
+### Bug Fixes
+
+* **byline:** render time-tag only when data represents a date ([#680](https://github.com/Altinn/altinn-components/issues/680)) ([2ce20de](https://github.com/Altinn/altinn-components/commit/2ce20de4c156fb5fe0318fa8fa3823c7014f29c1))
+* search input size on mobile ([#682](https://github.com/Altinn/altinn-components/issues/682)) ([eecb4bf](https://github.com/Altinn/altinn-components/commit/eecb4bfad7c55a49a675680f8a8c17a9bf3ddd64))
+* seen by log avatars ([#681](https://github.com/Altinn/altinn-components/issues/681)) ([9c8b7b5](https://github.com/Altinn/altinn-components/commit/9c8b7b5a3e0606c3142e886de6d746483144f88e))
+
+
+### Miscellaneous Chores
+
+* Adjust Alert styles ([#679](https://github.com/Altinn/altinn-components/issues/679)) ([8fa34ea](https://github.com/Altinn/altinn-components/commit/8fa34ea82fc5c583e0e27369053e4d05712fd545))
+* lint DialogByline ([#684](https://github.com/Altinn/altinn-components/issues/684)) ([e659969](https://github.com/Altinn/altinn-components/commit/e659969c55ebe844491cb79b61e8b275efb2f578))
+
 ## [0.40.1](https://github.com/Altinn/altinn-components/compare/v0.40.0...v0.40.1) (2025-09-30)
 
 
