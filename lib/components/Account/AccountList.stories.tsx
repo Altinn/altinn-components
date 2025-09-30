@@ -179,9 +179,17 @@ interface ControlledProps {
   includeGroups?: boolean;
   contextMenu?: boolean;
   collapsible?: boolean;
+  color?: 'neutral';
+  variant?: 'subtle' | 'tinted' | 'default';
 }
 
-export const Controlled = ({ includeGroups = false, collapsible = false, contextMenu = false }: ControlledProps) => {
+export const Controlled = ({
+  includeGroups = false,
+  collapsible = false,
+  contextMenu = false,
+  variant,
+  color,
+}: ControlledProps) => {
   const { toolbar, items, groups, expandedId, onToggle, onToggleFavourite, onSettingsChange } = useAccountList({
     accounts: defaultAccounts,
     includeGroups,
@@ -234,6 +242,7 @@ export const Controlled = ({ includeGroups = false, collapsible = false, context
     return {
       ...item,
       as: 'button',
+      variant,
       highlightWords: q?.split(' '),
       collapsible,
       onClick: () => onToggle(item.id),
@@ -243,7 +252,7 @@ export const Controlled = ({ includeGroups = false, collapsible = false, context
   });
 
   return (
-    <Section spacing={6}>
+    <Section spacing={6} color={color}>
       <Toolbar {...toolbar} />
       <AccountList groups={listGroups} items={collapsibleItems as AccountListItemProps[]} />
       {modalId && modal?.type === 'contact' && <AlertSettingsModal open={true} onClose={onClose} />}
@@ -256,6 +265,10 @@ export const Controlled = ({ includeGroups = false, collapsible = false, context
       )}
     </Section>
   );
+};
+
+export const ControlledTinted = () => {
+  return <Controlled color="neutral" variant="subtle" />;
 };
 
 export const Collapsible = () => {
