@@ -201,13 +201,15 @@ export const useSettings = ({
   const people = sortAccountsByKey(unsortedPeople, 'name');
   const sortedCompanies = sortAccountsByKey(unsortedCompanies, 'groupName');
 
-  const companies = sortedCompanies?.map((item) => {
-    const { groupName } = item;
+  const companyGroups = sortedCompanies?.map((item) => {
+    const { groupName, isDeleted } = item;
     return {
       ...item,
-      groupId: ['company', groupName].join('-'),
+      groupId: isDeleted ? ['company', 'b', groupName].join('-') : ['company', 'a', groupName].join('-'),
     };
   });
+
+  const companies = sortAccountsByKey(companyGroups, 'groupId');
 
   const firstCompanyGroup = companies?.[0]?.groupId || 'company';
 
