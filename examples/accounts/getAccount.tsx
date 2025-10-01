@@ -90,9 +90,12 @@ export const getAccountItem = ({
   const badge = getAccountBadge();
 
   const parent = accounts.find((a) => a.id === parentId);
+  const parentName = parent ? parent.name : null; //
+  const groupName = parentName ? [parentName, name].join('-') : name;
 
   return {
     id,
+    groupName,
     type,
     name,
     icon,
@@ -100,7 +103,7 @@ export const getAccountItem = ({
     badge,
     title: name,
     description,
-    parentName: parent?.name,
+    parentName,
     parentId,
     accountIds,
     isDeleted,
@@ -174,7 +177,7 @@ export const groupAccountsByParent = (accounts: AccountDataProps[]) => {
   /** Group accounts by relationships */
 
   const groupedItems: AccountDataProps[] = sortedByParentId?.map((item) => {
-    const { id, name, type, favourite, parentName, isCurrentEndUser } = item;
+    const { id, name, type, favourite, parentName, isCurrentEndUser, isDeleted } = item;
 
     if (isCurrentEndUser) {
       return {
@@ -192,7 +195,7 @@ export const groupAccountsByParent = (accounts: AccountDataProps[]) => {
 
     if (type === 'company') {
       const groupName = parentName || name;
-      const groupId = 'c1' + groupName;
+      const groupId = isDeleted ? 'c2' + groupName : 'c1' + groupName;
 
       groups[groupId] = {
         title: '',
@@ -200,6 +203,7 @@ export const groupAccountsByParent = (accounts: AccountDataProps[]) => {
 
       return {
         ...item,
+        groupName,
         groupId: favourite ? 'a3' : groupId,
       };
     }
@@ -245,7 +249,6 @@ export const groupAccountsByParent = (accounts: AccountDataProps[]) => {
   /* set title of first company group */
 
   const companies = groupedItems?.filter((item) => item.type === 'company' && !item.favourite);
-
   const sortedCompanies = sortAccountsByKey(companies as AccountDataProps[], 'groupId');
 
   const firstCompanyGroup = sortedCompanies[0];

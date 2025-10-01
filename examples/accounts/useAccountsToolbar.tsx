@@ -52,6 +52,7 @@ export const useAccountsToolbar = (items?: AccountListItemProps[]): UseAccountsT
   };
 
   const search = {
+    placeholder: 'Søk i aktører',
     name: 'q',
     value: q,
     onChange,

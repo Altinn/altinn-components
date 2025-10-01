@@ -12,7 +12,7 @@ import {
   PersonRectangleIcon,
   ReceiptIcon,
 } from '@navikt/aksel-icons';
-import { type AccountDataProps, defaultAccounts, useAccounts } from '../';
+import { type AccountDataProps, defaultAccounts, sortAccountsByKey, useAccounts } from '../';
 import type { SettingsItemProps, SettingsListProps } from '../../lib';
 
 type UseSettingsQuery = {
@@ -24,9 +24,17 @@ export type UseSettingsProps = {
   accounts?: AccountDataProps[];
   groups?: SettingsListProps['groups'];
   query?: UseSettingsQuery;
+  includeGroups?: string[];
+  excludeGroups?: string[];
 };
 
-export const useSettings = ({ accounts = defaultAccounts, groups, query }: UseSettingsProps) => {
+export const useSettings = ({
+  accounts = defaultAccounts,
+  groups,
+  query,
+  includeGroups,
+  excludeGroups,
+}: UseSettingsProps) => {
   const { defaultAccount, items, expandedId, onToggle, onSettingsChange } = useAccounts({
     accounts,
     includeGroups: false,
@@ -187,8 +195,21 @@ export const useSettings = ({ accounts = defaultAccounts, groups, query }: UseSe
 
   // people and companies
 
-  const people = actorsList?.filter((item) => item.type === 'person');
-  const companies = actorsList?.filter((item) => item.type === 'company');
+  const unsortedPeople = actorsList?.filter((item) => item.type === 'person' && !item.isCurrentEndUser);
+  const unsortedCompanies = actorsList?.filter((item) => item.type === 'company');
+
+  const people = sortAccountsByKey(unsortedPeople, 'name');
+  const sortedCompanies = sortAccountsByKey(unsortedCompanies, 'groupName');
+
+  const companies = sortedCompanies?.map((item) => {
+    const { groupName } = item;
+    return {
+      ...item,
+      groupId: ['company', groupName].join('-'),
+    };
+  });
+
+  const firstCompanyGroup = companies?.[0]?.groupId || 'company';
 
   // other settings
 
@@ -299,8 +320,14 @@ export const useSettings = ({ accounts = defaultAccounts, groups, query }: UseSe
     ...companyInfo,
   ]?.filter((item) => {
     const { groupId } = item;
+    const splitGroupId = groupId?.split('-') || [];
+    const partialId = splitGroupId?.[0] || groupId;
 
-    if (query?.groupIds && !query?.groupIds.includes(groupId)) {
+    if (groupId && includeGroups && !includeGroups.includes(partialId)) {
+      return false;
+    }
+
+    if (groupId && excludeGroups && excludeGroups.includes(partialId)) {
       return false;
     }
 
@@ -320,7 +347,7 @@ export const useSettings = ({ accounts = defaultAccounts, groups, query }: UseSe
     person: {
       title: 'Personer',
     },
-    company: {
+    [firstCompanyGroup]: {
       title: 'Virksomheter',
     },
     other: {

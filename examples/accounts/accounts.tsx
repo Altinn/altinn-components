@@ -12,6 +12,7 @@ export type AccountDataGroups = Record<string, AccountDataGroup>;
 
 export interface AccountDataProps extends AccountListItemProps {
   groupId?: string;
+  groupName?: string;
   email?: string;
   phone?: string;
   address?: string;
