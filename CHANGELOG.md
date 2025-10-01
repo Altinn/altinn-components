@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.41.1](https://github.com/Altinn/altinn-components/compare/v0.41.0...v0.41.1) (2025-10-01)
+
+
+### Bug Fixes
+
+* account alerts sorting ([#688](https://github.com/Altinn/altinn-components/issues/688)) ([be10272](https://github.com/Altinn/altinn-components/commit/be1027212107202038caed7e1844e36f0c7dc8a8))
+* loading accountList + account group details ([#687](https://github.com/Altinn/altinn-components/issues/687)) ([82e15af](https://github.com/Altinn/altinn-components/commit/82e15aff5746a83fc6b16a619bd0ee11bb73f64b))
+* settings details ([#685](https://github.com/Altinn/altinn-components/issues/685)) ([f3d0858](https://github.com/Altinn/altinn-components/commit/f3d08586eb4eb997c3e1fd65e965ff1970d2fd08))
+
 ## [0.41.0](https://github.com/Altinn/altinn-components/compare/v0.40.1...v0.41.0) (2025-09-30)
 
 
