@@ -204,28 +204,28 @@ export const groupAccountsByParent = (accounts: AccountDataProps[]) => {
       return {
         ...item,
         groupName,
-        groupId: favourite ? 'a3' : groupId,
+        groupId: favourite ? 'a2' : groupId,
       };
     }
 
     if (type === 'group' && id === 'all-people') {
       return {
         ...item,
-        groupId: 'b2',
+        groupId: 'a4',
       };
     }
 
     if (type === 'group' && id === 'all-companies') {
       return {
         ...item,
-        groupId: 'c2',
+        groupId: 'a4',
       };
     }
 
     if (type === 'group') {
       return {
         ...item,
-        groupId: 'a4',
+        groupId: 'a3',
       };
     }
 
@@ -234,7 +234,7 @@ export const groupAccountsByParent = (accounts: AccountDataProps[]) => {
 
   /* set title of first favourite group */
 
-  const favourites = groupedItems?.filter((item) => item.favourite);
+  const favourites = groupedItems?.filter((item) => item.favourite || item.type === 'group');
 
   const sortedFavourites = sortAccountsByKey(favourites as AccountDataProps[], 'groupId');
 

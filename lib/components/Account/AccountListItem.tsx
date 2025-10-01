@@ -37,11 +37,13 @@ export const AccountListItem = ({
   contextMenu,
   children,
   interactive,
+  loading,
   ...item
 }: AccountListItemProps) => {
   return (
     <ListItem
       {...item}
+      loading={loading}
       size={size}
       icon={icon}
       title={title}
@@ -49,19 +51,21 @@ export const AccountListItem = ({
       expanded={expanded}
       selected={expanded}
       controls={
-        <AccountListItemControls
-          id={id}
-          type={type}
-          favourite={favourite}
-          favouriteLabel={favouriteLabel}
-          badge={badge}
-          isCurrentEndUser={isCurrentEndUser}
-          isDeleted={isDeleted}
-          onToggleFavourite={onToggleFavourite}
-          contextMenu={!expanded ? contextMenu : undefined}
-        />
+        !loading && (
+          <AccountListItemControls
+            id={id}
+            type={type}
+            favourite={favourite}
+            favouriteLabel={favouriteLabel}
+            badge={badge}
+            isCurrentEndUser={isCurrentEndUser}
+            isDeleted={isDeleted}
+            onToggleFavourite={onToggleFavourite}
+            contextMenu={!expanded ? contextMenu : undefined}
+          />
+        )
       }
-      linkIcon
+      linkIcon={!loading && true}
       interactive={interactive}
     >
       {children}
