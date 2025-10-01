@@ -437,20 +437,20 @@ export const LocaleSettingsModal = ({
   );
 };
 
-interface SearchSettingsModalProps extends SettingsModalProps {
+interface AllSettingsModalProps extends SettingsModalProps {
   id?: string;
   groupId?: string;
   items?: AccountListItemProps[];
   title?: string;
 }
 
-const SearchSettingsModal = ({
+const AllSettingsModal = ({
   id,
   groupId,
   open,
   onClose,
   ...item
-}: SearchSettingsModalProps) => {
+}: AllSettingsModalProps) => {
   switch (groupId) {
     case "profile":
       return <ContactProfileModal open={open} onClose={onClose} />;
@@ -530,12 +530,17 @@ const SearchSettingsModal = ({
   );
 };
 
-export const SearchSettings = ({ query = {}, groups }: UseSettingsProps) => {
-  const groupIds = (groups && Object.keys(groups)) || [];
-
+export const AllSettings = ({
+  query = {},
+  groups,
+  includeGroups,
+  excludeGroups,
+}: UseSettingsProps) => {
   const { onSettingsChange, results, ...settings } = useSettings({
     accounts: defaultAccounts,
-    query: { ...query, groupIds },
+    query,
+    includeGroups,
+    excludeGroups,
   });
 
   const [id, setId] = useState<string>("");
@@ -560,6 +565,11 @@ export const SearchSettings = ({ query = {}, groups }: UseSettingsProps) => {
     description: "",
   };
 
+  const allGroups = {
+    ...settings?.groups,
+    ...groups,
+  };
+
   return (
     <>
       {query?.q ? (
@@ -569,12 +579,12 @@ export const SearchSettings = ({ query = {}, groups }: UseSettingsProps) => {
         />
       ) : (
         <SettingsList
-          groups={groups || settings?.groups}
+          groups={allGroups}
           items={items as SettingsListProps["items"]}
         />
       )}
-      <SearchSettingsModal
-        {...(item as SearchSettingsModalProps)}
+      <AllSettingsModal
+        {...(item as AllSettingsModalProps)}
         title={item?.title as string}
         description={item?.description as string}
         open={!!id}
@@ -591,10 +601,11 @@ export const AlertSettings = () => {
     <PageBase>
       <Heading size="xl">Mine varslinger</Heading>
       <Toolbar {...toolbar} />
-      <SearchSettings
+      <AllSettings
         query={{
           q: toolbar?.search?.value,
         }}
+        includeGroups={["alerts", "profile", "person", "company"]}
         groups={{
           alerts: {
             title: "Varslingsinnstillinger",
@@ -621,10 +632,11 @@ export const AccountSettings = () => {
     <PageBase>
       <Heading size="xl">Innstillinger</Heading>
       <Toolbar {...toolbar} />
-      <SearchSettings
+      <AllSettings
         query={{
           q: toolbar?.search?.value,
         }}
+        includeGroups={["contact", "other"]}
         groups={{
           contact: {
             title: "Kontaktinformasjon",
@@ -648,10 +660,11 @@ export const PersonSettings = () => {
     <PageBase color="person">
       <Heading size="xl">Innstillinger for {currentAccount?.name}</Heading>
       <Toolbar {...toolbar} />
-      <SearchSettings
+      <AllSettings
         query={{
           q: toolbar?.search?.value,
         }}
+        includeGroups={["contact"]}
         groups={{
           contact: {
             title: "Kontaktinformasjon",
@@ -672,7 +685,8 @@ export const CompanySettings = () => {
     <PageBase color="company">
       <Heading size="xl">Innstillinger for {currentAccount?.name}</Heading>
       <Toolbar {...toolbar} />
-      <SearchSettings
+      <AllSettings
+        includeGroups={["companyAlerts", "companyInfo"]}
         query={{
           q: toolbar?.search?.value,
         }}
@@ -701,7 +715,8 @@ export const AdminSettings = () => {
 
 export const DashboardSettings = () => {
   return (
-    <SearchSettings
+    <AllSettings
+      includeGroups={["contact"]}
       groups={{
         contact: {
           title: "",
