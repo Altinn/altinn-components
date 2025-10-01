@@ -135,6 +135,33 @@ export const Default = ({ includeGroups = false }: UseAccountsProps) => {
   );
 };
 
+export const Loading = () => {
+  const { items } = useAccountList({
+    accounts: defaultAccounts,
+  });
+
+  const loadingItems = items
+    ?.map((item) => ({
+      ...item,
+      groupId: 'loading',
+      interactive: false,
+      loading: true,
+    }))
+    ?.slice(0, 3);
+
+  const loadingGroups = {
+    loading: {
+      title: 'Laster aktører ...',
+    },
+  };
+
+  return (
+    <Section spacing={6}>
+      <AccountList items={loadingItems} groups={loadingGroups} />
+    </Section>
+  );
+};
+
 interface ModalProps {
   id?: string;
   type?: string;
