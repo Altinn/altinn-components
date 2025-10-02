@@ -41,3 +41,20 @@
   margin-top: -0.75rem;
   margin-right: -0.75rem;
 }
+
+/* Safari-specific fix for zoom scaling issue */
+@supports (-webkit-hyphens: none) {
+  .loginIcon,
+  .closeIcon,
+  .avatar {
+    font-size: unset;
+  }
+
+  .loginIcon svg,
+  .loginIcon img,
+  .closeIcon svg,
+  .closeIcon img {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
