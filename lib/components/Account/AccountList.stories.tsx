@@ -1,7 +1,7 @@
 import {
   BellIcon,
-  Buildings2Icon,
   HandshakeIcon,
+  HashtagIcon,
   HeartFillIcon,
   HeartIcon,
   HouseHeartIcon,
@@ -14,6 +14,8 @@ import type { Meta } from '@storybook/react-vite';
 import { type ChangeEvent, Fragment, type ReactNode, useState } from 'react';
 import {
   AccountList,
+  AccountListItemDetails,
+  type AccountListItemDetailsProps,
   type AccountListItemProps,
   type AccountListProps,
   AccountNotificationSettings,
@@ -22,7 +24,6 @@ import {
   Button,
   ButtonGroup,
   Divider,
-  Flex,
   Heading,
   List,
   Section,
@@ -333,36 +334,11 @@ const AccountDetails = (props: AccountDetailsProps) => {
   }
 };
 
-export const AccountToolbar = ({ id, type, isCurrentEndUser, favourite, onToggleFavourite }: AccountDetailsProps) => {
-  return (
-    <Flex spacing={2} size="xs">
-      {!isCurrentEndUser && (
-        <Button
-          variant={favourite ? 'tinted' : 'outline'}
-          icon={favourite ? HeartFillIcon : HeartIcon}
-          onClick={() => onToggleFavourite?.(id)}
-        >
-          {favourite ? 'Fjern favoritt' : 'Legg til favoritt'}
-        </Button>
-      )}
-      <Button icon={InboxIcon} variant="outline">
-        Gå til Innboks
-      </Button>
-      {type !== 'group' && (
-        <Button icon={HandshakeIcon} variant="outline">
-          Tilgangsstyring
-        </Button>
-      )}
-    </Flex>
-  );
-};
-
-export const NotificationSettings = ({
+const getNotificationSettings = ({
   smsAlerts = true,
   emailAlerts = false,
   email = 'dirk@digdir.no',
   phone = '92020222',
-  onClick,
 }: AccountDetailsProps) => {
   const badge =
     smsAlerts && emailAlerts
@@ -371,24 +347,16 @@ export const NotificationSettings = ({
         ? { label: 'SMS' }
         : emailAlerts
           ? { label: 'E-post' }
-          : { variant: 'text', label: 'Sett opp varsling' };
+          : { variant: 'text', label: 'Legg til' };
 
   const title = smsAlerts || emailAlerts ? 'Varslinger er på' : 'Ingen varslinger';
   const value = smsAlerts && emailAlerts ? [email, phone].join(', ') : smsAlerts ? phone : emailAlerts && email;
 
-  return (
-    <List size="sm">
-      <SettingsItem
-        as="button"
-        onClick={onClick}
-        icon={BellIcon}
-        title={title}
-        value={value}
-        badge={badge as BadgeProps}
-        linkIcon
-      />
-    </List>
-  );
+  return {
+    title,
+    value,
+    badge: badge as BadgeProps,
+  };
 };
 
 export const CompanyDetails = ({
@@ -404,40 +372,73 @@ export const CompanyDetails = ({
 }: AccountDetailsProps) => {
   const { items } = useSettings({ accounts: defaultAccounts });
 
-  const parentAccount = items?.find((item) => 'id' in item && item.id === parentId);
+  const notificationSettings = getNotificationSettings({
+    id,
+    ...props,
+  });
+
+  const settings = [
+    {
+      icon: HandshakeIcon,
+      title: 'Rolle og tilganger',
+      value: 'Ektefelle',
+      badge: { label: '2 tilganger' },
+      linkIcon: true,
+      as: 'button',
+    },
+    {
+      ...notificationSettings,
+      icon: BellIcon,
+      linkIcon: true,
+      onClick: () => onModal?.(id, 'notifications'),
+      as: 'button',
+    },
+    {
+      icon: HashtagIcon,
+      title: 'Organisasjonsnummer',
+      value: 'XXX YYY ZZZ',
+    },
+  ];
+
+  const buttons = [{ label: 'Gå til innboks' }, { label: 'Tilgangsstyring' }];
+
+  const parentAccount = items?.find((item) => 'id' in item && item.id === parentId) || {
+    id,
+    icon,
+    title,
+    uniqueId,
+  };
+
+  const childAcconts = items
+    ?.filter((item) => 'parentId' in item && item.parentId === parentAccount.id)
+    ?.map((child) => {
+      return {
+        avatar: child?.icon,
+        title: child?.title,
+        description: 'XXX XXX XXX',
+        selected: child.id === id,
+        href: '#',
+      };
+    });
+
+  const organization = childAcconts && [
+    {
+      avatar: parentAccount.icon,
+      title: parentAccount.title,
+      description: 'YYY YYY YYY',
+      href: '#',
+      selected: parentAccount.id === id,
+      items: childAcconts,
+    },
+  ];
 
   return (
-    <Section color="company" padding={6} spacing={2}>
-      <AccountToolbar {...props} id={id} />
-      <Divider />
-      <NotificationSettings {...props} id={id} as="button" onClick={() => onModal?.(id, 'notifications')} />
-      <List size="sm">
-        <Divider as="li" />
-        <SettingsItem
-          icon={{ svgElement: Buildings2Icon, theme: 'default' }}
-          title="Organisasjonsnummer"
-          value={uniqueId}
-          linkIcon
-        />
-        {parentAccount && (
-          <>
-            <Divider as="li" />
-            <SettingsItem
-              icon={{ svgElement: Buildings2Icon, theme: 'default' }}
-              title="Overordnet organisasjon"
-              value={parentAccount.title}
-              linkIcon
-            />
-          </>
-        )}
-        <SettingsItem
-          icon={{ svgElement: HandshakeIcon, theme: 'default' }}
-          title="Rolle og rettigheter"
-          value="Daglig leder"
-          linkIcon
-        />
-      </List>
-    </Section>
+    <AccountListItemDetails
+      color="company"
+      organization={organization as AccountListItemDetailsProps['organization']}
+      buttons={buttons as AccountListItemDetailsProps['buttons']}
+      settings={settings as AccountListItemDetailsProps['settings']}
+    />
   );
 };
 
@@ -446,75 +447,97 @@ export const PersonDetails = ({
   uniqueId = 'XXXXXX YYYYYY',
   isCurrentEndUser,
   address,
+  onModal,
   ...props
 }: AccountDetailsProps) => {
+  const notificationSettings = getNotificationSettings({
+    id,
+    ...props,
+  });
+
+  const settings = [
+    {
+      icon: HandshakeIcon,
+      title: 'Rolle og tilganger',
+      value: 'Ektefelle',
+      badge: { label: '2 tilganger' },
+      linkIcon: true,
+      as: 'button',
+    },
+    {
+      ...notificationSettings,
+      icon: BellIcon,
+      linkIcon: true,
+      onClick: () => onModal?.(id, 'notifications'),
+      as: 'button',
+    },
+    {
+      icon: HashtagIcon,
+      title: 'Fødselsnummer',
+      value: uniqueId,
+    },
+  ];
+
+  const buttons = [{ label: 'Gå til innboks' }, { label: 'Tilgangsstyring' }];
+
   return (
-    <Section color="person" padding={6} spacing={2}>
-      <AccountToolbar {...props} id={id} />
-      <Divider />
-      <NotificationSettings {...props} id={id} />
-      <List size="sm">
-        <Divider as="li" />
-        <SettingsItem icon={Buildings2Icon} title="Fødselsnummer" value={uniqueId} linkIcon />
-        <SettingsItem
-          icon={{ svgElement: HandshakeIcon, theme: 'default' }}
-          title="Rolle og rettigheter"
-          value="Verge"
-          linkIcon
-        />
-      </List>
-    </Section>
+    <AccountListItemDetails
+      color="person"
+      buttons={buttons as AccountListItemDetailsProps['buttons']}
+      settings={settings as AccountListItemDetailsProps['settings']}
+    />
   );
 };
 
 export const UserDetails = ({
   id = 'user',
-  uniqueId = 'XXXXXX YYYYYY',
   phone = '99009900',
   address = 'Strømsveien 102, 0162 Oslo',
   email = 'dirk@digdir.no',
   onModal,
-  ...props
 }: AccountDetailsProps) => {
+  const settings = [
+    {
+      icon: MobileIcon,
+      title: 'Mobiltelefon',
+      value: phone,
+      badge: { label: 'Endre', variant: 'text' },
+      onClick: () => onModal?.(id, 'contact'),
+      linkIcon: true,
+      as: 'button',
+    },
+    {
+      icon: PaperplaneIcon,
+      title: 'E-postadresse',
+      value: email,
+      badge: { label: 'Endre e-post', variant: 'text' },
+      onClick: () => onModal?.(id, 'contact'),
+      linkIcon: true,
+      as: 'button',
+    },
+    {
+      icon: HouseHeartIcon,
+      title: 'Adresse',
+      value: address,
+      badge: { label: 'Endre adresse', variant: 'text' },
+      onClick: () => onModal?.(id, 'address'),
+      linkIcon: true,
+      as: 'button',
+    },
+  ];
+
+  const buttons = [{ label: 'Gå til innboks' }, { label: 'Tilgangsstyring' }];
+
   return (
-    <Section color="person" padding={6} spacing={2}>
-      <AccountToolbar {...props} id={id} isCurrentEndUser={true} />
-      <Divider />
-      <List size="sm">
-        <SettingsItem
-          icon={MobileIcon}
-          title="Mobiltelefon"
-          value={phone}
-          badge={{ label: 'Endre mobil', variant: 'text' }}
-          onClick={() => onModal?.(id, 'contact')}
-          as="button"
-          linkIcon
-        />
-        <SettingsItem
-          icon={PaperplaneIcon}
-          title="E-postadresse"
-          value={email}
-          badge={{ label: 'Endre e-post', variant: 'text' }}
-          onClick={() => onModal?.(id, 'contact')}
-          as="button"
-          linkIcon
-        />
-        <Divider as="li" />
-        <SettingsItem
-          icon={HouseHeartIcon}
-          title="Adresse"
-          value={address}
-          badge={{ label: 'Endre adresse', variant: 'text' }}
-          onClick={() => onModal?.(id, 'address')}
-          as="button"
-          linkIcon
-        />
-      </List>
-    </Section>
+    <AccountListItemDetails
+      color="person"
+      buttons={buttons as AccountListItemDetailsProps['buttons']}
+      settings={settings as AccountListItemDetailsProps['settings']}
+    />
   );
 };
 
-export const GroupDetails = ({ id = 'group', accountIds }: AccountDetailsProps) => {
+export const GroupDetails = ({ accountIds }: AccountDetailsProps) => {
   const { items } = useAccountList({
     accounts: defaultAccounts as AccountListItemProps[],
   });
@@ -525,7 +548,6 @@ export const GroupDetails = ({ id = 'group', accountIds }: AccountDetailsProps) 
 
   return (
     <Section color="company" padding={6} spacing={2}>
-      <AccountToolbar name="group" type="group" id={id} />
       <Divider />
       <Section spacing={4}>
         <Heading size="sm">6 medlemmer</Heading>
@@ -586,25 +608,15 @@ interface AccountNotificationsModalProps extends AccountModalProps, AccountNotif
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const AccountNotificationsModal = ({
-  icon,
-  title,
-  description,
-  open,
-  onClose,
-  onChange,
-  ...props
-}: AccountNotificationsModalProps) => {
+const AccountNotificationsModal = ({ open = true, onClose, onChange, ...props }: AccountNotificationsModalProps) => {
   return (
-    <AccountModal icon={icon} title={title} description={description} open={open} onClose={onClose}>
-      <AccountNotificationSettings {...props} onChange={onChange} />
-      <ButtonGroup>
-        <Button onClick={onClose}>Lagre og avslutt</Button>
-        <Button variant="outline" onClick={onClose}>
-          Avbryt
-        </Button>
+    <SettingsModal {...(props as SettingsModalProps)} open={open} onClose={onClose}>
+      <AccountNotificationSettings {...(props as AccountNotificationSettingsProps)} />
+      <ButtonGroup size="md">
+        <Button>Lagre og avslutt</Button>
+        <Button variant="outline">Avbryt</Button>
       </ButtonGroup>
-    </AccountModal>
+    </SettingsModal>
   );
 };
 

@@ -19,7 +19,9 @@ import {
   Typography,
 } from '../';
 
-import { BellIcon } from '@navikt/aksel-icons';
+import { brreg } from '../../../examples/avatar';
+
+import { BellIcon, ExternalLinkIcon } from '@navikt/aksel-icons';
 
 const meta: Meta<typeof ModalBase> = {
   title: 'Components/Modal',
@@ -380,7 +382,12 @@ export const CompanyModal = (args: ModalBaseProps) => {
     <>
       <Button onClick={() => setOpen(true)}>Open modal</Button>
       <ModalBase {...args} open={open} onClose={() => setOpen(false)}>
-        <ModalHeader icon={{ type: 'company', name: 'Bergen Bar' }} title="Bergen Bar" onClose={() => setOpen(false)} />
+        <ModalHeader
+          icon={{ type: 'company', name: 'Bergen Bar' }}
+          title="Bergen Bar"
+          description="Org nr. XXX XXX XXX"
+          onClose={() => setOpen(false)}
+        />
         <ModalBody>
           <AccountNotificationSettings {...args} {...formData} onChange={onChange} />
           <ButtonGroup>
@@ -425,7 +432,7 @@ export const SettingsModal = (args: ModalBaseProps) => {
     <>
       <Button onClick={() => setOpen(true)}>Open modal</Button>
       <ModalBase {...args} open={open} onClose={() => setOpen(false)}>
-        <ModalHeader icon={BellIcon} title="Bergen Bar" onClose={() => setOpen(false)} />
+        <ModalHeader icon={BellIcon} title="Varslinger" onClose={() => setOpen(false)} />
         <ModalBody>
           <AccountNotificationSettings {...args} {...formData} onChange={onChange} />
           <ButtonGroup>
@@ -434,6 +441,35 @@ export const SettingsModal = (args: ModalBaseProps) => {
           </ButtonGroup>
         </ModalBody>
       </ModalBase>
+    </>
+  );
+};
+
+export const ExternalModal = (args: ModalBaseProps) => {
+  const [open, setOpen] = useState<boolean>(true);
+
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Open modal</Button>
+      <ModalBase {...args} open={open} onClose={() => setOpen(false)}>
+        <ModalHeader icon={brreg} title="Varslinger" onClose={() => setOpen(false)} />
+        <ModalBody>
+          <Typography size="sm">
+            <p>
+              Hvis det har skjedd endringer i informasjonen som er registrert på selskapet, må du melde fra om dette i
+              Samordnet registermelding.
+            </p>
+            <p>
+              Samordet registermelding finner du på <a href="https://brreg.no/">brreg.no</a>.
+            </p>
+          </Typography>
+          <ButtonGroup size="md">
+            <Button variant="outline" icon={ExternalLinkIcon} reverse>
+              Samordnet registermelding
+            </Button>
+          </ButtonGroup>
+        </ModalBody>
+      </ModalBase>{' '}
     </>
   );
 };

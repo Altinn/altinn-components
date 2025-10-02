@@ -35,7 +35,7 @@ export const SettingsList = ({ items, groups = {}, sortGroupBy }: SettingsListPr
                   const itemProps = item.props || {};
                   return (
                     <Fragment key={index}>
-                      {index > 0 && <Divider />}
+                      {index > 0 && <Divider as="li" />}
                       <SettingsItem {...itemProps} key={'settings-list-item' + index} />
                     </Fragment>
                   );
