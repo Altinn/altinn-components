@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.41.2](https://github.com/Altinn/altinn-components/compare/v0.41.1...v0.41.2) (2025-10-02)
+
+
+### Bug Fixes
+
+* Make icons scalable for safari ([#692](https://github.com/Altinn/altinn-components/issues/692)) ([d51fac8](https://github.com/Altinn/altinn-components/commit/d51fac8a7c221aff17e0fd9b275bd5a9f4caa9a6))
+
 ## [0.41.1](https://github.com/Altinn/altinn-components/compare/v0.41.0...v0.41.1) (2025-10-01)
 
 
