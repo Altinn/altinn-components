@@ -36,6 +36,68 @@ export const WithGroups = () => {
   return <AccountMenu search={search} groups={groups} items={items} />;
 };
 
+export const SingleCompany = () => {
+  const { items, groups, search } = useAccountMenu({
+    accounts: defaultAccounts,
+    includeGroups: true,
+  });
+
+  const filteredItems = items
+    ?.filter((item) => item.id === 'user' || item.id.startsWith('diaspora'))
+    ?.map((item) => {
+      return {
+        ...item,
+        controls: undefined,
+      };
+    });
+
+  const firstCompany = filteredItems.find((item) => item.type === 'company');
+
+  return (
+    <AccountMenu
+      search={search}
+      groups={{
+        ...groups,
+        [firstCompany?.groupId || 'company']: {
+          title: 'Virksomheter',
+        },
+      }}
+      items={filteredItems}
+    />
+  );
+};
+
+export const TwoCompanies = () => {
+  const { items, groups, search } = useAccountMenu({
+    accounts: defaultAccounts,
+    includeGroups: true,
+  });
+
+  const filteredItems = items
+    ?.filter((item) => item.id === 'user' || item.id.startsWith('diaspora') || item.id.startsWith('sogndal'))
+    ?.map((item) => {
+      return {
+        ...item,
+        controls: undefined,
+      };
+    });
+
+  const firstCompany = filteredItems.find((item) => item.type === 'company');
+
+  return (
+    <AccountMenu
+      search={search}
+      groups={{
+        ...groups,
+        [firstCompany?.groupId || 'company']: {
+          title: 'Virksomheter',
+        },
+      }}
+      items={filteredItems}
+    />
+  );
+};
+
 export const VirtualizedMenu = () => {
   const { items, groups, search } = useAccountMenu({
     accounts: defaultAccounts,

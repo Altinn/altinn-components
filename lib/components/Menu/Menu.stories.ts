@@ -58,7 +58,7 @@ export const Default: Story = {
 export const CreatingHiearchy: Story = {
   args: {
     variant: 'subtle',
-    defaultIconTheme: 'default',
+    defaultIconTheme: 'tinted',
     groups: {
       shortcuts: {
         title: 'Shortcuts',
