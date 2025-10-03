@@ -30,8 +30,11 @@ const AccountOrganizationItem = ({
   return (
     <Component {...props} className={styles.link} data-selected={selected}>
       <Byline size="sm" avatar={avatar}>
-        <strong>{title}</strong>
-        {description && `, ${description}`}
+        <strong>
+          {title}
+          {description && ','}
+        </strong>
+        {description}
       </Byline>
     </Component>
   );

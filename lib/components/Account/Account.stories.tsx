@@ -1,5 +1,5 @@
-import { type Account, Flex, GlobalMenuButton, Menu } from '..';
-import { defaultAccounts, useAccountMenu } from '../../../examples';
+import { type Account, Flex, GlobalMenuButton } from '..';
+import { useAccountMenu } from '../../../examples';
 
 const meta = {
   title: 'Account',
@@ -9,25 +9,21 @@ const meta = {
 export default meta;
 
 export const CurrentAccount = () => {
-  const accountList = useAccountMenu({ accounts: defaultAccounts });
-  const currentAccount = accountList?.items[0] as Account;
+  const { currentAccount } = useAccountMenu({ accountId: 'user' });
 
   return (
     <Flex spacing={2} align="center">
-      <Menu items={[{ ...currentAccount, size: 'lg' }]} />
-      <GlobalMenuButton currentAccount={currentAccount} />
+      <GlobalMenuButton currentAccount={currentAccount as Account} />
     </Flex>
   );
 };
 
 export const CompanyAccount = () => {
-  const accountList = useAccountMenu({ accounts: defaultAccounts });
-  const currentAccount = accountList?.items[1] as Account;
+  const { currentAccount } = useAccountMenu({ accountId: 'diaspora' });
 
   return (
     <Flex spacing={2} align="center">
-      <Menu items={[{ ...currentAccount, size: 'lg' }]} />
-      <GlobalMenuButton currentAccount={currentAccount} />
+      <GlobalMenuButton currentAccount={currentAccount as Account} />
     </Flex>
   );
 };

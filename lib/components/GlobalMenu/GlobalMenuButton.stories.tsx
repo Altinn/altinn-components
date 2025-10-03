@@ -25,14 +25,31 @@ export const Login: Story = {
 
 export const Person: Story = {
   args: {
-    currentAccount: defaultAccounts[0] as Account,
+    currentAccount: {
+      id: '1',
+      name: 'Mathias Dyngeland',
+      type: 'person',
+      icon: {
+        type: 'person',
+        name: 'Mathias Dyngeland',
+      },
+    },
   },
 };
 
 export const Company: Story = {
   args: {
-    currentAccount: defaultAccounts[1] as Account,
+    currentAccount: {
+      id: '1',
+      name: 'Diaspora Bergensis',
+      type: 'company',
+      icon: {
+        type: 'company',
+        name: 'Diaspora Bergensis',
+      },
+    },
     badge: {
+      variant: 'base',
       color: 'alert',
       label: '2',
     },
