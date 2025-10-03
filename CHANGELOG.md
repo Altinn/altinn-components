@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.41.3](https://github.com/Altinn/altinn-components/compare/v0.41.2...v0.41.3) (2025-10-03)
+
+
+### Bug Fixes
+
+* account list item details ([#694](https://github.com/Altinn/altinn-components/issues/694)) ([5c4f730](https://github.com/Altinn/altinn-components/commit/5c4f730931e711568880c247805cbd9fcf519fea))
+* settings docs ([#697](https://github.com/Altinn/altinn-components/issues/697)) ([6ebab87](https://github.com/Altinn/altinn-components/commit/6ebab876b4cbf397e6ec4fbc5b1c51c5cc2180f9))
+* settings modals ([#696](https://github.com/Altinn/altinn-components/issues/696)) ([3978fa4](https://github.com/Altinn/altinn-components/commit/3978fa47c3989b6cc2697c7a2cd26cfe322b7d9b))
+
 ## [0.41.2](https://github.com/Altinn/altinn-components/compare/v0.41.1...v0.41.2) (2025-10-02)
 
 
