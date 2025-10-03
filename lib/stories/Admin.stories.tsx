@@ -1,5 +1,5 @@
-import * as DashboardStories from "./Dashboard/Dashboard.stories";
-import * as SettingsStories from "./Settings/Settings.stories";
+import * as DashboardStories from "../components/Dashboard/Dashboard.stories";
+import * as SettingsStories from "../components/Settings/SettingsList.stories";
 import * as ActivityLogStories from "../components/ActivityLog/ActivityLog.stories";
 
 import { Heading, Layout, PageBase, Breadcrumbs, Toolbar } from "../components";

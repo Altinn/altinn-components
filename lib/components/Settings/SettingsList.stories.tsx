@@ -1,18 +1,20 @@
 import { BellIcon, GlobeIcon, HandshakeIcon, HouseHeartIcon, MobileIcon, SunIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
+import { Heading, PageBase, SettingsList, type SettingsListProps, type SettingsModalProps, Toolbar } from '..';
+
+import { type UseSettingsProps, defaultAccounts, useAdmin, useSettings, useSettingsToolbar } from '../../../examples';
+
 import {
-  Button,
-  ButtonGroup,
-  PageBase,
-  SettingsList,
-  type SettingsListProps,
-  SettingsModal,
-  type SettingsModalProps,
-  Toolbar,
-  Typography,
-} from '..';
-import { useSettings, useSettingsToolbar } from '../../../examples';
+  AccountAlertsModal,
+  AddressSettingsModal,
+  CompanyAlertsModal,
+  CompanyInfoModal,
+  ContactProfileModal,
+  EmailSettingsModal,
+  LocaleSettingsModal,
+  PhoneSettingsModal,
+} from '../../components/Settings/SettingsModal.stories';
 
 const meta = {
   title: 'Settings/SettingsList',
@@ -274,59 +276,249 @@ export const SearchResult: Story = {
   },
 };
 
-export const Controlled = () => {
-  const { items, groups } = useSettings({});
+interface ControlledSettingsModalProps extends SettingsModalProps {
+  id?: string;
+  groupId?: string;
+  title?: string;
+}
+
+const ControlledSettingsModal = ({ id, groupId, open, onClose, ...item }: ControlledSettingsModalProps) => {
+  switch (groupId) {
+    case 'profile':
+      return <ContactProfileModal {...item} open={open} onClose={onClose} />;
+    case 'alerts':
+      return (
+        <>
+          <ContactProfileModal {...item} readOnly={true} open={open && id === 'smsAlerts'} onClose={onClose} />
+          <ContactProfileModal {...item} readOnly={true} open={open && id === 'emailAlerts'} onClose={onClose} />
+        </>
+      );
+    case 'contact':
+      return (
+        <>
+          <PhoneSettingsModal {...item} open={open && id === 'phone'} onClose={onClose} />
+          <EmailSettingsModal {...item} open={open && id === 'email'} onClose={onClose} />
+          <AddressSettingsModal {...item} open={open && id === 'address'} onClose={onClose} />
+        </>
+      );
+    case 'companyInfo':
+      return <CompanyInfoModal {...item} open={open} onClose={onClose} />;
+
+    case 'companyAlerts':
+      return (
+        <>
+          <CompanyAlertsModal {...item} type="phone" open={open && id === 'companyPhone'} onClose={onClose} />
+          <CompanyAlertsModal {...item} type="email" open={open && id === 'companyEmail'} onClose={onClose} />
+        </>
+      );
+    case 'other':
+      return (
+        <>
+          <LocaleSettingsModal {...item} open={open} onClose={onClose} />
+        </>
+      );
+  }
+
+  return <AccountAlertsModal {...(item as SettingsModalProps)} open={!!id} onClose={onClose} />;
+};
+
+export const ControlledSettings = ({ query = {}, groups, includeGroups, excludeGroups }: UseSettingsProps) => {
+  const { onSettingsChange, results, ...settings } = useSettings({
+    accounts: defaultAccounts,
+    query,
+    includeGroups,
+    excludeGroups,
+  });
+
+  const [id, setId] = useState<string>('');
+
+  const onClose = () => {
+    setId('');
+  };
+
+  const items = settings?.items.map((item) => {
+    const { id } = item;
+
+    return {
+      ...item,
+      description: undefined,
+      as: 'button',
+      onClick: () => id && setId(id),
+    };
+  });
+
+  const item = (id && items.find((item) => item.id === id)) || {
+    title: '',
+    description: '',
+  };
+
+  const allGroups = {
+    ...settings?.groups,
+    ...groups,
+  };
+
+  return (
+    <>
+      {query?.q ? (
+        <SettingsList groups={results?.groups} items={results?.items as SettingsListProps['items']} />
+      ) : (
+        <SettingsList groups={allGroups} items={items as SettingsListProps['items']} />
+      )}
+      <ControlledSettingsModal
+        {...(item as ControlledSettingsModalProps)}
+        title={item?.title as string}
+        description={item?.description as string}
+        open={!!id}
+        onClose={onClose}
+      />
+    </>
+  );
+};
+
+export const SearchSettings = () => {
   const toolbar = useSettingsToolbar({});
-
-  const q = toolbar?.search?.value;
-
-  const filteredItems =
-    (q &&
-      items.filter((item) => {
-        return typeof item?.title === 'string' && item.title.toLowerCase().includes(q.toLowerCase());
-      })) ||
-    items ||
-    [];
-
-  const controlledItems = filteredItems.map((item) => ({
-    ...item,
-    as: 'button',
-    highlightWords: q ? [q] : [],
-    groupId: q ? 'search' : item.groupId,
-    onClick: () => setOpenId(item.id || ''),
-  }));
-
-  const [openId, setOpenId] = useState('');
-  const onClose = () => setOpenId('');
-
-  const selected = openId && items?.find((item) => item.id === openId);
-
-  const modal =
-    selected &&
-    ({
-      title: selected.title,
-      icon: selected.icon,
-    } as SettingsModalProps);
 
   return (
     <PageBase>
-      <Toolbar search={toolbar?.search} />
-      <SettingsModal open={!!modal} onClose={onClose} {...modal}>
-        <Typography>
-          <p>Innhold her.</p>
-        </Typography>
-        <ButtonGroup>
-          <Button>Lagre og avslutt</Button>
-          <Button variant="outline">Avbryt</Button>
-        </ButtonGroup>
-      </SettingsModal>
-      <SettingsList
-        groups={{
-          ...groups,
-          ...(q ? { search: { title: `${controlledItems.length} treff` } } : {}),
+      <Heading size="xl">Alle innstillinger</Heading>
+      <Toolbar {...toolbar} />
+      <ControlledSettings
+        query={{
+          q: toolbar?.search?.value,
         }}
-        items={controlledItems as SettingsListProps['items']}
       />
     </PageBase>
+  );
+};
+
+export const AlertSettings = () => {
+  const toolbar = useSettingsToolbar({});
+
+  return (
+    <PageBase>
+      <Heading size="xl">Mine varslinger</Heading>
+      <Toolbar {...toolbar} />
+      <ControlledSettings
+        query={{
+          q: toolbar?.search?.value,
+        }}
+        includeGroups={['alerts', 'profile', 'person', 'company']}
+        groups={{
+          alerts: {
+            title: 'Varslingsinnstillinger',
+          },
+          profile: {
+            title: 'Varslingsprofiler',
+          },
+          person: {
+            title: 'Personer',
+          },
+          company: {
+            title: 'Virksomheter',
+          },
+        }}
+      />
+    </PageBase>
+  );
+};
+
+export const AccountSettings = () => {
+  const toolbar = useSettingsToolbar({});
+
+  return (
+    <PageBase>
+      <Heading size="xl">Innstillinger</Heading>
+      <Toolbar {...toolbar} />
+      <ControlledSettings
+        query={{
+          q: toolbar?.search?.value,
+        }}
+        includeGroups={['contact', 'other']}
+        groups={{
+          contact: {
+            title: 'Kontaktinformasjon',
+          },
+          other: {
+            title: 'Flere innstillinger',
+          },
+        }}
+      />
+    </PageBase>
+  );
+};
+
+export const PersonSettings = () => {
+  const { accountMenu, currentAccount } = useAdmin({
+    defaultAccountId: 'person',
+  });
+  const toolbar = useSettingsToolbar({ accountMenu });
+
+  return (
+    <PageBase color="person">
+      <Heading size="xl">Innstillinger for {currentAccount?.name}</Heading>
+      <Toolbar {...toolbar} />
+      <ControlledSettings
+        query={{
+          q: toolbar?.search?.value,
+        }}
+        includeGroups={['contact']}
+        groups={{
+          contact: {
+            title: 'Kontaktinformasjon',
+          },
+        }}
+      />
+    </PageBase>
+  );
+};
+
+export const CompanySettings = () => {
+  const { accountMenu, currentAccount } = useAdmin({
+    defaultAccountId: 'diaspora',
+  });
+  const toolbar = useSettingsToolbar({ accountMenu });
+
+  return (
+    <PageBase color="company">
+      <Heading size="xl">Innstillinger for {currentAccount?.name}</Heading>
+      <Toolbar {...toolbar} />
+      <ControlledSettings
+        includeGroups={['companyAlerts', 'companyInfo']}
+        query={{
+          q: toolbar?.search?.value,
+        }}
+        groups={{
+          companyAlerts: {
+            title: 'Varslingsadresser for virksomheten',
+          },
+          companyInfo: {
+            title: 'Opplysninger om virksomheten',
+          },
+        }}
+      />
+    </PageBase>
+  );
+};
+
+export const AdminSettings = () => {
+  const { currentAccount } = useAdmin({ defaultAccountId: 'diaspora' });
+
+  if (currentAccount?.type === 'person') {
+    return <PersonSettings />;
+  }
+
+  return <CompanySettings />;
+};
+
+export const DashboardSettings = () => {
+  return (
+    <ControlledSettings
+      includeGroups={['contact']}
+      groups={{
+        contact: {
+          title: '',
+        },
+      }}
+    />
   );
 };

@@ -82,7 +82,7 @@ export const useSettings = ({
     return {
       type: 'email',
       value: value,
-      items: emailById[value]?.map((id) => {
+      usedByItems: emailById[value]?.map((id) => {
         const account = items?.find((item) => item.id === id);
 
         return {
@@ -90,6 +90,7 @@ export const useSettings = ({
           icon: account?.icon,
           type: account?.type,
           name: account?.name,
+          isEndUser: account?.isCurrentEndUser,
         };
       }),
     };
@@ -99,7 +100,7 @@ export const useSettings = ({
     return {
       type: 'phone',
       value: value,
-      items: phoneById[value]?.map((id) => {
+      usedByItems: phoneById[value]?.map((id) => {
         const account = items?.find((item) => item.id === id);
 
         return {
@@ -107,6 +108,7 @@ export const useSettings = ({
           icon: account?.icon,
           type: account?.type,
           name: account?.name,
+          isEndUser: account?.isCurrentEndUser,
         };
       }),
     };
@@ -115,9 +117,9 @@ export const useSettings = ({
   // contact profiles
 
   const contactList = [...phoneList, ...emailList]?.map((item, index) => {
-    const { type, items } = item;
+    const { type, usedByItems } = item;
 
-    const label = items?.length > 1 ? items?.length + ' aktører' : '1 aktør';
+    const label = usedByItems?.length > 1 ? usedByItems?.length + ' aktører' : '1 aktør';
 
     return {
       ...item,
