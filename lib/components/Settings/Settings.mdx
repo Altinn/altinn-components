@@ -6,23 +6,11 @@ import * as SettingsItemStories from "./SettingsItem.stories";
 
 # Settings
 
-Settings are built using `SettingsItem`, `List` and `Divider`.
-
-```tsx
-return (
-    <List>
-      <SettingsItem />
-      <Divider as="li" />
-      <SettingsItem />
-      <Divider as="li">
-      <SettingsItem />
-    </List>
-);
-```
+Settings represents pieces of data that might be changed by the user, typically via a modal or a new page.
 
 ## SettingsItem
 
-A settings item represents a piece of data that might be changed by the user, typically via a modal or a new page. Use a text badge to indicate action.
+Settings without value is identified by a title. Use a text badge to indicate action.
 
 <Canvas of={SettingsItemStories.Default} />
 
@@ -40,4 +28,20 @@ Use `SettingsList` to create a list of settings panels.
 
 `SettingsList` combined with a `Toolbar` to make it searchable.
 
-<Canvas of={SettingsListStories.Controlled} />
+<Canvas of={SettingsListStories.AlertSettings} />
+
+## Composition
+
+Settings are built using `SettingsItem`, `List` and `Divider`.
+
+```tsx
+return (
+    <List>
+      <SettingsItem />
+      <Divider as="li" />
+      <SettingsItem />
+      <Divider as="li">
+      <SettingsItem />
+    </List>
+);
+```
