@@ -11,30 +11,29 @@ import {
   PlusIcon,
 } from '@navikt/aksel-icons';
 import type { Meta } from '@storybook/react-vite';
-import { type ChangeEvent, Fragment, type ReactNode, useState } from 'react';
+import { type ChangeEvent, Fragment, useState } from 'react';
+
+import {
+  AccountAlertsModal,
+  AccountGroupsModal,
+  AddressSettingsModal,
+  EmailSettingsModal,
+  PhoneSettingsModal,
+} from '../../components/Settings/SettingsModal.stories';
+
 import {
   AccountList,
   AccountListItemDetails,
   type AccountListItemDetailsProps,
   type AccountListItemProps,
   type AccountListProps,
-  AccountNotificationSettings,
-  type AccountNotificationSettingsProps,
   type BadgeProps,
-  Button,
-  ButtonGroup,
   Divider,
   Heading,
   List,
   Section,
   SettingsItem,
-  type SettingsItemProps,
-  SettingsModal,
-  type SettingsModalProps,
-  TextField,
-  TextareaField,
   Toolbar,
-  Typography,
 } from '..';
 import { type UseAccountsProps, accountList, defaultAccounts, useAccountList, useSettings } from '../../../examples';
 
@@ -168,41 +167,6 @@ interface ModalProps {
   type?: string;
 }
 
-const AddressSettingsModal = ({ open, onClose }: SettingsModalProps) => {
-  const user = defaultAccounts[0];
-  return (
-    <SettingsModal icon={HouseHeartIcon} title="Endre adresse" open={open} onClose={onClose}>
-      <TextareaField label="Adresse" value={user?.address} size="sm" readOnly />
-      <Typography size="sm">
-        <p>Altinn bruker adressen din fra Folkeregisteret. Gå videre for å endre adresse.</p>
-      </Typography>
-      <ButtonGroup size="md">
-        <Button>Gå videre</Button>
-        <Button variant="outline">Avbryt</Button>
-      </ButtonGroup>
-    </SettingsModal>
-  );
-};
-
-const AlertSettingsModal = ({ open, onClose }: SettingsModalProps) => {
-  return (
-    <SettingsModal icon={BellIcon} title="Endre varslingsadresser" open={open} onClose={onClose}>
-      <TextField label="Mobiltelefon" value="99005599" size="sm" readOnly />
-      <TextField label="E-postadresse" value="mathias@hotmail.com" size="sm" readOnly />
-      <Typography size="sm">
-        <p>
-          Altin bruker kontaktinformasjon fra Kontakt- og reservasjonsregisteret, et felles kontaktregister for stat og
-          kommune. Gå videre for å endre.
-        </p>
-      </Typography>
-      <ButtonGroup size="md">
-        <Button>Gå videre</Button>
-        <Button variant="outline">Avbryt</Button>
-      </ButtonGroup>
-    </SettingsModal>
-  );
-};
-
 interface ControlledProps {
   includeGroups?: boolean;
   contextMenu?: boolean;
@@ -283,13 +247,32 @@ export const Controlled = ({
     <Section spacing={6} color={color}>
       <Toolbar {...toolbar} />
       <AccountList groups={listGroups} items={collapsibleItems as AccountListItemProps[]} />
-      {modalId && modal?.type === 'contact' && <AlertSettingsModal open={true} onClose={onClose} />}
+      {modalId && modal?.type === 'phone' && <PhoneSettingsModal open={true} onClose={onClose} />}
+      {modalId && modal?.type === 'email' && <EmailSettingsModal open={true} onClose={onClose} />}
       {modalId && modal?.type === 'address' && <AddressSettingsModal open={true} onClose={onClose} />}
-      {modalId && modal?.type === 'groups' && (
-        <AccountGroupsModal {...modalItem} items={items as AccountListItemProps[]} open={true} onClose={onClose} />
+      {modalItem && modalId && modal?.type === 'groups' && (
+        <AccountGroupsModal
+          open={true}
+          onClose={onClose}
+          icon={modalItem?.icon}
+          title={modalItem?.title as string}
+          description={modalItem?.description as string}
+          items={items?.filter((item) => item.type === 'group') as AccountListItemProps[]}
+        />
       )}
-      {modalId && modal?.type === 'notifications' && (
-        <AccountNotificationsModal {...modalItem} open={true} onClose={onClose} onChange={onChange} />
+      {modalItem && modalId && modal?.type === 'notifications' && (
+        <AccountAlertsModal
+          open={true}
+          onClose={onClose}
+          icon={modalItem?.icon}
+          title={modalItem?.title as string}
+          description={modalItem?.description as string}
+          phone={modalItem?.phone}
+          email={modalItem?.email}
+          smsAlerts={modalItem?.smsAlerts}
+          emailAlerts={modalItem?.emailAlerts}
+          onChange={onChange}
+        />
       )}
     </Section>
   );
@@ -502,7 +485,7 @@ export const UserDetails = ({
       title: 'Mobiltelefon',
       value: phone,
       badge: { label: 'Endre', variant: 'text' },
-      onClick: () => onModal?.(id, 'contact'),
+      onClick: () => onModal?.(id, 'phone'),
       linkIcon: true,
       as: 'button',
     },
@@ -511,7 +494,7 @@ export const UserDetails = ({
       title: 'E-postadresse',
       value: email,
       badge: { label: 'Endre e-post', variant: 'text' },
-      onClick: () => onModal?.(id, 'contact'),
+      onClick: () => onModal?.(id, 'email'),
       linkIcon: true,
       as: 'button',
     },
@@ -571,92 +554,5 @@ export const GroupDetails = ({ accountIds }: AccountDetailsProps) => {
         </List>
       </Section>
     </Section>
-  );
-};
-
-interface AccountModalProps {
-  title?: SettingsItemProps['title'];
-  icon?: SettingsItemProps['icon'];
-  description?: SettingsItemProps['description'];
-  open?: boolean;
-  onClose: () => void;
-  children?: ReactNode;
-}
-
-const AccountModal = ({
-  icon,
-  title = 'Navn på aktør',
-  description,
-  open = false,
-  onClose,
-  children,
-}: AccountModalProps) => {
-  return (
-    <SettingsModal
-      open={open}
-      onClose={onClose}
-      icon={icon}
-      title={title as string}
-      description={description as string}
-    >
-      {children}
-    </SettingsModal>
-  );
-};
-
-interface AccountNotificationsModalProps extends AccountModalProps, AccountNotificationSettingsProps {
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-}
-
-const AccountNotificationsModal = ({ open = true, onClose, onChange, ...props }: AccountNotificationsModalProps) => {
-  return (
-    <SettingsModal {...(props as SettingsModalProps)} open={open} onClose={onClose}>
-      <AccountNotificationSettings {...(props as AccountNotificationSettingsProps)} />
-      <ButtonGroup size="md">
-        <Button>Lagre og avslutt</Button>
-        <Button variant="outline">Avbryt</Button>
-      </ButtonGroup>
-    </SettingsModal>
-  );
-};
-
-interface AccountGroupsModalProps extends AccountModalProps {
-  items?: AccountListItemProps[];
-}
-
-const AccountGroupsModal = ({ icon, title, description, items, open, onClose }: AccountGroupsModalProps) => {
-  return (
-    <AccountModal icon={icon} title={title} description={description} open={open} onClose={onClose}>
-      <Section spacing={4}>
-        <Heading size="sm">{items?.length + ' grupper'}</Heading>
-        <List size="sm" spacing={0}>
-          {items
-            ?.filter((item) => item.type === 'group')
-            ?.map((item, index) => {
-              return (
-                <Fragment key={item.title}>
-                  {index > 0 && <Divider />}
-                  <SettingsItem
-                    icon={item.icon}
-                    title={item.title}
-                    description={{
-                      children: item.description as string,
-                      size: 'xxs',
-                    }}
-                    controls={
-                      <Button size="xs" variant="outline">
-                        Legg til
-                      </Button>
-                    }
-                  />
-                </Fragment>
-              );
-            })}
-        </List>
-      </Section>
-      <Button variant="outline" icon={PlusIcon}>
-        Ny gruppe
-      </Button>
-    </AccountModal>
   );
 };

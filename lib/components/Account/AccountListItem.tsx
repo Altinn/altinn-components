@@ -26,6 +26,7 @@ export const AccountListItem = ({
   size,
   expanded,
   icon,
+  name,
   title,
   description,
   isCurrentEndUser,
@@ -46,7 +47,7 @@ export const AccountListItem = ({
       loading={loading}
       size={size}
       icon={icon}
-      title={title}
+      title={title || name}
       description={expanded ? undefined : description}
       expanded={expanded}
       selected={expanded}
