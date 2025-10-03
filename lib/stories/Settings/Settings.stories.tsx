@@ -300,8 +300,8 @@ export const PhoneSettingsModal = ({
       <Typography size="sm">
         <p>
           Altinn bruker kontaktinformasjon fra{" "}
-          <a href="#">Kontakt- og reservasjonsregisteret</a>, et felles
-          kontaktregister for stat og kommune.
+          <a href="https://brreg.no/">Kontakt- og reservasjonsregisteret</a>, et
+          felles kontaktregister for stat og kommune.
         </p>
       </Typography>
       <ButtonGroup size="md">

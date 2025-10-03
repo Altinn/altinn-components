@@ -1,30 +1,43 @@
 import { Meta, Controls, Primary, Canvas } from "@storybook/addon-docs/blocks";
-import * as SettingsStories from "./Settings.stories";
+import * as SettingsListStories from "./SettingsList.stories";
+import * as SettingsItemStories from "./SettingsItem.stories";
 
 <Meta title="Settings" />
 
 # Settings
 
-Use `SettingsSection`, `List` and `SettingsItem` to build settings sections.
+Settings are built using `SettingsItem`, `List` and `Divider`.
 
 ```tsx
 return (
-  <SettingsSection>
     <List>
       <SettingsItem />
       <Divider as="li" />
       <SettingsItem />
       <Divider as="li">
-      <SettingsList items={[items]}>
+      <SettingsItem />
     </List>
-  </SettingsSection>
 );
 ```
 
-## CollapsibleSettings
+## SettingsItem
 
-<Canvas of={SettingsStories.CollapsibleList} />
+A settings item represents a piece of data that might be changed by the user, typically via a modal or a new page. Use a text badge to indicate action.
 
-## CompanySettings
+<Canvas of={SettingsItemStories.Default} />
 
-<Canvas of={SettingsStories.CompanySettings} />
+Adding a value pushes the title up, focusing on the data. Badge can be used to summarize:
+
+<Canvas of={SettingsItemStories.Value} />
+
+## SettingsList
+
+Use `SettingsList` to create a list of settings panels.
+
+<Canvas of={SettingsListStories.Default} />
+
+## Grouped, searchable settings
+
+`SettingsList` combined with a `Toolbar` to make it searchable.
+
+<Canvas of={SettingsListStories.Controlled} />

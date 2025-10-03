@@ -21,37 +21,25 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Title: Story = {
+export const Default: Story = {
   args: {
     icon: BellIcon,
-    title: 'Title',
+    title: 'Varslingsinnstillinger',
+    linkIcon: true,
+    badge: {
+      variant: 'text',
+      label: 'Legg til ',
+    },
   },
 };
 
-export const TitleDescription: Story = {
+export const Value: Story = {
   args: {
     icon: BellIcon,
-    title: 'Title',
-    description: 'Description',
-  },
-};
-
-export const TitleValue: Story = {
-  args: {
-    icon: BellIcon,
-    title: 'Title',
-    value: 'Value',
-  },
-};
-
-export const CustomLabel: Story = {
-  args: {
-    icon: BellIcon,
-    label: (
-      <span>
-        Custom label: <em>Value</em>
-      </span>
-    ),
+    title: 'Varslingsinnstillinger',
+    value: 'Alle varslinger',
+    badge: { label: 'SMS og e-post' },
+    linkIcon: true,
   },
 };
 
@@ -62,10 +50,11 @@ export const Company: Story = {
       name: 'Diaspora Bergensis',
     },
     title: 'Diaspora Bergensis',
-    description: 'Org. nr. XXXXXXXXXXX',
+    value: 'Alle varslinger',
     badge: {
-      label: '6 profiler',
+      label: 'SMS og e-post',
     },
+    linkIcon: true,
   },
 };
 
@@ -76,10 +65,11 @@ export const Person: Story = {
       name: 'Dolly Duck',
     },
     title: 'Dolly Duck',
-    description: 'Fødselsnr. XX.XX.XXXX YYYYYY',
     badge: {
-      label: '6 profiler',
+      variant: 'text',
+      label: 'Legg til ',
     },
+    linkIcon: true,
   },
 };
 
