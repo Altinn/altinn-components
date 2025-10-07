@@ -18,7 +18,7 @@ export const SettingsSection = ({
   children,
 }: SettingsSectionProps) => {
   return (
-    <Section as={as} size={size} color={color} theme={theme} shadow={shadow} className={styles.section}>
+    <Section as={as} size={size} color={color} theme={theme} shadow={shadow} className={styles.section} spacing={2}>
       {children}
     </Section>
   );

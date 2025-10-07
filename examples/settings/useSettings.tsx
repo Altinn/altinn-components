@@ -12,8 +12,17 @@ import {
   PersonRectangleIcon,
   ReceiptIcon,
 } from '@navikt/aksel-icons';
-import { type AccountDataProps, defaultAccounts, sortAccountsByKey, useAccounts } from '../';
-import type { SettingsItemProps, SettingsListProps } from '../../lib';
+import { type AccountDataProps, defaultAccounts, sortAccountsByKey, useAccounts, useSettingsData } from '../';
+
+import {
+  Button,
+  ButtonGroup,
+  Fieldset,
+  Legend,
+  Radio,
+  type SettingsItemProps,
+  type SettingsListProps,
+} from '../../lib';
 
 type UseSettingsQuery = {
   groupIds?: string[];
@@ -35,12 +44,144 @@ export const useSettings = ({
   includeGroups,
   excludeGroups,
 }: UseSettingsProps) => {
+  // account Settings
+
   const { defaultAccount, items, expandedId, onToggle, onSettingsChange } = useAccounts({
     accounts,
     includeGroups: false,
   });
 
-  /* settings items */
+  const localeOptions: string[] = ['Bokmål', 'Nynorsk', 'English', 'España'];
+
+  const { data, onChange } = useSettingsData({
+    locale: localeOptions[0],
+    showDeleted: false,
+    hideSubunits: false,
+  });
+
+  const accountSettings = [
+    {
+      icon: {
+        type: 'group',
+        items: [
+          {
+            type: 'company',
+          },
+          {
+            type: 'company',
+          },
+          {
+            type: 'company',
+          },
+        ],
+      },
+      name: 'showDeleted',
+      title: 'Vis slettede aktører',
+      value: data?.showDeleted ? 'Ja' : 'Nei',
+      description: data?.showDeleted
+        ? 'Slettede aktører vises sammen med andre virksomheter.'
+        : 'Slettede aktører er skjult i Altinn',
+      variant: 'switch',
+      checked: data?.showDeleted,
+      onChange,
+    },
+    {
+      id: 'showSubunits',
+      icon: {
+        type: 'group',
+        items: [
+          {
+            type: 'company',
+            variant: 'outline',
+          },
+          {
+            type: 'company',
+            variant: 'outline',
+          },
+          {
+            type: 'company',
+            variant: 'outline',
+          },
+        ],
+      },
+      name: 'hideSubunits',
+      title: 'Slå sammen hoved- og underenheter',
+      value: data?.hideSubunits ? 'Ja' : 'Nei',
+      description: data?.hideSubunits
+        ? 'Underenheter er slått sammen med hovedenhet.'
+        : 'Underenheter er gruppert med hovedenhet',
+      variant: 'switch',
+      checked: data?.hideSubunits,
+      onChange,
+    },
+  ].map((item) => {
+    return {
+      ...item,
+      id: item?.name,
+      groupId: 'accountSettings',
+    };
+  });
+
+  // other settings
+
+  const otherSettings = [
+    {
+      id: 'language',
+      icon: GlobeIcon,
+      title: 'Språk/language',
+      value: data?.locale,
+      variant: 'modal',
+      badge: {
+        variant: 'text',
+        label: 'Endre',
+      },
+      children: (
+        <>
+          <Fieldset size="sm">
+            <Legend>Endre språk for hele Altinn.</Legend>
+            {localeOptions.map((v) => (
+              <Radio key={v} name="locale" label={v} value={v} checked={v === data?.locale} onChange={onChange} />
+            ))}
+          </Fieldset>
+          <ButtonGroup size="md">
+            <Button>Lagre og avslutt</Button>
+            <Button variant="outline">Avbryt</Button>
+          </ButtonGroup>
+        </>
+      ),
+    },
+    {
+      id: 'primary-actor',
+      icon: EnterIcon,
+      title: 'Forhåndsvalgt aktør',
+      children: (
+        <>
+          <Fieldset size="sm">
+            <Legend>Endre språk for hele Altinn.</Legend>
+            {localeOptions.map((v) => (
+              <Radio key={v} name="locale" label={v} value={v} checked={v === data?.locale} onChange={onChange} />
+            ))}
+          </Fieldset>
+          <ButtonGroup size="md">
+            <Button>Lagre og avslutt</Button>
+            <Button variant="outline">Avbryt</Button>
+          </ButtonGroup>
+        </>
+      ),
+    },
+    {
+      id: 'receipt',
+      icon: ReceiptIcon,
+      title: 'Kvittering på e-post',
+    },
+  ].map((item) => {
+    return {
+      ...item,
+      groupId: 'other',
+    };
+  });
+
+  // settings by accounts
 
   const emailById: { [key: string]: string[] } = {};
   const phoneById: { [key: string]: string[] } = {};
@@ -125,7 +266,7 @@ export const useSettings = ({
       ...item,
       id: 'profile-' + index,
       icon: PersonRectangleIcon,
-      title: type === 'phone' ? 'Mobiltelefon' : 'E-postadresse',
+      title: type === 'phone' ? 'Varslingsprofil' : 'Varslingsprofil',
       badge: {
         label,
       },
@@ -179,7 +320,7 @@ export const useSettings = ({
     {
       ...emailSettings,
       id: 'emailAlerts',
-      title: 'Varslinger på E-post',
+      title: 'Varslinger på e-post',
     },
   ].map((item) => {
     return {
@@ -189,16 +330,35 @@ export const useSettings = ({
     };
   });
 
-  // actor settings
+  // account alert settings
 
-  const actorSettings = contactList?.filter(
-    (item) => item.value !== defaultAccount?.phone && item.value !== defaultAccount.email,
-  );
+  const alertProfileSettings = contactList
+    ?.filter((item) => item.value !== defaultAccount?.phone && item.value !== defaultAccount.email)
+    ?.map((item) => {
+      return {
+        ...item,
+        id: ['alertProfile', item.id].join('-'),
+      };
+    });
 
   // people and companies
 
-  const unsortedPeople = actorsList?.filter((item) => item.type === 'person' && !item.isCurrentEndUser);
-  const unsortedCompanies = actorsList?.filter((item) => item.type === 'company');
+  const unsortedPeople = actorsList
+    ?.filter((item) => item.type === 'person' && !item.isCurrentEndUser)
+    ?.map((item) => {
+      return {
+        ...item,
+        id: 'accountAlerts' + item.id,
+      };
+    });
+  const unsortedCompanies = actorsList
+    ?.filter((item) => item.type === 'company')
+    ?.map((item) => {
+      return {
+        ...item,
+        id: 'accountAlerts' + item.id,
+      };
+    });
 
   const people = sortAccountsByKey(unsortedPeople, 'name');
   const sortedCompanies = sortAccountsByKey(unsortedCompanies, 'groupName');
@@ -214,32 +374,6 @@ export const useSettings = ({
   const companies = sortAccountsByKey(companyGroups, 'groupId');
 
   const firstCompanyGroup = companies?.[0]?.groupId || 'company';
-
-  // other settings
-
-  const otherSettings = [
-    {
-      id: 'language',
-      icon: GlobeIcon,
-      title: 'Språk/language',
-      value: 'Bokmål',
-    },
-    {
-      id: 'primary-actor',
-      icon: EnterIcon,
-      title: 'Forhåndsvalgt aktør',
-    },
-    {
-      id: 'receipt',
-      icon: ReceiptIcon,
-      title: 'Kvittering på e-post',
-    },
-  ].map((item) => {
-    return {
-      ...item,
-      groupId: 'other',
-    };
-  });
 
   // company settings
 
@@ -316,9 +450,10 @@ export const useSettings = ({
   const defaultItems = [
     ...contactSettings,
     ...alertSettings,
-    ...actorSettings,
+    ...alertProfileSettings,
     ...people,
     ...companies,
+    ...accountSettings,
     ...otherSettings,
     ...companyAlerts,
     ...companyInfo,
@@ -343,19 +478,22 @@ export const useSettings = ({
       title: 'Kontaktinformasjon',
     },
     alerts: {
-      title: 'Varslingsinnstillinger',
+      title: 'Primære varslingsadresser',
     },
     profile: {
-      title: 'Varslingsprofiler',
+      title: 'Alternative varslingsadresser',
     },
     person: {
-      title: 'Personer',
+      title: 'Varslinger for andre personer',
     },
     [firstCompanyGroup]: {
-      title: 'Virksomheter',
+      title: 'Varslinger for virksomheter',
+    },
+    accountSettings: {
+      title: 'Innstillinger for aktørvelger',
     },
     other: {
-      title: 'Flere innstillinger',
+      title: 'Andre innstillinger',
     },
     companyAlerts: {
       title: 'Varslingsadresser for virksomheten',

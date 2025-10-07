@@ -41,6 +41,7 @@ export const Expanded: Story = {
       <AccountListItemDetails
         settings={[
           {
+            id: '1',
             title: 'Rolle og tilganger',
             value: 'Daglig leder',
             badge: {
@@ -50,6 +51,7 @@ export const Expanded: Story = {
             linkIcon: true,
           },
           {
+            id: '2',
             title: 'Ingen varslinger',
             icon: BellIcon,
             badge: {
@@ -59,6 +61,7 @@ export const Expanded: Story = {
             linkIcon: true,
           },
           {
+            id: '3',
             title: 'Organisasjonsnummer',
             value: 'XXX XXX XXX',
             icon: HashtagIcon,

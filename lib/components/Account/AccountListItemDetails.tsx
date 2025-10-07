@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, type ReactNode } from 'react';
 
 import {
   AccountOrganization,
@@ -21,6 +21,7 @@ export interface AccountListItemDetailsProps {
   buttons?: ButtonProps[];
   settings?: SettingsItemProps[];
   organization?: AccountOrganizationProps['items'];
+  children?: ReactNode;
 }
 
 export const AccountListItemDetails = ({
@@ -30,6 +31,7 @@ export const AccountListItemDetails = ({
   buttons,
   settings,
   organization,
+  children,
 }: AccountListItemDetailsProps) => {
   if (loading) {
     return (
@@ -69,6 +71,7 @@ export const AccountListItemDetails = ({
         </List>
       )}
       {organization && <AccountOrganization items={organization} />}
+      {children}
     </Section>
   );
 };

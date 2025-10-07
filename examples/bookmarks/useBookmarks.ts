@@ -49,7 +49,7 @@ export const useBookmarks = (): BookmarksSectionProps => {
       label: 'Tittel',
       placeholder: 'Uten tittel',
     },
-    description: 'Sist oppdatert 3 minutter siden',
+    description: 'Sist oppdatert: 3 minutter siden.',
     items: items as EditableBookmarkProps[],
     expandedId,
     onToggle,
