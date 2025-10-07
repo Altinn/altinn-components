@@ -3,6 +3,7 @@ import {
   ExternalLinkIcon,
   GlobeIcon,
   HouseHeartIcon,
+  MinusIcon,
   MobileIcon,
   PaperplaneIcon,
   PersonRectangleIcon,
@@ -16,6 +17,7 @@ import {
   ButtonGroup,
   Divider,
   Fieldset,
+  IconButton,
   Legend,
   List,
   Radio,
@@ -225,6 +227,7 @@ export const AccountGroupsModal = ({
       id: 'g1',
       type: 'group',
       name: 'Gruppe 1',
+      selected: true,
       icon: {
         items: [
           {
@@ -232,8 +235,8 @@ export const AccountGroupsModal = ({
             name: 'Koko',
           },
           {
+            name: 'Bergen Bar',
             type: 'company',
-            name: 'Loko',
           },
         ],
       },
@@ -259,6 +262,27 @@ export const AccountGroupsModal = ({
         ],
       },
     },
+    {
+      id: 'g3',
+      type: 'group',
+      name: 'Gruppe 3',
+      icon: {
+        items: [
+          {
+            type: 'person',
+            name: 'Poko',
+          },
+          {
+            type: 'person',
+            name: 'Loko',
+          },
+          {
+            type: 'person',
+            name: 'Doko',
+          },
+        ],
+      },
+    },
   ],
 }: AccountGroupsModalProps) => {
   return (
@@ -269,16 +293,16 @@ export const AccountGroupsModal = ({
             <Fragment key={item.title}>
               {index > 0 && <Divider />}
               <SettingsItem
+                id={item.id}
                 icon={item.icon}
                 title={item.name}
-                description={{
-                  children: item.description as string,
-                  size: 'xxs',
-                }}
                 controls={
-                  <Button size="xs" variant="outline">
-                    Legg til
-                  </Button>
+                  <IconButton
+                    size="xs"
+                    variant={item?.selected ? 'outline' : 'solid'}
+                    iconAltText="Legg til"
+                    icon={item?.selected ? MinusIcon : PlusIcon}
+                  />
                 }
               />
             </Fragment>

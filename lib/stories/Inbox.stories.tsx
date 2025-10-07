@@ -3,8 +3,8 @@ import * as BetaStories from "./Beta/Beta.stories";
 
 import {
   BookmarksSection,
-  BookmarksSettingsSection,
-  type BookmarksSettingsSectionProps,
+  BookmarksSettingsList,
+  type BookmarksSettingsListProps,
   Dialog,
   DialogList,
   Layout,
@@ -592,9 +592,7 @@ export const BookmarksPage = () => {
     <Layout {...layout}>
       <PageBase margin="page">
         <Toolbar {...toolbar} />
-        <BookmarksSettingsSection
-          {...(bookmarks as BookmarksSettingsSectionProps)}
-        />
+        <BookmarksSettingsList {...(bookmarks as BookmarksSettingsListProps)} />
       </PageBase>
     </Layout>
   );

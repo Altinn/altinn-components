@@ -1,55 +1,72 @@
-import {
-  ListItemBase,
-  type ListItemBaseProps,
-  ListItemHeader,
-  type ListItemHeaderProps,
-  ListItemLabel,
-  type ListItemLabelProps,
-  getAriaLabelFromTitle,
-} from '..';
+import { Input, type InputProps, SettingsItemBase, type SettingsItemBaseProps, SettingsModal } from '..';
 
-import styles from './settingsItem.module.css';
+import { type ReactNode, useState } from 'react';
 
-export interface SettingsItemProps extends ListItemBaseProps, ListItemHeaderProps {
-  id?: string;
-  groupId?: string;
-  collapsible?: boolean;
-  expanded?: boolean;
-  label?: ListItemHeaderProps['children'];
-  title?: ListItemLabelProps['title'];
-  value?: ListItemLabelProps['value'];
-  description?: ListItemLabelProps['description'];
+export type SettingsItemVariant = 'default' | 'modal' | 'switch';
+
+export interface SettingsItemProps extends SettingsItemBaseProps {
+  variant?: SettingsItemVariant;
+  id: string;
+  title?: string;
+  value?: string;
+  description?: string;
+  name?: InputProps['name'];
+  checked?: InputProps['checked'];
+  onChange?: InputProps['onChange'];
+  children?: ReactNode;
 }
 
 export const SettingsItem = ({
-  color,
-  size,
-  expanded,
-  icon,
-  label,
-  title,
-  value,
-  description,
+  loading,
+  variant = 'default',
+  id = 'settings',
+  name,
+  checked,
+  onChange,
   children,
-  highlightWords,
   ...props
 }: SettingsItemProps) => {
-  const ariaLabel = props.ariaLabel || getAriaLabelFromTitle(title);
+  const [open, setOpen] = useState(false);
 
-  return (
-    <ListItemBase className={styles.item} color={color} size={size} expanded={expanded}>
-      <ListItemHeader {...props} ariaLabel={ariaLabel} className={styles.header} icon={icon}>
-        <ListItemLabel
-          highlightWords={highlightWords}
-          className={styles.label}
-          title={title}
-          value={value}
-          description={description}
-        >
-          {label}
-        </ListItemLabel>
-      </ListItemHeader>
-      {expanded && children}
-    </ListItemBase>
-  );
+  if (loading) {
+    return <SettingsItemBase icon={props?.icon} title={props?.title} loading />;
+  }
+
+  switch (variant) {
+    case 'switch':
+      return (
+        <SettingsItemBase
+          {...props}
+          title={[props?.title, props?.value].join(': ')}
+          value={undefined}
+          interactive={false}
+          controls={
+            <Input
+              type="checkbox"
+              role="switch"
+              aria-labelledby={id}
+              name={name}
+              value={props?.value as string}
+              checked={checked}
+              onChange={onChange}
+              style={{ marginRight: '0.5em' }}
+            />
+          }
+        />
+      );
+
+    case 'modal':
+      return (
+        <SettingsItemBase {...props} as="button" linkIcon={true} onClick={() => setOpen(true)} expanded={open}>
+          {open && (
+            <SettingsModal icon={props?.icon} title={props?.title} open={open} onClose={() => setOpen(false)}>
+              {children}
+            </SettingsModal>
+          )}
+        </SettingsItemBase>
+      );
+
+    default:
+      return <SettingsItemBase {...props} />;
+  }
 };

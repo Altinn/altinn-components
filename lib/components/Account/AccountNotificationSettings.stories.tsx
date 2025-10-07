@@ -74,6 +74,7 @@ export const AccountNotificationsModal = ({ title = 'Aktør' }) => {
         <ModalHeader title={title}>
           <List>
             <SettingsItem
+              id="bb"
               interactive={false}
               icon={{ name: 'Bergen Bar', type: 'company' }}
               title="Bergen Bar"

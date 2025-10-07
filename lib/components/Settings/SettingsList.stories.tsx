@@ -12,7 +12,6 @@ import {
   CompanyInfoModal,
   ContactProfileModal,
   EmailSettingsModal,
-  LocaleSettingsModal,
   PhoneSettingsModal,
 } from '../../components/Settings/SettingsModal.stories';
 
@@ -24,6 +23,7 @@ const meta = {
   args: {
     items: [
       {
+        id: '1',
         icon: HandshakeIcon,
         title: 'Din rolle',
         value: 'Daglig leder',
@@ -31,18 +31,21 @@ const meta = {
         linkIcon: true,
       },
       {
+        id: '2',
         icon: MobileIcon,
         title: 'Mobiltelefon',
         value: '+47 900 00 000',
         linkIcon: true,
       },
       {
+        id: '3',
         icon: HouseHeartIcon,
         title: 'Adresse',
         badge: { variant: 'text', label: 'Legg til' },
         linkIcon: true,
       },
       {
+        id: '4',
         icon: SunIcon,
         title: 'Modus',
         value: 'Auto',
@@ -50,6 +53,7 @@ const meta = {
         linkIcon: true,
       },
       {
+        id: '5',
         icon: BellIcon,
         title: 'Varslinger',
         value: 'Alle',
@@ -57,6 +61,7 @@ const meta = {
         linkIcon: true,
       },
       {
+        id: '6',
         icon: GlobeIcon,
         title: 'Språk',
         badge: { variant: 'text', label: 'Legg til' },
@@ -81,49 +86,55 @@ export const Grouped: Story = {
     },
     items: [
       {
+        id: '1',
+        groupId: '1',
         icon: HandshakeIcon,
         title: 'Din rolle',
         value: 'Daglig leder',
         badge: { label: '4 rettigheter' },
         linkIcon: true,
-        groupId: '1',
       },
       {
+        id: '2',
+        groupId: '1',
         icon: MobileIcon,
         title: 'Mobiltelefon',
         value: '+47 900 00 000',
         linkIcon: true,
-        groupId: '1',
       },
       {
+        id: '3',
+        groupId: '1',
         icon: HouseHeartIcon,
         title: 'Adresse',
         badge: { variant: 'text', label: 'Legg til' },
         linkIcon: true,
-        groupId: '1',
       },
       {
+        id: '4',
+        groupId: '2',
         icon: SunIcon,
         title: 'Modus',
         value: 'Auto',
         badge: { variant: 'text', label: 'Endre' },
         linkIcon: true,
-        groupId: '2',
       },
       {
+        id: '5',
+        groupId: '2',
         icon: BellIcon,
         title: 'Varslinger',
         value: 'Alle',
         badge: { label: 'SMS og e-post' },
         linkIcon: true,
-        groupId: '2',
       },
       {
+        id: '6',
+        groupId: '2',
         icon: GlobeIcon,
         title: 'Språk',
         badge: { variant: 'text', label: 'Legg til' },
         linkIcon: true,
-        groupId: '2',
       },
     ],
   },
@@ -136,6 +147,7 @@ export const Companies: Story = {
     },
     items: [
       {
+        id: '1',
         icon: {
           name: 'Bergen Bar & Cafe',
           type: 'company',
@@ -147,6 +159,7 @@ export const Companies: Story = {
         groupId: '1',
       },
       {
+        id: '2',
         icon: {
           name: 'Bergen Bar & Cafe',
           type: 'company',
@@ -159,6 +172,7 @@ export const Companies: Story = {
         groupId: '1',
       },
       {
+        id: '3',
         icon: {
           name: 'Tre kokker og en pizza',
           type: 'company',
@@ -170,6 +184,7 @@ export const Companies: Story = {
         groupId: '3',
       },
       {
+        id: '4',
         icon: {
           name: 'Tre kokker og en pizza',
           type: 'company',
@@ -182,6 +197,7 @@ export const Companies: Story = {
         groupId: '3',
       },
       {
+        id: '5',
         icon: {
           name: 'Stavangerkameratene',
           type: 'company',
@@ -192,8 +208,8 @@ export const Companies: Story = {
         linkIcon: true,
         groupId: '2',
       },
-
       {
+        id: '6',
         icon: {
           name: 'Børs cafe',
           type: 'company',
@@ -206,6 +222,7 @@ export const Companies: Story = {
         groupId: '2',
       },
       {
+        id: '7',
         icon: {
           name: 'Stavanger Brekk',
           type: 'company',
@@ -218,6 +235,7 @@ export const Companies: Story = {
         groupId: '2',
       },
       {
+        id: '8',
         icon: {
           name: 'Utestedet Stavanger AS',
           type: 'company',
@@ -240,6 +258,7 @@ export const SearchResult: Story = {
     },
     items: [
       {
+        id: '1',
         icon: HandshakeIcon,
         title: 'Din rolle',
         highlightWords: ['rolle'],
@@ -249,6 +268,7 @@ export const SearchResult: Story = {
         groupId: 'search',
       },
       {
+        id: '2',
         icon: {
           name: 'Bergen Bar & Cafe',
           type: 'company',
@@ -261,6 +281,7 @@ export const SearchResult: Story = {
         groupId: 'search',
       },
       {
+        id: '3',
         icon: {
           name: 'Bergen Barnehage',
           type: 'company',
@@ -282,7 +303,11 @@ interface ControlledSettingsModalProps extends SettingsModalProps {
   title?: string;
 }
 
-const ControlledSettingsModal = ({ id, groupId, open, onClose, ...item }: ControlledSettingsModalProps) => {
+const ControlledSettingsModal = ({ id, icon, groupId, open, onClose, ...item }: ControlledSettingsModalProps) => {
+  if (id?.startsWith('accountAlerts')) {
+    return <AccountAlertsModal {...item} icon={icon} open={open} onClose={onClose} />;
+  }
+
   switch (groupId) {
     case 'profile':
       return <ContactProfileModal {...item} open={open} onClose={onClose} />;
@@ -311,15 +336,9 @@ const ControlledSettingsModal = ({ id, groupId, open, onClose, ...item }: Contro
           <CompanyAlertsModal {...item} type="email" open={open && id === 'companyEmail'} onClose={onClose} />
         </>
       );
-    case 'other':
-      return (
-        <>
-          <LocaleSettingsModal {...item} open={open} onClose={onClose} />
-        </>
-      );
+    default:
+      return;
   }
-
-  return <AccountAlertsModal {...(item as SettingsModalProps)} open={!!id} onClose={onClose} />;
 };
 
 export const ControlledSettings = ({ query = {}, groups, includeGroups, excludeGroups }: UseSettingsProps) => {
@@ -337,14 +356,18 @@ export const ControlledSettings = ({ query = {}, groups, includeGroups, excludeG
   };
 
   const items = settings?.items.map((item) => {
-    const { id } = item;
+    const { id, variant } = item;
 
-    return {
-      ...item,
-      description: undefined,
-      as: 'button',
-      onClick: () => id && setId(id),
-    };
+    if (!variant || variant === 'default') {
+      return {
+        ...item,
+        description: undefined,
+        as: 'button',
+        onClick: () => id && setId(id),
+      };
+    }
+
+    return item;
   });
 
   const item = (id && items.find((item) => item.id === id)) || {
@@ -403,20 +426,6 @@ export const AlertSettings = () => {
           q: toolbar?.search?.value,
         }}
         includeGroups={['alerts', 'profile', 'person', 'company']}
-        groups={{
-          alerts: {
-            title: 'Varslingsinnstillinger',
-          },
-          profile: {
-            title: 'Varslingsprofiler',
-          },
-          person: {
-            title: 'Personer',
-          },
-          company: {
-            title: 'Virksomheter',
-          },
-        }}
       />
     </PageBase>
   );
@@ -433,15 +442,7 @@ export const AccountSettings = () => {
         query={{
           q: toolbar?.search?.value,
         }}
-        includeGroups={['contact', 'other']}
-        groups={{
-          contact: {
-            title: 'Kontaktinformasjon',
-          },
-          other: {
-            title: 'Flere innstillinger',
-          },
-        }}
+        includeGroups={['contact', 'accountSettings', 'other']}
       />
     </PageBase>
   );

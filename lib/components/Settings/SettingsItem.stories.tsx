@@ -1,13 +1,17 @@
-import { BellIcon, MagnifyingGlassIcon } from '@navikt/aksel-icons';
+import { BellIcon, HeartBrokenIcon } from '@navikt/aksel-icons';
+import { PencilIcon, TrashIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Button, List, QueryLabel, SettingsItem } from '..';
+import { BookmarksSettingsItem, ContextMenu, List, SettingsItem } from '..';
 const meta = {
   title: 'Settings/SettingsItem',
   component: SettingsItem,
   tags: ['beta', 'autodocs'],
   parameters: {},
   args: {
+    id: 'settings',
+    variant: 'default',
     ariaLabel: 'Title',
+    title: 'Tittel',
   },
   decorators: [
     (Story) => (
@@ -24,7 +28,6 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     icon: BellIcon,
-    title: 'Varslingsinnstillinger',
     linkIcon: true,
     badge: {
       variant: 'text',
@@ -36,10 +39,36 @@ export const Default: Story = {
 export const Value: Story = {
   args: {
     icon: BellIcon,
-    title: 'Varslingsinnstillinger',
     value: 'Alle varslinger',
     badge: { label: 'SMS og e-post' },
     linkIcon: true,
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    icon: BellIcon,
+    value: 'Alle varslinger',
+    badge: { label: 'SMS og e-post' },
+    linkIcon: true,
+    loading: true,
+  },
+};
+
+export const Switch: Story = {
+  args: {
+    icon: HeartBrokenIcon,
+    title: 'Vis skjulte enheter',
+    variant: 'switch',
+  },
+};
+
+export const Modal: Story = {
+  args: {
+    icon: HeartBrokenIcon,
+    title: 'Vis skjulte enheter',
+    variant: 'modal',
+    children: 'Modal content',
   },
 };
 
@@ -73,45 +102,45 @@ export const Person: Story = {
   },
 };
 
-export const SavedSearch: Story = {
-  args: {
-    icon: MagnifyingGlassIcon,
-    label: (
-      <QueryLabel
-        size="sm"
-        params={[
-          { type: 'search', label: 'skatt' },
-          { type: 'filter', label: 'Krever handling' },
-          { type: 'filter', label: 'Ikke sett' },
-        ]}
-      />
-    ),
-    controls: (
-      <Button size="xs" variant="outline">
-        Endre
-      </Button>
-    ),
-  },
+export const Bookmark = () => {
+  return (
+    <BookmarksSettingsItem
+      id="bookmark-1"
+      title="Viktige dialoger om skatt"
+      params={[
+        { type: 'search', label: 'skatt' },
+        { type: 'filter', label: 'Krever handling' },
+        { type: 'filter', label: 'Ikke sett' },
+      ]}
+    />
+  );
 };
 
-export const SavedSearchWithTitle: Story = {
-  args: {
-    icon: MagnifyingGlassIcon,
-    title: 'Viktige dialoger om skatt',
-    description: (
-      <QueryLabel
-        size="xs"
-        params={[
-          { type: 'search', label: 'skatt' },
-          { type: 'filter', label: 'Krever handling' },
-          { type: 'filter', label: 'Ikke sett' },
-        ]}
-      />
-    ),
-    controls: (
-      <Button size="xs" variant="outline">
-        Endre
-      </Button>
-    ),
-  },
+export const BookmarkContextMenu = () => {
+  return (
+    <BookmarksSettingsItem
+      id="bookmark-1"
+      title="Viktige dialoger om skatt"
+      controls={
+        <ContextMenu
+          id="cxmenu"
+          items={[
+            {
+              icon: PencilIcon,
+              title: 'Rediger tittel',
+            },
+            {
+              icon: TrashIcon,
+              title: 'Slett søk',
+            },
+          ]}
+        />
+      }
+      params={[
+        { type: 'search', label: 'skatt' },
+        { type: 'filter', label: 'Krever handling' },
+        { type: 'filter', label: 'Ikke sett' },
+      ]}
+    />
+  );
 };

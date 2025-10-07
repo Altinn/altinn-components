@@ -11,7 +11,7 @@ import {
   PlusIcon,
 } from '@navikt/aksel-icons';
 import type { Meta } from '@storybook/react-vite';
-import { type ChangeEvent, Fragment, useState } from 'react';
+import { type ChangeEvent, useState } from 'react';
 
 import {
   AccountAlertsModal,
@@ -28,11 +28,7 @@ import {
   type AccountListItemProps,
   type AccountListProps,
   type BadgeProps,
-  Divider,
-  Heading,
-  List,
   Section,
-  SettingsItem,
   Toolbar,
 } from '..';
 import { type UseAccountsProps, accountList, defaultAccounts, useAccountList, useSettings } from '../../../examples';
@@ -336,6 +332,7 @@ const getNotificationSettings = ({
   const value = smsAlerts && emailAlerts ? [email, phone].join(', ') : smsAlerts ? phone : emailAlerts && email;
 
   return {
+    id: 'notifications',
     title,
     value,
     badge: badge as BadgeProps,
@@ -362,6 +359,7 @@ export const CompanyDetails = ({
 
   const settings = [
     {
+      id: '1',
       icon: HandshakeIcon,
       title: 'Rolle og tilganger',
       value: 'Ektefelle',
@@ -371,12 +369,14 @@ export const CompanyDetails = ({
     },
     {
       ...notificationSettings,
+      id: '2',
       icon: BellIcon,
       linkIcon: true,
       onClick: () => onModal?.(id, 'notifications'),
       as: 'button',
     },
     {
+      id: '3',
       icon: HashtagIcon,
       title: 'Organisasjonsnummer',
       value: 'XXX YYY ZZZ',
@@ -440,6 +440,7 @@ export const PersonDetails = ({
 
   const settings = [
     {
+      id: '1',
       icon: HandshakeIcon,
       title: 'Rolle og tilganger',
       value: 'Ektefelle',
@@ -449,12 +450,14 @@ export const PersonDetails = ({
     },
     {
       ...notificationSettings,
+      id: '2',
       icon: BellIcon,
       linkIcon: true,
       onClick: () => onModal?.(id, 'notifications'),
       as: 'button',
     },
     {
+      id: '3',
       icon: HashtagIcon,
       title: 'Fødselsnummer',
       value: uniqueId,
@@ -481,6 +484,7 @@ export const UserDetails = ({
 }: AccountDetailsProps) => {
   const settings = [
     {
+      id: '1',
       icon: MobileIcon,
       title: 'Mobiltelefon',
       value: phone,
@@ -490,6 +494,7 @@ export const UserDetails = ({
       as: 'button',
     },
     {
+      id: '2',
       icon: PaperplaneIcon,
       title: 'E-postadresse',
       value: email,
@@ -499,6 +504,7 @@ export const UserDetails = ({
       as: 'button',
     },
     {
+      id: '3',
       icon: HouseHeartIcon,
       title: 'Adresse',
       value: address,
@@ -529,30 +535,17 @@ export const GroupDetails = ({ accountIds }: AccountDetailsProps) => {
     ? items?.filter((item) => accountIds.includes(item.id))
     : items?.filter((item) => item.type === 'company');
 
+  const settings = groupItems?.map((item) => {
+    return {
+      ...item,
+      size: 'xs',
+    };
+  });
+
   return (
-    <Section color="company" padding={6} spacing={2}>
-      <Divider />
-      <Section spacing={4}>
-        <Heading size="sm">6 medlemmer</Heading>
-        <List size="sm" spacing={0}>
-          {groupItems?.map((item, index) => {
-            return (
-              <Fragment key={item.title}>
-                {index > 0 && <Divider />}
-                <SettingsItem
-                  icon={item.icon}
-                  title={item.title}
-                  description={{
-                    children: item.description as string,
-                    size: 'xxs',
-                  }}
-                  linkIcon
-                />
-              </Fragment>
-            );
-          })}
-        </List>
-      </Section>
-    </Section>
+    <AccountListItemDetails color="neutral">
+      {settings?.length + ' elementer'}
+      Work-in-progress
+    </AccountListItemDetails>
   );
 };

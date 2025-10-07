@@ -35,6 +35,7 @@ export const UserSettings: Story = {
   args: {
     settings: [
       {
+        id: '1',
         title: 'Mobiltelefon',
         value: '+47 123 45 678',
         icon: MobileIcon,
@@ -45,6 +46,7 @@ export const UserSettings: Story = {
         },
       },
       {
+        id: '2',
         title: 'E-postadresse',
         value: 'mathias@brann.no',
         icon: PaperplaneIcon,
@@ -55,6 +57,7 @@ export const UserSettings: Story = {
         },
       },
       {
+        id: '3',
         title: 'Adresse',
         value: 'Inndalsveien 28, 5063 Bergen',
         icon: HouseHeartIcon,
@@ -72,6 +75,7 @@ export const PersonSettings: Story = {
   args: {
     settings: [
       {
+        id: '1',
         title: 'Rolle og tilganger',
         value: 'Ektefelle',
         badge: {
@@ -81,6 +85,7 @@ export const PersonSettings: Story = {
         linkIcon: true,
       },
       {
+        id: '2',
         title: 'Varslinger er på',
         value: 'mathias@brann.no, +47 123 45 678',
         badge: {
@@ -90,6 +95,7 @@ export const PersonSettings: Story = {
         linkIcon: true,
       },
       {
+        id: '3',
         title: 'Fødselsnummer',
         value: 'XXXXXX YYYY',
         icon: PersonIcon,
@@ -102,6 +108,7 @@ export const CompanySettings: Story = {
   args: {
     settings: [
       {
+        id: '1',
         title: 'Rolle og tilganger',
         value: 'Daglig leder',
         badge: {
@@ -111,6 +118,7 @@ export const CompanySettings: Story = {
         linkIcon: true,
       },
       {
+        id: '2',
         title: 'Ingen varslinger',
         icon: BellIcon,
         badge: {
@@ -120,6 +128,7 @@ export const CompanySettings: Story = {
         linkIcon: true,
       },
       {
+        id: '3',
         title: 'Organisasjonsnummer',
         value: 'XXX XXX XXX',
         icon: HashtagIcon,
@@ -130,31 +139,7 @@ export const CompanySettings: Story = {
 
 export const OrganizationSettings: Story = {
   args: {
-    settings: [
-      {
-        title: 'Rolle og tilganger',
-        value: 'Daglig leder',
-        badge: {
-          label: '4 tilganger',
-        },
-        icon: HandshakeIcon,
-        linkIcon: true,
-      },
-      {
-        title: 'Ingen varslinger',
-        icon: BellIcon,
-        badge: {
-          variant: 'text',
-          label: 'Legg til',
-        },
-        linkIcon: true,
-      },
-      {
-        title: 'Organisasjonsnummer',
-        value: 'XXX XXX XXX',
-        icon: HashtagIcon,
-      },
-    ],
+    ...CompanySettings.args,
     organization: [
       {
         title: 'Diaspora Bergensis',
