@@ -43,3 +43,18 @@
   width: 100%;
   height: 100%;
 }
+
+/* Safari-specific fix for zoom scaling issue */
+@supports (-webkit-hyphens: none) {
+  .avatar[data-size="lg"] .label {
+    font-size: 1.58rem;
+  }
+
+  .avatar[data-size="md"] .label {
+    font-size: 1.15rem;
+  }
+
+  .avatar[data-size="sm"] .label {
+    font-size: 0.85rem;
+  }
+}
