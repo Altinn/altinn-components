@@ -344,7 +344,7 @@ export const useSettings = ({
   // people and companies
 
   const unsortedPeople = actorsList
-    ?.filter((item) => item.type === 'person' && !item.isCurrentEndUser)
+    ?.filter((item) => item.type === 'person')
     ?.map((item) => {
       return {
         ...item,

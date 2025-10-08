@@ -4,6 +4,11 @@ import { type ReactNode, useState } from 'react';
 
 export type SettingsItemVariant = 'default' | 'modal' | 'switch';
 
+export interface SettingsItemModalProps {
+  title?: string;
+  description?: string;
+}
+
 export interface SettingsItemProps extends SettingsItemBaseProps {
   variant?: SettingsItemVariant;
   id: string;
@@ -13,6 +18,7 @@ export interface SettingsItemProps extends SettingsItemBaseProps {
   name?: InputProps['name'];
   checked?: InputProps['checked'];
   onChange?: InputProps['onChange'];
+  modalProps?: SettingsItemModalProps;
   children?: ReactNode;
 }
 
@@ -23,6 +29,7 @@ export const SettingsItem = ({
   name,
   checked,
   onChange,
+  modalProps,
   children,
   ...props
 }: SettingsItemProps) => {
@@ -37,7 +44,11 @@ export const SettingsItem = ({
       return (
         <SettingsItemBase
           {...props}
-          title={[props?.title, props?.value].join(': ')}
+          title={{
+            id: id,
+            as: 'label',
+            children: [props?.title, props?.value].join(': '),
+          }}
           value={undefined}
           interactive={false}
           controls={
@@ -57,7 +68,15 @@ export const SettingsItem = ({
 
     case 'modal':
       return (
-        <SettingsItemBase {...props} as="button" linkIcon={true} onClick={() => setOpen(true)} expanded={open}>
+        <SettingsItemBase
+          {...props}
+          title={modalProps?.title || props?.title}
+          description={modalProps?.description}
+          as="button"
+          linkIcon={true}
+          onClick={() => setOpen(true)}
+          expanded={open}
+        >
           {open && (
             <SettingsModal icon={props?.icon} title={props?.title} open={open} onClose={() => setOpen(false)}>
               {children}

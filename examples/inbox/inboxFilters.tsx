@@ -93,23 +93,17 @@ export const inboxFilters: ToolbarFilterProps[] = [
       {
         value: 'ssb',
         label: 'Statisitisk sentralbyrå',
-        badge: {
-          label: '10',
-        },
+        count: 10,
       },
       {
         value: 'fkd',
         label: 'Fagernes kjøtt og data',
-        badge: {
-          label: '14',
-        },
+        count: 124,
       },
       {
         value: 'dvkd',
         label: 'Direktoratet for vilt-, kjøtt og datautstyr',
-        badge: {
-          label: '14',
-        },
+        count: 14,
       },
       {
         value: 'nav',

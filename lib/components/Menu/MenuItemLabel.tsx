@@ -1,6 +1,6 @@
 import cx from 'classnames';
 import { type ReactNode, isValidElement } from 'react';
-import { Badge, type BadgeProps, Heading, type HeadingProps, isHeadingProps } from '..';
+import { Heading, type HeadingProps, isHeadingProps } from '..';
 import type { MenuItemSize } from './MenuItemBase';
 import styles from './menuItemLabel.module.css';
 
@@ -12,7 +12,6 @@ export interface MenuItemLabelProps {
   highlightWords?: string[];
   title?: HeadingProps | ReactNode | string;
   description?: HeadingProps | ReactNode | string;
-  badge?: BadgeProps;
   children?: ReactNode;
 }
 
@@ -76,7 +75,6 @@ export const MenuItemLabel = ({
   className,
   size = 'sm',
   title,
-  badge,
   description,
   highlightWords,
   loading,
@@ -97,10 +95,7 @@ export const MenuItemLabel = ({
               highlightWords={highlightWords}
               className={styles.title}
               weight={titleProps?.weight || size === 'lg' ? 'medium' : 'normal'}
-            >
-              <span>{titleProps.children}</span>
-              {badge && <Badge {...badge} />}
-            </Heading>
+            />
           )}
           {descriptionProps && (
             <Heading

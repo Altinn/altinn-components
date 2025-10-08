@@ -11,9 +11,15 @@
 }
 
 .title {
+  color: var(--ds-color-text-default);
   display: inline-flex;
   align-items: center;
   column-gap: 0.5em;
+}
+
+.count {
+  vertical-align: super;
+  font-size: smaller;
 }
 
 .radio,

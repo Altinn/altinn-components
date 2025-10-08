@@ -64,6 +64,8 @@ export const getAccountItem = ({
         label: 'Deg',
       };
     }
+
+    return undefined;
   };
 
   const getAccountDescription = () => {
