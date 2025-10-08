@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.41.4](https://github.com/Altinn/altinn-components/compare/v0.41.3...v0.41.4) (2025-10-08)
+
+
+### Bug Fixes
+
+* Fix GlobalMenu icons not scalable on Safari ([#701](https://github.com/Altinn/altinn-components/issues/701)) ([618402f](https://github.com/Altinn/altinn-components/commit/618402fd1e7e5d7631e3af29323388aa9c23651b))
+* settings item variant (default, switch, modal) ([#700](https://github.com/Altinn/altinn-components/issues/700)) ([ba7d5d1](https://github.com/Altinn/altinn-components/commit/ba7d5d1aba3a79aeb99b48460bebb87eab3c011f))
+* update stories for accounts, global menu and demo ([#698](https://github.com/Altinn/altinn-components/issues/698)) ([353fe90](https://github.com/Altinn/altinn-components/commit/353fe90d95167f3a630977406c96b904c76ef5cf))
+
 ## [0.41.3](https://github.com/Altinn/altinn-components/compare/v0.41.2...v0.41.3) (2025-10-03)
 
 
