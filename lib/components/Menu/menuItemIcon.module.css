@@ -52,3 +52,60 @@
   margin-right: -0.25em;
   outline: 1px solid white;
 }
+
+/* Safari-specific fix for zoom scaling issue */
+@supports (-webkit-hyphens: none) {
+  .icon[data-size="lg"] {
+    font-size: 2.75rem;
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .icon[data-size="lg"] svg,
+  .icon[data-size="lg"] img {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .icon[data-size="lg"] .avatar {
+    width: 2.75rem;
+    height: 2.75rem;
+    font-size: 2.75rem;
+  }
+
+  .icon[data-size="md"] {
+    font-size: 2rem;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .icon[data-size="md"] svg,
+  .icon[data-size="md"] img {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .icon[data-size="md"] .avatar {
+    width: 2rem;
+    height: 2rem;
+    font-size: 2rem;
+  }
+
+  .icon[data-size="sm"] {
+    font-size: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .icon[data-size="sm"] svg,
+  .icon[data-size="sm"] img {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .icon[data-size="sm"] .avatar {
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 1.5rem;
+  }
+}
