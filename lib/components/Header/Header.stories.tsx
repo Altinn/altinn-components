@@ -44,3 +44,8 @@ export const MobileMenu = (args: HeaderProps) => {
   const header = useHeader({ ...args, accountId: 'diaspora' });
   return <Header {...(header as HeaderProps)} mobileMenu={mobileMenu} />;
 };
+
+export const WithCustomBadge = (args: HeaderProps) => {
+  const header = useHeader({ ...args, accountId: 'diaspora' });
+  return <Header {...(header as HeaderProps)} badge={{ label: 'Beta', color: 'person' }} />;
+};
