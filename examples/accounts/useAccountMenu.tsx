@@ -1,5 +1,5 @@
 import { HeartFillIcon, HeartIcon } from '@navikt/aksel-icons';
-import { Badge, type BadgeProps, IconButton } from '../../lib';
+import { IconButton } from '../../lib';
 import type { AccountMenuProps } from '../../lib';
 import { type UseAccountsProps, useAccounts } from './';
 
@@ -32,9 +32,8 @@ export const useAccountMenu = ({ accountId, accounts, includeGroups = false }: U
 
     return {
       ...item,
-      badge: undefined,
-      controls: badge ? (
-        <Badge {...(badge as BadgeProps)} />
+      badge: badge ? (
+        badge
       ) : (
         <IconButton
           rounded

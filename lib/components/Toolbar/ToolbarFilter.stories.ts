@@ -12,37 +12,27 @@ const meta = {
       {
         label: 'Skatteetaten',
         value: 'skatt',
-        badge: {
-          label: '23',
-        },
+        count: 23,
       },
       {
         label: 'Digdir',
         value: 'digdir',
-        badge: {
-          label: '21',
-        },
+        count: 21,
       },
       {
         label: 'Helstilsynet',
         value: 'helse',
-        badge: {
-          label: '12',
-        },
+        count: 12,
       },
       {
         label: 'Arbeids og velferdsetaten (NAV)',
         value: 'nav',
-        badge: {
-          label: '2',
-        },
+        count: 2,
       },
       {
         label: 'Direktoratet for byggkvalitet',
         value: 'nav',
-        badge: {
-          label: '2',
-        },
+        count: 2,
       },
     ],
   },

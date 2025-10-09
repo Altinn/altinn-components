@@ -9,7 +9,7 @@ import {
   PlusIcon,
   TrashIcon,
 } from '@navikt/aksel-icons';
-import type { MenuItemProps, MenuProps } from '../../lib';
+import { Badge, type MenuItemProps, type MenuProps } from '../../lib';
 
 export const inboxMenuItems: MenuItemProps[] = [
   {
@@ -18,10 +18,11 @@ export const inboxMenuItems: MenuItemProps[] = [
     size: 'lg',
     icon: { svgElement: InboxFillIcon, theme: 'base' },
     selected: true,
-    title: 'Innboks',
-    badge: {
-      label: '12',
-    },
+    title: (
+      <>
+        Innboks <Badge label="1" />
+      </>
+    ),
   },
   {
     id: 'compose',
@@ -77,10 +78,11 @@ export const inboxBetaMenuItems: MenuItemProps[] = [
     size: 'lg',
     icon: { svgElement: InboxFillIcon, theme: 'base' },
     selected: true,
-    title: 'Innboks',
-    badge: {
-      label: 'Beta',
-    },
+    title: (
+      <>
+        Innboks <Badge label="Beta" />
+      </>
+    ),
     dataTestId: 'menu-item-inbox',
   },
   {

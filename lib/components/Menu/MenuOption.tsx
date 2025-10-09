@@ -1,5 +1,5 @@
 import { CheckmarkIcon } from '@navikt/aksel-icons';
-import { Badge, type BadgeProps, MenuItem, type MenuItemProps } from '..';
+import { MenuItem, type MenuItemProps } from '..';
 import type { MenuItemBaseProps, MenuItemSize } from './MenuItemBase';
 
 import styles from './menuOption.module.css';
@@ -15,7 +15,7 @@ export interface MenuOptionProps extends MenuItemBaseProps {
   groupId?: string;
   size?: MenuItemSize;
   name?: string;
-  badge?: BadgeProps | undefined;
+  count?: number;
   checked?: boolean;
   disabled?: boolean;
   type?: MenuOptionType;
@@ -33,7 +33,7 @@ export const MenuOption = ({
   title,
   description,
   icon,
-  badge,
+  count = 0,
   checked = false,
   disabled,
   onMouseEnter,
@@ -50,6 +50,7 @@ export const MenuOption = ({
               <CheckmarkIcon className={styles.icon} aria-hidden />
             </span>
             <span className={styles.title}>{label}</span>
+            {count > 0 && <span className={styles.count}>{count}</span>}
           </span>
         );
       case 'radio':
@@ -59,6 +60,7 @@ export const MenuOption = ({
               <CheckmarkIcon className={styles.icon} aria-hidden />
             </span>
             <span className={styles.title}>{label}</span>
+            {count > 0 && <span className={styles.count}>{count}</span>}
           </span>
         );
     }
@@ -76,7 +78,6 @@ export const MenuOption = ({
         onClick={onClick}
         role={role}
         label={<Label />}
-        controls={badge && <Badge {...badge} />}
         {...rest}
       />
     );
@@ -95,7 +96,6 @@ export const MenuOption = ({
       icon={icon}
       title={title}
       description={description}
-      controls={badge && <Badge {...badge} />}
       {...rest}
     />
   );

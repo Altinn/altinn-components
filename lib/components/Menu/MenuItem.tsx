@@ -1,6 +1,7 @@
 import { ChevronDownIcon, ChevronRightIcon, ChevronUpIcon } from '@navikt/aksel-icons';
-import type { ReactElement, ReactNode } from 'react';
+import { type ReactElement, type ReactNode, isValidElement } from 'react';
 import {
+  Badge,
   type BadgeProps,
   Icon,
   MenuItemBase,
@@ -28,7 +29,7 @@ export interface MenuItemProps extends MenuItemBaseProps {
   icon?: MenuItemIconProps['icon'];
   iconTheme?: MenuItemIconProps['theme'];
   iconBadge?: MenuItemIconProps['badge'];
-  badge?: BadgeProps | undefined;
+  badge?: BadgeProps | ReactNode | undefined;
   /** Custom controls */
   controls?: ReactNode;
   linkIcon?: boolean;
@@ -70,6 +71,17 @@ export const MenuItem = ({
       ? ChevronRightIcon
       : undefined;
 
+  /** Badge can be custom, or a Badge object. */
+  const renderBadge = (): ReactNode => {
+    if (badge && !loading && typeof badge === 'object' && 'label' in badge) {
+      return <Badge {...(badge as BadgeProps)} className={styles.badge} />;
+    }
+    if (isValidElement(badge)) {
+      return badge;
+    }
+    return null;
+  };
+
   return (
     <MenuItemBase
       as={as}
@@ -88,12 +100,12 @@ export const MenuItem = ({
         description={description}
         highlightWords={highlightWords}
         size={size}
-        badge={badge}
       >
         {applicableLabel}
       </MenuItemLabel>
       <span className={styles.controls}>
         {!loading && controls}
+        {!loading && renderBadge()}
         {applicableIcon && (
           <span className={styles.linkIcon}>
             <Icon

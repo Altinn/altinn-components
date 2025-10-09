@@ -19,7 +19,7 @@ import {
   TruckIcon,
 } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Menu } from '../';
+import { Badge, Menu } from '../';
 
 const meta = {
   title: 'Menu/Menu',
@@ -131,7 +131,11 @@ export const AddingBadges: Story = {
         groupId: 'b',
         id: '2',
         icon: TruckIcon,
-        title: 'Inline badge',
+        title: (
+          <>
+            Inline badge <Badge label="4 ting" />
+          </>
+        ),
         badge: {
           label: '4 ting',
         },
@@ -140,11 +144,11 @@ export const AddingBadges: Story = {
         groupId: 'b',
         id: '2',
         icon: BicycleIcon,
-        title: 'Inline XS Badge',
-        badge: {
-          size: 'xs',
-          label: '4 ting',
-        },
+        title: (
+          <>
+            Inline badge <Badge label="4 ting" size="xs" />
+          </>
+        ),
       },
     ],
   },
@@ -234,6 +238,7 @@ export const AccountRelationships: Story = {
         icon: {
           type: 'company',
           name: 'Alfa',
+          variant: 'outline',
         },
         title: 'Alfa Bar & Brød',
         description: 'Org. nr. 123456789',
@@ -254,6 +259,7 @@ export const AccountRelationships: Story = {
         icon: {
           type: 'company',
           name: 'Beta',
+          variant: 'outline',
         },
         title: 'Beta Inc.',
         description: 'Org. nr. 123456789',
@@ -274,6 +280,7 @@ export const AccountRelationships: Story = {
         icon: {
           type: 'company',
           name: 'Charlie',
+          variant: 'outline',
         },
         title: 'Charlies engler',
         description: 'Org. nr. 123456789',
@@ -363,18 +370,12 @@ export const InboxMenu: Story = {
         },
         selected: true,
         title: 'Innboks',
-        badge: {
-          label: '12',
-        },
       },
       {
         id: 'drafts',
         groupId: '2',
         icon: DocPencilIcon,
         title: 'Utkast',
-        badge: {
-          label: '2',
-        },
       },
       {
         id: 'sent',
@@ -387,27 +388,18 @@ export const InboxMenu: Story = {
         groupId: '3',
         icon: BookmarkIcon,
         title: 'Lagrede søk',
-        badge: {
-          label: '5',
-        },
       },
       {
         id: 'trash',
         groupId: '4',
         icon: ArchiveIcon,
         title: 'Arkivert',
-        badge: {
-          label: '99+',
-        },
       },
       {
         id: '6',
         groupId: '4',
         icon: TrashIcon,
         title: 'Papirkurv',
-        badge: {
-          label: '15',
-        },
       },
     ],
   },

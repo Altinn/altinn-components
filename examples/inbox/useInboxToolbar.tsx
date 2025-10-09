@@ -136,9 +136,7 @@ export const useInboxToolbar = ({ accountId, items }: UseInboxToolbarProps): Too
     options: Object.keys(folderById).map((label) => ({
       value: label,
       label: label,
-      badge: {
-        label: folderById[label].toString(),
-      },
+      count: folderById[label],
     })),
   };
 
@@ -150,9 +148,7 @@ export const useInboxToolbar = ({ accountId, items }: UseInboxToolbarProps): Too
     options: Object.keys(senderById).map((label) => ({
       value: label,
       label: label,
-      badge: {
-        label: senderById[label].toString(),
-      },
+      count: senderById[label],
     })),
   };
 
@@ -164,9 +160,7 @@ export const useInboxToolbar = ({ accountId, items }: UseInboxToolbarProps): Too
     options: Object.keys(statusById).map((label) => ({
       value: label,
       label: label,
-      badge: {
-        label: statusById[label].toString(),
-      },
+      count: statusById[label].toString(),
     })),
   };
 

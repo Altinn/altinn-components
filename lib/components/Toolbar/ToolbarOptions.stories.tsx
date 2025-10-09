@@ -22,34 +22,26 @@ export const Checkboxes: Story = {
         label: 'Brønnøysundregistrene',
         checked: true,
         value: 'brreg',
-        badge: {
-          label: '14',
-        },
+        count: 14,
       },
       {
         type: 'checkbox',
         label: 'Skatteetaten',
         checked: true,
         value: 'Skatt',
-        badge: {
-          label: '23',
-        },
+        count: 23,
       },
       {
         type: 'checkbox',
         label: 'Digdir',
         value: 'digdir',
-        badge: {
-          label: '2',
-        },
+        count: 2,
       },
       {
         type: 'checkbox',
         label: 'Helstilsynet',
         value: 'hdir',
-        badge: {
-          label: '7',
-        },
+        count: 7,
       },
     ],
   },
@@ -66,52 +58,40 @@ export const Radio: Story = {
         label: 'I dag',
         value: 'today',
         checked: true,
-        badge: {
-          label: '1',
-        },
+        count: 1,
       },
       {
         groupId: 'a',
         name: 'date',
         label: 'Denne uken',
         value: 'this-week',
-        badge: {
-          label: '4',
-        },
+        count: 4,
       },
       {
         groupId: 'a',
         name: 'date',
         label: 'Denne måneden',
         value: 'this-week',
-        badge: {
-          label: '11',
-        },
+        count: 11,
       },
       {
         groupId: 'b',
         name: 'date',
         label: 'Siste 6 måneder',
         value: 'last-6-months',
-        badge: {
-          label: '23',
-        },
+        count: 23,
       },
       {
         groupId: 'b',
         label: 'Siste 12 måneder',
         value: 'this-year',
-        badge: {
-          label: '43',
-        },
+        count: 43,
       },
       {
         groupId: 'c',
         label: 'Eldre enn 1 år',
         value: 'older-than-a-year',
-        badge: {
-          label: '22',
-        },
+        count: 22,
       },
     ],
   },

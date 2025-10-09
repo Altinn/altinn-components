@@ -12,7 +12,7 @@ import {
   TrashIcon,
 } from '@navikt/aksel-icons';
 import { accountMenu } from '../';
-import type { AccountMenuProps, GlobalMenuProps, MenuProps } from '../../lib';
+import { type AccountMenuProps, Badge, type GlobalMenuProps, type MenuProps } from '../../lib';
 
 export const desktopMenuItems: MenuProps['items'] = [
   {
@@ -20,11 +20,12 @@ export const desktopMenuItems: MenuProps['items'] = [
     groupId: 'apps',
     size: 'lg',
     icon: InboxFillIcon,
-    title: 'Innboks',
+    title: (
+      <>
+        Innboks <Badge label="Beta" />
+      </>
+    ),
     selected: true,
-    badge: {
-      label: '4',
-    },
     iconBadge: {
       color: 'alert',
       theme: 'base',

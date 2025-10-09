@@ -9,9 +9,10 @@ export type HeadingSize = 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'inherit';
 export type HeadingWeight = 'normal' | 'medium' | 'bold';
 export type HeadingLeading = 'none' | 'tight' | 'normal';
 
-export type HeadingComponent = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'div' | 'span';
+export type HeadingComponent = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'div' | 'span' | 'label';
 
 export interface HeadingProps {
+  id?: string;
   loading?: boolean;
   highlightWords?: string[];
   as?: HeadingComponent;
@@ -27,6 +28,7 @@ export interface HeadingProps {
 }
 
 export const Heading = ({
+  id,
   loading,
   highlightWords = [],
   as = 'h2',
@@ -45,6 +47,7 @@ export const Heading = ({
 
   return (
     <H
+      id={id}
       className={cx(styles.heading, className)}
       style={style}
       data-size={size}
