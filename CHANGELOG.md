@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.41.5](https://github.com/Altinn/altinn-components/compare/v0.41.4...v0.41.5) (2025-10-09)
+
+
+### Bug Fixes
+
+* menu item badge ([#702](https://github.com/Altinn/altinn-components/issues/702)) ([47c045b](https://github.com/Altinn/altinn-components/commit/47c045b9dd2979b11e4bec017e5494c973e3deee))
+
 ## [0.41.4](https://github.com/Altinn/altinn-components/compare/v0.41.3...v0.41.4) (2025-10-08)
 
 
