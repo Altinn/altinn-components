@@ -1,5 +1,5 @@
 import type { Meta } from '@storybook/react-vite';
-import { AccountMenu, type AccountMenuProps } from '..';
+import { AccountMenu, type AccountMenuItemProps, type AccountMenuProps } from '..';
 import { accountMenu, defaultAccounts, useAccountMenu } from '../../../examples';
 
 const meta = {
@@ -104,4 +104,33 @@ export const VirtualizedMenu = () => {
   });
 
   return <>{items && <AccountMenu search={search} groups={groups} items={items} isVirtualized={true} />}</>;
+};
+
+export const CustomFilter = () => {
+  const { items, groups } = useAccountMenu({
+    accounts: defaultAccounts,
+  });
+
+  const filterAccount = (item: AccountMenuItemProps, q: string) => {
+    if (item?.name?.toLowerCase().includes(q)) {
+      return true;
+    }
+
+    return false;
+  };
+
+  return (
+    <>
+      <AccountMenu
+        search={{
+          name: 's',
+          placeholder: 'cusoasd',
+        }}
+        groups={groups}
+        filterAccount={filterAccount as AccountMenuProps['filterAccount']}
+        items={items}
+        isVirtualized={true}
+      />
+    </>
+  );
 };

@@ -20,9 +20,8 @@
 }
 
 .title {
-  display: inline-flex;
-  align-items: center;
-  column-gap: 0.5em;
+  display: inline;
+  vertical-align: center;
 }
 
 .label mark {
