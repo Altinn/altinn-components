@@ -7,3 +7,4 @@ export * from './DrawerFooter';
 export * from './DrawerButton';
 export * from './DrawerBody';
 export * from './DrawerOrDropdown';
+export * from './FloatingDropdown';
