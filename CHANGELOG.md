@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.41.6](https://github.com/Altinn/altinn-components/compare/v0.41.5...v0.41.6) (2025-10-10)
+
+
+### Bug Fixes
+
+* settings modal + menu item disabled ([#705](https://github.com/Altinn/altinn-components/issues/705)) ([336b698](https://github.com/Altinn/altinn-components/commit/336b698240a676ea1dcbcdfb18eea42b3d209a80))
+
 ## [0.41.5](https://github.com/Altinn/altinn-components/compare/v0.41.4...v0.41.5) (2025-10-09)
 
 
