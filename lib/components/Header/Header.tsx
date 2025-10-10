@@ -55,7 +55,7 @@ export const Header = ({
       open={currentId === 'search' || currentId === 'menu' || currentId === 'locale'}
       onClose={closeAll}
     >
-      <HeaderLogo {...logo} className={styles.logo} />
+      <HeaderLogo {...logo} badge={badge} className={styles.logo} />
       {search && isDesktop && (
         <HeaderSearch expanded={currentId === 'search'}>
           <Searchbar {...search} expanded={currentId === 'search'} onClose={onSearchClose} onFocus={onSearchFocus} />
