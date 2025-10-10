@@ -38,7 +38,9 @@ export const AccountMenu = ({
     title: item?.title || item.name,
     groupId: item.groupId || 'search',
     selected: item.selected ?? currentAccount?.id === item.id,
-    onClick: () => onSelectAccount?.(item.id),
+    onClick: () => {
+      !item.disabled && onSelectAccount?.(item.id);
+    },
   }));
 
   const [filterString, setFilterString] = useState<string>('');

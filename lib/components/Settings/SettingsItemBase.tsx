@@ -23,6 +23,7 @@ export interface SettingsItemBaseProps extends ListItemBaseProps, ListItemHeader
 }
 
 export const SettingsItemBase = ({
+  ref,
   loading,
   color,
   size,
@@ -39,7 +40,7 @@ export const SettingsItemBase = ({
   const ariaLabel = props.ariaLabel || getAriaLabelFromTitle(title);
 
   return (
-    <ListItemBase className={styles.item} color={color} size={size} expanded={expanded}>
+    <ListItemBase ref={ref} className={styles.item} color={color} size={size} expanded={expanded}>
       <ListItemHeader {...props} loading={loading} ariaLabel={ariaLabel} className={styles.header} icon={icon}>
         <ListItemLabel
           loading={loading}

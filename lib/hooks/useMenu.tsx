@@ -75,7 +75,10 @@ export const useMenu = <T, V>({
       {} as Record<string, T[]>,
     );
 
-    const flatItems: T[] = Object.values(grouped).flat();
+    const flatItems: T[] = Object.values(grouped)
+      .flat()
+      // @ts-ignore: TODO: Fix Typescript error for disabled item
+      .filter((item) => !item?.disabled);
 
     return Object.entries(grouped)
       .sort(sortGroupBy || (() => 0))

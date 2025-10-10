@@ -66,6 +66,7 @@ export const accounts: AccountDataProps[] = [
     name: 'Ståle Solbakken',
     uniqueId: '071095XXXXX',
     emailAlerts: false,
+    disabled: true,
     smsAlerts: true,
   },
   {
@@ -137,6 +138,7 @@ export const accounts: AccountDataProps[] = [
     name: 'Vålerenga fotball',
     uniqueId: '968218743',
     isDeleted: true,
+    disabled: true,
   },
   {
     id: 'vif-2',
@@ -145,6 +147,7 @@ export const accounts: AccountDataProps[] = [
     uniqueId: '972202223',
     parentId: 'vif',
     isDeleted: true,
+    disabled: true,
   },
   {
     id: 'sogndal',

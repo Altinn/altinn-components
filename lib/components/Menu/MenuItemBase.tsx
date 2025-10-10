@@ -67,7 +67,7 @@ export const MenuItemBase = ({
       className={cx(styles.item, className)}
       role={role}
       aria-label={ariaLabel}
-      data-interactive={interactive}
+      data-interactive={!disabled && interactive}
       data-active={active}
       data-size={size}
       data-color={color}
@@ -77,6 +77,7 @@ export const MenuItemBase = ({
       data-selected={selected}
       href={href}
       onKeyPress={(e: KeyboardEvent) => {
+        if (disabled) return;
         e.key === 'Enter' && onClick?.();
         onKeyPress?.(e);
       }}
