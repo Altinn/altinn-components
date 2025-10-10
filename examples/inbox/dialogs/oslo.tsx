@@ -13,7 +13,7 @@ export const nabovarsel = {
   updatedAt: '2025-02-18T08:54:00.000Z',
   updatedAtLabel: '18. februar 2025 kl. 09.54',
   attachmentsCount: 4,
-  sender: oslo,
+  sender: { ...oslo, name: 'Skattekontoret i Oslo, avdeling Løren' },
   dueAt: undefined,
   dueAtLabel: undefined,
   additionalInfo: {

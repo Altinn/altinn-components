@@ -12,12 +12,12 @@
 
 .title {
   color: var(--ds-color-text-default);
-  display: inline-flex;
-  align-items: center;
-  column-gap: 0.5em;
+  display: inline;
+  vertical-align: text-top;
 }
 
 .count {
+  display: inline;
   vertical-align: super;
   font-size: smaller;
 }

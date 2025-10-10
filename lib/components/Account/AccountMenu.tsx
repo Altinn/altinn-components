@@ -3,8 +3,8 @@ import { type CSSProperties, useState } from 'react';
 import { Menu, type MenuItemProps, type MenuProps, type MenuSearchProps } from '../';
 
 export interface AccountSearchProps extends MenuSearchProps {
-  getResultsLabel?: (hits: number) => string;
   hidden?: boolean;
+  getResultsLabel?: (hits: number) => string;
 }
 
 export interface AccountMenuItemProps extends MenuItemProps {
@@ -18,6 +18,7 @@ export interface AccountMenuProps extends MenuProps {
   search?: AccountSearchProps;
   currentAccount?: AccountMenuItemProps;
   onSelectAccount?: (id: string) => void;
+  filterAccount?: (item: AccountMenuItemProps, q: string) => boolean;
   scrollRefStyles?: CSSProperties;
   keyboardEvents?: boolean;
 }
@@ -28,6 +29,7 @@ export const AccountMenu = ({
   items = [],
   groups = {},
   search,
+  filterAccount,
   onSelectAccount,
   currentAccount,
   isVirtualized,
@@ -45,13 +47,18 @@ export const AccountMenu = ({
 
   const [filterString, setFilterString] = useState<string>('');
 
+  const defaultFilterAccount = (item: AccountMenuItemProps, q: string) => {
+    return (
+      item?.name?.toLowerCase().includes(q.toLowerCase()) ||
+      item?.description?.toString()?.toLowerCase().includes(q.toLowerCase())
+    );
+  };
+
+  const applicableFilterAccount = filterAccount || defaultFilterAccount;
+
   const filteredAccountMenu = filterString
     ? accountMenu
-        .filter(
-          (item) =>
-            item?.name?.toLowerCase().includes(filterString.toLowerCase()) ||
-            item?.description?.toString()?.toLowerCase().includes(filterString.toLowerCase()),
-        )
+        .filter((item) => applicableFilterAccount(item, filterString))
         .map((item) => {
           return {
             ...item,
@@ -71,7 +78,7 @@ export const AccountMenu = ({
       }
     : groups;
 
-  const accountSearchItem: MenuSearchProps = {
+  const defaultAccountSearch: MenuSearchProps = {
     name: 'account-search',
     value: filterString,
     placeholder: search?.placeholder ?? 'Find account',
@@ -86,7 +93,7 @@ export const AccountMenu = ({
   return (
     <Menu
       variant="default"
-      search={search && accountSearchItem}
+      search={search && defaultAccountSearch}
       groups={filterAccountGroups}
       items={accountSwitcher}
       isVirtualized={isVirtualized}
