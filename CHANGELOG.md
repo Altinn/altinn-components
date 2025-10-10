@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.41.7](https://github.com/Altinn/altinn-components/compare/v0.41.6...v0.41.7) (2025-10-10)
+
+
+### Bug Fixes
+
+* menu item search ([#708](https://github.com/Altinn/altinn-components/issues/708)) ([16bffa0](https://github.com/Altinn/altinn-components/commit/16bffa0bdd9c86f014f240f78d35a1edec59cfb6))
+
+
+### Miscellaneous Chores
+
+* **main:** release 0.41.4 ([#699](https://github.com/Altinn/altinn-components/issues/699)) ([#703](https://github.com/Altinn/altinn-components/issues/703)) ([06b134c](https://github.com/Altinn/altinn-components/commit/06b134cfc3713ec46950b38f95424135410134ab))
+
 ## [0.41.6](https://github.com/Altinn/altinn-components/compare/v0.41.5...v0.41.6) (2025-10-10)
 
 
