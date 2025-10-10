@@ -50,7 +50,7 @@ export const AvatarGroup = ({
         const lastLegalAvatarReached = index === maxItemsCount - 1;
         const customLabel = avatar.customLabel || lastLegalAvatarReached ? items.length.toString() : undefined;
         return (
-          <li className={cx(styles.item)} key={avatar.name}>
+          <li className={cx(styles.item)} key={index}>
             <Avatar
               name={avatar.name}
               customLabel={customLabel}

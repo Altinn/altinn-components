@@ -8,6 +8,7 @@ export type ListItemBorder = 'none' | 'solid' | 'dotted';
 export type ListItemColor = Color;
 
 export interface ListItemBaseProps {
+  ref?: React.Ref<HTMLElement>;
   /** If true, the list item is interactive and has a hover state. */
   interactive?: boolean;
   /** The element type to render as. */
@@ -47,6 +48,7 @@ export interface ListItemBaseProps {
 }
 
 export const ListItemBase = ({
+  ref,
   as,
   interactive = true,
   size,
@@ -76,6 +78,7 @@ export const ListItemBase = ({
       aria-hidden={hidden}
       onMouseEnter={onMouseEnter}
       id={id}
+      ref={ref}
     >
       {children}
     </Component>

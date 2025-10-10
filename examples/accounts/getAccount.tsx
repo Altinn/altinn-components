@@ -6,6 +6,7 @@ export const getAccountItem = ({
   name = 'Company Name',
   isCurrentEndUser = false,
   isDeleted = false,
+  disabled,
   favourite,
   accountIds,
   uniqueId,
@@ -98,6 +99,7 @@ export const getAccountItem = ({
   return {
     id,
     groupName,
+    disabled,
     type,
     name,
     icon,

@@ -1,12 +1,21 @@
-import { Input, type InputProps, SettingsItemBase, type SettingsItemBaseProps, SettingsModal } from '..';
+import {
+  Input,
+  type InputProps,
+  SettingsItemBase,
+  type SettingsItemBaseProps,
+  SettingsModal,
+  type SettingsModalProps,
+} from '..';
 
 import { type ReactNode, useState } from 'react';
 
 export type SettingsItemVariant = 'default' | 'modal' | 'switch';
 
 export interface SettingsItemModalProps {
-  title?: string;
-  description?: string;
+  icon?: SettingsModalProps['icon'];
+  title?: SettingsModalProps['title'];
+  description?: SettingsModalProps['description'];
+  buttons?: SettingsModalProps['buttons'];
 }
 
 export interface SettingsItemProps extends SettingsItemBaseProps {
@@ -68,17 +77,15 @@ export const SettingsItem = ({
 
     case 'modal':
       return (
-        <SettingsItemBase
-          {...props}
-          title={modalProps?.title || props?.title}
-          description={modalProps?.description}
-          as="button"
-          linkIcon={true}
-          onClick={() => setOpen(true)}
-          expanded={open}
-        >
+        <SettingsItemBase {...props} as="button" linkIcon={true} onClick={() => setOpen(true)} expanded={open}>
           {open && (
-            <SettingsModal icon={props?.icon} title={props?.title} open={open} onClose={() => setOpen(false)}>
+            <SettingsModal
+              {...modalProps}
+              icon={modalProps?.icon || props?.icon}
+              title={modalProps?.title || props?.title}
+              open={open}
+              onClose={() => setOpen(false)}
+            >
               {children}
             </SettingsModal>
           )}

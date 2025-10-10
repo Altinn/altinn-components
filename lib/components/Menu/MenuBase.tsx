@@ -43,6 +43,7 @@ export interface MenuListItemProps {
   children?: ReactNode;
   style?: React.CSSProperties;
   dataIndex?: number;
+  disabled?: boolean;
   onMouseEnter?: MouseEventHandler;
   onMouseLeave?: MouseEventHandler;
   ref?: HTMLUListElement;
@@ -90,6 +91,7 @@ export const MenuListItem = ({
   children,
   style,
   dataIndex,
+  disabled,
   onMouseEnter,
   onMouseLeave,
   'aria-checked': ariaChecked,
@@ -103,6 +105,7 @@ export const MenuListItem = ({
       data-index={dataIndex}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      aria-disabled={disabled}
       aria-checked={ariaChecked}
     >
       {children}

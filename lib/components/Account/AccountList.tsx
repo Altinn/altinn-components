@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { AccountListItem, type AccountListItemProps, Heading, List, Section, Typography } from '..';
+import { AccountListItem, type AccountListItemProps, Heading, List, Section } from '..';
 import { useMenu } from '../../hooks';
 
 export interface AccountListGroupProps {
@@ -15,22 +15,7 @@ export interface AccountListProps {
   emptyDescription?: string;
 }
 
-export const AccountList = ({
-  items,
-  groups = {},
-  sortGroupBy,
-  emptyTitle = 'Ingen treff',
-  emptyDescription = 'Søket ga ingen treff',
-}: AccountListProps) => {
-  if (!items || items.length === 0) {
-    return (
-      <Section>
-        <Heading size="lg">{emptyTitle}</Heading>
-        <Typography>{emptyDescription}</Typography>
-      </Section>
-    );
-  }
-
+export const AccountList = ({ items, groups = {}, sortGroupBy }: AccountListProps) => {
   const { menu } = useMenu<AccountListItemProps, AccountListGroupProps>({
     items,
     groups,

@@ -21,11 +21,6 @@
   border-radius: 2px;
 }
 
-.item[aria-disabled="true"] {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
 /* size */
 
 .item[data-size="md"] {
@@ -99,7 +94,15 @@
   column-gap: 0.5em;
 }
 
-.item:focus-visible {
+.item[aria-disabled="true"] {
+  opacity: 0.5;
+  pointer-events: none;
+  outline: none;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.item:not([aria-disabled="true"]):focus-visible {
   /**
    * We use both box-shadow and outline to ensure that the focus style is visible,
    * in case box-shadow is overridden.

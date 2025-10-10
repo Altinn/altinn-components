@@ -72,6 +72,30 @@ export const Modal: Story = {
   },
 };
 
+export const ModalProps: Story = {
+  args: {
+    icon: HeartBrokenIcon,
+    title: 'Vis skjulte enheter',
+    variant: 'modal',
+    children: 'Modal content',
+    modalProps: {
+      description: 'En forklaring til hva som skal skje',
+      buttons: [
+        {
+          label: 'Lukk modalen',
+          onClick: () => {},
+          close: true,
+        },
+        {
+          variant: 'outline',
+          label: 'Ikke lukk ',
+          onClick: () => {},
+        },
+      ],
+    },
+  },
+};
+
 export const Company: Story = {
   args: {
     icon: {
