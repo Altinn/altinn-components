@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.42.0](https://github.com/Altinn/altinn-components/compare/v0.41.7...v0.42.0) (2025-10-10)
+
+
+### Features
+
+* Add floating dropdown component ([#709](https://github.com/Altinn/altinn-components/issues/709)) ([db23336](https://github.com/Altinn/altinn-components/commit/db233367355d0825e5d37c400ae22488a7c90657))
+
 ## [0.41.7](https://github.com/Altinn/altinn-components/compare/v0.41.6...v0.41.7) (2025-10-10)
 
 
