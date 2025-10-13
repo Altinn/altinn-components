@@ -67,6 +67,7 @@ export const ListItem = ({
   shadow = 'xs',
   border = 'none',
   loading,
+  disabled,
   collapsible,
   expanded,
   size,
@@ -93,6 +94,7 @@ export const ListItem = ({
       variant={variant}
       shadow={shadow}
       border={border}
+      disabled={disabled}
       selected={selected}
       expanded={expanded}
       loading={loading}
@@ -103,6 +105,7 @@ export const ListItem = ({
         color={color}
         loading={loading}
         linkIcon={linkIcon}
+        disabled={disabled}
         collapsible={collapsible}
         expanded={expanded}
         select={select}

@@ -35,6 +35,8 @@ export interface ListItemHeaderProps extends ListItemLinkProps {
   className?: string;
   /** Select controls */
   select?: ListItemSelectProps;
+  /** Item is disabled */
+  disabled?: boolean;
   /** Collapsible item */
   collapsible?: boolean;
   /** Item is expanded */
@@ -117,6 +119,7 @@ export const ListItemHeader = ({
       data-interactive={interactive}
       data-size={size}
       data-has-active-child={active}
+      aria-disabled={disabled}
     >
       <ListItemLink
         as={as}
@@ -150,7 +153,7 @@ export const ListItemHeader = ({
       <ListItemControls className={styles.controls}>
         {controls && !loading && <span className={styles.customControls}>{controls}</span>}
         {renderBadge()}
-        {applicableIcon && (
+        {applicableIcon && !disabled && (
           <span className={styles.linkIcon}>
             <Icon
               svgElement={applicableIcon}

@@ -23,7 +23,6 @@ export const AccountListItemControls = ({
   type,
   badge,
   isCurrentEndUser = false,
-  isDeleted = false,
   favourite = false,
   favouriteLabel,
   onToggleFavourite,
@@ -44,7 +43,7 @@ export const AccountListItemControls = ({
   return (
     <ListItemControls>
       {badge && renderBadge()}
-      {!isCurrentEndUser && !isDeleted && type !== 'group' && (
+      {!isCurrentEndUser && type !== 'group' && (
         <IconButton
           rounded
           variant="text"
