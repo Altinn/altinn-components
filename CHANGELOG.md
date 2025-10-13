@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.42.1](https://github.com/Altinn/altinn-components/compare/v0.42.0...v0.42.1) (2025-10-13)
+
+
+### Bug Fixes
+
+* support variant for avatar props in usedbylog ([#711](https://github.com/Altinn/altinn-components/issues/711)) ([a186d1b](https://github.com/Altinn/altinn-components/commit/a186d1b1e6683cebb95b99f51f362494fd945ccf))
+
 ## [0.42.0](https://github.com/Altinn/altinn-components/compare/v0.41.7...v0.42.0) (2025-10-10)
 
 
