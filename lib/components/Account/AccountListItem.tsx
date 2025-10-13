@@ -38,6 +38,7 @@ export const AccountListItem = ({
   contextMenu,
   children,
   interactive,
+  disabled,
   loading,
   ...item
 }: AccountListItemProps) => {
@@ -51,8 +52,10 @@ export const AccountListItem = ({
       description={expanded ? undefined : description}
       expanded={expanded}
       selected={expanded}
+      disabled={disabled}
       controls={
-        !loading && (
+        !loading &&
+        !disabled && (
           <AccountListItemControls
             id={id}
             type={type}

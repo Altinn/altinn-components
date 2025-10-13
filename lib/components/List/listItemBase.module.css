@@ -79,3 +79,7 @@
 .base[aria-disabled="true"] {
   pointer-events: none;
 }
+
+.base[aria-disabled="true"]:hover {
+  outline: none;
+}

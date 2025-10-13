@@ -50,6 +50,7 @@ export interface ListItemBaseProps {
 export const ListItemBase = ({
   ref,
   as,
+  disabled,
   interactive = true,
   size,
   color,
@@ -68,13 +69,14 @@ export const ListItemBase = ({
   return (
     <Component
       className={cx(styles.base, className)}
-      data-interactive={interactive}
+      data-interactive={disabled ? false : interactive}
       data-selected={selected}
       data-variant={variant}
       data-color={color}
       data-border={border}
       data-shadow={shadow}
       data-size={size}
+      aria-disabled={disabled}
       aria-hidden={hidden}
       onMouseEnter={onMouseEnter}
       id={id}
