@@ -65,7 +65,6 @@ export const Header = ({
         {locale && <LocaleSwitcher {...locale} />}
         <div className={styles.relative}>
           <GlobalMenuButton
-            badge={badge}
             currentAccount={currentAccount}
             onClick={onToggleMenu}
             expanded={currentId === 'menu'}
