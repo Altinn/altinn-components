@@ -1,5 +1,5 @@
 'use client';
-import { Fragment, useState } from 'react';
+import { Fragment, useMemo, useState } from 'react';
 import { Divider, Flex, List, Section, SeenByLogButton, UsedByLogItem, type UsedByLogItemProps } from '..';
 
 export interface UsedByLogProps {
@@ -41,16 +41,25 @@ export const UsedByLog = ({
     );
   }
 
+  const avatarGroup = useMemo(
+    () =>
+      items.map((item) => ({
+        ...item,
+        ...item.avatar,
+      })),
+    [items],
+  );
+
   return (
     <Section spacing={1}>
       {title && (
         <Flex>
           {collapsible ? (
-            <SeenByLogButton icon={{ items }} as="button" onClick={onToggle}>
+            <SeenByLogButton icon={{ items: avatarGroup }} as="button" onClick={onToggle}>
               {title}
             </SeenByLogButton>
           ) : (
-            <SeenByLogButton icon={{ items }} as="div">
+            <SeenByLogButton icon={{ items: avatarGroup }} as="div">
               {title}
             </SeenByLogButton>
           )}

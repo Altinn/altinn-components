@@ -35,7 +35,6 @@ export const SettingsModal = ({
       <ModalHeader icon={icon} title={title} description={description} onClose={onClose} />
       <ModalBody>
         {children}
-
         {buttons?.length && (
           <ButtonGroup>
             {buttons?.map((button, index) => (

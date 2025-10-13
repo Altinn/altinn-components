@@ -13,6 +13,7 @@ import type { Meta } from '@storybook/react-vite';
 import { type ChangeEvent, Fragment, useState } from 'react';
 import {
   type AccountListItemProps,
+  type BadgeProps,
   Button,
   ButtonGroup,
   Divider,
@@ -29,6 +30,7 @@ import {
   TextareaField,
   Typography,
   UsedByLog,
+  type UsedByLogItemProps,
   type UsedByLogProps,
 } from '..';
 import { brreg } from '../../../examples/avatar';
@@ -55,6 +57,23 @@ interface ContactProfileModalProps extends SettingsModalProps {
   usedByItems?: UsedByLogProps['items'];
 }
 
+const defaultUsedByItems = [
+  {
+    id: 'mathias',
+    name: 'Mathias Dyngeland',
+    badge: { label: 'deg', color: 'person' as BadgeProps['color'] },
+    type: 'person',
+  },
+  {
+    id: 'brann2',
+    name: 'Brann 2',
+    avatar: {
+      variant: 'outline',
+    },
+    type: 'company',
+  },
+];
+
 export const ContactProfileModal = ({
   icon = PersonRectangleIcon,
   title = 'Endre varslingsadresse',
@@ -64,6 +83,7 @@ export const ContactProfileModal = ({
   usedByItems,
   ...args
 }: ContactProfileModalProps) => {
+  const applcableUsedbyItems: UsedByLogItemProps[] = usedByItems || (defaultUsedByItems as UsedByLogItemProps[]);
   return (
     <SettingsModal {...args} icon={icon} title={title}>
       {type === 'phone' && <TextField label="Mobiltelefon" value={value} size="sm" readOnly={readOnly} />}
@@ -73,7 +93,11 @@ export const ContactProfileModal = ({
       )}
 
       {usedByItems && (
-        <UsedByLog endUserLabel="Deg" items={usedByItems} title={'Brukes av ' + usedByItems?.length + ' aktører'} />
+        <UsedByLog
+          endUserLabel="Deg"
+          items={applcableUsedbyItems}
+          title={'Brukes av ' + usedByItems?.length + ' aktører'}
+        />
       )}
 
       {readOnly ? (

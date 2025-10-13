@@ -7,6 +7,7 @@ export interface UsedByLogItemProps extends AvatarProps {
   endUserLabel?: string;
   badge?: BadgeProps;
   size?: 'sm' | 'md';
+  avatar?: AvatarProps;
 }
 
 /**
@@ -19,13 +20,14 @@ export const UsedByLogItem = ({
   description,
   isEndUser,
   endUserLabel,
+  avatar,
   size = 'sm',
 }: UsedByLogItemProps) => {
   const badge = isEndUser && { label: endUserLabel };
 
   return (
     <Flex align="center" spacing={2} as={'li'}>
-      <Byline size={size} avatar={{ name, type }}>
+      <Byline size={size} avatar={{ name, type, ...avatar }}>
         <strong>
           {name}
           {description && +','}
