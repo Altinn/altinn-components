@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.42.3](https://github.com/Altinn/altinn-components/compare/v0.42.2...v0.42.3) (2025-10-13)
+
+
+### Bug Fixes
+
+* disabled list-item + account list item deleted + favourite ([#717](https://github.com/Altinn/altinn-components/issues/717)) ([548a5d1](https://github.com/Altinn/altinn-components/commit/548a5d1b6ef9db44fae253b58121b3e450dabf76))
+
 ## [0.42.2](https://github.com/Altinn/altinn-components/compare/v0.42.1...v0.42.2) (2025-10-13)
 
 
