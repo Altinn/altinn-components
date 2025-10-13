@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.42.2](https://github.com/Altinn/altinn-components/compare/v0.42.1...v0.42.2) (2025-10-13)
+
+
+### Bug Fixes
+
+* Remove badge from globalMenu ([#715](https://github.com/Altinn/altinn-components/issues/715)) ([dcd4c8c](https://github.com/Altinn/altinn-components/commit/dcd4c8c26f5c60a06e438d40a63bb0c0897127c3))
+
 ## [0.42.1](https://github.com/Altinn/altinn-components/compare/v0.42.0...v0.42.1) (2025-10-13)
 
 
