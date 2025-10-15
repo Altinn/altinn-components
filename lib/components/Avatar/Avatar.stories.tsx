@@ -11,6 +11,11 @@ const meta = {
   args: {
     name: 'Jane Doe',
     type: 'person',
+    style: {
+      fontSize: '2.25rem',
+      width: '2.25rem',
+      height: '2.25rem',
+    },
   },
 } satisfies Meta<typeof Avatar>;
 
@@ -28,6 +33,31 @@ export const Company: Story = {
   args: {
     type: 'company',
     name: 'Boligeksperten',
+  },
+};
+
+export const DeletedCompany: Story = {
+  args: {
+    type: 'company',
+    name: 'Boligeksperten',
+    isDeleted: true,
+  },
+};
+
+export const Subunit: Story = {
+  args: {
+    type: 'company',
+    name: 'Boligeksperten',
+    isParent: false,
+  },
+};
+
+export const DeletedSubunit: Story = {
+  args: {
+    type: 'company',
+    name: 'Boligeksperten',
+    isParent: false,
+    isDeleted: true,
   },
 };
 

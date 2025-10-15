@@ -77,7 +77,18 @@ export const SettingsItem = ({
 
     case 'modal':
       return (
-        <SettingsItemBase {...props} as="button" linkIcon={true} onClick={() => setOpen(true)} expanded={open}>
+        <SettingsItemBase
+          {...props}
+          title={{
+            variant: 'subtle',
+            weight: 'normal',
+            children: props?.title,
+          }}
+          as="button"
+          linkIcon={true}
+          onClick={() => setOpen(true)}
+          expanded={open}
+        >
           {open && (
             <SettingsModal
               {...modalProps}
@@ -93,6 +104,15 @@ export const SettingsItem = ({
       );
 
     default:
-      return <SettingsItemBase {...props} />;
+      return (
+        <SettingsItemBase
+          {...props}
+          title={{
+            variant: 'subtle',
+            weight: 'normal',
+            children: props?.title,
+          }}
+        />
+      );
   }
 };
