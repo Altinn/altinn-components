@@ -36,6 +36,14 @@ export const Company: Story = {
   },
 };
 
+export const CompanyOutline: Story = {
+  args: {
+    type: 'company',
+    name: 'Juletreeksperten',
+    variant: 'outline',
+  },
+};
+
 export const DeletedCompany: Story = {
   args: {
     type: 'company',

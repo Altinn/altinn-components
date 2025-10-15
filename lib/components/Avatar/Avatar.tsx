@@ -59,14 +59,13 @@ export const isAvatarProps = (icon: unknown): icon is AvatarProps => {
  */
 export const Avatar = ({
   type = 'person',
-  isParent = true,
+  isParent,
   isDeleted = false,
   size,
   name = 'Avatar',
   shape,
   color,
   variant,
-  outline = true,
   imageUrl,
   imageUrlAlt,
   customLabel,
@@ -77,7 +76,14 @@ export const Avatar = ({
   const [hasImageError, setHasImageError] = useState<boolean>(false);
   const applicableShape: AvatarShape = shape || type === 'person' ? 'circle' : 'square';
   const applicableColor: AvatarColor = color || type === 'person' ? 'light' : 'dark';
-  const applicableVariant = variant || !isParent ? 'outline' : 'solid';
+
+  let applicableVariant = variant;
+
+  if (type === 'company') {
+    if (typeof isParent === 'boolean') {
+      applicableVariant = isParent ? 'solid' : 'outline';
+    }
+  }
 
   const { backgroundColor, foregroundColor } = fromStringToColor(name, applicableColor);
   const initials = (name[0] ?? '').toUpperCase();
@@ -98,7 +104,6 @@ export const Avatar = ({
       style={inlineStyles}
       data-shape={applicableShape}
       data-size={size}
-      data-outline={outline}
       aria-hidden
     >
       <Skeleton loading={loading} className={styles.shape} variant="circle">

@@ -12,7 +12,7 @@
   border-radius: 5%;
 }
 
-.avatar[data-outline="true"] {
+.avatar {
   outline: 1px solid #ffffff;
   box-sizing: border-box;
 }
