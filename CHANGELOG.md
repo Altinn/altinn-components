@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.42.5](https://github.com/Altinn/altinn-components/compare/v0.42.4...v0.42.5) (2025-10-15)
+
+
+### Bug Fixes
+
+* avatarProps isDeleted + isParent ([#721](https://github.com/Altinn/altinn-components/issues/721)) ([1244dd4](https://github.com/Altinn/altinn-components/commit/1244dd468e589e2e8e5d8870163441ebf059b31f))
+
 ## [0.42.4](https://github.com/Altinn/altinn-components/compare/v0.42.3...v0.42.4) (2025-10-15)
 
 
