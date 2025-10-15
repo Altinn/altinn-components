@@ -31,11 +31,21 @@ export const getAccountItem = ({
       };
     }
 
-    if (parentId) {
+    if (type === 'company' && parentId) {
       return {
         type,
         name,
-        variant: 'outline',
+        isParent: false,
+        isDeleted,
+      };
+    }
+
+    if (type === 'company') {
+      return {
+        type,
+        name,
+        isParent: true,
+        isDeleted,
       };
     }
 

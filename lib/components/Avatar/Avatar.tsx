@@ -22,6 +22,10 @@ export interface AvatarProps {
   name: string;
   /** The type of avatar. */
   type?: AvatarType;
+  /** Company is a parent. */
+  isParent?: boolean;
+  /** Company is a deleted. */
+  isDeleted?: boolean;
   /** Avatar shape. */
   shape?: AvatarColor;
   /** Avatar color. */
@@ -55,11 +59,13 @@ export const isAvatarProps = (icon: unknown): icon is AvatarProps => {
  */
 export const Avatar = ({
   type = 'person',
+  isParent = true,
+  isDeleted = false,
   size,
   name = 'Avatar',
   shape,
   color,
-  variant = 'solid',
+  variant,
   outline = true,
   imageUrl,
   imageUrlAlt,
@@ -71,6 +77,7 @@ export const Avatar = ({
   const [hasImageError, setHasImageError] = useState<boolean>(false);
   const applicableShape: AvatarShape = shape || type === 'person' ? 'circle' : 'square';
   const applicableColor: AvatarColor = color || type === 'person' ? 'light' : 'dark';
+  const applicableVariant = variant || !isParent ? 'outline' : 'solid';
 
   const { backgroundColor, foregroundColor } = fromStringToColor(name, applicableColor);
   const initials = (name[0] ?? '').toUpperCase();
@@ -80,8 +87,8 @@ export const Avatar = ({
     !loading && !usingImageUrl
       ? {
           ...style,
-          backgroundColor: variant === 'outline' ? foregroundColor : backgroundColor,
-          color: variant === 'outline' ? backgroundColor : foregroundColor,
+          backgroundColor: applicableVariant === 'outline' ? foregroundColor : backgroundColor,
+          color: applicableVariant === 'outline' ? backgroundColor : foregroundColor,
         }
       : style;
 
@@ -95,7 +102,7 @@ export const Avatar = ({
       aria-hidden
     >
       <Skeleton loading={loading} className={styles.shape} variant="circle">
-        <div className={styles.shape} data-variant={variant}>
+        <div className={styles.shape} data-variant={applicableVariant}>
           {usingImageUrl && (
             <img
               src={imageUrl}
@@ -108,6 +115,19 @@ export const Avatar = ({
           )}
         </div>
         {!usingImageUrl && <span className={styles.label}>{customLabel || initials}</span>}
+        {isDeleted && (
+          <svg
+            aria-hidden="true"
+            className={styles.deletedIcon}
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M0 24L24 -1.20156e-06" stroke="currentColor" />
+          </svg>
+        )}
       </Skeleton>
     </div>
   );
