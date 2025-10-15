@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.42.6](https://github.com/Altinn/altinn-components/compare/v0.42.5...v0.42.6) (2025-10-15)
+
+
+### Bug Fixes
+
+* avatar props fix ([#723](https://github.com/Altinn/altinn-components/issues/723)) ([88b570d](https://github.com/Altinn/altinn-components/commit/88b570de36048f402fa2d1f5356ebf782fb30bd7))
+
 ## [0.42.5](https://github.com/Altinn/altinn-components/compare/v0.42.4...v0.42.5) (2025-10-15)
 
 
