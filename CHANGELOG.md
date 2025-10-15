@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.42.4](https://github.com/Altinn/altinn-components/compare/v0.42.3...v0.42.4) (2025-10-15)
+
+
+### Bug Fixes
+
+* menu-button-avatar ([#719](https://github.com/Altinn/altinn-components/issues/719)) ([802e188](https://github.com/Altinn/altinn-components/commit/802e188b1f0a0c9d24aedcd5e7339254e5392033))
+
 ## [0.42.3](https://github.com/Altinn/altinn-components/compare/v0.42.2...v0.42.3) (2025-10-13)
 
 
