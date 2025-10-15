@@ -252,8 +252,14 @@ export const AccountAlertsModal = ({
         </>
       ) : (
         <>
+          <Typography size="sm">
+            <p>
+              Dette er dine personlige varslingsinnstillinger, ikke virksomhetens lovpålagte varslingsadresser. Disse
+              finner du under "Fullmakter".
+            </p>
+          </Typography>
           <ButtonGroup size="md">
-            <Button>Lagre og avslutt</Button>
+            <Button>Lagre</Button>
             <Button variant="outline">Avbryt</Button>
           </ButtonGroup>
         </>
