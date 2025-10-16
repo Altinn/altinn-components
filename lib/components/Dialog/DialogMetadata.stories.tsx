@@ -85,3 +85,15 @@ export const ActivityLog: Story = {
     },
   },
 };
+
+export const WithExtendedStatus: Story = {
+  args: {
+    status: {
+      value: 'in-progress',
+      label: 'Under arbeid',
+    },
+    extendedStatusLabel: 'Venter på svar',
+    sentCount: 1,
+    attachmentsCount: 2,
+  },
+};
