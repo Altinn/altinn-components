@@ -2,5 +2,11 @@
   position: relative;
   display: flex;
   align-items: center;
-  column-gap: 1rem;
+  column-gap: 0;
+}
+
+@media (min-width: 1024px) {
+  .group {
+    column-gap: 1rem;
+  }
 }
