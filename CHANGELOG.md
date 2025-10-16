@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.43.1](https://github.com/Altinn/altinn-components/compare/v0.43.0...v0.43.1) (2025-10-16)
+
+
+### Bug Fixes
+
+* Reduce gaps in header in mobile view ([#728](https://github.com/Altinn/altinn-components/issues/728)) ([25dc43f](https://github.com/Altinn/altinn-components/commit/25dc43f672b3e71178e318454505907ecba93fa2))
+
 ## [0.43.0](https://github.com/Altinn/altinn-components/compare/v0.42.6...v0.43.0) (2025-10-16)
 
 
