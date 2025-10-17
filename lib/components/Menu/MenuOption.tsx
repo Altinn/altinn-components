@@ -49,8 +49,14 @@ export const MenuOption = ({
             <span className={styles.checkbox} data-checked={checked}>
               <CheckmarkIcon className={styles.icon} aria-hidden />
             </span>
-            <span className={styles.title}>{label}</span>
-            {count > 0 && <span className={styles.count}>{count}</span>}
+            <div className={styles.titleWrapper}>
+              <span className={styles.title}>{label}</span>
+              {count > 0 && (
+                <span className={styles.count} aria-hidden="true">
+                  {count}
+                </span>
+              )}
+            </div>
           </span>
         );
       case 'radio':
@@ -59,8 +65,14 @@ export const MenuOption = ({
             <span className={styles.radio} data-checked={checked}>
               <CheckmarkIcon className={styles.icon} aria-hidden />
             </span>
-            <span className={styles.title}>{label}</span>
-            {count > 0 && <span className={styles.count}>{count}</span>}
+            <div className={styles.titleWrapper}>
+              <span className={styles.title}>{label}</span>
+              {count > 0 && (
+                <span className={styles.count} aria-hidden="true">
+                  {count}
+                </span>
+              )}
+            </div>
           </span>
         );
     }

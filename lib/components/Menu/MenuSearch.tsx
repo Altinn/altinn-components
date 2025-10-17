@@ -1,6 +1,7 @@
 import type { ChangeEventHandler } from 'react';
 import { SearchField } from '../';
 import styles from './menuSearch.module.css';
+import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
 
 export interface MenuSearchProps {
   placeholder?: string;
@@ -19,6 +20,7 @@ export const MenuSearch = ({
   onChange,
   onClear,
 }: MenuSearchProps) => {
+  const isDesktop = useIsDesktop();
   return (
     <SearchField
       size="xs"
@@ -30,7 +32,7 @@ export const MenuSearch = ({
       clearButtonAltText={clearButtonAltText}
       className={styles.field}
       autoComplete="off"
-      autoFocus={true}
+      autoFocus={isDesktop}
       onKeyDown={(e) => {
         if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
           e.preventDefault();
