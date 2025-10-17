@@ -16,6 +16,25 @@
   padding: 0.25rem;
 }
 
+.avatarIcon,
+.loginIcon,
+.closeIcon {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 2px;
+  font-size: unset;
+}
+
+.closeIcon {
+  outline: 1px solid white;
+}
+
+.loginIcon {
+  background-color: white;
+  color: black;
+  outline: 1px solid white;
+}
+
 .avatar {
   font-size: 2.25rem;
   width: 2.25rem;

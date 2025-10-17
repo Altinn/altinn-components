@@ -15,7 +15,7 @@ export * from './Dialog';
 export * from './Divider';
 export * from './Dropdown';
 export * from './Footer';
-export * from './GlobalMenu';
+export * from './GlobalMenu_old';
 export * from './Header';
 export * from './Icon';
 export * from './Layout';

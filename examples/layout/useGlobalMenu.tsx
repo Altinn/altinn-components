@@ -1,7 +1,7 @@
 import { defaultAccounts, globalMenu, loginMenu, useAccountMenu } from '../';
-import type { AccountListItemProps, GlobalMenuProps } from '../../lib';
+import type { AccountListItemProps, GlobalMenuProps_old } from '../../lib';
 
-interface UseGlobalMenuProps extends GlobalMenuProps {
+interface UseGlobalMenuProps extends GlobalMenuProps_old {
   accountId?: string | null;
   sectionId?: string;
   accounts?: AccountListItemProps[];
@@ -54,5 +54,5 @@ export const useGlobalMenu = ({
     },
     currentAccount,
     onSelectAccount,
-  } as GlobalMenuProps;
+  } as GlobalMenuProps_old;
 };

@@ -1,9 +1,10 @@
 'use client';
 import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
+import { AccountMenuButton } from '../Account/AccountMenuButton.tsx';
 import type { BadgeProps } from '../Badge/index.tsx';
 import { DrawerBase, DropdownBase } from '../Dropdown/index.ts';
 import { GlobalMenu, GlobalMenuButton, type GlobalMenuProps } from '../GlobalMenu/index.tsx';
-import type { Account } from '../GlobalMenu/index.tsx';
+import type { Account } from '../GlobalMenu_old/index.tsx';
 import { useRootContext } from '../RootProvider/index.ts';
 import { HeaderGroup, HeaderLogo, type HeaderLogoProps, type MenuProps } from '../index.ts';
 import styles from './globalHeader.module.css';
@@ -54,14 +55,10 @@ export const GlobalHeader = ({
     >
       <HeaderLogo {...logo} badge={badge} className={styles.logo} />
       <HeaderGroup>
-        {locale && <LocaleSwitcher {...locale} />}
+        {currentAccount && <AccountMenuButton currentAccount={currentAccount} minimized={!isDesktop} />}
+        {locale && isDesktop && <LocaleSwitcher {...locale} />}
         <div className={styles.relative}>
-          <GlobalMenuButton
-            currentAccount={currentAccount}
-            onClick={onToggleMenu}
-            expanded={currentId === 'menu'}
-            label={globalMenu?.menuLabel}
-          />
+          <GlobalMenuButton onClick={onToggleMenu} expanded={currentId === 'menu'} label={globalMenu?.menuLabel} />
           {globalMenu && (
             <DropdownBase
               layout="desktop"
@@ -71,24 +68,14 @@ export const GlobalHeader = ({
               open={currentId === 'menu'}
               className={styles.dropdown}
             >
-              <GlobalMenu
-                {...globalMenu}
-                menu={desktopMenu || globalMenu?.menu}
-                onClose={closeAll}
-                accountMenu={undefined}
-              />
+              <GlobalMenu {...globalMenu} menu={desktopMenu || globalMenu?.menu} onClose={closeAll} />
             </DropdownBase>
           )}
         </div>
       </HeaderGroup>
       {globalMenu && (
         <DrawerBase open={currentId === 'menu'} className={styles.drawer}>
-          <GlobalMenu
-            {...globalMenu}
-            menu={mobileMenu || globalMenu?.menu}
-            currentAccount={currentAccount}
-            onClose={closeAll}
-          />
+          <GlobalMenu {...globalMenu} menu={mobileMenu || globalMenu?.menu} onClose={closeAll} />
         </DrawerBase>
       )}
     </GlobalHeaderBase>
