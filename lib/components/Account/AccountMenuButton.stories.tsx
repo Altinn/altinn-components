@@ -13,9 +13,11 @@ const meta = {
   args: {
     currentAccount: defaultAccounts[0] as Account,
     minimized: false,
+    expanded: false,
   },
   argTypes: {
     minimized: { control: 'boolean' },
+    expanded: { control: 'boolean' },
   },
 } satisfies Meta<typeof AccountMenuButton>;
 

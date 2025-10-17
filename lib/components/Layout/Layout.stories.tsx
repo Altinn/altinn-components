@@ -2,7 +2,7 @@ import type { Meta } from '@storybook/react-vite';
 import { Flex } from '..';
 import type { LayoutProps } from '../';
 import { Layout, List, type ListItemProps, PageBase } from '../';
-import { footer, header, inboxMenu, skipLink, useLayout } from '../../../examples';
+import { footer, header, inboxMenu, skipLink, useAccountMenu, useGlobalMenu, useLayout } from '../../../examples';
 
 const meta = {
   title: 'Layout/Layout',
@@ -49,8 +49,18 @@ export default meta;
 
 export const Preview = (args: LayoutProps) => {
   const layout = useLayout(args);
+  const accountMenu = useAccountMenu({ accountId: 'diaspora' });
+  const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
   return (
-    <Layout {...args} {...layout}>
+    <Layout
+      {...args}
+      {...layout}
+      header={{
+        ...layout.header,
+        accountMenu: accountMenu,
+        globalMenu: globalMenu,
+      }}
+    >
       {args.children}
     </Layout>
   );

@@ -13,7 +13,6 @@ export interface GlobalMenuProps {
   changeLabel?: string;
   className?: string;
   currentEndUserLabel?: string;
-  onSelectAccount?: (id: string) => void;
   onClose?: () => void;
   ariaLabel?: string;
 }
@@ -21,7 +20,6 @@ export interface GlobalMenuProps {
 export const GlobalMenu = ({
   menu,
   backLabel = 'Back',
-  onSelectAccount,
   onClose,
   logoutButton,
   ariaLabel = 'Menu',

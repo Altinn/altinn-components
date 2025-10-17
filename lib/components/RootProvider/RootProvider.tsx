@@ -3,7 +3,7 @@ import { type ReactNode, createContext, useContext, useState } from 'react';
 import { useEscapeKey } from '../../hooks';
 import { SnackbarProvider } from '../Snackbar';
 
-type OpenElementId = 'search' | 'menu' | string;
+type OpenElementId = 'search' | 'menu' | 'account' | string;
 
 interface RootContextProvider {
   currentId: OpenElementId;

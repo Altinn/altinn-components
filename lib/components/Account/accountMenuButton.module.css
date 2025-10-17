@@ -1,7 +1,6 @@
 .button {
   flex-shrink: 0;
   position: relative;
-  z-index: 2;
   display: inline-flex;
   align-items: center;
   column-gap: 0.1rem;

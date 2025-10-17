@@ -23,21 +23,6 @@ export const AccountMenuButton = ({
   minimized = false,
   ...buttonProps
 }: AccountMenuButtonProps) => {
-  if (expanded) {
-    return (
-      <ButtonBase
-        {...buttonProps}
-        as={'button'}
-        variant={'text'}
-        color={'accent'}
-        className={cx(styles.button, className)}
-      >
-        {!minimized && <ButtonLabel>{label}</ButtonLabel>}
-        <ButtonIcon className={styles.closeIcon} icon={<XMarkIcon className={styles.icon} aria-label="Close Icon" />} />
-      </ButtonBase>
-    );
-  }
-
   if (currentAccount) {
     return (
       <ButtonBase
@@ -57,10 +42,17 @@ export const AccountMenuButton = ({
             }
           </ButtonLabel>
         )}
-        <ButtonIcon
-          className={styles.avatarIcon}
-          icon={<Avatar {...(currentAccount?.icon as AvatarProps)} className={styles.avatar} />}
-        />
+        {expanded ? (
+          <ButtonIcon
+            className={styles.closeIcon}
+            icon={<XMarkIcon className={styles.icon} aria-label="Close Icon" />}
+          />
+        ) : (
+          <ButtonIcon
+            className={styles.avatarIcon}
+            icon={<Avatar {...(currentAccount?.icon as AvatarProps)} className={styles.avatar} />}
+          />
+        )}
       </ButtonBase>
     );
   }

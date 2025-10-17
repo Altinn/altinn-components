@@ -8,10 +8,10 @@
 }
 
 @media (min-width: 1024px) {
-  .dropdown[data-expanded="true"] {
+  .dropdown[data-expanded="true"][data-layout="desktop"] {
     display: block;
   }
-  .drawer[data-expanded="true"] {
+  .drawer[data-expanded="true"][data-layout="mobile"] {
     display: none;
   }
 }

@@ -6,7 +6,14 @@ import { DrawerBase, DropdownBase } from '../Dropdown/index.ts';
 import { GlobalMenu, GlobalMenuButton, type GlobalMenuProps } from '../GlobalMenu/index.tsx';
 import type { Account } from '../GlobalMenu_old/index.tsx';
 import { useRootContext } from '../RootProvider/index.ts';
-import { HeaderGroup, HeaderLogo, type HeaderLogoProps, type MenuProps } from '../index.ts';
+import {
+  AccountMenu,
+  type AccountMenuProps,
+  HeaderGroup,
+  HeaderLogo,
+  type HeaderLogoProps,
+  type MenuProps,
+} from '../index.ts';
 import styles from './globalHeader.module.css';
 import { GlobalHeaderBase, LocaleSwitcher, type LocaleSwitcherProps } from './index.tsx';
 
@@ -16,6 +23,7 @@ export interface GlobalHeaderProps {
   desktopMenu?: MenuProps;
   /** Use to override globalMenu.menu on mobile */
   mobileMenu?: MenuProps;
+  accountMenu?: AccountMenuProps;
   locale?: LocaleSwitcherProps;
   currentAccount?: Account;
   badge?: BadgeProps | undefined;
@@ -26,6 +34,7 @@ export const GlobalHeader = ({
   globalMenu,
   desktopMenu,
   mobileMenu,
+  accountMenu,
   locale,
   currentAccount,
   logo = {},
@@ -41,21 +50,33 @@ export const GlobalHeader = ({
     toggleId('search');
   };
 
+  const onToggleAccountMenu = () => {
+    toggleId('account');
+  };
+
   const onToggleMenu = () => {
     toggleId('menu');
   };
 
   const isDesktop = useIsDesktop();
 
+  const handleSelectAccount = (id: string) => {
+    onToggleAccountMenu();
+    accountMenu?.onSelectAccount?.(id);
+  };
+
   return (
-    <GlobalHeaderBase
-      currentId={currentId}
-      open={currentId === 'search' || currentId === 'menu' || currentId === 'locale'}
-      onClose={closeAll}
-    >
+    <GlobalHeaderBase currentId={currentId}>
       <HeaderLogo {...logo} badge={badge} className={styles.logo} />
       <HeaderGroup>
-        {currentAccount && <AccountMenuButton currentAccount={currentAccount} minimized={!isDesktop} />}
+        {currentAccount && (
+          <AccountMenuButton
+            currentAccount={currentAccount}
+            minimized={!isDesktop}
+            onClick={onToggleAccountMenu}
+            expanded={currentId === 'account'}
+          />
+        )}
         {locale && isDesktop && <LocaleSwitcher {...locale} />}
         <div className={styles.relative}>
           <GlobalMenuButton onClick={onToggleMenu} expanded={currentId === 'menu'} label={globalMenu?.menuLabel} />
@@ -76,6 +97,17 @@ export const GlobalHeader = ({
       {globalMenu && (
         <DrawerBase open={currentId === 'menu'} className={styles.drawer}>
           <GlobalMenu {...globalMenu} menu={mobileMenu || globalMenu?.menu} onClose={closeAll} />
+        </DrawerBase>
+      )}
+      {globalMenu && (
+        <DrawerBase
+          open={currentId === 'account'}
+          className={styles.drawer}
+          dataLayout={isDesktop ? 'desktop' : 'mobile'}
+        >
+          {accountMenu && (
+            <AccountMenu {...accountMenu} currentAccount={currentAccount} onSelectAccount={handleSelectAccount} />
+          )}
         </DrawerBase>
       )}
     </GlobalHeaderBase>
