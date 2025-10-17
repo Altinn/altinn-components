@@ -26,7 +26,6 @@
   display: inline;
   font-size: smaller;
   white-space: nowrap;
-  color: var(--ds-color-text-subtle);
 }
 
 .radio,
