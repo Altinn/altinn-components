@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.43.3](https://github.com/Altinn/altinn-components/compare/v0.43.2...v0.43.3) (2025-10-17)
+
+
+### Bug Fixes
+
+* count label breaks ([#731](https://github.com/Altinn/altinn-components/issues/731)) ([71daad0](https://github.com/Altinn/altinn-components/commit/71daad0d8acccb749af2276c294e8582bce00655))
+
 ## [0.43.2](https://github.com/Altinn/altinn-components/compare/v0.43.1...v0.43.2) (2025-10-17)
 
 
