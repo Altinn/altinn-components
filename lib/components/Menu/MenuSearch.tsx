@@ -1,7 +1,7 @@
 import type { ChangeEventHandler } from 'react';
 import { SearchField } from '../';
-import styles from './menuSearch.module.css';
 import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
+import styles from './menuSearch.module.css';
 
 export interface MenuSearchProps {
   placeholder?: string;

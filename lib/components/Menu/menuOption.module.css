@@ -8,6 +8,9 @@
   font-size: 1rem;
   column-gap: 0.5em;
   pointer-events: none;
+  word-break: normal;
+  white-space: normal;
+  overflow-wrap: normal;
 }
 
 .title {
@@ -26,7 +29,6 @@
   display: inline;
   font-size: smaller;
   white-space: nowrap;
-  color: var(--ds-color-text-subtle);
 }
 
 .radio,
