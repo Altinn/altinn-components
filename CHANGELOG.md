@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.43.3](https://github.com/Altinn/altinn-components/compare/v0.43.2...v0.43.3) (2025-10-17)
+
+
+### Bug Fixes
+
+* count label breaks ([#731](https://github.com/Altinn/altinn-components/issues/731)) ([71daad0](https://github.com/Altinn/altinn-components/commit/71daad0d8acccb749af2276c294e8582bce00655))
+
+## [0.43.2](https://github.com/Altinn/altinn-components/compare/v0.43.1...v0.43.2) (2025-10-17)
+
+
+### Bug Fixes
+
+* Add row gap in mobile view to header ([#730](https://github.com/Altinn/altinn-components/issues/730)) ([5a9624e](https://github.com/Altinn/altinn-components/commit/5a9624ee80c2b121aa1e68f99624a742372c1b93))
+
 ## [0.43.1](https://github.com/Altinn/altinn-components/compare/v0.43.0...v0.43.1) (2025-10-16)
 
 
