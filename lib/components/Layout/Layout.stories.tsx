@@ -34,6 +34,14 @@ const meta = {
         <a href="https://altinn.no">with a focusable item</a>
       </Flex>
     ),
+    useGlobalHeader: true,
+  },
+  argTypes: {
+    useGlobalHeader: {
+      control: {
+        type: 'boolean',
+      },
+    },
   },
 } satisfies Meta<typeof Layout>;
 
@@ -41,7 +49,11 @@ export default meta;
 
 export const Preview = (args: LayoutProps) => {
   const layout = useLayout(args);
-  return <Layout {...layout}>{args.children}</Layout>;
+  return (
+    <Layout {...args} {...layout}>
+      {args.children}
+    </Layout>
+  );
 };
 
 export const StickySidebar = (args: LayoutProps) => {
@@ -49,6 +61,7 @@ export const StickySidebar = (args: LayoutProps) => {
 
   return (
     <Layout
+      {...args}
       {...layout}
       sidebar={{
         ...args.sidebar,
@@ -83,6 +96,7 @@ export const HiddenSidebar = (args: LayoutProps) => {
 
   return (
     <Layout
+      {...args}
       {...layout}
       sidebar={{
         ...args.sidebar,
@@ -98,7 +112,7 @@ export const Fullscreen = (args: LayoutProps) => {
   const layout = useLayout(args);
 
   return (
-    <Layout {...layout} theme="default" sidebar={undefined}>
+    <Layout {...args} {...layout} theme="default" sidebar={undefined}>
       {args.children}
     </Layout>
   );

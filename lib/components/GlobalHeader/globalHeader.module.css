@@ -1,0 +1,21 @@
+.drawer[data-expanded="true"] {
+  display: block;
+  width: 100%;
+}
+
+.dropdown[data-expanded="true"] {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .dropdown[data-expanded="true"] {
+    display: block;
+  }
+  .drawer[data-expanded="true"] {
+    display: none;
+  }
+}
+
+.relative {
+  position: relative;
+}

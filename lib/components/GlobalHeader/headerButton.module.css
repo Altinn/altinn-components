@@ -1,0 +1,52 @@
+.button {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.625rem;
+  padding: 0.625rem;
+  border: none;
+  border-radius: 4px;
+}
+
+.label {
+  font-size: 1.125rem;
+  font-weight: 500;
+  padding: 0.25rem;
+}
+
+.icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  font-size: 1.5rem;
+}
+
+.avatarGroup {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.loginIcon {
+  background-color: white;
+  color: black;
+}
+
+.closeIcon {
+  outline: 1px solid white;
+}
+
+.badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: -0.75rem;
+  margin-right: -0.75rem;
+}
