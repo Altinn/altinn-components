@@ -47,3 +47,12 @@ export const SingleGroup: Story = {
 export const Ungrouped: Story = {
   args: { groups: undefined },
 };
+
+export const WithExtendedStatus: Story = {
+  args: {
+    items: inboxSection.items.slice(0, 5).map((item, index) => ({
+      ...item,
+      extendedStatusLabel: index % 2 === 0 ? 'Venter på svar' : undefined,
+    })),
+  },
+};
