@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.43.4](https://github.com/Altinn/altinn-components/compare/v0.43.3...v0.43.4) (2025-10-17)
+
+
+### Bug Fixes
+
+* wrap label correctly in menu option ([#734](https://github.com/Altinn/altinn-components/issues/734)) ([9e33615](https://github.com/Altinn/altinn-components/commit/9e33615683a80ac8b2bd6d3d632084bd7d9e43fd))
+
 ## [0.43.3](https://github.com/Altinn/altinn-components/compare/v0.43.2...v0.43.3) (2025-10-17)
 
 
