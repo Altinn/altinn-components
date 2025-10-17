@@ -8,6 +8,7 @@ export interface ToolbarAccountMenuProps extends AccountMenuProps {
   id?: string;
   isVirtualized?: boolean;
   buttonTestId?: string;
+  title?: string;
 }
 
 export const ToolbarAccountMenu = ({
@@ -15,6 +16,7 @@ export const ToolbarAccountMenu = ({
   id = 'toolbar-accounts',
   onSelectAccount,
   buttonTestId,
+  title = 'Endre aktør',
   ...rest
 }: ToolbarAccountMenuProps) => {
   const { currentId, toggleId, closeAll } = useRootContext();
@@ -40,7 +42,7 @@ export const ToolbarAccountMenu = ({
       >
         {currentAccount?.name}
       </ToolbarButton>
-      <DrawerOrDropdown open={expanded} size="lg" drawerTitle="Endre konto" onClose={closeAll}>
+      <DrawerOrDropdown open={expanded} size="lg" drawerTitle={title} onClose={closeAll}>
         <AccountMenu
           {...rest}
           keyboardEvents={expanded && isDesktop}
