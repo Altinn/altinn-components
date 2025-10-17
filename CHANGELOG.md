@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.43.5](https://github.com/Altinn/altinn-components/compare/v0.43.4...v0.43.5) (2025-10-17)
+
+
+### Bug Fixes
+
+* title in account menu ([#736](https://github.com/Altinn/altinn-components/issues/736)) ([a6bd77b](https://github.com/Altinn/altinn-components/commit/a6bd77bb09d3ded271a5a32ff9475bc98194f55a))
+
 ## [0.43.4](https://github.com/Altinn/altinn-components/compare/v0.43.3...v0.43.4) (2025-10-17)
 
 
