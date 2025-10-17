@@ -16,10 +16,16 @@
   vertical-align: text-top;
 }
 
-.count {
+.titleWrapper {
   display: inline;
-  vertical-align: super;
+  line-height: 1.25;
+}
+
+.count {
+  margin-left: 0.5rem;
+  display: inline;
   font-size: smaller;
+  white-space: nowrap;
 }
 
 .radio,

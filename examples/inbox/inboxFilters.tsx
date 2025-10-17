@@ -107,7 +107,8 @@ export const inboxFilters: ToolbarFilterProps[] = [
       },
       {
         value: 'nav',
-        label: 'NAV',
+        label: 'Arbeids- og velferdsetaten (NAV)',
+        count: 120,
       },
       {
         value: 'oslo',
