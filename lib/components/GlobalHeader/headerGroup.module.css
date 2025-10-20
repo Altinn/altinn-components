@@ -4,3 +4,9 @@
   align-items: center;
   column-gap: 1rem;
 }
+
+@media (max-width: 1023px) {
+  .group {
+    column-gap: 0.1rem;
+  }
+}

@@ -4,6 +4,7 @@ import type { ElementType } from 'react';
 import { ButtonBase, ButtonIcon, ButtonLabel, type ButtonProps } from '../';
 import { Badge, type BadgeProps } from '../Badge';
 
+import { useIsDesktop } from '../../hooks/useIsDesktop';
 import styles from './globalMenuButton.module.css';
 
 export interface GlobalMenuButtonProps extends ButtonProps {
@@ -25,10 +26,14 @@ export const GlobalMenuButton = ({
   badge,
   ...buttonProps
 }: GlobalMenuButtonProps) => {
+  const isDesktop = useIsDesktop();
+
   if (expanded) {
     return (
       <ButtonBase {...buttonProps} as={as} variant={variant} color={color} className={cx(styles.button, className)}>
-        <ButtonIcon className={styles.closeIcon} icon={<XMarkIcon className={styles.icon} aria-label="Close" />} />
+        {isDesktop && (
+          <ButtonIcon className={styles.closeIcon} icon={<XMarkIcon className={styles.icon} aria-label="Close" />} />
+        )}
         <ButtonLabel>{label}</ButtonLabel>
         {badge && <Badge {...badge} className={styles.badge} />}
       </ButtonBase>
@@ -37,7 +42,7 @@ export const GlobalMenuButton = ({
 
   return (
     <ButtonBase {...buttonProps} as={as} variant={variant} color={color} className={cx(styles.button, className)}>
-      <ButtonIcon icon={<MenuHamburgerIcon className={styles.icon} aria-hidden />} />
+      {isDesktop && <ButtonIcon icon={<MenuHamburgerIcon className={styles.icon} aria-hidden />} />}
       <ButtonLabel>{label}</ButtonLabel>
       {badge && <Badge {...badge} className={styles.badge} />}
     </ButtonBase>

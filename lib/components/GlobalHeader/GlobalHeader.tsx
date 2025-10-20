@@ -1,19 +1,14 @@
 'use client';
 import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
 import { AccountMenuButton } from '../Account/AccountMenuButton.tsx';
+import { AccountMenu, type AccountMenuProps } from '../Account/index.tsx';
 import type { BadgeProps } from '../Badge/index.tsx';
 import { DrawerBase, DropdownBase } from '../Dropdown/index.ts';
 import { GlobalMenu, GlobalMenuButton, type GlobalMenuProps } from '../GlobalMenu/index.tsx';
 import type { Account } from '../GlobalMenu_old/index.tsx';
+import type { MenuProps } from '../Menu/index.ts';
 import { useRootContext } from '../RootProvider/index.ts';
-import {
-  AccountMenu,
-  type AccountMenuProps,
-  HeaderGroup,
-  HeaderLogo,
-  type HeaderLogoProps,
-  type MenuProps,
-} from '../index.ts';
+import { HeaderGroup, HeaderLogo, type HeaderLogoProps } from './';
 import styles from './globalHeader.module.css';
 import { GlobalHeaderBase, LocaleSwitcher, type LocaleSwitcherProps } from './index.tsx';
 
