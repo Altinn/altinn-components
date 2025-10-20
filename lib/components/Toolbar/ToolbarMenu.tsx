@@ -6,6 +6,7 @@ import { ToolbarFilterBase } from './ToolbarFilterBase';
 export interface ToolbarMenuProps {
   label: string;
   value: string | number;
+  title?: string;
   items: MenuItemProps[];
   groups?: MenuItemGroups;
   search?: MenuSearchProps;
@@ -13,7 +14,15 @@ export interface ToolbarMenuProps {
   className?: string;
 }
 
-export const ToolbarMenu = ({ label, value, groups, search, items, id = 'toolbar-menu' }: ToolbarMenuProps) => {
+export const ToolbarMenu = ({
+  label,
+  value,
+  groups,
+  search,
+  items,
+  id = 'toolbar-menu',
+  title = 'Endre aktør',
+}: ToolbarMenuProps) => {
   const { currentId, toggleId, closeAll } = useRootContext();
   const onToggle = () => toggleId(id);
   const expanded = currentId === id;
@@ -23,7 +32,7 @@ export const ToolbarMenu = ({ label, value, groups, search, items, id = 'toolbar
       <ToolbarButton type="switch" onToggle={onToggle} active={!!value}>
         {label}
       </ToolbarButton>
-      <DrawerOrDropdown open={expanded} drawerTitle="Endre konto" onClose={closeAll}>
+      <DrawerOrDropdown open={expanded} drawerTitle={title} onClose={closeAll}>
         <Menu groups={groups} search={search} items={items} />
       </DrawerOrDropdown>
     </ToolbarFilterBase>

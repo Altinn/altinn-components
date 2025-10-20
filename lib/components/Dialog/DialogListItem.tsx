@@ -80,6 +80,7 @@ export const DialogListItem = ({
   select,
   selected,
   status,
+  extendedStatusLabel,
   sender,
   recipient,
   recipientLabel = 'to',
@@ -188,6 +189,7 @@ export const DialogListItem = ({
             className={styles.footer}
             loading={loading}
             status={status}
+            extendedStatusLabel={extendedStatusLabel}
             draftsLabel={draftsLabel}
             sentCount={sentCount}
             receivedCount={receivedCount}

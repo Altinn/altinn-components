@@ -16,6 +16,7 @@ export interface AccountListItemProps extends ListItemProps, AccountListItemCont
   accountIds?: string[]; // Optional, used for grouping accounts
   isCurrentEndUser?: boolean; // Indicates if this account is the current end user
   isDeleted?: boolean; // Indicates that the account has been deleted
+  isParent?: boolean; // Indicates that the account is a parent account
   contextMenu?: ContextMenuProps;
   label?: string;
 }

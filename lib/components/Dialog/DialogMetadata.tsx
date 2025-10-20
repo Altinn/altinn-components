@@ -21,6 +21,8 @@ export type DialogMetadataProps = {
   loading?: boolean;
   /** Dialog status */
   status?: DialogStatusProps;
+  /** Extended Status Label */
+  extendedStatusLabel?: string;
   /** Sender */
   sender?: AvatarProps;
   /** Updated datetime */
@@ -83,10 +85,16 @@ export const DialogMetadata = ({
   attachmentsLabel,
   transmissionsLabel,
   activityLog,
+  extendedStatusLabel,
 }: DialogMetadataProps) => {
   return (
     <MetaBase className={className} size="xs">
       {status && <DialogStatus loading={loading} size="xs" {...status} />}
+      {extendedStatusLabel && (
+        <MetaItem size="xs" variant="outline">
+          {extendedStatusLabel}
+        </MetaItem>
+      )}
       {draftsLabel && (
         <MetaItem size="xs" variant="dotted">
           {draftsLabel}

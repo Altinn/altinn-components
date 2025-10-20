@@ -1,5 +1,66 @@
 # Changelog
 
+## [0.43.5](https://github.com/Altinn/altinn-components/compare/v0.43.4...v0.43.5) (2025-10-17)
+
+
+### Bug Fixes
+
+* title in account menu ([#736](https://github.com/Altinn/altinn-components/issues/736)) ([a6bd77b](https://github.com/Altinn/altinn-components/commit/a6bd77bb09d3ded271a5a32ff9475bc98194f55a))
+
+## [0.43.4](https://github.com/Altinn/altinn-components/compare/v0.43.3...v0.43.4) (2025-10-17)
+
+
+### Bug Fixes
+
+* wrap label correctly in menu option ([#734](https://github.com/Altinn/altinn-components/issues/734)) ([9e33615](https://github.com/Altinn/altinn-components/commit/9e33615683a80ac8b2bd6d3d632084bd7d9e43fd))
+
+## [0.43.3](https://github.com/Altinn/altinn-components/compare/v0.43.2...v0.43.3) (2025-10-17)
+
+
+### Bug Fixes
+
+* count label breaks ([#731](https://github.com/Altinn/altinn-components/issues/731)) ([71daad0](https://github.com/Altinn/altinn-components/commit/71daad0d8acccb749af2276c294e8582bce00655))
+
+## [0.43.2](https://github.com/Altinn/altinn-components/compare/v0.43.1...v0.43.2) (2025-10-17)
+
+
+### Bug Fixes
+
+* Add row gap in mobile view to header ([#730](https://github.com/Altinn/altinn-components/issues/730)) ([5a9624e](https://github.com/Altinn/altinn-components/commit/5a9624ee80c2b121aa1e68f99624a742372c1b93))
+
+## [0.43.1](https://github.com/Altinn/altinn-components/compare/v0.43.0...v0.43.1) (2025-10-16)
+
+
+### Bug Fixes
+
+* Reduce gaps in header in mobile view ([#728](https://github.com/Altinn/altinn-components/issues/728)) ([25dc43f](https://github.com/Altinn/altinn-components/commit/25dc43f672b3e71178e318454505907ecba93fa2))
+
+## [0.43.0](https://github.com/Altinn/altinn-components/compare/v0.42.6...v0.43.0) (2025-10-16)
+
+
+### Features
+
+* Add extended status to dialog ([#727](https://github.com/Altinn/altinn-components/issues/727)) ([ba0bfa3](https://github.com/Altinn/altinn-components/commit/ba0bfa35f8ea0af2cba0e1fbc87b223e463baf27))
+
+
+### Bug Fixes
+
+* overflow for gui action button when labels are long ([#725](https://github.com/Altinn/altinn-components/issues/725)) ([3db97d8](https://github.com/Altinn/altinn-components/commit/3db97d82e2b6b33d3b78eae134d07227579b0956))
+
+## [0.42.6](https://github.com/Altinn/altinn-components/compare/v0.42.5...v0.42.6) (2025-10-15)
+
+
+### Bug Fixes
+
+* avatar props fix ([#723](https://github.com/Altinn/altinn-components/issues/723)) ([88b570d](https://github.com/Altinn/altinn-components/commit/88b570de36048f402fa2d1f5356ebf782fb30bd7))
+
+## [0.42.5](https://github.com/Altinn/altinn-components/compare/v0.42.4...v0.42.5) (2025-10-15)
+
+
+### Bug Fixes
+
+* avatarProps isDeleted + isParent ([#721](https://github.com/Altinn/altinn-components/issues/721)) ([1244dd4](https://github.com/Altinn/altinn-components/commit/1244dd468e589e2e8e5d8870163441ebf059b31f))
+
 ## [0.42.4](https://github.com/Altinn/altinn-components/compare/v0.42.3...v0.42.4) (2025-10-15)
 
 

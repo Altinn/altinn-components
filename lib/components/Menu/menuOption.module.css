@@ -8,6 +8,9 @@
   font-size: 1rem;
   column-gap: 0.5em;
   pointer-events: none;
+  word-break: normal;
+  white-space: normal;
+  overflow-wrap: normal;
 }
 
 .title {
@@ -16,10 +19,16 @@
   vertical-align: text-top;
 }
 
-.count {
+.titleWrapper {
   display: inline;
-  vertical-align: super;
+  line-height: 1.25;
+}
+
+.count {
+  margin-left: 0.5rem;
+  display: inline;
   font-size: smaller;
+  white-space: nowrap;
 }
 
 .radio,

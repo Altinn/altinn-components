@@ -4,8 +4,14 @@
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 1rem;
+  row-gap: 1rem;
   padding: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .header {
+    gap: 1rem;
+  }
 }
 
 .backdrop {
