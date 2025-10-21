@@ -50,3 +50,13 @@ export const Loading: Story = {
     loading: true,
   },
 };
+
+export const WithExtendedStatus: Story = {
+  args: {
+    status: {
+      value: 'requires-attention',
+      label: 'Krever handling',
+    },
+    extendedStatusLabel: 'Utvidet status',
+  },
+};
