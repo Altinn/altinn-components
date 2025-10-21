@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.43.6](https://github.com/Altinn/altinn-components/compare/v0.43.5...v0.43.6) (2025-10-21)
+
+
+### Bug Fixes
+
+* Extended status in dialog header ([#739](https://github.com/Altinn/altinn-components/issues/739)) ([ef8e7f2](https://github.com/Altinn/altinn-components/commit/ef8e7f26657b97762850cf11c2e5806fd99892e9))
+
 ## [0.43.5](https://github.com/Altinn/altinn-components/compare/v0.43.4...v0.43.5) (2025-10-17)
 
 
