@@ -323,6 +323,8 @@ export const useInbox = ({
 
   // duplicate items if grouped view
 
+  const groupView = currentAccount?.type !== 'person' && currentAccount?.type !== 'company';
+
   const groupIds = toolbar?.filterState?.groupIds || [accountId];
 
   const itemsByGroupId: { [key: string]: DialogListItemProps } = {};
@@ -338,7 +340,7 @@ export const useInbox = ({
         recipient: recipient?.icon as AvatarProps,
         color: recipient?.type as DialogListItemProps['color'],
         id: itemId,
-        grouped: true,
+        grouped: groupIds.length > 1, // groupView && true,
       };
     });
   });
@@ -402,7 +404,6 @@ export const useInbox = ({
 
   //  set group view stuff
 
-  const groupView = currentAccount?.type !== 'person' && currentAccount?.type !== 'company';
   const color = (groupView && 'neutral') || currentAccount?.type || 'neutral';
 
   return {
