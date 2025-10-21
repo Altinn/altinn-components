@@ -1,17 +1,23 @@
 'use client';
 import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
 import { AccountMenuButton } from '../Account/AccountMenuButton.tsx';
-import { AccountMenu, type AccountMenuProps } from '../Account/index.tsx';
+import type { AccountMenuProps } from '../Account/index.tsx';
 import type { BadgeProps } from '../Badge/index.tsx';
 import { DrawerBase, DropdownBase } from '../Dropdown/index.ts';
-import { GlobalMenu, GlobalMenuButton, type GlobalMenuProps } from '../GlobalMenu/index.tsx';
+import {
+  GlobalMenu,
+  GlobalMenuButton,
+  type GlobalMenuProps,
+  LocaleSwitcher,
+  type LocaleSwitcherProps,
+} from '../GlobalMenu/index.tsx';
 import type { Account } from '../GlobalMenu_old/index.tsx';
 import type { MenuProps } from '../Menu/index.ts';
 import { useRootContext } from '../RootProvider/index.ts';
 import { HeaderGroup, HeaderLogo, type HeaderLogoProps } from './';
 import { AccountSelector } from './AccountSelector.tsx';
 import styles from './globalHeader.module.css';
-import { GlobalHeaderBase, LocaleSwitcher, type LocaleSwitcherProps } from './index.tsx';
+import { GlobalHeaderBase } from './index.tsx';
 
 import cx from 'classnames';
 
@@ -60,6 +66,8 @@ export const GlobalHeader = ({
     toggleId('menu');
   };
 
+  const accountSelectionOpen = currentId === 'account' || currentId === 'accountFullscreen';
+
   const isDesktop = useIsDesktop();
 
   const handleSelectAccount = (id: string) => {
@@ -68,7 +76,7 @@ export const GlobalHeader = ({
   };
 
   return (
-    <GlobalHeaderBase currentId={currentId}>
+    <GlobalHeaderBase currentId={currentId} openBackdrop={currentId === 'menu'} onCloseBackdrop={closeAll}>
       <HeaderLogo {...logo} badge={badge} className={styles.logo} />
       <HeaderGroup>
         {currentAccount && (
@@ -79,7 +87,6 @@ export const GlobalHeader = ({
             expanded={currentId === 'account' || currentId === 'accountFullscreen'}
           />
         )}
-        {locale && isDesktop && <LocaleSwitcher {...locale} />}
         <div className={styles.relative}>
           <GlobalMenuButton onClick={onToggleMenu} expanded={currentId === 'menu'} label={globalMenu?.menuLabel} />
           {globalMenu && (
@@ -91,19 +98,29 @@ export const GlobalHeader = ({
               open={currentId === 'menu'}
               className={styles.dropdown}
             >
-              <GlobalMenu {...globalMenu} menu={desktopMenu || globalMenu?.menu} onClose={closeAll} />
+              <GlobalMenu
+                {...globalMenu}
+                menu={desktopMenu || globalMenu?.menu}
+                onClose={closeAll}
+                localeSwitcher={locale}
+              />
             </DropdownBase>
           )}
         </div>
       </HeaderGroup>
       {globalMenu && (
         <DrawerBase open={currentId === 'menu'} className={styles.drawer}>
-          <GlobalMenu {...globalMenu} menu={mobileMenu || globalMenu?.menu} onClose={closeAll} />
+          <GlobalMenu
+            {...globalMenu}
+            menu={mobileMenu || globalMenu?.menu}
+            onClose={closeAll}
+            localeSwitcher={locale}
+          />
         </DrawerBase>
       )}
       {accountMenu && (
         <DrawerBase
-          open={currentId === 'account' || currentId === 'accountFullscreen'}
+          open={accountSelectionOpen}
           className={cx(styles.drawer)}
           dataLayout={isDesktop ? 'desktop' : 'mobile'}
         >
@@ -111,6 +128,7 @@ export const GlobalHeader = ({
             accountMenu={accountMenu}
             currentAccount={currentAccount}
             onSelectAccount={handleSelectAccount}
+            externalFullScreen={!isDesktop ? accountSelectionOpen : undefined}
           />
         </DrawerBase>
       )}

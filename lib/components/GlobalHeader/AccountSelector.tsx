@@ -10,7 +10,11 @@ export interface AccountSelectorProps {
   accountMenu: AccountMenuProps;
   currentAccount?: AccountMenuProps['currentAccount'];
   onSelectAccount?: AccountMenuProps['onSelectAccount'];
-  fullScreen?: boolean;
+  /** External control of fullscreen mode. When this flag is true, the account menu cannot be minimized or closed.
+   * When the flag is set to false, the account menu cannot be maximized but can be opened and closed.
+   * Set it to undefined to allow internal control of fullscreen mode
+   */
+  externalFullScreen?: boolean;
   className?: string;
 }
 
@@ -18,17 +22,19 @@ export const AccountSelector = ({
   accountMenu,
   currentAccount,
   onSelectAccount,
-  fullScreen,
+  externalFullScreen,
   className,
 }: AccountSelectorProps) => {
-  const { currentId, toggleId, openId } = useRootContext();
+  const { currentId, openId, toggleId } = useRootContext();
   const isFullScreen = currentId === 'accountFullscreen';
 
   useEffect(() => {
-    if (fullScreen !== undefined && isFullScreen !== fullScreen) {
+    if (externalFullScreen !== undefined && !isFullScreen && externalFullScreen) {
+      openId('accountFullscreen');
+    } else if (externalFullScreen === false && isFullScreen) {
       toggleId('accountFullscreen');
     }
-  }, [fullScreen, isFullScreen, toggleId]);
+  }, [externalFullScreen, isFullScreen, openId, toggleId]);
 
   const toggleExpansion = () => {
     if (isFullScreen) {
@@ -48,19 +54,21 @@ export const AccountSelector = ({
           keyboardEvents={true}
         />
       </div>
-      <Button
-        icon={
-          isFullScreen ? (
-            <CaretUpCircleIcon className={styles.btnIcon} aria-hidden="true" />
-          ) : (
-            <CaretDownCircleIcon className={styles.btnIcon} aria-hidden="true" />
-          )
-        }
-        variant="text"
-        onClick={toggleExpansion}
-      >
-        {isFullScreen ? 'Minimer' : 'Vis i fullskjerm'}
-      </Button>
+      {externalFullScreen === undefined && (
+        <Button
+          icon={
+            isFullScreen ? (
+              <CaretUpCircleIcon className={styles.btnIcon} aria-hidden="true" />
+            ) : (
+              <CaretDownCircleIcon className={styles.btnIcon} aria-hidden="true" />
+            )
+          }
+          variant="text"
+          onClick={toggleExpansion}
+        >
+          {isFullScreen ? 'Minimer' : 'Vis i fullskjerm'}
+        </Button>
+      )}
     </div>
   );
 };

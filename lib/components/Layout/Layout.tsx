@@ -50,10 +50,8 @@ export const Layout = ({
 }: LayoutProps) => {
   const { currentId } = useRootContext();
 
-  console.log('Layout render with currentId:', currentId);
-
   return (
-    <LayoutBase color={currentId === 'accountFullscreen' ? 'neutral' : color} theme={theme} currentId={currentId}>
+    <LayoutBase color={color} theme={currentId === 'accountFullscreen' ? 'default' : theme} currentId={currentId}>
       {skipLink && <SkipLink {...skipLink} />}
       {header && (useGlobalHeader ? <GlobalHeader {...header} /> : <Header {...header} />)}
       <LayoutBody currentId={currentId}>

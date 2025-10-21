@@ -1,8 +1,11 @@
 'use client';
 import { useMemo, useState } from 'react';
+import type { LocaleSwitcherProps } from '../Header';
 import { Menu, MenuListItem, type MenuProps } from '../Menu';
 import { BackButton } from './BackButton';
 import { GlobalMenuBase, GlobalMenuFooter, GlobalMenuHeader } from './GlobalMenuBase';
+import { LocaleButton } from './LocaleButton';
+import { LocaleSwitcher } from './LocaleSwitcher';
 import { LogoutButton, type LogoutButtonProps } from './LogoutButton';
 
 export interface GlobalMenuProps {
@@ -15,6 +18,7 @@ export interface GlobalMenuProps {
   currentEndUserLabel?: string;
   onClose?: () => void;
   ariaLabel?: string;
+  localeSwitcher?: LocaleSwitcherProps;
 }
 
 export const GlobalMenu = ({
@@ -23,11 +27,12 @@ export const GlobalMenu = ({
   onClose,
   logoutButton,
   ariaLabel = 'Menu',
+  localeSwitcher,
 }: GlobalMenuProps) => {
-  const [selectingAccount, setSelectingAccount] = useState<boolean>(false);
+  const [selectingLocale, setSelectingLocale] = useState<boolean>(false);
 
-  const onToggleAccounts = () => {
-    setSelectingAccount((prevState) => !prevState);
+  const onToggleLocaleSelection = () => {
+    setSelectingLocale((prevState) => !prevState);
   };
 
   const itemsWithToggle = useMemo(() => {
@@ -49,11 +54,12 @@ export const GlobalMenu = ({
     }));
   }, [menu, onClose]);
 
-  if (selectingAccount) {
+  if (selectingLocale) {
     return (
       <GlobalMenuBase aria-label={ariaLabel}>
         <GlobalMenuHeader>
-          <BackButton onClick={onToggleAccounts} label={backLabel} />
+          <BackButton onClick={onToggleLocaleSelection} label={backLabel} />
+          {localeSwitcher && <LocaleSwitcher {...localeSwitcher} />}
         </GlobalMenuHeader>
         <MenuListItem as="div" role="separator" />
       </GlobalMenuBase>
@@ -63,6 +69,7 @@ export const GlobalMenu = ({
   return (
     <GlobalMenuBase aria-label={ariaLabel}>
       {menu && <Menu {...menu} items={itemsWithToggle} />}
+      {localeSwitcher && <LocaleButton onClick={onToggleLocaleSelection} />}
       {logoutButton && (
         <GlobalMenuFooter>
           <LogoutButton {...logoutButton} />

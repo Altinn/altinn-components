@@ -3,10 +3,8 @@ import { CheckmarkIcon } from '@navikt/aksel-icons';
 import { useMemo, useRef } from 'react';
 import { useEnterKey } from '../../hooks/useEnterKey.ts';
 import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
-import { DrawerBase, DropdownBase } from '../Dropdown';
-import { type MenuItemProps, MenuItems, type MenuOptionProps } from '../Menu';
-import { useRootContext } from '../RootProvider';
-import { LocaleButton } from './LocaleButton.tsx';
+import { type MenuItemProps, MenuItems, type MenuOptionProps } from '../Menu/index.ts';
+import { useRootContext } from '../RootProvider/index.ts';
 
 export interface LocaleSwitcherProps {
   title?: string;
@@ -66,17 +64,7 @@ export const LocaleSwitcher = ({ title = 'Select language', options, onSelect }:
 
   return (
     <div ref={ref} data-testid="locale-switcher">
-      <LocaleButton onClick={() => toggleId('locale')} expanded={expanded} onBlurCapture={onBlurCapture} />
-      {expanded && isDesktop && (
-        <DropdownBase layout="desktop" padding placement="right" open>
-          <MenuItems groups={group} items={itemsWithToggle} keyboardEvents />
-        </DropdownBase>
-      )}
-      {expanded && !isDesktop && (
-        <DrawerBase open placement="bottom">
-          <MenuItems groups={group} items={itemsWithToggle} keyboardEvents />
-        </DrawerBase>
-      )}
+      <MenuItems groups={group} items={itemsWithToggle} keyboardEvents />
     </div>
   );
 };
