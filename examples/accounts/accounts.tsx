@@ -20,21 +20,22 @@ export interface AccountDataProps extends AccountListItemProps {
   emailAlerts?: boolean;
 }
 
-export interface AccountSettings {
+export interface AccountSettingsProps {
   email?: string;
   phone?: string;
   address?: string;
   smsAlerts?: boolean;
   emailAlerts?: boolean;
+  [key: string]: string | number | boolean | undefined;
 }
 
-export type AccountSettingsById = Record<string, AccountSettings>;
+export type AccountSettingsById = Record<string, AccountSettingsProps>;
 
 export interface AccountDataListProps {
   items?: AccountDataProps[];
   groups?: AccountDataGroups;
   onToggle?: (id: string) => void;
-  onChange?: (id: string, settings?: AccountSettings) => void;
+  onChange?: (id: string, settings?: AccountSettingsProps) => void;
 }
 
 export const accounts: AccountDataProps[] = [

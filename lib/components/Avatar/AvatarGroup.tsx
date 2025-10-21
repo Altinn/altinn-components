@@ -57,6 +57,8 @@ export const AvatarGroup = ({
               imageUrl={avatar.imageUrl}
               imageUrlAlt={avatar.imageUrlAlt}
               type={avatar?.type || defaultType}
+              isParent={avatar?.isParent}
+              isDeleted={avatar?.isDeleted}
               variant={avatar?.variant}
               outline
             />

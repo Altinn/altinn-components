@@ -12,7 +12,16 @@ import {
   PersonRectangleIcon,
   ReceiptIcon,
 } from '@navikt/aksel-icons';
-import { type AccountDataProps, defaultAccounts, sortAccountsByKey, useAccounts, useSettingsData } from '../';
+import {
+  type AccountDataProps,
+  type AccountSettingsProps,
+  defaultAccounts,
+  sortAccountsByKey,
+  useAccounts,
+  useSettingsData,
+} from '../';
+
+import { AlertSettingsDetails } from './modals';
 
 import {
   Button,
@@ -204,7 +213,7 @@ export const useSettings = ({
           ? { label: 'SMS' }
           : emailAlerts
             ? { label: 'E-post' }
-            : { variant: 'text', label: 'Sett opp varsling' };
+            : { variant: 'text', label: 'Legg til' };
 
     const value = smsAlerts && emailAlerts ? email + ', ' + phone : (smsAlerts && phone) || (emailAlerts && email);
 
@@ -216,6 +225,43 @@ export const useSettings = ({
       linkIcon: true,
       color: item.type,
       badge,
+      as: 'button',
+      variant: 'modal',
+      description: undefined,
+      modalProps: {
+        description: item?.description,
+      },
+      buttons: [
+        {
+          label: 'Lagre',
+        },
+        {
+          variant: 'outline',
+          label: 'Avbryt',
+        },
+      ],
+      children: (
+        <AlertSettingsDetails
+          phone={phone}
+          email={email}
+          smsAlerts={smsAlerts}
+          emailAlerts={emailAlerts}
+          onChange={(e) => {
+            const settings = item as unknown as AccountSettingsProps;
+
+            const { type, name, value } = e.target;
+            if (type === 'checkbox' && settings[name]) {
+              onSettingsChange(id, {
+                [name]: null,
+              });
+            } else {
+              onSettingsChange(id, {
+                [name]: value,
+              });
+            }
+          }}
+        />
+      ),
     };
   });
 
