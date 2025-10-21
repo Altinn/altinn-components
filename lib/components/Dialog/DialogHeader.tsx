@@ -19,6 +19,8 @@ export interface DialogHeaderProps extends DialogMetadataProps {
   badge?: BadgeProps;
   /** Dialog status */
   status?: DialogStatusProps;
+  /** Extended Status Label */
+  extendedStatusLabel?: string;
   /** Drafts label */
   draftsLabel?: string;
   /** Number of submissions sent */
@@ -40,6 +42,7 @@ export const DialogHeader = ({
   title,
   badge,
   status,
+  extendedStatusLabel,
   draftsLabel,
   sentCount,
   receivedCount,
@@ -63,6 +66,7 @@ export const DialogHeader = ({
       <DialogMetadata
         loading={loading}
         status={status}
+        extendedStatusLabel={extendedStatusLabel}
         draftsLabel={draftsLabel}
         sentCount={sentCount}
         receivedCount={receivedCount}
