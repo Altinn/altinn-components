@@ -3,7 +3,7 @@ import { type ReactNode, createContext, useContext, useState } from 'react';
 import { useEscapeKey } from '../../hooks';
 import { SnackbarProvider } from '../Snackbar';
 
-type OpenElementId = 'search' | 'menu' | 'account' | string;
+type OpenElementId = 'search' | 'menu' | 'account' | 'fullscreenAccount' | string;
 
 interface RootContextProvider {
   currentId: OpenElementId;
@@ -17,13 +17,19 @@ const initialValue = {
   currentId: '',
   previousId: '',
   debug: false,
+  setCurrentId: () => {
+    console.warn('setCurrentId called outside of RootProvider context');
+  },
+  setPreviousId: () => {
+    console.warn('setPreviousId called outside of RootProvider context');
+  },
 };
 
 interface RootContextInitialValue {
   currentId: OpenElementId;
   previousId: OpenElementId;
-  setCurrentId?: (elementId: OpenElementId) => void;
-  setPreviousId?: (elementId: OpenElementId) => void;
+  setCurrentId: (elementId: OpenElementId) => void;
+  setPreviousId: (elementId: OpenElementId) => void;
   debug?: boolean;
 }
 
@@ -54,13 +60,20 @@ export const RootProvider = ({ children, initialValue, debug }: ProviderProps) =
 };
 
 export const useRootContext = (): RootContextProvider => {
-  const { currentId, setCurrentId, debug, setPreviousId, previousId } = useContext(RootContext);
+  const context = useContext(RootContext);
+
+  // Check if we're using the hook outside of the provider
+  if (!context) {
+    throw new Error('useRootContext must be used within a RootProvider.');
+  }
+
+  const { currentId, setCurrentId, debug, setPreviousId, previousId } = context;
 
   const changeCurrentId = (nextElementId: OpenElementId) => {
     if (currentId) {
-      setPreviousId!(currentId);
+      setPreviousId(currentId);
     }
-    setCurrentId!(nextElementId);
+    setCurrentId(nextElementId);
   };
 
   const toggleId = (elementId: OpenElementId) => {
@@ -73,7 +86,7 @@ export const useRootContext = (): RootContextProvider => {
     if (debug) {
       console.debug('useRootContext: closeAll called');
     }
-    changeCurrentId!('');
+    changeCurrentId('');
   };
   useEscapeKey(closeAll);
 
@@ -81,7 +94,7 @@ export const useRootContext = (): RootContextProvider => {
     if (debug) {
       console.debug(`useRootContext: openId called with value: ${elementId}`);
     }
-    changeCurrentId!(elementId);
+    changeCurrentId(elementId);
   };
   return {
     currentId,

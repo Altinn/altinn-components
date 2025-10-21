@@ -9,8 +9,11 @@ import type { Account } from '../GlobalMenu_old/index.tsx';
 import type { MenuProps } from '../Menu/index.ts';
 import { useRootContext } from '../RootProvider/index.ts';
 import { HeaderGroup, HeaderLogo, type HeaderLogoProps } from './';
+import { AccountSelector } from './AccountSelector.tsx';
 import styles from './globalHeader.module.css';
 import { GlobalHeaderBase, LocaleSwitcher, type LocaleSwitcherProps } from './index.tsx';
+
+import cx from 'classnames';
 
 export interface GlobalHeaderProps {
   globalMenu: GlobalMenuProps;
@@ -46,7 +49,11 @@ export const GlobalHeader = ({
   };
 
   const onToggleAccountMenu = () => {
-    toggleId('account');
+    if (currentId === 'account' || currentId === 'accountFullscreen') {
+      closeAll();
+    } else {
+      openId('account');
+    }
   };
 
   const onToggleMenu = () => {
@@ -69,7 +76,7 @@ export const GlobalHeader = ({
             currentAccount={currentAccount}
             minimized={!isDesktop}
             onClick={onToggleAccountMenu}
-            expanded={currentId === 'account'}
+            expanded={currentId === 'account' || currentId === 'accountFullscreen'}
           />
         )}
         {locale && isDesktop && <LocaleSwitcher {...locale} />}
@@ -94,15 +101,17 @@ export const GlobalHeader = ({
           <GlobalMenu {...globalMenu} menu={mobileMenu || globalMenu?.menu} onClose={closeAll} />
         </DrawerBase>
       )}
-      {globalMenu && (
+      {accountMenu && (
         <DrawerBase
-          open={currentId === 'account'}
-          className={styles.drawer}
+          open={currentId === 'account' || currentId === 'accountFullscreen'}
+          className={cx(styles.drawer)}
           dataLayout={isDesktop ? 'desktop' : 'mobile'}
         >
-          {accountMenu && (
-            <AccountMenu {...accountMenu} currentAccount={currentAccount} onSelectAccount={handleSelectAccount} />
-          )}
+          <AccountSelector
+            accountMenu={accountMenu}
+            currentAccount={currentAccount}
+            onSelectAccount={handleSelectAccount}
+          />
         </DrawerBase>
       )}
     </GlobalHeaderBase>

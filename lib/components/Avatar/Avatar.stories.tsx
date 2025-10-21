@@ -1,38 +1,31 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
-import {
-  Avatar,
-  type AvatarProps,
-  type AvatarSize,
-  type AvatarType,
-  Flex,
-  SizeEnum,
-} from "..";
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Avatar, type AvatarProps, type AvatarSize, type AvatarType, Flex, SizeEnum } from '..';
 
 const meta = {
-  title: "Components/Avatar",
+  title: 'Components/Avatar',
   component: Avatar,
-  tags: ["stable"],
+  tags: ['stable'],
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
   args: {
-    name: "Jane Doe",
-    type: "person",
-    size: "md",
+    name: 'Jane Doe',
+    type: 'person',
+    size: 'md',
     style: {
-      fontSize: "2.25rem",
-      width: "2.25rem",
-      height: "2.25rem",
+      fontSize: '2.25rem',
+      width: '2.25rem',
+      height: '2.25rem',
     },
   },
   argTypes: {
     size: {
-      control: { type: "select" },
+      control: { type: 'select' },
       options: Object.keys(SizeEnum),
     },
     type: {
-      control: { type: "select" },
-      options: ["person", "company", "custom"],
+      control: { type: 'select' },
+      options: ['person', 'company', 'custom'],
     },
   },
 } satisfies Meta<typeof Avatar>;
@@ -42,46 +35,46 @@ type Story = StoryObj<typeof meta>;
 
 export const Person: Story = {
   args: {
-    type: "person",
-    name: "Jane Doe",
+    type: 'person',
+    name: 'Jane Doe',
   },
 };
 
 export const Company: Story = {
   args: {
-    type: "company",
-    name: "Boligeksperten",
+    type: 'company',
+    name: 'Boligeksperten',
   },
 };
 
 export const CompanyOutline: Story = {
   args: {
-    type: "company",
-    name: "Juletreeksperten",
-    variant: "outline",
+    type: 'company',
+    name: 'Juletreeksperten',
+    variant: 'outline',
   },
 };
 
 export const DeletedCompany: Story = {
   args: {
-    type: "company",
-    name: "Boligeksperten",
+    type: 'company',
+    name: 'Boligeksperten',
     isDeleted: true,
   },
 };
 
 export const Subunit: Story = {
   args: {
-    type: "company",
-    name: "Boligeksperten",
+    type: 'company',
+    name: 'Boligeksperten',
     isParent: false,
   },
 };
 
 export const DeletedSubunit: Story = {
   args: {
-    type: "company",
-    name: "Boligeksperten",
+    type: 'company',
+    name: 'Boligeksperten',
     isParent: false,
     isDeleted: true,
   },
@@ -89,9 +82,9 @@ export const DeletedSubunit: Story = {
 
 export const Logo: Story = {
   args: {
-    type: "company",
-    imageUrl: "https://avatars.githubusercontent.com/u/1536293?s=200&v=4",
-    size: "xl",
+    type: 'company',
+    imageUrl: 'https://avatars.githubusercontent.com/u/1536293?s=200&v=4',
+    size: 'xl',
   },
 };
 
@@ -101,22 +94,12 @@ export const Loading: Story = {
   },
 };
 
-export const Sizes = ({
-  type = "person",
-  name = "Alfa",
-  imageUrl,
-}: AvatarProps) => {
+export const Sizes = ({ type = 'person', name = 'Alfa', imageUrl }: AvatarProps) => {
   return (
     <Flex spacing={2} align="end">
       {Object.keys(SizeEnum).map((size) => {
         return (
-          <Avatar
-            type={type as AvatarType}
-            name={name}
-            size={size as AvatarSize}
-            imageUrl={imageUrl}
-            key={size}
-          />
+          <Avatar type={type as AvatarType} name={name} size={size as AvatarSize} imageUrl={imageUrl} key={size} />
         );
       })}
     </Flex>
@@ -133,10 +116,6 @@ export const Companies = () => {
 
 export const Logos = () => {
   return (
-    <Sizes
-      type="company"
-      name="Skatteetaten"
-      imageUrl="https://avatars.githubusercontent.com/u/1536293?s=200&v=4"
-    />
+    <Sizes type="company" name="Skatteetaten" imageUrl="https://avatars.githubusercontent.com/u/1536293?s=200&v=4" />
   );
 };

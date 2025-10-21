@@ -1,5 +1,5 @@
 import type { Meta } from '@storybook/react-vite';
-import { Flex } from '..';
+import { Flex, RootProvider } from '..';
 import type { LayoutProps } from '../';
 import { Layout, List, type ListItemProps, PageBase } from '../';
 import { footer, header, inboxMenu, skipLink, useAccountMenu, useGlobalMenu, useLayout } from '../../../examples';
@@ -52,17 +52,19 @@ export const Preview = (args: LayoutProps) => {
   const accountMenu = useAccountMenu({ accountId: 'diaspora' });
   const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
   return (
-    <Layout
-      {...args}
-      {...layout}
-      header={{
-        ...layout.header,
-        accountMenu: accountMenu,
-        globalMenu: globalMenu,
-      }}
-    >
-      {args.children}
-    </Layout>
+    <RootProvider>
+      <Layout
+        {...args}
+        {...layout}
+        header={{
+          ...layout.header,
+          accountMenu: accountMenu,
+          globalMenu: globalMenu,
+        }}
+      >
+        {args.children}
+      </Layout>
+    </RootProvider>
   );
 };
 
@@ -70,34 +72,36 @@ export const StickySidebar = (args: LayoutProps) => {
   const layout = useLayout(args);
 
   return (
-    <Layout
-      {...args}
-      {...layout}
-      sidebar={{
-        ...args.sidebar,
-        sticky: true,
-      }}
-    >
-      <PageBase>
-        <List
-          items={
-            Array.from({ length: 30 }, (_, i) => {
-              const avatar = {
-                type: 'person',
-                name: i + 'Item ' + i * i,
-              };
+    <RootProvider>
+      <Layout
+        {...args}
+        {...layout}
+        sidebar={{
+          ...args.sidebar,
+          sticky: true,
+        }}
+      >
+        <PageBase>
+          <List
+            items={
+              Array.from({ length: 30 }, (_, i) => {
+                const avatar = {
+                  type: 'person',
+                  name: i + 'Item ' + i * i,
+                };
 
-              return {
-                id: 'i' + i,
-                groupId: i > 10 ? '2' : '1',
-                icon: avatar,
-                title: `Item ${i + 1}`,
-              };
-            }) as ListItemProps[]
-          }
-        />
-      </PageBase>
-    </Layout>
+                return {
+                  id: 'i' + i,
+                  groupId: i > 10 ? '2' : '1',
+                  icon: avatar,
+                  title: `Item ${i + 1}`,
+                };
+              }) as ListItemProps[]
+            }
+          />
+        </PageBase>
+      </Layout>
+    </RootProvider>
   );
 };
 
@@ -105,16 +109,18 @@ export const HiddenSidebar = (args: LayoutProps) => {
   const layout = useLayout(args);
 
   return (
-    <Layout
-      {...args}
-      {...layout}
-      sidebar={{
-        ...args.sidebar,
-        hidden: true,
-      }}
-    >
-      {args.children}
-    </Layout>
+    <RootProvider>
+      <Layout
+        {...args}
+        {...layout}
+        sidebar={{
+          ...args.sidebar,
+          hidden: true,
+        }}
+      >
+        {args.children}
+      </Layout>
+    </RootProvider>
   );
 };
 
@@ -122,8 +128,10 @@ export const Fullscreen = (args: LayoutProps) => {
   const layout = useLayout(args);
 
   return (
-    <Layout {...args} {...layout} theme="default" sidebar={undefined}>
-      {args.children}
-    </Layout>
+    <RootProvider>
+      <Layout {...args} {...layout} theme="default" sidebar={undefined}>
+        {args.children}
+      </Layout>
+    </RootProvider>
   );
 };

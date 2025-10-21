@@ -1,0 +1,23 @@
+.accountSelector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.accountMenu {
+  height: 40vh;
+  width: 100%;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+}
+
+.accountMenu.fullScreen {
+  height: fit-content;
+}
+
+.btnIcon {
+  font-size: 1.5rem;
+}

@@ -50,7 +50,7 @@ export const AccountMenuButton = ({
         ) : (
           <ButtonIcon
             className={styles.avatarIcon}
-            icon={<Avatar {...(currentAccount?.icon as AvatarProps)} size="lg" className={styles.avatar} />}
+            icon={<Avatar {...(currentAccount?.icon as AvatarProps)} className={styles.avatar} />}
           />
         )}
       </ButtonBase>

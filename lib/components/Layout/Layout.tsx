@@ -1,5 +1,5 @@
 'use client';
-import type { ReactNode } from 'react';
+import { type ReactNode, useState } from 'react';
 import {
   LayoutBase,
   LayoutBody,
@@ -49,9 +49,11 @@ export const Layout = ({
   useGlobalHeader = false,
 }: LayoutProps) => {
   const { currentId } = useRootContext();
-  console.log('useGlobalHeader', useGlobalHeader);
+
+  console.log('Layout render with currentId:', currentId);
+
   return (
-    <LayoutBase color={color} theme={theme} currentId={currentId}>
+    <LayoutBase color={currentId === 'accountFullscreen' ? 'neutral' : color} theme={theme} currentId={currentId}>
       {skipLink && <SkipLink {...skipLink} />}
       {header && (useGlobalHeader ? <GlobalHeader {...header} /> : <Header {...header} />)}
       <LayoutBody currentId={currentId}>

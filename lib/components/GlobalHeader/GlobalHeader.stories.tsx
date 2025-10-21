@@ -1,5 +1,6 @@
 import type { Meta } from '@storybook/react-vite';
 import { header, mobileMenu, useHeader } from '../../../examples';
+import { RootProvider } from '../RootProvider';
 import { GlobalHeader, type GlobalHeaderProps } from './';
 
 const meta = {
@@ -18,30 +19,54 @@ export default meta;
 
 export const Login = (args: GlobalHeaderProps) => {
   const header = useHeader({ ...args, accountId: null });
-  return <GlobalHeader {...(header as GlobalHeaderProps)} />;
+  return (
+    <RootProvider>
+      <GlobalHeader {...(header as GlobalHeaderProps)} />
+    </RootProvider>
+  );
 };
 
 export const CurrentAccount = (args: GlobalHeaderProps) => {
   const header = useHeader({ ...args });
-  return <GlobalHeader {...(header as GlobalHeaderProps)} />;
+  return (
+    <RootProvider>
+      <GlobalHeader {...(header as GlobalHeaderProps)} />
+    </RootProvider>
+  );
 };
 
 export const CompanyAccount = (args: GlobalHeaderProps) => {
   const header = useHeader({ ...args, accountId: 'diaspora' });
-  return <GlobalHeader {...(header as GlobalHeaderProps)} />;
+  return (
+    <RootProvider>
+      <GlobalHeader {...(header as GlobalHeaderProps)} />
+    </RootProvider>
+  );
 };
 
 export const SubcompanyAccount = (args: GlobalHeaderProps) => {
   const header = useHeader({ ...args, accountId: 'diaspora-2' });
-  return <GlobalHeader {...(header as GlobalHeaderProps)} />;
+  return (
+    <RootProvider>
+      <GlobalHeader {...(header as GlobalHeaderProps)} />
+    </RootProvider>
+  );
 };
 
 export const MobileMenu = (args: GlobalHeaderProps) => {
   const header = useHeader({ ...args, accountId: 'diaspora' });
-  return <GlobalHeader {...(header as GlobalHeaderProps)} mobileMenu={mobileMenu} />;
+  return (
+    <RootProvider>
+      <GlobalHeader {...(header as GlobalHeaderProps)} mobileMenu={mobileMenu} />
+    </RootProvider>
+  );
 };
 
 export const WithCustomBadge = (args: GlobalHeaderProps) => {
   const header = useHeader({ ...args, accountId: 'diaspora' });
-  return <GlobalHeader {...(header as GlobalHeaderProps)} badge={{ label: 'Beta', color: 'person' }} />;
+  return (
+    <RootProvider>
+      <GlobalHeader {...(header as GlobalHeaderProps)} badge={{ label: 'Beta', color: 'person' }} />
+    </RootProvider>
+  );
 };
