@@ -1,12 +1,13 @@
 import { EnterIcon, XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
-import { type Account, ButtonBase, ButtonIcon, ButtonLabel, type ButtonProps } from '..';
+import { isValidElement } from 'react';
+import { type AccountMenuItemProps, ButtonBase, ButtonIcon, ButtonLabel, type ButtonProps } from '..';
 import { Avatar, type AvatarProps } from '../Avatar';
 
 import styles from './accountMenuButton.module.css';
 
 export interface AccountMenuButtonProps extends ButtonProps {
-  currentAccount?: Account;
+  currentAccount?: AccountMenuItemProps;
   label?: string;
   className?: string;
   expanded?: boolean;
@@ -38,7 +39,13 @@ export const AccountMenuButton = ({
             {
               <div className={styles.labelContainer}>
                 {currentAccount.name}
-                <span className={styles.description}>{currentAccount.description}</span>
+                <span className={styles.description}>
+                  {typeof currentAccount.description === 'string'
+                    ? currentAccount.description
+                    : isValidElement(currentAccount.description)
+                      ? currentAccount.description
+                      : null}
+                </span>
               </div>
             }
           </ButtonLabel>

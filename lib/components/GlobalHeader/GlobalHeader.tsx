@@ -1,15 +1,13 @@
 'use client';
 import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
 import { AccountMenuButton } from '../Account/AccountMenuButton.tsx';
-import type { AccountMenuProps } from '../Account/index.tsx';
 import type { BadgeProps } from '../Badge/index.tsx';
 import { DrawerBase, DropdownBase } from '../Dropdown/index.ts';
 import { GlobalMenu, GlobalMenuButton, type GlobalMenuProps, type LocaleSwitcherProps } from '../GlobalMenu/index.tsx';
-import type { Account } from '../GlobalMenu_old/index.tsx';
 import type { MenuProps } from '../Menu/index.ts';
 import { useRootContext } from '../RootProvider/index.ts';
 import { HeaderGroup, HeaderLogo, type HeaderLogoProps } from './';
-import { AccountSelector } from './AccountSelector.tsx';
+import { AccountSelector, type AccountSelectorProps } from './AccountSelector.tsx';
 import { GlobalSearch, type GlobalSearchProps } from './GlobalSearch.tsx';
 import { GlobalSearchButton } from './GlobalSearchButton.tsx';
 import styles from './globalHeader.module.css';
@@ -23,10 +21,9 @@ export interface GlobalHeaderProps {
   desktopMenu?: MenuProps;
   /** Use to override globalMenu.menu on mobile */
   mobileMenu?: MenuProps;
-  accountMenu?: AccountMenuProps;
   globalSearch?: GlobalSearchProps;
   locale?: LocaleSwitcherProps;
-  currentAccount?: Account;
+  accountSelector?: AccountSelectorProps;
   badge?: BadgeProps | undefined;
   logo?: HeaderLogoProps;
 }
@@ -35,10 +32,9 @@ export const GlobalHeader = ({
   globalMenu,
   desktopMenu,
   mobileMenu,
-  accountMenu,
   globalSearch,
   locale,
-  currentAccount,
+  accountSelector,
   logo = {},
   badge,
 }: GlobalHeaderProps) => {
@@ -64,18 +60,13 @@ export const GlobalHeader = ({
 
   const isDesktop = useIsDesktop();
 
-  const handleSelectAccount = (id: string) => {
-    onToggleAccountMenu();
-    accountMenu?.onSelectAccount?.(id);
-  };
-
   return (
     <GlobalHeaderBase currentId={currentId} openBackdrop={currentId === 'menu'} onCloseBackdrop={closeAll}>
       <HeaderLogo {...logo} badge={badge} className={styles.logo} />
       <HeaderGroup>
-        {currentAccount && (
+        {accountSelector?.accountMenu?.currentAccount && (
           <AccountMenuButton
-            currentAccount={currentAccount}
+            currentAccount={accountSelector.accountMenu.currentAccount}
             minimized={!isDesktop}
             onClick={onToggleAccountMenu}
             expanded={currentId === 'account' || currentId === 'accountFullscreen'}
@@ -113,17 +104,15 @@ export const GlobalHeader = ({
           />
         </DrawerBase>
       )}
-      {accountMenu && (
+      {accountSelector && (
         <DrawerBase
           open={accountSelectionOpen}
           className={cx(styles.drawer)}
           dataLayout={isDesktop ? 'desktop' : 'mobile'}
         >
           <AccountSelector
-            accountMenu={accountMenu}
-            currentAccount={currentAccount}
-            onSelectAccount={handleSelectAccount}
-            externalFullScreen={!isDesktop ? accountSelectionOpen : undefined}
+            {...accountSelector}
+            externalFullScreen={accountSelector.externalFullScreen || !isDesktop ? accountSelectionOpen : undefined}
           />
         </DrawerBase>
       )}

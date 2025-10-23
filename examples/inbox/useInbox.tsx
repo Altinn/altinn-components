@@ -9,6 +9,7 @@ import type {
   DialogLayoutProps,
   DialogListItemProps,
   DialogListProps,
+  HeaderProps,
   LayoutProps,
   MenuProps,
   SearchbarProps,
@@ -236,6 +237,8 @@ export const useInbox = ({
         onModal,
       });
 
+      const header = layout?.header as HeaderProps;
+
       return {
         ...item,
         archived,
@@ -243,7 +246,7 @@ export const useInbox = ({
         trashed,
         trashedAtLabel: trashed ? 'Arkivert' : undefined,
         href: undefined,
-        recipient: layout?.header?.currentAccount,
+        recipient: header?.currentAccount,
         unread: trashed || archived ? false : unread,
         seenByLog,
         ariaLabel: item.title,
@@ -425,7 +428,7 @@ export const useInbox = ({
       ...layout,
       color,
       header: {
-        ...layout?.header,
+        ...(layout?.header as HeaderProps),
         globalMenu: {
           ...layout?.header?.globalMenu,
           accountMenu: {

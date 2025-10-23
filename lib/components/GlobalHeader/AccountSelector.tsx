@@ -10,8 +10,6 @@ import styles from './accountSelector.module.css';
 
 export interface AccountSelectorProps {
   accountMenu: AccountMenuProps;
-  currentAccount?: AccountMenuProps['currentAccount'];
-  onSelectAccount?: AccountMenuProps['onSelectAccount'];
   /** External control of fullscreen mode. When this flag is true, the account menu cannot be minimized or closed.
    * When the flag is set to false, the account menu cannot be maximized but can be opened and closed.
    * Set it to undefined to allow internal control of fullscreen mode
@@ -20,13 +18,7 @@ export interface AccountSelectorProps {
   className?: string;
 }
 
-export const AccountSelector = ({
-  accountMenu,
-  currentAccount,
-  onSelectAccount,
-  externalFullScreen,
-  className,
-}: AccountSelectorProps) => {
+export const AccountSelector = ({ accountMenu, externalFullScreen, className }: AccountSelectorProps) => {
   const { currentId, openId, toggleId, languageCode } = useRootContext();
   const isFullScreen = currentId === 'accountFullscreen';
   const [searchString, setSearchString] = useState('');
@@ -67,13 +59,7 @@ export const AccountSelector = ({
         />
       </div>
       <div className={cx(styles.accountMenu, isFullScreen && styles.fullScreen)}>
-        <AccountMenu
-          {...accountMenu}
-          currentAccount={currentAccount}
-          onSelectAccount={onSelectAccount}
-          keyboardEvents={false}
-          search={{ hidden: true, name: '', value: searchString }}
-        />
+        <AccountMenu {...accountMenu} keyboardEvents={false} search={{ hidden: true, name: '', value: searchString }} />
       </div>
       {externalFullScreen === undefined && (
         <Button

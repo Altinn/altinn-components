@@ -3,6 +3,7 @@ import { Flex, RootProvider } from '..';
 import type { LayoutProps } from '../';
 import { Layout, List, type ListItemProps, PageBase } from '../';
 import { footer, header, inboxMenu, skipLink, useAccountMenu, useGlobalMenu, useLayout } from '../../../examples';
+import type { AccountSelectorProps } from '../GlobalHeader/AccountSelector';
 
 const meta = {
   title: 'Layout/Layout',
@@ -54,6 +55,9 @@ export const Preview = (args: LayoutProps) => {
   const accountMenu = useAccountMenu({ accountId: 'diaspora' });
   const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
   const onSearch = (queryString: string) => alert('Search entered: ' + queryString);
+  const accountSelector: AccountSelectorProps = {
+    accountMenu: accountMenu,
+  };
   return (
     <RootProvider>
       <Layout
@@ -61,7 +65,7 @@ export const Preview = (args: LayoutProps) => {
         {...layout}
         header={{
           ...layout.header,
-          accountMenu: accountMenu,
+          accountSelector: accountSelector,
           globalMenu: globalMenu,
           globalSearch: { onEnter: onSearch },
         }}
@@ -76,6 +80,9 @@ export const WithEnglishLanguage = (args: LayoutProps) => {
   const layout = useLayout(args);
   const accountMenu = useAccountMenu({ accountId: 'diaspora' });
   const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
+  const accountSelector: AccountSelectorProps = {
+    accountMenu: accountMenu,
+  };
   return (
     <RootProvider languageCode="en">
       <Layout
@@ -83,7 +90,7 @@ export const WithEnglishLanguage = (args: LayoutProps) => {
         {...layout}
         header={{
           ...layout.header,
-          accountMenu: accountMenu,
+          accountSelector: accountSelector,
           globalMenu: globalMenu,
         }}
       >
