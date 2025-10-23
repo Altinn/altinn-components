@@ -2,7 +2,6 @@
 import { CheckmarkIcon } from '@navikt/aksel-icons';
 import { useMemo, useRef } from 'react';
 import { useEnterKey } from '../../hooks/useEnterKey.ts';
-import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
 import { type MenuItemProps, MenuItems, type MenuOptionProps } from '../Menu/index.ts';
 import { useRootContext } from '../RootProvider/index.ts';
 
@@ -14,8 +13,7 @@ export interface LocaleSwitcherProps {
 
 export const LocaleSwitcher = ({ title = 'Select language', options, onSelect }: LocaleSwitcherProps) => {
   const ref = useRef<HTMLDivElement>(null);
-  const isDesktop = useIsDesktop();
-  const { currentId, toggleId, closeAll } = useRootContext();
+  const { currentId, closeAll } = useRootContext();
   const expanded = currentId === 'locale';
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
@@ -54,13 +52,6 @@ export const LocaleSwitcher = ({ title = 'Select language', options, onSelect }:
       closeAll();
     }
   });
-
-  const onBlurCapture = (e: React.FocusEvent<HTMLButtonElement>) => {
-    const contextMenuParent = e?.relatedTarget?.closest(`[data-testid="locale-switcher"]`);
-    if (!contextMenuParent) {
-      closeAll();
-    }
-  };
 
   return (
     <div ref={ref} data-testid="locale-switcher">

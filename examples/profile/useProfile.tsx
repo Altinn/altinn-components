@@ -1,5 +1,5 @@
 import { useProfileLayout } from '../';
-import type { Account, BreadcrumbsLinkProps, LayoutProps } from '../../lib';
+import type { Account, BreadcrumbsLinkProps, GlobalMenuProps_old, LayoutProps } from '../../lib';
 
 interface UseProfileProps {
   defaultAccountId?: string;
@@ -41,7 +41,7 @@ export const useProfile = ({ defaultAccountId = 'user', pageId = 'profile' }): U
     pageId,
   });
 
-  const globalMenu = layout?.header?.globalMenu;
+  const globalMenu = layout?.header?.globalMenu as GlobalMenuProps_old;
   const menu = layout?.sidebar?.menu;
   const currentAccount = globalMenu?.currentAccount;
   const page = menu?.items?.find((item) => item.selected);
