@@ -28,6 +28,7 @@ export const AccountMenuButton = ({
       <ButtonBase
         {...buttonProps}
         as={'button'}
+        type="button"
         variant={'text'}
         color={'accent'}
         className={cx(styles.button, className)}
@@ -61,6 +62,7 @@ export const AccountMenuButton = ({
     <ButtonBase
       {...buttonProps}
       as={'button'}
+      type="button"
       variant={'text'}
       color={'accent'}
       className={cx(styles.button, className)}

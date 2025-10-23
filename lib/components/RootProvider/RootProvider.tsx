@@ -1,6 +1,7 @@
 'use client';
 import { type ReactNode, createContext, useContext, useState } from 'react';
 import { useEscapeKey } from '../../hooks';
+import type { LanguageCode } from '../../types';
 import { SnackbarProvider } from '../Snackbar';
 
 type OpenElementId = 'search' | 'menu' | 'account' | 'fullscreenAccount' | string;
@@ -11,6 +12,7 @@ interface RootContextProvider {
   toggleId: (elementId: OpenElementId) => void;
   closeAll: () => void;
   openId: (elementId: OpenElementId) => void;
+  languageCode?: LanguageCode;
 }
 
 const initialValue = {
@@ -23,6 +25,7 @@ const initialValue = {
   setPreviousId: () => {
     console.warn('setPreviousId called outside of RootProvider context');
   },
+  languageCode: 'nb' as LanguageCode,
 };
 
 interface RootContextInitialValue {
@@ -31,6 +34,7 @@ interface RootContextInitialValue {
   setCurrentId: (elementId: OpenElementId) => void;
   setPreviousId: (elementId: OpenElementId) => void;
   debug?: boolean;
+  languageCode?: LanguageCode;
 }
 
 const RootContext = createContext<RootContextInitialValue>(initialValue);
@@ -39,9 +43,11 @@ interface ProviderProps {
   children: ReactNode;
   initialValue?: RootContextInitialValue;
   debug?: boolean;
+  /** Specify the language to be used for common texts */
+  languageCode?: LanguageCode;
 }
 
-export const RootProvider = ({ children, initialValue, debug }: ProviderProps) => {
+export const RootProvider = ({ children, initialValue, debug, languageCode }: ProviderProps) => {
   const [currentId, setCurrentId] = useState<OpenElementId>(initialValue?.currentId || '');
   const [previousId, setPreviousId] = useState<OpenElementId>(initialValue?.previousId || '');
   return (
@@ -52,6 +58,7 @@ export const RootProvider = ({ children, initialValue, debug }: ProviderProps) =
         setPreviousId,
         previousId,
         debug,
+        languageCode,
       }}
     >
       <SnackbarProvider>{children}</SnackbarProvider>
@@ -67,7 +74,7 @@ export const useRootContext = (): RootContextProvider => {
     throw new Error('useRootContext must be used within a RootProvider.');
   }
 
-  const { currentId, setCurrentId, debug, setPreviousId, previousId } = context;
+  const { currentId, setCurrentId, debug, setPreviousId, previousId, languageCode } = context;
 
   const changeCurrentId = (nextElementId: OpenElementId) => {
     if (currentId) {
@@ -102,5 +109,6 @@ export const useRootContext = (): RootContextProvider => {
     toggleId,
     closeAll,
     openId,
+    languageCode,
   };
 };

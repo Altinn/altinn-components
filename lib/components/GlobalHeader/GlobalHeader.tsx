@@ -4,18 +4,14 @@ import { AccountMenuButton } from '../Account/AccountMenuButton.tsx';
 import type { AccountMenuProps } from '../Account/index.tsx';
 import type { BadgeProps } from '../Badge/index.tsx';
 import { DrawerBase, DropdownBase } from '../Dropdown/index.ts';
-import {
-  GlobalMenu,
-  GlobalMenuButton,
-  type GlobalMenuProps,
-  LocaleSwitcher,
-  type LocaleSwitcherProps,
-} from '../GlobalMenu/index.tsx';
+import { GlobalMenu, GlobalMenuButton, type GlobalMenuProps, type LocaleSwitcherProps } from '../GlobalMenu/index.tsx';
 import type { Account } from '../GlobalMenu_old/index.tsx';
 import type { MenuProps } from '../Menu/index.ts';
 import { useRootContext } from '../RootProvider/index.ts';
 import { HeaderGroup, HeaderLogo, type HeaderLogoProps } from './';
 import { AccountSelector } from './AccountSelector.tsx';
+import { GlobalSearch, type GlobalSearchProps } from './GlobalSearch.tsx';
+import { GlobalSearchButton } from './GlobalSearchButton.tsx';
 import styles from './globalHeader.module.css';
 import { GlobalHeaderBase } from './index.tsx';
 
@@ -28,6 +24,7 @@ export interface GlobalHeaderProps {
   /** Use to override globalMenu.menu on mobile */
   mobileMenu?: MenuProps;
   accountMenu?: AccountMenuProps;
+  globalSearch?: GlobalSearchProps;
   locale?: LocaleSwitcherProps;
   currentAccount?: Account;
   badge?: BadgeProps | undefined;
@@ -39,6 +36,7 @@ export const GlobalHeader = ({
   desktopMenu,
   mobileMenu,
   accountMenu,
+  globalSearch,
   locale,
   currentAccount,
   logo = {},
@@ -46,11 +44,7 @@ export const GlobalHeader = ({
 }: GlobalHeaderProps) => {
   const { currentId, toggleId, openId, closeAll } = useRootContext();
 
-  const onSearchFocus = () => {
-    openId('search');
-  };
-
-  const onSearchClose = () => {
+  const ToggleSearch = () => {
     toggleId('search');
   };
 
@@ -87,6 +81,7 @@ export const GlobalHeader = ({
             expanded={currentId === 'account' || currentId === 'accountFullscreen'}
           />
         )}
+        {globalSearch && <GlobalSearchButton onClick={ToggleSearch} expanded={currentId === 'search'} />}
         <div className={styles.relative}>
           <GlobalMenuButton onClick={onToggleMenu} expanded={currentId === 'menu'} label={globalMenu?.menuLabel} />
           {globalMenu && (
@@ -130,6 +125,15 @@ export const GlobalHeader = ({
             onSelectAccount={handleSelectAccount}
             externalFullScreen={!isDesktop ? accountSelectionOpen : undefined}
           />
+        </DrawerBase>
+      )}
+      {globalSearch && (
+        <DrawerBase
+          open={currentId === 'search'}
+          className={cx(styles.drawer)}
+          dataLayout={isDesktop ? 'desktop' : 'mobile'}
+        >
+          <GlobalSearch {...globalSearch} />
         </DrawerBase>
       )}
     </GlobalHeaderBase>

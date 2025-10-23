@@ -30,7 +30,14 @@ export const GlobalMenuButton = ({
 
   if (expanded) {
     return (
-      <ButtonBase {...buttonProps} as={as} variant={variant} color={color} className={cx(styles.button, className)}>
+      <ButtonBase
+        {...buttonProps}
+        as={as}
+        type="button"
+        variant={variant}
+        color={color}
+        className={cx(styles.button, className)}
+      >
         {isDesktop && (
           <ButtonIcon className={styles.closeIcon} icon={<XMarkIcon className={styles.icon} aria-label="Close" />} />
         )}
@@ -41,7 +48,14 @@ export const GlobalMenuButton = ({
   }
 
   return (
-    <ButtonBase {...buttonProps} as={as} variant={variant} color={color} className={cx(styles.button, className)}>
+    <ButtonBase
+      {...buttonProps}
+      as={as}
+      type="button"
+      variant={variant}
+      color={color}
+      className={cx(styles.button, className)}
+    >
       {isDesktop && <ButtonIcon icon={<MenuHamburgerIcon className={styles.icon} aria-hidden />} />}
       <ButtonLabel>{label}</ButtonLabel>
       {badge && <Badge {...badge} className={styles.badge} />}

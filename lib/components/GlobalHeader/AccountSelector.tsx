@@ -1,8 +1,10 @@
 import { CaretDownCircleIcon, CaretUpCircleIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { AccountMenu, type AccountMenuProps } from '../Account';
 import { Button } from '../Button';
+import { DsHeading } from '../DsComponents';
+import { SearchField } from '../Forms';
 import { useRootContext } from '../RootProvider';
 import styles from './accountSelector.module.css';
 
@@ -25,8 +27,11 @@ export const AccountSelector = ({
   externalFullScreen,
   className,
 }: AccountSelectorProps) => {
-  const { currentId, openId, toggleId } = useRootContext();
+  const { currentId, openId, toggleId, languageCode } = useRootContext();
   const isFullScreen = currentId === 'accountFullscreen';
+  const [searchString, setSearchString] = useState('');
+
+  const { minimize, fullscreen, searchText, heading } = getTexts(languageCode);
 
   useEffect(() => {
     if (externalFullScreen !== undefined && !isFullScreen && externalFullScreen) {
@@ -46,12 +51,28 @@ export const AccountSelector = ({
 
   return (
     <div className={cx(className, styles.accountSelector)}>
+      {isFullScreen && (
+        <DsHeading data-size="md" level={2} className={styles.heading}>
+          {heading}
+        </DsHeading>
+      )}
+      <div className={styles.searchSection}>
+        <SearchField
+          name={searchText}
+          placeholder={searchText}
+          value={searchString}
+          onChange={(e) => setSearchString(e.target.value)}
+          onClear={() => setSearchString('')}
+          className={styles.searchField}
+        />
+      </div>
       <div className={cx(styles.accountMenu, isFullScreen && styles.fullScreen)}>
         <AccountMenu
           {...accountMenu}
           currentAccount={currentAccount}
           onSelectAccount={onSelectAccount}
-          keyboardEvents={true}
+          keyboardEvents={false}
+          search={{ hidden: true, name: '', value: searchString }}
         />
       </div>
       {externalFullScreen === undefined && (
@@ -66,9 +87,37 @@ export const AccountSelector = ({
           variant="text"
           onClick={toggleExpansion}
         >
-          {isFullScreen ? 'Minimer' : 'Vis i fullskjerm'}
+          {isFullScreen ? minimize : fullscreen}
         </Button>
       )}
     </div>
   );
+};
+
+// TODO: Move to a common texts files when i18next is added
+// This is only a temporary solution for providing texts in different languages in a very simple POC
+const getTexts = (languageCode: string | undefined) => {
+  switch (languageCode) {
+    case 'nn':
+      return {
+        minimize: 'Minimer',
+        fullscreen: 'Vis i fullskjerm',
+        searchText: 'Søk i aktørar',
+        heading: 'Kven vil du representere?',
+      };
+    case 'en':
+      return {
+        minimize: 'Minimize',
+        fullscreen: 'Show in fullscreen',
+        searchText: 'Search in actors',
+        heading: 'Who do you want to represent?',
+      };
+    default:
+      return {
+        minimize: 'Minimer',
+        fullscreen: 'Vis i fullskjerm',
+        searchText: 'Søk i aktører',
+        heading: 'Hvem vil du representere?',
+      };
+  }
 };

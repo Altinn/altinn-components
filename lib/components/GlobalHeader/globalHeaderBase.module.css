@@ -35,17 +35,3 @@
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 0.15s;
 }
-
-.header[data-current-id="search"] {
-  margin-top: -72px;
-}
-
-.header[data-current-id="search"] .backdrop {
-  display: block;
-}
-
-@media (min-width: 1024px) {
-  .header[data-current-id="search"] {
-    margin-top: 0;
-  }
-}

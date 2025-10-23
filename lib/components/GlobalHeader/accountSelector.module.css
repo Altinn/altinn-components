@@ -3,8 +3,24 @@
   flex-direction: column;
   align-items: center;
   padding: 1rem 0;
-  max-width: 1260px;
+  max-width: 1000px;
   margin: 0 auto;
+  --horizontal-padding: 10px;
+}
+
+.heading {
+  margin-bottom: 1rem;
+  width: 100%;
+  padding: 5px var(--horizontal-padding);
+}
+
+.searchSection {
+  width: 100%;
+  padding: 0 var(--horizontal-padding);
+}
+
+.searchField {
+  width: 50%;
 }
 
 .accountMenu {
@@ -12,7 +28,7 @@
   width: 100%;
   overflow-y: auto;
   margin-bottom: 1rem;
-  padding: 0 10px;
+  padding: 0 var(--horizontal-padding);
 }
 
 .accountMenu.fullScreen {
@@ -24,7 +40,10 @@
 }
 
 @media (max-width: 1023px) {
-  .accountMenu {
-    padding: 0 2px;
+  .accountSelector {
+    --horizontal-padding: 2px;
+  }
+  .searchField {
+    width: 100%;
   }
 }

@@ -35,6 +35,7 @@ const meta = {
       </Flex>
     ),
     useGlobalHeader: true,
+    color: 'company',
   },
   argTypes: {
     useGlobalHeader: {
@@ -42,6 +43,7 @@ const meta = {
         type: 'boolean',
       },
     },
+    color: { control: 'select', options: ['company', 'neutral', 'person'] },
   },
 } satisfies Meta<typeof Layout>;
 
@@ -51,8 +53,31 @@ export const Preview = (args: LayoutProps) => {
   const layout = useLayout(args);
   const accountMenu = useAccountMenu({ accountId: 'diaspora' });
   const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
+  const onSearch = (queryString: string) => alert('Search entered: ' + queryString);
   return (
     <RootProvider>
+      <Layout
+        {...args}
+        {...layout}
+        header={{
+          ...layout.header,
+          accountMenu: accountMenu,
+          globalMenu: globalMenu,
+          globalSearch: { onEnter: onSearch },
+        }}
+      >
+        {args.children}
+      </Layout>
+    </RootProvider>
+  );
+};
+
+export const WithEnglishLanguage = (args: LayoutProps) => {
+  const layout = useLayout(args);
+  const accountMenu = useAccountMenu({ accountId: 'diaspora' });
+  const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
+  return (
+    <RootProvider languageCode="en">
       <Layout
         {...args}
         {...layout}
