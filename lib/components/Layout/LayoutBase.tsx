@@ -2,11 +2,11 @@ import type { ReactNode } from 'react';
 import styles from './layoutBase.module.css';
 
 export type LayoutColor = 'neutral' | 'company' | 'person';
-export type LayoutTheme = 'default' | 'subtle';
+export type LayoutTheme = 'default' | 'subtle' | 'neutral';
 
 export interface LayoutBaseProps {
   color?: LayoutColor;
-  theme?: LayoutTheme;
+  theme?: LayoutTheme /** TODO: Should be renamed to variant */;
   currentId?: string;
   children?: ReactNode;
 }

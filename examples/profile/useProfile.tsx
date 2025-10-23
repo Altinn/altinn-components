@@ -61,6 +61,8 @@ export const useProfile = ({ defaultAccountId = 'user', pageId = 'profile' }): U
   return {
     layout: {
       ...layout,
+      color: 'person',
+      theme: 'neutral',
       header: {
         ...layout.header,
         globalMenu: {
