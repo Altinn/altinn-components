@@ -35,6 +35,10 @@
   height: fit-content;
 }
 
+.accountMenu.virtualized {
+  overflow-y: hidden; /* Virtualization adds its own scroll */
+}
+
 .btnIcon {
   font-size: 1.5rem;
 }

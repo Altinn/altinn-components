@@ -5,6 +5,11 @@ import { Layout, List, type ListItemProps, PageBase } from '../';
 import { footer, header, inboxMenu, skipLink, useAccountMenu, useGlobalMenu, useLayout } from '../../../examples';
 import type { AccountSelectorProps } from '../GlobalHeader/AccountSelector';
 
+// Add custom story args interface for easier testing
+interface LayoutStoryArgs extends LayoutProps {
+  externalFullScreen?: boolean | undefined;
+}
+
 const meta = {
   title: 'Layout/Layout',
   component: Layout,
@@ -37,6 +42,7 @@ const meta = {
     ),
     useGlobalHeader: true,
     color: 'company',
+    externalFullScreen: undefined,
   },
   argTypes: {
     useGlobalHeader: {
@@ -45,18 +51,23 @@ const meta = {
       },
     },
     color: { control: 'select', options: ['company', 'neutral', 'person'] },
+    externalFullScreen: {
+      control: 'select',
+      options: [true, false, undefined],
+    },
   },
-} satisfies Meta<typeof Layout>;
+} satisfies Meta<LayoutStoryArgs>;
 
 export default meta;
 
-export const Preview = (args: LayoutProps) => {
+export const Preview = (args: LayoutStoryArgs) => {
   const layout = useLayout(args);
-  const accountMenu = useAccountMenu({ accountId: 'diaspora' });
+  const accountMenu = { ...useAccountMenu({ accountId: 'diaspora' }), isVirtualized: true };
   const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
   const onSearch = (queryString: string) => alert('Search entered: ' + queryString);
   const accountSelector: AccountSelectorProps = {
     accountMenu: accountMenu,
+    externalFullScreen: args.externalFullScreen,
   };
   return (
     <RootProvider>
@@ -76,7 +87,7 @@ export const Preview = (args: LayoutProps) => {
   );
 };
 
-export const WithEnglishLanguage = (args: LayoutProps) => {
+export const WithEnglishLanguage = (args: LayoutStoryArgs) => {
   const layout = useLayout(args);
   const accountMenu = useAccountMenu({ accountId: 'diaspora' });
   const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
@@ -100,7 +111,7 @@ export const WithEnglishLanguage = (args: LayoutProps) => {
   );
 };
 
-export const StickySidebar = (args: LayoutProps) => {
+export const StickySidebar = (args: LayoutStoryArgs) => {
   const layout = useLayout(args);
 
   return (
@@ -137,7 +148,7 @@ export const StickySidebar = (args: LayoutProps) => {
   );
 };
 
-export const HiddenSidebar = (args: LayoutProps) => {
+export const HiddenSidebar = (args: LayoutStoryArgs) => {
   const layout = useLayout(args);
 
   return (
@@ -156,7 +167,7 @@ export const HiddenSidebar = (args: LayoutProps) => {
   );
 };
 
-export const Fullscreen = (args: LayoutProps) => {
+export const Fullscreen = (args: LayoutStoryArgs) => {
   const layout = useLayout(args);
 
   return (

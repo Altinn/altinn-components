@@ -58,7 +58,13 @@ export const AccountSelector = ({ accountMenu, externalFullScreen, className }: 
           className={styles.searchField}
         />
       </div>
-      <div className={cx(styles.accountMenu, isFullScreen && styles.fullScreen)}>
+      <div
+        className={cx(
+          styles.accountMenu,
+          isFullScreen && styles.fullScreen,
+          accountMenu.isVirtualized && styles.virtualized,
+        )}
+      >
         <AccountMenu {...accountMenu} keyboardEvents={false} search={{ hidden: true, name: '', value: searchString }} />
       </div>
       {externalFullScreen === undefined && (

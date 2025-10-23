@@ -56,7 +56,8 @@ export const GlobalHeader = ({
     toggleId('menu');
   };
 
-  const accountSelectionOpen = currentId === 'account' || currentId === 'accountFullscreen';
+  const accountSelectionOpen =
+    currentId === 'account' || currentId === 'accountFullscreen' || accountSelector?.externalFullScreen;
 
   const isDesktop = useIsDesktop();
 
@@ -69,7 +70,7 @@ export const GlobalHeader = ({
             currentAccount={accountSelector.accountMenu.currentAccount}
             minimized={!isDesktop}
             onClick={onToggleAccountMenu}
-            expanded={currentId === 'account' || currentId === 'accountFullscreen'}
+            expanded={accountSelectionOpen}
           />
         )}
         {globalSearch && <GlobalSearchButton onClick={ToggleSearch} expanded={currentId === 'search'} />}
