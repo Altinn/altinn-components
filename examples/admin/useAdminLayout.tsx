@@ -1,5 +1,5 @@
 import { adminMenu, adminMenuItems, desktopMenu, desktopMenuItems, useLayout } from '../';
-import type { LayoutProps, MenuProps } from '../../lib';
+import type { HeaderProps, LayoutProps, MenuProps } from '../../lib';
 
 interface AdminLayoutProps extends LayoutProps {
   accountId?: string;
@@ -59,7 +59,8 @@ export const useAdminLayout = ({ accountId = 'diaspora', pageId = 'admin' }): Ad
     },
   });
 
-  const currentAccount = layout?.header?.currentAccount;
+  const header = layout?.header as HeaderProps;
+  const currentAccount = header?.currentAccount;
 
   return {
     ...layout,

@@ -1,9 +1,8 @@
 import { InformationSquareIcon, LeaveIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { useState } from 'react';
-import type { Account } from '..';
-import { GlobalMenu, type GlobalMenuProps, type MenuProps } from '../';
-import { globalMenu, loginMenu, mobileMenu, useAccountMenu } from '../../../examples';
+import { globalMenu, loginMenu, mobileMenu } from '../../../examples';
+import type { MenuProps } from '../Menu';
+import { GlobalMenu, type GlobalMenuProps } from './GlobalMenu';
 
 const meta = {
   title: 'Layout/GlobalMenu',
@@ -18,63 +17,12 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const CurrentAccount = (args: GlobalMenuProps) => {
-  const accountMenu = useAccountMenu({ accountId: 'diaspora' });
-  const accounts = accountMenu?.items!;
-  const [currentAccount, setCurrentAccount] = useState<Account>(accountMenu.currentAccount as Account);
-
-  const onSelectAccount = (id: string) => {
-    const account = accounts?.find((item) => item.id === id);
-    if (account) {
-      setCurrentAccount(account as Account);
-    }
-  };
-
-  return <GlobalMenu {...args} currentAccount={{ ...currentAccount }} onSelectAccount={onSelectAccount} />;
-};
-
-export const CompanyAccount = (args: GlobalMenuProps) => {
-  const accountMenu = useAccountMenu({ accountId: 'diaspora' });
-  const accounts = accountMenu?.items!;
-  const [currentAccount, setCurrentAccount] = useState<Account>(accountMenu.currentAccount as Account);
-
-  const onSelectAccount = (id: string) => {
-    const account = accounts?.find((item) => item.id === id);
-    if (account) {
-      setCurrentAccount(account as Account);
-    }
-  };
-
-  return <GlobalMenu {...args} currentAccount={currentAccount} onSelectAccount={onSelectAccount} />;
+export const Desktop = (args: GlobalMenuProps) => {
+  return <GlobalMenu {...args} />;
 };
 
 export const MobileMenu = (args: GlobalMenuProps) => {
-  const accountMenu = useAccountMenu({ accountId: 'diaspora' });
-  const accounts = accountMenu?.items!;
-  const [currentAccount, setCurrentAccount] = useState<Account>(accountMenu.currentAccount as Account);
-
-  const onSelectAccount = (id: string) => {
-    const account = accounts?.find((item) => item.id === id);
-    if (account) {
-      setCurrentAccount(account as Account);
-    }
-  };
-
-  return <GlobalMenu {...args} menu={mobileMenu} currentAccount={currentAccount} onSelectAccount={onSelectAccount} />;
-};
-
-export const SingleAccount = (args: GlobalMenuProps) => {
-  const accountMenu = useAccountMenu({ accountId: 'user' });
-  const currentAccount = accountMenu?.currentAccount as Account;
-
-  return (
-    <GlobalMenu
-      {...args}
-      ariaLabel="Menu Single Account"
-      accountMenu={{ ...accountMenu, items: [currentAccount] }}
-      currentAccount={{ ...currentAccount }}
-    />
-  );
+  return <GlobalMenu {...args} menu={mobileMenu} />;
 };
 
 export const Login: Story = {
@@ -85,17 +33,6 @@ export const Login: Story = {
 };
 
 export const InterimMenu = (args: GlobalMenuProps) => {
-  const accountMenu = useAccountMenu({ accountId: 'user' });
-  const accounts = accountMenu?.items!;
-  const [currentAccount, setCurrentAccount] = useState<Account>(accountMenu.currentAccount as Account);
-
-  const onSelectAccount = (id: string) => {
-    const account = accounts?.find((item) => item.id === id);
-    if (account) {
-      setCurrentAccount(account as Account);
-    }
-  };
-
   const inboxMenuItem = args?.menu?.items?.find((item) => item.id === 'inbox');
 
   const items = [
@@ -127,8 +64,6 @@ export const InterimMenu = (args: GlobalMenuProps) => {
           items: items,
         } as MenuProps
       }
-      currentAccount={currentAccount}
-      onSelectAccount={onSelectAccount}
     />
   );
 };

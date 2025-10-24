@@ -3,15 +3,15 @@ import { HeaderBase, HeaderGroup, HeaderLogo, type HeaderLogoProps, HeaderSearch
 import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
 import type { BadgeProps } from '../Badge';
 import { DrawerBase, DropdownBase } from '../Dropdown';
-import { GlobalMenu, GlobalMenuButton, type GlobalMenuProps } from '../GlobalMenu';
-import type { Account } from '../GlobalMenu';
+import { GlobalMenuButton_old, type GlobalMenuProps_old, GlobalMenu_old } from '../GlobalMenu_old/index.tsx';
+import type { Account } from '../GlobalMenu_old/index.tsx';
 import { useRootContext } from '../RootProvider';
 import { Searchbar, type SearchbarProps } from '../Searchbar';
 import { LocaleSwitcher, type LocaleSwitcherProps } from './';
 import styles from './header.module.css';
 
 export interface HeaderProps {
-  globalMenu: GlobalMenuProps;
+  globalMenu: GlobalMenuProps_old;
   /** Use to override globalMenu.menu on desktop */
   desktopMenu?: MenuProps;
   /** Use to override globalMenu.menu on mobile */
@@ -64,7 +64,7 @@ export const Header = ({
       <HeaderGroup>
         {locale && <LocaleSwitcher {...locale} />}
         <div className={styles.relative}>
-          <GlobalMenuButton
+          <GlobalMenuButton_old
             currentAccount={currentAccount}
             onClick={onToggleMenu}
             expanded={currentId === 'menu'}
@@ -79,7 +79,7 @@ export const Header = ({
               open={currentId === 'menu'}
               className={styles.dropdown}
             >
-              <GlobalMenu
+              <GlobalMenu_old
                 {...globalMenu}
                 menu={desktopMenu || globalMenu?.menu}
                 currentAccount={currentAccount}
@@ -96,7 +96,7 @@ export const Header = ({
       )}
       {globalMenu && (
         <DrawerBase open={currentId === 'menu'} className={styles.drawer}>
-          <GlobalMenu
+          <GlobalMenu_old
             {...globalMenu}
             menu={mobileMenu || globalMenu?.menu}
             currentAccount={currentAccount}

@@ -1,9 +1,10 @@
 'use client';
 import { type ReactNode, createContext, useContext, useState } from 'react';
 import { useEscapeKey } from '../../hooks';
+import type { LanguageCode } from '../../types';
 import { SnackbarProvider } from '../Snackbar';
 
-type OpenElementId = 'search' | 'menu' | string;
+type OpenElementId = 'search' | 'menu' | 'account' | 'fullscreenAccount' | string;
 
 interface RootContextProvider {
   currentId: OpenElementId;
@@ -11,20 +12,29 @@ interface RootContextProvider {
   toggleId: (elementId: OpenElementId) => void;
   closeAll: () => void;
   openId: (elementId: OpenElementId) => void;
+  languageCode?: LanguageCode;
 }
 
 const initialValue = {
   currentId: '',
   previousId: '',
   debug: false,
+  setCurrentId: () => {
+    console.warn('setCurrentId called outside of RootProvider context');
+  },
+  setPreviousId: () => {
+    console.warn('setPreviousId called outside of RootProvider context');
+  },
+  languageCode: 'nb' as LanguageCode,
 };
 
 interface RootContextInitialValue {
   currentId: OpenElementId;
   previousId: OpenElementId;
-  setCurrentId?: (elementId: OpenElementId) => void;
-  setPreviousId?: (elementId: OpenElementId) => void;
+  setCurrentId: (elementId: OpenElementId) => void;
+  setPreviousId: (elementId: OpenElementId) => void;
   debug?: boolean;
+  languageCode?: LanguageCode;
 }
 
 const RootContext = createContext<RootContextInitialValue>(initialValue);
@@ -33,9 +43,11 @@ interface ProviderProps {
   children: ReactNode;
   initialValue?: RootContextInitialValue;
   debug?: boolean;
+  /** Specify the language to be used for common texts */
+  languageCode?: LanguageCode;
 }
 
-export const RootProvider = ({ children, initialValue, debug }: ProviderProps) => {
+export const RootProvider = ({ children, initialValue, debug, languageCode }: ProviderProps) => {
   const [currentId, setCurrentId] = useState<OpenElementId>(initialValue?.currentId || '');
   const [previousId, setPreviousId] = useState<OpenElementId>(initialValue?.previousId || '');
   return (
@@ -46,6 +58,7 @@ export const RootProvider = ({ children, initialValue, debug }: ProviderProps) =
         setPreviousId,
         previousId,
         debug,
+        languageCode,
       }}
     >
       <SnackbarProvider>{children}</SnackbarProvider>
@@ -54,13 +67,20 @@ export const RootProvider = ({ children, initialValue, debug }: ProviderProps) =
 };
 
 export const useRootContext = (): RootContextProvider => {
-  const { currentId, setCurrentId, debug, setPreviousId, previousId } = useContext(RootContext);
+  const context = useContext(RootContext);
+
+  // Check if we're using the hook outside of the provider
+  if (!context) {
+    throw new Error('useRootContext must be used within a RootProvider.');
+  }
+
+  const { currentId, setCurrentId, debug, setPreviousId, previousId, languageCode } = context;
 
   const changeCurrentId = (nextElementId: OpenElementId) => {
     if (currentId) {
-      setPreviousId!(currentId);
+      setPreviousId(currentId);
     }
-    setCurrentId!(nextElementId);
+    setCurrentId(nextElementId);
   };
 
   const toggleId = (elementId: OpenElementId) => {
@@ -73,7 +93,7 @@ export const useRootContext = (): RootContextProvider => {
     if (debug) {
       console.debug('useRootContext: closeAll called');
     }
-    changeCurrentId!('');
+    changeCurrentId('');
   };
   useEscapeKey(closeAll);
 
@@ -81,7 +101,7 @@ export const useRootContext = (): RootContextProvider => {
     if (debug) {
       console.debug(`useRootContext: openId called with value: ${elementId}`);
     }
-    changeCurrentId!(elementId);
+    changeCurrentId(elementId);
   };
   return {
     currentId,
@@ -89,5 +109,6 @@ export const useRootContext = (): RootContextProvider => {
     toggleId,
     closeAll,
     openId,
+    languageCode,
   };
 };

@@ -1,5 +1,12 @@
 import { useAdminLayout, useAdminToolbar } from '../';
-import type { Account, AccountMenuProps, BreadcrumbsLinkProps, LayoutProps, ToolbarProps } from '../../lib';
+import type {
+  Account,
+  AccountMenuProps,
+  BreadcrumbsLinkProps,
+  GlobalMenuProps_old,
+  LayoutProps,
+  ToolbarProps,
+} from '../../lib';
 
 export type AdminSettings = Record<string, string>;
 
@@ -43,7 +50,7 @@ export const useAdmin = ({ defaultAccountId = 'diaspora', pageId = 'admin' }): U
 
   const layout = useAdminLayout({ accountId, pageId });
 
-  const globalMenu = layout?.header?.globalMenu;
+  const globalMenu = layout?.header?.globalMenu as GlobalMenuProps_old;
   const menu = layout?.sidebar?.menu;
   const currentAccount = globalMenu?.currentAccount;
 

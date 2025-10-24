@@ -1,14 +1,13 @@
-import { PadlockLockedIcon, XMarkIcon } from '@navikt/aksel-icons';
+import { MenuHamburgerIcon, XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import type { ElementType } from 'react';
-import { type Account, ButtonBase, ButtonIcon, ButtonLabel, type ButtonProps } from '../';
-import { Avatar, type AvatarProps } from '../Avatar';
+import { ButtonBase, ButtonIcon, ButtonLabel, type ButtonProps } from '../';
 import { Badge, type BadgeProps } from '../Badge';
 
+import { useIsDesktop } from '../../hooks/useIsDesktop';
 import styles from './globalMenuButton.module.css';
 
 export interface GlobalMenuButtonProps extends ButtonProps {
-  currentAccount?: Account;
   label?: string;
   as?: ElementType;
   className?: string;
@@ -22,42 +21,43 @@ export const GlobalMenuButton = ({
   as = 'button',
   color = 'accent',
   variant = 'solid',
-  currentAccount,
   expanded,
   label = 'Menu',
   badge,
   ...buttonProps
 }: GlobalMenuButtonProps) => {
+  const isDesktop = useIsDesktop();
+
   if (expanded) {
     return (
-      <ButtonBase {...buttonProps} as={as} variant={variant} color={color} className={cx(styles.button, className)}>
+      <ButtonBase
+        {...buttonProps}
+        as={as}
+        type="button"
+        variant={variant}
+        color={color}
+        className={cx(styles.button, className)}
+      >
+        {isDesktop && (
+          <ButtonIcon className={styles.closeIcon} icon={<XMarkIcon className={styles.icon} aria-label="Close" />} />
+        )}
         <ButtonLabel>{label}</ButtonLabel>
-        <ButtonIcon className={styles.closeIcon} icon={<XMarkIcon className={styles.icon} aria-label="Close Icon" />} />
-        {badge && <Badge {...badge} className={styles.badge} />}
-      </ButtonBase>
-    );
-  }
-
-  if (currentAccount) {
-    return (
-      <ButtonBase {...buttonProps} as={as} variant={variant} color={color} className={cx(styles.button, className)}>
-        <ButtonLabel>{label}</ButtonLabel>
-        <ButtonIcon
-          className={styles.avatarIcon}
-          icon={<Avatar {...(currentAccount?.icon as AvatarProps)} className={styles.avatar} />}
-        />
         {badge && <Badge {...badge} className={styles.badge} />}
       </ButtonBase>
     );
   }
 
   return (
-    <ButtonBase {...buttonProps} as={as} variant={variant} color={color} className={cx(styles.button, className)}>
+    <ButtonBase
+      {...buttonProps}
+      as={as}
+      type="button"
+      variant={variant}
+      color={color}
+      className={cx(styles.button, className)}
+    >
+      {isDesktop && <ButtonIcon icon={<MenuHamburgerIcon className={styles.icon} aria-hidden />} />}
       <ButtonLabel>{label}</ButtonLabel>
-      <ButtonIcon
-        className={styles.loginIcon}
-        icon={<PadlockLockedIcon className={styles.icon} aria-label="Login Icon" />}
-      />
       {badge && <Badge {...badge} className={styles.badge} />}
     </ButtonBase>
   );

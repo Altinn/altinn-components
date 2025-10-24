@@ -4,3 +4,4 @@ export * from './LogoutButton';
 export * from './EndUserLabel';
 export * from './GlobalMenu';
 export * from './GlobalMenuButton';
+export * from './LocaleSwitcher';
