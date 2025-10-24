@@ -87,6 +87,38 @@ export const Preview = (args: LayoutStoryArgs) => {
   );
 };
 
+export const LogInView = (args: LayoutStoryArgs) => {
+  const layout = useLayout(args);
+  const accountMenu = { ...useAccountMenu({ accountId: 'diaspora' }), isVirtualized: true };
+  const accountMenuNotLoggedIn = { ...accountMenu, currentAccount: undefined, items: [] };
+  const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
+  const onSearch = (queryString: string) => alert('Search entered: ' + queryString);
+  const accountSelector: AccountSelectorProps = {
+    accountMenu: accountMenuNotLoggedIn,
+    externalFullScreen: args.externalFullScreen,
+  };
+  const onLoginClick = () => {
+    alert('Login clicked');
+  };
+  return (
+    <RootProvider>
+      <Layout
+        {...args}
+        {...layout}
+        header={{
+          ...layout.header,
+          accountSelector: accountSelector,
+          globalMenu: globalMenu,
+          globalSearch: { onEnter: onSearch },
+          onLoginClick: onLoginClick,
+        }}
+      >
+        {args.children}
+      </Layout>
+    </RootProvider>
+  );
+};
+
 export const WithEnglishLanguage = (args: LayoutStoryArgs) => {
   const layout = useLayout(args);
   const accountMenu = useAccountMenu({ accountId: 'diaspora' });

@@ -26,6 +26,7 @@ export interface GlobalHeaderProps {
   accountSelector?: AccountSelectorProps;
   badge?: BadgeProps | undefined;
   logo?: HeaderLogoProps;
+  onLoginClick?: () => void;
 }
 
 export const GlobalHeader = ({
@@ -37,6 +38,7 @@ export const GlobalHeader = ({
   accountSelector,
   logo = {},
   badge,
+  onLoginClick,
 }: GlobalHeaderProps) => {
   const { currentId, toggleId, openId, closeAll } = useRootContext();
 
@@ -65,11 +67,11 @@ export const GlobalHeader = ({
     <GlobalHeaderBase currentId={currentId} openBackdrop={currentId === 'menu'} onCloseBackdrop={closeAll}>
       <HeaderLogo {...logo} badge={badge} className={styles.logo} />
       <HeaderGroup>
-        {accountSelector?.accountMenu?.currentAccount && (
+        {accountSelector && (
           <AccountMenuButton
-            currentAccount={accountSelector.accountMenu.currentAccount}
+            currentAccount={accountSelector.accountMenu?.currentAccount}
             minimized={!isDesktop}
-            onClick={onToggleAccountMenu}
+            onClick={accountSelector.accountMenu?.currentAccount ? onToggleAccountMenu : onLoginClick}
             expanded={accountSelectionOpen}
           />
         )}

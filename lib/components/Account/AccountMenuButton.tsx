@@ -8,7 +8,6 @@ import styles from './accountMenuButton.module.css';
 
 export interface AccountMenuButtonProps extends ButtonProps {
   currentAccount?: AccountMenuItemProps;
-  label?: string;
   className?: string;
   expanded?: boolean;
   /** Display the button as a minimized, mobile-friendly version */
@@ -20,10 +19,10 @@ export const AccountMenuButton = ({
   className,
   currentAccount,
   expanded,
-  label = 'Log inn',
   minimized = false,
   ...buttonProps
 }: AccountMenuButtonProps) => {
+  const { login } = getTexts(undefined);
   if (currentAccount) {
     return (
       <ButtonBase
@@ -74,8 +73,27 @@ export const AccountMenuButton = ({
       color={'accent'}
       className={cx(styles.button, className)}
     >
-      {!minimized && <ButtonLabel>{label}</ButtonLabel>}
+      {!minimized && <ButtonLabel>{login}</ButtonLabel>}
       <ButtonIcon className={styles.loginIcon} icon={<EnterIcon className={styles.icon} aria-hidden />} />
     </ButtonBase>
   );
+};
+
+// TODO: Move to a common texts files when i18next is added
+// This is only a temporary solution for providing texts in different languages in a very simple POC
+const getTexts = (languageCode: string | undefined) => {
+  switch (languageCode) {
+    case 'nn':
+      return {
+        login: 'Logg inn',
+      };
+    case 'en':
+      return {
+        login: 'Log in',
+      };
+    default:
+      return {
+        login: 'Logg inn',
+      };
+  }
 };
