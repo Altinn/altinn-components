@@ -66,6 +66,12 @@ export const Expanded: Story = {
   },
 };
 
+export const Loading: Story = {
+  args: {
+    loading: true,
+  },
+};
+
 export const MinimizedForMobile: Story = {
   args: {
     currentAccount: {

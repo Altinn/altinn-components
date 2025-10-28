@@ -73,6 +73,7 @@ export const GlobalHeader = ({
             minimized={!isDesktop}
             onClick={accountSelector.accountMenu?.currentAccount ? onToggleAccountMenu : onLoginClick}
             expanded={accountSelectionOpen}
+            loading={accountSelector.loading}
           />
         )}
         {globalSearch && <GlobalSearchButton onClick={ToggleSearch} expanded={currentId === 'search'} />}

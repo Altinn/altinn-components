@@ -1,8 +1,19 @@
 import type { Meta } from '@storybook/react-vite';
+import { useState } from 'react';
 import { Flex, RootProvider } from '..';
 import type { LayoutProps } from '../';
 import { Layout, List, type ListItemProps, PageBase } from '../';
-import { footer, header, inboxMenu, skipLink, useAccountMenu, useGlobalMenu, useLayout } from '../../../examples';
+import {
+  footer,
+  getAuthorizedPartiesData,
+  header,
+  inboxMenu,
+  skipLink,
+  useAccountMenu,
+  useGlobalMenu,
+  useLayout,
+} from '../../../examples';
+import { useAccountSelector } from '../../hooks/useAccountSelector';
 import type { AccountSelectorProps } from '../GlobalHeader/AccountSelector';
 
 // Add custom story args interface for easier testing
@@ -62,7 +73,10 @@ export default meta;
 
 export const Preview = (args: LayoutStoryArgs) => {
   const layout = useLayout(args);
-  const accountMenu = { ...useAccountMenu({ accountId: 'diaspora' }), isVirtualized: true };
+  const accountMenu = {
+    ...useAccountMenu({ accountId: 'diaspora' }),
+    isVirtualized: true,
+  };
   const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
   const onSearch = (queryString: string) => alert('Search entered: ' + queryString);
   const accountSelector: AccountSelectorProps = {
@@ -87,10 +101,72 @@ export const Preview = (args: LayoutStoryArgs) => {
   );
 };
 
+export const UsingUseAccountHook = (args: LayoutStoryArgs) => {
+  const layout = useLayout(args);
+  const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
+  const onSearch = (queryString: string) => alert('Search entered: ' + queryString);
+
+  // Use the useAccountSelector hook to get account menu and loading state
+  const [favoriteUuids, setFavoriteUuids] = useState<string[]>([]);
+  const [currentAccountUuid, setCurrentAccountUuid] = useState<string | undefined>(
+    '167536b5-f8ed-4c5a-8f48-0279507e53ae',
+  );
+  const authorizedParties = getAuthorizedPartiesData(); // Fetch your authorized parties data from external source
+  const selfAccountUuid = '167536b5-f8ed-4c5a-8f48-0279507e53ae';
+  const onToggleFavorite = (uuid: string) => {
+    setFavoriteUuids((prev) => (prev.includes(uuid) ? prev.filter((id) => id !== uuid) : [...prev, uuid]));
+  };
+  const accountSelector = useAccountSelector({
+    partyListDTO: authorizedParties,
+    favoriteAccountUuids: favoriteUuids,
+    onToggleFavorite: onToggleFavorite,
+    selfAccountUuid,
+    currentAccountUuid: currentAccountUuid,
+    onSelectAccount: (accountId: string) => {
+      const newAccount = authorizedParties.find(
+        (party) => party.partyId === accountId || party.subunits?.find((sub) => sub.partyId === accountId),
+      );
+      if (newAccount && newAccount.partyId !== accountId) {
+        // If a subunit was selected, set currentAccountUuid to that subunit's UUID
+        const subunit = newAccount.subunits?.find((sub) => sub.partyId === accountId);
+        setCurrentAccountUuid(subunit?.partyUuid);
+        return;
+      }
+      setCurrentAccountUuid(newAccount?.partyUuid);
+    },
+    languageCode: 'nb',
+    isLoading: false,
+  });
+  console.log('Account Selector:', accountSelector);
+  return (
+    <RootProvider languageCode="nb">
+      <Layout
+        {...args}
+        {...layout}
+        header={{
+          ...layout.header,
+          accountSelector: accountSelector,
+          globalMenu: globalMenu,
+          globalSearch: { onEnter: onSearch },
+        }}
+      >
+        {args.children}
+      </Layout>
+    </RootProvider>
+  );
+};
+
 export const LogInView = (args: LayoutStoryArgs) => {
   const layout = useLayout(args);
-  const accountMenu = { ...useAccountMenu({ accountId: 'diaspora' }), isVirtualized: true };
-  const accountMenuNotLoggedIn = { ...accountMenu, currentAccount: undefined, items: [] };
+  const accountMenu = {
+    ...useAccountMenu({ accountId: 'diaspora' }),
+    isVirtualized: true,
+  };
+  const accountMenuNotLoggedIn = {
+    ...accountMenu,
+    currentAccount: undefined,
+    items: [],
+  };
   const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
   const onSearch = (queryString: string) => alert('Search entered: ' + queryString);
   const accountSelector: AccountSelectorProps = {

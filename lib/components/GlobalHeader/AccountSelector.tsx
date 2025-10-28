@@ -16,9 +16,10 @@ export interface AccountSelectorProps {
    */
   externalFullScreen?: boolean;
   className?: string;
+  loading?: boolean;
 }
 
-export const AccountSelector = ({ accountMenu, externalFullScreen, className }: AccountSelectorProps) => {
+export const AccountSelector = ({ accountMenu, externalFullScreen, className, loading }: AccountSelectorProps) => {
   const { currentId, openId, toggleId, languageCode } = useRootContext();
   const isFullScreen = currentId === 'accountFullscreen';
   const [searchString, setSearchString] = useState('');
@@ -40,6 +41,10 @@ export const AccountSelector = ({ accountMenu, externalFullScreen, className }: 
       openId('accountFullscreen');
     }
   };
+
+  if (loading) {
+    return;
+  }
 
   return (
     <div className={cx(className, styles.accountSelector)}>

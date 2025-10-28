@@ -13,6 +13,7 @@ export interface AccountMenuButtonProps extends ButtonProps {
   /** Display the button as a minimized, mobile-friendly version */
   minimized?: boolean;
   tabIndex?: number;
+  loading?: boolean;
 }
 
 export const AccountMenuButton = ({
@@ -20,9 +21,26 @@ export const AccountMenuButton = ({
   currentAccount,
   expanded,
   minimized = false,
+  loading = false,
   ...buttonProps
 }: AccountMenuButtonProps) => {
   const { login } = getTexts(undefined);
+
+  if (loading) {
+    return (
+      <ButtonBase
+        {...buttonProps}
+        as={'button'}
+        type="button"
+        variant={'text'}
+        color={'accent'}
+        className={cx(styles.button, styles.loading, className)}
+      >
+        <ButtonIcon className={styles.avatarIcon} icon={<Avatar name="loading" loading className={styles.avatar} />} />
+      </ButtonBase>
+    );
+  }
+
   if (currentAccount) {
     return (
       <ButtonBase
