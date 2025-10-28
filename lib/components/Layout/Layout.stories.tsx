@@ -137,7 +137,6 @@ export const UsingUseAccountHook = (args: LayoutStoryArgs) => {
     languageCode: 'nb',
     isLoading: false,
   });
-  console.log('Account Selector:', accountSelector);
   return (
     <RootProvider languageCode="nb">
       <Layout

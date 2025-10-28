@@ -8,6 +8,7 @@ export interface AuthorizedParty {
   partyUuid: string;
   name: string;
   organizationNumber?: string;
+  dateOfBirth?: string;
   partyId: string;
   type?: string;
   unitType?: string;
@@ -59,11 +60,6 @@ export const useAccountSelector = ({
 
     const texts = getTexts(languageCode);
 
-    // Track partyIds of favorite accounts (while we still have to use partyId as id instead of partyUuid)
-    const favoritePartyIds = partyListDTO
-      .filter((party) => favoriteAccountUuids?.includes(party.partyUuid))
-      .map((party) => party.partyId);
-
     // Separate self, people and organizations
     const self = partyListDTO.find((party) => isPersonType(party.type) && party.partyUuid === selfAccountUuid);
 
@@ -72,15 +68,32 @@ export const useAccountSelector = ({
     const organizations = partyListDTO.filter((party) => isOrgType(party.type));
 
     // Build account items of self, people and organizations
-    const selfAccountItem = getAccountFromAuthorizedParty(self!, 'favorites', currentAccountUuid);
+    const selfAccountItem = getAccountFromAuthorizedParty(
+      languageCode!,
+      self!,
+      'favorites',
+      currentAccountUuid,
+      false,
+      onToggleFavorite,
+      undefined,
+      true,
+    );
 
     const peopleAccountItems = otherPeople?.map((party) =>
-      getAccountFromAuthorizedParty(party, party.partyUuid, currentAccountUuid, false, onToggleFavorite),
+      getAccountFromAuthorizedParty(
+        languageCode!,
+        party,
+        party.partyUuid,
+        currentAccountUuid,
+        isFavorite(party.partyUuid),
+        onToggleFavorite,
+      ),
     );
 
     const organizationAccountItems: AccountMenuItemProps[] = [];
     for (const org of organizations) {
       const orgAccountItem = getAccountFromAuthorizedParty(
+        languageCode!,
         org,
         org.partyUuid,
         currentAccountUuid,
@@ -91,6 +104,7 @@ export const useAccountSelector = ({
       if (org.subunits && org.subunits.length > 0) {
         for (const subUnit of org.subunits) {
           const subUnitAccountItem = getAccountFromAuthorizedParty(
+            languageCode!,
             subUnit,
             org.partyUuid,
             currentAccountUuid!,
@@ -99,23 +113,19 @@ export const useAccountSelector = ({
             org,
           );
           organizationAccountItems.push(subUnitAccountItem);
-          // While were iterating, add subunits to partyId tracking if they are favorited
-          if (favoriteAccountUuids?.includes(subUnit.partyUuid)) {
-            favoritePartyIds.push(subUnit.partyId);
-          }
         }
       }
     }
 
     // Build favorite account items from previously built people and organization items
     const favoritePeopleAccountItems = peopleAccountItems.reduce<AccountMenuItemProps[]>((acc, item) => {
-      if (favoritePartyIds?.includes(item.id)) {
+      if (isFavorite(item.id)) {
         acc.push({ ...item, groupId: 'favorites' });
       }
       return acc;
     }, []);
     const favoriteOrganizationAccountItems = organizationAccountItems.reduce<AccountMenuItemProps[]>((acc, item) => {
-      if (favoritePartyIds?.includes(item.id)) {
+      if (isFavorite(item.id)) {
         acc.push({ ...item, groupId: 'favorites' });
       }
       return acc;
@@ -181,19 +191,22 @@ export const useAccountSelector = ({
 };
 
 const getAccountFromAuthorizedParty = (
+  languageCode: string,
   party: AuthorizedParty,
   group: string,
   currentAccountUuid?: string,
   isFavorite?: boolean,
   toggleFavorite?: (accountId: string) => void,
   parent?: AuthorizedParty,
+  isSelf?: boolean,
 ): AccountMenuItemProps => {
   const type: 'company' | 'person' = getAccountType(party.type ?? '');
+
+  const texts = getTexts(languageCode);
 
   const name = formatDisplayName({
     fullName: party.name,
     type: type,
-    reverseNameOrder: type === 'person',
   });
   const parentName = parent
     ? formatDisplayName({
@@ -207,17 +220,17 @@ const getAccountFromAuthorizedParty = (
   const formatType = type === 'company' && !!parent ? 'subUnit' : type;
   switch (formatType) {
     case 'company':
-      description = `Org.nr: ${party.organizationNumber}`;
+      description = `${texts.org_no}: ${party.organizationNumber}`;
       break;
     case 'person':
-      // Birth date when available will be added here
+      description = `${texts.birthdate}: ${formatDateToNorwegian(party.dateOfBirth)}`;
       break;
     case 'subUnit':
-      description = `↳ Org.nr: ${party.organizationNumber}, del av ${parentName}`;
+      description = `↳ ${texts.org_no}: ${party.organizationNumber}, ${texts.part_of} ${parentName}`;
       break;
   }
   return {
-    id: party.partyId,
+    id: party.partyUuid,
     icon: {
       name: name,
       type: type,
@@ -231,12 +244,13 @@ const getAccountFromAuthorizedParty = (
     type: type,
     selected: currentAccountUuid === party.partyUuid,
     disabled: !!party.onlyHierarchyElementWithNoAccess,
-    controls: (
+    badge: isSelf ? { label: texts.you, color: 'person' } : undefined,
+    controls: !isSelf && (
       <IconButton
         rounded
         variant="text"
         icon={isFavorite ? HeartFillIcon : HeartIcon}
-        iconAltText={'Favoritt'}
+        iconAltText={isFavorite ? texts.remove_from_favorites : texts.add_to_favorites}
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
           if (toggleFavorite) {
             e.stopPropagation();
@@ -266,18 +280,62 @@ const getTexts = (languageCode: string | undefined) => {
         account_orgs: 'Virksemder',
         account_persons: 'Personar',
         account_favorites: 'Favorittar',
+        add_to_favorites: 'Legg til i favorittar',
+        remove_from_favorites: 'Fjern frå favorittar',
+        you: 'Deg',
+        org_no: 'Org.nr',
+        birthdate: 'Født',
+        part_of: 'del av',
       };
     case 'en':
       return {
         account_orgs: 'Organizations',
         account_persons: 'Persons',
         account_favorites: 'Favorites',
+        add_to_favorites: 'Add to favorites',
+        remove_from_favorites: 'Remove from favorites',
+        you: 'You',
+        org_no: 'Org.no',
+        birthdate: 'Born',
+        part_of: 'part of',
       };
     default:
       return {
         account_orgs: 'Virksomheter',
         account_persons: 'Personer',
         account_favorites: 'Favoritter',
+        add_to_favorites: 'Legg til i favorittar',
+        remove_from_favorites: 'Fjern frå favorittar',
+        you: 'Deg',
+        org_no: 'Org.nr',
+        birthdate: 'Født',
+        part_of: 'del av',
       };
   }
 };
+
+export function formatDateToNorwegian(dateString: string | undefined, locale = 'no-NO'): string | undefined {
+  if (!dateString) {
+    return undefined;
+  }
+
+  try {
+    // Parse the date string (assumes YYYY-MM-DD format)
+    const date = new Date(dateString);
+
+    // Check if the date is valid
+    if (Number.isNaN(date.getTime())) {
+      return dateString; // Return original if invalid
+    }
+
+    // Format to Norwegian locale (DD.MM.YYYY)
+    return date.toLocaleDateString(locale, {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    });
+  } catch (error) {
+    console.warn('Error formatting date:', error);
+    return dateString; // Return original if error occurs
+  }
+}
