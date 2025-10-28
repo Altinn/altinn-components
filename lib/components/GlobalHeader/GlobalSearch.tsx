@@ -1,5 +1,7 @@
+import { MagnifyingGlassIcon } from '@navikt/aksel-icons';
 import { useState } from 'react';
-import { Searchbar, useRootContext } from '../';
+import { DsSearch, useRootContext } from '../';
+import { useIsDesktop } from '../../hooks/useIsDesktop';
 import styles from './globalSearch.module.css';
 
 export interface GlobalSearchProps {
@@ -7,6 +9,7 @@ export interface GlobalSearchProps {
 }
 
 export const GlobalSearch = ({ onEnter }: GlobalSearchProps) => {
+  const isDesktop = useIsDesktop();
   const [query, setQuery] = useState('');
   const { languageCode, closeAll } = useRootContext();
   const { search, placeholder } = getTexts(languageCode);
@@ -15,15 +18,26 @@ export const GlobalSearch = ({ onEnter }: GlobalSearchProps) => {
     closeAll();
   };
   return (
-    <Searchbar
-      name={search}
-      value={query}
-      onEnter={onSearchbarEnter}
-      placeholder={placeholder}
-      tabIndex={-1}
-      onChange={(e) => setQuery((e.target as HTMLInputElement).value)}
-      className={styles.globalSearch}
-    />
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        onSearchbarEnter();
+      }}
+    >
+      <DsSearch className={styles.globalSearch} data-size={isDesktop ? 'lg' : 'md'}>
+        <DsSearch.Input
+          placeholder={placeholder}
+          onChange={(e) => setQuery(e.target.value)}
+          value={query}
+          aria-label={placeholder}
+          className={styles.searchInput}
+        />
+        <DsSearch.Clear />
+        <DsSearch.Button variant="secondary" icon aria-label={search} className={styles.searchInputButton}>
+          <MagnifyingGlassIcon />
+        </DsSearch.Button>
+      </DsSearch>
+    </form>
   );
 };
 
