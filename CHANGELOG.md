@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.43.7](https://github.com/Altinn/altinn-components/compare/v0.43.6...v0.43.7) (2025-10-21)
+
+
+### Bug Fixes
+
+* avatargroup parent/deleted ([#742](https://github.com/Altinn/altinn-components/issues/742)) ([5780d28](https://github.com/Altinn/altinn-components/commit/5780d28f212027236f2799351b76cfcf0c89915c))
+
 ## [0.43.6](https://github.com/Altinn/altinn-components/compare/v0.43.5...v0.43.6) (2025-10-21)
 
 
