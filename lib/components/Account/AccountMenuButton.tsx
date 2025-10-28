@@ -24,7 +24,7 @@ export const AccountMenuButton = ({
   loading = false,
   ...buttonProps
 }: AccountMenuButtonProps) => {
-  const { login } = getTexts(undefined);
+  const texts = getTexts(undefined);
 
   if (loading) {
     return (
@@ -35,6 +35,8 @@ export const AccountMenuButton = ({
         variant={'text'}
         color={'accent'}
         className={cx(styles.button, styles.loading, className)}
+        disabled
+        aria-label="loading"
       >
         <ButtonIcon className={styles.avatarIcon} icon={<Avatar name="loading" loading className={styles.avatar} />} />
       </ButtonBase>
@@ -50,6 +52,7 @@ export const AccountMenuButton = ({
         variant={'text'}
         color={'accent'}
         className={cx(styles.button, className)}
+        aria-label={expanded ? texts.close : currentAccount.name}
       >
         {!minimized && (
           <ButtonLabel>
@@ -68,10 +71,7 @@ export const AccountMenuButton = ({
           </ButtonLabel>
         )}
         {expanded ? (
-          <ButtonIcon
-            className={styles.closeIcon}
-            icon={<XMarkIcon className={styles.icon} aria-label="Close Icon" />}
-          />
+          <ButtonIcon className={styles.closeIcon} icon={<XMarkIcon className={styles.icon} aria-hidden />} />
         ) : (
           <ButtonIcon
             className={styles.avatarIcon}
@@ -89,9 +89,10 @@ export const AccountMenuButton = ({
       type="button"
       variant={'text'}
       color={'accent'}
+      aria-label={texts.login}
       className={cx(styles.button, className)}
     >
-      {!minimized && <ButtonLabel>{login}</ButtonLabel>}
+      {!minimized && <ButtonLabel>{texts.login}</ButtonLabel>}
       <ButtonIcon className={styles.loginIcon} icon={<EnterIcon className={styles.icon} aria-hidden />} />
     </ButtonBase>
   );
@@ -104,14 +105,17 @@ const getTexts = (languageCode: string | undefined) => {
     case 'nn':
       return {
         login: 'Logg inn',
+        close: 'Lukk kontomeny',
       };
     case 'en':
       return {
         login: 'Log in',
+        close: 'Close Account Menu',
       };
     default:
       return {
         login: 'Logg inn',
+        close: 'Lukk kontomeny',
       };
   }
 };

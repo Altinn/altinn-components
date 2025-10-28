@@ -26,7 +26,7 @@ const meta = {
 
 export default meta;
 
-export const WithAccounts = (args: AccountSelectorProps) => {
+export const WithAccounts = () => {
   const [favoriteUuids, setFavoriteUuids] = useState<string[]>([]);
   const authorizedParties = getAuthorizedPartiesData();
   const selfAccountUuid = '167536b5-f8ed-4c5a-8f48-0279507e53ae';

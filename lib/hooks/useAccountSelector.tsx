@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 import { type AccountMenuItemProps, IconButton, type MenuGroupProps } from '../components';
 import type { AccountSelectorProps } from '../components/GlobalHeader/AccountSelector';
 import { formatDisplayName } from '../functions';
+import { formatDateToNorwegian } from '../functions/date';
 
 export interface AuthorizedParty {
   partyUuid: string;
@@ -313,29 +314,3 @@ const getTexts = (languageCode: string | undefined) => {
       };
   }
 };
-
-export function formatDateToNorwegian(dateString: string | undefined, locale = 'no-NO'): string | undefined {
-  if (!dateString) {
-    return undefined;
-  }
-
-  try {
-    // Parse the date string (assumes YYYY-MM-DD format)
-    const date = new Date(dateString);
-
-    // Check if the date is valid
-    if (Number.isNaN(date.getTime())) {
-      return dateString; // Return original if invalid
-    }
-
-    // Format to Norwegian locale (DD.MM.YYYY)
-    return date.toLocaleDateString(locale, {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-    });
-  } catch (error) {
-    console.warn('Error formatting date:', error);
-    return dateString; // Return original if error occurs
-  }
-}
