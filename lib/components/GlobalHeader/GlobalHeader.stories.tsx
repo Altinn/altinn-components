@@ -32,7 +32,7 @@ export const Login = (args: GlobalHeaderProps) => {
   );
 };
 
-export const CurrentAccount = (args: GlobalHeaderProps) => {
+export const CurrentAccount = () => {
   const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
   const onSearch = (queryString: string) => alert('Search entered: ' + queryString);
 
