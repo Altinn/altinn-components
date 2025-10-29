@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.43.8](https://github.com/Altinn/altinn-components/compare/v0.43.7...v0.43.8) (2025-10-29)
+
+
+### Bug Fixes
+
+* add neutral theme to Layout ([#745](https://github.com/Altinn/altinn-components/issues/745)) ([da44679](https://github.com/Altinn/altinn-components/commit/da44679205193fd82173772a7a04964bdeb297ca))
+* table typography ([#748](https://github.com/Altinn/altinn-components/issues/748)) ([bac7521](https://github.com/Altinn/altinn-components/commit/bac752130cc7385fed4e655183e286398cef574c))
+
 ## [0.43.7](https://github.com/Altinn/altinn-components/compare/v0.43.6...v0.43.7) (2025-10-21)
 
 
