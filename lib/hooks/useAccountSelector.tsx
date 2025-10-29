@@ -5,37 +5,77 @@ import type { AccountSelectorProps } from '../components/GlobalHeader/AccountSel
 import { formatDisplayName } from '../functions';
 import { formatDateToNorwegian } from '../functions/date';
 
+/** The DTO for the authorized party endpoint */
 export interface AuthorizedParty {
+  /** Unique identifier for the party */
   partyUuid: string;
+  /** Display name of the party */
   name: string;
+  /** Organization number (for organizations only) */
   organizationNumber?: string;
+  /** Date of birth in ISO format (for persons only) */
   dateOfBirth?: string;
+  /** Legacy party identifier (deprecated) */
   partyId: string;
+  /** Type of party - 'Person' or 'Organization' */
   type?: string;
+  /** Specific unit type for organizations */
   unitType?: string;
+  /** Whether the party has been deleted */
   isDeleted: boolean;
+  /** Whether the user only has access to child-/subunits */
   onlyHierarchyElementWithNoAccess: boolean;
+  /** List of authorized resource identifiers */
   authorizedResources: string[];
+  /** List of authorized role identifiers */
   authorizedRoles: string[];
+  /** Child subunits (for parent organizations) */
   subunits?: AuthorizedParty[];
 }
 
+/**
+ * Configuration props for the useAccountSelector hook.
+ */
 export interface useAccountSelectorProps {
+  /** Array of authorized parties that the user can act on behalf of */
   partyListDTO?: AuthorizedParty[];
+  /** Array of parties (defined by their partyUUIDs) marked as favorites by the user */
   favoriteAccountUuids?: string[];
+  /** UUID of the currently selected account */
   currentAccountUuid?: string;
+  /** UUID of the user's own personal account */
   selfAccountUuid?: string;
+  /** Whether account data is currently being loaded */
   isLoading?: boolean;
+  /** Whether to use virtualization for large account lists */
   isVirtualized?: boolean;
+  /** Callback triggered when a user selects an account */
   onSelectAccount?: (accountId: string) => void;
+  /** Callback triggered when a user toggles an account's favorite status */
   onToggleFavorite?: (accountId: string) => void;
+  /** Language code for localization ('nn', 'en', or 'nb'/default) */
   languageCode?: string;
 }
 
+/**
+ * Maps a party type string to an account type.
+ * @param type - The party type string
+ * @returns The account type ("company" or "person")
+ */
 const getAccountType = (type: string): 'company' | 'person' => {
   return type === 'Organization' ? 'company' : 'person';
 };
 
+/**
+ * React hook that processes authorized party data and transforms it into
+ * a structured format suitable for the AccountSelector component.
+ *
+ * Handles account organization into groups (self, favorites, people, organizations),
+ * favorites management, localization, and hierarchical organization structures.
+ *
+ * @param props - Configuration object for the hook
+ * @returns AccountSelectorProps object with organized account data and handlers.
+ */
 export const useAccountSelector = ({
   partyListDTO = [],
   favoriteAccountUuids,
@@ -191,6 +231,20 @@ export const useAccountSelector = ({
   };
 };
 
+/**
+ * Converts an AuthorizedParty object into an AccountMenuItemProps object
+ * with proper formatting, localization, and interactive elements.
+ *
+ * @param languageCode - Language code for text localization
+ * @param party - The authorized party to convert
+ * @param group - Group identifier for organizing accounts
+ * @param currentAccountUuid - UUID of currently selected account for selection state
+ * @param isFavorite - Whether this account is marked as favorite
+ * @param toggleFavorite - Callback for toggling favorite status
+ * @param parent - Parent organization (for subunits)
+ * @param isSelf - Whether this is the user's own account
+ * @returns Formatted account menu item with all necessary props
+ */
 const getAccountFromAuthorizedParty = (
   languageCode: string,
   party: AuthorizedParty,
@@ -264,16 +318,34 @@ const getAccountFromAuthorizedParty = (
   };
 };
 
+/**
+ * Checks if a party type represents an organization.
+ * @param type - The party type string to check
+ * @returns True if the type is 'Organization'
+ */
 const isOrgType = (type?: string) => {
   return type === 'Organization';
 };
 
+/**
+ * Checks if a party type represents a person.
+ * @param type - The party type string to check
+ * @returns True if the type is 'Person'
+ */
 const isPersonType = (type?: string) => {
   return type === 'Person';
 };
 
-// TODO: Move to a common texts files when i18next is added
-// This is only a temporary solution for providing texts in different languages in a very simple POC
+/**
+ * Returns localized text strings based on the provided language code.
+ * Supports Norwegian Nynorsk (nn), English (en), and Norwegian Bokmål (default).
+ *
+ * TODO: Move to a common texts file when i18next is added
+ * This is only a temporary solution for providing texts in different languages in a very simple POC
+ *
+ * @param languageCode - Language code ('nn', 'en', or default for 'nb')
+ * @returns Object containing localized text strings
+ */
 const getTexts = (languageCode: string | undefined) => {
   switch (languageCode) {
     case 'nn':
