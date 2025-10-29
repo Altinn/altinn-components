@@ -5,16 +5,16 @@ import { useIsDesktop } from '../../hooks/useIsDesktop';
 import styles from './globalSearch.module.css';
 
 export interface GlobalSearchProps {
-  onEnter: (query: string) => void;
+  onSearch: (query: string) => void;
 }
 
-export const GlobalSearch = ({ onEnter }: GlobalSearchProps) => {
+export const GlobalSearch = ({ onSearch }: GlobalSearchProps) => {
   const isDesktop = useIsDesktop();
   const [query, setQuery] = useState('');
   const { languageCode, closeAll } = useRootContext();
   const { search, placeholder } = getTexts(languageCode);
   const onSearchbarEnter = () => {
-    onEnter(query);
+    onSearch(query);
     closeAll();
   };
   return (

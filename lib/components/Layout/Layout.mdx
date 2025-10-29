@@ -1,15 +1,17 @@
 import { Meta, Controls, Primary, Canvas } from "@storybook/addon-docs/blocks";
-import * as LayoutStories from "./Layout.stories";
-import * as HeaderStories from "../Header/Header.stories";
-import * as FooterStories from "../Footer/Footer.stories";
+import * as LayoutStories from "./Layout.stories.tsx";
+import * as HeaderStories from "../GlobalHeader/GlobalHeader.stories.tsx";
+import * as FooterStories from "../Footer/Footer.stories.ts";
 
 <Meta title="Layout" />
 
 # Global Layout
 
-The global layout is shared accross applications and provides a common `Header` and `Footer`, as well as a container for a local `Menu`.
+The global layout is shared accross applications and provides a common `GlobalHeader` and `Footer`, as well as a container for a local `Menu`.
 
-Use `Layout` by providing the global `header` and `footer` props, and an optional `sidebar`. Wrap your application in `RootProvider` to enable shared context across all components.
+Use `Layout` by providing the `header` and `footer` props, and an optional `sidebar`. Layout must be wripped in an `RootProvider` to enable shared context across all components.
+Provide the `RootProvider` with the current language of your application to make sure all internal texts of the Layout are set accordingly.
+The Layout supports three languages: English (`en`), Norwegian Bokmål (`no`), and Norwegian Nynorsk (`nn`), where Norwegian Bokmål is the default
 
 Add a `color` and a `theme` and include the content for your application as `children`.
 
@@ -18,7 +20,7 @@ import { RootProvider, Layout } from '@altinn/components';
 
 function App() {
   return (
-    <RootProvider>
+    <RootProvider languageCode="nb">
       <Layout {...layoutProps} color={<Color>} theme={<Theme>}>
         { /* Your application here */ }
       </Layout>
@@ -29,11 +31,13 @@ function App() {
 
 ## The Header
 
-Use `header` to includes a global menu and search, as well as an account switcher when user is logged in.
+Use `header` to includes a header with global menu and search, as well as an account switcher when user is logged in.
 
 <Canvas of={HeaderStories.CurrentAccount} />
 
 Prior to login, the global menu should include a prominent link to signing in.
+The AccountSelector should automatically transform to a login button if `currentAccount` is undefined.
+In this state, clicking the button will trigger the `onLoginClick` function provided to the header.
 
 <Canvas of={HeaderStories.Login} />
 
@@ -52,11 +56,11 @@ Use `sidebar` to unclude an optional local menu. It can be hidden, or omitted co
 While the preferred way of using layout is the `Layout` component itself, it is possible to build a layout using the underlying components.
 
 ```tsx
-import { LayoutBase, Header, LayoutBody, LayoutSidebar, Menu, LayoutContent, Footer } from "@altinn/altinn-components";
+import { LayoutBase, GlobalHeader, LayoutBody, LayoutSidebar, Menu, LayoutContent, Footer } from "@altinn/altinn-components";
 
 return (
   <LayoutBase>
-    <Header />
+    <GlobalHeader />
     <LayoutBody>
         <LayoutSidebar>
             <Menu />

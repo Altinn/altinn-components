@@ -92,7 +92,7 @@ export const Preview = (args: LayoutStoryArgs) => {
           ...layout.header,
           accountSelector: accountSelector,
           globalMenu: globalMenu,
-          globalSearch: { onEnter: onSearch },
+          globalSearch: { onSearch },
         }}
       >
         {args.children}
@@ -123,16 +123,7 @@ export const UsingUseAccountHook = (args: LayoutStoryArgs) => {
     selfAccountUuid,
     currentAccountUuid: currentAccountUuid,
     onSelectAccount: (accountId: string) => {
-      const newAccount = authorizedParties.find(
-        (party) => party.partyId === accountId || party.subunits?.find((sub) => sub.partyId === accountId),
-      );
-      if (newAccount && newAccount.partyId !== accountId) {
-        // If a subunit was selected, set currentAccountUuid to that subunit's UUID
-        const subunit = newAccount.subunits?.find((sub) => sub.partyId === accountId);
-        setCurrentAccountUuid(subunit?.partyUuid);
-        return;
-      }
-      setCurrentAccountUuid(newAccount?.partyUuid);
+      setCurrentAccountUuid(accountId);
     },
     languageCode: 'nb',
     isLoading: false,
@@ -146,7 +137,7 @@ export const UsingUseAccountHook = (args: LayoutStoryArgs) => {
           ...layout.header,
           accountSelector: accountSelector,
           globalMenu: globalMenu,
-          globalSearch: { onEnter: onSearch },
+          globalSearch: { onSearch },
         }}
       >
         {args.children}
@@ -184,7 +175,7 @@ export const LogInView = (args: LayoutStoryArgs) => {
           ...layout.header,
           accountSelector: accountSelector,
           globalMenu: globalMenu,
-          globalSearch: { onEnter: onSearch },
+          globalSearch: { onSearch },
           onLoginClick: onLoginClick,
         }}
       >

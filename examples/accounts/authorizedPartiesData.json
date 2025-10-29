@@ -21,7 +21,7 @@
     "partyId": 51257154,
     "type": "Organization",
     "unitType": "AS",
-    "isDeleted": false,
+    "isDeleted": true,
     "onlyHierarchyElementWithNoAccess": false,
     "authorizedResources": [],
     "authorizedRoles": [],
@@ -34,7 +34,7 @@
         "partyId": 51448598,
         "type": "Organization",
         "unitType": "BEDR",
-        "isDeleted": false,
+        "isDeleted": true,
         "onlyHierarchyElementWithNoAccess": false,
         "authorizedResources": [],
         "authorizedRoles": [],
@@ -65,15 +65,8 @@
     "type": "Organization",
     "unitType": "AS",
     "isDeleted": false,
-    "onlyHierarchyElementWithNoAccess": false,
-    "authorizedResources": [
-      "Fraværsportalen",
-      "app_buf_a2-3984-141206",
-      "app_ttd_authz-bruno-instancedelegation",
-      "jks-test-resource",
-      "skd-innrapportering-boligselskap",
-      "ske-innrapportering-boligsameie"
-    ],
+    "onlyHierarchyElementWithNoAccess": true,
+    "authorizedResources": [],
     "authorizedRoles": [],
     "subunits": [
       {
