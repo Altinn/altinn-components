@@ -13,3 +13,7 @@
 .base[data-theme="subtle"] {
   background-color: var(--ds-color-background-tinted);
 }
+
+.base[data-theme="neutral"] {
+  background-color: var(--ds-color-neutral-background-tinted);
+}
