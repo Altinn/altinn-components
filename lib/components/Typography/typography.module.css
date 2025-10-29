@@ -125,3 +125,29 @@ p.typography {
   padding-left: 0.5em;
   margin: 0.5em 0;
 }
+
+.typography table {
+  width: 100%;
+  font-size: 0.875em;
+  font-variant-numeric: tabular-nums;
+  border-collapse: collapse;
+  border: 1px solid;
+  margin: 1.5em 0;
+}
+
+.typography th,
+.typography td {
+  text-align: left;
+  padding: 0.25em 0.5em;
+  vertical-align: top;
+}
+
+.typography thead + tbody {
+  border-top: 1px solid;
+  border-color: var(--ds-color-border-default);
+}
+
+.typography tr + tr {
+  border-top: 1px solid;
+  border-color: var(--ds-color-border-subtle);
+}
