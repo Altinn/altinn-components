@@ -78,3 +78,4 @@ export const useGlobalHeaderMenu = ({ menu = globalMenu.menu, menuLabel = 'Meny'
     },
   } as GlobalMenuProps;
 };
+
