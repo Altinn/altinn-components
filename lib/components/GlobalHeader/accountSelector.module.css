@@ -43,6 +43,12 @@
   font-size: 1.5rem;
 }
 
+.spinner {
+  margin: auto;
+  width: 100%;
+  overflow: hidden;
+}
+
 @media (max-width: 1023px) {
   .accountSelector {
     --horizontal-padding: 2px;

@@ -1,9 +1,10 @@
 import type { Meta } from '@storybook/react-vite';
 import { useState } from 'react';
-import { getAuthorizedPartiesData, header, mobileMenu, useGlobalMenu, useHeader } from '../../../examples';
+import { getAuthorizedPartiesData, header, useGlobalHeader, useGlobalMenu } from '../../../examples';
 import { useAccountSelector } from '../../hooks';
 import { RootProvider } from '../RootProvider';
 import { GlobalHeader, type GlobalHeaderProps } from './';
+import type { AccountSelectorProps } from './AccountSelector';
 
 const meta = {
   title: 'Layout/GlobalHeader',
@@ -19,20 +20,16 @@ const meta = {
 
 export default meta;
 
-export const Login = (args: GlobalHeaderProps) => {
-  const header = useHeader({ ...args, accountId: null });
+export const Login = () => {
+  const header = useGlobalHeader({ state: 'loggedOut' });
   return (
     <RootProvider>
-      <GlobalHeader
-        {...(header as GlobalHeaderProps)}
-        accountSelector={{ accountMenu: { items: [], currentAccount: undefined } }}
-        globalSearch={{ onSearch: () => {} }}
-      />
+      <GlobalHeader {...(header as GlobalHeaderProps)} />
     </RootProvider>
   );
 };
 
-export const CurrentAccount = () => {
+export const LoggedIn = () => {
   const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
   const onSearch = (queryString: string) => alert('Search entered: ' + queryString);
 
@@ -53,16 +50,7 @@ export const CurrentAccount = () => {
     selfAccountUuid,
     currentAccountUuid: currentAccountUuid,
     onSelectAccount: (accountId: string) => {
-      const newAccount = authorizedParties.find(
-        (party) => party.partyUuid === accountId || party.subunits?.find((sub) => sub.partyUuid === accountId),
-      );
-      if (newAccount && newAccount.partyUuid !== accountId) {
-        // If a subunit was selected, set currentAccountUuid to that subunit's UUID
-        const subunit = newAccount.subunits?.find((sub) => sub.partyUuid === accountId);
-        setCurrentAccountUuid(subunit?.partyUuid);
-        return;
-      }
-      setCurrentAccountUuid(newAccount?.partyUuid);
+      setCurrentAccountUuid(accountId);
     },
     languageCode: 'nb',
     isLoading: false,
@@ -74,8 +62,8 @@ export const CurrentAccount = () => {
   );
 };
 
-export const CompanyAccount = (args: GlobalHeaderProps) => {
-  const header = useHeader({ ...args, accountId: 'diaspora' });
+export const CompanyAccount = () => {
+  const header = useGlobalHeader({ currentAccountIndex: 5 });
   return (
     <RootProvider>
       <GlobalHeader {...(header as GlobalHeaderProps)} />
@@ -83,29 +71,63 @@ export const CompanyAccount = (args: GlobalHeaderProps) => {
   );
 };
 
-export const SubcompanyAccount = (args: GlobalHeaderProps) => {
-  const header = useHeader({ ...args, accountId: 'diaspora-2' });
+export const ForcedFullScreenAccountSelection = () => {
+  const { globalMenu, globalSearch, accountSelector, onLoginClick, locale } = useGlobalHeader({
+    currentAccountIndex: 5,
+  });
   return (
     <RootProvider>
-      <GlobalHeader {...(header as GlobalHeaderProps)} />
+      <GlobalHeader
+        globalMenu={globalMenu}
+        globalSearch={globalSearch}
+        accountSelector={
+          {
+            ...accountSelector,
+            externalFullScreen: true,
+            accountMenu: { ...accountSelector?.accountMenu, currentAccount: undefined },
+          } as AccountSelectorProps
+        }
+        onLoginClick={onLoginClick}
+        locale={locale}
+      />
     </RootProvider>
   );
 };
 
-export const MobileMenu = (args: GlobalHeaderProps) => {
-  const header = useHeader({ ...args, accountId: 'diaspora' });
-  return (
-    <RootProvider>
-      <GlobalHeader {...(header as GlobalHeaderProps)} mobileMenu={mobileMenu} />
-    </RootProvider>
-  );
-};
-
-export const WithCustomBadge = (args: GlobalHeaderProps) => {
-  const header = useHeader({ ...args, accountId: 'diaspora' });
+export const WithCustomBadge = () => {
+  const header = useGlobalHeader({});
   return (
     <RootProvider>
       <GlobalHeader {...(header as GlobalHeaderProps)} badge={{ label: 'Beta', color: 'person' }} />
+    </RootProvider>
+  );
+};
+
+export const Loading = () => {
+  const header = useGlobalHeader({ state: 'loading' });
+  return (
+    <RootProvider>
+      <GlobalHeader {...(header as GlobalHeaderProps)} />
+    </RootProvider>
+  );
+};
+
+export const LoadingWithForcedFullScreenAccountSelection = () => {
+  const { globalMenu, globalSearch, accountSelector, onLoginClick, locale } = useGlobalHeader({ state: 'loading' });
+  return (
+    <RootProvider>
+      <GlobalHeader
+        globalMenu={globalMenu}
+        globalSearch={globalSearch}
+        accountSelector={
+          {
+            ...accountSelector,
+            externalFullScreen: true,
+          } as AccountSelectorProps
+        }
+        onLoginClick={onLoginClick}
+        locale={locale}
+      />
     </RootProvider>
   );
 };

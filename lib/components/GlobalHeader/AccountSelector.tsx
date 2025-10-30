@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { useEffect, useState } from 'react';
 import { AccountMenu, type AccountMenuProps } from '../Account';
 import { Button } from '../Button';
-import { DsHeading } from '../DsComponents';
+import { DsHeading, DsSpinner } from '../DsComponents';
 import { SearchField } from '../Forms';
 import { useRootContext } from '../RootProvider';
 import styles from './accountSelector.module.css';
@@ -43,7 +43,7 @@ export const AccountSelector = ({ accountMenu, externalFullScreen, className, lo
   };
 
   if (loading) {
-    return;
+    return <DsSpinner aria-hidden data-color="neutral" className={styles.spinner} />;
   }
 
   return (

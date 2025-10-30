@@ -45,9 +45,9 @@ export const AccountMenuButton = ({
 
   if (currentAccount) {
     let description = currentAccount.description;
-    if (currentAccount.type === 'company' && typeof description === 'string' && description) {
+    if (currentAccount.type === 'subunit' && typeof description === 'string' && description) {
       const orgNoDescription = description.split(',');
-      description = `${orgNoDescription[0]}, underenhet`;
+      description = `${orgNoDescription[0]}, ${texts.subunit}`;
     }
     return (
       <ButtonBase
@@ -81,6 +81,11 @@ export const AccountMenuButton = ({
         )}
       </ButtonBase>
     );
+  }
+
+  if (expanded) {
+    // If the menu is expanded but no current account is selected, do not allow closing
+    return <></>;
   }
 
   return (

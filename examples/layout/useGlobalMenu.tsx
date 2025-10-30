@@ -1,5 +1,6 @@
 import { defaultAccounts, globalMenu, loginMenu, useAccountMenu } from '../';
 import type { AccountListItemProps, GlobalMenuProps_old } from '../../lib';
+import type { GlobalMenuProps } from '../../lib/components/GlobalMenu';
 
 interface UseGlobalMenuProps extends GlobalMenuProps_old {
   accountId?: string | null;
@@ -55,4 +56,25 @@ export const useGlobalMenu = ({
     currentAccount,
     onSelectAccount,
   } as GlobalMenuProps_old;
+};
+
+export const useGlobalHeaderMenu = ({ menu = globalMenu.menu, menuLabel = 'Meny', ...props }: UseGlobalMenuProps) => {
+  const applicableMenuItems = menu?.items?.map((item) => {
+    return {
+      ...item,
+    };
+  });
+
+  return {
+    ...globalMenu,
+    ...props,
+    menu: {
+      ...menu,
+      items: applicableMenuItems,
+    },
+    menuLabel,
+    accountMenu: {
+      isVirtualized: true,
+    },
+  } as GlobalMenuProps;
 };

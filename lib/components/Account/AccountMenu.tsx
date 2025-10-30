@@ -9,7 +9,7 @@ export interface AccountSearchProps extends MenuSearchProps {
 
 export interface AccountMenuItemProps extends MenuItemProps {
   id: string;
-  type: 'person' | 'company' | 'group';
+  type: 'person' | 'company' | 'group' | 'subunit';
   name: string;
 }
 

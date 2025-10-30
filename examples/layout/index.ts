@@ -11,3 +11,4 @@ export * from './useSearchbar';
 export * from './useLayout';
 export * from './useLocale';
 export * from './skipLink';
+export * from './useGlobalHeader';

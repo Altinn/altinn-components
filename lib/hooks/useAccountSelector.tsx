@@ -38,14 +38,14 @@ export interface AuthorizedParty {
  * Configuration props for the useAccountSelector hook.
  */
 export interface useAccountSelectorProps {
+  /** UUID of the user's own personal account */
+  selfAccountUuid?: string;
   /** Array of authorized parties that the user can act on behalf of */
   partyListDTO?: AuthorizedParty[];
   /** Array of parties (defined by their partyUUIDs) marked as favorites by the user */
   favoriteAccountUuids?: string[];
   /** UUID of the currently selected account */
   currentAccountUuid?: string;
-  /** UUID of the user's own personal account */
-  selfAccountUuid?: string;
   /** Whether account data is currently being loaded */
   isLoading?: boolean;
   /** Whether to use virtualization for large account lists */
@@ -183,7 +183,7 @@ export const useAccountSelector = ({
     // Put the full list of accounts together in order
     const allAccounts = [selfAccountItem, ...favoriteAccountItems, ...peopleAccountItems, ...organizationAccountItems];
 
-    const currentAccountListItem = allAccounts.find((account) => account.selected === true);
+    const currentAccountListItem = allAccounts.find((account) => account?.selected === true);
 
     // Build account groups
     const accountGroups: Record<string, MenuGroupProps> = {
@@ -212,7 +212,7 @@ export const useAccountSelector = ({
     languageCode,
   ]);
 
-  if (isLoading || !partyListDTO || !selfAccountUuid) {
+  if (isLoading || !partyListDTO || !currentAccount) {
     return {
       accountMenu: {
         items: [],
@@ -262,7 +262,7 @@ const getAccountFromAuthorizedParty = (
   parent?: AuthorizedParty,
   isSelf?: boolean,
 ): AccountMenuItemProps => {
-  const type: 'company' | 'person' = getAccountType(party.type ?? '');
+  const type: 'company' | 'person' = getAccountType(party?.type ?? '');
 
   const texts = getTexts(languageCode);
 
@@ -279,7 +279,7 @@ const getAccountFromAuthorizedParty = (
     : undefined;
   let description = '';
 
-  const formatType = type === 'company' && !!parent ? 'subUnit' : type;
+  const formatType = type === 'company' && !!parent ? 'subunit' : type;
   switch (formatType) {
     case 'company':
       description = `${texts.org_no}: ${party.organizationNumber}`;
@@ -287,7 +287,7 @@ const getAccountFromAuthorizedParty = (
     case 'person':
       description = `${texts.birthdate}: ${formatDateToNorwegian(party.dateOfBirth)}`;
       break;
-    case 'subUnit':
+    case 'subunit':
       description = `↳ ${texts.org_no}: ${party.organizationNumber}, ${texts.subunit_of} ${parentName}`;
       break;
   }
@@ -303,7 +303,7 @@ const getAccountFromAuthorizedParty = (
     name: name,
     description: description,
     groupId: group,
-    type: type,
+    type: formatType,
     selected: currentAccountUuid === party.partyUuid,
     disabled: !!party.onlyHierarchyElementWithNoAccess,
     badge: isSelf
