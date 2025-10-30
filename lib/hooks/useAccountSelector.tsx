@@ -4,6 +4,7 @@ import { type AccountMenuItemProps, IconButton, type MenuGroupProps } from '../c
 import type { AccountSelectorProps } from '../components/GlobalHeader/AccountSelector';
 import { formatDisplayName } from '../functions';
 import { formatDateToNorwegian } from '../functions/date';
+import { useIsDesktop } from './useIsDesktop';
 
 /** The DTO for the authorized party endpoint */
 export interface AuthorizedParty {
@@ -99,6 +100,7 @@ export const useAccountSelector = ({
       return favoriteAccountUuids?.includes(partyUuid);
     };
 
+    const isDesktop = useIsDesktop();
     const texts = getTexts(languageCode);
 
     // Separate self, people and organizations
@@ -116,6 +118,7 @@ export const useAccountSelector = ({
       currentAccountUuid,
       false,
       onToggleFavorite,
+      isDesktop,
       undefined,
       true,
     );
@@ -128,6 +131,7 @@ export const useAccountSelector = ({
         currentAccountUuid,
         isFavorite(party.partyUuid),
         onToggleFavorite,
+        isDesktop,
       ),
     );
 
@@ -140,6 +144,7 @@ export const useAccountSelector = ({
         currentAccountUuid,
         isFavorite(org.partyUuid),
         onToggleFavorite,
+        isDesktop,
       );
       organizationAccountItems.push(orgAccountItem);
       if (org.subunits && org.subunits.length > 0) {
@@ -151,6 +156,7 @@ export const useAccountSelector = ({
             currentAccountUuid!,
             isFavorite(subUnit.partyUuid),
             onToggleFavorite,
+            isDesktop,
             org,
           );
           organizationAccountItems.push(subUnitAccountItem);
@@ -252,6 +258,7 @@ const getAccountFromAuthorizedParty = (
   currentAccountUuid?: string,
   isFavorite?: boolean,
   toggleFavorite?: (accountId: string) => void,
+  isDesktopScreen?: boolean,
   parent?: AuthorizedParty,
   isSelf?: boolean,
 ): AccountMenuItemProps => {
@@ -281,7 +288,7 @@ const getAccountFromAuthorizedParty = (
       description = `${texts.birthdate}: ${formatDateToNorwegian(party.dateOfBirth)}`;
       break;
     case 'subUnit':
-      description = `↳ ${texts.org_no}: ${party.organizationNumber}, ${texts.part_of} ${parentName}`;
+      description = `↳ ${texts.org_no}: ${party.organizationNumber}, ${texts.subunit_of} ${parentName}`;
       break;
   }
   return {
@@ -299,7 +306,11 @@ const getAccountFromAuthorizedParty = (
     type: type,
     selected: currentAccountUuid === party.partyUuid,
     disabled: !!party.onlyHierarchyElementWithNoAccess,
-    badge: isSelf ? { label: texts.you, color: 'person' } : undefined,
+    badge: isSelf
+      ? { label: texts.you, color: 'person' }
+      : party.isDeleted && isDesktopScreen
+        ? { label: texts.deleted, color: 'neutral' }
+        : undefined,
     controls: !isSelf && (
       <IconButton
         rounded
@@ -358,7 +369,8 @@ const getTexts = (languageCode: string | undefined) => {
         you: 'Deg',
         org_no: 'Org.nr',
         birthdate: 'Født',
-        part_of: 'del av',
+        subunit_of: 'undereining av',
+        deleted: 'Sletta',
       };
     case 'en':
       return {
@@ -370,7 +382,8 @@ const getTexts = (languageCode: string | undefined) => {
         you: 'You',
         org_no: 'Org.no',
         birthdate: 'Born',
-        part_of: 'part of',
+        subunit_of: 'subunit of',
+        deleted: 'Deleted',
       };
     default:
       return {
@@ -382,7 +395,8 @@ const getTexts = (languageCode: string | undefined) => {
         you: 'Deg',
         org_no: 'Org.nr',
         birthdate: 'Født',
-        part_of: 'del av',
+        subunit_of: 'underenhet av',
+        deleted: 'Slettet',
       };
   }
 };

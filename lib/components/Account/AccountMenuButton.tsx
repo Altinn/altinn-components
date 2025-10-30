@@ -44,6 +44,11 @@ export const AccountMenuButton = ({
   }
 
   if (currentAccount) {
+    let description = currentAccount.description;
+    if (currentAccount.type === 'company' && typeof description === 'string' && description) {
+      const orgNoDescription = description.split(',');
+      description = `${orgNoDescription[0]}, underenhet`;
+    }
     return (
       <ButtonBase
         {...buttonProps}
@@ -60,11 +65,7 @@ export const AccountMenuButton = ({
               <div className={styles.labelContainer}>
                 {currentAccount.name}
                 <span className={styles.description}>
-                  {typeof currentAccount.description === 'string'
-                    ? currentAccount.description
-                    : isValidElement(currentAccount.description)
-                      ? currentAccount.description
-                      : null}
+                  {typeof description === 'string' ? description : isValidElement(description) ? description : null}
                 </span>
               </div>
             }
@@ -106,16 +107,19 @@ const getTexts = (languageCode: string | undefined) => {
       return {
         login: 'Logg inn',
         close: 'Lukk kontomeny',
+        subunit: 'undereining',
       };
     case 'en':
       return {
         login: 'Log in',
         close: 'Close Account Menu',
+        subunit: 'subunit',
       };
     default:
       return {
         login: 'Logg inn',
         close: 'Lukk kontomeny',
+        subunit: 'underenhet',
       };
   }
 };
