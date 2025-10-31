@@ -85,7 +85,7 @@ export const AccountMenuButton = ({
 
   if (expanded) {
     // If the menu is expanded but no current account is selected, do not allow closing
-    return <></>;
+    return null;
   }
 
   return (

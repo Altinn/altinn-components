@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { type AccountMenuItemProps, IconButton, type MenuGroupProps } from '../components';
 import type { AccountSelectorProps } from '../components/GlobalHeader/AccountSelector';
 import { formatDisplayName } from '../functions';
-import { formatDateToNorwegian } from '../functions/date';
+import { formatDate } from '../functions/date';
 import { useIsDesktop } from './useIsDesktop';
 
 /** The DTO for the authorized party endpoint */
@@ -285,7 +285,7 @@ const getAccountFromAuthorizedParty = (
       description = `${texts.org_no}: ${party.organizationNumber}`;
       break;
     case 'person':
-      description = `${texts.birthdate}: ${formatDateToNorwegian(party.dateOfBirth)}`;
+      description = `${texts.birthdate}: ${formatDate(party.dateOfBirth)}`;
       break;
     case 'subunit':
       description = `↳ ${texts.org_no}: ${party.organizationNumber}, ${texts.subunit_of} ${parentName}`;

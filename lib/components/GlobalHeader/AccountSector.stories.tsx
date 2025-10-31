@@ -1,7 +1,5 @@
 import type { Meta } from '@storybook/react-vite';
-import { useState } from 'react';
-import { getAuthorizedPartiesData } from '../../../examples';
-import { useAccountSelector } from '../../hooks/useAccountSelector';
+import { useGlobalHeader } from '../../../examples';
 import { RootProvider } from '../RootProvider';
 import { AccountSelector, type AccountSelectorProps } from './AccountSelector';
 
@@ -14,35 +12,24 @@ const meta = {
   },
   args: {
     accountMenu: undefined,
-    externalFullScreen: undefined,
+    forceOpenFullScreen: undefined,
     loading: false,
   },
   argTypes: {
     accountMenu: { control: 'object' },
-    externalFullScreen: { control: 'boolean' },
+    forceOpenFullScreen: { control: 'boolean' },
     loading: { control: 'boolean' },
   },
 } satisfies Meta<typeof AccountSelector>;
 
 export default meta;
 
-export const WithAccounts = () => {
-  const [favoriteUuids, setFavoriteUuids] = useState<string[]>([]);
-  const authorizedParties = getAuthorizedPartiesData();
-  const selfAccountUuid = '167536b5-f8ed-4c5a-8f48-0279507e53ae';
-  const onToggleFavorite = (uuid: string) => {
-    setFavoriteUuids((prev) => (prev.includes(uuid) ? prev.filter((id) => id !== uuid) : [...prev, uuid]));
-  };
-  const accountSelector = useAccountSelector({
-    partyListDTO: authorizedParties,
-    favoriteAccountUuids: favoriteUuids,
-    onToggleFavorite: onToggleFavorite,
-    selfAccountUuid,
-  });
+export const WithAccounts = (args: AccountSelectorProps) => {
+  const accountSelector = useGlobalHeader({}).accountSelector as AccountSelectorProps;
 
   return (
     <RootProvider>
-      <AccountSelector {...accountSelector} />
+      <AccountSelector {...accountSelector} forceOpenFullScreen={args.forceOpenFullScreen} />
     </RootProvider>
   );
 };

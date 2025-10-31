@@ -6,10 +6,11 @@ import { DrawerBase, DropdownBase } from '../Dropdown/index.ts';
 import { GlobalMenu, GlobalMenuButton, type GlobalMenuProps, type LocaleSwitcherProps } from '../GlobalMenu/index.tsx';
 import type { MenuProps } from '../Menu/index.ts';
 import { useRootContext } from '../RootProvider/index.ts';
-import { HeaderGroup, HeaderLogo, type HeaderLogoProps } from './';
 import { AccountSelector, type AccountSelectorProps } from './AccountSelector.tsx';
 import { GlobalSearch, type GlobalSearchProps } from './GlobalSearch.tsx';
 import { GlobalSearchButton } from './GlobalSearchButton.tsx';
+import { HeaderGroup } from './HeaderGroup.tsx';
+import { HeaderLogo, type HeaderLogoProps } from './HeaderLogo.tsx';
 import styles from './globalHeader.module.css';
 import { GlobalHeaderBase } from './index.tsx';
 
@@ -59,7 +60,7 @@ export const GlobalHeader = ({
   };
 
   const accountSelectionOpen =
-    currentId === 'account' || currentId === 'accountFullscreen' || accountSelector?.externalFullScreen;
+    currentId === 'account' || currentId === 'accountFullscreen' || accountSelector?.forceOpenFullScreen;
 
   const isDesktop = useIsDesktop();
 
@@ -116,7 +117,7 @@ export const GlobalHeader = ({
         >
           <AccountSelector
             {...accountSelector}
-            externalFullScreen={accountSelector.externalFullScreen || !isDesktop ? accountSelectionOpen : undefined}
+            forceOpenFullScreen={accountSelector.forceOpenFullScreen || !isDesktop ? accountSelectionOpen : undefined}
           />
         </DrawerBase>
       )}

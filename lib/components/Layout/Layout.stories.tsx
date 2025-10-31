@@ -18,7 +18,7 @@ import type { AccountSelectorProps } from '../GlobalHeader/AccountSelector';
 
 // Add custom story args interface for easier testing
 interface LayoutStoryArgs extends LayoutProps {
-  externalFullScreen?: boolean | undefined;
+  forceOpenFullScreen?: boolean | undefined;
 }
 
 const meta = {
@@ -53,7 +53,7 @@ const meta = {
     ),
     useGlobalHeader: true,
     color: 'company',
-    externalFullScreen: undefined,
+    forceOpenFullScreen: undefined,
   },
   argTypes: {
     useGlobalHeader: {
@@ -62,7 +62,7 @@ const meta = {
       },
     },
     color: { control: 'select', options: ['company', 'neutral', 'person'] },
-    externalFullScreen: {
+    forceOpenFullScreen: {
       control: 'select',
       options: [true, false, undefined],
     },
@@ -81,7 +81,7 @@ export const Preview = (args: LayoutStoryArgs) => {
   const onSearch = (queryString: string) => alert('Search entered: ' + queryString);
   const accountSelector: AccountSelectorProps = {
     accountMenu: accountMenu,
-    externalFullScreen: args.externalFullScreen,
+    forceOpenFullScreen: args.forceOpenFullScreen,
   };
   return (
     <RootProvider>
@@ -161,7 +161,7 @@ export const LogInView = (args: LayoutStoryArgs) => {
   const onSearch = (queryString: string) => alert('Search entered: ' + queryString);
   const accountSelector: AccountSelectorProps = {
     accountMenu: accountMenuNotLoggedIn,
-    externalFullScreen: args.externalFullScreen,
+    forceOpenFullScreen: args.forceOpenFullScreen,
   };
   const onLoginClick = () => {
     alert('Login clicked');

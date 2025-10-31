@@ -5,13 +5,13 @@
   padding: 1rem 0;
   max-width: 1000px;
   margin: 0 auto;
-  --horizontal-padding: 10px;
+  --horizontal-padding: 0.7rem;
 }
 
 .heading {
   margin-bottom: 1rem;
   width: 100%;
-  padding: 5px var(--horizontal-padding);
+  padding: 0.3rem var(--horizontal-padding);
 }
 
 .searchSection {
@@ -51,7 +51,7 @@
 
 @media (max-width: 1023px) {
   .accountSelector {
-    --horizontal-padding: 2px;
+    --horizontal-padding: 0.1rem;
   }
   .searchField {
     width: 100%;

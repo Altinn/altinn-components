@@ -10,16 +10,15 @@ import styles from './accountSelector.module.css';
 
 export interface AccountSelectorProps {
   accountMenu: AccountMenuProps;
-  /** External control of fullscreen mode. When this flag is true, the account menu cannot be minimized or closed.
-   * When the flag is set to false, the account menu cannot be maximized but can be opened and closed.
-   * Set it to undefined to allow internal control of fullscreen mode
+  /** External control of fullscreen mode. When this flag is true, the account menu will open and cannot be minimized or closed.
+   * Otherwise, open state is handled internally and the user can toggle fullscreen mode via the button below the account list.
    */
-  externalFullScreen?: boolean;
+  forceOpenFullScreen?: boolean;
   className?: string;
   loading?: boolean;
 }
 
-export const AccountSelector = ({ accountMenu, externalFullScreen, className, loading }: AccountSelectorProps) => {
+export const AccountSelector = ({ accountMenu, forceOpenFullScreen, className, loading }: AccountSelectorProps) => {
   const { currentId, openId, toggleId, languageCode } = useRootContext();
   const isFullScreen = currentId === 'accountFullscreen';
   const [searchString, setSearchString] = useState('');
@@ -27,18 +26,25 @@ export const AccountSelector = ({ accountMenu, externalFullScreen, className, lo
   const { minimize, fullscreen, searchText, heading } = getTexts(languageCode);
 
   useEffect(() => {
-    if (externalFullScreen !== undefined && !isFullScreen && externalFullScreen) {
+    if (forceOpenFullScreen === true && !isFullScreen) {
       openId('accountFullscreen');
-    } else if (externalFullScreen === false && isFullScreen) {
-      toggleId('accountFullscreen');
     }
-  }, [externalFullScreen, isFullScreen, openId, toggleId]);
+  }, [forceOpenFullScreen, isFullScreen, openId]);
 
   const toggleExpansion = () => {
     if (isFullScreen) {
       openId('account');
     } else {
       openId('accountFullscreen');
+    }
+  };
+
+  const onAccountSelection = (accountId: string) => {
+    accountMenu.onSelectAccount?.(accountId);
+    if (isFullScreen) {
+      toggleId('accountFullscreen');
+    } else {
+      toggleId('account');
     }
   };
 
@@ -70,9 +76,14 @@ export const AccountSelector = ({ accountMenu, externalFullScreen, className, lo
           accountMenu.isVirtualized && styles.virtualized,
         )}
       >
-        <AccountMenu {...accountMenu} keyboardEvents={false} search={{ hidden: true, name: '', value: searchString }} />
+        <AccountMenu
+          {...accountMenu}
+          onSelectAccount={onAccountSelection}
+          keyboardEvents={false}
+          search={{ hidden: true, name: '', value: searchString }}
+        />
       </div>
-      {externalFullScreen === undefined && (
+      {forceOpenFullScreen !== true && (
         <Button
           icon={
             isFullScreen ? (

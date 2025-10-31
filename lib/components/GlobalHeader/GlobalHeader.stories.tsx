@@ -83,7 +83,7 @@ export const ForcedFullScreenAccountSelection = () => {
         accountSelector={
           {
             ...accountSelector,
-            externalFullScreen: true,
+            forceOpenFullScreen: true,
             accountMenu: { ...accountSelector?.accountMenu, currentAccount: undefined },
           } as AccountSelectorProps
         }
@@ -122,7 +122,7 @@ export const LoadingWithForcedFullScreenAccountSelection = () => {
         accountSelector={
           {
             ...accountSelector,
-            externalFullScreen: true,
+            forceOpenFullScreen: true,
           } as AccountSelectorProps
         }
         onLoginClick={onLoginClick}

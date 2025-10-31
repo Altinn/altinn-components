@@ -4,7 +4,6 @@ import styles from './headerGroup.module.css';
 
 export interface HeaderGroupProps {
   className?: string;
-  expanded?: boolean;
   children?: ReactNode;
 }
 

@@ -10,15 +10,14 @@ export interface HeaderLogoProps {
   as?: ElementType;
   href?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
-  title?: string;
   badge?: BadgeProps;
 }
 
-export const HeaderLogo = ({ className, as = 'a', title = 'Altinn', href = '/', badge }: HeaderLogoProps) => {
+export const HeaderLogo = ({ className, as = 'a', href = '/', badge }: HeaderLogoProps) => {
   return (
     <ButtonBase as={as} className={cx(styles.logo, className)} href={href}>
-      <DigdirLogomark className={styles.symbol} />
-      <span className={styles.text}>{title}</span> {badge && <Badge {...badge} />}
+      <DigdirLogomark />
+      {badge && <Badge {...badge} />}
     </ButtonBase>
   );
 };
