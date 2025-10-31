@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.44.1](https://github.com/Altinn/altinn-components/compare/v0.44.0...v0.44.1) (2025-10-31)
+
+
+### Bug Fixes
+
+* **ci:** ensure latest npm to allow trusted publishers ([#754](https://github.com/Altinn/altinn-components/issues/754)) ([bcdcfb9](https://github.com/Altinn/altinn-components/commit/bcdcfb9a82fa18ac2f96519d5ed8dbe3fd1ad323))
+
 ## [0.44.0](https://github.com/Altinn/altinn-components/compare/v0.43.8...v0.44.0) (2025-10-31)
 
 
