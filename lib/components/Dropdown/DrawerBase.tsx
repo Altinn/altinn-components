@@ -10,6 +10,7 @@ export interface DrawerBaseProps {
   className?: string;
   children?: ReactNode;
   as?: 'nav' | 'div';
+  dataLayout?: 'mobile' | 'desktop';
 }
 
 export const DrawerBase = ({
@@ -18,6 +19,7 @@ export const DrawerBase = ({
   className,
   children,
   as = 'div',
+  dataLayout = 'mobile',
 }: DrawerBaseProps) => {
   const Component = as;
   return (
@@ -27,6 +29,7 @@ export const DrawerBase = ({
       data-variant="default"
       data-color="company"
       data-expanded={open}
+      data-layout={dataLayout}
     >
       {children}
     </Component>

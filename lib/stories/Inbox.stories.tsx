@@ -22,6 +22,7 @@ import {
   ActivityLog,
   SeenByLog,
   SeenByLogProps,
+  HeaderProps,
 } from "../components";
 import { useBookmarks, useInbox, useActivityLog } from "../../examples";
 import { useState } from "react";
@@ -237,7 +238,8 @@ export const SearchPage = () => {
     );
   }
 
-  const query = layout?.header?.search?.value;
+  const header = layout?.header as HeaderProps;
+  const query = header?.search?.value;
   const hits = results?.items?.length || 0;
 
   const title = <span>{hits} treff</span>;

@@ -1,4 +1,4 @@
-import { type AvatarProps, MenuItem } from '../';
+import { type AvatarProps, MenuItem } from '..';
 
 export type Account = {
   id: string;

@@ -10,6 +10,7 @@ import {
   type LayoutTheme,
 } from '.';
 import { Footer, type FooterProps } from '../Footer';
+import { GlobalHeader, type GlobalHeaderProps } from '../GlobalHeader';
 import { Header, type HeaderProps } from '../Header';
 import { Menu, type MenuProps } from '../Menu';
 import { useRootContext } from '../RootProvider';
@@ -27,12 +28,13 @@ interface ContentProps {
 export interface LayoutProps {
   color?: LayoutColor;
   theme?: LayoutTheme;
-  header?: HeaderProps;
+  header?: HeaderProps | GlobalHeaderProps;
   footer?: FooterProps;
   sidebar?: SidebarProps;
   content?: ContentProps;
   children?: ReactNode;
   skipLink?: SkipLinkProps;
+  useGlobalHeader?: boolean; // TODO: Remove when new header is default
 }
 
 export const Layout = ({
@@ -44,12 +46,14 @@ export const Layout = ({
   content = {},
   children,
   skipLink,
+  useGlobalHeader = false,
 }: LayoutProps) => {
   const { currentId } = useRootContext();
+
   return (
-    <LayoutBase color={color} theme={theme} currentId={currentId}>
+    <LayoutBase color={color} theme={currentId === 'accountFullscreen' ? 'default' : theme} currentId={currentId}>
       {skipLink && <SkipLink {...skipLink} />}
-      {header && <Header {...header} />}
+      {header && (useGlobalHeader ? <GlobalHeader {...header} /> : <Header {...header} />)}
       <LayoutBody currentId={currentId}>
         {sidebar && (
           <LayoutSidebar hidden={sidebar?.hidden} color={sidebar?.color} {...sidebar}>

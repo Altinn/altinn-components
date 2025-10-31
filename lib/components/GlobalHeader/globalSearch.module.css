@@ -1,0 +1,33 @@
+.globalSearch {
+  max-width: 700px;
+  margin: 1rem auto;
+  padding-bottom: 0.8rem;
+}
+
+.searchInput {
+  border: 2px solid black;
+}
+
+.searchInputButton {
+  border: 2px solid black;
+  border-left: none;
+}
+
+.searchButton {
+  background-color: #e0e2e4;
+  color: var(--ds-color-accent-text-default);
+}
+
+.searchButton:hover {
+  background-color: var(--ds-color-accent-surface-hover);
+}
+
+.searchButton:active {
+  background-color: var(--ds-color-accent-surface-active);
+}
+
+@media (max-width: 1023px) {
+  .searchButton {
+    margin-right: 0.5rem;
+  }
+}

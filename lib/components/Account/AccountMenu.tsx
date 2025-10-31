@@ -1,5 +1,5 @@
 'use client';
-import { type CSSProperties, useState } from 'react';
+import { type CSSProperties, useEffect, useState } from 'react';
 import { Menu, type MenuItemProps, type MenuProps, type MenuSearchProps } from '../';
 
 export interface AccountSearchProps extends MenuSearchProps {
@@ -9,7 +9,7 @@ export interface AccountSearchProps extends MenuSearchProps {
 
 export interface AccountMenuItemProps extends MenuItemProps {
   id: string;
-  type: 'person' | 'company' | 'group';
+  type: 'person' | 'company' | 'group' | 'subunit';
   name: string;
 }
 
@@ -46,6 +46,13 @@ export const AccountMenu = ({
   }));
 
   const [filterString, setFilterString] = useState<string>('');
+
+  // Sync filterString with external search value
+  useEffect(() => {
+    if (search?.value !== undefined) {
+      setFilterString(search.value);
+    }
+  }, [search?.value]);
 
   const defaultFilterAccount = (item: AccountMenuItemProps, q: string) => {
     return (
@@ -93,7 +100,7 @@ export const AccountMenu = ({
   return (
     <Menu
       variant="default"
-      search={search && defaultAccountSearch}
+      search={search && search?.hidden === false ? defaultAccountSearch : undefined}
       groups={filterAccountGroups}
       items={accountSwitcher}
       isVirtualized={isVirtualized}
