@@ -32,7 +32,6 @@ const meta = {
           { type: 'search', label: 'Skatt' },
           { type: 'filter', label: 'Krever handling' },
         ],
-        expandIconAltText: 'expand icon',
       },
       {
         id: 'bookmark-2',
@@ -49,7 +48,6 @@ const meta = {
             alert('Slett bokmerket 2');
           },
         },
-        expandIconAltText: 'expand icon',
       },
       {
         id: 'bookmark-3',
@@ -62,8 +60,10 @@ const meta = {
         },
         removeButton: {
           label: 'Slett',
+          onClick: () => {
+            alert('Slett bokmerket 3');
+          },
         },
-        expandIconAltText: 'expand icon',
       },
     ],
   },
@@ -76,15 +76,7 @@ export const Default: Story = {
   args: {},
 };
 
-export const ExpandedItem: Story = {
-  args: {
-    ...meta.args,
-    expandedId: 'bookmark-2',
-  },
-};
-
 export const ControlledState = (args: BookmarksSectionProps) => {
-  const [expandedId, setExpandedId] = useState<string>('');
   const [inputValue, setInputValue] = useState<Record<string, string>>({});
 
   const bookmarkProps: BookmarksSectionProps = useMemo(
@@ -101,29 +93,18 @@ export const ControlledState = (args: BookmarksSectionProps) => {
         },
         as: 'a',
         href: '#' + item.id,
-        onToggle: () => onToggle(item.id),
         saveButton: {
           ...item.saveButton,
           onClick: () => {
             alert(`Lagre søk med tittel ${inputValue[item.id]}`);
           },
         },
-        expanded: expandedId === item.id,
       })),
     }),
-    [args, expandedId, inputValue],
+    [args, inputValue],
   );
 
-  const onToggle = (id: string) => {
-    setExpandedId((prevState) => {
-      if (prevState === id) {
-        return '';
-      }
-      return id;
-    });
-  };
-
-  return <BookmarksSection {...bookmarkProps} expandedId={expandedId} onToggle={onToggle} />;
+  return <BookmarksSection {...bookmarkProps} />;
 };
 
 export const LoadingState: Story = {
@@ -137,7 +118,6 @@ export const LoadingState: Story = {
         title: 'Loading the bookmark',
         inputValue: '',
         onChange: () => {},
-        expandIconAltText: 'expand icon',
       },
     ],
   },
@@ -170,8 +150,6 @@ export const AsLink: Story = {
         removeButton: {
           label: 'Slett',
         },
-        expandIconAltText: 'expand icon',
-
         inputValue: '',
         onChange: () => {},
         as: (props) => <a {...props} href="#bookmark-1" />,
@@ -192,7 +170,6 @@ export const AsLink: Story = {
         saveButton: {
           label: 'Lagre søk',
         },
-        expandIconAltText: 'expand icon',
         removeButton: {
           label: 'Slett',
         },
