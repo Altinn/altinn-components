@@ -12,7 +12,7 @@ export interface DashboardHeaderProps {
 
 export const DashboardHeader = ({ icon, title, description, loading, children }: DashboardHeaderProps) => {
   return (
-    <Section as="header" theme="default" padding="page" spacing={6} shadow="xs" bleed>
+    <Section as="header" theme="default" padding="page" spacing={6} shadow="xs">
       <Flex direction="row" align="center" spacing={3}>
         {icon && <DashboardIcon loading={loading} icon={icon} />}
         <Flex direction="col" spacing={0}>

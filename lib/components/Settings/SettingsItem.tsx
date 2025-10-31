@@ -9,7 +9,7 @@ import {
 
 import { type ReactNode, useState } from 'react';
 
-export type SettingsItemVariant = 'default' | 'modal' | 'switch';
+export type SettingsItemVariant = 'default' | 'link' | 'modal' | 'switch';
 
 export interface SettingsItemModalProps {
   icon?: SettingsModalProps['icon'];
@@ -49,6 +49,16 @@ export const SettingsItem = ({
   }
 
   switch (variant) {
+    case 'link':
+      return (
+        <SettingsItemBase
+          {...props}
+          title={{
+            children: props?.title,
+          }}
+          value={undefined}
+        />
+      );
     case 'switch':
       return (
         <SettingsItemBase
