@@ -1,6 +1,6 @@
 {
   "name": "@altinn/altinn-components",
-  "version": "0.43.8",
+  "version": "0.44.4",
   "main": "dist/index.js",
   "files": ["dist/", "!dist/stories/", "!dist/components/*/*.stories.js"],
   "types": "dist/types/lib/index.d.ts",
@@ -73,5 +73,9 @@
   "lint-staged": {
     "**/*.*": "biome check --staged --no-errors-on-unmatched --write"
   },
-  "packageManager": "pnpm@9.13.0"
+  "packageManager": "pnpm@9.13.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Altinn/altinn-components.git"
+  }
 }
