@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.45.0](https://github.com/Altinn/altinn-components/compare/v0.44.4...v0.45.0) (2025-11-03)
+
+
+### Features
+
+* **Global header:** New header ([#744](https://github.com/Altinn/altinn-components/issues/744)) ([54920a9](https://github.com/Altinn/altinn-components/commit/54920a9ec9eb24ccafce4fe8b84a3cca20b60609))
+* Notification item ([#763](https://github.com/Altinn/altinn-components/issues/763)) ([8a6c57c](https://github.com/Altinn/altinn-components/commit/8a6c57c5de858983c2cdeb06208062fb6f5f9387))
+
+
+### Bug Fixes
+
+* profile dashboard stories ([#752](https://github.com/Altinn/altinn-components/issues/752)) ([b29e245](https://github.com/Altinn/altinn-components/commit/b29e2453d144bf47bf16bcabdcf71033995de97e))
+
 ## [0.44.4](https://github.com/Altinn/altinn-components/compare/v0.44.3...v0.44.4) (2025-11-03)
 
 
