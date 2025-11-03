@@ -72,9 +72,7 @@ export const CompanyAccount = () => {
 };
 
 export const ForcedFullScreenAccountSelection = () => {
-  const { globalMenu, globalSearch, accountSelector, onLoginClick, locale } = useGlobalHeader({
-    currentAccountIndex: 5,
-  });
+  const { globalMenu, globalSearch, accountSelector, onLoginClick, locale } = useGlobalHeader({});
   return (
     <RootProvider>
       <GlobalHeader

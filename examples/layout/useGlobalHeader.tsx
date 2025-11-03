@@ -20,7 +20,7 @@ export const useGlobalHeader = ({
     alert('Login clicked');
   };
 
-  // Use the useAccountSelector hook to get account menu and loading state
+  // Fetch data from different sources or APIs as needed
   const [favoriteUuids, setFavoriteUuids] = useState<string[]>([]);
   const authorizedParties = getAuthorizedPartiesData(); // Fetch your authorized parties data from external source
   const [currentAccountUuid, setCurrentAccountUuid] = useState<string | undefined>(
@@ -28,10 +28,12 @@ export const useGlobalHeader = ({
   );
   const selfAccountUuid = '167536b5-f8ed-4c5a-8f48-0279507e53ae'; // Get the user's own account UUID from token or other source
 
+  // Handler for toggling favorite accounts
   const onToggleFavorite = (uuid: string) => {
     setFavoriteUuids((prev) => (prev.includes(uuid) ? prev.filter((id) => id !== uuid) : [...prev, uuid]));
   };
 
+  // Use the useAccountSelector hook to get account menu and loading state
   const accountSelector = useAccountSelector({
     partyListDTO: state === 'loggedIn' ? authorizedParties : [],
     favoriteAccountUuids: favoriteUuids,

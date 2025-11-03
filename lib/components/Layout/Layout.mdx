@@ -41,6 +41,47 @@ In this state, clicking the button will trigger the `onLoginClick` function prov
 
 <Canvas of={HeaderStories.Login} />
 
+The header handles opening and closing of its menus internally. However, the accountSelector can be forced open by setting the `forceOpenFullScreen` prop.
+While this flag is set, the accountMenu will always remain open, and in its fullscreen mode.
+Use this to force the user to select an account, for example if no valid account is chosen.
+
+<Canvas of={HeaderStories.ForcedFullScreenAccountSelection} />
+
+### The UseAccountMenu hook
+To simplify the use of the new AccountSelector component, use the useAccountMenu.
+This hook takes any needed data, such as the list of available actors and the list of favorites on the same data model as is expected from their respective API sources.
+The hook handles all mapping, logic, and sorting nessesary for displaying the account list. Using this hook sentralizes logic and ensures a consistant view of the accountSelector across all products of the Altinn Portal.
+
+Note that the accountData should be fetched from Access Management (which returns a list of authorizedParty objects), and the favorites should be fetched and updated in Core's profile API (which operates with a list of uuids).
+
+```tsx
+// Fetch data from different sources or APIs as needed (abstracted to hooks here for the example)
+  const authorizedParties = getAuthorizedPartiesData(); // Fetch your authorized parties data from external source
+  const [currentAccountUuid, setCurrentAccountUuid] = useCurrentAccount(); // Fetch current account from global state
+  const selfAccountUuid = useCurrentAccount(); // Get the user's own account UUID from token or other source
+
+  // Handler for toggling favorite accounts
+  const onToggleFavorite = (uuid: string) => {
+    setFavoriteUuids((prev) => (prev.includes(uuid) ? prev.filter((id) => id !== uuid) : [...prev, uuid]));
+  };
+
+  // Use the useAccountSelector hook to get account menu and loading state
+  const accountSelector = useAccountSelector({
+    partyListDTO: state === 'loggedIn' ? authorizedParties : [],
+    favoriteAccountUuids: favoriteUuids,
+    onToggleFavorite: onToggleFavorite,
+    selfAccountUuid: state === 'loggedIn' ? selfAccountUuid : undefined,
+    currentAccountUuid: state === 'loggedIn' ? currentAccountUuid : undefined,
+    onSelectAccount: (accountId: string) => {
+      setCurrentAccountUuid(accountId);
+    },
+    languageCode: languageCode,
+    isLoading: state === 'loading',
+  });
+
+  <GlobalHeader accountSelector={accountSelector} globalMenu={globalMenu} globalSearch={{ onSearch }}  />
+```
+
 ## The Footer
 
 Use `footer` to includes an address and a list of helpful links.
