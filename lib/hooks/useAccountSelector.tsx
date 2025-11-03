@@ -88,6 +88,8 @@ export const useAccountSelector = ({
   onToggleFavorite,
   languageCode,
 }: useAccountSelectorProps): AccountSelectorProps => {
+  const isDesktop = useIsDesktop();
+
   const [accounts, accountGroups, currentAccount]: [
     AccountMenuItemProps[],
     Record<string, MenuGroupProps>,
@@ -100,7 +102,6 @@ export const useAccountSelector = ({
       return favoriteAccountUuids?.includes(partyUuid);
     };
 
-    const isDesktop = useIsDesktop();
     const texts = getTexts(languageCode);
 
     // Separate self, people and organizations
@@ -210,6 +211,7 @@ export const useAccountSelector = ({
     isLoading,
     onToggleFavorite,
     languageCode,
+    isDesktop,
   ]);
 
   if (isLoading || !partyListDTO || !currentAccount) {
