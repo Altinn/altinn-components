@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.44.2](https://github.com/Altinn/altinn-components/compare/v0.44.1...v0.44.2) (2025-11-03)
+
+
+### Bug Fixes
+
+* **ci:** update node version to 20.17.0 ([#756](https://github.com/Altinn/altinn-components/issues/756)) ([10083b5](https://github.com/Altinn/altinn-components/commit/10083b530c5e05bd3fb67b9819f4c774a04e8ca2))
+
 ## [0.44.1](https://github.com/Altinn/altinn-components/compare/v0.44.0...v0.44.1) (2025-10-31)
 
 
