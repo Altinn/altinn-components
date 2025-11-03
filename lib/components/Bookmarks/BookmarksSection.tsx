@@ -7,6 +7,8 @@ export interface BookmarksSectionProps {
   items: EditableBookmarkProps[];
   untitled?: string;
   titleField?: TextFieldProps;
+  expandedId?: string;
+  onToggle?: (id: string) => void;
   loading?: boolean;
 }
 
@@ -17,9 +19,11 @@ export const BookmarksSection = ({
   items,
   untitled = 'Untitled bookmark',
   titleField,
+  expandedId,
+  onToggle,
 }: BookmarksSectionProps) => {
   return (
-    <Section padding={6} spacing={4} bleed>
+    <Section padding={6} theme="surface-hover" spacing={4} bleed>
       <Heading size="md">{title}</Heading>
       {loading ? (
         <List>
@@ -33,6 +37,8 @@ export const BookmarksSection = ({
                 {...item}
                 key={item.id}
                 loading={loading || item.loading}
+                onToggle={() => onToggle?.(item.id)}
+                expanded={expandedId === item.id}
                 untitled={untitled}
                 titleField={titleField}
                 size="sm"
