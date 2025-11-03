@@ -18,8 +18,8 @@
 .avatarIcon,
 .loginIcon,
 .closeIcon {
-  width: 3rem;
-  height: 3rem;
+  width: 2.7em;
+  height: 2.7em;
   border-radius: 2px;
   font-size: unset;
 }
@@ -37,13 +37,11 @@
 }
 
 .avatar {
-  font-size: 3rem;
+  font-size: 2.6em;
 }
 
 .icon {
-  font-size: 1.2rem;
-  width: 1.3rem;
-  height: 1.3rem;
+  font-size: 1.2em;
 }
 
 .badge {
