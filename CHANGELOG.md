@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.44.4](https://github.com/Altinn/altinn-components/compare/v0.44.3...v0.44.4) (2025-11-03)
+
+
+### Bug Fixes
+
+* add repository url to package.json ([#761](https://github.com/Altinn/altinn-components/issues/761)) ([88b2b8f](https://github.com/Altinn/altinn-components/commit/88b2b8fd2d5cc273317c0df9f581926455a21be2))
+
 ## [0.44.3](https://github.com/Altinn/altinn-components/compare/v0.44.2...v0.44.3) (2025-11-03)
 
 
