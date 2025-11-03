@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.44.3](https://github.com/Altinn/altinn-components/compare/v0.44.2...v0.44.3) (2025-11-03)
+
+
+### Bug Fixes
+
+* empty commit to test trusted publishers ([#759](https://github.com/Altinn/altinn-components/issues/759)) ([09a2d17](https://github.com/Altinn/altinn-components/commit/09a2d17261fe2a377f8c8069676125502c6a0008))
+
 ## [0.44.2](https://github.com/Altinn/altinn-components/compare/v0.44.1...v0.44.2) (2025-11-03)
 
 
