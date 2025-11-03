@@ -79,5 +79,9 @@
   "lint-staged": {
     "**/*.*": "biome check --staged --no-errors-on-unmatched --write"
   },
-  "packageManager": "pnpm@9.13.0"
+  "packageManager": "pnpm@9.13.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Altinn/altinn-components.git"
+  }
 }
