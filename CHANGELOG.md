@@ -1,5 +1,48 @@
 # Changelog
 
+## [0.44.4](https://github.com/Altinn/altinn-components/compare/v0.44.3...v0.44.4) (2025-11-03)
+
+
+### Bug Fixes
+
+* add repository url to package.json ([#761](https://github.com/Altinn/altinn-components/issues/761)) ([88b2b8f](https://github.com/Altinn/altinn-components/commit/88b2b8fd2d5cc273317c0df9f581926455a21be2))
+
+## [0.44.3](https://github.com/Altinn/altinn-components/compare/v0.44.2...v0.44.3) (2025-11-03)
+
+
+### Bug Fixes
+
+* empty commit to test trusted publishers ([#759](https://github.com/Altinn/altinn-components/issues/759)) ([09a2d17](https://github.com/Altinn/altinn-components/commit/09a2d17261fe2a377f8c8069676125502c6a0008))
+
+## [0.44.2](https://github.com/Altinn/altinn-components/compare/v0.44.1...v0.44.2) (2025-11-03)
+
+
+### Bug Fixes
+
+* **ci:** update node version to 20.17.0 ([#756](https://github.com/Altinn/altinn-components/issues/756)) ([10083b5](https://github.com/Altinn/altinn-components/commit/10083b530c5e05bd3fb67b9819f4c774a04e8ca2))
+
+## [0.44.1](https://github.com/Altinn/altinn-components/compare/v0.44.0...v0.44.1) (2025-10-31)
+
+
+### Bug Fixes
+
+* **ci:** ensure latest npm to allow trusted publishers ([#754](https://github.com/Altinn/altinn-components/issues/754)) ([bcdcfb9](https://github.com/Altinn/altinn-components/commit/bcdcfb9a82fa18ac2f96519d5ed8dbe3fd1ad323))
+
+## [0.44.0](https://github.com/Altinn/altinn-components/compare/v0.43.8...v0.44.0) (2025-10-31)
+
+
+### Features
+
+* Update bookmarks list design ([#751](https://github.com/Altinn/altinn-components/issues/751)) ([dc26ce0](https://github.com/Altinn/altinn-components/commit/dc26ce092c16800051154ccf03f404606c435293))
+
+## [0.43.8](https://github.com/Altinn/altinn-components/compare/v0.43.7...v0.43.8) (2025-10-29)
+
+
+### Bug Fixes
+
+* add neutral theme to Layout ([#745](https://github.com/Altinn/altinn-components/issues/745)) ([da44679](https://github.com/Altinn/altinn-components/commit/da44679205193fd82173772a7a04964bdeb297ca))
+* table typography ([#748](https://github.com/Altinn/altinn-components/issues/748)) ([bac7521](https://github.com/Altinn/altinn-components/commit/bac752130cc7385fed4e655183e286398cef574c))
+
 ## [0.43.7](https://github.com/Altinn/altinn-components/compare/v0.43.6...v0.43.7) (2025-10-21)
 
 

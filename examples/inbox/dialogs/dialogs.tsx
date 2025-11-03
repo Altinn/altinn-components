@@ -7,7 +7,7 @@ import type {
   DialogSectionProps,
 } from '../../../lib';
 import { getSeenByLog, seenByLog } from '../seenByLog';
-import { brregArchived, brregCompleted, brregTrashed } from './brreg';
+import { brregArchived, brregCompleted, brregTable, brregTrashed } from './brreg';
 import { enovaDraft, enovaProgress, enovaSent } from './enova';
 import { mattilsynetAttention, mattilsynetDraft } from './mattilsynet';
 import { nabovarsel } from './oslo';
@@ -51,6 +51,7 @@ export const dialogs: DialogDataProps[] = [
   { ...brregArchived, seenByLog: getSeenByLog(seenByLog.items.slice(0, 3)) },
   brregTrashed,
   brregCompleted,
+  brregTable,
   tredjepart,
 ] as DialogDataProps[];
 

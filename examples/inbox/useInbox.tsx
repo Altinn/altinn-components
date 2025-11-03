@@ -407,7 +407,11 @@ export const useInbox = ({
 
   //  set group view stuff
 
-  const color = (groupView && 'neutral') || currentAccount?.type || 'neutral';
+  const color =
+    ((currentAccount?.id === 'user' || currentAccount?.type === 'group') && 'person') ||
+    currentAccount?.type ||
+    'neutral';
+  const theme = currentAccount?.id === 'user' || currentAccount?.type === 'group' ? 'neutral' : 'subtle';
 
   return {
     modal,
@@ -427,6 +431,7 @@ export const useInbox = ({
     layout: {
       ...layout,
       color,
+      theme,
       header: {
         ...(layout?.header as HeaderProps),
         globalMenu: {

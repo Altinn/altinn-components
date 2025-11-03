@@ -23,6 +23,7 @@ export * from './LayoutAction';
 export * from './List';
 export * from './Menu';
 export * from './Metadata';
+export * from './Notifications';
 export * from './RootProvider';
 export * from './Search';
 export * from './Searchbar';
