@@ -11,10 +11,21 @@ const meta = {
   args: {
     name: 'Jane Doe',
     type: 'person',
+    size: 'md',
     style: {
       fontSize: '2.25rem',
       width: '2.25rem',
       height: '2.25rem',
+    },
+  },
+  argTypes: {
+    size: {
+      control: { type: 'select' },
+      options: Object.keys(SizeEnum),
+    },
+    type: {
+      control: { type: 'select' },
+      options: ['person', 'company', 'custom'],
     },
   },
 } satisfies Meta<typeof Avatar>;

@@ -1,4 +1,4 @@
-import { type Account, Flex, GlobalMenuButton } from '..';
+import { type Account, Flex, GlobalMenuButton_old } from '..';
 import { useAccountMenu } from '../../../examples';
 
 const meta = {
@@ -13,7 +13,7 @@ export const CurrentAccount = () => {
 
   return (
     <Flex spacing={2} align="center">
-      <GlobalMenuButton currentAccount={currentAccount as Account} />
+      <GlobalMenuButton_old currentAccount={currentAccount as Account} />
     </Flex>
   );
 };
@@ -23,7 +23,7 @@ export const CompanyAccount = () => {
 
   return (
     <Flex spacing={2} align="center">
-      <GlobalMenuButton currentAccount={currentAccount as Account} />
+      <GlobalMenuButton_old currentAccount={currentAccount as Account} />
     </Flex>
   );
 };
@@ -31,7 +31,7 @@ export const CompanyAccount = () => {
 export const Login = () => {
   return (
     <Flex spacing={2} align="center">
-      <GlobalMenuButton />
+      <GlobalMenuButton_old />
     </Flex>
   );
 };

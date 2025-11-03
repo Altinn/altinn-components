@@ -19,6 +19,7 @@ import type {
   DialogLayoutProps,
   DialogListItemProps,
   DialogListProps,
+  HeaderProps,
   LayoutProps,
   MenuProps,
   SearchbarProps,
@@ -163,7 +164,7 @@ export const useInboxBeta = ({ pageId = 'inbox', q, ...props }: UseInboxProps): 
   };
 
   const betaHeader = {
-    ...layout?.header,
+    ...(layout?.header as HeaderProps),
     desktopMenu: interimMenu,
     mobileMenu: interimMenu,
   };
@@ -338,7 +339,7 @@ export const useInboxBeta = ({ pageId = 'inbox', q, ...props }: UseInboxProps): 
         trashed,
         trashedAtLabel: trashed ? 'Arkivert' : undefined,
         href: undefined,
-        recipient: layout?.header?.currentAccount,
+        recipient: betaHeader.currentAccount,
         unread: trashed || archived ? false : unread,
         seenByLog,
         ariaLabel: item.title,

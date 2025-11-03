@@ -48,6 +48,8 @@ export interface AvatarProps {
   style?: CSSProperties;
   /** Whether the avatar is loading. */
   loading?: boolean;
+  /** A string key to generate the avatar's color, as an alternative to the name prop. */
+  colorKey?: string;
 }
 
 export const isAvatarProps = (icon: unknown): icon is AvatarProps => {
@@ -71,6 +73,7 @@ export const Avatar = ({
   customLabel,
   loading,
   className,
+  colorKey,
   style = {},
 }: AvatarProps): ReactElement => {
   const [hasImageError, setHasImageError] = useState<boolean>(false);
@@ -85,7 +88,7 @@ export const Avatar = ({
     }
   }
 
-  const { backgroundColor, foregroundColor } = fromStringToColor(name, applicableColor);
+  const { backgroundColor, foregroundColor } = fromStringToColor(colorKey ?? name, applicableColor);
   const initials = (name[0] ?? '').toUpperCase();
   const usingImageUrl = imageUrl && !hasImageError;
 

@@ -1,0 +1,59 @@
+.accountSelector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+  max-width: 1000px;
+  margin: 0 auto;
+  --horizontal-padding: 0.7rem;
+}
+
+.heading {
+  margin-bottom: 1rem;
+  width: 100%;
+  padding: 0.3rem var(--horizontal-padding);
+}
+
+.searchSection {
+  width: 100%;
+  padding: 0 var(--horizontal-padding);
+}
+
+.searchField {
+  width: 50%;
+}
+
+.accountMenu {
+  height: 40vh;
+  width: 100%;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  padding: 0 var(--horizontal-padding);
+}
+
+.accountMenu.fullScreen {
+  height: fit-content;
+}
+
+.accountMenu.virtualized {
+  overflow-y: hidden; /* Virtualization adds its own scroll */
+}
+
+.btnIcon {
+  font-size: 1.5rem;
+}
+
+.spinner {
+  margin: auto;
+  width: 100%;
+  overflow: hidden;
+}
+
+@media (max-width: 1023px) {
+  .accountSelector {
+    --horizontal-padding: 0.1rem;
+  }
+  .searchField {
+    width: 100%;
+  }
+}

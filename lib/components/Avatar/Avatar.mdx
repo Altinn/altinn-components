@@ -1,8 +1,8 @@
-import { Meta, Canvas } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, Controls, Primary } from "@storybook/addon-docs/blocks";
 import * as AvatarStories from "./Avatar.stories";
 import * as AvatarGroupStories from "./AvatarGroup.stories";
 
-<Meta title="Components/Avatar" />
+<Meta of={AvatarStories} />
 
 # Using avatars
 
@@ -32,3 +32,8 @@ Companies can also be identified by their logo.
 Avatar groups.
 
 <Canvas of={AvatarGroupStories.Companies} />
+
+## Props
+
+<Primary />
+<Controls of={AvatarStories.Person} />

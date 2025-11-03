@@ -1,0 +1,9 @@
+.button {
+  justify-content: center;
+}
+
+.label {
+  display: block;
+  width: 100%;
+  text-align: center;
+}

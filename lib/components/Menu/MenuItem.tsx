@@ -104,8 +104,8 @@ export const MenuItem = ({
         {applicableLabel}
       </MenuItemLabel>
       <span className={styles.controls}>
-        {!loading && controls}
         {!loading && renderBadge()}
+        {!loading && controls}
         {applicableIcon && (
           <span className={styles.linkIcon}>
             <Icon
