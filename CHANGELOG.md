@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.45.3](https://github.com/Altinn/altinn-components/compare/v0.45.2...v0.45.3) (2025-11-04)
+
+
+### Bug Fixes
+
+* Add GlobalHeaderProps export ([#769](https://github.com/Altinn/altinn-components/issues/769)) ([adb0b81](https://github.com/Altinn/altinn-components/commit/adb0b8105d8e9de03b4c52d1000c91d82fc1dea3))
+
 ## [0.45.2](https://github.com/Altinn/altinn-components/compare/v0.45.1...v0.45.2) (2025-11-04)
 
 
