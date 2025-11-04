@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.45.1](https://github.com/Altinn/altinn-components/compare/v0.45.0...v0.45.1) (2025-11-03)
+
+
+### Miscellaneous Chores
+
+* Restore BookmarksSection to its previous state ([#765](https://github.com/Altinn/altinn-components/issues/765)) ([10de827](https://github.com/Altinn/altinn-components/commit/10de827f4f773683f478b9a9950bcaa8d64c348f))
+
 ## [0.45.0](https://github.com/Altinn/altinn-components/compare/v0.44.4...v0.45.0) (2025-11-03)
 
 
