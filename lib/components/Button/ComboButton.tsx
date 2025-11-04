@@ -36,6 +36,7 @@ export const ComboButton = ({
   onIconClick,
   dataTestId,
   tabIndex = 0,
+  disabled = false,
 }: ComboButtonProps) => {
   return (
     <ButtonBase
@@ -46,6 +47,7 @@ export const ComboButton = ({
       selected={selected}
       className={cx(styles.button, className)}
       tabIndex={-1}
+      disabled={disabled}
     >
       <ButtonBase
         ariaLabel={ariaLabel}

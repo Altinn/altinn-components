@@ -35,6 +35,10 @@ export const DialogActions = ({ items, maxItems = 2, id = 'dialog-actions', expa
       });
   }, [items]);
 
+  const isDisabled = useMemo(() => {
+    return items.find((i) => i.priority === 'primary')?.disabled;
+  }, [items]);
+
   if (!sortedItems.length || maxItems <= 0) {
     return null;
   }
@@ -57,6 +61,7 @@ export const DialogActions = ({ items, maxItems = 2, id = 'dialog-actions', expa
           onLabelClick={sortedItems[0].onClick}
           ariaLabel={expanded ? 'chevron up icon' : 'chevron down icon'}
           iconAltText={expandAltLabel}
+          disabled={isDisabled}
         >
           {sortedItems[0].label}
         </ComboButton>

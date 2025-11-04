@@ -70,3 +70,43 @@ export const MultipleButtons: Story = {
     ],
   },
 };
+
+export const MultipleButtonsPrimaryDisabled: Story = {
+  args: {
+    expandAltLabel: 'Show more actions',
+    items: [
+      {
+        id: 'primary',
+        label: 'Primary',
+        priority: 'primary',
+        disabled: true,
+        onClick: () => console.log('Primary clicked'),
+      },
+      {
+        id: 'secondary-1',
+        label: 'Secondary',
+        priority: 'secondary',
+        onClick: () => console.log('secondary clicked'),
+      },
+      {
+        id: 'tertiary-1',
+        label: 'Third action',
+        priority: 'tertiary',
+        onClick: () => console.log('tertiary clicked'),
+      },
+      {
+        id: 'tertiary-2',
+        label: 'Fourth action',
+        priority: 'tertiary',
+        onClick: () => console.log('Fourth clicked'),
+      },
+      {
+        id: 'tertiary-3',
+        label: 'Hidden action',
+        priority: 'tertiary',
+        onClick: () => console.log('Hidden clicked'),
+        hidden: true,
+      },
+    ],
+  },
+};
