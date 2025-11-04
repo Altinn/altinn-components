@@ -306,3 +306,125 @@ export const Service = () => {
     </Layout>
   );
 };
+
+export const ArticlePage = () => {
+  const { layout, breadcrumbs } = useCategoryPage({
+    accountId: undefined,
+    pageId: "rf-1086",
+  });
+
+  return (
+    <Layout {...layout}>
+      <Article>
+        <Breadcrumbs items={breadcrumbs} />
+        <ArticleHeader>
+          <Heading size="xl" as="h1">
+            Advarsel: Altinn og ID-porten misbrukes i svindelforsøk
+          </Heading>
+          <Typography>
+            <p>
+              Folk opplever for tiden en bølge av svindelforsøk via e-poster som
+              ser ut som de kommer fra Altinn. Mottakerne blir bedt om å klikke
+              på en lenke som tilsynelatende fører til ID-porten. Hensikten med
+              e-postene er sannsynligvis å lure til seg sensitiv informasjon
+              eller penger.
+            </p>
+          </Typography>
+          <Byline>Sist oppdatert: 09.10.2025</Byline>
+          <Divider />
+        </ArticleHeader>
+        <Typography>
+          <div className="rich-text">
+            <p>
+              Svindel-e-postene sier at du må logge inn via ID-porten for å
+              «bekrefte personopplysninger i henhold til ny forskrift om digital
+              identitetsbekreftelse». Dette stemmer ikke, e-postene er ikke fra
+              Altinn, og du må ikke klikke på lenken.
+            </p>
+            <p>
+              Det er alltid noen som prøver å svindle andre på nett, via e-post,
+              tekstmeldinger eller over telefon. Det viktigste rådet for å unngå
+              svindel er at du aldri må oppgi passord, koder eller annen
+              hemmelig informasjon – ikke engang til politiet eller banken.
+            </p>
+            <p>
+              <img
+                src="https://inte.info.altinn.no/globalassets/bilder-til-artikler/idtyveri-bilde.jpg"
+                alt="Illustrasjonsbilde av dame som holder mobil i ene hånden og bankkort i den andre. "
+                width="1024"
+                height="683"
+              />
+            </p>
+            <p>
+              Her får du noen flere, generelle råd for å unngå å bli svindlet.
+            </p>
+            <h2>Dette er vanlige svindelmetoder:</h2>
+            <ul>
+              <li>
+                Misbruk av telefonnummer (spoofing): Det kan se ut som
+                svindleren ringer fra vår brukerstøtte, fra politiet eller for
+                eksempel banken – altså noen du vanligvis stoler på. Målet er å
+                få deg til å gi fra deg privat informasjon som passord, koder og
+                personopplysninger.
+              </li>
+              <li>
+                Lenker i e-post eller SMS (phishing): Svindleren sender deg en
+                lenke som ser ut som den kommer fra en virksomhet du stoler på.
+                De gjør dette for å «fiske» etter informasjon. Målet er å få deg
+                til å klikke på lenken og legge igjen personopplysninger,
+                passord og lignende. Vær kritisk. En lenke som fører deg til en
+                innlogging eller en nettbutikk kan være en falsk side, selv om
+                den ser ekte ut. Søk heller opp virksomheten selv dersom du vil
+                logge inn eller besøke en nettbutikk, bank eller offentlig etat.
+              </li>
+              <li>
+                Svindel på internett og sosiale medier: Vær på vakt når du
+                kommer over nettbutikker med uvanlig gode tilbud. Før du handler
+                på en nettside du ikke kjenner fra før, er det lurt å gjøre et
+                søk på internett for å sjekke andres erfaringer. Og husk at
+                svindelforsøk også skjer på nettsteder for bruktmarked.
+              </li>
+            </ul>
+            <h2>Tips og råd mot svindel: Stopp, tenk, sjekk!</h2>
+            <ul>
+              <li>
+                Vern om passordene og kodene dine. Ikke del BankID, passord
+                eller sensitive personopplysninger – uansett hvem som spør.
+              </li>
+              <li>
+                Vær kritisk til å klikke på lenker du får på e-post og SMS. Søk
+                heller opp nettstedet enn å bruke lenken.
+              </li>
+              <li>
+                Mistanke om at du er i ferd med å bli utsatt for telefonsvindel?
+                Spør etter navnet på den som kontakter deg og avslutt samtalen.
+                Ta kontakt via virksomhetens offisielle kanaler. Svindlere som
+                tar kontakt utgir seg ofte for å være fra banken din eller
+                politiet, og kan forfalske telefonnummer, e-postadresser og SMS.
+              </li>
+              <li>
+                Vær kritisk til personer som bruker kjærlighetsforhold,
+                investeringer og penger for å komme i kontakt med deg. Hvis noe
+                virker for godt til å være sant, så er det som regel det – og
+                det kan være svindel.
+              </li>
+            </ul>
+            <h2>Er du utsatt for svindel og ID-tyveri?</h2>
+            <p>
+              Du bør kontakte politiet, banken og forsikringsselskapet ditt
+              dersom du er utsatt for svindel.
+            </p>
+            <p>
+              <a
+                title="https://www.politiet.no/tjenester/anmelde/anmelde-svindel-og-id-tyveri/"
+                href="https://www.politiet.no/tjenester/anmelde/anmelde-svindel-og-id-tyveri/"
+              >
+                Kontakt Politiet
+              </a>
+            </p>
+          </div>
+        </Typography>
+      </Article>
+    </Layout>
+  );
+};
