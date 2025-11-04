@@ -54,7 +54,6 @@
 
   /* flex */
   display: inline-flex;
-  align-items: center;
 }
 
 .button:not([data-size]) {
@@ -63,7 +62,8 @@
 
 .button:is(:disabled, [aria-disabled="true"]) {
   cursor: not-allowed;
-  opacity: var(--ds-opacity-disabled);
+  opacity: 0.75;
+  pointer-events: none;
 
   /* When both aria-disabled and aria-busy is true, opacity should be 1 and cursor should be progress */
   &[aria-busy="true"] {
