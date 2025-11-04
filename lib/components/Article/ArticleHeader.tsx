@@ -9,7 +9,7 @@ export interface ArticleHeaderProps extends SectionProps {
 export const ArticleHeader = ({ title, children }: ArticleHeaderProps) => {
   return (
     <Section as="header" spacing={2}>
-      <Heading size="xl">{title}</Heading>
+      {title && <Heading size="xl">{title}</Heading>}
       {children}
     </Section>
   );

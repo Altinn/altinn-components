@@ -29,6 +29,7 @@ import {
   type AccountListProps,
   type BadgeProps,
   Section,
+  Switch,
   Toolbar,
 } from '..';
 import { type UseAccountsProps, accountList, defaultAccounts, useAccountList, useSettings } from '../../../examples';
@@ -241,7 +242,9 @@ export const Controlled = ({
 
   return (
     <Section spacing={6} color={color}>
-      <Toolbar {...toolbar} />
+      <Toolbar {...toolbar}>
+        <Switch label="Vis slettede" size="xs" style={{ marginLeft: '0.5em' }} />
+      </Toolbar>
       <AccountList groups={listGroups} items={collapsibleItems as AccountListItemProps[]} />
       {modalId && modal?.type === 'phone' && <PhoneSettingsModal open={true} onClose={onClose} />}
       {modalId && modal?.type === 'email' && <EmailSettingsModal open={true} onClose={onClose} />}
