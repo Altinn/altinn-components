@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.45.2](https://github.com/Altinn/altinn-components/compare/v0.45.1...v0.45.2) (2025-11-04)
+
+
+### Bug Fixes
+
+* disable combo button if primary is disabled ([#767](https://github.com/Altinn/altinn-components/issues/767)) ([0b45d4d](https://github.com/Altinn/altinn-components/commit/0b45d4d98aa32e3dac688d79b8627a2141b97bfb))
+
 ## [0.45.1](https://github.com/Altinn/altinn-components/compare/v0.45.0...v0.45.1) (2025-11-03)
 
 
