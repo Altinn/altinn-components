@@ -100,7 +100,7 @@ export const AccountMenu = ({
   return (
     <Menu
       variant="default"
-      search={search && search?.hidden === false ? defaultAccountSearch : undefined}
+      search={search && !search.hidden ? defaultAccountSearch : undefined}
       groups={filterAccountGroups}
       items={accountSwitcher}
       isVirtualized={isVirtualized}
