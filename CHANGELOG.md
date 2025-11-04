@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.45.4](https://github.com/Altinn/altinn-components/compare/v0.45.3...v0.45.4) (2025-11-04)
+
+
+### Bug Fixes
+
+* basic article typography ([#772](https://github.com/Altinn/altinn-components/issues/772)) ([968e532](https://github.com/Altinn/altinn-components/commit/968e532100b604c4198c83c67cba25541f4944f4))
+* search field in account menu was hidden when hidden was undefined ([#771](https://github.com/Altinn/altinn-components/issues/771)) ([b22e511](https://github.com/Altinn/altinn-components/commit/b22e51133ec2214ffe53050dc84e3526cb484d88))
+
 ## [0.45.3](https://github.com/Altinn/altinn-components/compare/v0.45.2...v0.45.3) (2025-11-04)
 
 
