@@ -222,6 +222,19 @@ export const InboxEmptyPage = () => {
   );
 };
 
+export const InboxWithGlobalSearch = () => {
+  const { layout, toolbar } = useInbox({});
+
+  return (
+    <Layout {...layout} useGlobalHeader={true}>
+      <PageBase margin="page">
+        <Toolbar {...toolbar} />
+        <EmptySection />
+      </PageBase>
+    </Layout>
+  );
+};
+
 export const SearchPage = () => {
   let params = new URL(document.location.toString()).searchParams;
   let q = params.get("q") || "regnskap";

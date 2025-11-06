@@ -8,6 +8,7 @@ export interface SearchbarBaseProps {
   expanded?: boolean;
   autocomplete?: boolean;
   onBlurCapture?: React.FocusEventHandler<HTMLDivElement>;
+  useGlobalHeader?: boolean;
 }
 
 export const SearchbarBase = ({
@@ -16,8 +17,14 @@ export const SearchbarBase = ({
   expanded = false,
   onBlurCapture,
   autocomplete = false,
+  useGlobalHeader = false,
 }: SearchbarBaseProps) => {
-  const searchBaseStyles = cx(styles.searchbar, className, expanded && styles.searchbarExpanded);
+  const searchBaseStyles = cx(
+    styles.searchbar,
+    className,
+    expanded && styles.searchbarExpanded,
+    useGlobalHeader && styles.searchbarLocal,
+  );
   return (
     <div className={searchBaseStyles} data-autocomplete={autocomplete} onBlurCapture={onBlurCapture}>
       {children}

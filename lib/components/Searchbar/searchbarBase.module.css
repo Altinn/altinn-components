@@ -18,3 +18,20 @@
   border-top-right-radius: 0;
   margin-top: -2px;
 }
+
+.searchbarLocal {
+  width: 100%;
+  padding: var(--dsc-spacing-4) 0;
+  z-index: 100;
+}
+
+@media (min-width: 1024px) {
+  .searchbarLocal {
+    max-width: 320px;
+    margin-right: auto;
+  }
+
+  .searchbarLocal.searchbarExpanded {
+    max-width: 640px;
+  }
+}
