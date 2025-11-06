@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.46.0](https://github.com/Altinn/altinn-components/compare/v0.45.4...v0.46.0) (2025-11-06)
+
+
+### Features
+
+* Support InboxSearch while global header enabled ([#776](https://github.com/Altinn/altinn-components/issues/776)) ([ed56172](https://github.com/Altinn/altinn-components/commit/ed56172878b7a64ddb183f776ea6f9fa93678418))
+
 ## [0.45.4](https://github.com/Altinn/altinn-components/compare/v0.45.3...v0.45.4) (2025-11-04)
 
 
