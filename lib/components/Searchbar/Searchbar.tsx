@@ -14,6 +14,7 @@ export interface SearchbarProps extends SearchbarFieldProps {
   autocomplete?: AutocompleteProps;
   expanded?: boolean;
   tabIndex?: number;
+  useGlobalHeader?: boolean;
 }
 
 export const Searchbar = ({
@@ -22,6 +23,7 @@ export const Searchbar = ({
   expanded = false,
   onClose,
   tabIndex,
+  useGlobalHeader = false,
   ...search
 }: SearchbarProps) => {
   const [inputHasFocus, setInputFocus] = useState<boolean>(false);
@@ -60,6 +62,7 @@ export const Searchbar = ({
       expanded={expanded}
       autocomplete={!!autocomplete}
       onBlurCapture={onBlurCapture}
+      useGlobalHeader={useGlobalHeader}
     >
       <SearchbarField
         {...search}

@@ -12,6 +12,7 @@ import {
 import { Footer, type FooterProps } from '../Footer';
 import { GlobalHeader, type GlobalHeaderProps } from '../GlobalHeader';
 import { Header, type HeaderProps } from '../Header';
+import { InboxSearch } from '../InboxSearch';
 import { Menu, type MenuProps } from '../Menu';
 import { useRootContext } from '../RootProvider';
 import { SkipLink, type SkipLinkProps } from '../SkipLink';
@@ -49,6 +50,7 @@ export const Layout = ({
   useGlobalHeader = false,
 }: LayoutProps) => {
   const { currentId } = useRootContext();
+  const search = header && 'search' in header ? header.search : undefined;
 
   return (
     <LayoutBase color={color} theme={currentId === 'accountFullscreen' ? 'default' : theme} currentId={currentId}>
@@ -56,12 +58,14 @@ export const Layout = ({
       {header && (useGlobalHeader ? <GlobalHeader {...header} /> : <Header {...header} />)}
       <LayoutBody currentId={currentId}>
         {sidebar && (
-          <LayoutSidebar hidden={sidebar?.hidden} color={sidebar?.color} {...sidebar}>
+          <LayoutSidebar hidden={sidebar?.hidden} color={sidebar?.color} {...sidebar} useGlobalHeader={useGlobalHeader}>
             {sidebar?.menu && <Menu {...sidebar?.menu} />}
             {sidebar?.children}
           </LayoutSidebar>
         )}
+
         <LayoutContent color={content?.color} id="main-content">
+          {useGlobalHeader && search && <InboxSearch search={search} />}
           {children}
         </LayoutContent>
       </LayoutBody>
