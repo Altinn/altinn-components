@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.46.1](https://github.com/Altinn/altinn-components/compare/v0.46.0...v0.46.1) (2025-11-07)
+
+
+### Bug Fixes
+
+* Searchbar bottom spacing with global header ([#778](https://github.com/Altinn/altinn-components/issues/778)) ([9d9154d](https://github.com/Altinn/altinn-components/commit/9d9154d355427032d8a5564636f735e577339ab6))
+
 ## [0.46.0](https://github.com/Altinn/altinn-components/compare/v0.45.4...v0.46.0) (2025-11-06)
 
 
