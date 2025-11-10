@@ -1,5 +1,5 @@
 'use client';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import type { LocaleSwitcherProps } from '../Header';
 import { Menu, MenuListItem, type MenuProps } from '../Menu';
 import { BackButton } from './BackButton';
@@ -19,6 +19,7 @@ export interface GlobalMenuProps {
   onClose?: () => void;
   ariaLabel?: string;
   localeSwitcher?: LocaleSwitcherProps;
+  isOpen?: boolean;
 }
 
 export const GlobalMenu = ({
@@ -28,12 +29,20 @@ export const GlobalMenu = ({
   logoutButton,
   ariaLabel = 'Menu',
   localeSwitcher,
+  isOpen = false,
 }: GlobalMenuProps) => {
   const [selectingLocale, setSelectingLocale] = useState<boolean>(false);
 
   const onToggleLocaleSelection = () => {
     setSelectingLocale((prevState) => !prevState);
   };
+
+  // Reset locale selection whenever the menu closes
+  useEffect(() => {
+    if (!isOpen) {
+      setSelectingLocale(false);
+    }
+  }, [isOpen]);
 
   const itemsWithToggle = useMemo(() => {
     return (menu?.items ?? []).map((item) => ({
