@@ -7,11 +7,11 @@ export const footer: FooterProps = {
     items: [
       {
         id: '1',
-        title: 'Om Altinn',
+        title: 'Hjelp og kontakt',
       },
       {
         id: '2',
-        title: 'Driftsmeldinger',
+        title: 'Om Altinn',
       },
       {
         id: '3',
