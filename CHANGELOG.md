@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.46.2](https://github.com/Altinn/altinn-components/compare/v0.46.1...v0.46.2) (2025-11-11)
+
+
+### Bug Fixes
+
+* footer links ([#780](https://github.com/Altinn/altinn-components/issues/780)) ([d772814](https://github.com/Altinn/altinn-components/commit/d772814701f5c695516d689d5677b924d6b474d9))
+* reset locale selection state when global menu is closed ([#788](https://github.com/Altinn/altinn-components/issues/788)) ([36ea107](https://github.com/Altinn/altinn-components/commit/36ea10799326ba002053afefff1b11cd60809d03))
+
 ## [0.46.1](https://github.com/Altinn/altinn-components/compare/v0.46.0...v0.46.1) (2025-11-07)
 
 
