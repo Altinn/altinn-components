@@ -1,11 +1,11 @@
 'use client';
 import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
 import { AccountMenuButton } from '../Account/AccountMenuButton.tsx';
-import type { BadgeProps } from '../Badge/index.tsx';
-import { DrawerBase, DropdownBase } from '../Dropdown/index.ts';
-import { GlobalMenu, GlobalMenuButton, type GlobalMenuProps, type LocaleSwitcherProps } from '../GlobalMenu/index.tsx';
-import type { MenuProps } from '../Menu/index.ts';
-import { useRootContext } from '../RootProvider/index.ts';
+import type { BadgeProps } from '../Badge';
+import { DrawerBase, DropdownBase } from '../Dropdown';
+import { GlobalMenu, GlobalMenuButton, type GlobalMenuProps, type LocaleSwitcherProps } from '../GlobalMenu';
+import type { MenuProps } from '../Menu';
+import { useRootContext } from '../RootProvider';
 import { AccountSelector, type AccountSelectorProps } from './AccountSelector.tsx';
 import { GlobalSearch, type GlobalSearchProps } from './GlobalSearch.tsx';
 import { GlobalSearchButton } from './GlobalSearchButton.tsx';
@@ -94,6 +94,7 @@ export const GlobalHeader = ({
                 menu={desktopMenu || globalMenu?.menu}
                 onClose={closeAll}
                 localeSwitcher={locale}
+                isOpen={currentId === 'menu'}
               />
             </DropdownBase>
           )}
@@ -106,6 +107,7 @@ export const GlobalHeader = ({
             menu={mobileMenu || globalMenu?.menu}
             onClose={closeAll}
             localeSwitcher={locale}
+            isOpen={currentId === 'menu'}
           />
         </DrawerBase>
       )}
