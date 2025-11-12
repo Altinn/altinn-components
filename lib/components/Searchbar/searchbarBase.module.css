@@ -22,14 +22,18 @@
 .searchbarLocal {
   width: 100%;
   padding: var(--dsc-spacing-4) 0;
-  z-index: 100;
   margin-bottom: 16px;
+}
+
+.searchbarLocal.searchbarExpanded {
+  z-index: 100;
 }
 
 @media (min-width: 1024px) {
   .searchbarLocal {
     max-width: 320px;
     margin-right: auto;
+    z-index: 100;
   }
 
   .searchbarLocal.searchbarExpanded {
