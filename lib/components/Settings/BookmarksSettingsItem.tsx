@@ -93,8 +93,26 @@ export const BookmarksSettingsItem = ({
 
         {(saveButton || removeButton) && (
           <ButtonGroup size="md">
-            {saveButton && <Button {...saveButton} />}
-            {removeButton && <Button {...removeButton} variant="outline" color="danger" />}
+            {saveButton && (
+              <Button
+                {...saveButton}
+                onClick={(e) => {
+                  saveButton.onClick?.(e);
+                  setOpen(false);
+                }}
+              />
+            )}
+            {removeButton && (
+              <Button
+                {...removeButton}
+                variant="outline"
+                color="danger"
+                onClick={(e) => {
+                  removeButton.onClick?.(e);
+                  setOpen(false);
+                }}
+              />
+            )}
           </ButtonGroup>
         )}
       </SettingsModal>
