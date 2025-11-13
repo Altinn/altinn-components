@@ -1,6 +1,12 @@
 import type { Meta } from '@storybook/react-vite';
 import { useState } from 'react';
-import { getAuthorizedPartiesData, header, useGlobalHeader, useGlobalMenu } from '../../../examples';
+import {
+  getAuthorizedPartiesData,
+  getLargeAuthorizedPartiesData,
+  header,
+  useGlobalHeader,
+  useGlobalMenu,
+} from '../../../examples';
 import { useAccountSelector } from '../../hooks';
 import { RootProvider } from '../RootProvider';
 import { GlobalHeader, type GlobalHeaderProps } from './';
@@ -126,6 +132,37 @@ export const LoadingWithForcedFullScreenAccountSelection = () => {
         onLoginClick={onLoginClick}
         locale={locale}
       />
+    </RootProvider>
+  );
+};
+
+export const WithVirtualizationEnabled = () => {
+  const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
+  const onSearch = (queryString: string) => alert('Search entered: ' + queryString);
+
+  const [favoriteUuids, setFavoriteUuids] = useState<string[]>([]);
+  const authorizedParties = getLargeAuthorizedPartiesData(1000);
+  const [currentAccountUuid, setCurrentAccountUuid] = useState<string | undefined>(authorizedParties[0].partyUuid);
+  const selfAccountUuid = authorizedParties[0].partyUuid;
+  const onToggleFavorite = (uuid: string) => {
+    setFavoriteUuids((prev) => (prev.includes(uuid) ? prev.filter((id) => id !== uuid) : [...prev, uuid]));
+  };
+  const accountSelector = useAccountSelector({
+    partyListDTO: authorizedParties,
+    favoriteAccountUuids: favoriteUuids,
+    onToggleFavorite: onToggleFavorite,
+    selfAccountUuid,
+    currentAccountUuid: currentAccountUuid,
+    onSelectAccount: (accountId: string) => {
+      setCurrentAccountUuid(accountId);
+    },
+    languageCode: 'nb',
+    isLoading: false,
+    isVirtualized: true,
+  });
+  return (
+    <RootProvider>
+      <GlobalHeader globalMenu={globalMenu} globalSearch={{ onSearch }} accountSelector={accountSelector} />
     </RootProvider>
   );
 };

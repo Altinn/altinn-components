@@ -29,6 +29,7 @@ export interface MenuItemsProps {
   as?: ElementType;
   keyboardEvents?: boolean;
   onSelect?: () => void;
+  scrollRefStyles?: React.CSSProperties;
 }
 
 export const MenuItems = ({

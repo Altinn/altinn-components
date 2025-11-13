@@ -22,6 +22,7 @@ export const Menu = ({
   search,
   isVirtualized,
   keyboardEvents,
+  scrollRefStyles,
 }: MenuProps) => {
   if (isVirtualized) {
     return (
@@ -35,6 +36,7 @@ export const Menu = ({
           defaultItemVariant={defaultItemVariant}
           defaultIconTheme={defaultIconTheme}
           keyboardEvents={keyboardEvents}
+          scrollRefStyles={scrollRefStyles}
         />
       </MenuBase>
     );
@@ -51,6 +53,7 @@ export const Menu = ({
         defaultItemVariant={defaultItemVariant}
         defaultIconTheme={defaultIconTheme}
         keyboardEvents={keyboardEvents}
+        scrollRefStyles={scrollRefStyles}
       />
     </MenuBase>
   );
