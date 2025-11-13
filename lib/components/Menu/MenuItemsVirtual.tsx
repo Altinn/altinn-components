@@ -37,6 +37,7 @@ export const MenuItemsVirtual = ({
   defaultItemVariant,
   defaultIconTheme,
   keyboardEvents,
+  scrollRefStyles: externalScrollRefStyles,
 }: MenuItemsProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -60,8 +61,13 @@ export const MenuItemsVirtual = ({
     return (scrollTop && windowHeight - scrollTop - 8) || 400;
   }, [windowHeight, scrollTop]);
 
-  const scrollRefStyles = {
+  const calculatedScrollRefStyles = {
     maxHeight: scrollMaxHeight <= 300 ? 300 : scrollMaxHeight,
+  };
+
+  const scrollRefStyles = {
+    ...calculatedScrollRefStyles,
+    ...externalScrollRefStyles,
   };
 
   const { menu } = useMenu<MenuItemProps, MenuGroupProps>({

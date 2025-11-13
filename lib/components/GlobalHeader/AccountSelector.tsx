@@ -81,6 +81,7 @@ export const AccountSelector = ({ accountMenu, forceOpenFullScreen, className, l
           onSelectAccount={onAccountSelection}
           keyboardEvents={false}
           search={{ hidden: true, name: '', value: searchString }}
+          scrollRefStyles={!isFullScreen && accountMenu.isVirtualized ? { maxHeight: 'calc(40vh)' } : undefined}
         />
       </div>
       {forceOpenFullScreen !== true && (

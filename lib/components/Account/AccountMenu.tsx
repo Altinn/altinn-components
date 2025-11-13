@@ -34,6 +34,7 @@ export const AccountMenu = ({
   currentAccount,
   isVirtualized,
   keyboardEvents,
+  scrollRefStyles,
 }: AccountMenuProps) => {
   const accountMenu: AccountMenuItemProps[] = items.map((item) => ({
     ...item,
@@ -105,6 +106,7 @@ export const AccountMenu = ({
       items={accountSwitcher}
       isVirtualized={isVirtualized}
       keyboardEvents={keyboardEvents}
+      scrollRefStyles={scrollRefStyles}
     />
   );
 };
