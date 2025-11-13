@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.46.3](https://github.com/Altinn/altinn-components/compare/v0.46.2...v0.46.3) (2025-11-12)
+
+
+### Bug Fixes
+
+* Close modal in saved search automatically after btn click ([#791](https://github.com/Altinn/altinn-components/issues/791)) ([6822b88](https://github.com/Altinn/altinn-components/commit/6822b88344b24edb0da2ecf3637215fb69a76d5d))
+* Mobile view searchbar overlapping fix ([#792](https://github.com/Altinn/altinn-components/issues/792)) ([c9ff1ff](https://github.com/Altinn/altinn-components/commit/c9ff1ff352909a014534aa6b2c9983fc66909447))
+
 ## [0.46.2](https://github.com/Altinn/altinn-components/compare/v0.46.1...v0.46.2) (2025-11-11)
 
 
