@@ -269,13 +269,13 @@ const getAccountFromAuthorizedParty = (
   const texts = getTexts(languageCode);
 
   const name = formatDisplayName({
-    fullName: party.name,
+    fullName: party?.name,
     type: type,
   });
   const parentName = parent
     ? formatDisplayName({
-        fullName: parent.name,
-        type: getAccountType(parent.type ?? ''),
+        fullName: parent?.name,
+        type: getAccountType(parent?.type ?? ''),
         reverseNameOrder: false,
       })
     : undefined;
@@ -287,27 +287,29 @@ const getAccountFromAuthorizedParty = (
       description = `${texts.org_no}: ${party.organizationNumber}`;
       break;
     case 'person':
-      description = `${texts.birthdate}: ${formatDate(party.dateOfBirth)}`;
+      description = party?.dateOfBirth ? `${texts.birthdate}: ${formatDate(party?.dateOfBirth)}` : '';
       break;
     case 'subunit':
-      description = `↳ ${texts.org_no}: ${party.organizationNumber}, ${texts.subunit_of} ${parentName}`;
+      description = `↳ ${texts.org_no}: ${party?.organizationNumber}, ${texts.subunit_of} ${parentName}`;
       break;
+    default:
+      description = '';
   }
   return {
-    id: party.partyUuid,
+    id: party?.partyUuid,
     icon: {
       name: name,
       type: type,
       isParent: !parent,
-      isDeleted: party.isDeleted,
+      isDeleted: party?.isDeleted,
       colorKey: parentName ?? undefined,
     },
     name: name,
     description: description,
     groupId: group,
     type: formatType,
-    selected: currentAccountUuid === party.partyUuid,
-    disabled: !!party.onlyHierarchyElementWithNoAccess,
+    selected: currentAccountUuid === party?.partyUuid,
+    disabled: !!party?.onlyHierarchyElementWithNoAccess,
     badge: isSelf
       ? { label: texts.you, color: 'person' }
       : party.isDeleted && isDesktopScreen
@@ -322,7 +324,7 @@ const getAccountFromAuthorizedParty = (
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
           if (toggleFavorite) {
             e.stopPropagation();
-            toggleFavorite(party.partyUuid);
+            toggleFavorite(party?.partyUuid);
           }
         }}
         size="xs"
@@ -341,12 +343,12 @@ const isOrgType = (type?: string) => {
 };
 
 /**
- * Checks if a party type represents a person.
+ * Checks if a party type represents a person. (Self identified users are also considered persons)
  * @param type - The party type string to check
  * @returns True if the type is 'Person'
  */
 const isPersonType = (type?: string) => {
-  return type === 'Person';
+  return type === 'Person' || type === 'SelfIdentified';
 };
 
 /**
