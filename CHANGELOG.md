@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.46.4](https://github.com/Altinn/altinn-components/compare/v0.46.3...v0.46.4) (2025-11-13)
+
+
+### Bug Fixes
+
+* **GlobalHeader:** Support Self-Identified user ([#794](https://github.com/Altinn/altinn-components/issues/794)) ([e4ac476](https://github.com/Altinn/altinn-components/commit/e4ac476882142db938d770349061eabdb01590e8))
+
 ## [0.46.3](https://github.com/Altinn/altinn-components/compare/v0.46.2...v0.46.3) (2025-11-12)
 
 
