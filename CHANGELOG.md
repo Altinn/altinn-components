@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.46.5](https://github.com/Altinn/altinn-components/compare/v0.46.4...v0.46.5) (2025-11-13)
+
+
+### Bug Fixes
+
+* Small account menu virtualized fix ([#799](https://github.com/Altinn/altinn-components/issues/799)) ([20a5ecf](https://github.com/Altinn/altinn-components/commit/20a5ecfb4022d05036426bf44bc143833431c363))
+
 ## [0.46.4](https://github.com/Altinn/altinn-components/compare/v0.46.3...v0.46.4) (2025-11-13)
 
 
