@@ -242,5 +242,19 @@
       "A0282"
     ],
     "subunits": []
+  },
+  {
+    "partyUuid": "7d125913-fd0b-47cd-84e4-ac0457d48fa7",
+    "name": "selvidentifiser",
+    "organizationNumber": null,
+    "dateOfBirth": null,
+    "partyId": 51842396,
+    "type": "SelfIdentified",
+    "unitType": null,
+    "isDeleted": false,
+    "onlyHierarchyElementWithNoAccess": false,
+    "authorizedResources": [],
+    "authorizedRoles": ["SELN"],
+    "subunits": []
   }
 ]
