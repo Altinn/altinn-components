@@ -10,7 +10,7 @@ export interface FooterLogoProps {
 export const FooterLogo = ({ className, title = 'Digdir' }: FooterLogoProps) => {
   return (
     <div className={cx(styles.logo, className)}>
-      <DigdirLogomark className={styles.symbol} />
+      <DigdirLogomark className={styles.symbol} aria-hidden />
       <span>{title}</span>
     </div>
   );
