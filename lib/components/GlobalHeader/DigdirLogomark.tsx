@@ -3,9 +3,10 @@ import { useIsDesktop } from '../../hooks/useIsDesktop';
 export interface SymbolProps {
   className?: string;
   title?: string;
+  'aria-hidden'?: boolean;
 }
 
-export const DigdirLogomark = ({ className, title = 'Digdir logomark' }: SymbolProps) => {
+export const DigdirLogomark = ({ className, title = 'Digdir logomark', 'aria-hidden': ariaHidden }: SymbolProps) => {
   const isDesktop = useIsDesktop();
   const sizeIndex = isDesktop ? 8.5 : 7;
   const { width, height } = { width: `${sizeIndex}em`, height: `${sizeIndex * 0.34}em` }; // Maintain aspect ratio
@@ -19,6 +20,7 @@ export const DigdirLogomark = ({ className, title = 'Digdir logomark' }: SymbolP
       viewBox="0 0 113.779 38.8565"
       version="1.1"
       className={className}
+      aria-hidden={ariaHidden}
     >
       <title>{title}</title>
       <g id="surface1">

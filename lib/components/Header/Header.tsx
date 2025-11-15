@@ -3,8 +3,8 @@ import { HeaderBase, HeaderGroup, HeaderLogo, type HeaderLogoProps, HeaderSearch
 import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
 import type { BadgeProps } from '../Badge';
 import { DrawerBase, DropdownBase } from '../Dropdown';
-import { GlobalMenuButton_old, type GlobalMenuProps_old, GlobalMenu_old } from '../GlobalMenu_old/index.tsx';
-import type { Account } from '../GlobalMenu_old/index.tsx';
+import { GlobalMenuButton_old, type GlobalMenuProps_old, GlobalMenu_old } from '../GlobalMenu_old';
+import type { Account } from '../GlobalMenu_old';
 import { useRootContext } from '../RootProvider';
 import { Searchbar, type SearchbarProps } from '../Searchbar';
 import { LocaleSwitcher, type LocaleSwitcherProps } from './';
