@@ -24,7 +24,7 @@ export const GlobalSearchButton = ({
       className={styles.searchButton}
     >
       {expanded ? <XMarkIcon aria-hidden="true" /> : <MagnifyingGlassIcon aria-hidden="true" />}
-      {isDesktop ? (expanded ? close : search) : null}
+      {isDesktop ? search : null}
     </DsButton>
   );
 };

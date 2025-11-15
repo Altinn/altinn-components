@@ -1,7 +1,7 @@
 import { MenuHamburgerIcon, XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import type { ElementType } from 'react';
-import { ButtonBase, ButtonIcon, ButtonLabel, type ButtonProps } from '../';
+import { ButtonBase, ButtonIcon, ButtonLabel, type ButtonProps, useRootContext } from '../';
 import { Badge, type BadgeProps } from '../Badge';
 
 import { useIsDesktop } from '../../hooks/useIsDesktop';
@@ -16,6 +16,24 @@ export interface GlobalMenuButtonProps extends ButtonProps {
   tabIndex?: number;
 }
 
+// TODO: Move to a common texts files when i18next is added
+const getTexts = (languageCode: string | undefined) => {
+  switch (languageCode) {
+    case 'nn':
+      return {
+        close: 'Lukk meny',
+      };
+    case 'en':
+      return {
+        close: 'Close menu',
+      };
+    default:
+      return {
+        close: 'Lukk Meny',
+      };
+  }
+};
+
 export const GlobalMenuButton = ({
   className,
   as = 'button',
@@ -27,6 +45,8 @@ export const GlobalMenuButton = ({
   ...buttonProps
 }: GlobalMenuButtonProps) => {
   const isDesktop = useIsDesktop();
+  const { languageCode } = useRootContext();
+  const { close } = getTexts(languageCode);
 
   if (expanded) {
     return (
@@ -39,9 +59,12 @@ export const GlobalMenuButton = ({
         className={cx(styles.button, className)}
       >
         {isDesktop && (
-          <ButtonIcon className={styles.closeIcon} icon={<XMarkIcon className={styles.icon} aria-label="Close" />} />
+          <>
+            <ButtonIcon icon={<XMarkIcon className={styles.icon} aria-label={close} />} />
+            <ButtonLabel>{label}</ButtonLabel>
+          </>
         )}
-        <ButtonLabel>{label}</ButtonLabel>
+        {!isDesktop && <ButtonIcon icon={<XMarkIcon className={styles.iconMobile} aria-label={close} />} />}
         {badge && <Badge {...badge} className={styles.badge} />}
       </ButtonBase>
     );
