@@ -6,6 +6,6 @@ export const header: HeaderProps = {
   locale: localeSwitcher,
   search: {
     name: 'global-search',
-    placeholder: 'Søk i Altinn',
+    placeholder: 'Søk i innboksen',
   },
 };

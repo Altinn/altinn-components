@@ -19,3 +19,18 @@
 .relative {
   position: relative;
 }
+
+.floating {
+  position: absolute;
+  top: var(--global-header-height);
+  left: 0;
+  right: 0;
+  z-index: 1001;
+  padding: 0.7rem;
+}
+
+@media (min-width: 1024px) {
+  .floating {
+    padding: 0;
+  }
+}

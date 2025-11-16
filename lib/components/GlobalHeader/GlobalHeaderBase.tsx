@@ -7,7 +7,7 @@ export interface HeaderBaseProps {
   currentId?: string;
   className?: string;
   children?: ReactNode;
-  openBackdrop?: boolean;
+  backdropOpen?: boolean;
   onCloseBackdrop?: () => void;
 }
 
@@ -15,13 +15,13 @@ export const GlobalHeaderBase = ({
   currentId,
   className,
   children,
-  openBackdrop,
   onCloseBackdrop,
+  backdropOpen,
 }: HeaderBaseProps) => {
   return (
     <header className={cx(styles.header, className)} data-current-id={currentId}>
-      {openBackdrop && <Backdrop className={styles.backdrop} onClick={onCloseBackdrop} color="transparent" />}
       {children}
+      {backdropOpen && <Backdrop className={styles.backdrop} onClick={onCloseBackdrop} />}
     </header>
   );
 };

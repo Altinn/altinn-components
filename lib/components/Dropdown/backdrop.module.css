@@ -2,7 +2,7 @@
   z-index: 1;
   background-color: rgba(17, 29, 70, 0.25);
   position: fixed;
-  top: 0;
+  top: var(--global-header-height, 0); /* starter rett under headeren */
   right: 0;
   bottom: 0;
   left: 0;
