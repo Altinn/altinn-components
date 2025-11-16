@@ -1,5 +1,5 @@
 import { MagnifyingGlassIcon } from '@navikt/aksel-icons';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { DsSearch, useRootContext } from '../';
 import { useIsDesktop } from '../../hooks/useIsDesktop';
 import styles from './globalSearch.module.css';
@@ -10,13 +10,22 @@ export interface GlobalSearchProps {
 
 export const GlobalSearch = ({ onSearch }: GlobalSearchProps) => {
   const isDesktop = useIsDesktop();
-  const [query, setQuery] = useState('');
-  const { languageCode, closeAll } = useRootContext();
+  const [query, setQuery] = useState<string>('');
+  const { languageCode, closeAll, currentId } = useRootContext();
   const { search, placeholder } = getTexts(languageCode);
   const onSearchbarEnter = () => {
     onSearch(query);
     closeAll();
   };
+
+  const ref = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (currentId === 'search') {
+      ref.current?.focus();
+    }
+  }, [currentId]);
+
   return (
     <form
       onSubmit={(e) => {
@@ -26,6 +35,7 @@ export const GlobalSearch = ({ onSearch }: GlobalSearchProps) => {
     >
       <DsSearch className={styles.globalSearch} data-size={isDesktop ? 'lg' : 'md'}>
         <DsSearch.Input
+          ref={ref}
           placeholder={placeholder}
           onChange={(e) => setQuery(e.target.value)}
           value={query}
