@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.46.6](https://github.com/Altinn/altinn-components/compare/v0.46.5...v0.46.6) (2025-11-17)
+
+
+### Bug Fixes
+
+* header buttons inconsistencies ([#801](https://github.com/Altinn/altinn-components/issues/801)) ([1044728](https://github.com/Altinn/altinn-components/commit/10447282f76c311638df1c3b2f9e0beb61752449))
+* **header:** auto focus global search on expanded ([#803](https://github.com/Altinn/altinn-components/issues/803)) ([2d62456](https://github.com/Altinn/altinn-components/commit/2d624565d96b02ec9075f985b84051db66c2ab04))
+* **wcag:** add aria-label to link button with logo in header ([#802](https://github.com/Altinn/altinn-components/issues/802)) ([7c3985a](https://github.com/Altinn/altinn-components/commit/7c3985a0b65771721084e623b2741fce48c465a5))
+
 ## [0.46.5](https://github.com/Altinn/altinn-components/compare/v0.46.4...v0.46.5) (2025-11-13)
 
 
