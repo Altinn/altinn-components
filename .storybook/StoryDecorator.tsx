@@ -10,7 +10,7 @@ interface StoryDecoratorProps {
 
 export const StoryDecorator = ({ theme, children }: StoryDecoratorProps) => {
   return (
-    <RootProvider debug>
+    <RootProvider debug languageCode="nb">
       <div className={styles.preview} data-color={theme}>
         <div id="story-in-story-decorator-root" className={styles.component}>
           {children}
