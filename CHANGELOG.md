@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.47.0](https://github.com/Altinn/altinn-components/compare/v0.46.6...v0.47.0) (2025-11-19)
+
+
+### Features
+
+* Make a GlobalMeny design reference story ([#809](https://github.com/Altinn/altinn-components/issues/809)) ([0b80eb3](https://github.com/Altinn/altinn-components/commit/0b80eb382d0921a658520fb194d8bec82a8f87b8))
+
 ## [0.46.6](https://github.com/Altinn/altinn-components/compare/v0.46.5...v0.46.6) (2025-11-17)
 
 
