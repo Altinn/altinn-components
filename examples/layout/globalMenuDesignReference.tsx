@@ -30,7 +30,11 @@ const designReferenceMenuItems: MenuProps['items'] = [
     groupId: 'apps',
     size: 'lg',
     icon: PadlockLockedFillIcon,
-    title: 'Tilgangsstyring',
+    title: (
+      <>
+        Tilgangsstyring <Badge label="Beta" />
+      </>
+    ),
   },
   {
     id: 'forms',
