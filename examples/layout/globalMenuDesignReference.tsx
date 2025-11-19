@@ -30,7 +30,11 @@ const designReferenceMenuItems: MenuProps['items'] = [
     groupId: 'apps',
     size: 'lg',
     icon: PadlockLockedFillIcon,
-    title: 'Tilgangsstyring',
+    title: (
+      <>
+        Tilgangsstyring <Badge label="Beta" />
+      </>
+    ),
   },
   {
     id: 'forms',
@@ -89,7 +93,6 @@ const designReferenceMenu: MenuProps = {
     profile: {
       title: 'Logget inn som: Akvarell Søvnig',
       defaultIconTheme: 'transparent',
-      defaultItemColor: 'person',
     },
   },
   items: designReferenceMenuItems,
