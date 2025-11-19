@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.47.1](https://github.com/Altinn/altinn-components/compare/v0.47.0...v0.47.1) (2025-11-19)
+
+
+### Bug Fixes
+
+* global menu ref auth beta banner, unset default color ([#811](https://github.com/Altinn/altinn-components/issues/811)) ([800b4a9](https://github.com/Altinn/altinn-components/commit/800b4a9b9d539d669c06e5aebf2525b38b0360d7))
+
 ## [0.47.0](https://github.com/Altinn/altinn-components/compare/v0.46.6...v0.47.0) (2025-11-19)
 
 
