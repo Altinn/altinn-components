@@ -93,7 +93,6 @@ const designReferenceMenu: MenuProps = {
     profile: {
       title: 'Logget inn som: Akvarell Søvnig',
       defaultIconTheme: 'transparent',
-      defaultItemColor: 'person',
     },
   },
   items: designReferenceMenuItems,
