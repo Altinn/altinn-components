@@ -1,6 +1,7 @@
 import { InformationSquareIcon, LeaveIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { globalMenu, loginMenu, mobileMenu } from '../../../examples';
+import { globalMenuDesignReference } from '../../../examples/layout/globalMenuDesignReference';
 import type { MenuProps } from '../Menu';
 import { GlobalMenu, type GlobalMenuProps } from './GlobalMenu';
 
@@ -66,4 +67,8 @@ export const InterimMenu = (args: GlobalMenuProps) => {
       }
     />
   );
+};
+
+export const DesignReference = () => {
+  return <GlobalMenu {...globalMenuDesignReference} />;
 };

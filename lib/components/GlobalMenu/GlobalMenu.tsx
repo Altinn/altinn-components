@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useMemo, useState } from 'react';
+import type { Color } from '../';
 import type { LocaleSwitcherProps } from '../Header';
 import { Menu, MenuListItem, type MenuProps } from '../Menu';
 import { BackButton } from './BackButton';
@@ -20,6 +21,7 @@ export interface GlobalMenuProps {
   ariaLabel?: string;
   localeSwitcher?: LocaleSwitcherProps;
   isOpen?: boolean;
+  color?: Color;
 }
 
 export const GlobalMenu = ({
@@ -30,6 +32,7 @@ export const GlobalMenu = ({
   ariaLabel = 'Menu',
   localeSwitcher,
   isOpen = false,
+  color = 'person',
 }: GlobalMenuProps) => {
   const [selectingLocale, setSelectingLocale] = useState<boolean>(false);
 
@@ -65,7 +68,7 @@ export const GlobalMenu = ({
 
   if (selectingLocale) {
     return (
-      <GlobalMenuBase aria-label={ariaLabel}>
+      <GlobalMenuBase aria-label={ariaLabel} color={color}>
         <GlobalMenuHeader>
           <BackButton onClick={onToggleLocaleSelection} label={backLabel} />
           {localeSwitcher && <LocaleSwitcher {...localeSwitcher} />}
@@ -76,7 +79,7 @@ export const GlobalMenu = ({
   }
 
   return (
-    <GlobalMenuBase aria-label={ariaLabel}>
+    <GlobalMenuBase aria-label={ariaLabel} color={color}>
       {menu && <Menu {...menu} items={itemsWithToggle} />}
       {localeSwitcher && <LocaleButton onClick={onToggleLocaleSelection} />}
       {logoutButton && (
