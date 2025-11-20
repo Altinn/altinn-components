@@ -8,9 +8,9 @@ import {
   PadlockLockedFillIcon,
   PersonCircleIcon,
 } from '@navikt/aksel-icons';
+import { accountMenu } from '../';
 import type { AccountMenuProps, GlobalMenuProps_old, MenuProps } from '../../lib';
 import { Badge } from '../../lib';
-import { accountMenu } from '../';
 
 const designReferenceMenuItems: MenuProps['items'] = [
   {

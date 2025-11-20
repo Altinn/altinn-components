@@ -28,8 +28,10 @@ export const AccountSelector = ({ accountMenu, forceOpenFullScreen, className, l
   useEffect(() => {
     if (forceOpenFullScreen === true && !isFullScreen) {
       openId('accountFullscreen');
+    } else if (forceOpenFullScreen === false && isFullScreen) {
+      toggleId('accountFullscreen');
     }
-  }, [forceOpenFullScreen, isFullScreen, openId]);
+  }, [forceOpenFullScreen, isFullScreen, openId, toggleId]);
 
   const toggleExpansion = () => {
     if (isFullScreen) {
