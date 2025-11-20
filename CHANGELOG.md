@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.47.2](https://github.com/Altinn/altinn-components/compare/v0.47.1...v0.47.2) (2025-11-20)
+
+
+### Bug Fixes
+
+* **accountselector:** allow external closing from fullscreen ([#817](https://github.com/Altinn/altinn-components/issues/817)) ([a09df03](https://github.com/Altinn/altinn-components/commit/a09df0394686b9ecc378c8ba2c114508f0034846))
+
 ## [0.47.1](https://github.com/Altinn/altinn-components/compare/v0.47.0...v0.47.1) (2025-11-19)
 
 
