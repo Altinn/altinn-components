@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.47.3](https://github.com/Altinn/altinn-components/compare/v0.47.2...v0.47.3) (2025-11-21)
+
+
+### Bug Fixes
+
+* add support for maxItemsCountReachedLabel to support a scalable label for avatar groups with many items ([#819](https://github.com/Altinn/altinn-components/issues/819)) ([3c0e5af](https://github.com/Altinn/altinn-components/commit/3c0e5afd70319f8b52b562fd61c92b08b7fbe3b3))
+
 ## [0.47.2](https://github.com/Altinn/altinn-components/compare/v0.47.1...v0.47.2) (2025-11-20)
 
 
