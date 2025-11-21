@@ -1,12 +1,12 @@
-import { CaretDownCircleIcon, CaretUpCircleIcon } from '@navikt/aksel-icons';
-import cx from 'classnames';
-import { useEffect, useState } from 'react';
-import { AccountMenu, type AccountMenuProps } from '../Account';
-import { Button } from '../Button';
-import { DsHeading, DsSpinner } from '../DsComponents';
-import { SearchField } from '../Forms';
-import { useRootContext } from '../RootProvider';
-import styles from './accountSelector.module.css';
+import { CaretDownCircleIcon, CaretUpCircleIcon } from "@navikt/aksel-icons";
+import cx from "classnames";
+import { useEffect, useState } from "react";
+import { AccountMenu, type AccountMenuProps } from "../Account";
+import { Button } from "../Button";
+import { DsHeading, DsSpinner } from "../DsComponents";
+import { SearchField } from "../Forms";
+import { useRootContext } from "../RootProvider";
+import styles from "./accountSelector.module.css";
 
 export interface AccountSelectorProps {
   accountMenu: AccountMenuProps;
@@ -18,40 +18,56 @@ export interface AccountSelectorProps {
   loading?: boolean;
 }
 
-export const AccountSelector = ({ accountMenu, forceOpenFullScreen, className, loading }: AccountSelectorProps) => {
-  const { currentId, openId, toggleId, languageCode } = useRootContext();
-  const isFullScreen = currentId === 'accountFullscreen';
-  const [searchString, setSearchString] = useState('');
+export const AccountSelector = ({
+  accountMenu,
+  forceOpenFullScreen,
+  className,
+  loading,
+}: AccountSelectorProps) => {
+  const { currentId, previousId, openId, toggleId, closeAll, languageCode } =
+    useRootContext();
+  const isFullScreen = currentId === "accountFullscreen";
+  const [searchString, setSearchString] = useState("");
+  const [forceOpenFullScreenState, setForceOpenFullScreenState] = useState<
+    boolean | undefined
+  >(forceOpenFullScreen);
+
+  useEffect(() => {
+    if (!forceOpenFullScreen && forceOpenFullScreenState) {
+      closeAll();
+    }
+    setForceOpenFullScreenState(forceOpenFullScreen);
+  }, [forceOpenFullScreen]);
+
+  useEffect(() => {
+    if (forceOpenFullScreenState === true && !isFullScreen) {
+      openId("accountFullscreen");
+    }
+  }, [forceOpenFullScreenState, isFullScreen, openId, toggleId, previousId]);
 
   const { minimize, fullscreen, searchText, heading } = getTexts(languageCode);
 
-  useEffect(() => {
-    if (forceOpenFullScreen === true && !isFullScreen) {
-      openId('accountFullscreen');
-    } else if (forceOpenFullScreen === false && isFullScreen) {
-      toggleId('accountFullscreen');
-    }
-  }, [forceOpenFullScreen, isFullScreen, openId, toggleId]);
-
   const toggleExpansion = () => {
     if (isFullScreen) {
-      openId('account');
+      openId("account");
     } else {
-      openId('accountFullscreen');
+      openId("accountFullscreen");
     }
   };
 
   const onAccountSelection = (accountId: string) => {
     accountMenu.onSelectAccount?.(accountId);
     if (isFullScreen) {
-      toggleId('accountFullscreen');
+      toggleId("accountFullscreen");
     } else {
-      toggleId('account');
+      toggleId("account");
     }
   };
 
   if (loading) {
-    return <DsSpinner aria-hidden data-color="neutral" className={styles.spinner} />;
+    return (
+      <DsSpinner aria-hidden data-color="neutral" className={styles.spinner} />
+    );
   }
 
   return (
@@ -67,7 +83,7 @@ export const AccountSelector = ({ accountMenu, forceOpenFullScreen, className, l
           placeholder={searchText}
           value={searchString}
           onChange={(e) => setSearchString(e.target.value)}
-          onClear={() => setSearchString('')}
+          onClear={() => setSearchString("")}
           className={styles.searchField}
         />
       </div>
@@ -75,24 +91,34 @@ export const AccountSelector = ({ accountMenu, forceOpenFullScreen, className, l
         className={cx(
           styles.accountMenu,
           isFullScreen && styles.fullScreen,
-          accountMenu.isVirtualized && styles.virtualized,
+          accountMenu.isVirtualized && styles.virtualized
         )}
       >
         <AccountMenu
           {...accountMenu}
           onSelectAccount={onAccountSelection}
           keyboardEvents={false}
-          search={{ hidden: true, name: '', value: searchString }}
-          scrollRefStyles={!isFullScreen && accountMenu.isVirtualized ? { maxHeight: 'calc(40vh)' } : undefined}
+          search={{ hidden: true, name: "", value: searchString }}
+          scrollRefStyles={
+            !isFullScreen && accountMenu.isVirtualized
+              ? { maxHeight: "calc(40vh)" }
+              : undefined
+          }
         />
       </div>
-      {forceOpenFullScreen !== true && (
+      {forceOpenFullScreenState !== true && (
         <Button
           icon={
             isFullScreen ? (
-              <CaretUpCircleIcon className={styles.btnIcon} aria-hidden="true" />
+              <CaretUpCircleIcon
+                className={styles.btnIcon}
+                aria-hidden="true"
+              />
             ) : (
-              <CaretDownCircleIcon className={styles.btnIcon} aria-hidden="true" />
+              <CaretDownCircleIcon
+                className={styles.btnIcon}
+                aria-hidden="true"
+              />
             )
           }
           variant="text"
@@ -109,26 +135,26 @@ export const AccountSelector = ({ accountMenu, forceOpenFullScreen, className, l
 // This is only a temporary solution for providing texts in different languages in a very simple POC
 const getTexts = (languageCode: string | undefined) => {
   switch (languageCode) {
-    case 'nn':
+    case "nn":
       return {
-        minimize: 'Minimer',
-        fullscreen: 'Vis i fullskjerm',
-        searchText: 'Søk i aktørar',
-        heading: 'Kven vil du representere?',
+        minimize: "Minimer",
+        fullscreen: "Vis i fullskjerm",
+        searchText: "Søk i aktørar",
+        heading: "Kven vil du representere?",
       };
-    case 'en':
+    case "en":
       return {
-        minimize: 'Minimize',
-        fullscreen: 'Show in fullscreen',
-        searchText: 'Search in actors',
-        heading: 'Who do you want to represent?',
+        minimize: "Minimize",
+        fullscreen: "Show in fullscreen",
+        searchText: "Search in actors",
+        heading: "Who do you want to represent?",
       };
     default:
       return {
-        minimize: 'Minimer',
-        fullscreen: 'Vis i fullskjerm',
-        searchText: 'Søk i aktører',
-        heading: 'Hvem vil du representere?',
+        minimize: "Minimer",
+        fullscreen: "Vis i fullskjerm",
+        searchText: "Søk i aktører",
+        heading: "Hvem vil du representere?",
       };
   }
 };
