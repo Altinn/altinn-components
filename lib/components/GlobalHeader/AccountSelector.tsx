@@ -31,6 +31,7 @@ export const AccountSelector = ({ accountMenu, forceOpenFullScreen, className, l
     }
     setForceOpenFullScreenState(forceOpenFullScreen);
   }, [forceOpenFullScreen]);
+
   useEffect(() => {
     if (forceOpenFullScreenState === true && !isFullScreen) {
       openId('accountFullscreen');
