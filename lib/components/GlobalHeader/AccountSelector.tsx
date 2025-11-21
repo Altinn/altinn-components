@@ -24,7 +24,7 @@ export const AccountSelector = ({
   className,
   loading,
 }: AccountSelectorProps) => {
-  const { currentId, previousId, openId, toggleId, closeAll, languageCode } =
+  const { currentId, openId, toggleId, closeAll, languageCode } =
     useRootContext();
   const isFullScreen = currentId === "accountFullscreen";
   const [searchString, setSearchString] = useState("");
@@ -43,7 +43,7 @@ export const AccountSelector = ({
     if (forceOpenFullScreenState === true && !isFullScreen) {
       openId("accountFullscreen");
     }
-  }, [forceOpenFullScreenState, isFullScreen, openId, toggleId, previousId]);
+  }, [forceOpenFullScreenState, isFullScreen, openId]);
 
   const { minimize, fullscreen, searchText, heading } = getTexts(languageCode);
 
