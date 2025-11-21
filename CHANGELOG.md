@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.47.4](https://github.com/Altinn/altinn-components/compare/v0.47.3...v0.47.4) (2025-11-21)
+
+
+### Bug Fixes
+
+* **AccountSelector:** Allow for more robust external control of forceOpenFullScreen ([#821](https://github.com/Altinn/altinn-components/issues/821)) ([4a7e91c](https://github.com/Altinn/altinn-components/commit/4a7e91c50573c48dd60aaa58a97fa3b92f8ff67b))
+
 ## [0.47.3](https://github.com/Altinn/altinn-components/compare/v0.47.2...v0.47.3) (2025-11-21)
 
 
