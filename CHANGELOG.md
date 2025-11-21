@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.47.5](https://github.com/Altinn/altinn-components/compare/v0.47.4...v0.47.5) (2025-11-21)
+
+
+### Bug Fixes
+
+* **accountSelector:** duplicate when filtering with query string when list contains favorites ([#823](https://github.com/Altinn/altinn-components/issues/823)) ([968187a](https://github.com/Altinn/altinn-components/commit/968187a6d1318b49f8e6d96b77ac301ccc0c04f2))
+* global menu on does not inherit color and overrides with company ([#824](https://github.com/Altinn/altinn-components/issues/824)) ([415592c](https://github.com/Altinn/altinn-components/commit/415592c2821960aa93abb033bbcb82cc03d0baea))
+
 ## [0.47.4](https://github.com/Altinn/altinn-components/compare/v0.47.3...v0.47.4) (2025-11-21)
 
 
