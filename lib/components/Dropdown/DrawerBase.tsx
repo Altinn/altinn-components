@@ -27,7 +27,6 @@ export const DrawerBase = ({
       className={cx(styles.drawer, className)}
       data-placement={placement}
       data-variant="default"
-      data-color="company"
       data-expanded={open}
       data-layout={dataLayout}
     >
