@@ -19,19 +19,26 @@ export interface AccountSelectorProps {
 }
 
 export const AccountSelector = ({ accountMenu, forceOpenFullScreen, className, loading }: AccountSelectorProps) => {
-  const { currentId, openId, toggleId, languageCode } = useRootContext();
+  const { currentId, openId, closeAll, languageCode } = useRootContext();
   const isFullScreen = currentId === 'accountFullscreen';
   const [searchString, setSearchString] = useState('');
+  const [forceOpenFullScreenState, setForceOpenFullScreenState] = useState<boolean | undefined>(forceOpenFullScreen);
 
-  const { minimize, fullscreen, searchText, heading } = getTexts(languageCode);
+  // biome-ignore lint/correctness/useExhaustiveDependencies: we want to run this effect only when forceOpenFullScreen changes
+  useEffect(() => {
+    if (!forceOpenFullScreen && forceOpenFullScreenState && isFullScreen) {
+      closeAll();
+    }
+    setForceOpenFullScreenState(forceOpenFullScreen);
+  }, [forceOpenFullScreen]);
 
   useEffect(() => {
-    if (forceOpenFullScreen === true && !isFullScreen) {
+    if (forceOpenFullScreenState === true && !isFullScreen) {
       openId('accountFullscreen');
-    } else if (forceOpenFullScreen === false && isFullScreen) {
-      toggleId('accountFullscreen');
     }
-  }, [forceOpenFullScreen, isFullScreen, openId, toggleId]);
+  }, [forceOpenFullScreenState, isFullScreen, openId]);
+
+  const { minimize, fullscreen, searchText, heading } = getTexts(languageCode);
 
   const toggleExpansion = () => {
     if (isFullScreen) {
@@ -43,11 +50,8 @@ export const AccountSelector = ({ accountMenu, forceOpenFullScreen, className, l
 
   const onAccountSelection = (accountId: string) => {
     accountMenu.onSelectAccount?.(accountId);
-    if (isFullScreen) {
-      toggleId('accountFullscreen');
-    } else {
-      toggleId('account');
-    }
+    closeAll();
+    setForceOpenFullScreenState(false);
   };
 
   if (loading) {
@@ -86,7 +90,7 @@ export const AccountSelector = ({ accountMenu, forceOpenFullScreen, className, l
           scrollRefStyles={!isFullScreen && accountMenu.isVirtualized ? { maxHeight: 'calc(40vh)' } : undefined}
         />
       </div>
-      {forceOpenFullScreen !== true && (
+      {forceOpenFullScreenState !== true && (
         <Button
           icon={
             isFullScreen ? (
