@@ -67,6 +67,16 @@ export const CompanyAndPerson: Story = {
   },
 };
 
+export const CustomLabel = (args: AvatarGroupProps) => {
+  const items = new Array(5000).fill(null).map((_, index) => ({ name: index + 'AA' }));
+
+  return (
+    <Flex direction="col" align="start" spacing={2}>
+      <AvatarGroup {...args} items={items} maxItemsCountReachedLabel="+" defaultType="company" size="sm" />
+    </Flex>
+  );
+};
+
 export const MaxItemsCount = (args: AvatarGroupProps) => {
   const items = [{ name: 'A' }, { name: 'B' }, { name: 'C' }, { name: 'D' }];
 

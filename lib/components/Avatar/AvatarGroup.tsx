@@ -21,6 +21,8 @@ export interface AvatarGroupProps {
   className?: string;
   /** Custom styles. */
   style?: CSSProperties;
+  /** Custom Label for items counts reached **/
+  maxItemsCountReachedLabel?: string;
 }
 
 export const isAvatarGroupProps = (icon: unknown): icon is AvatarGroupProps => {
@@ -37,6 +39,7 @@ export const AvatarGroup = ({
   size,
   className,
   style,
+  maxItemsCountReachedLabel,
 }: AvatarGroupProps) => {
   const maxItems = useMemo(() => items.slice(0, maxItemsCount).reverse(), [items, maxItemsCount]);
 
@@ -48,7 +51,10 @@ export const AvatarGroup = ({
     <ul className={cx(styles.group, className)} data-size={size} data-count={maxItems?.length} style={style}>
       {maxItems.map((avatar, index) => {
         const lastLegalAvatarReached = index === maxItemsCount - 1;
-        const customLabel = avatar.customLabel || lastLegalAvatarReached ? items.length.toString() : undefined;
+        const customLabel =
+          avatar.customLabel || lastLegalAvatarReached
+            ? maxItemsCountReachedLabel || items.length.toString()
+            : undefined;
         return (
           <li className={cx(styles.item)} key={index}>
             <Avatar
