@@ -1,5 +1,5 @@
 'use client';
-import { type CSSProperties, useEffect, useState } from 'react';
+import { type CSSProperties, useEffect, useMemo, useState } from 'react';
 import { Menu, type MenuItemProps, type MenuProps, type MenuSearchProps } from '../';
 
 export interface AccountSearchProps extends MenuSearchProps {
@@ -64,18 +64,25 @@ export const AccountMenu = ({
 
   const applicableFilterAccount = filterAccount || defaultFilterAccount;
 
-  const filteredAccountMenu = filterString
-    ? accountMenu
-        .filter((item) => applicableFilterAccount(item, filterString))
-        .map((item) => {
-          return {
-            ...item,
-            groupId: 'search',
-            title: item?.title || item.name,
-            highlightWords: [filterString],
-          };
-        })
-    : accountMenu;
+  const filteredAccountMenu = useMemo(() => {
+    if (!filterString) return accountMenu;
+
+    return Array.from(
+      new Map(
+        accountMenu
+          .filter((item) => applicableFilterAccount(item, filterString))
+          .map((item) => [
+            item.id,
+            {
+              ...item,
+              groupId: 'search',
+              title: item?.title || item.name,
+              highlightWords: [filterString],
+            },
+          ]),
+      ).values(),
+    );
+  }, [accountMenu, filterString, applicableFilterAccount]);
 
   const filterAccountGroups = filterString
     ? {

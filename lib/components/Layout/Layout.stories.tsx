@@ -13,7 +13,7 @@ import {
   useGlobalMenu,
   useLayout,
 } from '../../../examples';
-import { useAccountSelector } from '../../hooks/useAccountSelector';
+import { useAccountSelector } from '../../hooks';
 import type { AccountSelectorProps } from '../GlobalHeader/AccountSelector';
 
 // Add custom story args interface for easier testing

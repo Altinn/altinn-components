@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { type AccountMenuItemProps, IconButton, type MenuGroupProps } from '../components';
 import type { AccountSelectorProps } from '../components/GlobalHeader/AccountSelector';
 import { formatDisplayName } from '../functions';
-import { formatDate } from '../functions/date';
+import { formatDate } from '../functions';
 import { useIsDesktop } from './useIsDesktop';
 
 /** The DTO for the authorized party endpoint */
@@ -137,6 +137,7 @@ export const useAccountSelector = ({
     );
 
     const organizationAccountItems: AccountMenuItemProps[] = [];
+
     for (const org of organizations) {
       const orgAccountItem = getAccountFromAuthorizedParty(
         languageCode!,
@@ -249,6 +250,7 @@ export const useAccountSelector = ({
  * @param currentAccountUuid - UUID of currently selected account for selection state
  * @param isFavorite - Whether this account is marked as favorite
  * @param toggleFavorite - Callback for toggling favorite status
+ * @param isDesktopScreen - Whether this is intended for a desktop screen
  * @param parent - Parent organization (for subunits)
  * @param isSelf - Whether this is the user's own account
  * @returns Formatted account menu item with all necessary props
