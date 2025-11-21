@@ -276,3 +276,28 @@ export const Fullscreen = (args: LayoutStoryArgs) => {
     </RootProvider>
   );
 };
+
+export const Profile = (args: LayoutStoryArgs) => {
+  const layout = useLayout(args);
+  const accountMenu = useAccountMenu({ accountId: 'diaspora' });
+  const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
+  const accountSelector: AccountSelectorProps = {
+    accountMenu: accountMenu,
+  };
+  return (
+    <RootProvider>
+      <Layout
+        {...args}
+        {...layout}
+        header={{
+          ...layout.header,
+          accountSelector: accountSelector,
+          globalMenu: globalMenu,
+        }}
+        color="person"
+      >
+        {args.children}
+      </Layout>
+    </RootProvider>
+  );
+};
