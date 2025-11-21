@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { localeSwitcher as localExample, useGlobalHeaderMenu, useLocale } from '../';
 import { getAuthorizedPartiesData } from '../';
-import type { GlobalHeaderProps } from '../../lib/components/GlobalHeader';
-import { useAccountSelector } from '../../lib/hooks';
+import type { GlobalHeaderProps } from '../../lib';
+import { useAccountSelector } from '../../lib';
 
 export const useGlobalHeader = ({
   state = 'loggedIn',

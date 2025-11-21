@@ -72,7 +72,7 @@ export const CustomLabel = (args: AvatarGroupProps) => {
 
   return (
     <Flex direction="col" align="start" spacing={2}>
-      <AvatarGroup {...args} items={items} maxItemsCountReachedLabel="+" defaultType="company" size="sm" />
+      <AvatarGroup {...args} items={items} maxItemsCountReachedLabel="..." defaultType="company" size="sm" />
     </Flex>
   );
 };

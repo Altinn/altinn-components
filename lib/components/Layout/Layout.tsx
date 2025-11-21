@@ -63,7 +63,6 @@ export const Layout = ({
             {sidebar?.children}
           </LayoutSidebar>
         )}
-
         <LayoutContent color={content?.color} id="main-content">
           {useGlobalHeader && search && <InboxSearch search={search} />}
           {children}
