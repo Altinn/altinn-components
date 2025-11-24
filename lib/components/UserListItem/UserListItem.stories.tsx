@@ -171,7 +171,7 @@ export const WithSubUnits = (args: UserListItemProps) => {
               name="Narvesen AS"
               type="company"
               size="xs"
-              description="Org.nr. 987654322 (subunit)"
+              description="↳ Org.nr. 987654322, underenhet"
               shadow="none"
               interactive={false}
               subUnit={true}
@@ -181,7 +181,7 @@ export const WithSubUnits = (args: UserListItemProps) => {
               name="Dattersen AS"
               type="company"
               size="xs"
-              description="Org.nr. 987654323 (subunit)"
+              description="↳ Org.nr. 987654323, underenhet"
               interactive={false}
               shadow="none"
               subUnit={true}
