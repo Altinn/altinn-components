@@ -552,3 +552,27 @@ export const GroupDetails = ({ accountIds }: AccountDetailsProps) => {
     </AccountListItemDetails>
   );
 };
+
+export const Virtualized = () => {
+  const { toolbar, items, groups, onToggle, onToggleFavourite } = useAccountList({
+    accounts: defaultAccounts,
+    includeGroups: false,
+  });
+
+  const q = toolbar.search?.value?.toLowerCase() || '';
+
+  const controlledItems = items?.map((item) => {
+    return {
+      ...item,
+      highlightWords: q ? [q] : undefined,
+      onClick: () => onToggle(item.id),
+      onToggleFavourite: () => onToggleFavourite(item.id),
+    };
+  });
+
+  return (
+    <Section spacing={6}>
+      <AccountList items={controlledItems} groups={groups} isVirtualized={true} />
+    </Section>
+  );
+};
