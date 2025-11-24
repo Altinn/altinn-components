@@ -1,5 +1,5 @@
 import { TokenIcon } from '@navikt/aksel-icons';
-import { Avatar, type AvatarGroupProps, type AvatarProps } from '../Avatar';
+import { type AvatarGroupProps, type AvatarProps } from '../Avatar';
 import { Badge } from '../Badge';
 import type { IconProps, SvgElement } from '../Icon';
 import { ListItem, ListItemLabel } from '../List';
@@ -59,7 +59,7 @@ export const UserListItem = ({
       icon = { name: name, type: 'person' };
       break;
     case 'company':
-      icon = { name: name, type: 'company' };
+      icon = { name: name, type: 'company', isParent: !subUnit };
       break;
     case 'system':
       icon = TokenIcon;
@@ -67,8 +67,6 @@ export const UserListItem = ({
     default:
       icon = { name: name, type: 'person' };
   }
-
-  const subUnitAvatar = subUnit && <Avatar name={name} type={'company'} className={styles.subUnitAvatar} />;
 
   const badges =
     !loading && roleNames ? (
@@ -95,7 +93,7 @@ export const UserListItem = ({
 
   return (
     <ListItem
-      icon={subUnit ? subUnitAvatar : icon}
+      icon={icon}
       ariaLabel={name}
       label={label}
       description={description}
