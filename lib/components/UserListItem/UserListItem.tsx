@@ -1,5 +1,5 @@
 import { TokenIcon } from '@navikt/aksel-icons';
-import { type AvatarGroupProps, type AvatarProps } from '../Avatar';
+import type { AvatarGroupProps, AvatarProps } from '../Avatar';
 import { Badge } from '../Badge';
 import type { IconProps, SvgElement } from '../Icon';
 import { ListItem, ListItemLabel } from '../List';
