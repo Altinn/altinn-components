@@ -1,4 +1,4 @@
-import type { AuthorizedParty } from '../../lib/hooks/useAccountSelector';
+import type { AuthorizedParty } from '../../lib';
 import data from './authorizedPartiesData.json';
 
 export const getAuthorizedPartiesData = (): AuthorizedParty[] => {
