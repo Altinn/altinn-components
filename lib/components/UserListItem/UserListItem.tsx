@@ -91,14 +91,5 @@ export const UserListItem = ({
     </div>
   );
 
-  return (
-    <ListItem
-      icon={icon}
-      ariaLabel={name}
-      label={label}
-      description={description}
-      loading={loading}
-      {...props}
-    />
-  );
+  return <ListItem icon={icon} ariaLabel={name} label={label} description={description} loading={loading} {...props} />;
 };
