@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.47.6](https://github.com/Altinn/altinn-components/compare/v0.47.5...v0.47.6) (2025-11-24)
+
+
+### Bug Fixes
+
+* **UserListItem:** Use new subunit avatar when subunit ([#827](https://github.com/Altinn/altinn-components/issues/827)) ([7bf7122](https://github.com/Altinn/altinn-components/commit/7bf712217731cee55f6dc6e37126413c3accabce))
+
 ## [0.47.5](https://github.com/Altinn/altinn-components/compare/v0.47.4...v0.47.5) (2025-11-21)
 
 
