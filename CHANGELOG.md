@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.49.0](https://github.com/Altinn/altinn-components/compare/v0.48.4...v0.49.0) (2025-11-25)
+
+
+### Features
+
+* Add ReactNode as possible type for SettingsGroup title ([#837](https://github.com/Altinn/altinn-components/issues/837)) ([37447d9](https://github.com/Altinn/altinn-components/commit/37447d9216b743f553fa3baee8f990f856bc2b70))
+
 ## [0.48.4](https://github.com/Altinn/altinn-components/compare/v0.48.3...v0.48.4) (2025-11-25)
 
 
