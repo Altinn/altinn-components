@@ -120,10 +120,6 @@ export const useAccountSelector = ({
     const organizations = [...partyListDTO]
       .filter((party) => isOrgType(party.type))
       .sort(compareFn)
-      .map((p) => ({
-        ...p,
-        subunits: p.subunits ? [...p.subunits].sort(compareFn) : [],
-      }));
 
     // Build account items of self, people and organizations
     const selfAccountItem = getAccountFromAuthorizedParty(
