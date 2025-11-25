@@ -165,12 +165,7 @@ export const useAccountSelector = ({
       organizationAccountItems.push(orgAccountItem);
 
       if (org.subunits && org.subunits.length > 0) {
-        const subunits = [...org.subunits].sort((a, b) =>
-          a.name.localeCompare(b.name, locale, {
-            sensitivity: 'base',
-            ignorePunctuation: true,
-          }),
-        );
+        const subunits = [...org.subunits].sort(compareFn);
         for (const subUnit of subunits) {
           const subUnitAccountItem = getAccountFromAuthorizedParty(
             languageCode!,
