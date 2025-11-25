@@ -29,6 +29,8 @@ export interface ListItemProps extends ListItemBaseProps, ListItemHeaderProps {
   linkIcon?: ListItemHeaderProps['linkIcon'];
   /** Custom label */
   label?: ReactNode | (() => ReactElement);
+  /** Element type for the container (overrides 'as' for container only) */
+  containerAs?: ListItemBaseProps['as'];
 }
 
 export interface ListItemInputProps extends ListItemProps {
@@ -83,6 +85,7 @@ export const ListItem = ({
   children,
   interactive,
   id,
+  containerAs,
   ...rest
 }: ListItemProps): ReactElement => {
   const applicableLabel = typeof label === 'function' ? label() : label;
@@ -100,6 +103,7 @@ export const ListItem = ({
       loading={loading}
       interactive={interactive}
       id={id}
+      as={containerAs}
     >
       <ListItemHeader
         color={color}
