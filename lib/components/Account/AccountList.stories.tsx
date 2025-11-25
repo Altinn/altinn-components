@@ -170,6 +170,7 @@ interface ControlledProps {
   collapsible?: boolean;
   color?: 'neutral';
   variant?: 'subtle' | 'tinted' | 'default';
+  isVirtualized?: boolean;
 }
 
 export const Controlled = ({
@@ -178,6 +179,7 @@ export const Controlled = ({
   contextMenu = false,
   variant,
   color,
+  isVirtualized = false,
 }: ControlledProps) => {
   const { toolbar, items, groups, expandedId, onToggle, onToggleFavourite, onSettingsChange } = useAccountList({
     accounts: defaultAccounts,
@@ -245,7 +247,11 @@ export const Controlled = ({
       <Toolbar {...toolbar}>
         <Switch label="Vis slettede" size="xs" style={{ marginLeft: '0.5em' }} />
       </Toolbar>
-      <AccountList groups={listGroups} items={collapsibleItems as AccountListItemProps[]} />
+      <AccountList
+        isVirtualized={isVirtualized}
+        groups={listGroups}
+        items={collapsibleItems as AccountListItemProps[]}
+      />
       {modalId && modal?.type === 'phone' && <PhoneSettingsModal open={true} onClose={onClose} />}
       {modalId && modal?.type === 'email' && <EmailSettingsModal open={true} onClose={onClose} />}
       {modalId && modal?.type === 'address' && <AddressSettingsModal open={true} onClose={onClose} />}
@@ -554,25 +560,5 @@ export const GroupDetails = ({ accountIds }: AccountDetailsProps) => {
 };
 
 export const Virtualized = () => {
-  const { toolbar, items, groups, onToggle, onToggleFavourite } = useAccountList({
-    accounts: defaultAccounts,
-    includeGroups: false,
-  });
-
-  const q = toolbar.search?.value?.toLowerCase() || '';
-
-  const controlledItems = items?.map((item) => {
-    return {
-      ...item,
-      highlightWords: q ? [q] : undefined,
-      onClick: () => onToggle(item.id),
-      onToggleFavourite: () => onToggleFavourite(item.id),
-    };
-  });
-
-  return (
-    <Section spacing={6}>
-      <AccountList items={controlledItems} groups={groups} isVirtualized={true} />
-    </Section>
-  );
+  return <Controlled isVirtualized={true} includeGroups={true} collapsible={true} contextMenu={true} />;
 };
