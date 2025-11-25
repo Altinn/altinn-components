@@ -90,7 +90,12 @@ export const AccountSelector = ({ accountMenu, forceOpenFullScreen, className, l
           {...accountMenu}
           onSelectAccount={onAccountSelection}
           keyboardEvents={false}
-          search={{ hidden: true, name: '', value: searchString }}
+          search={{
+            hidden: true,
+            name: '',
+            value: searchString,
+            getResultsLabel: (hits) => getHitsLabel(hits, languageCode),
+          }}
           scrollRefStyles={!isFullScreen && accountMenu.isVirtualized ? { maxHeight: 'calc(40vh)' } : undefined}
         />
       </div>
@@ -139,4 +144,23 @@ const getTexts = (languageCode: string | undefined) => {
         heading: 'Hvem vil du representere?',
       };
   }
+};
+
+// TODO: Technical debt, move this to i18n later
+const getHitsLabel = (hits: number, languageCode?: string): string => {
+  const isNorwegian = languageCode === 'nb' || languageCode === 'nn';
+
+  if (hits === 0) {
+    return isNorwegian ? 'Ingen treff' : 'No hits';
+  }
+
+  if (isNorwegian) {
+    return `${hits} treff`;
+  }
+
+  if (hits === 1) {
+    return '1 hit';
+  }
+
+  return `${hits} hits`;
 };

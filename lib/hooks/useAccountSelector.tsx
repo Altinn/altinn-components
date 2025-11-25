@@ -2,8 +2,7 @@ import { HeartFillIcon, HeartIcon } from '@navikt/aksel-icons';
 import { useMemo } from 'react';
 import { type AccountMenuItemProps, IconButton, type MenuGroupProps } from '../components';
 import type { AccountSelectorProps } from '../components/GlobalHeader/AccountSelector';
-import { formatDisplayName } from '../functions';
-import { formatDate } from '../functions';
+import { formatDate, formatDisplayName } from '../functions';
 import { useIsDesktop } from './useIsDesktop';
 
 /** The DTO for the authorized party endpoint */
@@ -103,13 +102,24 @@ export const useAccountSelector = ({
     };
 
     const texts = getTexts(languageCode);
+    const locale = languageCode || 'nb';
+
+    const compareFn = (a: AuthorizedParty, b: AuthorizedParty) =>
+      a.name.localeCompare(b.name, locale, {
+        sensitivity: 'base',
+        ignorePunctuation: true,
+      });
 
     // Separate self, people and organizations
     const self = partyListDTO.find((party) => isPersonType(party.type) && party.partyUuid === selfAccountUuid);
 
-    const otherPeople = partyListDTO.filter((party) => isPersonType(party.type) && party.partyUuid !== selfAccountUuid);
+    const otherPeople = [...partyListDTO]
+      .filter((party) => isPersonType(party.type) && party.partyUuid !== selfAccountUuid)
+      .sort(compareFn);
 
-    const organizations = partyListDTO.filter((party) => isOrgType(party.type));
+    const organizations = [...partyListDTO]
+      .filter((party) => isOrgType(party.type))
+      .sort(compareFn)
 
     // Build account items of self, people and organizations
     const selfAccountItem = getAccountFromAuthorizedParty(
@@ -149,8 +159,10 @@ export const useAccountSelector = ({
         isDesktop,
       );
       organizationAccountItems.push(orgAccountItem);
+
       if (org.subunits && org.subunits.length > 0) {
-        for (const subUnit of org.subunits) {
+        const subunits = [...org.subunits].sort(compareFn);
+        for (const subUnit of subunits) {
           const subUnitAccountItem = getAccountFromAuthorizedParty(
             languageCode!,
             subUnit,

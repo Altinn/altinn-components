@@ -183,11 +183,11 @@
     "authorizedRoles": [],
     "subunits": [
       {
-        "partyUuid": "217c6fd0-ff1f-4aff-a114-c34b18f33859",
-        "name": "EMPIRISK POSITIV FJELLREV",
-        "organizationNumber": "314554663",
+        "partyUuid": "8c29421f-a4af-45b0-a9f1-125cb4d9137f",
+        "name": "KNUSLETE SMAL FJELLREV",
+        "organizationNumber": "314554671",
         "dateOfBirth": null,
-        "partyId": 51703336,
+        "partyId": 51703337,
         "type": "Organization",
         "unitType": "BEDR",
         "isDeleted": false,
@@ -197,11 +197,11 @@
         "subunits": []
       },
       {
-        "partyUuid": "8c29421f-a4af-45b0-a9f1-125cb4d9137f",
-        "name": "KNUSLETE SMAL FJELLREV",
-        "organizationNumber": "314554671",
+        "partyUuid": "217c6fd0-ff1f-4aff-a114-c34b18f33859",
+        "name": "EMPIRISK POSITIV FJELLREV",
+        "organizationNumber": "314554663",
         "dateOfBirth": null,
-        "partyId": 51703337,
+        "partyId": 51703336,
         "type": "Organization",
         "unitType": "BEDR",
         "isDeleted": false,
