@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import { AccountListItem, type AccountListItemProps, Heading, List, Section } from '..';
 import { useMenu } from '../../hooks';
+import { AccountListVirtual } from './AccountListVirtual';
 
 export interface AccountListGroupProps {
   title?: string;
@@ -13,9 +14,14 @@ export interface AccountListProps {
   sortGroupBy?: (a: [string, AccountListItemProps[]], b: [string, AccountListItemProps[]]) => number;
   emptyTitle?: string;
   emptyDescription?: string;
+  isVirtualized?: boolean;
 }
 
-export const AccountList = ({ items, groups = {}, sortGroupBy }: AccountListProps) => {
+export const AccountList = ({ items, groups = {}, sortGroupBy, isVirtualized }: AccountListProps) => {
+  if (isVirtualized) {
+    return <AccountListVirtual items={items} groups={groups} sortGroupBy={sortGroupBy} />;
+  }
+
   const { menu } = useMenu<AccountListItemProps, AccountListGroupProps>({
     items,
     groups,
