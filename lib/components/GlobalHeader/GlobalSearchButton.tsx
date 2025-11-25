@@ -1,21 +1,21 @@
 'use client';
 import { MagnifyingGlassIcon, XMarkIcon } from '@navikt/aksel-icons';
-import { DsButton, useRootContext } from '../';
+import { DsButton, type DsButtonProps, useRootContext } from '../';
 import { useIsDesktop } from '../../hooks/useIsDesktop';
 import styles from './globalSearch.module.css';
 
-export const GlobalSearchButton = ({
-  onClick,
-  expanded,
-}: {
+export interface GlobalSearchButtonProps extends DsButtonProps {
   onClick: () => void;
   expanded: boolean;
-}) => {
+}
+
+export const GlobalSearchButton = ({ onClick, expanded, ...buttonProps }: GlobalSearchButtonProps) => {
   const { languageCode } = useRootContext();
   const { search, close } = getTexts(languageCode);
   const isDesktop = useIsDesktop();
   return (
     <DsButton
+      {...buttonProps}
       type="button"
       icon={!isDesktop}
       title={expanded ? close : search}
