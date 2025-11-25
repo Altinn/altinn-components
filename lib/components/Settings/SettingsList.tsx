@@ -1,9 +1,9 @@
-import { Fragment } from 'react';
+import { Fragment, type ReactNode } from 'react';
 import { Divider, Flex, Heading, List, SettingsItem, type SettingsItemProps, SettingsSection } from '..';
 import { useMenu } from '../../hooks';
 
 export interface SettingsGroupProps {
-  title?: string;
+  title?: string | ReactNode;
 }
 
 export interface SettingsListProps {
