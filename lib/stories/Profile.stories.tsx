@@ -110,6 +110,19 @@ export const AccountsPage = () => {
   );
 };
 
+export const AccountsPageVirtualized = () => {
+  const { breadcrumbs, layout } = useProfile({ pageId: "accounts" });
+  return (
+    <Layout {...layout} useGlobalHeader={true}>
+      <PageBase>
+        <Breadcrumbs items={breadcrumbs} />
+        <Heading size="xl">Mine aktører (Virtualized)</Heading>
+        <AccountListStories.Virtualized />
+      </PageBase>
+    </Layout>
+  );
+};
+
 export const AlertsPage = () => {
   const { breadcrumbs, layout } = useProfile({ pageId: "alerts" });
   return (
