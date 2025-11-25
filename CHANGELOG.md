@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.48.0](https://github.com/Altinn/altinn-components/compare/v0.47.6...v0.48.0) (2025-11-25)
+
+
+### Features
+
+* Add virtualized AccountList ([#826](https://github.com/Altinn/altinn-components/issues/826)) ([3976139](https://github.com/Altinn/altinn-components/commit/3976139cd12e081340ec4388a082f318e7e5358e))
+
 ## [0.47.6](https://github.com/Altinn/altinn-components/compare/v0.47.5...v0.47.6) (2025-11-24)
 
 
