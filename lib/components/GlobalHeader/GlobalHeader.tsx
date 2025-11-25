@@ -75,11 +75,23 @@ export const GlobalHeader = ({
             onClick={accountSelector.accountMenu?.currentAccount ? onToggleAccountMenu : onLoginClick}
             expanded={accountSelectionOpen}
             loading={accountSelector.loading}
+            disabled={accountSelector.forceOpenFullScreen}
           />
         )}
-        {globalSearch && <GlobalSearchButton onClick={ToggleSearch} expanded={currentId === 'search'} />}
+        {globalSearch && (
+          <GlobalSearchButton
+            onClick={ToggleSearch}
+            expanded={currentId === 'search'}
+            disabled={accountSelector?.forceOpenFullScreen}
+          />
+        )}
         <div className={styles.relative}>
-          <GlobalMenuButton onClick={onToggleMenu} expanded={currentId === 'menu'} label={globalMenu?.menuLabel} />
+          <GlobalMenuButton
+            onClick={onToggleMenu}
+            expanded={currentId === 'menu'}
+            disabled={accountSelector?.forceOpenFullScreen}
+            label={globalMenu?.menuLabel}
+          />
           {globalMenu && (
             <DropdownBase
               layout="desktop"
@@ -117,10 +129,7 @@ export const GlobalHeader = ({
           className={cx(styles.drawer)}
           dataLayout={isDesktop ? 'desktop' : 'mobile'}
         >
-          <AccountSelector
-            {...accountSelector}
-            forceOpenFullScreen={accountSelector.forceOpenFullScreen || !isDesktop ? accountSelectionOpen : undefined}
-          />
+          <AccountSelector {...accountSelector} forceOpenFullScreen={accountSelector.forceOpenFullScreen} />
         </DrawerBase>
       )}
       {globalSearch && (

@@ -1,6 +1,7 @@
 import { CaretDownCircleIcon, CaretUpCircleIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import { useEffect, useState } from 'react';
+import { useIsDesktop } from '../../hooks/useIsDesktop';
 import { AccountMenu, type AccountMenuProps } from '../Account';
 import { Button } from '../Button';
 import { DsHeading, DsSpinner } from '../DsComponents';
@@ -20,6 +21,7 @@ export interface AccountSelectorProps {
 
 export const AccountSelector = ({ accountMenu, forceOpenFullScreen, className, loading }: AccountSelectorProps) => {
   const { currentId, openId, closeAll, languageCode } = useRootContext();
+  const isDesktop = useIsDesktop();
   const isFullScreen = currentId === 'accountFullscreen';
   const [searchString, setSearchString] = useState('');
   const [forceOpenFullScreenState, setForceOpenFullScreenState] = useState<boolean | undefined>(forceOpenFullScreen);
@@ -35,8 +37,10 @@ export const AccountSelector = ({ accountMenu, forceOpenFullScreen, className, l
   useEffect(() => {
     if (forceOpenFullScreenState === true && !isFullScreen) {
       openId('accountFullscreen');
+    } else if (!isDesktop && currentId === 'account') {
+      openId('accountFullscreen');
     }
-  }, [forceOpenFullScreenState, isFullScreen, openId]);
+  }, [forceOpenFullScreenState, isFullScreen, isDesktop, currentId, openId]);
 
   const { minimize, fullscreen, searchText, heading } = getTexts(languageCode);
 
@@ -90,7 +94,7 @@ export const AccountSelector = ({ accountMenu, forceOpenFullScreen, className, l
           scrollRefStyles={!isFullScreen && accountMenu.isVirtualized ? { maxHeight: 'calc(40vh)' } : undefined}
         />
       </div>
-      {forceOpenFullScreenState !== true && (
+      {forceOpenFullScreenState !== true && isDesktop && (
         <Button
           icon={
             isFullScreen ? (
