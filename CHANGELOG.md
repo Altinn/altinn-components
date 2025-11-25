@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.48.2](https://github.com/Altinn/altinn-components/compare/v0.48.1...v0.48.2) (2025-11-25)
+
+
+### Bug Fixes
+
+* **accountSelector:** Could not close selector on mobile ([#831](https://github.com/Altinn/altinn-components/issues/831)) ([0658ae0](https://github.com/Altinn/altinn-components/commit/0658ae0dabbf79ad476dd73ff02b9b8e16642084))
+
 ## [0.48.1](https://github.com/Altinn/altinn-components/compare/v0.48.0...v0.48.1) (2025-11-25)
 
 
