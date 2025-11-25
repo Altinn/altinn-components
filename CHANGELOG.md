@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.48.1](https://github.com/Altinn/altinn-components/compare/v0.48.0...v0.48.1) (2025-11-25)
+
+
+### Bug Fixes
+
+* Fix AccountList virtualized context meny overlap ([#832](https://github.com/Altinn/altinn-components/issues/832)) ([8901465](https://github.com/Altinn/altinn-components/commit/8901465c62e38d015fb9e504ceba637d266326a9))
+
 ## [0.48.0](https://github.com/Altinn/altinn-components/compare/v0.47.6...v0.48.0) (2025-11-25)
 
 
