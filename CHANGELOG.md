@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.48.3](https://github.com/Altinn/altinn-components/compare/v0.48.2...v0.48.3) (2025-11-25)
+
+
+### Bug Fixes
+
+* Virtualized account list global menu overlap ([#835](https://github.com/Altinn/altinn-components/issues/835)) ([2dceece](https://github.com/Altinn/altinn-components/commit/2dceecefe90d1c4522cd2281afb076a425fc3291))
+
 ## [0.48.2](https://github.com/Altinn/altinn-components/compare/v0.48.1...v0.48.2) (2025-11-25)
 
 
