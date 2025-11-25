@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.48.4](https://github.com/Altinn/altinn-components/compare/v0.48.3...v0.48.4) (2025-11-25)
+
+
+### Bug Fixes
+
+* **useAccountSelector:** sort actors alphabetically within groups and list of subunits ([#829](https://github.com/Altinn/altinn-components/issues/829)) ([c9d5d2b](https://github.com/Altinn/altinn-components/commit/c9d5d2b841bc045983bb045991b1dcecd02c333b))
+
 ## [0.48.3](https://github.com/Altinn/altinn-components/compare/v0.48.2...v0.48.3) (2025-11-25)
 
 
