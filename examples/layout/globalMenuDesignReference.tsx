@@ -10,7 +10,6 @@ import {
 } from '@navikt/aksel-icons';
 import { accountMenu } from '../';
 import type { AccountMenuProps, GlobalMenuProps_old, MenuProps } from '../../lib';
-import { Badge } from '../../lib';
 
 const designReferenceMenuItems: MenuProps['items'] = [
   {
@@ -18,23 +17,17 @@ const designReferenceMenuItems: MenuProps['items'] = [
     groupId: 'apps',
     size: 'lg',
     icon: InboxFillIcon,
-    title: (
-      <>
-        Innboks <Badge label="Beta" />
-      </>
-    ),
+    title: 'Innboks',
     selected: true,
+    badge: { label: 'Beta', color: 'neutral', variant: 'base' },
   },
   {
     id: 'access-control',
     groupId: 'apps',
     size: 'lg',
     icon: PadlockLockedFillIcon,
-    title: (
-      <>
-        Tilgangsstyring <Badge label="Beta" />
-      </>
-    ),
+    title: 'Tilgangsstyring',
+    badge: { label: 'Beta', color: 'neutral', variant: 'base' },
   },
   {
     id: 'forms',

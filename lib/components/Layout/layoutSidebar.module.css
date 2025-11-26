@@ -6,6 +6,13 @@
   display: none;
 }
 
+.footer {
+  margin-top: 0.75rem;
+  padding-top: 1rem;
+  padding-left: 0.5rem;
+  border-top: 1px solid var(--ds-color-border-subtle);
+}
+
 @media (min-width: 1024px) {
   .sidebar {
     align-self: flex-start;

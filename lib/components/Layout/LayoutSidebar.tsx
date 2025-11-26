@@ -13,6 +13,7 @@ export interface LayoutSidebarProps {
   hidden?: boolean;
   sticky?: boolean;
   children?: ReactNode;
+  footer?: ReactNode;
   useGlobalHeader?: boolean;
 }
 
@@ -21,6 +22,7 @@ export const LayoutSidebar = ({
   hidden = false,
   sticky,
   children,
+  footer,
   useGlobalHeader = false,
 }: LayoutSidebarProps) => {
   return (
@@ -32,6 +34,7 @@ export const LayoutSidebar = ({
       aria-hidden={hidden}
     >
       {children}
+      {footer && <div className={styles.footer}>{footer}</div>}
     </aside>
   );
 };

@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/react-vite';
 import { useState } from 'react';
-import { Flex, RootProvider } from '..';
+import { Badge, Flex, RootProvider } from '..';
 import type { LayoutProps } from '../';
 import { Layout, List, type ListItemProps, PageBase } from '../';
 import {
@@ -295,6 +295,34 @@ export const Profile = (args: LayoutStoryArgs) => {
           globalMenu: globalMenu,
         }}
         color="person"
+      >
+        {args.children}
+      </Layout>
+    </RootProvider>
+  );
+};
+
+export const SidebarReference = (args: LayoutStoryArgs) => {
+  const layout = useLayout(args);
+  const accountMenu = useAccountMenu({ accountId: 'diaspora' });
+  const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
+  const accountSelector: AccountSelectorProps = {
+    accountMenu: accountMenu,
+  };
+  return (
+    <RootProvider>
+      <Layout
+        {...args}
+        {...layout}
+        header={{
+          ...layout.header,
+          accountSelector: accountSelector,
+          globalMenu: globalMenu,
+        }}
+        sidebar={{
+          ...args.sidebar,
+          footer: <Badge label="Beta" variant="base" color="neutral" size="sm" />,
+        }}
       >
         {args.children}
       </Layout>
