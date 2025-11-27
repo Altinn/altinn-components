@@ -117,9 +117,7 @@ export const useAccountSelector = ({
       .filter((party) => isPersonType(party.type) && party.partyUuid !== selfAccountUuid)
       .sort(compareFn);
 
-    const organizations = [...partyListDTO]
-      .filter((party) => isOrgType(party.type))
-      .sort(compareFn)
+    const organizations = [...partyListDTO].filter((party) => isOrgType(party.type)).sort(compareFn);
 
     // Build account items of self, people and organizations
     const selfAccountItem = getAccountFromAuthorizedParty(
