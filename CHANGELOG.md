@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.50.0](https://github.com/Altinn/altinn-components/compare/v0.49.0...v0.50.0) (2025-11-27)
+
+
+### Features
+
+* Add footer sidebar section, update GlobalMenu Ref, add sidebar story ([#840](https://github.com/Altinn/altinn-components/issues/840)) ([7c28c51](https://github.com/Altinn/altinn-components/commit/7c28c51033dbc48ecbe77d19b95c7ff87bf2b116))
+
 ## [0.49.0](https://github.com/Altinn/altinn-components/compare/v0.48.4...v0.49.0) (2025-11-25)
 
 
