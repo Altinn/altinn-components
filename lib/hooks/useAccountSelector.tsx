@@ -314,7 +314,6 @@ const getAccountFromAuthorizedParty = (
       type: type,
       isParent: !parent,
       isDeleted: party?.isDeleted,
-      colorKey: parentName ?? undefined,
     },
     name: name,
     description: description,
