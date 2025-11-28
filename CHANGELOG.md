@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.50.2](https://github.com/Altinn/altinn-components/compare/v0.50.1...v0.50.2) (2025-11-28)
+
+
+### Bug Fixes
+
+* **AccountSelector:** Do not use parent name to control the color of account avatars. ([#847](https://github.com/Altinn/altinn-components/issues/847)) ([a16def9](https://github.com/Altinn/altinn-components/commit/a16def9578ed25480b89e1537ecb822ddb1344c9))
+
 ## [0.50.1](https://github.com/Altinn/altinn-components/compare/v0.50.0...v0.50.1) (2025-11-28)
 
 
