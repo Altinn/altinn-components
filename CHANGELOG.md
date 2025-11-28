@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.50.1](https://github.com/Altinn/altinn-components/compare/v0.50.0...v0.50.1) (2025-11-28)
+
+
+### Bug Fixes
+
+* **header:** move 'Go to homepage' from aria-label to svg title for Digdir logo for improved accessibility ([#849](https://github.com/Altinn/altinn-components/issues/849)) ([26b817e](https://github.com/Altinn/altinn-components/commit/26b817e6e665c63c00c361bfc797fe44c6718c46))
+
 ## [0.50.0](https://github.com/Altinn/altinn-components/compare/v0.49.0...v0.50.0) (2025-11-27)
 
 
