@@ -1,6 +1,6 @@
 import cx from 'classnames';
 import type { ElementType, MouseEventHandler } from 'react';
-import { Badge, type BadgeProps } from '../Badge/Badge.tsx';
+import { Badge, type BadgeProps } from '../Badge';
 import { ButtonBase } from '../Button';
 import { DigdirLogomark } from './DigdirLogomark.tsx';
 import styles from './headerLogo.module.css';

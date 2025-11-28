@@ -3,7 +3,7 @@ export interface SymbolProps {
   title?: string;
 }
 
-export const DigdirLogomark = ({ className, title = 'Digdir logomark' }: SymbolProps) => {
+export const DigdirLogomark = ({ className, title = 'Digdir logo' }: SymbolProps) => {
   return (
     <svg
       width="1em"

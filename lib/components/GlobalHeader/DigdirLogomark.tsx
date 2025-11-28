@@ -6,7 +6,7 @@ export interface SymbolProps {
   'aria-hidden'?: boolean;
 }
 
-export const DigdirLogomark = ({ className, title = 'Digdir logomark', 'aria-hidden': ariaHidden }: SymbolProps) => {
+export const DigdirLogomark = ({ className, title = 'Digdir logo', 'aria-hidden': ariaHidden }: SymbolProps) => {
   const isDesktop = useIsDesktop();
   const sizeIndex = isDesktop ? 8.5 : 7;
   const { width, height } = { width: `${sizeIndex}em`, height: `${sizeIndex * 0.34}em` }; // Maintain aspect ratio
@@ -21,8 +21,9 @@ export const DigdirLogomark = ({ className, title = 'Digdir logomark', 'aria-hid
       version="1.1"
       className={className}
       aria-hidden={ariaHidden}
+      aria-labelledby="digdir-logo-title"
     >
-      <title>{title}</title>
+      <title id="digdir-logo-title">{title}</title>
       <g id="surface1">
         <path
           style={{
