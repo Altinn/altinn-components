@@ -21,10 +21,10 @@ const ARIA_LABELS: Record<string, string> = {
 
 export const HeaderLogo = ({ className, as = 'a', href = '/', badge }: HeaderLogoProps) => {
   const { languageCode } = useRootContext();
-  const ariaLabel = ARIA_LABELS[languageCode ?? ''] ?? 'Gå til forsiden';
+  const title = ARIA_LABELS[languageCode ?? ''] ?? 'Gå til forsiden';
   return (
-    <ButtonBase as={as} className={cx(styles.logo, className)} href={href} ariaLabel={ariaLabel}>
-      <DigdirLogomark />
+    <ButtonBase as={as} className={cx(styles.logo, className)} href={href}>
+      <DigdirLogomark title={title} />
       {badge && <Badge {...badge} />}
     </ButtonBase>
   );
