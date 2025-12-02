@@ -1,106 +1,106 @@
-import { EyeIcon, TrashIcon } from "@navikt/aksel-icons";
-import type { Meta } from "@storybook/react-vite";
-import { useState } from "react";
-import { ContextMenu } from "../ContextMenu";
-import { List } from "../List";
-import { UserListItem, type UserListItemProps } from "./UserListItem";
+import { EyeIcon, TrashIcon } from '@navikt/aksel-icons';
+import type { Meta } from '@storybook/react-vite';
+import { useState } from 'react';
+import { ContextMenu } from '../ContextMenu';
+import { List } from '../List';
+import { UserListItem, type UserListItemProps } from './UserListItem';
 
 const meta = {
-  title: "Access/UserListItem",
+  title: 'Access/UserListItem',
   component: UserListItem,
-  tags: ["autodocs", "beta"],
+  tags: ['autodocs', 'beta'],
   parameters: {},
   args: {
-    id: "user-1",
-    size: "md",
+    id: 'user-1',
+    size: 'md',
     loading: false,
-    name: "Julie Josefine Beritsen",
-    description: "født 01.02.1993",
-    type: "person",
-    roleNames: ["Styrets leder"],
-    shadow: "sm",
+    name: 'Julie Josefine Beritsen',
+    description: 'født 01.02.1993',
+    type: 'person',
+    roleNames: ['Styrets leder'],
+    shadow: 'sm',
     linkIcon: false,
     collapsible: false,
-    as: "div",
+    as: 'div',
     interactive: true,
     subUnit: false,
-    titleAs: "h3",
-    border: "none",
-    color: "company",
+    titleAs: 'h3',
+    border: 'none',
+    color: 'company',
     expanded: false,
     children: <p>Custom content</p>,
   },
   argTypes: {
     size: {
-      options: ["xs", "sm", "md", "lg", "xl"],
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
       control: {
-        type: "inline-radio",
+        type: 'inline-radio',
       },
     },
     shadow: {
-      options: ["none", "xs", "sm", "md", "lg"],
+      options: ['none', 'xs', 'sm', 'md', 'lg'],
       control: {
-        type: "inline-radio",
+        type: 'inline-radio',
       },
     },
     type: {
-      options: ["person", "company", "system"],
+      options: ['person', 'company', 'system'],
       control: {
-        type: "inline-radio",
+        type: 'inline-radio',
       },
     },
     as: {
-      options: ["div", "button", "a", "span"],
+      options: ['div', 'button', 'a', 'span'],
       control: {
-        type: "select",
+        type: 'select',
       },
     },
     titleAs: {
-      options: ["h1", "h2", "h3", "h4", "h5", "h6", "p", "div", "span"],
+      options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'div', 'span'],
       control: {
-        type: "select",
+        type: 'select',
       },
     },
     border: {
-      options: ["none", "solid", "dotted"],
+      options: ['none', 'solid', 'dotted'],
       control: {
-        type: "inline-radio",
+        type: 'inline-radio',
       },
     },
     color: {
-      options: ["inherit", "accent", "company", "person", "neutral"],
+      options: ['inherit', 'accent', 'company', 'person', 'neutral'],
       control: {
-        type: "select",
+        type: 'select',
       },
     },
     loading: {
       control: {
-        type: "boolean",
+        type: 'boolean',
       },
     },
     interactive: {
       control: {
-        type: "boolean",
+        type: 'boolean',
       },
     },
     linkIcon: {
       control: {
-        type: "boolean",
+        type: 'boolean',
       },
     },
     collapsible: {
       control: {
-        type: "boolean",
+        type: 'boolean',
       },
     },
     expanded: {
       control: {
-        type: "boolean",
+        type: 'boolean',
       },
     },
     subUnit: {
       control: {
-        type: "boolean",
+        type: 'boolean',
       },
     },
     // Disable complex controls
@@ -129,15 +129,11 @@ export const MultipleRoles = (args: UserListItemProps) => {
         name="Narvesen AS"
         type="company"
         description="Org.nr.: 123456789"
-        roleNames={[
-          "Regnskapsfører",
-          "Klientadministrator",
-          "Hovedadministrator",
-        ]}
+        roleNames={['Regnskapsfører', 'Klientadministrator', 'Hovedadministrator']}
         interactive={true}
         linkIcon={true}
         onClick={() => alert(`You clicked the link - yay!`)}
-        as={"a"}
+        as={'a'}
       />
     </List>
   );
@@ -152,21 +148,21 @@ export const WithSubUnits = (args: UserListItemProps) => {
         name="Narvesen AS"
         type="company"
         description={undefined}
-        roleNames={["Regnskapsfører"]}
+        roleNames={['Regnskapsfører']}
         expanded={isOpen}
         collapsible={true}
         onClick={() => setIsOpen(!isOpen)}
-        as={"button"}
+        as={'button'}
       >
-        <div style={{ padding: "0.5rem 0 0.5rem 1rem" }}>
-          <List spacing={"sm"}>
+        <div style={{ padding: '0.5rem 0 0.5rem 1rem' }}>
+          <List spacing={'sm'}>
             <UserListItem
               id="subunit1"
               name="Narvesen AS"
               type="company"
               size="xs"
               description="Org.nr. 987654321"
-              roleNames={["Regnskapsfører"]}
+              roleNames={['Regnskapsfører']}
               interactive={false}
               shadow="none"
             />
@@ -204,20 +200,20 @@ export const WithInheritingParties = (args: UserListItemProps) => {
       <UserListItem
         {...args}
         name="Byggebedriftens mestere NO"
-        roleNames={["Regnskapsfører"]}
+        roleNames={['Regnskapsfører']}
         type="company"
         description={undefined}
         expanded={isOpen}
         collapsible={true}
         onClick={() => setIsOpen(!isOpen)}
-        as={"button"}
+        as={'button'}
       >
-        <div style={{ padding: "0.5rem 0 0.5rem 1rem" }}>
-          <List spacing={"sm"}>
+        <div style={{ padding: '0.5rem 0 0.5rem 1rem' }}>
+          <List spacing={'sm'}>
             <UserListItem
               id="subunit1"
               name="Byggebedriftens mestere NO"
-              roleNames={["Regnskapsfører"]}
+              roleNames={['Regnskapsfører']}
               type="company"
               size="xs"
               description="Org.nr. 987654321"
@@ -305,10 +301,10 @@ export const DifferentHeadingLevelsAndSizes = (args: UserListItemProps) => {
 export const WithControls = (args: UserListItemProps) => {
   const menu = (menuId: string) => (
     <ContextMenu
-      id={"menu" + menuId}
+      id={'menu' + menuId}
       items={[
-        { id: "settings" + menuId, title: "See accesses", icon: EyeIcon },
-        { id: "delete" + menuId, title: "Delete user", icon: TrashIcon },
+        { id: 'settings' + menuId, title: 'See accesses', icon: EyeIcon },
+        { id: 'delete' + menuId, title: 'Delete user', icon: TrashIcon },
       ]}
     />
   );
@@ -317,31 +313,31 @@ export const WithControls = (args: UserListItemProps) => {
       <UserListItem
         {...args}
         name="Ådne Makrussen"
-        roleNames={["Styrets leder"]}
-        controls={menu("1")}
+        roleNames={['Styrets leder']}
+        controls={menu('1')}
         linkIcon={true}
         onClick={() => alert(`You clicked the link - yay!`)}
-        as={"button"}
+        as={'button'}
       />
       <UserListItem
         {...args}
         name="Jack Ripper"
         roleNames={undefined}
-        controls={menu("2")}
+        controls={menu('2')}
         linkIcon={true}
         onClick={() => alert(`You clicked the link - yay!`)}
-        as={"button"}
+        as={'button'}
       />
       <UserListItem
         {...args}
         name="Bankmarked AS"
         type="company"
         description="Org.nr.: 987654321"
-        roleNames={["Regnskapsfører"]}
-        controls={menu("3")}
+        roleNames={['Regnskapsfører']}
+        controls={menu('3')}
         linkIcon={true}
         onClick={() => alert(`You clicked the link - yay!`)}
-        as={"button"}
+        as={'button'}
       />
     </List>
   );
