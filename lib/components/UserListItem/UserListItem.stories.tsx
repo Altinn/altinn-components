@@ -193,6 +193,60 @@ export const WithSubUnits = (args: UserListItemProps) => {
   );
 };
 
+export const WithInheritingParties = (args: UserListItemProps) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  return (
+    <List>
+      <UserListItem
+        {...args}
+        name="Byggebedriftens mestere NO"
+        roleNames={['Regnskapsfører']}
+        type="company"
+        description={undefined}
+        expanded={isOpen}
+        collapsible={true}
+        onClick={() => setIsOpen(!isOpen)}
+        as={'button'}
+      >
+        <div style={{ padding: '0.5rem 0 0.5rem 1rem' }}>
+          <List spacing={'sm'}>
+            <UserListItem
+              id="subunit1"
+              name="Byggebedriftens mestere NO"
+              roleNames={['Regnskapsfører']}
+              type="company"
+              size="xs"
+              description="Org.nr. 987654321"
+              interactive={false}
+              shadow="none"
+            />
+            <UserListItem
+              id="subunit2"
+              name="Mina Daglig Lederås"
+              type="person"
+              size="xs"
+              description="Født: 01.01.2000 | Daglig leder i Byggebedriftens mestere NO"
+              shadow="none"
+              interactive={false}
+              subUnit={true}
+            />
+            <UserListItem
+              id="subunit3"
+              name="Johannes Styrledersen"
+              type="person"
+              size="xs"
+              description="Født: 01.01.1990 | Styrets leder, Daglig leder i Byggebedriftens mestere NO"
+              interactive={false}
+              shadow="none"
+              subUnit={true}
+            />
+          </List>
+        </div>
+      </UserListItem>
+    </List>
+  );
+};
+
 export const DifferentHeadingLevelsAndSizes = (args: UserListItemProps) => {
   return (
     <List>
