@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.50.3](https://github.com/Altinn/altinn-components/compare/v0.50.2...v0.50.3) (2025-12-03)
+
+
+### Bug Fixes
+
+* **UserListItem:** Text-overflow to ellipsis on description ([#852](https://github.com/Altinn/altinn-components/issues/852)) ([17e00c7](https://github.com/Altinn/altinn-components/commit/17e00c7e02ed08a5388f37026f9fc479cf71a41d))
+
 ## [0.50.2](https://github.com/Altinn/altinn-components/compare/v0.50.1...v0.50.2) (2025-11-28)
 
 
