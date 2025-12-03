@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import type { Account } from '..';
+import { type Account, RootProvider } from '..';
 import { defaultAccounts } from '../../../examples';
 import { AccountMenuButton } from './AccountMenuButton';
 
@@ -28,6 +28,14 @@ export const Login: Story = {
   args: {
     currentAccount: undefined,
   },
+};
+
+export const LoginWithEnglishText = () => {
+  return (
+    <RootProvider languageCode="en">
+      <AccountMenuButton currentAccount={undefined} minimized={false} expanded={false} />
+    </RootProvider>
+  );
 };
 
 export const Person: Story = {

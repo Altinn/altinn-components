@@ -1,7 +1,7 @@
 import { EnterIcon, XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import { isValidElement } from 'react';
-import { type AccountMenuItemProps, ButtonBase, ButtonIcon, ButtonLabel, type ButtonProps } from '..';
+import { type AccountMenuItemProps, ButtonBase, ButtonIcon, ButtonLabel, type ButtonProps, useRootContext } from '..';
 import { Avatar, type AvatarProps } from '../Avatar';
 
 import styles from './accountMenuButton.module.css';
@@ -24,7 +24,8 @@ export const AccountMenuButton = ({
   loading = false,
   ...buttonProps
 }: AccountMenuButtonProps) => {
-  const texts = getTexts(undefined);
+  const { languageCode } = useRootContext();
+  const texts = getTexts(languageCode);
 
   if (loading) {
     return (
