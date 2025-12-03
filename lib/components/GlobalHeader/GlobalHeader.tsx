@@ -12,7 +12,7 @@ import { GlobalSearchButton } from './GlobalSearchButton.tsx';
 import { HeaderGroup } from './HeaderGroup.tsx';
 import { HeaderLogo, type HeaderLogoProps } from './HeaderLogo.tsx';
 import styles from './globalHeader.module.css';
-import { GlobalHeaderBase } from './index.tsx';
+import { GlobalHeaderBase } from './';
 
 import cx from 'classnames';
 
@@ -42,6 +42,7 @@ export const GlobalHeader = ({
   onLoginClick,
 }: GlobalHeaderProps) => {
   const { currentId, toggleId, openId, closeAll } = useRootContext();
+  const isDesktop = useIsDesktop();
 
   const ToggleSearch = () => {
     toggleId('search');
@@ -62,10 +63,10 @@ export const GlobalHeader = ({
   const accountSelectionOpen =
     currentId === 'account' || currentId === 'accountFullscreen' || accountSelector?.forceOpenFullScreen;
 
-  const isDesktop = useIsDesktop();
+  const backdropOpen = accountSelectionOpen || currentId === 'menu' || currentId === 'search';
 
   return (
-    <GlobalHeaderBase currentId={currentId} openBackdrop={currentId === 'menu'} onCloseBackdrop={closeAll}>
+    <GlobalHeaderBase currentId={currentId} backdropOpen={backdropOpen} onCloseBackdrop={closeAll}>
       <HeaderLogo {...logo} badge={badge} className={styles.logo} />
       <HeaderGroup>
         {accountSelector && (
@@ -126,7 +127,7 @@ export const GlobalHeader = ({
       {accountSelector && (
         <DrawerBase
           open={accountSelectionOpen}
-          className={cx(styles.drawer)}
+          className={cx(styles.drawer, styles.floating)}
           dataLayout={isDesktop ? 'desktop' : 'mobile'}
         >
           <AccountSelector {...accountSelector} forceOpenFullScreen={accountSelector.forceOpenFullScreen} />
@@ -135,7 +136,7 @@ export const GlobalHeader = ({
       {globalSearch && (
         <DrawerBase
           open={currentId === 'search'}
-          className={cx(styles.drawer)}
+          className={cx(styles.drawer, styles.floating)}
           dataLayout={isDesktop ? 'desktop' : 'mobile'}
         >
           <GlobalSearch {...globalSearch} />
