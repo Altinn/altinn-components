@@ -52,6 +52,7 @@ export const AccountListVirtual = ({ items, groups = {}, sortGroupBy }: AccountL
 
   const virtualizer = useVirtualizer({
     count: flatList.length,
+    useAnimationFrameWithResizeObserver: true,
     gap: 8,
     estimateSize: (index) => {
       const entry = flatList[index];
