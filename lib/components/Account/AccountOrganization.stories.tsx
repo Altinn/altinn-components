@@ -22,6 +22,16 @@ const meta = {
               variant: 'outline',
             },
           },
+          {
+            title: 'Mors Bergensis',
+            description: 'Org nr. 028914030',
+            avatar: {
+              type: 'company',
+              name: 'Mors Bergensis',
+              variant: 'outline',
+              isDeleted: true,
+            },
+          },
         ],
       },
     ],

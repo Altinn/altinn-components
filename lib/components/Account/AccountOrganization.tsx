@@ -26,9 +26,10 @@ const AccountOrganizationItem = ({
   ...props
 }: AccountOrganizationItemProps) => {
   const Component = selected ? 'span' : as || 'a';
+  const { items: _, ...restProps } = props;
 
   return (
-    <Component {...props} className={styles.link} data-selected={selected}>
+    <Component {...restProps} className={styles.link} data-selected={selected}>
       <Byline size="sm" avatar={avatar}>
         <strong>
           {title}
@@ -54,10 +55,10 @@ const AccountOrganizationList = ({ items, level }: AccountOrganizationProps) => 
   );
 };
 
-export const AccountOrganization = ({ items, level = 1 }: AccountOrganizationProps) => {
+export const AccountOrganization = ({ items = [], level = 1 }: AccountOrganizationProps) => {
   return (
     <ul data-level={level} className={styles.list}>
-      {items?.map((item, index) => {
+      {items.map((item, index) => {
         return (
           <li key={index}>
             <AccountOrganizationItem {...item} />
