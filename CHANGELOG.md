@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.50.4](https://github.com/Altinn/altinn-components/compare/v0.50.3...v0.50.4) (2025-12-04)
+
+
+### Bug Fixes
+
+* **AccountOrganization:** unneccessary DOM pollution ([#856](https://github.com/Altinn/altinn-components/issues/856)) ([97cd974](https://github.com/Altinn/altinn-components/commit/97cd974497d5f4a9bb920e6739d55358d95bc9d7))
+
 ## [0.50.3](https://github.com/Altinn/altinn-components/compare/v0.50.2...v0.50.3) (2025-12-03)
 
 
