@@ -86,6 +86,7 @@ export const ListItemHeader = ({
   className,
   children,
   ariaLabel,
+  ariaControlsId,
 }: ListItemHeaderProps) => {
   /** Set applicable Icon */
   const applicableIcon = collapsible
@@ -132,6 +133,9 @@ export const ListItemHeader = ({
         active={active}
         ariaLabel={setAriaLabel}
         className={styles.link}
+        expanded={expanded}
+        ariaControlsId={ariaControlsId}
+        collapsible={collapsible}
       >
         {interactive && <div className={styles.linkFocus} aria-hidden="true" />}
 
