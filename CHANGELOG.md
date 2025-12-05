@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.50.5](https://github.com/Altinn/altinn-components/compare/v0.50.4...v0.50.5) (2025-12-05)
+
+
+### Bug Fixes
+
+* **dateFormat:** add timezone-safe formatter for dateOfBirth ([#863](https://github.com/Altinn/altinn-components/issues/863)) ([c50aa2f](https://github.com/Altinn/altinn-components/commit/c50aa2f024747b376313b8fb6b5178e2c2a03f1a))
+* layout crashing for virtualized lists with useAnimationFrameWithResizeObserver: true ([#858](https://github.com/Altinn/altinn-components/issues/858)) ([ac9034f](https://github.com/Altinn/altinn-components/commit/ac9034fa749a814085a871626bde8b1e0ead654d))
+* **toolbar:** close button on button not working when adding button on mobile ([#859](https://github.com/Altinn/altinn-components/issues/859)) ([72d73f4](https://github.com/Altinn/altinn-components/commit/72d73f49e845ffd052d922ddcf3dd7e763832ab3))
+
 ## [0.50.4](https://github.com/Altinn/altinn-components/compare/v0.50.3...v0.50.4) (2025-12-04)
 
 
