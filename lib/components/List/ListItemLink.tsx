@@ -59,7 +59,7 @@ export const ListItemLink = ({
       aria-disabled={loading || disabled}
       aria-selected={selected}
       aria-expanded={collapsible ? expanded : undefined}
-      aria-controls={collapsible ? ariaControlsId : undefined}
+      aria-controls={expanded ? ariaControlsId : undefined}
       {...(shouldApplyAriaLabel && { 'aria-label': ariaLabel })}
       data-active={active}
       tabIndex={loading || disabled ? -1 : tabIndex}

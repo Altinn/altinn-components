@@ -123,7 +123,7 @@ export const ListItem = ({
         badge={badge}
         controls={controls}
         interactive={interactive}
-        ariaControlsId={collapsible ? childrenId : undefined}
+        ariaControlsId={expanded ? childrenId : undefined}
         {...rest}
       >
         {applicableLabel}
