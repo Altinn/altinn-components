@@ -1,5 +1,6 @@
 import cx from 'classnames';
 import type { ReactElement, ReactNode } from 'react';
+import { useId } from 'react';
 import { ListItemBase, type ListItemBaseProps } from './ListItemBase';
 import { ListItemHeader, type ListItemHeaderProps } from './ListItemHeader';
 import styles from './listItem.module.css';
@@ -89,6 +90,8 @@ export const ListItem = ({
   ...rest
 }: ListItemProps): ReactElement => {
   const applicableLabel = typeof label === 'function' ? label() : label;
+  const childrenId = useId();
+
   return (
     <ListItemBase
       className={cx(styles.item, className)}
@@ -120,11 +123,12 @@ export const ListItem = ({
         badge={badge}
         controls={controls}
         interactive={interactive}
+        ariaControlsId={expanded ? childrenId : undefined}
         {...rest}
       >
         {applicableLabel}
       </ListItemHeader>
-      {expanded ? children : null}
+      {expanded ? <div id={childrenId}>{children}</div> : null}
     </ListItemBase>
   );
 };

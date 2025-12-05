@@ -15,6 +15,9 @@ export interface ListItemLinkProps {
   className?: string;
   active?: boolean;
   children?: React.ReactNode;
+  expanded?: boolean;
+  collapsible?: boolean;
+  ariaControlsId?: string;
 }
 
 export const ListItemLink = ({
@@ -30,6 +33,9 @@ export const ListItemLink = ({
   ariaLabel,
   children,
   tabIndex = 0,
+  expanded,
+  collapsible,
+  ariaControlsId,
 }: ListItemLinkProps) => {
   const Component = as || 'div';
 
@@ -52,6 +58,8 @@ export const ListItemLink = ({
       data-interactive="true"
       aria-disabled={loading || disabled}
       aria-selected={selected}
+      aria-expanded={collapsible ? expanded : undefined}
+      aria-controls={expanded ? ariaControlsId : undefined}
       {...(shouldApplyAriaLabel && { 'aria-label': ariaLabel })}
       data-active={active}
       tabIndex={loading || disabled ? -1 : tabIndex}

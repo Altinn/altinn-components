@@ -306,6 +306,7 @@ export const CollapsibleExpanded = (args: ListItemProps) => {
         collapsible={true}
         expanded={true}
         selected={true}
+        as="button"
       >
         <Section padding={4}>
           <p>Item is expanded and selected</p>
