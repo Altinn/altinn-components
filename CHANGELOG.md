@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.50.6](https://github.com/Altinn/altinn-components/compare/v0.50.5...v0.50.6) (2025-12-05)
+
+
+### Bug Fixes
+
+* **ListItem:** Use aria-controls and aria-expanded for collapsible items ([#861](https://github.com/Altinn/altinn-components/issues/861)) ([f4b0c8b](https://github.com/Altinn/altinn-components/commit/f4b0c8b91f572328f6a490a7d365997e7dab4c3d))
+
 ## [0.50.5](https://github.com/Altinn/altinn-components/compare/v0.50.4...v0.50.5) (2025-12-05)
 
 
