@@ -99,6 +99,7 @@ export const MenuItemsVirtual = ({
 
   const virtualizer = useVirtualizer({
     count: flatMenu.length,
+    useAnimationFrameWithResizeObserver: true,
     gap: 8,
     estimateSize: () => {
       return 44;
