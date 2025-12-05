@@ -64,7 +64,7 @@ export const ToolbarFilter = ({
 
   const onBlurCapture = (e: React.FocusEvent<HTMLElement>) => {
     const nextFocused = e.relatedTarget as HTMLElement | null;
-    if (!nextFocused || !e.currentTarget.contains(nextFocused)) {
+    if (isDesktop && (!nextFocused || !e.currentTarget.contains(nextFocused))) {
       closeAll();
     }
   };
