@@ -18,7 +18,7 @@ export const ToolbarAdd = ({ label = 'Legg til', items, id }: ToolbarAddProps) =
 
   const onBlurCapture = (e: React.FocusEvent<HTMLElement>) => {
     const nextFocused = e.relatedTarget as HTMLElement | null;
-    if (!nextFocused || !e.currentTarget.contains(nextFocused)) {
+    if (isDesktop && (!nextFocused || !e.currentTarget.contains(nextFocused))) {
       closeAll();
     }
   };
@@ -28,7 +28,7 @@ export const ToolbarAdd = ({ label = 'Legg til', items, id }: ToolbarAddProps) =
       <ToolbarButton type="add" onToggle={onToggle} aria-expanded={expanded}>
         {label}
       </ToolbarButton>
-      <DrawerOrDropdown drawerTitle={label} open={expanded}>
+      <DrawerOrDropdown drawerTitle={label} open={expanded} onClose={closeAll}>
         <Menu color="neutral" items={items} keyboardEvents={expanded && isDesktop} />
       </DrawerOrDropdown>
     </ToolbarFilterBase>
