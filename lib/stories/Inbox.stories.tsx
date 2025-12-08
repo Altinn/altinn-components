@@ -2,29 +2,30 @@ import * as DialogStories from "./Dialog/Dialog.stories";
 import * as BetaStories from "./Beta/Beta.stories";
 
 import {
-  BookmarksSection,
-  BookmarksSettingsList,
-  type BookmarksSettingsListProps,
-  Dialog,
-  DialogList,
-  Layout,
-  PageBase,
-  Toolbar,
-  Section,
-  Heading,
-  Typography,
-  ActionHeader,
-  ActionFooter,
-  PageMenu,
-  ModalBase,
-  ModalHeader,
-  ModalBody,
-  ActivityLog,
-  SeenByLog,
-  SeenByLogProps,
-  HeaderProps,
+    BookmarksSection,
+    BookmarksSettingsList,
+    type BookmarksSettingsListProps,
+    Dialog,
+    DialogList,
+    Layout,
+    PageBase,
+    Toolbar,
+    Section,
+    Heading,
+    Typography,
+    ActionHeader,
+    ActionFooter,
+    PageMenu,
+    ModalBase,
+    ModalHeader,
+    ModalBody,
+    ActivityLog,
+    SeenByLog,
+    SeenByLogProps,
+    HeaderProps,
+    FloatingDropdown,
 } from "../components";
-import { useBookmarks, useInbox, useActivityLog } from "../../examples";
+import {useBookmarks, useInbox, useActivityLog, useFloatingDropdown} from "../../examples";
 import { useState } from "react";
 
 const meta = {
@@ -234,6 +235,48 @@ export const InboxWithGlobalSearch = () => {
     </Layout>
   );
 };
+
+/**
+ * Example showing how to use the FloatingDropdown with custom options
+ */
+export const InboxFloatingDropdown = () => {
+  const { layout, toolbar } = useInbox({});
+
+  // Custom handlers for the FloatingDropdown
+  const handleStartTour = () => {
+    alert('Custom tour started!');
+  };
+
+  const handleGoToHelp = () => {
+    alert('Custom help page opened!');
+  };
+
+  const handleGoBack = () => {
+    alert('Custom exit action!');
+  };
+
+  const floatingDropdownProps = useFloatingDropdown({
+    onStartTour: handleStartTour,
+    onGoToHelp: handleGoToHelp,
+    onGoBack: handleGoBack,
+    iconAltText: 'Custom help',
+    showNewFunctionalityText: 'Show me what\'s new',
+    helpPagesText: 'Get help',
+    exitText: 'Go back',
+  });
+
+  return (
+    <Layout {...layout} useGlobalHeader={true}>
+      <PageBase margin="page">
+        <Toolbar {...toolbar} />
+        <EmptySection />
+        <FloatingDropdown {...floatingDropdownProps} />
+      </PageBase>
+    </Layout>
+  );
+};
+
+
 
 export const SearchPage = () => {
   let params = new URL(document.location.toString()).searchParams;
