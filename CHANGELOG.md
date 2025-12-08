@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.50.7](https://github.com/Altinn/altinn-components/compare/v0.50.6...v0.50.7) (2025-12-08)
+
+
+### Bug Fixes
+
+* **searchbar:** remove button with incorrect placement on Safari ([#865](https://github.com/Altinn/altinn-components/issues/865)) ([46d7b2a](https://github.com/Altinn/altinn-components/commit/46d7b2a4b6e7eb6f0bd5814b7ce1efc838dd174a))
+
 ## [0.50.6](https://github.com/Altinn/altinn-components/compare/v0.50.5...v0.50.6) (2025-12-05)
 
 
