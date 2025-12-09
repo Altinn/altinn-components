@@ -27,3 +27,4 @@ export * from './useInboxBeta';
 
 export * from './seenByLog';
 export * from './contextMenu';
+export * from './useFloatingDropdown';

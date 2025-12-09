@@ -68,6 +68,10 @@
   outline-offset: -2px;
 }
 
+.dropdownItem[data-active="true"] {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
 .itemTitle {
   flex: 1;
   white-space: nowrap;

@@ -26,6 +26,7 @@ export interface ButtonBaseProps extends React.ButtonHTMLAttributes<HTMLButtonEl
   children?: ReactNode;
   ariaLabel?: string;
   dataTestId?: string;
+  ref?: React.Ref<HTMLElement>;
 }
 
 export const ButtonBase = ({

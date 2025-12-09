@@ -1,7 +1,7 @@
 import { ArchiveIcon, ArrowRedoIcon, EyeClosedIcon, TrashIcon } from '@navikt/aksel-icons';
 import { useState } from 'react';
-import { useInboxLayout, useInboxSearch, useInboxToolbar } from '../';
-import { ListItemSelect } from '../../lib';
+import { useFloatingDropdown, useInboxLayout, useInboxSearch, useInboxToolbar } from '../';
+import { type FloatingDropdownProps, ListItemSelect } from '../../lib';
 import type {
   ActivityLogProps,
   AvatarProps,
@@ -52,6 +52,7 @@ export interface UseInboxProps extends LayoutProps {
   modalId?: string;
   modal?: UseInboxModalProps;
   closeModal?: () => void;
+  floatingDropdown?: FloatingDropdownProps;
 }
 
 function getAccountIdFromUrl(): string {
@@ -80,6 +81,11 @@ export const useInbox = ({
   };
 
   const layout = useInboxLayout({ accountId, pageId });
+  const floatingDropdown = useFloatingDropdown({
+    showNewFunctionalityText: 'Show new functionality',
+    helpPagesText: 'Help pages',
+    exitText: 'Exit',
+  });
 
   const archived = dialogs.filter((item) => item?.archived).map((item) => item.id) || [];
   const trashed = dialogs.filter((item) => item?.trashed).map((item) => item.id) || [];
@@ -414,6 +420,7 @@ export const useInbox = ({
   const theme = currentAccount?.id === 'user' || currentAccount?.type === 'group' ? 'neutral' : 'subtle';
 
   return {
+    floatingDropdown,
     modal,
     modalId,
     closeModal: () => setModalId(''),
