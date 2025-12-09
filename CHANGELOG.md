@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.50.8](https://github.com/Altinn/altinn-components/compare/v0.50.7...v0.50.8) (2025-12-09)
+
+
+### Bug Fixes
+
+* **FloatingDropdown:** fix keyboard navigation and improve documentation ([#867](https://github.com/Altinn/altinn-components/issues/867)) ([c305cc0](https://github.com/Altinn/altinn-components/commit/c305cc060d26dfbe33986e15e645addf557276c6))
+
 ## [0.50.7](https://github.com/Altinn/altinn-components/compare/v0.50.6...v0.50.7) (2025-12-08)
 
 
