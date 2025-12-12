@@ -2,7 +2,8 @@ import {
   Button,
   ButtonGroup,
   type ButtonProps,
-  IconButton,
+  ContextMenu,
+  type ContextMenuProps,
   type QueryItemProps,
   QueryLabel,
   SettingsItemBase,
@@ -13,12 +14,13 @@ import {
 } from '..';
 
 import { useState } from 'react';
-
-import { MagnifyingGlassIcon, PencilIcon } from '@navikt/aksel-icons';
+import { MagnifyingGlassIcon } from '@navikt/aksel-icons';
 
 export interface BookmarksSettingsItemProps extends SettingsItemProps {
   /** Bookmark id */
   id: string;
+  /** On close */
+  onClose: () => void;
   /** Loading */
   loading?: boolean;
   /** Optional title */
@@ -33,10 +35,14 @@ export interface BookmarksSettingsItemProps extends SettingsItemProps {
   saveButton?: ButtonProps;
   /** Delete button */
   removeButton?: ButtonProps;
+  /** Context menu */
+  contextMenu?: ContextMenuProps;
   /** Render as **/
   as?: React.ElementType;
   /** Toggle function */
   onToggle?: () => void;
+  /** Open */
+  open?: boolean;
 }
 
 export const BookmarksSettingsItem = ({
@@ -50,10 +56,12 @@ export const BookmarksSettingsItem = ({
   titleField,
   saveButton,
   removeButton,
+  contextMenu,
   onChange,
+  open = false,
+  onClose,
   ...rest
 }: BookmarksSettingsItemProps) => {
-  const [open, setOpen] = useState<boolean>(false);
   const [internalValue, setInternalValue] = useState<string>('');
   return (
     <SettingsItemBase
@@ -64,16 +72,10 @@ export const BookmarksSettingsItem = ({
       loading={loading}
       title={title}
       value={<QueryLabel params={params} size="xs" />}
-      controls={
-        controls ? (
-          controls
-        ) : (
-          <IconButton size="xs" icon={PencilIcon} iconAltText="Edit" variant="outline" onClick={() => setOpen(true)} />
-        )
-      }
+      controls={contextMenu && <ContextMenu {...contextMenu} />}
       linkIcon
     >
-      <SettingsModal icon={icon} title={title} open={open} onClose={() => setOpen(false)}>
+      <SettingsModal icon={icon} title={title} open={open} onClose={onClose}>
         <QueryLabel params={params} />
 
         <TextField
@@ -98,7 +100,7 @@ export const BookmarksSettingsItem = ({
                 {...saveButton}
                 onClick={(e) => {
                   saveButton.onClick?.(e);
-                  setOpen(false);
+                  onClose();
                 }}
               />
             )}
@@ -109,7 +111,7 @@ export const BookmarksSettingsItem = ({
                 color="danger"
                 onClick={(e) => {
                   removeButton.onClick?.(e);
-                  setOpen(false);
+                  onClose();
                 }}
               />
             )}

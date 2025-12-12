@@ -131,6 +131,7 @@ export const Bookmark = () => {
     <BookmarksSettingsItem
       id="bookmark-1"
       title="Viktige dialoger om skatt"
+      onClose={() => {}}
       params={[
         { type: 'search', label: 'skatt' },
         { type: 'filter', label: 'Krever handling' },
@@ -145,6 +146,7 @@ export const BookmarkContextMenu = () => {
     <BookmarksSettingsItem
       id="bookmark-1"
       title="Viktige dialoger om skatt"
+      onClose={() => {}}
       controls={
         <ContextMenu
           id="cxmenu"
