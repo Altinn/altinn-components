@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.51.1](https://github.com/Altinn/altinn-components/compare/v0.51.0...v0.51.1) (2025-12-12)
+
+
+### Bug Fixes
+
+* dialog attachments metadata and expiration ([#873](https://github.com/Altinn/altinn-components/issues/873)) ([0be3c36](https://github.com/Altinn/altinn-components/commit/0be3c363426a7f471094fd5822fab58c99ca202a))
+
 ## [0.51.0](https://github.com/Altinn/altinn-components/compare/v0.50.8...v0.51.0) (2025-12-12)
 
 
