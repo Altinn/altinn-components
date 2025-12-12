@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.51.0](https://github.com/Altinn/altinn-components/compare/v0.50.8...v0.51.0) (2025-12-12)
+
+
+### Features
+
+* Updated BookmarksSetting to use contextMenu ([#872](https://github.com/Altinn/altinn-components/issues/872)) ([f9f8dd1](https://github.com/Altinn/altinn-components/commit/f9f8dd1c1fa7ac83326c4f05cb96b69163b87d60))
+
+
+### Miscellaneous Chores
+
+* remove tarball ([#870](https://github.com/Altinn/altinn-components/issues/870)) ([1fece92](https://github.com/Altinn/altinn-components/commit/1fece924d3a38bb699866db8664d1c57d5dc7f42))
+
 ## [0.50.8](https://github.com/Altinn/altinn-components/compare/v0.50.7...v0.50.8) (2025-12-09)
 
 
