@@ -5,7 +5,7 @@ import { BookmarksSection, type BookmarksSectionProps } from './BookmarksSection
 const meta = {
   title: 'Inbox/BookmarksSection',
   component: BookmarksSection,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'deprecated'],
   parameters: {},
   args: {
     title: '3 lagrede søk',

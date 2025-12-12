@@ -1,8 +1,8 @@
 import { type ChangeEvent, useMemo, useState } from 'react';
-import type { BookmarksSectionProps, EditableBookmarkProps } from '../../lib';
+import type { BookmarksSettingsListProps } from '../../lib';
 import { bookmarksItems } from './bookmarksItems';
 
-export const useBookmarks = (): BookmarksSectionProps => {
+export const useBookmarks = (): BookmarksSettingsListProps => {
   const [expandedId, setExpandedId] = useState<string>('');
   const [inputValue, setInputValue] = useState<Record<string, string>>({});
 
@@ -50,7 +50,7 @@ export const useBookmarks = (): BookmarksSectionProps => {
       placeholder: 'Uten tittel',
     },
     description: 'Sist oppdatert: 3 minutter siden.',
-    items: items as EditableBookmarkProps[],
+    items: items as BookmarksSettingsListProps['items'],
     expandedId,
     onToggle,
   };

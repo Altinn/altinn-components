@@ -2,7 +2,6 @@ import * as DialogStories from "./Dialog/Dialog.stories";
 import * as BetaStories from "./Beta/Beta.stories";
 
 import {
-    BookmarksSection,
     BookmarksSettingsList,
     type BookmarksSettingsListProps,
     Dialog,
@@ -626,20 +625,6 @@ export const DialogTransmissions = () => {
   );
 };
 
-export const BookmarksBackupPage = () => {
-  const { layout, toolbar } = useInbox({
-    pageId: "bookmarks",
-  });
-  const bookmarks = useBookmarks();
-  return (
-    <Layout {...layout}>
-      <PageBase margin="page">
-        <Toolbar {...toolbar} />
-        <BookmarksSection {...bookmarks} />
-      </PageBase>
-    </Layout>
-  );
-};
 
 export const BookmarksPage = () => {
   const { layout, toolbar } = useInbox({
