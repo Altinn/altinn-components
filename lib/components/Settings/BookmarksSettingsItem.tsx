@@ -13,8 +13,8 @@ import {
   type TextFieldProps,
 } from '..';
 
-import { useState } from 'react';
 import { MagnifyingGlassIcon } from '@navikt/aksel-icons';
+import { useState } from 'react';
 
 export interface BookmarksSettingsItemProps extends SettingsItemProps {
   /** Bookmark id */

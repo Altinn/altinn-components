@@ -5,11 +5,17 @@
   white-space: nowrap;
   flex: 0 0 auto;
   max-height: min-content;
+
   --dsc-badge-background: var(--ds-color-base-default);
   --dsc-badge-color: var(--ds-color-base-contrast-default);
+  --dsc-badge-border: var(--ds-color-base-default);
+
+  border: 1px solid transparent;
 
   background-color: var(--dsc-badge-background);
   color: var(--dsc-badge-color);
+  border-color: var(--dsc-badge-border);
+  box-sizing: border-box;
 }
 
 .badge[data-size="xs"] {
@@ -30,6 +36,7 @@
   font-size: 0.75rem;
   line-height: 1;
   padding: 0.5em 0.5em;
+  height: 2em;
   min-width: 2em;
   border-radius: 2em;
 }
@@ -38,23 +45,33 @@
 
 .badge[data-variant="subtle"] {
   --dsc-badge-background: var(--ds-color-surface-tinted);
+  --dsc-badge-border: var(--ds-color-surface-tinted);
   --dsc-badge-color: var(--ds-color-text-default);
 }
 
 .badge[data-variant="tinted"] {
   --dsc-badge-background: var(--ds-color-surface-active);
+  --dsc-badge-border: var(--ds-color-surface-active);
   --dsc-badge-color: var(--ds-color-text-default);
 }
 
 .badge[data-variant="base"] {
   --dsc-badge-background: var(--ds-color-base-default);
+  --dsc-badge-border: var(--ds-color-base-default);
   --dsc-badge-color: var(--ds-color-base-contrast-default);
+}
+
+.badge[data-variant="outline"] {
+  --dsc-badge-background: transparent;
+  --dsc-badge-border: var(--ds-color-border-subtle);
+  --dsc-badge-color: var(--ds-color-text-subtle);
 }
 
 .badge[data-variant="text"],
 .badge[data-variant="text"][data-size="xs"],
 .badge[data-variant="text"][data-size="sm"] {
-  --dsc-badge-background: "transparent";
+  --dsc-badge-background: transparent;
+  --dsc-badge-border: transparent;
   --dsc-badge-color: var(--ds-color-text-subtle);
   font-size: 0.875rem;
   font-weight: 400;

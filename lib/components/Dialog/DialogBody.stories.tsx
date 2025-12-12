@@ -123,6 +123,49 @@ export const WithAttachments: Story = {
   },
 };
 
+export const WithAttachmentsMetadata: Story = {
+  args: {
+    children: (
+      <>
+        <p>Dialog summary.</p>
+        <DialogAttachments
+          title="4 attachments"
+          items={[
+            {
+              href: '#',
+              label: 'Short document.pdf',
+              metadata: 'PDF, 2.3 MB',
+              badge: { variant: 'outline', label: 'Utløper om 2 uker' },
+            },
+            {
+              href: '#',
+              label: 'A long document title that it will wrap mulitple lines.pdf',
+              metadata: 'PDF, 2.3 MB',
+              badge: {
+                variant: 'outline',
+                label: 'Utløper om 2 uker',
+                color: 'neutral',
+              },
+            },
+            {
+              href: '#',
+              metadata: 'PDF, 1.5 MB',
+              label: 'Another document with a ridicoulous title that should wrap multiple lines.pdf',
+            },
+            {
+              disabled: true,
+              href: '#',
+              metadata: 'PDF, 1.5 MB',
+              label: 'Disabled document.pdf',
+              badge: { variant: 'tinted', label: 'Utløpt', color: 'neutral' },
+            },
+          ]}
+        />
+      </>
+    ),
+  },
+};
+
 export const WithActions: Story = {
   args: {
     children: (
