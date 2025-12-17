@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.51.2](https://github.com/Altinn/altinn-components/compare/v0.51.1...v0.51.2) (2025-12-17)
+
+
+### Bug Fixes
+
+* Dialog Details button hover state ([#877](https://github.com/Altinn/altinn-components/issues/877)) ([c1a3192](https://github.com/Altinn/altinn-components/commit/c1a319214d79c7fd347efecb5ea00243cd74972d))
+
 ## [0.51.1](https://github.com/Altinn/altinn-components/compare/v0.51.0...v0.51.1) (2025-12-12)
 
 
