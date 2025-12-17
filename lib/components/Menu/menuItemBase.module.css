@@ -59,7 +59,10 @@
 
 /* default bg */
 
-.item:hover,
+.item[data-interactive="true"]:hover {
+  background-color: var(--ds-color-surface-hover);
+}
+
 .item[data-active="true"] {
   background-color: var(--ds-color-background-tinted);
 }
