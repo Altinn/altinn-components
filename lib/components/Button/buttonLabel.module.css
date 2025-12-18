@@ -3,6 +3,8 @@
   font-weight: 500;
   padding: 0 0.25em;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .label[data-size="xs"] {
