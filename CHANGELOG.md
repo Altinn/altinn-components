@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.51.3](https://github.com/Altinn/altinn-components/compare/v0.51.2...v0.51.3) (2025-12-18)
+
+
+### Bug Fixes
+
+* Buttons expanding outside parent container ([#879](https://github.com/Altinn/altinn-components/issues/879)) ([c08ea8c](https://github.com/Altinn/altinn-components/commit/c08ea8ca23a71ea08068c52be242f596f3aa0db6))
+
 ## [0.51.2](https://github.com/Altinn/altinn-components/compare/v0.51.1...v0.51.2) (2025-12-17)
 
 
