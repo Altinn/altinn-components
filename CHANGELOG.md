@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.51.4](https://github.com/Altinn/altinn-components/compare/v0.51.3...v0.51.4) (2025-12-19)
+
+
+### Bug Fixes
+
+* Stopping content from overflowing parent ([#882](https://github.com/Altinn/altinn-components/issues/882)) ([3fc6ef6](https://github.com/Altinn/altinn-components/commit/3fc6ef65e02d60a8bee365bc27bac6323b940738))
+
 ## [0.51.3](https://github.com/Altinn/altinn-components/compare/v0.51.2...v0.51.3) (2025-12-18)
 
 
