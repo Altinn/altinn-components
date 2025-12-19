@@ -6,7 +6,7 @@ import styles from './heading.module.css';
 import { useHighlightedText } from './useHighlightedText';
 
 export type HeadingSize = 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'inherit';
-export type HeadingWeight = 'normal' | 'medium' | 'bold';
+export type HeadingWeight = 'normal' | 'medium' | 'bold' | 'inherit';
 export type HeadingLeading = 'none' | 'tight' | 'normal';
 
 export type HeadingComponent = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'div' | 'span' | 'label';

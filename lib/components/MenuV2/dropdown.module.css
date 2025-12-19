@@ -1,0 +1,22 @@
+.dropdown {
+  background-color: var(--ds-color-background-default);
+  padding: 0.5rem;
+  box-shadow: var(--ds-shadow-sm);
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  min-width: 16rem;
+  max-width: 24rem;
+  border-radius: 0.375rem;
+}
+
+.dropdown[aria-expanded="false"] {
+  display: none;
+}
+
+.dropdown[aria-expanded="true"] {
+  display: block;
+}
+
+.dropdown[data-size="lg"] {
+  width: 20rem;
+}

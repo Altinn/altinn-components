@@ -1,0 +1,20 @@
+.divider {
+  height: 100%;
+  min-width: 1px;
+  max-width: 1px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  background-color: inherit;
+  border-left: none;
+  border-right: none;
+}
+
+.border {
+  background-color: currentColor;
+  height: 1.75em;
+  min-width: 1px;
+  width: 1px;
+}

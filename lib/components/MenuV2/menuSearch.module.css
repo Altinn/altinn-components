@@ -1,0 +1,9 @@
+.field {
+  position: relative;
+}
+
+@media (max-width: 1023px) {
+  .field {
+    font-size: 1rem;
+  }
+}
