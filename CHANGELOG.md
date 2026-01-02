@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.51.5](https://github.com/Altinn/altinn-components/compare/v0.51.4...v0.51.5) (2026-01-02)
+
+
+### Bug Fixes
+
+* **a77y:** native form element for dialog close ([#885](https://github.com/Altinn/altinn-components/issues/885)) ([15b6579](https://github.com/Altinn/altinn-components/commit/15b6579052cc888a413c26037951a9d4689aa188))
+* **DialogLayout:** support color prop on top-level ([#888](https://github.com/Altinn/altinn-components/issues/888)) ([dadd34f](https://github.com/Altinn/altinn-components/commit/dadd34f8c0324f6e56b52a23d4d96447e5480820))
+* Now disabling ListItem when loading ([#887](https://github.com/Altinn/altinn-components/issues/887)) ([2c3314e](https://github.com/Altinn/altinn-components/commit/2c3314ee9c6055edf01ceaae10138e07870ff04a))
+
 ## [0.51.4](https://github.com/Altinn/altinn-components/compare/v0.51.3...v0.51.4) (2025-12-19)
 
 
