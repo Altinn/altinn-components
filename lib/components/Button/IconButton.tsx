@@ -15,6 +15,7 @@ export interface IconButtonProps {
   onClick?: MouseEventHandler;
   dataTestId?: string;
   onBlurCapture?: React.FocusEventHandler<HTMLButtonElement>;
+  type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
 }
 
 export const IconButton = ({

@@ -9,6 +9,7 @@ export interface ModalHeaderProps {
   description?: string;
   icon?: ModalIconProps['icon'];
   closeTitle?: string;
+  /** Optional: still useful for side effects; dialog close itself is handled by form submit */
   onClose?: () => void;
   children?: ReactNode;
   sticky?: boolean;
@@ -43,14 +44,22 @@ export const ModalHeader = ({
             </Flex>
           </Flex>
         )}
-        {typeof onClose === 'function' && (
-          <IconButton
-            icon={XMarkIcon}
-            variant="outline"
-            onClick={onClose}
-            iconAltText={closeTitle ?? 'Close'}
-            size="sm"
-          />
+
+        {(onClose || closeTitle) && (
+          <form
+            method="dialog"
+            onSubmit={() => {
+              onClose?.();
+            }}
+          >
+            <IconButton
+              type="submit"
+              icon={XMarkIcon}
+              variant="outline"
+              iconAltText={closeTitle ?? 'Close'}
+              size="sm"
+            />
+          </form>
         )}
       </Flex>
     </Section>
