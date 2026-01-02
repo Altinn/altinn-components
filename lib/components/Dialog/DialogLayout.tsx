@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import {
   type BackButtonProps,
+  type Color,
   ContextMenu,
   type ContextMenuProps,
   PageBase,
@@ -19,15 +20,17 @@ export interface DialogLayoutProps {
   pageMenu?: PageMenuProps;
   /** Children */
   children?: ReactNode;
+  /** Color for override **/
+  color?: Color | undefined;
 }
 
 /**
  * Dialog layout with navigation,
  */
 
-export const DialogLayout = ({ backButton, contextMenu, pageMenu, children }: DialogLayoutProps) => {
+export const DialogLayout = ({ backButton, contextMenu, pageMenu, children, color }: DialogLayoutProps) => {
   return (
-    <PageBase theme="subtle" spacing={0} bleed>
+    <PageBase theme="subtle" spacing={0} color={color} bleed>
       <Section theme="default" shadow="xs">
         <PageNav
           color="neutral"
