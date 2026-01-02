@@ -56,3 +56,12 @@ export const WithExtendedStatus: Story = {
     })),
   },
 };
+
+export const Loading: Story = {
+  args: {
+    items: inboxSection.items.slice(0, 5).map((item) => ({
+      ...item,
+      loading: true,
+    })),
+  },
+};

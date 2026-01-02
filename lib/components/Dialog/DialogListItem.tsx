@@ -122,6 +122,7 @@ export const DialogListItem = ({
         selected={selected}
         variant={applicableVariant}
         ariaLabel={title}
+        disabled={loading}
         icon={sender}
         title={title}
         description={summary || description}
@@ -139,6 +140,7 @@ export const DialogListItem = ({
       variant={applicableVariant}
       controls={<div className={styles.controls}>{controls}</div>}
       title={title}
+      disabled={loading}
       label={
         <div
           className={styles.border}
