@@ -1,0 +1,21 @@
+.button {
+  white-space: nowrap;
+}
+
+.button[data-size="xs"] {
+  border-radius: 0.25em;
+}
+
+/* 1. IF SVG is the FIRST element -> Reduce LEFT padding */
+.button:has(> svg:first-child) {
+  padding-left: 0.5em;
+}
+
+/* 2. IF SVG is the LAST element -> Reduce RIGHT padding */
+.button:has(> svg:last-child) {
+  padding-right: 0.5em;
+}
+
+.button[data-rounded="true"] {
+  border-radius: 50%;
+}
