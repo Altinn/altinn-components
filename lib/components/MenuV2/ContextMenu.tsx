@@ -12,7 +12,7 @@ export interface ContextMenuProps extends MenuProps {
 }
 
 export const ContextMenu = ({ groups = {}, items, title = 'Åpne meny', id, placement = 'right' }: ContextMenuProps) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   const ContextMenuButton = () => {
     return (

@@ -1,5 +1,4 @@
 import { type ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react';
-
 import styles from './dropdown.module.css';
 
 export type DropdownPlacement =
