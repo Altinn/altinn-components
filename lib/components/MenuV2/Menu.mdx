@@ -1,0 +1,97 @@
+import { Meta, Controls, Primary, Canvas } from "@storybook/addon-docs/blocks";
+import * as MenuStories from "./Menu.stories";
+
+<Meta title="MenuV2" />
+
+# Using menus
+
+The menu component is the basis of all menus, including the `GlobalMenu`, `Contextmenu`, `TabMenu`, and the menu used in `Sidebar`.
+
+Use `Menu` by providing an array of `items` and an optional `groups` object. Items can be nested.
+
+```tsx
+import { Menu } from "@altinn/altinn-components";
+
+return (
+  <Menu groups={MenuGroups} items={MenuItemProps[]} searchable={Boolean} searchProps={SearchProps}>
+);
+```
+
+## MenuItem
+
+The `MenuItem` represent a single link. It must include at least a `title` and an `id`. Use `icon` to emphasise meaning.
+
+<Canvas of={MenuStories.Default} />
+
+### Creating hiearchy
+
+Use `size` to create hierarchy. The default size is `sm`, use `md` for sections and `lg` for top level items.
+
+Use `groupId` to group menu items into logical parts, separated by a border. Provide a `group` object to `Menu` to set `title` or `size` props per group.
+
+You can set size on an individual menu item, per group or for all items.
+
+<Canvas of={MenuStories.CreatingHiearchy} />
+
+### Nesting items
+
+Items can be nested.
+
+<Canvas of={MenuStories.NestingItems} />
+
+### Menu variants
+
+The default variant is `default`, use `tinted` if the menu is used on a tinted background.
+
+<Canvas of={MenuStories.InboxMenu} />
+
+## Using avatars
+
+The `MenuItem` component can use avatars as icons, as seen in the account menu example below:
+
+<Canvas of={MenuStories.AccountMenu} />
+
+## Searchable menu 
+
+To add a search field to a menu, set `searchable` to true. Use `searchProps` to set a placeholder. 
+
+By default the search will filter the list based on `title` and `description` props. Provide a list of `searchWords` to override. 
+
+<Canvas of={MenuStories.SearchableAccountMenu} />
+
+## Menu as options
+
+The default type for menu items is `menuItem`, which expects a `href` prop or an `onClick` handler.
+
+To create a list of options, set type to `checkbox` or `radio`. Use `name`, `value` and `onChange` to handle interaction.
+
+<Canvas of={MenuStories.StatusFilterOptions} />
+
+Options and menuItems can be mixed.
+
+<Canvas of={MenuStories.TimeFilterOptions} />
+
+## Menu composition
+
+Under the hood, menus are constructed using lists and the `MenuItem` component.
+
+```tsx
+return (
+  <ul>
+      <li>
+        <MenuItem />
+      </li>
+      <li>
+        <MenuItem />
+        <ul>
+          <li>
+            <MenuItem />
+          </li>
+          <li>
+            <MenuItem />
+          </li>
+        </ul>
+      </li>
+  </ul>
+);
+```

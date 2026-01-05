@@ -1,0 +1,160 @@
+/* Variables */
+
+.item {
+  --checkmark-opacity: 0.5;
+  user-select: none;
+}
+
+/* Default variant: white background, tinted icon frame */
+
+.item[data-variant="default"] {
+  --dsc-item-background: var(--ds-color-surface-tinted);
+  --dsc-item-background--hover: var(--ds-color-surface-hover);
+  --dsc-item-background--active: var(--ds-color-surface-active);
+  --dsc-icon-background: var(--ds-color-surface-tinted);
+  --dsc-icon-color: var(--ds-color-base-contrast-tinted);
+}
+
+/* Tinted variant: tinted background, white icon frame  */
+
+.item[data-variant="tinted"] {
+  --dsc-item-background: var(--ds-color-surface-default);
+  --dsc-item-background--hover: var(--ds-color-surface-hover);
+  --dsc-item-background--active: var(--ds-color-surface-default);
+  --dsc-icon-background: var(--ds-color-surface-default);
+}
+
+.item[data-variant="info"] {
+  --dsc-item-background: transparent;
+  --dsc-item-background--hover: transparent;
+  --dsc-item-background--active: transparent;
+}
+
+.item:hover {
+  background-color: var(--dsc-item-background--hover);
+  cursor: pointer;
+  --checkmark-opacity: 1;
+}
+
+.item[aria-selected="true"] {
+  background-color: var(--dsc-item-background--active);
+  --checkmark-opacity: 1;
+}
+
+.item[aria-disabled="true"] {
+  background-color: transparent;
+}
+
+/* size */
+
+.item {
+  --dsc-description-size: 14px;
+  --dsc-description-weight: normal;
+  --dsc-title-weight: normal;
+}
+
+.item[data-size="lg"] {
+  --dsc-media-size: 44px;
+  --dsc-icon-size: 28px;
+  --dsc-title-size: 18px;
+  --dsc-title-weight: 500;
+}
+
+.item[data-size="lg"][data-variant="tinted"] {
+  --dsc-icon-background: var(--ds-color-base-default);
+  --dsc-icon-color: var(--ds-color-base-contrast-default);
+}
+
+.item[data-size="md"] {
+  --dsc-media-size: 32px;
+  --dsc-icon-size: 24px;
+  --dsc-title-size: 16px;
+}
+
+.item[data-size="sm"] {
+  --dsc-media-size: 24px;
+  --dsc-icon-size: 20px;
+  --dsc-title-size: 16px;
+  --dsc-title-weight: normal;
+  --dsc-icon-background: transparent;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  padding: 6px;
+  min-height: 36px;
+}
+
+/* Media */
+
+.media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--dsc-media-size);
+  height: var(--dsc-media-size);
+}
+
+.icon {
+  width: var(--dsc-media-size);
+  height: var(--dsc-media-size);
+  font-size: var(--dsc-icon-size);
+  border-radius: 5%;
+  background-color: var(--dsc-icon-background);
+  color: var(--dsc-icon-color);
+}
+
+.checkmark {
+  width: var(--dsc-media-size);
+  height: var(--dsc-media-size);
+  font-size: var(--dsc-icon-size);
+  border-radius: 5%;
+  background-color: var(--dsc-icon-background);
+  color: var(--dsc-icon-color);
+}
+
+.avatar {
+  font-size: var(--dsc-media-size);
+  width: 100%;
+  height: 100%;
+}
+
+/* Label */
+
+.label {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  margin-right: .75em;
+}
+
+.title {
+  font-size: var(--dsc-title-size);
+  font-weight: var(--dsc-title-weight);
+  line-height: 1.25;
+}
+
+.description {
+  font-size: var(--dsc-description-size);
+  font-weight: var(--dsc-description-weight);
+  line-height: 1.25;
+}
+
+.title mark,
+.description mark {
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.count {
+  font-style: normal;
+  font-size: smaller;
+  vertical-align: baseline;
+  margin: 0 .25em;
+  color: var(--ds-color-text-subtle);
+}
+
+/* States */
