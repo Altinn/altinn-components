@@ -20,7 +20,7 @@
   border-radius: 50%;
 }
 
-/* tinted */
+/* tinted variant */
 .button[data-variant='tinted'] {
   --dsc-button-background: var(--ds-color-surface-tinted);
   --dsc-button-border-color: var(--ds-color-border-strong);
