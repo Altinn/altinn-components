@@ -110,6 +110,10 @@ export const People = () => {
   return <Sizes name="Person" type="person" />;
 };
 
+export const SystemUsers = () => {
+  return <Sizes name="Regnskap AS" type="system" />;
+};
+
 export const Companies = () => {
   return <Sizes name="Company" type="company" />;
 };
