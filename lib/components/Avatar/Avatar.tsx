@@ -1,11 +1,12 @@
 'use client';
+import { RobotSmileIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import { type CSSProperties, type ReactElement, useState } from 'react';
 import { Skeleton } from '../Skeleton';
 import styles from './avatar.module.css';
 import { fromStringToColor } from './color';
 
-export type AvatarType = 'company' | 'person' | 'custom';
+export type AvatarType = 'company' | 'person' | 'system' | 'custom';
 export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export type AvatarShape = 'square' | 'circle';
@@ -111,7 +112,7 @@ export const Avatar = ({
     >
       <Skeleton loading={loading} className={styles.shape} variant="circle">
         <div className={styles.shape} data-variant={applicableVariant}>
-          {usingImageUrl && (
+          {type !== 'system' && usingImageUrl && (
             <img
               src={imageUrl}
               className={styles.image}
@@ -121,8 +122,13 @@ export const Avatar = ({
               }}
             />
           )}
+          {type === 'system' && !usingImageUrl && (
+            <span className={styles.icon}>
+              <RobotSmileIcon className={styles.svg} />
+            </span>
+          )}
         </div>
-        {!usingImageUrl && <span className={styles.label}>{customLabel || initials}</span>}
+        {!usingImageUrl && type !== 'system' && <span className={styles.label}>{customLabel || initials}</span>}
         {isDeleted && (
           <svg
             aria-hidden="true"

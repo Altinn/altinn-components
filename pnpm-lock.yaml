@@ -18,8 +18,8 @@ importers:
         specifier: ^1.0.6
         version: 1.0.6
       '@navikt/aksel-icons':
-        specifier: ^7.30.1
-        version: 7.30.1
+        specifier: ^7.37.0
+        version: 7.37.0
       '@tanstack/react-virtual':
         specifier: ^3.13.9
         version: 3.13.9(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -864,8 +864,8 @@ packages:
   '@microsoft/tsdoc@0.15.1':
     resolution: {integrity: sha512-4aErSrCR/On/e5G2hDP0wjooqDdauzEbIq8hIkIe5pXV0rtWJZvdCEKL0ykZxex+IxIwBp0eGeV48hQN07dXtw==}
 
-  '@navikt/aksel-icons@7.30.1':
-    resolution: {integrity: sha512-y0/3btgxqivn+6Blt33TpM9nQgeNe6qOAeSRUDSOuCwu8MsJUEfhOhm2jz7/ei/QoBAHIH7tjmjlJmGgZNEWHw==}
+  '@navikt/aksel-icons@7.37.0':
+    resolution: {integrity: sha512-4FwjmO0m2z1390DUJBISTeR6VRmzJZsyrpp+UWxNBk3marIq5vM/11BF1dnIUOjxM3/n0D8DqXS/1q8YiJWPbA==}
 
   '@neoconfetti/react@1.0.0':
     resolution: {integrity: sha512-klcSooChXXOzIm+SE5IISIAn3bYzYfPjbX7D7HoqZL84oAfgREeSg5vSIaSFH+DaGzzvImTyWe1OyrJ67vik4A==}
@@ -4103,7 +4103,7 @@ snapshots:
     dependencies:
       '@floating-ui/dom': 1.7.0
       '@floating-ui/react': 0.26.23(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@navikt/aksel-icons': 7.30.1
+      '@navikt/aksel-icons': 7.37.0
       '@radix-ui/react-slot': 1.2.3(@types/react@19.1.5)(react@19.1.0)
       '@tanstack/react-virtual': 3.13.9(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@u-elements/u-datalist': 0.1.5
@@ -4544,7 +4544,7 @@ snapshots:
 
   '@microsoft/tsdoc@0.15.1': {}
 
-  '@navikt/aksel-icons@7.30.1': {}
+  '@navikt/aksel-icons@7.37.0': {}
 
   '@neoconfetti/react@1.0.0': {}
 
