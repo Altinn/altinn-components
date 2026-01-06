@@ -33,7 +33,13 @@ const meta = {
         seenAt: '2025-04-15 11:22',
         seenAtLabel: '15. april kl 11.22',
       },
-
+      {
+        id: '8',
+        type: 'system',
+        name: 'Regnskap AS',
+        seenAt: '2025-04-11 11:22',
+        seenAtLabel: '15. april kl 11.22',
+      },
       {
         id: '2',
         type: 'person',
