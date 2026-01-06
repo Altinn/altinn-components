@@ -1,0 +1,71 @@
+@charset "UTF-8";
+/*
+build: v1.9.0
+design-tokens: v1.9.0
+*/
+
+@layer ds.theme.size-mode {
+    :root
+
+    /* small */
+        {
+        --ds-size-mode-font-size--xs: .875;
+    }
+}
+
+@layer ds.theme.size-mode {
+    :root
+
+    /* small */
+        {
+        --ds-size-mode-font-size--sm: 1;
+    }
+}
+
+@layer ds.theme.size-mode {
+    :root
+
+    /* medium */
+        {
+        --ds-size-mode-font-size--md: 1.125;
+    }
+}
+
+@layer ds.theme.size-mode {
+    :root
+
+    /* large */
+        {
+        --ds-size-mode-font-size--lg: 1.3125;
+    }
+}
+
+@layer ds.theme.size-mode {
+
+    :root,
+    [data-size] {
+        --ds-size: var(--ds-size--md);
+        --ds-size--xs: var(--ds-size, );
+        --ds-size--sm: var(--ds-size, );
+        --ds-size--md: var(--ds-size, );
+        --ds-size--lg: var(--ds-size, );
+        --ds-size-mode-font-size:
+            var(--ds-size--xs, var(--ds-size-mode-font-size--xs)) var(--ds-size--sm, var(--ds-size-mode-font-size--sm)) var(--ds-size--md, var(--ds-size-mode-font-size--md)) var(--ds-size--lg, var(--ds-size-mode-font-size--lg));
+    }
+
+    [data-size='xs'] {
+        --ds-size: var(--ds-size--xs);
+    }
+
+    [data-size='sm'] {
+        --ds-size: var(--ds-size--sm);
+    }
+
+    [data-size='md'] {
+        --ds-size: var(--ds-size--md);
+    }
+
+    [data-size='lg'] {
+        --ds-size: var(--ds-size--lg);
+    }
+}

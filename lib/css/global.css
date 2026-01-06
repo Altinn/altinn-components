@@ -1,9 +1,9 @@
 @import "@digdir/designsystemet-css/index.css";
 @import "@digdir/designsystemet-theme";
 
-@import "./altinn-ds.css";
-@import "./altinn-ds-overrides.css";
-@import "./altinn-theme.css";
+@import "../tokens/design-tokens-build/theme.css";
+@import "../tokens/design-tokens-build/theme-size-overrides.css";
+
 
 @import "./padding.css";
 @import "./spacing.css";
@@ -11,6 +11,7 @@
 
 * {
   font-family: "Inter", sans-serif;
-  font-feature-settings: "cv05" 1; /* Enable lowercase l with tail */
+  font-feature-settings: "cv05" 1;
+  /* Enable lowercase l with tail */
   box-sizing: border-box;
 }
