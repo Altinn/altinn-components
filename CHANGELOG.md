@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.52.1](https://github.com/Altinn/altinn-components/compare/v0.52.0...v0.52.1) (2026-01-06)
+
+
+### Bug Fixes
+
+* change icon for system user in Avatar + add type to SeenByLogItem ([#893](https://github.com/Altinn/altinn-components/issues/893)) ([6521af8](https://github.com/Altinn/altinn-components/commit/6521af869a3963a97d54c7e1a6e2cdb2ae758e90))
+
 ## [0.52.0](https://github.com/Altinn/altinn-components/compare/v0.51.5...v0.52.0) (2026-01-06)
 
 
