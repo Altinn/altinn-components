@@ -12,7 +12,7 @@ We already have the amazing [Norwegian public sector's Design System](https://de
 
 ## Strategy for Adopting Designsystemet
 
-As of April 10th, 2024, we’ve decided to start importing components from the [Norwegian public sector’s Design System](https://designsystemet.no/) as needed. These components will be exported from our own library using the `DS<Component>` prefix.
+As of April 10th, 2025, we’ve decided to start importing components from the [Norwegian public sector’s Design System](https://designsystemet.no/) as needed. These components will be exported from our own library using the `DS<Component>` prefix.
 Consumers of `altinn-components` will be able to use these components directly, without needing `@digdir/designsystemet` as a dependency.
 
 This approach allows us to:
@@ -25,6 +25,37 @@ This approach allows us to:
 
 This strategy is a natural progression from our previous approach, where we did not use components from `@digdir/designsystemet` directly but relied on its token structure and explored opportunities for deeper integration.
 That approach helped us move faster and build understanding — and now we're ready to take the next step.
+
+## Design tokens and CSS build process
+
+This package builds on the Norwegian public sector’s Design System by combining
+upstream design tokens with Altinn-specific extensions and overrides.
+
+To support this, we maintain a small internal build script that:
+
+- Imports and syncs tokens from `@digdir/designsystemet`
+- Applies Altinn brand specifics and overrides (from `./lib/css/tokens/altinn-design-tokens`)
+- Builds the final CSS and tokens used by this library
+
+### How to use
+
+1. Go to https://theme.designsystemet.no/no/
+2. Select "Continue from config file".
+3. Paste the config from `./lib/css/tokens/designsystemet.config.json` and load theme.
+4. Do your magic
+5. Settings (cog) and "Ta i bruk tema", and replace updated content with `./lib/css/tokens/designsystemet.config.json`
+6. Run `pnpm build-tokens` - This will generate updated tokens and css in the `design-tokens-build` directory.
+
+CSS is already loaded through `./lib/css/global.css`. You are good to go!
+
+### Directory structure
+
+```txt
+lib/css/tokens/
+  base/         # Tokens originating from @digdir/designsystemet
+  extensions/   # Altinn-specific additions and overrides
+  build/        # Generated output (CSS + tokens)
+
 
 ## Feedback and questions
 
@@ -48,7 +79,7 @@ Tested with Node.js 20.x <
 
 ## Requirements
 
-`React` `>=18`in your project as a peer dependency. And `react-dom` if needed.
+`React` `>=18`in your project as a peer dependency. And `react-dom` if needed. We do strongly recommend using `React` `>=19`.
 
 ## Usage
 

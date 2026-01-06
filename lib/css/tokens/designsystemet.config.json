@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/@digdir/designsystemet/dist/config.schema.json",
-  "outDir": "./design-tokens",
+  "outDir": "./design-tokens-build",
   "themes": {
     "theme": {
       "colors": {
@@ -8,9 +8,7 @@
           "company": "#111d46",
           "person": "#084826"
         },
-        "support": {
-          "article": "#0062ba"
-        },
+        "support": {},
         "neutral": "#24272B"
       },
       "overrides": {

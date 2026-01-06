@@ -1,12 +1,10 @@
 {
   "tokenSetOrder": [
     "primitives/globals",
-    "primitives/modes/size/xsmall",
     "primitives/modes/size/small",
     "primitives/modes/size/medium",
     "primitives/modes/size/large",
     "primitives/modes/size/global",
-    "primitives/modes/typography/size/xsmall",
     "primitives/modes/typography/size/small",
     "primitives/modes/typography/size/medium",
     "primitives/modes/typography/size/large",
@@ -18,7 +16,6 @@
     "semantic/color",
     "semantic/modes/main-color/company",
     "semantic/modes/main-color/person",
-    "semantic/modes/support-color/article",
     "semantic/style"
   ]
 }
