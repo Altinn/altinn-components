@@ -8,7 +8,7 @@ import {
   XMarkIcon,
 } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Button, type ButtonSize, type ButtonVariant, ComboButton, IconButton, MetaItem } from '../';
+import { Button, type ButtonSize, type ButtonVariant, ComboButton, IconButton } from './';
 
 const meta = {
   title: 'Components/Button',
@@ -189,7 +189,7 @@ export const Specimens = (args: Story) => {
               width: '100%',
             }}
           >
-            <MetaItem>{variant}</MetaItem>
+            <span>{variant}</span>
             {sizes.map((size) => {
               return (
                 <div
@@ -222,7 +222,7 @@ export const Specimens = (args: Story) => {
                   >
                     ComboButton
                   </ComboButton>
-                  <MetaItem>{size}</MetaItem>
+                  <span>{size}</span>
                 </div>
               );
             })}

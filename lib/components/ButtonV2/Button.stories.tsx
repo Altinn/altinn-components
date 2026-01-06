@@ -1,10 +1,11 @@
 import { ArrowLeftIcon, ArrowRightIcon, XMarkIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { ButtonGroup, ButtonGroupDivider } from './';
+import { ButtonGroup } from './ButtonGroup';
+import { ButtonGroupDivider } from './ButtonGroupDivider';
 import { Button, type ButtonSize, type ButtonVariant } from './Button';
 
 const meta = {
-  title: 'MenuV2/Button',
+  title: 'Next/Button',
   component: Button,
   parameters: {},
   args: {

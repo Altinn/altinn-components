@@ -6,14 +6,18 @@
   white-space: nowrap;
 }
 
-.buttonGroup > *:first-child {
+.buttonGroup>*:first-child {
   border-right: none;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-.buttonGroup > *:last-child {
+.buttonGroup>*:last-child {
   border-left: none;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+}
+
+.buttonGroup[aria-disabled="true"] {
+  pointer-events: none;
 }

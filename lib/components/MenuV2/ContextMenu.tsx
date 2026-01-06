@@ -1,6 +1,6 @@
 import { MenuElipsisHorizontalIcon } from '@navikt/aksel-icons';
 import { useState } from 'react';
-import { Button } from './Button';
+import { Button } from '../ButtonV2/Button';
 import { Dropdown, type DropdownProps } from './Dropdown';
 import { Menu, type MenuProps } from './Menu';
 import { Tooltip } from './Tooltip';

@@ -5,11 +5,12 @@ export interface ButtonGroupProps extends ButtonProps {
   children?: React.ReactNode;
   variant?: ButtonProps['variant'];
   size?: ButtonProps['size'];
+  disabled?: boolean;
 }
 
-export const ButtonGroup = ({ children, variant, size }: ButtonGroupProps) => {
+export const ButtonGroup = ({ children, variant, size, disabled }: ButtonGroupProps) => {
   return (
-    <Button as="div" className={styles.buttonGroup} size={size} variant={variant}>
+    <Button as="div" className={styles.buttonGroup} size={size} variant={variant} aria-disabled={disabled}>
       {children}
     </Button>
   );
