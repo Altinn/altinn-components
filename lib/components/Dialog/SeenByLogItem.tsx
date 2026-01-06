@@ -8,6 +8,7 @@ export interface SeenByLogItemProps extends AvatarProps {
   endUserLabel?: string;
   badge?: BadgeProps;
   size?: 'sm' | 'md';
+  type?: AvatarProps['type'];
 }
 
 /**
@@ -21,12 +22,13 @@ export const SeenByLogItem = ({
   isEndUser,
   endUserLabel,
   size = 'sm',
+  type = 'person',
 }: SeenByLogItemProps) => {
   const badge = isEndUser && { label: endUserLabel };
 
   return (
     <Flex align="center" spacing={2} as={'li'}>
-      <Byline size={size} datetime={seenAt} avatar={{ name, type: 'person' }}>
+      <Byline size={size} datetime={seenAt} avatar={{ name, type }}>
         <strong>{name + ','}</strong> {seenAtLabel}
       </Byline>
       {badge && <Badge variant="subtle" {...badge} />}
