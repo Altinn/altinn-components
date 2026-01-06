@@ -4,10 +4,10 @@
 @import "../tokens/design-tokens-build/theme.css";
 @import "../tokens/design-tokens-build/theme-size-overrides.css";
 
-
-@import "./padding.css";
-@import "./spacing.css";
-@import "./shadow.css";
+@import "./data-theme.css";
+@import "./data-padding.css";
+@import "./data-spacing.css";
+@import "./data-shadow.css";
 
 * {
   font-family: "Inter", sans-serif;
