@@ -13,7 +13,7 @@ const meta = {
 } satisfies Meta<typeof Button>;
 
 const sizes = ['xs', 'sm', 'md', 'lg'] as ButtonSize[];
-const variants = ['primary', 'secondary', 'tertiary', 'outline', 'solid'] as ButtonVariant[];
+const variants = ['solid', 'tinted', 'outline', 'ghost'] as ButtonVariant[];
 
 export default meta;
 type Story = StoryObj<typeof meta>;

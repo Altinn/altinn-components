@@ -9,7 +9,7 @@ export interface ButtonGroupProps extends ButtonProps {
 
 export const ButtonGroup = ({ children, variant, size }: ButtonGroupProps) => {
   return (
-    <Button as="div" className={styles.buttonGroup} data-size={size} data-variant={variant}>
+    <Button as="div" className={styles.buttonGroup} size={size} variant={variant}>
       {children}
     </Button>
   );

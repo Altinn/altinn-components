@@ -9,7 +9,7 @@ export interface ButtonGroupDividerProps extends ButtonProps {
 
 export const ButtonGroupDivider = ({ variant, size }: ButtonGroupDividerProps) => {
   return (
-    <Button as="span" aria-hidden="true" className={styles.divider} data-size={size} data-variant={variant}>
+    <Button as="span" aria-hidden="true" className={styles.divider} size={size} variant={variant}>
       <span className={styles.border} />
     </Button>
   );

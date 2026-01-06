@@ -19,3 +19,13 @@
 .button[data-rounded="true"] {
   border-radius: 50%;
 }
+
+/* tinted */
+.button[data-variant='tinted'] {
+  --dsc-button-background: var(--ds-color-surface-tinted);
+  --dsc-button-border-color: var(--ds-color-border-strong);
+  --dsc-button-background--active: var(--ds-color-surface-active);
+  --dsc-button-background--hover: var(--ds-color-surface-hover);
+  --dsc-button-color: var(--ds-color-text-default);
+  --dsc-button-color--hover: var(--ds-color-text-default);
+}
