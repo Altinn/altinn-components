@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.52.0](https://github.com/Altinn/altinn-components/compare/v0.51.5...v0.52.0) (2026-01-06)
+
+
+### Features
+
+* **avatar:** add type 'system' to Avatar in order to represent system users ([#890](https://github.com/Altinn/altinn-components/issues/890)) ([57a6bb8](https://github.com/Altinn/altinn-components/commit/57a6bb8087fec90b867e9f53d0b4f2ff0d79798b))
+
 ## [0.51.5](https://github.com/Altinn/altinn-components/compare/v0.51.4...v0.51.5) (2026-01-02)
 
 
