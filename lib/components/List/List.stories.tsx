@@ -69,7 +69,7 @@ const people: DemoPerson[] = [
     name: 'Vidar Bahus',
     role: 'Styremedlem',
     badge: {
-      color: 'accent',
+      color: 'company',
       theme: 'base',
       label: 'Deg selv',
     },

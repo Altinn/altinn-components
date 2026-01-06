@@ -196,7 +196,7 @@ export const OptionsDialog = () => {
           {formData?.smsAlerts && <TextField name="sms" placeholder="Mobiltelefon" />}
         </Fieldset>
 
-        <ButtonGroup spacing={2}>
+        <ButtonGroup>
           <Button>Lagre og gå videre</Button>
           <Button variant="outline">Hopp over</Button>
         </ButtonGroup>

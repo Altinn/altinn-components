@@ -1,14 +1,19 @@
-.field {
+.container {
   position: relative;
 }
 
 .icon {
   position: absolute;
-  top: 1px;
-  left: 1px;
-  font-size: 1.25em;
+  top: 0;
+  left: 0;
+  width: 2.5em;
+  height: 100%;
   color: var(--ds-color-text-subtle);
-  margin: 0.5em;
+}
+
+.icon > svg {
+  width: 1.25em;
+  height: 1.25em;
 }
 
 .input {
@@ -22,21 +27,24 @@
 }
 
 .clear {
-  font-size: inherit;
   position: absolute;
   top: 0;
   right: 0;
-  margin: 0.375em;
-  border: 0;
-  border-radius: 100%;
-
-  font-size: 0.75em;
-
-  background-color: var(--ds-color-surface-tinted);
-  color: var(--ds-color-base-default);
+  width: 2.5em;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.clear:focus-visible {
+.clearButton {
+  font-size: .75em;
+  min-width: 2.5em;
+  min-height: 2.5em;
+  border: none;
+}
+
+.clearButton:focus-visible {
   outline-offset: 0;
   outline-width: 2px;
 }

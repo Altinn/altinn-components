@@ -5,7 +5,7 @@ import { Icon, IconButton, type SvgElement } from '..';
 import styles from './snackbarItem.module.css';
 
 export enum SnackbarColorEnum {
-  accent = 'accent',
+  company = 'company',
   success = 'success',
   warning = 'warning',
   danger = 'danger',
