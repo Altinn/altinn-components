@@ -34,7 +34,7 @@ export const AccountMenuButton = ({
         as={'button'}
         type="button"
         variant={'text'}
-        color={'accent'}
+        color={'company'}
         className={cx(styles.button, styles.loading, className)}
         disabled
         aria-label="loading"
@@ -56,7 +56,7 @@ export const AccountMenuButton = ({
         as={'button'}
         type="button"
         variant={'text'}
-        color={'accent'}
+        color={'company'}
         className={cx(styles.button, className)}
         aria-label={expanded ? texts.close : currentAccount.name}
       >
@@ -95,7 +95,7 @@ export const AccountMenuButton = ({
       as={'button'}
       type="button"
       variant={'text'}
-      color={'accent'}
+      color={'company'}
       aria-label={texts.login}
       className={cx(styles.button, className)}
     >

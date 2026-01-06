@@ -39,7 +39,7 @@ export interface LayoutProps {
 }
 
 export const Layout = ({
-  color,
+  color = 'company',
   theme = 'subtle',
   header,
   footer,

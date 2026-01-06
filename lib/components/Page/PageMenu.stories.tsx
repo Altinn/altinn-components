@@ -40,7 +40,7 @@ export const Default: Story = {};
 
 export const BulkActionbar: Story = {
   args: {
-    color: 'accent',
+    color: 'company',
     theme: 'base',
   },
 };

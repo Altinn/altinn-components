@@ -36,13 +36,13 @@ export const Default = () => {
           onClick={() =>
             openSnackbar({
               message: 'This is a longer message',
-              color: 'accent',
+              color: 'company',
               duration: 1000,
               dismissable: true,
             })
           }
         >
-          Accent
+          Company
         </Button>
         <Button
           onClick={() =>

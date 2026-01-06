@@ -20,7 +20,7 @@ export interface GlobalMenuButtonProps_old extends ButtonProps {
 export const GlobalMenuButton_old = ({
   className,
   as = 'button',
-  color = 'accent',
+  color = 'company',
   variant = 'solid',
   currentAccount,
   expanded,

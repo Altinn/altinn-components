@@ -25,7 +25,7 @@
 }
 
 .closeIcon {
-  background-color: var(--ds-color-accent-base-default);
+  background-color: var(--ds-color-company-base-default);
   border-radius: 50%;
   color: white;
 }

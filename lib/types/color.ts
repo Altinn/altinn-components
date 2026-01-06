@@ -1,10 +1,8 @@
 export type Color =
   | 'inherit'
-  | 'accent'
   | 'company'
   | 'person'
   | 'neutral'
-  | 'article'
   | 'success'
   | 'warning'
   | 'error'
