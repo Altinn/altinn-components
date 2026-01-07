@@ -1,8 +1,10 @@
+import type { AvatarType } from '../../components';
+
 interface FormatDisplayNameInput {
   /** Full name of person or company */
   fullName: string;
-  /** Entity type: Whether this is a person or a company */
-  type: 'person' | 'company';
+  /** Entity type: Whether this is a person, system user or a company */
+  type: AvatarType;
   /** For persons: switch order of first/last name */
   reverseNameOrder?: boolean;
 }
