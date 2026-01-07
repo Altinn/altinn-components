@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.52.2](https://github.com/Altinn/altinn-components/compare/v0.52.1...v0.52.2) (2026-01-07)
+
+
+### Bug Fixes
+
+* **formatDisplayName:** consoldate input prop type to match Avatar ([#896](https://github.com/Altinn/altinn-components/issues/896)) ([aa005c4](https://github.com/Altinn/altinn-components/commit/aa005c43abe91e9247ec1c0c062ac9b1ed509e11))
+
 ## [0.52.1](https://github.com/Altinn/altinn-components/compare/v0.52.0...v0.52.1) (2026-01-06)
 
 
