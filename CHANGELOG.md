@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.52.3](https://github.com/Altinn/altinn-components/compare/v0.52.2...v0.52.3) (2026-01-07)
+
+
+### Features
+
+* **UserListItem:** Use new system avatar for system user ([#895](https://github.com/Altinn/altinn-components/issues/895)) ([289a5b9](https://github.com/Altinn/altinn-components/commit/289a5b9d01cf4e27d905d8dfe5081b7be35a43c5))
+
 ## [0.52.2](https://github.com/Altinn/altinn-components/compare/v0.52.1...v0.52.2) (2026-01-07)
 
 
