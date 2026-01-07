@@ -14,10 +14,5 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - name: Install Playwright
         run: pnpm exec playwright install
-      - name: Build Storybook
-        run: pnpm build-storybook -- --quiet
       - name: Serve Storybook and run tests
-        run: |
-          pnpm dlx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
-            "pnpm dlx http-server storybook-static --port 6006 --silent" \
-            "pnpm dlx wait-on tcp:6006 && pnpm test-storybook"
+        run: pnpm ci:test-storybook
