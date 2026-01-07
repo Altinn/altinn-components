@@ -339,6 +339,17 @@ export const WithControls = (args: UserListItemProps) => {
         onClick={() => alert(`You clicked the link - yay!`)}
         as={'button'}
       />
+      <UserListItem
+        {...args}
+        name="Hal 9000"
+        type="system"
+        description="fra Odyssey Inc."
+        roleNames={['System']}
+        controls={menu('4')}
+        linkIcon={true}
+        onClick={() => alert(`I'm afraid I can't let you do that, Dave.`)}
+        as={'button'}
+      />
     </List>
   );
 };
