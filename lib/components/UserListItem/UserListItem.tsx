@@ -52,7 +52,6 @@ export const UserListItem = ({
   loading = false,
   ...props
 }: UserListItemProps) => {
-
   const icon = { name: name, type: type, isParent: type === 'company' && !subUnit };
 
   const badges =
