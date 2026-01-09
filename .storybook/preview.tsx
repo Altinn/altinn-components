@@ -1,94 +1,78 @@
+import type { Preview, Decorator } from "@storybook/react-vite";
+import * as storybookAddonTagBadges from "storybook-addon-tag-badges/preview";
+import addonDocs from "@storybook/addon-docs";
+import addonA11y from "@storybook/addon-a11y";
 import { withThemeByDataAttribute } from "@storybook/addon-themes";
-import { Preview, StoryFn } from "@storybook/react-vite";
+import type { A11yParameters } from "@storybook/addon-a11y";
+import type { Rule } from "axe-core";
+import { getRules } from "axe-core";
+
 import { StoryDecorator } from "./StoryDecorator";
 
 import "../lib/css/global.css";
 import "./preview.css";
 
-import { A11yParameters } from "@storybook/addon-a11y";
-import { Rule, getRules } from "axe-core";
+const enabledTags = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa", "best-practice"] as const;
 
-/** @type { import('@storybook/react-vite').Preview } */
-
-const enabledTags = [
-  "wcag2a",
-  "wcag2aa",
-  "wcag21a",
-  "wcag21aa",
-  "wcag22aa",
-  "best-practice",
-];
-
-const enabledRules: Rule[] = getRules(enabledTags).map((ruleMetadata) => ({
+const enabledRules: Rule[] = getRules([...enabledTags]).map((ruleMetadata) => ({
   id: ruleMetadata.ruleId,
   enabled: true,
 }));
 
-const a11y: A11yParameters = {
+export const parameters = {
+  docs: { source: { type: "code" } },
   a11y: {
     context: "#story-in-story-decorator-root",
-    config: {
-      rules: enabledRules,
+    config: { rules: enabledRules },
+    test: "todo",
+  } satisfies A11yParameters,
+  controls: {
+    matchers: {
+      color: /(background|color)$/i,
+      date: /Date$/i,
     },
   },
-};
-
-const preview: Preview = {
-  parameters: {
-    docs: {
-      source: {
-        type: "code",
-      },
-    },
-    a11y,
-    controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/i,
-      },
-    },
-    options: {
-      storySort: {
-        order: [
-          "Docs",
-          "Layout",
-          "Account",
-          "Search",
-          "Menu",
-          "List",
-          "Timeline",
+  options: {
+    storySort: {
+      order: [
+        "Docs",
+        "Layout",
+        "Account",
+        "Search",
+        "Menu",
+        "List",
+        "Timeline",
+        "Dialog",
+        [
           "Dialog",
-          [
-            "Dialog",
-            "DialogHeader",
-            "DialogBody",
-            "DialogHistory",
-            "DialogMetadata",
-            "DialogList",
-            "DialogListItem",
-          ],
+          "DialogHeader",
+          "DialogBody",
+          "DialogHistory",
+          "DialogMetadata",
+          "DialogList",
+          "DialogListItem",
         ],
-      },
+      ],
     },
   },
-  decorators: [
-    (Story: StoryFn, data) => {
-      const { tags, globals } = data;
-      return (
+} satisfies Preview["parameters"];
+
+export const decorators: Decorator[] = [
+  (Story, context) => {
+    const { tags, globals } = context;
+    return (
         <StoryDecorator tags={tags} theme={globals?.theme}>
           <Story />
         </StoryDecorator>
-      );
-    },
-    withThemeByDataAttribute({
-      themes: {
-        neutral: "neutral",
-        company: "company",
-        person: "person",
-      },
-      defaultTheme: "company",
-    }),
-  ],
-};
+    );
+  },
+  withThemeByDataAttribute({
+    themes: { neutral: "neutral", company: "company", person: "person" },
+    defaultTheme: "company",
+  }),
+];
 
+export const addons = [addonA11y(), addonDocs(), storybookAddonTagBadges];
+
+const preview: Preview = { parameters, decorators, addons };
 export default preview;

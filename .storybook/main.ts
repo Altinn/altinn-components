@@ -1,4 +1,5 @@
-import { StorybookConfig } from "@storybook/react-vite";
+import type { StorybookConfig } from "@storybook/react-vite";
+
 const config: StorybookConfig = {
   stories: [
     "../lib/components/**/*.@(mdx)",
@@ -6,21 +7,22 @@ const config: StorybookConfig = {
     "../lib/stories/**/*.stories.@(ts|tsx)",
     "../lib/stories/**/*.@(mdx)",
   ],
+
   addons: [
-    "@storybook/addon-links",
     "@storybook/addon-themes",
-    "@chromatic-com/storybook",
     "@storybook/addon-a11y",
-    "storybook-addon-tag-badges",
     "@storybook/addon-docs",
+    "@storybook/addon-vitest",
+    "@chromatic-com/storybook",
+    "storybook-addon-tag-badges",
   ],
+
   framework: {
     name: "@storybook/react-vite",
     options: {},
   },
-  typescript: {
-    reactDocgen: false,
-  },
-  docs: {},
+
+  typescript: { reactDocgen: false },
 };
+
 export default config;
