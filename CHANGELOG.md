@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.52.4](https://github.com/Altinn/altinn-components/compare/v0.52.3...v0.52.4) (2026-01-12)
+
+
+### Bug Fixes
+
+* update designsystemet, tokens and css ([#892](https://github.com/Altinn/altinn-components/issues/892)) ([d49d546](https://github.com/Altinn/altinn-components/commit/d49d546456c23ab028f87fb4ab5fb968727826e6))
+
+
+### Miscellaneous Chores
+
+* **main:** release 0.52.3 ([#898](https://github.com/Altinn/altinn-components/issues/898)) ([#886](https://github.com/Altinn/altinn-components/issues/886)) ([2ce2721](https://github.com/Altinn/altinn-components/commit/2ce2721bc4668868772075a4c294bcdf4550c522))
+
 ## [0.52.3](https://github.com/Altinn/altinn-components/compare/v0.52.2...v0.52.3) (2026-01-07)
 
 
