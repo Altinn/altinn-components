@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.52.5](https://github.com/Altinn/altinn-components/compare/v0.52.4...v0.52.5) (2026-01-12)
+
+
+### Bug Fixes
+
+* **searchfield:** icon alignement for firefox and safari ([#905](https://github.com/Altinn/altinn-components/issues/905)) ([f7e2a30](https://github.com/Altinn/altinn-components/commit/f7e2a30f01fc4d4a6ea99852429c0a161a9af9c4))
+
 ## [0.52.4](https://github.com/Altinn/altinn-components/compare/v0.52.3...v0.52.4) (2026-01-12)
 
 
