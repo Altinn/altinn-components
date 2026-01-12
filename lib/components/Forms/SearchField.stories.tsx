@@ -22,6 +22,16 @@ export const Default: Story = {
   },
 };
 
+export const ClearButton: Story = {
+  args: {
+    placeholder: 'Søk',
+    value: 'Test',
+    onClear: () => {
+      console.log('Clear');
+    },
+  },
+};
+
 export const Controlled = (args: SearchFieldProps) => {
   const [q, setQ] = useState('');
 

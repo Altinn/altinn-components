@@ -30,8 +30,8 @@ export default () => {
             dest: path.resolve(__dirname, 'dist/'),
           },
           {
-            src: 'lib/tokens/**/*',
-            dest: path.resolve(__dirname, 'dist/tokens/'),
+            src: 'lib/css/tokens/design-tokens-build/theme.css',
+            dest: path.resolve(__dirname, 'dist/tokens/design-tokens-build/'),
           },
         ],
       }),

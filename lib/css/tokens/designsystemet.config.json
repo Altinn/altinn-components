@@ -1,0 +1,51 @@
+{
+  "$schema": "node_modules/@digdir/designsystemet/dist/config.schema.json",
+  "outDir": "./design-tokens",
+  "themes": {
+    "theme": {
+      "colors": {
+        "main": {
+          "company": "#111d46",
+          "person": "#084826"
+        },
+        "support": {
+          "article": "#0062ba"
+        },
+        "neutral": "#24272B"
+      },
+      "overrides": {
+        "colors": {
+          "company": {
+            "background-tinted": {
+              "light": "#e9f5ff"
+            },
+            "surface-tinted": {
+              "light": "#d3eafd"
+            },
+            "surface-hover": {
+              "light": "#a5d6fb"
+            },
+            "surface-active": {
+              "light": "#78c1f9"
+            }
+          },
+          "person": {
+            "background-tinted": {
+              "light": "#eaf7ef"
+            },
+            "surface-tinted": {
+              "light": "#a8f3d0"
+            },
+            "surface-hover": {
+              "light": "#6ee7b7"
+            },
+            "surface-active": {
+              "light": "#34d399"
+            }
+          }
+        }
+      },
+      "borderRadius": 4
+    }
+  }
+}

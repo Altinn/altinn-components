@@ -15,15 +15,15 @@
 
 .searchButton {
   background-color: #e0e2e4;
-  color: var(--ds-color-accent-text-default);
+  color: var(--ds-color-company-text-default);
 }
 
 .searchButton:hover {
-  background-color: var(--ds-color-accent-surface-hover);
+  background-color: var(--ds-color-company-surface-hover);
 }
 
 .searchButton:active {
-  background-color: var(--ds-color-accent-surface-active);
+  background-color: var(--ds-color-company-surface-active);
 }
 
 @media (max-width: 1023px) {
