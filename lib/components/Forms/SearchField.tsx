@@ -24,7 +24,7 @@ export const SearchField = ({
 }: SearchFieldProps) => {
   return (
     <FieldBase size={size} color={color} label={label} className={cx(styles.field, className)}>
-      <span className={styles.container}>
+      <div className={styles.container}>
         <Input {...rest} type="search" value={value} className={styles.input} />
         <Icon svgElement={MagnifyingGlassIcon} className={styles.icon} />
         {onClear && !!value && (
@@ -40,7 +40,7 @@ export const SearchField = ({
             />
           </span>
         )}
-      </span>
+      </div>
     </FieldBase>
   );
 };
