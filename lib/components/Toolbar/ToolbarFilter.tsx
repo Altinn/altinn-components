@@ -72,7 +72,7 @@ export const ToolbarFilter = ({
   const active = Array.isArray(value) ? value.length > 0 : typeof value !== 'undefined';
 
   return (
-    <ToolbarFilterBase expanded={expanded} onBlurCapture={onBlurCapture} dataTestId={'filter-base-' + id}>
+    <ToolbarFilterBase expanded={expanded} onBlurCapture={onBlurCapture} data-testid={'filter-base-' + id}>
       <ToolbarButton
         type="select"
         removable={removable}
@@ -81,7 +81,7 @@ export const ToolbarFilter = ({
         ariaLabel={buttonAltText}
         iconAltText={buttonAltText}
         onRemove={onRemove}
-        dataTestId={id}
+        data-testid={id}
         tabIndex={expanded ? -1 : 0}
       >
         {valueLabel || label}

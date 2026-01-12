@@ -1,7 +1,7 @@
 import { ChevronUpDownIcon, PlusIcon, XMarkIcon } from '@navikt/aksel-icons';
 import type { AriaAttributes } from 'react';
 import type { ElementType, MouseEventHandler, ReactNode } from 'react';
-import { Button, ComboButton } from '../Button';
+import { Button, ButtonGroup, ButtonGroupDivider } from '../Button';
 import styles from './toolbarButton.module.css';
 
 export type ToolbarButtonType = 'add' | 'select' | 'switch';
@@ -12,18 +12,16 @@ export type ToolbarButtonProps = {
   ariaLabel?: string;
   iconAltText?: string;
   removable?: boolean;
-  selected?: boolean;
   active?: boolean;
   children?: ReactNode;
   onToggle?: MouseEventHandler;
   onRemove?: MouseEventHandler;
-  dataTestId?: string;
+  'data-testid'?: string;
   tabIndex?: number;
 } & AriaAttributes;
 
 export const ToolbarButton = ({
   type = 'select',
-  selected = false,
   removable = false,
   ariaLabel,
   active,
@@ -31,62 +29,62 @@ export const ToolbarButton = ({
   onToggle,
   onRemove,
   iconAltText,
-  dataTestId,
+  'data-testid': dataTestId,
   tabIndex,
   'aria-expanded': ariaExpanded,
 }: ToolbarButtonProps) => {
   if (removable) {
+    const variant = active ? 'tinted' : 'outline';
+
     return (
-      <ComboButton
+      <ButtonGroup
+        connected
         className={styles.removeButton}
-        variant={active ? 'solid' : 'outline'}
+        variant={variant}
         size="xs"
-        icon={XMarkIcon}
-        selected={selected}
-        onLabelClick={onToggle}
-        onIconClick={onRemove}
-        iconAltText={iconAltText}
-        ariaLabel={typeof children !== 'string' ? ariaLabel : undefined}
         aria-expanded={ariaExpanded}
-        dataTestId={dataTestId}
+        data-testid={dataTestId}
         tabIndex={tabIndex}
       >
-        {children}
-      </ComboButton>
+        <Button variant={variant} onClick={onToggle}>
+          {children}
+        </Button>
+        <ButtonGroupDivider variant={variant} />
+        <Button variant={variant} aria-label={iconAltText || 'remove'} onClick={onRemove}>
+          <XMarkIcon />
+        </Button>
+      </ButtonGroup>
     );
   }
 
   if (type === 'add') {
     return (
       <Button
-        variant="dotted"
+        variant="outline"
         size="xs"
-        icon={PlusIcon}
-        selected={selected}
         onClick={onToggle}
-        ariaLabel={ariaLabel || 'add'}
+        aria-label={ariaLabel || 'add'}
         aria-expanded={ariaExpanded}
-        dataTestId={dataTestId}
+        data-testid={dataTestId}
         tabIndex={tabIndex}
       >
-        {children}
+        <PlusIcon />
+        <span>{children}</span>
       </Button>
     );
   }
 
   return (
     <Button
-      dataTestId={dataTestId}
+      data-testid={dataTestId}
       variant={active ? 'solid' : 'outline'}
       size="xs"
-      icon={ChevronUpDownIcon}
-      ariaLabel={ariaLabel}
-      selected={selected}
+      aria-label={ariaLabel}
       onClick={onToggle}
       aria-expanded={ariaExpanded}
-      reverse
     >
-      {children}
+      <span>{children}</span>
+      <ChevronUpDownIcon />
     </Button>
   );
 };

@@ -2,7 +2,7 @@
 import { MenuElipsisHorizontalIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import { useMemo, useRef } from 'react';
-import { DropdownBase, type DropdownPlacement, IconButton, type MenuItemProps } from '../';
+import { Button, DropdownBase, type DropdownPlacement, type MenuItemProps } from '../';
 import { type MenuItemGroups, MenuItems } from '../';
 import { useClickOutside } from '../../hooks';
 import { useEnterKey } from '../../hooks/useEnterKey.ts';
@@ -76,15 +76,16 @@ export const ContextMenu = ({
 
   return (
     <div className={cx(styles.toggle, className)} ref={ref} data-testid={dataTestId}>
-      <IconButton
+      <Button
         size="xs"
         rounded
-        icon={MenuElipsisHorizontalIcon}
-        variant="text"
+        variant="ghost"
         onClick={onToggle}
-        iconAltText={ariaLabel || `Open ${id}`}
+        aria-label={ariaLabel || `Open ${id}`}
         onBlurCapture={onBlurCapture}
-      />
+      >
+        <MenuElipsisHorizontalIcon style={{ fontSize: '1.5em' }} />
+      </Button>
       {expanded && (
         <DropdownBase placement={placement} open={expanded}>
           <MenuItems groups={groups} items={itemsWithToggle} keyboardEvents />

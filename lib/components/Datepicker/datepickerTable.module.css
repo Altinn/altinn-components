@@ -31,6 +31,7 @@
   background-color: transparent;
   border: 1px solid var(--ds-color-border-default);
 }
+
 .button[aria-selected="true"]:hover,
 .button:hover {
   background-color: var(--ds-color-surface-hover);

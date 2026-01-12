@@ -108,7 +108,7 @@ export const AccountSelector = ({ accountMenu, forceOpenFullScreen, className, l
               <CaretDownCircleIcon className={styles.btnIcon} aria-hidden="true" />
             )
           }
-          variant="text"
+          variant="ghost"
           onClick={toggleExpansion}
         >
           {isFullScreen ? minimize : fullscreen}

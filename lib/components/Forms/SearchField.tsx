@@ -1,5 +1,5 @@
 import { MagnifyingGlassIcon, XMarkIcon } from '@navikt/aksel-icons';
-import { FieldBase, type FieldBaseProps, Icon, IconButton, Input, type InputProps } from '..';
+import { Button, FieldBase, type FieldBaseProps, Icon, Input, type InputProps } from '..';
 
 import cx from 'classnames';
 import styles from './searchField.module.css';
@@ -29,15 +29,15 @@ export const SearchField = ({
         <Icon svgElement={MagnifyingGlassIcon} className={styles.icon} />
         {onClear && !!value && (
           <span className={styles.clear}>
-            <IconButton
-              size="custom"
+            <Button
               rounded
-              icon={XMarkIcon}
               variant="tinted"
               className={styles.clearButton}
               onClick={onClear}
-              iconAltText={clearButtonAltText}
-            />
+              aria-label={clearButtonAltText}
+            >
+              <XMarkIcon />
+            </Button>
           </span>
         )}
       </div>

@@ -1,5 +1,5 @@
 import { XMarkIcon } from '@navikt/aksel-icons';
-import { IconButton, ModalBase, type ModalBaseProps } from '../';
+import { Button, ModalBase, type ModalBaseProps } from '../';
 import styles from './modal.module.css';
 
 export interface ModalProps extends ModalBaseProps {
@@ -13,14 +13,15 @@ export const Modal = ({ open, onClose, dismissable, closeTitle, children, ...pro
   return (
     <ModalBase padding={6} spacing={6} {...props} open={open} onClose={onClose}>
       {typeof onClose === 'function' && dismissable && (
-        <IconButton
+        <Button
           className={styles.dismiss}
-          icon={XMarkIcon}
           variant="outline"
           onClick={onClose}
-          iconAltText={closeTitle ?? 'Close'}
+          aria-label={closeTitle ?? 'Close'}
           size="sm"
-        />
+        >
+          <XMarkIcon style={{ fontSize: '1.5em' }} />
+        </Button>
       )}
       {children}
     </ModalBase>

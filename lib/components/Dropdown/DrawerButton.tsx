@@ -1,5 +1,5 @@
 import type { FocusEventHandler, ReactNode } from 'react';
-import { ButtonBase, ButtonLabel } from '../';
+import { Button, ButtonLabel } from '../';
 import styles from './drawerButton.module.css';
 
 export interface DrawerButtonProps {
@@ -12,8 +12,8 @@ export interface DrawerButtonProps {
 
 export const DrawerButton = ({ label, children, onClick, ...restProps }: DrawerButtonProps) => {
   return (
-    <ButtonBase variant="solid" size="md" className={styles.button} onClick={onClick} {...restProps}>
+    <Button variant="solid" size="md" className={styles.button} onClick={onClick} {...restProps}>
       <ButtonLabel size="md">{children || label}</ButtonLabel>
-    </ButtonBase>
+    </Button>
   );
 };

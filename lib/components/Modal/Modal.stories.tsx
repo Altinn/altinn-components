@@ -464,8 +464,9 @@ export const ExternalModal = (args: ModalBaseProps) => {
             </p>
           </Typography>
           <ButtonGroup size="md">
-            <Button variant="outline" icon={ExternalLinkIcon} reverse>
-              Samordnet registermelding
+            <Button variant="outline">
+              <ExternalLinkIcon />
+              <span>Samordnet registermelding</span>
             </Button>
           </ButtonGroup>
         </ModalBody>
