@@ -17,6 +17,9 @@
 .searchSection {
   width: 100%;
   padding: 0 var(--horizontal-padding);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .searchField {
@@ -55,5 +58,10 @@
   }
   .searchField {
     width: 100%;
+  }
+  .searchSection {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
   }
 }
