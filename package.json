@@ -2,17 +2,11 @@
   "name": "@altinn/altinn-components",
   "version": "0.52.5",
   "main": "dist/index.js",
-  "files": [
-    "dist/",
-    "!dist/stories/",
-    "!dist/components/*/*.stories.js"
-  ],
+  "files": ["dist/", "!dist/stories/", "!dist/components/*/*.stories.js"],
   "types": "dist/types/lib/index.d.ts",
   "type": "module",
   "description": "Reusable react components",
-  "sideEffects": [
-    "*.css"
-  ],
+  "sideEffects": ["*.css"],
   "scripts": {
     "test": "vitest run",
     "storybook": "storybook dev -p 6006",
@@ -27,7 +21,8 @@
     "test-storybook": "vitest --run --project=storybook",
     "test-storybook-watch": "vitest --project=storybook",
     "ci:test-storybook": "pnpm dlx concurrently -k -s first \"pnpm storybook\" \"pnpm dlx wait-on http://localhost:6006 && pnpm test-storybook\"",
-    "install:browsers": "pnpm exec playwright install"
+    "install:browsers": "pnpm exec playwright install",
+    "build-tokens": "node --import tsx scripts/build-tokens.ts && pnpm biome check ./lib/css/tokens/design-tokens-build/. --write"
   },
   "publishConfig": {
     "access": "public"
@@ -54,6 +49,7 @@
     "@storybook/addon-vitest": "^10.1.11",
     "@storybook/react-vite": "10.1.11",
     "@testing-library/react": "^16.3.0",
+    "@types/node": "^25.0.7",
     "@types/react": "^19.1.5",
     "@types/react-dom": "^19.1.5",
     "@vitejs/plugin-react-swc": "^3.9.0",
@@ -69,6 +65,7 @@
     "storybook": "^10.1.11",
     "storybook-addon-tag-badges": "^3.0.4",
     "storybook-addon-theme-provider": "^0.2.10",
+    "tsx": "^4.21.0",
     "typescript": "^5.8.3",
     "vite": "7.3.1",
     "vite-plugin-dts": "^4.5.4",
