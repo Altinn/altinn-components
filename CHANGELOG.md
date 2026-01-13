@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.52.6](https://github.com/Altinn/altinn-components/compare/v0.52.5...v0.52.6) (2026-01-13)
+
+
+### Bug Fixes
+
+* Unset button label line height ([#911](https://github.com/Altinn/altinn-components/issues/911)) ([44dc94d](https://github.com/Altinn/altinn-components/commit/44dc94d247bbd90898237a7f3f5054d61eed35eb))
+
+
+### Miscellaneous Chores
+
+* **theme:** create script for generating tokens and css ([#902](https://github.com/Altinn/altinn-components/issues/902)) ([14ad6bb](https://github.com/Altinn/altinn-components/commit/14ad6bb1256be3e606344256416312acc26f0fd8))
+
 ## [0.52.5](https://github.com/Altinn/altinn-components/compare/v0.52.4...v0.52.5) (2026-01-12)
 
 
