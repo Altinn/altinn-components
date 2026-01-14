@@ -13,6 +13,12 @@ export default defineConfig({
     coverage: { reporter: ['text', 'json'] },
     projects: [
       {
+        test: {
+          name: 'unit',
+          include: ['**/*.spec.ts', '**/*.test.ts'],
+        },
+      },
+      {
         optimizeDeps: {
           include: ['react', 'react-dom', 'react/jsx-dev-runtime'],
         },
