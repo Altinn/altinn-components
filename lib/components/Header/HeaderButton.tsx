@@ -24,7 +24,7 @@ export interface HeaderButtonProps extends ButtonProps {
 export const HeaderButton = ({
   className,
   as = 'button',
-  color = 'accent',
+  color = 'company',
   variant = 'solid',
   avatar,
   avatarGroup,

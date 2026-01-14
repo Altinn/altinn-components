@@ -68,7 +68,7 @@ const meta = {
       },
     },
     color: {
-      options: ['inherit', 'accent', 'company', 'person', 'neutral'],
+      options: ['inherit', 'company', 'person', 'neutral'],
       control: {
         type: 'select',
       },

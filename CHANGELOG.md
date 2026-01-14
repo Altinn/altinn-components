@@ -1,5 +1,36 @@
 # Changelog
 
+## [0.52.6](https://github.com/Altinn/altinn-components/compare/v0.52.5...v0.52.6) (2026-01-13)
+
+
+### Bug Fixes
+
+* Unset button label line height ([#911](https://github.com/Altinn/altinn-components/issues/911)) ([44dc94d](https://github.com/Altinn/altinn-components/commit/44dc94d247bbd90898237a7f3f5054d61eed35eb))
+
+
+### Miscellaneous Chores
+
+* **theme:** create script for generating tokens and css ([#902](https://github.com/Altinn/altinn-components/issues/902)) ([14ad6bb](https://github.com/Altinn/altinn-components/commit/14ad6bb1256be3e606344256416312acc26f0fd8))
+
+## [0.52.5](https://github.com/Altinn/altinn-components/compare/v0.52.4...v0.52.5) (2026-01-12)
+
+
+### Bug Fixes
+
+* **searchfield:** icon alignement for firefox and safari ([#905](https://github.com/Altinn/altinn-components/issues/905)) ([f7e2a30](https://github.com/Altinn/altinn-components/commit/f7e2a30f01fc4d4a6ea99852429c0a161a9af9c4))
+
+## [0.52.4](https://github.com/Altinn/altinn-components/compare/v0.52.3...v0.52.4) (2026-01-12)
+
+
+### Bug Fixes
+
+* update designsystemet, tokens and css ([#892](https://github.com/Altinn/altinn-components/issues/892)) ([d49d546](https://github.com/Altinn/altinn-components/commit/d49d546456c23ab028f87fb4ab5fb968727826e6))
+
+
+### Miscellaneous Chores
+
+* **main:** release 0.52.3 ([#898](https://github.com/Altinn/altinn-components/issues/898)) ([#886](https://github.com/Altinn/altinn-components/issues/886)) ([2ce2721](https://github.com/Altinn/altinn-components/commit/2ce2721bc4668868772075a4c294bcdf4550c522))
+
 ## [0.52.3](https://github.com/Altinn/altinn-components/compare/v0.52.2...v0.52.3) (2026-01-07)
 
 

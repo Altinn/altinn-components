@@ -4,7 +4,7 @@ import { IconButton } from '../Button';
 import styles from './banner.module.css';
 
 export enum BannerColorEnum {
-  accent = 'accent',
+  company = 'company',
   success = 'success',
   warning = 'warning',
   danger = 'danger',

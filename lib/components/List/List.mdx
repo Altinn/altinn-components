@@ -1,7 +1,6 @@
-import { Meta, Controls, Primary, Canvas } from "@storybook/addon-docs/blocks";
+import { Meta, Controls, Canvas } from "@storybook/addon-docs/blocks";
 import * as ListStories from "./List.stories";
 import * as ListItemStories from "./ListItem.stories";
-import * as BookmarkStories from "../Bookmarks/BookmarksSection.stories";
 
 <Meta title="List" />
 
@@ -54,12 +53,6 @@ Lists of categories, using an icon with a subtle color.
 An expandable multilevel list. Parent items are medium sized, children are small. Selected items are indicated using color, while unselected items are gray. Custom controls to manipulate item.
 
 <Canvas of={ListStories.MultilevelList} />
-
-## Expanding an element to make changes
-
-Lists that can be manipulated when expanded, for example `Bookmarks`.
-
-<Canvas of={BookmarkStories.ControlledState} />
 
 ## ListItem
 

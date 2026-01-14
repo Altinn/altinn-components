@@ -8,7 +8,7 @@
   --dsc-button-border-width: var(--ds-border-width-default);
   --dsc-button-border-style: solid;
   --dsc-button-border-color: transparent;
-  --dsc-button-border-radius: 2px; /*var(--ds-border-radius-default); */
+  --dsc-button-border-radius: var(--ds-border-radius-default);
 
   --dsc-button-gap: var(--ds-size-2);
   --dsc-button-padding: var(--ds-size-2) var(--ds-size-4);
@@ -27,7 +27,9 @@
 
   min-width: var(--dsc-button-size);
   min-height: var(--dsc-button-size);
-  height: fit-content; /* If placed in flex container */
+  height: fit-content;
+
+  /* If placed in flex container */
 
   align-items: center;
   justify-content: center;
@@ -57,7 +59,8 @@
 }
 
 .button:not([data-size]) {
-  font-size: inherit; /* Ensure inheriting font-size when <button> */
+  font-size: inherit;
+  /* Ensure inheriting font-size when <button> */
 }
 
 .button:is(:disabled, [aria-disabled="true"]) {

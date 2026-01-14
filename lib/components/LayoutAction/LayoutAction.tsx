@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { ActionFooter, ActionHeader, LayoutBase, PageMenu, type PageMenuProps } from '../';
 
-export type LayoutActionColor = 'accent';
+export type LayoutActionColor = 'company';
 export type LayoutActionTheme = 'base';
 
 export interface LayoutActionProps {
@@ -16,7 +16,7 @@ export interface LayoutActionProps {
 }
 
 export const LayoutAction = ({
-  color = 'accent',
+  color = 'company',
   theme = 'base',
   hidden,
   title,

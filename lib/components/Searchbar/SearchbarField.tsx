@@ -82,7 +82,7 @@ export const SearchbarField = ({
         <IconButton
           icon={XMarkIcon}
           variant="solid"
-          size="custom"
+          size="xs"
           className={styles.clear}
           onClick={onClear}
           dataTestId="search-button-clear"

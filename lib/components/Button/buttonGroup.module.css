@@ -1,0 +1,36 @@
+.buttonGroup {
+  padding: 0;
+  border: 0;
+  display: inline-flex;
+  column-gap: .75em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.buttonGroup * {
+  pointer-events: auto;
+}
+
+.buttonGroup[data-connected="true"] {
+  column-gap: 0;
+}
+
+.buttonGroup[data-connected="true"] > * + *:not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+
+.buttonGroup[data-connected="true"] > *:first-child {
+  border-right: none;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.buttonGroup[data-connected="true"] > *:last-child {
+  border-left: none;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.buttonGroup[aria-disabled="true"] {
+  pointer-events: none;
+}

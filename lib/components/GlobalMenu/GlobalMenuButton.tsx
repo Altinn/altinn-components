@@ -37,7 +37,7 @@ const getTexts = (languageCode: string | undefined) => {
 export const GlobalMenuButton = ({
   className,
   as = 'button',
-  color = 'accent',
+  color = 'company',
   variant = 'solid',
   expanded,
   label = 'Menu',
