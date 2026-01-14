@@ -130,7 +130,7 @@ export const useAccountSelector = ({
 
     for (const party of sortedParties) {
       if (isPersonType(party.type)) {
-        // Handle persons
+        // Handle people
         if (party.partyUuid === selfAccountUuid) {
           selfAccountItem = getAccountFromAuthorizedParty(
             languageCode!,
