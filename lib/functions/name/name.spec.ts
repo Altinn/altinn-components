@@ -31,4 +31,32 @@ describe('formatDisplayName', () => {
   it('returns empty string for empty input', () => {
     expect(formatDisplayName({ fullName: '', type: 'person' })).toBe('');
   });
+
+  it('preserves abbreviations with periods in company names', () => {
+    expect(formatDisplayName({ fullName: 'A.B.C AS', type: 'company' })).toBe('A.B.C AS');
+  });
+
+  it('preserves multiple abbreviations in company name', () => {
+    expect(formatDisplayName({ fullName: 'A.B.C X.Y.Z AS', type: 'company' })).toBe('A.B.C X.Y.Z AS');
+  });
+
+  it('preserves abbreviation and formats regular words in company name', () => {
+    expect(formatDisplayName({ fullName: 'A.B.C consulting AS', type: 'company' })).toBe('A.B.C Consulting AS');
+  });
+
+  it('formats regular company name without abbreviations', () => {
+    expect(formatDisplayName({ fullName: 'acme corporation AS', type: 'company' })).toBe('Acme Corporation AS');
+  });
+
+  it('preserves two-letter abbreviation with period', () => {
+    expect(formatDisplayName({ fullName: 'A.B. services AS', type: 'company' })).toBe('A.B. Services AS');
+  });
+
+  it('does not treat long segments as abbreviations', () => {
+    expect(formatDisplayName({ fullName: 'test.company AS', type: 'company' })).toBe('Test.company AS');
+  });
+
+  it('does not affect person names with periods', () => {
+    expect(formatDisplayName({ fullName: 'TEST A.B.C', type: 'person' })).toBe('Test A.b.c');
+  });
 });
