@@ -1,5 +1,11 @@
 import type { MouseEventHandler } from 'react';
-import { DrawerOrDropdown, type FilterChangePayload, type FilterState, type ToolbarSearchProps, useRootContext } from '../';
+import {
+  DrawerOrDropdown,
+  type FilterChangePayload,
+  type FilterState,
+  type ToolbarSearchProps,
+  useRootContext,
+} from '../';
 import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
 import type { MenuOptionProps } from '../Menu';
 import { ToolbarButton } from './ToolbarButton';
