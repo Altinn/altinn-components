@@ -148,6 +148,7 @@ export const Toolbar = ({
             buttonAltText={removeButtonAltText}
             optionGroups={item.optionGroups}
             filterState={applicableFilterState}
+            search={item.search}
           />
         );
       })}

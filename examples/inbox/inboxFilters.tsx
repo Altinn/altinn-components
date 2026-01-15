@@ -115,6 +115,11 @@ export const inboxFilters: ToolbarFilterProps[] = [
         label: 'Oslo kommune',
       },
     ],
+    search: {
+      placeholder: 'Søk etter avsender',
+      name: 'search-sender',
+      clearButtonAltText: 'Tøm søkefelt',
+    },
   },
   { ...inboxStatusFilter, removable: true },
   { ...inboxDateFilter, removable: true },

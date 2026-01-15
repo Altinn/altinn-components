@@ -1,5 +1,5 @@
 import type { MouseEventHandler } from 'react';
-import { DrawerOrDropdown, type FilterChangePayload, type FilterState, useRootContext } from '../';
+import { DrawerOrDropdown, type FilterChangePayload, type FilterState, ToolbarSearchProps, useRootContext } from '../';
 import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
 import type { MenuOptionProps } from '../Menu';
 import { ToolbarButton } from './ToolbarButton';
@@ -22,6 +22,7 @@ export interface ToolbarFilterProps {
   onChange?: (payload: FilterChangePayload) => void;
   onRemove?: MouseEventHandler;
   showResultsLabel?: string;
+  search?: ToolbarSearchProps;
 }
 
 const defaultGetSelectedLabel = (_: string, value?: ToolbarFilterValue) => {
@@ -43,6 +44,7 @@ export const ToolbarFilter = ({
   buttonAltText = 'Remove button',
   getSelectedLabel,
   showResultsLabel = 'Show results',
+  search,
   optionType,
   id = `toolbar-filter-${name}`,
 }: ToolbarFilterProps) => {
@@ -102,6 +104,7 @@ export const ToolbarFilter = ({
           onChange={onChange}
           optionType={optionType}
           keyboardEvents={expanded && isDesktop}
+          search={search}
         />
       </DrawerOrDropdown>
     </ToolbarFilterBase>
