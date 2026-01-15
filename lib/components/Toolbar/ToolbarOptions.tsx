@@ -1,4 +1,4 @@
-import { ChangeEvent, Fragment, useMemo, useRef, useState } from 'react';
+import { type ChangeEvent, Fragment, useMemo, useRef, useState } from 'react';
 import { useMenu } from '../../hooks';
 import {
   MenuBase,
@@ -13,7 +13,7 @@ import {
   MenuSearch,
 } from '../Menu';
 import type { FilterChangePayload } from './Toolbar.tsx';
-import { ToolbarSearchProps } from './ToolbarSearch';
+import type { ToolbarSearchProps } from './ToolbarSearch';
 
 export type ToolbarOptionType = 'checkbox' | 'radio';
 
