@@ -154,6 +154,8 @@ export const useAccountSelector = ({
             isDesktop,
           );
 
+          peopleAccountItems.push(account);
+
           if (isFavorite(party.partyUuid)) {
             favoriteAccountItems.push({ ...account, groupId: 'favorites' });
           }
