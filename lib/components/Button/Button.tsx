@@ -1,5 +1,6 @@
 import { Button as DsButton, type ButtonProps as DsButtonProps } from '@digdir/designsystemet-react';
 import * as React from 'react';
+import type { ButtonIconProps } from './ButtonIcon';
 import styles from './button.module.css';
 
 export type ButtonColor = DsButtonProps['data-color'] | undefined;
@@ -11,7 +12,7 @@ export type ButtonProps = {
   size?: ButtonSize;
   variant?: ButtonVariant;
   rounded?: boolean;
-  icon?: boolean;
+  icon?: ButtonIconProps['icon'];
   href?: string;
 } & Omit<DsButtonProps, 'icon' | 'variant' | 'asChild' | 'data-size' | 'data-color' | 'data-variant' | 'data-rounded'>;
 
