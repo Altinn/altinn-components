@@ -69,9 +69,10 @@ export const BetaModal = ({
         <FloatingActionButton
           color="company"
           onClick={onToggle}
-          icon={InformationSquareIcon}
-          iconAltText="Om Beta"
-        />
+          aria-label="Om Beta"
+        >
+          <InformationSquareIcon />
+        </FloatingActionButton>
       )}
     </>
   );

@@ -2,14 +2,14 @@ import { ArchiveIcon, ArrowRedoIcon, ClockDashedIcon, EyeClosedIcon, TrashIcon }
 import { TeddyBearIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, userEvent, within } from 'storybook/test';
-import { DialogListItem, type DialogListItemProps, List, ListItem, type ListItemProps } from '..';
 import { inboxSearchResults } from '../../../examples';
-import { ContextMenu, type ContextMenuProps } from './ContextMenu';
+import { DialogListItem, type DialogListItemProps, List, ListItem, type ListItemProps } from '../index.ts';
+import { ContextMenu, type ContextMenuProps } from './';
 
-const meta: Meta<typeof ContextMenu> = {
+const meta = {
   title: 'Menu/ContextMenu',
   component: ContextMenu,
-  tags: ['autodocs', 'beta'],
+  tags: ['autodocs'],
   parameters: {},
   args: {
     placement: 'left',
@@ -46,14 +46,14 @@ const meta: Meta<typeof ContextMenu> = {
       },
     ],
   },
-};
+} satisfies Meta<typeof ContextMenu>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    id: 'context-menu-1',
+    id: 'context-menu-default',
   },
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     // open the context menu
@@ -102,13 +102,11 @@ export const ListControls = (args: ContextMenuProps) => {
 export const DialogControls = (args: ContextMenuProps) => {
   const dialog1 = inboxSearchResults.items[0] as DialogListItemProps;
   const dialog2 = inboxSearchResults.items[1] as DialogListItemProps;
-  const dialog3 = inboxSearchResults.items[2] as DialogListItemProps;
 
   return (
     <List>
       <DialogListItem {...dialog1} controls={<ContextMenu {...args} placement="right" id="menu-1" />} />
       <DialogListItem {...dialog2} controls={<ContextMenu {...args} placement="right" id="menu-2" />} />
-      <DialogListItem {...dialog3} controls={<ContextMenu {...args} placement="right" id="menu-3" />} />
     </List>
   );
 };

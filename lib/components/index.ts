@@ -18,6 +18,7 @@ export * from './GlobalMenu_old';
 export * from './Header';
 export type { GlobalHeaderProps } from './GlobalHeader'; //TO-DO: Fix conflict exports for Header and GlobalHeader
 export * from './Icon';
+export * from './Item';
 export * from './Layout';
 export * from './LayoutAction';
 export * from './List';
@@ -44,5 +45,6 @@ export * from './Dashboard';
 export * from './ActivityLog';
 export * from './Article';
 export * from './Modal';
+export * from './Tooltip';
 
 export * from './DsComponents';

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { attachments } from '../../../examples/attachments.ts';
+import { attachments } from '../../../examples/attachments.tsx';
 import { DialogAttachments } from './DialogAttachments.tsx';
 
 const meta = {

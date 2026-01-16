@@ -6,7 +6,6 @@ import {
   type ListItemLabelProps,
   ListItemLink,
   type ListItemLinkProps,
-  getAriaLabelFromTitle,
 } from '..';
 
 import { NotificationItemIcon, type NotificationItemIconProps } from '..';
@@ -55,7 +54,7 @@ export const NotificationItemBase = ({
   contextMenu,
   ...props
 }: NotificationItemBaseProps) => {
-  const ariaLabel = props.ariaLabel || getAriaLabelFromTitle(title);
+  const ariaLabel = props.ariaLabel;
 
   return (
     <ListItemBase ref={ref} className={styles.item} color={color} variant={variant} size="md">

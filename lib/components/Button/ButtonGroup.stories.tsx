@@ -6,7 +6,7 @@ import { ButtonGroup } from './ButtonGroup';
 import { ButtonGroupDivider } from './ButtonGroupDivider';
 
 const meta = {
-  title: 'Next/ButtonGroup',
+  title: 'Button/ButtonGroup',
   component: ButtonGroup,
   parameters: {},
   args: {

@@ -13,7 +13,7 @@ export const CurrentAccount = () => {
 
   return (
     <Flex spacing={2} align="center">
-      <GlobalMenuButton_old currentAccount={currentAccount as Account} />
+      <GlobalMenuButton_old currentAccount={{ ...currentAccount, type: 'person' } as Account} />
     </Flex>
   );
 };
@@ -23,7 +23,7 @@ export const CompanyAccount = () => {
 
   return (
     <Flex spacing={2} align="center">
-      <GlobalMenuButton_old currentAccount={currentAccount as Account} />
+      <GlobalMenuButton_old currentAccount={{ ...currentAccount, type: 'company' } as Account} />
     </Flex>
   );
 };

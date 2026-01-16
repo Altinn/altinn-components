@@ -26,7 +26,7 @@ export const LocaleSwitcher = ({ title = 'Select language', options, onSelect }:
       return {
         ...item,
         id: String(item.value),
-        tabIndex: -1,
+        tabIndex: 0,
         groupId: 'locales',
         icon: item.checked ? CheckmarkIcon : ((<span aria-hidden="true" />) as MenuItemProps['icon']),
         onClick: () => {
@@ -69,12 +69,12 @@ export const LocaleSwitcher = ({ title = 'Select language', options, onSelect }:
       <LocaleButton onClick={() => toggleId('locale')} expanded={expanded} onBlurCapture={onBlurCapture} />
       {expanded && isDesktop && (
         <DropdownBase layout="desktop" padding placement="right" open>
-          <MenuItems groups={group} items={itemsWithToggle} keyboardEvents />
+          <MenuItems groups={group} items={itemsWithToggle} keyboardEvents={false} />
         </DropdownBase>
       )}
       {expanded && !isDesktop && (
         <DrawerBase open placement="bottom">
-          <MenuItems groups={group} items={itemsWithToggle} keyboardEvents />
+          <MenuItems groups={group} items={itemsWithToggle} keyboardEvents={false} />
         </DrawerBase>
       )}
     </div>

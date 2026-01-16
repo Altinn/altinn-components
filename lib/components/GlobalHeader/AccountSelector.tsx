@@ -99,7 +99,7 @@ export const AccountSelector = ({
         className={cx(
           styles.accountMenu,
           isFullScreen && styles.fullScreen,
-          accountMenu.isVirtualized && styles.virtualized,
+          accountMenu.virtualized && styles.virtualized,
         )}
       >
         <AccountMenu
@@ -112,7 +112,7 @@ export const AccountSelector = ({
             value: searchString,
             getResultsLabel: (hits) => getHitsLabel(hits, languageCode),
           }}
-          scrollRefStyles={!isFullScreen && accountMenu.isVirtualized ? { maxHeight: 'calc(40vh)' } : undefined}
+          scrollRefStyles={!isFullScreen && accountMenu.virtualized ? { maxHeight: 'calc(40vh)' } : undefined}
         />
       </div>
       {forceOpenFullScreenState !== true && isDesktop && (

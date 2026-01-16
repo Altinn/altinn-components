@@ -7,7 +7,7 @@ const meta = {
   component: AccountMenu,
   tags: ['autodocs'],
   parameters: {},
-  args: accountMenu as AccountMenuProps,
+  args: accountMenu as unknown as AccountMenuProps,
 } satisfies Meta<typeof AccountMenu>;
 
 export default meta;
@@ -51,7 +51,7 @@ export const SingleCompany = () => {
       };
     });
 
-  const firstCompany = filteredItems.find((item) => item.type === 'company');
+  const firstCompany = filteredItems.find((item) => item.role === 'company');
 
   return (
     <AccountMenu
@@ -82,7 +82,7 @@ export const TwoCompanies = () => {
       };
     });
 
-  const firstCompany = filteredItems.find((item) => item.type === 'company');
+  const firstCompany = filteredItems.find((item) => item.role === 'company');
 
   return (
     <AccountMenu
@@ -103,7 +103,7 @@ export const VirtualizedMenu = () => {
     accounts: defaultAccounts,
   });
 
-  return <>{items && <AccountMenu search={search} groups={groups} items={items} isVirtualized={true} />}</>;
+  return <>{items && <AccountMenu search={search} groups={groups} items={items} virtualized={true} />}</>;
 };
 
 export const CustomFilter = () => {
@@ -129,7 +129,7 @@ export const CustomFilter = () => {
         groups={groups}
         filterAccount={filterAccount as AccountMenuProps['filterAccount']}
         items={items}
-        isVirtualized={true}
+        virtualized={true}
       />
     </>
   );

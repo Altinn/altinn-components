@@ -1,6 +1,15 @@
 'use client';
 import { Fragment, useMemo, useState } from 'react';
-import { Divider, Flex, List, Section, SeenByLogButton, UsedByLogItem, type UsedByLogItemProps } from '..';
+import {
+  Divider,
+  Flex,
+  List,
+  Section,
+  SeenByLogButton,
+  type SeenByLogButtonProps,
+  UsedByLogItem,
+  type UsedByLogItemProps,
+} from '..';
 
 export interface UsedByLogProps {
   title?: string;
@@ -55,11 +64,11 @@ export const UsedByLog = ({
       {title && (
         <Flex>
           {collapsible ? (
-            <SeenByLogButton icon={{ items: avatarGroup }} as="button" onClick={onToggle}>
+            <SeenByLogButton items={avatarGroup as SeenByLogButtonProps['items']} as="button" onClick={onToggle}>
               {title}
             </SeenByLogButton>
           ) : (
-            <SeenByLogButton icon={{ items: avatarGroup }} as="div">
+            <SeenByLogButton items={avatarGroup as SeenByLogButtonProps['items']} as="div">
               {title}
             </SeenByLogButton>
           )}

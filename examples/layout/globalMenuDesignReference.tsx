@@ -74,18 +74,15 @@ const designReferenceMenuItems: MenuProps['items'] = [
 ];
 
 const designReferenceMenu: MenuProps = {
-  defaultIconTheme: 'surface',
   groups: {
     apps: {
       divider: true,
     },
     help: {
-      defaultIconTheme: 'transparent',
       divider: true,
     },
     profile: {
       title: 'Logget inn som: Akvarell Søvnig',
-      defaultIconTheme: 'transparent',
     },
   },
   items: designReferenceMenuItems,
@@ -93,9 +90,9 @@ const designReferenceMenu: MenuProps = {
 
 export const globalMenuDesignReference: GlobalMenuProps_old = {
   accountMenu: {
-    ...(accountMenu as AccountMenuProps),
-    isVirtualized: true,
-  },
+    ...accountMenu,
+    virtualized: true,
+  } as unknown as AccountMenuProps,
   menu: designReferenceMenu,
   currentEndUserLabel: 'Logget inn som: Akvarell Søvnig',
   menuLabel: 'Meny',

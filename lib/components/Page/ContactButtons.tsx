@@ -1,6 +1,10 @@
-import { Button, ButtonGroup, ButtonIcon, ButtonLabel, type ButtonProps } from '..';
+import { Button, ButtonGroup, ButtonIcon, type ButtonIconProps, ButtonLabel, type ButtonProps } from '..';
 
-export interface ContactButtonProps extends ButtonProps {
+export interface ContactButtonProps {
+  as?: ButtonProps['as'];
+  href?: ButtonProps['href'];
+  onClick?: ButtonProps['onClick'];
+  icon?: ButtonIconProps['icon'];
   label: string;
 }
 
@@ -12,9 +16,9 @@ export const ContactButtons = ({ items }: ContactButtonsProps) => {
   return (
     <ButtonGroup>
       {items.map((item, index) => {
-        const { icon, label, ...buttonProps } = item;
+        const { as, href, onClick, icon, label } = item;
         return (
-          <Button {...buttonProps} variant="outline" key={index}>
+          <Button as={as} href={href} onClick={onClick} variant="outline" key={index}>
             <ButtonIcon icon={icon} />
             <ButtonLabel>{label}</ButtonLabel>
           </Button>

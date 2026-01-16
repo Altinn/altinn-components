@@ -1,6 +1,5 @@
-import { Meta, Controls, Primary, Canvas } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas } from "@storybook/addon-docs/blocks";
 import * as MenuStories from "./Menu.stories";
-import * as GlobalMenuStories from "../GlobalMenu/GlobalMenu.stories";
 
 <Meta title="Menu" />
 
@@ -46,7 +45,6 @@ Under the hood, menus are constructed using multiple components.
 
 ```tsx
 return (
-  <MenuBase>
     <MenuList>
       <MenuListItem>
         <MenuItem />
@@ -63,6 +61,5 @@ return (
         </MenuList>
       </MenuListItem>
     </MenuList>
-  </MenuBase>
 );
 ```

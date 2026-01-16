@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { type Account, RootProvider } from '..';
-import { defaultAccounts } from '../../../examples';
+import { RootProvider } from '..';
 import { AccountMenuButton } from './AccountMenuButton';
 
 const meta = {
@@ -11,7 +10,16 @@ const meta = {
     layout: 'centered',
   },
   args: {
-    currentAccount: defaultAccounts[0] as Account,
+    currentAccount: {
+      id: '1',
+      name: 'Mathias Dyngeland',
+      description: 'Født: 01.01.1990',
+      type: 'person',
+      icon: {
+        type: 'person',
+        name: 'Mathias Dyngeland',
+      },
+    },
     minimized: false,
     expanded: false,
   },

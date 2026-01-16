@@ -1,35 +1,28 @@
+import { InformationSquareIcon } from '@navikt/aksel-icons';
 import { Button, type ButtonProps } from '.';
-import { ButtonIcon } from './ButtonIcon';
-
 import styles from './floatingActionButton.module.css';
-
-export interface FloatingActionButtonProps extends ButtonProps {
-  icon: ButtonProps['icon'];
-  iconSize?: ButtonProps['size'];
-  iconAltText: string;
-}
 
 export const FloatingActionButton = ({
   variant = 'solid',
   size,
-  icon,
-  iconSize,
-  iconAltText,
   color,
   onClick,
   onBlurCapture,
-}: FloatingActionButtonProps) => {
+  ...props
+}: ButtonProps) => {
   return (
     <Button
+      {...props}
+      icon
       className={styles.button}
       variant={variant}
       color={color}
       size={size}
       onClick={onClick}
-      aria-label={iconAltText}
       onBlurCapture={onBlurCapture}
+      aria-label={props['aria-label']}
     >
-      {icon && <ButtonIcon icon={icon} size={iconSize} />}
+      {props.children || <InformationSquareIcon />}
     </Button>
   );
 };

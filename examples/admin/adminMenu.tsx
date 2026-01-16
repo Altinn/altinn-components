@@ -33,28 +33,28 @@ export const adminMenuItems: MenuItemProps[] = [
   },
   {
     id: 'requests',
-    type: 'company',
+    role: 'company',
     groupId: '4',
     icon: BellIcon,
     title: 'Forepørsler',
   },
   {
     id: 'api-settings',
-    type: 'company',
+    role: 'company',
     groupId: '5',
     icon: BucketIcon,
     title: 'Api og systemtilgang',
   },
   {
     id: 'reverse-access',
-    type: 'company',
+    role: 'company',
     groupId: '5',
     icon: LinkIcon,
     title: 'Våre fullmakter hos andre',
   },
   {
     id: 'client-admin',
-    type: 'company',
+    role: 'company',
     groupId: '5',
     icon: DatabaseIcon,
     title: 'Klientadministrasjon',
@@ -76,6 +76,7 @@ export const adminMenuItems: MenuItemProps[] = [
 export const adminMenu: MenuProps = {
   groups: {},
   color: 'company',
-  defaultIconTheme: 'default',
+  variant: 'tinted',
+  size: 'md',
   items: adminMenuItems,
 };

@@ -69,7 +69,7 @@ export const useAdminLayout = ({ accountId = 'diaspora', pageId = 'admin' }): Ad
       menu: {
         ...adminMenu,
         color: currentAccount?.type,
-        variant: 'subtle',
+        variant: 'tinted',
         items: menuItems?.filter((item) => {
           if (currentAccount?.type === 'person' && item.groupId === '5') {
             return false;

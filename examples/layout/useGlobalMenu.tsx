@@ -51,7 +51,7 @@ export const useGlobalMenu = ({
     menuLabel,
     accountMenu: {
       ...accountMenu,
-      isVirtualized: true,
+      virtualized: true,
     },
     currentAccount,
     onSelectAccount,
@@ -74,7 +74,7 @@ export const useGlobalHeaderMenu = ({ menu = globalMenu.menu, menuLabel = 'Meny'
     },
     menuLabel,
     accountMenu: {
-      isVirtualized: true,
+      virtualized: true,
     },
   } as GlobalMenuProps;
 };

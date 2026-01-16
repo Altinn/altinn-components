@@ -12,7 +12,7 @@ import {
   TrashIcon,
 } from '@navikt/aksel-icons';
 import { accountMenu } from '../';
-import { type AccountMenuProps, Badge, type GlobalMenuProps_old, type MenuProps } from '../../lib';
+import type { AccountMenuProps, GlobalMenuProps_old, MenuProps } from '../../lib';
 
 export const desktopMenuItems: MenuProps['items'] = [
   {
@@ -20,18 +20,10 @@ export const desktopMenuItems: MenuProps['items'] = [
     groupId: 'apps',
     size: 'lg',
     icon: InboxFillIcon,
-    title: (
-      <>
-        Innboks <Badge label="Beta" />
-      </>
-    ),
+    title: 'Innboks',
+    badge: { label: 'Beta', color: 'neutral', variant: 'base' },
+
     selected: true,
-    iconBadge: {
-      color: 'alert',
-      theme: 'base',
-      size: 'xs',
-      label: '2',
-    },
   },
   {
     id: 'admin',
@@ -71,18 +63,13 @@ export const desktopMenuItems: MenuProps['items'] = [
 ];
 
 export const desktopMenu: MenuProps = {
-  defaultIconTheme: 'surface',
   groups: {
     apps: {
       divider: true,
     },
-    help: {
-      defaultIconTheme: 'transparent',
-    },
+    help: {},
     profile: {
       title: 'Logget inn som Mathias Dyngeland',
-      defaultIconTheme: 'transparent',
-      defaultItemColor: 'person',
     },
   },
   items: desktopMenuItems,
@@ -146,9 +133,9 @@ export const mobileMenu = {
 
 export const globalMenu: GlobalMenuProps_old = {
   accountMenu: {
-    ...(accountMenu as AccountMenuProps),
-    isVirtualized: true,
-  },
+    ...accountMenu,
+    virtualized: true,
+  } as unknown as AccountMenuProps,
   menu: desktopMenu,
   currentEndUserLabel: 'Logget inn som Mathias Dyngeland',
   menuLabel: 'Meny',

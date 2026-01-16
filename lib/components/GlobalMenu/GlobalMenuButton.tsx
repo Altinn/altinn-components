@@ -57,6 +57,7 @@ export const GlobalMenuButton = ({
         variant={variant}
         color={color}
         className={cx(styles.button, className)}
+        aria-expanded={expanded}
       >
         {isDesktop && (
           <>

@@ -68,7 +68,7 @@ export const DialogActions = ({ items, maxItems = 2, id = 'dialog-actions', expa
             {sortedItems[0].label}
           </Button>
           <ButtonGroupDivider />
-          <Button aria-label={expandAltLabel} onClick={() => toggleId(id)}>
+          <Button aria-label={expandAltLabel} onClick={() => toggleId(id)} aria-expanded={expanded ? 'true' : 'false'}>
             {expanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
           </Button>
         </ButtonGroup>

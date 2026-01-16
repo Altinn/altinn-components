@@ -1,11 +1,13 @@
 import { Card } from '@digdir/designsystemet-react';
 import type { ReactNode } from 'react';
-import { DashboardIcon, type DashboardIconProps, Heading, Typography } from '..';
+import { Heading, Typography } from '..';
+import { ItemMedia, type ItemMediaProps } from '../Item';
+import styles from './dashboardCard.module.css';
 
 export interface DashboardCardProps {
   color?: 'company' | 'person';
   theme?: 'default' | 'tinted';
-  icon?: DashboardIconProps;
+  icon?: ItemMediaProps['icon'];
   href?: string;
   title?: ReactNode;
   children?: ReactNode;
@@ -33,7 +35,7 @@ export function DashboardCard({
           rowGap: '1rem',
         }}
       >
-        {icon && <DashboardIcon loading={loading} icon={icon} theme="default" />}
+        {icon && <ItemMedia loading={loading} icon={icon} className={styles.icon} />}
         <Heading size="lg" loading={loading}>
           {href ? <a href={href}>{title}</a> : title}
         </Heading>

@@ -1,0 +1,20 @@
+/* ItemIcon */
+
+.media {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  font-size: 1em;
+}
+
+.avatar {
+  font-size: 1em;
+}
+
+.avatarGroup {
+  font-size: 0.75em;
+}

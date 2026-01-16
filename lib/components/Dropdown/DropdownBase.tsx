@@ -3,9 +3,9 @@ import { type ReactNode, useRef } from 'react';
 import { useClickOutside } from '../../hooks';
 import styles from './dropdownBase.module.css';
 
-export type DropdownPlacement = 'left' | 'right';
+type DropdownPlacement = 'left' | 'right';
 export type DropdownLayout = 'mobile' | 'desktop';
-export type DropdownSize = 'auto' | 'lg';
+type DropdownSize = 'auto' | 'lg';
 
 export interface DropdownBaseProps {
   placement?: DropdownPlacement;

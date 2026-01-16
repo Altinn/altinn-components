@@ -19,7 +19,7 @@ export interface AccountMenuButtonProps extends ButtonProps {
 export const AccountMenuButton = ({
   className,
   currentAccount,
-  expanded,
+  expanded = false,
   minimized = false,
   loading = false,
   ...buttonProps
@@ -33,8 +33,8 @@ export const AccountMenuButton = ({
         {...buttonProps}
         as={'button'}
         type="button"
-        variant={'ghost'}
-        color={'company'}
+        variant="ghost"
+        color="company"
         className={cx(styles.button, styles.loading, className)}
         disabled
         aria-label="loading"
@@ -46,19 +46,20 @@ export const AccountMenuButton = ({
 
   if (currentAccount) {
     let description = currentAccount.description;
-    if (currentAccount.type === 'subunit' && typeof description === 'string' && description) {
+    if (currentAccount.role === 'subunit' && typeof description === 'string' && description) {
       const orgNoDescription = description.split(',');
       description = `${orgNoDescription[0]}, ${texts.subunit}`;
     }
     return (
       <Button
         {...buttonProps}
-        as={'button'}
+        as="button"
         type="button"
-        variant={'ghost'}
-        color={'company'}
+        variant="ghost"
+        color="company"
         className={cx(styles.button, className)}
         aria-label={expanded ? texts.close : currentAccount.name}
+        aria-expanded={expanded}
       >
         {!minimized && (
           <ButtonLabel>
@@ -98,6 +99,7 @@ export const AccountMenuButton = ({
       color={'company'}
       aria-label={texts.login}
       className={cx(styles.button, className)}
+      aria-expanded={expanded}
     >
       {!minimized && <ButtonLabel>{texts.login}</ButtonLabel>}
       <ButtonIcon className={styles.loginIcon} icon={<EnterIcon className={styles.icon} aria-hidden />} />

@@ -1,0 +1,15 @@
+.search {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: var(--ds-color-surface-default);
+}
+
+.searchInput {
+  width: 100%;
+}
+
+.search input:focus-visible {
+  outline-offset: 0;
+  outline-width: 2px;
+}

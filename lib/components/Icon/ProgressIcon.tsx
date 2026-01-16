@@ -1,3 +1,4 @@
+'use client';
 import cx from 'classnames';
 import type { CSSProperties } from 'react';
 import styles from './progressIcon.module.css';

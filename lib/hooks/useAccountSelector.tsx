@@ -48,7 +48,7 @@ export interface useAccountSelectorProps {
   /** Whether account data is currently being loaded */
   isLoading?: boolean;
   /** Whether to use virtualization for large account lists */
-  isVirtualized?: boolean;
+  virtualized?: boolean;
   /** Callback triggered when a user selects an account */
   onSelectAccount?: (accountId: string) => void;
   /** Callback triggered when a user toggles an account's favorite status */
@@ -87,7 +87,7 @@ export const useAccountSelector = ({
   selfAccountUuid,
   isLoading = false,
   onSelectAccount,
-  isVirtualized = false,
+  virtualized = false,
   onToggleFavorite,
   languageCode,
   showDeletedUnits,
@@ -256,7 +256,7 @@ export const useAccountSelector = ({
       accountMenu: {
         items: [],
         groups: {},
-        isVirtualized: false,
+        virtualized: false,
         onSelectAccount: () => {},
         currentAccount: undefined,
       },
@@ -268,7 +268,7 @@ export const useAccountSelector = ({
     accountMenu: {
       items: accounts,
       groups: accountGroups,
-      isVirtualized: isVirtualized,
+      virtualized: virtualized,
       onSelectAccount: onSelectAccount,
       currentAccount: currentAccount,
     },

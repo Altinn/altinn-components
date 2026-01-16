@@ -1,11 +1,11 @@
 'use client';
-import { useEffect, useMemo, useState } from 'react';
-import type { LocaleSwitcherProps } from '../Header';
-import { Menu, MenuListItem, type MenuProps } from '../Menu';
+
+import { GlobeIcon } from '@navikt/aksel-icons';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { Menu, type MenuItemProps, MenuListItem, type MenuProps } from '../Menu';
 import { BackButton } from './BackButton';
 import { GlobalMenuBase, GlobalMenuFooter, GlobalMenuHeader } from './GlobalMenuBase';
-import { LocaleButton } from './LocaleButton';
-import { LocaleSwitcher } from './LocaleSwitcher';
+import { LocaleSwitcher, type LocaleSwitcherProps } from './LocaleSwitcher.tsx';
 import { LogoutButton, type LogoutButtonProps } from './LogoutButton';
 
 export interface GlobalMenuProps {
@@ -31,21 +31,19 @@ export const GlobalMenu = ({
   localeSwitcher,
   isOpen = false,
 }: GlobalMenuProps) => {
-  const [selectingLocale, setSelectingLocale] = useState<boolean>(false);
+  const [selectingLocale, setSelectingLocale] = useState(false);
 
-  const onToggleLocaleSelection = () => {
-    setSelectingLocale((prevState) => !prevState);
-  };
+  const onToggleLocaleSelection = useCallback(() => {
+    setSelectingLocale((prev) => !prev);
+  }, []);
 
   // Reset locale selection whenever the menu closes
   useEffect(() => {
-    if (!isOpen) {
-      setSelectingLocale(false);
-    }
+    if (!isOpen) setSelectingLocale(false);
   }, [isOpen]);
 
   const itemsWithToggle = useMemo(() => {
-    return (menu?.items ?? []).map((item) => ({
+    const baseItems = (menu?.items ?? []).map((item) => ({
       ...item,
       onClick: () => {
         item.onClick?.();
@@ -61,7 +59,18 @@ export const GlobalMenu = ({
           }))
         : undefined,
     }));
-  }, [menu, onClose]);
+
+    if (!localeSwitcher) return baseItems;
+
+    const localeItem: MenuItemProps = {
+      title: 'Språk/language',
+      icon: GlobeIcon,
+      size: 'sm',
+      onClick: onToggleLocaleSelection,
+    };
+
+    return [...baseItems, localeItem];
+  }, [menu, onClose, localeSwitcher, onToggleLocaleSelection]);
 
   if (selectingLocale) {
     return (
@@ -78,7 +87,6 @@ export const GlobalMenu = ({
   return (
     <GlobalMenuBase aria-label={ariaLabel}>
       {menu && <Menu {...menu} items={itemsWithToggle} />}
-      {localeSwitcher && <LocaleButton onClick={onToggleLocaleSelection} />}
       {logoutButton && (
         <GlobalMenuFooter>
           <LogoutButton {...logoutButton} />

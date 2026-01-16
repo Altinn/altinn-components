@@ -1,122 +1,240 @@
-import { ChevronDownIcon, ChevronRightIcon, ChevronUpIcon } from '@navikt/aksel-icons';
-import { type ReactElement, type ReactNode, isValidElement } from 'react';
-import {
-  Badge,
-  type BadgeProps,
-  Icon,
-  MenuItemBase,
-  type MenuItemBaseProps,
-  MenuItemIcon,
-  type MenuItemIconProps,
-  MenuItemLabel,
-  type MenuItemLabelProps,
-} from '../';
+import { CheckmarkIcon, ChevronRightIcon, MinusIcon } from '@navikt/aksel-icons';
+import cx from 'classnames';
+import type {
+  AriaAttributes,
+  ElementType,
+  KeyboardEvent,
+  KeyboardEventHandler,
+  MouseEventHandler,
+  ReactElement,
+  ReactNode,
+} from 'react';
 
+import { type AvatarGroupProps, type AvatarProps, type Color, Icon, type IconProps, type SvgElement } from '..';
+import { Badge, type BadgeProps } from '../Badge';
+import { ItemControls, ItemLabel, ItemMedia } from '../Item';
+import { pickAriaProps } from './aria.ts';
 import styles from './menuItem.module.css';
 
-export interface MenuItemProps extends MenuItemBaseProps {
+export type MenuItemSize = 'sm' | 'md' | 'lg';
+export type MenuItemColor = Color;
+export type MenuItemVariant = 'default' | 'tinted';
+export type MenuItemRole = 'menuItem' | 'radio' | 'checkbox' | string;
+
+export interface MenuItemProps extends AriaAttributes {
   id?: string;
-  type?: string;
-  groupId?: string | number;
-  loading?: boolean;
-  collapsible?: boolean;
-  expanded?: boolean;
-  selected?: boolean;
-  disabled?: boolean;
-  title?: MenuItemLabelProps['title'];
-  description?: MenuItemLabelProps['description'];
-  highlightWords?: MenuItemLabelProps['highlightWords'];
-  icon?: MenuItemIconProps['icon'];
-  iconTheme?: MenuItemIconProps['theme'];
-  iconBadge?: MenuItemIconProps['badge'];
-  badge?: BadgeProps | ReactNode | undefined;
-  /** Custom controls */
-  controls?: ReactNode;
-  linkIcon?: boolean;
-  className?: string;
+  groupId?: string;
+  role?: MenuItemRole;
+  as?: ElementType;
+  /** Size, default is sm */
+  size?: MenuItemSize;
+  /** Variant, default is undefined */
+  variant?: MenuItemVariant;
+  /** Color, default is undefined */
+  color?: MenuItemColor;
+  /** Icon: SvgElement or AvatarProps or AvatarGroupProps */
+  icon?: IconProps | SvgElement | AvatarProps | AvatarGroupProps;
+  /** Title */
+  title?: string;
+  /** Description */
+  description?: string;
+  /** Custom label */
   label?: ReactNode | (() => ReactElement);
+  /** Optional badge */
+  badge?: BadgeProps;
+  /** Optional controls */
+  controls?: ReactNode;
+  /** Optional count */
+  count?: number;
+  /* searchable words */
+  searchWords?: string[];
+  /* use to highlight words in title and description */
+  highlightWords?: string[];
+  /** items = child elements */
   items?: MenuItemProps[];
+  tabIndex?: number;
+  expanded?: boolean;
+  hidden?: boolean;
+  disabled?: boolean;
+  selected?: boolean;
+  active?: boolean;
+  className?: string;
+  /** linkIcon */
+  linkIcon?: boolean;
+  /** link or button */
+  href?: string;
+  onClick?: () => void;
+  onKeyPress?: KeyboardEventHandler;
+  onMouseEnter?: MouseEventHandler;
+  /** radio or checkbox */
+  name?: string;
+  value?: string | number;
+  checked?: boolean;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  /** data-testid */
   'data-testid'?: string;
 }
 
 export const MenuItem = ({
-  as = 'a',
-  size = 'md',
-  color,
+  id,
+  groupId,
+  role = 'menuItem',
+  as,
+  href,
+  onClick,
+  onChange,
+  onKeyPress,
+  onMouseEnter,
+  size = 'sm',
   variant,
-  collapsible,
-  expanded,
+  color,
+  name,
+  value,
+  checked,
   icon,
-  iconTheme,
-  iconBadge,
+  label,
+  badge,
+  controls,
   title,
   description,
   highlightWords,
-  badge,
-  controls,
-  loading,
-  linkIcon,
-  label,
-  ariaLabel,
-  ...rest
+  count,
+  linkIcon = false,
+  disabled,
+  selected,
+  active,
+  tabIndex = 0,
+  className,
+  'data-testid': dataTestId,
+  ...attributes
 }: MenuItemProps) => {
   const applicableLabel = typeof label === 'function' ? label() : label;
+  const ariaProps = pickAriaProps(attributes as Record<string, unknown>);
 
-  /** Set applicable Icon */
-  const applicableIcon = collapsible
-    ? expanded
-      ? ChevronUpIcon
-      : ChevronDownIcon
-    : linkIcon
-      ? ChevronRightIcon
-      : undefined;
+  if (role === 'checkbox' || role === 'radio') {
+    const applicableIcon = icon || (checked ? CheckmarkIcon : MinusIcon);
 
-  /** Badge can be custom, or a Badge object. */
-  const renderBadge = (): ReactNode => {
-    if (badge && !loading && typeof badge === 'object' && 'label' in badge) {
-      return <Badge {...(badge as BadgeProps)} className={styles.badge} />;
-    }
-    if (isValidElement(badge)) {
-      return badge;
-    }
-    return null;
-  };
+    return (
+      <label
+        {...ariaProps}
+        className={cx(styles.item, className)}
+        id={id}
+        data-id={id}
+        data-group-id={groupId}
+        data-size={size}
+        data-variant={variant}
+        data-color={color}
+        data-active={active}
+        role={role}
+        aria-disabled={disabled}
+        aria-checked={checked}
+        aria-selected={checked}
+        aria-label={title}
+        data-testid={dataTestId}
+        onKeyUp={(e: KeyboardEvent) => {
+          if (disabled) return;
+          e.key === 'Enter' && onClick?.();
+          onKeyPress?.(e);
+        }}
+        onClick={onClick}
+        onMouseEnter={onMouseEnter}
+        tabIndex={tabIndex}
+      >
+        <input
+          name={name}
+          value={value}
+          type={role}
+          checked={Boolean(checked)}
+          onChange={onChange}
+          readOnly={!onChange}
+          style={{ opacity: 0, position: 'absolute' }}
+          tabIndex={-1}
+        />
+        <ItemMedia icon={applicableIcon} className={styles.media} />
+        <ItemLabel
+          className={styles.label}
+          highlightWords={highlightWords}
+          title={
+            <>
+              {title} {count && <i className={styles.count}>{count}</i>}
+            </>
+          }
+          titleProps={{
+            weight: 'medium',
+            className: styles.title,
+          }}
+          description={description}
+          descriptionProps={{
+            weight: 'normal',
+            variant: 'subtle',
+            className: styles.description,
+          }}
+        >
+          {applicableLabel}
+        </ItemLabel>
+        <ItemControls>
+          {badge && <Badge {...badge} />}
+          {controls}
+        </ItemControls>
+      </label>
+    );
+  }
+
+  const Component = as || (href ? 'a' : 'button');
+  const applicableLinkIcon = linkIcon && ChevronRightIcon;
 
   return (
-    <MenuItemBase
-      as={as}
-      size={size}
-      variant={variant}
-      color={color}
-      expanded={expanded}
-      ariaLabel={ariaLabel}
-      hidden={loading}
-      {...rest}
+    <Component
+      href={href}
+      className={cx(styles.item, className)}
+      id={id}
+      data-id={id}
+      data-group-id={groupId}
+      data-size={size}
+      data-variant={variant}
+      data-color={color}
+      data-active={active}
+      aria-disabled={disabled}
+      aria-selected={selected}
+      aria-label={title}
+      data-testid={dataTestId}
+      onKeyUp={(e: KeyboardEvent) => {
+        if (disabled) return;
+        e.key === 'Enter' && onClick?.();
+        onKeyPress?.(e);
+      }}
+      onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      tabIndex={disabled ? -1 : (tabIndex ?? 0)}
+      role={role === 'menuItem' ? 'menuitem' : role}
+      {...ariaProps}
     >
-      <MenuItemIcon loading={loading} size={size} icon={icon} theme={iconTheme} badge={iconBadge} />
-      <MenuItemLabel
-        loading={loading}
-        title={title}
-        description={description}
+      {icon && <ItemMedia icon={icon} className={styles.media} />}
+      <ItemLabel
+        className={styles.label}
         highlightWords={highlightWords}
-        size={size}
+        title={
+          <>
+            {title} {count && <i className={styles.count}>{count}</i>}
+          </>
+        }
+        titleProps={{
+          weight: 'medium',
+          className: styles.title,
+        }}
+        description={description}
+        descriptionProps={{
+          variant: 'subtle',
+          className: styles.description,
+        }}
       >
         {applicableLabel}
-      </MenuItemLabel>
-      <span className={styles.controls}>
-        {!loading && renderBadge()}
-        {!loading && controls}
-        {applicableIcon && (
-          <span className={styles.linkIcon}>
-            <Icon
-              svgElement={applicableIcon}
-              style={{
-                fontSize: '1.5rem',
-              }}
-            />
-          </span>
-        )}
-      </span>
-    </MenuItemBase>
+      </ItemLabel>
+      <ItemControls>
+        {badge && <Badge {...badge} />}
+        {controls}
+        {linkIcon && <Icon svgElement={applicableLinkIcon as SvgElement} className={styles.linkIcon} />}
+      </ItemControls>
+    </Component>
   );
 };
