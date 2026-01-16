@@ -2,7 +2,7 @@
 import type { MouseEventHandler } from 'react';
 import { useEffect, useRef } from 'react';
 import { useClickOutside, useMenu } from '../../hooks';
-import { ButtonBase, ButtonIcon } from '../Button';
+import { Button, ButtonIcon } from '../Button';
 import type { ButtonColor, ButtonIconProps, ButtonSize, ButtonVariant } from '../Button';
 import { Icon } from '../Icon';
 import type { SvgElement } from '../Icon';
@@ -25,7 +25,7 @@ export interface FloatingDropdownProps {
   color?: ButtonColor;
   size?: ButtonSize;
   variant?: ButtonVariant;
-  dataTestId?: string;
+  'data-testid'?: string;
   id?: string;
 }
 
@@ -39,7 +39,7 @@ export const FloatingDropdown = ({
   id = 'floatingDropdown',
   color = 'company',
   items,
-  dataTestId,
+  'data-testid': dataTestId,
 }: FloatingDropdownProps) => {
   const { currentId, toggleId } = useRootContext();
   const expanded = currentId === id;
@@ -87,7 +87,7 @@ export const FloatingDropdown = ({
           {menu[0]?.items.map((menuItem, index) => {
             const item = menuItem.props as FloatingDropdownItem;
             return (
-              <button
+              <Button
                 key={index}
                 className={styles.dropdownItem}
                 onClick={handleItemClick(item.onClick)}
@@ -100,12 +100,12 @@ export const FloatingDropdown = ({
               >
                 <Icon svgElement={item.icon} size="md" color="inherit" />
                 <span className={styles.itemTitle}>{item.title}</span>
-              </button>
+              </Button>
             );
           })}
         </div>
       )}
-      <ButtonBase
+      <Button
         className={styles.button}
         variant={variant}
         color={color}
@@ -120,7 +120,7 @@ export const FloatingDropdown = ({
         autoFocus={false}
       >
         {currentIcon && <ButtonIcon icon={currentIcon} size={iconSize} />}
-      </ButtonBase>
+      </Button>
     </div>
   );
 };

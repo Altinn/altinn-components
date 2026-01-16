@@ -1,11 +1,11 @@
 import cx from 'classnames';
 import { type ReactNode, isValidElement } from 'react';
+import type { ButtonSize } from '.';
 import {
   Avatar,
   AvatarGroup,
   type AvatarGroupProps,
   type AvatarProps,
-  type ButtonSize,
   Icon,
   type IconProps,
   type SvgElement,

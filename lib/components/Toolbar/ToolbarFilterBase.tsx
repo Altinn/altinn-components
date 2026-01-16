@@ -5,14 +5,14 @@ export interface ToolbarFilterBaseProps {
   children?: ReactNode;
   expanded?: boolean;
   onBlurCapture?: React.FocusEventHandler<HTMLDivElement>;
-  dataTestId?: string;
+  'data-testid'?: string;
 }
 
 export const ToolbarFilterBase = ({
   expanded = false,
   children,
   onBlurCapture,
-  dataTestId,
+  'data-testid': dataTestId,
 }: ToolbarFilterBaseProps) => {
   const filterBaseStyles = cx(styles.base, expanded && styles.expanded);
   return (

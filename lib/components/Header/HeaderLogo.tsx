@@ -1,7 +1,6 @@
 import cx from 'classnames';
 import type { ElementType, MouseEventHandler } from 'react';
 import { Badge, type BadgeProps } from '../Badge';
-import { ButtonBase } from '../Button';
 import { DigdirLogomark } from './DigdirLogomark.tsx';
 import styles from './headerLogo.module.css';
 
@@ -14,11 +13,13 @@ export interface HeaderLogoProps {
   badge?: BadgeProps;
 }
 
-export const HeaderLogo = ({ className, as = 'a', title = 'Altinn', href = '/', badge }: HeaderLogoProps) => {
+export const HeaderLogo = ({ className, as = 'a', title = 'Altinn', href = '/', onClick, badge }: HeaderLogoProps) => {
+  const Component = as;
+
   return (
-    <ButtonBase as={as} className={cx(styles.logo, className)} href={href}>
+    <Component variant="ghost" className={cx(styles.logo, className)} href={href} onClick={onClick}>
       <DigdirLogomark className={styles.symbol} />
       <span className={styles.text}>{title}</span> {badge && <Badge {...badge} />}
-    </ButtonBase>
+    </Component>
   );
 };

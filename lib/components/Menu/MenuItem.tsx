@@ -36,7 +36,7 @@ export interface MenuItemProps extends MenuItemBaseProps {
   className?: string;
   label?: ReactNode | (() => ReactElement);
   items?: MenuItemProps[];
-  dataTestId?: string;
+  'data-testid'?: string;
 }
 
 export const MenuItem = ({

@@ -1,10 +1,12 @@
+import { BookmarkIcon, ChevronUpDownIcon, PlusIcon, XMarkIcon } from '@navikt/aksel-icons';
 import type { Meta } from '@storybook/react-vite';
+import { SearchField } from '../Forms/SearchField';
 import { Button } from './Button';
 import { ButtonGroup } from './ButtonGroup';
 import { ButtonGroupDivider } from './ButtonGroupDivider';
 
 const meta = {
-  title: 'Button/ButtonGroup',
+  title: 'Next/ButtonGroup',
   component: ButtonGroup,
   parameters: {},
   args: {
@@ -42,6 +44,45 @@ export const WithDivider = () => {
       <Button>Button 2</Button>
       <ButtonGroupDivider />
       <Button>Button 3</Button>
+    </ButtonGroup>
+  );
+};
+
+export const ComboButton = () => {
+  return (
+    <ButtonGroup connected>
+      <Button>Button 1</Button>
+      <ButtonGroupDivider />
+      <Button>
+        <XMarkIcon />
+      </Button>
+    </ButtonGroup>
+  );
+};
+
+export const Toolbar = () => {
+  return (
+    <ButtonGroup size="xs">
+      <Button>
+        <span>Menu</span>
+        <ChevronUpDownIcon />
+      </Button>
+      <SearchField placeholder="Search" />
+      <ButtonGroup connected variant="tinted">
+        <Button variant="tinted">Filter</Button>
+        <ButtonGroupDivider variant="tinted" />
+        <Button variant="tinted">
+          <XMarkIcon />
+        </Button>
+      </ButtonGroup>
+      <Button variant="outline">
+        <PlusIcon />
+        <span>Add</span>
+      </Button>
+      <Button variant="ghost">
+        <BookmarkIcon />
+        <span>Save</span>
+      </Button>
     </ButtonGroup>
   );
 };

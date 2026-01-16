@@ -1,5 +1,5 @@
 import { HeartFillIcon, HeartIcon } from '@navikt/aksel-icons';
-import { IconButton } from '../../lib';
+import { Button } from '../../lib';
 import type { AccountMenuProps } from '../../lib';
 import { type UseAccountsProps, useAccounts } from './';
 
@@ -35,14 +35,9 @@ export const useAccountMenu = ({ accountId, accounts, includeGroups = false }: U
       badge: badge ? (
         badge
       ) : (
-        <IconButton
-          rounded
-          variant="text"
-          icon={favourite ? HeartFillIcon : HeartIcon}
-          iconAltText={'Favoritt'}
-          onClick={onFavourite}
-          size="xs"
-        />
+        <Button rounded variant="ghost" aria-label={'Favoritt'} onClick={onFavourite} size="xs">
+          {favourite ? <HeartFillIcon /> : <HeartIcon />}
+        </Button>
       ),
     };
   });

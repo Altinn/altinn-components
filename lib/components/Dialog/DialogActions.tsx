@@ -1,7 +1,16 @@
 'use client';
 import { ChevronDownIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 import { useMemo } from 'react';
-import { Button, type ButtonProps, ComboButton, DropdownBase, Menu, type MenuItemProps, useRootContext } from '..';
+import {
+  Button,
+  ButtonGroup,
+  ButtonGroupDivider,
+  type ButtonProps,
+  DropdownBase,
+  Menu,
+  type MenuItemProps,
+  useRootContext,
+} from '..';
 import styles from './dialogAction.module.css';
 
 export type DialogButtonPriority = 'primary' | 'secondary' | 'tertiary';
@@ -9,6 +18,7 @@ export type DialogButtonPriority = 'primary' | 'secondary' | 'tertiary';
 export interface DialogActionButtonProps extends ButtonProps {
   id: string;
   priority: DialogButtonPriority;
+  label: string;
   onClick?: () => void;
 }
 
@@ -53,18 +63,15 @@ export const DialogActions = ({ items, maxItems = 2, id = 'dialog-actions', expa
     }));
     return (
       <section className={styles.comboButton}>
-        <ComboButton
-          variant="solid"
-          icon={expanded ? ChevronUpIcon : ChevronDownIcon}
-          size="md"
-          onIconClick={() => toggleId(id)}
-          onLabelClick={sortedItems[0].onClick}
-          ariaLabel={expanded ? 'chevron up icon' : 'chevron down icon'}
-          iconAltText={expandAltLabel}
-          disabled={isDisabled}
-        >
-          {sortedItems[0].label}
-        </ComboButton>
+        <ButtonGroup connected size="md">
+          <Button disabled={isDisabled} onClick={sortedItems[0].onClick}>
+            {sortedItems[0].label}
+          </Button>
+          <ButtonGroupDivider />
+          <Button aria-label={expandAltLabel} onClick={() => toggleId(id)}>
+            {expanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
+          </Button>
+        </ButtonGroup>
         {expanded && (
           <DropdownBase open={expanded} onClose={closeAll}>
             <Menu items={remainingItems} />

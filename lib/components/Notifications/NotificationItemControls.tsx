@@ -1,4 +1,4 @@
-import { ContextMenu, type ContextMenuProps, IconButton, ListItemControls } from '..';
+import { Button, ContextMenu, type ContextMenuProps, ListItemControls } from '..';
 
 import { XMarkIcon } from '@navikt/aksel-icons';
 
@@ -27,14 +27,9 @@ export const NotificationItemControls = ({
     <ListItemControls className={className}>
       {contextMenu && <ContextMenu {...contextMenu} />}
       {dismissable && (
-        <IconButton
-          rounded
-          variant="text"
-          icon={XMarkIcon}
-          iconAltText={dismissLabel || 'Dismiss'}
-          onClick={onDismiss}
-          size="xs"
-        />
+        <Button variant="ghost" aria-label={dismissLabel || 'Dismiss'} onClick={onDismiss} size="xs">
+          <XMarkIcon style={{ fontSize: '1.5em' }} />
+        </Button>
       )}
     </ListItemControls>
   );

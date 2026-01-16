@@ -109,8 +109,9 @@ export const ContactProfileModal = ({
             </p>
           </Typography>
           <ButtonGroup size="md">
-            <Button variant="outline" icon={ExternalLinkIcon} reverse>
-              Endre kontaktinformasjon
+            <Button variant="outline">
+              <span>Endre kontaktinformasjon</span>
+              <ExternalLinkIcon />
             </Button>
           </ButtonGroup>
         </>
@@ -182,8 +183,9 @@ export const AddressSettingsModal = (args: SettingsModalProps) => {
         </p>
       </Typography>
       <ButtonGroup size="md">
-        <Button variant="outline" icon={ExternalLinkIcon} reverse>
-          Endre adresse
+        <Button variant="outline">
+          <span>Endre adresse</span>
+          <ExternalLinkIcon />
         </Button>
       </ButtonGroup>
     </SettingsModal>
@@ -245,8 +247,9 @@ export const AccountAlertsModal = ({
             </p>
           </Typography>
           <ButtonGroup size="md">
-            <Button variant="outline" icon={ExternalLinkIcon} reverse>
-              Endre varslingsadresser
+            <Button variant="outline">
+              <span>Endre varslingsadresser</span>
+              <ExternalLinkIcon />
             </Button>
           </ButtonGroup>
         </>
@@ -366,12 +369,9 @@ export const AccountGroupsModal = ({
                 icon={item.icon}
                 title={item.name}
                 controls={
-                  <IconButton
-                    size="xs"
-                    variant={item?.selected ? 'outline' : 'solid'}
-                    iconAltText="Legg til"
-                    icon={item?.selected ? MinusIcon : PlusIcon}
-                  />
+                  <IconButton size="xs" variant={item?.selected ? 'outline' : 'solid'} label="Legg til">
+                    {item?.selected ? <MinusIcon /> : <PlusIcon />}
+                  </IconButton>
                 }
               />
             </Fragment>
@@ -462,8 +462,9 @@ export const CompanyInfoModal = (args: SettingsModalProps) => {
         </p>
       </Typography>
       <ButtonGroup size="md">
-        <Button variant="outline" icon={ExternalLinkIcon} reverse>
-          Samordnet registermelding
+        <Button variant="outline">
+          <span>Samordnet registermelding</span>
+          <ExternalLinkIcon />
         </Button>
       </ButtonGroup>
     </SettingsModal>

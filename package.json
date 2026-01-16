@@ -1,20 +1,15 @@
 {
   "name": "@altinn/altinn-components",
-  "version": "0.52.6",
+  "version": "0.52.7",
   "main": "dist/index.js",
-  "files": [
-    "dist/",
-    "!dist/stories/",
-    "!dist/components/*/*.stories.js"
-  ],
+  "files": ["dist/", "!dist/stories/", "!dist/components/*/*.stories.js"],
   "types": "dist/types/lib/index.d.ts",
   "type": "module",
   "description": "Reusable react components",
-  "sideEffects": [
-    "*.css"
-  ],
+  "sideEffects": ["*.css"],
   "scripts": {
     "test": "vitest run",
+    "test:unit": "vitest run --project=unit",
     "storybook": "storybook dev -p 6006",
     "typecheck": "tsc --noEmit",
     "build": "tsc && vite build",

@@ -1,19 +1,11 @@
-import { Button as DsButton } from '@digdir/designsystemet-react';
-import {
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  ChevronDownIcon,
-  ChevronUpDownIcon,
-  PlusIcon,
-  XMarkIcon,
-} from '@navikt/aksel-icons';
+import { ArrowLeftIcon, ArrowRightIcon, PencilIcon, XMarkIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Button, type ButtonSize, type ButtonVariant, ComboButton, IconButton, MetaItem } from '../';
+import { Button, type ButtonSize, type ButtonVariant } from './Button';
+import { ButtonGroup } from './ButtonGroup';
 
 const meta = {
-  title: 'Button/Button',
+  title: 'Next/Button',
   component: Button,
-  //  tags: ["autodocs"],
   parameters: {},
   args: {
     children: 'Button',
@@ -21,155 +13,91 @@ const meta = {
 } satisfies Meta<typeof Button>;
 
 const sizes = ['xs', 'sm', 'md', 'lg'] as ButtonSize[];
-const variants = ['solid', 'tinted', 'outline', 'dotted', 'text'] as ButtonVariant[];
+const variants = ['solid', 'tinted', 'outline', 'ghost'] as ButtonVariant[];
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  args: {},
-};
-
-export const Solid: Story = {
-  args: {
-    variant: 'solid',
-  },
-};
-
-export const Outline: Story = {
-  args: {
-    variant: 'outline',
-  },
-};
-
-export const Text: Story = {
-  args: {
-    variant: 'text',
-  },
-};
-
-export const Loading: Story = {
-  args: {
-    loading: true,
-    children: 'Loading ...',
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    disabled: true,
-  },
-};
-
-export const Sizes = (args: Story) => {
-  return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        columnGap: '1rem',
-      }}
-    >
-      <Button {...args} size="xs">
-        Button Xs
-      </Button>
-      <Button {...args} size="sm">
-        Button Sm
-      </Button>
-      <Button {...args} size="md">
-        Button Md
-      </Button>
-      <Button {...args} size="lg">
-        Button Lg
-      </Button>
-    </div>
-  );
-};
-
-export const LabelSize = (args: Story) => {
-  return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        columnGap: '1rem',
-      }}
-    >
-      <Button {...args} size="md" icon={PlusIcon}>
-        Medium
-      </Button>
-      <Button {...args} icon={PlusIcon} size="md" labelSize="sm">
-        Md/Sm
-      </Button>
-      <Button {...args} size="lg" icon={PlusIcon}>
-        Large
-      </Button>
-      <Button {...args} icon={PlusIcon} size="lg" labelSize="md">
-        Lg/Md
-      </Button>
-      <ComboButton {...args} icon={XMarkIcon} size="lg" variant="tinted" iconAltText="close">
-        Large
-      </ComboButton>
-      <ComboButton {...args} icon={XMarkIcon} size="lg" labelSize="md" variant="tinted" iconAltText="close">
-        Large/Md
-      </ComboButton>
-      <IconButton {...args} iconAltText="Lg" icon={PlusIcon} size="lg" />
-      <IconButton {...args} iconAltText="Lg/Md" icon={PlusIcon} size="lg" iconSize="md" />
-    </div>
-  );
+export const Default = (args: Story) => {
+  return <Button {...args}>Button</Button>;
 };
 
 export const Variants = (args: Story) => {
   return (
-    <div
-      data-size="md"
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        columnGap: '1rem',
-      }}
-    >
-      <DsButton>DsButton</DsButton>
-      <DsButton variant="secondary">DsButton</DsButton>
-      <DsButton variant="tertiary">DsButton</DsButton>
-      <Button {...args} variant="solid">
-        Solid
-      </Button>
+    <ButtonGroup>
+      <Button {...args}>Default</Button>
       <Button {...args} variant="tinted">
         Tinted
       </Button>
       <Button {...args} variant="outline">
         Outline
       </Button>
-      <Button {...args} variant="dotted">
-        Dotted
+      <Button {...args} variant="ghost">
+        Ghost
       </Button>
-      <Button {...args} variant="text">
-        Text
-      </Button>
-    </div>
+    </ButtonGroup>
   );
 };
 
-export const ToolbarButtons = (args: Story) => {
+export const Colors = (args: Story) => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        columnGap: '.5rem',
-      }}
-    >
-      <Button {...args} size="xs" icon={ChevronUpDownIcon} reverse variant="solid">
-        Button
+    <ButtonGroup>
+      <Button {...args} color="company">
+        Company
       </Button>
-      <ComboButton {...args} icon={XMarkIcon} size="xs" variant="tinted" iconAltText="close">
-        Button
-      </ComboButton>
-      <Button {...args} size="xs" icon={PlusIcon} variant="dotted">
-        Legg til filter
+      <Button {...args} color="person">
+        Person
       </Button>
-    </div>
+      <Button {...args} color="neutral">
+        Neutral
+      </Button>
+      <Button {...args} color="danger">
+        Danger
+      </Button>
+      <Button {...args} color="warning">
+        Warning
+      </Button>
+    </ButtonGroup>
+  );
+};
+
+export const Sizes = (args: Story) => {
+  return (
+    <ButtonGroup>
+      <Button {...args} size="xs">
+        XSmall
+      </Button>
+      <Button {...args} size="sm">
+        Small
+      </Button>
+      <Button {...args} size="md">
+        Medium
+      </Button>
+      <Button {...args} size="lg">
+        Large
+      </Button>
+    </ButtonGroup>
+  );
+};
+
+export const Icons = (args: Story) => {
+  return (
+    <ButtonGroup>
+      <Button {...args} icon>
+        <XMarkIcon />
+      </Button>
+      <Button {...args} icon rounded>
+        <XMarkIcon />
+      </Button>
+      <Button {...args}>
+        <PencilIcon />
+        <span>Button</span>
+      </Button>
+      <Button {...args}>
+        <span>Button</span>
+        <ArrowRightIcon />
+      </Button>
+    </ButtonGroup>
   );
 };
 
@@ -189,7 +117,7 @@ export const Specimens = (args: Story) => {
               width: '100%',
             }}
           >
-            <MetaItem>{variant}</MetaItem>
+            <span>{variant}</span>
             {sizes.map((size) => {
               return (
                 <div
@@ -201,28 +129,30 @@ export const Specimens = (args: Story) => {
                     columnGap: '1rem',
                   }}
                 >
-                  <DsButton>DsButton</DsButton>
-                  <IconButton iconAltText={size} {...args} icon={XMarkIcon} variant={variant} size={size} />
+                  <Button {...args} variant={variant} size={size} icon>
+                    <XMarkIcon />
+                  </Button>
+                  <Button {...args} variant={variant} size={size} rounded icon>
+                    <XMarkIcon />
+                  </Button>
                   <Button {...args} variant={variant} size={size}>
                     Button
                   </Button>
-                  <Button {...args} variant={variant} icon={ArrowLeftIcon} size={size}>
-                    Button
+                  <Button {...args} variant={variant} size={size}>
+                    <ArrowLeftIcon />
+                    <span>Button</span>
                   </Button>
-                  <Button {...args} reverse variant={variant} icon={ArrowRightIcon} size={size}>
-                    Button
+                  <Button {...args} variant={variant} size={size}>
+                    <span>Button</span>
+                    <ArrowRightIcon />
                   </Button>
-                  <ComboButton
-                    {...args}
-                    variant={variant}
-                    icon={ChevronDownIcon}
-                    size={size}
-                    iconAltText="chevron down"
-                    ariaLabel={`ComboButton ${size}`}
-                  >
-                    ComboButton
-                  </ComboButton>
-                  <MetaItem>{size}</MetaItem>
+                  <Button {...args} loading={true} variant={variant} size={size}>
+                    Loading ...
+                  </Button>
+                  <Button {...args} disabled variant={variant} size={size}>
+                    Disabled
+                  </Button>
+                  <span>{size}</span>
                 </div>
               );
             })}

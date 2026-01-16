@@ -124,7 +124,7 @@ export const AccountSelector = ({
               <CaretDownCircleIcon className={styles.btnIcon} aria-hidden="true" />
             )
           }
-          variant="text"
+          variant="ghost"
           onClick={toggleExpansion}
         >
           {isFullScreen ? minimize : fullscreen}

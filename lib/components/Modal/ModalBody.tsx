@@ -1,15 +1,10 @@
 import type { ReactNode } from 'react';
-import { Section, type SectionProps } from '../';
 import styles from './modalBody.module.css';
 
-export interface ModalBodyProps extends SectionProps {
+export interface ModalBodyProps {
   children?: ReactNode;
 }
 
-export const ModalBody = ({ children, ...props }: ModalBodyProps) => {
-  return (
-    <Section spacing={6} padding={6} {...props} className={styles.body}>
-      {children}
-    </Section>
-  );
+export const ModalBody = ({ children }: ModalBodyProps) => {
+  return <div className={styles.body}>{children}</div>;
 };

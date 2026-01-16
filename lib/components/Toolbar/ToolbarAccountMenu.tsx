@@ -32,12 +32,12 @@ export const ToolbarAccountMenu = ({
   };
 
   return (
-    <ToolbarFilterBase expanded={expanded} onBlurCapture={onBlurCapture} dataTestId={'filter-base-accounts'}>
+    <ToolbarFilterBase expanded={expanded} onBlurCapture={onBlurCapture} data-testid={'filter-base-accounts'}>
       <ToolbarButton
         type="switch"
         onToggle={onToggle}
         active={!!currentAccount}
-        dataTestId={buttonTestId}
+        data-testid={buttonTestId}
         aria-expanded={expanded}
       >
         {currentAccount?.name}

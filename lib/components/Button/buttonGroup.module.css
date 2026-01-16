@@ -2,21 +2,24 @@
   padding: 0;
   border: 0;
   display: inline-flex;
+  align-self: start;
   column-gap: .75em;
   white-space: nowrap;
   pointer-events: none;
+  background-color: transparent;
 }
 
 .buttonGroup * {
   pointer-events: auto;
 }
 
-.buttonGroup[data-connected="true"] {
-  column-gap: 0;
+.buttonGroup[data-disabled="true"] {
+  pointer-events: none;
 }
 
-.buttonGroup[data-connected="true"] > * + *:not(:first-child):not(:last-child) {
-  border-radius: 0;
+.buttonGroup[data-connected="true"] {
+  background-color: var(--dsc-button-background);
+  column-gap: 0;
 }
 
 .buttonGroup[data-connected="true"] > *:first-child {

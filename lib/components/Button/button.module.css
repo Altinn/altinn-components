@@ -1,21 +1,41 @@
 .button {
-  display: inline-flex;
-  align-items: center;
-  column-gap: 0.25em;
-  padding: 0.625em;
+  white-space: nowrap;
 }
 
-.button[data-reverse="true"] {
-  flex-direction: row-reverse;
+.button[data-size="xs"] {
+  border-radius: 0.25em;
 }
 
-/* link */
-
-.button[data-variant="link"] {
-  padding: 0;
-  border: 0;
+/* 1. IF SVG is the FIRST element -> Reduce LEFT padding */
+.button > svg:first-child {
+  margin-left: -0.25em;
 }
 
-.button[data-variant="link"]:hover .label {
-  text-decoration: underline;
+/* 2. IF SVG is the LAST element -> Reduce RIGHT padding */
+.button > svg:last-child {
+  margin-right: -0.25em;
+}
+
+/* circular variant */
+.button[data-rounded="true"] {
+  border-radius: calc(var(--dsc-button-size) / 2);
+}
+
+/* connected variant */
+.button[data-connected="true"] {
+  column-gap: none;
+}
+
+.button[aria-busy="true"] {
+  opacity: 0.5;
+}
+
+/* tinted variant */
+.button[data-variant="tinted"] {
+  --dsc-button-background: var(--ds-color-surface-tinted);
+  --dsc-button-border-color: var(--ds-color-border-strong);
+  --dsc-button-background--active: var(--ds-color-surface-active);
+  --dsc-button-background--hover: var(--ds-color-surface-hover);
+  --dsc-button-color: var(--ds-color-text-default);
+  --dsc-button-color--hover: var(--ds-color-text-default);
 }

@@ -1,51 +1,14 @@
-import type { MouseEventHandler } from 'react';
-import { ButtonBase, ButtonIcon } from '..';
-import type { ButtonColor, ButtonIconProps, ButtonSize, ButtonVariant } from '..';
+import { Button, type ButtonProps } from '.';
+import styles from './iconButton.module.css';
 
-export interface IconButtonProps {
-  icon: ButtonIconProps['icon'];
-  iconAltText: string;
-  color?: ButtonColor;
-  size?: ButtonSize;
-  iconSize?: ButtonSize;
-  variant?: ButtonVariant;
-  rounded?: boolean; // Optional, used to indicate if the button should have rounded corners
-  selected?: boolean;
-  className?: string;
-  onClick?: MouseEventHandler;
-  dataTestId?: string;
-  onBlurCapture?: React.FocusEventHandler<HTMLButtonElement>;
-  type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
+export interface IconButtonProps extends ButtonProps {
+  label: string;
 }
 
-export const IconButton = ({
-  variant = 'solid',
-  rounded = false,
-  size,
-  icon,
-  iconSize,
-  iconAltText,
-  color,
-  className,
-  selected,
-  onClick,
-  dataTestId,
-  onBlurCapture,
-}: IconButtonProps) => {
+export const IconButton = ({ children, label, ...props }: IconButtonProps) => {
   return (
-    <ButtonBase
-      variant={variant}
-      rounded={rounded}
-      color={color}
-      size={size}
-      className={className}
-      onClick={onClick}
-      selected={selected}
-      data-testid={dataTestId}
-      aria-label={iconAltText}
-      onBlurCapture={onBlurCapture}
-    >
-      {icon && <ButtonIcon icon={icon} size={iconSize} />}
-    </ButtonBase>
+    <Button {...props} className={styles.button} icon={true} aria-label={label}>
+      {children}
+    </Button>
   );
 };

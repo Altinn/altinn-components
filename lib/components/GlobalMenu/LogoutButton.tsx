@@ -1,5 +1,5 @@
 import type { MouseEventHandler, ReactNode } from 'react';
-import { ButtonBase, ButtonLabel } from '../Button';
+import { Button } from '../Button';
 import styles from './logoutButton.module.css';
 
 export interface LogoutButtonProps {
@@ -10,10 +10,8 @@ export interface LogoutButtonProps {
 
 export const LogoutButton = ({ label = 'Logout', children, onClick }: LogoutButtonProps) => {
   return (
-    <ButtonBase className={styles.button} variant="outline" size="lg" onClick={onClick}>
-      <ButtonLabel className={styles.label} size="lg">
-        {children || label}
-      </ButtonLabel>
-    </ButtonBase>
+    <Button className={styles.button} variant="outline" size="lg" onClick={onClick}>
+      {children || label}
+    </Button>
   );
 };

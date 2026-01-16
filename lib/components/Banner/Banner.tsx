@@ -1,6 +1,6 @@
 import { InformationSquareIcon, XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
-import { IconButton } from '../Button';
+import { Button } from '../Button';
 import styles from './banner.module.css';
 
 export enum BannerColorEnum {
@@ -40,13 +40,9 @@ export const Banner = ({ closeTitle = 'close', onClose, text, color, sticky = tr
         <span>{text}</span>
       </div>
       {!!onClose && (
-        <IconButton
-          icon={XMarkIcon}
-          variant="solid"
-          onClick={onClose}
-          className={styles.dismiss}
-          iconAltText={closeTitle}
-        />
+        <Button variant="solid" onClick={onClose} className={styles.dismiss} aria-label={closeTitle}>
+          <XMarkIcon style={{ fontSize: '1.5em' }} />
+        </Button>
       )}
     </section>
   );

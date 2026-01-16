@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.52.7](https://github.com/Altinn/altinn-components/compare/v0.52.6...v0.52.7) (2026-01-14)
+
+
+### Bug Fixes
+
+* Support abbreviated company names format, test coverage ([#912](https://github.com/Altinn/altinn-components/issues/912)) ([036ef08](https://github.com/Altinn/altinn-components/commit/036ef08d4d73e856a69ebcf563d65aed1a3dbbaa))
+
 ## [0.52.6](https://github.com/Altinn/altinn-components/compare/v0.52.5...v0.52.6) (2026-01-13)
 
 
