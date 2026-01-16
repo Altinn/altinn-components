@@ -16,7 +16,6 @@ export interface HeaderButtonProps extends ButtonProps {
   as?: ElementType;
   className?: string;
   expanded?: boolean;
-  icon?: SvgElement;
   badge?: BadgeProps | undefined;
   tabIndex?: number;
 }
@@ -70,7 +69,7 @@ export const HeaderButton = ({
     <Button {...buttonProps} as={as} variant={variant} color={color} className={cx(styles.button, className)}>
       <span className={styles.label}>{label}</span>
       <span className={cx(styles.icon, styles.loginIcon)}>
-        <Icon svgElement={icon} />
+        <Icon svgElement={icon as SvgElement} />
       </span>
       {badge && <Badge {...badge} className={styles.badge} />}
     </Button>

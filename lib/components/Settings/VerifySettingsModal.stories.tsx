@@ -126,7 +126,7 @@ const Template = ({ defaultState, defaultValue = '' }: TemplateProps) => {
                   Verifiser kode
                 </Button>
                 <Button variant="outline">Avbryt</Button>
-                <Button variant="text" onClick={onSendCode}>
+                <Button variant="ghost" onClick={onSendCode}>
                   <span data-size="sm">Send ny kode</span>
                 </Button>
               </ButtonGroup>
