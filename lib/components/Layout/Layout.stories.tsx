@@ -75,7 +75,7 @@ export const Preview = (args: LayoutStoryArgs) => {
   const layout = useLayout(args);
   const accountMenu = {
     ...useAccountMenu({ accountId: 'diaspora' }),
-    isVirtualized: true,
+    virtualized: true,
   };
   const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
   const onSearch = (queryString: string) => alert('Search entered: ' + queryString);
@@ -155,7 +155,7 @@ export const LogInView = (args: LayoutStoryArgs) => {
   const layout = useLayout(args);
   const accountMenu = {
     ...useAccountMenu({ accountId: 'diaspora' }),
-    isVirtualized: true,
+    virtualized: true,
   };
   const accountMenuNotLoggedIn = {
     ...accountMenu,

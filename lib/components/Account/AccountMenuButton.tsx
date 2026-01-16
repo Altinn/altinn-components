@@ -46,7 +46,7 @@ export const AccountMenuButton = ({
 
   if (currentAccount) {
     let description = currentAccount.description;
-    if (currentAccount.type === 'subunit' && typeof description === 'string' && description) {
+    if (currentAccount.role === 'subunit' && typeof description === 'string' && description) {
       const orgNoDescription = description.split(',');
       description = `${orgNoDescription[0]}, ${texts.subunit}`;
     }

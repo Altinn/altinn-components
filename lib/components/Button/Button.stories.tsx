@@ -4,7 +4,7 @@ import { Button, type ButtonSize, type ButtonVariant } from './Button';
 import { ButtonGroup } from './ButtonGroup';
 
 const meta = {
-  title: 'Next/Button',
+  title: 'Button/Button',
   component: Button,
   parameters: {},
   args: {

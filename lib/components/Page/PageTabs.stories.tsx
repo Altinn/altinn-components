@@ -4,7 +4,7 @@ import { PageTabs } from '../';
 const meta = {
   title: 'Page/PageTabs',
   component: PageTabs,
-  tags: ['autodocs', 'beta'],
+  tags: ['autodocs', 'deprecated'],
   parameters: {},
   args: {
     items: [

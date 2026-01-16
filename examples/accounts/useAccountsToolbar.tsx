@@ -1,12 +1,12 @@
 import { type ChangeEvent, useState } from 'react';
-import type { AccountListItemProps, FilterState, FilterValue, ToolbarFilterProps, ToolbarProps } from '../../lib';
+import type { AccountListItemProps, FilterState, ToolbarProps } from '../../lib';
 import type { AccountDataListProps } from './accounts';
 
-export const accountTypeFilter: ToolbarFilterProps = {
+export const accountTypeFilter = {
   name: 'type',
   label: 'Alle aktører',
   optionType: 'radio',
-  options: [
+  items: [
     {
       groupId: '1',
       label: 'Alle aktører',
@@ -27,19 +27,14 @@ export const accountTypeFilter: ToolbarFilterProps = {
       label: 'Grupper',
       value: 'group',
     },
-    /*
-    {
-      groupId: "2",
-      type: "checkbox",
-      name: "deleted",
-      label: "Vis slettede enheter",
-      value: "true",
-    },
-    */
-  ],
+  ].map((item) => {
+    return {
+      ...item,
+      name: 'type',
+      role: 'radio',
+    };
+  }),
 };
-
-export const accountListFilters = [accountTypeFilter];
 
 interface UseAccountsToolbarProps extends ToolbarProps {
   results: AccountDataListProps;
@@ -68,13 +63,11 @@ export const useAccountsToolbar = (items?: AccountListItemProps[]): UseAccountsT
     onClear,
   };
 
-  const getFilterLabel = (name: string, value: FilterValue[] | undefined) => {
-    console.log('N', name);
-    console.log('V', value);
+  const getFilterLabel = (name: string) => {
+    const value = filterState[name];
+    const selected = accountTypeFilter?.items.find((item) => value?.includes(item.value.toString()));
 
-    const selected = accountTypeFilter?.options.find((item) => value?.includes(item.value.toString()));
-
-    return selected?.label;
+    return selected?.label || 'N/A';
   };
 
   // filters
@@ -136,10 +129,12 @@ export const useAccountsToolbar = (items?: AccountListItemProps[]): UseAccountsT
     active,
     results,
     search,
-    filters: accountListFilters,
-    filterState,
-    onFilterStateChange: setFilterState,
-    getFilterLabel,
-    removeButtonAltText: 'remove',
-  } as UseAccountsToolbarProps;
+    filter: {
+      filters: [accountTypeFilter],
+      filterState,
+      onFilterStateChange: setFilterState,
+      getFilterLabel,
+      removeLabel: 'remove',
+    },
+  };
 };

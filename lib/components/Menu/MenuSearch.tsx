@@ -22,22 +22,23 @@ export const MenuSearch = ({
 }: MenuSearchProps) => {
   const isDesktop = useIsDesktop();
   return (
-    <SearchField
-      size="xs"
-      name={name}
-      value={value}
-      placeholder={placeholder}
-      onChange={onChange}
-      onClear={onClear}
-      clearButtonAltText={clearButtonAltText}
-      className={styles.field}
-      autoComplete="off"
-      autoFocus={isDesktop}
-      onKeyDown={(e) => {
-        if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
-          e.preventDefault();
-        }
-      }}
-    />
+    <li role="search" className={styles.search}>
+      <SearchField
+        size="xs"
+        name={name}
+        value={value}
+        placeholder={placeholder}
+        onChange={onChange}
+        onClear={onClear}
+        clearButtonAltText={clearButtonAltText}
+        autoComplete="off"
+        autoFocus={isDesktop}
+        onKeyDown={(e) => {
+          if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+            e.preventDefault();
+          }
+        }}
+      />
+    </li>
   );
 };

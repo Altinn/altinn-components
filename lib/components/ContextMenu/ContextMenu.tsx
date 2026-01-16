@@ -2,10 +2,10 @@
 import { MenuElipsisHorizontalIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import { useMemo, useRef } from 'react';
-import { Button, DropdownBase, type DropdownPlacement, type MenuItemProps } from '../';
-import { type MenuItemGroups, MenuItems } from '../';
+import { Button, DropdownBase, type MenuItemProps } from '../';
 import { useClickOutside } from '../../hooks';
 import { useEnterKey } from '../../hooks/useEnterKey.ts';
+import { type MenuItemGroups, MenuItems } from '../Menu';
 import { useRootContext } from '../RootProvider';
 import styles from './contextMenu.module.css';
 
@@ -13,7 +13,7 @@ export interface ContextMenuProps {
   id?: string;
   ariaLabel?: string;
   items: MenuItemProps[];
-  placement?: DropdownPlacement;
+  placement?: 'left' | 'right';
   groups?: MenuItemGroups;
   className?: string;
 }
@@ -88,7 +88,7 @@ export const ContextMenu = ({
       </Button>
       {expanded && (
         <DropdownBase placement={placement} open={expanded}>
-          <MenuItems groups={groups} items={itemsWithToggle} keyboardEvents />
+          <MenuItems variant="default" groups={groups} items={itemsWithToggle} keyboardEvents />
         </DropdownBase>
       )}
     </div>

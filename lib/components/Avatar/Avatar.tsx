@@ -108,6 +108,7 @@ export const Avatar = ({
       style={inlineStyles}
       data-shape={applicableShape}
       data-size={size}
+      data-ui="avatar"
       aria-hidden
     >
       <Skeleton loading={loading} className={styles.shape} variant="circle">
@@ -133,8 +134,6 @@ export const Avatar = ({
           <svg
             aria-hidden="true"
             className={styles.deletedIcon}
-            width="24"
-            height="24"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"

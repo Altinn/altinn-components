@@ -21,12 +21,12 @@ type Story = StoryObj<typeof meta>;
 export const CurrentAccount = (args: GlobalMenuProps_old) => {
   const accountMenu = useAccountMenu({ accountId: 'diaspora' });
   const accounts = accountMenu?.items!;
-  const [currentAccount, setCurrentAccount] = useState<Account>(accountMenu.currentAccount as Account);
+  const [currentAccount, setCurrentAccount] = useState<Account>(accountMenu.currentAccount as unknown as Account);
 
   const onSelectAccount = (id: string) => {
     const account = accounts?.find((item) => item.id === id);
     if (account) {
-      setCurrentAccount(account as Account);
+      setCurrentAccount(account as unknown as Account);
     }
   };
 
@@ -36,12 +36,12 @@ export const CurrentAccount = (args: GlobalMenuProps_old) => {
 export const CompanyAccount = (args: GlobalMenuProps_old) => {
   const accountMenu = useAccountMenu({ accountId: 'diaspora' });
   const accounts = accountMenu?.items!;
-  const [currentAccount, setCurrentAccount] = useState<Account>(accountMenu.currentAccount as Account);
+  const [currentAccount, setCurrentAccount] = useState<Account>(accountMenu.currentAccount as unknown as Account);
 
   const onSelectAccount = (id: string) => {
     const account = accounts?.find((item) => item.id === id);
     if (account) {
-      setCurrentAccount(account as Account);
+      setCurrentAccount(account as unknown as Account);
     }
   };
 
@@ -51,12 +51,12 @@ export const CompanyAccount = (args: GlobalMenuProps_old) => {
 export const MobileMenu = (args: GlobalMenuProps_old) => {
   const accountMenu = useAccountMenu({ accountId: 'diaspora' });
   const accounts = accountMenu?.items!;
-  const [currentAccount, setCurrentAccount] = useState<Account>(accountMenu.currentAccount as Account);
+  const [currentAccount, setCurrentAccount] = useState<Account>(accountMenu.currentAccount as unknown as Account);
 
   const onSelectAccount = (id: string) => {
     const account = accounts?.find((item) => item.id === id);
     if (account) {
-      setCurrentAccount(account as Account);
+      setCurrentAccount(account as unknown as Account);
     }
   };
 
@@ -67,13 +67,13 @@ export const MobileMenu = (args: GlobalMenuProps_old) => {
 
 export const SingleAccount = (args: GlobalMenuProps_old) => {
   const accountMenu = useAccountMenu({ accountId: 'user' });
-  const currentAccount = accountMenu?.currentAccount as Account;
+  const currentAccount = accountMenu?.currentAccount as unknown as Account;
 
   return (
     <GlobalMenu_old
       {...args}
       ariaLabel="Menu Single Account"
-      accountMenu={{ ...accountMenu, items: [currentAccount] }}
+      accountMenu={{ ...accountMenu, items: [currentAccount] } as unknown as GlobalMenuProps_old['accountMenu']}
       currentAccount={{ ...currentAccount }}
     />
   );
@@ -89,12 +89,12 @@ export const Login: Story = {
 export const InterimMenu = (args: GlobalMenuProps_old) => {
   const accountMenu = useAccountMenu({ accountId: 'user' });
   const accounts = accountMenu?.items!;
-  const [currentAccount, setCurrentAccount] = useState<Account>(accountMenu.currentAccount as Account);
+  const [currentAccount, setCurrentAccount] = useState<Account>(accountMenu.currentAccount as unknown as Account);
 
   const onSelectAccount = (id: string) => {
     const account = accounts?.find((item) => item.id === id);
     if (account) {
-      setCurrentAccount(account as Account);
+      setCurrentAccount(account as unknown as Account);
     }
   };
 

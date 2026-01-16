@@ -158,7 +158,7 @@ export const WithVirtualizationEnabled = () => {
     },
     languageCode: 'nb',
     isLoading: false,
-    isVirtualized: true,
+    virtualized: true,
   });
   return (
     <RootProvider>

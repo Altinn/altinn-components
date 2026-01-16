@@ -44,11 +44,17 @@ export const AvatarGroup = ({
   const maxItems = useMemo(() => items.slice(0, maxItemsCount).reverse(), [items, maxItemsCount]);
 
   if (items.length === 0) {
-    return <div className={styles.avatarGroup} />;
+    return <div className={cx(styles.group, className)} />;
   }
 
   return (
-    <ul className={cx(styles.group, className)} data-size={size} data-count={maxItems?.length} style={style}>
+    <ul
+      className={cx(styles.group, className)}
+      data-ui="avatar-group"
+      data-size={size}
+      data-count={maxItems?.length}
+      style={style}
+    >
       {maxItems.map((avatar, index) => {
         const lastLegalAvatarReached = index === maxItemsCount - 1;
         const customLabel =

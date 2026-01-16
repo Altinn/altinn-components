@@ -1,10 +1,6 @@
-.field {
-  position: relative;
-  margin: 0.5rem 0;
-}
-
-@media (max-width: 1023px) {
-  .field {
-    font-size: 1rem;
-  }
+.search {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: var(--ds-color-surface-default);
 }

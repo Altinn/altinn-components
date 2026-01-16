@@ -530,8 +530,9 @@ export const CustomControls = (args: ListItemProps) => {
         {...args}
         icon={TeddyBearIcon}
         controls={
-          <Button icon={PencilIcon} size="xs" variant="outline" onClick={() => alert('Button clicked')}>
-            Rediger
+          <Button size="xs" variant="outline" onClick={() => alert('Button clicked')}>
+            <PencilIcon />
+            <span>Rediger</span>
           </Button>
         }
         badge={undefined}
@@ -544,8 +545,9 @@ export const CustomControls = (args: ListItemProps) => {
         interactive={false}
         icon={TeddyBearIcon}
         controls={
-          <Button icon={PencilIcon} size="xs" variant="outline" onClick={() => alert('Button clicked')}>
-            Rediger
+          <Button size="xs" variant="outline" onClick={() => alert('Button clicked')}>
+            <PencilIcon />
+            <span>Rediger</span>
           </Button>
         }
         linkIcon={false}
@@ -560,14 +562,17 @@ export const CustomControls = (args: ListItemProps) => {
         icon={TeddyBearIcon}
         controls={
           <>
-            <Button icon={PencilIcon} size="xs" variant="outline" onClick={() => alert('Button 1')}>
-              1
+            <Button size="xs" variant="outline" onClick={() => alert('Button 1')}>
+              <PencilIcon />
+              <span>1</span>
             </Button>
-            <Button icon={PencilIcon} size="xs" variant="outline" onClick={() => alert('Button 2')}>
-              2
+            <Button size="xs" variant="outline" onClick={() => alert('Button 2')}>
+              <PencilIcon />
+              <span>2</span>
             </Button>
-            <Button icon={PencilIcon} size="xs" variant="outline" onClick={() => alert('Button 3')}>
-              3
+            <Button size="xs" variant="outline" onClick={() => alert('Button 3')}>
+              <PencilIcon />
+              <span>3</span>
             </Button>
           </>
         }
@@ -619,8 +624,9 @@ export const InteractiveWithControls = (args: ListItemProps) => {
           description={`ListItem clicks: ${listItemClicks}, Button clicks: ${buttonClicks}`}
           onClick={handleListItemClick}
           controls={
-            <Button icon={PencilIcon} size="xs" variant="outline" onClick={handleButtonClick}>
-              Edit
+            <Button size="xs" variant="outline" onClick={handleButtonClick}>
+              <PencilIcon />
+              <span>Edit</span>
             </Button>
           }
           as="button"
@@ -691,8 +697,9 @@ export const KeyboardNavigation = (args: ListItemProps) => {
           onClick={handleListItemClick}
           onKeyPress={handleKeyPress}
           controls={
-            <Button icon={PencilIcon} size="xs" variant="outline" onClick={handleButtonClick}>
-              Edit
+            <Button size="xs" variant="outline" onClick={handleButtonClick}>
+              <PencilIcon />
+              <span>Edit</span>
             </Button>
           }
           as="button"

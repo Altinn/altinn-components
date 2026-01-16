@@ -35,7 +35,7 @@ export const Autocomplete = ({
 
   return (
     <AutocompleteBase className={className} expanded={expanded} ref={ref} id={id}>
-      <MenuList role={'menu' as MenuListRole}>
+      <MenuList role={'menu' as MenuListRole} variant="default">
         {menu.map((group, groupIndex) => {
           const groupProps: MenuGroupProps = group?.props || {};
           const { title, divider = true } = groupProps;

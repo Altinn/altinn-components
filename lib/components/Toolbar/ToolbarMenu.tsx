@@ -1,40 +1,50 @@
-import { DrawerOrDropdown, useRootContext } from '../';
-import { Menu, type MenuItemGroups, type MenuItemProps, type MenuSearchProps } from '../Menu';
-import { ToolbarButton } from './ToolbarButton';
-import { ToolbarFilterBase } from './ToolbarFilterBase';
+import { ChevronUpDownIcon } from '@navikt/aksel-icons';
+import { useState } from 'react';
+import { Button } from '../Button';
+import { Dropdown } from '../Dropdown/Dropdown';
+import { Menu, type MenuItemProps, type MenuProps } from '../Menu/';
 
-export interface ToolbarMenuProps {
-  label: string;
-  value: string | number;
+export interface ToolbarMenuProps extends MenuProps {
   title?: string;
-  items: MenuItemProps[];
-  groups?: MenuItemGroups;
-  search?: MenuSearchProps;
-  id?: string;
-  className?: string;
+  label: string;
+  onSelectId?: (id: string) => void;
 }
 
-export const ToolbarMenu = ({
-  label,
-  value,
-  groups,
-  search,
-  items,
-  id = 'toolbar-menu',
-  title = 'Endre aktør',
-}: ToolbarMenuProps) => {
-  const { currentId, toggleId, closeAll } = useRootContext();
-  const onToggle = () => toggleId(id);
-  const expanded = currentId === id;
+export const ToolbarMenu = ({ title = 'Title', label = 'Label', items, onSelectId, ...props }: ToolbarMenuProps) => {
+  const [open, setOpen] = useState(false);
+
+  const onToggle = () => {
+    setOpen((prev) => !prev);
+  };
+
+  const onClose = () => {
+    setOpen(false);
+  };
+
+  const selectableItems = items?.map((item: MenuItemProps) => {
+    return {
+      ...item,
+      onClick: () => {
+        onSelectId?.(item?.id || 'n/a');
+        onClose();
+      },
+    };
+  });
 
   return (
-    <ToolbarFilterBase expanded={expanded}>
-      <ToolbarButton type="switch" onToggle={onToggle} active={!!value}>
-        {label}
-      </ToolbarButton>
-      <DrawerOrDropdown open={expanded} drawerTitle={title} onClose={closeAll}>
-        <Menu groups={groups} search={search} items={items} />
-      </DrawerOrDropdown>
-    </ToolbarFilterBase>
+    <Dropdown
+      variant="drawer-dropdown"
+      title={title}
+      trigger={
+        <Button variant="primary" onClick={onToggle}>
+          <span>{label}</span>
+          <ChevronUpDownIcon />
+        </Button>
+      }
+      open={open}
+      onClose={onClose}
+    >
+      <Menu {...props} items={selectableItems} />
+    </Dropdown>
   );
 };

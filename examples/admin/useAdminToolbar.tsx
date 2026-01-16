@@ -12,7 +12,7 @@ export const useAdminToolbar = ({ accountMenu, search }: ToolbarProps) => {
     accountMenu: {
       ...accountMenu,
       items: accountMenu?.items.filter((item) => item.id !== 'user'),
-      isVirtualized: true,
+      virtualized: true,
     },
     search: {
       name: 'search',

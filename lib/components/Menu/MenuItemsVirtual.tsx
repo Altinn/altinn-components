@@ -32,10 +32,9 @@ export const MenuItemsVirtual = ({
   search,
   items,
   groups = {},
-  defaultItemSize,
-  defaultItemColor,
-  defaultItemVariant,
-  defaultIconTheme,
+  size,
+  color,
+  variant,
   keyboardEvents,
   scrollRefStyles: externalScrollRefStyles,
 }: MenuItemsProps) => {
@@ -236,7 +235,7 @@ export const MenuItemsVirtual = ({
             if (!entry) return null;
             return (
               <MenuListItem
-                dataIndex={virtualRow.index}
+                index={virtualRow.index}
                 key={virtualRow.key}
                 className={styles.virtualMenuListItem}
                 style={{ transform: `translateY(${virtualRow.start}px)` }}
@@ -246,10 +245,9 @@ export const MenuItemsVirtual = ({
                 {entry.type === 'item' && (
                   <MenuItem
                     {...entry.itemProps}
-                    size={entry.itemProps.size || defaultItemSize}
-                    color={entry.itemProps.color || defaultItemColor}
-                    variant={entry.itemProps.variant || defaultItemVariant}
-                    iconTheme={entry.itemProps.iconTheme || defaultIconTheme}
+                    size={entry.itemProps.size || size}
+                    color={entry.itemProps.color || color}
+                    variant={entry.itemProps.variant || variant}
                     active={entry.active}
                     tabIndex={entry.itemProps.disabled || keyboardEvents ? -1 : 0}
                   />

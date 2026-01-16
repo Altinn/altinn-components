@@ -9,7 +9,7 @@ export * from './Badge';
 export * from './Banner';
 export * from './Button';
 export * from './Byline';
-export * from './ContextMenu';
+//export * from './ContextMenu';
 export * from './Dialog';
 export * from './Divider';
 export * from './Dropdown';
@@ -18,6 +18,7 @@ export * from './GlobalMenu_old';
 export * from './Header';
 export type { GlobalHeaderProps } from './GlobalHeader'; //TO-DO: Fix conflict exports for Header and GlobalHeader
 export * from './Icon';
+export * from './Item';
 export * from './Layout';
 export * from './LayoutAction';
 export * from './List';

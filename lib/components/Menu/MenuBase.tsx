@@ -1,38 +1,42 @@
 import cx from 'classnames';
-import type { ElementType, MouseEventHandler, ReactNode } from 'react';
-import type { Color } from '..';
+import type { CSSProperties, ElementType, MouseEventHandler, ReactNode } from 'react';
+import type { MenuItemProps } from './MenuItem';
 import styles from './menuBase.module.css';
 
-export type MenuColor = Color;
-export type MenuVariant = 'transparent' | 'default' | 'subtle';
 export type MenuListRole = 'presentation' | 'group' | 'list';
 export type MenuListItemRole =
   | 'presentation'
   | 'group'
+  | 'heading'
   | 'separator'
   | 'menuitemcheckbox'
   | 'menuitemradio'
   | 'menuitem';
 
 export interface MenuBaseProps {
-  as?: ElementType;
-  variant?: MenuVariant;
-  color?: MenuColor;
-  className?: string;
-  children?: ReactNode;
   ref?: React.Ref<HTMLElement>;
+  as?: ElementType;
+  variant?: MenuItemProps['variant'];
+  color?: MenuItemProps['color'];
+  className?: string;
+  style?: CSSProperties;
+  children?: ReactNode;
 }
 
 export interface MenuListProps {
+  ref?: React.Ref<HTMLUListElement>;
   as?: ElementType;
+  variant?: MenuItemProps['variant'];
+  color?: MenuItemProps['color'];
   role?: MenuListRole;
   expanded?: boolean;
   className?: string;
+  style?: CSSProperties;
   children?: ReactNode;
-  ref?: React.Ref<HTMLUListElement>;
   onMouseEnter?: MouseEventHandler;
   onMouseLeave?: MouseEventHandler;
   onBlurCapture?: React.FocusEventHandler<HTMLElement>;
+  onScroll?: React.UIEventHandler<HTMLUListElement>;
 }
 
 export interface MenuListItemProps {
@@ -41,16 +45,16 @@ export interface MenuListItemProps {
   expanded?: boolean;
   className?: string;
   children?: ReactNode;
-  style?: React.CSSProperties;
-  dataIndex?: number;
+  style?: CSSProperties;
+  index?: number;
   disabled?: boolean;
   onMouseEnter?: MouseEventHandler;
   onMouseLeave?: MouseEventHandler;
-  ref?: HTMLUListElement;
+  ref?: React.Ref<HTMLLIElement>;
   'aria-checked'?: boolean;
 }
 
-export const MenuBase = ({ as = 'nav', color, variant, className, children, ref }: MenuBaseProps) => {
+export const MenuBase = ({ as = 'nav', variant, color, className, children, ref }: MenuBaseProps) => {
   const Component = as;
   return (
     <Component className={cx(styles.menu, className)} data-color={color} data-variant={variant} ref={ref}>
@@ -60,24 +64,32 @@ export const MenuBase = ({ as = 'nav', color, variant, className, children, ref 
 };
 
 export const MenuList = ({
+  ref,
   as = 'ul',
   role = 'group',
+  variant,
+  color,
   className,
+  style,
   children,
-  ref,
   onMouseEnter,
   onMouseLeave,
   onBlurCapture,
+  onScroll,
 }: MenuListProps) => {
   const Component = as;
   return (
     <Component
+      ref={ref}
       className={cx(styles.list, className)}
       role={role}
-      ref={ref}
+      data-variant={variant}
+      data-color={color}
+      style={style}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onBlurCapture={onBlurCapture}
+      onScroll={onScroll}
     >
       {children}
     </Component>
@@ -85,12 +97,13 @@ export const MenuList = ({
 };
 
 export const MenuListItem = ({
+  ref,
   as = 'li',
-  role = 'presentation',
+  role = 'menuitem',
   className,
   children,
   style,
-  dataIndex,
+  index,
   disabled,
   onMouseEnter,
   onMouseLeave,
@@ -99,16 +112,37 @@ export const MenuListItem = ({
   const Component = as;
   return (
     <Component
+      ref={ref}
       className={cx(styles.item, className)}
-      role={role}
       style={style}
-      data-index={dataIndex}
+      role={role}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      data-index={index}
       aria-disabled={disabled}
       aria-checked={ariaChecked}
     >
       {children}
     </Component>
+  );
+};
+
+export const MenuDivider = ({ as, ...props }: MenuListItemProps) => {
+  return (
+    <MenuListItem {...props} role="separator">
+      <hr className={styles.divider} />
+    </MenuListItem>
+  );
+};
+
+interface MenuHeaderProps extends MenuListItemProps {
+  title: string;
+}
+
+export const MenuHeader = ({ as, title, ...props }: MenuHeaderProps) => {
+  return (
+    <MenuListItem {...props} role="heading">
+      <h4 className={styles.heading}>{title}</h4>
+    </MenuListItem>
   );
 };

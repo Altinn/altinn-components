@@ -332,9 +332,8 @@ export const useInbox = ({
 
   // duplicate items if grouped view
 
-  const groupView = currentAccount?.type !== 'person' && currentAccount?.type !== 'company';
-
-  const groupIds = toolbar?.filterState?.groupIds || [accountId];
+  const groupView = currentAccount?.role !== 'person' && currentAccount?.role !== 'company';
+  const groupIds = toolbar?.filter?.filterState?.groupIds || [accountId];
 
   const itemsByGroupId: { [key: string]: DialogListItemProps } = {};
 
@@ -347,7 +346,7 @@ export const useInbox = ({
       itemsByGroupId[itemId] = {
         ...item,
         recipient: recipient?.icon as AvatarProps,
-        color: recipient?.type as DialogListItemProps['color'],
+        color: recipient?.role as DialogListItemProps['color'],
         id: itemId,
         grouped: groupIds.length > 1, // groupView && true,
       };
@@ -414,10 +413,10 @@ export const useInbox = ({
   //  set group view stuff
 
   const color =
-    ((currentAccount?.id === 'user' || currentAccount?.type === 'group') && 'person') ||
-    currentAccount?.type ||
+    ((currentAccount?.id === 'user' || currentAccount?.role === 'group') && 'person') ||
+    currentAccount?.role ||
     'neutral';
-  const theme = currentAccount?.id === 'user' || currentAccount?.type === 'group' ? 'neutral' : 'subtle';
+  const theme = currentAccount?.id === 'user' || currentAccount?.role === 'group' ? 'neutral' : 'subtle';
 
   return {
     floatingDropdown,
@@ -445,8 +444,8 @@ export const useInbox = ({
           ...layout?.header?.globalMenu,
           accountMenu: {
             ...accountMenu,
-            isVirtualized: true,
-            items: accountMenu?.items?.filter((item) => item.type !== 'group'),
+            virtualized: true,
+            items: accountMenu?.items?.filter((item) => item.role !== 'group'),
           },
           onSelectAccount,
         },
@@ -455,15 +454,7 @@ export const useInbox = ({
       },
     } as LayoutProps,
     search,
-    toolbar: {
-      ...toolbar,
-      accountMenu: {
-        ...accountMenu,
-        isVirtualized: true,
-        onSelectAccount,
-        currentAccount,
-      } as ToolbarProps['accountMenu'],
-    },
+    toolbar,
     results: {
       groups: list.groups,
       items,

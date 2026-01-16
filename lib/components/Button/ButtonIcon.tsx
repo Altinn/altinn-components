@@ -35,7 +35,7 @@ function isReactNode(value: unknown): value is ReactNode {
 
 export const ButtonIcon = ({ icon, size, iconAltText, className }: ButtonIconProps) => {
   return (
-    <span className={cx(styles.wrapper, className)} data-size={size} aria-label={iconAltText}>
+    <span className={cx(styles.media, className)} data-size={size} aria-label={iconAltText}>
       {(isAvatarProps(icon) && <Avatar {...icon} className={styles.avatar} />) ||
         (isAvatarGroupProps(icon) && <AvatarGroup {...icon} className={styles.avatarGroup} />) ||
         (isIconProps(icon) && <Icon {...(icon as IconProps)} className={styles.icon} />) ||

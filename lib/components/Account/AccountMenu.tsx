@@ -9,7 +9,7 @@ export interface AccountSearchProps extends MenuSearchProps {
 
 export interface AccountMenuItemProps extends MenuItemProps {
   id: string;
-  type: 'person' | 'company' | 'group' | 'subunit';
+  role: 'person' | 'company' | 'group' | 'subunit';
   name: string;
 }
 
@@ -32,7 +32,7 @@ export const AccountMenu = ({
   filterAccount,
   onSelectAccount,
   currentAccount,
-  isVirtualized,
+  virtualized,
   keyboardEvents,
   scrollRefStyles,
 }: AccountMenuProps) => {
@@ -108,10 +108,11 @@ export const AccountMenu = ({
   return (
     <Menu
       variant="default"
+      size="md"
       search={search && !search.hidden ? defaultAccountSearch : undefined}
       groups={filterAccountGroups}
       items={accountSwitcher}
-      isVirtualized={isVirtualized}
+      virtualized={virtualized}
       keyboardEvents={keyboardEvents}
       scrollRefStyles={scrollRefStyles}
     />

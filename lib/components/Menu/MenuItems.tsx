@@ -1,52 +1,58 @@
 'use client';
-import { type ElementType, Fragment, useRef } from 'react';
-import { MenuHeader, MenuItem, MenuList, MenuListItem } from '../';
-import type { IconTheme, MenuItemColor, MenuItemProps, MenuItemSize, MenuItemVariant } from '../';
+import { type CSSProperties, type ElementType, Fragment, useRef } from 'react';
+import { MenuDivider, MenuHeader, MenuItem, MenuList, MenuListItem } from '../';
+import type { MenuItemProps } from '../';
 import { useMenu } from '../../hooks';
 import { MenuSearch, type MenuSearchProps } from './MenuSearch';
 
 export interface MenuGroupProps {
   title?: string;
+  hidden?: boolean;
   divider?: boolean;
-  defaultItemSize?: MenuItemSize;
-  defaultItemColor?: MenuItemColor;
-  defaultItemVariant?: MenuItemVariant;
-  defaultIconTheme?: IconTheme;
+  size?: MenuItemProps['size'];
+  variant?: MenuItemProps['variant'];
+  color?: MenuItemProps['color'];
 }
 
 export type MenuItemGroups = Record<string, MenuGroupProps>;
 
 export interface MenuItemsProps {
   level?: number;
+  maxLevels?: number;
   expanded?: boolean;
   search?: MenuSearchProps;
   items: MenuItemProps[];
   groups?: MenuItemGroups;
-  defaultItemSize?: MenuItemSize;
-  defaultItemColor?: MenuItemColor;
-  defaultItemVariant?: MenuItemVariant;
-  defaultIconTheme?: IconTheme;
+  size?: MenuItemProps['size'];
+  variant?: MenuItemProps['variant'];
+  color?: MenuItemProps['color'];
   as?: ElementType;
   keyboardEvents?: boolean;
   onSelect?: () => void;
-  scrollRefStyles?: React.CSSProperties;
+  scrollRefStyles?: CSSProperties;
 }
 
 export const MenuItems = ({
   level = 0,
+  maxLevels,
   expanded,
   search,
   items,
   groups = {},
-  defaultItemSize,
-  defaultItemColor,
-  defaultItemVariant,
-  defaultIconTheme,
+  size,
+  color,
+  variant,
   as,
+  scrollRefStyles = {},
   keyboardEvents = false,
   onSelect = () => {},
 }: MenuItemsProps) => {
+  if (maxLevels && level >= maxLevels) {
+    return null;
+  }
+
   const ref = useRef<HTMLUListElement>(null);
+
   const { menu, setActiveIndex } = useMenu<MenuItemProps, MenuGroupProps>({
     items,
     groups,
@@ -57,60 +63,66 @@ export const MenuItems = ({
   });
 
   return (
-    <MenuList expanded={expanded} as={as} ref={ref}>
+    <MenuList variant={variant} expanded={expanded} as={as} ref={ref} style={scrollRefStyles}>
       {search && <MenuSearch {...search} />}
       {menu.map((group, groupIndex) => {
         const groupProps: MenuGroupProps = group?.props || {};
-        const { title, divider = true } = groupProps;
+        const { title, hidden = false, divider = true } = groupProps;
         const nextGroup = menu[groupIndex + 1];
+
+        if (hidden) {
+          return <li />;
+        }
 
         return (
           <Fragment key={groupIndex}>
             {/** Render a separator if this is a new group or a new level */}
-            {(level > 0 || groupIndex) && divider ? <MenuListItem role="separator" /> : ''}
-            {title && (
-              <MenuListItem>
-                <MenuHeader title={title} />
-              </MenuListItem>
-            )}
-            {group?.items
-              .filter((item) => !item.props?.hidden)
-              .map((item, index) => {
-                const { active, onMouseEnter } = item;
-                const { groupId: _, ...itemProps } = item.props || {};
-                const { expanded } = itemProps;
-                const nextItem = group?.items[index + 1];
-                return (
-                  <MenuListItem expanded={expanded} key={index} onMouseLeave={() => setActiveIndex(-1)}>
-                    <MenuItem
-                      {...itemProps}
-                      size={itemProps?.size || groupProps?.defaultItemSize || defaultItemSize}
-                      color={itemProps?.color || groupProps?.defaultItemColor || defaultItemColor}
-                      variant={itemProps?.variant || groupProps?.defaultItemVariant || defaultItemVariant}
-                      iconTheme={itemProps?.iconTheme || groupProps?.defaultIconTheme || defaultIconTheme}
-                      active={active}
-                      tabIndex={itemProps?.disabled || keyboardEvents ? -1 : (itemProps.tabIndex ?? 0)}
-                      onMouseEnter={onMouseEnter}
-                    />
-                    {expanded && itemProps?.items && (
-                      <>
-                        <MenuItems
-                          expanded={expanded}
-                          level={level + 1}
-                          items={itemProps?.items}
-                          groups={groups}
-                          defaultItemSize={defaultItemSize}
-                          defaultItemColor={defaultItemColor}
-                          defaultItemVariant={defaultItemVariant}
-                          defaultIconTheme={defaultIconTheme}
+            {(level > 0 || groupIndex) && divider ? <MenuDivider /> : ''}
+            <MenuListItem role="group" key={groupIndex}>
+              <MenuList role="presentation">
+                {title && <MenuHeader title={title} />}
+                {group?.items
+                  .filter((item) => !item.props?.hidden)
+                  .map((item, index) => {
+                    const { active, onMouseEnter } = item;
+                    const { groupId: _, ...itemProps } = item.props || {};
+                    const { expanded } = itemProps;
+                    //                    const nextItem = group?.items[index + 1];
+                    return (
+                      <MenuListItem
+                        key={index}
+                        role="menuitem"
+                        expanded={expanded}
+                        onMouseLeave={() => setActiveIndex(-1)}
+                      >
+                        <MenuItem
+                          {...itemProps}
+                          size={itemProps?.size || groupProps?.size || size}
+                          color={itemProps?.color || groupProps?.color || color}
+                          variant={itemProps?.variant || groupProps?.variant || variant}
+                          active={active}
+                          tabIndex={itemProps?.disabled || keyboardEvents ? -1 : (itemProps.tabIndex ?? 0)}
+                          onMouseEnter={onMouseEnter}
                         />
-                        {/** Render a separator if expanded and there are items underneath */}
-                        {(nextGroup || nextItem) && <MenuListItem role="separator" as="div" />}
-                      </>
-                    )}
-                  </MenuListItem>
-                );
-              })}
+                        {expanded && itemProps?.items && (
+                          <MenuItems
+                            expanded={expanded}
+                            level={level + 1}
+                            maxLevels={maxLevels}
+                            items={itemProps?.items}
+                            groups={groups}
+                            size={size}
+                            color={color}
+                            variant={variant}
+                          />
+                        )}
+                      </MenuListItem>
+                    );
+                  })}
+              </MenuList>
+            </MenuListItem>
+            {/** Render a separator if expanded and there are items underneath */}
+            {expanded && nextGroup && <MenuDivider />}
           </Fragment>
         );
       })}

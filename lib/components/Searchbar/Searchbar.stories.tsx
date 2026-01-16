@@ -129,8 +129,8 @@ export const Expanded: Story = {
       items: [
         {
           as: 'a',
-          type: 'scope',
-          ariaLabel: 'alt i innboksen',
+          role: 'scope',
+          title: 'alt i innboksen',
           id: '1a',
           groupId: '1',
           href: '#',
@@ -140,8 +140,8 @@ export const Expanded: Story = {
           },
         },
         {
-          type: 'scope',
-          ariaLabel: 'alt i Altinn',
+          role: 'scope',
+          title: 'alt i Altinn',
           id: '1b',
           groupId: '1',
           href: '#',
@@ -152,14 +152,14 @@ export const Expanded: Story = {
         },
         {
           id: 'd1',
-          type: 'dialog',
+          role: 'dialog',
           groupId: '2',
           href: '#',
           title: 'Skattemelding 2024',
         },
         {
           id: 'd2',
-          type: 'dialog',
+          role: 'dialog',
           groupId: '2',
           href: '#',
           title: 'Skattemelding 2025',

@@ -5,7 +5,6 @@ import {
   type ListItemHeaderProps,
   ListItemLabel,
   type ListItemLabelProps,
-  getAriaLabelFromTitle,
 } from '..';
 
 import styles from './settingsItemBase.module.css';
@@ -37,7 +36,7 @@ export const SettingsItemBase = ({
   highlightWords,
   ...props
 }: SettingsItemBaseProps) => {
-  const ariaLabel = props.ariaLabel || getAriaLabelFromTitle(title);
+  const ariaLabel = props.ariaLabel;
 
   return (
     <ListItemBase ref={ref} className={styles.item} color={color} size={size} expanded={expanded}>

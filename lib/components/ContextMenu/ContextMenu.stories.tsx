@@ -7,7 +7,7 @@ import { inboxSearchResults } from '../../../examples';
 import { ContextMenu, type ContextMenuProps } from './ContextMenu';
 
 const meta: Meta<typeof ContextMenu> = {
-  title: 'Menu/ContextMenu',
+  title: 'Menu/ContextMenu_OLD',
   component: ContextMenu,
   tags: ['autodocs', 'beta'],
   parameters: {},

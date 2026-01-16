@@ -14,11 +14,11 @@ export interface AccountListProps {
   sortGroupBy?: (a: [string, AccountListItemProps[]], b: [string, AccountListItemProps[]]) => number;
   emptyTitle?: string;
   emptyDescription?: string;
-  isVirtualized?: boolean;
+  virtualized?: boolean;
 }
 
-export const AccountList = ({ items, groups = {}, sortGroupBy, isVirtualized }: AccountListProps) => {
-  if (isVirtualized) {
+export const AccountList = ({ items, groups = {}, sortGroupBy, virtualized }: AccountListProps) => {
+  if (virtualized) {
     return <AccountListVirtual items={items} groups={groups} sortGroupBy={sortGroupBy} />;
   }
 
