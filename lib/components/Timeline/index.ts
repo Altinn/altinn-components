@@ -7,4 +7,3 @@ export * from './TimelineSection';
 export * from './TimelineHeader';
 export * from './TimelineFooter';
 export * from './TimelineIcon';
-export * from './TimelineLink';

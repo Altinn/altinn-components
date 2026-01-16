@@ -32,8 +32,9 @@ export const PageNav = ({
       {breadcrumbs ? (
         <Breadcrumbs items={breadcrumbs} />
       ) : (
-        <Button {...backButton} variant="text" size="sm" icon={ArrowLeftIcon}>
-          {backButton?.label || 'Back'}
+        <Button {...backButton} variant="ghost" size="sm">
+          <ArrowLeftIcon />
+          <span>{backButton?.label || 'Back'}</span>
         </Button>
       )}
       {controls && <div className={styles.controls}>{controls}</div>}

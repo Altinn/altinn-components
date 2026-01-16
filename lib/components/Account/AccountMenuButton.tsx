@@ -1,7 +1,7 @@
 import { EnterIcon, XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import { isValidElement } from 'react';
-import { type AccountMenuItemProps, ButtonBase, ButtonIcon, ButtonLabel, type ButtonProps, useRootContext } from '..';
+import { type AccountMenuItemProps, Button, ButtonIcon, ButtonLabel, type ButtonProps, useRootContext } from '..';
 import { Avatar, type AvatarProps } from '../Avatar';
 
 import styles from './accountMenuButton.module.css';
@@ -29,18 +29,18 @@ export const AccountMenuButton = ({
 
   if (loading) {
     return (
-      <ButtonBase
+      <Button
         {...buttonProps}
         as={'button'}
         type="button"
-        variant={'text'}
+        variant={'ghost'}
         color={'company'}
         className={cx(styles.button, styles.loading, className)}
         disabled
         aria-label="loading"
       >
         <ButtonIcon className={styles.avatarIcon} icon={<Avatar name="loading" loading className={styles.avatar} />} />
-      </ButtonBase>
+      </Button>
     );
   }
 
@@ -51,11 +51,11 @@ export const AccountMenuButton = ({
       description = `${orgNoDescription[0]}, ${texts.subunit}`;
     }
     return (
-      <ButtonBase
+      <Button
         {...buttonProps}
         as={'button'}
         type="button"
-        variant={'text'}
+        variant={'ghost'}
         color={'company'}
         className={cx(styles.button, className)}
         aria-label={expanded ? texts.close : currentAccount.name}
@@ -80,7 +80,7 @@ export const AccountMenuButton = ({
             icon={<Avatar {...(currentAccount?.icon as AvatarProps)} className={styles.avatar} />}
           />
         )}
-      </ButtonBase>
+      </Button>
     );
   }
 
@@ -90,18 +90,18 @@ export const AccountMenuButton = ({
   }
 
   return (
-    <ButtonBase
+    <Button
       {...buttonProps}
       as={'button'}
       type="button"
-      variant={'text'}
+      variant={'ghost'}
       color={'company'}
       aria-label={texts.login}
       className={cx(styles.button, className)}
     >
       {!minimized && <ButtonLabel>{texts.login}</ButtonLabel>}
       <ButtonIcon className={styles.loginIcon} icon={<EnterIcon className={styles.icon} aria-hidden />} />
-    </ButtonBase>
+    </Button>
   );
 };
 

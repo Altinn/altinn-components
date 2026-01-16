@@ -1,6 +1,6 @@
 import { HeartFillIcon, HeartIcon } from '@navikt/aksel-icons';
 import { useMemo } from 'react';
-import { type AccountMenuItemProps, IconButton, type MenuGroupProps } from '../components';
+import { type AccountMenuItemProps, Button, type MenuGroupProps } from '../components';
 import type { AccountSelectorProps } from '../components/GlobalHeader/AccountSelector';
 import { formatDate, formatDisplayName } from '../functions';
 import { useIsDesktop } from './useIsDesktop';
@@ -327,11 +327,10 @@ const getAccountFromAuthorizedParty = (
         ? { label: texts.deleted, color: 'neutral' }
         : undefined,
     controls: !isSelf && (
-      <IconButton
+      <Button
         rounded
-        variant="text"
-        icon={isFavorite ? HeartFillIcon : HeartIcon}
-        iconAltText={isFavorite ? texts.remove_from_favorites : texts.add_to_favorites}
+        variant="ghost"
+        aria-label={isFavorite ? texts.remove_from_favorites : texts.add_to_favorites}
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
           if (toggleFavorite) {
             e.stopPropagation();
@@ -339,7 +338,9 @@ const getAccountFromAuthorizedParty = (
           }
         }}
         size="xs"
-      />
+      >
+        {isFavorite ? <HeartFillIcon /> : <HeartIcon />}
+      </Button>
     ),
   };
 };

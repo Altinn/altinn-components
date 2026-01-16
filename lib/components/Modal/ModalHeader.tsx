@@ -1,7 +1,7 @@
 import { XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import type { ReactNode } from 'react';
-import { Flex, Heading, IconButton, ModalIcon, type ModalIconProps, Section } from '../';
+import { Button, Flex, Heading, ModalIcon, type ModalIconProps } from '../';
 import styles from './modalHeader.module.css';
 
 export interface ModalHeaderProps {
@@ -25,8 +25,8 @@ export const ModalHeader = ({
   sticky = true,
 }: ModalHeaderProps) => {
   return (
-    <Section as="header" spacing={2} padding={4} className={cx(styles.header, sticky && styles.sticky)}>
-      <Flex direction="row" justify="between" align="center" spacing={8}>
+    <header className={cx(styles.header, sticky && styles.sticky)}>
+      <Flex direction="row" justify="between" align="center" spacing={8} style={{ flexGrow: 1 }}>
         {children || (
           <Flex direction="row" align="center" spacing={3}>
             {icon && <ModalIcon icon={icon} />}
@@ -52,16 +52,12 @@ export const ModalHeader = ({
               onClose?.();
             }}
           >
-            <IconButton
-              type="submit"
-              icon={XMarkIcon}
-              variant="outline"
-              iconAltText={closeTitle ?? 'Close'}
-              size="sm"
-            />
+            <Button type="submit" variant="outline" aria-label={closeTitle ?? 'Close'} size="sm">
+              <XMarkIcon style={{ fontSize: '1.5em' }} />
+            </Button>
           </form>
         )}
       </Flex>
-    </Section>
+    </header>
   );
 };

@@ -1,6 +1,8 @@
-import { Button, type ButtonProps, Flex } from '..';
+import { Button, ButtonGroup, ButtonIcon, ButtonLabel, type ButtonProps } from '..';
 
-export interface ContactButtonProps extends ButtonProps {}
+export interface ContactButtonProps extends ButtonProps {
+  label: string;
+}
 
 export interface ContactButtonsProps {
   items: ContactButtonProps[];
@@ -8,10 +10,16 @@ export interface ContactButtonsProps {
 
 export const ContactButtons = ({ items }: ContactButtonsProps) => {
   return (
-    <Flex spacing={2}>
+    <ButtonGroup>
       {items.map((item, index) => {
-        return <Button {...item} variant="outline" key={index} />;
+        const { icon, label, ...buttonProps } = item;
+        return (
+          <Button {...buttonProps} variant="outline" key={index}>
+            <ButtonIcon icon={icon} />
+            <ButtonLabel>{label}</ButtonLabel>
+          </Button>
+        );
       })}
-    </Flex>
+    </ButtonGroup>
   );
 };

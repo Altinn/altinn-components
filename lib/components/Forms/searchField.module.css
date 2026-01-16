@@ -5,15 +5,19 @@
 .icon {
   position: absolute;
   top: 0;
+  bottom: 0;
   left: 0;
   width: 2.5em;
   height: 100%;
   color: var(--ds-color-text-subtle);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .icon > svg {
-  width: 1.25em;
-  height: 1.25em;
+  width: 1em;
+  height: 1em;
 }
 
 .input {
@@ -30,6 +34,7 @@
   position: absolute;
   top: 0;
   right: 0;
+  bottom: 0;
   width: 2.5em;
   height: 100%;
   display: flex;

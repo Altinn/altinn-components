@@ -1,4 +1,4 @@
-import { Heading, IconButton } from '../';
+import { Button, Heading } from '../';
 import styles from './actionHeader.module.css';
 
 import { XMarkIcon } from '@navikt/aksel-icons';
@@ -29,14 +29,15 @@ export const ActionHeader = ({
         {title}
       </Heading>
       {dismissable && (
-        <IconButton
-          icon={XMarkIcon}
+        <Button
           color={color}
-          variant="solid"
+          variant="outline"
           onClick={onDismiss}
           className={styles.dismiss}
-          iconAltText={dismissIconAltText}
-        />
+          aria-label={dismissIconAltText}
+        >
+          <XMarkIcon style={{ fontSize: '1.5em' }} />
+        </Button>
       )}
     </header>
   );

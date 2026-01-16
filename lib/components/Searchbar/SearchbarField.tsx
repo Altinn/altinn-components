@@ -2,7 +2,7 @@
 import { MagnifyingGlassIcon, XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import { type ChangeEventHandler, type FocusEventHandler, useRef } from 'react';
-import { Icon, IconButton } from '..';
+import { Button, Icon } from '..';
 import styles from './searchbarField.module.css';
 
 export interface SearchbarFieldProps {
@@ -79,26 +79,29 @@ export const SearchbarField = ({
       />
       <Icon svgElement={MagnifyingGlassIcon} className={styles.icon} />
       {(value && (
-        <IconButton
-          icon={XMarkIcon}
-          variant="solid"
+        <Button
+          rounded
           size="xs"
+          variant="tinted"
           className={styles.clear}
           onClick={onClear}
-          dataTestId="search-button-clear"
-          iconAltText={clearButtonAltText}
-        />
+          data-testid="search-button-clear"
+          aria-label={clearButtonAltText}
+        >
+          <XMarkIcon />
+        </Button>
       )) ||
         (expanded && (
-          <IconButton
-            icon={XMarkIcon}
+          <Button
             size="sm"
-            variant="text"
+            variant="ghost"
             className={styles.dismiss}
             onClick={onClose}
-            dataTestId="search-button-close"
-            iconAltText={closeButtonAltText}
-          />
+            data-testid="search-button-close"
+            aria-label={closeButtonAltText}
+          >
+            <XMarkIcon />
+          </Button>
         ))}
     </div>
   );

@@ -1,7 +1,7 @@
 import { MenuHamburgerIcon, XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import type { ElementType } from 'react';
-import { ButtonBase, ButtonIcon, ButtonLabel, type ButtonProps, useRootContext } from '../';
+import { Button, ButtonIcon, ButtonLabel, type ButtonProps, useRootContext } from '../';
 import { Badge, type BadgeProps } from '../Badge';
 
 import { useIsDesktop } from '../../hooks/useIsDesktop';
@@ -50,7 +50,7 @@ export const GlobalMenuButton = ({
 
   if (expanded) {
     return (
-      <ButtonBase
+      <Button
         {...buttonProps}
         as={as}
         type="button"
@@ -66,12 +66,12 @@ export const GlobalMenuButton = ({
         )}
         {!isDesktop && <ButtonIcon icon={<XMarkIcon className={styles.iconMobile} aria-label={close} />} />}
         {badge && <Badge {...badge} className={styles.badge} />}
-      </ButtonBase>
+      </Button>
     );
   }
 
   return (
-    <ButtonBase
+    <Button
       {...buttonProps}
       as={as}
       type="button"
@@ -82,6 +82,6 @@ export const GlobalMenuButton = ({
       {isDesktop && <ButtonIcon icon={<MenuHamburgerIcon className={styles.icon} aria-hidden />} />}
       <ButtonLabel>{label}</ButtonLabel>
       {badge && <Badge {...badge} className={styles.badge} />}
-    </ButtonBase>
+    </Button>
   );
 };

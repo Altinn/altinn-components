@@ -1,19 +1,12 @@
-import type { MouseEventHandler } from 'react';
-import { ButtonBase, ButtonIcon } from '..';
-import type { ButtonColor, ButtonIconProps, ButtonSize, ButtonVariant } from '..';
+import { Button, type ButtonProps } from '.';
+import { ButtonIcon } from './ButtonIcon';
 
 import styles from './floatingActionButton.module.css';
 
-export interface FloatingActionButtonProps {
-  icon: ButtonIconProps['icon'];
-  iconSize?: ButtonSize;
+export interface FloatingActionButtonProps extends ButtonProps {
+  icon: ButtonProps['icon'];
+  iconSize?: ButtonProps['size'];
   iconAltText: string;
-  color?: ButtonColor;
-  size?: ButtonSize;
-  variant?: ButtonVariant;
-  onClick?: MouseEventHandler;
-  dataTestId?: string;
-  onBlurCapture?: React.FocusEventHandler<HTMLButtonElement>;
 }
 
 export const FloatingActionButton = ({
@@ -24,21 +17,19 @@ export const FloatingActionButton = ({
   iconAltText,
   color,
   onClick,
-  dataTestId,
   onBlurCapture,
 }: FloatingActionButtonProps) => {
   return (
-    <ButtonBase
+    <Button
       className={styles.button}
       variant={variant}
       color={color}
       size={size}
       onClick={onClick}
-      data-testid={dataTestId}
       aria-label={iconAltText}
       onBlurCapture={onBlurCapture}
     >
       {icon && <ButtonIcon icon={icon} size={iconSize} />}
-    </ButtonBase>
+    </Button>
   );
 };

@@ -1,74 +1,19 @@
-import cx from 'classnames';
-import type { MouseEventHandler } from 'react';
-import type { ButtonBaseProps, ButtonIconProps, ButtonSize } from '..';
-import { ButtonBase, ButtonIcon, ButtonLabel } from '..';
+import { Button, type ButtonProps } from '.';
+import { ButtonGroup } from './ButtonGroup';
+import { ButtonGroupDivider } from './ButtonGroupDivider';
 
-import styles from './comboButton.module.css';
+type SecondaryButtonProps = ButtonProps & Omit<ButtonProps, 'size' | 'variant' | 'color'>;
 
-export interface ComboButtonProps extends Omit<ButtonBaseProps, 'onClick'> {
-  icon: ButtonIconProps['icon'];
-  iconSize?: ButtonSize;
-  iconAltText?: string;
-  ariaLabel?: string;
-  onIconClick?: MouseEventHandler<HTMLButtonElement>;
-  onLabelClick?: MouseEventHandler<HTMLButtonElement>;
-  disabled?: boolean;
-  label?: string;
-  labelSize?: ButtonSize;
-  dataTestId?: string;
-  tabIndex?: number;
+export interface ComboButtonProps extends ButtonProps {
+  secondaryButton: SecondaryButtonProps;
 }
 
-export const ComboButton = ({
-  variant = 'solid',
-  color,
-  size,
-  selected = false,
-  icon,
-  iconSize,
-  iconAltText,
-  label,
-  labelSize,
-  children,
-  className,
-  ariaLabel,
-  onLabelClick,
-  onIconClick,
-  dataTestId,
-  tabIndex = 0,
-  disabled = false,
-}: ComboButtonProps) => {
+export const ComboButton = ({ secondaryButton, size, variant, color, disabled, ...props }: ComboButtonProps) => {
   return (
-    <ButtonBase
-      as="div"
-      size={size}
-      variant={variant}
-      color={color}
-      selected={selected}
-      className={cx(styles.button, className)}
-      tabIndex={-1}
-      disabled={disabled}
-    >
-      <ButtonBase
-        ariaLabel={ariaLabel}
-        size={size}
-        onClick={onLabelClick}
-        className={styles.primary}
-        dataTestId={dataTestId}
-        tabIndex={tabIndex}
-      >
-        <ButtonLabel size={labelSize}>{children || label}</ButtonLabel>
-      </ButtonBase>
-      <span data-size={size} className={styles.divider} />
-      <ButtonBase
-        onClick={onIconClick}
-        className={styles.secondary}
-        ariaLabel={iconAltText}
-        size={iconSize || labelSize}
-        tabIndex={tabIndex}
-      >
-        {icon && <ButtonIcon icon={icon} />}
-      </ButtonBase>
-    </ButtonBase>
+    <ButtonGroup size={size} variant={variant} color={color} disabled={disabled} connected>
+      <Button {...props} variant={variant} size={size} />
+      <ButtonGroupDivider variant={variant} />
+      <Button {...secondaryButton} variant={variant} size={size} />
+    </ButtonGroup>
   );
 };

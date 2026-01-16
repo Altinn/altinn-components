@@ -1,17 +1,6 @@
-import { ChevronDownIcon, XMarkIcon } from '@navikt/aksel-icons';
+import { XMarkIcon } from '@navikt/aksel-icons';
 import type { Meta } from '@storybook/react-vite';
-import {
-  Button,
-  Checkbox,
-  ComboButton,
-  Fieldset,
-  IconButton,
-  Radio,
-  SelectField,
-  Switch,
-  TextField,
-  TextareaField,
-} from '../';
+import { Button, Checkbox, Fieldset, Radio, SelectField, Switch, TextField, TextareaField } from '../';
 import type { FieldSize } from '../../types/fields.ts';
 
 const meta = {
@@ -43,13 +32,17 @@ export const Sizes = () => {
                 <option value="2">Option 2</option>
               </SelectField>
               <Button>Button</Button>
-              <Button icon={XMarkIcon} size={size}>
-                Button
+              <Button size={size}>
+                <span>Button</span>
+                <XMarkIcon />
               </Button>
-              <Button icon={XMarkIcon} size={size} reverse>
-                Button
+              <Button>
+                <XMarkIcon />
+                <span>Button</span>
               </Button>
-              <IconButton icon={XMarkIcon} iconAltText={'x-icon'} />
+              <Button>
+                <XMarkIcon />
+              </Button>
             </div>
             <TextareaField label="Textarea" size={size} />
             <Radio size={size} label="Radio" />
@@ -63,9 +56,7 @@ export const Sizes = () => {
               }}
             >
               <Button>Primary</Button>
-              <ComboButton icon={ChevronDownIcon} variant="outline" iconAltText="open">
-                Secondary
-              </ComboButton>
+              <Button variant="outline">Secondary</Button>
             </footer>
           </Fieldset>
         );
