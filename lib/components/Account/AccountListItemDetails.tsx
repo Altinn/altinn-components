@@ -14,11 +14,15 @@ import {
   type SettingsItemProps,
 } from '..';
 
+interface AccountListItemButtonProps extends ButtonProps {
+  label: string;
+}
+
 export interface AccountListItemDetailsProps {
   color?: SectionProps['color'];
   loading?: boolean;
   loadingText?: string;
-  buttons?: ButtonProps[];
+  buttons?: AccountListItemButtonProps[];
   settings?: SettingsItemProps[];
   organization?: AccountOrganizationProps['items'];
   children?: ReactNode;
@@ -48,7 +52,7 @@ export const AccountListItemDetails = ({
       {buttons && (
         <ButtonGroup size="sm">
           {buttons.map((button, index) => {
-            const { label, variant, ...buttonProps } = button;
+            const { variant, label, ...buttonProps } = button;
             return (
               <Button {...buttonProps} variant={variant || 'outline'} key={index}>
                 {label}

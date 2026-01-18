@@ -1,11 +1,29 @@
 import { Meta, Controls, Primary, Canvas } from "@storybook/addon-docs/blocks";
 import * as ButtonStories from "./Button.stories";
+import * as ButtonGroupStories from "./ButtonGroup.stories";
 
-<Meta title="Button" />
+<Meta title="Next/Button" />
 
-# Button
+# Button and ButtonGroup
 
 Use Buttons to initialize actions. The label should indicate what action will occur when the user interacts with it.
+
+## Differences from Designsystemet
+
+The Button-component is built upon the Button-component from Designsystemet. Key differences:
+
+- The `asChild` prop is replaced with an `as` prop.
+- The `data-size` prop is replaced with a `size` prop.
+- The `data-variant` prop is replaced with an `variant` prop.
+- Altinn uses descriptive variants (solid, tinted, outline, ghost).
+- Altinn introduces a `rounded` prop to make buttons circular.
+- Altinn introduces a `ButtonGroup` component to group buttons.
+
+## Colors
+
+Buttons can be colored with the `color` prop. 
+
+<Canvas of={ButtonStories.Colors} />
 
 ## Sizes
 
@@ -15,6 +33,36 @@ Sizes range from xs to lg. Md is the default size.
 
 ## Variants
 
-While Designsystemet uses variants according to importance (primary, secondary, tertiary), Altinn uses descriptive variants (solid, outline, dotted, text).
+While Designsystemet uses variants according to importance (primary, secondary, tertiary), Altinn uses descriptive variants.
 
 <Canvas of={ButtonStories.Variants} />
+
+## Using icons
+
+Buttons can be used with icons. Use `icon=true` for a slightly larger icon.
+
+<Canvas of={ButtonStories.Icons} />
+
+## Combining buttons with ButtonGroup
+
+Use `ButtonGroup` with a `size` prop to combine buttons with normalized spacing. The `size` prop is inherited to the children.
+
+<Canvas of={ButtonGroupStories.Default} />
+
+Add `connected=true` to remove spacing.
+
+<Canvas of={ButtonGroupStories.Connected} />
+
+Use `ButtonGroupDivider` to divide connected buttons.
+
+<Canvas of={ButtonGroupStories.WithDivider} />
+
+Use ButtonGroup to create ComboButtons:
+
+<Canvas of={ButtonGroupStories.ComboButton} />
+
+## Toolbars
+
+Create toolbars by combining ButtonGroup, Inputs and different Button variants.
+
+<Canvas of={ButtonGroupStories.Toolbar} />

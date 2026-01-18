@@ -1,7 +1,7 @@
 import { PadlockLockedIcon, XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import type { ElementType } from 'react';
-import { type Account, ButtonBase, ButtonIcon, ButtonLabel, type ButtonProps } from '..';
+import { type Account, Button, ButtonIcon, ButtonLabel, type ButtonProps } from '..';
 import { Avatar, type AvatarProps } from '../Avatar';
 import { Badge, type BadgeProps } from '../Badge';
 
@@ -30,35 +30,35 @@ export const GlobalMenuButton_old = ({
 }: GlobalMenuButtonProps_old) => {
   if (expanded) {
     return (
-      <ButtonBase {...buttonProps} as={as} variant={variant} color={color} className={cx(styles.button, className)}>
+      <Button {...buttonProps} as={as} variant={variant} color={color} className={cx(styles.button, className)}>
         <ButtonLabel>{label}</ButtonLabel>
         <ButtonIcon className={styles.closeIcon} icon={<XMarkIcon className={styles.icon} aria-label="Close Icon" />} />
         {badge && <Badge {...badge} className={styles.badge} />}
-      </ButtonBase>
+      </Button>
     );
   }
 
   if (currentAccount) {
     return (
-      <ButtonBase {...buttonProps} as={as} variant={variant} color={color} className={cx(styles.button, className)}>
+      <Button {...buttonProps} as={as} variant={variant} color={color} className={cx(styles.button, className)}>
         <ButtonLabel>{label}</ButtonLabel>
         <ButtonIcon
           className={styles.avatarIcon}
           icon={<Avatar {...(currentAccount?.icon as AvatarProps)} className={styles.avatar} />}
         />
         {badge && <Badge {...badge} className={styles.badge} />}
-      </ButtonBase>
+      </Button>
     );
   }
 
   return (
-    <ButtonBase {...buttonProps} as={as} variant={variant} color={color} className={cx(styles.button, className)}>
+    <Button {...buttonProps} as={as} variant={variant} color={color} className={cx(styles.button, className)}>
       <ButtonLabel>{label}</ButtonLabel>
       <ButtonIcon
         className={styles.loginIcon}
         icon={<PadlockLockedIcon className={styles.icon} aria-label="Login Icon" />}
       />
       {badge && <Badge {...badge} className={styles.badge} />}
-    </ButtonBase>
+    </Button>
   );
 };

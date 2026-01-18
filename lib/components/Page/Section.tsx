@@ -11,9 +11,24 @@ export interface SectionProps extends FlexProps {
   bleed?: boolean;
 }
 
-export const Section = ({ as = 'section', direction = 'col', variant, className, children, ...rest }: SectionProps) => {
+export const Section = ({
+  as = 'section',
+  direction = 'col',
+  align = 'initial',
+  variant,
+  className,
+  children,
+  ...rest
+}: SectionProps) => {
   return (
-    <Flex as={as} direction={direction} theme={variant} className={cx(styles.section, className)} {...rest}>
+    <Flex
+      as={as}
+      align={align}
+      direction={direction}
+      theme={variant}
+      className={cx(styles.section, className)}
+      {...rest}
+    >
       {children}
     </Flex>
   );

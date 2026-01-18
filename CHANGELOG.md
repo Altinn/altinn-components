@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.53.0](https://github.com/Altinn/altinn-components/compare/v0.52.7...v0.53.0) (2026-01-16)
+
+
+### Features
+
+* use Button from Designsystemet ([#904](https://github.com/Altinn/altinn-components/issues/904)) ([832578a](https://github.com/Altinn/altinn-components/commit/832578a17fc02e418b685b7887c2ae660bbe05fc))
+
+
+### Bug Fixes
+
+* story for email verification process ([#918](https://github.com/Altinn/altinn-components/issues/918)) ([25fdd34](https://github.com/Altinn/altinn-components/commit/25fdd34455b4c69f1ff2e841363cc3f82a3a6a4d))
+
+
+### Miscellaneous Chores
+
+* fix typescript errors after premature merge of feature branch ([#921](https://github.com/Altinn/altinn-components/issues/921)) ([df6e2c9](https://github.com/Altinn/altinn-components/commit/df6e2c9feca7b4a8fcec09008b1c56beaf6169b8))
+
 ## [0.52.7](https://github.com/Altinn/altinn-components/compare/v0.52.6...v0.52.7) (2026-01-14)
 
 

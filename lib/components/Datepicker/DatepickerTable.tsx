@@ -1,4 +1,4 @@
-import { ButtonBase } from '../Button';
+import { Button } from '../Button';
 import styles from './datepickerTable.module.css';
 import type { DatepickerDate } from './useDatepicker';
 
@@ -31,14 +31,14 @@ export const DatepickerTable = ({
               const { day, date, selected, isCurrentMonth } = item;
               return (
                 <td key={date} className={styles.date} data-current-month={isCurrentMonth}>
-                  <ButtonBase
-                    variant="text"
-                    selected={selected}
+                  <Button
+                    variant="ghost"
+                    aria-selected={selected}
                     className={styles.button}
                     onClick={() => onSelect(date)}
                   >
                     {day}
-                  </ButtonBase>
+                  </Button>
                 </td>
               );
             })}

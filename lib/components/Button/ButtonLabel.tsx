@@ -1,6 +1,6 @@
 import cx from 'classnames';
 import type { ReactNode } from 'react';
-import type { ButtonSize } from './ButtonBase';
+import type { ButtonSize } from './Button';
 import styles from './buttonLabel.module.css';
 
 export interface ButtonLabelProps {

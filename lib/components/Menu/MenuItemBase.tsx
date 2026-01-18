@@ -34,7 +34,7 @@ export type MenuItemBaseProps = {
   expanded?: boolean;
   children?: ReactNode;
   onMouseEnter?: MouseEventHandler;
-  dataTestId?: string;
+  'data-testid'?: string;
 };
 
 export const MenuItemBase = ({
@@ -56,7 +56,7 @@ export const MenuItemBase = ({
   children,
   active,
   onMouseEnter,
-  dataTestId,
+  'data-testid': dataTestId,
 }: MenuItemBaseProps) => {
   const Component = as || 'a';
   const ref = useRef<HTMLDivElement>(null);

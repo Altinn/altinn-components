@@ -3,15 +3,15 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ComboButton } from './ComboButton';
 
 const meta: Meta<typeof ComboButton> = {
-  title: 'Components/Button/ComboButton',
+  title: 'Next/ComboButton',
   component: ComboButton,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'deprecated'],
   parameters: {},
   args: {
-    ariaLabel: 'combo button',
     children: 'ComboButton',
-    icon: ChevronDownIcon,
-    iconAltText: 'chevron down',
+    secondaryButton: {
+      children: <ChevronDownIcon />,
+    },
     size: 'sm',
   },
 };
@@ -24,30 +24,9 @@ export const Default: Story = {
   args: {},
 };
 
-export const Solid: Story = {
-  args: {
-    variant: 'solid',
-    ariaLabel: 'solid',
-  },
-};
-
-export const Outline: Story = {
-  args: {
-    variant: 'outline',
-    ariaLabel: 'outline',
-  },
-};
-
-export const Text: Story = {
-  args: {
-    variant: 'text',
-    ariaLabel: 'text',
-  },
-};
-
 export const Disabled: Story = {
   args: {
+    variant: 'tinted',
     disabled: true,
-    ariaLabel: 'disabled',
   },
 };

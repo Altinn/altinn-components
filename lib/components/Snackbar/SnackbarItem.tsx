@@ -1,7 +1,7 @@
 import { BellFillIcon, XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import type { ElementType, ReactNode } from 'react';
-import { Icon, IconButton, type SvgElement } from '..';
+import { Button, Icon, type SvgElement } from '..';
 import styles from './snackbarItem.module.css';
 
 export enum SnackbarColorEnum {
@@ -46,13 +46,9 @@ export const SnackbarItem = ({
       <div className={styles.content}>{message}</div>
       {dismissable && (
         <div className={styles.action}>
-          <IconButton
-            icon={XMarkIcon}
-            variant="solid"
-            onClick={onDismiss}
-            className={styles.dismiss}
-            iconAltText="close"
-          />
+          <Button variant="solid" onClick={onDismiss} aria-label="close">
+            <XMarkIcon style={{ fontSize: '1.5em' }} />
+          </Button>
         </div>
       )}
     </Component>

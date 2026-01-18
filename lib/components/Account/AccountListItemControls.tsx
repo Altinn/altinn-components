@@ -1,4 +1,4 @@
-import { Badge, type BadgeProps, ContextMenu, type ContextMenuProps, IconButton, ListItemControls } from '..';
+import { Badge, type BadgeProps, Button, ContextMenu, type ContextMenuProps, ListItemControls } from '..';
 
 import { HeartFillIcon, HeartIcon } from '@navikt/aksel-icons';
 import { type ReactNode, isValidElement } from 'react';
@@ -44,14 +44,15 @@ export const AccountListItemControls = ({
     <ListItemControls>
       {badge && renderBadge()}
       {!isCurrentEndUser && type !== 'group' && (
-        <IconButton
-          rounded
-          variant="text"
-          icon={favourite ? HeartFillIcon : HeartIcon}
-          iconAltText={favouriteLabel || 'Toggle favourite'}
-          onClick={() => onToggleFavourite?.(id)}
+        <Button
           size="xs"
-        />
+          variant="ghost"
+          rounded
+          aria-label={favouriteLabel || 'Toggle favourite'}
+          onClick={() => onToggleFavourite?.(id)}
+        >
+          {favourite ? <HeartFillIcon /> : <HeartIcon />}
+        </Button>
       )}
       {contextMenu && <ContextMenu {...contextMenu} />}
     </ListItemControls>

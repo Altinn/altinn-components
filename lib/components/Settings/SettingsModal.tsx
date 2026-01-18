@@ -1,6 +1,8 @@
 import {
   Button,
   ButtonGroup,
+  ButtonIcon,
+  ButtonLabel,
   type ButtonProps,
   ModalBase,
   type ModalBaseProps,
@@ -10,6 +12,7 @@ import {
 } from '..';
 
 export interface SettingsModalButtonProps extends ButtonProps {
+  label: string;
   close?: boolean;
 }
 
@@ -37,16 +40,22 @@ export const SettingsModal = ({
         {children}
         {buttons?.length && (
           <ButtonGroup>
-            {buttons?.map((button, index) => (
-              <Button
-                {...button}
-                key={index}
-                onClick={(e) => {
-                  button?.onClick?.(e);
-                  button?.close && onClose?.();
-                }}
-              />
-            ))}
+            {buttons?.map((button, index) => {
+              const { icon, label, ...buttonProps } = button;
+              return (
+                <Button
+                  {...buttonProps}
+                  key={index}
+                  onClick={(e) => {
+                    button?.onClick?.(e);
+                    button?.close && onClose?.();
+                  }}
+                >
+                  {icon && <ButtonIcon icon={icon} />}
+                  <ButtonLabel>{label}</ButtonLabel>
+                </Button>
+              );
+            })}
           </ButtonGroup>
         )}
       </ModalBody>

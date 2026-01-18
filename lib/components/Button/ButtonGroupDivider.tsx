@@ -1,9 +1,14 @@
+import { Button, type ButtonProps } from './Button';
 import styles from './buttonGroupDivider.module.css';
 
-export const ButtonGroupDivider = () => {
+export interface ButtonGroupDividerProps {
+  variant?: ButtonProps['variant'];
+}
+
+export const ButtonGroupDivider = ({ variant }: ButtonGroupDividerProps) => {
   return (
-    <span aria-hidden="true" className={styles.divider}>
+    <Button as="span" color="inherit" variant={variant} aria-hidden="true" className={styles.divider}>
       <span className={styles.border} />
-    </span>
+    </Button>
   );
 };
