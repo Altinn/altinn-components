@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.53.1](https://github.com/Altinn/altinn-components/compare/v0.53.0...v0.53.1) (2026-01-19)
+
+
+### Features
+
+* **AccountSelector:** Allow for filtering of deleted units ([#907](https://github.com/Altinn/altinn-components/issues/907)) ([8ed5a3f](https://github.com/Altinn/altinn-components/commit/8ed5a3fbdc1f260049bac88a59fc558606006e79))
+
+
+### Miscellaneous Chores
+
+* **deps:** update dependency @vitest/coverage-v8 to v4 ([#917](https://github.com/Altinn/altinn-components/issues/917)) ([6886973](https://github.com/Altinn/altinn-components/commit/68869736c27fd8f264ab0b23c0976ff66d98b34d))
+
 ## [0.53.0](https://github.com/Altinn/altinn-components/compare/v0.52.7...v0.53.0) (2026-01-16)
 
 
