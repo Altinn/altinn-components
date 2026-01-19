@@ -108,6 +108,7 @@ export const UsingUseAccountHook = (args: LayoutStoryArgs) => {
 
   // Use the useAccountSelector hook to get account menu and loading state
   const [favoriteUuids, setFavoriteUuids] = useState<string[]>([]);
+  const [showDeletedAccounts, setShowDeletedAccounts] = useState(false); // Get actual value from user profile
   const [currentAccountUuid, setCurrentAccountUuid] = useState<string | undefined>(
     '167536b5-f8ed-4c5a-8f48-0279507e53ae',
   );
@@ -127,6 +128,10 @@ export const UsingUseAccountHook = (args: LayoutStoryArgs) => {
     },
     languageCode: 'nb',
     isLoading: false,
+    showDeletedUnits: showDeletedAccounts,
+    onShowDeletedUnitsChange: (newValue: boolean) => {
+      setShowDeletedAccounts(newValue);
+    },
   });
   return (
     <RootProvider languageCode="nb">

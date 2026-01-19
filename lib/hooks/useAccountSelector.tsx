@@ -55,6 +55,10 @@ export interface useAccountSelectorProps {
   onToggleFavorite?: (accountId: string) => void;
   /** Language code for localization ('nn', 'en', or 'nb'/default) */
   languageCode?: string;
+  /** The external value of the include deleted accounts switch */
+  showDeletedUnits?: boolean;
+  /** Function to handle changes to the include deleted accounts switch */
+  onShowDeletedUnitsChange?: (newValue: boolean) => void;
 }
 
 /**
@@ -86,6 +90,8 @@ export const useAccountSelector = ({
   isVirtualized = false,
   onToggleFavorite,
   languageCode,
+  showDeletedUnits,
+  onShowDeletedUnitsChange,
 }: useAccountSelectorProps): AccountSelectorProps => {
   const isDesktop = useIsDesktop();
 
@@ -100,6 +106,9 @@ export const useAccountSelector = ({
     const isFavorite = (partyUuid: string) => {
       return favoriteAccountUuids?.includes(partyUuid);
     };
+    const isVisible = (party: AuthorizedParty) => {
+      return !party.isDeleted || showDeletedUnits !== false;
+    };
 
     const texts = getTexts(languageCode);
     const locale = languageCode || 'nb';
@@ -110,87 +119,103 @@ export const useAccountSelector = ({
         ignorePunctuation: true,
       });
 
-    // Separate self, people and organizations
-    const self = partyListDTO.find((party) => isPersonType(party.type) && party.partyUuid === selfAccountUuid);
+    const sortedParties = [...partyListDTO].sort(compareFn);
 
-    const otherPeople = [...partyListDTO]
-      .filter((party) => isPersonType(party.type) && party.partyUuid !== selfAccountUuid)
-      .sort(compareFn);
+    // Create account items for persons, organizations, favorites, and self
 
-    const organizations = [...partyListDTO].filter((party) => isOrgType(party.type)).sort(compareFn);
-
-    // Build account items of self, people and organizations
-    const selfAccountItem = getAccountFromAuthorizedParty(
-      languageCode!,
-      self!,
-      'favorites',
-      currentAccountUuid,
-      false,
-      onToggleFavorite,
-      isDesktop,
-      undefined,
-      true,
-    );
-
-    const peopleAccountItems = otherPeople?.map((party) =>
-      getAccountFromAuthorizedParty(
-        languageCode!,
-        party,
-        party.partyUuid,
-        currentAccountUuid,
-        isFavorite(party.partyUuid),
-        onToggleFavorite,
-        isDesktop,
-      ),
-    );
-
+    let selfAccountItem: AccountMenuItemProps | undefined = undefined;
+    const peopleAccountItems: AccountMenuItemProps[] = [];
     const organizationAccountItems: AccountMenuItemProps[] = [];
+    const favoriteAccountItems: AccountMenuItemProps[] = [];
 
-    for (const org of organizations) {
-      const orgAccountItem = getAccountFromAuthorizedParty(
-        languageCode!,
-        org,
-        org.partyUuid,
-        currentAccountUuid,
-        isFavorite(org.partyUuid),
-        onToggleFavorite,
-        isDesktop,
-      );
-      organizationAccountItems.push(orgAccountItem);
-
-      if (org.subunits && org.subunits.length > 0) {
-        const subunits = [...org.subunits].sort(compareFn);
-        for (const subUnit of subunits) {
-          const subUnitAccountItem = getAccountFromAuthorizedParty(
+    for (const party of sortedParties) {
+      if (isPersonType(party.type)) {
+        // Handle people
+        if (party.partyUuid === selfAccountUuid) {
+          selfAccountItem = getAccountFromAuthorizedParty(
             languageCode!,
-            subUnit,
-            org.partyUuid,
-            currentAccountUuid!,
-            isFavorite(subUnit.partyUuid),
+            party,
+            'favorites',
+            currentAccountUuid,
+            false,
             onToggleFavorite,
             isDesktop,
-            org,
+            undefined,
+            true,
           );
-          organizationAccountItems.push(subUnitAccountItem);
+        } else if (isVisible(party) || isFavorite(party.partyUuid)) {
+          const account = getAccountFromAuthorizedParty(
+            languageCode!,
+            party,
+            party.partyUuid,
+            currentAccountUuid,
+            isFavorite(party.partyUuid),
+            onToggleFavorite,
+            isDesktop,
+          );
+
+          peopleAccountItems.push(account);
+
+          if (isFavorite(party.partyUuid)) {
+            favoriteAccountItems.push({ ...account, groupId: 'favorites' });
+          }
+        }
+      } else if (isOrgType(party.type)) {
+        // Handle organizations and their subunits
+        if (isVisible(party) || isFavorite(party.partyUuid)) {
+          const account = getAccountFromAuthorizedParty(
+            languageCode!,
+            party,
+            party.partyUuid,
+            currentAccountUuid,
+            isFavorite(party.partyUuid),
+            onToggleFavorite,
+            isDesktop,
+          );
+
+          if (isVisible(party)) {
+            organizationAccountItems.push(account);
+          }
+
+          if (isFavorite(party.partyUuid)) {
+            favoriteAccountItems.push({ ...account, groupId: 'favorites' });
+          }
+        }
+
+        // Handle subunits
+        if (party.subunits && party.subunits.length > 0) {
+          const subunits = [...party.subunits].sort(compareFn);
+          for (const subUnit of subunits) {
+            if (isVisible(subUnit) || isFavorite(subUnit.partyUuid)) {
+              const subUnitAccountItem = getAccountFromAuthorizedParty(
+                languageCode!,
+                subUnit,
+                party.partyUuid,
+                currentAccountUuid!,
+                isFavorite(subUnit.partyUuid),
+                onToggleFavorite,
+                isDesktop,
+                party,
+              );
+              if (isVisible(subUnit)) {
+                organizationAccountItems.push(subUnitAccountItem);
+              }
+              if (isFavorite(subUnit.partyUuid)) {
+                favoriteAccountItems.push({
+                  ...subUnitAccountItem,
+                  groupId: 'favorites',
+                });
+              }
+            }
+          }
         }
       }
     }
 
-    // Build favorite account items from previously built people and organization items
-    const favoritePeopleAccountItems = peopleAccountItems.reduce<AccountMenuItemProps[]>((acc, item) => {
-      if (isFavorite(item.id)) {
-        acc.push({ ...item, groupId: 'favorites' });
-      }
-      return acc;
-    }, []);
-    const favoriteOrganizationAccountItems = organizationAccountItems.reduce<AccountMenuItemProps[]>((acc, item) => {
-      if (isFavorite(item.id)) {
-        acc.push({ ...item, groupId: 'favorites' });
-      }
-      return acc;
-    }, []);
-
-    const favoriteAccountItems = [...favoritePeopleAccountItems, ...favoriteOrganizationAccountItems];
+    if (selfAccountItem === undefined) {
+      // If self account is not found, return empty to avoid errors
+      return [[], {}, undefined];
+    }
 
     // Put the full list of accounts together in order
     const allAccounts = [selfAccountItem, ...favoriteAccountItems, ...peopleAccountItems, ...organizationAccountItems];
@@ -223,6 +248,7 @@ export const useAccountSelector = ({
     onToggleFavorite,
     languageCode,
     isDesktop,
+    showDeletedUnits,
   ]);
 
   if (isLoading || !partyListDTO || !currentAccount) {
@@ -247,6 +273,8 @@ export const useAccountSelector = ({
       currentAccount: currentAccount,
     },
     loading: false,
+    showDeletedUnits: showDeletedUnits,
+    onShowDeletedUnitsChange: onShowDeletedUnitsChange,
   };
 };
 
@@ -296,7 +324,7 @@ const getAccountFromAuthorizedParty = (
   const formatType = type === 'company' && !!parent ? 'subunit' : type;
   switch (formatType) {
     case 'company':
-      description = `${texts.org_no}: ${party.organizationNumber}`;
+      description = `${texts.org_no}. ${party.organizationNumber}`;
       break;
     case 'person':
       description = party?.dateOfBirth ? `${texts.birthdate}: ${formatDate(party?.dateOfBirth)}` : '';

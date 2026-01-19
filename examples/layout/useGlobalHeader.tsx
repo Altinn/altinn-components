@@ -27,6 +27,12 @@ export const useGlobalHeader = ({
     currentAccountIndex ? authorizedParties[currentAccountIndex].partyUuid : '167536b5-f8ed-4c5a-8f48-0279507e53ae',
   );
   const selfAccountUuid = '167536b5-f8ed-4c5a-8f48-0279507e53ae'; // Get the user's own account UUID from token or other source
+  const [showDeletedAccounts, setShowDeletedAccounts] = useState(false); // Get actual value from user profile
+
+  // Handler for toggling show deleted accounts
+  const onToggleShowDeletedAccounts = (newValue: boolean) => {
+    setShowDeletedAccounts(newValue);
+  };
 
   // Handler for toggling favorite accounts
   const onToggleFavorite = (uuid: string) => {
@@ -50,7 +56,11 @@ export const useGlobalHeader = ({
   return {
     globalMenu,
     globalSearch: { onSearch },
-    accountSelector: accountSelector,
+    accountSelector: {
+      ...accountSelector,
+      showDeletedUnits: showDeletedAccounts,
+      onShowDeletedUnitsChange: onToggleShowDeletedAccounts,
+    },
     onLoginClick: onLoginClick,
     locale: localeSwitcher,
   };

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useIsDesktop } from '../../hooks/useIsDesktop';
 import { AccountMenu, type AccountMenuProps } from '../Account';
 import { Button } from '../Button';
-import { DsHeading, DsSpinner } from '../DsComponents';
+import { DsHeading, DsSpinner, DsSwitch } from '../DsComponents';
 import { SearchField } from '../Forms';
 import { useRootContext } from '../RootProvider';
 import styles from './accountSelector.module.css';
@@ -17,9 +17,20 @@ export interface AccountSelectorProps {
   forceOpenFullScreen?: boolean;
   className?: string;
   loading?: boolean;
+  /** The external value of the include deleted accounts switch */
+  showDeletedUnits?: boolean;
+  /** Function to handle changes to the include deleted accounts switch */
+  onShowDeletedUnitsChange?: (newValue: boolean) => void;
 }
 
-export const AccountSelector = ({ accountMenu, forceOpenFullScreen, className, loading }: AccountSelectorProps) => {
+export const AccountSelector = ({
+  accountMenu,
+  forceOpenFullScreen,
+  className,
+  loading,
+  showDeletedUnits,
+  onShowDeletedUnitsChange,
+}: AccountSelectorProps) => {
   const { currentId, openId, closeAll, languageCode } = useRootContext();
   const isDesktop = useIsDesktop();
   const isFullScreen = currentId === 'accountFullscreen';
@@ -42,7 +53,7 @@ export const AccountSelector = ({ accountMenu, forceOpenFullScreen, className, l
     }
   }, [forceOpenFullScreenState, isFullScreen, isDesktop, currentId, openId]);
 
-  const { minimize, fullscreen, searchText, heading } = getTexts(languageCode);
+  const { minimize, fullscreen, searchText, heading, switchLabel } = getTexts(languageCode);
 
   const toggleExpansion = () => {
     if (isFullScreen) {
@@ -64,11 +75,9 @@ export const AccountSelector = ({ accountMenu, forceOpenFullScreen, className, l
 
   return (
     <div className={cx(className, styles.accountSelector)}>
-      {isFullScreen && (
-        <DsHeading data-size="md" level={2} className={styles.heading}>
-          {heading}
-        </DsHeading>
-      )}
+      <DsHeading data-size="sm" level={2} className={styles.heading}>
+        {heading}
+      </DsHeading>
       <div className={styles.searchSection}>
         <SearchField
           name={searchText}
@@ -78,6 +87,13 @@ export const AccountSelector = ({ accountMenu, forceOpenFullScreen, className, l
           onClear={() => setSearchString('')}
           className={styles.searchField}
         />
+        {showDeletedUnits !== undefined && (
+          <DsSwitch
+            checked={showDeletedUnits}
+            onChange={(e) => onShowDeletedUnitsChange?.(e.target.checked)}
+            label={switchLabel}
+          />
+        )}
       </div>
       <div
         className={cx(
@@ -128,6 +144,7 @@ const getTexts = (languageCode: string | undefined) => {
         fullscreen: 'Vis i fullskjerm',
         searchText: 'Søk i aktørar',
         heading: 'Kven vil du representere?',
+        switchLabel: 'Vis slettede',
       };
     case 'en':
       return {
@@ -135,6 +152,7 @@ const getTexts = (languageCode: string | undefined) => {
         fullscreen: 'Show in fullscreen',
         searchText: 'Search in actors',
         heading: 'Who do you want to represent?',
+        switchLabel: 'Show deleted',
       };
     default:
       return {
@@ -142,6 +160,7 @@ const getTexts = (languageCode: string | undefined) => {
         fullscreen: 'Vis i fullskjerm',
         searchText: 'Søk i aktører',
         heading: 'Hvem vil du representere?',
+        switchLabel: 'Vis slettede',
       };
   }
 };
