@@ -77,7 +77,7 @@ export const ToolbarOptions = ({
   return (
     <MenuBase variant="default" ref={ref}>
       {search && (
-        <MenuSearch {...search} value={searchValue} onChange={onChangeSearchValue} onClear={onClearSearchValue} />
+        <MenuSearch value={searchValue} onChange={onChangeSearchValue} onClear={onClearSearchValue} {...search} />
       )}
       <MenuList role={'menu' as MenuListRole} onBlurCapture={onBlurCapture}>
         {menu.map((group, groupIndex) => {
