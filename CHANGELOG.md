@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.54.1](https://github.com/Altinn/altinn-components/compare/v0.54.0...v0.54.1) (2026-01-20)
+
+
+### Bug Fixes
+
+* **AccountSelector:** Do not remove current user from account list when filtering ([#926](https://github.com/Altinn/altinn-components/issues/926)) ([c82da8c](https://github.com/Altinn/altinn-components/commit/c82da8cf170b9bfcabf5a4b43a02a9ce580b2378))
+
 ## [0.54.0](https://github.com/Altinn/altinn-components/compare/v0.53.1...v0.54.0) (2026-01-20)
 
 
