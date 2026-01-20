@@ -35,11 +35,6 @@ const meta = {
         count: 2,
       },
     ],
-    search: {
-      placeholder: 'Søk etter avsender',
-      name: 'search-sender',
-      clearButtonAltText: 'Tøm søkefelt',
-    },
   },
 } satisfies Meta<typeof ToolbarFilter>;
 
@@ -57,5 +52,17 @@ export const Multiple: Story = {
   args: {
     name: 'multiple',
     optionType: 'checkbox',
+  },
+};
+
+export const MultipleWithSearch: Story = {
+  args: {
+    name: 'multiplewithsearch',
+    optionType: 'checkbox',
+    search: {
+      placeholder: 'Søk etter avsender',
+      name: 'search-sender',
+      clearButtonAltText: 'Tøm søkefelt',
+    },
   },
 };
