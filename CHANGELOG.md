@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.54.0](https://github.com/Altinn/altinn-components/compare/v0.53.1...v0.54.0) (2026-01-20)
+
+
+### Features
+
+* **ToolbarFilter:** Expand filter toobar to support search in filter options ([#919](https://github.com/Altinn/altinn-components/issues/919)) ([bb0f4de](https://github.com/Altinn/altinn-components/commit/bb0f4de700e8ec18cc0027a8abcbb63378d14145))
+
 ## [0.53.1](https://github.com/Altinn/altinn-components/compare/v0.53.0...v0.53.1) (2026-01-19)
 
 
