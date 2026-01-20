@@ -35,6 +35,11 @@ const meta = {
         count: 2,
       },
     ],
+    search: {
+      placeholder: 'Søk etter avsender',
+      name: 'search-sender',
+      clearButtonAltText: 'Tøm søkefelt',
+    },
   },
 } satisfies Meta<typeof ToolbarFilter>;
 
