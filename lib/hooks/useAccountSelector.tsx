@@ -107,7 +107,7 @@ export const useAccountSelector = ({
       return favoriteAccountUuids?.includes(partyUuid);
     };
     const isVisible = (party: AuthorizedParty) => {
-      return !party.isDeleted || showDeletedUnits !== false;
+      return !party.isDeleted || showDeletedUnits !== false || party.partyUuid === currentAccountUuid;
     };
 
     const texts = getTexts(languageCode);

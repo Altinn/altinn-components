@@ -116,18 +116,18 @@ export const AccountSelector = ({
         />
       </div>
       {forceOpenFullScreenState !== true && isDesktop && (
-        <Button
-          icon={
-            isFullScreen ? (
+        <Button variant="ghost" onClick={toggleExpansion}>
+          {isFullScreen ? (
+            <>
               <CaretUpCircleIcon className={styles.btnIcon} aria-hidden="true" />
-            ) : (
+              {minimize}
+            </>
+          ) : (
+            <>
               <CaretDownCircleIcon className={styles.btnIcon} aria-hidden="true" />
-            )
-          }
-          variant="ghost"
-          onClick={toggleExpansion}
-        >
-          {isFullScreen ? minimize : fullscreen}
+              {fullscreen}
+            </>
+          )}
         </Button>
       )}
     </div>
