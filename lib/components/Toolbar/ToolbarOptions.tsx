@@ -1,4 +1,4 @@
-import { Fragment, useRef } from 'react';
+import { type ChangeEvent, Fragment, useMemo, useRef, useState } from 'react';
 import { useMenu } from '../../hooks';
 import {
   MenuBase,
@@ -11,9 +11,9 @@ import {
   type MenuOptionProps,
   type MenuOptionType,
   MenuSearch,
-  type MenuSearchProps,
 } from '../Menu';
 import type { FilterChangePayload } from './Toolbar.tsx';
+import type { ToolbarSearchProps } from './ToolbarSearch';
 
 export type ToolbarOptionType = 'checkbox' | 'radio';
 
@@ -27,7 +27,7 @@ export interface ToolbarOptionsProps {
   name: string;
   options: MenuOptionProps[];
   onChange?: (input: FilterChangePayload) => void;
-  search?: MenuSearchProps;
+  search?: ToolbarSearchProps;
   optionType: ToolbarOptionType;
   optionGroups?: { [key: string]: OptionGroup };
   keyboardEvents?: boolean;
@@ -45,17 +45,40 @@ export const ToolbarOptions = ({
   onBlurCapture,
 }: ToolbarOptionsProps) => {
   const ref = useRef<HTMLElement>(null);
+  const [searchValue, setSearchValue] = useState<string>('');
+
+  const filteredOptions = useMemo(
+    () =>
+      options.filter((option) => {
+        if (!searchValue) {
+          return true;
+        }
+        return option.label.toLowerCase().includes(searchValue.toLowerCase());
+      }),
+    [options, searchValue],
+  );
+
   const { menu, setActiveIndex } = useMenu<MenuOptionProps, OptionGroup>({
-    items: options,
+    items: filteredOptions,
     groups: optionGroups,
     groupByKey: 'groupId',
     keyboardEvents,
     ref,
   });
 
+  const onChangeSearchValue = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value);
+  };
+
+  const onClearSearchValue = () => {
+    setSearchValue('');
+  };
+
   return (
     <MenuBase variant="default" ref={ref}>
-      {search && <MenuSearch {...search} />}
+      {search && (
+        <MenuSearch {...search} value={searchValue} onChange={onChangeSearchValue} onClear={onClearSearchValue} />
+      )}
       <MenuList role={'menu' as MenuListRole} onBlurCapture={onBlurCapture}>
         {menu.map((group, groupIndex) => {
           const groupProps: MenuGroupProps = group?.props || {};
