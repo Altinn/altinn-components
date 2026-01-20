@@ -49,10 +49,6 @@
   margin-top: -72px;
 }
 
-.header[data-current-id="search"] .backdrop {
-  display: block;
-}
-
 @media (min-width: 1024px) {
   .header[data-current-id="search"] {
     margin-top: 0;

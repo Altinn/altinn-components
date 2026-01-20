@@ -1,21 +1,18 @@
 .header {
   z-index: 1;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 1rem;
-  padding: 0.7rem;
+  padding: .7rem;
   background-color: white;
   margin-bottom: 1rem;
-}
-
-.backdrop {
-  display: none;
+  --global-header-height: 5.75rem;
 }
 
 /* menu */
-
 .header[data-current-id="menu"],
 .header[data-current-id="locale"] {
   background-color: white;
@@ -32,6 +29,10 @@
   .header {
     gap: 0;
   }
+}
+
+.header[data-current-id="search"] .backdrop {
+  display: block;
 }
 
 /* search */
