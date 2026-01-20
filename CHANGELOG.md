@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.54.2](https://github.com/Altinn/altinn-components/compare/v0.54.1...v0.54.2) (2026-01-20)
+
+
+### Bug Fixes
+
+* **toolbar:** add flexibility to toolbar options for adding props spread in the end of the change ([#928](https://github.com/Altinn/altinn-components/issues/928)) ([e0f3979](https://github.com/Altinn/altinn-components/commit/e0f39795d832ff2489e70db7e493fb3fcca4a04b))
+
 ## [0.54.1](https://github.com/Altinn/altinn-components/compare/v0.54.0...v0.54.1) (2026-01-20)
 
 
