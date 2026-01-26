@@ -8,7 +8,7 @@ const meta = {
   tags: ['autodocs'],
   parameters: {},
   decorators: [
-    (Story, {}) => {
+    (Story, _) => {
       const style = {
         backgroundColor: 'var(--ds-color-background-tinted)',
         padding: '.5em',

@@ -1,9 +1,9 @@
 'use client';
 import { type CSSProperties, type ElementType, Fragment, useRef } from 'react';
-import { MenuDivider, MenuHeader, MenuItem, MenuList, MenuListItem } from '../';
+import { MenuListDivider, MenuListHeading, MenuItem, MenuList, MenuListItem } from '../';
 import type { MenuItemProps } from '../';
 import { useMenu } from '../../hooks';
-import { MenuSearch, type MenuSearchProps } from './MenuSearch';
+import { MenuListSearch, type MenuListSearchProps } from './MenuListSearch.tsx';
 
 export interface MenuGroupProps {
   title?: string;
@@ -20,7 +20,7 @@ export interface MenuItemsProps {
   level?: number;
   maxLevels?: number;
   expanded?: boolean;
-  search?: MenuSearchProps;
+  search?: MenuListSearchProps;
   items: MenuItemProps[];
   groups?: MenuItemGroups;
   size?: MenuItemProps['size'];
@@ -64,7 +64,7 @@ export const MenuItems = ({
 
   return (
     <MenuList variant={variant} expanded={expanded} as={as} ref={ref} style={scrollRefStyles}>
-      {search && <MenuSearch {...search} />}
+      {search && <MenuListSearch {...search} />}
       {menu.map((group, groupIndex) => {
         const groupProps: MenuGroupProps = group?.props || {};
         const { title, hidden = false, divider = true } = groupProps;
@@ -77,10 +77,10 @@ export const MenuItems = ({
         return (
           <Fragment key={groupIndex}>
             {/** Render a separator if this is a new group or a new level */}
-            {(level > 0 || groupIndex) && divider ? <MenuDivider /> : ''}
-            <MenuListItem role="group" key={groupIndex}>
+            {(level > 0 || groupIndex) && divider ? <MenuListDivider /> : ''}
+            <MenuListItem key={groupIndex}>
               <MenuList role="presentation">
-                {title && <MenuHeader title={title} />}
+                {title && <MenuListHeading title={title} />}
                 {group?.items
                   .filter((item) => !item.props?.hidden)
                   .map((item, index) => {
@@ -122,7 +122,7 @@ export const MenuItems = ({
               </MenuList>
             </MenuListItem>
             {/** Render a separator if expanded and there are items underneath */}
-            {expanded && nextGroup && <MenuDivider />}
+            {expanded && nextGroup && <MenuListDivider />}
           </Fragment>
         );
       })}

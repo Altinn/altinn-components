@@ -1,11 +1,11 @@
 'use client';
 import type { CSSProperties } from 'react';
 import { useRef } from 'react';
-import { MenuDivider, MenuHeader, MenuItem, MenuList, MenuListItem } from '../';
+import { MenuListDivider, MenuListHeading, MenuItem, MenuList, MenuListItem } from '../';
 import type { MenuItemProps } from '../';
 import { useMenu } from '../../hooks';
 import type { MenuGroupProps, MenuItemsProps } from './MenuItems';
-import { MenuSearch } from './MenuSearch';
+import { MenuListSearch } from './MenuListSearch.tsx';
 import { type UseMenuVirtualizationProps, useMenuVirtualization } from './useMenuVirtualization';
 
 export const VirtualizedMenuItems = (props: MenuItemsProps) => {
@@ -27,12 +27,22 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
     scrollRef,
   } as UseMenuVirtualizationProps);
 
-  const VirtualListItem = ({ index, entry, ref, style }: { index: number; entry: any; ref: any; style: any }) => {
+  const VirtualListItem = ({
+    index,
+    entry,
+    ref,
+    style,
+  }: {
+    index: number;
+    entry: { type: 'divider' | 'header' | 'item'; title?: string; itemProps?: MenuItemProps; active?: boolean };
+    ref: React.RefCallback<HTMLLIElement>;
+    style: CSSProperties;
+  }) => {
     switch (entry.type) {
       case 'divider':
-        return <MenuDivider ref={ref} style={style} index={index} />;
+        return <MenuListDivider ref={ref} style={style} index={index} />;
       case 'header':
-        return <MenuHeader title={entry.title} ref={ref} style={style} index={index} />;
+        return <MenuListHeading title={entry.title} ref={ref} style={style} index={index} />;
       default:
         return (
           <MenuListItem role="menuitem" ref={ref} style={style} index={index}>
@@ -60,7 +70,7 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
 
   return (
     <MenuList ref={scrollRef} style={scrollRefStyle}>
-      {search && <MenuSearch {...search} />}
+      {search && <MenuListSearch {...search} />}
 
       <MenuListItem
         style={{

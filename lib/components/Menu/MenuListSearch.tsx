@@ -1,9 +1,9 @@
 import type { ChangeEventHandler } from 'react';
 import { SearchField } from '../';
 import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
-import styles from './menuSearch.module.css';
+import styles from './menuListSearch.module.css';
 
-export interface MenuSearchProps {
+export interface MenuListSearchProps {
   placeholder?: string;
   name: string;
   clearButtonAltText?: string;
@@ -12,19 +12,20 @@ export interface MenuSearchProps {
   onClear?: () => void;
 }
 
-export const MenuSearch = ({
+export const MenuListSearch = ({
   name,
   value,
   placeholder = 'Search',
   clearButtonAltText = 'Clear search',
   onChange,
   onClear,
-}: MenuSearchProps) => {
+}: MenuListSearchProps) => {
   const isDesktop = useIsDesktop();
   return (
-    <li role="search" className={styles.search}>
+    <li className={styles.search}>
       <SearchField
         size="xs"
+        className={styles.searchInput}
         name={name}
         value={value}
         placeholder={placeholder}

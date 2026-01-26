@@ -2,7 +2,7 @@ import { ArrowUndoIcon } from '@navikt/aksel-icons';
 import { useEffect, useState } from 'react';
 import { Datepicker } from '../Datepicker';
 import { Field, Fieldset, Input, Label } from '../Forms';
-import { MenuDivider, MenuItem, MenuList, MenuListItem } from '../Menu';
+import { MenuListDivider, MenuItem, MenuList, MenuListItem } from '../Menu';
 import { formatDateRange } from './formatDateRange';
 
 export interface DatepickerValue {
@@ -102,7 +102,7 @@ export const DatepickerFilter = ({
       <MenuListItem>
         <MenuItem variant="default" icon={ArrowUndoIcon} title={backLabel} description={description} onClick={submit} />
       </MenuListItem>
-      <MenuDivider />
+      <MenuListDivider />
       <MenuListItem>
         <Fieldset size="xs">
           <Field>
@@ -115,7 +115,7 @@ export const DatepickerFilter = ({
           </Field>
         </Fieldset>
       </MenuListItem>
-      <MenuDivider />
+      <MenuListDivider />
       <MenuListItem>
         <Datepicker onSelect={onDatepickerSelect} selectFrom={fromDate} selectTo={toDate} />
       </MenuListItem>

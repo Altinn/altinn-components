@@ -3,9 +3,6 @@
   font-size: 2.75rem;
 }
 
-.icon[data-size="lg"] {
-}
-
 .icon[data-size="lg"] svg,
 .icon[data-size="lg"] img {
   font-size: 1.75rem;

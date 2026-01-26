@@ -1,4 +1,4 @@
-import { SearchField, type SearchFieldProps } from '../Forms/SearchField';
+import { SearchField, type SearchFieldProps } from '../Forms';
 
 export interface ToolbarSearchProps extends SearchFieldProps {
   collapsible?: boolean;
@@ -23,6 +23,7 @@ export const ToolbarSearch = ({
       onChange={onChange}
       onClear={onClear}
       collapsible={collapsible}
+      autoComplete="off"
     />
   );
 };

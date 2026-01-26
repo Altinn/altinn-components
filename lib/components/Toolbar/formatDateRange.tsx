@@ -44,6 +44,11 @@ function isValidDateString(dateString: string): boolean {
   return isValidDate;
 }
 
+// Extend the Intl.DateTimeFormat interface to include formatRange
+interface DateTimeFormatterWithRange extends Intl.DateTimeFormat {
+  formatRange?(startDate: Date, endDate: Date): string;
+}
+
 export function formatDateRange(fromDate?: string, toDate?: string, locale = 'nb-NO'): string {
   const start = fromDate && isValidDateString(fromDate) ? new Date(fromDate) : undefined;
   const end = toDate && isValidDateString(toDate) ? new Date(toDate) : undefined;
@@ -53,14 +58,14 @@ export function formatDateRange(fromDate?: string, toDate?: string, locale = 'nb
     day: 'numeric',
     month: 'long',
     year: 'numeric',
-  });
+  }) as DateTimeFormatterWithRange;
 
-  if (start && end) {
-    return (formatter as any).formatRange(start, end);
+  if (start && end && formatter.formatRange) {
+    return formatter.formatRange(start, end);
   }
 
   if (start) {
-    return (formatter as any).format(start);
+    return formatter.format(start);
   }
 
   return '';

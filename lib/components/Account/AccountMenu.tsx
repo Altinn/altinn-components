@@ -1,8 +1,8 @@
 'use client';
 import { type CSSProperties, useEffect, useMemo, useState } from 'react';
-import { Menu, type MenuItemProps, type MenuProps, type MenuSearchProps } from '../';
+import { Menu, type MenuItemProps, type MenuProps, type MenuListSearchProps } from '../';
 
-export interface AccountSearchProps extends MenuSearchProps {
+export interface AccountSearchProps extends MenuListSearchProps {
   hidden?: boolean;
   getResultsLabel?: (hits: number) => string;
 }
@@ -93,7 +93,7 @@ export const AccountMenu = ({
       }
     : groups;
 
-  const defaultAccountSearch: MenuSearchProps = {
+  const defaultAccountSearch: MenuListSearchProps = {
     name: 'account-search',
     value: filterString,
     placeholder: search?.placeholder ?? 'Find account',

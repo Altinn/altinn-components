@@ -129,7 +129,12 @@ export const Dropdown = ({
     <>
       {backdrop && <div className={styles.backdrop} aria-hidden={!open} />}
       <div id={id} ref={containerRef} style={{ position: 'relative', display: 'inline-block' }}>
-        <div aria-haspopup="true" aria-expanded={open} onClick={(e) => e.stopPropagation()}>
+        <div
+          aria-haspopup="true"
+          aria-expanded={open}
+          onClick={(e) => e.stopPropagation()}
+          onKeyDown={(e) => e.stopPropagation()}
+        >
           {trigger}
         </div>
 

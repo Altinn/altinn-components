@@ -3,7 +3,10 @@ import { useVirtualizer } from '@tanstack/react-virtual';
 import { useEffect, useMemo, useState } from 'react';
 
 export interface UseMenuVirtualizationProps {
-  menu: any[];
+  menu: Array<{
+    items: Array<{ props?: { hidden?: boolean; [key: string]: unknown }; active?: boolean }>;
+    props?: { title?: string; [key: string]: unknown };
+  }>;
   keyboardEvents?: boolean;
   scrollRef: React.RefObject<HTMLUListElement>;
 }
@@ -25,16 +28,16 @@ export const useMenuVirtualization = ({ menu, keyboardEvents, scrollRef }: UseMe
     const scrollTop = rect?.top || 0;
     const calculated = (scrollTop && windowHeight - scrollTop - 8) || 400;
     return calculated <= 300 ? 300 : calculated;
-  }, [windowHeight, scrollRef.current]);
+  }, [windowHeight, scrollRef]);
 
   const flatMenu = useMemo(() => {
     return menu.flatMap((group, groupIndex) => {
-      const items = group?.items?.filter((item: any) => !item.props?.hidden) || [];
+      const items = group?.items?.filter((item) => !item.props?.hidden) || [];
       const title = group?.props?.title;
       return [
         ...(groupIndex > 0 ? [{ type: 'divider' as const }] : []),
         ...(title ? [{ type: 'header' as const, title }] : []),
-        ...items.map((item: any) => ({
+        ...items.map((item) => ({
           type: 'item' as const,
           itemProps: item.props || {},
           active: item.active,

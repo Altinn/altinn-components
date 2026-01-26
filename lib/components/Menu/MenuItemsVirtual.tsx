@@ -1,11 +1,11 @@
 'use client';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { MenuHeader, MenuItem, MenuList, MenuListItem } from '../';
+import { MenuListHeading, MenuItem, MenuList, MenuListItem } from '../';
 import type { MenuItemProps } from '../';
 import { useMenu } from '../../hooks';
 import type { MenuGroupProps, MenuItemsProps } from './MenuItems';
-import { MenuSearch } from './MenuSearch';
+import { MenuListSearch } from './MenuListSearch.tsx';
 import styles from './menuItemsVirtual.module.css';
 
 interface SeparatorEntry {
@@ -221,7 +221,7 @@ export const MenuItemsVirtual = ({
               marginTop: '-0.5rem',
             }}
           >
-            <MenuSearch {...search} />
+            <MenuListSearch {...search} />
           </div>
         )}
         <div
@@ -241,7 +241,7 @@ export const MenuItemsVirtual = ({
                 style={{ transform: `translateY(${virtualRow.start}px)` }}
                 role={entry.type === 'separator' ? 'separator' : undefined}
               >
-                {entry.type === 'title' && <MenuHeader title={entry.title} />}
+                {entry.type === 'title' && <MenuListHeading title={entry.title} />}
                 {entry.type === 'item' && (
                   <MenuItem
                     {...entry.itemProps}

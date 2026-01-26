@@ -1,5 +1,5 @@
 import { Fragment, useRef } from 'react';
-import { type MenuGroupProps, MenuHeader, MenuList, MenuListItem, type MenuListRole } from '../';
+import { type MenuGroupProps, MenuListHeading, MenuList, MenuListItem, type MenuListRole } from '../';
 import { useMenu } from '../../hooks';
 import { AutocompleteBase, AutocompleteItem, type AutocompleteItemProps } from '../index.ts';
 
@@ -46,7 +46,7 @@ export const Autocomplete = ({
               {groupIndex && divider ? <MenuListItem role="separator" /> : ''}
               {title && (
                 <MenuListItem>
-                  <MenuHeader title={title} />
+                  <MenuListHeading title={title} />
                 </MenuListItem>
               )}
               {group?.items

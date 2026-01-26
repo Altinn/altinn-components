@@ -30,10 +30,10 @@ export const useInboxFilter = ({ filters = inboxFilters, defaultFilterState = {}
   };
 
   const getContentFilterLabel = () => {
-    const hasDrafts = (filterState?.drafts?.length ?? 0 > 0) ? 'Utkast' : undefined;
-    const hasAttachments = (filterState?.attachments?.length ?? 0 > 0) ? 'Vedlegg' : undefined;
-    const hasSent = (filterState?.sent?.length ?? 0 > 0) ? 'Sendt' : undefined;
-    const hasReceived = (filterState?.received?.length ?? 0 > 0) ? 'Mottatt' : undefined;
+    const hasDrafts = (filterState?.drafts?.length ?? 0) > 0 ? 'Utkast' : undefined;
+    const hasAttachments = (filterState?.attachments?.length ?? 0) > 0 ? 'Vedlegg' : undefined;
+    const hasSent = (filterState?.sent?.length ?? 0) > 0 ? 'Sendt' : undefined;
+    const hasReceived = (filterState?.received?.length ?? 0) > 0 ? 'Mottatt' : undefined;
 
     return [hasDrafts, hasAttachments, hasSent, hasReceived].filter(Boolean).join(' + ');
   };

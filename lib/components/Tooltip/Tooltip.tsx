@@ -10,13 +10,7 @@ export type TooltipProps = {
 
 export const Tooltip = ({ size = 'xs', placement, children, content, hidden }: TooltipProps) => {
   return (
-    <DsTooltip
-      aria-hidden={hidden}
-      data-size={size as any}
-      content={content}
-      placement={placement}
-      className={styles.tooltip}
-    >
+    <DsTooltip aria-hidden={hidden} data-size={size} content={content} placement={placement} className={styles.tooltip}>
       {children}
     </DsTooltip>
   );

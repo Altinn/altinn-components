@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { type ChangeEvent, useState } from 'react';
-import { MenuSearch, type MenuSearchProps } from './MenuSearch';
+import { MenuListSearch, type MenuListSearchProps } from './MenuListSearch.tsx';
 
 const meta = {
   title: 'Menu/MenuSearch',
-  component: MenuSearch,
+  component: MenuListSearch,
   tags: ['autodocs'],
   parameters: {},
   args: {
@@ -14,7 +14,7 @@ const meta = {
     onClear: () => {},
     onChange: () => {},
   },
-} satisfies Meta<typeof MenuSearch>;
+} satisfies Meta<typeof MenuListSearch>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -23,7 +23,7 @@ export const Default: Story = {
   args: {},
 };
 
-export const WithState = (args: MenuSearchProps) => {
+export const WithState = (args: MenuListSearchProps) => {
   const [q, setQ] = useState<string>('');
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setQ(event.target.value);
@@ -33,5 +33,5 @@ export const WithState = (args: MenuSearchProps) => {
     setQ('');
   };
 
-  return <MenuSearch {...args} value={q} onChange={onChange} onClear={onClear} />;
+  return <MenuListSearch {...args} value={q} onChange={onChange} onClear={onClear} />;
 };
