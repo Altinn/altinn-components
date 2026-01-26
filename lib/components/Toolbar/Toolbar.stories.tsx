@@ -1,5 +1,5 @@
 import type { Meta } from '@storybook/react-vite';
-import { Switch } from '../Forms/Switch';
+import { Switch } from '../Forms';
 import { Toolbar, ToolbarFilter, ToolbarMenu, ToolbarSearch } from './';
 import { inboxFilters } from './example.data';
 import { useInboxFilter, useInboxToolbar } from './example.hooks';

@@ -124,7 +124,7 @@ export const ToolbarFilterAddMenu = ({
       open={open}
       onClose={onClose}
     >
-      <Menu groups={groups} items={addItems} maxLevels={1} keyboardEvents />
+      <Menu groups={groups} items={addItems} maxLevels={1} keyboardEvents={open} />
     </Dropdown>
   );
 };
@@ -203,7 +203,7 @@ export const ToolbarFilterMenu = ({
           searchable={searchable}
           groups={groups}
           items={filterItems}
-          keyboardEvents
+          keyboardEvents={open}
         />
       </Dropdown>
     );
@@ -228,7 +228,7 @@ export const ToolbarFilterMenu = ({
         searchable={searchable}
         groups={groups}
         items={filterItems}
-        keyboardEvents
+        keyboardEvents={open}
       />
     </Dropdown>
   );

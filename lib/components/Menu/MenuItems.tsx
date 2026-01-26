@@ -51,7 +51,6 @@ export const MenuItems = ({
   }
 
   const ref = useRef<HTMLUListElement>(null);
-
   const { menu, setActiveIndex } = useMenu<MenuItemProps, MenuGroupProps>({
     items,
     groups,
@@ -82,7 +81,6 @@ export const MenuItems = ({
                     const { active, onMouseEnter } = item;
                     const { groupId: _, ...itemProps } = item.props || {};
                     const { expanded } = itemProps;
-                    //                    const nextItem = group?.items[index + 1];
                     return (
                       <MenuListItem key={index} expanded={expanded} onMouseLeave={() => setActiveIndex(-1)}>
                         <MenuItem

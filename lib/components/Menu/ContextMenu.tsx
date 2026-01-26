@@ -1,8 +1,8 @@
 import { MenuElipsisHorizontalIcon } from '@navikt/aksel-icons';
 import { useState } from 'react';
-import { Button } from '../Button/Button';
-import { Dropdown, type DropdownProps } from '../Dropdown/Dropdown';
-import { Tooltip } from '../Tooltip/Tooltip';
+import { Button } from '../Button';
+import { Dropdown, type DropdownProps } from '../Dropdown';
+import { Tooltip } from '../Tooltip';
 import { Menu, type MenuProps } from './Menu';
 
 export interface ContextMenuProps extends MenuProps {
@@ -33,7 +33,7 @@ export const ContextMenu = ({ groups = {}, items, title = 'Åpne meny', id, plac
       id={id}
       placement={placement}
     >
-      <Menu groups={groups} items={items} maxLevels={1} keyboardEvents={true} />
+      <Menu groups={groups} items={items} maxLevels={1} keyboardEvents={open} />
     </Dropdown>
   );
 };

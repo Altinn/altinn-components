@@ -3,6 +3,7 @@ import { SelectDateFilter } from './SelectDateFilter';
 import { ToolbarFilter } from './ToolbarFilter';
 import { inboxFilters, timeFilter } from './example.data';
 import { useInboxFilter } from './example.hooks';
+import { Section } from '../Page';
 
 const meta = {
   title: 'Toolbar/ToolbarFilter',
@@ -44,8 +45,7 @@ export const Datepicker = () => {
   return (
     <div>
       <ToolbarFilter {...inboxFilter} />
-      <hr />
-      {JSON.stringify(inboxFilter.filterState)}
+      <Section margin="section">State: {JSON.stringify(inboxFilter.filterState)}</Section>
     </div>
   );
 };

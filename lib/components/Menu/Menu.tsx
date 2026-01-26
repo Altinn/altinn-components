@@ -24,9 +24,6 @@ export const Menu = ({
   scrollRefStyles = {},
 }: MenuProps) => {
   const autoSearch = useMenuSearch({ ...search, items, groups });
-
-  // default search
-
   const applicableSearch = searchable ? autoSearch.search : search;
   const applicableItems = searchable ? autoSearch.items : items;
   const applicableGroups = searchable ? autoSearch.groups : groups;

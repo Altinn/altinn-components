@@ -133,7 +133,6 @@ export const Dropdown = ({
           aria-haspopup="true"
           aria-expanded={open}
           onClick={(e) => e.stopPropagation()}
-          onKeyDown={(e) => e.stopPropagation()}
         >
           {trigger}
         </div>
