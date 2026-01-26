@@ -42,7 +42,6 @@ export const MenuItems = ({
   size,
   color,
   variant,
-  as,
   scrollRefStyles = {},
   keyboardEvents = false,
   onSelect = () => {},

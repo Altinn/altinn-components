@@ -6,6 +6,7 @@
   flex-direction: column;
   row-gap: 0.5rem;
   padding: 0.5rem;
+  white-space: unset; /* important in order to keep child elements wrapped */
 }
 
 .content {

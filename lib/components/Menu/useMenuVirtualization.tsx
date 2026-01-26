@@ -23,8 +23,6 @@ export const useMenuVirtualization = ({ menu, keyboardEvents, scrollRef }: UseMe
   const scrollMaxHeight = useMemo(() => {
     const rect = scrollRef?.current?.getBoundingClientRect();
 
-    console.log('RECT', scrollRef);
-
     const scrollTop = rect?.top || 0;
     const calculated = (scrollTop && windowHeight - scrollTop - 8) || 400;
     return calculated <= 300 ? 300 : calculated;

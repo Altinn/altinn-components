@@ -241,7 +241,7 @@ export const MenuItemsVirtual = ({
                 style={{ transform: `translateY(${virtualRow.start}px)` }}
                 role={entry.type === 'separator' ? 'separator' : undefined}
               >
-                {entry.type === 'title' && <MenuListHeading title={entry.title} />}
+                {entry.type === 'title' && <MenuListHeading title={entry.title} level={1} />}
                 {entry.type === 'item' && (
                   <MenuItem
                     {...entry.itemProps}

@@ -22,10 +22,10 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
   });
 
   const { flatMenu, virtualizer, scrollMaxHeight } = useMenuVirtualization({
-    menu,
+    menu: menu as unknown as UseMenuVirtualizationProps['menu'],
     keyboardEvents,
-    scrollRef,
-  } as UseMenuVirtualizationProps);
+    scrollRef: scrollRef as React.RefObject<HTMLUListElement>,
+  });
 
   const VirtualListItem = ({
     index,
@@ -42,17 +42,17 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
       case 'divider':
         return <MenuListDivider ref={ref} style={style} index={index} />;
       case 'header':
-        return <MenuListHeading title={entry.title} ref={ref} style={style} index={index} />;
+        return <MenuListHeading title={entry.title || ''} level={1} ref={ref} style={style} index={index} />;
       default:
         return (
           <MenuListItem role="menuitem" ref={ref} style={style} index={index}>
             <MenuItem
-              {...entry.itemProps}
-              size={entry.itemProps.size || size}
-              color={entry.itemProps.color || color}
-              variant={entry.itemProps.variant || variant}
+              {...(entry.itemProps || {})}
+              size={entry.itemProps?.size || size}
+              color={entry.itemProps?.color || color}
+              variant={entry.itemProps?.variant || variant}
               active={entry.active}
-              tabIndex={entry.itemProps.disabled || keyboardEvents ? -1 : 0}
+              tabIndex={entry.itemProps?.disabled || keyboardEvents ? -1 : 0}
             />
           </MenuListItem>
         );

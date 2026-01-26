@@ -10,7 +10,7 @@ export interface MenuListHeadingProps {
 
 export const MenuListHeading = ({ ref, title, level = 1, index, style }: MenuListHeadingProps) => {
   return (
-    <li className={styles.heading} role="heading" aria-level={level} data-index={index} ref={ref} style={style}>
+    <li className={styles.heading} aria-level={level} data-index={index} ref={ref} style={style}>
       {title}
     </li>
   );

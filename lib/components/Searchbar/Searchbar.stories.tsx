@@ -282,7 +282,7 @@ ControlledState.play = async ({
   await userEvent.type(searchInput, 'skatt');
 
   /* suggestions const of scopes and search results */
-  const autocomplete = canvas.getByRole('menu');
+  const autocomplete = canvas.getByRole('group');
   const suggestions = canvas.getAllByRole('menuitem');
   await expect(autocomplete).toBeVisible();
   await expect(suggestions).toHaveLength(4);

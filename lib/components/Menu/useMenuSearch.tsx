@@ -85,7 +85,6 @@ export const useMenuSearch = ({ placeholder = 'Søk ...', items = [], groups = {
         };
       });
 
-
   const defaultGroups = {
     search: {
       hidden: true,
@@ -125,8 +124,8 @@ export const useMenuSearch = ({ placeholder = 'Søk ...', items = [], groups = {
   // combine search results and selected items when searching
   const combinedResults = q
     ? [...(results || []), ...(selectedItems || [])].filter(
-      (item, index, array) => array.findIndex((i) => i.id === item.id) === index,
-    )
+        (item, index, array) => array.findIndex((i) => i.id === item.id) === index,
+      )
     : [];
 
   // combine selected items and no Hits

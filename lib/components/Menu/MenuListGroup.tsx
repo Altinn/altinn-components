@@ -11,7 +11,7 @@ export interface MenuListGroupProps {
 
 export const MenuListGroup = ({ ref, hidden, index, style, children }: MenuListGroupProps) => {
   return (
-    <li ref={ref} className={cx(styles.group)} style={style} role="group" data-index={index} aria-hidden={hidden}>
+    <li ref={ref} className={cx(styles.group)} style={style} data-index={index} aria-hidden={hidden}>
       {children}
     </li>
   );

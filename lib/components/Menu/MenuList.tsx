@@ -1,6 +1,8 @@
 import cx from 'classnames';
+import type { CSSProperties, ElementType, MouseEventHandler, ReactNode } from 'react';
+import type { MenuItemProps } from './MenuItem.tsx';
 import styles from './menuList.module.css';
-import type { MenuListProps } from './types';
+import type { MenuListRole } from './types.ts';
 
 export interface MenuListProps {
   ref?: React.Ref<HTMLUListElement>;

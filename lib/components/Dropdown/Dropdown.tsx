@@ -1,7 +1,7 @@
 import { XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import { type ReactNode, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { Button } from '../Button/Button';
+import { Button } from '../Button';
 import styles from './dropdown.module.css';
 
 export type DropdownSize = 'auto' | 'sm' | 'md' | 'lg';
@@ -137,7 +137,6 @@ export const Dropdown = ({
         >
           {trigger}
         </div>
-
         <div
           ref={dropdownRef}
           className={cx(styles.dropdown, className)}
