@@ -16,7 +16,8 @@
   padding-left: 6px;
   padding-right: 6px;
   overflow: hidden;
-  width: 100%;
+  --dsc-item-focus-outline: 2px solid black;
+  --dsc-item-hover-pointer: pointer;
 }
 
 /* Default variant: white background, tinted icon frame */
@@ -26,7 +27,7 @@
   --dsc-item-background--hover: var(--ds-color-surface-hover);
   --dsc-item-background--active: var(--ds-color-surface-active);
   --dsc-icon-background: var(--ds-color-surface-tinted);
-  --dsc-icon-color: var(--ds-color-base-contrast-tinted);
+  --dsc-icon-color: var(--ds-color-text-default);
 }
 
 /* Tinted variant: tinted background, white icon frame  */
@@ -43,15 +44,29 @@
   --dsc-icon-color: var(--ds-color-base-contrast-default);
 }
 
+div.item[data-variant="default"] {
+  --dsc-item-focus-outline: none;
+  --dsc-item-hover-pointer: default;
+  --dsc-item-background--hover: var(--ds-color-background-default);
+  --dsc-item-background--active: var(--ds-color-background-default);
+}
+
+div.item[data-variant="tinted"] {
+  --dsc-item-focus-outline: none;
+  --dsc-item-hover-pointer: default;
+  --dsc-item-background--hover: var(--ds-color-surface-default);
+  --dsc-item-background--active: var(--ds-color-surface-default);
+}
+
 .item:hover,
 .item[data-active="true"] {
   background-color: var(--dsc-item-background--hover);
-  cursor: pointer;
+  cursor: var(--dsc-item-hover-pointer);
 }
 
 .item[data-active="true"] {
   background-color: var(--dsc-item-background--hover);
-  outline: 2px solid black;
+  outline: var(--dsc-item-focus-outline);
 }
 
 .item[aria-selected="true"] {

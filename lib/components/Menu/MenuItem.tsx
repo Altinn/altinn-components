@@ -25,7 +25,7 @@ export interface MenuItemProps {
   role?: MenuItemRole;
   as?: ElementType;
   /** Size, default is sm */
-  size?: string;
+  size?: MenuItemSize;
   /** Variant, default is undefined */
   variant?: MenuItemVariant;
   /** Color, default is undefined */

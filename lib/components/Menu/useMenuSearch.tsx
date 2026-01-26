@@ -39,10 +39,11 @@ export const useMenuSearch = ({ placeholder = 'Søk ...', items = [], groups = {
   const defaultNoHitsItems = [
     {
       id: 'emptySearch',
-      title: 'Search result is empty, try another search term',
+      title: 'Result is empty',
       groupId: 'emptySearch',
       icon: InformationSquareIcon,
       size: 'sm',
+      as: 'div',
     },
   ];
 

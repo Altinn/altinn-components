@@ -8,3 +8,7 @@
 .searchInput {
   width: 100%;
 }
+
+.search input:focus-visible {
+  outline-offset: 0;
+}
