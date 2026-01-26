@@ -37,6 +37,8 @@ export interface UserListItemProps
   titleAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'div' | 'span';
   /** Display as subUnit */
   subUnit?: boolean;
+  /** Display as deleted unit */
+  deleted?: boolean;
 }
 
 export const UserListItem = ({
@@ -47,12 +49,14 @@ export const UserListItem = ({
   titleAs = 'h3',
   subUnit = false,
   loading = false,
+  deleted = false,
   ...props
 }: UserListItemProps) => {
   const icon = {
     name: name,
     type: type,
     isParent: type === 'company' && !subUnit,
+    isDeleted: deleted,
   };
 
   const badges =
