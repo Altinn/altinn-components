@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.54.3](https://github.com/Altinn/altinn-components/compare/v0.54.2...v0.54.3) (2026-01-26)
+
+
+### Features
+
+* **UserListItem:** Add deleted prop to UserListItem ([#937](https://github.com/Altinn/altinn-components/issues/937)) ([091099a](https://github.com/Altinn/altinn-components/commit/091099a16d75831e524c4beb6652f9a442a81fdb))
+
 ## [0.54.2](https://github.com/Altinn/altinn-components/compare/v0.54.1...v0.54.2) (2026-01-20)
 
 
