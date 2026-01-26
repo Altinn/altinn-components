@@ -58,8 +58,19 @@ export const useMenuSearch = ({ placeholder = 'Søk ...', items = [], groups = {
 
   const noHits = noHitsItems?.length ? noHitsItems : defaultNoHitsItems;
 
-  // search results
+  // selected items (checked=true) when searching
+  const selectedItems =
+    q &&
+    searchItems
+      .filter((item) => item.checked === true)
+      .map((item) => {
+        return {
+          ...item,
+          groupId: 'selected',
+        };
+      });
 
+  // search results
   const results =
     q &&
     searchItems
@@ -74,17 +85,6 @@ export const useMenuSearch = ({ placeholder = 'Søk ...', items = [], groups = {
         };
       });
 
-  // selected items (checked=true) when searching
-  const selectedItems =
-    q &&
-    searchItems
-      .filter((item) => item.checked === true)
-      .map((item) => {
-        return {
-          ...item,
-          groupId: 'selected',
-        };
-      });
 
   const defaultGroups = {
     search: {
@@ -93,7 +93,7 @@ export const useMenuSearch = ({ placeholder = 'Søk ...', items = [], groups = {
     },
     selected: {
       hidden: true,
-      title: '{count} selected',
+      title: '', // '{count} selected',
     },
     emptySearch: {
       hidden: true,
@@ -102,33 +102,40 @@ export const useMenuSearch = ({ placeholder = 'Søk ...', items = [], groups = {
     ...groups,
   };
 
+  const resultsTitle = defaultGroups.search.title.replace('{count}', results?.length.toString());
+  const selectedTitle = defaultGroups.selected.title.replace('{count}', selectedItems?.length.toString());
+  const noHitsTitle = defaultGroups.emptySearch.title.replace('{count}', noHits?.length.toString());
+
   const searchGroups = {
     ...defaultGroups,
     search: {
       hidden: !q,
-      title: defaultGroups.search.title.replace('{count}', results?.length.toString()),
+      title: resultsTitle,
     },
     selected: {
       hidden: !(selectedItems?.length > 0),
-      title: defaultGroups.selected.title.replace('{count}', selectedItems?.length.toString()),
+      title: selectedTitle,
     },
     emptySearch: {
       hidden: !!(q && (results?.length > 0 || selectedItems?.length > 0)),
-      title: 'No hits',
+      title: noHitsTitle,
     },
   };
 
   // combine search results and selected items when searching
   const combinedResults = q
     ? [...(results || []), ...(selectedItems || [])].filter(
-        (item, index, array) => array.findIndex((i) => i.id === item.id) === index,
-      )
+      (item, index, array) => array.findIndex((i) => i.id === item.id) === index,
+    )
     : [];
+
+  // combine selected items and no Hits
+  const combinedNoHits = [...(noHits || []), ...(selectedItems || [])];
 
   return {
     search,
     results,
-    items: q ? (combinedResults?.length ? combinedResults : noHits) : items,
+    items: q ? (results?.length ? combinedResults : combinedNoHits) : items,
     groups: searchGroups,
   };
 };
