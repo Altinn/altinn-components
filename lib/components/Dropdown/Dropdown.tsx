@@ -128,7 +128,16 @@ export const Dropdown = ({
   return (
     <>
       {backdrop && <div className={styles.backdrop} aria-hidden={!open} />}
-      <div id={id} ref={containerRef} style={{ position: 'relative', display: 'inline-block' }}>
+      <div
+        id={id}
+        ref={containerRef}
+        style={{ position: 'relative', display: 'inline-block' }}
+        onBlur={(e) => {
+          if (!containerRef.current?.contains(e.relatedTarget as Node)) {
+            onClose();
+          }
+        }}
+      >
         <div
           aria-haspopup="true"
           aria-expanded={open}

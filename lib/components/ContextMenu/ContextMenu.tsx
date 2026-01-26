@@ -67,23 +67,18 @@ export const ContextMenu = ({
     }
   });
 
-  const onBlurCapture = (e: React.FocusEvent<HTMLButtonElement>) => {
-    const contextMenuParent = e?.relatedTarget?.closest(`[data-testid="${dataTestId}"]`);
-    if (!contextMenuParent) {
-      closeAll();
-    }
-  };
-
   return (
-    <div className={cx(styles.toggle, className)} ref={ref} data-testid={dataTestId}>
-      <Button
-        size="xs"
-        rounded
-        variant="ghost"
-        onClick={onToggle}
-        aria-label={ariaLabel || `Open ${id}`}
-        onBlurCapture={onBlurCapture}
-      >
+    <div
+      className={cx(styles.toggle, className)}
+      ref={ref}
+      data-testid={dataTestId}
+      onBlur={(e) => {
+        if (!ref.current?.contains(e.relatedTarget as Node)) {
+          closeAll();
+        }
+      }}
+    >
+      <Button size="xs" rounded variant="ghost" onClick={onToggle} aria-label={ariaLabel || `Open ${id}`}>
         <MenuElipsisHorizontalIcon style={{ fontSize: '1.5em' }} />
       </Button>
       {expanded && (
