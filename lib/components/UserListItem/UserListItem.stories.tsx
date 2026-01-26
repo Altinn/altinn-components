@@ -24,6 +24,7 @@ const meta = {
     as: 'div',
     interactive: true,
     subUnit: false,
+    deleted: false,
     titleAs: 'h3',
     border: 'none',
     color: 'company',
@@ -99,6 +100,11 @@ const meta = {
       },
     },
     subUnit: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    deleted: {
       control: {
         type: 'boolean',
       },
