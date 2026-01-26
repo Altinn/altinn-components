@@ -74,10 +74,26 @@ export const useMenuSearch = ({ placeholder = 'Søk ...', items = [], groups = {
         };
       });
 
+  // selected items (checked=true) when searching
+  const selectedItems =
+    q &&
+    searchItems
+      .filter((item) => item.checked === true)
+      .map((item) => {
+        return {
+          ...item,
+          groupId: 'selected',
+        };
+      });
+
   const defaultGroups = {
     search: {
       hidden: true,
       title: '{count} hits',
+    },
+    selected: {
+      hidden: true,
+      title: '{count} selected',
     },
     emptySearch: {
       hidden: true,
@@ -89,19 +105,30 @@ export const useMenuSearch = ({ placeholder = 'Søk ...', items = [], groups = {
   const searchGroups = {
     ...defaultGroups,
     search: {
-      hidden: !(results?.length > 0),
-      title: defaultGroups.search.title.replace('{count}', results.length.toString()),
+      hidden: !q,
+      title: defaultGroups.search.title.replace('{count}', results?.length.toString()),
+    },
+    selected: {
+      hidden: !(selectedItems?.length > 0),
+      title: defaultGroups.selected.title.replace('{count}', selectedItems?.length.toString()),
     },
     emptySearch: {
-      hidden: !!(q && results?.length > 0),
+      hidden: !!(q && (results?.length > 0 || selectedItems?.length > 0)),
       title: 'No hits',
     },
   };
 
+  // combine search results and selected items when searching
+  const combinedResults = q
+    ? [...(results || []), ...(selectedItems || [])].filter(
+        (item, index, array) => array.findIndex((i) => i.id === item.id) === index,
+      )
+    : [];
+
   return {
     search,
     results,
-    items: q ? (results?.length ? results : noHits) : items,
+    items: q ? (combinedResults?.length ? combinedResults : noHits) : items,
     groups: searchGroups,
   };
 };
