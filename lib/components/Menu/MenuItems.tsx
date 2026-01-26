@@ -1,6 +1,6 @@
 'use client';
 import { type CSSProperties, type ElementType, Fragment, useRef } from 'react';
-import { MenuListDivider, MenuListHeading, MenuItem, MenuList, MenuListItem } from '../';
+import { MenuItem, MenuList, MenuListDivider, MenuListGroup, MenuListHeading, MenuListItem } from '../';
 import type { MenuItemProps } from '../';
 import { useMenu } from '../../hooks';
 import { MenuListSearch, type MenuListSearchProps } from './MenuListSearch.tsx';
@@ -63,24 +63,20 @@ export const MenuItems = ({
   });
 
   return (
-    <MenuList variant={variant} expanded={expanded} as={as} ref={ref} style={scrollRefStyles}>
+    <MenuList variant={variant} expanded={expanded} ref={ref} style={scrollRefStyles}>
       {search && <MenuListSearch {...search} />}
       {menu.map((group, groupIndex) => {
         const groupProps: MenuGroupProps = group?.props || {};
         const { title, hidden = false, divider = true } = groupProps;
         const nextGroup = menu[groupIndex + 1];
 
-        if (hidden) {
-          return <li />;
-        }
-
         return (
           <Fragment key={groupIndex}>
             {/** Render a separator if this is a new group or a new level */}
             {(level > 0 || groupIndex) && divider ? <MenuListDivider /> : ''}
-            <MenuListItem key={groupIndex}>
+            <MenuListGroup hidden={hidden} key={groupIndex}>
               <MenuList role="presentation">
-                {title && <MenuListHeading title={title} />}
+                {title && <MenuListHeading title={title} level={level} />}
                 {group?.items
                   .filter((item) => !item.props?.hidden)
                   .map((item, index) => {
@@ -89,12 +85,7 @@ export const MenuItems = ({
                     const { expanded } = itemProps;
                     //                    const nextItem = group?.items[index + 1];
                     return (
-                      <MenuListItem
-                        key={index}
-                        role="menuitem"
-                        expanded={expanded}
-                        onMouseLeave={() => setActiveIndex(-1)}
-                      >
+                      <MenuListItem key={index} expanded={expanded} onMouseLeave={() => setActiveIndex(-1)}>
                         <MenuItem
                           {...itemProps}
                           size={itemProps?.size || groupProps?.size || size}
@@ -120,7 +111,7 @@ export const MenuItems = ({
                     );
                   })}
               </MenuList>
-            </MenuListItem>
+            </MenuListGroup>
             {/** Render a separator if expanded and there are items underneath */}
             {expanded && nextGroup && <MenuListDivider />}
           </Fragment>

@@ -1,6 +1,22 @@
 import cx from 'classnames';
+import styles from './menuList.module.css';
 import type { MenuListProps } from './types';
-import styles from './menuListItem.module.css';
+
+export interface MenuListProps {
+  ref?: React.Ref<HTMLUListElement>;
+  as?: ElementType;
+  variant?: MenuItemProps['variant'];
+  color?: MenuItemProps['color'];
+  role?: MenuListRole;
+  expanded?: boolean;
+  className?: string;
+  style?: CSSProperties;
+  children?: ReactNode;
+  onMouseEnter?: MouseEventHandler;
+  onMouseLeave?: MouseEventHandler;
+  onBlurCapture?: React.FocusEventHandler<HTMLElement>;
+  onScroll?: React.UIEventHandler<HTMLUListElement>;
+}
 
 export const MenuList = ({
   ref,

@@ -4,6 +4,8 @@ import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
 import styles from './menuListSearch.module.css';
 
 export interface MenuListSearchProps {
+  style?: React.CSSProperties;
+  index?: number;
   placeholder?: string;
   name: string;
   clearButtonAltText?: string;
@@ -13,6 +15,8 @@ export interface MenuListSearchProps {
 }
 
 export const MenuListSearch = ({
+  style,
+  index,
   name,
   value,
   placeholder = 'Search',
@@ -22,7 +26,7 @@ export const MenuListSearch = ({
 }: MenuListSearchProps) => {
   const isDesktop = useIsDesktop();
   return (
-    <li className={styles.search}>
+    <li className={styles.search} style={style} data-index={index}>
       <SearchField
         size="xs"
         className={styles.searchInput}

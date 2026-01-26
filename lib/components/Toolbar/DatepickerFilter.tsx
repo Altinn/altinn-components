@@ -2,7 +2,7 @@ import { ArrowUndoIcon } from '@navikt/aksel-icons';
 import { useEffect, useState } from 'react';
 import { Datepicker } from '../Datepicker';
 import { Field, Fieldset, Input, Label } from '../Forms';
-import { MenuListDivider, MenuItem, MenuList, MenuListItem } from '../Menu';
+import { MenuItem, MenuList, MenuListDivider, MenuListItem } from '../Menu';
 import { formatDateRange } from './formatDateRange';
 
 export interface DatepickerValue {

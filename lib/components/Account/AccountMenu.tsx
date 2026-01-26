@@ -1,6 +1,6 @@
 'use client';
 import { type CSSProperties, useEffect, useMemo, useState } from 'react';
-import { Menu, type MenuItemProps, type MenuProps, type MenuListSearchProps } from '../';
+import { Menu, type MenuItemProps, type MenuListSearchProps, type MenuProps } from '../';
 
 export interface AccountSearchProps extends MenuListSearchProps {
   hidden?: boolean;

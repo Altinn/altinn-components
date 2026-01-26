@@ -1,5 +1,5 @@
 import { Fragment, useRef } from 'react';
-import { type MenuGroupProps, MenuListHeading, MenuList, MenuListItem, type MenuListRole } from '../';
+import { type MenuGroupProps, MenuList, MenuListHeading, MenuListItem, type MenuListRole } from '../';
 import { useMenu } from '../../hooks';
 import { AutocompleteBase, AutocompleteItem, type AutocompleteItemProps } from '../index.ts';
 

@@ -1,7 +1,7 @@
 'use client';
 import type { CSSProperties } from 'react';
 import { useRef } from 'react';
-import { MenuListDivider, MenuListHeading, MenuItem, MenuList, MenuListItem } from '../';
+import { MenuItem, MenuList, MenuListDivider, MenuListGroup, MenuListHeading, MenuListItem } from '../';
 import type { MenuItemProps } from '../';
 import { useMenu } from '../../hooks';
 import type { MenuGroupProps, MenuItemsProps } from './MenuItems';
@@ -72,7 +72,7 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
     <MenuList ref={scrollRef} style={scrollRefStyle}>
       {search && <MenuListSearch {...search} />}
 
-      <MenuListItem
+      <MenuListGroup
         style={{
           position: 'relative',
           height: `${virtualizer.getTotalSize()}px`,
@@ -100,7 +100,7 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
             );
           })}
         </MenuList>
-      </MenuListItem>
+      </MenuListGroup>
     </MenuList>
   );
 };

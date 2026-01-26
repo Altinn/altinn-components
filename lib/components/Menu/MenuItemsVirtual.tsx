@@ -1,7 +1,7 @@
 'use client';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { MenuListHeading, MenuItem, MenuList, MenuListItem } from '../';
+import { MenuItem, MenuList, MenuListHeading, MenuListItem } from '../';
 import type { MenuItemProps } from '../';
 import { useMenu } from '../../hooks';
 import type { MenuGroupProps, MenuItemsProps } from './MenuItems';

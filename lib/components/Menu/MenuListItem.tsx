@@ -1,6 +1,6 @@
 import cx from 'classnames';
-import styles from './menuListItem.module.css';
 import type { ElementType } from 'react';
+import styles from './menuListItem.module.css';
 
 export interface MenuListItemProps extends React.ComponentProps<'li'> {
   as?: ElementType;
