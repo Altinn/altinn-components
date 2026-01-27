@@ -26,8 +26,8 @@
 }
 
 .item {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
   --dsc-border-color: transparent;
   border-bottom: 3px solid;
   border-color: var(--dsc-border-color);
