@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Section } from '../Page';
 import { SelectDateFilter } from './SelectDateFilter';
 import { ToolbarFilter } from './ToolbarFilter';
 import { inboxFilters, timeFilter } from './example.data';
 import { useInboxFilter } from './example.hooks';
-import { Section } from '../Page';
 
 const meta = {
   title: 'Toolbar/ToolbarFilter',

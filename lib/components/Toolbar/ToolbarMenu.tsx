@@ -1,5 +1,5 @@
 import { ChevronUpDownIcon } from '@navikt/aksel-icons';
-import { useState, useId } from 'react';
+import { useId, useState } from 'react';
 import { Button } from '../Button';
 import { Dropdown } from '../Dropdown';
 import { Menu, type MenuItemProps, type MenuProps } from '../Menu/';

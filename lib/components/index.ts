@@ -9,7 +9,7 @@ export * from './Badge';
 export * from './Banner';
 export * from './Button';
 export * from './Byline';
-//export * from './ContextMenu';
+export * from './ContextMenu';
 export * from './Dialog';
 export * from './Divider';
 export * from './Dropdown';

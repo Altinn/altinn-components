@@ -63,26 +63,34 @@ export const Dropdown = ({
   });
 
   const updatePosition = useCallback(() => {
-    if (open && containerRef.current) {
+    if (open && containerRef.current && dropdownRef.current) {
       const containerRect = containerRef.current.getBoundingClientRect();
+      const dropdownRect = dropdownRef.current.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
+      const viewportWidth = window.innerWidth;
       const BUFFER = 16;
 
       const spaceBelow = viewportHeight - containerRect.bottom;
       const spaceAbove = containerRect.top;
+      const spaceRight = viewportWidth - containerRect.right - dropdownRect.width;
 
-      // Vertical Logic: Flip to top if space is tight below AND top has more room
+      // Vertical Logic: Flip  placement to top if space is tight below AND top has more room
       const shouldFlipY = spaceBelow < 250 && spaceAbove > spaceBelow;
       const finalYDir = shouldFlipY ? 'top' : 'bottom';
       const finalMaxHeight = (shouldFlipY ? spaceAbove : spaceBelow) - BUFFER;
+
+      // Horizontal Logic: Flip placement right if no space left on right side
+      const shouldFlipX = spaceRight < BUFFER;
+      const finalXDir = shouldFlipX ? 'right' : 'left';
 
       setCoords((prev) => ({
         ...prev,
         yDir: finalYDir,
         maxHeight: finalMaxHeight,
+        xDir: finalXDir,
       }));
     }
-  }, [open]);
+  }, [open, dropdownRef]);
 
   useLayoutEffect(() => {
     updatePosition();
@@ -136,10 +144,7 @@ export const Dropdown = ({
           }
         }}
       >
-        {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
-        <div aria-haspopup="true" aria-expanded={open} onClick={(e) => e.stopPropagation()}>
-          {trigger}
-        </div>
+        {trigger}
         <div
           ref={dropdownRef}
           className={cx(styles.dropdown, className)}
