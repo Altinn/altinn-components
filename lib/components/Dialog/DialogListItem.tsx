@@ -9,7 +9,7 @@ import {
   Heading,
   ListItem,
   type ListItemProps,
-  MetaItem,
+  AvatarGroup,
   type SeenByLogProps,
 } from '..';
 
@@ -163,8 +163,9 @@ export const DialogListItem = ({
                 className={styles.title}
               >
                 {title}
+                {badge && <Badge className={styles.dot} variant="tinted" size="xs" {...badge} />}
+
               </Heading>
-              {badge && <Badge variant="tinted" size="xs" {...badge} />}
             </span>
             <DialogByline
               size="xs"
@@ -206,7 +207,7 @@ export const DialogListItem = ({
             attachmentsCount={attachmentsCount}
             attachmentsLabel={attachmentsLabel}
           />
-          {seenByLog && <MetaItem className={styles.seenBy} icon={{ items: seenByLog.items }} />}
+          {seenByLog && <AvatarGroup className={styles.seenBy} items={seenByLog.items} />}
         </div>
       }
     />
