@@ -737,3 +737,44 @@ export const TimeFilterOptions: Story = {
     items: timeFilter?.items,
   },
 };
+
+export const NestedMenuItems: Story = {
+  args: {
+    maxLevels: 4,
+    items: [
+      {
+        id: 'inbox',
+        title: 'Nivå 1',
+        expanded: true,
+        size: 'lg',
+        icon: InformationSquareIcon,
+        groupId: 'main',
+        items: [
+          {
+            id: 'new',
+            groupId: '2',
+            title: 'Nivå 2',
+            icon: InformationSquareIcon,
+            expanded: true,
+            size: 'md',
+            items: [
+              {
+                id: 'z',
+                groupId: '2',
+                title: 'Nivå 3',
+                expanded: true,
+                size: 'md',
+                items: [{
+                  id: 'x',
+                  groupId: '2',
+                  title: 'Nivå 4',
+                  size: 'sm',
+                }],
+              },
+            ]
+          },
+        ]
+      }
+    ],
+  }
+}

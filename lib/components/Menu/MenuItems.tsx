@@ -46,7 +46,7 @@ export const MenuItems = ({
   variant,
   scrollRefStyles = {},
   keyboardEvents = false,
-  onSelect = () => {},
+  onSelect = () => { },
 }: MenuItemsProps) => {
   if (maxLevels && level >= maxLevels) {
     return null;
@@ -68,8 +68,6 @@ export const MenuItems = ({
       {menu.map((group, groupIndex) => {
         const groupProps: MenuGroupProps = group?.props || {};
         const { title, hidden = false, divider = true } = groupProps;
-        const nextGroup = menu[groupIndex + 1];
-
         return (
           <Fragment key={groupIndex}>
             {/** Render a separator if this is a new group or a new level */}
@@ -111,8 +109,6 @@ export const MenuItems = ({
                   })}
               </MenuList>
             </MenuListGroup>
-            {/** Render a separator if expanded and there are items underneath */}
-            {expanded && nextGroup && <MenuListDivider />}
           </Fragment>
         );
       })}
