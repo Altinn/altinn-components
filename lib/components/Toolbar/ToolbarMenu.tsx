@@ -1,7 +1,7 @@
 import { ChevronUpDownIcon } from '@navikt/aksel-icons';
-import { useState } from 'react';
+import { useState, useId } from 'react';
 import { Button } from '../Button';
-import { Dropdown } from '../Dropdown/Dropdown';
+import { Dropdown } from '../Dropdown';
 import { Menu, type MenuItemProps, type MenuProps } from '../Menu/';
 
 export interface ToolbarMenuProps extends MenuProps {
@@ -10,7 +10,13 @@ export interface ToolbarMenuProps extends MenuProps {
   onSelectId?: (id: string) => void;
 }
 
-export const ToolbarMenu = ({ title = 'Title', label = 'Label', items, onSelectId, ...props }: ToolbarMenuProps) => {
+export const ToolbarMenu = ({
+  title = 'Title',
+  label = 'Label',
+  items = [],
+  onSelectId,
+  ...props
+}: ToolbarMenuProps) => {
   const [open, setOpen] = useState(false);
 
   const onToggle = () => {
@@ -21,7 +27,7 @@ export const ToolbarMenu = ({ title = 'Title', label = 'Label', items, onSelectI
     setOpen(false);
   };
 
-  const selectableItems = items?.map((item: MenuItemProps) => {
+  const selectableItems = items.map((item: MenuItemProps) => {
     return {
       ...item,
       onClick: () => {
@@ -31,12 +37,15 @@ export const ToolbarMenu = ({ title = 'Title', label = 'Label', items, onSelectI
     };
   });
 
+  const reactId = useId();
+  const menuId = `toolbar-menu-${reactId}`;
+
   return (
     <Dropdown
       variant="drawer-dropdown"
       title={title}
       trigger={
-        <Button variant="primary" onClick={onToggle}>
+        <Button variant="primary" onClick={onToggle} aria-expanded={open} aria-haspopup="menu" aria-controls={menuId}>
           <span>{label}</span>
           <ChevronUpDownIcon />
         </Button>
@@ -44,7 +53,7 @@ export const ToolbarMenu = ({ title = 'Title', label = 'Label', items, onSelectI
       open={open}
       onClose={onClose}
     >
-      <Menu {...props} items={selectableItems} />
+      <Menu {...props} items={selectableItems} keyboardEvents={open} id={menuId} />
     </Dropdown>
   );
 };

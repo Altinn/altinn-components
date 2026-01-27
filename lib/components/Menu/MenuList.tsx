@@ -5,6 +5,7 @@ import styles from './menuList.module.css';
 import type { MenuListRole } from './types.ts';
 
 export interface MenuListProps {
+  id?: string;
   ref?: React.Ref<HTMLUListElement>;
   as?: ElementType;
   variant?: MenuItemProps['variant'];
@@ -22,6 +23,7 @@ export interface MenuListProps {
 
 export const MenuList = ({
   ref,
+  id,
   as = 'ul',
   role = 'group',
   variant,
@@ -37,6 +39,7 @@ export const MenuList = ({
   const Component = as;
   return (
     <Component
+      id={id}
       ref={ref}
       className={cx(styles.list, className)}
       role={role}

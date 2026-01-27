@@ -106,8 +106,6 @@ export const MenuItem = ({
 }: MenuItemProps) => {
   const applicableLabel = typeof label === 'function' ? label() : label;
 
-  // role = checkbox or radio
-
   if (role === 'checkbox' || role === 'radio') {
     const applicableIcon = icon || (checked ? CheckmarkIcon : MinusIcon);
 
@@ -124,7 +122,7 @@ export const MenuItem = ({
         aria-selected={checked}
         aria-label={title}
         data-testid={dataTestId}
-        onKeyPress={(e: KeyboardEvent) => {
+        onKeyUp={(e: KeyboardEvent) => {
           if (disabled) return;
           e.key === 'Enter' && onClick?.();
           onKeyPress?.(e);
@@ -139,6 +137,7 @@ export const MenuItem = ({
           checked={checked}
           onChange={onChange}
           style={{ opacity: 0, position: 'absolute' }}
+          tabIndex={-1}
         />
         <ItemMedia icon={applicableIcon} className={styles.media} />
         <ItemLabel
@@ -189,7 +188,7 @@ export const MenuItem = ({
       aria-selected={selected}
       aria-label={title}
       data-testid={dataTestId}
-      onKeyPress={(e: KeyboardEvent) => {
+      onKeyUp={(e: KeyboardEvent) => {
         if (disabled) return;
         e.key === 'Enter' && onClick?.();
         onKeyPress?.(e);

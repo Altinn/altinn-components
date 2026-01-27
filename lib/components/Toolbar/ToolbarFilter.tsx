@@ -1,9 +1,9 @@
 import { ChevronUpDownIcon, PlusIcon, XMarkIcon } from '@navikt/aksel-icons';
-import { type ElementType, type ReactNode, useState } from 'react';
-import { Button, ButtonGroup, ButtonGroupDivider } from '../Button';
-import { Dropdown } from '../Dropdown/Dropdown';
-import { Menu } from '../Menu/Menu';
-import { Tooltip } from '../Tooltip/Tooltip';
+import { type ElementType, type ReactNode, useId, useState } from 'react';
+import { Button, ButtonGroup, ButtonGroupDivider, type ButtonProps } from '../Button';
+import { Dropdown } from '../Dropdown';
+import { Menu } from '../Menu';
+import { Tooltip } from '../Tooltip';
 import { type FilterGroups, type FilterProps, type FilterState, useFilter } from './useFilter';
 
 interface ToolbarFilterButtonProps {
@@ -14,6 +14,8 @@ interface ToolbarFilterButtonProps {
   removable?: boolean;
   removeLabel?: string;
   children?: ReactNode;
+  open?: boolean;
+  menuId?: string;
 }
 
 export function ToolbarFilterButton({
@@ -24,13 +26,22 @@ export function ToolbarFilterButton({
   removeLabel = 'Fjern filter',
   onRemove,
   children,
+  menuId,
+  open,
 }: ToolbarFilterButtonProps) {
   const variant = value ? 'tinted' : 'outline';
 
   if (removable) {
     return (
       <ButtonGroup variant={variant} connected>
-        <Button variant={variant} onClick={onClick} data-id={`filter-button-${name}`}>
+        <Button
+          variant={variant}
+          onClick={onClick}
+          data-id={`filter-button-${name}`}
+          aria-expanded={open}
+          aria-controls={menuId}
+          aria-haspopup="menu"
+        >
           <span>{children}</span>
         </Button>
         <ButtonGroupDivider variant={variant} />
@@ -58,12 +69,7 @@ export function ToolbarFilterButton({
   );
 }
 
-interface ToolbarResetButtonProps {
-  onClick?: () => void;
-  children?: ReactNode;
-}
-
-export function ToolbarResetButton({ children, onClick }: ToolbarResetButtonProps) {
+export function ToolbarResetButton({ children, onClick }: ButtonProps) {
   return (
     <Button onClick={onClick} variant="ghost">
       <XMarkIcon />
@@ -72,12 +78,7 @@ export function ToolbarResetButton({ children, onClick }: ToolbarResetButtonProp
   );
 }
 
-interface ToolbarAddButtonProps {
-  onClick?: () => void;
-  children?: ReactNode;
-}
-
-export function ToolbarAddButton({ children, onClick }: ToolbarAddButtonProps) {
+export function ToolbarAddButton({ children, onClick, ...props }: ButtonProps) {
   return (
     <Button
       variant="secondary"
@@ -85,6 +86,7 @@ export function ToolbarAddButton({ children, onClick }: ToolbarAddButtonProps) {
         borderStyle: 'dashed',
       }}
       onClick={onClick}
+      {...props}
     >
       <PlusIcon />
       <span>{children}</span>
@@ -117,14 +119,21 @@ export const ToolbarFilterAddMenu = ({
     return null;
   }
 
+  const reactId = useId();
+  const menuId = `toolbar-filter-add-${reactId}`;
+
   return (
     <Dropdown
       variant="drawer-dropdown"
-      trigger={<ToolbarAddButton onClick={onToggle}>{label}</ToolbarAddButton>}
+      trigger={
+        <ToolbarAddButton aria-expnded={open} aria-controls={menuId} onClick={onToggle} aria-haspopup="menu">
+          {label}
+        </ToolbarAddButton>
+      }
       open={open}
       onClose={onClose}
     >
-      <Menu groups={groups} items={addItems} maxLevels={1} keyboardEvents={open} />
+      <Menu groups={groups} items={addItems} maxLevels={1} keyboardEvents={open} id={menuId} />
     </Dropdown>
   );
 };
@@ -173,8 +182,9 @@ export const ToolbarFilterMenu = ({
   }));
 
   const filterValue = items?.filter((option) => option.checked)?.map((option) => option.value || 'true');
-
   const FilterMenu = as || Menu;
+  const reactId = useId();
+  const menuId = `toolbar-filter-menu-${reactId}`;
 
   if (removable) {
     return (
@@ -188,6 +198,8 @@ export const ToolbarFilterMenu = ({
             removable
             value={filterValue?.length > 0 ? filterValue : undefined}
             removeLabel={removeLabel}
+            open={open}
+            menuId={menuId}
           >
             {label}
           </ToolbarFilterButton>
@@ -196,6 +208,7 @@ export const ToolbarFilterMenu = ({
         onClose={onClose}
       >
         <FilterMenu
+          id={menuId}
           name={name}
           filterState={filterState}
           onFilterStateChange={onFilterStateChange}

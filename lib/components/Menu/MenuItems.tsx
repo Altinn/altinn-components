@@ -17,6 +17,7 @@ export interface MenuGroupProps {
 export type MenuItemGroups = Record<string, MenuGroupProps>;
 
 export interface MenuItemsProps {
+  id?: string;
   level?: number;
   maxLevels?: number;
   expanded?: boolean;
@@ -40,6 +41,7 @@ export const MenuItems = ({
   items,
   groups = {},
   size,
+  id,
   color,
   variant,
   scrollRefStyles = {},
@@ -61,7 +63,7 @@ export const MenuItems = ({
   });
 
   return (
-    <MenuList variant={variant} expanded={expanded} ref={ref} style={scrollRefStyles}>
+    <MenuList variant={variant} expanded={expanded} ref={ref} style={scrollRefStyles} id={id}>
       {search && <MenuListSearch {...search} />}
       {menu.map((group, groupIndex) => {
         const groupProps: MenuGroupProps = group?.props || {};

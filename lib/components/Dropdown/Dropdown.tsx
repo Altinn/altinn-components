@@ -115,12 +115,9 @@ export const Dropdown = ({
   const dropdownStyles: React.CSSProperties = {
     position: 'absolute',
     zIndex: 50,
-    //    minWidth: '100%', // Ensure it's at least as wide as trigger
     width: 'max-content',
-    //    maxWidth: '90vw', // Prevent overflow on small screens
     maxHeight: `${coords.maxHeight}px`,
     overflowY: 'auto',
-    //    display: open ? 'block' : 'none', // Handle visibility
     [coords.xDir]: 0,
     [coords.yDir === 'bottom' ? 'top' : 'bottom']: '100%',
   };
@@ -133,16 +130,14 @@ export const Dropdown = ({
         ref={containerRef}
         style={{ position: 'relative', display: 'inline-block' }}
         onBlur={(e) => {
-          if (!containerRef.current?.contains(e.relatedTarget as Node)) {
+          const nextFocused = e.relatedTarget as HTMLElement | null;
+          if (nextFocused && nextFocused?.tabIndex > -1 && !e.currentTarget.contains(nextFocused)) {
             onClose();
           }
         }}
       >
-        <div
-          aria-haspopup="true"
-          aria-expanded={open}
-          onClick={(e) => e.stopPropagation()}
-        >
+        {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+        <div aria-haspopup="true" aria-expanded={open} onClick={(e) => e.stopPropagation()}>
           {trigger}
         </div>
         <div
