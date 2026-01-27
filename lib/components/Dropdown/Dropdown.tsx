@@ -90,7 +90,7 @@ export const Dropdown = ({
         xDir: finalXDir,
       }));
     }
-  }, [open, dropdownRef]);
+  }, [open]);
 
   useLayoutEffect(() => {
     updatePosition();
