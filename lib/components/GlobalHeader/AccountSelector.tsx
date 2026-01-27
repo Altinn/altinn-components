@@ -70,7 +70,11 @@ export const AccountSelector = ({
   };
 
   if (loading) {
-    return <DsSpinner aria-hidden data-color="neutral" className={styles.spinner} />;
+    return (
+      <div className={styles.spinner}>
+        <DsSpinner aria-hidden data-color="neutral" className={styles.spinner} />
+      </div>
+    );
   }
 
   return (

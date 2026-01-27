@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { localeSwitcher as localExample, useGlobalHeaderMenu, useLocale } from '../';
+import { getLargeAuthorizedPartiesData, localeSwitcher as localExample, useGlobalHeaderMenu, useLocale } from '../';
 import { getAuthorizedPartiesData } from '../';
 import type { GlobalHeaderProps } from '../../lib';
 import { useAccountSelector } from '../../lib';
@@ -8,10 +8,12 @@ export const useGlobalHeader = ({
   state = 'loggedIn',
   currentAccountIndex,
   languageCode = 'nb',
+  useLargeAccountList = false,
 }: {
   state?: 'loggedIn' | 'loggedOut' | 'loading';
   currentAccountIndex?: number;
   languageCode?: string;
+  useLargeAccountList?: boolean;
 }): GlobalHeaderProps => {
   const globalMenu = useGlobalHeaderMenu({});
   const localeSwitcher = useLocale({ ...localExample, locale: languageCode });
@@ -22,7 +24,7 @@ export const useGlobalHeader = ({
 
   // Fetch data from different sources or APIs as needed
   const [favoriteUuids, setFavoriteUuids] = useState<string[]>([]);
-  const authorizedParties = getAuthorizedPartiesData(); // Fetch your authorized parties data from external source
+  const authorizedParties = useLargeAccountList ? getLargeAuthorizedPartiesData(7000) : getAuthorizedPartiesData(); // Fetch your authorized parties data from external source
   const [currentAccountUuid, setCurrentAccountUuid] = useState<string | undefined>(
     currentAccountIndex ? authorizedParties[currentAccountIndex].partyUuid : '167536b5-f8ed-4c5a-8f48-0279507e53ae',
   );
@@ -51,6 +53,7 @@ export const useGlobalHeader = ({
     },
     languageCode: languageCode,
     isLoading: state === 'loading',
+    isVirtualized: useLargeAccountList,
   });
 
   return {

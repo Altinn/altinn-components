@@ -1,5 +1,36 @@
 [
   {
+    "partyUuid": "167536b5-f8ed-4c5a-8f48-0279507e53ae",
+    "name": "SITRONGUL MEDALJONG",
+    "organizationNumber": null,
+    "dateOfBirth": "1995-01-10",
+    "partyId": 50789533,
+    "type": "Person",
+    "unitType": null,
+    "isDeleted": false,
+    "onlyHierarchyElementWithNoAccess": false,
+    "authorizedResources": [],
+    "authorizedRoles": [
+      "PRIV",
+      "LOPER",
+      "ADMAI",
+      "PRIUT",
+      "REGNA",
+      "SISKD",
+      "UILUF",
+      "UTINN",
+      "UTOMR",
+      "PAVAD",
+      "KOMAB",
+      "BOADM",
+      "A0278",
+      "A0236",
+      "A0212",
+      "A0282"
+    ],
+    "subunits": []
+  },
+  {
     "partyUuid": "1d1a5bf4-17b0-4266-84d9-00475378ecf5",
     "name": "LENGRE VENSTRE TIGER AS",
     "organizationNumber": "313207927",
@@ -211,37 +242,6 @@
         "subunits": []
       }
     ]
-  },
-  {
-    "partyUuid": "167536b5-f8ed-4c5a-8f48-0279507e53ae",
-    "name": "SITRONGUL MEDALJONG",
-    "organizationNumber": null,
-    "dateOfBirth": "1995-01-10",
-    "partyId": 50789533,
-    "type": "Person",
-    "unitType": null,
-    "isDeleted": false,
-    "onlyHierarchyElementWithNoAccess": false,
-    "authorizedResources": [],
-    "authorizedRoles": [
-      "PRIV",
-      "LOPER",
-      "ADMAI",
-      "PRIUT",
-      "REGNA",
-      "SISKD",
-      "UILUF",
-      "UTINN",
-      "UTOMR",
-      "PAVAD",
-      "KOMAB",
-      "BOADM",
-      "A0278",
-      "A0236",
-      "A0212",
-      "A0282"
-    ],
-    "subunits": []
   },
   {
     "partyUuid": "7d125913-fd0b-47cd-84e4-ac0457d48fa7",

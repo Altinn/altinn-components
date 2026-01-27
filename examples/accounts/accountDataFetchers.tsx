@@ -11,9 +11,13 @@ export const getLargeAuthorizedPartiesData = (count = 1000): AuthorizedParty[] =
 
   for (let i = 0; i < count; i++) {
     const baseItem = baseData[i % baseData.length];
+    let partyUuid = `${baseItem.partyUuid}-${i}`;
+    if (i === 0) {
+      partyUuid = baseItem.partyUuid; // Keep the first item's UUID the same
+    }
     largeData.push({
       ...baseItem,
-      partyUuid: `${baseItem.partyUuid}-${i}`,
+      partyUuid: partyUuid,
       name: `${baseItem.name} ${i + 1}`,
       organizationNumber: baseItem.organizationNumber
         ? `${Number.parseInt(baseItem.organizationNumber) + i}`
