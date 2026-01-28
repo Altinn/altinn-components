@@ -76,8 +76,9 @@ export const Default: Story = {
       <ResourceListItem
         badge={{ label: 'New', color: 'success', theme: 'base' }}
         controls={
-          <Button icon={PencilIcon} variant="ghost" size="sm" onClick={() => alert('Edit')}>
-            Edit
+          <Button variant="ghost" size="sm" onClick={() => alert('Edit')}>
+            <PencilIcon />
+            <span>Edit</span>
           </Button>
         }
         {...args}

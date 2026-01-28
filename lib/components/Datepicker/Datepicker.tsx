@@ -1,8 +1,9 @@
 'use client';
+import cx from 'classnames';
 import { useState } from 'react';
-import { DatepickerBase } from './DatepickerBase';
 import { DatepickerHeader } from './DatepickerHeader';
 import { DatepickerTable } from './DatepickerTable';
+import styles from './datepicker.module.css';
 import { useDatepicker } from './useDatepicker';
 
 export interface DatepickerProps {
@@ -41,9 +42,9 @@ export const Datepicker = ({
   const { month, rows, next, prev } = useDatepicker({ date, selectFrom, selectTo });
 
   return (
-    <DatepickerBase className={className}>
+    <div className={cx(styles.datepicker, className)}>
       <DatepickerHeader title={months[month]} onNext={() => setDate(next)} onPrev={() => setDate(prev)} />
       <DatepickerTable rows={rows} weekdays={weekdays} onSelect={onSelect} />
-    </DatepickerBase>
+    </div>
   );
 };

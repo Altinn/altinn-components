@@ -1,15 +1,15 @@
 'use client';
 import { type CSSProperties, useEffect, useMemo, useState } from 'react';
-import { Menu, type MenuItemProps, type MenuProps, type MenuSearchProps } from '../';
+import { Menu, type MenuItemProps, type MenuListSearchProps, type MenuProps } from '../';
 
-export interface AccountSearchProps extends MenuSearchProps {
+export interface AccountSearchProps extends MenuListSearchProps {
   hidden?: boolean;
   getResultsLabel?: (hits: number) => string;
 }
 
 export interface AccountMenuItemProps extends MenuItemProps {
   id: string;
-  type: 'person' | 'company' | 'group' | 'subunit';
+  role: 'person' | 'company' | 'group' | 'subunit';
   name: string;
 }
 
@@ -32,7 +32,7 @@ export const AccountMenu = ({
   filterAccount,
   onSelectAccount,
   currentAccount,
-  isVirtualized,
+  virtualized,
   keyboardEvents,
   scrollRefStyles,
 }: AccountMenuProps) => {
@@ -93,7 +93,7 @@ export const AccountMenu = ({
       }
     : groups;
 
-  const defaultAccountSearch: MenuSearchProps = {
+  const defaultAccountSearch: MenuListSearchProps = {
     name: 'account-search',
     value: filterString,
     placeholder: search?.placeholder ?? 'Find account',
@@ -108,10 +108,11 @@ export const AccountMenu = ({
   return (
     <Menu
       variant="default"
+      size="md"
       search={search && !search.hidden ? defaultAccountSearch : undefined}
       groups={filterAccountGroups}
       items={accountSwitcher}
-      isVirtualized={isVirtualized}
+      virtualized={virtualized}
       keyboardEvents={keyboardEvents}
       scrollRefStyles={scrollRefStyles}
     />

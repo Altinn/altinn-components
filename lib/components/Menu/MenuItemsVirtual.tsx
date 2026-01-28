@@ -1,11 +1,11 @@
 'use client';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { MenuHeader, MenuItem, MenuList, MenuListItem } from '../';
+import { MenuItem, MenuList, MenuListHeading, MenuListItem } from '../';
 import type { MenuItemProps } from '../';
 import { useMenu } from '../../hooks';
 import type { MenuGroupProps, MenuItemsProps } from './MenuItems';
-import { MenuSearch } from './MenuSearch';
+import { MenuListSearch } from './MenuListSearch.tsx';
 import styles from './menuItemsVirtual.module.css';
 
 interface SeparatorEntry {
@@ -32,10 +32,9 @@ export const MenuItemsVirtual = ({
   search,
   items,
   groups = {},
-  defaultItemSize,
-  defaultItemColor,
-  defaultItemVariant,
-  defaultIconTheme,
+  size,
+  color,
+  variant,
   keyboardEvents,
   scrollRefStyles: externalScrollRefStyles,
 }: MenuItemsProps) => {
@@ -222,7 +221,7 @@ export const MenuItemsVirtual = ({
               marginTop: '-0.5rem',
             }}
           >
-            <MenuSearch {...search} />
+            <MenuListSearch {...search} />
           </div>
         )}
         <div
@@ -236,20 +235,19 @@ export const MenuItemsVirtual = ({
             if (!entry) return null;
             return (
               <MenuListItem
-                dataIndex={virtualRow.index}
+                index={virtualRow.index}
                 key={virtualRow.key}
                 className={styles.virtualMenuListItem}
                 style={{ transform: `translateY(${virtualRow.start}px)` }}
                 role={entry.type === 'separator' ? 'separator' : undefined}
               >
-                {entry.type === 'title' && <MenuHeader title={entry.title} />}
+                {entry.type === 'title' && <MenuListHeading title={entry.title} level={1} />}
                 {entry.type === 'item' && (
                   <MenuItem
                     {...entry.itemProps}
-                    size={entry.itemProps.size || defaultItemSize}
-                    color={entry.itemProps.color || defaultItemColor}
-                    variant={entry.itemProps.variant || defaultItemVariant}
-                    iconTheme={entry.itemProps.iconTheme || defaultIconTheme}
+                    size={entry.itemProps.size || size}
+                    color={entry.itemProps.color || color}
+                    variant={entry.itemProps.variant || variant}
                     active={entry.active}
                     tabIndex={entry.itemProps.disabled || keyboardEvents ? -1 : 0}
                   />

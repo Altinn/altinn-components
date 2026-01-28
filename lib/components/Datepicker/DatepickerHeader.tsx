@@ -13,10 +13,10 @@ export const DatepickerHeader = ({ title, onNext, onPrev }: DatepickerHeaderProp
     <header className={styles.header}>
       <h2 className={styles.title}>{title}</h2>
       <nav className={styles.nav}>
-        <Button size="xs" variant="ghost" onClick={onPrev} aria-label="prev icon">
+        <Button icon size="xs" variant="ghost" onClick={onPrev} aria-label="prev icon">
           <ChevronLeftIcon />
         </Button>
-        <Button size="xs" variant="ghost" onClick={onNext} aria-label="next icon">
+        <Button icon size="xs" variant="ghost" onClick={onNext} aria-label="next icon">
           <ChevronRightIcon />
         </Button>
       </nav>

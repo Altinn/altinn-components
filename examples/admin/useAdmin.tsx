@@ -85,7 +85,7 @@ export const useAdmin = ({ defaultAccountId = 'diaspora', pageId = 'admin' }): U
     naceCode: '94.992 Aktiviteter i andre medlemsorganisasjoner ellers',
   };
 
-  const toolbar = useAdminToolbar({ accountMenu });
+  const toolbar = useAdminToolbar({ accountMenu: accountMenu as AccountMenuProps });
 
   return {
     layout: {
@@ -99,7 +99,7 @@ export const useAdmin = ({ defaultAccountId = 'diaspora', pageId = 'admin' }): U
       },
     },
     currentAccount,
-    accountMenu,
+    accountMenu: accountMenu as AccountMenuProps,
     breadcrumbs,
     settings,
     toolbar: toolbar as ToolbarProps,

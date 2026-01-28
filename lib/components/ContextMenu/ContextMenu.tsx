@@ -1,96 +1,39 @@
-'use client';
 import { MenuElipsisHorizontalIcon } from '@navikt/aksel-icons';
-import cx from 'classnames';
-import { useMemo, useRef } from 'react';
-import { Button, DropdownBase, type DropdownPlacement, type MenuItemProps } from '../';
-import { type MenuItemGroups, MenuItems } from '../';
-import { useClickOutside } from '../../hooks';
-import { useEnterKey } from '../../hooks/useEnterKey.ts';
-import { useRootContext } from '../RootProvider';
-import styles from './contextMenu.module.css';
+import { useState } from 'react';
+import { Button } from '../Button';
+import { Dropdown, type DropdownProps } from '../Dropdown';
+import { Menu, type MenuProps } from '../Menu';
+import { Tooltip } from '../Tooltip';
 
-export interface ContextMenuProps {
+export interface ContextMenuProps extends MenuProps {
   id?: string;
-  ariaLabel?: string;
-  items: MenuItemProps[];
-  placement?: DropdownPlacement;
-  groups?: MenuItemGroups;
-  className?: string;
+  title?: string;
+  placement?: DropdownProps['placement'];
 }
 
-export const ContextMenu = ({
-  id = 'context-menu',
-  ariaLabel,
-  placement = 'right',
-  groups = {},
-  className,
-  items,
-}: ContextMenuProps) => {
-  const { currentId, toggleId, closeAll } = useRootContext();
-  const ref = useRef<HTMLDivElement>(null);
-  const dataTestId = 'context-menu-' + id;
-  const onToggle = () => toggleId(id);
-  const expanded = currentId === id;
+export const ContextMenu = ({ groups = {}, items, title = 'Åpne meny', id, placement = 'right' }: ContextMenuProps) => {
+  const [open, setOpen] = useState<boolean>(false);
 
-  useClickOutside(ref, () => {
-    if (expanded) {
-      toggleId(id);
-    }
-  });
-
-  const itemsWithToggle = useMemo(() => {
-    return items.map((item) => {
-      return {
-        ...item,
-        tabIndex: -1,
-        onClick: () => {
-          item.onClick?.();
-          closeAll();
-        },
-      };
-    });
-  }, [items, closeAll]);
-
-  useEnterKey((e) => {
-    if (expanded) {
-      e.preventDefault();
-      const activeItem = ref.current?.querySelector('[data-active="true"]') as HTMLElement | null;
-      if (activeItem) {
-        const isLink = activeItem.tagName === 'A' && activeItem.hasAttribute('href');
-        if (!isLink) {
-          activeItem.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-        } else {
-          activeItem.click();
-        }
-      }
-      closeAll();
-    }
-  });
-
-  const onBlurCapture = (e: React.FocusEvent<HTMLButtonElement>) => {
-    const contextMenuParent = e?.relatedTarget?.closest(`[data-testid="${dataTestId}"]`);
-    if (!contextMenuParent) {
-      closeAll();
-    }
+  const ContextMenuButton = () => {
+    return (
+      <Tooltip content={title} hidden={open}>
+        <Button icon variant="ghost" rounded size="xs" aria-label={title} onClick={() => setOpen(!open)}>
+          <MenuElipsisHorizontalIcon />
+        </Button>
+      </Tooltip>
+    );
   };
 
   return (
-    <div className={cx(styles.toggle, className)} ref={ref} data-testid={dataTestId}>
-      <Button
-        size="xs"
-        rounded
-        variant="ghost"
-        onClick={onToggle}
-        aria-label={ariaLabel || `Open ${id}`}
-        onBlurCapture={onBlurCapture}
-      >
-        <MenuElipsisHorizontalIcon style={{ fontSize: '1.5em' }} />
-      </Button>
-      {expanded && (
-        <DropdownBase placement={placement} open={expanded}>
-          <MenuItems groups={groups} items={itemsWithToggle} keyboardEvents />
-        </DropdownBase>
-      )}
-    </div>
+    <Dropdown
+      backdrop={false}
+      trigger={<ContextMenuButton />}
+      open={open}
+      onClose={() => setOpen(false)}
+      id={id}
+      placement={placement}
+    >
+      <Menu groups={groups} items={items} maxLevels={1} keyboardEvents={open} />
+    </Dropdown>
   );
 };

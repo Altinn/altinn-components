@@ -1,11 +1,17 @@
 .media {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 1em;
+  height: 1em;
 }
 
 .icon {
+  position: absolute;
   font-size: 1.25em;
+  width: 1em;
+  height: 1em;
 }
 
 .avatarGroup {

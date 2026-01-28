@@ -1,4 +1,4 @@
-import type { PageTabsProps } from '../../lib';
+import type { TabMenuProps } from '../../lib';
 
 export const dialogTabsItems = [
   {
@@ -19,7 +19,6 @@ export const dialogTabsItems = [
   },
 ];
 
-export const dialogTabs: PageTabsProps = {
-  id: 'dialog-tabs',
+export const dialogTabs: TabMenuProps = {
   items: dialogTabsItems,
 };

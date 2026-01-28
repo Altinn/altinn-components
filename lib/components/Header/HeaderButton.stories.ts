@@ -1,6 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-
-import { InboxIcon } from '@navikt/aksel-icons';
 import { HeaderButton } from './HeaderButton';
 
 const meta = {
@@ -18,12 +16,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {},
-};
-
-export const Icon: Story = {
-  args: {
-    icon: InboxIcon,
-  },
 };
 
 export const Person: Story = {

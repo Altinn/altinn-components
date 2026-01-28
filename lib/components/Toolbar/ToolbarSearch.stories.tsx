@@ -7,6 +7,20 @@ const meta = {
   component: ToolbarSearch,
   tags: ['autodocs'],
   parameters: {},
+  decorators: [
+    (Story, _) => {
+      const style = {
+        backgroundColor: 'var(--ds-color-background-tinted)',
+        padding: '.5em',
+      };
+
+      return (
+        <div style={style}>
+          <Story />
+        </div>
+      );
+    },
+  ],
   args: {
     name: 'search',
   },
@@ -23,4 +37,18 @@ export const Controlled = () => {
   const [q, setQ] = useState('');
 
   return <ToolbarSearch name="search" value={q} onChange={(e) => setQ(e.target.value)} onClear={() => setQ('')} />;
+};
+
+export const Collapsible = () => {
+  const [q, setQ] = useState('');
+
+  return (
+    <ToolbarSearch
+      collapsible
+      name="search"
+      value={q}
+      onChange={(e) => setQ(e.target.value)}
+      onClear={() => setQ('')}
+    />
+  );
 };

@@ -19,15 +19,15 @@ export const Scopes: Story = {
     items: [
       {
         id: '1a',
-        type: 'scope',
-        ariaLabel: 'Alt i innboks',
+        role: 'scope',
+        title: 'Alt i innboks',
         href: '#',
         label: 'Alt i innboks',
       },
       {
         id: '1b',
-        ariaLabel: 'Alt i hele Altinn',
-        type: 'scope',
+        title: 'Alt i hele Altinn',
+        role: 'scope',
         href: '#',
         label: 'Alt i hele Altinn',
       },
@@ -41,8 +41,8 @@ export const ScopesAndQuery: Story = {
     items: [
       {
         id: '1a',
-        type: 'scope',
-        ariaLabel: 'Søk etter skatt i innboks',
+        role: 'scope',
+        title: 'Søk etter skatt i innboks',
         href: '#',
         label: (
           <span>
@@ -52,8 +52,8 @@ export const ScopesAndQuery: Story = {
       },
       {
         id: '1b',
-        type: 'scope',
-        ariaLabel: 'Søk etter skatt i hele Altinn',
+        role: 'scope',
+        title: 'Søk etter skatt i hele Altinn',
         href: '#',
         label: (
           <span>
@@ -76,8 +76,8 @@ export const SuggestedFilters: Story = {
       {
         id: '1a',
         groupId: '1',
-        type: 'scope',
-        ariaLabel: 'Skatt inkasso i innboks',
+        role: 'scope',
+        title: 'Skatt inkasso i innboks',
         href: '#',
         badge: {
           label: '22 treff',
@@ -91,8 +91,8 @@ export const SuggestedFilters: Story = {
       {
         id: '1b',
         groupId: '1',
-        type: 'scope',
-        ariaLabel: 'Skatt inkasso i hele Altinn',
+        role: 'scope',
+        title: 'Skatt inkasso i hele Altinn',
         href: '#',
         label: () => (
           <span>
@@ -103,12 +103,12 @@ export const SuggestedFilters: Story = {
       {
         id: '2a',
         groupId: '2',
-        type: 'suggest',
+        role: 'suggest',
         badge: {
           label: '22 treff',
         },
         as: 'button',
-        ariaLabel: 'Søk etter skatt + inkasso',
+        title: 'Søk etter skatt + inkasso',
         onClick: () => {
           alert('22 treff');
         },
@@ -126,9 +126,9 @@ export const SuggestedFilters: Story = {
       {
         id: '2b',
         groupId: '2',
-        type: 'suggest',
+        role: 'suggest',
         href: '#',
-        ariaLabel: 'Søk etter Skatteetaten',
+        title: 'Søk etter Skatteetaten',
         badge: {
           label: '9 treff',
         },
@@ -158,8 +158,8 @@ export const SuggestedHits: Story = {
       {
         id: '1a',
         groupId: '1',
-        type: 'scope',
-        ariaLabel: 'Skatteoppgjør i innboks',
+        role: 'scope',
+        title: 'Skatteoppgjør i innboks',
         href: '#',
         badge: {
           label: '24 treff',
@@ -173,8 +173,8 @@ export const SuggestedHits: Story = {
       {
         id: '1b',
         groupId: '1',
-        type: 'scope',
-        ariaLabel: 'Skatteoppgjør i hele Altinn',
+        role: 'scope',
+        title: 'Skatteoppgjør i hele Altinn',
         href: '#',
         label: () => (
           <span>
@@ -185,7 +185,7 @@ export const SuggestedHits: Story = {
       {
         id: 'd1',
         groupId: '3',
-        type: 'dialog',
+        role: 'dialog',
         href: '#',
         title: 'Skattemeldingen 2024',
         description: 'Skatteoppgjøret ditt er klart.',
@@ -193,7 +193,7 @@ export const SuggestedHits: Story = {
       {
         id: 'd2',
         groupId: '3',
-        type: 'dialog',
+        role: 'dialog',
         href: '#',
         title: 'Skatteoppgjør 2023',
         description: 'Skatteoppgjøret ditt er klart.',
@@ -201,7 +201,7 @@ export const SuggestedHits: Story = {
       {
         id: 'd3',
         groupId: '3',
-        type: 'dialog',
+        role: 'dialog',
         href: '#',
         title: 'Skatteoppgjør 2022',
         description: 'Skatteoppgjøret ditt er ferdigstilt.',
@@ -237,8 +237,8 @@ export const TooFewWords: Story = {
     items: [
       {
         id: '1a',
-        type: 'scope',
-        ariaLabel: 'Søk etter sk',
+        role: 'scope',
+        title: 'Søk etter sk',
         href: '#',
         label: () => (
           <span>
@@ -248,8 +248,8 @@ export const TooFewWords: Story = {
       },
       {
         id: '1b',
-        type: 'scope',
-        ariaLabel: 'Søk etter sk',
+        role: 'scope',
+        title: 'Søk etter sk',
         href: '#',
         label: () => (
           <span>
@@ -273,8 +273,8 @@ export const NoHits: Story = {
       {
         id: '1a',
         groupId: '1',
-        type: 'scope',
-        ariaLabel: 'Søk etter skatt i innboks',
+        role: 'scope',
+        title: 'Søk etter skatt i innboks',
         href: '#',
         disabled: true,
         badge: {
@@ -289,8 +289,8 @@ export const NoHits: Story = {
       {
         id: '1b',
         groupId: '1',
-        type: 'scope',
-        ariaLabel: 'Søk etter skatt i hele Altinn',
+        role: 'scope',
+        title: 'Søk etter skatt i hele Altinn',
         href: '#',
         label: () => (
           <span>
@@ -301,9 +301,8 @@ export const NoHits: Story = {
       {
         id: 'info',
         groupId: 'noHits',
-        interactive: false,
         as: 'div',
-        type: 'information',
+        role: 'information',
         label: () => (
           <span>
             Søk etter <mark>skatt</mark> ga ingen treff.

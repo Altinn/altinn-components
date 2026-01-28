@@ -1,6 +1,6 @@
 import { HeartFillIcon, HeartIcon } from '@navikt/aksel-icons';
 import { Button } from '../../lib';
-import type { AccountMenuProps } from '../../lib';
+import type { AccountMenuProps, ToolbarMenuProps } from '../../lib';
 import { type UseAccountsProps, useAccounts } from './';
 
 export const useAccountMenu = ({ accountId, accounts, includeGroups = false }: UseAccountsProps) => {
@@ -32,9 +32,9 @@ export const useAccountMenu = ({ accountId, accounts, includeGroups = false }: U
 
     return {
       ...item,
-      badge: badge ? (
-        badge
-      ) : (
+      role: 'menuitem',
+      badge,
+      controls: (
         <Button rounded variant="ghost" aria-label={'Favoritt'} onClick={onFavourite} size="xs">
           {favourite ? <HeartFillIcon /> : <HeartIcon />}
         </Button>
@@ -49,4 +49,21 @@ export const useAccountMenu = ({ accountId, accounts, includeGroups = false }: U
     currentAccount,
     onSelectAccount,
   } as AccountMenuProps;
+};
+
+export const useToolbarAccountMenu = ({ accountId, accounts, includeGroups = false }: UseAccountsProps) => {
+  const accountMenu = useAccountMenu({ accountId, accounts, includeGroups });
+
+  return {
+    items: accountMenu?.items?.map((item) => {
+      return {
+        ...item,
+        selected: item?.id === accountMenu?.currentAccount?.id,
+      };
+    }),
+    groups: accountMenu?.groups,
+    onSelectId: accountMenu?.onSelectAccount,
+    size: 'md',
+    label: accountMenu?.currentAccount?.name,
+  } as ToolbarMenuProps;
 };

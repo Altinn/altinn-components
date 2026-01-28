@@ -8,10 +8,8 @@ export const useCategoryLayout = (): LayoutProps => {
       groupId: 'level-1',
       icon: MenuGridIcon,
       color: 'neutral',
-      iconTheme: 'surface',
       size: 'lg',
       title: 'Alle tjenester',
-      //      collapsible: true,
       expanded: true,
 
       items: [
@@ -21,9 +19,7 @@ export const useCategoryLayout = (): LayoutProps => {
           size: 'md',
           icon: TeddyBearIcon,
           color: 'company',
-          iconTheme: 'surface',
           title: 'Tema',
-          //          collapsible: true,
           expanded: true,
           items: [
             {

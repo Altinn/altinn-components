@@ -1,3 +1,0 @@
-.removeButton > button:hover + * + * {
-  text-decoration: line-through;
-}

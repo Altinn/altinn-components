@@ -1,7 +1,7 @@
 @import "@digdir/designsystemet-css/index.css";
 @import "@digdir/designsystemet-theme";
 
-@import "tokens/design-tokens-build/theme.css";
+@import "./tokens/design-tokens-build/theme.css";
 
 @import "./data-theme.css";
 @import "./data-padding.css";

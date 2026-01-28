@@ -19,6 +19,7 @@ export interface UseMenuOutput<T, V> {
   menu: UseMenuGroup<T, V>[];
   activeIndex: number;
   setActiveIndex: (activeIndex: number) => void;
+  activeItem: T | undefined;
 }
 
 export interface UseMenuInput<T, V> {
@@ -63,8 +64,7 @@ export const useMenu = <T, V>({
     }
   });
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-  const menu = useMemo(() => {
+  const groupedItems = useMemo(() => {
     const grouped = items.reduce(
       (acc, item) => {
         const key = groupByKey && item[groupByKey] ? (item[groupByKey] as string) : 'ungrouped';
@@ -75,12 +75,21 @@ export const useMenu = <T, V>({
       {} as Record<string, T[]>,
     );
 
-    const flatItems: T[] = Object.values(grouped)
-      .flat()
-      // @ts-ignore: TODO: Fix Typescript error for disabled item
-      .filter((item) => !item?.disabled);
+    return grouped;
+  }, [items, groupByKey]);
 
-    return Object.entries(grouped)
+  const flatItems: T[] = useMemo(
+    () =>
+      Object.values(groupedItems)
+        .flat()
+        // @ts-ignore: TODO: Fix Typescript error for disabled item
+        .filter((item) => !item?.disabled),
+    [groupedItems],
+  );
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  const menu = useMemo(() => {
+    return Object.entries(groupedItems)
       .sort(sortGroupBy || (() => 0))
       .map(([key, groupItems]) => ({
         items: groupItems.map((item) => ({
@@ -88,13 +97,13 @@ export const useMenu = <T, V>({
           active: activeIndex === flatItems.indexOf(item),
           onMouseEnter: keyboardEvents
             ? () => {
-                setActiveIndex(flatItems.indexOf(item));
-              }
+              setActiveIndex(flatItems.indexOf(item));
+            }
             : undefined,
           onMouseLeave: keyboardEvents
             ? () => {
-                setActiveIndex(-1);
-              }
+              setActiveIndex(-1);
+            }
             : undefined,
           props: item,
         })),
@@ -102,7 +111,7 @@ export const useMenu = <T, V>({
           ...(groups[key] || {}),
         },
       }));
-  }, [items, groupByKey, activeIndex, groups]);
+  }, [groupedItems, flatItems, activeIndex, keyboardEvents, sortGroupBy, groups]);
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
@@ -128,5 +137,5 @@ export const useMenu = <T, V>({
     };
   }, [handleKeyDown, keyboardEvents]);
 
-  return { menu, activeIndex, setActiveIndex };
+  return { menu, activeIndex, setActiveIndex, activeItem: flatItems[activeIndex] };
 };

@@ -1,14 +1,13 @@
 import { useState } from 'react';
-import type { FilterState, ToolbarFilterProps, ToolbarProps } from '../../lib';
+import type { FilterState, ToolbarProps } from '../../lib';
 
 export const useSearchToolbar = (): ToolbarProps => {
   const [filterState, setFilterState] = useState<FilterState>({});
 
-  const categoryFilters: ToolbarFilterProps = {
+  const categoryFilter = {
     name: 'category',
     label: 'Alle kategorier',
-    optionType: 'checkbox',
-    options: [
+    items: [
       {
         value: '1',
         label: 'Kategori 1',
@@ -17,14 +16,19 @@ export const useSearchToolbar = (): ToolbarProps => {
         value: '2',
         label: 'Kategori 2',
       },
-    ],
+    ].map((item) => {
+      return {
+        ...item,
+        role: 'checkbox',
+        name: 'category',
+      };
+    }),
   };
 
-  const ownerFilters: ToolbarFilterProps = {
+  const ownerFilter = {
     name: 'owner',
     label: 'Alle etater',
-    optionType: 'checkbox',
-    options: [
+    items: [
       {
         value: '1',
         label: 'Owner 1',
@@ -33,14 +37,19 @@ export const useSearchToolbar = (): ToolbarProps => {
         value: '2',
         label: 'Owner 2',
       },
-    ],
+    ].map((item) => {
+      return {
+        ...item,
+        role: 'checkbox',
+        name: 'owner',
+      };
+    }),
   };
 
-  const targetFilters: ToolbarFilterProps = {
+  const targetFilter = {
     name: 'target',
     label: 'Alle brukere',
-    optionType: 'checkbox',
-    options: [
+    items: [
       {
         value: '1',
         label: 'For privatpersoner',
@@ -49,15 +58,23 @@ export const useSearchToolbar = (): ToolbarProps => {
         value: '2',
         label: 'For virksomheter',
       },
-    ],
+    ].map((item) => {
+      return {
+        ...item,
+        role: 'checkbox',
+        name: 'target',
+      };
+    }),
   };
 
-  const filters = [categoryFilters, ownerFilters, targetFilters];
+  const filters = [categoryFilter, ownerFilter, targetFilter];
 
   return {
-    filters,
-    filterState,
-    onFilterStateChange: setFilterState,
-    removeButtonAltText: 'remove',
+    filter: {
+      filters,
+      filterState,
+      onFilterStateChange: setFilterState,
+      removeLabel: 'remove',
+    },
   };
 };

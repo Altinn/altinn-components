@@ -23,7 +23,7 @@ import {
   Toolbar,
   Heading,
   Typography,
-  MenuItemIcon,
+  ItemMedia,
 } from "../components";
 
 import { Fragment } from "react";
@@ -194,7 +194,7 @@ export const Topic = () => {
               columnGap: ".5em",
             }}
           >
-            <MenuItemIcon theme="tinted" size="md" icon={TeddyBearIcon} />
+            <ItemMedia icon={TeddyBearIcon} />
             Lønn
           </Heading>
         </ArticleHeader>
