@@ -34,11 +34,11 @@ export const SeenByLog = ({
       {title && (
         <Flex>
           {collapsible ? (
-            <SeenByLogButton icon={{ items }} as="button" onClick={onToggle}>
+            <SeenByLogButton items={items} as="button" onClick={onToggle}>
               {title}
             </SeenByLogButton>
           ) : (
-            <SeenByLogButton icon={{ items }} as="div">
+            <SeenByLogButton items={items} as="div">
               {title}
             </SeenByLogButton>
           )}
