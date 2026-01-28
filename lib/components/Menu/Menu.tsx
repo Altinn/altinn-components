@@ -22,6 +22,7 @@ export const Menu = ({
   virtualized = false,
   keyboardEvents = false,
   scrollRefStyles = {},
+  onActiveItemIdChange,
 }: MenuProps) => {
   const autoSearch = useMenuSearch({ ...search, items, groups });
   const applicableSearch = searchable ? autoSearch.search : search;
@@ -55,6 +56,7 @@ export const Menu = ({
       maxLevels={maxLevels}
       keyboardEvents={keyboardEvents}
       scrollRefStyles={scrollRefStyles}
+      onActiveItemIdChange={onActiveItemIdChange}
     />
   );
 };

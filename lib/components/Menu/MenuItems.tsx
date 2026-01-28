@@ -1,5 +1,5 @@
 'use client';
-import { type CSSProperties, type ElementType, Fragment, useRef } from 'react';
+import { type CSSProperties, type ElementType, Fragment, useEffect, useId, useMemo, useRef } from 'react';
 import { MenuItem, MenuList, MenuListDivider, MenuListGroup, MenuListHeading, MenuListItem } from '../';
 import type { MenuItemProps } from '../';
 import { useMenu } from '../../hooks';
@@ -31,6 +31,7 @@ export interface MenuItemsProps {
   keyboardEvents?: boolean;
   onSelect?: () => void;
   scrollRefStyles?: CSSProperties;
+  onActiveItemIdChange?: (id: string | undefined) => void;
 }
 
 export const MenuItems = ({
@@ -47,20 +48,37 @@ export const MenuItems = ({
   scrollRefStyles = {},
   keyboardEvents = false,
   onSelect = () => { },
+  onActiveItemIdChange,
 }: MenuItemsProps) => {
   if (maxLevels && level >= maxLevels) {
     return null;
   }
 
+  const reactId = useId();
+  const menuId = id || `menu-${reactId}`;
+
+  const itemsWithIds = useMemo(
+    () =>
+      items.map((item, index) => ({
+        ...item,
+        id: item.id || `${menuId}-item-${index}`,
+      })),
+    [items, menuId],
+  );
+
   const ref = useRef<HTMLUListElement>(null);
-  const { menu, setActiveIndex } = useMenu<MenuItemProps, MenuGroupProps>({
-    items,
+  const { menu, setActiveIndex, activeItem } = useMenu<MenuItemProps, MenuGroupProps>({
+    items: itemsWithIds,
     groups,
     groupByKey: 'groupId',
     keyboardEvents,
     onSelect,
     ref,
   });
+
+  useEffect(() => {
+    onActiveItemIdChange?.(activeItem?.id);
+  }, [activeItem?.id, onActiveItemIdChange]);
 
   return (
     <MenuList variant={variant} expanded={expanded} ref={ref} style={scrollRefStyles} id={id}>

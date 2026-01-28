@@ -112,6 +112,7 @@ export const MenuItem = ({
     return (
       <label
         className={cx(styles.item, className)}
+        id={id}
         data-id={id}
         data-group-id={groupId}
         data-size={size}
@@ -178,6 +179,7 @@ export const MenuItem = ({
     <Component
       href={href}
       className={cx(styles.item, className)}
+      id={id}
       data-id={id}
       data-group-id={groupId}
       data-size={size}

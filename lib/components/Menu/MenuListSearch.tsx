@@ -37,6 +37,8 @@ export const MenuListSearch = ({
         onClear={onClear}
         clearButtonAltText={clearButtonAltText}
         autoComplete="off"
+        autoCorrect="off"
+        autoCapitalize="off"
         autoFocus={isDesktop}
         onKeyDown={(e) => {
           if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {

@@ -16,6 +16,7 @@ interface ToolbarFilterButtonProps {
   children?: ReactNode;
   open?: boolean;
   menuId?: string;
+  activeDescendantId?: string;
 }
 
 export function ToolbarFilterButton({
@@ -28,6 +29,7 @@ export function ToolbarFilterButton({
   children,
   menuId,
   open,
+  activeDescendantId,
 }: ToolbarFilterButtonProps) {
   const variant = value ? 'tinted' : 'outline';
 
@@ -41,6 +43,7 @@ export function ToolbarFilterButton({
           aria-expanded={open}
           aria-controls={menuId}
           aria-haspopup="menu"
+          aria-activedescendant={activeDescendantId}
         >
           <span>{children}</span>
         </Button>
@@ -62,7 +65,7 @@ export function ToolbarFilterButton({
   }
 
   return (
-    <Button variant={variant} onClick={onClick} data-id={`filter-button-${name}`}>
+    <Button variant={variant} onClick={onClick} data-id={`filter-button-${name}`} aria-activedescendant={activeDescendantId}>
       <span>{children}</span>
       <ChevronUpDownIcon />
     </Button>
@@ -121,19 +124,33 @@ export const ToolbarFilterAddMenu = ({
 
   const reactId = useId();
   const menuId = `toolbar-filter-add-${reactId}`;
+  const [activeDescendantId, setActiveDescendantId] = useState<string | undefined>(undefined);
 
   return (
     <Dropdown
       variant="drawer-dropdown"
       trigger={
-        <ToolbarAddButton aria-expnded={open} aria-controls={menuId} onClick={onToggle} aria-haspopup="menu">
+        <ToolbarAddButton
+          aria-expanded={open}
+          aria-controls={menuId}
+          onClick={onToggle}
+          aria-haspopup="menu"
+          aria-activedescendant={activeDescendantId}
+        >
           {label}
         </ToolbarAddButton>
       }
       open={open}
       onClose={onClose}
     >
-      <Menu groups={groups} items={addItems} maxLevels={1} keyboardEvents={open} id={menuId} />
+      <Menu
+        groups={groups}
+        items={addItems}
+        maxLevels={1}
+        keyboardEvents={open}
+        id={menuId}
+        onActiveItemIdChange={setActiveDescendantId}
+      />
     </Dropdown>
   );
 };
@@ -185,6 +202,7 @@ export const ToolbarFilterMenu = ({
   const FilterMenu = as || Menu;
   const reactId = useId();
   const menuId = `toolbar-filter-menu-${reactId}`;
+  const [activeDescendantId, setActiveDescendantId] = useState<string | undefined>(undefined);
 
   if (removable) {
     return (
@@ -200,6 +218,7 @@ export const ToolbarFilterMenu = ({
             removeLabel={removeLabel}
             open={open}
             menuId={menuId}
+            activeDescendantId={activeDescendantId}
           >
             {label}
           </ToolbarFilterButton>
@@ -217,6 +236,7 @@ export const ToolbarFilterMenu = ({
           groups={groups}
           items={filterItems}
           keyboardEvents={open}
+          onActiveItemIdChange={setActiveDescendantId}
         />
       </Dropdown>
     );
@@ -226,7 +246,12 @@ export const ToolbarFilterMenu = ({
     <Dropdown
       variant="drawer-dropdown"
       trigger={
-        <ToolbarFilterButton name={name} onClick={onToggle} value={filterValue?.length > 0 ? filterValue : undefined}>
+        <ToolbarFilterButton
+          name={name}
+          onClick={onToggle}
+          value={filterValue?.length > 0 ? filterValue : undefined}
+          activeDescendantId={activeDescendantId}
+        >
           {label}
         </ToolbarFilterButton>
       }
@@ -242,6 +267,7 @@ export const ToolbarFilterMenu = ({
         groups={groups}
         items={filterItems}
         keyboardEvents={open}
+        onActiveItemIdChange={setActiveDescendantId}
       />
     </Dropdown>
   );
