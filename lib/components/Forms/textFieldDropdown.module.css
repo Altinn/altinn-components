@@ -1,0 +1,91 @@
+.container {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+}
+
+.input {
+  padding-right: 3rem;
+}
+
+.input[data-has-badge="true"] {
+  padding-right: 7rem;
+}
+
+.badge {
+  position: absolute;
+  right: 2.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  gap: 0.5rem;
+}
+
+.badge::before {
+  content: "";
+  position: absolute;
+  left: -0.5rem;
+  top: 25%;
+  bottom: 25%;
+  width: 1px;
+  background-color: var(--ds-color-border-subtle);
+}
+
+.dropdownTrigger {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: inherit;
+  transition: background-color 0.15s;
+}
+
+.dropdownTrigger:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dropdownTrigger:focus-visible {
+  outline: 2px solid var(--ds-color-focus-base-default);
+  outline-offset: -2px;
+}
+
+.dropdownTrigger:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  left: 0;
+  right: 0;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.dropdown[data-placement="right"] {
+  left: auto;
+  right: 0;
+}
+
+.menuItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.optionBadge {
+  margin-left: auto;
+  flex-shrink: 0;
+}
