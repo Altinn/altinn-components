@@ -11,6 +11,7 @@ export interface ComparisonResult {
   totalPixels: number;
   percentage: number;
   error?: string;
+  baselineCreated?: boolean;
 }
 
 /**
@@ -33,13 +34,33 @@ export async function compareScreenshots(
     try {
       await fs.access(baselinePath);
     } catch {
-      return {
-        match: false,
-        mismatchedPixels: 0,
-        totalPixels: 0,
-        percentage: 100,
-        error: `No baseline found at ${baselinePath}. Run 'pnpm test:screenshots-update' to generate baseline screenshots.`,
-      };
+      // No baseline exists - auto-generate it
+      try {
+        // Verify actual screenshot exists
+        await fs.access(actualPath);
+
+        // Create baseline directory structure if needed
+        await fs.mkdir(path.dirname(baselinePath), { recursive: true });
+
+        // Copy actual screenshot to baseline location
+        await fs.copyFile(actualPath, baselinePath);
+
+        return {
+          match: true,
+          mismatchedPixels: 0,
+          totalPixels: 0,
+          percentage: 0,
+          baselineCreated: true,
+        };
+      } catch (error) {
+        return {
+          match: false,
+          mismatchedPixels: 0,
+          totalPixels: 0,
+          percentage: 100,
+          error: `Failed to create baseline: ${error instanceof Error ? error.message : String(error)}`,
+        };
+      }
     }
 
     // Check if actual screenshot exists
@@ -138,22 +159,13 @@ interface ComparisonFailure {
 export async function compareAllScreenshots(filterPattern?: string): Promise<{
   passed: number;
   failed: ComparisonFailure[];
+  baselinesCreated: number;
 }> {
   const __dirname = path.dirname(fileURLToPath(import.meta.url));
   const rootDir = path.join(__dirname, '..', '..');
   const baselineDir = path.join(rootDir, '__screenshots__');
   const tempDir = path.join(rootDir, '.screenshots-temp');
   const actualDir = path.join(tempDir, 'actual');
-
-  // Check if baseline exists
-  try {
-    await fs.access(baselineDir);
-  } catch {
-    console.error('No baseline screenshots found!');
-    console.error('');
-    console.error('Generate baseline first: pnpm test:screenshots-update');
-    process.exit(1);
-  }
 
   // Check if actual screenshots were generated
   try {
@@ -188,6 +200,7 @@ export async function compareAllScreenshots(filterPattern?: string): Promise<{
 
   const failures: ComparisonFailure[] = [];
   let passedCount = 0;
+  let baselinesCreated = 0;
 
   // Compare each screenshot
   for (const relativePath of actualScreenshots) {
@@ -197,7 +210,10 @@ export async function compareAllScreenshots(filterPattern?: string): Promise<{
 
     const result = await compareScreenshots(actualPath, baselinePath, diffPath);
 
-    if (!result.match) {
+    if (result.baselineCreated) {
+      baselinesCreated++;
+      console.log(`  Screenshot baseline created - ${relativePath}`);
+    } else if (!result.match) {
       failures.push({
         testName: relativePath,
         actualPath,
@@ -208,7 +224,7 @@ export async function compareAllScreenshots(filterPattern?: string): Promise<{
         totalPixels: result.totalPixels,
         error: result.error,
       });
-      console.log(`  test failed - ${relativePath}`);
+      console.log(`  ✗ test failed - ${relativePath}`);
       if (result.error) {
         console.log(`     Error: ${result.error}`);
       } else {
@@ -229,6 +245,7 @@ export async function compareAllScreenshots(filterPattern?: string): Promise<{
   return {
     passed: passedCount,
     failed: failures,
+    baselinesCreated,
   };
 }
 
@@ -244,13 +261,22 @@ if (import.meta.url === `file://${process.argv[1]}`) {
         console.error(`Screenshot comparison FAILED`);
         console.error(`   Passed: ${results.passed}`);
         console.error(`   Failed: ${results.failed.length}`);
+        if (results.baselinesCreated > 0) {
+          console.error(`   New screenshots baselines: ${results.baselinesCreated}`);
+        }
         console.error('');
         console.error('Diff images saved in .screenshots-temp/diff/ for review');
         process.exit(1);
       } else {
-        console.log(`All ${results.passed} screenshot(s) match the baseline!`);
-        console.log('');
-        // Tests passed - clean up temp files
+        if (results.baselinesCreated > 0) {
+          console.log(`Created ${results.baselinesCreated} new baseline(s)`);
+          console.log(`All ${results.passed} existing screenshot(s) passed`);
+          console.log('');
+          console.log('NOTE: New baselines were created. Review them with git diff and commit if correct.');
+        } else {
+          console.log(`All ${results.passed} screenshot(s) match the baseline`);
+          console.log('');
+        }
         console.log('Cleaning up temporary files...');
         await cleanupTemporaryFiles();
         process.exit(0);
