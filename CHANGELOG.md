@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.55.1](https://github.com/Altinn/altinn-components/compare/v0.55.0...v0.55.1) (2026-02-06)
+
+
+### Bug Fixes
+
+* hover of locale switcher ([#946](https://github.com/Altinn/altinn-components/issues/946)) ([f3eb359](https://github.com/Altinn/altinn-components/commit/f3eb359746c121b24a859de07e6932211740ebd3))
+
+
+### Miscellaneous Chores
+
+* **storybook:** update footer stories ([#942](https://github.com/Altinn/altinn-components/issues/942)) ([8066aa3](https://github.com/Altinn/altinn-components/commit/8066aa3b460aca1b11cccb1806ac158a47b28c49))
+
 ## [0.55.0](https://github.com/Altinn/altinn-components/compare/v0.54.3...v0.55.0) (2026-02-06)
 
 
