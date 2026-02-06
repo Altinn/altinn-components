@@ -1,6 +1,5 @@
 import { PadlockLockedIcon, XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
-import type { ElementType } from 'react';
 import { Avatar, type AvatarProps } from '../Avatar';
 import { AvatarGroup, type AvatarGroupProps } from '../Avatar';
 import { Badge, type BadgeProps } from '../Badge';
@@ -13,11 +12,8 @@ export interface HeaderButtonProps extends ButtonProps {
   label?: string;
   avatar?: AvatarProps;
   avatarGroup?: AvatarGroupProps;
-  as?: ElementType;
-  className?: string;
   expanded?: boolean;
   badge?: BadgeProps | undefined;
-  tabIndex?: number;
 }
 
 export const HeaderButton = ({

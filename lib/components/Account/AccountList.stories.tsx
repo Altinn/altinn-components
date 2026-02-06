@@ -19,7 +19,7 @@ import {
   AddressSettingsModal,
   EmailSettingsModal,
   PhoneSettingsModal,
-} from '../../components/Settings/SettingsModal.stories';
+} from '../Settings/SettingsModal.stories.tsx';
 
 import {
   AccountList,
@@ -114,7 +114,7 @@ export const Default = ({ includeGroups = false }: UseAccountsProps) => {
     includeGroups,
   });
 
-  const q = toolbar.search?.value?.toLowerCase() || '';
+  const q = toolbar?.search?.value?.toString().toLowerCase() || '';
 
   const controlledItems = items?.map((item) => {
     return {
@@ -170,7 +170,7 @@ interface ControlledProps {
   collapsible?: boolean;
   color?: 'neutral';
   variant?: 'subtle' | 'tinted' | 'default';
-  isVirtualized?: boolean;
+  virtualized?: boolean;
 }
 
 export const Controlled = ({
@@ -179,7 +179,7 @@ export const Controlled = ({
   contextMenu = false,
   variant,
   color,
-  isVirtualized = false,
+  virtualized = false,
 }: ControlledProps) => {
   const { toolbar, items, groups, expandedId, onToggle, onToggleFavourite, onSettingsChange } = useAccountList({
     accounts: defaultAccounts,
@@ -210,7 +210,7 @@ export const Controlled = ({
     }
   };
 
-  const q = toolbar?.search?.value;
+  const q = toolbar?.search?.value?.toString().toLowerCase() || '';
   const results = toolbar?.results;
 
   const listGroups = toolbar?.active ? results?.groups : groups;
@@ -245,13 +245,9 @@ export const Controlled = ({
   return (
     <Section spacing={6} color={color}>
       <Toolbar {...toolbar}>
-        <Switch label="Vis slettede" size="xs" style={{ marginLeft: '0.5em' }} />
+        <Switch label="Vis slettede" size="sm" />
       </Toolbar>
-      <AccountList
-        isVirtualized={isVirtualized}
-        groups={listGroups}
-        items={collapsibleItems as AccountListItemProps[]}
-      />
+      <AccountList virtualized={virtualized} groups={listGroups} items={collapsibleItems as AccountListItemProps[]} />
       {modalId && modal?.type === 'phone' && <PhoneSettingsModal open={true} onClose={onClose} />}
       {modalId && modal?.type === 'email' && <EmailSettingsModal open={true} onClose={onClose} />}
       {modalId && modal?.type === 'address' && <AddressSettingsModal open={true} onClose={onClose} />}
@@ -311,8 +307,6 @@ const AccountDetails = (props: AccountDetailsProps) => {
   }
 
   switch (props.type) {
-    case 'group':
-      return <GroupDetails {...props} />;
     case 'company':
       return <CompanyDetails {...props} />;
     case 'person':
@@ -535,30 +529,6 @@ export const UserDetails = ({
   );
 };
 
-export const GroupDetails = ({ accountIds }: AccountDetailsProps) => {
-  const { items } = useAccountList({
-    accounts: defaultAccounts as AccountListItemProps[],
-  });
-
-  const groupItems = accountIds
-    ? items?.filter((item) => accountIds.includes(item.id))
-    : items?.filter((item) => item.type === 'company');
-
-  const settings = groupItems?.map((item) => {
-    return {
-      ...item,
-      size: 'xs',
-    };
-  });
-
-  return (
-    <AccountListItemDetails color="neutral">
-      {settings?.length + ' elementer'}
-      Work-in-progress
-    </AccountListItemDetails>
-  );
-};
-
 export const Virtualized = () => {
-  return <Controlled isVirtualized={true} includeGroups={true} collapsible={true} contextMenu={true} />;
+  return <Controlled virtualized={true} includeGroups={true} collapsible={true} contextMenu={true} />;
 };

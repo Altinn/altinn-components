@@ -1,7 +1,14 @@
 import { ArrowDownRightIcon, Buildings2Icon } from '@navikt/aksel-icons';
 import { useState } from 'react';
 import { defaultAccounts, useAccountMenu } from '../';
-import type { AvatarGroupProps, AvatarProps, DialogListItemProps, FilterState, ToolbarProps } from '../../lib';
+import type {
+  AvatarGroupProps,
+  AvatarProps,
+  DialogListItemProps,
+  FilterState,
+  ToolbarFilterProps,
+  ToolbarProps,
+} from '../../lib';
 
 interface UseInboxToolbarProps {
   accountId?: string;
@@ -9,8 +16,6 @@ interface UseInboxToolbarProps {
 }
 
 export const useInboxToolbar = ({ accountId, items }: UseInboxToolbarProps): ToolbarProps => {
-  // setup account menu
-
   const accountMenu = useAccountMenu({
     accountId,
     accounts: defaultAccounts,
@@ -67,6 +72,8 @@ export const useInboxToolbar = ({ accountId, items }: UseInboxToolbarProps): Too
   const groupIdOptions = avatarGroup?.map((avatar: AvatarProps) => {
     const item = accountMenu?.items?.find((item) => item.id === avatar?.id);
     return {
+      name: 'groupIds',
+      role: 'checkbox',
       value: item?.id,
       icon: item?.icon,
       title: item?.name,
@@ -79,9 +86,9 @@ export const useInboxToolbar = ({ accountId, items }: UseInboxToolbarProps): Too
   const groupFilters = groupOptions && {
     removable: false,
     name: 'groupIds',
-    optionType: 'checkbox',
     label: groupOptions?.length + ' aktører',
-    options: groupOptions,
+    items: groupOptions,
+    size: 'md',
   };
 
   // collect facets from items
@@ -129,11 +136,12 @@ export const useInboxToolbar = ({ accountId, items }: UseInboxToolbarProps): Too
   });
 
   const folderFilters = {
-    removable: true,
     name: 'status',
-    optionType: 'checkbox',
+    removable: true,
     label: 'Velg mappe',
-    options: Object.keys(folderById).map((label) => ({
+    items: Object.keys(folderById).map((label) => ({
+      name: 'status',
+      role: 'checkbox',
       value: label,
       label: label,
       count: folderById[label],
@@ -141,11 +149,12 @@ export const useInboxToolbar = ({ accountId, items }: UseInboxToolbarProps): Too
   };
 
   const senderFilters = {
-    removable: true,
     name: 'sender',
-    optionType: 'checkbox',
+    removable: true,
     label: 'Velg avsender',
-    options: Object.keys(senderById).map((label) => ({
+    items: Object.keys(senderById).map((label) => ({
+      name: 'sender',
+      role: 'checkbox',
       value: label,
       label: label,
       count: senderById[label],
@@ -153,24 +162,26 @@ export const useInboxToolbar = ({ accountId, items }: UseInboxToolbarProps): Too
   };
 
   const statusFilters = {
-    removable: true,
     name: 'status',
-    optionType: 'checkbox',
+    removable: true,
     label: 'Velg status',
-    options: Object.keys(statusById).map((label) => ({
+    items: Object.keys(statusById).map((label) => ({
+      name: 'status',
+      role: 'checkbox',
       value: label,
       label: label,
       count: statusById[label].toString(),
     })),
   };
 
-  const filters = [groupFilters, folderFilters, senderFilters, statusFilters]?.filter(
-    (item) => item && item?.options?.length > 0,
+  //@ts-ignore
+  const filters: ToolbarFilterProps['filters'] = [groupFilters, folderFilters, senderFilters, statusFilters].filter(
+    (filter) => filter && filter?.items?.length > 0,
   );
 
-  const defaultFilterState = groupFilters?.options?.length
+  const defaultFilterState = groupFilters?.items?.length
     ? {
-        groupIds: groupFilters.options
+        groupIds: groupFilters.items
           .map(({ value }: { value?: string | number }) => value)
           .filter((v): v is string | number => v !== undefined),
       }
@@ -178,28 +189,27 @@ export const useInboxToolbar = ({ accountId, items }: UseInboxToolbarProps): Too
 
   const [filterState, setFilterState] = useState<FilterState>(defaultFilterState);
 
-  const getFilterLabel = (name: string, value: string[]) => {
+  const getFilterLabel: ToolbarFilterProps['getFilterLabel'] = (
+    name: string,
+    value: (string | number)[] | undefined,
+  ): string | undefined => {
     if (name === 'groupIds' && value?.length) {
       return value?.length === 1 ? '1 aktør' : value?.length + ' aktører';
     }
   };
 
-  // onFilterStateChange
   const onFilterStateChange = (newFilterState: FilterState) => {
     setFilterState(newFilterState);
-    console.log('Filter state changed:', newFilterState);
-    // Handle filter state change, e.g., update the displayed items based on the new filter
   };
 
   return {
-    accountMenu: {
-      ...accountMenu,
+    accountMenu,
+    filter: {
+      filters,
+      filterState,
+      onFilterStateChange,
+      getFilterLabel,
+      removeLabel: 'Fjern filter',
     },
-    filters,
-    //    filters: inboxFilters,
-    filterState,
-    onFilterStateChange,
-    getFilterLabel,
-    removeButtonAltText: 'remove',
-  } as ToolbarProps;
+  };
 };

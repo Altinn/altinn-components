@@ -16,13 +16,9 @@ export const inboxMenuItems: MenuItemProps[] = [
     id: 'inbox',
     groupId: '1',
     size: 'lg',
-    icon: { svgElement: InboxFillIcon, theme: 'base' },
+    icon: InboxFillIcon,
     selected: true,
-    title: (
-      <>
-        Innboks <Badge label="1" />
-      </>
-    ),
+    title: 'Innboks',
   },
   {
     id: 'compose',
@@ -76,12 +72,13 @@ export const inboxBetaMenuItems: MenuItemProps[] = [
     id: 'inbox',
     groupId: '1',
     size: 'lg',
-    icon: { svgElement: InboxFillIcon, theme: 'base' },
+    icon: InboxFillIcon,
     selected: true,
-    title: (
-      <>
-        Innboks <Badge label="Beta" />
-      </>
+    title: 'Innboks',
+    label: (
+      <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        Innboks <Badge label="1" />
+      </span>
     ),
     'data-testid': 'menu-item-inbox',
   },
@@ -144,14 +141,13 @@ export const inboxBetaMenuItems: MenuItemProps[] = [
 ];
 
 export const inboxMenu: MenuProps = {
-  variant: 'subtle',
+  variant: 'tinted',
+  size: 'md',
   groups: {
     shortcuts: {
       title: 'Snarveier',
-      defaultIconTheme: 'transparent',
-      defaultItemSize: 'sm',
+      size: 'sm',
     },
   },
-  defaultIconTheme: 'default',
   items: inboxMenuItems,
 };

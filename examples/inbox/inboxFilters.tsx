@@ -1,10 +1,7 @@
-import type { ToolbarFilterProps } from '../../lib';
-
-export const inboxDateFilter: ToolbarFilterProps = {
+export const inboxDateFilter = {
   name: 'date',
   label: 'Velg dato',
-  optionType: 'radio',
-  options: [
+  items: [
     {
       groupId: 'a',
       name: 'date',
@@ -39,14 +36,17 @@ export const inboxDateFilter: ToolbarFilterProps = {
       label: 'Spesifiser dato ...',
       value: 'other',
     },
-  ],
+  ].map((item) => ({
+    ...item,
+    name: 'date',
+    role: 'radio',
+  })),
 };
 
-export const inboxStatusFilter: ToolbarFilterProps = {
+export const inboxStatusFilter = {
   name: 'status',
-  optionType: 'checkbox',
   label: 'Velg status',
-  options: [
+  items: [
     {
       groupId: '1',
       value: 'draft',
@@ -72,16 +72,19 @@ export const inboxStatusFilter: ToolbarFilterProps = {
       value: 'completed',
       label: 'Avsluttet',
     },
-  ],
+  ].map((item) => ({
+    ...item,
+    name: 'status',
+    role: 'checkbox',
+  })),
 };
 
-export const inboxFilters: ToolbarFilterProps[] = [
+export const inboxFilters = [
   {
     removable: true,
     name: 'from',
-    optionType: 'checkbox',
     label: 'Velg avsender',
-    options: [
+    items: [
       {
         value: 'skatt',
         label: 'Skatteetaten',
@@ -114,7 +117,11 @@ export const inboxFilters: ToolbarFilterProps[] = [
         value: 'oslo',
         label: 'Oslo kommune',
       },
-    ],
+    ].map((item) => ({
+      ...item,
+      name: 'from',
+      role: 'checkbox',
+    })),
     search: {
       placeholder: 'Søk etter avsender',
       name: 'search-sender',

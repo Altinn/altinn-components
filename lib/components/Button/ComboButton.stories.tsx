@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ComboButton } from './ComboButton';
 
 const meta: Meta<typeof ComboButton> = {
-  title: 'Next/ComboButton',
+  title: 'Button/ComboButton',
   component: ComboButton,
   tags: ['autodocs', 'deprecated'],
   parameters: {},

@@ -22,6 +22,7 @@ export const GlobalSearchButton = ({ onClick, expanded, ...buttonProps }: Global
       onClick={onClick}
       data-color="neutral"
       className={styles.searchButton}
+      aria-expanded={expanded}
     >
       {expanded ? <XMarkIcon aria-hidden="true" /> : <MagnifyingGlassIcon aria-hidden="true" />}
       {isDesktop ? search : null}

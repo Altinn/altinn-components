@@ -1,60 +1,81 @@
-import { MenuBase, type MenuVariant } from './MenuBase';
-import type { MenuItemColor } from './MenuItemBase';
+'use client';
+import type { MenuItemProps } from './MenuItem';
 import { MenuItems, type MenuItemsProps } from './MenuItems';
-import { MenuItemsVirtual } from './MenuItemsVirtual';
+import { VirtualizedMenuItems } from './VirtualizedMenuItems';
+import { useMenuSearch } from './useMenuSearch';
 
 export interface MenuProps extends MenuItemsProps {
-  color?: MenuItemColor;
-  variant?: MenuVariant;
-  isVirtualized?: boolean;
-  keyboardEvents?: boolean;
+  searchable?: boolean;
+  virtualized?: boolean;
+  id?: string;
 }
 
 export const Menu = ({
-  color,
-  variant,
-  defaultItemColor /** Should inherit from parent? */,
-  defaultItemVariant /** Should inherit from parent? */,
-  defaultItemSize,
-  defaultIconTheme,
-  groups,
-  items = [],
+  searchable,
   search,
-  isVirtualized,
-  keyboardEvents,
-  scrollRefStyles,
+  items = [],
+  groups = {},
+  variant = 'default',
+  size,
+  level = 0,
+  maxLevels = 3,
+  virtualized = false,
+  keyboardEvents = false,
+  scrollRefStyles = {},
+  onActiveItemIdChange,
+  a11yMode = 'menu',
+  open,
+  scrollToTopOnOpen,
+  id,
 }: MenuProps) => {
-  if (isVirtualized) {
+  const autoSearch = useMenuSearch({ ...search, items, groups });
+  const applicableSearch = searchable ? autoSearch.search : search;
+  const announceNoResults = searchable && autoSearch.hasQuery && autoSearch.resultCount === 0;
+  const applicableItems = searchable ? autoSearch.items : items;
+  const applicableGroups = searchable ? { ...groups, ...autoSearch.groups } : groups;
+  const autoActivateFirstItem = a11yMode !== 'combobox';
+
+  if (virtualized) {
     return (
-      <MenuBase color={color} variant={variant}>
-        <MenuItemsVirtual
-          search={search}
-          items={items}
-          groups={groups}
-          defaultItemSize={defaultItemSize}
-          defaultItemColor={defaultItemColor}
-          defaultItemVariant={defaultItemVariant}
-          defaultIconTheme={defaultIconTheme}
-          keyboardEvents={keyboardEvents}
-          scrollRefStyles={scrollRefStyles}
-        />
-      </MenuBase>
+      <VirtualizedMenuItems
+        id={id}
+        search={applicableSearch}
+        announceNoResults={announceNoResults}
+        items={applicableItems as MenuItemProps[]}
+        groups={applicableGroups}
+        variant={variant}
+        size={size}
+        level={level}
+        maxLevels={maxLevels}
+        keyboardEvents={keyboardEvents}
+        scrollRefStyles={scrollRefStyles}
+        onActiveItemIdChange={onActiveItemIdChange}
+        a11yMode={a11yMode}
+        open={open}
+        scrollToTopOnOpen={scrollToTopOnOpen}
+        autoActivateFirstItem={autoActivateFirstItem}
+      />
     );
   }
 
   return (
-    <MenuBase color={color} variant={variant}>
-      <MenuItems
-        search={search}
-        items={items}
-        groups={groups}
-        defaultItemSize={defaultItemSize}
-        defaultItemColor={defaultItemColor}
-        defaultItemVariant={defaultItemVariant}
-        defaultIconTheme={defaultIconTheme}
-        keyboardEvents={keyboardEvents}
-        scrollRefStyles={scrollRefStyles}
-      />
-    </MenuBase>
+    <MenuItems
+      id={id}
+      search={applicableSearch}
+      announceNoResults={announceNoResults}
+      items={applicableItems as MenuItemProps[]}
+      groups={applicableGroups}
+      variant={variant}
+      size={size}
+      level={level}
+      maxLevels={maxLevels}
+      keyboardEvents={keyboardEvents}
+      scrollRefStyles={scrollRefStyles}
+      onActiveItemIdChange={onActiveItemIdChange}
+      a11yMode={a11yMode}
+      open={open}
+      scrollToTopOnOpen={scrollToTopOnOpen}
+      autoActivateFirstItem={autoActivateFirstItem}
+    />
   );
 };

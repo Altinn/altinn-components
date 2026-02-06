@@ -1,118 +1,102 @@
-import type { MouseEventHandler } from 'react';
-import {
-  DrawerOrDropdown,
-  type FilterChangePayload,
-  type FilterState,
-  type ToolbarSearchProps,
-  useRootContext,
-} from '../';
-import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
-import type { MenuOptionProps } from '../Menu';
-import { ToolbarButton } from './ToolbarButton';
-import { ToolbarFilterBase } from './ToolbarFilterBase';
-import { type OptionGroup, ToolbarOptions } from './ToolbarOptions';
+import { XMarkIcon } from '@navikt/aksel-icons';
+import { useState } from 'react';
+import { Button, ButtonGroup } from '../Button';
+import { ToolbarFilterAddMenu } from './ToolbarFilterAddMenu.tsx';
+import { ToolbarFilterMenu } from './ToolbarFilterMenu.tsx';
+import { type FilterProps, type FilterState, useFilter } from './useFilter';
 
-type ToolbarFilterValue = (string | number)[];
 export interface ToolbarFilterProps {
-  name: string;
-  options: MenuOptionProps[];
-  optionGroups?: { [key: string]: OptionGroup };
-  label: string;
-  id?: string;
+  filters: FilterProps[];
+  addLabel?: string;
+  addNextLabel?: string;
+  resetLabel?: string;
+  removeLabel?: string;
+  submitLabel?: string;
+  getFilterLabel?: (name: string, filterValues: (string | number)[] | undefined) => string | undefined;
   filterState?: FilterState;
-  optionType: 'checkbox' | 'radio';
-  removable?: boolean;
-  getSelectedLabel?: (name: string, value?: ToolbarFilterValue) => string;
-  buttonAltText?: string;
-  className?: string;
-  onChange?: (payload: FilterChangePayload) => void;
-  onRemove?: MouseEventHandler;
-  showResultsLabel?: string;
-  search?: ToolbarSearchProps;
+  onFilterStateChange?: (state: FilterState) => void;
+  virtualized?: boolean;
 }
 
-const defaultGetSelectedLabel = (_: string, value?: ToolbarFilterValue) => {
-  if (Array.isArray(value)) {
-    return value.join(', ');
-  }
-  return value;
-};
-
 export const ToolbarFilter = ({
-  removable,
-  label,
-  name,
-  filterState,
-  options,
-  optionGroups,
-  onChange,
-  onRemove,
-  buttonAltText = 'Remove button',
-  getSelectedLabel,
-  showResultsLabel = 'Show results',
-  search,
-  optionType,
-  id = `toolbar-filter-${name}`,
+  filters,
+  filterState = {},
+  onFilterStateChange,
+  addLabel = 'Legg til filter',
+  addNextLabel = 'Legg til',
+  resetLabel = 'Nullstill',
+  removeLabel = 'Fjern filter',
+  submitLabel,
+  getFilterLabel,
+  virtualized,
 }: ToolbarFilterProps) => {
-  const { currentId, toggleId, closeAll } = useRootContext();
-  const isDesktop = useIsDesktop();
-  const filterOptions = (options ?? []).map((item): MenuOptionProps => {
-    const value = filterState?.[item.name || name];
-    return {
-      name,
-      ...item,
-      checked: Array.isArray(value) ? value.includes(item.value) : item.value === value,
-    };
+  const { visibleFilters, hiddenFilters, onFilterAdd, onFilterChange, onFilterRemove } = useFilter({
+    filters,
+    filterState,
+    onFilterStateChange,
   });
 
-  const value = filterState?.[name];
-  const valueLabel = getSelectedLabel?.(name, value) ?? defaultGetSelectedLabel(name, value);
-  const onToggle = () => toggleId(id);
-  const expanded = currentId === id;
+  /** Show reset button if filters are removable and filterState is not empty */
+  const removableFiltersCount = filters?.filter((filter) => filter.removable)?.length || 0;
+  const showResetButton =
+    removableFiltersCount > 0 && Object.values(filterState)?.some((values) => values && values?.length > 0);
+  const removableFilterNames = filters?.filter((filter) => filter.removable)?.map((filter) => filter.name) ?? [];
+  const [openId, setOpenId] = useState<string | undefined>(undefined);
 
-  const onBlurCapture = (e: React.FocusEvent<HTMLElement>) => {
-    const nextFocused = e.relatedTarget as HTMLElement | null;
-    if (isDesktop && (!nextFocused || !e.currentTarget.contains(nextFocused))) {
-      closeAll();
-    }
+  const onToggle = (id: string) => {
+    setOpenId((prev) => (prev === id ? undefined : id));
   };
 
-  const active = Array.isArray(value) ? value.length > 0 : typeof value !== 'undefined';
+  const onClose = () => {
+    setOpenId(undefined);
+  };
+
+  const handleReset = () => {
+    for (const name of removableFilterNames) {
+      onFilterRemove(name);
+    }
+    onFilterStateChange?.({});
+  };
 
   return (
-    <ToolbarFilterBase expanded={expanded} onBlurCapture={onBlurCapture} data-testid={'filter-base-' + id}>
-      <ToolbarButton
-        type="select"
-        removable={removable}
-        active={active}
-        onToggle={onToggle}
-        ariaLabel={buttonAltText}
-        iconAltText={buttonAltText}
-        onRemove={onRemove}
-        data-testid={id}
-        tabIndex={expanded ? -1 : 0}
-      >
-        {valueLabel || label}
-      </ToolbarButton>
-      <DrawerOrDropdown
-        open={expanded}
-        drawerTitle={label}
-        onClose={closeAll}
-        drawerButton={{
-          onClick: onToggle,
-          label: showResultsLabel,
-        }}
-      >
-        <ToolbarOptions
-          name={name}
-          options={filterOptions}
-          optionGroups={optionGroups}
-          onChange={onChange}
-          optionType={optionType}
-          keyboardEvents={expanded && isDesktop}
-          search={search}
+    <ButtonGroup size="xs" wrap>
+      {visibleFilters?.map((filter, index) => {
+        const label = getFilterLabel?.(filter?.name, filterState?.[filter?.id]) ?? filter?.label;
+        return (
+          <ToolbarFilterMenu
+            {...filter}
+            submitLabel={submitLabel}
+            key={index}
+            onToggle={() => onToggle(filter.name)}
+            onClose={onClose}
+            open={openId === filter.name}
+            label={label}
+            onRemove={() => onFilterRemove(filter.name)}
+            removeLabel={removeLabel}
+            onFilterChange={onFilterChange}
+            onFilterStateChange={onFilterStateChange}
+            filterState={filterState}
+          />
+        );
+      })}
+      {hiddenFilters?.length > 0 && (
+        <ToolbarFilterAddMenu
+          name="add"
+          onToggle={() => onToggle('add')}
+          onClose={onClose}
+          open={openId === 'add'}
+          items={hiddenFilters}
+          onAdd={onFilterAdd}
+          label={visibleFilters?.length > 0 ? addNextLabel : addLabel}
+          virtualized={virtualized}
         />
-      </DrawerOrDropdown>
-    </ToolbarFilterBase>
+      )}
+      {showResetButton && (
+        <Button onClick={handleReset} variant="ghost">
+          <XMarkIcon aria-hidden="true" />
+          <span>{resetLabel}</span>
+        </Button>
+      )}
+    </ButtonGroup>
   );
 };

@@ -378,8 +378,9 @@ export const AccountGroupsModal = ({
           );
         })}
       </List>
-      <Button variant="outline" icon={PlusIcon}>
-        Ny gruppe
+      <Button variant="outline">
+        <PlusIcon />
+        <span>Ny gruppe</span>
       </Button>
     </SettingsModal>
   );
@@ -419,8 +420,9 @@ export const CompanyAlertsModal = ({
           return <TextField placeholder={placeholder} value={value} size="sm" key={index} />;
         })}
       </Fieldset>
-      <Button size="sm" variant="outline" icon={PlusIcon} onClick={() => onAdd('')}>
-        Legg til
+      <Button size="sm" variant="outline" onClick={() => onAdd('')}>
+        <PlusIcon />
+        <span>Legg til</span>
       </Button>
 
       <Typography size="sm">

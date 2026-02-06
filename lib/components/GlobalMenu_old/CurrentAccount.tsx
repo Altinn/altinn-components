@@ -21,12 +21,11 @@ export const CurrentAccount = ({ account, multipleAccounts, as, onClick }: Curre
     <MenuItem
       id="account"
       size="lg"
-      interactive={!!multipleAccounts}
       as={!multipleAccounts ? 'div' : as}
       onClick={onClick}
       linkIcon={multipleAccounts}
       icon={account?.icon}
-      title={{ children: account?.name, size: 'sm', weight: 'medium' }}
+      title={account?.name}
       description={account?.description}
     />
   );

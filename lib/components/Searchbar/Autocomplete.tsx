@@ -1,5 +1,5 @@
 import { Fragment, useRef } from 'react';
-import { type MenuGroupProps, MenuHeader, MenuList, MenuListItem, type MenuListRole } from '../';
+import { type MenuGroupProps, MenuList, MenuListDivider, MenuListHeading, MenuListItem } from '../';
 import { useMenu } from '../../hooks';
 import { AutocompleteBase, AutocompleteItem, type AutocompleteItemProps } from '../index.ts';
 
@@ -35,20 +35,15 @@ export const Autocomplete = ({
 
   return (
     <AutocompleteBase className={className} expanded={expanded} ref={ref} id={id}>
-      <MenuList role={'menu' as MenuListRole}>
+      <MenuList variant="default">
         {menu.map((group, groupIndex) => {
           const groupProps: MenuGroupProps = group?.props || {};
           const { title, divider = true } = groupProps;
-
           return (
             <Fragment key={groupIndex}>
               {/** Render a separator if this is a new group or a new level */}
-              {groupIndex && divider ? <MenuListItem role="separator" /> : ''}
-              {title && (
-                <MenuListItem>
-                  <MenuHeader title={title} />
-                </MenuListItem>
-              )}
+              {groupIndex && divider ? <MenuListDivider /> : null}
+              {title && <MenuListHeading title={title} level={1} />}
               {group?.items
                 .filter((item) => !item.props?.hidden)
                 .map((item, index) => {

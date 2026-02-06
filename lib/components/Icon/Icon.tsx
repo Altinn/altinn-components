@@ -1,5 +1,5 @@
 import cx from 'classnames';
-import type { CSSProperties } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import { type Color, type Size, Skeleton, type Theme } from '..';
 import styles from './icon.module.css';
 
@@ -10,6 +10,7 @@ export type IconTheme = Theme;
 
 export interface IconProps {
   svgElement?: SvgElement | undefined | null | string;
+  children?: ReactNode;
   iconUrl?: string;
   altText?: string;
   loading?: boolean;
@@ -30,32 +31,19 @@ export const Icon = ({
   svgElement: SvgElement,
   size,
   color,
-  theme,
   iconUrl,
   className,
   style,
+  children,
 }: IconProps) => {
-  if (SvgElement) {
-    return (
-      <span data-size={size} data-color={color} data-theme={theme} className={cx(styles.icon, className)} style={style}>
-        <Skeleton loading={loading} variant="circle" className={styles.shape}>
-          <span className={styles.shape} />
-          <SvgElement aria-hidden="true" alt-label={altText} className={styles.svg} />
-        </Skeleton>
-      </span>
-    );
-  }
-
-  if (iconUrl) {
-    return (
-      <span data-size={size} data-color={color} data-theme={theme} className={cx(styles.icon, className)} style={style}>
-        <Skeleton loading={loading} variant="circle" className={styles.shape}>
-          <span className={styles.shape} />
-          <img src={iconUrl} alt={altText} className={styles.image} />
-        </Skeleton>
-      </span>
-    );
-  }
-
-  return <span className={cx(styles.icon, className)} />;
+  return (
+    <span data-ui="icon" data-size={size} data-color={color} className={cx(styles.icon, className)} style={style}>
+      <Skeleton loading={loading} variant="circle" className={styles.shape}>
+        <span className={styles.shape} />
+        {SvgElement && <SvgElement aria-hidden="true" alt-label={altText} className={styles.svg} />}
+        {iconUrl && <img src={iconUrl} alt={altText} className={styles.image} />}
+        {children}
+      </Skeleton>
+    </span>
+  );
 };

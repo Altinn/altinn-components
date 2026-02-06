@@ -19,6 +19,7 @@ export interface UseMenuOutput<T, V> {
   menu: UseMenuGroup<T, V>[];
   activeIndex: number;
   setActiveIndex: (activeIndex: number) => void;
+  activeItem: T | undefined;
 }
 
 export interface UseMenuInput<T, V> {
@@ -27,6 +28,7 @@ export interface UseMenuInput<T, V> {
   ref?: React.Ref<HTMLElement>;
   groupByKey?: keyof T;
   keyboardEvents?: boolean;
+  autoActivateFirstItem?: boolean;
   sortGroupBy?: (a: [string, T[]], b: [string, T[]]) => number;
   onSelect?: () => void;
   autoFocus?: boolean;
@@ -37,6 +39,7 @@ export const useMenu = <T, V>({
   groups,
   groupByKey,
   keyboardEvents = false,
+  autoActivateFirstItem = true,
   sortGroupBy,
   onSelect,
   ref,
@@ -63,9 +66,8 @@ export const useMenu = <T, V>({
     }
   });
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-  const menu = useMemo(() => {
-    const grouped = items.reduce(
+  const groupedItems = useMemo(() => {
+    return items.reduce(
       (acc, item) => {
         const key = groupByKey && item[groupByKey] ? (item[groupByKey] as string) : 'ungrouped';
         acc[key] = acc[key] || [];
@@ -74,13 +76,19 @@ export const useMenu = <T, V>({
       },
       {} as Record<string, T[]>,
     );
+  }, [items, groupByKey]);
 
-    const flatItems: T[] = Object.values(grouped)
-      .flat()
-      // @ts-ignore: TODO: Fix Typescript error for disabled item
-      .filter((item) => !item?.disabled);
+  const flatItems: T[] = useMemo(
+    () =>
+      Object.values(groupedItems)
+        .flat()
+        // @ts-ignore: TODO: Fix Typescript error for disabled item
+        .filter((item) => !item?.disabled),
+    [groupedItems],
+  );
 
-    return Object.entries(grouped)
+  const menu = useMemo(() => {
+    return Object.entries(groupedItems)
       .sort(sortGroupBy || (() => 0))
       .map(([key, groupItems]) => ({
         items: groupItems.map((item) => ({
@@ -102,7 +110,7 @@ export const useMenu = <T, V>({
           ...(groups[key] || {}),
         },
       }));
-  }, [items, groupByKey, activeIndex, groups]);
+  }, [groupedItems, flatItems, activeIndex, keyboardEvents, sortGroupBy, groups]);
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
@@ -111,7 +119,7 @@ export const useMenu = <T, V>({
         setActiveIndex((prevIndex) => (prevIndex + 1) % items.length);
       } else if (event.key === 'ArrowUp') {
         event.preventDefault();
-        setActiveIndex((prevIndex) => (prevIndex - 1 + items.length) % items.length);
+        setActiveIndex((prevIndex) => (prevIndex <= 0 ? 0 : prevIndex - 1));
       }
     },
     [items.length],
@@ -119,14 +127,18 @@ export const useMenu = <T, V>({
 
   useEffect(() => {
     if (keyboardEvents) {
-      setActiveIndex(0);
+      if (autoActivateFirstItem) {
+        setActiveIndex(0);
+      } else {
+        setActiveIndex(-1);
+      }
       document.addEventListener('keydown', handleKeyDown);
     }
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [handleKeyDown, keyboardEvents]);
+  }, [handleKeyDown, keyboardEvents, autoActivateFirstItem]);
 
-  return { menu, activeIndex, setActiveIndex };
+  return { menu, activeIndex, setActiveIndex, activeItem: flatItems[activeIndex] };
 };

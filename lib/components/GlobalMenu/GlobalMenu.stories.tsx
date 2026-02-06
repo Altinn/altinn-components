@@ -1,8 +1,6 @@
-import { InformationSquareIcon, LeaveIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { globalMenu, loginMenu, mobileMenu } from '../../../examples';
 import { globalMenuDesignReference } from '../../../examples/layout/globalMenuDesignReference';
-import type { MenuProps } from '../Menu';
 import { GlobalMenu, type GlobalMenuProps } from './GlobalMenu';
 
 const meta = {
@@ -31,42 +29,6 @@ export const Login: Story = {
     menu: loginMenu,
     logoutButton: undefined,
   },
-};
-
-export const InterimMenu = (args: GlobalMenuProps) => {
-  const inboxMenuItem = args?.menu?.items?.find((item) => item.id === 'inbox');
-
-  const items = [
-    {
-      ...inboxMenuItem,
-      title: 'Innboks',
-      badge: {
-        label: 'Beta',
-      },
-    },
-    {
-      id: 'm2',
-      icon: InformationSquareIcon,
-      title: 'Om Innboks Beta',
-    },
-    {
-      id: 'm2',
-      icon: LeaveIcon,
-      title: 'Avslutt beta',
-    },
-  ];
-
-  return (
-    <GlobalMenu
-      {...args}
-      menu={
-        {
-          ...args?.menu,
-          items: items,
-        } as MenuProps
-      }
-    />
-  );
 };
 
 export const DesignReference = () => {

@@ -2,11 +2,18 @@
   padding: 0;
   border: 0;
   display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
   align-self: start;
   column-gap: .75em;
+  row-gap: .75em;
   white-space: nowrap;
   pointer-events: none;
   background-color: transparent;
+}
+
+.wrap {
+  flex-wrap: wrap;
 }
 
 .buttonGroup * {

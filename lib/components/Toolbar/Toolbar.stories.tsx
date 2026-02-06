@@ -1,316 +1,260 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import React, { useEffect, useState } from 'react';
-import {
-  AccountMenu,
-  type AccountMenuProps,
-  DrawerOrDropdown,
-  type FilterState,
-  Menu,
-  type MenuItemProps,
-  type MenuProps,
-  Toolbar,
-  ToolbarBase,
-  ToolbarButton,
-  ToolbarFilterBase,
-} from '..';
-import {
-  accountMenu,
-  accountMenuWithLongList,
-  inboxFilters,
-  inboxStatusFilter,
-  useAccountMenu,
-} from '../../../examples';
-
-import { ArrowDownRightIcon, Buildings2Icon } from '@navikt/aksel-icons';
+import type { Meta } from '@storybook/react-vite';
+import { useState } from 'react';
+import { Switch } from '../Forms';
+import { Toolbar, ToolbarFilter, type ToolbarFilterProps, ToolbarMenu, ToolbarSearch } from './';
+import { inboxFilters } from './example.data';
+import { useInboxFilter, useInboxToolbar } from './example.hooks';
 
 const meta = {
   title: 'Toolbar/Toolbar',
   component: Toolbar,
-  tags: ['autodocs'],
   parameters: {},
-  args: {
-    showResultsLabel: `Vis alle treff`,
-  },
+  decorators: [
+    (Story, _) => {
+      const style = {
+        backgroundColor: 'var(--ds-color-background-tinted)',
+        padding: '.5em',
+      };
+
+      return (
+        <div style={style}>
+          <Story />
+        </div>
+      );
+    },
+  ],
+
+  args: {},
 } satisfies Meta<typeof Toolbar>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  args: {
-    accountMenu: {
-      ...accountMenu,
-      currentAccount: accountMenu.items?.[0],
-    } as AccountMenuProps,
-    filters: inboxFilters,
-  },
+export const Composition = () => {
+  return (
+    <Toolbar>
+      <ToolbarMenu items={[{ title: 'MenuItem 1' }, { title: 'MenuItem 2' }, { title: 'MenuItem 3' }]} label="Menu" />
+      <ToolbarSearch name="search" placeholder="Search" />
+      <ToolbarFilter
+        filterState={{}}
+        filters={[
+          {
+            label: 'Filter 1',
+            name: 'f1',
+            items: [
+              {
+                role: 'radio',
+                name: '1',
+                value: '1',
+                label: 'Filter 1',
+              },
+              {
+                role: 'radio',
+                name: '2',
+                value: '2',
+                label: 'Filter 2',
+              },
+              {
+                role: 'radio',
+                name: '3',
+                value: '3',
+                label: 'Filter 3',
+              },
+            ],
+          },
+          {
+            label: 'Filter 2',
+            name: 'f2',
+            items: [
+              {
+                role: 'checkbox',
+                name: '1',
+                value: '1',
+                label: 'Filter 1',
+              },
+              {
+                role: 'checkbox',
+                name: '2',
+                value: '2',
+                label: 'Filter 2',
+              },
+              {
+                role: 'checkbox',
+                name: '3',
+                value: '3',
+                label: 'Filter 3',
+              },
+            ],
+          },
+        ]}
+      />
+    </Toolbar>
+  );
 };
 
-export const CustomFilterLabel: Story = {
-  args: {
-    ...Default.args,
-    getFilterLabel: (_, value) => {
-      return (Array.isArray(value) && value.length > 1 ? `${value.length} selected` : value) as string;
-    },
-  },
+export const SearchAndFilter = () => {
+  return (
+    <Toolbar>
+      <ToolbarSearch name="search" placeholder="Search" />
+      <ToolbarFilter
+        virtualized
+        filterState={{}}
+        filters={[
+          {
+            label: 'Filter 1',
+            name: 'f1',
+            items: [
+              {
+                role: 'radio',
+                name: 'f1',
+                value: '1',
+                label: 'Filter 1',
+              },
+              {
+                role: 'radio',
+                name: 'f1',
+                value: '2',
+                label: 'Filter 2',
+              },
+              {
+                role: 'radio',
+                name: 'f1',
+                value: '3',
+                label: 'Filter 3',
+              },
+            ],
+          },
+          {
+            label: 'Filter 2',
+            name: 'f2',
+            items: [
+              {
+                role: 'checkbox',
+                name: 'f2',
+                value: '1',
+                label: 'Filter 1',
+              },
+              {
+                role: 'checkbox',
+                name: 'f2',
+                value: '2',
+                label: 'Filter 2',
+              },
+              {
+                role: 'checkbox',
+                name: 'f2',
+                value: '3',
+                label: 'Filter 3',
+              },
+            ],
+          },
+        ]}
+      />
+    </Toolbar>
+  );
 };
 
-export const NoFilters: Story = {
-  args: {
-    ...Default.args,
-    filters: [],
-  },
-};
+export const SearchAndSwitch = () => {
+  const [filterState, setFilterState] = useState<ToolbarFilterProps['filterState']>({
+    fruit: [],
+  });
 
-export const StaticFilters: Story = {
-  args: {
-    filters: Default?.args?.filters?.map((item) => {
-      return {
-        ...item,
-        removable: false,
-      };
-    }),
-  },
-};
-
-export const HiddenFilters: Story = {
-  args: {
-    filters: inboxFilters,
-  },
-};
-
-export const WithAccountMenu: Story = {
-  args: {
-    accountMenu: {
-      ...accountMenu,
-      currentAccount: accountMenu.items?.[0],
-    } as AccountMenuProps,
-    filters: inboxFilters,
-  },
-};
-
-export const WithSearch: Story = {
-  args: {
-    search: {
-      name: 'search',
-      placeholder: 'Søk i listen',
-    },
-    filters: [inboxStatusFilter],
-  },
-};
-
-export const LongListAccounts: Story = {
-  args: {
-    accountMenu: {
-      ...accountMenuWithLongList,
-      currentAccount: accountMenu.items?.[0],
-      menuItemsVirtual: {
-        isVirtualized: true,
-        scrollRefStyles: {
-          maxHeight: 'calc(90vh - 8rem)',
-        },
-      },
-    } as AccountMenuProps,
-  },
-};
-
-export const ControlledStateFilters: Story = {
-  render: (args) => {
-    const [filterState, setFilterState] = React.useState<FilterState>({});
-
-    useEffect(() => {
-      setTimeout(() => {
-        setFilterState({
-          from: ['skatt', 'brreg'],
-        });
-      }, 1);
-    }, []);
-
-    return (
-      <Toolbar
-        {...args}
-        filters={Default.args!.filters}
+  return (
+    <Toolbar>
+      <ToolbarSearch name="search" placeholder="Search" />
+      <ToolbarFilter
         filterState={filterState}
         onFilterStateChange={setFilterState}
-        removeButtonAltText="remove filter"
+        getFilterLabel={(name, filterValues) => {
+          if (!filterValues?.length && name === 'fruit') return 'Select Fruit';
+          if (!filterValues?.length && name === 'plan') return 'Select plans';
+          return filterValues?.join(',');
+        }}
+        filters={[
+          {
+            virtualized: true,
+            id: 'fruit',
+            label: 'Choose a fruit',
+            name: 'fruit',
+            items: [
+              {
+                groupId: 'citrus',
+                role: 'radio',
+                name: 'fruit',
+                value: 'Orange',
+                label: 'Orange',
+              },
+              {
+                groupId: 'other',
+                role: 'radio',
+                name: 'fruit',
+                value: 'Apple',
+                label: 'Apple',
+              },
+              {
+                groupId: 'other',
+                role: 'radio',
+                name: 'fruit',
+                value: 'Kiwi',
+                label: 'Kiwi',
+              },
+            ],
+          },
+          {
+            id: 'plan',
+            label: 'Choose plans',
+            name: 'plan',
+            searchable: true,
+            groupId: 'what-todo',
+            groups: {
+              'what-todo': {
+                title: 'What to do?',
+              },
+              other: {
+                title: 'Other',
+              },
+            },
+            items: [
+              {
+                groupId: 'what-todo',
+                role: 'checkbox',
+                name: 'plan',
+                value: 'Fishing',
+                label: 'Fishing',
+                searchWords: ['Fishing', 'guttastemning'],
+              },
+              {
+                groupId: 'what-todo',
+                role: 'checkbox',
+                name: 'plan',
+                value: 'Working',
+                label: 'Working',
+                searchWords: ['working', 'nine-to-five'],
+              },
+              {
+                groupId: 'other',
+                role: 'checkbox',
+                name: 'plan',
+                value: 'Sleeping',
+                label: 'Sleeping',
+                searchWords: ['Sleeping', 'zzz'],
+              },
+            ],
+          },
+        ]}
       />
-    );
-  },
-};
-
-export const ControlledStateAccount = () => {
-  const accountMenu = useAccountMenu({
-    accountId: 'company',
-  });
-
-  const [filterState, setFilterState] = React.useState<FilterState>({
-    from: ['skatt', 'brreg'],
-  });
-
-  return (
-    <Toolbar
-      accountMenu={accountMenu as AccountMenuProps}
-      filters={Default.args!.filters}
-      filterState={filterState}
-      onFilterStateChange={setFilterState}
-      removeButtonAltText="remove"
-    />
+      <Switch label="Switch" size="sm" />
+    </Toolbar>
   );
 };
 
-export const CombinedRadioCheckboxFilter = () => {
-  const accountMenu = useAccountMenu({
-    accountId: 'company',
-  });
-
-  const [filterState, setFilterState] = React.useState<FilterState>({});
-
-  return (
-    <Toolbar
-      accountMenu={accountMenu as AccountMenuProps}
-      filters={[
-        {
-          name: 'custom',
-          label: 'Custom',
-          options: [
-            {
-              groupId: '1',
-              type: 'radio',
-              label: 'Radio 1',
-              value: 'radio-1',
-            },
-            {
-              groupId: '1',
-              type: 'radio',
-              label: 'Radio 2',
-              value: 'radio-2',
-            },
-            {
-              groupId: '1',
-              type: 'radio',
-              label: 'Radio 3',
-              value: 'radio-3',
-            },
-            {
-              groupId: '2',
-              name: 'show-hidden',
-              type: 'checkbox',
-              label: 'Show hidden',
-              value: 'hidden',
-            },
-            {
-              groupId: '2',
-              name: 'show-deleted',
-              type: 'checkbox',
-              label: 'Show deleted',
-              value: 'deleted',
-            },
-          ],
-          optionType: 'radio',
-        },
-      ]}
-      filterState={filterState}
-      onFilterStateChange={setFilterState}
-      removeButtonAltText="remove"
-    />
-  );
+export const AccountMenuAndFilters = () => {
+  const { menus } = useInboxToolbar();
+  const removableFilter = useInboxFilter({ filters: inboxFilters?.map((item) => ({ ...item, removable: true })) });
+  return <Toolbar menus={menus} filter={removableFilter} />;
 };
 
-interface AccountMenuItemExtendedProps extends MenuItemProps {
-  id: string;
-  type: 'person' | 'company' | 'group';
-  name: string;
-  parentId?: string;
-  uniqueId?: string;
-}
-
-export const SelectSubaccount = () => {
-  const accountMenu = useAccountMenu({
-    accountId: 'diaspora',
-  });
-
-  const [primaryId, setPrimaryId] = useState('diaspora');
-  const [secondaryId, setSecondaryId] = useState('diaspora');
-  const [expandedId, setExpandedId] = useState<string | null>(null);
-
-  const onToggle = (id: string) => {
-    setExpandedId(expandedId === id ? null : id);
-  };
-
-  const currentAccount = accountMenu?.items?.find((item) => item.id === primaryId) || accountMenu?.items?.[0];
-
-  const items = accountMenu?.items as AccountMenuItemExtendedProps[];
-
-  const primaryItems = items
-    ?.filter((item) => !item.parentId)
-    ?.map((item) => ({
-      ...item,
-      selected: item.id === currentAccount?.id,
-    }));
-
-  const secondaryItems =
-    currentAccount &&
-    items
-      ?.filter((item) => item.id.startsWith(currentAccount.id))
-      ?.map((item) => {
-        return {
-          ...item,
-          selected: item.id === secondaryId,
-          icon: item.id === currentAccount.id ? Buildings2Icon : ArrowDownRightIcon,
-          // For demo purposes only, should use a proper translation function
-          title: item.id === currentAccount.id ? 'Hovedenhet' : 'Underenhet',
-          description: 'Org nr: ' + item.uniqueId,
-          groupId: null,
-          controls: undefined,
-        };
-      });
-
-  const secondaryItem = secondaryItems?.find((item) => item.selected);
-
-  return (
-    <ToolbarBase>
-      <ToolbarFilterBase expanded={expandedId === 'primary'}>
-        <ToolbarButton type="switch" onToggle={() => onToggle('primary')} active={!!currentAccount}>
-          {currentAccount?.name}
-        </ToolbarButton>
-        <DrawerOrDropdown open={expandedId === 'primary'} drawerTitle="Endre konto" onClose={() => setExpandedId(null)}>
-          <AccountMenu
-            {...accountMenu}
-            items={primaryItems as AccountMenuProps['items']}
-            onSelectAccount={(id: string) => {
-              setPrimaryId(id);
-              setSecondaryId(id);
-              setExpandedId(null);
-            }}
-          />
-        </DrawerOrDropdown>
-      </ToolbarFilterBase>
-      {secondaryItems?.length > 1 && (
-        <ToolbarFilterBase expanded={expandedId === 'secondary'}>
-          <ToolbarButton type="switch" onToggle={() => onToggle('secondary')} active={!!currentAccount}>
-            {secondaryItem?.title}
-          </ToolbarButton>
-          <DrawerOrDropdown
-            open={expandedId === 'secondary'}
-            drawerTitle="Endre konto"
-            onClose={() => setExpandedId(null)}
-          >
-            <Menu
-              items={
-                secondaryItems?.map((item) => {
-                  return {
-                    ...item,
-                    onClick: () => {
-                      setSecondaryId(item.id);
-                      setExpandedId(null);
-                    },
-                  };
-                }) as unknown as MenuProps['items']
-              }
-            />
-          </DrawerOrDropdown>
-        </ToolbarFilterBase>
-      )}
-    </ToolbarBase>
-  );
+export const AccountMenuAndSearch = () => {
+  const { menus, search } = useInboxToolbar();
+  const removableFilter = useInboxFilter({ filters: inboxFilters?.map((item) => ({ ...item, removable: true })) });
+  return <Toolbar menus={menus} search={{ ...search, collapsible: true }} filter={removableFilter} />;
 };

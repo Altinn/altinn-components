@@ -1,40 +1,65 @@
-import { DrawerOrDropdown, useRootContext } from '../';
-import { Menu, type MenuItemGroups, type MenuItemProps, type MenuSearchProps } from '../Menu';
-import { ToolbarButton } from './ToolbarButton';
-import { ToolbarFilterBase } from './ToolbarFilterBase';
+import { ChevronUpDownIcon } from '@navikt/aksel-icons';
+import { Button } from '../Button';
+import { Dropdown } from '../Dropdown';
+import { Menu, type MenuItemProps, type MenuProps } from '../Menu/';
+import { useDropdownMenuController } from '../Menu/useDropdownMenuController.tsx';
 
-export interface ToolbarMenuProps {
-  label: string;
-  value: string | number;
+export interface ToolbarMenuProps extends MenuProps {
   title?: string;
-  items: MenuItemProps[];
-  groups?: MenuItemGroups;
-  search?: MenuSearchProps;
-  id?: string;
-  className?: string;
+  label?: string;
+  onSelectId?: (id: string) => void;
 }
 
 export const ToolbarMenu = ({
-  label,
-  value,
-  groups,
-  search,
-  items,
-  id = 'toolbar-menu',
-  title = 'Endre aktør',
+  title = 'Title',
+  label = 'Label',
+  items = [],
+  onSelectId,
+  ...props
 }: ToolbarMenuProps) => {
-  const { currentId, toggleId, closeAll } = useRootContext();
-  const onToggle = () => toggleId(id);
-  const expanded = currentId === id;
+  const ctrl = useDropdownMenuController({ id: 'toolbar-menu', returnFocusOnClose: true });
+  const a11yMode = props.searchable ? 'combobox' : 'menu';
+  const selectableItems = items.map((item: MenuItemProps) => {
+    return {
+      ...item,
+      onClick: () => {
+        onSelectId?.(item?.id ?? '');
+        ctrl.setOpen(false);
+      },
+    };
+  });
 
   return (
-    <ToolbarFilterBase expanded={expanded}>
-      <ToolbarButton type="switch" onToggle={onToggle} active={!!value}>
-        {label}
-      </ToolbarButton>
-      <DrawerOrDropdown open={expanded} drawerTitle={title} onClose={closeAll}>
-        <Menu groups={groups} search={search} items={items} />
-      </DrawerOrDropdown>
-    </ToolbarFilterBase>
+    <Dropdown
+      id="toolbar-menu"
+      variant="drawer-dropdown"
+      title={title}
+      trigger={
+        <Button
+          variant="primary"
+          onClick={ctrl.toggleMenu}
+          aria-expanded={ctrl.open}
+          aria-haspopup="menu"
+          aria-controls={ctrl.open ? ctrl.menuId : undefined}
+          ref={ctrl.triggerRef as React.Ref<HTMLButtonElement>}
+        >
+          <span>{label}</span>
+          <ChevronUpDownIcon aria-hidden="true" focusable="false" />
+        </Button>
+      }
+      open={ctrl.open}
+      onClose={() => ctrl.setOpen(false)}
+      {...(props?.searchable ? {} : ctrl.dropdownA11yProps)}
+    >
+      <Menu
+        {...props}
+        items={selectableItems}
+        keyboardEvents={ctrl.open}
+        a11yMode={a11yMode}
+        open={ctrl.open}
+        scrollToTopOnOpen={props.virtualized}
+        {...(a11yMode === 'combobox' ? { id: ctrl.menuId } : ctrl.menuA11yProps)}
+      />
+    </Dropdown>
   );
 };

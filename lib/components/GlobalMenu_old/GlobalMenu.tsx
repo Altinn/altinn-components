@@ -70,7 +70,11 @@ export const GlobalMenu_old = ({
         </GlobalMenuHeader>
         <MenuListItem as="div" role="separator" />
         {accountMenu && (
-          <AccountMenu {...accountMenu} currentAccount={currentAccount} onSelectAccount={handleSelectAccount} />
+          <AccountMenu
+            {...accountMenu}
+            currentAccount={currentAccount as AccountMenuProps['currentAccount']}
+            onSelectAccount={handleSelectAccount}
+          />
         )}
       </GlobalMenuBase>
     );

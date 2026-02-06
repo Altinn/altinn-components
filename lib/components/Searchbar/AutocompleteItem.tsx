@@ -2,10 +2,10 @@ import { Badge, type BadgeProps, MenuItem, type MenuItemProps, type QueryItemPro
 
 import styles from './autocompleteItem.module.css';
 
-export type AutocompleteItemType = 'scope' | 'suggest' | 'dialog' | 'bookmark' | 'information';
+export type AutocompleteItemType = 'scope' | 'suggest' | 'dialog' | 'bookmark' | 'information' | 'menuitem';
 
 export interface AutocompleteItemProps extends MenuItemProps {
-  type?: AutocompleteItemType;
+  role?: AutocompleteItemType;
   /** Badge */
   badge?: BadgeProps;
   /** Query params */
@@ -13,7 +13,6 @@ export interface AutocompleteItemProps extends MenuItemProps {
 }
 
 export const AutocompleteItem = ({
-  interactive = true,
   role = 'menuitem',
   params,
   badge,
@@ -27,11 +26,10 @@ export const AutocompleteItem = ({
       <MenuItem
         {...props}
         role={role}
-        interactive={interactive}
         label={<QueryLabel params={params} />}
         controls={badge && <Badge {...badge} />}
-        linkIcon={interactive}
         size={size || 'md'}
+        linkIcon
       />
     );
   }
@@ -42,25 +40,15 @@ export const AutocompleteItem = ({
       <MenuItem
         {...props}
         role={role}
-        interactive={interactive}
         label={label}
         className={styles.item}
         controls={badge && <Badge {...badge} />}
-        linkIcon={interactive}
         size={size || 'md'}
+        linkIcon
       />
     );
   }
 
   /** generic menu item, aka a  */
-  return (
-    <MenuItem
-      {...props}
-      role={role}
-      interactive={interactive}
-      controls={badge && <Badge {...badge} />}
-      linkIcon={interactive}
-      size={size}
-    />
-  );
+  return <MenuItem {...props} role={role} controls={badge && <Badge {...badge} />} size={size} linkIcon />;
 };

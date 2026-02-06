@@ -2,11 +2,11 @@ import { type ChangeEvent, useState } from 'react';
 import type { FilterState, ToolbarProps } from '../../lib';
 
 export interface UseToolbarProps {
-  filters: ToolbarProps['filters'];
-  search: ToolbarProps['search'];
+  filter?: ToolbarProps['filter'];
+  search?: ToolbarProps['search'];
 }
 
-export const useToolbar = ({ filters, search }: UseToolbarProps): ToolbarProps => {
+export const useToolbar = ({ filter, search }: UseToolbarProps): ToolbarProps => {
   const [filterState, setFilterState] = useState<FilterState>({});
 
   const [q, setQ] = useState<string>('');
@@ -26,9 +26,11 @@ export const useToolbar = ({ filters, search }: UseToolbarProps): ToolbarProps =
       onChange,
       onClear,
     },
-    filters,
-    filterState,
-    onFilterStateChange: setFilterState,
-    removeButtonAltText: 'remove',
+    filter: filter && {
+      ...filter,
+      filterState,
+      onFilterStateChange: setFilterState,
+      removeLabel: 'remove',
+    },
   };
 };

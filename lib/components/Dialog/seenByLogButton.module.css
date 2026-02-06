@@ -1,0 +1,18 @@
+.button {
+  padding: 0;
+  min-height: auto;
+  display: flex;
+  align-items: center;
+}
+
+.button:hover {
+  background-color: transparent;
+}
+
+.button:hover .label {
+  text-decoration: underline;
+}
+
+.avatarGroup {
+  font-size: 1.5em;
+}

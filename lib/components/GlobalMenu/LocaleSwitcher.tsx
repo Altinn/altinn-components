@@ -2,8 +2,8 @@
 import { CheckmarkIcon } from '@navikt/aksel-icons';
 import { useMemo, useRef } from 'react';
 import { useEnterKey } from '../../hooks/useEnterKey.ts';
-import { type MenuItemProps, MenuItems, type MenuOptionProps } from '../Menu/index.ts';
-import { useRootContext } from '../RootProvider/index.ts';
+import { type MenuItemProps, MenuItems, type MenuOptionProps } from '../Menu';
+import { useRootContext } from '../RootProvider';
 
 export interface LocaleSwitcherProps {
   title?: string;
@@ -16,22 +16,30 @@ export const LocaleSwitcher = ({ title = 'Select language', options, onSelect }:
   const { currentId, closeAll } = useRootContext();
   const expanded = currentId === 'locale';
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  const selectedValue = useMemo(() => {
+    const checkedOption = options.find((option) => option.checked);
+    return checkedOption?.value ?? options[0]?.value;
+  }, [options]);
+
   const itemsWithToggle = useMemo(() => {
     return options.map((item) => {
+      const isChecked = item.value === selectedValue;
       return {
         ...item,
         id: String(item.value),
-        tabIndex: -1,
+        tabIndex: 0,
         groupId: 'locales',
-        icon: item.checked ? CheckmarkIcon : ((<span aria-hidden="true" />) as MenuItemProps['icon']),
+        role: 'radio',
+        name: 'locale',
+        checked: isChecked,
+        icon: isChecked ? CheckmarkIcon : ((<span aria-hidden="true" />) as MenuItemProps['icon']),
         onClick: () => {
           onSelect?.(String(item.value));
           closeAll();
         },
       };
     });
-  }, [options, onSelect]);
+  }, [options, onSelect, closeAll, selectedValue]);
 
   const group = {
     locales: { title: title || 'Språk/language' },
@@ -54,8 +62,8 @@ export const LocaleSwitcher = ({ title = 'Select language', options, onSelect }:
   });
 
   return (
-    <div ref={ref} data-testid="locale-switcher">
-      <MenuItems groups={group} items={itemsWithToggle} keyboardEvents />
+    <div ref={ref} data-testid="locale-switcher" role="radiogroup">
+      <MenuItems groups={group} items={itemsWithToggle} keyboardEvents={false} />
     </div>
   );
 };

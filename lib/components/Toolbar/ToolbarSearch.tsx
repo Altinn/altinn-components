@@ -1,15 +1,14 @@
-import { SearchField, type SearchFieldProps } from '../';
+import { SearchField, type SearchFieldProps } from '../Forms';
 
 export interface ToolbarSearchProps extends SearchFieldProps {
-  placeholder?: string;
-  name: string;
-  value?: string;
+  collapsible?: boolean;
 }
 
 export const ToolbarSearch = ({
   value,
   name,
   placeholder = 'Search',
+  collapsible,
   clearButtonAltText = 'Clear search',
   onChange,
   onClear,
@@ -23,6 +22,10 @@ export const ToolbarSearch = ({
       clearButtonAltText={clearButtonAltText}
       onChange={onChange}
       onClear={onClear}
+      collapsible={collapsible}
+      autoComplete="off"
+      autoCapitalize="off"
+      type="search"
     />
   );
 };

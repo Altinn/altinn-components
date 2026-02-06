@@ -1,96 +1,80 @@
-'use client';
 import { MenuElipsisHorizontalIcon } from '@navikt/aksel-icons';
-import cx from 'classnames';
-import { useMemo, useRef } from 'react';
-import { Button, DropdownBase, type DropdownPlacement, type MenuItemProps } from '../';
-import { type MenuItemGroups, MenuItems } from '../';
-import { useClickOutside } from '../../hooks';
-import { useEnterKey } from '../../hooks/useEnterKey.ts';
+import { Button } from '../Button';
+import { Dropdown, type DropdownProps } from '../Dropdown';
+import { Menu, type MenuProps } from '../Menu';
+import { useDropdownMenuController } from '../Menu/useDropdownMenuController.tsx';
 import { useRootContext } from '../RootProvider';
-import styles from './contextMenu.module.css';
+import { Tooltip } from '../Tooltip';
 
-export interface ContextMenuProps {
+export interface ContextMenuProps extends MenuProps {
   id?: string;
-  ariaLabel?: string;
-  items: MenuItemProps[];
-  placement?: DropdownPlacement;
-  groups?: MenuItemGroups;
-  className?: string;
+  title?: string;
+  placement?: DropdownProps['placement'];
+  'aria-label'?: string;
 }
 
 export const ContextMenu = ({
-  id = 'context-menu',
-  ariaLabel,
-  placement = 'right',
   groups = {},
-  className,
   items,
+  title,
+  id = 'context-menu',
+  placement = 'right',
+  'aria-label': ariaLabel,
 }: ContextMenuProps) => {
-  const { currentId, toggleId, closeAll } = useRootContext();
-  const ref = useRef<HTMLDivElement>(null);
-  const dataTestId = 'context-menu-' + id;
-  const onToggle = () => toggleId(id);
-  const expanded = currentId === id;
+  const ctrl = useDropdownMenuController({ id, returnFocusOnClose: true });
+  const { languageCode } = useRootContext();
 
-  useClickOutside(ref, () => {
-    if (expanded) {
-      toggleId(id);
-    }
-  });
-
-  const itemsWithToggle = useMemo(() => {
-    return items.map((item) => {
-      return {
-        ...item,
-        tabIndex: -1,
-        onClick: () => {
-          item.onClick?.();
-          closeAll();
-        },
-      };
-    });
-  }, [items, closeAll]);
-
-  useEnterKey((e) => {
-    if (expanded) {
-      e.preventDefault();
-      const activeItem = ref.current?.querySelector('[data-active="true"]') as HTMLElement | null;
-      if (activeItem) {
-        const isLink = activeItem.tagName === 'A' && activeItem.hasAttribute('href');
-        if (!isLink) {
-          activeItem.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-        } else {
-          activeItem.click();
-        }
-      }
-      closeAll();
-    }
-  });
-
-  const onBlurCapture = (e: React.FocusEvent<HTMLButtonElement>) => {
-    const contextMenuParent = e?.relatedTarget?.closest(`[data-testid="${dataTestId}"]`);
-    if (!contextMenuParent) {
-      closeAll();
-    }
+  const ContextMenuButton = () => {
+    return (
+      <Tooltip content={title || getTexts(languageCode).title} hidden={ctrl.open}>
+        <Button
+          ref={ctrl.triggerRef as React.Ref<HTMLButtonElement>}
+          icon
+          variant="ghost"
+          rounded
+          size="xs"
+          aria-label={ariaLabel}
+          onClick={() => ctrl.toggleMenu()}
+          aria-haspopup="menu"
+          aria-expanded={ctrl.open}
+          aria-controls={ctrl.open ? ctrl.menuId : undefined}
+        >
+          <MenuElipsisHorizontalIcon aria-hidden="true" />
+        </Button>
+      </Tooltip>
+    );
   };
 
   return (
-    <div className={cx(styles.toggle, className)} ref={ref} data-testid={dataTestId}>
-      <Button
-        size="xs"
-        rounded
-        variant="ghost"
-        onClick={onToggle}
-        aria-label={ariaLabel || `Open ${id}`}
-        onBlurCapture={onBlurCapture}
-      >
-        <MenuElipsisHorizontalIcon style={{ fontSize: '1.5em' }} />
-      </Button>
-      {expanded && (
-        <DropdownBase placement={placement} open={expanded}>
-          <MenuItems groups={groups} items={itemsWithToggle} keyboardEvents />
-        </DropdownBase>
-      )}
-    </div>
+    <Dropdown
+      backdrop={false}
+      trigger={<ContextMenuButton />}
+      open={ctrl.open}
+      onClose={() => ctrl.setOpen(false)}
+      id={ctrl.menuId}
+      placement={placement}
+      {...ctrl.dropdownA11yProps}
+    >
+      <Menu groups={groups} items={items} maxLevels={1} keyboardEvents={ctrl.open} {...ctrl.menuA11yProps} />
+    </Dropdown>
   );
+};
+
+// TODO: Move to a common texts files when i18next is added
+// This is only a temporary solution for providing texts in different languages in a very simple POC
+const getTexts = (languageCode: string | undefined) => {
+  switch (languageCode) {
+    case 'nb':
+      return {
+        title: 'Åpne meny',
+      };
+    case 'nn':
+      return {
+        title: 'Opne meny',
+      };
+    default:
+      return {
+        title: 'Open menu',
+      };
+  }
 };

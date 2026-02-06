@@ -18,15 +18,26 @@ export interface AttachmentLinkProps {
   metadata?: string;
   /** Badge */
   badge?: BadgeProps;
+  /** Target attribute specifies where to open the linked document **/
+  target?: '_blank' | '_self' | '_top' | '_parent';
 }
 
-export const AttachmentLink = ({ icon, iconAltText, href, label, metadata, badge, disabled }: AttachmentLinkProps) => {
-  const applicableIcon = icon || disabled ? FileXMarkIcon : FileIcon;
+export const AttachmentLink = ({
+  icon,
+  iconAltText,
+  href,
+  label,
+  metadata,
+  badge,
+  disabled,
+  target = '_blank',
+}: AttachmentLinkProps) => {
+  const applicableIcon = disabled ? FileXMarkIcon : icon || FileIcon;
 
   return (
     <span className={styles.item}>
       <span>
-        <a href={href} aria-disabled={disabled} className={styles.link} target="_blank" rel="noreferrer">
+        <a href={href} aria-disabled={disabled} className={styles.link} target={target} rel="noreferrer">
           <Icon svgElement={applicableIcon} altText={iconAltText} className={styles.icon} />
           <span className={styles.label}>{label}</span>
         </a>

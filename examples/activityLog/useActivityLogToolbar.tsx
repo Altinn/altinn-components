@@ -1,17 +1,20 @@
 import { type ChangeEvent, useState } from 'react';
-import type { FilterState, ToolbarFilterProps, ToolbarProps } from '../../lib';
+import type { FilterState, ToolbarProps } from '../../lib';
 
-export const activityLogTypeFilter: ToolbarFilterProps = {
+export const activityLogTypeFilter = {
   name: 'type',
   label: 'Alle aktører',
-  optionType: 'radio',
-  options: [
+  items: [
     {
+      name: 'type',
+      role: 'radio',
       groupId: '1',
       label: 'Virksomheter',
       value: 'company',
     },
     {
+      name: 'type',
+      role: 'radio',
       groupId: '1',
       label: 'Personer',
       value: 'person',
@@ -39,13 +42,13 @@ export const useActivityLogToolbar = (): ToolbarProps => {
     onClear,
   };
 
-  const filters = [activityLogTypeFilter];
-
   return {
     search,
-    filters,
-    filterState,
-    onFilterStateChange: setFilterState,
-    removeButtonAltText: 'remove',
+    filter: {
+      filters: [activityLogTypeFilter],
+      filterState,
+      onFilterStateChange: setFilterState,
+      removeLabel: 'remove',
+    },
   };
 };

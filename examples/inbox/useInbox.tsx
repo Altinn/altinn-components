@@ -57,8 +57,7 @@ export interface UseInboxProps extends LayoutProps {
 
 function getAccountIdFromUrl(): string {
   const parsedUrl = new URL(window.location.href);
-  const accountId = parsedUrl.searchParams.get('accountId') ?? '';
-  return accountId;
+  return parsedUrl.searchParams.get('accountId') ?? '';
 }
 
 function getAccountIdUrl(accountId: string): string {
@@ -76,8 +75,7 @@ export const useInbox = ({
   const accountId = getAccountIdFromUrl() || defaultAccountId;
 
   const onSelectAccount = (id: string) => {
-    const accountUrl = getAccountIdUrl(id);
-    window.location.href = accountUrl;
+    window.location.href = getAccountIdUrl(id);
   };
 
   const layout = useInboxLayout({ accountId, pageId });
@@ -119,8 +117,7 @@ export const useInbox = ({
 
   const onRead = (id: string) => {
     setUnreadIds((prevState) => {
-      const prev = prevState.filter((prevId) => prevId !== id);
-      return prev;
+      return prevState.filter((prevId) => prevId !== id);
     });
   };
 
@@ -325,16 +322,14 @@ export const useInbox = ({
   // create toolbar
 
   const toolbar = useInboxToolbar({ accountId, items: listItems });
-
   const accountMenu = toolbar?.accountMenu;
   const defaultAccount = toolbar?.accountMenu?.items[0];
-  const currentAccount = toolbar?.accountMenu?.currentAccount;
+  const currentAccount = toolbar?.accountMenu?.items[0];
 
   // duplicate items if grouped view
 
-  const groupView = currentAccount?.type !== 'person' && currentAccount?.type !== 'company';
-
-  const groupIds = toolbar?.filterState?.groupIds || [accountId];
+  const groupView = currentAccount?.role !== 'person' && currentAccount?.role !== 'company';
+  const groupIds = toolbar?.filter?.filterState?.groupIds || [accountId];
 
   const itemsByGroupId: { [key: string]: DialogListItemProps } = {};
 
@@ -347,7 +342,7 @@ export const useInbox = ({
       itemsByGroupId[itemId] = {
         ...item,
         recipient: recipient?.icon as AvatarProps,
-        color: recipient?.type as DialogListItemProps['color'],
+        color: recipient?.role as DialogListItemProps['color'],
         id: itemId,
         grouped: groupIds.length > 1, // groupView && true,
       };
@@ -414,10 +409,10 @@ export const useInbox = ({
   //  set group view stuff
 
   const color =
-    ((currentAccount?.id === 'user' || currentAccount?.type === 'group') && 'person') ||
-    currentAccount?.type ||
+    ((currentAccount?.id === 'user' || currentAccount?.role === 'group') && 'person') ||
+    currentAccount?.role ||
     'neutral';
-  const theme = currentAccount?.id === 'user' || currentAccount?.type === 'group' ? 'neutral' : 'subtle';
+  const theme = currentAccount?.id === 'user' || currentAccount?.role === 'group' ? 'neutral' : 'subtle';
 
   return {
     floatingDropdown,
@@ -445,8 +440,8 @@ export const useInbox = ({
           ...layout?.header?.globalMenu,
           accountMenu: {
             ...accountMenu,
-            isVirtualized: true,
-            items: accountMenu?.items?.filter((item) => item.type !== 'group'),
+            virtualized: true,
+            items: accountMenu?.items?.filter((item) => item.role !== 'group'),
           },
           onSelectAccount,
         },
@@ -455,15 +450,7 @@ export const useInbox = ({
       },
     } as LayoutProps,
     search,
-    toolbar: {
-      ...toolbar,
-      accountMenu: {
-        ...accountMenu,
-        isVirtualized: true,
-        onSelectAccount,
-        currentAccount,
-      } as ToolbarProps['accountMenu'],
-    },
+    toolbar,
     results: {
       groups: list.groups,
       items,
