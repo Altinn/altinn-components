@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.55.0](https://github.com/Altinn/altinn-components/compare/v0.54.3...v0.55.0) (2026-02-06)
+
+
+### Features
+
+* Update menu system and improrvements to accessibility ([#930](https://github.com/Altinn/altinn-components/issues/930)) ([eba6a71](https://github.com/Altinn/altinn-components/commit/eba6a71a76e6dfc6d673b1d9b988c11c4a84dc39))
+
 ## [0.54.3](https://github.com/Altinn/altinn-components/compare/v0.54.2...v0.54.3) (2026-01-26)
 
 
