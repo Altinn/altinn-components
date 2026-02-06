@@ -37,7 +37,18 @@ jobs:
 
       - name: Unit tests
         run: pnpm test
-        
+
+      - name: Screenshot tests
+        run: pnpm test:screenshots
+
+      - name: Upload screenshot diffs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshot-diffs
+          path: .screenshots-temp/diff/
+          if-no-files-found: ignore
+
       - name: Build
         run: pnpm build
         

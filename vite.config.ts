@@ -54,7 +54,7 @@ export default () => {
         input: Object.fromEntries(
           glob
             .sync('lib/**/*.{ts,tsx}', {
-              ignore: ['lib/**/*.d.ts'],
+              ignore: ['lib/**/*.d.ts', 'lib/test-utils/**'],
             })
             .filter((file) => !file.match(/\.stories\.tsx?$/))
             .map((file) => {
