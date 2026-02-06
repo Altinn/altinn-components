@@ -1,10 +1,14 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
+import storycapPlugin from '@storycap-testrun/browser/vitest-plugin';
 import { playwright } from '@vitest/browser-playwright';
 import { defineConfig } from 'vitest/config';
 
 const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
+const screenshotMode = process.env.SCREENSHOT_MODE; // 'generate' | 'test' | undefined
+const outputDir = screenshotMode === 'generate' ? '__screenshots__' : '.screenshots-temp/actual';
+const setupFile = screenshotMode ? '.storybook/vitest.setup.screenshots.ts' : '.storybook/vitest.setup.ts';
 
 export default defineConfig({
   test: {
@@ -27,6 +31,16 @@ export default defineConfig({
           storybookTest({
             configDir: path.join(dirname, '.storybook'),
           }),
+          ...(screenshotMode
+            ? [
+                storycapPlugin({
+                  output: {
+                    dir: path.join(dirname, outputDir),
+                    file: path.join('[file]', '[name].png'),
+                  },
+                }),
+              ]
+            : []),
         ],
         test: {
           environment: 'node',
@@ -35,9 +49,9 @@ export default defineConfig({
             enabled: true,
             headless: true,
             provider: playwright({}),
-            instances: [{ browser: 'firefox' }],
+            instances: [{ browser: 'chromium' }],
           },
-          setupFiles: ['.storybook/vitest.setup.ts'],
+          setupFiles: [setupFile],
         },
       },
     ],

@@ -169,3 +169,18 @@ pnpm test-storybook --watch 'MyComponent.stories.tsx'
 
 - To skip the test add 'skip-test' string into the tags array for the test you want to exclude. That option is defined in the test-runner.ts file.
   Currently all the tests under stories/Demo and docs are excluded as the accessibility test is not needed there.
+
+## Screenshot Testing
+
+Screenshot tests catch visual regressions automatically by comparing component screenshots to baseline images.
+
+```bash
+# Run all screenshot tests
+pnpm test:screenshots
+
+# Test specific component
+pnpm test:screenshots:filter "Button"
+
+# Update baselines after intentional changes
+pnpm test:screenshots-update
+```

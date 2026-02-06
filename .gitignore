@@ -16,3 +16,6 @@ dist/
 .DS_Store
 storybook-static/
 *storybook.log
+
+# Screenshot testing
+.screenshots-temp/
