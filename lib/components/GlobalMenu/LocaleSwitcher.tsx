@@ -1,5 +1,5 @@
 'use client';
-import { CheckmarkIcon } from '@navikt/aksel-icons';
+import { ArrowUndoIcon, CheckmarkIcon } from '@navikt/aksel-icons';
 import { useMemo, useRef } from 'react';
 import { useEnterKey } from '../../hooks/useEnterKey.ts';
 import { type MenuItemProps, MenuItems, type MenuOptionProps } from '../Menu';
@@ -9,9 +9,17 @@ export interface LocaleSwitcherProps {
   title?: string;
   options: MenuOptionProps[];
   onSelect?: (value: string) => void;
+  backLabel?: string;
+  onToggle?: () => void;
 }
 
-export const LocaleSwitcher = ({ title = 'Select language', options, onSelect }: LocaleSwitcherProps) => {
+export const LocaleSwitcher = ({
+  title = 'Select language',
+  options,
+  onSelect,
+  onToggle,
+  backLabel,
+}: LocaleSwitcherProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const { currentId, closeAll } = useRootContext();
   const expanded = currentId === 'locale';
@@ -63,7 +71,15 @@ export const LocaleSwitcher = ({ title = 'Select language', options, onSelect }:
 
   return (
     <div ref={ref} data-testid="locale-switcher" role="radiogroup">
-      <MenuItems groups={group} items={itemsWithToggle} keyboardEvents={false} />
+      <MenuItems
+        variant="default"
+        groups={group}
+        items={[
+          { onClick: onToggle, label: backLabel, as: 'button', icon: ArrowUndoIcon, id: 'back' },
+          ...itemsWithToggle,
+        ]}
+        keyboardEvents={false}
+      />
     </div>
   );
 };
