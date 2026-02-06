@@ -15,10 +15,14 @@ export const footer: FooterProps = {
       },
       {
         id: '3',
-        title: 'Personvern',
+        title: 'Driftsmeldinger',
       },
       {
         id: '4',
+        title: 'Personvern',
+      },
+      {
+        id: '5',
         title: 'Tilgjengelighet',
       },
     ],
