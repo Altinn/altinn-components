@@ -15,6 +15,55 @@ export interface ComparisonResult {
 }
 
 /**
+ * Helper function to create error results with consistent formatting.
+ */
+function createErrorResult(error: unknown, context?: string): ComparisonResult {
+  const errorMessage = error instanceof Error ? error.message : String(error);
+  return {
+    match: false,
+    mismatchedPixels: 0,
+    totalPixels: 0,
+    percentage: 100,
+    error: context ? `${context}: ${errorMessage}` : errorMessage,
+  };
+}
+
+/**
+ * Helper function to create a baseline screenshot from the actual screenshot.
+ */
+async function createBaselineFromActual(actualPath: string, baselinePath: string): Promise<ComparisonResult> {
+  try {
+    // Read actual screenshot
+    const actualBuffer = await fs.readFile(actualPath);
+
+    // Create baseline directory structure if needed
+    await fs.mkdir(path.dirname(baselinePath), { recursive: true });
+
+    // Write actual screenshot as baseline
+    await fs.writeFile(baselinePath, actualBuffer);
+
+    return {
+      match: true,
+      mismatchedPixels: 0,
+      totalPixels: 0,
+      percentage: 0,
+      baselineCreated: true,
+    };
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+      return {
+        match: false,
+        mismatchedPixels: 0,
+        totalPixels: 0,
+        percentage: 100,
+        error: `Actual screenshot not found at ${actualPath}. This is likely a test infrastructure issue.`,
+      };
+    }
+    return createErrorResult(error, 'Failed to create baseline');
+  }
+}
+
+/**
  * Compare two PNG screenshots pixel-by-pixel and generate a diff image if they don't match.
  *
  * @param actualPath - Path to the actual screenshot captured during testing
@@ -29,55 +78,20 @@ export async function compareScreenshots(
   diffPath: string,
   threshold = 0.1,
 ): Promise<ComparisonResult> {
+  // Check if baseline exists
+  const baselineExists = await fs
+    .access(baselinePath)
+    .then(() => true)
+    .catch(() => false);
+
+  // If baseline doesn't exist, create it from actual
+  if (!baselineExists) {
+    return await createBaselineFromActual(actualPath, baselinePath);
+  }
+
   try {
-    // Check if baseline exists
-    try {
-      await fs.access(baselinePath);
-    } catch {
-      // No baseline exists - auto-generate it
-      try {
-        // Verify actual screenshot exists
-        await fs.access(actualPath);
-
-        // Create baseline directory structure if needed
-        await fs.mkdir(path.dirname(baselinePath), { recursive: true });
-
-        // Copy actual screenshot to baseline location
-        await fs.copyFile(actualPath, baselinePath);
-
-        return {
-          match: true,
-          mismatchedPixels: 0,
-          totalPixels: 0,
-          percentage: 0,
-          baselineCreated: true,
-        };
-      } catch (error) {
-        return {
-          match: false,
-          mismatchedPixels: 0,
-          totalPixels: 0,
-          percentage: 100,
-          error: `Failed to create baseline: ${error instanceof Error ? error.message : String(error)}`,
-        };
-      }
-    }
-
-    // Check if actual screenshot exists
-    try {
-      await fs.access(actualPath);
-    } catch {
-      return {
-        match: false,
-        mismatchedPixels: 0,
-        totalPixels: 0,
-        percentage: 100,
-        error: `Actual screenshot not found at ${actualPath}. This is likely a test infrastructure issue.`,
-      };
-    }
-
-    // Read both images
-    const [actualBuffer, baselineBuffer] = await Promise.all([fs.readFile(actualPath), fs.readFile(baselinePath)]);
+    // Read both files in parallel
+    const [baselineBuffer, actualBuffer] = await Promise.all([fs.readFile(baselinePath), fs.readFile(actualPath)]);
 
     const actualImg = PNG.sync.read(actualBuffer);
     const baselineImg = PNG.sync.read(baselineBuffer);
@@ -118,13 +132,7 @@ export async function compareScreenshots(
       percentage,
     };
   } catch (error) {
-    return {
-      match: false,
-      mismatchedPixels: 0,
-      totalPixels: 0,
-      percentage: 100,
-      error: `Screenshot comparison failed: ${error instanceof Error ? error.message : String(error)}`,
-    };
+    return createErrorResult(error, 'Screenshot comparison failed');
   }
 }
 
