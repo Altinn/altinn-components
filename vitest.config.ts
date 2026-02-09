@@ -6,8 +6,7 @@ import { playwright } from '@vitest/browser-playwright';
 import { defineConfig } from 'vitest/config';
 
 const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
-const screenshotMode = process.env.SCREENSHOT_MODE; // 'generate' | 'test' | undefined
-const outputDir = screenshotMode === 'generate' ? '__screenshots__' : '.screenshots-temp/actual';
+const screenshotMode = !!process.env.SCREENSHOT_MODE; // Enable screenshot capture and comparison
 const setupFile = screenshotMode ? '.storybook/vitest.setup.screenshots.ts' : '.storybook/vitest.setup.ts';
 
 export default defineConfig({
@@ -35,8 +34,20 @@ export default defineConfig({
             ? [
                 storycapPlugin({
                   output: {
-                    dir: path.join(dirname, outputDir),
-                    file: path.join('[file]', '[name].png'),
+                    // Screenshots are captured to .screenshots-temp/actual/ for comparison
+                    // If baseline doesn't exist, screenshot-compare.ts auto-creates it in component directory
+                    dir: path.join(dirname, '.screenshots-temp/actual'),
+                    file: (context) => {
+                      // Generate path: lib/components/Button/__screenshots__/Button.stories.tsx/Default.png
+                      const storyFileDir = path.dirname(context.file);
+                      const storyFileName = path.basename(context.file);
+                      return path.join(
+                        storyFileDir,
+                        '__screenshots__',
+                        storyFileName,
+                        `${context.name}.png`
+                      );
+                    },
                   },
                 }),
               ]

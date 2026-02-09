@@ -29,17 +29,13 @@ function createErrorResult(error: unknown, context?: string): ComparisonResult {
 }
 
 /**
- * Helper function to create a baseline screenshot from the actual screenshot.
+ * Auto-creates a baseline screenshot from the actual screenshot when baseline doesn't exist.
+ * This allows tests to pass on first run and creates the reference image for future comparisons.
  */
 async function createBaselineFromActual(actualPath: string, baselinePath: string): Promise<ComparisonResult> {
   try {
-    // Read actual screenshot
     const actualBuffer = await fs.readFile(actualPath);
-
-    // Create baseline directory structure if needed
     await fs.mkdir(path.dirname(baselinePath), { recursive: true });
-
-    // Write actual screenshot as baseline
     await fs.writeFile(baselinePath, actualBuffer);
 
     return {
@@ -64,13 +60,15 @@ async function createBaselineFromActual(actualPath: string, baselinePath: string
 }
 
 /**
- * Compare two PNG screenshots pixel-by-pixel and generate a diff image if they don't match.
+ * Compare two PNG screenshots pixel-by-pixel.
+ * - If baseline doesn't exist: auto-creates it from actual (first run)
+ * - If baseline exists: compares pixel-by-pixel and generates diff image on mismatch
  *
- * @param actualPath - Path to the actual screenshot captured during testing
- * @param baselinePath - Path to the baseline screenshot (committed to git)
- * @param diffPath - Path where the diff image should be saved (only on mismatch)
- * @param threshold - Matching threshold (0-1), defaults to 0.1
- * @returns Comparison result with match status and pixel difference information
+ * @param actualPath - Screenshot captured during test run (.screenshots-temp/actual/)
+ * @param baselinePath - Reference screenshot (lib/components/.../\_\_screenshots\_\_/)
+ * @param diffPath - Where to save diff image on mismatch (.screenshots-temp/diff/)
+ * @param threshold - Pixel matching threshold (0-1), defaults to 0.1
+ * @returns Comparison result with match status and pixel difference details
  */
 export async function compareScreenshots(
   actualPath: string,
@@ -78,13 +76,11 @@ export async function compareScreenshots(
   diffPath: string,
   threshold = 0.1,
 ): Promise<ComparisonResult> {
-  // Check if baseline exists
   const baselineExists = await fs
     .access(baselinePath)
     .then(() => true)
     .catch(() => false);
 
-  // If baseline doesn't exist, create it from actual
   if (!baselineExists) {
     return await createBaselineFromActual(actualPath, baselinePath);
   }
@@ -159,10 +155,13 @@ interface ComparisonFailure {
 }
 
 /**
- * Compare all screenshots in the temporary directory against the baseline.
- * Returns the number of passed tests and details about any failures.
+ * Compare all captured screenshots against baselines.
+ * - Baselines are stored in component-local \_\_screenshots\_\_ directories
+ * - If baseline doesn't exist, it's auto-created from the actual screenshot
+ * - Diff images are saved to .screenshots-temp/diff/ for failed comparisons
  *
- * @param filterPattern - Optional pattern to filter which screenshots to compare (e.g., "Button" or "VirtualizedMenu")
+ * @param filterPattern - Optional pattern to filter screenshots (e.g., "Button")
+ * @returns Summary of passed tests, failures, and newly created baselines
  */
 export async function compareAllScreenshots(filterPattern?: string): Promise<{
   passed: number;
@@ -171,19 +170,16 @@ export async function compareAllScreenshots(filterPattern?: string): Promise<{
 }> {
   const __dirname = path.dirname(fileURLToPath(import.meta.url));
   const rootDir = path.join(__dirname, '..', '..');
-  const baselineDir = path.join(rootDir, '__screenshots__');
   const tempDir = path.join(rootDir, '.screenshots-temp');
   const actualDir = path.join(tempDir, 'actual');
 
-  // Check if actual screenshots were generated
   try {
     await fs.access(actualDir);
   } catch {
-    console.error('No actual screenshots found! This likely means screenshot capture failed.');
+    console.error('No screenshots captured! Make sure SCREENSHOT_MODE=test is set when running tests.');
     process.exit(1);
   }
 
-  // Find all actual screenshots
   let actualScreenshots = await glob('**/*.png', {
     cwd: actualDir,
     absolute: false,
@@ -213,7 +209,7 @@ export async function compareAllScreenshots(filterPattern?: string): Promise<{
   // Compare each screenshot
   for (const relativePath of actualScreenshots) {
     const actualPath = path.join(actualDir, relativePath);
-    const baselinePath = path.join(baselineDir, relativePath);
+    const baselinePath = path.join(rootDir, relativePath);
     const diffPath = path.join(tempDir, 'diff', relativePath);
 
     const result = await compareScreenshots(actualPath, baselinePath, diffPath);
@@ -232,7 +228,7 @@ export async function compareAllScreenshots(filterPattern?: string): Promise<{
         totalPixels: result.totalPixels,
         error: result.error,
       });
-      console.log(`  ✗ test failed - ${relativePath}`);
+      console.log(`  test failed - ${relativePath}`);
       if (result.error) {
         console.log(`     Error: ${result.error}`);
       } else {
@@ -247,7 +243,7 @@ export async function compareAllScreenshots(filterPattern?: string): Promise<{
 
   console.log('');
 
-  // Clean up actual screenshots (we only need diffs for failed tests)
+  // Clean up actual screenshots (only keep diffs for debugging failures)
   await fs.rm(actualDir, { recursive: true, force: true });
 
   return {

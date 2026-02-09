@@ -20,9 +20,23 @@ echo ""
 # Clean up old screenshots from previous runs
 rm -rf .screenshots-temp/actual
 
-# Run filtered tests
+# Run filtered tests by file path (searches in lib/components and lib/stories)
+# This allows filtering by component name (e.g., "Button", "Snackbar")
 echo "Capturing screenshots..."
-SCREENSHOT_MODE=test pnpm vitest --run --project=storybook -t "$FILTER" --reporter=dot
+
+# Try to find matching story files in common locations
+COMPONENT_PATH="lib/components/$FILTER"
+STORIES_PATH="lib/stories/$FILTER"
+
+# Check which paths exist and run tests for them
+if [ -d "$COMPONENT_PATH" ]; then
+  SCREENSHOT_MODE=test pnpm vitest --run --project=storybook "$COMPONENT_PATH" --reporter=dot
+elif [ -d "$STORIES_PATH" ]; then
+  SCREENSHOT_MODE=test pnpm vitest --run --project=storybook "$STORIES_PATH" --reporter=dot
+else
+  # Fallback: search for any path containing the filter string
+  SCREENSHOT_MODE=test pnpm vitest --run --project=storybook -t "$FILTER" --reporter=dot
+fi
 
 # Check if tests ran successfully
 if [ $? -ne 0 ]; then
