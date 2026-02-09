@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.55.4](https://github.com/Altinn/altinn-components/compare/v0.55.3...v0.55.4) (2026-02-09)
+
+
+### Bug Fixes
+
+* **FilterProps:** add missing fields: description, title and make label optional ([#952](https://github.com/Altinn/altinn-components/issues/952)) ([946124a](https://github.com/Altinn/altinn-components/commit/946124af0407d3ebc0db6776a7d828b76aaee0e4))
+* **props:** add title to toolbarmenu props ([#953](https://github.com/Altinn/altinn-components/issues/953)) ([ebd720f](https://github.com/Altinn/altinn-components/commit/ebd720ff850820d8a8cef385ff442befd8f21b7d))
+
 ## [0.55.3](https://github.com/Altinn/altinn-components/compare/v0.55.2...v0.55.3) (2026-02-09)
 
 
