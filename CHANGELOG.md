@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.55.3](https://github.com/Altinn/altinn-components/compare/v0.55.2...v0.55.3) (2026-02-09)
+
+
+### Bug Fixes
+
+* Hiding favorite icon for preselected party ([#950](https://github.com/Altinn/altinn-components/issues/950)) ([9501a29](https://github.com/Altinn/altinn-components/commit/9501a29c8d45db1a8beebc1544572b455c39d0a1))
+
 ## [0.55.2](https://github.com/Altinn/altinn-components/compare/v0.55.1...v0.55.2) (2026-02-09)
 
 
