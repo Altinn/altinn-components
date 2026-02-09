@@ -15,7 +15,9 @@ export interface FilterProps extends MenuProps {
   groupId?: string;
   name: string;
   icon?: MenuItemProps['icon'];
-  label: string;
+  label?: string;
+  title?: MenuItemProps['title'];
+  description?: MenuItemProps['description'];
   removable?: boolean;
   groups?: FilterGroups;
   items: MenuItemProps[];
