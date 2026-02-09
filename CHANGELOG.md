@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.55.2](https://github.com/Altinn/altinn-components/compare/v0.55.1...v0.55.2) (2026-02-09)
+
+
+### Bug Fixes
+
+* search field click through icon ([#948](https://github.com/Altinn/altinn-components/issues/948)) ([4b722b1](https://github.com/Altinn/altinn-components/commit/4b722b17b4dc95553c4539a1dd3e3ff786d27bec))
+
 ## [0.55.1](https://github.com/Altinn/altinn-components/compare/v0.55.0...v0.55.1) (2026-02-06)
 
 
