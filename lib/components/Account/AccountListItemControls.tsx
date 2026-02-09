@@ -10,6 +10,7 @@ export interface AccountListItemControlsProps {
   isCurrentEndUser?: boolean; // Optional, used to indicate if this account is the current end user
   isDeleted?: boolean;
   favourite?: boolean; // Optional, used for marking favourite accounts
+  isPreselectedParty?: boolean;
   favouriteLabel?: string; // Optional, label for the favourite icon
   onToggleFavourite?: (id: string) => void; // Optional, callback for toggling favourite status
   accountLabel?: string; // Optional, used for displaying a badge
@@ -24,6 +25,7 @@ export const AccountListItemControls = ({
   badge,
   isCurrentEndUser = false,
   favourite = false,
+  isPreselectedParty = false,
   favouriteLabel,
   onToggleFavourite,
   contextMenu,
@@ -43,7 +45,7 @@ export const AccountListItemControls = ({
   return (
     <ListItemControls>
       {badge && renderBadge()}
-      {!isCurrentEndUser && type !== 'group' && (
+      {!isCurrentEndUser && !isPreselectedParty && type !== 'group' && (
         <Button
           size="xs"
           variant="ghost"

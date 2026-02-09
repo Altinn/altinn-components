@@ -17,6 +17,7 @@ export interface AccountListItemProps extends ListItemProps, AccountListItemCont
   isCurrentEndUser?: boolean; // Indicates if this account is the current end user
   isDeleted?: boolean; // Indicates that the account has been deleted
   isParent?: boolean; // Indicates that the account is a parent account
+  isPreselectedParty?: boolean; // Hides favorite icon for preselected party
   contextMenu?: ContextMenuProps;
   label?: string;
 }
@@ -37,6 +38,7 @@ export const AccountListItem = ({
   favouriteLabel,
   onToggleFavourite,
   contextMenu,
+  isPreselectedParty,
   children,
   interactive,
   disabled,
@@ -63,6 +65,7 @@ export const AccountListItem = ({
             favourite={favourite}
             favouriteLabel={favouriteLabel}
             badge={badge}
+            isPreselectedParty={isPreselectedParty}
             isCurrentEndUser={isCurrentEndUser}
             isDeleted={isDeleted}
             onToggleFavourite={onToggleFavourite}
