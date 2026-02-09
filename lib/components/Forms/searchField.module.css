@@ -18,6 +18,10 @@
   pointer-events: none;
 }
 
+.icon > * {
+  pointer-events: none;
+}
+
 .icon > svg {
   font-size: 1.25em;
   width: 1.25em;
