@@ -16,6 +16,7 @@ export interface ToolbarFilterMenuProps extends FilterProps {
   onFilterChange?: (type: string, name: string, value: string) => void;
   removeLabel?: string;
   submitLabel?: string;
+  title?: string;
 }
 
 export const ToolbarFilterMenu = ({
@@ -38,6 +39,7 @@ export const ToolbarFilterMenu = ({
   submitLabel,
   search,
   virtualized,
+  title,
 }: ToolbarFilterMenuProps) => {
   const prevOpenRef = useRef(open);
   const ctrl = useDropdownMenuController({ id: 'toolbar-filter-menu' });
@@ -72,6 +74,7 @@ export const ToolbarFilterMenu = ({
     return (
       <Dropdown
         submitLabel={submitLabel}
+        title={title}
         variant="drawer-dropdown"
         trigger={
           <ToolbarFilterButton
@@ -113,6 +116,7 @@ export const ToolbarFilterMenu = ({
 
   return (
     <Dropdown
+      title={title}
       variant="drawer-dropdown"
       submitLabel={submitLabel}
       trigger={
