@@ -184,3 +184,21 @@ pnpm test:screenshots:filter "Button"
 # Update baselines after intentional changes
 pnpm test:screenshots-update
 ```
+
+
+## Skipping Screenshot Testing
+
+Some cases are not possible to screenshot tests. An example is virtualized list where we are generating randomized content every render. In such cases the screenshot: { skip: true } parameter should be added in the component/demo story. 
+#### Example: VirtualizedMenu.stories.tsx
+```bash
+export const Virtualized = () => {
+  const { items, groups } = useMemo(() => useRandomMenuItems(10000), []);
+  return <Menu virtualized searchable items={items as MenuItemProps[]} groups={groups} size="md" />;
+};
+Virtualized.parameters = {
+  //can't screenshot tests with useRandomMenuItems
+  screenshot: { skip: true },
+};
+```
+
+
