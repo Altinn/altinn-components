@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.55.5](https://github.com/Altinn/altinn-components/compare/v0.55.4...v0.55.5) (2026-02-10)
+
+
+### Bug Fixes
+
+* **accountselector:** hover state not working since it was div ([#955](https://github.com/Altinn/altinn-components/issues/955)) ([d7f730a](https://github.com/Altinn/altinn-components/commit/d7f730a5fd3f2ece681a0a363f4bddcc4dfc3020))
+
 ## [0.55.4](https://github.com/Altinn/altinn-components/compare/v0.55.3...v0.55.4) (2026-02-09)
 
 
