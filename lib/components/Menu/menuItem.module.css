@@ -44,19 +44,27 @@
   --dsc-icon-color: var(--ds-color-base-contrast-default);
 }
 
-div.item[data-variant="default"] {
+div.item[aria-disabled="true"] {
   --dsc-item-focus-outline: none;
   --dsc-item-hover-pointer: default;
   --dsc-item-background--hover: var(--ds-color-background-default);
   --dsc-item-background--active: var(--ds-color-background-default);
 }
 
+/* Todo: Re-add div later
+div.item[data-variant="default"] {
+  --dsc-item-focus-outline: none;
+  --dsc-item-hover-pointer: default;
+  --dsc-item-background--hover: var(--ds-color-background-default);
+  --dsc-item-background--active: var(--ds-color-background-default);
+}
 div.item[data-variant="tinted"] {
   --dsc-item-focus-outline: none;
   --dsc-item-hover-pointer: default;
   --dsc-item-background--hover: var(--ds-color-surface-default);
   --dsc-item-background--active: var(--ds-color-surface-default);
 }
+ */
 
 .item:hover,
 .item[data-active="true"] {

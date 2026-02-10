@@ -26,6 +26,7 @@ export const ToolbarFilterAddMenu = ({
   const prevOpenRef = useRef(open);
   const lastCloseHadNestedOpenRef = useRef(false);
   const addItems = items?.map((filter) => ({
+    linkIcon: true,
     ...filter,
     onClick: () => onAdd?.(filter?.name ?? ''),
   }));

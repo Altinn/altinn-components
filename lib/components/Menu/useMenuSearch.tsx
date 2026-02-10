@@ -127,6 +127,7 @@ export const useMenuSearch = ({
     () => [
       {
         id: 'emptySearch',
+        'aria-disabled': true,
         title: texts.noResults,
         groupId: 'emptySearch',
         icon: InformationSquareIcon,
