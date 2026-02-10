@@ -25,6 +25,8 @@ export interface MenuItemsProps {
   open?: boolean;
   scrollToTopOnOpen?: boolean;
   autoActivateFirstItem?: boolean;
+  autoFocusList?: boolean;
+  resetActiveSignal?: number;
   announceNoResults?: boolean;
   search?: MenuListSearchProps;
   items: MenuItemProps[];
@@ -47,6 +49,7 @@ export const MenuItems = ({
   open,
   scrollToTopOnOpen = false,
   autoActivateFirstItem = true,
+  autoFocusList = true,
   announceNoResults = false,
   search,
   items,
@@ -106,11 +109,12 @@ export const MenuItems = ({
     }
   }, [open, scrollToTopOnOpen]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     const wasOpen = prevFocusOpenRef.current;
     prevFocusOpenRef.current = open;
 
-    if (!keyboardEvents || search) {
+    if (!keyboardEvents || search || !autoFocusList) {
       return;
     }
 

@@ -34,7 +34,7 @@ export const SelectDateFilter = ({
       ...filterState,
       fromDate: formData.fromDate ? [formData.fromDate] : undefined,
       toDate: formData.toDate ? [formData.toDate] : undefined,
-      [name]: ['custom'],
+      [name]: ['fromAndToDate'],
     });
   };
 

@@ -12,6 +12,8 @@ export const ToolbarSearch = ({
   clearButtonAltText = 'Clear search',
   onChange,
   onClear,
+  menu,
+  minLength,
 }: ToolbarSearchProps) => {
   return (
     <SearchField
@@ -26,6 +28,8 @@ export const ToolbarSearch = ({
       autoComplete="off"
       autoCapitalize="off"
       type="search"
+      minLength={minLength}
+      menu={menu}
     />
   );
 };

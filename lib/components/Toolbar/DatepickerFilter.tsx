@@ -1,9 +1,8 @@
 import { ArrowUndoIcon } from '@navikt/aksel-icons';
-import { useEffect, useState } from 'react';
 import { Datepicker } from '../Datepicker';
 import { Field, Fieldset, Input, Label } from '../Forms';
 import { MenuItem, MenuList, MenuListDivider, MenuListItem } from '../Menu';
-import { formatDateRange } from './formatDateRange';
+import { useRootContext } from '../RootProvider';
 
 export interface DatepickerValue {
   fromDate?: string;
@@ -11,29 +10,19 @@ export interface DatepickerValue {
 }
 
 export interface DatepickerFilterProps {
-  backLabel?: string;
-  fromLabel?: string;
-  toLabel?: string;
-  selectFromDateLabel?: string;
-  selectToDateLabel?: string;
   formData: DatepickerValue;
   onChange?: (value: DatepickerValue) => void;
   onSubmit?: (value: DatepickerValue) => void;
 }
 
 export const DatepickerFilter = ({
-  backLabel = 'Tilbake',
-  fromLabel = 'From date',
-  selectFromDateLabel = 'Velg fra dato ...',
-  toLabel = 'To date',
-  selectToDateLabel = 'Velg til dato ...',
   formData = { fromDate: '', toDate: '' },
   onChange,
   onSubmit,
 }: DatepickerFilterProps) => {
   const { fromDate, toDate } = formData;
-
-  const [formattedDate, setFormattedDate] = useState<string>('');
+  const { languageCode } = useRootContext();
+  const { backLabel, fromLabel, toLabel } = getTexts(languageCode);
 
   const onFromDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange?.({
@@ -86,21 +75,14 @@ export const DatepickerFilter = ({
     }
   };
 
-  useEffect(() => {
-    const formattedDate = fromDate && toDate ? formatDateRange(fromDate, toDate) : '';
-    setFormattedDate(formattedDate);
-  }, [fromDate, toDate]);
-
   const submit = () => {
     onSubmit?.({ fromDate, toDate });
   };
 
-  const description = formattedDate ? formattedDate : fromDate ? selectToDateLabel : selectFromDateLabel;
-
   return (
     <MenuList>
       <MenuListItem>
-        <MenuItem variant="default" icon={ArrowUndoIcon} title={backLabel} description={description} onClick={submit} />
+        <MenuItem variant="default" icon={ArrowUndoIcon} title={backLabel} onClick={submit} />
       </MenuListItem>
       <MenuListDivider />
       <MenuListItem>
@@ -121,4 +103,29 @@ export const DatepickerFilter = ({
       </MenuListItem>
     </MenuList>
   );
+};
+
+// TODO: Move to a common texts files when i18next is added
+// This is only a temporary solution for providing texts in different languages in a very simple POC
+const getTexts = (languageCode: string | undefined) => {
+  switch (languageCode) {
+    case 'nn':
+      return {
+        backLabel: 'Tilbake',
+        fromLabel: 'Frå dato',
+        toLabel: 'Til dato',
+      };
+    case 'en':
+      return {
+        backLabel: 'Back',
+        fromLabel: 'From date',
+        toLabel: 'To date',
+      };
+    default:
+      return {
+        backLabel: 'Tilbake',
+        fromLabel: 'Fra dato',
+        toLabel: 'Til dato',
+      };
+  }
 };
