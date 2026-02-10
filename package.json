@@ -29,6 +29,7 @@
     "test-storybook-watch": "vitest --project=storybook",
     "test:screenshots": "rm -rf .screenshots-temp/actual && SCREENSHOT_MODE=test vitest --run --project=storybook && node --import tsx lib/test-utils/screenshot-compare.ts",
     "test:screenshots:filter": "bash scripts/test-screenshots-filter.sh",
+    "test:screenshots:regenerate-all": "node --import tsx scripts/regenerate-screenshots.ts",
     "ci:test-storybook": "pnpm dlx concurrently -k -s first \"pnpm storybook\" \"pnpm dlx wait-on http://localhost:6006 && pnpm test-storybook\"",
     "install:browsers": "pnpm exec playwright install",
     "build-tokens": "node --import tsx scripts/build-tokens.ts && pnpm biome check ./lib/css/tokens/design-tokens-build/. --write"
