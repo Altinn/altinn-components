@@ -15,6 +15,7 @@ export * from './TextField';
 export * from './TextareaField';
 export * from './SelectField';
 export * from './SearchField';
+export * from './TextFieldDropdown';
 
 export * from './FieldsetBase';
 
