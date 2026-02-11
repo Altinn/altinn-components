@@ -122,6 +122,7 @@ export const useFilter = ({ filters = [], filterState, onFilterStateChange }: Us
     })),
     hiddenFilters: hiddenFilters?.map((item) => ({
       ...item,
+      as: undefined /** Avoid using custom filter component as a menuItem */,
       id: getFilterId(item.name, item.id),
     })),
     onFilterChange,

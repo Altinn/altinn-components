@@ -27,6 +27,20 @@ export const Datepicker = () => {
   );
 };
 
+export const RemovableDatepicker = () => {
+  const inboxFilter = useInboxFilter({
+    filters: [{ ...timeFilter, as: SelectDateFilter, removable: true }],
+    defaultFilterState: {},
+  });
+  return (
+    <div>
+      <ToolbarFilter {...inboxFilter} />
+      <hr />
+      {JSON.stringify(inboxFilter.filterState)}
+    </div>
+  );
+};
+
 export const CustomName = () => {
   const items = timeFilter.items.map((item) => {
     return {
