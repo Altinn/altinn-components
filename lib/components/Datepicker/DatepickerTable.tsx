@@ -19,7 +19,7 @@ export const DatepickerTable = ({
         <tr>
           {weekdays.map((weekday) => (
             <th key={weekday} className={styles.weekday}>
-              {weekday.substring(0, 2)}
+              {weekday.substring(0, 3)}
             </th>
           ))}
         </tr>

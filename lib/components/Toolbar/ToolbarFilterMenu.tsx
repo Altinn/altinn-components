@@ -1,11 +1,12 @@
 import { type ElementType, useEffect, useRef } from 'react';
+import type { ButtonProps } from '../Button';
 import { Dropdown } from '../Dropdown';
 import { Menu } from '../Menu';
 import { useDropdownMenuController } from '../Menu/useDropdownMenuController.tsx';
 import { ToolbarFilterButton } from './ToolbarFilterButton.tsx';
 import type { FilterProps, FilterState } from './useFilter.tsx';
 
-export interface ToolbarFilterMenuProps extends FilterProps {
+export interface ToolbarFilterMenuProps extends Omit<FilterProps, 'variant'> {
   as?: ElementType;
   open: boolean;
   onToggle: () => void;
@@ -17,6 +18,7 @@ export interface ToolbarFilterMenuProps extends FilterProps {
   removeLabel?: string;
   submitLabel?: string;
   title?: string;
+  variant?: ButtonProps['variant'];
 }
 
 export const ToolbarFilterMenu = ({
@@ -40,6 +42,7 @@ export const ToolbarFilterMenu = ({
   search,
   virtualized,
   title,
+  variant: customVariant,
 }: ToolbarFilterMenuProps) => {
   const prevOpenRef = useRef(open);
   const ctrl = useDropdownMenuController({ id: 'toolbar-filter-menu' });
@@ -67,6 +70,8 @@ export const ToolbarFilterMenu = ({
   }));
 
   const filterValue = items?.filter((option) => option.checked)?.map((option) => option.value || 'true');
+  const isActive = filterValue.length > 0 || filterState?.[name]?.length;
+  const variant = customVariant || isActive ? 'tinted' : 'outline';
   const FilterMenu = as || Menu;
   const a11yMode = searchable ? 'combobox' : 'menu';
 
@@ -82,7 +87,7 @@ export const ToolbarFilterMenu = ({
             onClick={onToggle}
             onRemove={onRemove}
             removable
-            value={filterValue?.length > 0 ? filterValue : undefined}
+            variant={variant}
             removeLabel={removeLabel}
             open={open}
             aria-expanded={open}
@@ -120,7 +125,7 @@ export const ToolbarFilterMenu = ({
       variant="drawer-dropdown"
       submitLabel={submitLabel}
       trigger={
-        <ToolbarFilterButton name={name} onClick={onToggle} value={filterValue?.length > 0 ? filterValue : undefined}>
+        <ToolbarFilterButton name={name} onClick={onToggle} variant={variant}>
           {label}
         </ToolbarFilterButton>
       }

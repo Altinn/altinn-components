@@ -32,6 +32,7 @@ export const RemovableDatepicker = () => {
     filters: [{ ...timeFilter, as: SelectDateFilter, removable: true }],
     defaultFilterState: {},
   });
+
   return (
     <div>
       <ToolbarFilter {...inboxFilter} />

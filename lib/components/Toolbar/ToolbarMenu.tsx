@@ -4,7 +4,7 @@ import { Dropdown } from '../Dropdown';
 import { Menu, type MenuItemProps, type MenuProps } from '../Menu/';
 import { useDropdownMenuController } from '../Menu/useDropdownMenuController.tsx';
 
-export interface ToolbarMenuProps extends MenuProps {
+export interface ToolbarMenuProps extends Omit<MenuProps, 'variant'> {
   title?: string;
   label?: string;
   onSelectId?: (id: string) => void;

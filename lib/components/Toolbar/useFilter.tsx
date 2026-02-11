@@ -10,7 +10,7 @@ export interface FilterGroupProps extends MenuGroupProps {
 
 export type FilterGroups = Record<string, FilterGroupProps>;
 
-export interface FilterProps extends MenuProps {
+export interface FilterProps extends Omit<MenuProps, 'variant'> {
   id?: string;
   groupId?: string;
   name: string;

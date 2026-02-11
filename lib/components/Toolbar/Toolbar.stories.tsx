@@ -1,5 +1,6 @@
 import type { Meta } from '@storybook/react-vite';
 import { useState } from 'react';
+import { QueryLabel } from '..';
 import { Switch } from '../Forms';
 import { Toolbar, ToolbarFilter, type ToolbarFilterProps, ToolbarMenu, ToolbarSearch } from './';
 import { inboxFilters } from './example.data';
@@ -257,4 +258,87 @@ export const AccountMenuAndSearch = () => {
   const { menus, search } = useInboxToolbar();
   const removableFilter = useInboxFilter({ filters: inboxFilters?.map((item) => ({ ...item, removable: true })) });
   return <Toolbar menus={menus} search={{ ...search, collapsible: true }} filter={removableFilter} />;
+};
+
+export const AccountMenuAndSearchAutocomplete = () => {
+  const { menus } = useInboxToolbar();
+  const removableFilter = useInboxFilter({ filters: inboxFilters?.map((item) => ({ ...item, removable: true })) });
+  const [q, setQ] = useState('');
+
+  const suggestions = [
+    {
+      groupId: '1',
+      title: 'Nytt søk',
+      label: <QueryLabel params={[{ type: 'search', value: q, label: q }]} />,
+      linkIcon: true,
+      onClick: () => {
+        console.info('Search for new query:');
+      },
+    },
+    {
+      groupId: '1',
+      title: 'Søk + filter',
+      label: (
+        <QueryLabel
+          params={[
+            { type: 'search', value: q, label: q },
+            { type: 'filter', value: 'Test', label: '2 filter' },
+          ]}
+        />
+      ),
+      linkIcon: true,
+      onClick: () => {
+        console.info('Search for new query + filters');
+      },
+    },
+  ];
+
+  const menu = {
+    open: q.length >= 1,
+    onClose: () => {
+      console.log('Close');
+    },
+    groups: {
+      '1': {
+        title: '',
+      },
+      '2': {
+        title: 'Lagrede søk',
+      },
+    },
+    items: [
+      ...suggestions,
+      {
+        groupId: '2',
+        title: 'Lagret søk 1',
+        label: (
+          <QueryLabel
+            params={[
+              { type: 'search', value: q, label: 'Skattemelding' },
+              { type: 'filter', value: 'Test', label: '2 filter' },
+            ]}
+          />
+        ),
+        linkIcon: true,
+      },
+      {
+        groupId: '2',
+        'aria-label': 'Lagret søk 2',
+        label: <QueryLabel params={[{ type: 'filter', value: 'Test', label: 'Skatteetaten' }]} />,
+        linkIcon: true,
+      },
+    ],
+  };
+
+  const search = {
+    value: q,
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => setQ(e.target.value),
+    onClear: () => setQ(''),
+    placeholder: 'Søk',
+    collapsible: true,
+    minLength: 3,
+    menu,
+  };
+
+  return <Toolbar menus={menus} search={search} filter={removableFilter} />;
 };

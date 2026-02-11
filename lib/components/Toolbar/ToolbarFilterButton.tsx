@@ -1,11 +1,10 @@
 import { ChevronUpDownIcon, XMarkIcon } from '@navikt/aksel-icons';
 import type { ReactNode } from 'react';
-import { Button, ButtonGroup, ButtonGroupDivider } from '../Button';
+import { Button, ButtonGroup, ButtonGroupDivider, type ButtonProps } from '../Button';
 import { Tooltip } from '../Tooltip';
 
 interface ToolbarFilterButtonProps {
   name?: string;
-  value?: (string | number)[] | undefined;
   onClick?: () => void;
   onRemove?: () => void;
   removable?: boolean;
@@ -14,21 +13,20 @@ interface ToolbarFilterButtonProps {
   open?: boolean;
   menuId?: string;
   ref?: React.Ref<HTMLButtonElement>;
+  variant?: ButtonProps['variant'];
 }
 
 export function ToolbarFilterButton({
   name,
-  value,
   onClick,
   removable,
   removeLabel = 'Fjern filter',
   onRemove,
   children,
   open,
+  variant,
   ref,
 }: ToolbarFilterButtonProps) {
-  const variant = value ? 'tinted' : 'outline';
-
   if (removable) {
     return (
       <ButtonGroup variant={variant} connected>

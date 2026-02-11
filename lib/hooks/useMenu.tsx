@@ -51,10 +51,14 @@ export const useMenu = <T, V>({
       const currentRef = ref && 'current' in ref ? ref.current : null;
       const activeItem = currentRef?.querySelector('[data-active="true"]') as HTMLElement | null;
 
-      e.stopPropagation();
-      e.preventDefault();
+      if (document.activeElement?.getAttribute('data-action') === 'clear-input') {
+        return;
+      }
 
       if (activeItem) {
+        e.stopPropagation();
+        e.preventDefault();
+
         const isLink = activeItem.tagName === 'A' && activeItem.hasAttribute('href');
         if (!isLink) {
           activeItem.dispatchEvent(new MouseEvent('click', { bubbles: true }));

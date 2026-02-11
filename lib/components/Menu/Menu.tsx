@@ -26,6 +26,7 @@ export const Menu = ({
   a11yMode = 'menu',
   open,
   scrollToTopOnOpen,
+  autoFocusList,
   id,
 }: MenuProps) => {
   const autoSearch = useMenuSearch({ ...search, items, groups });
@@ -54,6 +55,7 @@ export const Menu = ({
         open={open}
         scrollToTopOnOpen={scrollToTopOnOpen}
         autoActivateFirstItem={autoActivateFirstItem}
+        autoFocusList={autoFocusList}
       />
     );
   }
@@ -76,6 +78,7 @@ export const Menu = ({
       open={open}
       scrollToTopOnOpen={scrollToTopOnOpen}
       autoActivateFirstItem={autoActivateFirstItem}
+      autoFocusList={autoFocusList}
     />
   );
 };
