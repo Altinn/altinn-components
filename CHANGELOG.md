@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.55.6](https://github.com/Altinn/altinn-components/compare/v0.55.5...v0.55.6) (2026-02-11)
+
+
+### Bug Fixes
+
+* removable custom filter ([#958](https://github.com/Altinn/altinn-components/issues/958)) ([fddae02](https://github.com/Altinn/altinn-components/commit/fddae023672081ef96e29338624c4a88f33681eb))
+
 ## [0.55.5](https://github.com/Altinn/altinn-components/compare/v0.55.4...v0.55.5) (2026-02-10)
 
 
