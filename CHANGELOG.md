@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.56.0](https://github.com/Altinn/altinn-components/compare/v0.55.6...v0.56.0) (2026-02-11)
+
+
+### Features
+
+* Add TextFieldDropdown component and stories ([#939](https://github.com/Altinn/altinn-components/issues/939)) ([2b46801](https://github.com/Altinn/altinn-components/commit/2b4680160d4b6913cd4e5f55de198e97cb7e272d))
+* autocomplete for toolbar searchfield ([#957](https://github.com/Altinn/altinn-components/issues/957)) ([b9912ce](https://github.com/Altinn/altinn-components/commit/b9912ce7643614096f1498b6a54b81ef0d64ca4e))
+
 ## [0.55.6](https://github.com/Altinn/altinn-components/compare/v0.55.5...v0.55.6) (2026-02-11)
 
 
