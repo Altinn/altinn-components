@@ -7,11 +7,46 @@ import {
   FileCheckmarkIcon,
   InboxFillIcon,
   InformationSquareIcon,
+  MenuHamburgerIcon,
   PaperclipIcon,
   TrashIcon,
 } from '@navikt/aksel-icons';
+import { nav, skatt } from '../../../examples/avatar';
 import type { AvatarProps } from '../Avatar';
 import type { FilterProps } from './useFilter';
+
+export const ownerFilter: FilterProps = {
+  id: 'owner',
+  groupId: '3',
+  name: 'owner',
+  icon: MenuHamburgerIcon,
+  label: 'Velg tjenesteeier',
+  groups: {
+    1: {
+      title: 'Velg tjenesteier',
+    },
+  },
+  items: [
+    {
+      id: '1',
+      groupId: '1',
+      role: 'checkbox',
+      name: 'owner',
+      value: 'skatt',
+      title: 'Skatteetaten',
+      icon: skatt,
+    },
+    {
+      id: '2',
+      groupId: '1',
+      role: 'checkbox',
+      name: 'owner',
+      value: 'nav',
+      title: 'NAV',
+      icon: nav,
+    },
+  ],
+};
 
 export const statusFilter: FilterProps = {
   id: '1',
@@ -252,7 +287,7 @@ export const contentFilter: FilterProps = {
   ],
 };
 
-export const inboxFilters = [statusFilter, timeFilter, seenByFilter, contentFilter] as FilterProps[];
+export const inboxFilters = [statusFilter, timeFilter, seenByFilter, contentFilter, ownerFilter] as FilterProps[];
 
 export const removableInboxFilters = inboxFilters?.map((filter) => ({
   ...filter,

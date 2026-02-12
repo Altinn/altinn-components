@@ -97,61 +97,63 @@ export const SearchField = ({
   };
 
   return (
-    <FieldBase
-      size={size}
-      color={color}
-      label={label}
-      className={cx(styles.field, className)}
-      onBlurCapture={handleBlurCapture}
-    >
-      <div className={styles.container}>
-        <Input
-          {...rest}
-          id={inputId}
-          type="search"
-          value={value}
-          className={styles.input}
-          data-collapsible={collapsible}
-          autoCapitalize="off"
-          autoComplete="off"
-          minLength={minLength}
-          onKeyDown={handleKeyDown}
-          onBlur={handleInputBlur}
-          {...(menu && {
-            role: 'combobox',
-            'aria-autocomplete': 'list',
-            'aria-expanded': Boolean(showMenu),
-            'aria-haspopup': 'listbox',
-            'aria-controls': listId,
-            'aria-activedescendant': showMenu ? activeDescendantId : undefined,
-            onFocus: handleOnFocus,
-          })}
-        />
-        <Icon svgElement={MagnifyingGlassIcon} className={styles.icon} />
-        {onClear && !!value && (
-          <span className={styles.clear}>
-            <Button
-              id={clearButtonId}
-              data-testid="clear-button"
-              size="xs"
-              rounded
-              icon
-              variant="tinted"
-              className={styles.clearButton}
-              onClick={() => {
-                onClear?.();
-                document.getElementById(inputId)?.focus();
-              }}
-              aria-label={clearButtonAltText}
-              data-action="clear-input"
-            >
-              <XMarkIcon />
-            </Button>
-          </span>
-        )}
-      </div>
+    <div className={styles.fieldContainer}>
+      <FieldBase
+        size={size}
+        color={color}
+        label={label}
+        className={cx(styles.field, className)}
+        onBlurCapture={handleBlurCapture}
+      >
+        <div className={styles.inputContainer}>
+          <Input
+            {...rest}
+            id={inputId}
+            type="search"
+            value={value}
+            className={styles.input}
+            data-collapsible={collapsible}
+            autoCapitalize="off"
+            autoComplete="off"
+            minLength={minLength}
+            onKeyDown={handleKeyDown}
+            onBlur={handleInputBlur}
+            {...(menu && {
+              role: 'combobox',
+              'aria-autocomplete': 'list',
+              'aria-expanded': Boolean(showMenu),
+              'aria-haspopup': 'listbox',
+              'aria-controls': listId,
+              'aria-activedescendant': showMenu ? activeDescendantId : undefined,
+              onFocus: handleOnFocus,
+            })}
+          />
+          <Icon svgElement={MagnifyingGlassIcon} className={styles.icon} />
+          {onClear && !!value && (
+            <span className={styles.clear}>
+              <Button
+                id={clearButtonId}
+                data-testid="clear-button"
+                size="xs"
+                rounded
+                icon
+                variant="tinted"
+                className={styles.clearButton}
+                onClick={() => {
+                  onClear?.();
+                  document.getElementById(inputId)?.focus();
+                }}
+                aria-label={clearButtonAltText}
+                data-action="clear-input"
+              >
+                <XMarkIcon />
+              </Button>
+            </span>
+          )}
+        </div>
+      </FieldBase>
       {menu && showMenu && (
-        <div className={styles.autocomplete} data-color="company" aria-hidden={!showMenu}>
+        <div className={styles.autocomplete} aria-hidden={!showMenu}>
           <Menu
             {...menu}
             id={listId}
@@ -165,6 +167,6 @@ export const SearchField = ({
           />
         </div>
       )}
-    </FieldBase>
+    </div>
   );
 };

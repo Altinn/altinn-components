@@ -109,6 +109,7 @@ export const Avatar = ({
       data-shape={applicableShape}
       data-size={size}
       data-ui="avatar"
+      data-image={!!imageUrl}
       aria-hidden
     >
       <Skeleton loading={loading} className={styles.shape} variant="circle">

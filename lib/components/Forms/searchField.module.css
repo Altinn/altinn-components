@@ -1,8 +1,12 @@
+.fieldContainer {
+  position: relative;
+}
+
 .field {
   position: relative;
 }
 
-.container {
+.inputContainer {
   position: relative;
   display: inline-flex;
   width: 100%;
