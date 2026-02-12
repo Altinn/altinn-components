@@ -6,7 +6,8 @@
   flex-direction: column;
   row-gap: 0.5rem;
   padding: 0.5rem;
-  white-space: unset; /* important in order to keep child elements wrapped */
+  white-space: unset;
+  /* important in order to keep child elements wrapped */
 }
 
 .dropdown:focus {
@@ -20,18 +21,21 @@
 /* sizes */
 
 .dropdown[data-size="sm"] {
+  --var-width: 16rem;
   --var-min-width: 16rem;
-  --var-max-width: 24rem;
+  --var-max-width: 20rem;
 }
 
 .dropdown[data-size="md"] {
-  --var-min-width: 24rem;
-  --var-max-width: 32rem;
+  --var-width: 20rem;
+  --var-min-width: 20rem;
+  --var-max-width: 24rem;
 }
 
 .dropdown[data-size="lg"] {
-  --var-min-width: 32rem;
-  --var-max-width: 40rem;
+  --var-width: 24rem;
+  --var-min-width: 24rem;
+  --var-max-width: 28rem;
 }
 
 .dropdown[aria-hidden="true"] {
@@ -73,6 +77,7 @@
 .dropdown[data-variant="dropdown"] {
   min-width: var(--var-min-width);
   max-width: var(--var-max-width);
+  width: var(--var-width);
   max-height: 80vh;
 }
 
@@ -112,6 +117,7 @@
   .dropdown[data-variant="drawer-dropdown"] {
     min-width: var(--var-min-width);
     max-width: var(--var-max-width);
+    width: var(--var-width);
     max-height: 80vh;
   }
 

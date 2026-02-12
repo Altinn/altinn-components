@@ -1,12 +1,13 @@
 import { ChevronUpDownIcon } from '@navikt/aksel-icons';
 import { Button } from '../Button';
-import { Dropdown } from '../Dropdown';
+import { Dropdown, type DropdownProps } from '../Dropdown';
 import { Menu, type MenuItemProps, type MenuProps } from '../Menu/';
 import { useDropdownMenuController } from '../Menu/useDropdownMenuController.tsx';
 
 export interface ToolbarMenuProps extends Omit<MenuProps, 'variant'> {
   title?: string;
   label?: string;
+  dropdownSize?: DropdownProps['size'];
   onSelectId?: (id: string) => void;
 }
 
@@ -14,6 +15,7 @@ export const ToolbarMenu = ({
   title = 'Title',
   label = 'Label',
   items = [],
+  dropdownSize = 'sm',
   onSelectId,
   ...props
 }: ToolbarMenuProps) => {
@@ -34,6 +36,7 @@ export const ToolbarMenu = ({
       id="toolbar-menu"
       variant="drawer-dropdown"
       title={title}
+      size={dropdownSize}
       trigger={
         <Button
           variant="primary"

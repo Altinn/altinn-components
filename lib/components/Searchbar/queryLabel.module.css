@@ -2,7 +2,6 @@
   --dsc-item-font-size: 0.875rem;
   --dsc-item-padding-x: 0.5em;
   --dsc-item-padding-y: 0.25em;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
@@ -17,6 +16,7 @@
 .label {
   font-size: var(--dsc-item-font-size);
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   column-gap: 0.25rem;
   row-gap: 0.25rem;
