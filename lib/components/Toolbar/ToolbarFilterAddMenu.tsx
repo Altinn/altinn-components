@@ -1,12 +1,13 @@
 import { PlusIcon } from '@navikt/aksel-icons';
 import { useEffect, useRef } from 'react';
 import { Button } from '../Button';
-import { Dropdown } from '../Dropdown';
+import { Dropdown, type DropdownProps } from '../Dropdown';
 import { Menu } from '../Menu';
 import { useDropdownMenuController } from '../Menu/useDropdownMenuController.tsx';
 import type { FilterProps } from './useFilter.tsx';
 
 export interface ToolbarFilterAddMenuProps extends FilterProps {
+  dropdownSize?: DropdownProps['size'];
   open: boolean;
   onToggle: () => void;
   onClose: () => void;
@@ -21,6 +22,7 @@ export const ToolbarFilterAddMenu = ({
   onToggle,
   onClose,
   open,
+  dropdownSize = 'sm',
 }: ToolbarFilterAddMenuProps) => {
   const ctrl = useDropdownMenuController({ id: 'tool-filter-add' });
   const prevOpenRef = useRef(open);
@@ -53,6 +55,7 @@ export const ToolbarFilterAddMenu = ({
   return (
     <Dropdown
       variant="drawer-dropdown"
+      size={dropdownSize}
       trigger={
         <Button
           variant="secondary"

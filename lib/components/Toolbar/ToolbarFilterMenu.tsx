@@ -1,6 +1,6 @@
 import { type ElementType, useEffect, useRef } from 'react';
 import type { ButtonProps } from '../Button';
-import { Dropdown } from '../Dropdown';
+import { Dropdown, type DropdownProps } from '../Dropdown';
 import { Menu } from '../Menu';
 import { useDropdownMenuController } from '../Menu/useDropdownMenuController.tsx';
 import { ToolbarFilterButton } from './ToolbarFilterButton.tsx';
@@ -19,6 +19,7 @@ export interface ToolbarFilterMenuProps extends Omit<FilterProps, 'variant'> {
   submitLabel?: string;
   title?: string;
   variant?: ButtonProps['variant'];
+  dropdownSize?: DropdownProps['size'];
 }
 
 export const ToolbarFilterMenu = ({
@@ -43,6 +44,7 @@ export const ToolbarFilterMenu = ({
   virtualized,
   title,
   variant: customVariant,
+  dropdownSize = 'sm',
 }: ToolbarFilterMenuProps) => {
   const prevOpenRef = useRef(open);
   const ctrl = useDropdownMenuController({ id: 'toolbar-filter-menu' });
@@ -81,6 +83,7 @@ export const ToolbarFilterMenu = ({
         submitLabel={submitLabel}
         title={title}
         variant="drawer-dropdown"
+        size={dropdownSize}
         trigger={
           <ToolbarFilterButton
             name={name}
@@ -121,6 +124,7 @@ export const ToolbarFilterMenu = ({
 
   return (
     <Dropdown
+      size={dropdownSize}
       title={title}
       variant="drawer-dropdown"
       submitLabel={submitLabel}

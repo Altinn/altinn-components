@@ -93,10 +93,17 @@
 }
 
 .autocomplete {
+  --var-min-width: 100%;
+  --var-max-width: 20rem;
+  --var-width: 20rem;
+
+  min-width: var(--var-min-width);
+  max-width: var(--var-max-width);
+  width: var(--var-width);
+
   position: absolute;
   top: 100%;
   left: 0;
-  min-width: 100%;
   z-index: 1;
 
   border-radius: 0.375rem;
@@ -112,6 +119,13 @@
   padding: 0.5rem;
   white-space: unset;
   /* important in order to keep child elements wrapped */
+}
+
+@media (max-width: 1023px) {
+  .autocomplete {
+    --var-max-width: 100%;
+    --var-width: 100%;
+  }
 }
 
 .autocomplete[aria-hidden="true"] {

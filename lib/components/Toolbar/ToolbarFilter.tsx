@@ -1,6 +1,6 @@
 import { XMarkIcon } from '@navikt/aksel-icons';
 import { useState } from 'react';
-import { Button, ButtonGroup } from '../Button';
+import { Button } from '../Button';
 import { ToolbarFilterAddMenu } from './ToolbarFilterAddMenu.tsx';
 import { ToolbarFilterMenu } from './ToolbarFilterMenu.tsx';
 import { type FilterProps, type FilterState, useFilter } from './useFilter';
@@ -59,7 +59,7 @@ export const ToolbarFilter = ({
   };
 
   return (
-    <ButtonGroup size="xs" wrap>
+    <>
       {visibleFilters?.map((filter, index) => {
         const label = getFilterLabel?.(filter?.name, filterState?.[filter?.id]) ?? filter?.label;
         return (
@@ -97,6 +97,6 @@ export const ToolbarFilter = ({
           <span>{resetLabel}</span>
         </Button>
       )}
-    </ButtonGroup>
+    </>
   );
 };
