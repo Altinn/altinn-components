@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import {
   BookmarksSettingsItem,
   type BookmarksSettingsItemProps,
@@ -38,7 +39,7 @@ export const BookmarksSettingsList = ({
           <SettingsSection>
             <List size="sm">
               {items.map((item, index) => (
-                <>
+                <Fragment key={item.id}>
                   {index > 0 && <Divider />}
                   <BookmarksSettingsItem
                     {...item}
@@ -48,7 +49,7 @@ export const BookmarksSettingsList = ({
                     onToggle={() => onToggle?.(item.id)}
                     expanded={expandedId === item.id}
                   />
-                </>
+                </Fragment>
               ))}
             </List>
           </SettingsSection>
