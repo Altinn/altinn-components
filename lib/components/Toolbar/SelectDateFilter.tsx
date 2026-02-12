@@ -45,7 +45,7 @@ export const SelectDateFilter = ({
       return {
         ...item,
         description: datepickerDescription,
-        selected: !!datepickerDescription,
+        selected: filterState?.[name]?.[0] === 'fromAndToDate',
         onClick: () => {
           setDatepickerOpen(true);
         },
