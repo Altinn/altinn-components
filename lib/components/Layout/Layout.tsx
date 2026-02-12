@@ -58,12 +58,7 @@ export const Layout = ({
       {header && (useGlobalHeader ? <GlobalHeader {...header} /> : <Header {...header} />)}
       <LayoutBody currentId={currentId}>
         {sidebar && (
-          <LayoutSidebar
-            hidden={sidebar?.hidden}
-            color={sidebar?.color}
-            footer={sidebar?.footer}
-            useGlobalHeader={useGlobalHeader}
-          >
+          <LayoutSidebar hidden={sidebar?.hidden} color={sidebar?.color} footer={sidebar?.footer}>
             {sidebar?.menu && <Menu {...sidebar?.menu} />}
             {sidebar?.children}
           </LayoutSidebar>

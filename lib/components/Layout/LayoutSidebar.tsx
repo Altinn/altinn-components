@@ -14,25 +14,11 @@ export interface LayoutSidebarProps {
   sticky?: boolean;
   children?: ReactNode;
   footer?: ReactNode;
-  useGlobalHeader?: boolean;
 }
 
-export const LayoutSidebar = ({
-  color,
-  hidden = false,
-  sticky,
-  children,
-  footer,
-  useGlobalHeader = false,
-}: LayoutSidebarProps) => {
+export const LayoutSidebar = ({ color, hidden = false, sticky, children, footer }: LayoutSidebarProps) => {
   return (
-    <aside
-      className={styles.sidebar}
-      data-color={color}
-      data-sticky={sticky}
-      data-use-global-header={useGlobalHeader}
-      aria-hidden={hidden}
-    >
+    <aside className={styles.sidebar} data-color={color} data-sticky={sticky} aria-hidden={hidden}>
       {children}
       {footer && <div className={styles.footer}>{footer}</div>}
     </aside>

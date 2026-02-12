@@ -22,10 +22,6 @@
     width: 224px;
   }
 
-  .sidebar[data-use-global-header="true"] {
-    margin-top: 4.125rem;
-  }
-
   .sidebar[data-sticky="true"] {
     position: sticky;
     top: 0;
