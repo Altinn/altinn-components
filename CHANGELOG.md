@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.56.1](https://github.com/Altinn/altinn-components/compare/v0.56.0...v0.56.1) (2026-02-12)
+
+
+### Bug Fixes
+
+* **key:** BookmarksSettingsList was missing unique key in iterable wrapper ([#962](https://github.com/Altinn/altinn-components/issues/962)) ([994b55b](https://github.com/Altinn/altinn-components/commit/994b55b18f240f8c61e142f59748d58fa808da47))
+* unselect datepicker filter + datepicker selected color ([#964](https://github.com/Altinn/altinn-components/issues/964)) ([b8b47ee](https://github.com/Altinn/altinn-components/commit/b8b47ee96341d1ce3b8d990a6162dc6728378d90))
+
 ## [0.56.0](https://github.com/Altinn/altinn-components/compare/v0.55.6...v0.56.0) (2026-02-11)
 
 
