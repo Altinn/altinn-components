@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.56.2](https://github.com/Altinn/altinn-components/compare/v0.56.1...v0.56.2) (2026-02-12)
+
+
+### Bug Fixes
+
+* toolbar wrap + dropdown size ([#965](https://github.com/Altinn/altinn-components/issues/965)) ([79eefd4](https://github.com/Altinn/altinn-components/commit/79eefd4fc86250d6a8ee507115398900beb8b99c))
+
 ## [0.56.1](https://github.com/Altinn/altinn-components/compare/v0.56.0...v0.56.1) (2026-02-12)
 
 
