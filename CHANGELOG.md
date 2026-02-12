@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.56.4](https://github.com/Altinn/altinn-components/compare/v0.56.3...v0.56.4) (2026-02-12)
+
+
+### Bug Fixes
+
+* search field color + remove outline from image avatar ([#970](https://github.com/Altinn/altinn-components/issues/970)) ([74b8bd1](https://github.com/Altinn/altinn-components/commit/74b8bd15cc7ecef006c23bf066857d96c3ef2c18))
+
 ## [0.56.3](https://github.com/Altinn/altinn-components/compare/v0.56.2...v0.56.3) (2026-02-12)
 
 
