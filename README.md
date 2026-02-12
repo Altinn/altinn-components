@@ -181,8 +181,8 @@ pnpm test:screenshots
 # Test specific component
 pnpm test:screenshots:filter "Button"
 
-# Update baselines after intentional changes
-pnpm test:screenshots-update
+# Delete all screenshots and generate new
+pnpm test:screenshots:regenerate-all
 ```
 
 

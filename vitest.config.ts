@@ -38,13 +38,15 @@ export default defineConfig({
                     // If baseline doesn't exist, screenshot-compare.ts auto-creates it in component directory
                     dir: path.join(dirname, '.screenshots-temp/actual'),
                     file: (context) => {
-                      // Generate path: lib/components/Button/__screenshots__/Button.stories.tsx/Default.png
+                      // Generate path: lib/components/Button/__screenshots__/Button/Default.png
                       const storyFileDir = path.dirname(context.file);
                       const storyFileName = path.basename(context.file);
+                      // Extract component name by removing .stories.tsx/.stories.ts extension
+                      const componentName = storyFileName.replace(/\.stories\.(tsx|ts)$/, '');
                       return path.join(
                         storyFileDir,
                         '__screenshots__',
-                        storyFileName,
+                        componentName,  // Use component name instead of full story filename
                         `${context.name}.png`
                       );
                     },
