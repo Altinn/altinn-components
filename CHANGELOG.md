@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.56.3](https://github.com/Altinn/altinn-components/compare/v0.56.2...v0.56.3) (2026-02-12)
+
+
+### Bug Fixes
+
+* **layout:** remove margins for sidebar for legacy layout ([#968](https://github.com/Altinn/altinn-components/issues/968)) ([10ab262](https://github.com/Altinn/altinn-components/commit/10ab262875c608287d8b8018606753698f8ff99c))
+
 ## [0.56.2](https://github.com/Altinn/altinn-components/compare/v0.56.1...v0.56.2) (2026-02-12)
 
 
