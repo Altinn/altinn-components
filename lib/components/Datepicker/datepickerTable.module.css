@@ -28,8 +28,8 @@
 }
 
 .button[aria-selected="true"] {
-  background-color: transparent;
-  border: 1px solid var(--ds-color-border-default);
+  background-color: var(--ds-color-surface-active);
+  color: var(--ds-color-text-default);
 }
 
 .button[aria-selected="true"]:hover,
