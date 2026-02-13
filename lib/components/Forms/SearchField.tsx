@@ -1,7 +1,7 @@
 import { MagnifyingGlassIcon, XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import { useId, useMemo, useState } from 'react';
-import { Button, FieldBase, type FieldBaseProps, Icon, Input, type InputProps, type MenuItemProps } from '..';
+import { Button, FieldBase, type FieldBaseProps, Input, type InputProps, type MenuItemProps } from '..';
 import { Menu, type MenuProps } from '../Menu';
 import styles from './searchField.module.css';
 
@@ -110,43 +110,41 @@ export const SearchField = ({
         className={cx(styles.field, className)}
         onBlurCapture={handleBlurCapture}
       >
-        <div className={styles.inputContainer}>
-          <Input
-            {...rest}
-            id={inputId}
-            type="search"
-            value={value}
-            className={styles.input}
-            data-collapsible={collapsible}
-            autoCapitalize="off"
-            autoComplete="off"
-            minLength={minLength}
-            onKeyDown={handleKeyDown}
-            onBlur={handleInputBlur}
-          />
-          <Icon svgElement={MagnifyingGlassIcon} className={styles.icon} />
-          {onClear && !!value && (
-            <span className={styles.clear}>
-              <Button
-                id={clearButtonId}
-                data-testid="clear-button"
-                size="xs"
-                rounded
-                icon
-                variant="tinted"
-                className={styles.clearButton}
-                onClick={() => {
-                  onClear?.();
-                  document.getElementById(inputId)?.focus();
-                }}
-                aria-label={clearButtonAltText}
-                data-action="clear-input"
-              >
-                <XMarkIcon />
-              </Button>
-            </span>
-          )}
-        </div>
+        <Input
+          {...rest}
+          id={inputId}
+          type="search"
+          value={value}
+          className={styles.input}
+          data-collapsible={collapsible}
+          autoCapitalize="off"
+          autoComplete="off"
+          minLength={minLength}
+          onKeyDown={handleKeyDown}
+          onBlur={handleInputBlur}
+        />
+        <MagnifyingGlassIcon className={styles.icon} />
+        {onClear && !!value && (
+          <span className={styles.clear}>
+            <Button
+              id={clearButtonId}
+              data-testid="clear-button"
+              size="xs"
+              rounded
+              icon
+              variant="tinted"
+              className={styles.clearButton}
+              onClick={() => {
+                onClear?.();
+                document.getElementById(inputId)?.focus();
+              }}
+              aria-label={clearButtonAltText}
+              data-action="clear-input"
+            >
+              <XMarkIcon />
+            </Button>
+          </span>
+        )}
       </FieldBase>
     );
   }
@@ -160,52 +158,50 @@ export const SearchField = ({
         className={cx(styles.field, className)}
         onBlurCapture={handleBlurCapture}
       >
-        <div className={styles.inputContainer}>
-          <Input
-            {...rest}
-            id={inputId}
-            type="search"
-            value={value}
-            className={styles.input}
-            data-collapsible={collapsible}
-            autoCapitalize="off"
-            autoComplete="off"
-            minLength={minLength}
-            onKeyDown={handleKeyDown}
-            onBlur={handleInputBlur}
-            {...(menu && {
-              role: 'combobox',
-              'aria-autocomplete': 'list',
-              'aria-expanded': Boolean(showMenu),
-              'aria-haspopup': 'listbox',
-              'aria-controls': listId,
-              'aria-activedescendant': showMenu ? activeDescendantId : undefined,
-              onFocus: handleOnFocus,
-            })}
-          />
-          <Icon svgElement={MagnifyingGlassIcon} className={styles.icon} />
-          {onClear && !!value && (
-            <span className={styles.clear}>
-              <Button
-                id={clearButtonId}
-                data-testid="clear-button"
-                size="xs"
-                rounded
-                icon
-                variant="tinted"
-                className={styles.clearButton}
-                onClick={() => {
-                  onClear?.();
-                  document.getElementById(inputId)?.focus();
-                }}
-                aria-label={clearButtonAltText}
-                data-action="clear-input"
-              >
-                <XMarkIcon />
-              </Button>
-            </span>
-          )}
-        </div>
+        <Input
+          {...rest}
+          id={inputId}
+          type="search"
+          value={value}
+          className={styles.input}
+          data-collapsible={collapsible}
+          autoCapitalize="off"
+          autoComplete="off"
+          minLength={minLength}
+          onKeyDown={handleKeyDown}
+          onBlur={handleInputBlur}
+          {...(menu && {
+            role: 'combobox',
+            'aria-autocomplete': 'list',
+            'aria-expanded': Boolean(showMenu),
+            'aria-haspopup': 'listbox',
+            'aria-controls': listId,
+            'aria-activedescendant': showMenu ? activeDescendantId : undefined,
+            onFocus: handleOnFocus,
+          })}
+        />
+        <MagnifyingGlassIcon className={styles.icon} />
+        {onClear && !!value && (
+          <span className={styles.clear}>
+            <Button
+              id={clearButtonId}
+              data-testid="clear-button"
+              size="xs"
+              rounded
+              icon
+              variant="tinted"
+              className={styles.clearButton}
+              onClick={() => {
+                onClear?.();
+                document.getElementById(inputId)?.focus();
+              }}
+              aria-label={clearButtonAltText}
+              data-action="clear-input"
+            >
+              <XMarkIcon />
+            </Button>
+          </span>
+        )}
       </FieldBase>
       {menu && showMenu && (
         <div className={styles.autocomplete} aria-hidden={!showMenu} onMouseDown={handleMenuPointerDown}>

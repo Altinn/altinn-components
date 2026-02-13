@@ -248,6 +248,16 @@ export const SearchAndSwitch = () => {
   );
 };
 
+export const StaticFilters = () => {
+  const staticFilters = useInboxFilter({ filters: inboxFilters?.map((item) => ({ ...item })) });
+  return <Toolbar filter={staticFilters} />;
+};
+
+export const RemovableFilters = () => {
+  const removableFilter = useInboxFilter({ filters: inboxFilters?.map((item) => ({ ...item, removable: true })) });
+  return <Toolbar filter={removableFilter} />;
+};
+
 export const AccountMenuAndFilters = () => {
   const { menus } = useInboxToolbar();
   const removableFilter = useInboxFilter({ filters: inboxFilters?.map((item) => ({ ...item, removable: true })) });
@@ -261,7 +271,7 @@ export const AccountMenuAndSearch = () => {
 };
 
 export const AccountMenuAndSubmenu = () => {
-  const { menus, search } = useInboxToolbar();
+  const { menus } = useInboxToolbar();
   const removableFilter = useInboxFilter({ filters: inboxFilters?.map((item) => ({ ...item, removable: true })) });
 
   const filterState = removableFilter?.filterState;
@@ -335,7 +345,6 @@ export const AccountMenuAndSubmenu = () => {
     <Toolbar>
       <ToolbarMenu {...menus?.[0]!} />
       <ToolbarMenu items={subAccountsAndAll} label={getSubAccountLabel()} />
-      <ToolbarSearch {...search} collapsible />
       <ToolbarFilter {...removableFilter} />
     </Toolbar>
   );
