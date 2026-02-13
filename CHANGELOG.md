@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.56.7](https://github.com/Altinn/altinn-components/compare/v0.56.6...v0.56.7) (2026-02-13)
+
+
+### Bug Fixes
+
+* searchfield w/o menu ([#978](https://github.com/Altinn/altinn-components/issues/978)) ([5ff555e](https://github.com/Altinn/altinn-components/commit/5ff555e336d7345c2cf41963377fbd1c7aed73e8))
+* story for selecting subaccount in toolbar ([#976](https://github.com/Altinn/altinn-components/issues/976)) ([b085593](https://github.com/Altinn/altinn-components/commit/b08559309237b43d9f8231ca4b41821a46f2666f))
+
 ## [0.56.6](https://github.com/Altinn/altinn-components/compare/v0.56.5...v0.56.6) (2026-02-13)
 
 
