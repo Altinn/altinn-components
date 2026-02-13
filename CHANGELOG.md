@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.56.8](https://github.com/Altinn/altinn-components/compare/v0.56.7...v0.56.8) (2026-02-13)
+
+
+### Bug Fixes
+
+* searchfield icon + toolbar stories ([#979](https://github.com/Altinn/altinn-components/issues/979)) ([8142f37](https://github.com/Altinn/altinn-components/commit/8142f37311d875ca432f6469f3bebc45cb7e7b5e))
+
 ## [0.56.7](https://github.com/Altinn/altinn-components/compare/v0.56.6...v0.56.7) (2026-02-13)
 
 
