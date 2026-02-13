@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.56.5](https://github.com/Altinn/altinn-components/compare/v0.56.4...v0.56.5) (2026-02-13)
+
+
+### Bug Fixes
+
+* **searchfield:** unwanted blur to menu ([#972](https://github.com/Altinn/altinn-components/issues/972)) ([4a799eb](https://github.com/Altinn/altinn-components/commit/4a799eb19041a5988c739e0502338833fc8c289b))
+
 ## [0.56.4](https://github.com/Altinn/altinn-components/compare/v0.56.3...v0.56.4) (2026-02-12)
 
 
