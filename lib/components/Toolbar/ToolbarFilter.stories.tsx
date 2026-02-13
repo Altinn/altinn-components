@@ -1,7 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta } from '@storybook/react-vite';
+import { useState } from 'react';
+import { Button } from '../Button';
 import { Section } from '../Page';
 import { SelectDateFilter } from './SelectDateFilter';
-import { ToolbarFilter } from './ToolbarFilter';
+import { Toolbar } from './Toolbar.tsx';
+import { ToolbarFilter, type ToolbarFilterProps } from './ToolbarFilter';
 import { inboxFilters, timeFilter } from './example.data';
 import { useInboxFilter } from './example.hooks';
 
@@ -13,20 +16,20 @@ const meta = {
 } satisfies Meta<typeof ToolbarFilter>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Uncontrolled: Story = {
-  args: {
-    filters: inboxFilters,
-  },
-};
 
 export const Controlled = () => {
-  const inboxFilter = useInboxFilter({
-    filters: inboxFilters,
-    defaultFilterState: { status: ['requires-action'], unread: ['true'] },
-  });
-  return <ToolbarFilter {...inboxFilter} />;
+  const [filterState, setFilterState] = useState<ToolbarFilterProps['filterState']>({});
+  return (
+    <Toolbar>
+      <ToolbarFilter
+        getFilterLabel={(name) => filterState?.[name]?.join(',') || 'Choose ' + name}
+        filterState={filterState}
+        onFilterStateChange={setFilterState}
+        filters={inboxFilters.map((item) => ({ ...item, removable: true }))}
+      />
+      <Button onClick={() => setFilterState({})}>Reset</Button>
+    </Toolbar>
+  );
 };
 
 export const Removable = () => {
@@ -34,7 +37,11 @@ export const Removable = () => {
     filters: inboxFilters?.map((item) => ({ ...item, removable: true })),
     defaultFilterState: { status: ['requires-action'], unread: ['true'] },
   });
-  return <ToolbarFilter {...inboxFilter} />;
+  return (
+    <Toolbar>
+      <ToolbarFilter {...inboxFilter} />
+    </Toolbar>
+  );
 };
 
 export const Datepicker = () => {
@@ -43,9 +50,9 @@ export const Datepicker = () => {
     defaultFilterState: {},
   });
   return (
-    <div>
+    <Toolbar>
       <ToolbarFilter {...inboxFilter} />
       <Section margin="section">State: {JSON.stringify(inboxFilter.filterState)}</Section>
-    </div>
+    </Toolbar>
   );
 };
