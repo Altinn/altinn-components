@@ -101,6 +101,56 @@ export const SearchField = ({
     rest.onBlur?.(event);
   };
 
+  if (!menu) {
+    return (
+      <FieldBase
+        size={size}
+        color={color}
+        label={label}
+        className={cx(styles.field, className)}
+        onBlurCapture={handleBlurCapture}
+      >
+        <div className={styles.inputContainer}>
+          <Input
+            {...rest}
+            id={inputId}
+            type="search"
+            value={value}
+            className={styles.input}
+            data-collapsible={collapsible}
+            autoCapitalize="off"
+            autoComplete="off"
+            minLength={minLength}
+            onKeyDown={handleKeyDown}
+            onBlur={handleInputBlur}
+          />
+          <Icon svgElement={MagnifyingGlassIcon} className={styles.icon} />
+          {onClear && !!value && (
+            <span className={styles.clear}>
+              <Button
+                id={clearButtonId}
+                data-testid="clear-button"
+                size="xs"
+                rounded
+                icon
+                variant="tinted"
+                className={styles.clearButton}
+                onClick={() => {
+                  onClear?.();
+                  document.getElementById(inputId)?.focus();
+                }}
+                aria-label={clearButtonAltText}
+                data-action="clear-input"
+              >
+                <XMarkIcon />
+              </Button>
+            </span>
+          )}
+        </div>
+      </FieldBase>
+    );
+  }
+
   return (
     <div className={styles.fieldContainer}>
       <FieldBase
