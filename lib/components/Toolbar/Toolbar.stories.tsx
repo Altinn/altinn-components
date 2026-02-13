@@ -260,6 +260,87 @@ export const AccountMenuAndSearch = () => {
   return <Toolbar menus={menus} search={{ ...search, collapsible: true }} filter={removableFilter} />;
 };
 
+export const AccountMenuAndSubmenu = () => {
+  const { menus, search } = useInboxToolbar();
+  const removableFilter = useInboxFilter({ filters: inboxFilters?.map((item) => ({ ...item, removable: true })) });
+
+  const filterState = removableFilter?.filterState;
+
+  const onSubAccountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const type = e.target.type;
+    if (type === 'radio') {
+      removableFilter?.onFilterStateChange?.({ ...filterState, subaccount: [e.target.value] });
+    } else {
+      removableFilter?.onFilterStateChange?.({
+        ...filterState,
+        subaccount: [...(filterState?.subaccount?.filter((v) => v !== 'all') || []), e.target.value],
+      });
+    }
+  };
+
+  const subAccounts = [
+    {
+      id: '1',
+      groupId: '2',
+      title: 'Hovedenhet',
+      description: 'Org nr.',
+      value: 'hoved',
+      name: 'subaccount',
+      role: 'checkbox',
+    },
+    {
+      id: '2',
+      groupId: '2',
+      title: 'Underenhet',
+      description: 'Org nr.',
+      name: 'subaccount',
+      value: 'under',
+      role: 'checkbox',
+    },
+  ]?.map((item) => {
+    return {
+      ...item,
+      checked: filterState?.subaccount?.includes(item.value),
+      onChange: onSubAccountChange,
+    };
+  });
+
+  const subAccountsAndAll = [
+    {
+      id: 'all',
+      groupId: '1',
+      title: 'Alle enheter',
+      name: 'subaccount',
+      value: 'all',
+      role: 'radio',
+      checked: filterState?.subaccount?.includes('all'),
+      onChange: onSubAccountChange,
+    },
+    ...subAccounts,
+  ];
+
+  const getSubAccountLabel = () => {
+    const count = subAccounts?.filter((item) => filterState?.subaccount?.includes(item.value))?.length;
+    if (count === 1) {
+      return subAccounts?.find((item) => filterState?.subaccount?.includes(item.value))?.title;
+    }
+
+    if (count) {
+      return `${count} enheter`;
+    }
+    return `${subAccounts?.length} enheter`;
+  };
+
+  return (
+    <Toolbar>
+      <ToolbarMenu {...menus?.[0]!} />
+      <ToolbarMenu items={subAccountsAndAll} label={getSubAccountLabel()} />
+      <ToolbarSearch {...search} collapsible />
+      <ToolbarFilter {...removableFilter} />
+    </Toolbar>
+  );
+};
+
 export const AccountMenuAndSearchAutocomplete = () => {
   const { menus } = useInboxToolbar();
   const removableFilter = useInboxFilter({ filters: inboxFilters?.map((item) => ({ ...item, removable: true })) });
