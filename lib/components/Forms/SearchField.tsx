@@ -88,6 +88,11 @@ export const SearchField = ({
     setMenuOpen(false);
   };
 
+  const handleMenuPointerDown: React.MouseEventHandler<HTMLDivElement> = (event) => {
+    // Prevent input blur so menu doesn't unmount before click handlers fire.
+    event.preventDefault();
+  };
+
   const handleInputBlur: React.FocusEventHandler<HTMLInputElement> = (event) => {
     const next = event.relatedTarget as HTMLElement | null;
     if (next?.id === clearButtonId) {
@@ -153,7 +158,7 @@ export const SearchField = ({
         </div>
       </FieldBase>
       {menu && showMenu && (
-        <div className={styles.autocomplete} aria-hidden={!showMenu}>
+        <div className={styles.autocomplete} aria-hidden={!showMenu} onMouseDown={handleMenuPointerDown}>
           <Menu
             {...menu}
             id={listId}
