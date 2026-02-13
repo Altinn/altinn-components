@@ -129,6 +129,7 @@ export const MenuItem = ({
         aria-disabled={disabled}
         aria-checked={checked}
         aria-selected={checked}
+        data-selected={checked}
         aria-label={title}
         data-testid={dataTestId}
         onKeyUp={(e: KeyboardEvent) => {
@@ -196,6 +197,7 @@ export const MenuItem = ({
       data-active={active}
       aria-disabled={disabled}
       aria-selected={selected}
+      data-selected={selected}
       aria-label={title}
       data-testid={dataTestId}
       onKeyUp={(e: KeyboardEvent) => {
