@@ -267,7 +267,7 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
                       variant={entry.itemProps?.variant || variant}
                       active={entry.active}
                       role={resolvedRole}
-                      selected={isCombobox && !isCheckable ? entry.active : entry.itemProps?.selected}
+                      selected={entry.itemProps?.selected}
                       aria-posinset={isCombobox ? itemPositions.positions.get(virtualRow.index) : undefined}
                       aria-setsize={isCombobox ? itemPositions.total : undefined}
                       tabIndex={entry.itemProps?.disabled || keyboardEvents ? -1 : 0}

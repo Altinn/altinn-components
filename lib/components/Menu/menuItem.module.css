@@ -81,7 +81,7 @@ div.item[data-variant="tinted"] {
   outline: 2px solid black;
 }
 
-.item[aria-selected="true"] {
+.item[data-selected="true"] {
   background-color: var(--dsc-item-background--active);
   --checkmark-opacity: 1;
 }
