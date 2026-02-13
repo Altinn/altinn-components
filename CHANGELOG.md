@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.56.6](https://github.com/Altinn/altinn-components/compare/v0.56.5...v0.56.6) (2026-02-13)
+
+
+### Bug Fixes
+
+* **selected:** not showing in menu ([#974](https://github.com/Altinn/altinn-components/issues/974)) ([d1db629](https://github.com/Altinn/altinn-components/commit/d1db629c8e45a0b5d90ac52d4bc14e7af4ac7341))
+
 ## [0.56.5](https://github.com/Altinn/altinn-components/compare/v0.56.4...v0.56.5) (2026-02-13)
 
 
