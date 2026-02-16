@@ -260,13 +260,9 @@ export const Dropdown = ({
           maxHeight: `${coords.maxHeight}px`,
           overflowY: 'auto',
           [coords.xDir === 'left' ? 'left' : 'right']:
-            coords.xDir === 'left'
-              ? coords.triggerRect.left
-              : window.innerWidth - coords.triggerRect.right,
+            coords.xDir === 'left' ? coords.triggerRect.left : window.innerWidth - coords.triggerRect.right,
           [coords.yDir === 'bottom' ? 'top' : 'bottom']:
-            coords.yDir === 'bottom'
-              ? coords.triggerRect.bottom + 8
-              : window.innerHeight - coords.triggerRect.top + 8,
+            coords.yDir === 'bottom' ? coords.triggerRect.bottom + 8 : window.innerHeight - coords.triggerRect.top + 8,
         }
       : {
           position: 'absolute',
