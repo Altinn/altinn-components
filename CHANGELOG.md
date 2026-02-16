@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.56.9](https://github.com/Altinn/altinn-components/compare/v0.56.8...v0.56.9) (2026-02-16)
+
+
+### Bug Fixes
+
+* Context menu for virtualised account list, set portal ([#981](https://github.com/Altinn/altinn-components/issues/981)) ([76f0870](https://github.com/Altinn/altinn-components/commit/76f0870d6b346dbcf479ed56390e883bc86dd422))
+
 ## [0.56.8](https://github.com/Altinn/altinn-components/compare/v0.56.7...v0.56.8) (2026-02-13)
 
 
