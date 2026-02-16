@@ -53,6 +53,7 @@ export const ContextMenu = ({
       onClose={() => ctrl.setOpen(false)}
       id={ctrl.menuId}
       placement={placement}
+      useFixedPosition={true}
       {...ctrl.dropdownA11yProps}
     >
       <Menu groups={groups} items={items} maxLevels={1} keyboardEvents={ctrl.open} {...ctrl.menuA11yProps} />

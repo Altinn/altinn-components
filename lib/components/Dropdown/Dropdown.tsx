@@ -1,6 +1,7 @@
 import { XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import { type ReactNode, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Button } from '../Button';
 import styles from './dropdown.module.css';
 
@@ -34,6 +35,7 @@ export interface DropdownProps {
   onSubmit?: () => void;
   size?: DropdownSize;
   activeDescendantId?: string;
+  useFixedPosition?: boolean;
 }
 
 const FOCUS_GUARD_ATTR = 'data-focus-guard';
@@ -82,6 +84,7 @@ export const Dropdown = ({
   onClose,
   onSubmit,
   activeDescendantId,
+  useFixedPosition = false,
 }: DropdownProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -90,7 +93,12 @@ export const Dropdown = ({
     openRef.current = open;
   }, [open]);
 
-  const [coords, setCoords] = useState({
+  const [coords, setCoords] = useState<{
+    yDir: string;
+    xDir: string;
+    maxHeight: number;
+    triggerRect?: DOMRect;
+  }>({
     yDir: placement.includes('top') ? 'top' : 'bottom',
     xDir: placement.includes('right') ? 'right' : 'left',
     maxHeight: 300,
@@ -98,15 +106,15 @@ export const Dropdown = ({
 
   const updatePosition = useCallback(() => {
     if (open && containerRef.current && dropdownRef.current) {
-      const containerRect = containerRef.current.getBoundingClientRect();
+      const referenceRect = containerRef.current.getBoundingClientRect();
       const dropdownRect = dropdownRef.current.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
       const viewportWidth = window.innerWidth;
       const BUFFER = 16;
 
-      const spaceBelow = viewportHeight - containerRect.bottom;
-      const spaceAbove = containerRect.top;
-      const spaceRight = viewportWidth - containerRect.right - dropdownRect.width;
+      const spaceBelow = viewportHeight - referenceRect.bottom;
+      const spaceAbove = referenceRect.top;
+      const spaceRight = viewportWidth - referenceRect.right - dropdownRect.width;
 
       const shouldFlipY = spaceBelow < 250 && spaceAbove > spaceBelow;
       const finalYDir = shouldFlipY ? 'top' : 'bottom';
@@ -120,15 +128,24 @@ export const Dropdown = ({
         yDir: finalYDir,
         maxHeight: finalMaxHeight,
         xDir: finalXDir,
+        triggerRect: useFixedPosition ? referenceRect : undefined,
       }));
     }
-  }, [open]);
+  }, [open, useFixedPosition]);
 
   useLayoutEffect(() => {
     updatePosition();
     window.addEventListener('resize', updatePosition);
-    return () => window.removeEventListener('resize', updatePosition);
-  }, [updatePosition]);
+    if (useFixedPosition) {
+      window.addEventListener('scroll', updatePosition, true);
+    }
+    return () => {
+      window.removeEventListener('resize', updatePosition);
+      if (useFixedPosition) {
+        window.removeEventListener('scroll', updatePosition, true);
+      }
+    };
+  }, [updatePosition, useFixedPosition]);
 
   useEffect(() => {
     if (!open) return;
@@ -162,7 +179,10 @@ export const Dropdown = ({
     };
 
     const handleClickOutside = (event: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+      const target = event.target as Node;
+      const inContainer = containerRef.current?.contains(target);
+      const inDropdown = dropdownRef.current?.contains(target);
+      if (!inContainer && !inDropdown) {
         onClose();
       }
     };
@@ -231,50 +251,71 @@ export const Dropdown = ({
     };
   }, [open]);
 
-  const dropdownStyles: React.CSSProperties = {
-    position: 'absolute',
-    zIndex: 50,
-    width: 'max-content',
-    maxHeight: `${coords.maxHeight}px`,
-    overflowY: 'auto',
-    [coords.xDir]: 0,
-    [coords.yDir === 'bottom' ? 'top' : 'bottom']: '100%',
-  };
+  const dropdownStyles: React.CSSProperties =
+    useFixedPosition && coords.triggerRect
+      ? {
+          position: 'fixed',
+          zIndex: 1000,
+          width: 'max-content',
+          maxHeight: `${coords.maxHeight}px`,
+          overflowY: 'auto',
+          [coords.xDir === 'left' ? 'left' : 'right']:
+            coords.xDir === 'left'
+              ? coords.triggerRect.left
+              : window.innerWidth - coords.triggerRect.right,
+          [coords.yDir === 'bottom' ? 'top' : 'bottom']:
+            coords.yDir === 'bottom'
+              ? coords.triggerRect.bottom + 8
+              : window.innerHeight - coords.triggerRect.top + 8,
+        }
+      : {
+          position: 'absolute',
+          zIndex: 50,
+          width: 'max-content',
+          maxHeight: `${coords.maxHeight}px`,
+          overflowY: 'auto',
+          [coords.xDir]: 0,
+          [coords.yDir === 'bottom' ? 'top' : 'bottom']: '100%',
+        };
+
+  const dropdownEl = (
+    <div
+      ref={dropdownRef}
+      className={cx(styles.dropdown, className)}
+      style={dropdownStyles}
+      aria-hidden={!open}
+      data-variant={variant}
+      data-size={size}
+      tabIndex={-1}
+      role="menu"
+      aria-modal={variant === 'drawer-dropdown' ? true : undefined}
+      aria-activedescendant={activeDescendantId}
+    >
+      <header className={styles.header}>
+        <h2 className={styles.title}>{title}</h2>
+        <Button size="sm" variant="outline" onClick={onClose} aria-label={closeLabel}>
+          <XMarkIcon />
+        </Button>
+      </header>
+
+      <div className={styles.content}>{children}</div>
+
+      {submitLabel && (
+        <footer className={styles.footer}>
+          <Button size="lg" variant="solid" onClick={onSubmit || onClose} rounded>
+            <span data-size="md">{submitLabel}</span>
+          </Button>
+        </footer>
+      )}
+    </div>
+  );
 
   return (
     <>
       {backdrop && <div className={styles.backdrop} aria-hidden={!open} />}
       <div id={id + '-root'} ref={containerRef} style={{ position: 'relative', display: 'inline-block' }}>
         {trigger}
-        <div
-          ref={dropdownRef}
-          className={cx(styles.dropdown, className)}
-          style={dropdownStyles}
-          aria-hidden={!open}
-          data-variant={variant}
-          data-size={size}
-          tabIndex={-1}
-          role="menu"
-          aria-modal={variant === 'drawer-dropdown' ? true : undefined}
-          aria-activedescendant={activeDescendantId}
-        >
-          <header className={styles.header}>
-            <h2 className={styles.title}>{title}</h2>
-            <Button size="sm" variant="outline" onClick={onClose} aria-label={closeLabel}>
-              <XMarkIcon />
-            </Button>
-          </header>
-
-          <div className={styles.content}>{children}</div>
-
-          {submitLabel && (
-            <footer className={styles.footer}>
-              <Button size="lg" variant="solid" onClick={onSubmit || onClose} rounded>
-                <span data-size="md">{submitLabel}</span>
-              </Button>
-            </footer>
-          )}
-        </div>
+        {useFixedPosition ? createPortal(dropdownEl, document.body) : dropdownEl}
       </div>
     </>
   );

@@ -20,7 +20,7 @@
 }
 
 .virtualListItem:focus-within,
-.virtualListItem:has([data-expanded="true"]) {
+.virtualListItem:has([aria-expanded="true"]) {
   z-index: 20;
 }
 
