@@ -1,18 +1,18 @@
-.body {
+.grid {
   flex-grow: 1;
   width: 100%;
-  max-width: 80rem;
+  padding: 0 1rem;
   margin: 0 auto;
   display: flex;
-  column-gap: 2em;
+  flex-direction: column;
 }
 
-.body[data-current-id="accountFullscreen"] {
+.grid[data-current-id="accountFullscreen"] {
   display: none;
 }
 
 @media (max-width: 1023px) {
-  .body[data-current-id="menu"] {
+  .grid[data-current-id="menu"] {
     display: none;
   }
 }

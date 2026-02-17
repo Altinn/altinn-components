@@ -7,9 +7,6 @@ export * from './PageDetails';
 export * from './Flex';
 export * from './Grid';
 
-export * from './Breadcrumbs';
-export * from './BreadcrumbsLink';
-
 export * from './Section';
 export * from './ContactSection';
 export * from './ContactButtons';

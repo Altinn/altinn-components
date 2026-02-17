@@ -2,7 +2,8 @@ import type { Meta } from '@storybook/react-vite';
 import { useState } from 'react';
 import { Badge, Flex, RootProvider } from '..';
 import type { LayoutProps } from '../';
-import { Layout, List, type ListItemProps, PageBase } from '../';
+import { DialogList, Heading, Layout, List, type ListItemProps, PageBase, Toolbar } from '../';
+import { inboxSection } from '../../../examples';
 import {
   footer,
   getAuthorizedPartiesData,
@@ -332,6 +333,61 @@ export const SidebarReference = (args: LayoutStoryArgs) => {
         }}
       >
         {args.children}
+      </Layout>
+    </RootProvider>
+  );
+};
+
+export const InboxLayout = (args: LayoutStoryArgs) => {
+  const layout = useLayout(args);
+  const accountMenu = useAccountMenu({ accountId: 'diaspora' });
+  const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
+  const accountSelector: AccountSelectorProps = {
+    accountMenu: accountMenu,
+  };
+
+  const sidebar = {
+    ...layout.sidebar,
+    sticky: true,
+  };
+
+  const header = {
+    ...layout.header,
+    accountSelector: accountSelector,
+    globalMenu: globalMenu,
+  };
+
+  const breadcrumbs = [
+    {
+      label: 'Innboks',
+      href: '#',
+    },
+    {
+      label: 'Arkiv',
+      href: '#',
+    },
+  ];
+
+  const toolbar = {
+    accountMenu: {
+      label: accountMenu?.currentAccount?.title,
+      items: accountMenu?.items,
+      searchable: true,
+    },
+    search: {
+      placeholder: 'Søk',
+      collapsible: true,
+    },
+  };
+
+  return (
+    <RootProvider>
+      <Layout {...args} {...layout} sidebar={sidebar} header={header} breadcrumbs={breadcrumbs}>
+        <PageBase>
+          <Heading size="xl">Page title</Heading>
+          <Toolbar {...toolbar} />
+          <DialogList {...inboxSection} />
+        </PageBase>
       </Layout>
     </RootProvider>
   );
