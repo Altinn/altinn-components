@@ -118,6 +118,7 @@ export const ToolbarFilterMenu = ({
         {...ctrl.dropdownA11yProps}
       >
         <FilterMenu
+          open={open}
           search={search}
           name={name}
           filterState={filterState}
