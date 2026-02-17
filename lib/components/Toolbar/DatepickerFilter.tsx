@@ -3,6 +3,7 @@ import { Datepicker } from '../Datepicker';
 import { Field, Fieldset, Input, Label } from '../Forms';
 import { MenuItem, MenuList, MenuListDivider, MenuListItem } from '../Menu';
 import { useRootContext } from '../RootProvider';
+import styles from './datepickerFilter.module.css';
 
 export interface DatepickerValue {
   fromDate?: string;
@@ -89,11 +90,11 @@ export const DatepickerFilter = ({
         <Fieldset size="xs">
           <Field>
             <Label>{fromLabel}</Label>
-            <Input name="fromDate" value={fromDate} type="date" onChange={onFromDateChange} />
+            <Input className={styles.input} name="fromDate" value={fromDate} type="date" onChange={onFromDateChange} />
           </Field>
           <Field>
             <Label>{toLabel}</Label>
-            <Input name="toDate" value={toDate} type="date" onChange={onToDateChange} />
+            <Input className={styles.input} name="toDate" value={toDate} type="date" onChange={onToDateChange} />
           </Field>
         </Fieldset>
       </MenuListItem>
