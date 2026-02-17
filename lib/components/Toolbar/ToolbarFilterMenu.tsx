@@ -77,6 +77,19 @@ export const ToolbarFilterMenu = ({
   const FilterMenu = as || Menu;
   const a11yMode = searchable ? 'combobox' : 'menu';
 
+  /** Remove the filter if filterState is empty or no options are checked */
+
+  const onRemovableClose = () => {
+    onClose();
+
+    const filterStateValue = filterState?.[name]?.[0];
+    const checkedItems = filterItems?.filter((option) => option.checked);
+
+    if (checkedItems?.length === 0 && !filterStateValue) {
+      onRemove?.();
+    }
+  };
+
   if (removable) {
     return (
       <Dropdown
@@ -101,7 +114,7 @@ export const ToolbarFilterMenu = ({
           </ToolbarFilterButton>
         }
         open={open}
-        onClose={onClose}
+        onClose={onRemovableClose}
         {...ctrl.dropdownA11yProps}
       >
         <FilterMenu

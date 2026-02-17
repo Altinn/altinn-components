@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/react-vite';
+import { Toolbar, ToolbarFilter } from './';
 import { SelectDateFilter } from './SelectDateFilter';
-import { ToolbarFilter } from './ToolbarFilter';
 import { timeFilter } from './example.data';
 import { useInboxFilter } from './example.hooks';
 
@@ -20,7 +20,9 @@ export const Datepicker = () => {
   });
   return (
     <div>
-      <ToolbarFilter {...inboxFilter} />
+      <Toolbar>
+        <ToolbarFilter {...inboxFilter} />
+      </Toolbar>
       <hr />
       {JSON.stringify(inboxFilter.filterState)}
     </div>
@@ -35,7 +37,9 @@ export const RemovableDatepicker = () => {
 
   return (
     <div>
-      <ToolbarFilter {...inboxFilter} />
+      <Toolbar>
+        <ToolbarFilter {...inboxFilter} />
+      </Toolbar>
       <hr />
       {JSON.stringify(inboxFilter.filterState)}
     </div>
@@ -56,7 +60,9 @@ export const CustomName = () => {
   });
   return (
     <div>
-      <ToolbarFilter {...inboxFilter} />
+      <Toolbar>
+        <ToolbarFilter {...inboxFilter} />
+      </Toolbar>
       <hr />
       {JSON.stringify(inboxFilter.filterState)}
     </div>
