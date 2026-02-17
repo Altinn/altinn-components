@@ -36,15 +36,6 @@
   appearance: none;
 }
 
-/** Make search field larger on mobile */
-@media (max-width: 1023px) {
-  .field[data-size="xs"] input[type="search"] {
-    font-size: 1rem;
-    padding-left: 2em;
-    padding-right: 2em;
-  }
-}
-
 .clear {
   position: absolute;
   top: 1px;
@@ -116,13 +107,32 @@
   /* important in order to keep child elements wrapped */
 }
 
-@media (max-width: 1023px) {
+.autocomplete[aria-hidden="true"] {
+  display: none;
+}
+
+/** Mobile styles */
+
+@media (max-width: 479px) {
+  .fieldContainer,
+  .field {
+    width: 100%;
+  }
+
   .autocomplete {
     --var-max-width: 100%;
     --var-width: 100%;
   }
-}
 
-.autocomplete[aria-hidden="true"] {
-  display: none;
+  .input[data-collapsible="true"]:placeholder-shown,
+  .input[data-collapsible="true"]:focus,
+  .input[data-collapsible="true"]:not(:placeholder-shown) {
+    width: 100% !important;
+  }
+
+  .field[data-size="xs"] input[type="search"] {
+    font-size: 1rem;
+    padding-left: 2em;
+    padding-right: 2em;
+  }
 }
