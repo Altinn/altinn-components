@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.56.10](https://github.com/Altinn/altinn-components/compare/v0.56.9...v0.56.10) (2026-02-17)
+
+
+### Bug Fixes
+
+* add breadcrumbs to layout ([#985](https://github.com/Altinn/altinn-components/issues/985)) ([e010012](https://github.com/Altinn/altinn-components/commit/e0100126ef21223f0f5b5ea536c84acfd458d0eb))
+* datepicker filter submit ([#986](https://github.com/Altinn/altinn-components/issues/986)) ([9196363](https://github.com/Altinn/altinn-components/commit/91963635623ac7aea4f0092f3277d06a22f3074c))
+* hide empty removable filters ([#983](https://github.com/Altinn/altinn-components/issues/983)) ([1e9d6f0](https://github.com/Altinn/altinn-components/commit/1e9d6f0e37e80bf9106088994b86b6b6e0bb760c))
+* mobile collapsible search ([#987](https://github.com/Altinn/altinn-components/issues/987)) ([52e4824](https://github.com/Altinn/altinn-components/commit/52e4824c41fb4d873af9fb9c93460c9cb28f8fd3))
+
 ## [0.56.9](https://github.com/Altinn/altinn-components/compare/v0.56.8...v0.56.9) (2026-02-16)
 
 
