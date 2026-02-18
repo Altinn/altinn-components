@@ -97,8 +97,8 @@ export const useInboxFilter = ({ filters = inboxFilters, defaultFilterState = {}
   };
 };
 
-export const useAccountMenu = () => {
-  const [currentAccountId, setCurrentAccountId] = useState<string>(accountMenu.items[0].id);
+export const useAccountMenu = (selectedId?: string) => {
+  const [currentAccountId, setCurrentAccountId] = useState<string>(selectedId || accountMenu.items[0].id);
 
   const onSelectId = (id: string) => {
     setCurrentAccountId(id);

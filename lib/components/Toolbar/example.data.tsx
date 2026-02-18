@@ -20,7 +20,7 @@ export const ownerFilter: FilterProps = {
   groupId: '3',
   name: 'owner',
   icon: MenuHamburgerIcon,
-  label: 'Velg tjenesteeier',
+  title: 'Tjenesteeier ...',
   groups: {
     1: {
       title: 'Velg tjenesteier',
@@ -53,7 +53,7 @@ export const statusFilter: FilterProps = {
   groupId: '1',
   name: 'status',
   icon: InformationSquareIcon,
-  label: 'Velg status',
+  title: 'Status ...',
   groups: {
     1: {
       title: 'Velg status',
@@ -116,7 +116,7 @@ export const timeFilter: FilterProps = {
   groupId: '1',
   icon: CalendarIcon,
   name: 'time',
-  label: 'Velg dato',
+  title: 'Dato ...',
   groups: {
     1: {
       title: 'Velg dato',
@@ -189,7 +189,7 @@ export const seenByFilter: FilterProps = {
   groupId: '2',
   icon: EyeIcon,
   name: 'seenBy',
-  label: 'Sett av ...',
+  title: 'Sett av ...',
   searchable: true,
   search: {
     name: 'seenBy',
@@ -245,7 +245,7 @@ export const contentFilter: FilterProps = {
   groupId: '2',
   icon: PaperclipIcon,
   name: 'content',
-  label: 'Inneholder ...',
+  title: 'Inneholder ...',
   groups: {
     1: {
       title: 'Inneholder ...',
@@ -388,7 +388,7 @@ export const accountMenuItems = [
     icon: {
       type: 'company',
       name: item.name,
-      isParent: !!item?.parentId,
+      isParent: !item?.parentId,
     } as AvatarProps,
   };
 });
@@ -399,7 +399,7 @@ export const accountMenu = {
   searchable: true,
   groups: {
     favourites: { title: 'Favoritter' },
-    aa: { title: 'Alfa Bar & Brød' },
+    aa: { title: 'Alle virksomheter' },
     search: { title: '{count} treff' },
   },
   size: 'md',

@@ -73,7 +73,7 @@ export const ToolbarFilterMenu = ({
 
   const filterValue = items?.filter((option) => option.checked)?.map((option) => option.value || 'true');
   const isActive = filterValue.length > 0 || filterState?.[name]?.length;
-  const variant = customVariant || isActive ? 'tinted' : 'outline';
+  const variant = isActive ? 'tinted' : 'outline';
   const FilterMenu = as || Menu;
   const a11yMode = searchable ? 'combobox' : 'menu';
 
@@ -103,7 +103,7 @@ export const ToolbarFilterMenu = ({
             onClick={onToggle}
             onRemove={onRemove}
             removable
-            variant={variant}
+            variant={customVariant || variant}
             removeLabel={removeLabel}
             open={open}
             aria-expanded={open}
@@ -143,7 +143,7 @@ export const ToolbarFilterMenu = ({
       variant="drawer-dropdown"
       submitLabel={submitLabel}
       trigger={
-        <ToolbarFilterButton name={name} onClick={onToggle} variant={variant}>
+        <ToolbarFilterButton name={name} onClick={onToggle} variant={customVariant || variant}>
           {label}
         </ToolbarFilterButton>
       }
