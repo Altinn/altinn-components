@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.56.11](https://github.com/Altinn/altinn-components/compare/v0.56.10...v0.56.11) (2026-02-18)
+
+
+### Bug Fixes
+
+* export ToolbarFilterMenu ([#988](https://github.com/Altinn/altinn-components/issues/988)) ([89376b8](https://github.com/Altinn/altinn-components/commit/89376b86ebb0f3bf27232b54f1d4b11cb8971470))
+
 ## [0.56.10](https://github.com/Altinn/altinn-components/compare/v0.56.9...v0.56.10) (2026-02-17)
 
 
