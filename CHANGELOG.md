@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.56.12](https://github.com/Altinn/altinn-components/compare/v0.56.11...v0.56.12) (2026-02-18)
+
+
+### Bug Fixes
+
+* account submenu stories ([#990](https://github.com/Altinn/altinn-components/issues/990)) ([0d3762e](https://github.com/Altinn/altinn-components/commit/0d3762e4eecb45eca13e2c6c934a724326c5962d))
+* Virtual account details interferes with global menu ([#992](https://github.com/Altinn/altinn-components/issues/992)) ([fb1805d](https://github.com/Altinn/altinn-components/commit/fb1805d85796e2c28df77b21d3db41350498b029))
+
 ## [0.56.11](https://github.com/Altinn/altinn-components/compare/v0.56.10...v0.56.11) (2026-02-18)
 
 
