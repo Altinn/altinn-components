@@ -2,9 +2,9 @@ import type { Meta } from '@storybook/react-vite';
 import { useState } from 'react';
 import { QueryLabel } from '..';
 import { Switch } from '../Forms';
-import { Toolbar, ToolbarFilter, type ToolbarFilterProps, ToolbarMenu, ToolbarSearch } from './';
+import { Toolbar, ToolbarFilter, type ToolbarFilterProps, ToolbarMenu, type ToolbarMenuProps, ToolbarSearch } from './';
 import { inboxFilters } from './example.data';
-import { useInboxFilter, useInboxToolbar } from './example.hooks';
+import { useAccountMenu, useInboxFilter, useInboxToolbar } from './example.hooks';
 
 const meta = {
   title: 'Toolbar/Toolbar',
@@ -270,86 +270,6 @@ export const AccountMenuAndSearch = () => {
   return <Toolbar menus={menus} search={{ ...search, collapsible: true }} filter={removableFilter} />;
 };
 
-export const AccountMenuAndSubmenu = () => {
-  const { menus } = useInboxToolbar();
-  const removableFilter = useInboxFilter({ filters: inboxFilters?.map((item) => ({ ...item, removable: true })) });
-
-  const filterState = removableFilter?.filterState;
-
-  const onSubAccountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const type = e.target.type;
-    if (type === 'radio') {
-      removableFilter?.onFilterStateChange?.({ ...filterState, subaccount: [e.target.value] });
-    } else {
-      removableFilter?.onFilterStateChange?.({
-        ...filterState,
-        subaccount: [...(filterState?.subaccount?.filter((v) => v !== 'all') || []), e.target.value],
-      });
-    }
-  };
-
-  const subAccounts = [
-    {
-      id: '1',
-      groupId: '2',
-      title: 'Hovedenhet',
-      description: 'Org nr.',
-      value: 'hoved',
-      name: 'subaccount',
-      role: 'checkbox',
-    },
-    {
-      id: '2',
-      groupId: '2',
-      title: 'Underenhet',
-      description: 'Org nr.',
-      name: 'subaccount',
-      value: 'under',
-      role: 'checkbox',
-    },
-  ]?.map((item) => {
-    return {
-      ...item,
-      checked: filterState?.subaccount?.includes(item.value),
-      onChange: onSubAccountChange,
-    };
-  });
-
-  const subAccountsAndAll = [
-    {
-      id: 'all',
-      groupId: '1',
-      title: 'Alle enheter',
-      name: 'subaccount',
-      value: 'all',
-      role: 'radio',
-      checked: filterState?.subaccount?.includes('all'),
-      onChange: onSubAccountChange,
-    },
-    ...subAccounts,
-  ];
-
-  const getSubAccountLabel = () => {
-    const count = subAccounts?.filter((item) => filterState?.subaccount?.includes(item.value))?.length;
-    if (count === 1) {
-      return subAccounts?.find((item) => filterState?.subaccount?.includes(item.value))?.title;
-    }
-
-    if (count) {
-      return `${count} enheter`;
-    }
-    return `${subAccounts?.length} enheter`;
-  };
-
-  return (
-    <Toolbar>
-      <ToolbarMenu {...menus?.[0]!} />
-      <ToolbarMenu items={subAccountsAndAll} label={getSubAccountLabel()} />
-      <ToolbarFilter {...removableFilter} />
-    </Toolbar>
-  );
-};
-
 export const AccountMenuAndSearchAutocomplete = () => {
   const { menus } = useInboxToolbar();
   const removableFilter = useInboxFilter({ filters: inboxFilters?.map((item) => ({ ...item, removable: true })) });
@@ -431,4 +351,94 @@ export const AccountMenuAndSearchAutocomplete = () => {
   };
 
   return <Toolbar menus={menus} search={search} filter={removableFilter} />;
+};
+
+export const AccountMenuAndSubmenu = () => {
+  const accountMenu = useAccountMenu('aa-1');
+  const selectedAccount = accountMenu.items?.find((item) => item.selected);
+  const selectedIsParent = selectedAccount?.icon?.isParent;
+  const removableFilter = useInboxFilter({ filters: inboxFilters?.map((item) => ({ ...item, removable: true })) });
+
+  const filterState = removableFilter?.filterState;
+
+  const onSubAccountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const type = e.target.type;
+    const value = e.target.value;
+    if (type === 'radio') {
+      removableFilter?.onFilterStateChange?.({ ...filterState, subaccount: [value] });
+    } else {
+      if (filterState?.subaccount?.includes(value)) {
+        removableFilter?.onFilterStateChange?.({
+          ...filterState,
+          subaccount: [...(filterState?.subaccount?.filter((v) => v !== value) || [])],
+        });
+      } else {
+        removableFilter?.onFilterStateChange?.({
+          ...filterState,
+          subaccount: [...(filterState?.subaccount?.filter((v) => v !== 'all') || []), value],
+        });
+      }
+    }
+  };
+
+  const subAccounts = [
+    {
+      id: '1',
+      groupId: '2',
+      title: 'Hovedenhet',
+      description: 'Org nr.',
+      value: 'hoved',
+      name: 'subaccount',
+      role: 'checkbox',
+    },
+    {
+      id: '2',
+      groupId: '2',
+      title: 'Underenhet',
+      description: 'Org nr.',
+      name: 'subaccount',
+      value: 'under',
+      role: 'checkbox',
+    },
+  ]?.map((item) => {
+    return {
+      ...item,
+      checked: filterState?.subaccount?.includes(item.value),
+      onChange: onSubAccountChange,
+    };
+  });
+
+  const subAccountsAndAll = [
+    {
+      id: 'all',
+      groupId: '1',
+      title: 'Alle enheter',
+      name: 'subaccount',
+      value: 'all',
+      role: 'radio',
+      checked: filterState?.subaccount?.includes('all') || !filterState?.subaccount?.length,
+      onChange: onSubAccountChange,
+    },
+    ...subAccounts,
+  ];
+
+  const getSubAccountLabel = () => {
+    const count = subAccounts?.filter((item) => filterState?.subaccount?.includes(item.value))?.length;
+    if (count === 1) {
+      return subAccounts?.find((item) => filterState?.subaccount?.includes(item.value))?.title;
+    }
+
+    if (count) {
+      return `${count} enheter`;
+    }
+    return `${subAccounts?.length} enheter`;
+  };
+
+  return (
+    <Toolbar>
+      <ToolbarMenu {...(accountMenu as ToolbarMenuProps)} />
+      {selectedIsParent && <ToolbarMenu items={subAccountsAndAll} label={getSubAccountLabel()} />}
+      <ToolbarFilter {...removableFilter} />
+    </Toolbar>
+  );
 };

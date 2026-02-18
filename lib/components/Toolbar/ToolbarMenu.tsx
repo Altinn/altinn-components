@@ -26,7 +26,7 @@ export const ToolbarMenu = ({
       ...item,
       onClick: () => {
         onSelectId?.(item?.id ?? '');
-        ctrl.setOpen(false);
+        item?.role !== 'checkbox' && ctrl.setOpen(false);
       },
     };
   });
@@ -39,7 +39,7 @@ export const ToolbarMenu = ({
       size={dropdownSize}
       trigger={
         <Button
-          variant="primary"
+          variant="solid"
           onClick={ctrl.toggleMenu}
           aria-expanded={ctrl.open}
           aria-haspopup="menu"
