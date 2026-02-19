@@ -36,6 +36,28 @@
   appearance: none;
 }
 
+.spinnerContainer {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  bottom: 1px;
+  font-size: 1rem;
+  width: 2.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.spinner {
+  width: 2rem;
+  height: 2rem;
+}
+
+.spinner * {
+  stroke-width: 10 !important;
+}
+
 .clear {
   position: absolute;
   top: 1px;

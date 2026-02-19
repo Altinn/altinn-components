@@ -1,5 +1,5 @@
 import type { Meta } from '@storybook/react-vite';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { QueryLabel } from '..';
 import { Switch } from '../Forms';
 import { Toolbar, ToolbarFilter, type ToolbarFilterProps, ToolbarMenu, type ToolbarMenuProps, ToolbarSearch } from './';
@@ -438,6 +438,57 @@ export const AccountMenuAndSubmenu = () => {
     <Toolbar>
       <ToolbarMenu {...(accountMenu as ToolbarMenuProps)} />
       {selectedIsParent && <ToolbarMenu items={subAccountsAndAll} label={getSubAccountLabel()} />}
+      <ToolbarFilter {...removableFilter} />
+    </Toolbar>
+  );
+};
+
+export const DebouncedQuery = () => {
+  const accountMenu = useAccountMenu('aa-1');
+  const removableFilter = useInboxFilter({ filters: inboxFilters?.map((item) => ({ ...item, removable: true })) });
+
+  const [q, setQ] = useState('');
+
+  function useDebounce<T>(value: T, delay: number): T {
+    const [debouncedValue, setDebouncedValue] = useState(value);
+
+    useEffect(() => {
+      // Update debounced value after delay
+      const handler = setTimeout(() => {
+        setDebouncedValue(value);
+      }, delay);
+
+      // Cancel previous timeout if value changes
+      return () => {
+        clearTimeout(handler);
+      };
+    }, [value, delay]);
+
+    return debouncedValue;
+  }
+
+  const debouncedQuery = useDebounce(q, 500);
+
+  // We are "loading" if the current text hasn't caught up to the debounced text
+  // OR if an actual API call is in progress (args.loading)
+  const isTyping = q !== debouncedQuery;
+  const loading = isTyping;
+
+  useEffect(() => {
+    if (debouncedQuery) {
+      console.log('Fetching data for:', debouncedQuery);
+      // Simulate API call
+      // setTimeout(() => {
+      //   console.log('Data fetched for:', debouncedQuery);
+      // }, 1000);
+    }
+  }, [debouncedQuery]);
+
+  return (
+    <Toolbar>
+      <ToolbarMenu {...(accountMenu as ToolbarMenuProps)} />
+
+      <ToolbarSearch value={q} loading={loading} onChange={(e) => setQ(e.target.value)} onClear={() => setQ('')} />
       <ToolbarFilter {...removableFilter} />
     </Toolbar>
   );

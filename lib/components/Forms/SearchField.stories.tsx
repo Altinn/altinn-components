@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { QueryLabel } from '../Searchbar';
 import { SearchField, type SearchFieldProps } from './SearchField';
 
@@ -31,6 +31,53 @@ export const ClearButton: Story = {
       console.log('Clear');
     },
   },
+};
+
+export const DebouncedQuery = (args: SearchFieldProps) => {
+  const [q, setQ] = useState('');
+
+  function useDebounce<T>(value: T, delay: number): T {
+    const [debouncedValue, setDebouncedValue] = useState<T>(value);
+
+    useEffect(() => {
+      // Set a timer to update the value after the delay
+      const handler = setTimeout(() => {
+        setDebouncedValue(value);
+      }, delay);
+
+      // If the value changes (user types again), clear the previous timer
+      return () => {
+        clearTimeout(handler);
+      };
+    }, [value, delay]);
+
+    return debouncedValue;
+  }
+
+  // Use the hook with a 500ms delay
+  const debouncedQuery = useDebounce(q, 500);
+
+  // We are "loading" if the current text hasn't caught up to the debounced text
+  // OR if an actual API call is in progress (args.loading)
+  const isTyping = q !== debouncedQuery;
+  const loading = isTyping;
+
+  useEffect(() => {
+    if (debouncedQuery) {
+      console.log('Triggering API search for:', debouncedQuery);
+      // Perform your fetch/search logic here
+    }
+  }, [debouncedQuery]);
+
+  return (
+    <SearchField
+      {...args}
+      loading={loading}
+      value={q}
+      onChange={(e) => setQ(e.target.value)}
+      onClear={() => setQ('')}
+    />
+  );
 };
 
 export const Controlled = (args: SearchFieldProps) => {
