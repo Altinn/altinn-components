@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.56.13](https://github.com/Altinn/altinn-components/compare/v0.56.12...v0.56.13) (2026-02-19)
+
+
+### Bug Fixes
+
+* searchfield-loading-indicator ([#993](https://github.com/Altinn/altinn-components/issues/993)) ([a4c4b4b](https://github.com/Altinn/altinn-components/commit/a4c4b4bb06cbd8c0b05aa064272023b5d315c0f2))
+
 ## [0.56.12](https://github.com/Altinn/altinn-components/compare/v0.56.11...v0.56.12) (2026-02-18)
 
 
