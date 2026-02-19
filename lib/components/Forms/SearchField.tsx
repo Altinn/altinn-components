@@ -45,11 +45,12 @@ export const SearchField = ({
   const [activeDescendantId, setActiveDescendantId] = useState<string | undefined>(undefined);
   const clearButtonId = 'searchfield-clear-button-' + useId();
   const showMenu = useMemo(() => {
+    if (!menu) return false;
     if (!value || (typeof minLength === 'number' && typeof value === 'string' && value.length < minLength)) {
       return false;
     }
     return menuOpen;
-  }, [menuOpen, minLength, value]);
+  }, [menu, menuOpen, minLength, value]);
 
   const menuItemsWithToggle: MenuItemProps[] = useMemo(() => {
     return (menu?.items ?? []).map((item) => ({
