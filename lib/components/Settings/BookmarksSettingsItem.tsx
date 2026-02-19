@@ -13,6 +13,8 @@ import {
   type TextFieldProps,
 } from '..';
 
+import { BookmarksSettingsItemLabel } from './BookmarksSettingsItemLabel';
+
 import { MagnifyingGlassIcon } from '@navikt/aksel-icons';
 import { useState } from 'react';
 
@@ -25,6 +27,8 @@ export interface BookmarksSettingsItemProps extends SettingsItemProps {
   loading?: boolean;
   /** Optional title */
   title?: string;
+  /** Optional title */
+  untitled?: string;
   /** Query params */
   params?: QueryItemProps[];
   /** Input value */
@@ -50,6 +54,8 @@ export const BookmarksSettingsItem = ({
   icon = MagnifyingGlassIcon,
   loading,
   title,
+  untitled,
+  highlightWords,
   params,
   controls,
   inputValue,
@@ -70,8 +76,9 @@ export const BookmarksSettingsItem = ({
       expanded={open}
       icon={icon}
       loading={loading}
-      title={title}
-      value={<QueryLabel params={params} size="xs" />}
+      label={
+        <BookmarksSettingsItemLabel highlightWords={highlightWords} loading={loading} params={params} title={title} />
+      }
       controls={contextMenu && <ContextMenu {...contextMenu} />}
       linkIcon
     >

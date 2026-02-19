@@ -44,7 +44,8 @@ export const BookmarksSettingsList = ({
                   <BookmarksSettingsItem
                     {...item}
                     key={item.id}
-                    title={item?.title || untitled}
+                    title={item?.title}
+                    untitled={untitled}
                     loading={loading || item.loading}
                     onToggle={() => onToggle?.(item.id)}
                     expanded={expandedId === item.id}
