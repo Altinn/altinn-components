@@ -13,6 +13,7 @@ export const ToolbarSearch = ({
   clearButtonAltText = 'Clear search',
   onChange,
   onClear,
+  onKeyDown,
   menu,
   minLength,
 }: ToolbarSearchProps) => {
@@ -25,6 +26,7 @@ export const ToolbarSearch = ({
       clearButtonAltText={clearButtonAltText}
       onChange={onChange}
       onClear={onClear}
+      onKeyDown={onKeyDown}
       collapsible={collapsible}
       autoComplete="off"
       autoCapitalize="off"
