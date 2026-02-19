@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.56.15](https://github.com/Altinn/altinn-components/compare/v0.56.14...v0.56.15) (2026-02-19)
+
+
+### Bug Fixes
+
+* Searchfield menu handling early return ([#998](https://github.com/Altinn/altinn-components/issues/998)) ([1c27fd9](https://github.com/Altinn/altinn-components/commit/1c27fd9f3a859514fac0f7c41bc267b549bb6f96))
+
 ## [0.56.14](https://github.com/Altinn/altinn-components/compare/v0.56.13...v0.56.14) (2026-02-19)
 
 
