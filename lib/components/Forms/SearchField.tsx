@@ -2,6 +2,7 @@ import { MagnifyingGlassIcon, XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import { useId, useMemo, useState } from 'react';
 import { Button, FieldBase, type FieldBaseProps, Input, type InputProps, type MenuItemProps } from '..';
+import { TypingIcon } from '../Icon/TypingIcon';
 import { Menu, type MenuProps } from '../Menu';
 import styles from './searchField.module.css';
 
@@ -16,6 +17,8 @@ export interface SearchFieldProps extends InputProps {
   value?: InputProps['value'];
   label?: FieldBaseProps['label'];
   clearButtonAltText?: string;
+  loading?: boolean;
+  loadingLabel?: string;
   onClear?: () => void;
   menu?: SearchFieldMenuProps;
 }
@@ -23,6 +26,8 @@ export interface SearchFieldProps extends InputProps {
 export const SearchField = ({
   className,
   collapsible,
+  loading,
+  loadingLabel = 'Loading ...',
   size,
   color = 'neutral',
   label,
@@ -123,7 +128,11 @@ export const SearchField = ({
           onKeyDown={handleKeyDown}
           onBlur={handleInputBlur}
         />
-        <MagnifyingGlassIcon className={styles.icon} />
+        {loading ? (
+          <TypingIcon aria-hidden className={styles.icon} />
+        ) : (
+          <MagnifyingGlassIcon aria-hidden className={styles.icon} />
+        )}
         {onClear && !!value && (
           <span className={styles.clear}>
             <Button
