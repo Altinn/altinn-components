@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.56.14](https://github.com/Altinn/altinn-components/compare/v0.56.13...v0.56.14) (2026-02-19)
+
+
+### Bug Fixes
+
+* empty bookmarks ([#995](https://github.com/Altinn/altinn-components/issues/995)) ([1229005](https://github.com/Altinn/altinn-components/commit/1229005d48f1b32bc66f2038535ab4b7524ff8f3))
+* ToolbarSearch pass onKeyDown ([#997](https://github.com/Altinn/altinn-components/issues/997)) ([33e5199](https://github.com/Altinn/altinn-components/commit/33e519981fb7b2d77ad118d17b6bd11ec5b32059))
+
 ## [0.56.13](https://github.com/Altinn/altinn-components/compare/v0.56.12...v0.56.13) (2026-02-19)
 
 
