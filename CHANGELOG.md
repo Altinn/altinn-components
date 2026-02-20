@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.56.16](https://github.com/Altinn/altinn-components/compare/v0.56.15...v0.56.16) (2026-02-20)
+
+
+### Bug Fixes
+
+* Fix lint ([#1004](https://github.com/Altinn/altinn-components/issues/1004)) ([23ead8e](https://github.com/Altinn/altinn-components/commit/23ead8ebf32fd7ae9e295505c0084e926fc20a50))
+* removable datepicker fix ([#1003](https://github.com/Altinn/altinn-components/issues/1003)) ([2654d76](https://github.com/Altinn/altinn-components/commit/2654d76997ec1cf7bff503fedccc936bc02212a4))
+* UserListItem roleNames (badges) should break to new lines on narrow screens ([#1000](https://github.com/Altinn/altinn-components/issues/1000)) ([0a78eda](https://github.com/Altinn/altinn-components/commit/0a78edab507b4c3094bbd1ba34d892e2c650ed15))
+
 ## [0.56.15](https://github.com/Altinn/altinn-components/compare/v0.56.14...v0.56.15) (2026-02-19)
 
 
