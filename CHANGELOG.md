@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.56.17](https://github.com/Altinn/altinn-components/compare/v0.56.16...v0.56.17) (2026-02-20)
+
+
+### Bug Fixes
+
+* separate bookmark list and bookmark modal ([#1002](https://github.com/Altinn/altinn-components/issues/1002)) ([e4ce52a](https://github.com/Altinn/altinn-components/commit/e4ce52a177919aea857af84d8c5791d3790c3036))
+
 ## [0.56.16](https://github.com/Altinn/altinn-components/compare/v0.56.15...v0.56.16) (2026-02-20)
 
 
