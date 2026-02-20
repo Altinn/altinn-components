@@ -1,6 +1,6 @@
 import { Heading, type QueryItemProps, QueryLabel } from '..';
 
-export interface BookmarksSettingsItemLabelProps {
+export interface BookmarkSettingsItemLabelProps {
   /** Optional title */
   title?: string;
   /** Query params */
@@ -11,12 +11,12 @@ export interface BookmarksSettingsItemLabelProps {
   highlightWords?: string[];
 }
 
-export const BookmarksSettingsItemLabel = ({
+export const BookmarkSettingsItemLabel = ({
   loading,
   title,
   params,
   highlightWords,
-}: BookmarksSettingsItemLabelProps) => {
+}: BookmarkSettingsItemLabelProps) => {
   return (
     <>
       {title && (
