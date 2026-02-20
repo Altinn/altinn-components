@@ -32,8 +32,8 @@ export const SelectDateFilter = ({
       ...filterState,
       [name]: ['fromAndToDate'],
     });
-    setDatepickerOpen(true)
-  }
+    setDatepickerOpen(true);
+  };
 
   const onDatepickerSubmit = useCallback(() => {
     onFilterStateChange?.({
