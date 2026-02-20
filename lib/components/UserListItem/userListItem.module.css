@@ -5,22 +5,22 @@
   flex-wrap: wrap;
   justify-content: start;
   margin-bottom: auto;
+  flex: 1;
   margin-top: calc(var(--dsc-item-my) * 0.85);
 }
 
 .label {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
   min-width: 0;
-  flex: 1;
   overflow: hidden;
 }
 
 .label > span {
   min-width: 0;
-  flex: 1;
   overflow: hidden;
 }
 
