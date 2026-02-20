@@ -27,6 +27,14 @@ export const SelectDateFilter = ({
   const [fromDate, setFromDate] = useState((filterState?.fromDate?.[0] as string) || '');
   const [toDate, setToDate] = useState((filterState?.toDate?.[0] as string) || '');
 
+  const onDatepickerOpen = () => {
+    onFilterStateChange?.({
+      ...filterState,
+      [name]: ['fromAndToDate'],
+    });
+    setDatepickerOpen(true)
+  }
+
   const onDatepickerSubmit = useCallback(() => {
     onFilterStateChange?.({
       ...filterState,
@@ -79,9 +87,7 @@ export const SelectDateFilter = ({
         ...item,
         description: datepickerDescription,
         selected: filterState?.[name]?.[0] === 'fromAndToDate',
-        onClick: () => {
-          setDatepickerOpen(true);
-        },
+        onClick: onDatepickerOpen,
       };
     }
 
