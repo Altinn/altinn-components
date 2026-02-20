@@ -2,29 +2,29 @@ import * as DialogStories from "./Dialog/Dialog.stories";
 import * as BetaStories from "./Beta/Beta.stories";
 
 import {
-    BookmarksSettingsList,
-    type BookmarksSettingsListProps,
-    Dialog,
-    DialogList,
-    Layout,
-    PageBase,
-    Toolbar,
-    Section,
-    Heading,
-    Typography,
-    ActionHeader,
-    ActionFooter,
-    PageMenu,
-    ModalBase,
-    ModalHeader,
-    ModalBody,
-    ActivityLog,
-    SeenByLog,
-    SeenByLogProps,
-    HeaderProps,
-    FloatingDropdown,
+  BookmarkSettingsList,
+  BookmarkModal,
+  Dialog,
+  DialogList,
+  Layout,
+  PageBase,
+  Toolbar,
+  Section,
+  Heading,
+  Typography,
+  ActionHeader,
+  ActionFooter,
+  PageMenu,
+  ModalBase,
+  ModalHeader,
+  ModalBody,
+  ActivityLog,
+  SeenByLog,
+  SeenByLogProps,
+  HeaderProps,
+  FloatingDropdown,
 } from "../components";
-import {useBookmarks, useInbox, useActivityLog, useFloatingDropdown} from "../../examples";
+import { useBookmarks, useInbox, useActivityLog, useFloatingDropdown } from "../../examples";
 import { useState } from "react";
 
 const meta = {
@@ -630,12 +630,16 @@ export const BookmarksPage = () => {
   const { layout, toolbar } = useInbox({
     pageId: "bookmarks",
   });
-  const bookmarks = useBookmarks();
+  const { items, expandedId, onClose } = useBookmarks();
+  const modalProps = expandedId && items.find(item => item.id === expandedId);
   return (
     <Layout {...layout}>
       <PageBase margin="page">
         <Toolbar {...toolbar} />
-        <BookmarksSettingsList {...(bookmarks as BookmarksSettingsListProps)} />
+        <Heading size="lg">Lagrede søk</Heading>
+        <BookmarkSettingsList items={items} />
+        <Heading size="xs" weight="normal">Oppdatert: xxx</Heading>
+        {expandedId && <BookmarkModal {...modalProps} title="Rediger lagret søk" open={expandedId !== ''} onClose={onClose} buttons={[{ label: "Lagre", onClick: () => onClose() }, { label: "Slett", variant: "outline", onClick: () => onClose() }]} />}
       </PageBase>
     </Layout>
   );

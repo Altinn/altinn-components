@@ -7,6 +7,7 @@ export * from './Alert';
 
 export * from './Badge';
 export * from './Banner';
+export * from './Bookmarks';
 export * from './Breadcrumbs';
 export * from './Button';
 export * from './Byline';
