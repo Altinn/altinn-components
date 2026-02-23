@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { RootProvider } from '..';
-import { AccountMenuButton } from './AccountMenuButton';
+import { AccountSelectorButton } from './AccountSelectorButton';
 
 const meta = {
-  title: 'Account/AccountMenuButton',
-  component: AccountMenuButton,
+  title: 'Layout/AccountSelectorButton',
+  component: AccountSelectorButton,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
@@ -27,7 +27,7 @@ const meta = {
     minimized: { control: 'boolean' },
     expanded: { control: 'boolean' },
   },
-} satisfies Meta<typeof AccountMenuButton>;
+} satisfies Meta<typeof AccountSelectorButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -41,7 +41,7 @@ export const Login: Story = {
 export const LoginWithEnglishText = () => {
   return (
     <RootProvider languageCode="en">
-      <AccountMenuButton currentAccount={undefined} minimized={false} expanded={false} />
+      <AccountSelectorButton currentAccount={undefined} minimized={false} expanded={false} />
     </RootProvider>
   );
 };

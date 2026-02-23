@@ -55,7 +55,7 @@ export const Layout = ({
   const { currentId } = useRootContext();
 
   return (
-    <LayoutBase color={color} theme={currentId === 'accountFullscreen' ? 'default' : theme} currentId={currentId}>
+    <LayoutBase color={color} theme={theme} currentId={currentId}>
       {skipLink && <SkipLink {...skipLink} />}
       {header && (useGlobalHeader ? <GlobalHeader {...header} /> : <Header {...header} />)}
       <LayoutGrid currentId={currentId}>

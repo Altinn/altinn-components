@@ -44,20 +44,24 @@
 
 /* backdrop */
 
-.backdrop {
-  z-index: 1;
-  background-color: rgba(17, 29, 70, 0.25);
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
+.backdrop,
 .backdrop[aria-hidden="true"] {
   display: none;
+}
+
+@media (min-width: 1024px) {
+  .backdrop {
+    display: block;
+    z-index: 1;
+    background-color: rgba(17, 29, 70, 0.25);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 /* dropdown */
@@ -89,10 +93,9 @@
   max-width: none !important;
   max-height: 100vh !important;
   width: 100% !important;
-  margin-top: 1rem;
+  margin-top: 0;
   margin-bottom: 0;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+  border-radius: 0;
   padding-top: 0;
 }
 
@@ -105,10 +108,9 @@
     max-width: none !important;
     max-height: 100vh !important;
     width: 100% !important;
-    margin-top: 1rem;
+    margin-top: 0;
     margin-bottom: 0;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    border-radius: 0;
     padding-top: 0;
   }
 }

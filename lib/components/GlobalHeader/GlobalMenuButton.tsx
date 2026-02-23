@@ -1,10 +1,7 @@
 import { MenuHamburgerIcon, XMarkIcon } from '@navikt/aksel-icons';
-import cx from 'classnames';
 import type { ElementType } from 'react';
-import { Button, ButtonIcon, ButtonLabel, type ButtonProps, useRootContext } from '../';
+import { Button, type ButtonProps, useRootContext } from '..';
 import { Badge, type BadgeProps } from '../Badge';
-
-import { useIsDesktop } from '../../hooks/useIsDesktop';
 import styles from './globalMenuButton.module.css';
 
 export interface GlobalMenuButtonProps extends ButtonProps {
@@ -39,49 +36,32 @@ export const GlobalMenuButton = ({
   as = 'button',
   color = 'company',
   variant = 'solid',
+  onClick,
   expanded,
   label = 'Menu',
   badge,
   ...buttonProps
 }: GlobalMenuButtonProps) => {
-  const isDesktop = useIsDesktop();
   const { languageCode } = useRootContext();
   const { close } = getTexts(languageCode);
-
-  if (expanded) {
-    return (
-      <Button
-        {...buttonProps}
-        as={as}
-        type="button"
-        variant={variant}
-        color={color}
-        className={cx(styles.button, className)}
-        aria-expanded={expanded}
-      >
-        {isDesktop && (
-          <>
-            <ButtonIcon icon={<XMarkIcon className={styles.icon} aria-label={close} />} />
-            <ButtonLabel>{label}</ButtonLabel>
-          </>
-        )}
-        {!isDesktop && <ButtonIcon icon={<XMarkIcon className={styles.iconMobile} aria-label={close} />} />}
-        {badge && <Badge {...badge} className={styles.badge} />}
-      </Button>
-    );
-  }
 
   return (
     <Button
       {...buttonProps}
-      as={as}
       type="button"
-      variant={variant}
+      title={expanded ? close : label}
+      onClick={onClick}
       color={color}
-      className={cx(styles.button, className)}
+      variant={variant}
+      className={styles.button}
+      aria-expanded={expanded}
     >
-      {isDesktop && <ButtonIcon icon={<MenuHamburgerIcon className={styles.icon} aria-hidden />} />}
-      <ButtonLabel>{label}</ButtonLabel>
+      {expanded ? (
+        <XMarkIcon className={styles.icon} aria-hidden="true" />
+      ) : (
+        <MenuHamburgerIcon className={styles.icon} aria-hidden="true" />
+      )}
+      <span className={styles.label}>{label}</span>
       {badge && <Badge {...badge} className={styles.badge} />}
     </Button>
   );

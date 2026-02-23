@@ -15,7 +15,6 @@ export const useGlobalHeader = ({
 }): GlobalHeaderProps => {
   const globalMenu = useGlobalHeaderMenu({});
   const localeSwitcher = useLocale({ ...localExample, locale: languageCode });
-  const onSearch = (queryString: string) => alert('Search entered: ' + queryString);
   const onLoginClick = () => {
     alert('Login clicked');
   };
@@ -55,7 +54,6 @@ export const useGlobalHeader = ({
 
   return {
     globalMenu,
-    globalSearch: { onSearch },
     accountSelector: {
       ...accountSelector,
       showDeletedUnits: showDeletedAccounts,

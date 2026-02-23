@@ -1,2 +1,2 @@
 export * from './GlobalHeader';
-export * from './GlobalHeaderBase';
+export * from './GlobalMenuButton';

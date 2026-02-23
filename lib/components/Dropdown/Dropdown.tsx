@@ -17,7 +17,7 @@ export type DropdownPlacement =
   | 'top-left'
   | 'top-right';
 
-export type DropdownVariant = 'dropdown' | 'drawer' | 'drawer-dropdown';
+export type DropdownVariant = 'dropdown' | 'drawer' | 'drawer-dropdown' | 'header-dropdown' | 'header';
 
 export interface DropdownProps {
   id?: string;
