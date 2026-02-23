@@ -37,10 +37,3 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
-
-export const BulkActionbar: Story = {
-  args: {
-    color: 'company',
-    theme: 'base',
-  },
-};
