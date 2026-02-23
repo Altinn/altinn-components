@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.56.18](https://github.com/Altinn/altinn-components/compare/v0.56.17...v0.56.18) (2026-02-23)
+
+
+### Bug Fixes
+
+* pageMenu ([#1006](https://github.com/Altinn/altinn-components/issues/1006)) ([39e7d84](https://github.com/Altinn/altinn-components/commit/39e7d843cfc71981cea6baacad9591ce53bb13b6))
+
 ## [0.56.17](https://github.com/Altinn/altinn-components/compare/v0.56.16...v0.56.17) (2026-02-20)
 
 
