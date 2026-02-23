@@ -156,7 +156,6 @@ export const WithBaseTheme: Story = {
       onClick: () => console.log('Back clicked'),
     },
     pageMenu: {
-      theme: 'base',
       items: [
         {
           id: '1',

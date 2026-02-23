@@ -15,6 +15,7 @@ import {
   ActionHeader,
   ActionFooter,
   PageMenu,
+  type PageMenuProps,
   ModalBase,
   ModalHeader,
   ModalBody,
@@ -74,7 +75,7 @@ export const InboxPage = () => {
           </PageBase>
           <ActionFooter hidden={!bulkMode}>
             {bulkMenu && (
-              <PageMenu items={bulkMenu.items} id="action" theme="base" />
+              <PageMenu items={bulkMenu.items as PageMenuProps['items']} />
             )}
           </ActionFooter>
         </>
