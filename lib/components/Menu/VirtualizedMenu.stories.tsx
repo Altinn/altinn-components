@@ -32,10 +32,18 @@ export const NotVirtualized = () => {
   const { items, groups } = useMemo(() => useRandomMenuItems(10), []);
   return <Menu searchable items={items as MenuItemProps[]} groups={groups} size="md" />;
 };
+NotVirtualized.parameters = {
+  //can't screenshot tests with useRandomMenuItems
+  screenshot: { skip: true },
+};
 
 export const Virtualized = () => {
   const { items, groups } = useMemo(() => useRandomMenuItems(10000), []);
   return <Menu virtualized searchable items={items as MenuItemProps[]} groups={groups} size="md" />;
+};
+Virtualized.parameters = {
+  //can't screenshot tests with useRandomMenuItems
+  screenshot: { skip: true },
 };
 
 export const ToolbarVirtualizedMenu = () => {
@@ -56,4 +64,8 @@ export const ToolbarVirtualizedMenu = () => {
       />
     </Flex>
   );
+};
+ToolbarVirtualizedMenu.parameters = {
+  //can't screenshot with useRandomMenuItems
+  screenshot: { skip: true },
 };
