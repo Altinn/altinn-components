@@ -22,6 +22,7 @@ export interface DialogStatusProps {
   loading?: boolean;
   size?: MetaItemSize;
   value?: DialogStatusValue;
+  tooltip?: string;
   label?: string;
 }
 
@@ -29,7 +30,7 @@ export interface DialogStatusProps {
  * Dialog status.
  */
 
-export const DialogStatus = ({ loading, size = 'xs', value = 'not-applicable', label }: DialogStatusProps) => {
+export const DialogStatus = ({ loading, size = 'xs', value = 'not-applicable', label, tooltip }: DialogStatusProps) => {
   if (loading) {
     return null;
   }
@@ -37,27 +38,31 @@ export const DialogStatus = ({ loading, size = 'xs', value = 'not-applicable', l
   switch (value) {
     case 'draft':
       return (
-        <MetaItem size={size} variant="dotted">
+        <MetaItem tooltip={tooltip} size={size} variant="dotted">
           {label || value}
         </MetaItem>
       );
     case 'requires-attention':
-      return <MetaItem variant="solid">{label || value}</MetaItem>;
+      return (
+        <MetaItem tooltip={tooltip} variant="solid">
+          {label || value}
+        </MetaItem>
+      );
     case 'awaiting':
       return (
-        <MetaItem size={size} variant="outline" icon={HourglassIcon}>
+        <MetaItem tooltip={tooltip} size={size} variant="outline" icon={HourglassIcon}>
           {label || value}
         </MetaItem>
       );
     case 'in-progress':
       return (
-        <MetaProgress size={size} variant="outline" progress={75}>
+        <MetaProgress tooltip={tooltip} size={size} variant="outline" progress={75}>
           {label || value}
         </MetaProgress>
       );
     case 'completed':
       return (
-        <MetaProgress size={size} variant="outline" progress={100}>
+        <MetaProgress tooltip={tooltip} size={size} variant="outline" progress={100}>
           {label || value}
         </MetaProgress>
       );

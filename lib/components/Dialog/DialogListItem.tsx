@@ -103,6 +103,7 @@ export const DialogListItem = ({
   receivedCount,
   attachmentsCount,
   attachmentsLabel,
+  tooltips = {},
   title,
   description,
   summary,
@@ -205,6 +206,7 @@ export const DialogListItem = ({
             dueAtLabel={dueAtLabel}
             attachmentsCount={attachmentsCount}
             attachmentsLabel={attachmentsLabel}
+            tooltips={tooltips}
           />
           {seenByLog && <AvatarGroup className={styles.seenBy} items={seenByLog.items} />}
         </div>
