@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.56.19](https://github.com/Altinn/altinn-components/compare/v0.56.18...v0.56.19) (2026-02-24)
+
+
+### Bug Fixes
+
+* dialog improvements ([#1008](https://github.com/Altinn/altinn-components/issues/1008)) ([56e242d](https://github.com/Altinn/altinn-components/commit/56e242daa7d372a03f9b2a13d8d3e0780fee1367))
+* **ResourceListItem:** Add variant to resource list item ([#1011](https://github.com/Altinn/altinn-components/issues/1011)) ([0829561](https://github.com/Altinn/altinn-components/commit/08295611aea1e179e200290b0e86fa95139ad047))
+
 ## [0.56.18](https://github.com/Altinn/altinn-components/compare/v0.56.17...v0.56.18) (2026-02-23)
 
 
