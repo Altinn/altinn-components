@@ -5,7 +5,7 @@ import type { ListItemProps } from '../List';
 export interface ResourceListItemProps
   extends Pick<
     ListItemProps,
-    'size' | 'controls' | 'as' | 'onClick' | 'loading' | 'shadow' | 'border' | 'interactive'
+    'size' | 'controls' | 'as' | 'onClick' | 'loading' | 'shadow' | 'border' | 'interactive' | 'variant'
   > {
   /** Unique identifier for the resource item */
   id: string;
