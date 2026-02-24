@@ -97,3 +97,29 @@ export const WithExtendedStatus: Story = {
     attachmentsCount: 2,
   },
 };
+
+export const WithTooltips: Story = {
+  args: {
+    status: {
+      value: 'in-progress',
+      label: 'Under arbeid',
+    },
+    extendedStatusLabel: 'Venter på svar',
+    sentCount: 1,
+    receivedCount: 2,
+    attachmentsCount: 2,
+    tooltips: {
+      status: 'Tjenesteiers status',
+      extendedStatus: 'Utvidet status',
+      sent: 'Sendte meldinger',
+      received: 'Meldinger mottatt',
+      attachments: 'Vedlegg',
+      updatedAt: 'Sist oppdatert',
+      dueAt: 'Frist',
+      trashedAt: 'Slettet',
+      archivedAt: 'Arkivert',
+      transmissions: 'Overførsler',
+      activityLog: 'Aktivitetslogg',
+    },
+  },
+};

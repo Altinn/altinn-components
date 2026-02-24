@@ -15,6 +15,9 @@ interface DialogMetadataButtonProps {
 }
 
 import { type AvatarProps, DialogStatus, type DialogStatusProps, MetaBase, MetaItem, MetaTimestamp } from '..';
+
+export type DialogMetadataTooltips = Record<string, string>;
+
 export type DialogMetadataProps = {
   className?: string;
   /** Metadata is loading */
@@ -59,6 +62,8 @@ export type DialogMetadataProps = {
   transmissionsLabel?: string;
   /** Activity Log */
   activityLog?: DialogMetadataButtonProps;
+  /** Tooltips */
+  tooltips?: DialogMetadataTooltips;
 };
 
 /**
@@ -86,64 +91,72 @@ export const DialogMetadata = ({
   transmissionsLabel,
   activityLog,
   extendedStatusLabel,
+  tooltips = {},
 }: DialogMetadataProps) => {
   return (
     <MetaBase className={className} size="xs">
-      {status && <DialogStatus loading={loading} size="xs" {...status} />}
+      {status && <DialogStatus tooltip={tooltips.status} loading={loading} size="xs" {...status} />}
       {extendedStatusLabel && (
-        <MetaItem size="xs" variant="outline">
+        <MetaItem tooltip={tooltips.extendedStatus} size="xs" variant="outline">
           {extendedStatusLabel}
         </MetaItem>
       )}
       {draftsLabel && (
-        <MetaItem size="xs" variant="dotted">
+        <MetaItem tooltip={tooltips.drafts} size="xs" variant="dotted">
           {draftsLabel}
         </MetaItem>
       )}
       {sentCount > 0 && (
-        <MetaItem size="xs" variant="outline" icon={CheckmarkIcon}>
+        <MetaItem tooltip={tooltips.sent} size="xs" variant="outline" icon={CheckmarkIcon}>
           {sentCount}
         </MetaItem>
       )}
       {receivedCount > 0 && (
-        <MetaItem size="xs" variant="outline" icon={ArrowDownIcon}>
+        <MetaItem tooltip={tooltips.received} size="xs" variant="outline" icon={ArrowDownIcon}>
           {receivedCount}
         </MetaItem>
       )}
       {updatedAt && (
-        <MetaTimestamp loading={loading} datetime={updatedAt} size="xs">
+        <MetaTimestamp tooltip={tooltips.updatedAt} loading={loading} datetime={updatedAt} size="xs">
           <strong>{sender && sender.name + ', '}</strong>
           {updatedAtLabel}
         </MetaTimestamp>
       )}
       {dueAt && dueAtLabel && (
-        <MetaTimestamp loading={loading} datetime={dueAt} size="xs" icon={CalendarIcon}>
+        <MetaTimestamp tooltip={tooltips.dueAt} loading={loading} datetime={dueAt} size="xs" icon={CalendarIcon}>
           {dueAtLabel}
         </MetaTimestamp>
       )}
       {attachmentsCount > 0 && (
-        <MetaItem loading={loading} size="xs" icon={PaperclipIcon}>
+        <MetaItem tooltip={tooltips.attachments} loading={loading} size="xs" icon={PaperclipIcon}>
           {attachmentsLabel || attachmentsCount}
         </MetaItem>
       )}
       {transmissionsLabel && (
-        <MetaItem loading={loading} size="xs" icon={FilesIcon}>
+        <MetaItem tooltip={tooltips.transmissions} loading={loading} size="xs" icon={FilesIcon}>
           {transmissionsLabel}
         </MetaItem>
       )}
       {(trashedAt && trashedAtLabel && (
-        <MetaTimestamp loading={loading} datetime={trashedAt} size="xs" icon={TrashIcon}>
+        <MetaTimestamp tooltip={tooltips.trashedAt} loading={loading} datetime={trashedAt} size="xs" icon={TrashIcon}>
           {trashedAtLabel}
         </MetaTimestamp>
       )) ||
         (archivedAt && archivedAtLabel && (
-          <MetaTimestamp loading={loading} datetime={archivedAt} size="xs" icon={ArchiveIcon}>
+          <MetaTimestamp
+            tooltip={tooltips.archivedAt}
+            loading={loading}
+            datetime={archivedAt}
+            size="xs"
+            icon={ArchiveIcon}
+          >
             {archivedAtLabel}
           </MetaTimestamp>
         ))}
 
       {activityLog && (
         <MetaItem
+          tooltip={tooltips.activityLog}
           loading={loading}
           size="xs"
           icon={ClockDashedIcon}

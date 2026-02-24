@@ -4,10 +4,8 @@ import {
   DialogMetadata,
   type DialogMetadataProps,
   type DialogStatusProps,
-  Flex,
   Heading,
   Section,
-  Skeleton,
 } from '..';
 
 export interface DialogHeaderProps extends DialogMetadataProps {
@@ -52,16 +50,14 @@ export const DialogHeader = ({
   dueAt,
   dueAtLabel,
   activityLog,
+  tooltips = {},
 }: DialogHeaderProps) => {
   return (
     <Section as="header" spacing={3} align="start">
-      <Heading size="xl">
-        <Flex align="center">
-          <span>
-            <Skeleton loading={loading}>{title}</Skeleton>
-          </span>
-          {badge && <Badge {...badge} />}
-        </Flex>
+      <Heading loading={loading} size="xl">
+        {title}
+        {badge && ' '}
+        {badge && <Badge {...badge} />}
       </Heading>
       <DialogMetadata
         loading={loading}
@@ -76,6 +72,7 @@ export const DialogHeader = ({
         dueAtLabel={dueAtLabel}
         attachmentsCount={attachmentsCount}
         activityLog={activityLog}
+        tooltips={tooltips}
       />
     </Section>
   );
