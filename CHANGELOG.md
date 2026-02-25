@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.56.20](https://github.com/Altinn/altinn-components/compare/v0.56.19...v0.56.20) (2026-02-25)
+
+
+### Bug Fixes
+
+* breacrumbs aria label + inbox/profile stories ([#1012](https://github.com/Altinn/altinn-components/issues/1012)) ([e4b0dc0](https://github.com/Altinn/altinn-components/commit/e4b0dc0a8100b1f0ddf4a2604138b98c30e5432d))
+* breadcrumbs link ([#1015](https://github.com/Altinn/altinn-components/issues/1015)) ([2737f6c](https://github.com/Altinn/altinn-components/commit/2737f6c7f627514ae36b06bcd9ed4980d6fc12b3))
+* menu item disabled ([#1016](https://github.com/Altinn/altinn-components/issues/1016)) ([a181739](https://github.com/Altinn/altinn-components/commit/a181739ad589a71605fd7e36d9a4b078950511cd))
+
 ## [0.56.19](https://github.com/Altinn/altinn-components/compare/v0.56.18...v0.56.19) (2026-02-24)
 
 
