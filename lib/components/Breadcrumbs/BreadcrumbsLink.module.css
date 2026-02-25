@@ -39,3 +39,7 @@ a.link:hover,
 button.link:hover {
   color: var(--ds-color-base-hover);
 }
+
+.link[aria-current="page"] {
+  text-decoration: none;
+}

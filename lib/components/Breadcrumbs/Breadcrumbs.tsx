@@ -26,7 +26,7 @@ export const Breadcrumbs = ({ ariaLabel = 'Breadcrumbs', className, items = [] }
 
           return (
             <li className={styles.item} key={index}>
-              <BreadcrumbsLink {...itemProps} as="span" aria-current="page">
+              <BreadcrumbsLink {...itemProps} aria-current="page">
                 {label}
               </BreadcrumbsLink>
             </li>
