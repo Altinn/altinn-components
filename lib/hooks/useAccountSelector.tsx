@@ -2,7 +2,7 @@ import { HeartFillIcon, HeartIcon } from '@navikt/aksel-icons';
 import { useMemo } from 'react';
 import { type AccountMenuItemProps, Button, type MenuGroupProps } from '../components';
 import type { AccountSelectorProps } from '../components/GlobalHeader/AccountSelector';
-import { formatDate, formatDisplayName } from '../functions';
+import { formatDate, formatDisplayName, formatOrgNo } from '../functions';
 import { useIsDesktop } from './useIsDesktop';
 
 /** The DTO for the authorized party endpoint */
@@ -324,13 +324,13 @@ const getAccountFromAuthorizedParty = (
   const formatType = type === 'company' && !!parent ? 'subunit' : type;
   switch (formatType) {
     case 'company':
-      description = `${texts.org_no}. ${party.organizationNumber}`;
+      description = `${texts.org_no}. ${formatOrgNo(party.organizationNumber)}`;
       break;
     case 'person':
       description = party?.dateOfBirth ? `${texts.birthdate}: ${formatDate(party?.dateOfBirth)}` : '';
       break;
     case 'subunit':
-      description = `↳ ${texts.org_no}: ${party?.organizationNumber}, ${texts.subunit_of} ${parentName}`;
+      description = `↳ ${texts.org_no}. ${formatOrgNo(party?.organizationNumber)}, ${texts.subunit_of} ${parentName}`;
       break;
     default:
       description = '';
