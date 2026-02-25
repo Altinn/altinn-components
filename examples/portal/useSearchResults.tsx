@@ -11,7 +11,7 @@ interface SearchResults {
 }
 
 interface SearchLayoutProps extends LayoutProps {
-  breadcrumbs?: BreadcrumbsProps['items'];
+  breadcrumbs?: BreadcrumbsProps;
   query?: SearchQuery;
   toolbar?: ToolbarProps;
   results?: SearchResults;

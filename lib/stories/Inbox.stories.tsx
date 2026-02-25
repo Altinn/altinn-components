@@ -56,7 +56,7 @@ export const InboxPage = () => {
   const activityLog = useActivityLog();
 
   return (
-    <Layout {...layout}>
+    <Layout {...layout} useGlobalHeader={true}>
       {dialog ? (
         <Dialog {...dialog} />
       ) : (
@@ -67,7 +67,8 @@ export const InboxPage = () => {
             dismissable={true}
             onDismiss={unselectAll}
           />
-          <PageBase margin="page">
+          <PageBase>
+            <Heading size="xl">Innboks</Heading>
             <Toolbar {...toolbar} />
             {results && (
               <DialogList items={results.items} groups={results?.groups} />
@@ -214,21 +215,9 @@ export const InboxEmptyPage = () => {
   const { layout, toolbar } = useInbox({});
 
   return (
-    <Layout {...layout}>
-      <PageBase margin="page">
-        <Toolbar {...toolbar} />
-        <EmptySection />
-      </PageBase>
-    </Layout>
-  );
-};
-
-export const InboxWithGlobalSearch = () => {
-  const { layout, toolbar } = useInbox({});
-
-  return (
     <Layout {...layout} useGlobalHeader={true}>
-      <PageBase margin="page">
+      <PageBase>
+        <Heading size="xl">Innboks</Heading>
         <Toolbar {...toolbar} />
         <EmptySection />
       </PageBase>
@@ -267,7 +256,8 @@ export const InboxFloatingDropdown = () => {
 
   return (
     <Layout {...layout} useGlobalHeader={true}>
-      <PageBase margin="page">
+      <PageBase>
+        <Heading size="xl">Innboks</Heading>
         <Toolbar {...toolbar} />
         <EmptySection />
         <FloatingDropdown {...floatingDropdownProps} />
@@ -288,7 +278,7 @@ export const SearchPage = () => {
 
   if (dialog) {
     return (
-      <Layout {...layout}>
+      <Layout {...layout} useGlobalHeader={true}>
         <Dialog {...dialog} />
       </Layout>
     );
@@ -332,8 +322,9 @@ export const SearchPage = () => {
 
   if (!hits) {
     return (
-      <Layout {...layout}>
-        <PageBase margin="page">
+      <Layout {...layout} useGlobalHeader={true}>
+        <PageBase>
+          <Heading size="xl">Innboks</Heading>
           <Toolbar {...toolbar} />
           <NoHitsSection query={{ q }} />
         </PageBase>
@@ -342,8 +333,9 @@ export const SearchPage = () => {
   }
 
   return (
-    <Layout {...layout}>
-      <PageBase margin="page">
+    <Layout {...layout} useGlobalHeader={true}>
+      <PageBase>
+        <Heading size="xl">Innboks</Heading>
         <Toolbar {...toolbar} />
         {results?.items?.length ? (
           <DialogList
@@ -375,8 +367,9 @@ export const SearchEmptyPage = () => {
   });
 
   return (
-    <Layout {...layout}>
-      <PageBase margin="page">
+    <Layout {...layout} useGlobalHeader={true}>
+      <PageBase>
+        <Heading size="xl">Innboks</Heading>
         <Toolbar {...toolbar} />
         <NoHitsSection query={{ q }} />
       </PageBase>
@@ -389,15 +382,16 @@ export const DraftsPage = () => {
 
   if (dialog) {
     return (
-      <Layout {...layout}>
+      <Layout {...layout} useGlobalHeader={true}>
         <Dialog {...dialog} />
       </Layout>
     );
   }
 
   return (
-    <Layout {...layout}>
-      <PageBase margin="page">
+    <Layout {...layout} useGlobalHeader={true}>
+      <PageBase>
+        <Heading size="xl">Utkast</Heading>
         <Toolbar {...toolbar} />
         {results && (
           <DialogList
@@ -427,8 +421,9 @@ export const DraftsEmptyPage = () => {
   const { layout, toolbar } = useInbox({ pageId: "drafts" });
 
   return (
-    <Layout {...layout}>
-      <PageBase margin="page">
+    <Layout {...layout} useGlobalHeader={true}>
+      <PageBase>
+        <Heading size="xl">Utkast</Heading>
         <Toolbar {...toolbar} />
         <EmptyDraftsSection />
       </PageBase>
@@ -443,15 +438,16 @@ export const SentPage = () => {
 
   if (dialog) {
     return (
-      <Layout {...layout}>
+      <Layout {...layout} useGlobalHeader={true}>
         <Dialog {...dialog} />
       </Layout>
     );
   }
 
   return (
-    <Layout {...layout}>
-      <PageBase margin="page">
+    <Layout {...layout} useGlobalHeader={true}>
+      <PageBase>
+        <Heading size="xl">Sendt</Heading>
         <Toolbar {...toolbar} />
         {results && (
           <DialogList
@@ -480,8 +476,9 @@ export const SentEmptyPage = () => {
   const { layout, toolbar } = useInbox({ pageId: "sent" });
 
   return (
-    <Layout {...layout}>
-      <PageBase margin="page">
+    <Layout {...layout} useGlobalHeader={true}>
+      <PageBase>
+        <Heading size="xl">Sendt</Heading>
         <Toolbar {...toolbar} />
         <EmptySentSection />
       </PageBase>
@@ -496,15 +493,16 @@ export const ArchivePage = () => {
 
   if (dialog) {
     return (
-      <Layout {...layout}>
+      <Layout {...layout} useGlobalHeader={true}>
         <Dialog {...dialog} />
       </Layout>
     );
   }
 
   return (
-    <Layout {...layout}>
-      <PageBase margin="page">
+    <Layout {...layout} useGlobalHeader={true}>
+      <PageBase>
+        <Heading size="xl">Arkiv</Heading>
         {toolbar && <Toolbar {...toolbar} />}
         {results && (
           <DialogList
@@ -536,8 +534,9 @@ export const ArchiveEmptyPage = () => {
   const { layout, toolbar } = useInbox({ pageId: "archive" });
 
   return (
-    <Layout {...layout}>
-      <PageBase margin="page">
+    <Layout {...layout} useGlobalHeader={true}>
+      <PageBase>
+        <Heading size="xl">Arkiv</Heading>
         <Toolbar {...toolbar} />
         <EmptyArchiveSection />
       </PageBase>
@@ -550,15 +549,16 @@ export const TrashPage = () => {
 
   if (dialog) {
     return (
-      <Layout {...layout}>
+      <Layout {...layout} useGlobalHeader={true}>
         <Dialog {...dialog} badge={{ color: "neutral", label: "Papirkurv" }} />
       </Layout>
     );
   }
 
   return (
-    <Layout {...layout}>
-      <PageBase margin="page">
+    <Layout {...layout} useGlobalHeader={true}>
+      <PageBase>
+        <Heading size="xl">Papirkurv</Heading>
         {toolbar && <Toolbar {...toolbar} />}
         {results && (
           <DialogList
@@ -590,8 +590,9 @@ export const TrashEmptyPage = () => {
   const { layout, toolbar } = useInbox({ pageId: "trash" });
 
   return (
-    <Layout {...layout}>
-      <PageBase margin="page">
+    <Layout {...layout} useGlobalHeader={true}>
+      <PageBase>
+        <Heading size="xl">Papirkurv</Heading>
         <Toolbar {...toolbar} />
         <EmptyTrashSection />
       </PageBase>
@@ -602,7 +603,7 @@ export const TrashEmptyPage = () => {
 export const DialogStatusAttention = () => {
   const { layout } = useInbox({});
   return (
-    <Layout {...layout}>
+    <Layout {...layout} useGlobalHeader={true}>
       <DialogStories.StatusAttention />
     </Layout>
   );
@@ -611,7 +612,7 @@ export const DialogStatusAttention = () => {
 export const DialogStatusTransmissions = () => {
   const { layout } = useInbox({});
   return (
-    <Layout {...layout}>
+    <Layout {...layout} useGlobalHeader={true}>
       <DialogStories.StatusTransmissions />
     </Layout>
   );
@@ -620,7 +621,7 @@ export const DialogStatusTransmissions = () => {
 export const DialogTransmissions = () => {
   const { layout } = useInbox({});
   return (
-    <Layout {...layout}>
+    <Layout {...layout} useGlobalHeader={true}>
       <DialogStories.Transmissions />
     </Layout>
   );
@@ -634,10 +635,11 @@ export const BookmarksPage = () => {
   const { items, expandedId, onClose } = useBookmarks();
   const modalProps = expandedId && items.find(item => item.id === expandedId);
   return (
-    <Layout {...layout}>
-      <PageBase margin="page">
+    <Layout {...layout} useGlobalHeader={true}>
+      <PageBase>
+        <Heading size="xl">Lagrede søk</Heading>
         <Toolbar {...toolbar} />
-        <Heading size="lg">Lagrede søk</Heading>
+        <Heading size="lg">3 lagrede søk</Heading>
         <BookmarkSettingsList items={items} />
         <Heading size="xs" weight="normal">Oppdatert: xxx</Heading>
         {expandedId && <BookmarkModal {...modalProps} title="Rediger lagret søk" open={expandedId !== ''} onClose={onClose} buttons={[{ label: "Lagre", onClick: () => onClose() }, { label: "Slett", variant: "outline", onClick: () => onClose() }]} />}
@@ -650,7 +652,7 @@ export const InboxBetaPage = () => {
   const { layout, toolbar, results } = useInbox({});
 
   return (
-    <Layout {...layout}>
+    <Layout {...layout} useGlobalHeader={true}>
       <PageBase margin="page">
         <Toolbar {...toolbar} />
         {results && (
@@ -666,7 +668,7 @@ export const AboutPage = () => {
   const { layout } = useInbox({ pageId: "about" });
 
   return (
-    <Layout {...layout}>
+    <Layout {...layout} useGlobalHeader={true}>
       <BetaStories.About />
       <BetaStories.BetaModal open={false} />
     </Layout>
@@ -677,9 +679,22 @@ export const AboutInboxPage = () => {
   const { layout } = useInbox({ pageId: "about-inbox" });
 
   return (
-    <Layout {...layout}>
+    <Layout {...layout} useGlobalHeader={true}>
       <BetaStories.AboutInbox />
       <BetaStories.BetaModal open={false} />
+    </Layout>
+  );
+};
+
+export const OldVersionWithoutGlobalSearch = () => {
+  const { layout, toolbar } = useInbox({});
+
+  return (
+    <Layout {...layout} breadcrumbs={undefined} useGlobalHeader={false}>
+      <PageBase margin="page">
+        <Toolbar {...toolbar} />
+        <EmptySection />
+      </PageBase>
     </Layout>
   );
 };
