@@ -175,7 +175,7 @@ export const MenuItem = ({
         </ItemLabel>
         <ItemControls>
           {badge && <Badge {...badge} />}
-          {controls}
+          {!disabled && controls}
         </ItemControls>
       </label>
     );
@@ -234,7 +234,7 @@ export const MenuItem = ({
       </ItemLabel>
       <ItemControls>
         {badge && <Badge {...badge} />}
-        {controls}
+        {!disabled && controls}
         {linkIcon && <Icon svgElement={applicableLinkIcon as SvgElement} className={styles.linkIcon} />}
       </ItemControls>
     </Component>
