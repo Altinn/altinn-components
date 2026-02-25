@@ -37,7 +37,7 @@ export interface LayoutProps {
   children?: ReactNode;
   skipLink?: SkipLinkProps;
   useGlobalHeader?: boolean; // TODO: Remove when new header is default
-  breadcrumbs?: BreadcrumbsProps['items'];
+  breadcrumbs?: BreadcrumbsProps;
 }
 
 export const Layout = ({
@@ -59,7 +59,7 @@ export const Layout = ({
       {skipLink && <SkipLink {...skipLink} />}
       {header && (useGlobalHeader ? <GlobalHeader {...header} /> : <Header {...header} />)}
       <LayoutGrid currentId={currentId}>
-        {breadcrumbs && <Breadcrumbs items={breadcrumbs} />}
+        {breadcrumbs && <Breadcrumbs {...breadcrumbs} />}
         <LayoutBody currentId={currentId}>
           {sidebar && (
             <LayoutSidebar

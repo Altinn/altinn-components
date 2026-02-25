@@ -64,6 +64,19 @@ export const useInboxLayout = ({
     };
   });
 
+  const breadcrumbs = {
+    items: [
+      {
+        href: '#',
+        label: 'Forside',
+      },
+      {
+        href: '#',
+        label: 'Inbox',
+      },
+    ],
+  };
+
   const layout = useLayout({
     theme: 'subtle',
     accountId,
@@ -82,6 +95,7 @@ export const useInboxLayout = ({
 
   return {
     ...layout,
+    breadcrumbs,
     pageId,
   };
 };

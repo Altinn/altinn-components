@@ -357,16 +357,19 @@ export const InboxLayout = (args: LayoutStoryArgs) => {
     globalMenu: globalMenu,
   };
 
-  const breadcrumbs = [
-    {
-      label: 'Innboks',
-      href: '#',
-    },
-    {
-      label: 'Arkiv',
-      href: '#',
-    },
-  ];
+  const breadcrumbs = {
+    ariaLabel: 'Du er her:',
+    items: [
+      {
+        label: 'Innboks',
+        href: '#',
+      },
+      {
+        label: 'Arkiv',
+        href: '#',
+      },
+    ],
+  };
 
   const toolbar = {
     accountMenu: {

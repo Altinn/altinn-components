@@ -1,10 +1,9 @@
 import { desktopMenu, desktopMenuItems, profileMenu, profileMenuItems, useLayout } from '../';
-import type { Account, BreadcrumbsLinkProps, LayoutProps, MenuProps } from '../../lib';
+import type { Account, LayoutProps, MenuProps } from '../../lib';
 
 interface ProfileLayoutProps extends LayoutProps {
   accountId?: string;
   pageId?: string;
-  breadcrumbs?: BreadcrumbsLinkProps[];
   account?: Account;
 }
 
