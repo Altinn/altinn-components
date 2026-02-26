@@ -12,6 +12,7 @@ export interface ModalBaseProps {
   children?: React.ReactNode;
   backdropColor?: BackdropColor;
   variant?: 'default' | 'content' | 'full';
+  height?: 'auto' | 'full';
   size?: SectionProps['size'];
   color?: SectionProps['color'];
   padding?: SectionProps['padding'];
@@ -28,6 +29,7 @@ export const ModalBase = ({
   color,
   padding = 0,
   spacing = 0,
+  height = 'auto',
   variant = 'default',
 }: ModalBaseProps) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -99,6 +101,7 @@ export const ModalBase = ({
       data-backdrop-color={backdropColor}
       className={styles.modal}
       data-variant={variant}
+      data-height={height}
       onClose={closedBy !== 'none' ? onClose : undefined}
     >
       <Section

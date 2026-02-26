@@ -2,15 +2,17 @@ import {
   BellIcon,
   BriefcaseIcon,
   Buildings2Icon,
-  EnterIcon,
+  EarthIcon,
   GlobeIcon,
   HardHatIcon,
   HashtagIcon,
   HouseHeartIcon,
   MobileIcon,
+  PadlockLockedIcon,
   PaperplaneIcon,
+  PersonCircleIcon,
   PersonRectangleIcon,
-  ReceiptIcon,
+  TrashIcon,
 } from '@navikt/aksel-icons';
 import {
   type AccountDataProps,
@@ -29,6 +31,7 @@ import {
   Fieldset,
   Legend,
   Radio,
+  Select,
   type SettingsItemProps,
   type SettingsListProps,
 } from '../../lib';
@@ -70,52 +73,58 @@ export const useSettings = ({
 
   const accountSettings = [
     {
-      icon: {
-        type: 'group',
-        items: [
-          {
-            type: 'company',
-          },
-          {
-            type: 'company',
-          },
-          {
-            type: 'company',
-          },
-        ],
-      },
+      id: 'primary-actor',
+      icon: HouseHeartIcon,
+      title: 'Forhåndsvalgt aktør',
+      variant: 'modal',
+      badge: { variant: 'text', label: 'Legg til' },
+      children: (
+        <>
+          <Fieldset size="sm">
+            <Legend>Hvilken aktør vil du se når du logger inn?</Legend>
+            <Select name="primary-actor" onChange={onChange}>
+              {defaultAccounts.map((a) => (
+                <option key={a.id} value={a.id} selected={a.id === data?.['primary-actor']}>
+                  {a.name}
+                </option>
+              ))}
+            </Select>
+          </Fieldset>
+          <ButtonGroup size="md">
+            <Button>Lagre</Button>
+            <Button variant="outline">Avbryt</Button>
+          </ButtonGroup>
+        </>
+      ),
+    },
+    {
+      id: 'showDeleted',
+      icon: TrashIcon,
       name: 'showDeleted',
-      title: 'Vis slettede aktører',
-      value: data?.showDeleted ? 'Ja' : 'Nei',
-      description: data?.showDeleted
-        ? 'Slettede aktører vises sammen med andre virksomheter.'
-        : 'Slettede aktører er skjult i Altinn',
+      title: 'Slettede aktører',
+      value: data?.showDeleted,
+      description: data?.showDeleted ? 'Slettede aktører vises' : 'Slettede aktører er skjult',
       variant: 'switch',
       checked: data?.showDeleted,
       onChange,
     },
     {
+      id: 'showClients',
+      icon: PersonCircleIcon,
+      name: 'showClients',
+      title: 'Klienter for regnskapsførere',
+      value: data?.showClients,
+      description: data?.showClients ? 'Tilhørende klienter vises' : 'Tilhørende klienter er skjult',
+      variant: 'switch',
+      checked: data?.showClients,
+      onChange,
+    },
+    {
+      hidden: true,
       id: 'showSubunits',
-      icon: {
-        type: 'group',
-        items: [
-          {
-            type: 'company',
-            variant: 'outline',
-          },
-          {
-            type: 'company',
-            variant: 'outline',
-          },
-          {
-            type: 'company',
-            variant: 'outline',
-          },
-        ],
-      },
       name: 'hideSubunits',
       title: 'Slå sammen hoved- og underenheter',
-      value: data?.hideSubunits ? 'Ja' : 'Nei',
+      value: data?.hideSubunits,
       description: data?.hideSubunits
         ? 'Underenheter er slått sammen med hovedenhet.'
         : 'Underenheter er gruppert med hovedenhet',
@@ -123,13 +132,15 @@ export const useSettings = ({
       checked: data?.hideSubunits,
       onChange,
     },
-  ].map((item) => {
-    return {
-      ...item,
-      id: item?.name,
-      groupId: 'accountSettings',
-    };
-  });
+  ]
+    .filter((item) => !item.hidden)
+    .map((item) => {
+      return {
+        ...item,
+        id: item?.name,
+        groupId: 'accountSettings',
+      };
+    });
 
   // other settings
 
@@ -159,29 +170,12 @@ export const useSettings = ({
         </>
       ),
     },
+
     {
-      id: 'primary-actor',
-      icon: EnterIcon,
-      title: 'Forhåndsvalgt aktør',
-      children: (
-        <>
-          <Fieldset size="sm">
-            <Legend>Endre språk for hele Altinn.</Legend>
-            {localeOptions.map((v) => (
-              <Radio key={v} name="locale" label={v} value={v} checked={v === data?.locale} onChange={onChange} />
-            ))}
-          </Fieldset>
-          <ButtonGroup size="md">
-            <Button>Lagre og avslutt</Button>
-            <Button variant="outline">Avbryt</Button>
-          </ButtonGroup>
-        </>
-      ),
-    },
-    {
-      id: 'receipt',
-      icon: ReceiptIcon,
-      title: 'Kvittering på e-post',
+      id: 'username',
+      icon: PadlockLockedIcon,
+      title: 'Brukernavn',
+      value: 'keeperkongen88',
     },
   ].map((item) => {
     return {
@@ -343,7 +337,7 @@ export const useSettings = ({
       id: 'address',
       title: 'Adresse',
       value: defaultAccount?.address,
-      icon: HouseHeartIcon,
+      icon: EarthIcon,
     },
   ].map((item) => {
     return {
@@ -536,7 +530,7 @@ export const useSettings = ({
       title: 'Varslinger for virksomheter',
     },
     accountSettings: {
-      title: 'Innstillinger for aktørvelger',
+      title: 'Aktørinnstillinger',
     },
     other: {
       title: 'Andre innstillinger',
