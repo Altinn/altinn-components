@@ -1,14 +1,15 @@
+import cx from 'classnames';
 import type { ReactNode } from 'react';
-import { Flex, type FlexProps } from '../';
-
-export interface ModalFooterProps extends FlexProps {
+import styles from './modalFooter.module.css';
+export interface ModalFooterProps {
   children?: ReactNode;
+  sticky?: boolean;
 }
 
-export const ModalFooter = ({ children, ...props }: ModalFooterProps) => {
+export const ModalFooter = ({ children, sticky = false, ...props }: ModalFooterProps) => {
   return (
-    <Flex as="footer" spacing={2} padding={4} {...props}>
+    <div className={cx(styles.footer, sticky && styles.sticky)} {...props}>
       {children}
-    </Flex>
+    </div>
   );
 };

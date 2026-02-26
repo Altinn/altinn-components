@@ -7,6 +7,7 @@
   border-radius: 0.5rem;
   box-shadow: var(--ds-shadow-xs);
 }
+
 .modal[data-backdrop-color="inherit"]::backdrop {
   background-color: rgba(17, 29, 70, 0.25);
 }
@@ -23,6 +24,11 @@
 .modal[data-variant="content"] {
   max-width: 988px;
   margin: auto;
+}
+
+.modal[data-height="full"] {
+  min-height: unset;
+  height: 100%;
 }
 
 .modal[data-variant="full"] {
