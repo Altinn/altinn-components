@@ -79,7 +79,6 @@ export const Preview = (args: LayoutStoryArgs) => {
     virtualized: true,
   };
   const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
-  const onSearch = (queryString: string) => alert('Search entered: ' + queryString);
   const accountSelector: AccountSelectorProps = {
     accountMenu: accountMenu,
     forceOpenFullScreen: args.forceOpenFullScreen,
@@ -93,7 +92,6 @@ export const Preview = (args: LayoutStoryArgs) => {
           ...layout.header,
           accountSelector: accountSelector,
           globalMenu: globalMenu,
-          globalSearch: { onSearch },
         }}
       >
         {args.children}
@@ -105,7 +103,6 @@ export const Preview = (args: LayoutStoryArgs) => {
 export const UsingUseAccountHook = (args: LayoutStoryArgs) => {
   const layout = useLayout(args);
   const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
-  const onSearch = (queryString: string) => alert('Search entered: ' + queryString);
 
   // Use the useAccountSelector hook to get account menu and loading state
   const [favoriteUuids, setFavoriteUuids] = useState<string[]>([]);
@@ -143,7 +140,6 @@ export const UsingUseAccountHook = (args: LayoutStoryArgs) => {
           ...layout.header,
           accountSelector: accountSelector,
           globalMenu: globalMenu,
-          globalSearch: { onSearch },
         }}
       >
         {args.children}
@@ -164,7 +160,6 @@ export const LogInView = (args: LayoutStoryArgs) => {
     items: [],
   };
   const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
-  const onSearch = (queryString: string) => alert('Search entered: ' + queryString);
   const accountSelector: AccountSelectorProps = {
     accountMenu: accountMenuNotLoggedIn,
     forceOpenFullScreen: args.forceOpenFullScreen,
@@ -183,7 +178,6 @@ export const LogInView = (args: LayoutStoryArgs) => {
           ...layout.header,
           accountSelector: accountSelector,
           globalMenu: globalMenu,
-          globalSearch: { onSearch },
           onLoginClick: onLoginClick,
         }}
       >
