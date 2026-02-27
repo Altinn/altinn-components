@@ -10,7 +10,7 @@ import {
   PlusIcon,
 } from '@navikt/aksel-icons';
 import type { Meta } from '@storybook/react-vite';
-import { type ChangeEvent, Fragment, useState } from 'react';
+import { type ChangeEvent, Fragment, type MouseEvent, useState } from 'react';
 import {
   type AccountListItemProps,
   type BadgeProps,
@@ -18,10 +18,16 @@ import {
   ButtonGroup,
   Divider,
   Fieldset,
+  Heading,
   IconButton,
   Legend,
   List,
+  ModalBase,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
   Radio,
+  SearchField,
   SettingsItem,
   SettingsModal,
   type SettingsModalProps,
@@ -34,6 +40,7 @@ import {
   type UsedByLogProps,
 } from '..';
 import { brreg } from '../../../examples/avatar';
+import { servicesList } from '../../../examples/services/servicesList';
 
 const meta = {
   title: 'Settings/SettingsModal',
@@ -205,7 +212,6 @@ export interface AccountAlertsModalProps extends SettingsModalProps {
 
 export const AccountAlertsModal = ({
   open = true,
-  onClose,
   icon = {
     name: 'Bergen Bar',
     type: 'company',
@@ -220,54 +226,89 @@ export const AccountAlertsModal = ({
   emailAlerts = false,
   readOnly,
   onChange,
+  onClose,
 }: AccountAlertsModalProps) => {
+  const [subModalOpen, setSubModalOpen] = useState(false);
+
+  const onLinkSubmodal = (e: MouseEvent) => {
+    e.preventDefault();
+    setSubModalOpen(true);
+  };
+
+  const onCloseSubmodal = () => {
+    setSubModalOpen(true);
+  };
+
   return (
-    <SettingsModal icon={icon} title={title} description={description} open={open} onClose={onClose}>
-      <Fieldset size="sm">
-        {readOnly ? (
-          <>
-            <TextField readOnly name="phone" label="Varslinger på SMS" placeholder="Mobiltelefon" value={phone} />
-            <TextField readOnly name="email" label="Varslinger på e-post" placeholder="E-postadresse" value={email} />
-          </>
-        ) : (
-          <>
-            <Switch label={phoneLabel} name="smsAlerts" value="SMS" checked={!!smsAlerts} onChange={onChange} />
-            {smsAlerts && <TextField name="phone" placeholder="Mobiltelefon" value={phone} onChange={onChange} />}
-            <Switch label={emailLabel} name="emailAlerts" value="E-post" checked={!!emailAlerts} onChange={onChange} />
-            {emailAlerts && <TextField name="email" placeholder="E-postadresse" value={email} onChange={onChange} />}
-          </>
-        )}
-      </Fieldset>
-      {readOnly ? (
-        <>
-          <Typography size="sm">
-            <p>
-              Altinn bruker kontaktinformasjon fra <a href="https://digdir.no/">Kontakt- og reservasjonsregisteret</a>,
-              et felles kontaktregister for stat og kommune.
-            </p>
-          </Typography>
-          <ButtonGroup size="md">
-            <Button variant="outline">
-              <span>Endre varslingsadresser</span>
-              <ExternalLinkIcon />
-            </Button>
-          </ButtonGroup>
-        </>
+    <>
+      {subModalOpen ? (
+        <SingleServiceSettingsModal icon={icon} title={title} open={subModalOpen} onClose={onCloseSubmodal} />
       ) : (
-        <>
-          <Typography size="sm">
-            <p>
-              Dette er dine personlige varslingsinnstillinger, ikke virksomhetens lovpålagte varslingsadresser. Disse
-              finner du under "Fullmakter".
-            </p>
-          </Typography>
-          <ButtonGroup size="md">
-            <Button>Lagre</Button>
-            <Button variant="outline">Avbryt</Button>
-          </ButtonGroup>
-        </>
+        <SettingsModal icon={icon} title={title} description={description} open={open} onClose={onClose}>
+          <Fieldset size="sm">
+            {readOnly ? (
+              <>
+                <TextField readOnly name="phone" label="Varslinger på SMS" placeholder="Mobiltelefon" value={phone} />
+                <TextField
+                  readOnly
+                  name="email"
+                  label="Varslinger på e-post"
+                  placeholder="E-postadresse"
+                  value={email}
+                />
+              </>
+            ) : (
+              <>
+                <Switch label={phoneLabel} name="smsAlerts" value="SMS" checked={!!smsAlerts} onChange={onChange} />
+                {smsAlerts && <TextField name="phone" placeholder="Mobiltelefon" value={phone} onChange={onChange} />}
+                <Switch
+                  label={emailLabel}
+                  name="emailAlerts"
+                  value="E-post"
+                  checked={!!emailAlerts}
+                  onChange={onChange}
+                />
+                {emailAlerts && (
+                  <TextField name="email" placeholder="E-postadresse" value={email} onChange={onChange} />
+                )}
+              </>
+            )}
+          </Fieldset>
+          {readOnly ? (
+            <>
+              <Typography size="sm">
+                <p>
+                  Altinn bruker kontaktinformasjon fra{' '}
+                  <a href="https://digdir.no/">Kontakt- og reservasjonsregisteret</a>, et felles kontaktregister for
+                  stat og kommune.
+                </p>
+              </Typography>
+              <ButtonGroup size="md">
+                <Button variant="outline">
+                  <span>Endre varslingsadresser</span>
+                  <ExternalLinkIcon />
+                </Button>
+              </ButtonGroup>
+            </>
+          ) : (
+            <>
+              <Typography size="sm">
+                <p>
+                  Dette er dine personlige varslingsinnstillinger, ikke virksomhetens lovpålagte varslingsadresser.{' '}
+                  <a href="/link/to/nothing" onClick={(e) => onLinkSubmodal(e)}>
+                    Sett opp varsling for enkelttjenester.
+                  </a>
+                </p>
+              </Typography>
+              <ButtonGroup size="md">
+                <Button>Lagre</Button>
+                <Button variant="outline">Avbryt</Button>
+              </ButtonGroup>
+            </>
+          )}
+        </SettingsModal>
       )}
-    </SettingsModal>
+    </>
   );
 };
 
@@ -492,5 +533,77 @@ export const LocaleSettingsModal = ({ open = true, onClose, value, onChange }: L
         <Button variant="outline">Avbryt</Button>
       </ButtonGroup>
     </SettingsModal>
+  );
+};
+
+export const SingleServiceSettingsModal = ({
+  open = true,
+  onClose,
+  icon = {
+    name: 'Bergen Bar',
+    type: 'company',
+  },
+  title = 'Bergen Bar',
+  description = 'Org nr. XXX XXX XXX',
+}: SettingsModalProps) => {
+  const [serviceAlerts, setServiceAlerts] = useState<string[]>(servicesList?.map((item) => item.id));
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      setServiceAlerts([...serviceAlerts, value]);
+    } else {
+      setServiceAlerts(serviceAlerts.filter((item) => item !== value));
+    }
+  };
+
+  const [q, setQ] = useState('');
+
+  const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    setQ(e.target.value);
+  };
+
+  const filteredServices = servicesList?.filter((item) => item.title.toLowerCase().includes(q.toLowerCase()));
+
+  return (
+    <ModalBase variant="content" open={open} onClose={onClose} height="full">
+      <ModalHeader title={title} description={description} icon={icon} onClose={onClose} sticky={false} />
+      <ModalBody>
+        <Heading size="md">Varsling for enkelttjenester</Heading>
+        <div style={{ position: 'sticky', top: '1.5rem', zIndex: 1 }}>
+          <SearchField placeholder="Søk i tjenester" size="sm" onChange={onSearch} />
+        </div>
+        <Fieldset size="sm">
+          {(filteredServices?.length > 0 &&
+            filteredServices?.map((item) => {
+              const { id, title } = item;
+              return (
+                <Switch
+                  key={id}
+                  label={title}
+                  name={id}
+                  value={id}
+                  checked={!!serviceAlerts?.includes(id)}
+                  onChange={onChange}
+                />
+              );
+            })) || (
+            <Typography>
+              <p>Ingen treff.</p>
+            </Typography>
+          )}
+        </Fieldset>
+      </ModalBody>
+      <ModalFooter sticky>
+        <ButtonGroup>
+          <Button variant="solid" onClick={onClose}>
+            Lagre
+          </Button>
+          <Button variant="outline" onClick={onClose}>
+            Avbryt
+          </Button>
+        </ButtonGroup>
+      </ModalFooter>
+    </ModalBase>
   );
 };

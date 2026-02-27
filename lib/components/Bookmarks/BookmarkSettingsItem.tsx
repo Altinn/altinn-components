@@ -6,6 +6,8 @@ import { BookmarkSettingsItemLabel } from './BookmarkSettingsItemLabel';
 export interface BookmarkSettingsItemProps {
   /** Bookmark id */
   id: string;
+  /** Group id */
+  groupId?: string;
   /** Icon */
   icon?: SettingsItemProps['icon'];
   /** Loading */

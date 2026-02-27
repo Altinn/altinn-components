@@ -55,6 +55,46 @@ export const BookmarksList = () => {
   );
 };
 
+export const GroupedBookmarksList = () => {
+  const { expandedId, onClose, items } = useBookmarks();
+
+  const modalProps = expandedId && items.find((item) => item.id === expandedId);
+
+  const groupedItems = items?.map((item) => {
+    return {
+      groupId: item?.title ? '1' : '2',
+      ...item,
+    };
+  });
+
+  const groups = {
+    '1': {
+      title: 'Med tittel',
+    },
+    '2': {
+      title: 'Uten tittel',
+    },
+  };
+
+  return (
+    <>
+      <BookmarkSettingsList items={groupedItems} groups={groups} />
+      {expandedId && (
+        <BookmarkModal
+          {...modalProps}
+          title="Rediger lagret søk"
+          open={expandedId !== ''}
+          onClose={onClose}
+          buttons={[
+            { label: 'Lagre', onClick: () => onClose() },
+            { label: 'Slett', variant: 'outline', onClick: () => onClose() },
+          ]}
+        />
+      )}
+    </>
+  );
+};
+
 export const BookmarksPage = () => {
   const { title, description, expandedId, onClose, items } = useBookmarks();
 

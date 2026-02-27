@@ -46,7 +46,6 @@ export const SettingsItemBase = ({
           highlightWords={highlightWords}
           className={styles.label}
           title={title}
-          value={value}
           description={description}
         >
           {label}
