@@ -7,6 +7,7 @@ import {
   FileCheckmarkIcon,
   HandshakeFillIcon,
   InboxFillIcon,
+  MagnifyingGlassIcon,
   MenuGridIcon,
   PersonCircleIcon,
   TrashIcon,
@@ -38,6 +39,13 @@ export const desktopMenuItems: MenuProps['items'] = [
     size: 'lg',
     icon: MenuGridIcon,
     title: 'Alle skjema',
+  },
+  {
+    id: 'search',
+    groupId: 'apps',
+    size: 'lg',
+    icon: MagnifyingGlassIcon,
+    title: 'Søk i Altinn',
   },
   {
     id: 'startup',

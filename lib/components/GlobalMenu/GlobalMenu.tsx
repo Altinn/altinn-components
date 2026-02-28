@@ -66,6 +66,7 @@ export const GlobalMenu = ({
       icon: GlobeIcon,
       size: 'sm',
       onClick: onToggleLocaleSelection,
+      linkIcon: true,
     };
 
     return [...baseItems, localeItem];

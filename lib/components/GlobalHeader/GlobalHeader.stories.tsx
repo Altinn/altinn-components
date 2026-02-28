@@ -37,7 +37,6 @@ export const Login = () => {
 
 export const LoggedIn = () => {
   const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
-  const onSearch = (queryString: string) => alert('Search entered: ' + queryString);
 
   // Use the useAccountSelector hook to get account menu and loading state
   const [favoriteUuids, setFavoriteUuids] = useState<string[]>([]);
@@ -63,7 +62,7 @@ export const LoggedIn = () => {
   });
   return (
     <RootProvider>
-      <GlobalHeader globalMenu={globalMenu} globalSearch={{ onSearch }} accountSelector={accountSelector} />
+      <GlobalHeader globalMenu={globalMenu} accountSelector={accountSelector} />
     </RootProvider>
   );
 };
@@ -78,12 +77,11 @@ export const CompanyAccount = () => {
 };
 
 export const ForcedFullScreenAccountSelection = () => {
-  const { globalMenu, globalSearch, accountSelector, onLoginClick, locale } = useGlobalHeader({});
+  const { globalMenu, accountSelector, onLoginClick, locale } = useGlobalHeader({});
   return (
     <RootProvider>
       <GlobalHeader
         globalMenu={globalMenu}
-        globalSearch={globalSearch}
         accountSelector={
           {
             ...accountSelector,
@@ -117,12 +115,11 @@ export const Loading = () => {
 };
 
 export const LoadingWithForcedFullScreenAccountSelection = () => {
-  const { globalMenu, globalSearch, accountSelector, onLoginClick, locale } = useGlobalHeader({ state: 'loading' });
+  const { globalMenu, accountSelector, onLoginClick, locale } = useGlobalHeader({ state: 'loading' });
   return (
     <RootProvider>
       <GlobalHeader
         globalMenu={globalMenu}
-        globalSearch={globalSearch}
         accountSelector={
           {
             ...accountSelector,
@@ -138,7 +135,6 @@ export const LoadingWithForcedFullScreenAccountSelection = () => {
 
 export const WithVirtualizationEnabled = () => {
   const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
-  const onSearch = (queryString: string) => alert('Search entered: ' + queryString);
 
   const [favoriteUuids, setFavoriteUuids] = useState<string[]>([]);
   const authorizedParties = getLargeAuthorizedPartiesData(1000);
@@ -162,7 +158,7 @@ export const WithVirtualizationEnabled = () => {
   });
   return (
     <RootProvider>
-      <GlobalHeader globalMenu={globalMenu} globalSearch={{ onSearch }} accountSelector={accountSelector} />
+      <GlobalHeader globalMenu={globalMenu} accountSelector={accountSelector} />
     </RootProvider>
   );
 };

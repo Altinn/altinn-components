@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.56.21](https://github.com/Altinn/altinn-components/compare/v0.56.20...v0.56.21) (2026-02-27)
+
+
+### Bug Fixes
+
+* add util function to format org.no. to 3 by 3 digits and use this function to format org.no. in useAccountSelector ([#1013](https://github.com/Altinn/altinn-components/issues/1013)) ([ef39995](https://github.com/Altinn/altinn-components/commit/ef399955b6b0934f9f21d16a14cc35f2c02d447b))
+* header improvements ([#1021](https://github.com/Altinn/altinn-components/issues/1021)) ([bf9957f](https://github.com/Altinn/altinn-components/commit/bf9957f6b763a75142dec7424c28fc7fed395e21))
+* more settings ([#1018](https://github.com/Altinn/altinn-components/issues/1018)) ([72c0550](https://github.com/Altinn/altinn-components/commit/72c055008867ee51fdae7aab4ed37f6a14b79ba4))
+
 ## [0.56.20](https://github.com/Altinn/altinn-components/compare/v0.56.19...v0.56.20) (2026-02-25)
 
 
