@@ -208,6 +208,23 @@ export const Trashed = {
   },
 };
 
+export const WithTooltips = {
+  args: {
+    status: {
+      value: 'in-progress',
+      label: 'Under arbeid',
+    },
+    sentCount: 1,
+    receivedCount: 2,
+    tooltips: {
+      sent: 'Sendte meldinger',
+      received: 'Meldinger mottatt',
+      attachments: 'Vedlegg',
+      activityLog: 'Åpne aktivitetslogg',
+    },
+  },
+};
+
 export const Loading = {
   args: {
     loading: true,

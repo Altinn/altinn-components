@@ -1,10 +1,9 @@
 import { useProfileLayout } from '../';
-import type { Account, BreadcrumbsLinkProps, GlobalMenuProps_old, LayoutProps } from '../../lib';
+import type { Account, GlobalMenuProps_old, LayoutProps } from '../../lib';
 
 interface UseProfileProps {
   defaultAccountId?: string;
   pageId?: string;
-  breadcrumbs?: BreadcrumbsLinkProps[];
   currentAccount?: Account;
   layout?: LayoutProps;
 }
@@ -46,21 +45,24 @@ export const useProfile = ({ defaultAccountId = 'user', pageId = 'profile' }): U
   const currentAccount = globalMenu?.currentAccount;
   const page = menu?.items?.find((item) => item.selected);
 
-  const breadcrumbs = [
-    {
-      label: 'Forside',
-    },
-    {
-      label: 'Min profil',
-    },
-    {
-      label: (page?.title as string) || 'Side',
-    },
-  ];
+  const breadcrumbs = {
+    items: [
+      {
+        label: 'Forside',
+      },
+      {
+        label: 'Min profil',
+      },
+      {
+        label: (page?.title as string) || 'Side',
+      },
+    ],
+  };
 
   return {
     layout: {
       ...layout,
+      breadcrumbs,
       color: 'person',
       theme: 'neutral',
       header: {
@@ -72,6 +74,5 @@ export const useProfile = ({ defaultAccountId = 'user', pageId = 'profile' }): U
       },
     },
     currentAccount,
-    breadcrumbs,
   };
 };

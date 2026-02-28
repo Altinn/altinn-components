@@ -1,9 +1,6 @@
-import { CaretDownCircleIcon, CaretUpCircleIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import { useEffect, useState } from 'react';
-import { useIsDesktop } from '../../hooks/useIsDesktop';
 import { AccountMenu, type AccountMenuProps } from '../Account';
-import { Button } from '../Button';
 import { DsHeading, DsSpinner, DsSwitch } from '../DsComponents';
 import { SearchField } from '../Forms';
 import { useRootContext } from '../RootProvider';
@@ -31,37 +28,25 @@ export const AccountSelector = ({
   showDeletedUnits,
   onShowDeletedUnitsChange,
 }: AccountSelectorProps) => {
-  const { currentId, openId, closeAll, languageCode } = useRootContext();
-  const isDesktop = useIsDesktop();
-  const isFullScreen = currentId === 'accountFullscreen';
+  const { openId, closeAll, languageCode } = useRootContext();
   const [searchString, setSearchString] = useState('');
   const [forceOpenFullScreenState, setForceOpenFullScreenState] = useState<boolean | undefined>(forceOpenFullScreen);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: we want to run this effect only when forceOpenFullScreen changes
   useEffect(() => {
-    if (!forceOpenFullScreen && forceOpenFullScreenState && isFullScreen) {
+    if (!forceOpenFullScreen && forceOpenFullScreenState) {
       closeAll();
     }
     setForceOpenFullScreenState(forceOpenFullScreen);
   }, [forceOpenFullScreen]);
 
   useEffect(() => {
-    if (forceOpenFullScreenState === true && !isFullScreen) {
-      openId('accountFullscreen');
-    } else if (!isDesktop && currentId === 'account') {
-      openId('accountFullscreen');
-    }
-  }, [forceOpenFullScreenState, isFullScreen, isDesktop, currentId, openId]);
-
-  const { minimize, fullscreen, searchText, heading, switchLabel } = getTexts(languageCode);
-
-  const toggleExpansion = () => {
-    if (isFullScreen) {
+    if (forceOpenFullScreenState === true) {
       openId('account');
-    } else {
-      openId('accountFullscreen');
     }
-  };
+  }, [forceOpenFullScreenState, openId]);
+
+  const { searchText, heading, switchLabel } = getTexts(languageCode);
 
   const onAccountSelection = (accountId: string) => {
     accountMenu.onSelectAccount?.(accountId);
@@ -95,13 +80,7 @@ export const AccountSelector = ({
           />
         )}
       </div>
-      <div
-        className={cx(
-          styles.accountMenu,
-          isFullScreen && styles.fullScreen,
-          accountMenu.virtualized && styles.virtualized,
-        )}
-      >
+      <div className={cx(styles.accountMenu, accountMenu.virtualized && styles.virtualized)}>
         <AccountMenu
           {...accountMenu}
           onSelectAccount={onAccountSelection}
@@ -112,24 +91,8 @@ export const AccountSelector = ({
             value: searchString,
             getResultsLabel: (hits) => getHitsLabel(hits, languageCode),
           }}
-          scrollRefStyles={!isFullScreen && accountMenu.virtualized ? { maxHeight: 'calc(40vh)' } : undefined}
         />
       </div>
-      {forceOpenFullScreenState !== true && isDesktop && (
-        <Button variant="ghost" onClick={toggleExpansion}>
-          {isFullScreen ? (
-            <>
-              <CaretUpCircleIcon className={styles.btnIcon} aria-hidden="true" />
-              {minimize}
-            </>
-          ) : (
-            <>
-              <CaretDownCircleIcon className={styles.btnIcon} aria-hidden="true" />
-              {fullscreen}
-            </>
-          )}
-        </Button>
-      )}
     </div>
   );
 };

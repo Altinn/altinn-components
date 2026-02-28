@@ -30,7 +30,7 @@ Toolbars can include multiple filters:
 
 Filters can be static, making all available filters available at once.
 
-<Canvas of={ToolbarFilterStories.Controlled} />
+<Canvas of={ToolbarStories.StaticFilters} />
 
 ### Removable filters
 
@@ -38,14 +38,17 @@ When using multiple filtes, consider making some or all filters removable, displ
 
 This type of filtering works well for faceted navigation, where available filters might change depending on what is selected.
 
-<Canvas of={ToolbarFilterStories.Removable} />
-
+<Canvas of={ToolbarStories.RemovableFilters} />
 
 ## Combining with account selector
 
 The Toolbar can include the AccountMenu, creating a shortcut for switching accounts. Combined with addable filters, the current account marks a starting point for faceted navigation.
 
 <Canvas of={ToolbarStories.AccountMenuAndFilters} />
+
+Selecting subaccounts:
+
+<Canvas of={ToolbarStories.AccountMenuAndSubmenu} />
 
 ## Combining with search
 

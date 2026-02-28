@@ -2,9 +2,14 @@
   --dsc-item-font-size: 0.875rem;
   --dsc-item-padding-x: 0.5em;
   --dsc-item-padding-y: 0.25em;
+  --dsc-item-color: var(--ds-color-text-default);
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
+}
+
+.label[data-variant="subtle"] {
+  --dsc-item-color: var(--ds-color-text-subtle);
 }
 
 .label[data-size="xs"] {
@@ -15,6 +20,7 @@
 
 .label {
   font-size: var(--dsc-item-font-size);
+  color: var(--dsc-item-color);
   display: flex;
   flex-wrap: wrap;
   align-items: center;

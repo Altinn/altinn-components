@@ -64,6 +64,12 @@ const meta = {
         type: 'select',
       },
     },
+    variant: {
+      options: ['default', 'subtle', 'tinted'],
+      control: {
+        type: 'inline-radio',
+      },
+    },
   },
 } satisfies Meta<typeof ResourceListItem>;
 

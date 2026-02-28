@@ -129,6 +129,7 @@ export const MenuItem = ({
         aria-disabled={disabled}
         aria-checked={checked}
         aria-selected={checked}
+        data-selected={checked}
         aria-label={title}
         data-testid={dataTestId}
         onKeyUp={(e: KeyboardEvent) => {
@@ -174,7 +175,7 @@ export const MenuItem = ({
         </ItemLabel>
         <ItemControls>
           {badge && <Badge {...badge} />}
-          {controls}
+          {!disabled && controls}
         </ItemControls>
       </label>
     );
@@ -196,6 +197,7 @@ export const MenuItem = ({
       data-active={active}
       aria-disabled={disabled}
       aria-selected={selected}
+      data-selected={selected}
       aria-label={title}
       data-testid={dataTestId}
       onKeyUp={(e: KeyboardEvent) => {
@@ -232,7 +234,7 @@ export const MenuItem = ({
       </ItemLabel>
       <ItemControls>
         {badge && <Badge {...badge} />}
-        {controls}
+        {!disabled && controls}
         {linkIcon && <Icon svgElement={applicableLinkIcon as SvgElement} className={styles.linkIcon} />}
       </ItemControls>
     </Component>

@@ -1,12 +1,12 @@
-import { EnterIcon, XMarkIcon } from '@navikt/aksel-icons';
+import { ChevronUpDownIcon, EnterIcon, XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import { isValidElement } from 'react';
-import { type AccountMenuItemProps, Button, ButtonIcon, ButtonLabel, type ButtonProps, useRootContext } from '..';
+import { type AccountMenuItemProps, Button, type ButtonProps, useRootContext } from '..';
 import { Avatar, type AvatarProps } from '../Avatar';
 
-import styles from './accountMenuButton.module.css';
+import styles from './accountSelectorButton.module.css';
 
-export interface AccountMenuButtonProps extends ButtonProps {
+export interface AccountSelectorButtonProps extends ButtonProps {
   currentAccount?: AccountMenuItemProps;
   className?: string;
   expanded?: boolean;
@@ -16,14 +16,14 @@ export interface AccountMenuButtonProps extends ButtonProps {
   loading?: boolean;
 }
 
-export const AccountMenuButton = ({
+export const AccountSelectorButton = ({
   className,
   currentAccount,
   expanded = false,
   minimized = false,
   loading = false,
   ...buttonProps
-}: AccountMenuButtonProps) => {
+}: AccountSelectorButtonProps) => {
   const { languageCode } = useRootContext();
   const texts = getTexts(languageCode);
 
@@ -39,7 +39,7 @@ export const AccountMenuButton = ({
         disabled
         aria-label="loading"
       >
-        <ButtonIcon className={styles.avatarIcon} icon={<Avatar name="loading" loading className={styles.avatar} />} />
+        <Avatar name="loading" loading className={styles.avatar} />
       </Button>
     );
   }
@@ -61,25 +61,19 @@ export const AccountMenuButton = ({
         aria-label={expanded ? texts.close : currentAccount.name}
         aria-expanded={expanded}
       >
+        <Avatar {...(currentAccount?.icon as AvatarProps)} className={styles.avatar} />
         {!minimized && (
-          <ButtonLabel>
-            {
-              <div className={styles.labelContainer}>
-                {currentAccount.name}
-                <span className={styles.description}>
-                  {typeof description === 'string' ? description : isValidElement(description) ? description : null}
-                </span>
-              </div>
-            }
-          </ButtonLabel>
+          <div className={styles.label}>
+            <span className={styles.title}>{currentAccount.name}</span>
+            <span className={styles.description}>
+              {typeof description === 'string' ? description : isValidElement(description) ? description : null}
+            </span>
+          </div>
         )}
         {expanded ? (
-          <ButtonIcon className={styles.closeIcon} icon={<XMarkIcon className={styles.icon} aria-hidden />} />
+          <XMarkIcon className={styles.icon} aria-hidden />
         ) : (
-          <ButtonIcon
-            className={styles.avatarIcon}
-            icon={<Avatar {...(currentAccount?.icon as AvatarProps)} className={styles.avatar} />}
-          />
+          <ChevronUpDownIcon className={styles.icon} aria-hidden />
         )}
       </Button>
     );
@@ -93,16 +87,16 @@ export const AccountMenuButton = ({
   return (
     <Button
       {...buttonProps}
-      as={'button'}
+      as="button"
       type="button"
-      variant={'ghost'}
-      color={'company'}
+      variant="ghost"
+      color="company"
       aria-label={texts.login}
-      className={cx(styles.button, className)}
+      className={cx(styles.button, styles.loginButton, className)}
       aria-expanded={expanded}
     >
-      {!minimized && <ButtonLabel>{texts.login}</ButtonLabel>}
-      <ButtonIcon className={styles.loginIcon} icon={<EnterIcon className={styles.icon} aria-hidden />} />
+      {!minimized && <span className={styles.label}>{texts.login}</span>}
+      <EnterIcon className={styles.icon} aria-hidden />
     </Button>
   );
 };

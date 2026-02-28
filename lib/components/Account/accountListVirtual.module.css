@@ -10,6 +10,7 @@
   list-style-type: none;
   padding: 0;
   margin: 0;
+  isolation: isolate;
 }
 
 .virtualListItem {
@@ -20,7 +21,7 @@
 }
 
 .virtualListItem:focus-within,
-.virtualListItem:has([data-expanded="true"]) {
+.virtualListItem:has([aria-expanded="true"]) {
   z-index: 20;
 }
 

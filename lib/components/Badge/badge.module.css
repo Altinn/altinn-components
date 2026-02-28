@@ -16,6 +16,8 @@
   color: var(--dsc-badge-color);
   border-color: var(--dsc-badge-border);
   box-sizing: border-box;
+
+  vertical-align: middle;
 }
 
 .badge[data-size="xs"] {

@@ -8,7 +8,6 @@ import {
   Layout,
   PageBase,
   SettingsList,
-  Breadcrumbs,
   DashboardHeader,
   type DashboardHeaderProps,
   type SettingsItemProps,
@@ -85,7 +84,7 @@ export const DashboardPage = () => {
   };
 
   return (
-    <Layout {...layout}>
+    <Layout {...layout} useGlobalHeader={true}>
       <PageBase>
         <DashboardHeader {...(defaultAccount as DashboardHeaderProps)} />
         <SettingsList
@@ -98,11 +97,10 @@ export const DashboardPage = () => {
 };
 
 export const AccountsPage = () => {
-  const { breadcrumbs, layout } = useProfile({ pageId: "accounts" });
+  const { layout } = useProfile({ pageId: "accounts" });
   return (
-    <Layout {...layout}>
+    <Layout {...layout} useGlobalHeader={true}>
       <PageBase>
-        <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">Mine aktører</Heading>
         <AccountListStories.Collapsible />
       </PageBase>
@@ -111,11 +109,10 @@ export const AccountsPage = () => {
 };
 
 export const AccountsPageVirtualized = () => {
-  const { breadcrumbs, layout } = useProfile({ pageId: "accounts" });
+  const { layout } = useProfile({ pageId: "accounts" });
   return (
     <Layout {...layout} useGlobalHeader={true}>
       <PageBase>
-        <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">Mine aktører (Virtualized)</Heading>
         <AccountListStories.Virtualized />
       </PageBase>
@@ -124,11 +121,10 @@ export const AccountsPageVirtualized = () => {
 };
 
 export const AlertsPage = () => {
-  const { breadcrumbs, layout } = useProfile({ pageId: "alerts" });
+  const { layout } = useProfile({ pageId: "alerts" });
   return (
-    <Layout {...layout}>
+    <Layout {...layout} useGlobalHeader={true}>
       <PageBase color="person">
-        <Breadcrumbs items={breadcrumbs} />
         <SettingsStories.AlertSettings />
       </PageBase>
     </Layout>
@@ -136,12 +132,11 @@ export const AlertsPage = () => {
 };
 
 export const SettingsPage = () => {
-  const { breadcrumbs, layout } = useProfile({ pageId: "settings" });
+  const { layout } = useProfile({ pageId: "settings" });
 
   return (
-    <Layout {...layout}>
+    <Layout {...layout} useGlobalHeader={true}>
       <PageBase color="person">
-        <Breadcrumbs items={breadcrumbs} />
         <SettingsStories.AccountSettings />
       </PageBase>
     </Layout>
@@ -149,13 +144,12 @@ export const SettingsPage = () => {
 };
 
 export const ActivityLogPage = () => {
-  const { breadcrumbs, layout } = useProfile({
+  const { layout } = useProfile({
     pageId: "activity-log",
   });
   return (
-    <Layout {...layout}>
+    <Layout {...layout} useGlobalHeader={true}>
       <PageBase color="person">
-        <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">Aktivitetslogg</Heading>
         <ActivityLogStories.Controlled />
       </PageBase>
@@ -164,11 +158,10 @@ export const ActivityLogPage = () => {
 };
 
 export const UsersPage = () => {
-  const { breadcrumbs, layout } = useProfile({ pageId: "users" });
+  const { layout } = useProfile({ pageId: "users" });
   return (
-    <Layout {...layout}>
+    <Layout {...layout} useGlobalHeader={true}>
       <PageBase color="person">
-        <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">Brukere med fullmakt til din profil</Heading>
       </PageBase>
     </Layout>
@@ -176,11 +169,10 @@ export const UsersPage = () => {
 };
 
 export const AccessPage = () => {
-  const { breadcrumbs, layout } = useProfile({ pageId: "access" });
+  const { layout } = useProfile({ pageId: "access" });
   return (
-    <Layout {...layout}>
+    <Layout {...layout} useGlobalHeader={true}>
       <PageBase>
-        <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">Tilganger du har gitt til andre</Heading>
       </PageBase>
     </Layout>

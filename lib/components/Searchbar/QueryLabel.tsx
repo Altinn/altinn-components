@@ -19,11 +19,12 @@ export const QueryItem = ({ type = 'search', label }: QueryItemProps) => {
 export interface QueryLabelProps {
   params?: QueryItemProps[];
   size?: QueryItemSize;
+  variant?: 'default' | 'subtle';
 }
 
-export const QueryLabel = ({ params = [], size = 'sm' }: QueryLabelProps) => {
+export const QueryLabel = ({ params = [], size = 'sm', variant = 'default' }: QueryLabelProps) => {
   return (
-    <div className={styles.label} data-size={size}>
+    <div className={styles.label} data-size={size} data-variant={variant}>
       {params.map((item, index) => (
         <div className={styles.group} key={index}>
           <QueryItem {...item} />

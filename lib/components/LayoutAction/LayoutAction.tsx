@@ -36,7 +36,7 @@ export const LayoutAction = ({
         onDismiss={onDismiss}
       />
       {children}
-      <ActionFooter hidden={hidden}>{menu && <PageMenu {...menu} theme={theme} color={color} />}</ActionFooter>
+      <ActionFooter hidden={hidden}>{menu && <PageMenu {...menu} />}</ActionFooter>
     </LayoutBase>
   );
 };

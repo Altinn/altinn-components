@@ -8,10 +8,12 @@ export const ToolbarSearch = ({
   value,
   name,
   placeholder = 'Search',
+  loading,
   collapsible,
   clearButtonAltText = 'Clear search',
   onChange,
   onClear,
+  onKeyDown,
   menu,
   minLength,
 }: ToolbarSearchProps) => {
@@ -24,11 +26,13 @@ export const ToolbarSearch = ({
       clearButtonAltText={clearButtonAltText}
       onChange={onChange}
       onClear={onClear}
+      onKeyDown={onKeyDown}
       collapsible={collapsible}
       autoComplete="off"
       autoCapitalize="off"
       type="search"
       minLength={minLength}
+      loading={loading}
       menu={menu}
     />
   );

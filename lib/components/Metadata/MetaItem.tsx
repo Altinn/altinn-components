@@ -6,6 +6,7 @@ import {
   MetaItemLabel,
   type MetaItemSize,
   type MetaItemVariant,
+  Tooltip,
 } from '..';
 
 export interface MetaItemProps {
@@ -21,6 +22,8 @@ export interface MetaItemProps {
   icon?: MetaItemIconProps['icon'];
   /** Label */
   children?: ReactNode;
+  /** Tooltip */
+  tooltip?: string;
   /** classname */
   className?: string;
   /** OnClick handler */
@@ -34,8 +37,22 @@ export const MetaItem = ({
   variant = 'text',
   icon,
   children,
+  tooltip,
   ...rest
 }: MetaItemProps) => {
+  if (tooltip) {
+    return (
+      <Tooltip placement="bottom" content={tooltip}>
+        <MetaItemBase loading={loading} reverse={reverse} variant={variant} size={size} {...rest}>
+          {!loading && icon && <MetaItemIcon icon={icon} />}
+          <MetaItemLabel variant={variant} size={size}>
+            {children}
+          </MetaItemLabel>
+        </MetaItemBase>
+      </Tooltip>
+    );
+  }
+
   return (
     <MetaItemBase loading={loading} reverse={reverse} variant={variant} size={size} {...rest}>
       {!loading && icon && <MetaItemIcon icon={icon} />}

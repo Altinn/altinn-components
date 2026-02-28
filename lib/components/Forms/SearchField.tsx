@@ -1,7 +1,8 @@
 import { MagnifyingGlassIcon, XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import { useId, useMemo, useState } from 'react';
-import { Button, FieldBase, type FieldBaseProps, Icon, Input, type InputProps, type MenuItemProps } from '..';
+import { Button, FieldBase, type FieldBaseProps, Input, type InputProps, type MenuItemProps } from '..';
+import { TypingIcon } from '../Icon/TypingIcon';
 import { Menu, type MenuProps } from '../Menu';
 import styles from './searchField.module.css';
 
@@ -16,6 +17,8 @@ export interface SearchFieldProps extends InputProps {
   value?: InputProps['value'];
   label?: FieldBaseProps['label'];
   clearButtonAltText?: string;
+  loading?: boolean;
+  loadingLabel?: string;
   onClear?: () => void;
   menu?: SearchFieldMenuProps;
 }
@@ -23,6 +26,8 @@ export interface SearchFieldProps extends InputProps {
 export const SearchField = ({
   className,
   collapsible,
+  loading,
+  loadingLabel = 'Loading ...',
   size,
   color = 'neutral',
   label,
@@ -40,11 +45,12 @@ export const SearchField = ({
   const [activeDescendantId, setActiveDescendantId] = useState<string | undefined>(undefined);
   const clearButtonId = 'searchfield-clear-button-' + useId();
   const showMenu = useMemo(() => {
+    if (!menu) return false;
     if (!value || (typeof minLength === 'number' && typeof value === 'string' && value.length < minLength)) {
       return false;
     }
     return menuOpen;
-  }, [menuOpen, minLength, value]);
+  }, [menu, menuOpen, minLength, value]);
 
   const menuItemsWithToggle: MenuItemProps[] = useMemo(() => {
     return (menu?.items ?? []).map((item) => ({
@@ -88,6 +94,11 @@ export const SearchField = ({
     setMenuOpen(false);
   };
 
+  const handleMenuPointerDown: React.MouseEventHandler<HTMLDivElement> = (event) => {
+    // Prevent input blur so menu doesn't unmount before click handlers fire.
+    event.preventDefault();
+  };
+
   const handleInputBlur: React.FocusEventHandler<HTMLInputElement> = (event) => {
     const next = event.relatedTarget as HTMLElement | null;
     if (next?.id === clearButtonId) {
@@ -96,15 +107,67 @@ export const SearchField = ({
     rest.onBlur?.(event);
   };
 
+  if (!menu) {
+    return (
+      <FieldBase
+        size={size}
+        color={color}
+        label={label}
+        className={cx(styles.field, className)}
+        onBlurCapture={handleBlurCapture}
+      >
+        <Input
+          {...rest}
+          id={inputId}
+          type="search"
+          value={value}
+          className={styles.input}
+          data-collapsible={collapsible}
+          autoCapitalize="off"
+          autoComplete="off"
+          minLength={minLength}
+          onKeyDown={handleKeyDown}
+          onBlur={handleInputBlur}
+        />
+        {loading ? (
+          <TypingIcon aria-hidden className={styles.icon} />
+        ) : (
+          <MagnifyingGlassIcon aria-hidden className={styles.icon} />
+        )}
+        {onClear && !!value && (
+          <span className={styles.clear}>
+            <Button
+              id={clearButtonId}
+              data-testid="clear-button"
+              size="xs"
+              rounded
+              icon
+              variant="tinted"
+              className={styles.clearButton}
+              onClick={() => {
+                onClear?.();
+                document.getElementById(inputId)?.focus();
+              }}
+              aria-label={clearButtonAltText}
+              data-action="clear-input"
+            >
+              <XMarkIcon />
+            </Button>
+          </span>
+        )}
+      </FieldBase>
+    );
+  }
+
   return (
-    <FieldBase
-      size={size}
-      color={color}
-      label={label}
-      className={cx(styles.field, className)}
-      onBlurCapture={handleBlurCapture}
-    >
-      <div className={styles.container}>
+    <div className={styles.fieldContainer}>
+      <FieldBase
+        size={size}
+        color={color}
+        label={label}
+        className={cx(styles.field, className)}
+        onBlurCapture={handleBlurCapture}
+      >
         <Input
           {...rest}
           id={inputId}
@@ -127,7 +190,7 @@ export const SearchField = ({
             onFocus: handleOnFocus,
           })}
         />
-        <Icon svgElement={MagnifyingGlassIcon} className={styles.icon} />
+        <MagnifyingGlassIcon className={styles.icon} />
         {onClear && !!value && (
           <span className={styles.clear}>
             <Button
@@ -149,9 +212,9 @@ export const SearchField = ({
             </Button>
           </span>
         )}
-      </div>
+      </FieldBase>
       {menu && showMenu && (
-        <div className={styles.autocomplete} data-color="company" aria-hidden={!showMenu}>
+        <div className={styles.autocomplete} aria-hidden={!showMenu} onMouseDown={handleMenuPointerDown}>
           <Menu
             {...menu}
             id={listId}
@@ -165,6 +228,6 @@ export const SearchField = ({
           />
         </div>
       )}
-    </FieldBase>
+    </div>
   );
 };

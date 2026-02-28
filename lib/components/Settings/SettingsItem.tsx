@@ -56,6 +56,7 @@ export const SettingsItem = ({
           title={{
             children: props?.title,
           }}
+          description={props?.description}
           value={undefined}
         />
       );
@@ -64,11 +65,16 @@ export const SettingsItem = ({
         <SettingsItemBase
           {...props}
           title={{
-            id: id,
-            as: 'label',
-            children: [props?.title, props?.value].join(': '),
+            size: 'xs',
+            variant: 'subtle',
+            weight: 'normal',
+            children: props?.title,
           }}
-          value={undefined}
+          description={{
+            size: 'sm',
+            variant: 'default',
+            children: props?.description || props?.value,
+          }}
           interactive={false}
           controls={
             <Input
@@ -90,9 +96,15 @@ export const SettingsItem = ({
         <SettingsItemBase
           {...props}
           title={{
+            size: props?.value ? 'xs' : 'sm',
             variant: 'subtle',
             weight: 'normal',
             children: props?.title,
+          }}
+          description={{
+            size: 'sm',
+            variant: 'default',
+            children: props?.description || props?.value,
           }}
           as="button"
           linkIcon={true}
@@ -118,9 +130,15 @@ export const SettingsItem = ({
         <SettingsItemBase
           {...props}
           title={{
+            size: props?.value ? 'xs' : 'sm',
             variant: 'subtle',
             weight: 'normal',
             children: props?.title,
+          }}
+          description={{
+            size: 'sm',
+            variant: 'default',
+            children: props?.description || props?.value,
           }}
         />
       );

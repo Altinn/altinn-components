@@ -7,18 +7,53 @@ import {
   FileCheckmarkIcon,
   InboxFillIcon,
   InformationSquareIcon,
+  MenuHamburgerIcon,
   PaperclipIcon,
   TrashIcon,
 } from '@navikt/aksel-icons';
+import { nav, skatt } from '../../../examples/avatar';
 import type { AvatarProps } from '../Avatar';
 import type { FilterProps } from './useFilter';
+
+export const ownerFilter: FilterProps = {
+  id: 'owner',
+  groupId: '3',
+  name: 'owner',
+  icon: MenuHamburgerIcon,
+  title: 'Tjenesteeier ...',
+  groups: {
+    1: {
+      title: 'Velg tjenesteier',
+    },
+  },
+  items: [
+    {
+      id: '1',
+      groupId: '1',
+      role: 'checkbox',
+      name: 'owner',
+      value: 'skatt',
+      title: 'Skatteetaten',
+      icon: skatt,
+    },
+    {
+      id: '2',
+      groupId: '1',
+      role: 'checkbox',
+      name: 'owner',
+      value: 'nav',
+      title: 'NAV',
+      icon: nav,
+    },
+  ],
+};
 
 export const statusFilter: FilterProps = {
   id: '1',
   groupId: '1',
   name: 'status',
   icon: InformationSquareIcon,
-  label: 'Velg status',
+  title: 'Status ...',
   groups: {
     1: {
       title: 'Velg status',
@@ -81,7 +116,7 @@ export const timeFilter: FilterProps = {
   groupId: '1',
   icon: CalendarIcon,
   name: 'time',
-  label: 'Velg dato',
+  title: 'Dato ...',
   groups: {
     1: {
       title: 'Velg dato',
@@ -154,7 +189,7 @@ export const seenByFilter: FilterProps = {
   groupId: '2',
   icon: EyeIcon,
   name: 'seenBy',
-  label: 'Sett av ...',
+  title: 'Sett av ...',
   searchable: true,
   search: {
     name: 'seenBy',
@@ -210,7 +245,7 @@ export const contentFilter: FilterProps = {
   groupId: '2',
   icon: PaperclipIcon,
   name: 'content',
-  label: 'Inneholder ...',
+  title: 'Inneholder ...',
   groups: {
     1: {
       title: 'Inneholder ...',
@@ -252,7 +287,7 @@ export const contentFilter: FilterProps = {
   ],
 };
 
-export const inboxFilters = [statusFilter, timeFilter, seenByFilter, contentFilter] as FilterProps[];
+export const inboxFilters = [statusFilter, timeFilter, seenByFilter, contentFilter, ownerFilter] as FilterProps[];
 
 export const removableInboxFilters = inboxFilters?.map((filter) => ({
   ...filter,
@@ -353,7 +388,7 @@ export const accountMenuItems = [
     icon: {
       type: 'company',
       name: item.name,
-      isParent: !!item?.parentId,
+      isParent: !item?.parentId,
     } as AvatarProps,
   };
 });
@@ -364,7 +399,7 @@ export const accountMenu = {
   searchable: true,
   groups: {
     favourites: { title: 'Favoritter' },
-    aa: { title: 'Alfa Bar & Brød' },
+    aa: { title: 'Alle virksomheter' },
     search: { title: '{count} treff' },
   },
   size: 'md',

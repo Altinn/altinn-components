@@ -1,7 +1,7 @@
 import { BellIcon, HeartBrokenIcon } from '@navikt/aksel-icons';
 import { PencilIcon, TrashIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { BookmarksSettingsItem, ContextMenu, List, SettingsItem } from '..';
+import { BookmarkSettingsItem, List, SettingsItem } from '..';
 const meta = {
   title: 'Settings/SettingsItem',
   component: SettingsItem,
@@ -128,10 +128,9 @@ export const Person: Story = {
 
 export const Bookmark = () => {
   return (
-    <BookmarksSettingsItem
+    <BookmarkSettingsItem
       id="bookmark-1"
       title="Viktige dialoger om skatt"
-      onClose={() => {}}
       params={[
         { type: 'search', label: 'skatt' },
         { type: 'filter', label: 'Krever handling' },
@@ -143,25 +142,21 @@ export const Bookmark = () => {
 
 export const BookmarkContextMenu = () => {
   return (
-    <BookmarksSettingsItem
+    <BookmarkSettingsItem
       id="bookmark-1"
       title="Viktige dialoger om skatt"
-      onClose={() => {}}
-      controls={
-        <ContextMenu
-          id="cxmenu"
-          items={[
-            {
-              icon: PencilIcon,
-              title: 'Rediger tittel',
-            },
-            {
-              icon: TrashIcon,
-              title: 'Slett søk',
-            },
-          ]}
-        />
-      }
+      contextMenu={{
+        items: [
+          {
+            icon: PencilIcon,
+            title: 'Rediger tittel',
+          },
+          {
+            icon: TrashIcon,
+            title: 'Slett søk',
+          },
+        ],
+      }}
       params={[
         { type: 'search', label: 'skatt' },
         { type: 'filter', label: 'Krever handling' },

@@ -81,13 +81,14 @@ div.item[data-variant="tinted"] {
   outline: 2px solid black;
 }
 
-.item[aria-selected="true"] {
+.item[data-selected="true"] {
   background-color: var(--dsc-item-background--active);
   --checkmark-opacity: 1;
 }
 
 .item[aria-disabled="true"] {
   background-color: transparent;
+  opacity: 0.5;
 }
 
 /* size */

@@ -1,10 +1,10 @@
 import type { Meta } from '@storybook/react-vite';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { QueryLabel } from '..';
 import { Switch } from '../Forms';
-import { Toolbar, ToolbarFilter, type ToolbarFilterProps, ToolbarMenu, ToolbarSearch } from './';
+import { Toolbar, ToolbarFilter, type ToolbarFilterProps, ToolbarMenu, type ToolbarMenuProps, ToolbarSearch } from './';
 import { inboxFilters } from './example.data';
-import { useInboxFilter, useInboxToolbar } from './example.hooks';
+import { useAccountMenu, useInboxFilter, useInboxToolbar } from './example.hooks';
 
 const meta = {
   title: 'Toolbar/Toolbar',
@@ -248,6 +248,16 @@ export const SearchAndSwitch = () => {
   );
 };
 
+export const StaticFilters = () => {
+  const staticFilters = useInboxFilter({ filters: inboxFilters?.map((item) => ({ ...item })) });
+  return <Toolbar filter={staticFilters} />;
+};
+
+export const RemovableFilters = () => {
+  const removableFilter = useInboxFilter({ filters: inboxFilters?.map((item) => ({ ...item, removable: true })) });
+  return <Toolbar filter={removableFilter} />;
+};
+
 export const AccountMenuAndFilters = () => {
   const { menus } = useInboxToolbar();
   const removableFilter = useInboxFilter({ filters: inboxFilters?.map((item) => ({ ...item, removable: true })) });
@@ -341,4 +351,145 @@ export const AccountMenuAndSearchAutocomplete = () => {
   };
 
   return <Toolbar menus={menus} search={search} filter={removableFilter} />;
+};
+
+export const AccountMenuAndSubmenu = () => {
+  const accountMenu = useAccountMenu('aa-1');
+  const selectedAccount = accountMenu.items?.find((item) => item.selected);
+  const selectedIsParent = selectedAccount?.icon?.isParent;
+  const removableFilter = useInboxFilter({ filters: inboxFilters?.map((item) => ({ ...item, removable: true })) });
+
+  const filterState = removableFilter?.filterState;
+
+  const onSubAccountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const type = e.target.type;
+    const value = e.target.value;
+    if (type === 'radio') {
+      removableFilter?.onFilterStateChange?.({ ...filterState, subaccount: [value] });
+    } else {
+      if (filterState?.subaccount?.includes(value)) {
+        removableFilter?.onFilterStateChange?.({
+          ...filterState,
+          subaccount: [...(filterState?.subaccount?.filter((v) => v !== value) || [])],
+        });
+      } else {
+        removableFilter?.onFilterStateChange?.({
+          ...filterState,
+          subaccount: [...(filterState?.subaccount?.filter((v) => v !== 'all') || []), value],
+        });
+      }
+    }
+  };
+
+  const subAccounts = [
+    {
+      id: '1',
+      groupId: '2',
+      title: 'Hovedenhet',
+      description: 'Org nr.',
+      value: 'hoved',
+      name: 'subaccount',
+      role: 'checkbox',
+    },
+    {
+      id: '2',
+      groupId: '2',
+      title: 'Underenhet',
+      description: 'Org nr.',
+      name: 'subaccount',
+      value: 'under',
+      role: 'checkbox',
+    },
+  ]?.map((item) => {
+    return {
+      ...item,
+      checked: filterState?.subaccount?.includes(item.value),
+      onChange: onSubAccountChange,
+    };
+  });
+
+  const subAccountsAndAll = [
+    {
+      id: 'all',
+      groupId: '1',
+      title: 'Alle enheter',
+      name: 'subaccount',
+      value: 'all',
+      role: 'radio',
+      checked: filterState?.subaccount?.includes('all') || !filterState?.subaccount?.length,
+      onChange: onSubAccountChange,
+    },
+    ...subAccounts,
+  ];
+
+  const getSubAccountLabel = () => {
+    const count = subAccounts?.filter((item) => filterState?.subaccount?.includes(item.value))?.length;
+    if (count === 1) {
+      return subAccounts?.find((item) => filterState?.subaccount?.includes(item.value))?.title;
+    }
+
+    if (count) {
+      return `${count} enheter`;
+    }
+    return `${subAccounts?.length} enheter`;
+  };
+
+  return (
+    <Toolbar>
+      <ToolbarMenu {...(accountMenu as ToolbarMenuProps)} />
+      {selectedIsParent && <ToolbarMenu items={subAccountsAndAll} label={getSubAccountLabel()} />}
+      <ToolbarFilter {...removableFilter} />
+    </Toolbar>
+  );
+};
+
+export const DebouncedQuery = () => {
+  const accountMenu = useAccountMenu('aa-1');
+  const removableFilter = useInboxFilter({ filters: inboxFilters?.map((item) => ({ ...item, removable: true })) });
+
+  const [q, setQ] = useState('');
+
+  function useDebounce<T>(value: T, delay: number): T {
+    const [debouncedValue, setDebouncedValue] = useState(value);
+
+    useEffect(() => {
+      // Update debounced value after delay
+      const handler = setTimeout(() => {
+        setDebouncedValue(value);
+      }, delay);
+
+      // Cancel previous timeout if value changes
+      return () => {
+        clearTimeout(handler);
+      };
+    }, [value, delay]);
+
+    return debouncedValue;
+  }
+
+  const debouncedQuery = useDebounce(q, 500);
+
+  // We are "loading" if the current text hasn't caught up to the debounced text
+  // OR if an actual API call is in progress (args.loading)
+  const isTyping = q !== debouncedQuery;
+  const loading = isTyping;
+
+  useEffect(() => {
+    if (debouncedQuery) {
+      console.log('Fetching data for:', debouncedQuery);
+      // Simulate API call
+      // setTimeout(() => {
+      //   console.log('Data fetched for:', debouncedQuery);
+      // }, 1000);
+    }
+  }, [debouncedQuery]);
+
+  return (
+    <Toolbar>
+      <ToolbarMenu {...(accountMenu as ToolbarMenuProps)} />
+
+      <ToolbarSearch value={q} loading={loading} onChange={(e) => setQ(e.target.value)} onClear={() => setQ('')} />
+      <ToolbarFilter {...removableFilter} />
+    </Toolbar>
+  );
 };

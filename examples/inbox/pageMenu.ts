@@ -2,7 +2,6 @@ import { ArchiveIcon, ArrowRedoIcon, EyeClosedIcon, TrashIcon } from '@navikt/ak
 import type { PageMenuProps } from '../../lib';
 
 export const pageMenu: PageMenuProps = {
-  id: 'page-menu',
   items: [
     {
       id: '1',

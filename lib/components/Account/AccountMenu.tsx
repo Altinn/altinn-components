@@ -60,7 +60,8 @@ export const AccountMenu = ({
   const defaultFilterAccount = (item: AccountMenuItemProps, q: string) => {
     return (
       item?.name?.toLowerCase().includes(q.toLowerCase()) ||
-      item?.description?.toString()?.toLowerCase().includes(q.toLowerCase())
+      item?.description?.toString()?.toLowerCase().includes(q.toLowerCase()) ||
+      item?.searchWords?.some((word) => word.toLowerCase().includes(q.toLowerCase()))
     );
   };
 

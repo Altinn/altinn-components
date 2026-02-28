@@ -1,7 +1,6 @@
 import {
   Heading,
   PageBase,
-  Breadcrumbs,
   Article,
   Typography,
   Modal,
@@ -81,17 +80,6 @@ export const BetaModal = ({
 export const About = () => {
   return (
     <PageBase>
-      <Breadcrumbs
-        items={[
-          {
-            href: "#",
-            label: "Innboks Beta",
-          },
-          {
-            label: "Om nye Altinn",
-          },
-        ]}
-      />
       <Article>
         <Heading size="xl">
           Om nye Altinn – enklere, tryggere og mer moderne
@@ -173,17 +161,6 @@ export const About = () => {
 export const AboutInbox = () => {
   return (
     <PageBase>
-      <Breadcrumbs
-        items={[
-          {
-            href: "#",
-            label: "Innboks Beta",
-          },
-          {
-            label: "Om ny innboks",
-          },
-        ]}
-      />
       <Article>
         <Heading size="xl">
           Ny innboks – bedre dialoger, enklere å finne frem

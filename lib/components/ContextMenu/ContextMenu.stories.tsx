@@ -58,26 +58,28 @@ export const Default: Story = {
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     // open the context menu
     const canvas = within(canvasElement);
+    // menu items are rendered via a React portal into document.body
+    const body = within(document.body);
     const button = canvas.getByRole('button');
     await userEvent.click(button);
 
     // ensure that the context menu is visible
-    await expect(canvas.getByRole('group')).toBeInTheDocument();
+    await expect(body.getByRole('group')).toBeInTheDocument();
 
     // close the context menu by pressing escape key
     await userEvent.keyboard('{Escape}');
-    await expect(canvas.queryByRole('group')).not.toBeInTheDocument();
+    await expect(body.queryByRole('group')).not.toBeInTheDocument();
 
     // open the context menu again and close by clicking outside
     await userEvent.click(button);
     await userEvent.click(canvasElement);
-    await expect(canvas.queryByRole('group')).not.toBeInTheDocument();
+    await expect(body.queryByRole('group')).not.toBeInTheDocument();
 
     // open the context menu again and select an item
     await userEvent.click(button);
-    const item = canvas.getByText('Flytt til arkiv');
+    const item = body.getByText('Flytt til arkiv');
     await userEvent.click(item);
-    await expect(canvas.queryByRole('group')).not.toBeInTheDocument();
+    await expect(body.queryByRole('group')).not.toBeInTheDocument();
   },
 };
 

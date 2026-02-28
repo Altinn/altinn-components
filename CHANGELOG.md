@@ -1,5 +1,158 @@
 # Changelog
 
+## [0.56.21](https://github.com/Altinn/altinn-components/compare/v0.56.20...v0.56.21) (2026-02-27)
+
+
+### Bug Fixes
+
+* add util function to format org.no. to 3 by 3 digits and use this function to format org.no. in useAccountSelector ([#1013](https://github.com/Altinn/altinn-components/issues/1013)) ([ef39995](https://github.com/Altinn/altinn-components/commit/ef399955b6b0934f9f21d16a14cc35f2c02d447b))
+* header improvements ([#1021](https://github.com/Altinn/altinn-components/issues/1021)) ([bf9957f](https://github.com/Altinn/altinn-components/commit/bf9957f6b763a75142dec7424c28fc7fed395e21))
+* more settings ([#1018](https://github.com/Altinn/altinn-components/issues/1018)) ([72c0550](https://github.com/Altinn/altinn-components/commit/72c055008867ee51fdae7aab4ed37f6a14b79ba4))
+
+## [0.56.20](https://github.com/Altinn/altinn-components/compare/v0.56.19...v0.56.20) (2026-02-25)
+
+
+### Bug Fixes
+
+* breacrumbs aria label + inbox/profile stories ([#1012](https://github.com/Altinn/altinn-components/issues/1012)) ([e4b0dc0](https://github.com/Altinn/altinn-components/commit/e4b0dc0a8100b1f0ddf4a2604138b98c30e5432d))
+* breadcrumbs link ([#1015](https://github.com/Altinn/altinn-components/issues/1015)) ([2737f6c](https://github.com/Altinn/altinn-components/commit/2737f6c7f627514ae36b06bcd9ed4980d6fc12b3))
+* menu item disabled ([#1016](https://github.com/Altinn/altinn-components/issues/1016)) ([a181739](https://github.com/Altinn/altinn-components/commit/a181739ad589a71605fd7e36d9a4b078950511cd))
+
+## [0.56.19](https://github.com/Altinn/altinn-components/compare/v0.56.18...v0.56.19) (2026-02-24)
+
+
+### Bug Fixes
+
+* dialog improvements ([#1008](https://github.com/Altinn/altinn-components/issues/1008)) ([56e242d](https://github.com/Altinn/altinn-components/commit/56e242daa7d372a03f9b2a13d8d3e0780fee1367))
+* **ResourceListItem:** Add variant to resource list item ([#1011](https://github.com/Altinn/altinn-components/issues/1011)) ([0829561](https://github.com/Altinn/altinn-components/commit/08295611aea1e179e200290b0e86fa95139ad047))
+
+## [0.56.18](https://github.com/Altinn/altinn-components/compare/v0.56.17...v0.56.18) (2026-02-23)
+
+
+### Bug Fixes
+
+* pageMenu ([#1006](https://github.com/Altinn/altinn-components/issues/1006)) ([39e7d84](https://github.com/Altinn/altinn-components/commit/39e7d843cfc71981cea6baacad9591ce53bb13b6))
+
+## [0.56.17](https://github.com/Altinn/altinn-components/compare/v0.56.16...v0.56.17) (2026-02-20)
+
+
+### Bug Fixes
+
+* separate bookmark list and bookmark modal ([#1002](https://github.com/Altinn/altinn-components/issues/1002)) ([e4ce52a](https://github.com/Altinn/altinn-components/commit/e4ce52a177919aea857af84d8c5791d3790c3036))
+
+## [0.56.16](https://github.com/Altinn/altinn-components/compare/v0.56.15...v0.56.16) (2026-02-20)
+
+
+### Bug Fixes
+
+* Fix lint ([#1004](https://github.com/Altinn/altinn-components/issues/1004)) ([23ead8e](https://github.com/Altinn/altinn-components/commit/23ead8ebf32fd7ae9e295505c0084e926fc20a50))
+* removable datepicker fix ([#1003](https://github.com/Altinn/altinn-components/issues/1003)) ([2654d76](https://github.com/Altinn/altinn-components/commit/2654d76997ec1cf7bff503fedccc936bc02212a4))
+* UserListItem roleNames (badges) should break to new lines on narrow screens ([#1000](https://github.com/Altinn/altinn-components/issues/1000)) ([0a78eda](https://github.com/Altinn/altinn-components/commit/0a78edab507b4c3094bbd1ba34d892e2c650ed15))
+
+## [0.56.15](https://github.com/Altinn/altinn-components/compare/v0.56.14...v0.56.15) (2026-02-19)
+
+
+### Bug Fixes
+
+* Searchfield menu handling early return ([#998](https://github.com/Altinn/altinn-components/issues/998)) ([1c27fd9](https://github.com/Altinn/altinn-components/commit/1c27fd9f3a859514fac0f7c41bc267b549bb6f96))
+
+## [0.56.14](https://github.com/Altinn/altinn-components/compare/v0.56.13...v0.56.14) (2026-02-19)
+
+
+### Bug Fixes
+
+* empty bookmarks ([#995](https://github.com/Altinn/altinn-components/issues/995)) ([1229005](https://github.com/Altinn/altinn-components/commit/1229005d48f1b32bc66f2038535ab4b7524ff8f3))
+* ToolbarSearch pass onKeyDown ([#997](https://github.com/Altinn/altinn-components/issues/997)) ([33e5199](https://github.com/Altinn/altinn-components/commit/33e519981fb7b2d77ad118d17b6bd11ec5b32059))
+
+## [0.56.13](https://github.com/Altinn/altinn-components/compare/v0.56.12...v0.56.13) (2026-02-19)
+
+
+### Bug Fixes
+
+* searchfield-loading-indicator ([#993](https://github.com/Altinn/altinn-components/issues/993)) ([a4c4b4b](https://github.com/Altinn/altinn-components/commit/a4c4b4bb06cbd8c0b05aa064272023b5d315c0f2))
+
+## [0.56.12](https://github.com/Altinn/altinn-components/compare/v0.56.11...v0.56.12) (2026-02-18)
+
+
+### Bug Fixes
+
+* account submenu stories ([#990](https://github.com/Altinn/altinn-components/issues/990)) ([0d3762e](https://github.com/Altinn/altinn-components/commit/0d3762e4eecb45eca13e2c6c934a724326c5962d))
+* Virtual account details interferes with global menu ([#992](https://github.com/Altinn/altinn-components/issues/992)) ([fb1805d](https://github.com/Altinn/altinn-components/commit/fb1805d85796e2c28df77b21d3db41350498b029))
+
+## [0.56.11](https://github.com/Altinn/altinn-components/compare/v0.56.10...v0.56.11) (2026-02-18)
+
+
+### Bug Fixes
+
+* export ToolbarFilterMenu ([#988](https://github.com/Altinn/altinn-components/issues/988)) ([89376b8](https://github.com/Altinn/altinn-components/commit/89376b86ebb0f3bf27232b54f1d4b11cb8971470))
+
+## [0.56.10](https://github.com/Altinn/altinn-components/compare/v0.56.9...v0.56.10) (2026-02-17)
+
+
+### Bug Fixes
+
+* add breadcrumbs to layout ([#985](https://github.com/Altinn/altinn-components/issues/985)) ([e010012](https://github.com/Altinn/altinn-components/commit/e0100126ef21223f0f5b5ea536c84acfd458d0eb))
+* datepicker filter submit ([#986](https://github.com/Altinn/altinn-components/issues/986)) ([9196363](https://github.com/Altinn/altinn-components/commit/91963635623ac7aea4f0092f3277d06a22f3074c))
+* hide empty removable filters ([#983](https://github.com/Altinn/altinn-components/issues/983)) ([1e9d6f0](https://github.com/Altinn/altinn-components/commit/1e9d6f0e37e80bf9106088994b86b6b6e0bb760c))
+* mobile collapsible search ([#987](https://github.com/Altinn/altinn-components/issues/987)) ([52e4824](https://github.com/Altinn/altinn-components/commit/52e4824c41fb4d873af9fb9c93460c9cb28f8fd3))
+
+## [0.56.9](https://github.com/Altinn/altinn-components/compare/v0.56.8...v0.56.9) (2026-02-16)
+
+
+### Bug Fixes
+
+* Context menu for virtualised account list, set portal ([#981](https://github.com/Altinn/altinn-components/issues/981)) ([76f0870](https://github.com/Altinn/altinn-components/commit/76f0870d6b346dbcf479ed56390e883bc86dd422))
+
+## [0.56.8](https://github.com/Altinn/altinn-components/compare/v0.56.7...v0.56.8) (2026-02-13)
+
+
+### Bug Fixes
+
+* searchfield icon + toolbar stories ([#979](https://github.com/Altinn/altinn-components/issues/979)) ([8142f37](https://github.com/Altinn/altinn-components/commit/8142f37311d875ca432f6469f3bebc45cb7e7b5e))
+
+## [0.56.7](https://github.com/Altinn/altinn-components/compare/v0.56.6...v0.56.7) (2026-02-13)
+
+
+### Bug Fixes
+
+* searchfield w/o menu ([#978](https://github.com/Altinn/altinn-components/issues/978)) ([5ff555e](https://github.com/Altinn/altinn-components/commit/5ff555e336d7345c2cf41963377fbd1c7aed73e8))
+* story for selecting subaccount in toolbar ([#976](https://github.com/Altinn/altinn-components/issues/976)) ([b085593](https://github.com/Altinn/altinn-components/commit/b08559309237b43d9f8231ca4b41821a46f2666f))
+
+## [0.56.6](https://github.com/Altinn/altinn-components/compare/v0.56.5...v0.56.6) (2026-02-13)
+
+
+### Bug Fixes
+
+* **selected:** not showing in menu ([#974](https://github.com/Altinn/altinn-components/issues/974)) ([d1db629](https://github.com/Altinn/altinn-components/commit/d1db629c8e45a0b5d90ac52d4bc14e7af4ac7341))
+
+## [0.56.5](https://github.com/Altinn/altinn-components/compare/v0.56.4...v0.56.5) (2026-02-13)
+
+
+### Bug Fixes
+
+* **searchfield:** unwanted blur to menu ([#972](https://github.com/Altinn/altinn-components/issues/972)) ([4a799eb](https://github.com/Altinn/altinn-components/commit/4a799eb19041a5988c739e0502338833fc8c289b))
+
+## [0.56.4](https://github.com/Altinn/altinn-components/compare/v0.56.3...v0.56.4) (2026-02-12)
+
+
+### Bug Fixes
+
+* search field color + remove outline from image avatar ([#970](https://github.com/Altinn/altinn-components/issues/970)) ([74b8bd1](https://github.com/Altinn/altinn-components/commit/74b8bd15cc7ecef006c23bf066857d96c3ef2c18))
+
+## [0.56.3](https://github.com/Altinn/altinn-components/compare/v0.56.2...v0.56.3) (2026-02-12)
+
+
+### Bug Fixes
+
+* **layout:** remove margins for sidebar for legacy layout ([#968](https://github.com/Altinn/altinn-components/issues/968)) ([10ab262](https://github.com/Altinn/altinn-components/commit/10ab262875c608287d8b8018606753698f8ff99c))
+
+## [0.56.2](https://github.com/Altinn/altinn-components/compare/v0.56.1...v0.56.2) (2026-02-12)
+
+
+### Bug Fixes
+
+* toolbar wrap + dropdown size ([#965](https://github.com/Altinn/altinn-components/issues/965)) ([79eefd4](https://github.com/Altinn/altinn-components/commit/79eefd4fc86250d6a8ee507115398900beb8b99c))
+
 ## [0.56.1](https://github.com/Altinn/altinn-components/compare/v0.56.0...v0.56.1) (2026-02-12)
 
 

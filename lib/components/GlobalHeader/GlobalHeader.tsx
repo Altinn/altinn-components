@@ -1,20 +1,15 @@
 'use client';
 import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
-import { AccountMenuButton } from '../Account/AccountMenuButton.tsx';
 import type { BadgeProps } from '../Badge';
-import { DrawerBase, DropdownBase } from '../Dropdown';
-import { GlobalMenu, GlobalMenuButton, type GlobalMenuProps, type LocaleSwitcherProps } from '../GlobalMenu';
+import { Dropdown } from '../Dropdown';
+import { GlobalMenu, type GlobalMenuProps, type LocaleSwitcherProps } from '../GlobalMenu';
 import type { MenuProps } from '../Menu';
 import { useRootContext } from '../RootProvider';
 import { AccountSelector, type AccountSelectorProps } from './AccountSelector.tsx';
-import { GlobalSearch, type GlobalSearchProps } from './GlobalSearch.tsx';
-import { GlobalSearchButton } from './GlobalSearchButton.tsx';
-import { HeaderGroup } from './HeaderGroup.tsx';
+import { AccountSelectorButton } from './AccountSelectorButton.tsx';
+import { GlobalMenuButton } from './GlobalMenuButton';
 import { HeaderLogo, type HeaderLogoProps } from './HeaderLogo.tsx';
 import styles from './globalHeader.module.css';
-import { GlobalHeaderBase } from './index.tsx';
-
-import cx from 'classnames';
 
 export interface GlobalHeaderProps {
   globalMenu: GlobalMenuProps;
@@ -22,7 +17,6 @@ export interface GlobalHeaderProps {
   desktopMenu?: MenuProps;
   /** Use to override globalMenu.menu on mobile */
   mobileMenu?: MenuProps;
-  globalSearch?: GlobalSearchProps;
   locale?: LocaleSwitcherProps;
   accountSelector?: AccountSelectorProps;
   badge?: BadgeProps | undefined;
@@ -34,113 +28,81 @@ export const GlobalHeader = ({
   globalMenu,
   desktopMenu,
   mobileMenu,
-  globalSearch,
   locale,
   accountSelector,
   logo = {},
   badge,
   onLoginClick,
 }: GlobalHeaderProps) => {
-  const { currentId, toggleId, openId, closeAll } = useRootContext();
-
-  const ToggleSearch = () => {
-    toggleId('search');
-  };
+  const { currentId, toggleId, closeAll } = useRootContext();
 
   const onToggleAccountMenu = () => {
-    if (currentId === 'account' || currentId === 'accountFullscreen') {
-      closeAll();
-    } else {
-      openId('account');
-    }
+    toggleId('account');
   };
 
   const onToggleMenu = () => {
     toggleId('menu');
   };
 
-  const accountSelectionOpen =
-    currentId === 'account' || currentId === 'accountFullscreen' || accountSelector?.forceOpenFullScreen;
+  const accountSelectionOpen = currentId === 'account' || accountSelector?.forceOpenFullScreen || false;
 
   const isDesktop = useIsDesktop();
 
   return (
-    <GlobalHeaderBase currentId={currentId} openBackdrop={currentId === 'menu'} onCloseBackdrop={closeAll}>
-      <HeaderLogo {...logo} badge={badge} className={styles.logo} />
-      <HeaderGroup>
-        {accountSelector && (
-          <AccountMenuButton
-            currentAccount={accountSelector.accountMenu?.currentAccount}
-            minimized={!isDesktop}
-            onClick={accountSelector.accountMenu?.currentAccount ? onToggleAccountMenu : onLoginClick}
-            expanded={accountSelectionOpen}
-            loading={accountSelector.loading}
-            disabled={accountSelector.forceOpenFullScreen}
-          />
-        )}
-        {globalSearch && (
-          <GlobalSearchButton
-            onClick={ToggleSearch}
-            expanded={currentId === 'search'}
-            disabled={accountSelector?.forceOpenFullScreen}
-          />
-        )}
-        <div className={styles.relative}>
-          <GlobalMenuButton
-            onClick={onToggleMenu}
-            expanded={currentId === 'menu'}
-            disabled={accountSelector?.forceOpenFullScreen}
-            label={globalMenu?.menuLabel}
-          />
-          {globalMenu && (
-            <DropdownBase
-              layout="desktop"
-              padding
-              size="lg"
-              placement="right"
-              open={currentId === 'menu'}
+    <header className={styles.header} data-current-id={currentId}>
+      <div className={styles.container}>
+        <HeaderLogo {...logo} badge={badge} className={styles.logo} />
+        <nav className={styles.nav}>
+          {accountSelector && (
+            <Dropdown
               className={styles.dropdown}
+              backdrop={false}
+              id="header-account"
+              open={accountSelectionOpen}
+              variant="drawer"
+              placement="right"
+              onClose={closeAll}
+              trigger={
+                <AccountSelectorButton
+                  currentAccount={accountSelector.accountMenu?.currentAccount}
+                  minimized={!isDesktop}
+                  onClick={accountSelector.accountMenu?.currentAccount ? onToggleAccountMenu : onLoginClick}
+                  expanded={accountSelectionOpen}
+                  loading={accountSelector.loading}
+                  disabled={accountSelector.forceOpenFullScreen}
+                />
+              }
             >
-              <GlobalMenu
-                {...globalMenu}
-                menu={desktopMenu || globalMenu?.menu}
-                onClose={closeAll}
-                localeSwitcher={locale}
-                isOpen={currentId === 'menu'}
-              />
-            </DropdownBase>
+              <AccountSelector {...accountSelector} forceOpenFullScreen={accountSelector.forceOpenFullScreen} />
+            </Dropdown>
           )}
-        </div>
-      </HeaderGroup>
-      {globalMenu && (
-        <DrawerBase open={currentId === 'menu'} className={styles.drawer}>
-          <GlobalMenu
-            {...globalMenu}
-            menu={mobileMenu || globalMenu?.menu}
+          <Dropdown
+            className={styles.dropdown}
+            id="header-menu"
+            open={currentId === 'menu'}
+            variant="drawer-dropdown"
+            placement="right"
+            size="md"
             onClose={closeAll}
-            localeSwitcher={locale}
-            isOpen={currentId === 'menu'}
-          />
-        </DrawerBase>
-      )}
-      {accountSelector && (
-        <DrawerBase
-          open={accountSelectionOpen}
-          className={cx(styles.drawer)}
-          dataLayout={isDesktop ? 'desktop' : 'mobile'}
-        >
-          <AccountSelector {...accountSelector} forceOpenFullScreen={accountSelector.forceOpenFullScreen} />
-        </DrawerBase>
-      )}
-      {globalSearch && (
-        <DrawerBase
-          open={currentId === 'search'}
-          className={cx(styles.drawer)}
-          dataLayout={isDesktop ? 'desktop' : 'mobile'}
-        >
-          <GlobalSearch {...globalSearch} />
-        </DrawerBase>
-      )}
-    </GlobalHeaderBase>
+            trigger={
+              <GlobalMenuButton
+                onClick={onToggleMenu}
+                expanded={currentId === 'menu'}
+                disabled={accountSelector?.forceOpenFullScreen}
+                label={globalMenu?.menuLabel}
+              />
+            }
+          >
+            <GlobalMenu
+              {...globalMenu}
+              menu={isDesktop ? desktopMenu || globalMenu?.menu : mobileMenu || globalMenu?.menu}
+              onClose={closeAll}
+              localeSwitcher={locale}
+              isOpen={currentId === 'menu'}
+            />
+          </Dropdown>
+        </nav>
+      </div>
+    </header>
   );
 };
