@@ -3,3 +3,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   display: none;
   -webkit-appearance: none;
 }
+
+/* iOS Safari (and other iOS WebKit browsers), touch devices only: Same height */
+@supports (-webkit-touch-callout: none) {
+  @media (pointer: coarse) {
+    input[type="date"] {
+      height: 37px;
+      line-height: 21px;
+    }
+  }
+}
