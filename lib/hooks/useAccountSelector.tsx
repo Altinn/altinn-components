@@ -345,7 +345,7 @@ const getAccountFromAuthorizedParty = (
     },
     name: name,
     description: description,
-    searchWords: formatType === 'company' ? [name, party?.organizationNumber ?? ''] : [name, party?.dateOfBirth ?? ''],
+    searchWords: formatType === 'person' ? [name, party?.dateOfBirth ?? ''] : [name, party?.organizationNumber ?? ''],
     groupId: group,
     type: formatType,
     selected: currentAccountUuid === party?.partyUuid,
