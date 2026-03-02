@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.56.24](https://github.com/Altinn/altinn-components/compare/v0.56.23...v0.56.24) (2026-03-02)
+
+
+### Bug Fixes
+
+* normalize search for subunit organization nr in account selector ([#1031](https://github.com/Altinn/altinn-components/issues/1031)) ([81c010b](https://github.com/Altinn/altinn-components/commit/81c010b4bf37beea898a3c05bfd238f8e4bc87d5))
+* verify address modal stories ([#1028](https://github.com/Altinn/altinn-components/issues/1028)) ([eaeb480](https://github.com/Altinn/altinn-components/commit/eaeb480963d454089cec924e30c6944ed87c1543))
+* verify email + sms stories ([#1030](https://github.com/Altinn/altinn-components/issues/1030)) ([82d4bf3](https://github.com/Altinn/altinn-components/commit/82d4bf3712fd31441b7d0457ef86abe4a9129f96))
+
 ## [0.56.23](https://github.com/Altinn/altinn-components/compare/v0.56.22...v0.56.23) (2026-03-02)
 
 
