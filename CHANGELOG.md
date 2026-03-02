@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.56.23](https://github.com/Altinn/altinn-components/compare/v0.56.22...v0.56.23) (2026-03-02)
+
+
+### Bug Fixes
+
+* **menu:** global language picker disappeared from menu ([#1027](https://github.com/Altinn/altinn-components/issues/1027)) ([c9b1c89](https://github.com/Altinn/altinn-components/commit/c9b1c89d65b8bd2a8934dfba0f6c62908e21eb33))
+
+
+### Miscellaneous Chores
+
+* **security:** update dependencies ([#1023](https://github.com/Altinn/altinn-components/issues/1023)) ([1447dfb](https://github.com/Altinn/altinn-components/commit/1447dfbe8f67ecd39d7f015d80ad2226464a46e6))
+
 ## [0.56.22](https://github.com/Altinn/altinn-components/compare/v0.56.21...v0.56.22) (2026-03-02)
 
 
