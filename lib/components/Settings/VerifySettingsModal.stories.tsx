@@ -58,6 +58,7 @@ interface TemplateProps {
   selectable?: boolean;
   accountId?: string;
   disabled?: boolean;
+  defaultSms?: string;
   defaultValue: string;
   defaultState?: string;
   verifyCode?: string;
@@ -171,24 +172,29 @@ const Template = ({
   selectable,
   accountId,
   readOnly,
+  defaultSms = '99009900',
   defaultState,
   defaultValue = '',
-  verifyCode = '12345',
   defaultCodeSent,
 }: TemplateProps) => {
   const [open, setOpen] = useState(true);
   const [value, setValue] = useState(defaultValue);
-  const [state, setState] = useState(defaultState);
   const [codeSent, setCodeSent] = useState(defaultCodeSent);
   const [code, setCode] = useState('');
   const [verifiedEmails, setVerifiedEmails] = useState(defaultVerifiedEmails);
+  const [verifiedSms, setVerifiedSms] = useState(['99009900']);
+  const [smsSent, setSmsSent] = useState(false);
 
+  const state = defaultState;
   const verified = verifiedEmails.includes(value);
+  const smsVerified = verifiedSms.includes(value);
 
   const [emailAlerts, setEmailAlerts] = useState(true);
   const [smsAlerts, setSmsAlerts] = useState(true);
+  const [smsValue, setSmsValue] = useState(defaultSms);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
+  const onSmsChange = (e: React.ChangeEvent<HTMLInputElement>) => setSmsValue(e.target.value);
 
   const [selectNew, setSelectNew] = useState(false);
 
@@ -196,7 +202,7 @@ const Template = ({
     const value = e.target.value;
 
     if (value === 'new') {
-      setSelectNew(false);
+      setSelectNew(true);
       setValue('');
     } else {
       setValue(e.target.value);
@@ -221,9 +227,16 @@ const Template = ({
   };
 
   const onVerifyCode = () => {
-    if (code === verifyCode) {
+    if (!verified) {
       setVerifiedEmails((prev) => [...prev, value]);
-      setState('');
+      setCodeSent(false);
+    }
+
+    if (!smsVerified && !smsSent) {
+      setSmsSent(true);
+    } else if (!smsVerified) {
+      setVerifiedSms((prev) => [...prev, defaultSms]);
+      setSmsSent(false);
     }
   };
 
@@ -231,7 +244,12 @@ const Template = ({
 
   if (codeSent) {
     return (
-      <SettingsModal open={open} onClose={() => setOpen(false)} icon={SealCheckmarkIcon} title={'Verifiser adresse'}>
+      <SettingsModal
+        open={open}
+        onClose={() => setOpen(false)}
+        icon={SealCheckmarkIcon}
+        title={'Verifiser e-postadresse'}
+      >
         <TextField readOnly={true} label="E-postadresse" size="sm" value={value} onChange={onChange} />
 
         <TextField
@@ -260,6 +278,44 @@ const Template = ({
     );
   }
 
+  // verify mobile
+
+  if (smsSent) {
+    return (
+      <SettingsModal
+        open={open}
+        onClose={() => setOpen(false)}
+        icon={SealCheckmarkIcon}
+        title={'Verifiser mobiltelefon'}
+      >
+        <TextField readOnly={true} label="Mobiltelefon" size="sm" value={defaultSms} />
+
+        <TextField
+          label="Kode (6 siffer)"
+          autoComplete="off"
+          placeholder="6-sifret kode"
+          size="sm"
+          value={code}
+          maxLength={6}
+          onChange={onCodeChange}
+        />
+
+        <Typography size="sm">
+          <p>Oppgi koden du fikk på SMS for å verifisere mobiltelefon.</p>
+        </Typography>
+
+        <VerifyFooter
+          verified={verified}
+          code={code}
+          codeSent={true}
+          onSendCode={onSendCode}
+          onVerifyCode={onVerifyCode}
+          onCancel={onCancel}
+        />
+      </SettingsModal>
+    );
+  }
+
   // Branch 2: Account View
   if (accountId && state === 'account') {
     const account = defaultUsedByItems?.find((item) => item.id === accountId);
@@ -274,7 +330,15 @@ const Template = ({
       >
         <Fieldset size="sm">
           <Switch label="Varslinger på SMS" name="smsAlerts" checked={smsAlerts} onChange={onToggle} />
-          {smsAlerts && <VerifyField verified={true} name="phone" placeholder="Mobiltelefon" value="99 00 99 00" />}
+          {smsAlerts && (
+            <VerifyField
+              verified={smsVerified}
+              name="phone"
+              placeholder="Mobiltelefon"
+              value={smsValue}
+              onChange={onSmsChange}
+            />
+          )}
 
           <Switch label="Varslinger på e-post" name="emailAlerts" checked={emailAlerts} onChange={onToggle} />
           {emailAlerts && (
@@ -352,8 +416,12 @@ export const ProfileSelect = () => <Template selectable={true} defaultValue="mat
 export const AccountVerified = () => (
   <Template defaultState="account" accountId="brann" defaultValue="mathias@brann.no" />
 );
-export const AccountNew = () => (
+export const AccountNewEmail = () => (
   <Template defaultState="account" accountId="brann" defaultValue="mathias@new-domain.no" />
+);
+
+export const AccountNewEmailAndSms = () => (
+  <Template defaultState="account" accountId="brann" defaultValue="mathias@new-domain.no" defaultSms="97077666" />
 );
 
 export const VerificationCodeSent = () => <Template defaultValue="mathias@nav.no" defaultCodeSent={true} />;
