@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.56.22](https://github.com/Altinn/altinn-components/compare/v0.56.21...v0.56.22) (2026-03-02)
+
+
+### Bug Fixes
+
+* **datepicker:** set correct height on field when value not selected on Safari Mobile ([#1024](https://github.com/Altinn/altinn-components/issues/1024)) ([1b7f2fe](https://github.com/Altinn/altinn-components/commit/1b7f2fec3f3ae3269e773926e7f80d1a1d5a6f82))
+
 ## [0.56.21](https://github.com/Altinn/altinn-components/compare/v0.56.20...v0.56.21) (2026-02-27)
 
 
