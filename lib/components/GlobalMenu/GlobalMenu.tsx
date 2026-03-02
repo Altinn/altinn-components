@@ -3,7 +3,7 @@
 import { GlobeIcon } from '@navikt/aksel-icons';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Menu, type MenuItemProps, MenuListItem, type MenuProps } from '../Menu';
-import { GlobalMenuBase, GlobalMenuFooter, GlobalMenuHeader } from './GlobalMenuBase';
+import { GlobalMenuBase, GlobalMenuFooter } from './GlobalMenuBase';
 import { LocaleSwitcher, type LocaleSwitcherProps } from './LocaleSwitcher.tsx';
 import { LogoutButton, type LogoutButtonProps } from './LogoutButton';
 
@@ -75,11 +75,9 @@ export const GlobalMenu = ({
   if (selectingLocale) {
     return (
       <GlobalMenuBase aria-label={ariaLabel}>
-        <GlobalMenuHeader>
-          {localeSwitcher && (
-            <LocaleSwitcher {...localeSwitcher} backLabel={backLabel} onToggle={onToggleLocaleSelection} />
-          )}
-        </GlobalMenuHeader>
+        {localeSwitcher && (
+          <LocaleSwitcher {...localeSwitcher} backLabel={backLabel} onToggle={onToggleLocaleSelection} />
+        )}
         <MenuListItem as="div" role="separator" />
       </GlobalMenuBase>
     );

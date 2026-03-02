@@ -7,10 +7,6 @@ export type GlobalMenuBaseProps = {
   children: ReactNode;
 } & React.HTMLAttributes<HTMLElement>;
 
-export interface GlobalMenuHeaderProps {
-  children: ReactNode;
-}
-
 export interface GlobalMenuFooterProps {
   children: ReactNode;
 }
@@ -21,10 +17,6 @@ export const GlobalMenuBase = ({ color, children, ...rest }: GlobalMenuBaseProps
       {children}
     </nav>
   );
-};
-
-export const GlobalMenuHeader = ({ children }: GlobalMenuHeaderProps) => {
-  return <header className={styles.header}>{children}</header>;
 };
 
 export const GlobalMenuFooter = ({ children }: GlobalMenuFooterProps) => {
