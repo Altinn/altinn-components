@@ -679,7 +679,7 @@ export const AboutInboxPage = () => {
   const { layout } = useInbox({ pageId: "about-inbox" });
 
   return (
-    <Layout {...layout} useGlobalHeader={true}>
+    <Layout {...layout} useGlobalHeader>
       <BetaStories.AboutInbox />
       <BetaStories.BetaModal open={false} />
     </Layout>
