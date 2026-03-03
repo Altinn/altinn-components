@@ -1,7 +1,7 @@
 import { ArchiveIcon, ArrowRedoIcon, EyeClosedIcon, TrashIcon } from '@navikt/aksel-icons';
 import { useState } from 'react';
-import { useFloatingDropdown, useInboxLayout, useInboxSearch, useInboxToolbar } from '../';
-import { type FloatingDropdownProps, ListItemSelect } from '../../lib';
+import { useFloatingDropdown, useGlobalHeader, useInboxLayout, useInboxSearch, useInboxToolbar } from '../';
+import { type FloatingDropdownProps, type GlobalHeaderProps, ListItemSelect } from '../../lib';
 import type {
   ActivityLogProps,
   AvatarProps,
@@ -17,6 +17,7 @@ import type {
   ToolbarProps,
 } from '../../lib';
 import { ContextMenu } from '../../lib';
+import type { AccountSelectorProps } from '../../lib/components/GlobalHeader/AccountSelector.tsx';
 import { dialogContact, getContextMenu, getSeenByLog } from './';
 import { dialogs, getDialogList } from './dialogs';
 
@@ -60,12 +61,6 @@ function getAccountIdFromUrl(): string {
   return parsedUrl.searchParams.get('accountId') ?? '';
 }
 
-function getAccountIdUrl(accountId: string): string {
-  const url = new URL(window.location.href);
-  url.searchParams.set('accountId', accountId);
-  return url.toString();
-}
-
 export const useInbox = ({
   defaultAccountId = 'user',
   pageId = 'inbox',
@@ -73,10 +68,6 @@ export const useInbox = ({
   ...props
 }: UseInboxProps): UseInboxProps => {
   const accountId = getAccountIdFromUrl() || defaultAccountId;
-
-  const onSelectAccount = (id: string) => {
-    window.location.href = getAccountIdUrl(id);
-  };
 
   const layout = useInboxLayout({ accountId, pageId });
   const floatingDropdown = useFloatingDropdown({
@@ -322,6 +313,7 @@ export const useInbox = ({
   // create toolbar
 
   const toolbar = useInboxToolbar({ accountId, items: listItems });
+  const accountSelector = useGlobalHeader({}).accountSelector as AccountSelectorProps;
   const accountMenu = toolbar?.accountMenu;
   const defaultAccount = toolbar?.accountMenu?.items[0];
   const currentAccount = toolbar?.accountMenu?.items[0];
@@ -384,6 +376,7 @@ export const useInbox = ({
         header: {
           ...layout?.header,
           search,
+          accountSelector,
         },
         sidebar: {
           hidden: true,
@@ -436,15 +429,10 @@ export const useInbox = ({
       theme,
       header: {
         ...(layout?.header as HeaderProps),
+        ...(accountSelector && { accountSelector: accountSelector as AccountSelectorProps }),
         globalMenu: {
           ...layout?.header?.globalMenu,
-          accountMenu: {
-            ...accountMenu,
-            virtualized: true,
-            items: accountMenu?.items?.filter((item) => item.role !== 'group'),
-          },
-          onSelectAccount,
-        },
+        } as GlobalHeaderProps,
         currentAccount: groupView ? defaultAccount : currentAccount,
         search,
       },

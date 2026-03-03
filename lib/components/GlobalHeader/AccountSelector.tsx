@@ -1,5 +1,6 @@
 import cx from 'classnames';
 import { useEffect, useState } from 'react';
+import { useLockBodyScroll } from '../../hooks/useLockBodyScroll.ts';
 import { AccountMenu, type AccountMenuProps } from '../Account';
 import { DsHeading, DsSpinner, DsSwitch } from '../DsComponents';
 import { SearchField } from '../Forms';
@@ -28,7 +29,8 @@ export const AccountSelector = ({
   showDeletedUnits,
   onShowDeletedUnitsChange,
 }: AccountSelectorProps) => {
-  const { openId, closeAll, languageCode } = useRootContext();
+  const { openId, closeAll, languageCode, currentId } = useRootContext();
+  useLockBodyScroll(currentId === 'account');
   const [searchString, setSearchString] = useState('');
   const [forceOpenFullScreenState, setForceOpenFullScreenState] = useState<boolean | undefined>(forceOpenFullScreen);
 
