@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.56.25](https://github.com/Altinn/altinn-components/compare/v0.56.24...v0.56.25) (2026-03-03)
+
+
+### Bug Fixes
+
+* **AccountSelector:** prevent background scrolling when open ([#1033](https://github.com/Altinn/altinn-components/issues/1033)) ([e7f109a](https://github.com/Altinn/altinn-components/commit/e7f109a7114f11e6111a0535102f48f1a073c929))
+
 ## [0.56.24](https://github.com/Altinn/altinn-components/compare/v0.56.23...v0.56.24) (2026-03-02)
 
 
