@@ -6,7 +6,6 @@ import {
   GlobeIcon,
   HardHatIcon,
   HashtagIcon,
-  HouseHeartIcon,
   MobileIcon,
   PadlockLockedIcon,
   PaperplaneIcon,
@@ -24,6 +23,7 @@ import {
 } from '../';
 
 import { AlertSettingsDetails } from './modals';
+import { useDefaultAccount } from './useDefaultAccount';
 
 import {
   Button,
@@ -31,9 +31,10 @@ import {
   Fieldset,
   Legend,
   Radio,
-  Select,
   type SettingsItemProps,
   type SettingsListProps,
+  TextField,
+  Typography,
 } from '../../lib';
 
 type UseSettingsQuery = {
@@ -58,45 +59,24 @@ export const useSettings = ({
 }: UseSettingsProps) => {
   // account Settings
 
-  const { defaultAccount, items, expandedId, onToggle, onSettingsChange } = useAccounts({
-    accounts,
-    includeGroups: false,
-  });
-
   const localeOptions: string[] = ['Bokmål', 'Nynorsk', 'English', 'España'];
 
   const { data, onChange } = useSettingsData({
     locale: localeOptions[0],
     showDeleted: false,
     hideSubunits: false,
+    username: 'keeperkongen88',
   });
 
+  const { defaultAccount, items, expandedId, onToggle, onSettingsChange } = useAccounts({
+    accounts,
+    includeGroups: false,
+  });
+
+  const defaultAccountSettings = useDefaultAccount(items);
+
   const accountSettings = [
-    {
-      id: 'primary-actor',
-      icon: HouseHeartIcon,
-      title: 'Forhåndsvalgt aktør',
-      variant: 'modal',
-      badge: { variant: 'text', label: 'Legg til' },
-      children: (
-        <>
-          <Fieldset size="sm">
-            <Legend>Hvilken aktør vil du se når du logger inn?</Legend>
-            <Select name="primary-actor" onChange={onChange}>
-              {defaultAccounts.map((a) => (
-                <option key={a.id} value={a.id} selected={a.id === data?.['primary-actor']}>
-                  {a.name}
-                </option>
-              ))}
-            </Select>
-          </Fieldset>
-          <ButtonGroup size="md">
-            <Button>Lagre</Button>
-            <Button variant="outline">Avbryt</Button>
-          </ButtonGroup>
-        </>
-      ),
-    },
+    defaultAccountSettings,
     {
       id: 'showDeleted',
       icon: TrashIcon,
@@ -175,7 +155,26 @@ export const useSettings = ({
       id: 'username',
       icon: PadlockLockedIcon,
       title: 'Brukernavn',
-      value: 'keeperkongen88',
+      value: data?.username,
+      variant: 'modal',
+      badge: {
+        variant: 'text',
+        label: 'Endre',
+      },
+      children: (
+        <>
+          <Fieldset size="sm">
+            <TextField name="username" label="Brukernavn" value={data?.username as string} onChange={onChange} />
+          </Fieldset>
+          <Typography size="sm">
+            <p>Dette er den brukernavnet du har valgt i Altinn.</p>
+          </Typography>
+          <ButtonGroup size="md">
+            <Button>Lagre</Button>
+            <Button variant="outline">Avbryt</Button>
+          </ButtonGroup>
+        </>
+      ),
     },
   ].map((item) => {
     return {
