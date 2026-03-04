@@ -19,6 +19,8 @@ export interface AccountSelectorProps {
   showDeletedUnits?: boolean;
   /** Function to handle changes to the include deleted accounts switch */
   onShowDeletedUnitsChange?: (newValue: boolean) => void;
+  /** Enable scroll lock to prevent background scrolling **/
+  scrollLock?: boolean;
 }
 
 export const AccountSelector = ({
@@ -28,9 +30,10 @@ export const AccountSelector = ({
   loading,
   showDeletedUnits,
   onShowDeletedUnitsChange,
+  scrollLock,
 }: AccountSelectorProps) => {
   const { openId, closeAll, languageCode, currentId } = useRootContext();
-  useLockBodyScroll(currentId === 'account');
+  useLockBodyScroll(scrollLock ? currentId === 'account' : false);
   const [searchString, setSearchString] = useState('');
   const [forceOpenFullScreenState, setForceOpenFullScreenState] = useState<boolean | undefined>(forceOpenFullScreen);
 
