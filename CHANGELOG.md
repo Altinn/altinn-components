@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.56.26](https://github.com/Altinn/altinn-components/compare/v0.56.25...v0.56.26) (2026-03-04)
+
+
+### Bug Fixes
+
+* **AcountSelector:** leave scroll lock optional for now to prevent unwanted default behavior ([#1036](https://github.com/Altinn/altinn-components/issues/1036)) ([8b68834](https://github.com/Altinn/altinn-components/commit/8b68834c45e84c3e224afd0760b849d1b85411d0))
+
 ## [0.56.25](https://github.com/Altinn/altinn-components/compare/v0.56.24...v0.56.25) (2026-03-03)
 
 
