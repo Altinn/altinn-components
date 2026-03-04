@@ -313,7 +313,10 @@ export const useInbox = ({
   // create toolbar
 
   const toolbar = useInboxToolbar({ accountId, items: listItems });
-  const accountSelector = useGlobalHeader({}).accountSelector as AccountSelectorProps;
+  const accountSelector = {
+    ...useGlobalHeader({}).accountSelector,
+    scrollLock: true,
+  } as AccountSelectorProps;
   const accountMenu = toolbar?.accountMenu;
   const defaultAccount = toolbar?.accountMenu?.items[0];
   const currentAccount = toolbar?.accountMenu?.items[0];
