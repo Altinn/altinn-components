@@ -19,6 +19,7 @@ const meta = {
         groupId: '1',
         icon: ArrowRedoIcon,
         title: 'Del og gi tilgang',
+        onClick: () => console.log('Del og gi tilgang clicked'),
       },
       {
         id: '2',
