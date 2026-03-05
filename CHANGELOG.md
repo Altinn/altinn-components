@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.56.27](https://github.com/Altinn/altinn-components/compare/v0.56.26...v0.56.27) (2026-03-05)
+
+
+### Bug Fixes
+
+* **contextmenu:** close menu on item click ([#1042](https://github.com/Altinn/altinn-components/issues/1042)) ([72aaa3e](https://github.com/Altinn/altinn-components/commit/72aaa3e8f8f3be7cfccfe7ff3766da35d92b97ad))
+
 ## [0.56.26](https://github.com/Altinn/altinn-components/compare/v0.56.25...v0.56.26) (2026-03-04)
 
 
