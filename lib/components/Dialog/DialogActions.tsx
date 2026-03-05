@@ -36,13 +36,21 @@ export const DialogActions = ({ items, maxItems = 2, id = 'dialog-actions', expa
   const { currentId, closeAll, toggleId } = useRootContext();
   const expanded = currentId === id;
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: toggleId dropped by intention
   const sortedItems = useMemo(() => {
     return (items || [])
       .filter((item) => !item.hidden)
       .sort((a, b) => {
         const priorityOrder = ['primary', 'secondary', 'tertiary'];
         return priorityOrder.indexOf(a?.priority) - priorityOrder.indexOf(b?.priority);
-      });
+      })
+      .map((item) => ({
+        ...item,
+        onClick: () => {
+          item.onClick?.();
+          toggleId(id);
+        },
+      }));
   }, [items]);
 
   const isDisabled = useMemo(() => {
