@@ -54,8 +54,8 @@ export const SelectDateFilter = ({
 
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node;
-      // Ensure the ref exists and check if click is outside
-      if (datepickerRef.current && !datepickerRef.current.contains(target)) {
+      // Ensure the ref exists and check if click is outside. Exclude clicks on ancestor elements (e.g. scrollbar).
+      if (datepickerRef.current && !datepickerRef.current.contains(target) && !target.contains(datepickerRef.current)) {
         onDatepickerSubmit();
       }
     };
