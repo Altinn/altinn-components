@@ -437,7 +437,7 @@ export const AccountMenuAndSubmenu = () => {
   return (
     <Toolbar>
       <ToolbarMenu {...(accountMenu as ToolbarMenuProps)} />
-      {selectedIsParent && <ToolbarMenu items={subAccountsAndAll} label={getSubAccountLabel()} />}
+      {selectedIsParent && <ToolbarMenu id="subaccounts" items={subAccountsAndAll} label={getSubAccountLabel()} />}
       <ToolbarFilter {...removableFilter} />
     </Toolbar>
   );
@@ -487,7 +487,6 @@ export const DebouncedQuery = () => {
   return (
     <Toolbar>
       <ToolbarMenu {...(accountMenu as ToolbarMenuProps)} />
-
       <ToolbarSearch value={q} loading={loading} onChange={(e) => setQ(e.target.value)} onClear={() => setQ('')} />
       <ToolbarFilter {...removableFilter} />
     </Toolbar>
