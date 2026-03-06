@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.56.28](https://github.com/Altinn/altinn-components/compare/v0.56.27...v0.56.28) (2026-03-06)
+
+
+### Bug Fixes
+
+* **toolbarmenu:** support custom id to prevent invalid HTNL ([#1044](https://github.com/Altinn/altinn-components/issues/1044)) ([a70525b](https://github.com/Altinn/altinn-components/commit/a70525bbb121332ef4d0414c14b9124843e8273a))
+
 ## [0.56.27](https://github.com/Altinn/altinn-components/compare/v0.56.26...v0.56.27) (2026-03-05)
 
 
