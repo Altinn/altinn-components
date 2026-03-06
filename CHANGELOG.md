@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.56.29](https://github.com/Altinn/altinn-components/compare/v0.56.28...v0.56.29) (2026-03-06)
+
+
+### Bug Fixes
+
+* Datepicker scrollbar click should not navigate back ([#1046](https://github.com/Altinn/altinn-components/issues/1046)) ([815182c](https://github.com/Altinn/altinn-components/commit/815182c82ab6a2cbac477b9ff53580b35a42a5ae))
+
 ## [0.56.28](https://github.com/Altinn/altinn-components/compare/v0.56.27...v0.56.28) (2026-03-06)
 
 
