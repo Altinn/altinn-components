@@ -1,0 +1,12 @@
+/* Dropdown */
+
+.dropdown[data-variant="drawer-dropdown"] header {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .dropdown[data-variant="drawer-dropdown"] {
+    margin-top: 4.5rem;
+    box-shadow: none;
+  }
+}

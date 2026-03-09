@@ -57,20 +57,3 @@
   justify-content: end;
   column-gap: 0.5rem;
 }
-
-/* Dropdown */
-
-.dropdown header {
-  display: none;
-}
-
-.dropdown[data-variant="drawer"],
-.dropdown[data-variant="drawer-dropdown"] {
-  margin-top: 4.5rem;
-}
-
-@media (min-width: 1024px) {
-  .dropdown[data-variant="drawer-dropdown"] {
-    margin-top: 0.5rem;
-  }
-}
