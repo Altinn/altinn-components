@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.56.32](https://github.com/Altinn/altinn-components/compare/v0.56.31...v0.56.32) (2026-03-10)
+
+
+### Bug Fixes
+
+* **accountSelector:** height for content when maximized ([#1052](https://github.com/Altinn/altinn-components/issues/1052)) ([b2f1348](https://github.com/Altinn/altinn-components/commit/b2f134844fdec5ba5a8faed1e2d594d088fd2bd9))
+
 ## [0.56.31](https://github.com/Altinn/altinn-components/compare/v0.56.30...v0.56.31) (2026-03-10)
 
 
