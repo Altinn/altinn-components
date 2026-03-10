@@ -97,7 +97,6 @@ export const AccountSelector = ({
             value: searchString,
             getResultsLabel: (hits) => getHitsLabel(hits, languageCode),
           }}
-          scrollRefStyles={!isFullScreen && accountMenu.virtualized ? { maxHeight: 'calc(40vh)' } : undefined}
         />
       </div>
     </div>
