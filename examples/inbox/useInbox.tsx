@@ -11,10 +11,10 @@ import type {
   DialogListProps,
   HeaderProps,
   LayoutProps,
-  MenuProps,
   SearchbarProps,
   SeenByLogProps,
   ToolbarProps,
+  BulkMenuProps
 } from '../../lib';
 import { ContextMenu } from '../../lib';
 import type { AccountSelectorProps } from '../../lib/components/GlobalHeader/AccountSelector.tsx';
@@ -47,7 +47,7 @@ export interface UseInboxProps extends LayoutProps {
   toolbar?: ToolbarProps;
   results?: DialogListProps;
   bulkMode?: boolean;
-  bulkMenu?: MenuProps;
+  bulkMenu?: BulkMenuProps;
   bulkIds?: string[];
   unselectAll?: () => void;
   modalId?: string;
@@ -204,15 +204,15 @@ export const useInbox = ({
 
       const seenByLog = seenIds.includes(id)
         ? getSeenByLog([
-            ...(item?.seenByLog?.items || []),
-            {
-              id: 'user',
-              seenAt: '2023-10-01T12:00:00Z',
-              seenAtLabel: '',
-              name: 'Mathias Dyngeland',
-              isEndUser: true,
-            },
-          ])
+          ...(item?.seenByLog?.items || []),
+          {
+            id: 'user',
+            seenAt: '2023-10-01T12:00:00Z',
+            seenAtLabel: '',
+            name: 'Mathias Dyngeland',
+            isEndUser: true,
+          },
+        ])
         : getSeenByLog(item?.seenByLog?.items);
 
       const unread = unreadIds.includes(id) || !seenIds.includes(id);
@@ -290,22 +290,22 @@ export const useInbox = ({
       {
         id: '1',
         icon: ArrowRedoIcon,
-        title: 'Del og gi tilgang',
+        label: 'Del og gi tilgang',
       },
       {
         id: '2',
         icon: EyeClosedIcon,
-        title: 'Marker som ulest',
+        label: 'Marker som ulest',
       },
       {
         id: '3',
         icon: ArchiveIcon,
-        title: 'Flytt til arkiv',
+        label: 'Flytt til arkiv',
       },
       {
         id: '4',
         icon: TrashIcon,
-        title: 'Flytt til papirkurv',
+        label: 'Flytt til papirkurv',
       },
     ],
   };

@@ -12,10 +12,9 @@ import {
   Section,
   Heading,
   Typography,
-  ActionHeader,
-  ActionFooter,
-  PageMenu,
-  type PageMenuProps,
+  BulkHeader,
+  BulkFooter,
+  BulkMenu,
   ModalBase,
   ModalHeader,
   ModalBody,
@@ -47,7 +46,7 @@ export const InboxPage = () => {
     dialog,
     bulkMode,
     bulkIds,
-    bulkMenu,
+    bulkMenu: bulkMenu,
     modal,
     closeModal,
     unselectAll,
@@ -61,7 +60,7 @@ export const InboxPage = () => {
         <Dialog {...dialog} />
       ) : (
         <>
-          <ActionHeader
+          <BulkHeader
             hidden={!bulkMode}
             title={bulkIds?.length + " valgt"}
             dismissable={true}
@@ -74,11 +73,11 @@ export const InboxPage = () => {
               <DialogList items={results.items} groups={results?.groups} />
             )}
           </PageBase>
-          <ActionFooter hidden={!bulkMode}>
+          <BulkFooter hidden={!bulkMode}>
             {bulkMenu && (
-              <PageMenu items={bulkMenu.items as PageMenuProps['items']} />
+              <BulkMenu items={bulkMenu.items} />
             )}
-          </ActionFooter>
+          </BulkFooter>
         </>
       )}
 
