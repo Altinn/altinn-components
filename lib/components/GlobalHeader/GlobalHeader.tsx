@@ -1,13 +1,15 @@
 'use client';
+import { useState } from 'react';
 import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
 import type { BadgeProps } from '../Badge';
-import { Dropdown } from '../Dropdown';
 import { GlobalMenu, type GlobalMenuProps, type LocaleSwitcherProps } from '../GlobalMenu';
 import type { MenuProps } from '../Menu';
 import { useRootContext } from '../RootProvider';
 import { AccountSelector, type AccountSelectorProps } from './AccountSelector.tsx';
 import { AccountSelectorButton } from './AccountSelectorButton.tsx';
 import { GlobalMenuButton } from './GlobalMenuButton';
+import { HeaderDrawer } from './HeaderDrawer';
+import { HeaderDropdown } from './HeaderDropdown';
 import { HeaderLogo, type HeaderLogoProps } from './HeaderLogo.tsx';
 import styles from './globalHeader.module.css';
 
@@ -46,6 +48,8 @@ export const GlobalHeader = ({
 
   const accountSelectionOpen = currentId === 'account' || accountSelector?.forceOpenFullScreen || false;
 
+  const [expanded, setExpanded] = useState(false);
+
   const isDesktop = useIsDesktop();
 
   return (
@@ -54,35 +58,30 @@ export const GlobalHeader = ({
         <HeaderLogo {...logo} badge={badge} className={styles.logo} />
         <nav className={styles.nav}>
           {accountSelector && (
-            <Dropdown
-              className={styles.dropdown}
-              backdrop={false}
-              id="header-account"
-              open={accountSelectionOpen}
-              variant="drawer"
-              placement="right"
-              onClose={closeAll}
-              trigger={
-                <AccountSelectorButton
-                  currentAccount={accountSelector.accountMenu?.currentAccount}
-                  minimized={!isDesktop}
-                  onClick={accountSelector.accountMenu?.currentAccount ? onToggleAccountMenu : onLoginClick}
-                  expanded={accountSelectionOpen}
-                  loading={accountSelector.loading}
-                  disabled={accountSelector.forceOpenFullScreen}
-                />
-              }
-            >
-              <AccountSelector {...accountSelector} forceOpenFullScreen={accountSelector.forceOpenFullScreen} />
-            </Dropdown>
+            <>
+              <AccountSelectorButton
+                currentAccount={accountSelector.accountMenu?.currentAccount}
+                minimized={!isDesktop}
+                onClick={accountSelector.accountMenu?.currentAccount ? onToggleAccountMenu : onLoginClick}
+                expanded={accountSelectionOpen}
+                loading={accountSelector.loading}
+                disabled={accountSelector.forceOpenFullScreen}
+              />
+              <HeaderDrawer
+                id="header-account"
+                open={accountSelectionOpen}
+                onClose={closeAll}
+                closedBy={accountSelector?.forceOpenFullScreen ? 'none' : 'any'}
+                expanded={accountSelector?.forceOpenFullScreen || expanded}
+                onToggle={() => setExpanded(!expanded)}
+              >
+                <AccountSelector {...accountSelector} forceOpenFullScreen={accountSelector.forceOpenFullScreen} />
+              </HeaderDrawer>
+            </>
           )}
-          <Dropdown
-            className={styles.dropdown}
+          <HeaderDropdown
             id="header-menu"
             open={currentId === 'menu'}
-            variant="drawer-dropdown"
-            placement="right"
-            size="md"
             onClose={closeAll}
             trigger={
               <GlobalMenuButton
@@ -100,7 +99,7 @@ export const GlobalHeader = ({
               localeSwitcher={locale}
               isOpen={currentId === 'menu'}
             />
-          </Dropdown>
+          </HeaderDropdown>
         </nav>
       </div>
     </header>
