@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.56.31](https://github.com/Altinn/altinn-components/compare/v0.56.30...v0.56.31) (2026-03-10)
+
+
+### Bug Fixes
+
+* height for fullscreen with virtualized account selector ([#1050](https://github.com/Altinn/altinn-components/issues/1050)) ([0bc69df](https://github.com/Altinn/altinn-components/commit/0bc69df8d8f83db6520e0a6050ae34555c544981))
+
 ## [0.56.30](https://github.com/Altinn/altinn-components/compare/v0.56.29...v0.56.30) (2026-03-10)
 
 
