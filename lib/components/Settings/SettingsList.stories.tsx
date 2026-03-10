@@ -1,7 +1,7 @@
 import { BellIcon, GlobeIcon, HandshakeIcon, HouseHeartIcon, MobileIcon, SunIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
-import { Heading, PageBase, SettingsList, type SettingsListProps, type SettingsModalProps, Toolbar } from '..';
+import { Heading, PageBase, SettingsList, type SettingsListProps, type SettingsModalProps, Toolbar, type ToolbarMenuProps } from '..';
 
 import { type UseSettingsProps, defaultAccounts, useAdmin, useSettings, useSettingsToolbar } from '../../../examples';
 
@@ -452,7 +452,8 @@ export const PersonSettings = () => {
   const { accountMenu, currentAccount } = useAdmin({
     defaultAccountId: 'person',
   });
-  const toolbar = useSettingsToolbar({ accountMenu });
+
+  const toolbar = useSettingsToolbar({ accountMenu: accountMenu as ToolbarMenuProps });
 
   return (
     <PageBase color="person">
@@ -477,7 +478,7 @@ export const CompanySettings = () => {
   const { accountMenu, currentAccount } = useAdmin({
     defaultAccountId: 'diaspora',
   });
-  const toolbar = useSettingsToolbar({ accountMenu });
+  const toolbar = useSettingsToolbar({ accountMenu: accountMenu as ToolbarMenuProps });
 
   return (
     <PageBase color="company">

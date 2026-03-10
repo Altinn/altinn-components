@@ -181,10 +181,10 @@ export const useInboxToolbar = ({ accountId, items }: UseInboxToolbarProps): Too
 
   const defaultFilterState = groupFilters?.items?.length
     ? {
-        groupIds: groupFilters.items
-          .map(({ value }: { value?: string | number }) => value)
-          .filter((v): v is string | number => v !== undefined),
-      }
+      groupIds: groupFilters.items
+        .map(({ value }: { value?: string | number }) => value)
+        .filter((v): v is string | number => v !== undefined),
+    }
     : {};
 
   const [filterState, setFilterState] = useState<FilterState>(defaultFilterState);
@@ -203,7 +203,7 @@ export const useInboxToolbar = ({ accountId, items }: UseInboxToolbarProps): Too
   };
 
   return {
-    accountMenu,
+    accountMenu: accountMenu as ToolbarProps['accountMenu'],
     filter: {
       filters,
       filterState,

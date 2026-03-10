@@ -1,3 +1,3 @@
 export * from './BulkHeader';
 export * from './BulkFooter';
-export * from "./BulkMenu"
+export * from "./BulkToolbar"

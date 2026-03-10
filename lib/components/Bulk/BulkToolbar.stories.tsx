@@ -1,10 +1,10 @@
 import { ArrowRedoIcon, EyeClosedIcon, ArchiveIcon, TrashIcon } from '@navikt/aksel-icons';
 import type { Meta } from '@storybook/react-vite';
-import { BulkMenu, type BulkMenuProps } from './BulkMenu';
+import { BulkToolbar, type BulkToolbarProps } from './BulkToolbar';
 
-const meta: Meta<typeof BulkMenu> = {
-  title: 'Bulk/BulkMenu',
-  component: BulkMenu,
+const meta: Meta<typeof BulkToolbar> = {
+  title: 'Bulk/BulkToolbar',
+  component: BulkToolbar,
   tags: ['beta'],
   parameters: {},
   args: {
@@ -31,8 +31,8 @@ const meta: Meta<typeof BulkMenu> = {
 
 export default meta;
 
-export const Default = (args: BulkMenuProps) => {
+export const Default = (args: BulkToolbarProps) => {
   return (
-    <BulkMenu {...args} />
+    <BulkToolbar {...args} />
   );
 };

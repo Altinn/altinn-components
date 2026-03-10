@@ -1,15 +1,15 @@
 import { Button, ButtonIcon, ButtonLabel } from "../Button";
 import { SvgElement } from "../Icon";
-import styles from "./bulkMenuButton.module.css";
+import styles from "./bulkToolbarButton.module.css";
 
-export interface BulkMenuButtonProps {
+export interface BulkToolbarButtonProps {
     id?: string;
     icon: SvgElement;
     label: string;
     onClick?: () => void;
 }
 
-export const BulkMenuButton = ({ icon, label, onClick }: BulkMenuButtonProps) => {
+export const BulkToolbarButton = ({ icon, label, onClick }: BulkToolbarButtonProps) => {
     return (
         <Button className={styles.button} onClick={onClick}>
             <ButtonIcon className={styles.icon} icon={icon} />

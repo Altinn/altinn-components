@@ -14,7 +14,7 @@ import type {
   SearchbarProps,
   SeenByLogProps,
   ToolbarProps,
-  BulkMenuProps
+  BulkToolbarProps
 } from '../../lib';
 import { ContextMenu } from '../../lib';
 import type { AccountSelectorProps } from '../../lib/components/GlobalHeader/AccountSelector.tsx';
@@ -47,7 +47,7 @@ export interface UseInboxProps extends LayoutProps {
   toolbar?: ToolbarProps;
   results?: DialogListProps;
   bulkMode?: boolean;
-  bulkMenu?: BulkMenuProps;
+  bulkToolbar?: BulkToolbarProps;
   bulkIds?: string[];
   unselectAll?: () => void;
   modalId?: string;
@@ -285,7 +285,7 @@ export const useInbox = ({
       onModal,
     });
 
-  const bulkMenu = {
+  const bulkToolbar = {
     items: [
       {
         id: '1',
@@ -367,7 +367,7 @@ export const useInbox = ({
 
     return {
       bulkMode: true,
-      bulkMenu,
+      bulkToolbar,
       bulkIds,
       unselectAll: () => setBulkIds([]),
       pageId,

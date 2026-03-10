@@ -14,7 +14,7 @@ import {
   Typography,
   BulkHeader,
   BulkFooter,
-  BulkMenu,
+  BulkToolbar,
   ModalBase,
   ModalHeader,
   ModalBody,
@@ -46,7 +46,7 @@ export const InboxPage = () => {
     dialog,
     bulkMode,
     bulkIds,
-    bulkMenu: bulkMenu,
+    bulkToolbar: bulkToolbar,
     modal,
     closeModal,
     unselectAll,
@@ -74,8 +74,8 @@ export const InboxPage = () => {
             )}
           </PageBase>
           <BulkFooter hidden={!bulkMode}>
-            {bulkMenu && (
-              <BulkMenu items={bulkMenu.items} />
+            {bulkToolbar && (
+              <BulkToolbar items={bulkToolbar.items} />
             )}
           </BulkFooter>
         </>

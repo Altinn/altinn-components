@@ -9,7 +9,7 @@ import {
     type DialogListProps,
     BulkHeader,
     BulkFooter,
-    BulkMenu,
+    BulkToolbar,
     ContextMenu,
     ItemSelect,
     Button,
@@ -35,7 +35,7 @@ export const Default = ({ defaultBulkIds = [] }: { defaultBulkIds?: string[] }) 
         results,
     } = useInbox({});
 
-    const bulkMenu = {
+    const bulkToolbar = {
         items: [
             {
                 icon: ArrowRedoIcon,
@@ -124,14 +124,37 @@ export const Default = ({ defaultBulkIds = [] }: { defaultBulkIds?: string[] }) 
         hidden: bulkMode,
     }
 
+    const bulkOptionsMenu = {
+        label: bulkIds?.length + ' valgt',
+        items: [
+            {
+                groupId: "1",
+                role: "checkbox",
+                title: "Velg alle"
+            },
+            {
+                groupId: "2",
+                role: "checkbox",
+                title: "Alle uleste"
+            },
+            {
+                groupId: "2",
+                role: "checkbox",
+                title: "Alle leste"
+            }
+        ],
+        groups: {
+            1: { title: "2 av 10 valgt" }
+        }
+    }
+
     const accountMenu = toolbar?.accountMenu
     const currentAccount = accountMenu?.items?.find(item => item.selected) || accountMenu?.items[0]
-
 
     return (
         <Layout {...layout} sidebar={sidebar} useGlobalHeader={true}>
             <BulkHeader
-                hidden={!bulkMode}
+                hidden={true || !bulkMode}
                 title={bulkIds?.length + " valgt"}
                 dismissable={true}
                 onDismiss={unselectAll}
@@ -140,16 +163,14 @@ export const Default = ({ defaultBulkIds = [] }: { defaultBulkIds?: string[] }) 
                 <Heading size="xl">Innboks</Heading>
                 {bulkMode ? (
                     <Toolbar>
-                        <Button >
-                            {currentAccount.name}
-                        </Button>
+                        <ToolbarMenu {...bulkOptionsMenu} />
                         <Button variant="outline" onClick={selectAll}>
                             <CheckmarkIcon />
                             <span>
                                 Velg alle
                             </span>
                         </Button>
-                        <Button variant="outline" onClick={unselectAll}>
+                        <Button variant="ghost" onClick={unselectAll}>
                             <XMarkIcon />
                             <span>
                                 Avbryt
@@ -163,8 +184,8 @@ export const Default = ({ defaultBulkIds = [] }: { defaultBulkIds?: string[] }) 
             </PageBase>
             <BulkFooter
                 hidden={!bulkMode}>
-                {bulkMenu && (
-                    <BulkMenu items={bulkMenu.items} />
+                {bulkToolbar && (
+                    <BulkToolbar items={bulkToolbar.items} />
                 )}
             </BulkFooter>
         </Layout>
@@ -173,6 +194,6 @@ export const Default = ({ defaultBulkIds = [] }: { defaultBulkIds?: string[] }) 
 
 export const BulkModeOn = () => {
 
-    return <Default defaultBulkIds={["item-1", "item-2"]} />;
+    return <Default defaultBulkIds={["item-0", "item-1"]} />;
 
 };
