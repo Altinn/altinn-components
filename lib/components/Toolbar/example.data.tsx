@@ -343,6 +343,14 @@ export const accountMenuItems = [
   {
     id: 'cc-3',
     groupId: 'dd',
+    name: 'Påkjørt Elg AS',
+    orgNumber: '001',
+    parentId: '',
+    disabled: true,
+  },
+  {
+    id: 'cc-3',
+    groupId: 'dd',
     name: 'Den kjempeskumle krokodillen Alan',
     orgNumber: '333444557',
     parentId: '',
@@ -385,6 +393,7 @@ export const accountMenuItems = [
     title: item.name,
     description,
     searchWords,
+    disabled: item.disabled,
     icon: {
       type: 'company',
       name: item.name,
