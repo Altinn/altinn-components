@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.56.30](https://github.com/Altinn/altinn-components/compare/v0.56.29...v0.56.30) (2026-03-10)
+
+
+### Bug Fixes
+
+* revert fullscreen toggle on account selector ([#1048](https://github.com/Altinn/altinn-components/issues/1048)) ([d761dc0](https://github.com/Altinn/altinn-components/commit/d761dc02ec2621a433f31f81ea8c1190b3dae649))
+
 ## [0.56.29](https://github.com/Altinn/altinn-components/compare/v0.56.28...v0.56.29) (2026-03-06)
 
 
