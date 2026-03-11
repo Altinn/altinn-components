@@ -12,7 +12,7 @@ export const profileMenuItems: MenuItemProps[] = [
     id: 'profile',
     groupId: '1',
     size: 'lg',
-    title: 'Min profil',
+    title: 'Din profil',
     icon: {
       name: 'Mathias Dyngeland',
     },
@@ -21,13 +21,13 @@ export const profileMenuItems: MenuItemProps[] = [
     id: 'accounts',
     groupId: '2',
     icon: HeartIcon,
-    title: 'Mine aktører',
+    title: 'Aktører',
   },
   {
     id: 'alerts',
     groupId: '2',
     icon: BellIcon,
-    title: 'Mine varslinger',
+    title: 'Varslinger',
   },
   /*
   {
