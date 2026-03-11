@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useEffect, useState } from 'react';
-import { QueryLabel } from '../Searchbar';
+import { QueryLabel } from '../';
 import { SearchField, type SearchFieldProps } from './SearchField';
 
 const meta = {

@@ -1,8 +1,0 @@
-.toolbar {
-    background-color: var(--ds-color-base-default);
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    display: flex;
-    margin: 0 auto;
-    width: fit-content;
-}

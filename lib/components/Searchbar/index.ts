@@ -7,5 +7,3 @@ export * from './AutocompleteGroup';
 
 export * from './Autocomplete';
 export * from './AutocompleteItem';
-
-export * from './QueryLabel';

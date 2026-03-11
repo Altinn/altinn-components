@@ -1,7 +1,15 @@
 import { BellIcon, GlobeIcon, HandshakeIcon, HouseHeartIcon, MobileIcon, SunIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
-import { Heading, PageBase, SettingsList, type SettingsListProps, type SettingsModalProps, Toolbar, type ToolbarMenuProps } from '..';
+import {
+  Heading,
+  PageBase,
+  SettingsList,
+  type SettingsListProps,
+  type SettingsModalProps,
+  Toolbar,
+  type ToolbarMenuProps,
+} from '..';
 
 import { type UseSettingsProps, defaultAccounts, useAdmin, useSettings, useSettingsToolbar } from '../../../examples';
 

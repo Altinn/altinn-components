@@ -1,199 +1,182 @@
-import { ArchiveIcon, ArrowRedoIcon, CheckmarkIcon, EyeClosedIcon, TrashIcon, XMarkIcon } from "@navikt/aksel-icons";
+import { ArchiveIcon, ArrowRedoIcon, CheckmarkIcon, EyeClosedIcon, EyeIcon, TrashIcon } from '@navikt/aksel-icons';
+import { useState } from 'react';
 import {
-    Layout,
-    PageBase,
-    Toolbar,
-    ToolbarMenu,
-    Heading,
-    DialogList,
-    type DialogListProps,
-    BulkHeader,
-    BulkFooter,
-    BulkToolbar,
-    ContextMenu,
-    ItemSelect,
-    Button,
-} from "../";
-import { useInbox } from "../../../examples"
-import { useState } from "react";
+  BulkFooter,
+  BulkHeader,
+  ContextMenu,
+  DialogList,
+  type DialogListProps,
+  Heading,
+  ItemSelect,
+  Layout,
+  PageBase,
+  QueryLabel,
+  type QueryLabelProps,
+  Toolbar,
+  type ToolbarProps,
+} from '../';
+import { useInbox } from '../../../examples';
 
 const meta = {
-    title: "Bulk/BulkMode",
-    tags: ["beta"],
-    parameters: {
-        layout: "fullscreen",
-    },
-    args: {},
+  title: 'Bulk/BulkMode',
+  tags: ['beta'],
+  parameters: {
+    layout: 'fullscreen',
+  },
+  args: {},
 };
 
 export default meta;
 
 export const Default = ({ defaultBulkIds = [] }: { defaultBulkIds?: string[] }) => {
-    const {
-        layout,
-        toolbar,
-        results,
-    } = useInbox({});
+  const { layout, toolbar, results } = useInbox({});
 
-    const bulkToolbar = {
-        items: [
-            {
-                icon: ArrowRedoIcon,
-                label: "Del og gi tilgang",
-            },
-            {
-                icon: EyeClosedIcon,
-                label: "Marker som lest",
-            },
-            {
-                icon: ArchiveIcon,
-                label: "Flytt til arkiv",
-            },
-            {
-                icon: TrashIcon,
-                label: "Flytt til papirkurv",
-            },
-        ],
+  const bulkActions = [
+    {
+      icon: ArrowRedoIcon,
+      label: 'Del og gi tilgang',
+    },
+    {
+      icon: EyeClosedIcon,
+      label: 'Marker som lest',
+    },
+    {
+      icon: ArchiveIcon,
+      label: 'Flytt til arkiv',
+    },
+    {
+      icon: TrashIcon,
+      label: 'Flytt til papirkurv',
+    },
+  ];
+
+  const [bulkIds, setBulkIds] = useState<string[]>(defaultBulkIds);
+  const bulkMode = bulkIds.length > 0;
+
+  const onToggle = (id: string) => {
+    if (bulkIds.includes(id)) {
+      setBulkIds(bulkIds.filter((item) => item !== id));
+    } else {
+      setBulkIds([...bulkIds, id]);
     }
+  };
 
-    const [bulkIds, setBulkIds] = useState<string[]>(defaultBulkIds);
-    const bulkMode = bulkIds.length > 0;
+  const items = results?.items?.map((item, index) => {
+    const id = 'item-' + index;
 
-    const onToggle = (id: string) => {
-        if (bulkIds.includes(id)) {
-            setBulkIds(bulkIds.filter((item) => item !== id));
-        } else {
-            setBulkIds([...bulkIds, id]);
-        }
+    const itemContextMenu = {
+      items: [
+        {
+          groupId: '1',
+          icon: CheckmarkIcon,
+          label: 'Velg flere ...',
+          onClick: () => onToggle(id),
+        },
+        {
+          groupId: '2',
+          icon: ArrowRedoIcon,
+          label: 'Del og gi tilgang',
+        },
+        {
+          groupId: '2',
+          icon: EyeClosedIcon,
+          label: 'Marker som lest',
+        },
+        {
+          groupId: '3',
+          icon: ArchiveIcon,
+          label: 'Flytt til arkiv',
+        },
+        {
+          groupId: '3',
+          icon: TrashIcon,
+          label: 'Flytt til papirkurv',
+        },
+      ],
     };
 
-    const items = results?.items?.map((item, index) => {
-
-        const id = "item-" + index;
-
-        const itemContextMenu = {
-            items: [
-                {
-                    groupId: "1",
-                    icon: CheckmarkIcon,
-                    label: "Velg flere ...",
-                    onClick: () => onToggle(id),
-                },
-                {
-                    groupId: "2",
-                    icon: ArrowRedoIcon,
-                    label: "Del og gi tilgang",
-                },
-                {
-                    groupId: "2",
-                    icon: EyeClosedIcon,
-                    label: "Marker som lest",
-                },
-                {
-                    groupId: "3",
-                    icon: ArchiveIcon,
-                    label: "Flytt til arkiv",
-                },
-                {
-                    groupId: "3",
-                    icon: TrashIcon,
-                    label: "Flytt til papirkurv",
-                },
-            ]
-        }
-
-        return {
-            ...item,
-            id,
-            selected: bulkIds?.includes(id),
-            onClick: () => onToggle(id),
-            controls: bulkMode ? <ItemSelect selected={bulkIds?.includes(id)} onClick={() => onToggle(id)} /> : <ContextMenu {...itemContextMenu} />,
-        }
-    }) as DialogListProps['items']
-
-    const selectAll = () => {
-        setBulkIds(items?.map((item) => item.id) || []);
+    return {
+      ...item,
+      id,
+      color: layout?.color,
+      selected: bulkIds?.includes(id),
+      onClick: () => onToggle(id),
+      controls: bulkMode ? (
+        <ItemSelect selected={bulkIds?.includes(id)} onClick={() => onToggle(id)} />
+      ) : (
+        <ContextMenu {...itemContextMenu} />
+      ),
     };
+  }) as DialogListProps['items'];
 
-    const unselectAll = () => {
-        setBulkIds([]);
-    };
+  const selectAll = () => {
+    setBulkIds(items?.map((item) => item.id as string) || []);
+  };
 
-    const sidebar = {
-        ...layout?.sidebar,
-        hidden: bulkMode,
-    }
+  const unselectAll = () => {
+    setBulkIds([]);
+  };
 
-    const bulkOptionsMenu = {
-        label: bulkIds?.length + ' valgt',
-        items: [
-            {
-                groupId: "1",
-                role: "checkbox",
-                title: "Velg alle"
-            },
-            {
-                groupId: "2",
-                role: "checkbox",
-                title: "Alle uleste"
-            },
-            {
-                groupId: "2",
-                role: "checkbox",
-                title: "Alle leste"
-            }
-        ],
-        groups: {
-            1: { title: "2 av 10 valgt" }
-        }
-    }
+  const sidebar = {
+    ...layout?.sidebar,
+    hidden: bulkMode,
+  };
 
-    const accountMenu = toolbar?.accountMenu
-    const currentAccount = accountMenu?.items?.find(item => item.selected) || accountMenu?.items[0]
+  const bulkOptions = [
+    {
+      icon: CheckmarkIcon,
+      label: 'Alle',
+      onClick: selectAll,
+    },
+    {
+      icon: EyeIcon,
+      label: 'Uleste',
+    },
+    {
+      icon: EyeClosedIcon,
+      label: 'Leste',
+    },
+  ];
 
-    return (
-        <Layout {...layout} sidebar={sidebar} useGlobalHeader={true}>
-            <BulkHeader
-                hidden={true || !bulkMode}
-                title={bulkIds?.length + " valgt"}
-                dismissable={true}
-                onDismiss={unselectAll}
-            />
-            <PageBase>
-                <Heading size="xl">Innboks</Heading>
-                {bulkMode ? (
-                    <Toolbar>
-                        <ToolbarMenu {...bulkOptionsMenu} />
-                        <Button variant="outline" onClick={selectAll}>
-                            <CheckmarkIcon />
-                            <span>
-                                Velg alle
-                            </span>
-                        </Button>
-                        <Button variant="ghost" onClick={unselectAll}>
-                            <XMarkIcon />
-                            <span>
-                                Avbryt
-                            </span>
-                        </Button>
-                    </Toolbar>
-                ) : <Toolbar {...toolbar} accountMenu={{ ...accountMenu, label: currentAccount?.name }} />}
-                {results && (
-                    <DialogList items={items} groups={results?.groups} />
-                )}
-            </PageBase>
-            <BulkFooter
-                hidden={!bulkMode}>
-                {bulkToolbar && (
-                    <BulkToolbar items={bulkToolbar.items} />
-                )}
-            </BulkFooter>
-        </Layout>
-    );
+  const accountMenu = toolbar?.accountMenu;
+  const currentAccount = accountMenu?.items?.find((item) => item.selected) || accountMenu?.items[0];
+
+  const queryParams = [
+    { type: 'scope', label: 'Mathias Dyngeland' },
+    { type: 'search', label: 'Skatt' },
+    { type: 'filter', label: 'Filter' },
+    { type: 'filter', label: 'Filter 2' },
+  ];
+
+  return (
+    <Layout {...layout} color={bulkMode ? 'neutral' : layout?.color} sidebar={sidebar} useGlobalHeader={true}>
+      <PageBase>
+        <BulkHeader
+          hidden={!bulkMode}
+          title={bulkIds?.length + ' valgt'}
+          options={bulkOptions}
+          dismissable={true}
+          onDismiss={unselectAll}
+        />
+        <Heading size="xl">Innboks</Heading>
+
+        {bulkMode ? (
+          <QueryLabel size="xs" variant="subtle" params={queryParams as QueryLabelProps['params']} />
+        ) : (
+          <Toolbar
+            {...toolbar}
+            search={{ value: 'Skatt' }}
+            accountMenu={{ ...accountMenu, label: currentAccount?.name } as ToolbarProps['accountMenu']}
+          />
+        )}
+        {results && <DialogList items={items} groups={results?.groups} />}
+
+        <BulkFooter hidden={!bulkMode} actions={bulkActions} />
+      </PageBase>
+    </Layout>
+  );
 };
 
 export const BulkModeOn = () => {
-
-    return <Default defaultBulkIds={["item-0", "item-1"]} />;
-
+  return <Default defaultBulkIds={['item-0', 'item-1']} />;
 };

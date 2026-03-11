@@ -5,3 +5,6 @@ export * from './ToolbarSearch';
 export * from './ToolbarMenu';
 export * from './useFilter';
 export * from './SelectDateFilter';
+
+export * from './QueryLabel';
+export * from './QueryLabelItem';
