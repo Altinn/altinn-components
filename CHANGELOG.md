@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.56.33](https://github.com/Altinn/altinn-components/compare/v0.56.32...v0.56.33) (2026-03-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @navikt/aksel-icons to v8 ([#1041](https://github.com/Altinn/altinn-components/issues/1041)) ([2db15b4](https://github.com/Altinn/altinn-components/commit/2db15b4b9f975395d711119a8ac1df8cfaee789c))
+* **menuItem:** improve disable state ([#1054](https://github.com/Altinn/altinn-components/issues/1054)) ([e2562c2](https://github.com/Altinn/altinn-components/commit/e2562c26132ede3d37955b4002b98df24c6a4383))
+
 ## [0.56.32](https://github.com/Altinn/altinn-components/compare/v0.56.31...v0.56.32) (2026-03-10)
 
 
