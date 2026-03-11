@@ -1,0 +1,97 @@
+/* Prevents background scrolling and keeps the scrollbar area stable to avoid a layout shift */
+html:has(dialog[open]) {
+  overflow: hidden;
+  /* 1 */
+  scrollbar-gutter: stable;
+  /* 2 */
+}
+
+/* Drawer */
+
+.backdrop {
+  display: block;
+  z-index: 1;
+  background-color: rgba(17, 29, 70, 0.25);
+  position: fixed;
+  top: 4.5rem;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.backdrop[aria-hidden="true"] {
+  display: none;
+}
+
+.drawer {
+  position: fixed;
+  z-index: 2;
+  background-color: white;
+
+  width: 100%;
+  max-width: 100vw;
+
+  height: auto;
+  max-height: auto;
+
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  border: 0;
+
+  top: 4.5rem;
+  bottom: 0;
+
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+.drawer::backdrop {
+  background-color: transparent;
+}
+
+.drawer:not([data-open="true"]) {
+  display: none;
+}
+
+.footer {
+  display: none;
+}
+
+.body {
+  padding: 0 0.5rem;
+}
+
+@media (min-width: 1024px) {
+  .body {
+    padding: 0 1rem;
+  }
+
+  .drawer {
+    top: 4.5rem;
+    bottom: 4.5rem;
+  }
+
+  .drawer[data-expanded="true"] {
+    bottom: 0;
+  }
+
+  .footer {
+    position: sticky;
+    z-index: 2000;
+    display: flex;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+  }
+
+  .toggleButton {
+    margin: 1rem 0;
+  }
+}

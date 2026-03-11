@@ -1,5 +1,89 @@
 # Changelog
 
+## [0.56.32](https://github.com/Altinn/altinn-components/compare/v0.56.31...v0.56.32) (2026-03-10)
+
+
+### Bug Fixes
+
+* **accountSelector:** height for content when maximized ([#1052](https://github.com/Altinn/altinn-components/issues/1052)) ([b2f1348](https://github.com/Altinn/altinn-components/commit/b2f134844fdec5ba5a8faed1e2d594d088fd2bd9))
+
+## [0.56.31](https://github.com/Altinn/altinn-components/compare/v0.56.30...v0.56.31) (2026-03-10)
+
+
+### Bug Fixes
+
+* height for fullscreen with virtualized account selector ([#1050](https://github.com/Altinn/altinn-components/issues/1050)) ([0bc69df](https://github.com/Altinn/altinn-components/commit/0bc69df8d8f83db6520e0a6050ae34555c544981))
+
+## [0.56.30](https://github.com/Altinn/altinn-components/compare/v0.56.29...v0.56.30) (2026-03-10)
+
+
+### Bug Fixes
+
+* revert fullscreen toggle on account selector ([#1048](https://github.com/Altinn/altinn-components/issues/1048)) ([d761dc0](https://github.com/Altinn/altinn-components/commit/d761dc02ec2621a433f31f81ea8c1190b3dae649))
+
+## [0.56.29](https://github.com/Altinn/altinn-components/compare/v0.56.28...v0.56.29) (2026-03-06)
+
+
+### Bug Fixes
+
+* Datepicker scrollbar click should not navigate back ([#1046](https://github.com/Altinn/altinn-components/issues/1046)) ([815182c](https://github.com/Altinn/altinn-components/commit/815182c82ab6a2cbac477b9ff53580b35a42a5ae))
+
+## [0.56.28](https://github.com/Altinn/altinn-components/compare/v0.56.27...v0.56.28) (2026-03-06)
+
+
+### Bug Fixes
+
+* **toolbarmenu:** support custom id to prevent invalid HTNL ([#1044](https://github.com/Altinn/altinn-components/issues/1044)) ([a70525b](https://github.com/Altinn/altinn-components/commit/a70525bbb121332ef4d0414c14b9124843e8273a))
+
+## [0.56.27](https://github.com/Altinn/altinn-components/compare/v0.56.26...v0.56.27) (2026-03-05)
+
+
+### Bug Fixes
+
+* **contextmenu:** close menu on item click ([#1042](https://github.com/Altinn/altinn-components/issues/1042)) ([72aaa3e](https://github.com/Altinn/altinn-components/commit/72aaa3e8f8f3be7cfccfe7ff3766da35d92b97ad))
+
+## [0.56.26](https://github.com/Altinn/altinn-components/compare/v0.56.25...v0.56.26) (2026-03-04)
+
+
+### Bug Fixes
+
+* **AcountSelector:** leave scroll lock optional for now to prevent unwanted default behavior ([#1036](https://github.com/Altinn/altinn-components/issues/1036)) ([8b68834](https://github.com/Altinn/altinn-components/commit/8b68834c45e84c3e224afd0760b849d1b85411d0))
+
+## [0.56.25](https://github.com/Altinn/altinn-components/compare/v0.56.24...v0.56.25) (2026-03-03)
+
+
+### Bug Fixes
+
+* **AccountSelector:** prevent background scrolling when open ([#1033](https://github.com/Altinn/altinn-components/issues/1033)) ([e7f109a](https://github.com/Altinn/altinn-components/commit/e7f109a7114f11e6111a0535102f48f1a073c929))
+
+## [0.56.24](https://github.com/Altinn/altinn-components/compare/v0.56.23...v0.56.24) (2026-03-02)
+
+
+### Bug Fixes
+
+* normalize search for subunit organization nr in account selector ([#1031](https://github.com/Altinn/altinn-components/issues/1031)) ([81c010b](https://github.com/Altinn/altinn-components/commit/81c010b4bf37beea898a3c05bfd238f8e4bc87d5))
+* verify address modal stories ([#1028](https://github.com/Altinn/altinn-components/issues/1028)) ([eaeb480](https://github.com/Altinn/altinn-components/commit/eaeb480963d454089cec924e30c6944ed87c1543))
+* verify email + sms stories ([#1030](https://github.com/Altinn/altinn-components/issues/1030)) ([82d4bf3](https://github.com/Altinn/altinn-components/commit/82d4bf3712fd31441b7d0457ef86abe4a9129f96))
+
+## [0.56.23](https://github.com/Altinn/altinn-components/compare/v0.56.22...v0.56.23) (2026-03-02)
+
+
+### Bug Fixes
+
+* **menu:** global language picker disappeared from menu ([#1027](https://github.com/Altinn/altinn-components/issues/1027)) ([c9b1c89](https://github.com/Altinn/altinn-components/commit/c9b1c89d65b8bd2a8934dfba0f6c62908e21eb33))
+
+
+### Miscellaneous Chores
+
+* **security:** update dependencies ([#1023](https://github.com/Altinn/altinn-components/issues/1023)) ([1447dfb](https://github.com/Altinn/altinn-components/commit/1447dfbe8f67ecd39d7f015d80ad2226464a46e6))
+
+## [0.56.22](https://github.com/Altinn/altinn-components/compare/v0.56.21...v0.56.22) (2026-03-02)
+
+
+### Bug Fixes
+
+* **datepicker:** set correct height on field when value not selected on Safari Mobile ([#1024](https://github.com/Altinn/altinn-components/issues/1024)) ([1b7f2fe](https://github.com/Altinn/altinn-components/commit/1b7f2fec3f3ae3269e773926e7f80d1a1d5a6f82))
+
 ## [0.56.21](https://github.com/Altinn/altinn-components/compare/v0.56.20...v0.56.21) (2026-02-27)
 
 

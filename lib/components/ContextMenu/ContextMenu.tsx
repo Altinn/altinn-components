@@ -1,4 +1,5 @@
 import { MenuElipsisHorizontalIcon } from '@navikt/aksel-icons';
+import { useMemo } from 'react';
 import { Button } from '../Button';
 import { Dropdown, type DropdownProps } from '../Dropdown';
 import { Menu, type MenuProps } from '../Menu';
@@ -23,6 +24,15 @@ export const ContextMenu = ({
 }: ContextMenuProps) => {
   const ctrl = useDropdownMenuController({ id, returnFocusOnClose: true });
   const { languageCode } = useRootContext();
+  const itemsWithToggle = useMemo(() => {
+    return items.map((item) => ({
+      ...item,
+      onClick: () => {
+        ctrl.setOpen(false);
+        item.onClick?.();
+      },
+    }));
+  }, [items, ctrl]);
 
   const ContextMenuButton = () => {
     return (
@@ -56,7 +66,7 @@ export const ContextMenu = ({
       useFixedPosition={true}
       {...ctrl.dropdownA11yProps}
     >
-      <Menu groups={groups} items={items} maxLevels={1} keyboardEvents={ctrl.open} {...ctrl.menuA11yProps} />
+      <Menu groups={groups} items={itemsWithToggle} maxLevels={1} keyboardEvents={ctrl.open} {...ctrl.menuA11yProps} />
     </Dropdown>
   );
 };

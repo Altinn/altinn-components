@@ -196,6 +196,7 @@ export const MenuItem = ({
       data-color={color}
       data-active={active}
       aria-disabled={disabled}
+      {...(disabled ? { disabled } : {})}
       aria-selected={selected}
       data-selected={selected}
       aria-label={title}

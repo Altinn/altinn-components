@@ -1,8 +1,8 @@
 import cx from 'classnames';
 import { useEffect, useState } from 'react';
 import { AccountMenu, type AccountMenuProps } from '../Account';
-import { DsHeading, DsSpinner, DsSwitch } from '../DsComponents';
-import { SearchField } from '../Forms';
+import { DsHeading, DsSpinner } from '../DsComponents';
+import { SearchField, Switch } from '../Forms';
 import { useRootContext } from '../RootProvider';
 import styles from './accountSelector.module.css';
 
@@ -18,6 +18,8 @@ export interface AccountSelectorProps {
   showDeletedUnits?: boolean;
   /** Function to handle changes to the include deleted accounts switch */
   onShowDeletedUnitsChange?: (newValue: boolean) => void;
+  /** Show in fullscreen*/
+  isFullScreen?: boolean;
 }
 
 export const AccountSelector = ({
@@ -27,8 +29,10 @@ export const AccountSelector = ({
   loading,
   showDeletedUnits,
   onShowDeletedUnitsChange,
+  isFullScreen,
 }: AccountSelectorProps) => {
-  const { openId, closeAll, languageCode } = useRootContext();
+  const { closeAll, languageCode } = useRootContext();
+
   const [searchString, setSearchString] = useState('');
   const [forceOpenFullScreenState, setForceOpenFullScreenState] = useState<boolean | undefined>(forceOpenFullScreen);
 
@@ -39,12 +43,6 @@ export const AccountSelector = ({
     }
     setForceOpenFullScreenState(forceOpenFullScreen);
   }, [forceOpenFullScreen]);
-
-  useEffect(() => {
-    if (forceOpenFullScreenState === true) {
-      openId('account');
-    }
-  }, [forceOpenFullScreenState, openId]);
 
   const { searchText, heading, switchLabel } = getTexts(languageCode);
 
@@ -65,6 +63,7 @@ export const AccountSelector = ({
       </DsHeading>
       <div className={styles.searchSection}>
         <SearchField
+          size="sm"
           name={searchText}
           placeholder={searchText}
           value={searchString}
@@ -73,14 +72,21 @@ export const AccountSelector = ({
           className={styles.searchField}
         />
         {showDeletedUnits !== undefined && (
-          <DsSwitch
+          <Switch
+            size="sm"
             checked={showDeletedUnits}
             onChange={(e) => onShowDeletedUnitsChange?.(e.target.checked)}
             label={switchLabel}
           />
         )}
       </div>
-      <div className={cx(styles.accountMenu, accountMenu.virtualized && styles.virtualized)}>
+      <div
+        className={cx(
+          styles.accountMenu,
+          isFullScreen && styles.fullScreen,
+          accountMenu.virtualized && styles.virtualized,
+        )}
+      >
         <AccountMenu
           {...accountMenu}
           onSelectAccount={onAccountSelection}
@@ -103,24 +109,18 @@ const getTexts = (languageCode: string | undefined) => {
   switch (languageCode) {
     case 'nn':
       return {
-        minimize: 'Minimer',
-        fullscreen: 'Vis i fullskjerm',
         searchText: 'Søk i aktørar',
         heading: 'Kven vil du representere?',
         switchLabel: 'Vis slettede',
       };
     case 'en':
       return {
-        minimize: 'Minimize',
-        fullscreen: 'Show in fullscreen',
         searchText: 'Search in actors',
         heading: 'Who do you want to represent?',
         switchLabel: 'Show deleted',
       };
     default:
       return {
-        minimize: 'Minimer',
-        fullscreen: 'Vis i fullskjerm',
         searchText: 'Søk i aktører',
         heading: 'Hvem vil du representere?',
         switchLabel: 'Vis slettede',

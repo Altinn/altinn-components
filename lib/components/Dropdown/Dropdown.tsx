@@ -36,6 +36,7 @@ export interface DropdownProps {
   size?: DropdownSize;
   activeDescendantId?: string;
   useFixedPosition?: boolean;
+  expanded?: boolean;
 }
 
 const FOCUS_GUARD_ATTR = 'data-focus-guard';
@@ -85,6 +86,7 @@ export const Dropdown = ({
   onSubmit,
   activeDescendantId,
   useFixedPosition = false,
+  expanded = false,
 }: DropdownProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -281,6 +283,7 @@ export const Dropdown = ({
       style={dropdownStyles}
       aria-hidden={!open}
       data-variant={variant}
+      data-expanded={expanded}
       data-size={size}
       tabIndex={-1}
       role="menu"

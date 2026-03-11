@@ -15,12 +15,16 @@
 }
 
 .searchSection {
+  position: sticky;
+  z-index: 2;
+  top: 1rem;
   width: 100%;
-  padding: 0 var(--horizontal-padding);
+  padding: 0.5rem var(--horizontal-padding);
   display: flex;
   align-items: center;
   gap: 1rem;
   margin-bottom: 0.75rem;
+  background-color: white;
 }
 
 .searchField {
@@ -29,6 +33,7 @@
 
 .accountMenu {
   height: fit-content;
+  /*  height: 40vh; */
   width: 100%;
   overflow-y: auto;
   margin-bottom: 1rem;
@@ -43,6 +48,12 @@
 .btnIcon {
   font-size: 1.5rem;
 }
+
+/*
+.accountMenu.fullScreen {
+  height: fit-content;
+}
+  */
 
 .spinner {
   margin: auto;

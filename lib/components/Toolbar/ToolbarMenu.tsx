@@ -16,10 +16,11 @@ export const ToolbarMenu = ({
   label = 'Label',
   items = [],
   dropdownSize = 'sm',
+  id = 'toolbar-menu',
   onSelectId,
   ...props
 }: ToolbarMenuProps) => {
-  const ctrl = useDropdownMenuController({ id: 'toolbar-menu', returnFocusOnClose: true });
+  const ctrl = useDropdownMenuController({ id, returnFocusOnClose: true });
   const a11yMode = props.searchable ? 'combobox' : 'menu';
   const selectableItems = items.map((item: MenuItemProps) => {
     return {
@@ -33,7 +34,7 @@ export const ToolbarMenu = ({
 
   return (
     <Dropdown
-      id="toolbar-menu"
+      id={id}
       variant="drawer-dropdown"
       title={title}
       size={dropdownSize}
