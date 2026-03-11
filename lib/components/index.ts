@@ -22,7 +22,7 @@ export type { GlobalHeaderProps } from './GlobalHeader'; //TO-DO: Fix conflict e
 export * from './Icon';
 export * from './Item';
 export * from './Layout';
-export * from './LayoutAction';
+export * from './Bulk';
 export * from './List';
 export * from './Menu';
 export * from './Metadata';

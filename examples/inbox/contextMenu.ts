@@ -14,39 +14,39 @@ export const contextMenu: ContextMenuProps = {
   items: [
     {
       groupId: '1',
+      id: 'select',
+      icon: CheckmarkIcon,
+      title: 'Legg i liste ...',
+    },
+    {
+      groupId: '2',
       id: 'share',
       icon: ArrowRedoIcon,
       title: 'Del og gi tilgang',
     },
     {
-      groupId: '1',
+      groupId: '2',
       id: 'unread',
       icon: EyeClosedIcon,
       title: 'Marker som ulest',
     },
     {
-      groupId: '1',
+      groupId: '2',
       id: 'read',
       icon: EyeIcon,
       title: 'Marker som lest',
     },
     {
-      groupId: '2',
+      groupId: '3',
       id: 'archive',
       icon: ArchiveIcon,
       title: 'Flytt til arkiv',
     },
     {
-      groupId: '2',
+      groupId: '3',
       id: 'trash',
       icon: TrashIcon,
       title: 'Flytt til papirkurv',
-    },
-    {
-      groupId: '2',
-      id: 'select',
-      icon: CheckmarkIcon,
-      title: 'Legg i liste ...',
     },
     {
       groupId: '3',

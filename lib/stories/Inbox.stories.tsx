@@ -12,10 +12,6 @@ import {
   Section,
   Heading,
   Typography,
-  ActionHeader,
-  ActionFooter,
-  PageMenu,
-  type PageMenuProps,
   ModalBase,
   ModalHeader,
   ModalBody,
@@ -45,12 +41,8 @@ export const InboxPage = () => {
     toolbar,
     results,
     dialog,
-    bulkMode,
-    bulkIds,
-    bulkMenu,
     modal,
     closeModal,
-    unselectAll,
   } = useInbox({});
 
   const activityLog = useActivityLog();
@@ -60,26 +52,13 @@ export const InboxPage = () => {
       {dialog ? (
         <Dialog {...dialog} />
       ) : (
-        <>
-          <ActionHeader
-            hidden={!bulkMode}
-            title={bulkIds?.length + " valgt"}
-            dismissable={true}
-            onDismiss={unselectAll}
-          />
-          <PageBase>
-            <Heading size="xl">Innboks</Heading>
-            <Toolbar {...toolbar} />
-            {results && (
-              <DialogList items={results.items} groups={results?.groups} />
-            )}
-          </PageBase>
-          <ActionFooter hidden={!bulkMode}>
-            {bulkMenu && (
-              <PageMenu items={bulkMenu.items as PageMenuProps['items']} />
-            )}
-          </ActionFooter>
-        </>
+        <PageBase>
+          <Heading size="xl">Innboks</Heading>
+          <Toolbar {...toolbar} />
+          {results && (
+            <DialogList items={results.items} groups={results?.groups} />
+          )}
+        </PageBase>
       )}
 
       {modal && (

@@ -24,7 +24,7 @@ export const BookmarkSettingsItemLabel = ({
           {title}
         </Heading>
       )}
-      <QueryLabel params={params} size={title ? 'xs' : 'sm'} variant={title ? 'subtle' : 'default'} />
+      <QueryLabel color="neutral" params={params} size={title ? 'xxs' : 'xs'} variant={title ? 'subtle' : 'default'} />
     </>
   );
 };

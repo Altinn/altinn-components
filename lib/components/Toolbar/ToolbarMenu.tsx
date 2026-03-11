@@ -1,5 +1,5 @@
 import { ChevronUpDownIcon } from '@navikt/aksel-icons';
-import { Button } from '../Button';
+import { Button, type ButtonProps } from '../Button';
 import { Dropdown, type DropdownProps } from '../Dropdown';
 import { Menu, type MenuItemProps, type MenuProps } from '../Menu/';
 import { useDropdownMenuController } from '../Menu/useDropdownMenuController.tsx';
@@ -7,13 +7,15 @@ import { useDropdownMenuController } from '../Menu/useDropdownMenuController.tsx
 export interface ToolbarMenuProps extends Omit<MenuProps, 'variant'> {
   title?: string;
   label?: string;
+  variant?: ButtonProps['variant'];
   dropdownSize?: DropdownProps['size'];
   onSelectId?: (id: string) => void;
 }
 
 export const ToolbarMenu = ({
-  title = 'Title',
   label = 'Label',
+  variant = 'solid',
+  title = 'Title',
   items = [],
   dropdownSize = 'sm',
   id = 'toolbar-menu',
@@ -40,7 +42,7 @@ export const ToolbarMenu = ({
       size={dropdownSize}
       trigger={
         <Button
-          variant="solid"
+          variant={variant}
           onClick={ctrl.toggleMenu}
           aria-expanded={ctrl.open}
           aria-haspopup="menu"

@@ -1,5 +1,5 @@
 import { type ChangeEvent, useState } from 'react';
-import type { ToolbarProps } from '../../lib';
+import type { ToolbarMenuProps, ToolbarProps } from '../../lib';
 
 export const useSettingsToolbar = ({ accountMenu }: ToolbarProps) => {
   const [q, setQ] = useState('');
@@ -12,9 +12,10 @@ export const useSettingsToolbar = ({ accountMenu }: ToolbarProps) => {
     return {
       accountMenu: {
         ...accountMenu,
+        variant: 'solid',
         items: accountMenu?.items?.filter((item) => item.id !== 'user'),
         virtualized: true,
-      },
+      } as ToolbarMenuProps,
       search: {
         name: 'search',
         placeholder: 'Søk i innstillinger',

@@ -1,17 +1,16 @@
-import { ArchiveIcon, ArrowRedoIcon, EyeClosedIcon, TrashIcon } from '@navikt/aksel-icons';
 import { useState } from 'react';
 import { useFloatingDropdown, useGlobalHeader, useInboxLayout, useInboxSearch, useInboxToolbar } from '../';
-import { type FloatingDropdownProps, type GlobalHeaderProps, ListItemSelect } from '../../lib';
+import type { FloatingDropdownProps, GlobalHeaderProps } from '../../lib';
 import type {
   ActivityLogProps,
   AvatarProps,
+  BulkButtonProps,
   DialogContactProps,
   DialogLayoutProps,
   DialogListItemProps,
   DialogListProps,
   HeaderProps,
   LayoutProps,
-  MenuProps,
   SearchbarProps,
   SeenByLogProps,
   ToolbarProps,
@@ -47,7 +46,7 @@ export interface UseInboxProps extends LayoutProps {
   toolbar?: ToolbarProps;
   results?: DialogListProps;
   bulkMode?: boolean;
-  bulkMenu?: MenuProps;
+  bulkActions?: BulkButtonProps[];
   bulkIds?: string[];
   unselectAll?: () => void;
   modalId?: string;
@@ -285,31 +284,6 @@ export const useInbox = ({
       onModal,
     });
 
-  const bulkMenu = {
-    items: [
-      {
-        id: '1',
-        icon: ArrowRedoIcon,
-        title: 'Del og gi tilgang',
-      },
-      {
-        id: '2',
-        icon: EyeClosedIcon,
-        title: 'Marker som ulest',
-      },
-      {
-        id: '3',
-        icon: ArchiveIcon,
-        title: 'Flytt til arkiv',
-      },
-      {
-        id: '4',
-        icon: TrashIcon,
-        title: 'Flytt til papirkurv',
-      },
-    ],
-  };
-
   // create toolbar
 
   const toolbar = useInboxToolbar({ accountId, items: listItems });
@@ -351,44 +325,6 @@ export const useInbox = ({
     value: q,
     items,
   });
-
-  // bulk
-
-  if (bulkIds?.length > 0) {
-    const bulkItems = items?.map((item) => {
-      return {
-        ...item,
-        onClick: () => onSelect(item.id!),
-        controls: (
-          <ListItemSelect aria-labelledby={item.id!} checked={item?.selected} onClick={() => onSelect(item.id!)} />
-        ),
-      };
-    });
-
-    return {
-      bulkMode: true,
-      bulkMenu,
-      bulkIds,
-      unselectAll: () => setBulkIds([]),
-      pageId,
-      layout: {
-        ...layout,
-        header: {
-          ...layout?.header,
-          search,
-          accountSelector,
-        },
-        sidebar: {
-          hidden: true,
-        },
-      } as LayoutProps,
-      search,
-      results: {
-        groups: list.groups,
-        items: bulkItems,
-      },
-    };
-  }
 
   const modalDialog = (modalId && items?.find((item) => item.id === modalId)) || undefined;
 

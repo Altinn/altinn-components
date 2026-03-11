@@ -203,7 +203,7 @@ export const useInboxToolbar = ({ accountId, items }: UseInboxToolbarProps): Too
   };
 
   return {
-    accountMenu,
+    accountMenu: accountMenu as ToolbarProps['accountMenu'],
     filter: {
       filters,
       filterState,
