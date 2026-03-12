@@ -50,7 +50,7 @@ export const Layout = ({
   children,
   skipLink,
   breadcrumbs,
-  useGlobalHeader = false,
+  useGlobalHeader = true,
 }: LayoutProps) => {
   const { currentId } = useRootContext();
 

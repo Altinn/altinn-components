@@ -1,4 +1,4 @@
-import { BookmarkModal, BookmarkSettingsList, type BookmarkSettingsListProps, Heading, Layout, PageBase } from '..';
+import { BookmarkModal, BookmarkSettingsList, type BookmarkSettingsListProps, Layout } from '..';
 
 import type { Meta } from '@storybook/react-vite';
 import { useBookmarks } from '../../../examples';
@@ -32,7 +32,7 @@ const meta = {
 export default meta;
 
 export const BookmarksList = () => {
-  const { expandedId, onClose, items } = useBookmarks();
+  const { expandedId, onClose, items } = useBookmarks({ grouped: false });
 
   const modalProps = expandedId && items.find((item) => item.id === expandedId);
 
@@ -42,7 +42,7 @@ export const BookmarksList = () => {
       {expandedId && (
         <BookmarkModal
           {...modalProps}
-          title="Rediger lagret søk"
+          title="Rediger søk"
           open={expandedId !== ''}
           onClose={onClose}
           buttons={[
@@ -56,16 +56,9 @@ export const BookmarksList = () => {
 };
 
 export const GroupedBookmarksList = () => {
-  const { expandedId, onClose, items } = useBookmarks();
+  const { expandedId, onClose, items } = useBookmarks({ grouped: true });
 
   const modalProps = expandedId && items.find((item) => item.id === expandedId);
-
-  const groupedItems = items?.map((item) => {
-    return {
-      groupId: item?.title ? '1' : '2',
-      ...item,
-    };
-  });
 
   const groups = {
     '1': {
@@ -78,11 +71,11 @@ export const GroupedBookmarksList = () => {
 
   return (
     <>
-      <BookmarkSettingsList items={groupedItems} groups={groups} />
+      <BookmarkSettingsList items={items} groups={groups} />
       {expandedId && (
         <BookmarkModal
           {...modalProps}
-          title="Rediger lagret søk"
+          title="Rediger søk"
           open={expandedId !== ''}
           onClose={onClose}
           buttons={[
@@ -92,33 +85,5 @@ export const GroupedBookmarksList = () => {
         />
       )}
     </>
-  );
-};
-
-export const BookmarksPage = () => {
-  const { title, description, expandedId, onClose, items } = useBookmarks();
-
-  const modalProps = expandedId && items.find((item) => item.id === expandedId);
-
-  return (
-    <PageBase>
-      <Heading size="lg">{title}</Heading>
-      <BookmarkSettingsList items={items} />
-      <Heading size="xs" weight="normal">
-        {description}
-      </Heading>
-      {expandedId && (
-        <BookmarkModal
-          {...modalProps}
-          title="Rediger lagret søk"
-          open={expandedId !== ''}
-          onClose={onClose}
-          buttons={[
-            { label: 'Lagre', onClick: () => onClose() },
-            { label: 'Slett', variant: 'outline', onClick: () => onClose() },
-          ]}
-        />
-      )}
-    </PageBase>
   );
 };

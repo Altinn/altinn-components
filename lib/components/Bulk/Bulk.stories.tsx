@@ -1,4 +1,4 @@
-import { ArchiveIcon, ArrowRedoIcon, CheckmarkIcon, EyeClosedIcon, EyeIcon, TrashIcon } from '@navikt/aksel-icons';
+import { ArchiveIcon, ArrowRedoIcon, CheckmarkIcon, EyeClosedIcon, TrashIcon } from '@navikt/aksel-icons';
 import { useState } from 'react';
 import {
   BulkFooter,
@@ -18,7 +18,7 @@ import {
 import { useInbox } from '../../../examples';
 
 const meta = {
-  title: 'Bulk/BulkMode',
+  title: 'Bulk/Demo',
   tags: ['beta'],
   parameters: {
     layout: 'fullscreen',
@@ -125,16 +125,8 @@ export const Default = ({ defaultBulkIds = [] }: { defaultBulkIds?: string[] }) 
   const bulkOptions = [
     {
       icon: CheckmarkIcon,
-      label: 'Alle',
+      label: 'Velg alle',
       onClick: selectAll,
-    },
-    {
-      icon: EyeIcon,
-      label: 'Uleste',
-    },
-    {
-      icon: EyeClosedIcon,
-      label: 'Leste',
     },
   ];
 
@@ -148,8 +140,17 @@ export const Default = ({ defaultBulkIds = [] }: { defaultBulkIds?: string[] }) 
     { type: 'filter', label: 'Filter 2' },
   ];
 
+  const breadcrumbsItems = layout?.breadcrumbs?.items || [];
+  const bulkBreadcrumbsItems = [...breadcrumbsItems, { label: 'Velg flere', href: '/inbox' }];
+
   return (
-    <Layout {...layout} color={bulkMode ? 'neutral' : layout?.color} sidebar={sidebar} useGlobalHeader={true}>
+    <Layout
+      {...layout}
+      breadcrumbs={{ ...layout?.breadcrumbs, items: bulkMode ? bulkBreadcrumbsItems : breadcrumbsItems }}
+      color={bulkMode ? 'neutral' : layout?.color}
+      sidebar={sidebar}
+      useGlobalHeader={true}
+    >
       <PageBase>
         <BulkHeader
           hidden={!bulkMode}

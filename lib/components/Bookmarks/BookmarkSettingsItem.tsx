@@ -14,6 +14,8 @@ export interface BookmarkSettingsItemProps {
   loading?: boolean;
   /** Optional title */
   title?: string;
+  /** Searchable words */
+  searchWords?: string[];
   /** Icon */
   highlightWords?: SettingsItemProps['highlightWords'];
   /** Optional title */

@@ -1,4 +1,5 @@
 import { PlusIcon } from '@navikt/aksel-icons';
+import type { LayoutColor } from '../Layout';
 import { QueryItem, type QueryItemProps } from './QueryLabelItem';
 import styles from './queryLabel.module.css';
 
@@ -6,10 +7,10 @@ export interface QueryLabelProps {
   params?: QueryItemProps[];
   size?: QueryItemProps['size'];
   variant?: QueryItemProps['variant'];
-  color?: 'neutral';
+  color?: LayoutColor;
 }
 
-export const QueryLabel = ({ params = [], size = 'xs', variant = 'default', color = 'neutral' }: QueryLabelProps) => {
+export const QueryLabel = ({ params = [], size = 'xs', variant = 'default', color }: QueryLabelProps) => {
   return (
     <div className={styles.label} data-size={size} data-variant={variant} data-color={color}>
       {params.map((item, index) => (

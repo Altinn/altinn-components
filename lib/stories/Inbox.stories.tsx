@@ -611,7 +611,7 @@ export const BookmarksPage = () => {
   const { layout, toolbar } = useInbox({
     pageId: "bookmarks",
   });
-  const { items, expandedId, onClose } = useBookmarks();
+  const { items, expandedId, onClose } = useBookmarks({ grouped: false });
   const modalProps = expandedId && items.find(item => item.id === expandedId);
   return (
     <Layout {...layout} useGlobalHeader={true}>

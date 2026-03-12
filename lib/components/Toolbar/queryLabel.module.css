@@ -11,6 +11,7 @@
 
 .label[data-size="xxs"] {
   --dsc-item-font-size: 0.75rem;
+  --dsc-item-gap: 0.25em;
 }
 
 .label[data-variant="subtle"] {
