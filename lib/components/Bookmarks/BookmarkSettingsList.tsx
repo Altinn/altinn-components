@@ -15,13 +15,20 @@ export interface BookmarkSettingsGroupProps {
 }
 
 export interface BookmarkSettingsListProps {
+  highlightWords?: string[];
   items: BookmarkSettingsItemProps[];
   groups?: Record<string, BookmarkSettingsGroupProps>;
   sortGroupBy?: (a: [string, BookmarkSettingsItemProps[]], b: [string, BookmarkSettingsItemProps[]]) => number;
   loading?: boolean;
 }
 
-export const BookmarkSettingsList = ({ loading, items, groups = {}, sortGroupBy }: BookmarkSettingsListProps) => {
+export const BookmarkSettingsList = ({
+  loading,
+  highlightWords,
+  items,
+  groups = {},
+  sortGroupBy,
+}: BookmarkSettingsListProps) => {
   if (!items || items.length < 1) {
     return null;
   }
@@ -52,6 +59,7 @@ export const BookmarkSettingsList = ({ loading, items, groups = {}, sortGroupBy 
                       <BookmarkSettingsItem
                         {...itemProps}
                         key={'settings-list-item' + index}
+                        highlightWords={highlightWords || itemProps?.highlightWords}
                         loading={loading || itemProps?.loading}
                       />
                     </Fragment>

@@ -64,6 +64,22 @@ export const useProfileLayout = ({ accountId = 'user', pageId = 'profile' }): Pr
     };
   });
 
+  const page = menuItems?.find((item) => item.selected);
+
+  const breadcrumbs = {
+    items: [
+      {
+        label: 'Forside',
+      },
+      {
+        label: 'Min profil',
+      },
+      {
+        label: (page?.title as string) || 'Side',
+      },
+    ],
+  };
+
   const layout = useLayout({
     accountId,
     color: 'neutral',
@@ -81,5 +97,5 @@ export const useProfileLayout = ({ accountId = 'user', pageId = 'profile' }): Pr
     },
   });
 
-  return layout;
+  return { ...layout, breadcrumbs };
 };

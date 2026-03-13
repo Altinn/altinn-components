@@ -1,5 +1,6 @@
 import {
   BellIcon,
+  BookmarkIcon,
   ClockDashedIcon,
   CogIcon,
   HeartIcon,
@@ -28,6 +29,12 @@ export const profileMenuItems: MenuItemProps[] = [
     groupId: '2',
     icon: BellIcon,
     title: 'Varslinger',
+  },
+  {
+    id: 'bookmarks',
+    groupId: '2',
+    icon: BookmarkIcon,
+    title: 'Bokmerker',
   },
   /*
   {

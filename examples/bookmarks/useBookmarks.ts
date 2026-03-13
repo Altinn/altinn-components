@@ -1,6 +1,6 @@
 import { MagnifyingGlassIcon, PencilIcon, TrashIcon } from '@navikt/aksel-icons';
-import { type ChangeEvent, useMemo, useState } from 'react';
-import type { BookmarkSettingsListProps } from '../../lib';
+import { type ChangeEvent, useEffect, useMemo, useState } from 'react';
+import type { BookmarkSettingsListProps, ToolbarSearchProps } from '../../lib';
 import { bookmarksItems } from './bookmarksItems';
 
 interface UseBookmarkSettingsProps extends BookmarkSettingsListProps {
@@ -10,13 +10,28 @@ interface UseBookmarkSettingsProps extends BookmarkSettingsListProps {
   onToggle: (id: string) => void;
   onSave: (id: string) => void;
   onClose: () => void;
+  search: ToolbarSearchProps;
 }
 
-export const useBookmarks = (): UseBookmarkSettingsProps => {
+export const useBookmarks = ({ grouped }: { grouped?: boolean }): UseBookmarkSettingsProps => {
   const [expandedId, setExpandedId] = useState<string>('');
   const [inputValue, setInputValue] = useState<Record<string, string>>({});
   const [itemTitles, setItemTitles] = useState<Record<string, string>>({});
   const [deletedItems, setDeletedItems] = useState<string[]>(['']);
+
+  const searchableItem = bookmarksItems?.map((item) => {
+    const searchWords = item?.params?.map(({ label }) => {
+      return label?.toLowerCase();
+    });
+
+    return {
+      ...item,
+      groupId: grouped ? item?.groupId : 'bookmarks',
+      searchWords: [...searchWords, item?.title?.toLowerCase()],
+    };
+  });
+
+  const [filteredItems, setFilteredItems] = useState(searchableItem);
 
   const onToggle = (id: string) => {
     setExpandedId(id);
@@ -70,14 +85,35 @@ export const useBookmarks = (): UseBookmarkSettingsProps => {
     };
   };
 
+  // search
+
+  const [q, setQ] = useState('');
+
+  useEffect(() => {
+    q
+      ? setFilteredItems(
+          searchableItem.filter((item) => item.searchWords?.some((word) => word?.includes(q.toLowerCase()))),
+        )
+      : setFilteredItems(searchableItem);
+  }, [q, searchableItem]);
+
+  const search = {
+    placeholder: 'Søk i bokmerker',
+    value: q,
+    onChange: (e: ChangeEvent<HTMLInputElement>) => setQ(e.target.value),
+  };
+
+  // return
+
   const items = useMemo(
     () =>
-      bookmarksItems
+      filteredItems
         .filter((item) => !deletedItems?.includes(item.id))
         .map((item) => ({
           ...item,
           id: item.id,
           title: itemTitles?.[item.id] || item?.title || undefined,
+          highlightWords: q ? q.split(' ') : undefined,
           modalProps: {
             title: 'Lagret søk',
             titleField: {
@@ -95,7 +131,7 @@ export const useBookmarks = (): UseBookmarkSettingsProps => {
           as: 'a',
           href: '#' + item.id,
         })),
-    [deletedItems, inputValue, itemTitles],
+    [deletedItems, inputValue, itemTitles, filteredItems, q],
   );
 
   const applicableItems = items?.map((item) => {
@@ -105,13 +141,33 @@ export const useBookmarks = (): UseBookmarkSettingsProps => {
     };
   });
 
+  const groups = {
+    search: {
+      title: items?.length + ' treff',
+    },
+    bookmarks: {
+      title: items?.length + ' lagrede søk',
+    },
+    user: {
+      title: 'Personlige søk',
+    },
+    all: {
+      title: 'Alle virksomheter',
+    },
+    company: {
+      title: 'Diaspora Bergensis',
+    },
+  };
+
   return {
     title: '3 lagrede søk',
     description: 'Sist oppdatert: 3 minutter siden.',
     items: applicableItems as BookmarkSettingsListProps['items'],
+    groups,
     expandedId,
     onToggle,
     onClose,
     onSave,
+    search,
   };
 };
