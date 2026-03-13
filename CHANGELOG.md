@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.56.34](https://github.com/Altinn/altinn-components/compare/v0.56.33...v0.56.34) (2026-03-13)
+
+
+### Bug Fixes
+
+* more bookmark stories ([#1061](https://github.com/Altinn/altinn-components/issues/1061)) ([888ee82](https://github.com/Altinn/altinn-components/commit/888ee823fdb03d0ed1f6e849e64a77b0b34cbd34))
+* more settings stories ([#1035](https://github.com/Altinn/altinn-components/issues/1035)) ([ccebf08](https://github.com/Altinn/altinn-components/commit/ccebf087c439f4b99e1d7f7dee77e2ef58d42a50))
+* **storybook:** delete old stories ([#967](https://github.com/Altinn/altinn-components/issues/967)) ([e5c84fd](https://github.com/Altinn/altinn-components/commit/e5c84fd498e351b7aa6a6b7ee356d83af41ccb11))
+
 ## [0.56.33](https://github.com/Altinn/altinn-components/compare/v0.56.32...v0.56.33) (2026-03-11)
 
 
