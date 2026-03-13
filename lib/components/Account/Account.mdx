@@ -1,7 +1,7 @@
 import { Meta, Canvas } from "@storybook/addon-docs/blocks";
 import * as AccountStories from "./Account.stories";
 import * as AccountMenuStories from "./AccountMenu.stories";
-import * as ToolbarStories from "../Toolbar/Toolbar.stories";
+import * as AccountListStories from "./AccountList.stories";
 
 <Meta title="Account" />
 
@@ -15,26 +15,22 @@ To distinguish between different people and companies, accounts are followed by 
 
 ## Signing in
 
-Before signing in, the `GlobalMenuButton` will display a padlock, indicating that the user should login.
+Before signing in, a padlock will be displayed in the header, indicating that the user should sign in.
 
 <Canvas of={AccountStories.Login} />
 
 ## Current account
 
-User is signed in to their personal account. The current account avatar is displayed in the `GlobalMenuButton`.
+User is signed in to their personal account. The current account avatar is displayed in the header.
 
 <Canvas of={AccountStories.CurrentAccount} />
 
-User is signed in on behalf of a company. The company avatar is displayed in the `GlobalMenuButton`.
+User is signed in on behalf of a company. The company avatar is displayed in the header.
 
 <Canvas of={AccountStories.CompanyAccount} />
 
 ## Switching accounts
 
-The `AccountMenu` is used to switch between accounts. It can be accessed from the `GlobalMenu` or in context where appropriate.
+Switching between accounts is done using the `AccountMenu`. 
 
 <Canvas of={AccountMenuStories.Default} />
-
-In some cases, where switching accounts is a primary tasks, the accountMenu can be included in context, using the `Toolbar`.
-
-<Canvas of={ToolbarStories.WithAccountMenu} />

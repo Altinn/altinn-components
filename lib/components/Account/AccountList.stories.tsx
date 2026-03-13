@@ -28,7 +28,8 @@ import {
   type AccountListItemProps,
   type AccountListProps,
   type BadgeProps,
-  Section,
+  Heading,
+  PageBase,
   Switch,
   Toolbar,
 } from '..';
@@ -38,7 +39,9 @@ const meta = {
   title: 'Account/AccountList',
   component: AccountList,
   tags: ['autodocs'],
-  parameters: {},
+  parameters: {
+    layout: 'fullscreen',
+  },
   args: accountList as AccountListProps,
 } satisfies Meta<typeof AccountList>;
 
@@ -125,10 +128,15 @@ export const Default = ({ includeGroups = false }: UseAccountsProps) => {
     };
   });
 
+  const style = {
+    backgroundColor: 'var(--ds-color-background-tinted)',
+    padding: '1em',
+  };
+
   return (
-    <Section spacing={6}>
-      {items && <AccountList groups={groups} items={controlledItems as AccountListItemProps[]} />}
-    </Section>
+    <div style={style}>
+      <PageBase>{items && <AccountList groups={groups} items={controlledItems as AccountListItemProps[]} />}</PageBase>
+    </div>
   );
 };
 
@@ -152,10 +160,17 @@ export const Loading = () => {
     },
   };
 
+  const style = {
+    backgroundColor: 'var(--ds-color-background-tinted)',
+    padding: '1em',
+  };
+
   return (
-    <Section spacing={6}>
-      <AccountList items={loadingItems} groups={loadingGroups} />
-    </Section>
+    <div style={style}>
+      <PageBase>
+        <AccountList items={loadingItems} groups={loadingGroups} />
+      </PageBase>
+    </div>
   );
 };
 
@@ -177,7 +192,7 @@ export const Controlled = ({
   includeGroups = false,
   collapsible = false,
   contextMenu = false,
-  variant,
+  variant = 'default',
   color,
   virtualized = false,
 }: ControlledProps) => {
@@ -242,40 +257,48 @@ export const Controlled = ({
     };
   });
 
+  const style = {
+    backgroundColor: variant === 'default' ? 'var(--ds-color-background-tinted)' : 'var(--ds-color-background-default)',
+    padding: '1em',
+  };
+
   return (
-    <Section spacing={6} color={color}>
-      <Toolbar {...toolbar}>
-        <Switch label="Vis slettede" size="sm" />
-      </Toolbar>
-      <AccountList virtualized={virtualized} groups={listGroups} items={collapsibleItems as AccountListItemProps[]} />
-      {modalId && modal?.type === 'phone' && <PhoneSettingsModal open={true} onClose={onClose} />}
-      {modalId && modal?.type === 'email' && <EmailSettingsModal open={true} onClose={onClose} />}
-      {modalId && modal?.type === 'address' && <AddressSettingsModal open={true} onClose={onClose} />}
-      {modalItem && modalId && modal?.type === 'groups' && (
-        <AccountGroupsModal
-          open={true}
-          onClose={onClose}
-          icon={modalItem?.icon}
-          title={modalItem?.title as string}
-          description={modalItem?.description as string}
-          items={items?.filter((item) => item.type === 'group') as AccountListItemProps[]}
-        />
-      )}
-      {modalItem && modalId && modal?.type === 'notifications' && (
-        <AccountAlertsModal
-          open={true}
-          onClose={onClose}
-          icon={modalItem?.icon}
-          title={modalItem?.title as string}
-          description={modalItem?.description as string}
-          phone={modalItem?.phone}
-          email={modalItem?.email}
-          smsAlerts={modalItem?.smsAlerts}
-          emailAlerts={modalItem?.emailAlerts}
-          onChange={onChange}
-        />
-      )}
-    </Section>
+    <div style={style} color={color}>
+      <PageBase>
+        <Heading size="xl">Account list</Heading>
+        <Toolbar {...toolbar}>
+          <Switch label="Vis slettede" size="sm" />
+        </Toolbar>
+        <AccountList virtualized={virtualized} groups={listGroups} items={collapsibleItems as AccountListItemProps[]} />
+        {modalId && modal?.type === 'phone' && <PhoneSettingsModal open={true} onClose={onClose} />}
+        {modalId && modal?.type === 'email' && <EmailSettingsModal open={true} onClose={onClose} />}
+        {modalId && modal?.type === 'address' && <AddressSettingsModal open={true} onClose={onClose} />}
+        {modalItem && modalId && modal?.type === 'groups' && (
+          <AccountGroupsModal
+            open={true}
+            onClose={onClose}
+            icon={modalItem?.icon}
+            title={modalItem?.title as string}
+            description={modalItem?.description as string}
+            items={items?.filter((item) => item.type === 'group') as AccountListItemProps[]}
+          />
+        )}
+        {modalItem && modalId && modal?.type === 'notifications' && (
+          <AccountAlertsModal
+            open={true}
+            onClose={onClose}
+            icon={modalItem?.icon}
+            title={modalItem?.title as string}
+            description={modalItem?.description as string}
+            phone={modalItem?.phone}
+            email={modalItem?.email}
+            smsAlerts={modalItem?.smsAlerts}
+            emailAlerts={modalItem?.emailAlerts}
+            onChange={onChange}
+          />
+        )}
+      </PageBase>
+    </div>
   );
 };
 
