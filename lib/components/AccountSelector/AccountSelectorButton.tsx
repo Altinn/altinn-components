@@ -1,4 +1,4 @@
-import { ChevronUpDownIcon, EnterIcon, XMarkIcon } from '@navikt/aksel-icons';
+import { ChevronDownIcon, EnterIcon, XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import { isValidElement } from 'react';
 import { type AccountMenuItemProps, Button, type ButtonProps, useRootContext } from '..';
@@ -73,7 +73,7 @@ export const AccountSelectorButton = ({
         {expanded ? (
           <XMarkIcon className={styles.icon} aria-hidden />
         ) : (
-          <ChevronUpDownIcon className={styles.icon} aria-hidden />
+          <ChevronDownIcon className={styles.icon} aria-hidden />
         )}
       </Button>
     );
