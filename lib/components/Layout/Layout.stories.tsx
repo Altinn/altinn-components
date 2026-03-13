@@ -15,7 +15,7 @@ import {
   useLayout,
 } from '../../../examples';
 import { useAccountSelector } from '../../hooks';
-import type { AccountSelectorProps } from '../GlobalHeader/AccountSelector';
+import type { AccountSelectorProps } from '../AccountSelector';
 
 // Add custom story args interface for easier testing
 interface LayoutStoryArgs extends LayoutProps {

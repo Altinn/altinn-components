@@ -3,6 +3,7 @@ export * from '../types/';
 export * from './Attachment';
 export * from './Avatar';
 export * from './Account';
+export * from './AccountSelector';
 export * from './Alert';
 
 export * from './Badge';
@@ -16,6 +17,7 @@ export * from './Dialog';
 export * from './Divider';
 export * from './Dropdown';
 export * from './Footer';
+export * from './GlobalHeader';
 export * from './GlobalMenu_old';
 export * from './Header';
 export type { GlobalHeaderProps } from './GlobalHeader'; //TO-DO: Fix conflict exports for Header and GlobalHeader
