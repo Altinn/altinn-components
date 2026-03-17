@@ -45,7 +45,7 @@ The header handles opening and closing of its menus internally. However, the acc
 While this flag is set, the accountMenu will always remain open, and in its fullscreen mode.
 Use this to force the user to select an account, for example if no valid account is chosen.
 
-<Canvas of={HeaderStories.ForcedFullScreenAccountSelection} />
+<Canvas of={HeaderStories.ForcedFullScreenAccountSelection} story={{ inline: false, height: '600px' }} />
 
 ### The UseAccountMenu hook
 To simplify the use of the new AccountSelector component, use the useAccountMenu.
