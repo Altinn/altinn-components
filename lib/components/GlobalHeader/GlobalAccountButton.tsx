@@ -1,12 +1,12 @@
-import { ChevronUpDownIcon, EnterIcon, XMarkIcon } from '@navikt/aksel-icons';
+import { ChevronDownIcon, EnterIcon, XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import { isValidElement } from 'react';
 import { type AccountMenuItemProps, Button, type ButtonProps, useRootContext } from '..';
 import { Avatar, type AvatarProps } from '../Avatar';
 
-import styles from './accountSelectorButton.module.css';
+import styles from './globalAccountButton.module.css';
 
-export interface AccountSelectorButtonProps extends ButtonProps {
+export interface GlobalAccountButtonProps extends ButtonProps {
   currentAccount?: AccountMenuItemProps;
   className?: string;
   expanded?: boolean;
@@ -16,14 +16,14 @@ export interface AccountSelectorButtonProps extends ButtonProps {
   loading?: boolean;
 }
 
-export const AccountSelectorButton = ({
+export const GlobalAccountButton = ({
   className,
   currentAccount,
   expanded = false,
   minimized = false,
   loading = false,
   ...buttonProps
-}: AccountSelectorButtonProps) => {
+}: GlobalAccountButtonProps) => {
   const { languageCode } = useRootContext();
   const texts = getTexts(languageCode);
 
@@ -35,7 +35,7 @@ export const AccountSelectorButton = ({
         type="button"
         variant="ghost"
         color="company"
-        className={cx(styles.button, styles.loading, className)}
+        className={cx(styles.accountButton, styles.loading, className)}
         disabled
         aria-label="loading"
       >
@@ -57,7 +57,7 @@ export const AccountSelectorButton = ({
         type="button"
         variant="ghost"
         color="company"
-        className={cx(styles.button, className)}
+        className={cx(styles.accountButton, className)}
         aria-label={expanded ? texts.close : currentAccount.name}
         aria-expanded={expanded}
       >
@@ -73,7 +73,7 @@ export const AccountSelectorButton = ({
         {expanded ? (
           <XMarkIcon className={styles.icon} aria-hidden />
         ) : (
-          <ChevronUpDownIcon className={styles.icon} aria-hidden />
+          <ChevronDownIcon className={styles.icon} aria-hidden />
         )}
       </Button>
     );
@@ -89,10 +89,10 @@ export const AccountSelectorButton = ({
       {...buttonProps}
       as="button"
       type="button"
-      variant="ghost"
+      variant="outline"
       color="company"
       aria-label={texts.login}
-      className={cx(styles.button, styles.loginButton, className)}
+      className={cx(styles.loginButton, className)}
       aria-expanded={expanded}
     >
       {!minimized && <span className={styles.label}>{texts.login}</span>}

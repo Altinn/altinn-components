@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useFloatingDropdown, useGlobalHeader, useInboxLayout, useInboxSearch, useInboxToolbar } from '../';
 import type { FloatingDropdownProps, GlobalHeaderProps } from '../../lib';
 import type {
+  AccountSelectorProps,
   ActivityLogProps,
   AvatarProps,
   BulkButtonProps,
@@ -16,7 +17,6 @@ import type {
   ToolbarProps,
 } from '../../lib';
 import { ContextMenu } from '../../lib';
-import type { AccountSelectorProps } from '../../lib/components/GlobalHeader/AccountSelector.tsx';
 import { dialogContact, getContextMenu, getSeenByLog } from './';
 import { dialogs, getDialogList } from './dialogs';
 

@@ -3,6 +3,7 @@ export * from '../types/';
 export * from './Attachment';
 export * from './Avatar';
 export * from './Account';
+export * from './AccountSelector';
 export * from './Alert';
 
 export * from './Badge';

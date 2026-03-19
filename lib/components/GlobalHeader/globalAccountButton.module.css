@@ -1,17 +1,48 @@
 /* 52px height */
 
-.button {
+.accountButton,
+.loginButton {
   flex-shrink: 0;
   position: relative;
   display: inline-flex;
   align-items: center;
   height: 3.25rem;
   min-width: 3.25rem;
+}
+
+.accountButton {
   padding: 0 0.5rem;
+  max-width: ;
 }
 
 .loginButton {
   padding: 0 0.75rem;
+}
+
+@media (max-width: 389px) {
+  .loginButton {
+    border-radius: 50%;
+  }
+
+  .loginButton .label {
+    display: none;
+  }
+}
+
+@media (max-width: 389px) {
+  .accountButton {
+    border-radius: 50%;
+  }
+
+  .accountButton .icon {
+    display: none;
+  }
+}
+
+@media (max-width: 639px) {
+  .accountButton .label {
+    display: none;
+  }
 }
 
 .avatar {
