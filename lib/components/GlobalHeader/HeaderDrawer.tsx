@@ -1,4 +1,4 @@
-import { CaretDownCircleIcon, CaretUpCircleIcon } from '@navikt/aksel-icons';
+import { ChevronDownIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 import { type ReactNode, useEffect, useRef } from 'react';
 import { Button } from '../Button';
 import { useRootContext } from '../RootProvider';
@@ -106,12 +106,12 @@ export const HeaderDrawer = ({
             <Button className={styles.toggleButton} variant="outline" onClick={onToggle}>
               {expanded ? (
                 <>
-                  <CaretUpCircleIcon className={styles.btnIcon} aria-hidden="true" />
+                  <ChevronUpIcon className={styles.btnIcon} aria-hidden="true" />
                   {texts.minimize}
                 </>
               ) : (
                 <>
-                  <CaretDownCircleIcon className={styles.btnIcon} aria-hidden="true" />
+                  <ChevronDownIcon className={styles.btnIcon} aria-hidden="true" />
                   {texts.fullscreen}
                 </>
               )}

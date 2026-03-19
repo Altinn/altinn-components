@@ -1,12 +1,12 @@
 'use client';
 import { useState } from 'react';
 import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
+import { AccountSelector, type AccountSelectorProps } from '../AccountSelector';
 import type { BadgeProps } from '../Badge';
 import { GlobalMenu, type GlobalMenuProps, type LocaleSwitcherProps } from '../GlobalMenu';
 import type { MenuProps } from '../Menu';
 import { useRootContext } from '../RootProvider';
-import { AccountSelector, type AccountSelectorProps } from './AccountSelector.tsx';
-import { AccountSelectorButton } from './AccountSelectorButton.tsx';
+import { GlobalAccountButton } from './GlobalAccountButton.tsx';
 import { GlobalMenuButton } from './GlobalMenuButton';
 import { HeaderDrawer } from './HeaderDrawer';
 import { HeaderDropdown } from './HeaderDropdown';
@@ -59,9 +59,8 @@ export const GlobalHeader = ({
         <nav className={styles.nav}>
           {accountSelector && (
             <>
-              <AccountSelectorButton
+              <GlobalAccountButton
                 currentAccount={accountSelector.accountMenu?.currentAccount}
-                minimized={!isDesktop}
                 onClick={accountSelector.accountMenu?.currentAccount ? onToggleAccountMenu : onLoginClick}
                 expanded={accountSelectionOpen}
                 loading={accountSelector.loading}

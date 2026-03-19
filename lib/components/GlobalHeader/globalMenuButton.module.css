@@ -31,7 +31,7 @@
   right: -0.5rem;
 }
 
-@media (max-width: 360px) {
+@media (max-width: 479px) {
   .label {
     display: none;
   }

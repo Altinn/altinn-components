@@ -8,9 +8,9 @@ import {
   useGlobalMenu,
 } from '../../../examples';
 import { useAccountSelector } from '../../hooks';
+import type { AccountSelectorProps } from '../AccountSelector';
 import { RootProvider } from '../RootProvider';
 import { GlobalHeader, type GlobalHeaderProps } from './';
-import type { AccountSelectorProps } from './AccountSelector';
 
 const meta = {
   title: 'Layout/GlobalHeader',

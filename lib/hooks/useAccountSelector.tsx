@@ -1,7 +1,6 @@
 import { HeartFillIcon, HeartIcon } from '@navikt/aksel-icons';
 import { useMemo } from 'react';
-import { type AccountMenuItemProps, Button, type MenuGroupProps } from '../components';
-import type { AccountSelectorProps } from '../components/GlobalHeader/AccountSelector';
+import { type AccountMenuItemProps, type AccountSelectorProps, Button, type MenuGroupProps } from '../components';
 import { formatDate, formatDisplayName, formatOrgNo } from '../functions';
 import { useIsDesktop } from './useIsDesktop';
 
