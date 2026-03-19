@@ -16,6 +16,7 @@ export * from './Dialog';
 export * from './Divider';
 export * from './Dropdown';
 export * from './Footer';
+export * from './GlobalHeader';
 export * from './GlobalMenu_old';
 export * from './Header';
 export type { GlobalHeaderProps } from './GlobalHeader'; //TO-DO: Fix conflict exports for Header and GlobalHeader
