@@ -3,7 +3,7 @@ import { Fragment, useState } from 'react';
 import { contextMenu, seenByLog } from '../../../examples';
 import { skatt } from '../../../examples/avatar';
 
-import { ContextMenu, DialogListItem, type DialogListItemProps, type DialogListItemSize, ListItemSelect } from '..';
+import { ContextMenu, DialogListItem, type DialogListItemProps, type DialogListItemSize, ItemSelect } from '..';
 
 import { List } from '../List';
 import { MetaItem } from '../Metadata';
@@ -28,11 +28,20 @@ const meta = {
     status: {},
   },
   decorators: [
-    (Story) => (
-      <List>
-        <Story />
-      </List>
-    ),
+    (Story) => {
+      const style = {
+        backgroundColor: 'var(--ds-color-background-tinted)',
+        padding: '.5em',
+      };
+
+      return (
+        <div style={style}>
+          <List>
+            <Story />
+          </List>
+        </div>
+      );
+    },
   ],
 } satisfies Meta<typeof DialogListItem>;
 
@@ -288,7 +297,7 @@ export const Selectable = (args: DialogListItemProps) => {
           {...args}
           title={item.title}
           selected={item.selected}
-          controls={<ListItemSelect onChange={() => onSelect(item)} checked={item?.selected} aria-label={item.id} />}
+          controls={<ItemSelect onChange={() => onSelect(item)} checked={item?.selected} aria-label={item.id} />}
         />
         <MetaItem as={'li'}>selected:{item.selected ? 'true' : 'false'}</MetaItem>
       </Fragment>

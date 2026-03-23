@@ -4,6 +4,7 @@ import { Button, ButtonGroup, ButtonGroupDivider, type ButtonProps } from '../Bu
 import { Tooltip } from '../Tooltip';
 
 interface ToolbarFilterButtonProps {
+  disabled?: boolean;
   name?: string;
   onClick?: () => void;
   onRemove?: () => void;
@@ -17,6 +18,7 @@ interface ToolbarFilterButtonProps {
 }
 
 export function ToolbarFilterButton({
+  disabled,
   name,
   onClick,
   removable,
@@ -29,7 +31,7 @@ export function ToolbarFilterButton({
 }: ToolbarFilterButtonProps) {
   if (removable) {
     return (
-      <ButtonGroup variant={variant} connected>
+      <ButtonGroup disabled={disabled} variant={variant} connected>
         <Button variant={variant} onClick={onClick} data-id={`filter-button-${name}`} aria-expanded={open} ref={ref}>
           <span>{children}</span>
         </Button>
@@ -51,7 +53,7 @@ export function ToolbarFilterButton({
   }
 
   return (
-    <Button variant={variant} onClick={onClick} data-id={`filter-button-${name}`}>
+    <Button disabled={disabled} variant={variant} onClick={onClick} data-id={`filter-button-${name}`}>
       <span>{children}</span>
       <ChevronUpDownIcon />
     </Button>

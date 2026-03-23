@@ -6,7 +6,6 @@ import {
   MetaItemLabel,
   type MetaItemSize,
   type MetaItemVariant,
-  Tooltip,
 } from '..';
 
 export interface MetaTimestampProps {
@@ -34,21 +33,8 @@ export const MetaTimestamp = ({
   tooltip,
   children,
 }: MetaTimestampProps) => {
-  if (tooltip) {
-    return (
-      <Tooltip placement="bottom" content={tooltip}>
-        <MetaItemBase loading={loading} as="time" variant={variant} datetime={datetime} size={size}>
-          {!loading && icon && <MetaItemIcon size={size} icon={icon} />}
-          <MetaItemLabel variant={variant} size={size}>
-            {children}
-          </MetaItemLabel>
-        </MetaItemBase>
-      </Tooltip>
-    );
-  }
-
   return (
-    <MetaItemBase loading={loading} as="time" variant={variant} datetime={datetime} size={size}>
+    <MetaItemBase tooltip={tooltip} loading={loading} as="time" variant={variant} datetime={datetime} size={size}>
       {!loading && icon && <MetaItemIcon size={size} icon={icon} />}
       <MetaItemLabel variant={variant} size={size}>
         {children}

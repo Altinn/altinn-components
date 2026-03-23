@@ -6,6 +6,7 @@ import { ToolbarFilterMenu } from './ToolbarFilterMenu.tsx';
 import { type FilterProps, type FilterState, useFilter } from './useFilter';
 
 export interface ToolbarFilterProps {
+  disabled?: boolean;
   filters: FilterProps[];
   addLabel?: string;
   addNextLabel?: string;
@@ -19,6 +20,7 @@ export interface ToolbarFilterProps {
 }
 
 export const ToolbarFilter = ({
+  disabled,
   filters,
   filterState = {},
   onFilterStateChange,
@@ -65,6 +67,7 @@ export const ToolbarFilter = ({
         return (
           <ToolbarFilterMenu
             {...filter}
+            disabled={disabled}
             submitLabel={submitLabel}
             key={index}
             onToggle={() => onToggle(filter.name)}
@@ -79,7 +82,7 @@ export const ToolbarFilter = ({
           />
         );
       })}
-      {hiddenFilters?.length > 0 && (
+      {!disabled && hiddenFilters?.length > 0 && (
         <ToolbarFilterAddMenu
           name="add"
           onToggle={() => onToggle('add')}
@@ -91,7 +94,7 @@ export const ToolbarFilter = ({
           virtualized={virtualized}
         />
       )}
-      {showResetButton && (
+      {!disabled && showResetButton && (
         <Button onClick={handleReset} variant="ghost">
           <XMarkIcon aria-hidden="true" />
           <span>{resetLabel}</span>

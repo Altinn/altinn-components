@@ -29,9 +29,9 @@
 }
 
 .item[data-type="scope"] {
-  background-color: var(--ds-color-border-strong);
+  background-color: var(--ds-color-surface-tinted);
   border-color: var(--ds-color-border-strong);
-  color: var(--ds-color-base-contrast-default);
+  color: var(--ds-color-text-default);
   font-weight: 500;
 }
 

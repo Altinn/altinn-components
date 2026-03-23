@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { MetaItemBase, MetaItemIcon, MetaItemLabel, type MetaItemSize, type MetaItemVariant, Tooltip } from '..';
+import { MetaItemBase, MetaItemIcon, MetaItemLabel, type MetaItemSize, type MetaItemVariant } from '..';
 
 export interface MetaProgressProps {
   /** Meta size */
@@ -15,21 +15,8 @@ export interface MetaProgressProps {
 }
 
 export const MetaProgress = ({ size = 'xs', variant = 'text', progress = 0, tooltip, children }: MetaProgressProps) => {
-  if (tooltip) {
-    return (
-      <Tooltip placement="bottom" content={tooltip}>
-        <MetaItemBase variant={variant} size={size}>
-          <MetaItemIcon size={size} progress={progress} />
-          <MetaItemLabel variant={variant} size={size}>
-            {children}
-          </MetaItemLabel>
-        </MetaItemBase>
-      </Tooltip>
-    );
-  }
-
   return (
-    <MetaItemBase variant={variant} size={size}>
+    <MetaItemBase variant={variant} size={size} tooltip={tooltip}>
       <MetaItemIcon size={size} progress={progress} />
       <MetaItemLabel variant={variant} size={size}>
         {children}

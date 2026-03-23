@@ -1,18 +1,18 @@
-import { Button, Input } from '../';
+import { Button, Input, type InputProps } from '../';
 
-export interface ItemSelectProps {
-  selected?: boolean;
+export interface ItemSelectProps extends InputProps {
   onClick?: () => void;
+  className?: string;
 }
 
 /**
  * List item checkbox
  */
 
-export const ItemSelect = ({ selected, onClick }: ItemSelectProps) => {
+export const ItemSelect = ({ className, onClick, checked, onChange, ...rest }: ItemSelectProps) => {
   return (
-    <Button size="xs" variant="ghost" icon rounded onClick={onClick}>
-      <Input type="checkbox" size="xs" checked={selected} style={{ pointerEvents: 'none' }} />
+    <Button className={className} size="xs" variant="ghost" icon rounded onClick={onClick}>
+      <Input {...rest} type="checkbox" size="xs" checked={checked} onChange={onChange} />
     </Button>
   );
 };

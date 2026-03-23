@@ -2,7 +2,7 @@ import cx from 'classnames';
 import type { ReactNode } from 'react';
 import styles from './itemControls.module.css';
 
-interface ItemControlsProps {
+export interface ItemControlsProps {
   className?: string;
   children?: ReactNode;
 }

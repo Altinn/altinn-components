@@ -8,6 +8,7 @@ import type { FilterProps, FilterState } from './useFilter.tsx';
 
 export interface ToolbarFilterMenuProps extends Omit<FilterProps, 'variant'> {
   as?: ElementType;
+  disabled?: boolean;
   open: boolean;
   onToggle: () => void;
   onClose: () => void;
@@ -24,6 +25,7 @@ export interface ToolbarFilterMenuProps extends Omit<FilterProps, 'variant'> {
 
 export const ToolbarFilterMenu = ({
   as,
+  disabled,
   size,
   name,
   label = '',
@@ -89,6 +91,21 @@ export const ToolbarFilterMenu = ({
       onRemove?.();
     }
   };
+
+  if (disabled) {
+    return (
+      <ToolbarFilterButton
+        disabled
+        name={name}
+        removable
+        variant={customVariant || variant}
+        removeLabel={removeLabel}
+        open={open}
+      >
+        {label}
+      </ToolbarFilterButton>
+    );
+  }
 
   if (removable) {
     return (

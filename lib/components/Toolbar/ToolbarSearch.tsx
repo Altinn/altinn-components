@@ -16,6 +16,7 @@ export const ToolbarSearch = ({
   onKeyDown,
   menu,
   minLength,
+  disabled,
 }: ToolbarSearchProps) => {
   return (
     <SearchField
@@ -34,6 +35,7 @@ export const ToolbarSearch = ({
       minLength={minLength}
       loading={loading}
       menu={menu}
+      disabled={disabled}
     />
   );
 };

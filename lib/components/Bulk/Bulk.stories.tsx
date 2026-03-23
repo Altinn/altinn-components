@@ -10,8 +10,6 @@ import {
   ItemSelect,
   Layout,
   PageBase,
-  QueryLabel,
-  type QueryLabelProps,
   Toolbar,
   type ToolbarProps,
 } from '../';
@@ -28,7 +26,11 @@ const meta = {
 
 export default meta;
 
-export const Default = ({ defaultBulkIds = [] }: { defaultBulkIds?: string[] }) => {
+export const Default = ({
+  defaultBulkIds = [],
+}: {
+  defaultBulkIds?: string[];
+}) => {
   const { layout, toolbar, results } = useInbox({});
 
   const bulkActions = [
@@ -98,11 +100,21 @@ export const Default = ({ defaultBulkIds = [] }: { defaultBulkIds?: string[] }) 
     return {
       ...item,
       id,
+      as: 'a',
+      href: '#',
       color: layout?.color,
+      selectable: bulkMode,
+      tooltips: {
+        status: 'Dette er dialogens status',
+        sent: 'Antall meldinger sendt',
+        received: 'Antall meldinger mottatt',
+        seenBy: 'Hvem har sett dialogen?',
+      },
+      tabIndex: bulkMode ? 1 : undefined,
       selected: bulkIds?.includes(id),
-      onClick: () => onToggle(id),
+      onClick: () => (bulkMode ? onToggle(id) : alert('Open dialog')),
       controls: bulkMode ? (
-        <ItemSelect selected={bulkIds?.includes(id)} onClick={() => onToggle(id)} />
+        <ItemSelect checked={bulkIds?.includes(id)} onClick={() => onToggle(id)} />
       ) : (
         <ContextMenu {...itemContextMenu} />
       ),
@@ -133,21 +145,16 @@ export const Default = ({ defaultBulkIds = [] }: { defaultBulkIds?: string[] }) 
   const accountMenu = toolbar?.accountMenu;
   const currentAccount = accountMenu?.items?.find((item) => item.selected) || accountMenu?.items[0];
 
-  const queryParams = [
-    { type: 'scope', label: 'Mathias Dyngeland' },
-    { type: 'search', label: 'Skatt' },
-    { type: 'filter', label: 'Filter' },
-    { type: 'filter', label: 'Filter 2' },
-  ];
-
   const breadcrumbsItems = layout?.breadcrumbs?.items || [];
   const bulkBreadcrumbsItems = [...breadcrumbsItems, { label: 'Velg flere', href: '/inbox' }];
 
   return (
     <Layout
       {...layout}
-      breadcrumbs={{ ...layout?.breadcrumbs, items: bulkMode ? bulkBreadcrumbsItems : breadcrumbsItems }}
-      color={bulkMode ? 'neutral' : layout?.color}
+      breadcrumbs={{
+        ...layout?.breadcrumbs,
+        items: bulkMode ? bulkBreadcrumbsItems : breadcrumbsItems,
+      }}
       sidebar={sidebar}
       useGlobalHeader={true}
     >
@@ -161,15 +168,17 @@ export const Default = ({ defaultBulkIds = [] }: { defaultBulkIds?: string[] }) 
         />
         <Heading size="xl">Innboks</Heading>
 
-        {bulkMode ? (
-          <QueryLabel size="xs" variant="subtle" params={queryParams as QueryLabelProps['params']} />
-        ) : (
-          <Toolbar
-            {...toolbar}
-            search={{ value: 'Skatt' }}
-            accountMenu={{ ...accountMenu, label: currentAccount?.name } as ToolbarProps['accountMenu']}
-          />
-        )}
+        <Toolbar
+          {...toolbar}
+          search={{ value: 'Skatt' }}
+          disabled={bulkMode}
+          accountMenu={
+            {
+              ...accountMenu,
+              label: currentAccount?.name,
+            } as ToolbarProps['accountMenu']
+          }
+        />
         {results && <DialogList items={items} groups={results?.groups} />}
 
         <BulkFooter hidden={!bulkMode} actions={bulkActions} />

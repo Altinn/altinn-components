@@ -5,7 +5,7 @@ import { ListItemBase, type ListItemBaseProps } from './ListItemBase';
 import { ListItemHeader, type ListItemHeaderProps } from './ListItemHeader';
 import styles from './listItem.module.css';
 
-export type ListItemVariant = 'default' | 'subtle' | 'tinted';
+export type ListItemVariant = 'default' | 'subtle' | 'tinted' | string;
 
 export interface ListItemProps extends ListItemBaseProps, ListItemHeaderProps {
   /** List item id */
