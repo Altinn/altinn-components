@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   AvatarGroup,
   type AvatarProps,
@@ -72,49 +73,67 @@ export interface DialogListItemProps extends ListItemProps, DialogMetadataProps 
  * to mark the item as checked/unchecked and can visually indicate if it is unread.
  */
 
-export const DialogListItem = ({
-  size = 'xl',
-  state = 'normal',
-  loading,
-  controls,
-  select,
-  selected,
-  status,
-  extendedStatusLabel,
-  sender,
-  recipient,
-  recipientLabel = 'to',
-  grouped = false,
-  updatedAt,
-  updatedAtLabel,
-  archived,
-  archivedAt,
-  archivedAtLabel,
-  trashed,
-  trashedAt,
-  trashedAtLabel,
-  badge,
-  dueAt,
-  dueAtLabel,
-  unread,
-  seenByLog,
-  draftsLabel,
-  sentCount,
-  receivedCount,
-  attachmentsCount,
-  attachmentsLabel,
-  tooltips = {},
-  title,
-  description,
-  summary,
-  highlightWords,
-  variant = 'default',
-  id,
-  ...rest
-}: DialogListItemProps) => {
-  const applicableVariant = selected ? 'tinted' : variant;
+export const DialogListItem = React.memo(
+  ({
+    size = 'xl',
+    state = 'normal',
+    loading,
+    controls,
+    select,
+    selected,
+    status,
+    extendedStatusLabel,
+    sender,
+    recipient,
+    recipientLabel = 'to',
+    grouped = false,
+    updatedAt,
+    updatedAtLabel,
+    archived,
+    archivedAt,
+    archivedAtLabel,
+    trashed,
+    trashedAt,
+    trashedAtLabel,
+    badge,
+    dueAt,
+    dueAtLabel,
+    unread,
+    seenByLog,
+    draftsLabel,
+    sentCount,
+    receivedCount,
+    attachmentsCount,
+    attachmentsLabel,
+    tooltips = {},
+    title,
+    description,
+    summary,
+    highlightWords,
+    variant = 'default',
+    id,
+    ...rest
+  }: DialogListItemProps) => {
+    const applicableVariant = selected ? 'tinted' : variant;
 
-  if (size === 'xs' || size === 'sm') {
+    if (size === 'xs' || size === 'sm') {
+      return (
+        <ListItem
+          {...rest}
+          id={id}
+          size={size}
+          selected={selected}
+          variant={applicableVariant}
+          ariaLabel={title}
+          disabled={loading}
+          icon={sender}
+          title={title}
+          description={summary || description}
+          highlightWords={highlightWords}
+        />
+      );
+    }
+
     return (
       <ListItem
         {...rest}
@@ -122,95 +141,81 @@ export const DialogListItem = ({
         size={size}
         selected={selected}
         variant={applicableVariant}
-        ariaLabel={title}
-        disabled={loading}
-        icon={sender}
+        controls={<div className={styles.controls}>{controls}</div>}
         title={title}
-        description={summary || description}
-        highlightWords={highlightWords}
+        disabled={loading}
+        label={
+          <div
+            className={styles.border}
+            data-selected={selected}
+            data-status={status?.value}
+            data-size={size}
+            data-unread={unread}
+            data-archived={archived}
+            data-trashed={trashed}
+            data-loading={loading}
+          >
+            <header className={styles.header} data-size={size}>
+              <span className={styles.heading}>
+                <Heading
+                  as="h2"
+                  highlightWords={highlightWords}
+                  weight={unread ? 'bold' : 'normal'}
+                  loading={loading}
+                  maxRows={2}
+                  className={styles.title}
+                >
+                  {title}
+                  {badge && <Badge className={styles.dot} variant="tinted" size="xs" {...badge} />}
+                </Heading>
+              </span>
+              <DialogByline
+                size="xs"
+                loading={loading}
+                sender={sender}
+                recipient={recipient}
+                recipientLabel={recipientLabel}
+                grouped={grouped}
+              />
+              {summary && (
+                <Heading
+                  as="h3"
+                  highlightWords={highlightWords}
+                  weight="normal"
+                  className={styles.summary}
+                  loading={loading}
+                  maxRows={2}
+                >
+                  {summary}
+                </Heading>
+              )}
+            </header>
+            <DialogMetadata
+              className={styles.footer}
+              loading={loading}
+              status={status}
+              extendedStatusLabel={extendedStatusLabel}
+              draftsLabel={draftsLabel}
+              sentCount={sentCount}
+              receivedCount={receivedCount}
+              updatedAt={updatedAt}
+              updatedAtLabel={updatedAtLabel}
+              archivedAt={archivedAt}
+              archivedAtLabel={archivedAtLabel}
+              trashedAt={trashedAt}
+              trashedAtLabel={trashedAtLabel}
+              dueAt={dueAt}
+              dueAtLabel={dueAtLabel}
+              attachmentsCount={attachmentsCount}
+              attachmentsLabel={attachmentsLabel}
+              tooltips={tooltips}
+            />
+            {seenByLog && <AvatarGroup className={styles.seenBy} items={seenByLog.items} />}
+          </div>
+        }
       />
     );
-  }
+  },
+);
 
-  return (
-    <ListItem
-      {...rest}
-      id={id}
-      size={size}
-      selected={selected}
-      variant={applicableVariant}
-      controls={<div className={styles.controls}>{controls}</div>}
-      title={title}
-      disabled={loading}
-      label={
-        <div
-          className={styles.border}
-          data-selected={selected}
-          data-status={status?.value}
-          data-size={size}
-          data-unread={unread}
-          data-archived={archived}
-          data-trashed={trashed}
-          data-loading={loading}
-        >
-          <header className={styles.header} data-size={size}>
-            <span className={styles.heading}>
-              <Heading
-                as="h2"
-                highlightWords={highlightWords}
-                weight={unread ? 'bold' : 'normal'}
-                loading={loading}
-                maxRows={2}
-                className={styles.title}
-              >
-                {title}
-                {badge && <Badge className={styles.dot} variant="tinted" size="xs" {...badge} />}
-              </Heading>
-            </span>
-            <DialogByline
-              size="xs"
-              loading={loading}
-              sender={sender}
-              recipient={recipient}
-              recipientLabel={recipientLabel}
-              grouped={grouped}
-            />
-            {summary && (
-              <Heading
-                as="h3"
-                highlightWords={highlightWords}
-                weight="normal"
-                className={styles.summary}
-                loading={loading}
-                maxRows={2}
-              >
-                {summary}
-              </Heading>
-            )}
-          </header>
-          <DialogMetadata
-            className={styles.footer}
-            loading={loading}
-            status={status}
-            extendedStatusLabel={extendedStatusLabel}
-            draftsLabel={draftsLabel}
-            sentCount={sentCount}
-            receivedCount={receivedCount}
-            updatedAt={updatedAt}
-            updatedAtLabel={updatedAtLabel}
-            archivedAt={archivedAt}
-            archivedAtLabel={archivedAtLabel}
-            trashedAt={trashedAt}
-            trashedAtLabel={trashedAtLabel}
-            dueAt={dueAt}
-            dueAtLabel={dueAtLabel}
-            attachmentsCount={attachmentsCount}
-            attachmentsLabel={attachmentsLabel}
-            tooltips={tooltips}
-          />
-          {seenByLog && <AvatarGroup className={styles.seenBy} items={seenByLog.items} />}
-        </div>
-      }
-    />
-  );
-};
+DialogListItem.displayName = 'DialogListItem';

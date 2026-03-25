@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
 import { Flex, Heading, List, Section, Typography } from '..';
 
 export interface DialogListGroupProps {
@@ -7,7 +7,7 @@ export interface DialogListGroupProps {
   children?: ReactNode;
 }
 
-export const DialogListGroup = ({ title, description, children }: DialogListGroupProps) => {
+export const DialogListGroup = React.memo(({ title, description, children }: DialogListGroupProps) => {
   return (
     <Section spacing={4}>
       <Flex direction="col" spacing={2}>
@@ -21,4 +21,6 @@ export const DialogListGroup = ({ title, description, children }: DialogListGrou
       <List spacing={3}>{children}</List>
     </Section>
   );
-};
+});
+
+DialogListGroup.displayName = 'DialogListGroup';

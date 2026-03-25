@@ -79,6 +79,16 @@ export const useMenuSearch = ({
   const texts = React.useMemo(() => getTexts(languageCode), [languageCode]);
 
   const [qRaw, setQRaw] = React.useState('');
+  const [qDebounced, setQDebounced] = React.useState('');
+
+  React.useEffect(() => {
+    if (qRaw === '') {
+      setQDebounced('');
+      return;
+    }
+    const timer = setTimeout(() => setQDebounced(qRaw), 150);
+    return () => clearTimeout(timer);
+  }, [qRaw]);
 
   const onSearch = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -93,7 +103,7 @@ export const useMenuSearch = ({
     onClear?.();
   }, [onClear]);
 
-  const q = React.useMemo(() => qRaw.trim().replace(/\s+/g, ' '), [qRaw]);
+  const q = React.useMemo(() => qDebounced.trim().replace(/\s+/g, ' '), [qDebounced]);
   const hasQuery = q.length > 0;
   const qLower = React.useMemo(() => q.toLowerCase(), [q]);
   const highlightWords = React.useMemo(() => (q ? q.split(' ') : []), [q]);
@@ -114,7 +124,6 @@ export const useMenuSearch = ({
     () =>
       items.map((item) => {
         const derived = item?.searchWords?.length ? item.searchWords : [item?.title, item?.description].filter(Boolean);
-
         return {
           ...item,
           searchWords: (derived ?? []) as string[],

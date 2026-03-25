@@ -22,13 +22,13 @@ export const DialogList = ({ items, groups = {}, sortGroupBy, highlightWords, is
   return (
     <Section spacing={6} aria-busy={isLoading}>
       {menu?.map((group, groupIndex) => {
-        const groupProps = group.props || {};
-
         return (
-          <DialogListGroup {...groupProps} key={'dialog-list-item' + groupIndex}>
-            {group?.items.map((item, index) => {
+          <DialogListGroup {...(group.props || {})} key={'dialog-list-group-' + groupIndex}>
+            {group?.items.map((item) => {
               const itemProps = item.props || {};
-              return <DialogListItem {...itemProps} highlightWords={highlightWords} key={'dialog-list-item' + index} />;
+              return (
+                <DialogListItem {...itemProps} highlightWords={highlightWords} key={itemProps.id ?? item.menuIndex} />
+              );
             })}
           </DialogListGroup>
         );

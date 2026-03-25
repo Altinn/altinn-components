@@ -1,7 +1,7 @@
 'use client';
 import { TenancyIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
-import { type CSSProperties, type ReactElement, useState } from 'react';
+import React, { type CSSProperties, type ReactElement, useState } from 'react';
 import { Skeleton } from '../Skeleton';
 import styles from './avatar.module.css';
 import { fromStringToColor } from './color';
@@ -60,89 +60,93 @@ export const isAvatarProps = (icon: unknown): icon is AvatarProps => {
 /**
  * Avatar component to display user or company avatars with various customization options.
  */
-export const Avatar = ({
-  type = 'person',
-  isParent,
-  isDeleted = false,
-  size,
-  name = 'Avatar',
-  shape,
-  color,
-  variant,
-  imageUrl,
-  imageUrlAlt,
-  customLabel,
-  loading,
-  className,
-  colorKey,
-  style = {},
-}: AvatarProps): ReactElement => {
-  const [hasImageError, setHasImageError] = useState<boolean>(false);
-  const applicableShape: AvatarShape = shape || type === 'person' ? 'circle' : 'square';
-  const applicableColor: AvatarColor = color || type === 'person' ? 'light' : 'dark';
+export const Avatar = React.memo(
+  ({
+    type = 'person',
+    isParent,
+    isDeleted = false,
+    size,
+    name = 'Avatar',
+    shape,
+    color,
+    variant,
+    imageUrl,
+    imageUrlAlt,
+    customLabel,
+    loading,
+    className,
+    colorKey,
+    style = {},
+  }: AvatarProps): ReactElement => {
+    const [hasImageError, setHasImageError] = useState<boolean>(false);
+    const applicableShape: AvatarShape = shape || type === 'person' ? 'circle' : 'square';
+    const applicableColor: AvatarColor = color || type === 'person' ? 'light' : 'dark';
 
-  let applicableVariant = variant;
+    let applicableVariant = variant;
 
-  if (type === 'company') {
-    if (typeof isParent === 'boolean') {
-      applicableVariant = isParent ? 'solid' : 'outline';
+    if (type === 'company') {
+      if (typeof isParent === 'boolean') {
+        applicableVariant = isParent ? 'solid' : 'outline';
+      }
     }
-  }
 
-  const { backgroundColor, foregroundColor } = fromStringToColor(colorKey ?? name, applicableColor);
-  const initials = (name[0] ?? '').toUpperCase();
-  const usingImageUrl = imageUrl && !hasImageError;
+    const { backgroundColor, foregroundColor } = fromStringToColor(colorKey ?? name, applicableColor);
+    const initials = (name[0] ?? '').toUpperCase();
+    const usingImageUrl = imageUrl && !hasImageError;
 
-  const inlineStyles =
-    !loading && !usingImageUrl
-      ? {
-          ...style,
-          backgroundColor: applicableVariant === 'outline' ? foregroundColor : backgroundColor,
-          color: applicableVariant === 'outline' ? backgroundColor : foregroundColor,
-        }
-      : style;
+    const inlineStyles =
+      !loading && !usingImageUrl
+        ? {
+            ...style,
+            backgroundColor: applicableVariant === 'outline' ? foregroundColor : backgroundColor,
+            color: applicableVariant === 'outline' ? backgroundColor : foregroundColor,
+          }
+        : style;
 
-  return (
-    <div
-      className={cx(styles.avatar, className)}
-      style={inlineStyles}
-      data-shape={applicableShape}
-      data-size={size}
-      data-ui="avatar"
-      data-image={!!imageUrl}
-      aria-hidden
-    >
-      <Skeleton loading={loading} className={styles.shape} variant="circle">
-        <div className={styles.shape} data-variant={applicableVariant}>
-          {type !== 'system' && usingImageUrl && (
-            <img
-              src={imageUrl}
-              className={styles.image}
-              alt={imageUrlAlt || imageUrl}
-              onError={() => {
-                setHasImageError(true);
-              }}
-            />
+    return (
+      <div
+        className={cx(styles.avatar, className)}
+        style={inlineStyles}
+        data-shape={applicableShape}
+        data-size={size}
+        data-ui="avatar"
+        data-image={!!imageUrl}
+        aria-hidden
+      >
+        <Skeleton loading={loading} className={styles.shape} variant="circle">
+          <div className={styles.shape} data-variant={applicableVariant}>
+            {type !== 'system' && usingImageUrl && (
+              <img
+                src={imageUrl}
+                className={styles.image}
+                alt={imageUrlAlt || imageUrl}
+                onError={() => {
+                  setHasImageError(true);
+                }}
+              />
+            )}
+            {type === 'system' && !usingImageUrl && (
+              <span className={styles.icon}>
+                <TenancyIcon className={styles.svg} />
+              </span>
+            )}
+          </div>
+          {!usingImageUrl && type !== 'system' && <span className={styles.label}>{customLabel || initials}</span>}
+          {isDeleted && (
+            <svg
+              aria-hidden="true"
+              className={styles.deletedIcon}
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M0 24L24 -1.20156e-06" stroke="currentColor" />
+            </svg>
           )}
-          {type === 'system' && !usingImageUrl && (
-            <span className={styles.icon}>
-              <TenancyIcon className={styles.svg} />
-            </span>
-          )}
-        </div>
-        {!usingImageUrl && type !== 'system' && <span className={styles.label}>{customLabel || initials}</span>}
-        {isDeleted && (
-          <svg
-            aria-hidden="true"
-            className={styles.deletedIcon}
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M0 24L24 -1.20156e-06" stroke="currentColor" />
-          </svg>
-        )}
-      </Skeleton>
-    </div>
-  );
-};
+        </Skeleton>
+      </div>
+    );
+  },
+);
+
+Avatar.displayName = 'Avatar';

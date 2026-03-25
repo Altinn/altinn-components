@@ -1,13 +1,14 @@
 import { CheckmarkIcon, ChevronRightIcon, MinusIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
-import type {
-  AriaAttributes,
-  ElementType,
-  KeyboardEvent,
-  KeyboardEventHandler,
-  MouseEventHandler,
-  ReactElement,
-  ReactNode,
+import {
+  type AriaAttributes,
+  type ElementType,
+  type KeyboardEvent,
+  type KeyboardEventHandler,
+  type MouseEventHandler,
+  type ReactElement,
+  type ReactNode,
+  memo,
 } from 'react';
 
 import { type AvatarGroupProps, type AvatarProps, type Color, Icon, type IconProps, type SvgElement } from '..';
@@ -75,48 +76,119 @@ export interface MenuItemProps extends AriaAttributes {
   'data-testid'?: string;
 }
 
-export const MenuItem = ({
-  id,
-  groupId,
-  role = 'menuItem',
-  as,
-  href,
-  onClick,
-  onChange,
-  onKeyPress,
-  onMouseEnter,
-  size = 'sm',
-  variant,
-  color,
-  name,
-  value,
-  checked,
-  icon,
-  label,
-  badge,
-  controls,
-  title,
-  description,
-  highlightWords,
-  count,
-  linkIcon = false,
-  disabled,
-  selected,
-  active,
-  tabIndex = 0,
-  className,
-  'data-testid': dataTestId,
-  ...attributes
-}: MenuItemProps) => {
-  const applicableLabel = typeof label === 'function' ? label() : label;
-  const ariaProps = pickAriaProps(attributes as Record<string, unknown>);
+export const MenuItem = memo(
+  ({
+    id,
+    groupId,
+    role = 'menuItem',
+    as,
+    href,
+    onClick,
+    onChange,
+    onKeyPress,
+    onMouseEnter,
+    size = 'sm',
+    variant,
+    color,
+    name,
+    value,
+    checked,
+    icon,
+    label,
+    badge,
+    controls,
+    title,
+    description,
+    highlightWords,
+    count,
+    linkIcon = false,
+    disabled,
+    selected,
+    active,
+    tabIndex = 0,
+    className,
+    'data-testid': dataTestId,
+    ...attributes
+  }: MenuItemProps) => {
+    const applicableLabel = typeof label === 'function' ? label() : label;
+    const ariaProps = pickAriaProps(attributes as Record<string, unknown>);
 
-  if (role === 'checkbox' || role === 'radio') {
-    const applicableIcon = icon || (checked ? CheckmarkIcon : MinusIcon);
+    if (role === 'checkbox' || role === 'radio') {
+      const applicableIcon = icon || (checked ? CheckmarkIcon : MinusIcon);
+
+      return (
+        <label
+          {...ariaProps}
+          className={cx(styles.item, className)}
+          id={id}
+          data-id={id}
+          data-group-id={groupId}
+          data-size={size}
+          data-variant={variant}
+          data-color={color}
+          data-active={active}
+          role={role}
+          aria-disabled={disabled}
+          aria-checked={checked}
+          aria-selected={checked}
+          data-selected={checked}
+          aria-label={title}
+          data-testid={dataTestId}
+          onKeyUp={(e: KeyboardEvent) => {
+            if (disabled) return;
+            e.key === 'Enter' && onClick?.();
+            onKeyPress?.(e);
+          }}
+          onClick={onClick}
+          onMouseEnter={onMouseEnter}
+          tabIndex={tabIndex}
+        >
+          <input
+            name={name}
+            value={value}
+            type={role}
+            checked={Boolean(checked)}
+            onChange={onChange}
+            readOnly={!onChange}
+            style={{ opacity: 0, position: 'absolute' }}
+            tabIndex={-1}
+          />
+          <ItemMedia icon={applicableIcon} className={styles.media} />
+          <ItemLabel
+            className={styles.label}
+            highlightWords={highlightWords}
+            title={
+              <>
+                {title} {count && <i className={styles.count}>{count}</i>}
+              </>
+            }
+            titleProps={{
+              weight: 'medium',
+              className: styles.title,
+            }}
+            description={description}
+            descriptionProps={{
+              weight: 'normal',
+              variant: 'subtle',
+              className: styles.description,
+            }}
+          >
+            {applicableLabel}
+          </ItemLabel>
+          <ItemControls>
+            {badge && <Badge {...badge} />}
+            {!disabled && controls}
+          </ItemControls>
+        </label>
+      );
+    }
+
+    const Component = as || (href ? 'a' : 'button');
+    const applicableLinkIcon = linkIcon && ChevronRightIcon;
 
     return (
-      <label
-        {...ariaProps}
+      <Component
+        href={href}
         className={cx(styles.item, className)}
         id={id}
         data-id={id}
@@ -125,11 +197,10 @@ export const MenuItem = ({
         data-variant={variant}
         data-color={color}
         data-active={active}
-        role={role}
         aria-disabled={disabled}
-        aria-checked={checked}
-        aria-selected={checked}
-        data-selected={checked}
+        {...(disabled ? { disabled } : {})}
+        aria-selected={selected}
+        data-selected={selected}
         aria-label={title}
         data-testid={dataTestId}
         onKeyUp={(e: KeyboardEvent) => {
@@ -139,19 +210,11 @@ export const MenuItem = ({
         }}
         onClick={onClick}
         onMouseEnter={onMouseEnter}
-        tabIndex={tabIndex}
+        tabIndex={disabled ? -1 : (tabIndex ?? 0)}
+        role={role === 'menuItem' ? 'menuitem' : role}
+        {...ariaProps}
       >
-        <input
-          name={name}
-          value={value}
-          type={role}
-          checked={Boolean(checked)}
-          onChange={onChange}
-          readOnly={!onChange}
-          style={{ opacity: 0, position: 'absolute' }}
-          tabIndex={-1}
-        />
-        <ItemMedia icon={applicableIcon} className={styles.media} />
+        {icon && <ItemMedia icon={icon} className={styles.media} />}
         <ItemLabel
           className={styles.label}
           highlightWords={highlightWords}
@@ -166,7 +229,6 @@ export const MenuItem = ({
           }}
           description={description}
           descriptionProps={{
-            weight: 'normal',
             variant: 'subtle',
             className: styles.description,
           }}
@@ -176,68 +238,9 @@ export const MenuItem = ({
         <ItemControls>
           {badge && <Badge {...badge} />}
           {!disabled && controls}
+          {linkIcon && <Icon svgElement={applicableLinkIcon as SvgElement} className={styles.linkIcon} />}
         </ItemControls>
-      </label>
+      </Component>
     );
-  }
-
-  const Component = as || (href ? 'a' : 'button');
-  const applicableLinkIcon = linkIcon && ChevronRightIcon;
-
-  return (
-    <Component
-      href={href}
-      className={cx(styles.item, className)}
-      id={id}
-      data-id={id}
-      data-group-id={groupId}
-      data-size={size}
-      data-variant={variant}
-      data-color={color}
-      data-active={active}
-      aria-disabled={disabled}
-      {...(disabled ? { disabled } : {})}
-      aria-selected={selected}
-      data-selected={selected}
-      aria-label={title}
-      data-testid={dataTestId}
-      onKeyUp={(e: KeyboardEvent) => {
-        if (disabled) return;
-        e.key === 'Enter' && onClick?.();
-        onKeyPress?.(e);
-      }}
-      onClick={onClick}
-      onMouseEnter={onMouseEnter}
-      tabIndex={disabled ? -1 : (tabIndex ?? 0)}
-      role={role === 'menuItem' ? 'menuitem' : role}
-      {...ariaProps}
-    >
-      {icon && <ItemMedia icon={icon} className={styles.media} />}
-      <ItemLabel
-        className={styles.label}
-        highlightWords={highlightWords}
-        title={
-          <>
-            {title} {count && <i className={styles.count}>{count}</i>}
-          </>
-        }
-        titleProps={{
-          weight: 'medium',
-          className: styles.title,
-        }}
-        description={description}
-        descriptionProps={{
-          variant: 'subtle',
-          className: styles.description,
-        }}
-      >
-        {applicableLabel}
-      </ItemLabel>
-      <ItemControls>
-        {badge && <Badge {...badge} />}
-        {!disabled && controls}
-        {linkIcon && <Icon svgElement={applicableLinkIcon as SvgElement} className={styles.linkIcon} />}
-      </ItemControls>
-    </Component>
-  );
-};
+  },
+);
