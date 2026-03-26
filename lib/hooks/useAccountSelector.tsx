@@ -1,5 +1,5 @@
 import { HeartFillIcon, HeartIcon } from '@navikt/aksel-icons';
-import { useMemo } from 'react';
+import { useMemo, useRef } from 'react';
 import { type AccountMenuItemProps, type AccountSelectorProps, Button, type MenuGroupProps } from '../components';
 import { formatDate, formatDisplayName, formatOrgNo } from '../functions';
 import { useIsDesktop } from './useIsDesktop';
@@ -94,33 +94,54 @@ export const useAccountSelector = ({
 }: useAccountSelectorProps): AccountSelectorProps => {
   const isDesktop = useIsDesktop();
 
-  const [accounts, accountGroups, currentAccount]: [
-    AccountMenuItemProps[],
-    Record<string, MenuGroupProps>,
-    AccountMenuItemProps | undefined,
-  ] = useMemo(() => {
-    if (isLoading || !partyListDTO || !selfAccountUuid) {
-      return [[], {}, undefined];
-    }
-    const isFavorite = (partyUuid: string) => {
-      return favoriteAccountUuids?.includes(partyUuid);
-    };
-    const isVisible = (party: AuthorizedParty) => {
-      return !party.isDeleted || showDeletedUnits !== false || party.partyUuid === currentAccountUuid;
-    };
+  // Store callbacks and currentAccountUuid in refs so they don't invalidate the expensive memo
+  const toggleFavoriteRef = useRef(onToggleFavorite);
+  toggleFavoriteRef.current = onToggleFavorite;
+  const currentAccountUuidRef = useRef(currentAccountUuid);
+  currentAccountUuidRef.current = currentAccountUuid;
 
-    const texts = getTexts(languageCode);
+  // Sort parties once: only re-sorts when partyListDTO or languageCode changes
+  const sortedParties = useMemo(() => {
+    if (!partyListDTO || partyListDTO.length === 0) return [];
     const locale = languageCode || 'nb';
-
     const compareFn = (a: AuthorizedParty, b: AuthorizedParty) =>
       a.name.localeCompare(b.name, locale, {
         sensitivity: 'base',
         ignorePunctuation: true,
       });
+    return [...partyListDTO].sort(compareFn);
+  }, [partyListDTO, languageCode]);
 
-    const sortedParties = [...partyListDTO].sort(compareFn);
+  const [accountItems, accountGroups] = useMemo((): [
+    {
+      selfAccountItem: AccountMenuItemProps | undefined;
+      peopleAccountItems: AccountMenuItemProps[];
+      organizationAccountItems: AccountMenuItemProps[];
+      favoriteAccountItems: AccountMenuItemProps[];
+    },
+    Record<string, MenuGroupProps>,
+  ] => {
+    if (isLoading || !sortedParties.length || !selfAccountUuid) {
+      return [
+        { selfAccountItem: undefined, peopleAccountItems: [], organizationAccountItems: [], favoriteAccountItems: [] },
+        {},
+      ];
+    }
 
-    // Create account items for persons, organizations, favorites, and self
+    const favoriteSet = new Set(favoriteAccountUuids);
+    const isFavorite = (partyUuid: string) => favoriteSet.has(partyUuid);
+
+    const isVisible = (party: AuthorizedParty) => {
+      return !party.isDeleted || showDeletedUnits !== false || party.partyUuid === currentAccountUuidRef.current;
+    };
+
+    const texts = getTexts(languageCode);
+    const locale = languageCode || 'nb';
+    const compareFn = (a: AuthorizedParty, b: AuthorizedParty) =>
+      a.name.localeCompare(b.name, locale, {
+        sensitivity: 'base',
+        ignorePunctuation: true,
+      });
 
     let selfAccountItem: AccountMenuItemProps | undefined = undefined;
     const peopleAccountItems: AccountMenuItemProps[] = [];
@@ -129,27 +150,24 @@ export const useAccountSelector = ({
 
     for (const party of sortedParties) {
       if (isPersonType(party.type)) {
-        // Handle people
         if (party.partyUuid === selfAccountUuid) {
-          selfAccountItem = getAccountFromAuthorizedParty(
+          selfAccountItem = getAccountItemData(
             languageCode!,
             party,
             'favorites',
-            currentAccountUuid,
             false,
-            onToggleFavorite,
+            toggleFavoriteRef,
             isDesktop,
             undefined,
             true,
           );
         } else if (isVisible(party) || isFavorite(party.partyUuid)) {
-          const account = getAccountFromAuthorizedParty(
+          const account = getAccountItemData(
             languageCode!,
             party,
             party.partyUuid,
-            currentAccountUuid,
             isFavorite(party.partyUuid),
-            onToggleFavorite,
+            toggleFavoriteRef,
             isDesktop,
           );
 
@@ -160,15 +178,13 @@ export const useAccountSelector = ({
           }
         }
       } else if (isOrgType(party.type)) {
-        // Handle organizations and their subunits
         if (isVisible(party) || isFavorite(party.partyUuid)) {
-          const account = getAccountFromAuthorizedParty(
+          const account = getAccountItemData(
             languageCode!,
             party,
             party.partyUuid,
-            currentAccountUuid,
             isFavorite(party.partyUuid),
-            onToggleFavorite,
+            toggleFavoriteRef,
             isDesktop,
           );
 
@@ -186,13 +202,12 @@ export const useAccountSelector = ({
           const subunits = [...party.subunits].sort(compareFn);
           for (const subUnit of subunits) {
             if (isVisible(subUnit) || isFavorite(subUnit.partyUuid)) {
-              const subUnitAccountItem = getAccountFromAuthorizedParty(
+              const subUnitAccountItem = getAccountItemData(
                 languageCode!,
                 subUnit,
                 party.partyUuid,
-                currentAccountUuid!,
                 isFavorite(subUnit.partyUuid),
-                onToggleFavorite,
+                toggleFavoriteRef,
                 isDesktop,
                 party,
               );
@@ -211,18 +226,7 @@ export const useAccountSelector = ({
       }
     }
 
-    if (selfAccountItem === undefined) {
-      // If self account is not found, return empty to avoid errors
-      return [[], {}, undefined];
-    }
-
-    // Put the full list of accounts together in order
-    const allAccounts = [selfAccountItem, ...favoriteAccountItems, ...peopleAccountItems, ...organizationAccountItems];
-
-    const currentAccountListItem = allAccounts.find((account) => account?.selected === true);
-
-    // Build account groups
-    const accountGroups: Record<string, MenuGroupProps> = {
+    const groups: Record<string, MenuGroupProps> = {
       [organizationAccountItems[0]?.groupId || 'company']: {
         title: texts.account_orgs,
         divider: true,
@@ -237,18 +241,35 @@ export const useAccountSelector = ({
       },
     };
 
-    return [allAccounts, accountGroups, currentAccountListItem];
-  }, [
-    partyListDTO,
-    selfAccountUuid,
-    favoriteAccountUuids,
-    currentAccountUuid,
-    isLoading,
-    onToggleFavorite,
-    languageCode,
-    isDesktop,
-    showDeletedUnits,
-  ]);
+    return [{ selfAccountItem, peopleAccountItems, organizationAccountItems, favoriteAccountItems }, groups];
+  }, [sortedParties, selfAccountUuid, favoriteAccountUuids, isLoading, languageCode, isDesktop, showDeletedUnits]);
+
+  const allAccounts = useMemo((): AccountMenuItemProps[] => {
+    const { selfAccountItem, peopleAccountItems, organizationAccountItems, favoriteAccountItems } = accountItems;
+    if (!selfAccountItem) {
+      return [];
+    }
+    return [selfAccountItem, ...favoriteAccountItems, ...peopleAccountItems, ...organizationAccountItems];
+  }, [accountItems]);
+
+  const [accounts, currentAccount] = useMemo((): [AccountMenuItemProps[], AccountMenuItemProps | undefined] => {
+    if (allAccounts.length === 0) {
+      return [[], undefined];
+    }
+
+    let currentAccountItem: AccountMenuItemProps | undefined;
+    const result = allAccounts.map((account) => {
+      const isSelected = currentAccountUuid === account.id;
+      if (isSelected) {
+        const selected = { ...account, selected: true };
+        currentAccountItem = selected;
+        return selected;
+      }
+      return account.selected ? { ...account, selected: false } : account;
+    });
+
+    return [result, currentAccountItem];
+  }, [allAccounts, currentAccountUuid]);
 
   if (isLoading || !partyListDTO || !currentAccount) {
     return {
@@ -278,27 +299,48 @@ export const useAccountSelector = ({
 };
 
 /**
+ * Lightweight component for the favorite toggle button.
+ * Reads the toggle callback from a ref at click time, so the parent memo
+ * doesn't need the callback in its dependency array.
+ */
+const FavoriteButton = ({
+  partyUuid,
+  isFavorite,
+  toggleFavoriteRef,
+  texts,
+}: {
+  partyUuid: string;
+  isFavorite?: boolean;
+  toggleFavoriteRef?: React.RefObject<((accountId: string) => void) | undefined>;
+  texts: ReturnType<typeof getTexts>;
+}) => (
+  <Button
+    rounded
+    variant="ghost"
+    aria-label={isFavorite ? texts.remove_from_favorites : texts.add_to_favorites}
+    onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation();
+      toggleFavoriteRef?.current?.(partyUuid);
+    }}
+    size="xs"
+  >
+    {isFavorite ? <HeartFillIcon /> : <HeartIcon />}
+  </Button>
+);
+
+/**
  * Converts an AuthorizedParty object into an AccountMenuItemProps object
  * with proper formatting, localization, and interactive elements.
  *
- * @param languageCode - Language code for text localization
- * @param party - The authorized party to convert
- * @param group - Group identifier for organizing accounts
- * @param currentAccountUuid - UUID of currently selected account for selection state
- * @param isFavorite - Whether this account is marked as favorite
- * @param toggleFavorite - Callback for toggling favorite status
- * @param isDesktopScreen - Whether this is intended for a desktop screen
- * @param parent - Parent organization (for subunits)
- * @param isSelf - Whether this is the user's own account
- * @returns Formatted account menu item with all necessary props
+ * Uses a ref for toggleFavorite to avoid capturing the callback in the memo closure,
+ * and defers JSX creation for controls to render time via a lazy getter pattern.
  */
-const getAccountFromAuthorizedParty = (
+const getAccountItemData = (
   languageCode: string,
   party: AuthorizedParty,
   group: string,
-  currentAccountUuid?: string,
   isFavorite?: boolean,
-  toggleFavorite?: (accountId: string) => void,
+  toggleFavoriteRef?: React.RefObject<((accountId: string) => void) | undefined>,
   isDesktopScreen?: boolean,
   parent?: AuthorizedParty,
   isSelf?: boolean,
@@ -334,6 +376,16 @@ const getAccountFromAuthorizedParty = (
     default:
       description = '';
   }
+
+  const controls = !isSelf ? (
+    <FavoriteButton
+      partyUuid={party?.partyUuid}
+      isFavorite={isFavorite}
+      toggleFavoriteRef={toggleFavoriteRef}
+      texts={texts}
+    />
+  ) : undefined;
+
   return {
     id: party?.partyUuid,
     icon: {
@@ -347,29 +399,14 @@ const getAccountFromAuthorizedParty = (
     searchWords: formatType === 'person' ? [name, party?.dateOfBirth ?? ''] : [name, party?.organizationNumber ?? ''],
     groupId: group,
     type: formatType,
-    selected: currentAccountUuid === party?.partyUuid,
+    selected: false,
     disabled: !!party?.onlyHierarchyElementWithNoAccess,
     badge: isSelf
       ? { label: texts.you, color: 'person' }
       : party.isDeleted && isDesktopScreen
         ? { label: texts.deleted, color: 'neutral' }
         : undefined,
-    controls: !isSelf && (
-      <Button
-        rounded
-        variant="ghost"
-        aria-label={isFavorite ? texts.remove_from_favorites : texts.add_to_favorites}
-        onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-          if (toggleFavorite) {
-            e.stopPropagation();
-            toggleFavorite(party?.partyUuid);
-          }
-        }}
-        size="xs"
-      >
-        {isFavorite ? <HeartFillIcon /> : <HeartIcon />}
-      </Button>
-    ),
+    controls,
   };
 };
 
