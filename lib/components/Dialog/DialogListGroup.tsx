@@ -1,4 +1,4 @@
-import { memo, type ReactNode } from 'react';
+import { type ReactNode, memo } from 'react';
 import { Flex, Heading, List, Section, Typography } from '..';
 
 export interface DialogListGroupProps {
