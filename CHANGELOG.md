@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.56.34](https://github.com/Altinn/altinn-components/compare/v0.56.33...v0.56.34) (2026-03-26)
+
+
+### Bug Fixes
+
+* account selector icon ([#1062](https://github.com/Altinn/altinn-components/issues/1062)) ([0785378](https://github.com/Altinn/altinn-components/commit/07853788122f24f1efc89b1f7820d6594618ca3f))
+* more bookmark stories ([#1061](https://github.com/Altinn/altinn-components/issues/1061)) ([888ee82](https://github.com/Altinn/altinn-components/commit/888ee823fdb03d0ed1f6e849e64a77b0b34cbd34))
+* more settings stories ([#1035](https://github.com/Altinn/altinn-components/issues/1035)) ([ccebf08](https://github.com/Altinn/altinn-components/commit/ccebf087c439f4b99e1d7f7dee77e2ef58d42a50))
+* **storybook:** delete old stories ([#967](https://github.com/Altinn/altinn-components/issues/967)) ([e5c84fd](https://github.com/Altinn/altinn-components/commit/e5c84fd498e351b7aa6a6b7ee356d83af41ccb11))
+* **useAccountSelector:** optimize for large party lists ([#1069](https://github.com/Altinn/altinn-components/issues/1069)) ([8b6f35a](https://github.com/Altinn/altinn-components/commit/8b6f35adb04b88b12c219ef95576742f8af254bc))
+
+
+### Miscellaneous Chores
+
+* **Layout:** Fixed layout docs ([#1064](https://github.com/Altinn/altinn-components/issues/1064)) ([6ce0713](https://github.com/Altinn/altinn-components/commit/6ce0713af39b05369664875b0ab9d20b78028383))
+
 ## [0.56.33](https://github.com/Altinn/altinn-components/compare/v0.56.32...v0.56.33) (2026-03-11)
 
 
