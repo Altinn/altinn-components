@@ -1,4 +1,4 @@
-import { memo, type ReactNode } from 'react';
+import { type ReactNode, memo } from 'react';
 import {
   AvatarGroup,
   type AvatarProps,
@@ -75,132 +75,134 @@ export interface DialogListItemProps extends ItemLinkProps, DialogMetadataProps 
  * to mark the item as checked/unchecked and can visually indicate if it is unread.
  */
 
-export const DialogListItem = memo(({
-  as = 'a',
-  size = 'xl',
-  variant = 'default',
-  color,
-  loading,
-  controls,
-  selectable,
-  selected,
-  status,
-  extendedStatusLabel,
-  sender,
-  recipient,
-  recipientLabel = 'to',
-  grouped = false,
-  updatedAt,
-  updatedAtLabel,
-  archived,
-  archivedAt,
-  archivedAtLabel,
-  trashed,
-  trashedAt,
-  trashedAtLabel,
-  badge,
-  dueAt,
-  dueAtLabel,
-  unread,
-  seenByLog,
-  draftsLabel,
-  sentCount,
-  receivedCount,
-  attachmentsCount,
-  attachmentsLabel,
-  tooltips = {},
-  title,
-  description,
-  summary,
-  highlightWords,
-  id,
-  ...rest
-}: DialogListItemProps) => {
-  const applicableVariant = selectable ? 'select' : variant;
+export const DialogListItem = memo(
+  ({
+    as = 'a',
+    size = 'xl',
+    variant = 'default',
+    color,
+    loading,
+    controls,
+    selectable,
+    selected,
+    status,
+    extendedStatusLabel,
+    sender,
+    recipient,
+    recipientLabel = 'to',
+    grouped = false,
+    updatedAt,
+    updatedAtLabel,
+    archived,
+    archivedAt,
+    archivedAtLabel,
+    trashed,
+    trashedAt,
+    trashedAtLabel,
+    badge,
+    dueAt,
+    dueAtLabel,
+    unread,
+    seenByLog,
+    draftsLabel,
+    sentCount,
+    receivedCount,
+    attachmentsCount,
+    attachmentsLabel,
+    tooltips = {},
+    title,
+    description,
+    summary,
+    highlightWords,
+    id,
+    ...rest
+  }: DialogListItemProps) => {
+    const applicableVariant = selectable ? 'select' : variant;
 
-  return (
-    <ItemBase
-      as="li"
-      id={id}
-      className={styles.item}
-      size={size}
-      color={color}
-      variant={applicableVariant}
-      data-unread={unread ? 'true' : 'false'}
-      data-selected={selected}
-      data-trashed={trashed}
-      data-archived={archived}
-      data-loading={loading}
-    >
-      <ItemLink {...rest} className={styles.link} as={as}>
-        <div className={styles.border}>
-          <header className={styles.header}>
-            <Heading
-              as="h2"
-              highlightWords={highlightWords}
-              weight={unread ? 'bold' : 'normal'}
-              loading={loading}
-              maxRows={2}
-              className={styles.title}
-            >
-              {title}
-              {badge && <Badge className={styles.badge} variant="tinted" size="xs" {...badge} />}
-            </Heading>
-            <DialogByline
-              size="xs"
-              loading={loading}
-              sender={sender}
-              recipient={recipient}
-              recipientLabel={recipientLabel}
-              grouped={grouped}
-            />
-            {summary && (
+    return (
+      <ItemBase
+        as="li"
+        id={id}
+        className={styles.item}
+        size={size}
+        color={color}
+        variant={applicableVariant}
+        data-unread={unread ? 'true' : 'false'}
+        data-selected={selected}
+        data-trashed={trashed}
+        data-archived={archived}
+        data-loading={loading}
+      >
+        <ItemLink {...rest} className={styles.link} as={as}>
+          <div className={styles.border}>
+            <header className={styles.header}>
               <Heading
-                as="h3"
+                as="h2"
                 highlightWords={highlightWords}
-                weight="normal"
-                className={styles.summary}
+                weight={unread ? 'bold' : 'normal'}
                 loading={loading}
                 maxRows={2}
+                className={styles.title}
               >
-                {summary}
+                {title}
+                {badge && <Badge className={styles.badge} variant="tinted" size="xs" {...badge} />}
               </Heading>
+              <DialogByline
+                size="xs"
+                loading={loading}
+                sender={sender}
+                recipient={recipient}
+                recipientLabel={recipientLabel}
+                grouped={grouped}
+              />
+              {summary && (
+                <Heading
+                  as="h3"
+                  highlightWords={highlightWords}
+                  weight="normal"
+                  className={styles.summary}
+                  loading={loading}
+                  maxRows={2}
+                >
+                  {summary}
+                </Heading>
+              )}
+            </header>
+            <DialogMetadata
+              className={styles.footer}
+              loading={loading}
+              status={status}
+              extendedStatusLabel={extendedStatusLabel}
+              draftsLabel={draftsLabel}
+              sentCount={sentCount}
+              receivedCount={receivedCount}
+              updatedAt={updatedAt}
+              updatedAtLabel={updatedAtLabel}
+              archivedAt={archivedAt}
+              archivedAtLabel={archivedAtLabel}
+              trashedAt={trashedAt}
+              trashedAtLabel={trashedAtLabel}
+              dueAt={dueAt}
+              dueAtLabel={dueAtLabel}
+              attachmentsCount={attachmentsCount}
+              attachmentsLabel={attachmentsLabel}
+              tooltips={tooltips}
+            />
+            {seenByLog && tooltips?.seenBy ? (
+              <Tooltip placement="bottom" content={tooltips?.seenBy}>
+                <span className={styles.seenBy}>
+                  <AvatarGroup items={seenByLog.items} />
+                </span>
+              </Tooltip>
+            ) : (
+              seenByLog && <AvatarGroup items={seenByLog.items} className={styles.seenBy} />
             )}
-          </header>
-          <DialogMetadata
-            className={styles.footer}
-            loading={loading}
-            status={status}
-            extendedStatusLabel={extendedStatusLabel}
-            draftsLabel={draftsLabel}
-            sentCount={sentCount}
-            receivedCount={receivedCount}
-            updatedAt={updatedAt}
-            updatedAtLabel={updatedAtLabel}
-            archivedAt={archivedAt}
-            archivedAtLabel={archivedAtLabel}
-            trashedAt={trashedAt}
-            trashedAtLabel={trashedAtLabel}
-            dueAt={dueAt}
-            dueAtLabel={dueAtLabel}
-            attachmentsCount={attachmentsCount}
-            attachmentsLabel={attachmentsLabel}
-            tooltips={tooltips}
-          />
-          {seenByLog && tooltips?.seenBy ? (
-            <Tooltip placement="bottom" content={tooltips?.seenBy}>
-              <span className={styles.seenBy}>
-                <AvatarGroup items={seenByLog.items} />
-              </span>
-            </Tooltip>
-          ) : (
-            seenByLog && <AvatarGroup items={seenByLog.items} className={styles.seenBy} />
-          )}
-        </div>
-      </ItemLink>
-      <ItemControls className={styles.controls}>{controls}</ItemControls>
-    </ItemBase>
-  );
-});
+          </div>
+        </ItemLink>
+        <ItemControls className={styles.controls}>{controls}</ItemControls>
+      </ItemBase>
+    );
+  },
+);
 
 DialogListItem.displayName = 'DialogListItem';
