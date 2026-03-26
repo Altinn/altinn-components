@@ -6,7 +6,6 @@ import {
   MetaItemLabel,
   type MetaItemSize,
   type MetaItemVariant,
-  Tooltip,
 } from '..';
 
 export interface MetaItemProps {
@@ -40,21 +39,8 @@ export const MetaItem = ({
   tooltip,
   ...rest
 }: MetaItemProps) => {
-  if (tooltip) {
-    return (
-      <Tooltip placement="bottom" content={tooltip}>
-        <MetaItemBase loading={loading} reverse={reverse} variant={variant} size={size} {...rest}>
-          {!loading && icon && <MetaItemIcon icon={icon} />}
-          <MetaItemLabel variant={variant} size={size}>
-            {children}
-          </MetaItemLabel>
-        </MetaItemBase>
-      </Tooltip>
-    );
-  }
-
   return (
-    <MetaItemBase loading={loading} reverse={reverse} variant={variant} size={size} {...rest}>
+    <MetaItemBase loading={loading} reverse={reverse} variant={variant} tooltip={tooltip} size={size} {...rest}>
       {!loading && icon && <MetaItemIcon icon={icon} />}
       <MetaItemLabel variant={variant} size={size}>
         {children}

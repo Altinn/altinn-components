@@ -6,6 +6,8 @@ import {
   Badge,
   type BadgeProps,
   Icon,
+  ItemSelect,
+  type ItemSelectProps,
   type ListItemColor,
   ListItemControls,
   ListItemIcon,
@@ -14,8 +16,6 @@ import {
   type ListItemLabelProps,
   ListItemLink,
   type ListItemLinkProps,
-  ListItemSelect,
-  type ListItemSelectProps,
   type ListItemSize,
 } from '..';
 import styles from './listItemHeader.module.css';
@@ -34,7 +34,7 @@ export interface ListItemHeaderProps extends ListItemLinkProps {
   /** Optional classname */
   className?: string;
   /** Select controls */
-  select?: ListItemSelectProps;
+  select?: ItemSelectProps;
   /** Item is disabled */
   disabled?: boolean;
   /** Collapsible item */
@@ -139,7 +139,7 @@ export const ListItemHeader = ({
       >
         {interactive && <div className={styles.linkFocus} aria-hidden="true" />}
 
-        {select && <ListItemSelect {...select} className={styles.select} />}
+        {select && <ItemSelect {...select} className={styles.select} />}
         <ListItemIcon loading={loading} icon={icon} />
         <ListItemLabel
           size={size}

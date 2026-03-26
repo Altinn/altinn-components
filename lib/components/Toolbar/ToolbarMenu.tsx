@@ -1,10 +1,12 @@
 import { ChevronUpDownIcon } from '@navikt/aksel-icons';
+import { useCallback, useMemo } from 'react';
 import { Button, type ButtonProps } from '../Button';
 import { Dropdown, type DropdownProps } from '../Dropdown';
 import { Menu, type MenuItemProps, type MenuProps } from '../Menu/';
 import { useDropdownMenuController } from '../Menu/useDropdownMenuController.tsx';
 
 export interface ToolbarMenuProps extends Omit<MenuProps, 'variant'> {
+  disabled?: boolean;
   title?: string;
   label?: string;
   variant?: ButtonProps['variant'];
@@ -13,6 +15,7 @@ export interface ToolbarMenuProps extends Omit<MenuProps, 'variant'> {
 }
 
 export const ToolbarMenu = ({
+  disabled,
   label = 'Label',
   variant = 'solid',
   title = 'Title',
@@ -24,15 +27,30 @@ export const ToolbarMenu = ({
 }: ToolbarMenuProps) => {
   const ctrl = useDropdownMenuController({ id, returnFocusOnClose: true });
   const a11yMode = props.searchable ? 'combobox' : 'menu';
-  const selectableItems = items.map((item: MenuItemProps) => {
-    return {
-      ...item,
-      onClick: () => {
-        onSelectId?.(item?.id ?? '');
-        item?.role !== 'checkbox' && ctrl.setOpen(false);
-      },
-    };
-  });
+  const handleSelect = useCallback(
+    (item: MenuItemProps) => {
+      onSelectId?.(item?.id ?? '');
+      item?.role !== 'checkbox' && ctrl.setOpen(false);
+    },
+    [onSelectId, ctrl],
+  );
+  const selectableItems = useMemo(
+    () =>
+      items.map((item: MenuItemProps) => ({
+        ...item,
+        onClick: () => handleSelect(item),
+      })),
+    [items, handleSelect],
+  );
+
+  if (disabled) {
+    return (
+      <Button variant={variant} disabled>
+        <span>{label}</span>
+        <ChevronUpDownIcon aria-hidden="true" focusable="false" />
+      </Button>
+    );
+  }
 
   return (
     <Dropdown

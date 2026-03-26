@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Section } from '..';
 import { DialogListGroup, type DialogListGroupProps, DialogListItem, type DialogListItemProps } from '..';
 import { useMenu } from '../../hooks';
@@ -10,7 +11,7 @@ export interface DialogListProps {
   isLoading?: boolean;
 }
 
-export const DialogList = ({ items, groups = {}, sortGroupBy, highlightWords, isLoading }: DialogListProps) => {
+export const DialogList = memo(({ items, groups = {}, sortGroupBy, highlightWords, isLoading }: DialogListProps) => {
   const { menu } = useMenu<DialogListItemProps, DialogListGroupProps>({
     items,
     groups,
@@ -35,4 +36,6 @@ export const DialogList = ({ items, groups = {}, sortGroupBy, highlightWords, is
       })}
     </Section>
   );
-};
+});
+
+DialogList.displayName = 'DialogList';

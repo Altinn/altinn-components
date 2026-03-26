@@ -5,23 +5,27 @@
   justify-content: flex-start;
   align-items: center;
   align-self: start;
-  column-gap: .75em;
-  row-gap: .75em;
+  column-gap: 0.75em;
+  row-gap: 0.75em;
   white-space: nowrap;
   pointer-events: none;
   background-color: transparent;
-}
-
-.wrap {
-  flex-wrap: wrap;
 }
 
 .buttonGroup * {
   pointer-events: auto;
 }
 
-.buttonGroup[data-disabled="true"] {
+.buttonGroup[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
+.buttonGroup[aria-disabled="true"] * {
   pointer-events: none;
+}
+
+.wrap {
+  flex-wrap: wrap;
 }
 
 .buttonGroup[data-connected="true"] {
@@ -39,8 +43,4 @@
   border-left: none;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-}
-
-.buttonGroup[aria-disabled="true"] {
-  pointer-events: none;
 }

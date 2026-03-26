@@ -106,7 +106,13 @@ export const CustomLabel: Story = {
         icon: FirstAidFillIcon,
         title: 'Menu item 1',
         label: () => (
-          <span style={{ display: 'flex', alignItems: 'center', columnGap: '0.5rem' }}>
+          <span
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              columnGap: '0.5rem',
+            }}
+          >
             Custom badge
             <Badge label="1" />
           </span>

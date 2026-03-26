@@ -1,3 +1,4 @@
+import { memo, type ReactNode } from 'react';
 import {
   AvatarGroup,
   type AvatarProps,
@@ -8,18 +9,20 @@ import {
   DialogMetadata,
   type DialogMetadataProps,
   Heading,
-  ListItem,
-  type ListItemProps,
+  ItemBase,
+  ItemControls,
+  ItemLink,
+  type ItemLinkProps,
   type SeenByLogProps,
+  Tooltip,
 } from '..';
 
-export type DialogListItemSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export type DialogListItemState = 'normal' | 'trashed' | 'archived';
-export type DialogListItemTheme = 'default' | 'subtle' | 'transparent';
+export type DialogListItemSize = 'md' | 'lg' | 'xl';
+export type DialogListItemVariant = 'default' | 'select';
 
 import styles from './dialogListItem.module.css';
 
-export interface DialogListItemProps extends ListItemProps, DialogMetadataProps {
+export interface DialogListItemProps extends ItemLinkProps, DialogMetadataProps {
   /** Highlight words, ie. search terms */
   highlightWords?: string[];
   /** Dialog title */
@@ -41,11 +44,11 @@ export interface DialogListItemProps extends ListItemProps, DialogMetadataProps 
   /** Dialog size */
   size?: DialogListItemSize;
   /** Custom controls */
-  controls?: ListItemProps['controls'];
+  controls?: ReactNode;
+  /** Selectable: Use to support batch operations */
+  selectable?: boolean;
   /** Selected: Use to support batch operations */
   selected?: boolean;
-  /** Dialog state */
-  state?: DialogListItemState;
   /** Tab index */
   tabIndex?: number;
   /** Custom badge */
@@ -60,8 +63,8 @@ export interface DialogListItemProps extends ListItemProps, DialogMetadataProps 
   attachmentsLabel?: string;
   /** Group id */
   groupId?: string;
-  /** Theme */
-  theme?: DialogListItemTheme;
+  /** Variant */
+  variant?: DialogListItemVariant;
   /** Color */
   color?: Color;
 }
@@ -72,12 +75,14 @@ export interface DialogListItemProps extends ListItemProps, DialogMetadataProps 
  * to mark the item as checked/unchecked and can visually indicate if it is unread.
  */
 
-export const DialogListItem = ({
+export const DialogListItem = memo(({
+  as = 'a',
   size = 'xl',
-  state = 'normal',
+  variant = 'default',
+  color,
   loading,
   controls,
-  select,
+  selectable,
   selected,
   status,
   extendedStatusLabel,
@@ -108,65 +113,39 @@ export const DialogListItem = ({
   description,
   summary,
   highlightWords,
-  variant = 'default',
   id,
   ...rest
 }: DialogListItemProps) => {
-  const applicableVariant = selected ? 'tinted' : variant;
-
-  if (size === 'xs' || size === 'sm') {
-    return (
-      <ListItem
-        {...rest}
-        id={id}
-        size={size}
-        selected={selected}
-        variant={applicableVariant}
-        ariaLabel={title}
-        disabled={loading}
-        icon={sender}
-        title={title}
-        description={summary || description}
-        highlightWords={highlightWords}
-      />
-    );
-  }
+  const applicableVariant = selectable ? 'select' : variant;
 
   return (
-    <ListItem
-      {...rest}
+    <ItemBase
+      as="li"
       id={id}
+      className={styles.item}
       size={size}
-      selected={selected}
+      color={color}
       variant={applicableVariant}
-      controls={<div className={styles.controls}>{controls}</div>}
-      title={title}
-      disabled={loading}
-      label={
-        <div
-          className={styles.border}
-          data-selected={selected}
-          data-status={status?.value}
-          data-size={size}
-          data-unread={unread}
-          data-archived={archived}
-          data-trashed={trashed}
-          data-loading={loading}
-        >
-          <header className={styles.header} data-size={size}>
-            <span className={styles.heading}>
-              <Heading
-                as="h2"
-                highlightWords={highlightWords}
-                weight={unread ? 'bold' : 'normal'}
-                loading={loading}
-                maxRows={2}
-                className={styles.title}
-              >
-                {title}
-                {badge && <Badge className={styles.dot} variant="tinted" size="xs" {...badge} />}
-              </Heading>
-            </span>
+      data-unread={unread ? 'true' : 'false'}
+      data-selected={selected}
+      data-trashed={trashed}
+      data-archived={archived}
+      data-loading={loading}
+    >
+      <ItemLink {...rest} className={styles.link} as={as}>
+        <div className={styles.border}>
+          <header className={styles.header}>
+            <Heading
+              as="h2"
+              highlightWords={highlightWords}
+              weight={unread ? 'bold' : 'normal'}
+              loading={loading}
+              maxRows={2}
+              className={styles.title}
+            >
+              {title}
+              {badge && <Badge className={styles.badge} variant="tinted" size="xs" {...badge} />}
+            </Heading>
             <DialogByline
               size="xs"
               loading={loading}
@@ -208,9 +187,20 @@ export const DialogListItem = ({
             attachmentsLabel={attachmentsLabel}
             tooltips={tooltips}
           />
-          {seenByLog && <AvatarGroup className={styles.seenBy} items={seenByLog.items} />}
+          {seenByLog && tooltips?.seenBy ? (
+            <Tooltip placement="bottom" content={tooltips?.seenBy}>
+              <span className={styles.seenBy}>
+                <AvatarGroup items={seenByLog.items} />
+              </span>
+            </Tooltip>
+          ) : (
+            seenByLog && <AvatarGroup items={seenByLog.items} className={styles.seenBy} />
+          )}
         </div>
-      }
-    />
+      </ItemLink>
+      <ItemControls className={styles.controls}>{controls}</ItemControls>
+    </ItemBase>
   );
-};
+});
+
+DialogListItem.displayName = 'DialogListItem';

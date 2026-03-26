@@ -4,6 +4,5 @@ export * from './ListItemHeader';
 export * from './ListItemLabel';
 export * from './ListItemIcon';
 export * from './ListItemControls';
-export * from './ListItemSelect';
 export * from './ListItem';
 export * from './List';

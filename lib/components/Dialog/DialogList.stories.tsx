@@ -44,6 +44,16 @@ export const SingleGroup: Story = {
   },
 };
 
+export const AsLink: Story = {
+  args: {
+    items: inboxSection.items.map((item) => ({
+      ...item,
+      as: 'a',
+      href: '#',
+    })),
+  },
+};
+
 export const Ungrouped: Story = {
   args: { groups: undefined },
 };

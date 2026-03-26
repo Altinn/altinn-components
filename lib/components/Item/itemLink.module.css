@@ -1,0 +1,39 @@
+.link {
+  position: static;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  background-color: transparent;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  text-align: left;
+  appearance: none;
+  user-select: none;
+
+  &[aria-disabled="true"] {
+    pointer-events: none;
+  }
+
+  &[data-interactive="true"] {
+    cursor: pointer;
+  }
+}
+
+.link:focus-visible {
+  outline: none;
+}
+
+.linkFocus {
+  position: absolute;
+  inset: 0;
+}
+
+.link:focus-visible .linkFocus {
+  box-shadow: var(--_ds--focus, var(--dsc-focus-boxShadow));
+  outline: var(--_ds--focus, var(--dsc-focus-outline));
+  outline-offset: var(--_ds--focus, var(--ds-border-width-focus));
+
+  * {
+    --_ds--focus: ;
+  }
+}

@@ -1,6 +1,7 @@
 import cx from 'classnames';
 import type { ElementType, ReactNode } from 'react';
 import { Skeleton } from '../Skeleton';
+import { Tooltip } from '../Tooltip';
 import styles from './metaItemBase.module.css';
 
 export type MetaItemVariant = 'solid' | 'outline' | 'dotted' | 'rounded' | 'text';
@@ -17,6 +18,7 @@ export interface MetaItemBaseProps {
   datetime?: string;
   progress?: number;
   className?: string;
+  tooltip?: string;
   children?: ReactNode;
 }
 
@@ -30,10 +32,29 @@ export const MetaItemBase = ({
   progress,
   datetime,
   className,
+  tooltip,
   children,
   ...rest
 }: MetaItemBaseProps) => {
   const Component = as || 'span';
+
+  if (tooltip) {
+    return (
+      <Tooltip placement="bottom" content={tooltip} style={{ zIndex: 2 }}>
+        <Component
+          data-size={size}
+          data-color={color}
+          data-variant={variant}
+          data-progress={progress}
+          dateTime={datetime}
+          className={cx(styles.item, { [styles.reverse]: reverse }, className)}
+          {...rest}
+        >
+          <Skeleton loading={loading}>{children}</Skeleton>
+        </Component>
+      </Tooltip>
+    );
+  }
 
   return (
     <Component
