@@ -7,12 +7,12 @@ p.typography {
   margin: 0;
 }
 
-.typography[data-theme="default"] {
+.typography[data-variant="default"] {
   background-color: transparent;
   color: var(--ds-color-text-default);
 }
 
-.typography[data-theme="subtle"] {
+.typography[data-variant="subtle"] {
   background-color: transparent;
   color: var(--ds-color-text-subtle);
 }

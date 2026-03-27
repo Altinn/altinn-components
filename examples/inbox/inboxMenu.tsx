@@ -9,7 +9,7 @@ import {
   PlusIcon,
   TrashIcon,
 } from '@navikt/aksel-icons';
-import { Badge, type MenuItemProps, type MenuProps } from '../../lib';
+import type { MenuItemProps, MenuProps } from '../../lib';
 
 export const inboxMenuItems: MenuItemProps[] = [
   {
@@ -75,19 +75,7 @@ export const inboxBetaMenuItems: MenuItemProps[] = [
     icon: InboxFillIcon,
     selected: true,
     title: 'Innboks',
-    label: (
-      <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-        Innboks <Badge label="1" />
-      </span>
-    ),
     'data-testid': 'menu-item-inbox',
-  },
-  {
-    id: 'compose',
-    groupId: '2',
-    icon: PlusIcon,
-    title: 'Nytt skjema',
-    'data-testid': 'menu-item-new-schema',
   },
   {
     id: 'drafts',
@@ -104,13 +92,6 @@ export const inboxBetaMenuItems: MenuItemProps[] = [
     'data-testid': 'menu-item-sent',
   },
   {
-    id: 'bookmarks',
-    groupId: '3',
-    icon: BookmarkIcon,
-    title: 'Lagrede søk',
-    'data-testid': 'menu-item-bookmarks',
-  },
-  {
     id: 'archive',
     groupId: '4',
     icon: ArchiveIcon,
@@ -125,16 +106,29 @@ export const inboxBetaMenuItems: MenuItemProps[] = [
     'data-testid': 'menu-item-bin',
   },
   {
+    id: 'compose',
     groupId: 'shortcuts',
-    id: 'about-inbox',
+    icon: PlusIcon,
+    title: 'Nytt skjema',
+  },
+  {
+    id: 'bookmarks',
+    groupId: 'shortcuts',
+    icon: BookmarkIcon,
+    title: 'Lagrede søk',
+    'data-testid': 'menu-item-bookmarks',
+  },
+  {
+    groupId: 'shortcuts-2',
     size: 'sm',
+    id: 'about-inbox',
     icon: InformationSquareIcon,
     title: 'Om ny innboks',
   },
   {
-    groupId: 'shortcuts',
-    id: 'exit-beta',
+    groupId: 'shortcuts-2',
     size: 'sm',
+    id: 'exit-beta',
     icon: LeaveIcon,
     title: 'Avslutt beta',
   },

@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import styles from './queryLabelItem.module.css';
 export type QueryItemType = 'scope' | 'search' | 'filter' | 'connector';
-export type QueryItemSize = 'xs' | 'xxs';
+export type QueryItemSize = 'default' | 'xs' | 'xxs';
 export type QueryItemVariant = 'default' | 'subtle';
 
 export interface QueryItemProps {

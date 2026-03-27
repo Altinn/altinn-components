@@ -18,8 +18,14 @@
   padding: var(--dsc-item-padding);
 }
 
-.item[data-size="xs"] {
+.item[data-size="default"] {
   --dsc-item-font-size: 0.875rem;
+}
+
+.item[data-size="xs"] {
+  --dsc-item-font-size: 0.75rem;
+  --dsc-item-padding: var(--ds-size-0) var(--ds-size-2);
+  --dsc-item-size: var(--ds-size-8);
 }
 
 .item[data-size="xxs"] {

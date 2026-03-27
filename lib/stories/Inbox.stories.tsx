@@ -21,7 +21,12 @@ import {
   HeaderProps,
   FloatingDropdown,
 } from "../components";
-import { useBookmarks, useInbox, useActivityLog, useFloatingDropdown } from "../../examples";
+import {
+  useBookmarks,
+  useInbox,
+  useActivityLog,
+  useFloatingDropdown,
+} from "../../examples";
 import { useState } from "react";
 
 const meta = {
@@ -36,14 +41,7 @@ const meta = {
 export default meta;
 
 export const InboxPage = () => {
-  const {
-    layout,
-    toolbar,
-    results,
-    dialog,
-    modal,
-    closeModal,
-  } = useInbox({});
+  const { layout, toolbar, results, dialog, modal, closeModal } = useInbox({});
 
   const activityLog = useActivityLog();
 
@@ -212,25 +210,25 @@ export const InboxFloatingDropdown = () => {
 
   // Custom handlers for the FloatingDropdown
   const handleStartTour = () => {
-    alert('Custom tour started!');
+    alert("Custom tour started!");
   };
 
   const handleGoToHelp = () => {
-    alert('Custom help page opened!');
+    alert("Custom help page opened!");
   };
 
   const handleGoBack = () => {
-    alert('Custom exit action!');
+    alert("Custom exit action!");
   };
 
   const floatingDropdownProps = useFloatingDropdown({
     onStartTour: handleStartTour,
     onGoToHelp: handleGoToHelp,
     onGoBack: handleGoBack,
-    iconAltText: 'Custom help',
-    showNewFunctionalityText: 'Show me what\'s new',
-    helpPagesText: 'Get help',
-    exitText: 'Go back',
+    iconAltText: "Custom help",
+    showNewFunctionalityText: "Show me what's new",
+    helpPagesText: "Get help",
+    exitText: "Go back",
   });
 
   return (
@@ -245,14 +243,12 @@ export const InboxFloatingDropdown = () => {
   );
 };
 
-
-
 export const SearchPage = () => {
   let params = new URL(document.location.toString()).searchParams;
   let q = params.get("q") || "regnskap";
 
   const { layout, toolbar, results, dialog } = useInbox({
-    q,
+    query: { q },
   });
 
   if (dialog) {
@@ -342,7 +338,7 @@ export const SearchEmptyPage = () => {
   let q = params.get("q") || "bergen";
 
   const { layout, toolbar } = useInbox({
-    q,
+    query: { q },
   });
 
   return (
@@ -606,13 +602,12 @@ export const DialogTransmissions = () => {
   );
 };
 
-
 export const BookmarksPage = () => {
   const { layout, toolbar } = useInbox({
     pageId: "bookmarks",
   });
   const { items, expandedId, onClose } = useBookmarks({ grouped: false });
-  const modalProps = expandedId && items.find(item => item.id === expandedId);
+  const modalProps = expandedId && items.find((item) => item.id === expandedId);
   return (
     <Layout {...layout} useGlobalHeader={true}>
       <PageBase>
@@ -620,8 +615,21 @@ export const BookmarksPage = () => {
         <Toolbar {...toolbar} />
         <Heading size="lg">3 lagrede søk</Heading>
         <BookmarkSettingsList items={items} />
-        <Heading size="xs" weight="normal">Oppdatert: xxx</Heading>
-        {expandedId && <BookmarkModal {...modalProps} title="Rediger lagret søk" open={expandedId !== ''} onClose={onClose} buttons={[{ label: "Lagre", onClick: () => onClose() }, { label: "Slett", variant: "outline", onClick: () => onClose() }]} />}
+        <Heading size="xs" weight="normal">
+          Oppdatert: xxx
+        </Heading>
+        {expandedId && (
+          <BookmarkModal
+            {...modalProps}
+            title="Rediger lagret søk"
+            open={expandedId !== ""}
+            onClose={onClose}
+            buttons={[
+              { label: "Lagre", onClick: () => onClose() },
+              { label: "Slett", variant: "outline", onClick: () => onClose() },
+            ]}
+          />
+        )}
       </PageBase>
     </Layout>
   );

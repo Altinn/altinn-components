@@ -5,7 +5,7 @@ import styles from './button.module.css';
 
 export type ButtonColor = DsButtonProps['data-color'] | undefined;
 export type ButtonVariant = 'solid' | 'outline' | 'tinted' | 'ghost' | DsButtonProps['variant'];
-export type ButtonSize = 'xs' | DsButtonProps['data-size'];
+export type ButtonSize = 'xs' | 'mini' | DsButtonProps['data-size'];
 
 export type ButtonProps = {
   as?: React.ElementType;

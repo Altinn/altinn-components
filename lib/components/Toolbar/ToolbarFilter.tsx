@@ -1,6 +1,7 @@
 import { XMarkIcon } from '@navikt/aksel-icons';
-import { useState } from 'react';
+import { type ReactNode, useState } from 'react';
 import { Button } from '../Button';
+import { ToolbarControls } from './ToolbarControls.tsx';
 import { ToolbarFilterAddMenu } from './ToolbarFilterAddMenu.tsx';
 import { ToolbarFilterMenu } from './ToolbarFilterMenu.tsx';
 import { type FilterProps, type FilterState, useFilter } from './useFilter';
@@ -17,6 +18,7 @@ export interface ToolbarFilterProps {
   filterState?: FilterState;
   onFilterStateChange?: (state: FilterState) => void;
   virtualized?: boolean;
+  controls?: ReactNode;
 }
 
 export const ToolbarFilter = ({
@@ -31,6 +33,7 @@ export const ToolbarFilter = ({
   submitLabel,
   getFilterLabel,
   virtualized,
+  controls,
 }: ToolbarFilterProps) => {
   const { visibleFilters, hiddenFilters, onFilterAdd, onFilterChange, onFilterRemove } = useFilter({
     filters,
@@ -94,12 +97,15 @@ export const ToolbarFilter = ({
           virtualized={virtualized}
         />
       )}
-      {!disabled && showResetButton && (
-        <Button onClick={handleReset} variant="ghost">
-          <XMarkIcon aria-hidden="true" />
-          <span>{resetLabel}</span>
-        </Button>
-      )}
+      <ToolbarControls>
+        {!disabled && showResetButton && (
+          <Button onClick={handleReset} variant="ghost">
+            <XMarkIcon aria-hidden="true" />
+            <span>{resetLabel}</span>
+          </Button>
+        )}
+        {controls}
+      </ToolbarControls>
     </>
   );
 };

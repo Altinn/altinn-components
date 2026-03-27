@@ -3,17 +3,28 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: var(--altinn-layout-background);
   /*  overflow: hidden; */
 }
 
 .base[data-theme="default"] {
-  background-color: var(--ds-color-background-default);
+  --altinn-layout-background: var(--ds-color-background-default);
 }
 
 .base[data-theme="subtle"] {
-  background-color: var(--ds-color-background-tinted);
+  --altinn-layout-background: var(--ds-color-background-tinted);
 }
 
 .base[data-theme="neutral"] {
-  background-color: var(--ds-color-neutral-background-tinted);
+  --altinn-layout-background: var(--ds-color-neutral-background-tinted);
+}
+
+/** inbox theme */
+
+.base[data-theme="inbox"] {
+  --altinn-layout-background: var(--ds-color-background-tinted);
+}
+
+.base[data-theme="inbox"][data-color="person"] {
+  --altinn-layout-background: var(--ds-color-neutral-background-tinted);
 }
