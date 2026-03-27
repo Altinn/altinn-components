@@ -22,7 +22,7 @@
   font-size: var(--dsc-item-font-size);
   line-height: var(--dsc-item-line-height);
   color: var(--dsc-item-color);
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
   column-gap: var(--dsc-item-gap);

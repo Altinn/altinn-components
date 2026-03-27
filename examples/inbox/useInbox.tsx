@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { useFloatingDropdown, useGlobalHeader, useInboxLayout, useInboxSearch, useInboxToolbar } from '../';
-import type { FloatingDropdownProps, GlobalHeaderProps } from '../../lib';
+import { useFloatingDropdown, useInboxLayout, useInboxSearch, useInboxToolbar } from '../';
+import type { FloatingDropdownProps, GlobalHeaderProps, MenuItemProps } from '../../lib';
 import type {
-  AccountSelectorProps,
   ActivityLogProps,
   AvatarProps,
   BulkButtonProps,
@@ -12,13 +11,13 @@ import type {
   DialogListProps,
   HeaderProps,
   LayoutProps,
-  SearchbarProps,
   SeenByLogProps,
   ToolbarProps,
 } from '../../lib';
 import { ContextMenu } from '../../lib';
 import { dialogContact, getContextMenu, getSeenByLog } from './';
 import { dialogs, getDialogList } from './dialogs';
+import { useInboxAccounts } from './useInboxAccounts';
 
 interface UseInboxDialogProps extends DialogListItemProps {
   backButton?: DialogLayoutProps['backButton'];
@@ -39,10 +38,11 @@ export interface UseInboxProps extends LayoutProps {
   defaultAccountId?: string;
   q?: string;
   pageId?: string;
+  pageTitle?: string;
+  searchTitle?: string;
   dialogId?: string;
   dialog?: UseInboxDialogProps;
   layout?: LayoutProps;
-  search?: SearchbarProps;
   toolbar?: ToolbarProps;
   results?: DialogListProps;
   bulkMode?: boolean;
@@ -234,6 +234,7 @@ export const useInbox = ({
 
       return {
         ...item,
+        groupId: pageId !== 'inbox' ? undefined : item.groupId,
         archived,
         archivedAtLabel: archived ? 'Arkivert' : undefined,
         trashed,
@@ -286,15 +287,17 @@ export const useInbox = ({
 
   // create toolbar
 
-  const toolbar = useInboxToolbar({ accountId, items: listItems });
-  const accountSelector = useGlobalHeader({}).accountSelector as AccountSelectorProps;
-  const accountMenu = toolbar?.accountMenu;
-  const defaultAccount = toolbar?.accountMenu?.items[0];
-  const currentAccount = toolbar?.accountMenu?.items[0];
+  const { accountMenu, currentAccount, defaultAccount } = useInboxAccounts({
+    accountId,
+  });
+
+  const toolbar = useInboxToolbar({
+    accountMenu: accountMenu as ToolbarProps['accountMenu'],
+  });
 
   // duplicate items if grouped view
 
-  const groupView = currentAccount?.role !== 'person' && currentAccount?.role !== 'company';
+  const groupView = currentAccount?.type === 'group';
   const groupIds = toolbar?.filter?.filterState?.groupIds || [accountId];
 
   const itemsByGroupId: { [key: string]: DialogListItemProps } = {};
@@ -319,11 +322,9 @@ export const useInbox = ({
   //  const items = sortDialogsByKey(groupItems, "updatedAtLabel", true);
 
   const search = useInboxSearch({
-    accountId,
     name: 'search',
     placeholder: 'Søk i innboksen',
     value: q,
-    items,
   });
 
   const modalDialog = (modalId && items?.find((item) => item.id === modalId)) || undefined;
@@ -337,11 +338,17 @@ export const useInbox = ({
 
   //  set group view stuff
 
-  const color =
-    ((currentAccount?.id === 'user' || currentAccount?.role === 'group') && 'person') ||
-    currentAccount?.role ||
-    'neutral';
-  const theme = currentAccount?.id === 'user' || currentAccount?.role === 'group' ? 'neutral' : 'subtle';
+  const color = currentAccount?.type === 'company' ? 'company' : 'person';
+
+  // get title + search title
+
+  const currentPage = layout?.sidebar?.menu?.items?.find((item: MenuItemProps) => item.id === pageId);
+
+  const pageTitle = currentPage?.title;
+  const searchTitle =
+    items?.length > 0
+      ? items?.length + ' treff i ' + pageTitle?.toLowerCase()
+      : 'Ingen treff i ' + pageTitle?.toLowerCase();
 
   return {
     floatingDropdown,
@@ -349,6 +356,8 @@ export const useInbox = ({
     modalId,
     closeModal: () => setModalId(''),
     pageId,
+    pageTitle,
+    searchTitle,
     dialogId,
     dialog: dialog && {
       ...dialog,
@@ -361,11 +370,10 @@ export const useInbox = ({
     },
     layout: {
       ...layout,
+      theme: 'inbox',
       color,
-      theme,
       header: {
         ...(layout?.header as HeaderProps),
-        ...(accountSelector && { accountSelector: accountSelector as AccountSelectorProps }),
         globalMenu: {
           ...layout?.header?.globalMenu,
         } as GlobalHeaderProps,
@@ -373,7 +381,6 @@ export const useInbox = ({
         search,
       },
     } as LayoutProps,
-    search,
     toolbar,
     results: {
       groups: list.groups,
