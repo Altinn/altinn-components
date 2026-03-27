@@ -146,31 +146,33 @@ async function main(): Promise<void> {
     // Find all baseline screenshots
     const files = await findAllBaselineScreenshots();
 
-    if (files.length === 0) {
-      console.log('No baseline screenshots found');
-      process.exit(0);
-    }
-
     console.log(`Found ${files.length} baseline screenshot(s)`);
     console.log('');
 
-    // Prompt for confirmation unless --no-confirm flag is used
-    if (!noConfirm) {
-      const confirmed = await promptConfirmation();
+    let deleted = 0;
+    let failed: string[] = [];
 
-      if (!confirmed) {
-        console.log('Operation cancelled');
-        process.exit(0);
+    if (files.length > 0) {
+      // Prompt for confirmation unless --no-confirm flag is used
+      if (!noConfirm) {
+        const confirmed = await promptConfirmation();
+
+        if (!confirmed) {
+          console.log('Operation cancelled');
+          process.exit(0);
+        }
       }
+
+      console.log('');
+
+      // Delete baseline screenshots
+      ({ deleted, failed } = deleteBaselineScreenshots(files));
+
+      // Clean up empty directories
+      cleanupEmptyDirectories(LIB_DIR);
+    } else {
+      console.log('No existing baselines to delete, proceeding to regenerate...');
     }
-
-    console.log('');
-
-    // Delete baseline screenshots
-    const { deleted, failed } = deleteBaselineScreenshots(files);
-
-    // Clean up empty directories
-    cleanupEmptyDirectories(LIB_DIR);
 
     console.log('');
 
