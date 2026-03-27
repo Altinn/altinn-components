@@ -1,10 +1,13 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
+import storycapPlugin from '@storycap-testrun/browser/vitest-plugin';
 import { playwright } from '@vitest/browser-playwright';
 import { defineConfig } from 'vitest/config';
 
 const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
+const screenshotMode = !!process.env.SCREENSHOT_MODE; // Enable screenshot capture and comparison
+const setupFile = screenshotMode ? '.storybook/vitest.setup.screenshots.ts' : '.storybook/vitest.setup.ts';
 
 export default defineConfig({
   test: {
@@ -27,6 +30,30 @@ export default defineConfig({
           storybookTest({
             configDir: path.join(dirname, '.storybook'),
           }),
+          ...(screenshotMode
+            ? [
+                storycapPlugin({
+                  output: {
+                    // Screenshots are captured to .screenshots-temp/actual/ for comparison
+                    // If baseline doesn't exist, screenshot-compare.ts auto-creates it in component directory
+                    dir: path.join(dirname, '.screenshots-temp/actual'),
+                    file: (context) => {
+                      // Generate path: lib/components/Button/__screenshots__/Button/Default.png
+                      const storyFileDir = path.dirname(context.file);
+                      const storyFileName = path.basename(context.file);
+                      // Extract component name by removing .stories.tsx/.stories.ts extension
+                      const componentName = storyFileName.replace(/\.stories\.(tsx|ts)$/, '');
+                      return path.join(
+                        storyFileDir,
+                        '__screenshots__',
+                        componentName,  // Use component name instead of full story filename
+                        `${context.name}.png`
+                      );
+                    },
+                  },
+                }),
+              ]
+            : []),
         ],
         test: {
           environment: 'node',
@@ -35,9 +62,9 @@ export default defineConfig({
             enabled: true,
             headless: true,
             provider: playwright({}),
-            instances: [{ browser: 'firefox' }],
+            instances: [{ browser: 'chromium' }],
           },
-          setupFiles: ['.storybook/vitest.setup.ts'],
+          setupFiles: [setupFile],
         },
       },
     ],
