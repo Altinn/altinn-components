@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.56.35](https://github.com/Altinn/altinn-components/compare/v0.56.34...v0.56.35) (2026-03-27)
+
+
+### Bug Fixes
+
+* dialog list item z-index ([#1074](https://github.com/Altinn/altinn-components/issues/1074)) ([b2bd7f4](https://github.com/Altinn/altinn-components/commit/b2bd7f4a1b5ed9eb9593adee270f8c720688774f))
+* inbox bulk state ([#1071](https://github.com/Altinn/altinn-components/issues/1071)) ([1dc3168](https://github.com/Altinn/altinn-components/commit/1dc3168ec6ae8fee149368b3d1dcb4b0cb79171d))
+
+
+### Miscellaneous Chores
+
+* pin GitHub Actions to commit SHAs ([#1077](https://github.com/Altinn/altinn-components/issues/1077)) ([b9eac91](https://github.com/Altinn/altinn-components/commit/b9eac9105e354c7d20e7d6c7fa8cd143cac99019))
+
 ## [0.56.34](https://github.com/Altinn/altinn-components/compare/v0.56.33...v0.56.34) (2026-03-26)
 
 
