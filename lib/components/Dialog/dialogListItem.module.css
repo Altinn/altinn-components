@@ -15,6 +15,7 @@
   border-style: var(--dsc-item-border-style);
   border-color: var(--dsc-item-border);
   padding: 0.625rem;
+  z-index: 0;
 }
 
 .item:hover {
