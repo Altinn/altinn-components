@@ -1,0 +1,3 @@
+import{B as r}from"./BreadcrumbsLink-Dz2cmI-H.js";import"./iframe-CFpZEpOT.js";import"./preload-helper-PPVm8Dsz.js";import"./index-CMCH-iYZ.js";import"./ArrowRight-hR9_L869.js";import"./useId-Bpa1--zZ.js";const p={title:"Page/Breadcrumbs",component:r,tags:["autodocs","beta"],parameters:{},args:{items:[{label:"Home",href:"#home"},{label:"Section",href:"#section"},{label:"Article"}]}},e={args:{}};e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:`{
+  args: {}
+}`,...e.parameters?.docs?.source}}};const i=["Default"];export{e as Default,i as __namedExportsOrder,p as default};
