@@ -44,6 +44,7 @@ jobs:
         with:
           source-dir: ./storybook-static
           action: deploy
+          wait-for-pages-deployment: "true"
 
   cleanup-preview:
     if: github.event.action == 'closed'
