@@ -1,0 +1,91 @@
+name: Storybook Preview
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: "storybook-preview-${{ github.event.pull_request.number }}"
+  cancel-in-progress: true
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: '.node-version'
+      - name: Setup PNPM
+        uses: pnpm/action-setup@eae0cfeb286e66ffb5155f1a79b90583a127a68b # v2.4.1
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build-storybook
+      - name: Deploy preview to GitHub Pages
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Fetch or create gh-pages branch
+          git fetch origin gh-pages:gh-pages 2>/dev/null || true
+          if ! git rev-parse --verify gh-pages >/dev/null 2>&1; then
+            git checkout --orphan gh-pages
+            git reset --hard
+            git commit --allow-empty -m "Initial gh-pages branch"
+            git push origin gh-pages
+            git checkout -
+            git fetch origin gh-pages:gh-pages
+          fi
+
+          WORK_DIR=$(mktemp -d)
+          git worktree add "$WORK_DIR" gh-pages
+
+          # Replace only this PR's preview directory
+          rm -rf "$WORK_DIR/pr/$PR_NUMBER"
+          mkdir -p "$WORK_DIR/pr/$PR_NUMBER"
+          cp -r storybook-static/* "$WORK_DIR/pr/$PR_NUMBER/"
+
+          cd "$WORK_DIR"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to deploy"
+          else
+            git commit -m "Deploy Storybook preview for PR #$PR_NUMBER"
+            git push origin gh-pages
+          fi
+
+          cd "$GITHUB_WORKSPACE"
+          git worktree remove "$WORK_DIR" --force
+
+      - name: Comment preview URL
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          OWNER=$(echo "$REPO" | cut -d/ -f1)
+          REPO_NAME=$(echo "$REPO" | cut -d/ -f2)
+          PREVIEW_URL="https://altinn.github.io/${REPO_NAME}/pr/${PR_NUMBER}/"
+          COMMENT_TAG="<!-- storybook-preview -->"
+          BODY="${COMMENT_TAG}
+          📖 **Storybook Preview:** ${PREVIEW_URL}
+          _Updated at $(date -u '+%Y-%m-%d %H:%M:%S UTC') · $(git rev-parse --short HEAD)_"
+
+          # Find existing comment
+          COMMENT_ID=$(gh api "repos/${REPO}/issues/${PR_NUMBER}/comments" \
+            --jq ".[] | select(.body | startswith(\"${COMMENT_TAG}\")) | .id" \
+            | head -1)
+
+          if [ -n "$COMMENT_ID" ]; then
+            gh api "repos/${REPO}/issues/comments/${COMMENT_ID}" \
+              -X PATCH -f body="$BODY"
+          else
+            gh pr comment "$PR_NUMBER" --body "$BODY"
+          fi

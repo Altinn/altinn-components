@@ -5,19 +5,14 @@ on:
   workflow_call:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
-  group: "pages"
+  group: "gh-pages-main"
   cancel-in-progress: false
 
 jobs:
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -29,10 +24,46 @@ jobs:
         uses: pnpm/action-setup@eae0cfeb286e66ffb5155f1a79b90583a127a68b # v2.4.1
       - run: pnpm install --frozen-lockfile
       - run: pnpm build-storybook
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
-        with:
-          path: "./storybook-static"
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Fetch or create gh-pages branch
+          git fetch origin gh-pages:gh-pages 2>/dev/null || true
+          if ! git rev-parse --verify gh-pages >/dev/null 2>&1; then
+            git checkout --orphan gh-pages
+            git reset --hard
+            git commit --allow-empty -m "Initial gh-pages branch"
+            git push origin gh-pages
+            git checkout -
+            git fetch origin gh-pages:gh-pages
+          fi
+
+          # Set up a temporary directory for the deployment
+          WORK_DIR=$(mktemp -d)
+          git worktree add "$WORK_DIR" gh-pages
+
+          # Remove everything except the pr/ directory (preserves PR previews)
+          find "$WORK_DIR" -maxdepth 1 \
+            ! -name '.git' \
+            ! -name 'pr' \
+            ! -path "$WORK_DIR" \
+            -exec rm -rf {} +
+
+          # Copy new build to root
+          cp -r storybook-static/* "$WORK_DIR/"
+
+          # Commit and push
+          cd "$WORK_DIR"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to deploy"
+          else
+            git commit -m "Deploy Storybook from main ($(git -C "$GITHUB_WORKSPACE" rev-parse --short HEAD))"
+            git push origin gh-pages
+          fi
+
+          # Clean up worktree
+          cd "$GITHUB_WORKSPACE"
+          git worktree remove "$WORK_DIR" --force
