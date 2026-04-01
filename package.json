@@ -2,17 +2,11 @@
   "name": "@altinn/altinn-components",
   "version": "0.57.1",
   "main": "dist/index.js",
-  "files": [
-    "dist/",
-    "!dist/stories/",
-    "!dist/components/*/*.stories.js"
-  ],
+  "files": ["dist/", "!dist/stories/", "!dist/components/*/*.stories.js"],
   "types": "dist/types/lib/index.d.ts",
   "type": "module",
   "description": "Reusable react components",
-  "sideEffects": [
-    "*.css"
-  ],
+  "sideEffects": ["*.css"],
   "scripts": {
     "test": "vitest run",
     "test:unit": "vitest run --project=unit",
@@ -21,7 +15,7 @@
     "build": "tsc && vite build",
     "format": "lint-staged",
     "lint": "biome check",
-    "lint:fix": "biome check ./ --write",
+    "lint:fix": "biome check --no-errors-on-unmatched --write .",
     "dev": "vite",
     "build-storybook": "storybook build",
     "ci:build-storybook": "storybook build --quiet",
