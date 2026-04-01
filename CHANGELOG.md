@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.57.1](https://github.com/Altinn/altinn-components/compare/v0.57.0...v0.57.1) (2026-04-01)
+
+
+### Bug Fixes
+
+* **icons:** bump aksel-icons to 8.9.0 ([#1084](https://github.com/Altinn/altinn-components/issues/1084)) ([09d5e45](https://github.com/Altinn/altinn-components/commit/09d5e457bb690d27d7942371b3d229418383de52))
+
 ## [0.57.0](https://github.com/Altinn/altinn-components/compare/v0.56.34...v0.57.0) (2026-04-01)
 
 
