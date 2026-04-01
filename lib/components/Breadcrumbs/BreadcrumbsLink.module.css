@@ -43,3 +43,11 @@ button.link:hover {
 .link[aria-current="page"] {
   text-decoration: none;
 }
+
+@media (max-width: 639px) {
+  .link {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 320px;
+  }
+}
