@@ -66,7 +66,7 @@ export default defineConfig({
                   args: ['--font-render-hinting=none', '--disable-font-subpixel-positioning'],
                 },
               }),
-            instances: [{ browser: 'chromium' }],
+            instances: [{ browser: 'firefox' }],
           },
           setupFiles: [setupFile],
         },
