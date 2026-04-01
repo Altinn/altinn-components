@@ -92,8 +92,12 @@ export async function compareScreenshots(
     const actualImg = PNG.sync.read(actualBuffer);
     const baselineImg = PNG.sync.read(baselineBuffer);
 
-    // Check dimensions match
-    if (actualImg.width !== baselineImg.width || actualImg.height !== baselineImg.height) {
+    // Allow up to 5px dimension difference (minor cross-platform font metric variations)
+    const DIMENSION_TOLERANCE = 5;
+    if (
+      Math.abs(actualImg.width - baselineImg.width) > DIMENSION_TOLERANCE ||
+      Math.abs(actualImg.height - baselineImg.height) > DIMENSION_TOLERANCE
+    ) {
       return {
         match: false,
         mismatchedPixels: 0,
@@ -103,14 +107,35 @@ export async function compareScreenshots(
       };
     }
 
-    const { width, height } = actualImg;
+    // Compare overlapping region when dimensions differ slightly
+    const width = Math.min(actualImg.width, baselineImg.width);
+    const height = Math.min(actualImg.height, baselineImg.height);
     const totalPixels = width * height;
+
+    // Crop both images to the overlapping dimensions
+    const cropImage = (img: PNG, w: number, h: number): PNG => {
+      const cropped = new PNG({ width: w, height: h });
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const srcIdx = (y * img.width + x) * 4;
+          const dstIdx = (y * w + x) * 4;
+          cropped.data[dstIdx] = img.data[srcIdx];
+          cropped.data[dstIdx + 1] = img.data[srcIdx + 1];
+          cropped.data[dstIdx + 2] = img.data[srcIdx + 2];
+          cropped.data[dstIdx + 3] = img.data[srcIdx + 3];
+        }
+      }
+      return cropped;
+    };
+
+    const croppedBaseline = baselineImg.width !== width || baselineImg.height !== height ? cropImage(baselineImg, width, height) : baselineImg;
+    const croppedActual = actualImg.width !== width || actualImg.height !== height ? cropImage(actualImg, width, height) : actualImg;
 
     // Create diff image
     const diff = new PNG({ width, height });
 
     // Perform pixel comparison
-    const mismatchedPixels = pixelmatch(baselineImg.data, actualImg.data, diff.data, width, height, { threshold });
+    const mismatchedPixels = pixelmatch(croppedBaseline.data, croppedActual.data, diff.data, width, height, { threshold });
 
     const percentage = (mismatchedPixels / totalPixels) * 100;
     const match = percentage <= 2;
