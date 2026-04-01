@@ -9,5 +9,6 @@ setProjectAnnotations([a11yAddonAnnotations, projectAnnotations]);
 
 // Capture screenshots after each test
 afterEach(async (context) => {
+  await document.fonts.ready;
   await screenshot(page, context);
 });
