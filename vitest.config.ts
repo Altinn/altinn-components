@@ -61,7 +61,11 @@ export default defineConfig({
           browser: {
             enabled: true,
             headless: true,
-            provider: playwright({}),
+            provider: playwright({
+                launchOptions: {
+                  args: ['--font-render-hinting=none', '--disable-font-subpixel-positioning'],
+                },
+              }),
             instances: [{ browser: 'chromium' }],
           },
           setupFiles: [setupFile],
