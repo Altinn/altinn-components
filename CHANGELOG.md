@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.57.2](https://github.com/Altinn/altinn-components/compare/v0.57.1...v0.57.2) (2026-04-01)
+
+
+### Bug Fixes
+
+* **toolbar:** memoize toolbar sub-components to reduce unnecessary re-renders ([#1088](https://github.com/Altinn/altinn-components/issues/1088)) ([eff5858](https://github.com/Altinn/altinn-components/commit/eff585835ae05ef92a27cf99d1833a6a42ede62e))
+
+
+### Miscellaneous Chores
+
+* re-add permissions to ci-cd-main.yml ([#1086](https://github.com/Altinn/altinn-components/issues/1086)) ([e8e4dc7](https://github.com/Altinn/altinn-components/commit/e8e4dc7e0de0fc7c75326b91d69712861b20ad74))
+
 ## [0.57.1](https://github.com/Altinn/altinn-components/compare/v0.57.0...v0.57.1) (2026-04-01)
 
 
