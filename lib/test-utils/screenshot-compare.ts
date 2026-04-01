@@ -128,14 +128,20 @@ export async function compareScreenshots(
       return cropped;
     };
 
-    const croppedBaseline = baselineImg.width !== width || baselineImg.height !== height ? cropImage(baselineImg, width, height) : baselineImg;
-    const croppedActual = actualImg.width !== width || actualImg.height !== height ? cropImage(actualImg, width, height) : actualImg;
+    const croppedBaseline =
+      baselineImg.width !== width || baselineImg.height !== height
+        ? cropImage(baselineImg, width, height)
+        : baselineImg;
+    const croppedActual =
+      actualImg.width !== width || actualImg.height !== height ? cropImage(actualImg, width, height) : actualImg;
 
     // Create diff image
     const diff = new PNG({ width, height });
 
     // Perform pixel comparison
-    const mismatchedPixels = pixelmatch(croppedBaseline.data, croppedActual.data, diff.data, width, height, { threshold });
+    const mismatchedPixels = pixelmatch(croppedBaseline.data, croppedActual.data, diff.data, width, height, {
+      threshold,
+    });
 
     const percentage = (mismatchedPixels / totalPixels) * 100;
     const match = percentage <= 2;

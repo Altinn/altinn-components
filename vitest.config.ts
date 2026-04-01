@@ -46,8 +46,8 @@ export default defineConfig({
                       return path.join(
                         storyFileDir,
                         '__screenshots__',
-                        componentName,  // Use component name instead of full story filename
-                        `${context.name}.png`
+                        componentName, // Use component name instead of full story filename
+                        `${context.name}.png`,
                       );
                     },
                   },
@@ -62,10 +62,10 @@ export default defineConfig({
             enabled: true,
             headless: true,
             provider: playwright({
-                launchOptions: {
-                  args: ['--font-render-hinting=none', '--disable-font-subpixel-positioning'],
-                },
-              }),
+              launchOptions: {
+                args: ['--font-render-hinting=none', '--disable-font-subpixel-positioning'],
+              },
+            }),
             instances: [{ browser: 'firefox' }],
           },
           setupFiles: [setupFile],
