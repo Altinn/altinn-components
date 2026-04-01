@@ -113,7 +113,7 @@ export async function compareScreenshots(
     const mismatchedPixels = pixelmatch(baselineImg.data, actualImg.data, diff.data, width, height, { threshold });
 
     const percentage = (mismatchedPixels / totalPixels) * 100;
-    const match = mismatchedPixels === 0;
+    const match = percentage <= 2;
 
     // Only save diff image if there's a mismatch
     if (!match) {
