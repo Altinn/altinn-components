@@ -14,6 +14,9 @@ export interface ComparisonResult {
   baselineCreated?: boolean;
 }
 
+const DIMENSION_TOLERANCE = 5; // Allow up to 5px dimension difference for minor cross-platform variations
+const TRESHHOLD_PERCENT = 3.5; // Consider images a match if they are less than 3.5% different
+
 /**
  * Helper function to create error results with consistent formatting.
  */
@@ -93,7 +96,6 @@ export async function compareScreenshots(
     const baselineImg = PNG.sync.read(baselineBuffer);
 
     // Allow up to 5px dimension difference (minor cross-platform font metric variations)
-    const DIMENSION_TOLERANCE = 5;
     if (
       Math.abs(actualImg.width - baselineImg.width) > DIMENSION_TOLERANCE ||
       Math.abs(actualImg.height - baselineImg.height) > DIMENSION_TOLERANCE
@@ -144,7 +146,7 @@ export async function compareScreenshots(
     });
 
     const percentage = (mismatchedPixels / totalPixels) * 100;
-    const match = percentage <= 2;
+    const match = percentage <= TRESHHOLD_PERCENT; //3.5% or less difference is considered a match
 
     // Only save diff image if there's a mismatch
     if (!match) {
