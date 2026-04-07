@@ -1,11 +1,15 @@
 import type { StorybookConfig } from "@storybook/react-vite";
 
+// In screenshot mode, only include component stories (not full-page demo stories)
+const screenshotMode = !!process.env.SCREENSHOT_MODE;
+
 const config: StorybookConfig = {
   stories: [
     "../lib/components/**/*.@(mdx)",
     "../lib/components/**/*.stories.@(ts|tsx)",
-    "../lib/stories/**/*.stories.@(ts|tsx)",
-    "../lib/stories/**/*.@(mdx)",
+    ...(screenshotMode
+      ? []
+      : ["../lib/stories/**/*.stories.@(ts|tsx)", "../lib/stories/**/*.@(mdx)"]),
   ],
 
   addons: [

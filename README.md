@@ -169,3 +169,36 @@ pnpm test-storybook --watch 'MyComponent.stories.tsx'
 
 - To skip the test add 'skip-test' string into the tags array for the test you want to exclude. That option is defined in the test-runner.ts file.
   Currently all the tests under stories/Demo and docs are excluded as the accessibility test is not needed there.
+
+## Screenshot Testing
+
+Screenshot tests catch visual regressions automatically by comparing component screenshots to baseline images.
+
+```bash
+# Run all screenshot tests
+pnpm test:screenshots
+
+# Test specific component
+pnpm test:screenshots:filter "Button"
+
+# Delete all screenshots and generate new
+pnpm test:screenshots:regenerate-all
+```
+
+
+## Skipping Screenshot Testing
+
+Some cases are not possible to screenshot tests. An example is virtualized list where we are generating randomized content every render. In such cases the screenshot: { skip: true } parameter should be added in the component/demo story. 
+#### Example: VirtualizedMenu.stories.tsx
+```bash
+export const Virtualized = () => {
+  const { items, groups } = useMemo(() => useRandomMenuItems(10000), []);
+  return <Menu virtualized searchable items={items as MenuItemProps[]} groups={groups} size="md" />;
+};
+Virtualized.parameters = {
+  //can't screenshot tests with useRandomMenuItems
+  screenshot: { skip: true },
+};
+```
+
+
