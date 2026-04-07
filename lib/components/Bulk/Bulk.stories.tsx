@@ -167,7 +167,6 @@ export const Default = ({
           onDismiss={unselectAll}
         />
         <Heading size="xl">Innboks</Heading>
-
         <Toolbar
           {...toolbar}
           search={{ value: 'Skatt' }}
