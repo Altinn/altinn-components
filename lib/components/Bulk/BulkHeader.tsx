@@ -1,7 +1,9 @@
+import { useEffect, useRef } from 'react';
 import { Button, ButtonGroup, Heading } from '..';
 import styles from './bulkHeader.module.css';
 
 import { XMarkIcon } from '@navikt/aksel-icons';
+import { useEscapeKey } from '../../hooks';
 import type { LayoutColor } from '../Layout';
 import { BulkButton, type BulkButtonProps } from './BulkButton';
 
@@ -24,8 +26,31 @@ export const BulkHeader = ({
   options,
   onDismiss,
 }: BulkHeaderProps) => {
+  const headerRef = useRef<HTMLElement>(null);
+  const prevHiddenRef = useRef(hidden);
+
+  useEscapeKey(() => {
+    if (dismissable) {
+      onDismiss?.();
+    }
+  });
+
+  useEffect(() => {
+    if (prevHiddenRef.current && !hidden) {
+      const firstButton = headerRef.current?.querySelector('button');
+      firstButton?.focus();
+    }
+    prevHiddenRef.current = hidden;
+  }, [hidden]);
+
   return (
-    <header className={styles.header} aria-hidden={hidden} data-color={color}>
+    <header
+      ref={headerRef}
+      className={styles.header}
+      aria-hidden={hidden}
+      inert={hidden || undefined}
+      data-color={color}
+    >
       <div className={styles.container}>
         <Heading size="md" className={styles.title}>
           {title}

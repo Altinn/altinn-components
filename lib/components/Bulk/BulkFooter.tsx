@@ -10,7 +10,7 @@ export interface BulkFooterProps {
 
 export const BulkFooter = ({ hidden = false, color = 'company', actions }: BulkFooterProps) => {
   return (
-    <footer className={styles.footer} data-color={color} aria-hidden={hidden}>
+    <footer className={styles.footer} data-color={color} aria-hidden={hidden} inert={hidden || undefined}>
       <div className={styles.actions}>
         {actions?.map((button, index) => (
           <BulkButton {...button} key={index} />
