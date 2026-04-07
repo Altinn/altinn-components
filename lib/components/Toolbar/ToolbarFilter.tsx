@@ -1,5 +1,5 @@
 import { XMarkIcon } from '@navikt/aksel-icons';
-import { type ReactNode, useState, useMemo } from 'react';
+import { type ReactNode, useMemo, useState } from 'react';
 import { Button } from '../Button';
 import { ToolbarControls } from './ToolbarControls.tsx';
 import { ToolbarFilterAddMenu } from './ToolbarFilterAddMenu.tsx';
