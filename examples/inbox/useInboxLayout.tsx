@@ -13,7 +13,7 @@ interface InboxLayoutProps extends LayoutProps {
 }
 
 export const useInboxLayout = ({
-  accountId = 'diaspora',
+  accountId = 'user',
   pageId = 'inbox',
   items = inboxBetaMenuItems,
   pages = {},
@@ -25,12 +25,12 @@ export const useInboxLayout = ({
     profile: 'demo-profile--dashboard-page',
     accounts: 'demo-profile--accounts-page',
     alerts: 'demo-profile--alerts-page',
-    inbox: 'demo-inbox--inbox-page',
-    drafts: 'demo-inbox--drafts-page',
-    sent: 'demo-inbox--sent-page',
-    bookmarks: 'demo-inbox--bookmarks-page',
-    archive: 'demo-inbox--archive-page',
-    trash: 'demo-inbox--trash-page',
+    inbox: 'inbox-inboxpage--inbox',
+    drafts: 'inbox-inboxpage--drafts',
+    archive: 'inbox-inboxpage--archive',
+    trash: 'inbox-inboxpage--trash',
+    sent: 'inbox-inboxpage--sent',
+    bookmarks: 'bookmarks-demo--inbox-all-accounts',
     about: 'demo-inbox--about-page',
     'about-inbox': 'demo-inbox--about-inbox-page',
     ...pages,
@@ -64,6 +64,8 @@ export const useInboxLayout = ({
     };
   });
 
+  const currentPage = menuItems?.find((item) => item.selected);
+
   const breadcrumbs = {
     items: [
       {
@@ -74,16 +76,18 @@ export const useInboxLayout = ({
         href: '#',
         label: 'Inbox',
       },
+      ...(currentPage && currentPage.id !== 'inbox' ? [{ href: '#', label: currentPage.title }] : []),
     ],
   };
 
   const layout = useLayout({
-    theme: 'subtle',
     accountId,
     menu: {
       ...desktopMenu,
       items: desktopItems as MenuProps['items'],
     },
+    theme: 'inbox',
+    color: 'person',
     sidebar: {
       sticky: true,
       menu: {

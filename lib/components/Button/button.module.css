@@ -39,3 +39,14 @@
   --dsc-button-color: var(--ds-color-text-default);
   --dsc-button-color--hover: var(--ds-color-text-default);
 }
+
+/* mini size */
+.button[data-size="mini"] {
+  display: inline-flex;
+  font-size: 0.75rem;
+  padding: 0 0.5em;
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+  max-height: 1.5rem;
+  border-radius: 0.25em;
+}

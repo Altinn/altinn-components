@@ -1,0 +1,27 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+}
+
+.nav {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  background-image: linear-gradient(to bottom, var(--altinn-layout-background) 75%, transparent 100%);
+}
+
+.nav[data-sticky="true"] {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  margin: -1.5rem;
+  padding: 1.5rem;
+}
+
+.body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+}

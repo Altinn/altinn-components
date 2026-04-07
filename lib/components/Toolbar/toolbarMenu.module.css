@@ -1,0 +1,19 @@
+/** Mobile styles */
+
+@media (max-width: 479px) {
+  .menu {
+    width: 100%;
+  }
+
+  .menu > * {
+    width: 100%;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .label {
+    flex-grow: 1;
+  }
+}
