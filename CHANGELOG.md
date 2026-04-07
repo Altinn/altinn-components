@@ -1,5 +1,45 @@
 # Changelog
 
+## [0.57.2](https://github.com/Altinn/altinn-components/compare/v0.57.1...v0.57.2) (2026-04-01)
+
+
+### Bug Fixes
+
+* **toolbar:** memoize toolbar sub-components to reduce unnecessary re-renders ([#1088](https://github.com/Altinn/altinn-components/issues/1088)) ([eff5858](https://github.com/Altinn/altinn-components/commit/eff585835ae05ef92a27cf99d1833a6a42ede62e))
+
+
+### Miscellaneous Chores
+
+* re-add permissions to ci-cd-main.yml ([#1086](https://github.com/Altinn/altinn-components/issues/1086)) ([e8e4dc7](https://github.com/Altinn/altinn-components/commit/e8e4dc7e0de0fc7c75326b91d69712861b20ad74))
+
+## [0.57.1](https://github.com/Altinn/altinn-components/compare/v0.57.0...v0.57.1) (2026-04-01)
+
+
+### Bug Fixes
+
+* **icons:** bump aksel-icons to 8.9.0 ([#1084](https://github.com/Altinn/altinn-components/issues/1084)) ([09d5e45](https://github.com/Altinn/altinn-components/commit/09d5e457bb690d27d7942371b3d229418383de52))
+
+## [0.57.0](https://github.com/Altinn/altinn-components/compare/v0.56.34...v0.57.0) (2026-04-01)
+
+
+### Features
+
+* add Storybook PR preview deployments ([#1079](https://github.com/Altinn/altinn-components/issues/1079)) ([d52350b](https://github.com/Altinn/altinn-components/commit/d52350bdb5a848b3bb13cc3e9542981d26e69c4e))
+
+
+### Bug Fixes
+
+* dialog list item z-index ([#1074](https://github.com/Altinn/altinn-components/issues/1074)) ([b2bd7f4](https://github.com/Altinn/altinn-components/commit/b2bd7f4a1b5ed9eb9593adee270f8c720688774f))
+* inbox bulk state ([#1071](https://github.com/Altinn/altinn-components/issues/1071)) ([1dc3168](https://github.com/Altinn/altinn-components/commit/1dc3168ec6ae8fee149368b3d1dcb4b0cb79171d))
+* make Storybook PR preview opt-in via checkbox ([#1081](https://github.com/Altinn/altinn-components/issues/1081)) ([f3be844](https://github.com/Altinn/altinn-components/commit/f3be8442b22928c19caf8ec2f1db171aa807fd09))
+* truncate long breadcrumb labels on mobile screens ([#1083](https://github.com/Altinn/altinn-components/issues/1083)) ([8fb69e1](https://github.com/Altinn/altinn-components/commit/8fb69e15f2a63a1ef06e8c09b3b17643ec84a0c8))
+* wait for GitHub Pages deployment before completing PR preview ([#1082](https://github.com/Altinn/altinn-components/issues/1082)) ([429aba8](https://github.com/Altinn/altinn-components/commit/429aba8db7c477397ac95aa83b5b072e6f4d93c0))
+
+
+### Miscellaneous Chores
+
+* pin GitHub Actions to commit SHAs ([#1077](https://github.com/Altinn/altinn-components/issues/1077)) ([b9eac91](https://github.com/Altinn/altinn-components/commit/b9eac9105e354c7d20e7d6c7fa8cd143cac99019))
+
 ## [0.56.34](https://github.com/Altinn/altinn-components/compare/v0.56.33...v0.56.34) (2026-03-26)
 
 

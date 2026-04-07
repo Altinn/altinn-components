@@ -1,5 +1,5 @@
 import { ChevronUpDownIcon } from '@navikt/aksel-icons';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, memo } from 'react';
 import { Button, type ButtonProps } from '../Button';
 import { Dropdown, type DropdownProps } from '../Dropdown';
 import { Menu, type MenuItemProps, type MenuProps } from '../Menu/';
@@ -15,7 +15,7 @@ export interface ToolbarMenuProps extends Omit<MenuProps, 'variant'> {
   onSelectId?: (id: string) => void;
 }
 
-export const ToolbarMenu = ({
+export const ToolbarMenu = memo(({
   disabled,
   label = 'Label',
   variant = 'solid',
@@ -90,4 +90,5 @@ export const ToolbarMenu = ({
       </Dropdown>
     </span>
   );
-};
+ },
+);

@@ -1,5 +1,5 @@
 import { XMarkIcon } from '@navikt/aksel-icons';
-import { type ReactNode, useState } from 'react';
+import { type ReactNode, useState, useMemo } from 'react';
 import { Button } from '../Button';
 import { ToolbarControls } from './ToolbarControls.tsx';
 import { ToolbarFilterAddMenu } from './ToolbarFilterAddMenu.tsx';
@@ -42,10 +42,12 @@ export const ToolbarFilter = ({
   });
 
   /** Show reset button if filters are removable and filterState is not empty */
-  const removableFiltersCount = filters?.filter((filter) => filter.removable)?.length || 0;
+  const removableFilterNames = useMemo(
+    () => filters?.filter((filter) => filter.removable)?.map((filter) => filter.name) ?? [],
+    [filters],
+  );
   const showResetButton =
-    removableFiltersCount > 0 && Object.values(filterState)?.some((values) => values && values?.length > 0);
-  const removableFilterNames = filters?.filter((filter) => filter.removable)?.map((filter) => filter.name) ?? [];
+    removableFilterNames.length > 0 && Object.values(filterState)?.some((values) => values && values?.length > 0);
   const [openId, setOpenId] = useState<string | undefined>(undefined);
 
   const onToggle = (id: string) => {
