@@ -1,1 +1,0 @@
-"use client";import{r as p,j as i}from"./iframe-D8UVhXtj.js";import{c as u}from"./lite-DaUVFjkg.js";const x=p.forwardRef(function({type:r="text",className:e,onChange:a,onClick:o,...n},s){return i.jsx("input",{className:u("ds-input",e),ref:s,type:r,onChange:t=>n.readOnly||a?.(t),onClick:t=>{n.readOnly&&t.preventDefault(),o?.(t)},...n})});export{x as I};
