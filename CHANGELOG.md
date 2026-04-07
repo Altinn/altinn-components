@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.57.3](https://github.com/Altinn/altinn-components/compare/v0.57.2...v0.57.3) (2026-04-07)
+
+
+### Bug Fixes
+
+* **bulk:** improve keyboard accessibility for BulkHeader and BulkFooter buttons ([#1100](https://github.com/Altinn/altinn-components/issues/1100)) ([f1af505](https://github.com/Altinn/altinn-components/commit/f1af505cb9495dfb93be37a1c7b5afad22689483))
+* inbox stories ([#1098](https://github.com/Altinn/altinn-components/issues/1098)) ([cf275f5](https://github.com/Altinn/altinn-components/commit/cf275f51d5515ab385aac1802ec093284a2ae070))
+
 ## [0.57.2](https://github.com/Altinn/altinn-components/compare/v0.57.1...v0.57.2) (2026-04-01)
 
 
