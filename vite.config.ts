@@ -49,7 +49,7 @@ export default () => {
         formats: ['es'],
         fileName: (format) => `index.${format}.js`,
       },
-      rolldownOptions: {
+      rollupOptions: {
         external: [...dependencies, 'react/jsx-runtime'],
         input: Object.fromEntries(
           glob
