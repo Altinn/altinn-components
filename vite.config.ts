@@ -1,7 +1,7 @@
 import { extname, relative } from 'node:path';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import react from '@vitejs/plugin-react-swc';
+import react from '@vitejs/plugin-react';
 import { glob } from 'glob';
 import preserveDirectives from 'rollup-preserve-directives';
 import { defineConfig } from 'vite';
