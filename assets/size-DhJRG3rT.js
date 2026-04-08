@@ -1,1 +1,0 @@
-var e=function(e){return e.xs=`XSmall`,e.sm=`Small`,e.md=`Medium`,e.lg=`Large`,e.xl=`XL`,e}({});export{e as t};

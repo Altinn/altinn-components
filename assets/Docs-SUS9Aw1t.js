@@ -1,7 +1,0 @@
-import{t as e}from"./jsx-runtime-DwqL_Y-t.js";import{s as t}from"./blocks-BFztilWw.js";import{n}from"./lib-BuGdZX6V.js";var r=e();function i(e){let i={code:`code`,h1:`h1`,h2:`h2`,p:`p`,...n(),...e.components};return(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(t,{title:`Demo`}),`
-`,(0,r.jsx)(i.h1,{id:`demo-stories`,children:`Demo stories`}),`
-`,(0,r.jsx)(i.p,{children:`The demos use components from this library to illustrate pages and navigation. It is based on a scenario where a user have access to several other actors, including other people and deleted accounts.`}),`
-`,(0,r.jsx)(i.h2,{id:`inbox`,children:`Inbox`}),`
-`,(0,r.jsxs)(i.p,{children:[`The inbox demo illustrates navigation between inbox pages, selecting a dialog, switching accounts and a simple version of searching the inbox. It uses `,(0,r.jsx)(i.code,{children:`DialogList`}),` and `,(0,r.jsx)(i.code,{children:`Dialog`}),`-components.`]}),`
-`,(0,r.jsx)(i.h2,{id:`user-profile`,children:`User profile`}),`
-`,(0,r.jsxs)(i.p,{children:[`The user profile demo uses the `,(0,r.jsx)(i.code,{children:`AccountList`}),` to manage accounts, and `,(0,r.jsx)(i.code,{children:`SettingsList`}),` for managing alerts and settings. It also includes an activity log page based on `,(0,r.jsx)(i.code,{children:`Timeline`}),`.`]})]})}function a(e={}){let{wrapper:t}={...n(),...e.components};return t?(0,r.jsx)(t,{...e,children:(0,r.jsx)(i,{...e})}):i(e)}export{a as default};

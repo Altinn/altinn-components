@@ -1,1 +1,0 @@
-"use client";import{i as e}from"./chunk-DseTPa7n.js";import{t}from"./react-CpyhhMkF.js";import{t as n}from"./jsx-runtime-DwqL_Y-t.js";import{t as r}from"./lite-Bi5SuAl9.js";var i=n(),a=(0,e(t(),1).forwardRef)(function({"data-color":e=`info`,className:t,...n},a){return(0,i.jsx)(`div`,{className:r(`ds-alert`,t),"data-color":e,ref:a,...n})});export{a as t};

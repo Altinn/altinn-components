@@ -1,1 +1,0 @@
-import{t as e}from"./jsx-runtime-DwqL_Y-t.js";import{t}from"./Flex-SBjIXoOg.js";var n=e(),r=({children:e,as:r=`div`,direction:i=`col`,spacing:a=`page`,...o})=>(0,n.jsx)(t,{as:r,spacing:a,direction:i,...o,children:e});export{r as t};

@@ -1,1 +1,0 @@
-var e={type:`company`,name:`Brønnøysundregistrene`,imageUrl:``+new URL(`brreg-logo-DLm-5c1U.png`,import.meta.url).href};export{e as t};

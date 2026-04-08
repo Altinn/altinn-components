@@ -1,1 +1,0 @@
-import{t as e}from"./jsx-runtime-DwqL_Y-t.js";var t={divider:`_divider_1ismz_1`},n=e(),r=({as:e,size:r,color:i=`neutral`})=>(0,n.jsx)(e||`hr`,{"aria-hidden":`true`,className:t.divider,"data-size":r,"data-color":i});export{r as t};

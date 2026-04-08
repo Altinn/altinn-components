@@ -1,1 +1,0 @@
-import{t as e}from"./jsx-runtime-DwqL_Y-t.js";import{t}from"./input-MzJ4xW3r.js";var n=e(),r=({inputSize:e,size:r,color:i,ref:a,...o})=>(0,n.jsx)(t,{ref:a,size:e,"data-color":i,"data-size":r,...o});export{r as t};

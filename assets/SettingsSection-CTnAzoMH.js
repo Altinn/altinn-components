@@ -1,1 +1,0 @@
-import{t as e}from"./jsx-runtime-DwqL_Y-t.js";import{t}from"./Section-DYB-4Xyp.js";var n={section:`_section_13ero_1`},r=e(),i=({size:e=`sm`,theme:i=`default`,shadow:a=`xs`,as:o,color:s,children:c})=>(0,r.jsx)(t,{as:o,size:e,color:s,theme:i,shadow:a,className:n.section,spacing:2,children:c});export{i as t};

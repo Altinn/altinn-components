@@ -1,1 +1,0 @@
-import{t as e}from"./jsx-runtime-DwqL_Y-t.js";import{t}from"./Section-DYB-4Xyp.js";var n=e(),r=({color:e,children:r})=>(0,n.jsx)(t,{as:`article`,color:e,spacing:6,children:r});export{r as t};

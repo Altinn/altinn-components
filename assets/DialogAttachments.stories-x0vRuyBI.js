@@ -1,3 +1,0 @@
-import{t as e}from"./DialogAttachments-ytyTMLE-.js";import{t}from"./attachments-zRydRrjd.js";var n={title:`Inbox/Dialog/DialogAttachments`,component:e,tags:[`autodocs`,`beta`],args:{title:`6 vedlegg`,items:t}},r={args:{}};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`{
-  args: {}
-}`,...r.parameters?.docs?.source}}};var i=[`Default`];export{r as Default,i as __namedExportsOrder,n as default};

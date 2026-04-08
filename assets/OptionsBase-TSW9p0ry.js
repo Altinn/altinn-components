@@ -1,1 +1,0 @@
-import{t as e}from"./jsx-runtime-DwqL_Y-t.js";var t=e(),n=({size:e,color:n,inline:r,children:i})=>(0,t.jsx)(`div`,{"data-color":n,"data-size":e,style:{display:`flex`,flexDirection:r?`row`:`column`,rowGap:`1rem`,columnGap:`1rem`},children:i});export{n as t};

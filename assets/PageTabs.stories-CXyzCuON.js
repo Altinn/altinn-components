@@ -1,3 +1,0 @@
-import{t as e}from"./jsx-runtime-DwqL_Y-t.js";import{t}from"./TabMenu-B1P7EprM.js";var n=e(),r={title:`Page/PageTabs`,component:e=>(0,n.jsx)(t,{...e}),tags:[`autodocs`,`deprecated`],parameters:{},args:{items:[{id:`1`,href:`#1`,title:`Tab 1`,selected:!0},{id:`2`,href:`#2`,title:`Tab 2`},{id:`3`,href:`#3`,title:`Tab 3`}]}},i={args:{}};i.parameters={...i.parameters,docs:{...i.parameters?.docs,source:{originalSource:`{
-  args: {}
-}`,...i.parameters?.docs?.source}}};var a=[`Default`];export{i as Default,a as __namedExportsOrder,r as default};

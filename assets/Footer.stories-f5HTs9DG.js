@@ -1,1 +1,0 @@
-import{t as e}from"./Footer-Cuc_2UBb.js";import{t}from"./footer-DDWzsXPS.js";var n={title:`Layout/Footer`,component:e,tags:[`autodocs`],parameters:{layout:`fullscreen`},args:t},r={};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`{}`,...r.parameters?.docs?.source}}};var i=[`Default`];export{r as Default,i as __namedExportsOrder,n as default};

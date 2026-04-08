@@ -1,1 +1,0 @@
-import{t as e}from"./jsx-runtime-DwqL_Y-t.js";import{t}from"./Input-Dfidslyx.js";import{t as n}from"./FieldBase-CtZQXpp3.js";var r=e(),i=({size:e,color:i,label:a,helperText:o,...s})=>(0,r.jsx)(n,{size:e,color:i,label:a,helperText:o,children:(0,r.jsx)(t,{...s})});export{i as t};

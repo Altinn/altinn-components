@@ -1,1 +1,0 @@
-var e={type:`company`,name:`Statistisk sentralbyrå`,imageUrl:``+new URL(`ssb-logo-BwQhqgs_.png`,import.meta.url).href};export{e as t};

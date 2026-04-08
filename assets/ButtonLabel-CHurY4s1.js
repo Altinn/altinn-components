@@ -1,1 +1,0 @@
-import{i as e}from"./chunk-DseTPa7n.js";import{t}from"./jsx-runtime-DwqL_Y-t.js";import{t as n}from"./classnames-BeGqpnEa.js";var r=e(n(),1),i={label:`_label_18rn3_1`},a=t(),o=({className:e,size:t,children:n})=>(0,a.jsx)(`span`,{className:(0,r.default)(i.label,e),"data-size":t,children:n});export{o as t};

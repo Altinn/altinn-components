@@ -1,1 +1,0 @@
-import{t as e}from"./jsx-runtime-DwqL_Y-t.js";import{t}from"./AttachmentLink-CWctZEhv.js";var n={list:`_list_sdpdt_1`,item:`_item_sdpdt_9`},r=e(),i=({items:e})=>e.length?(0,r.jsx)(`ul`,{className:n.list,children:e.map(e=>(0,r.jsx)(`li`,{className:n.item,children:(0,r.jsx)(t,{...e})},e.href))}):null;export{i as t};

@@ -1,1 +1,0 @@
-import{t as e}from"./jsx-runtime-DwqL_Y-t.js";import{n as t,t as n}from"./Label-BLsGX2Br.js";import{t as r}from"./Typography-DBWZN96y.js";var i=e(),a=({size:e,color:a,label:o,helperText:s,children:c,...l})=>(0,i.jsxs)(t,{size:e,color:a,...l,children:[o&&(0,i.jsx)(n,{size:e,children:o}),c,s&&(0,i.jsx)(r,{size:`xs`,children:s})]});export{a as t};

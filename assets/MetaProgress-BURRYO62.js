@@ -1,1 +1,0 @@
-import{t as e}from"./jsx-runtime-DwqL_Y-t.js";import{n as t,r as n,t as r}from"./MetaItemLabel-CTD44JGg.js";var i=e(),a=({size:e=`xs`,variant:a=`text`,progress:o=0,tooltip:s,children:c})=>(0,i.jsxs)(n,{variant:a,size:e,tooltip:s,children:[(0,i.jsx)(t,{size:e,progress:o}),(0,i.jsx)(r,{variant:a,size:e,children:c})]});export{a as t};

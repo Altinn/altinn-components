@@ -1,7 +1,0 @@
-import{t as e}from"./jsx-runtime-DwqL_Y-t.js";import{n as t,s as n}from"./blocks-BFztilWw.js";import{n as r}from"./lib-BuGdZX6V.js";import{CompanyDashboard as i,PersonDashboard as a}from"./Dashboard.stories-Dw4nHyRX.js";var o=e();function s(e){let s={code:`code`,h1:`h1`,h2:`h2`,p:`p`,...r(),...e.components};return(0,o.jsxs)(o.Fragment,{children:[(0,o.jsx)(n,{title:`Page/Dashboard`}),`
-`,(0,o.jsx)(s.h1,{id:`dashboard-pages`,children:`Dashboard pages`}),`
-`,(0,o.jsxs)(s.p,{children:[`Build dashboards using `,(0,o.jsx)(s.code,{children:`DashboardHeader`}),`, `,(0,o.jsx)(s.code,{children:`Grid`}),`, `,(0,o.jsx)(s.code,{children:`DashboardCard`}),`, and general purpuse components like `,(0,o.jsx)(s.code,{children:`Section`}),`, `,(0,o.jsx)(s.code,{children:`Divider`}),`, `,(0,o.jsx)(s.code,{children:`Heading`}),` and `,(0,o.jsx)(s.code,{children:`Typography`}),`.`]}),`
-`,(0,o.jsx)(s.h2,{id:`person-dashboard`,children:`Person dashboard`}),`
-`,(0,o.jsx)(t,{of:a}),`
-`,(0,o.jsx)(s.h2,{id:`company-dashboard`,children:`Company dashboard`}),`
-`,(0,o.jsx)(t,{of:i})]})}function c(e={}){let{wrapper:t}={...r(),...e.components};return t?(0,o.jsx)(t,{...e,children:(0,o.jsx)(s,{...e})}):s(e)}export{c as default};

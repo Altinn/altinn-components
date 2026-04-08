@@ -1,3 +1,0 @@
-import{t as e}from"./AttachmentList-D5qnhZ9s.js";import{t}from"./attachments-zRydRrjd.js";var n={title:`Typography/AttachmentList`,component:e,tags:[`autodocs`],parameters:{layout:`fullscreen`},args:{items:t}},r={args:{}};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`{
-  args: {}
-}`,...r.parameters?.docs?.source}}};var i=[`Default`];export{r as Default,i as __namedExportsOrder,n as default};
