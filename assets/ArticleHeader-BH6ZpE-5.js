@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-DwqL_Y-t.js";import{t}from"./Heading-CJB15i5Q.js";import{t as n}from"./Section-DYB-4Xyp.js";var r=e(),i=({title:e,children:i})=>(0,r.jsxs)(n,{as:`header`,spacing:2,children:[e&&(0,r.jsx)(t,{size:`xl`,children:e}),i]});export{i as t};

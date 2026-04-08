@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-DwqL_Y-t.js";import{n as t}from"./Fieldset-Bi-S6onu.js";var n=e(),r=({size:e,color:r,children:i,...a})=>(0,n.jsx)(t,{...a,"data-size":e,"data-color":r,children:i});export{r as t};

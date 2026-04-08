@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-DwqL_Y-t.js";import{t}from"./Button-L6T5IVdq.js";var n={divider:`_divider_1eeu8_1`,border:`_border_1eeu8_17`},r=e(),i=({variant:e})=>(0,r.jsx)(t,{as:`span`,color:`inherit`,variant:e,"aria-hidden":`true`,className:n.divider,children:(0,r.jsx)(`span`,{className:n.border})});export{i as t};

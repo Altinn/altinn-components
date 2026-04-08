@@ -1,0 +1,1 @@
+var e={href:`#main-content`,color:`inherit`,size:`xs`,children:`Skip to main content`};export{e as t};

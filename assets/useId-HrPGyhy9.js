@@ -1,0 +1,1 @@
+import{i as e}from"./chunk-DseTPa7n.js";import{t}from"./react-CpyhhMkF.js";var n=e(t()),r=0;function i(e){let[t,i]=(0,n.useState)(e),a=e||t;return(0,n.useEffect)(()=>{t??(r+=1,i(`aksel-icon-${r}`))},[t]),a}var a=n.useId;function o(e){if(a!==void 0){let t=a();return e??t.replace(/(:)/g,``)}return i(e)??``}export{o as t};

@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-DwqL_Y-t.js";import{i as t,t as n}from"./field-BTDyCfBO.js";var r=e(),i=({size:e,color:t,reverse:i,children:a,...o})=>(0,r.jsx)(n,{...o,"data-size":e,"data-color":t,"data-position":i?`end`:`start`,children:a}),a=({size:e,color:n,children:i,...a})=>(0,r.jsx)(t,{...a,"data-size":e,"data-color":n,children:i});export{i as n,a as t};

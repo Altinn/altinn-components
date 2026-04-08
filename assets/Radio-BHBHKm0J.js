@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-DwqL_Y-t.js";import{n as t,t as n}from"./Label-BLsGX2Br.js";import{t as r}from"./Input-Dfidslyx.js";var i=e(),a=({size:e,color:a,label:o,...s})=>(0,i.jsxs)(t,{size:e,color:a,children:[(0,i.jsx)(r,{...s,type:`radio`}),!!o&&(0,i.jsx)(n,{children:o})]});export{a as t};

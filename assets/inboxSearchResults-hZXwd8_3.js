@@ -1,0 +1,1 @@
+import{n as e,t}from"./dialogs-Col8n_F5.js";var n=e(t,`støtte`);export{n as t};

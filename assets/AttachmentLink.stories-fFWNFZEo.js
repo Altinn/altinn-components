@@ -1,0 +1,3 @@
+import{t as e}from"./AttachmentLink-CWctZEhv.js";import{t}from"./attachments-zRydRrjd.js";var n={title:`Typography/AttachmentLink`,component:e,tags:[`autodocs`],parameters:{},args:t[0]},r={args:{}};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`{
+  args: {}
+}`,...r.parameters?.docs?.source}}};var i=[`Default`];export{r as Default,i as __namedExportsOrder,n as default};

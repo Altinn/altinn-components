@@ -1,0 +1,1 @@
+input[type=date]::-webkit-inner-spin-button{-webkit-appearance:none;display:none}input[type=date]::-webkit-calendar-picker-indicator{-webkit-appearance:none;display:none}@supports (-webkit-touch-callout:none){@media (pointer:coarse){input[type=date]{height:37px;line-height:21px}}}

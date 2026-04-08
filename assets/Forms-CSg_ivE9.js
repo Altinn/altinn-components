@@ -1,0 +1,7 @@
+import{t as e}from"./jsx-runtime-DwqL_Y-t.js";import{s as t}from"./blocks-BFztilWw.js";import{n}from"./lib-BuGdZX6V.js";var r=e();function i(e){let i={code:`code`,h1:`h1`,h2:`h2`,h3:`h3`,p:`p`,...n(),...e.components};return(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(t,{title:`Forms`}),`
+`,(0,r.jsx)(i.h1,{id:`using-forms-and-form-fields`,children:`Using forms and form fields`}),`
+`,(0,r.jsx)(i.p,{children:`Altinn form fields are based on components from Designsystemet and can be used as is or mixed with Ds components.`}),`
+`,(0,r.jsx)(i.h2,{id:`differences-from-designsystemet`,children:`Differences from Designsystemet`}),`
+`,(0,r.jsxs)(i.p,{children:[`While Designsystemet uses the `,(0,r.jsx)(i.code,{children:`data-`}),` attributes for color and size, Altinn components use `,(0,r.jsx)(i.code,{children:`size`}),` and `,(0,r.jsx)(i.code,{children:`color`}),` props.`]}),`
+`,(0,r.jsx)(i.h3,{id:`sizes`,children:`Sizes`}),`
+`,(0,r.jsxs)(i.p,{children:[`While `,(0,r.jsx)(i.code,{children:`md`}),` is the default size, mose cases should use the `,(0,r.jsx)(i.code,{children:`sm`}),` size. Altinn also introduces an smaller `,(0,r.jsx)(i.code,{children:`xs`}),` size, to be used in toolbars and in other cases where space is limited.`]})]})}function a(e={}){let{wrapper:t}={...n(),...e.components};return t?(0,r.jsx)(t,{...e,children:(0,r.jsx)(i,{...e})}):i(e)}export{a as default};

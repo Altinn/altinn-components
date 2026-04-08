@@ -1,0 +1,13 @@
+import{i as e}from"./chunk-DseTPa7n.js";import{t}from"./react-CpyhhMkF.js";import{t as n}from"./jsx-runtime-DwqL_Y-t.js";import{t as r}from"./InformationSquare-B89OwIEo.js";import{t as i}from"./XMark-CDYpubJK.js";import{t as a}from"./classnames-BeGqpnEa.js";import{t as o}from"./Button-L6T5IVdq.js";import{t as s}from"./Flex-SBjIXoOg.js";var c=e(a(),1),l={banner:`_banner_1of7r_1`,sticky:`_sticky_1of7r_12`,title:`_title_1of7r_18`,infoIcon:`_infoIcon_1of7r_25`,closeIcon:`_closeIcon_1of7r_34`},u=n(),d=function(e){return e.company=`company`,e.success=`success`,e.warning=`warning`,e.danger=`danger`,e.info=`info`,e}({}),f=({closeTitle:e=`close`,onClose:t,text:n,color:a,sticky:s=!0})=>(0,u.jsxs)(`section`,{className:(0,c.default)(l.banner,{[l.sticky]:s}),role:`status`,"aria-live":`polite`,"data-color":a,children:[(0,u.jsxs)(`div`,{className:l.title,children:[(0,u.jsx)(r,{className:l.infoIcon,"aria-hidden":!0}),(0,u.jsx)(`span`,{children:n})]}),!!t&&(0,u.jsx)(o,{variant:`solid`,onClick:t,className:l.dismiss,"aria-label":e,children:(0,u.jsx)(i,{style:{fontSize:`1.5em`}})})]}),p=e(t(),1),m={title:`Banner/Banner`,component:f,tags:[`autodocs`],parameters:{},args:{sticky:!0,closeTitle:`Lukk`,onClose:()=>console.log(`Banner closed`),text:`Du ser nå på en beta-versjon av nye Altinn Innboks i et testmiljø. Alt innhold du ser her er basert på
+          testdata og kun ment for demonstrasjon.`}},h={args:{}},g=()=>(0,u.jsx)(s,{direction:`col`,spacing:3,children:(0,u.jsx)(f,{text:`Dette banneret har ingen lukke-knapp`})}),_=e=>(0,u.jsx)(s,{direction:`col`,spacing:3,children:Object.keys(d).map(t=>(0,p.createElement)(f,{...e,color:t,key:t}))});h.parameters={...h.parameters,docs:{...h.parameters?.docs,source:{originalSource:`{
+  args: {}
+}`,...h.parameters?.docs?.source}}},g.parameters={...g.parameters,docs:{...g.parameters?.docs,source:{originalSource:`() => {
+  return <Flex direction="col" spacing={3}>
+      <Banner text="Dette banneret har ingen lukke-knapp" />
+    </Flex>;
+}`,...g.parameters?.docs?.source}}},_.parameters={..._.parameters,docs:{..._.parameters?.docs,source:{originalSource:`(args: BannerProps) => {
+  const colors = Object.keys(BannerColorEnum) as BannerColor[];
+  return <Flex direction="col" spacing={3}>
+      {colors.map(color => <Banner {...args} color={color} key={color} />)}
+    </Flex>;
+}`,..._.parameters?.docs?.source}}};var v=[`Default`,`WithoutCloseButton`,`Colors`];export{_ as Colors,h as Default,g as WithoutCloseButton,v as __namedExportsOrder,m as default};

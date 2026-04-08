@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-DwqL_Y-t.js";import{t}from"./Select-DFZh9onO.js";import{t as n}from"./FieldBase-CtZQXpp3.js";var r=e(),i=({size:e=`md`,label:i,children:a,...o})=>(0,r.jsx)(n,{label:i,size:e,children:(0,r.jsx)(t,{...o,size:e,children:a})});export{i as t};

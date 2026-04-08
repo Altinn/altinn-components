@@ -1,0 +1,1 @@
+import{r as e}from"./globalMenu-CNFEw4pj.js";import{i as t}from"./useLocale-C34C1tOZ.js";var n={globalMenu:e,locale:t,search:{name:`global-search`,placeholder:`Søk i Altinn`}};export{n as t};

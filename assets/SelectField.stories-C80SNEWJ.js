@@ -1,0 +1,3 @@
+import{t as e}from"./jsx-runtime-DwqL_Y-t.js";import{t}from"./SelectField-Bl8God7J.js";var n=e(),r={title:`Forms/SelectField`,component:t,tags:[`autodocs`],parameters:{},args:{label:`Select something`,children:[(0,n.jsx)(`option`,{value:`1`,children:`Option 1`},`1`),(0,n.jsx)(`option`,{value:`2`,children:`Option 2`},`2`),(0,n.jsx)(`option`,{value:`3`,children:`Option 3`},`3`)]}},i={args:{}};i.parameters={...i.parameters,docs:{...i.parameters?.docs,source:{originalSource:`{
+  args: {}
+}`,...i.parameters?.docs?.source}}};var a=[`Default`];export{i as Default,a as __namedExportsOrder,r as default};

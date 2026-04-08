@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-DwqL_Y-t.js";import{t}from"./Byline-7aIo_V1-.js";var n=e(),r=({sender:e,recipient:r,recipientLabel:i=`to`,grouped:a=!1,loading:o,size:s=`xs`})=>!e&&!r?null:(0,n.jsxs)(t,{loading:o,size:s,avatar:e,avatarGroup:!o&&a&&e&&r?{items:[r,e]}:void 0,children:[(0,n.jsx)(`strong`,{children:e?.name}),` `,r&&i+` `+r?.name]});export{r as t};
