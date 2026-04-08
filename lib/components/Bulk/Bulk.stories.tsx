@@ -11,7 +11,6 @@ import {
   Layout,
   PageBase,
   Toolbar,
-  type ToolbarProps,
 } from '../';
 import { useInbox } from '../../../examples';
 
@@ -27,11 +26,13 @@ const meta = {
 export default meta;
 
 export const Default = ({
+  defaultAccountId = 'user',
   defaultBulkIds = [],
 }: {
+  defaultAccountId?: string;
   defaultBulkIds?: string[];
 }) => {
-  const { layout, toolbar, results } = useInbox({});
+  const { layout, toolbar, results } = useInbox({ defaultAccountId });
 
   const bulkActions = [
     {
@@ -142,9 +143,6 @@ export const Default = ({
     },
   ];
 
-  const accountMenu = toolbar?.accountMenu;
-  const currentAccount = accountMenu?.items?.find((item) => item.selected) || accountMenu?.items[0];
-
   const breadcrumbsItems = layout?.breadcrumbs?.items || [];
   const bulkBreadcrumbsItems = [...breadcrumbsItems, { label: 'Velg flere', href: '/inbox' }];
 
@@ -167,17 +165,7 @@ export const Default = ({
           onDismiss={unselectAll}
         />
         <Heading size="xl">Innboks</Heading>
-        <Toolbar
-          {...toolbar}
-          search={{ value: 'Skatt' }}
-          disabled={bulkMode}
-          accountMenu={
-            {
-              ...accountMenu,
-              label: currentAccount?.name,
-            } as ToolbarProps['accountMenu']
-          }
-        />
+        <Toolbar {...toolbar} search={{ value: 'Skatt' }} disabled={bulkMode} />
         {results && <DialogList items={items} groups={results?.groups} />}
 
         <BulkFooter hidden={!bulkMode} actions={bulkActions} />
@@ -188,4 +176,12 @@ export const Default = ({
 
 export const BulkModeOn = () => {
   return <Default defaultBulkIds={['item-0', 'item-1']} />;
+};
+
+export const Company = () => {
+  return <Default defaultAccountId="diaspora" />;
+};
+
+export const CompanyBulkMode = () => {
+  return <Default defaultAccountId="diaspora" defaultBulkIds={['item-0', 'item-1']} />;
 };

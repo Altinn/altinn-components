@@ -291,9 +291,11 @@ export const useInbox = ({
     accountId,
   });
 
+  const toolbarMenus = subAccountMenu ? [accountMenu, subAccountMenu] : [accountMenu];
+
   const toolbar = useInboxToolbar({
     query,
-    menus: [accountMenu, subAccountMenu] as ToolbarProps['menus'],
+    menus: toolbarMenus as ToolbarProps['menus'],
   });
 
   // duplicate items if grouped view
@@ -366,6 +368,7 @@ export const useInbox = ({
         label: 'Tilbake',
       },
     },
+    bulkIds,
     layout: {
       ...layout,
       theme: 'inbox',

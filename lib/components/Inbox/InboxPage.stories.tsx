@@ -154,18 +154,7 @@ export const SearchTrash = () => {
   );
 };
 
-export const SearchEmpty = () => (
-  <Search
-    title="Ingen treff"
-    query={{ q: 'Lorem ipsum ' }}
-    summary={
-      <p>
-        Du har treff i <a href="/iframe.html?id=inbox-inboxpage--archive-search">arkiv</a> og{' '}
-        <a href="/iframe.html?id=inbox-inboxpage--trash-search">papirkurv</a>.
-      </p>
-    }
-  />
-);
+export const SearchEmpty = () => <Search title="Ingen treff" query={{ q: 'Lorem ipsum ' }} summary={''} />;
 
 export const InboxEmpty = ({
   pageId = 'inbox',
@@ -178,7 +167,7 @@ export const InboxEmpty = ({
 
   return (
     <Layout {...layout}>
-      <InboxPage title={pageTitle} toolbar={{ accountMenu: toolbar?.accountMenu }}>
+      <InboxPage title={pageTitle} toolbar={toolbar}>
         <Typography variant="subtle" size="sm">
           {summary}
         </Typography>

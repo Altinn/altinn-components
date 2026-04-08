@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react';
-import { defaultAccounts, useAccountMenu } from '..';
-import type { AvatarGroupProps, AvatarProps } from '../../lib';
+import { useMemo, useState } from "react";
+import { defaultAccounts, useAccountMenu } from "..";
+import type { AvatarGroupProps, AvatarProps } from "../../lib";
 
 interface UseInboxAccountsProps {
   accountId?: string;
@@ -15,7 +15,9 @@ export const useInboxAccounts = ({ accountId }: UseInboxAccountsProps) => {
 
   const defaultAccount = accountMenu?.items?.[0];
 
-  const [currentAccountId, setCurrentAccountId] = useState(accountId || defaultAccount?.id);
+  const [currentAccountId, setCurrentAccountId] = useState(
+    accountId || defaultAccount?.id,
+  );
 
   const [subAccountIds, setSubAccountIds] = useState<string[]>([]);
 
@@ -23,7 +25,7 @@ export const useInboxAccounts = ({ accountId }: UseInboxAccountsProps) => {
     return {
       id: item.id,
       groupId: item.groupId,
-      size: 'md',
+      size: "md",
       icon: item.icon,
       title: item.name,
       description: item.description,
@@ -42,10 +44,10 @@ export const useInboxAccounts = ({ accountId }: UseInboxAccountsProps) => {
         ?.map((child) => {
           const item = accountMenu?.items?.find((item) => item.id === child.id);
           return {
-            role: 'checkbox',
+            role: "checkbox",
             value: item?.id,
             title: item?.name,
-            description: 'Org. nr. ' + child?.uniqueId,
+            description: "Org. nr. " + child?.uniqueId,
           };
         }),
     [currentAccountId, accountMenu?.items],
@@ -54,41 +56,41 @@ export const useInboxAccounts = ({ accountId }: UseInboxAccountsProps) => {
   const parentAccountOptions =
     (childAccountOptions?.length === 1 && [
       {
-        role: 'checkbox',
+        role: "checkbox",
         value: accountId,
-        title: 'Hovedenhet',
+        title: "Hovedenhet",
         description: currentAccount?.description,
-        groupId: '1',
+        groupId: "1",
       },
       {
-        role: 'checkbox',
+        role: "checkbox",
         value: childAccountOptions[0].value,
-        title: 'Underenhet',
+        title: "Underenhet",
         description: childAccountOptions[0].description,
-        groupId: '1',
+        groupId: "1",
       },
     ]) ||
     (childAccountOptions?.length > 1 && [
       {
         value: accountId,
-        role: 'checkbox',
-        title: 'Hovedenhet',
+        role: "checkbox",
+        title: "Hovedenhet",
         description: currentAccount?.description,
-        groupId: '1',
+        groupId: "1",
       },
       ...childAccountOptions,
     ]);
 
   const avatarGroup =
-    currentAccount?.icon && 'items' in currentAccount.icon
-      ? (currentAccount.icon.items as AvatarGroupProps['items'])
+    currentAccount?.icon && "items" in currentAccount.icon
+      ? (currentAccount.icon.items as AvatarGroupProps["items"])
       : undefined;
 
   const groupIdOptions = avatarGroup?.map((avatar: AvatarProps) => {
     const item = accountMenu?.items?.find((item) => item.id === avatar?.id);
     return {
-      name: 'groupIds',
-      role: 'checkbox',
+      name: "groupIds",
+      role: "checkbox",
       value: item?.id,
       title: item?.name,
       description: item?.description,
@@ -98,12 +100,17 @@ export const useInboxAccounts = ({ accountId }: UseInboxAccountsProps) => {
   const groupOptions = parentAccountOptions || groupIdOptions;
 
   const subAccountMenu = groupOptions && {
-    name: 'groupIds',
-    label: groupOptions?.length + ' aktører',
+    name: "groupIds",
+    label: groupOptions?.length + " aktører",
     items: groupOptions,
-    size: 'sm',
+    size: "sm",
     onSelectId: (id: string) => {
-      id && setSubAccountIds((prev) => (prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]));
+      id &&
+        setSubAccountIds((prev) =>
+          prev.includes(id)
+            ? prev.filter((item) => item !== id)
+            : [...prev, id],
+        );
     },
   };
 
@@ -116,7 +123,7 @@ export const useInboxAccounts = ({ accountId }: UseInboxAccountsProps) => {
       searchable: true,
       groups: accountMenu?.groups,
       items,
-      label: currentAccount?.title || 'Account',
+      label: currentAccount?.title || "Account",
       onSelectId: (id: string) => {
         id && setCurrentAccountId(id);
       },
