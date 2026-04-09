@@ -86,6 +86,14 @@ export const Controlled = (args: SearchFieldProps) => {
   return <SearchField {...args} value={q} onChange={(e) => setQ(e.target.value)} onClear={() => setQ('')} />;
 };
 
+export const Collapsible = (args: SearchFieldProps) => {
+  const [q, setQ] = useState('');
+
+  return (
+    <SearchField {...args} collapsible value={q} onChange={(e) => setQ(e.target.value)} onClear={() => setQ('')} />
+  );
+};
+
 export const Autocomplete = (args: SearchFieldProps) => {
   const [q, setQ] = useState('');
 

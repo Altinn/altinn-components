@@ -165,7 +165,7 @@ export const Default = ({
           onDismiss={unselectAll}
         />
         <Heading size="xl">Innboks</Heading>
-        <Toolbar {...toolbar} search={{ value: 'Skatt' }} disabled={bulkMode} />
+        <Toolbar {...toolbar} search={{ value: 'Skatt', collapsible: true }} disabled={bulkMode} />
         {results && <DialogList items={items} groups={results?.groups} />}
 
         <BulkFooter hidden={!bulkMode} actions={bulkActions} />

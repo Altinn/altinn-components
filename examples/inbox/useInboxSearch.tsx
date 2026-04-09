@@ -9,7 +9,7 @@ interface UseInboxSearchProps {
 
 export const useInboxSearch = ({
   name = 'inbox-search',
-  placeholder = 'Søk i innboks',
+  placeholder = 'Search ...',
   value,
 }: UseInboxSearchProps): ToolbarProps['search'] => {
   const [q, setQ] = useState<string>(value || '');
@@ -18,6 +18,7 @@ export const useInboxSearch = ({
   };
 
   return {
+    collapsible: true,
     name,
     placeholder,
     value: q,
