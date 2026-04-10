@@ -1,3 +1,0 @@
-import{D as t}from"./Datepicker-B55e0e9V.js";import"./iframe-DRbAvM8B.js";import"./preload-helper-PPVm8Dsz.js";import"./index-Dpt5RUeZ.js";import"./useId-p3Uu13R2.js";import"./ChevronRight-BIwAZUpi.js";import"./Button-DXRH0CtL.js";import"./button-DB6SpB_q.js";import"./use-merge-refs-BRHMCtFk.js";import"./lite-DaUVFjkg.js";const u={title:"Next/Datepicker",component:t,tags:["autodocs"],parameters:{},args:{}},r={args:{}};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`{
-  args: {}
-}`,...r.parameters?.docs?.source}}};const g=["Default"];export{r as Default,g as __namedExportsOrder,u as default};

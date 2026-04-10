@@ -1,1 +1,0 @@
-import{j as p}from"./iframe-DRbAvM8B.js";import{I as e}from"./input-DR5YebMy.js";const n=({inputSize:t,size:o,color:r,ref:s,...a})=>p.jsx(e,{ref:s,size:t,"data-color":r,"data-size":o,...a});export{n as I};
