@@ -21,7 +21,7 @@ export const BookmarkSettingsItemLabel = ({
   return (
     <span className={styles.label}>
       {title && (
-        <Heading size="sm" loading={loading} highlightWords={highlightWords}>
+        <Heading size="xs" loading={loading} highlightWords={highlightWords}>
           {title}
         </Heading>
       )}

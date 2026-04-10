@@ -75,7 +75,7 @@ export const DashboardPage = () => {
         ...item,
         id: "s" + index,
       };
-    }
+    },
   );
 
   const groups = {
@@ -126,6 +126,17 @@ export const AlertsPage = () => {
     <Layout {...layout} useGlobalHeader={true}>
       <PageBase color="person">
         <SettingsStories.AlertSettings />
+      </PageBase>
+    </Layout>
+  );
+};
+
+export const BookmarksPage = () => {
+  const { layout } = useProfile({ pageId: "bookmarks" });
+  return (
+    <Layout {...layout} useGlobalHeader={true}>
+      <PageBase color="person">
+        <SettingsStories.BookmarkSettings />
       </PageBase>
     </Layout>
   );

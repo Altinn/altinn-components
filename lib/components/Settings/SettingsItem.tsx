@@ -36,6 +36,9 @@ export const SettingsItem = ({
   variant = 'default',
   id = 'settings',
   name,
+  title,
+  value,
+  description,
   checked,
   onChange,
   modalProps,
@@ -45,7 +48,7 @@ export const SettingsItem = ({
   const [open, setOpen] = useState(false);
 
   if (loading) {
-    return <SettingsItemBase icon={props?.icon} title={props?.title} loading />;
+    return <SettingsItemBase icon={props?.icon} titleProps={{ children: title }} loading />;
   }
 
   switch (variant) {
@@ -53,31 +56,38 @@ export const SettingsItem = ({
       return (
         <SettingsItemBase
           {...props}
-          title={{
-            children: props?.title,
+          titleProps={{
+            children: title,
           }}
-          description={props?.description}
-          value={undefined}
+          descriptionProps={{
+            size: 'xs',
+            weight: 'normal',
+            variant: 'subtle',
+            children: description,
+          }}
         />
       );
     case 'switch':
       return (
         <SettingsItemBase
           {...props}
-          title={{
-            children: props?.title,
+          as="div"
+          titleProps={{
+            children: title,
           }}
-          description={{
-            children: props?.description,
+          descriptionProps={{
+            size: 'xs',
+            weight: 'normal',
+            variant: 'subtle',
+            children: description,
           }}
-          interactive={false}
           controls={
             <Input
               type="checkbox"
               role="switch"
               aria-labelledby={id}
               name={name}
-              value={props?.value as string}
+              value={value as string}
               checked={checked}
               onChange={onChange}
               style={{ marginRight: '0.5em' }}
@@ -90,16 +100,16 @@ export const SettingsItem = ({
       return (
         <SettingsItemBase
           {...props}
-          title={{
-            size: props?.value ? 'xs' : 'sm',
+          titleProps={{
+            size: value ? 'xs' : 'sm',
             variant: 'subtle',
             weight: 'normal',
-            children: props?.title,
+            children: title,
           }}
-          description={{
+          descriptionProps={{
             size: 'sm',
             variant: 'default',
-            children: props?.description || props?.value,
+            children: description || value,
           }}
           as="button"
           linkIcon={true}
@@ -110,7 +120,7 @@ export const SettingsItem = ({
             <SettingsModal
               {...modalProps}
               icon={modalProps?.icon || props?.icon}
-              title={modalProps?.title || props?.title}
+              title={modalProps?.title || title}
               open={open}
               onClose={() => setOpen(false)}
             >
@@ -124,16 +134,16 @@ export const SettingsItem = ({
       return (
         <SettingsItemBase
           {...props}
-          title={{
-            size: props?.value ? 'xs' : 'sm',
+          titleProps={{
+            size: value ? 'xs' : 'sm',
             variant: 'subtle',
             weight: 'normal',
-            children: props?.title,
+            children: title,
           }}
-          description={{
+          descriptionProps={{
             size: 'sm',
             variant: 'default',
-            children: props?.description || props?.value,
+            children: description || value,
           }}
         />
       );
