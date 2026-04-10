@@ -13,6 +13,7 @@ const meta = {
   parameters: {},
   args: {
     placement: 'left',
+    color: 'person',
     items: [
       {
         id: '1',

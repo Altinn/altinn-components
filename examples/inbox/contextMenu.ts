@@ -34,7 +34,7 @@ export const contextMenu: ContextMenuProps = {
       groupId: '2',
       id: 'read',
       icon: EyeIcon,
-      title: 'Marker som lest',
+      title: 'Marker som ulest',
     },
     {
       groupId: '3',

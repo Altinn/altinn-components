@@ -33,6 +33,7 @@ export const Default = ({
   defaultBulkIds?: string[];
 }) => {
   const { layout, toolbar, results } = useInbox({ defaultAccountId });
+  const [loading, setLoading] = useState(false);
 
   const bulkActions = [
     {
@@ -41,7 +42,7 @@ export const Default = ({
     },
     {
       icon: EyeClosedIcon,
-      label: 'Marker som lest',
+      label: 'Marker som ulest',
     },
     {
       icon: ArchiveIcon,
@@ -50,6 +51,13 @@ export const Default = ({
     {
       icon: TrashIcon,
       label: 'Flytt til papirkurv',
+      loading,
+      onClick: () => {
+        setLoading(true);
+        setTimeout(() => {
+          setLoading(false);
+        }, 2000);
+      },
     },
   ];
 
@@ -83,7 +91,7 @@ export const Default = ({
         {
           groupId: '2',
           icon: EyeClosedIcon,
-          label: 'Marker som lest',
+          label: 'Marker som ulest',
         },
         {
           groupId: '3',
@@ -167,7 +175,6 @@ export const Default = ({
         <Heading size="xl">Innboks</Heading>
         <Toolbar {...toolbar} search={{ value: 'Skatt', collapsible: true }} disabled={bulkMode} />
         {results && <DialogList items={items} groups={results?.groups} />}
-
         <BulkFooter hidden={!bulkMode} actions={bulkActions} />
       </PageBase>
     </Layout>

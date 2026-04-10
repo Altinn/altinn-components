@@ -2,7 +2,7 @@ import { MenuElipsisHorizontalIcon } from '@navikt/aksel-icons';
 import { useMemo } from 'react';
 import { Button } from '../Button';
 import { Dropdown, type DropdownProps } from '../Dropdown';
-import { Menu, type MenuProps } from '../Menu';
+import { Menu, type MenuItemColor, type MenuProps } from '../Menu';
 import { useDropdownMenuController } from '../Menu/useDropdownMenuController.tsx';
 import { useRootContext } from '../RootProvider';
 import { Tooltip } from '../Tooltip';
@@ -12,12 +12,14 @@ export interface ContextMenuProps extends MenuProps {
   title?: string;
   placement?: DropdownProps['placement'];
   'aria-label'?: string;
+  color?: MenuItemColor;
 }
 
 export const ContextMenu = ({
   groups = {},
   items,
   title,
+  color,
   id = 'context-menu',
   placement = 'right',
   'aria-label': ariaLabel,
@@ -48,6 +50,7 @@ export const ContextMenu = ({
           aria-haspopup="menu"
           aria-expanded={ctrl.open}
           aria-controls={ctrl.open ? ctrl.menuId : undefined}
+          color={color}
         >
           <MenuElipsisHorizontalIcon aria-hidden="true" />
         </Button>
@@ -58,6 +61,7 @@ export const ContextMenu = ({
   return (
     <Dropdown
       backdrop={false}
+      color={color}
       trigger={<ContextMenuButton />}
       open={ctrl.open}
       onClose={() => ctrl.setOpen(false)}

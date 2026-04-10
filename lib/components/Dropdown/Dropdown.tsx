@@ -2,6 +2,7 @@ import { XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import { type ReactNode, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import type { Color } from '..';
 import { Button } from '../Button';
 import styles from './dropdown.module.css';
 
@@ -21,6 +22,7 @@ export type DropdownVariant = 'dropdown' | 'drawer' | 'drawer-dropdown' | 'heade
 
 export interface DropdownProps {
   id?: string;
+  color?: Color;
   className?: string;
   backdrop?: boolean;
   placement?: DropdownPlacement;
@@ -83,6 +85,7 @@ export const Dropdown = ({
   children,
   open,
   onClose,
+  color,
   onSubmit,
   activeDescendantId,
   useFixedPosition = false,
@@ -283,6 +286,7 @@ export const Dropdown = ({
       style={dropdownStyles}
       aria-hidden={!open}
       data-variant={variant}
+      data-color={color}
       data-expanded={expanded}
       data-size={size}
       tabIndex={-1}
