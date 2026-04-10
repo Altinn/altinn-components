@@ -1,0 +1,10 @@
+import{r as i,j as o}from"./iframe-bdb8MxAl.js";import{B as e}from"./BookmarkModal-DKnlyWgv.js";import{B as s}from"./Button-CmmCg_X2.js";import"./preload-helper-PPVm8Dsz.js";import"./SettingsModal-enhi0fRg.js";import"./ModalBase-Bp5S3I6D.js";import"./Section-CT0nm1G-.js";import"./index-p3wA3m8m.js";import"./Flex-7ZoZ5Zdr.js";import"./ModalBody-BsZkJKis.js";import"./XMark-ml8n1JcF.js";import"./useId-m2lwd_Ct.js";import"./Icon-DDIx0qrc.js";import"./Skeleton-BMmeChMq.js";import"./Avatar-Di5f2hN1.js";import"./AvatarGroup-DeyVKu-1.js";import"./Heading-BV-bgYII.js";import"./useHighlightedText-BZip2xbp.js";import"./ButtonGroup-BdDqNtW_.js";import"./ButtonIcon-DpQ6wq1u.js";import"./ButtonLabel-CEDslqSZ.js";import"./MagnifyingGlass-CUUYZIQ1.js";import"./QueryLabel-CWbhe0_b.js";import"./Plus-B7BchYDv.js";import"./TextField-BdRzS3zi.js";import"./FieldBase-DvRhg6xr.js";import"./Typography-BHyeW1q-.js";import"./Label-DBSC-MMD.js";import"./index-Bm_5QTlm.js";import"./use-merge-refs-Xyc_Uo3E.js";import"./lite-DaUVFjkg.js";import"./Input-ClF74fUz.js";import"./input-ATX54hdE.js";import"./button-riuqcLff.js";const I={title:"Bookmarks/BookmarkModal",component:e,args:{title:"Lagre søk",params:[{type:"search",label:"skatt"},{type:"filter",label:"Krever handling"}],titleField:{placeholder:"Uten navn"},buttons:[{label:"Lagre"},{label:"Avbryt",variant:"outline"}]},parameters:{layout:"centered"}},t=p=>{const[a,n]=i.useState(!0),r=()=>{n(m=>!m)};return o.jsxs(o.Fragment,{children:[o.jsx(s,{onClick:r,children:"Open modal"}),o.jsx(e,{...p,open:a,onClose:r})]})};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`(args: BookmarkModalProps) => {
+  const [open, setOpen] = useState<boolean>(true);
+  const onToggle = () => {
+    setOpen(prevState => !prevState);
+  };
+  return <>
+      <Button onClick={onToggle}>Open modal</Button>
+      <BookmarkModal {...args} open={open} onClose={onToggle} />
+    </>;
+}`,...t.parameters?.docs?.source}}};const J=["Default"];export{t as Default,J as __namedExportsOrder,I as default};
