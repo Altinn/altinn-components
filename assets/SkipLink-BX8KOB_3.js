@@ -1,1 +1,0 @@
-"use client";import{r as n,j as a}from"./iframe-DgiLb7Jh.js";import{c as e}from"./lite-DaUVFjkg.js";const c=n.forwardRef(function({children:s,className:r,...i},o){return a.jsx("a",{className:e("ds-skip-link",r),...i,ref:o,children:s})}),x=({color:t,size:s,children:r,href:i})=>a.jsx(c,{"data-color":t,"data-size":s,href:i,children:r});export{x as S};
