@@ -1,1 +1,0 @@
-import{j as t}from"./iframe-COdTICiz.js";import{A as n}from"./AttachmentLink-BnmB-6mT.js";const r="_list_sdpdt_1",l="_item_sdpdt_9",i={list:r,item:l},c=({items:s})=>s.length?t.jsx("ul",{className:i.list,children:s.map(e=>t.jsx("li",{className:i.item,children:t.jsx(n,{...e})},e.href))}):null;export{c as A};
