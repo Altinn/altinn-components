@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.58.0](https://github.com/Altinn/altinn-components/compare/v0.57.3...v0.58.0) (2026-04-10)
+
+
+### Features
+
+* Introduce screenshots testing based on storybook stories ([#947](https://github.com/Altinn/altinn-components/issues/947)) ([24660eb](https://github.com/Altinn/altinn-components/commit/24660eb8e177451916607378c6b76045d947a37e))
+
+
+### Bug Fixes
+
+* **bulkButton:** add loading state to bulk button ([#1113](https://github.com/Altinn/altinn-components/issues/1113)) ([ce48d7e](https://github.com/Altinn/altinn-components/commit/ce48d7e9ec081a9a060524cca76912829ba48983))
+* collapsible search ([#1110](https://github.com/Altinn/altinn-components/issues/1110)) ([e6e3591](https://github.com/Altinn/altinn-components/commit/e6e35914e7a78041d80673cc798045f8e51d8947))
+* dialog colors ([#1112](https://github.com/Altinn/altinn-components/issues/1112)) ([55563fa](https://github.com/Altinn/altinn-components/commit/55563fa475e4e9076f1a0885edbbf038002512cf))
+* inbox stories ([#1104](https://github.com/Altinn/altinn-components/issues/1104)) ([a9ac389](https://github.com/Altinn/altinn-components/commit/a9ac389251f86022d8402486ed27c2a5ad60a5bc))
+* settings switch ([#1111](https://github.com/Altinn/altinn-components/issues/1111)) ([9317121](https://github.com/Altinn/altinn-components/commit/9317121a81aa8b6f9cd68249b87fbb2a615777b2))
+
+
+### Miscellaneous Chores
+
+* downgrade to latest vite 7 version because of compability issues with Storybook ([#1106](https://github.com/Altinn/altinn-components/issues/1106)) ([40acef3](https://github.com/Altinn/altinn-components/commit/40acef3d22e31cc031e56f625e9eccad289b38b8))
+* upgrade vite from 7.3.1 to 8.0.7 ([#1103](https://github.com/Altinn/altinn-components/issues/1103)) ([0922e20](https://github.com/Altinn/altinn-components/commit/0922e20bcc0f7d0ca0383e736f19f3b2ef0af1f9))
+
 ## [0.57.3](https://github.com/Altinn/altinn-components/compare/v0.57.2...v0.57.3) (2026-04-07)
 
 
