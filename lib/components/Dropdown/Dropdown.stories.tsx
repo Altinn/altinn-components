@@ -1,8 +1,8 @@
 import { ChevronUpDownIcon } from '@navikt/aksel-icons';
 import type { Meta } from '@storybook/react-vite';
 import { useState } from 'react';
-import { Button } from '../Button/Button';
-import { Menu } from '../Menu/Menu';
+import { Button } from '../Button';
+import { Menu } from '../Menu';
 import { Dropdown, type DropdownProps } from './Dropdown';
 
 const dropdownMenu = {
@@ -127,35 +127,6 @@ export const DrawerMenu = ({ title = 'Meny', placement }: DropdownProps) => {
       onClose={onClose}
       placement={placement}
       variant="drawer"
-    >
-      <Menu {...dropdownMenu} size="sm" />
-    </Dropdown>
-  );
-};
-
-export const DrawerOrDropdownMenu = ({ title = 'Meny', placement }: DropdownProps) => {
-  const [open, setOpen] = useState(true);
-
-  const onToggle = () => {
-    setOpen((prev) => !prev);
-  };
-
-  const onClose = () => {
-    setOpen(false);
-  };
-
-  return (
-    <Dropdown
-      trigger={
-        <Button size="xs" variant="primary" onClick={onToggle}>
-          <span>{title}</span>
-          <ChevronUpDownIcon />
-        </Button>
-      }
-      open={open}
-      onClose={onClose}
-      placement={placement}
-      variant="drawer-dropdown"
     >
       <Menu {...dropdownMenu} size="sm" />
     </Dropdown>

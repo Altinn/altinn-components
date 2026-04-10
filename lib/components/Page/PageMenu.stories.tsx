@@ -17,7 +17,7 @@ const meta: Meta<typeof PageMenu> = {
       {
         id: '2',
         icon: EyeIcon,
-        title: 'Marker som lest',
+        title: 'Marker som ulest',
       },
       {
         id: '3',
