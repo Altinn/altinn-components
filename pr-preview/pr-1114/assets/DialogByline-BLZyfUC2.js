@@ -1,1 +1,0 @@
-import{j as t}from"./iframe-BmFIVBn_.js";import{B as u}from"./Byline-BGhU5n_P.js";const n=({sender:a,recipient:o,recipientLabel:m="to",grouped:r=!1,loading:s,size:l="xs"})=>{if(!a&&!o)return null;const x=!s&&r&&a&&o?{items:[o,a]}:void 0;return t.jsxs(u,{loading:s,size:l,avatar:a,avatarGroup:x,children:[t.jsx("strong",{children:a?.name})," ",o&&m+" "+o?.name]})};export{n as D};
