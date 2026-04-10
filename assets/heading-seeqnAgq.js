@@ -1,1 +1,0 @@
-"use client";import{r as n,j as i}from"./iframe-CfpleAaJ.js";import{S as m}from"./use-merge-refs-0CqQhLRb.js";import{c}from"./lite-DaUVFjkg.js";const l=n.forwardRef(function({level:o=2,className:r,asChild:s,...t},e){const a=s?m:`h${o}`;return i.jsx(a,{className:c("ds-heading",r),ref:e,...t})});export{l as H};
