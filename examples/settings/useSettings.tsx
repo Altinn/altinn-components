@@ -81,9 +81,9 @@ export const useSettings = ({
       id: 'showDeleted',
       icon: TrashIcon,
       name: 'showDeleted',
-      title: 'Slettede aktører',
+      title: 'Vis slettede aktører',
       value: data?.showDeleted,
-      description: data?.showDeleted ? 'Slettede aktører vises' : 'Slettede aktører er skjult',
+      //      description: data?.showDeleted ? 'Slettede aktører vises' : 'Slettede aktører er skjult',
       variant: 'switch',
       checked: data?.showDeleted,
       onChange,
@@ -92,9 +92,14 @@ export const useSettings = ({
       id: 'showClients',
       icon: PersonCircleIcon,
       name: 'showClients',
-      title: 'Klienter for regnskapsførere',
+      title: 'Vis klienter i aktørlisten',
       value: data?.showClients,
-      description: data?.showClients ? 'Tilhørende klienter vises' : 'Tilhørende klienter er skjult',
+      description: 'Gjelder regnskapsførere og revisorer',
+      /*
+      description: data?.showClients
+        ? "Tilhørende klienter vises"
+        : "Tilhørende klienter er skjult",
+        */
       variant: 'switch',
       checked: data?.showClients,
       onChange,
