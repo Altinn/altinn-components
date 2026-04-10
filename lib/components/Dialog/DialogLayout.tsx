@@ -30,7 +30,7 @@ export interface DialogLayoutProps {
 
 export const DialogLayout = ({ backButton, contextMenu, pageMenu, children, color }: DialogLayoutProps) => {
   return (
-    <PageBase theme="subtle" spacing={0} color={color} bleed>
+    <PageBase spacing={0} color={color} bleed>
       <Section theme="default" shadow="xs">
         <PageNav
           color="neutral"
