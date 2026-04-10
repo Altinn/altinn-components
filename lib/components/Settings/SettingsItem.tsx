@@ -65,15 +65,10 @@ export const SettingsItem = ({
         <SettingsItemBase
           {...props}
           title={{
-            size: 'xs',
-            variant: 'subtle',
-            weight: 'normal',
             children: props?.title,
           }}
           description={{
-            size: 'sm',
-            variant: 'default',
-            children: props?.description || props?.value,
+            children: props?.description,
           }}
           interactive={false}
           controls={
