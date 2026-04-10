@@ -2,6 +2,8 @@ import { BellIcon, GlobeIcon, HandshakeIcon, HouseHeartIcon, MobileIcon, SunIcon
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 import {
+  BookmarkModal,
+  BookmarkSettingsList,
   Heading,
   PageBase,
   SettingsList,
@@ -11,7 +13,14 @@ import {
   type ToolbarMenuProps,
 } from '..';
 
-import { type UseSettingsProps, defaultAccounts, useAdmin, useSettings, useSettingsToolbar } from '../../../examples';
+import {
+  type UseSettingsProps,
+  defaultAccounts,
+  useAdmin,
+  useBookmarks,
+  useSettings,
+  useSettingsToolbar,
+} from '../../../examples';
 
 import {
   AccountAlertsModal,
@@ -461,7 +470,9 @@ export const PersonSettings = () => {
     defaultAccountId: 'person',
   });
 
-  const toolbar = useSettingsToolbar({ accountMenu: accountMenu as ToolbarMenuProps });
+  const toolbar = useSettingsToolbar({
+    accountMenu: accountMenu as ToolbarMenuProps,
+  });
 
   return (
     <PageBase color="person">
@@ -486,7 +497,9 @@ export const CompanySettings = () => {
   const { accountMenu, currentAccount } = useAdmin({
     defaultAccountId: 'diaspora',
   });
-  const toolbar = useSettingsToolbar({ accountMenu: accountMenu as ToolbarMenuProps });
+  const toolbar = useSettingsToolbar({
+    accountMenu: accountMenu as ToolbarMenuProps,
+  });
 
   return (
     <PageBase color="company">
@@ -530,5 +543,35 @@ export const DashboardSettings = () => {
         },
       }}
     />
+  );
+};
+
+export const BookmarkSettings = () => {
+  const { expandedId, onClose, items, search, groups } = useBookmarks({
+    grouped: true,
+  });
+  const modalProps = expandedId && items.find((item) => item.id === expandedId);
+
+  return (
+    <PageBase>
+      <Heading size="xl">Bokmerker</Heading>
+      <Toolbar search={search} />
+      <BookmarkSettingsList items={items} groups={groups} />
+      <Heading size="xs" weight="normal">
+        Sist oppdatert 14. april 2025
+      </Heading>
+      {expandedId && (
+        <BookmarkModal
+          {...modalProps}
+          title="Rediger lagret søk"
+          open={expandedId !== ''}
+          onClose={onClose}
+          buttons={[
+            { label: 'Lagre', onClick: () => onClose() },
+            { label: 'Slett', variant: 'outline', onClick: () => onClose() },
+          ]}
+        />
+      )}
+    </PageBase>
   );
 };

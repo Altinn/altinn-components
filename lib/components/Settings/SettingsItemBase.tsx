@@ -1,57 +1,88 @@
+import { ChevronRightIcon } from '@navikt/aksel-icons';
+import type { ReactNode } from 'react';
 import {
-  ListItemBase,
-  type ListItemBaseProps,
-  ListItemHeader,
-  type ListItemHeaderProps,
-  ListItemLabel,
-  type ListItemLabelProps,
+  Badge,
+  type BadgeProps,
+  Heading,
+  type HeadingProps,
+  ItemBase,
+  type ItemBaseProps,
+  ItemControls,
+  ItemLink,
+  type ItemLinkProps,
+  ItemMedia,
+  type ItemMediaProps,
 } from '..';
 
 import styles from './settingsItemBase.module.css';
 
-export interface SettingsItemBaseProps extends ListItemBaseProps, ListItemHeaderProps {
+export interface SettingsItemBaseProps extends ItemLinkProps {
   id?: string;
   groupId?: string;
-  collapsible?: boolean;
-  expanded?: boolean;
-  icon?: ListItemHeaderProps['icon'];
-  label?: ListItemHeaderProps['children'];
-  title?: ListItemLabelProps['title'];
-  value?: ListItemLabelProps['value'];
-  description?: ListItemLabelProps['description'];
+  hidden?: boolean;
+  ref?: ItemBaseProps['ref'];
+  color?: ItemBaseProps['color'];
+  icon?: ItemMediaProps['icon'];
+  label?: ReactNode;
+  titleProps?: HeadingProps;
+  descriptionProps?: HeadingProps;
+  highlightWords?: string[];
+  badge?: BadgeProps;
+  linkIcon?: boolean;
+  controls?: ReactNode;
+  children?: ReactNode;
 }
 
 export const SettingsItemBase = ({
+  as,
   ref,
+  hidden,
   loading,
   color,
-  size,
   expanded,
   icon,
   label,
-  title,
-  value,
-  description,
+  titleProps = {},
+  descriptionProps = {},
   children,
   highlightWords,
-  ...props
+  badge,
+  linkIcon,
+  controls,
+  ...rest
 }: SettingsItemBaseProps) => {
-  const ariaLabel = props.ariaLabel;
-
   return (
-    <ListItemBase ref={ref} className={styles.item} color={color} size={size} expanded={expanded}>
-      <ListItemHeader {...props} loading={loading} ariaLabel={ariaLabel} className={styles.header} icon={icon}>
-        <ListItemLabel
-          loading={loading}
-          highlightWords={highlightWords}
-          className={styles.label}
-          title={title}
-          description={description}
-        >
-          {label}
-        </ListItemLabel>
-      </ListItemHeader>
-      {expanded && children}
-    </ListItemBase>
+    <ItemBase as="li" ref={ref} className={styles.item} color={color} aria-hidden={hidden} data-loading={loading}>
+      <ItemLink {...rest} className={styles.link} as={as}>
+        <ItemMedia icon={icon} className={styles.media} />
+        {label || (
+          <span className={styles.label}>
+            <Heading
+              {...titleProps}
+              as="span"
+              highlightWords={highlightWords}
+              loading={loading}
+              maxRows={2}
+              className={styles.title}
+            />
+            <Heading
+              {...descriptionProps}
+              as="span"
+              highlightWords={highlightWords}
+              loading={loading}
+              maxRows={2}
+              className={styles.description}
+            />
+          </span>
+        )}
+      </ItemLink>
+      <ItemControls className={styles.controls}>
+        {controls}
+        {badge && <Badge {...badge} />}
+
+        {linkIcon && <ChevronRightIcon className={styles.linkIcon} />}
+      </ItemControls>
+      {children}
+    </ItemBase>
   );
 };
