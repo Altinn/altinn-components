@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.58.1](https://github.com/Altinn/altinn-components/compare/v0.58.0...v0.58.1) (2026-04-14)
+
+
+### Bug Fixes
+
+* dialog contact + details ([#1116](https://github.com/Altinn/altinn-components/issues/1116)) ([ab5a630](https://github.com/Altinn/altinn-components/commit/ab5a6305fe55d9b868efbca6878b5921bc5a5104))
+* settings hover state ([#1114](https://github.com/Altinn/altinn-components/issues/1114)) ([982c22c](https://github.com/Altinn/altinn-components/commit/982c22caf5ace74381852a3bc20edd2b29d326cc))
+
 ## [0.58.0](https://github.com/Altinn/altinn-components/compare/v0.57.3...v0.58.0) (2026-04-10)
 
 
