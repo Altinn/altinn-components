@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
-import { Heading, Section, Typography } from '..';
+import { Heading, Typography } from '..';
+import styles from './dialogSection.module.css';
 
 export interface DialogSectionProps {
   title?: string;
@@ -12,9 +13,9 @@ export const DialogSection = ({ title, children }: DialogSectionProps) => {
   }
 
   return (
-    <Section spacing={4}>
+    <section className={styles.section}>
       {title && <Heading size="lg">{title}</Heading>}
-      <Typography>{children}</Typography>
-    </Section>
+      <Typography size="sm">{children}</Typography>
+    </section>
   );
 };
