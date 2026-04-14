@@ -1,5 +1,7 @@
 .label {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   row-gap: 0.125rem;
+  min-height: 2.5rem;
 }

@@ -13,6 +13,7 @@ const meta = {
   parameters: {},
   args: {
     placement: 'left',
+    color: 'person',
     items: [
       {
         id: '1',
@@ -84,8 +85,8 @@ export const Default: Story = {
   },
 };
 
-export const ListControls = (args: ContextMenuProps) => {
-  return (
+export const ListControls: Story = {
+  render: (args: ContextMenuProps) => (
     <List>
       <ListItem
         title="As badge"
@@ -99,17 +100,19 @@ export const ListControls = (args: ContextMenuProps) => {
         controls={<ContextMenu {...args} placement="right" id="menu-2" />}
       />
     </List>
-  );
+  ),
 };
 
-export const DialogControls = (args: ContextMenuProps) => {
-  const dialog1 = inboxSearchResults.items[0] as DialogListItemProps;
-  const dialog2 = inboxSearchResults.items[1] as DialogListItemProps;
+export const DialogControls: Story = {
+  render: (args: ContextMenuProps) => {
+    const dialog1 = inboxSearchResults.items[0] as DialogListItemProps;
+    const dialog2 = inboxSearchResults.items[1] as DialogListItemProps;
 
-  return (
-    <List>
-      <DialogListItem {...dialog1} controls={<ContextMenu {...args} placement="right" id="menu-1" />} />
-      <DialogListItem {...dialog2} controls={<ContextMenu {...args} placement="right" id="menu-2" />} />
-    </List>
-  );
+    return (
+      <List>
+        <DialogListItem {...dialog1} controls={<ContextMenu {...args} placement="right" id="menu-1" />} />
+        <DialogListItem {...dialog2} controls={<ContextMenu {...args} placement="right" id="menu-2" />} />
+      </List>
+    );
+  },
 };

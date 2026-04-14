@@ -1,15 +1,17 @@
 import type { ReactNode } from 'react';
 import {
   type BackButtonProps,
+  Button,
   type Color,
   ContextMenu,
   type ContextMenuProps,
   PageBase,
   PageMenu,
   type PageMenuProps,
-  PageNav,
-  Section,
 } from '..';
+
+import { ArrowUndoIcon } from '@navikt/aksel-icons';
+import styles from './dialogLayout.module.css';
 
 export interface DialogLayoutProps {
   /** Back button */
@@ -30,18 +32,19 @@ export interface DialogLayoutProps {
 
 export const DialogLayout = ({ backButton, contextMenu, pageMenu, children, color }: DialogLayoutProps) => {
   return (
-    <PageBase theme="subtle" spacing={0} color={color} bleed>
-      <Section theme="default" shadow="xs">
-        <PageNav
-          color="neutral"
-          padding={2}
-          backButton={backButton}
-          controls={contextMenu && <ContextMenu {...contextMenu} />}
-        />
-        <Section as="article" padding="page" spacing={6}>
-          {children}
-        </Section>
-      </Section>
+    <PageBase spacing={0} color={color} bleed>
+      <article className={styles.article}>
+        {backButton && (
+          <nav className={styles.backButton}>
+            <Button {...backButton} size="sm" variant="ghost">
+              <ArrowUndoIcon />
+              <span>{backButton?.label || 'Back'}</span>
+            </Button>
+          </nav>
+        )}
+        <span className={styles.controls}>{contextMenu && <ContextMenu {...contextMenu} />}</span>
+        {children}
+      </article>
       <PageMenu items={pageMenu?.items} />
     </PageBase>
   );

@@ -75,7 +75,6 @@ export const AccountNotificationsModal = ({ title = 'Aktør' }) => {
           <List>
             <SettingsItem
               id="bb"
-              interactive={false}
               icon={{ name: 'Bergen Bar', type: 'company' }}
               title="Bergen Bar"
               description="Org. nr. XXX XXX XXX"

@@ -13,7 +13,11 @@ interface UseBookmarkSettingsProps extends BookmarkSettingsListProps {
   search: ToolbarSearchProps;
 }
 
-export const useBookmarks = ({ grouped }: { grouped?: boolean }): UseBookmarkSettingsProps => {
+export const useBookmarks = ({
+  grouped,
+}: {
+  grouped?: boolean;
+}): UseBookmarkSettingsProps => {
   const [expandedId, setExpandedId] = useState<string>('');
   const [inputValue, setInputValue] = useState<Record<string, string>>({});
   const [itemTitles, setItemTitles] = useState<Record<string, string>>({});
@@ -101,6 +105,7 @@ export const useBookmarks = ({ grouped }: { grouped?: boolean }): UseBookmarkSet
     placeholder: 'Søk i bokmerker',
     value: q,
     onChange: (e: ChangeEvent<HTMLInputElement>) => setQ(e.target.value),
+    collapsible: false,
   };
 
   // return
