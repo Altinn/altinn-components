@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.58.2](https://github.com/Altinn/altinn-components/compare/v0.58.1...v0.58.2) (2026-04-14)
+
+
+### Bug Fixes
+
+* dialog back button ([#1117](https://github.com/Altinn/altinn-components/issues/1117)) ([8524ce1](https://github.com/Altinn/altinn-components/commit/8524ce1679cdc501fef1013010c4d80c7a4e3172))
+
 ## [0.58.1](https://github.com/Altinn/altinn-components/compare/v0.58.0...v0.58.1) (2026-04-14)
 
 
