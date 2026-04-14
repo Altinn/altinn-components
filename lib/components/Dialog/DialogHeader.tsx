@@ -1,12 +1,6 @@
-import {
-  Badge,
-  type BadgeProps,
-  DialogMetadata,
-  type DialogMetadataProps,
-  type DialogStatusProps,
-  Heading,
-  Section,
-} from '..';
+import { Badge, type BadgeProps, DialogMetadata, type DialogMetadataProps, type DialogStatusProps, Heading } from '..';
+
+import styles from './dialogHeader.module.css';
 
 export interface DialogHeaderProps extends DialogMetadataProps {
   /** Loading state */
@@ -53,7 +47,7 @@ export const DialogHeader = ({
   tooltips = {},
 }: DialogHeaderProps) => {
   return (
-    <Section as="header" spacing={3} align="start">
+    <header className={styles.header}>
       <Heading loading={loading} size="xl">
         {title}
         {badge && ' '}
@@ -74,6 +68,6 @@ export const DialogHeader = ({
         activityLog={activityLog}
         tooltips={tooltips}
       />
-    </Section>
+    </header>
   );
 };

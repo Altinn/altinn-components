@@ -1,15 +1,22 @@
 /** Default mode */
 
 .item {
-  --dsc-item-background: color-mix(in srgb, var(--ds-color-background-default) 50%, transparent 50%);
+  --dsc-item-background: var(--ds-color-background-default);
   --dsc-item-background--hover: var(--ds-color-surface-tinted);
-  --dsc-item-border: var(--ds-color-border-subtle);
+  --dsc-item-border: var(--ds-color-background-default);
   --dsc-item-border-style: solid;
   --dsc-title-font-size: 1.25rem;
   --dsc-summary-font-size: 1rem;
-  --dsc-line-size: 2px;
+
+  --dsc-line-size: 3px;
   --dsc-line: var(--ds-color-neutral-surface-tinted);
   --dsc-line--hover: var(--ds-color-surface-hover);
+
+  --dsc-item-shadow: var(--ds-shadow-xs);
+}
+
+.item {
+  box-shadow: var(--dsc-item-shadow);
   background: var(--dsc-item-background);
   border: 1px solid;
   border-style: var(--dsc-item-border-style);
@@ -29,9 +36,10 @@
 
 .item[data-unread="true"] {
   --dsc-item-background: var(--ds-color-background-default);
-  --dsc-line-size: 4px;
+  --dsc-line-size: 6px;
   --dsc-line: var(--ds-color-surface-active);
   --dsc-line--hover: var(--ds-color-surface-active);
+  --dsc-item-shadow: var(--ds-shadow-xs);
 }
 
 /** Bulk mode */
@@ -43,6 +51,7 @@
   --dsc-item-border-style: dashed;
   --dsc-item-unread: var(--ds-color-surface-active);
   --dsc-item-read: var(--ds-color-surface-tinted);
+  --dsc-item-shadow: none;
 }
 
 .item[data-variant="select"][data-selected="true"] {
@@ -50,6 +59,7 @@
   --dsc-item-border: var(--ds-color-border-default);
   --dsc-item-border-style: solid;
   --dsc-line: var(--dsc-line--hover);
+  --dsc-item-shadow: none;
   outline: 1px solid var(--ds-color-border-default);
 }
 

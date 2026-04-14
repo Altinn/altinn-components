@@ -12,7 +12,6 @@ import {
   type DialogLayoutProps,
   DialogSection,
   type DialogSectionProps,
-  Divider,
 } from '..';
 
 export interface DialogProps extends DialogLayoutProps, DialogHeaderProps, DialogBodyProps {
@@ -57,18 +56,8 @@ export const Dialog = ({
         </DialogBody>
       )}
       {history && <DialogHistory {...history} />}
-      {additionalInfo && (
-        <>
-          <Divider />
-          <DialogSection {...additionalInfo} />
-        </>
-      )}
-      {contact && (
-        <>
-          <Divider />
-          <DialogContact {...contact} />
-        </>
-      )}
+      {additionalInfo && <DialogSection {...additionalInfo} />}
+      {contact && <DialogContact {...contact} />}
     </DialogLayout>
   );
 };
