@@ -1,0 +1,1 @@
+import{j as t}from"./iframe-DolAyTrH.js";import{M as j,a as I,b as p}from"./MetaItemLabel-D7RJIAF2.js";const f=({loading:e,reverse:r,size:s="xs",variant:a="text",icon:m,children:x,tooltip:o,...M})=>t.jsxs(j,{loading:e,reverse:r,variant:a,tooltip:o,size:s,...M,children:[!e&&m&&t.jsx(I,{icon:m}),t.jsx(p,{variant:a,size:s,children:x})]});export{f as M};
