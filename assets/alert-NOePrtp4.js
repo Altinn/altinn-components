@@ -1,1 +1,0 @@
-"use client";import{r as a,j as e}from"./iframe-DolAyTrH.js";import{c}from"./lite-DaUVFjkg.js";const n=a.forwardRef(function({"data-color":r="info",className:t,...o},s){return e.jsx("div",{className:c("ds-alert",t),"data-color":r,ref:s,...o})});export{n as A};

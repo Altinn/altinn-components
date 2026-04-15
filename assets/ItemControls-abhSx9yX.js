@@ -1,0 +1,1 @@
+import{j as t}from"./iframe-Bka3lqwZ.js";import{c as r}from"./index-97QH58ax.js";const n="_controls_58885_1",c={controls:n},a=({className:o,children:s})=>t.jsx("span",{className:r(c.controls,o),children:s});export{a as I};
