@@ -9,12 +9,15 @@
   --dsc-badge-background: var(--ds-color-base-default);
   --dsc-badge-color: var(--ds-color-base-contrast-default);
   --dsc-badge-border: var(--ds-color-base-default);
-
-  border: 1px solid transparent;
+  --dsc-badge-border-style: solid;
 
   background-color: var(--dsc-badge-background);
   color: var(--dsc-badge-color);
+
+  border-width: 1px;
   border-color: var(--dsc-badge-border);
+  border-style: var(--dsc-badge-border-style);
+
   box-sizing: border-box;
 
   vertical-align: middle;
@@ -66,6 +69,13 @@
 .badge[data-variant="outline"] {
   --dsc-badge-background: transparent;
   --dsc-badge-border: var(--ds-color-border-subtle);
+  --dsc-badge-color: var(--ds-color-text-subtle);
+}
+
+.badge[data-variant="dotted"] {
+  --dsc-badge-background: transparent;
+  --dsc-badge-border: var(--ds-color-border-subtle);
+  --dsc-badge-border-style: dashed;
   --dsc-badge-color: var(--ds-color-text-subtle);
 }
 
