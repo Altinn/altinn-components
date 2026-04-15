@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.58.3](https://github.com/Altinn/altinn-components/compare/v0.58.2...v0.58.3) (2026-04-15)
+
+
+### Bug Fixes
+
+* bulk mode max items ([#1120](https://github.com/Altinn/altinn-components/issues/1120)) ([fe33888](https://github.com/Altinn/altinn-components/commit/fe33888985bf3d23d95f40131053803d26c91dc9))
+
 ## [0.58.2](https://github.com/Altinn/altinn-components/compare/v0.58.1...v0.58.2) (2026-04-14)
 
 
