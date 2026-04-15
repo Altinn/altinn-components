@@ -1,36 +1,17 @@
-import {
-  Flex,
-  MetaItem,
-  type MetaItemBaseProps,
-  type MetaItemProps,
-  type MetaItemSize,
-  MetaProgress,
-  MetaTimestamp,
-} from '..';
+import { Flex, MetaItem, type MetaItemProps } from '..';
 
 export type MetaListItemType = 'default' | 'progress' | 'timestamp';
 
-export interface MetaListItemProps extends MetaItemBaseProps {
+export interface MetaListItemProps extends MetaItemProps {
   label: string;
   type?: MetaListItemType;
   icon?: MetaItemProps['icon'];
 }
 
-export const MetaListItem = ({ type = 'default', label, ...rest }: MetaListItemProps) => {
-  switch (type) {
-    case 'progress':
-      return <MetaProgress {...rest}>{label}</MetaProgress>;
-    case 'timestamp':
-      return <MetaTimestamp {...rest}>{label}</MetaTimestamp>;
-    default:
-      return <MetaItem {...rest}>{label}</MetaItem>;
-  }
-};
-
 export interface MetadataProps {
   variant?: 'inline' | 'list';
   items: MetaListItemProps[];
-  size?: MetaItemSize;
+  size?: MetaItemProps['size'];
 }
 
 export const Metadata = ({ variant = 'inline', size, items = [] }: MetadataProps) => {
@@ -40,7 +21,9 @@ export const Metadata = ({ variant = 'inline', size, items = [] }: MetadataProps
     <Flex as="ul" direction={direction} spacing={2}>
       {items.map((item, index) => (
         <li key={'meta-' + index}>
-          <MetaListItem {...item} size={size} />
+          <MetaItem {...item} size={size}>
+            {item?.label}
+          </MetaItem>
         </li>
       ))}
     </Flex>

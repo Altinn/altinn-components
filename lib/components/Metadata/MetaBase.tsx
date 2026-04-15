@@ -1,9 +1,9 @@
 import cx from 'classnames';
 import type { ReactNode } from 'react';
-import type { MetaItemSize } from './MetaItemBase';
+import type { MetaItemProps } from './MetaItem';
 import styles from './metaBase.module.css';
 export interface MetaBaseProps {
-  size?: MetaItemSize;
+  size?: MetaItemProps['size'];
   className?: string;
   children?: ReactNode;
 }

@@ -1,0 +1,76 @@
+.item {
+  z-index: 1;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  text-decoration: none;
+  line-height: normal;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  appearance: none;
+  user-select: none;
+}
+
+.item[data-size="xs"] {
+  font-size: 0.875rem;
+  height: 1.5rem;
+}
+
+.item[data-size="sm"] {
+  font-size: 1rem;
+}
+
+.item[data-size="md"] {
+  font-size: 1.125rem;
+}
+
+.item {
+  background-color: var(--var-meta-background);
+  color: var(--ds-color-text-subtle);
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.25em;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.item[data-variant="default"] {
+  --var-meta-background: transparent;
+  --var-meta-font-size: 1em;
+  --var-meta-font-weight: normal;
+}
+
+.item[data-variant="tinted"] {
+  --var-meta-background: var(--ds-color-background-tinted);
+  --var-meta-font-size: 0.875em;
+  --var-meta-font-weight: 500;
+  padding: 0 0.25em;
+  border-radius: 2px;
+}
+
+.label {
+  display: inline;
+  font-size: var(--var-meta-font-size);
+  font-weight: var(--var-meta-font-weight);
+}
+
+.label strong {
+  font-weight: 500;
+  color: var(--ds-color-text-default);
+}
+
+button.item:hover,
+a.item:hover,
+button.item:hover strong,
+a.item:hover strong {
+  color: var(--ds-color-base-hover);
+  cursor: pointer;
+}
+
+button.item:hover,
+a.item:hover {
+  text-decoration: underline;
+}

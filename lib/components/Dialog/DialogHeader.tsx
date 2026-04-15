@@ -1,4 +1,4 @@
-import { Badge, type BadgeProps, DialogMetadata, type DialogMetadataProps, type DialogStatusProps, Heading } from '..';
+import { Badge, DialogMetadata, type DialogMetadataProps, Heading } from '..';
 
 import styles from './dialogHeader.module.css';
 
@@ -7,26 +7,6 @@ export interface DialogHeaderProps extends DialogMetadataProps {
   loading?: boolean;
   /** Dialog title */
   title: string;
-  /** Badge */
-  badge?: BadgeProps;
-  /** Dialog status */
-  status?: DialogStatusProps;
-  /** Extended Status Label */
-  extendedStatusLabel?: string;
-  /** Drafts label */
-  draftsLabel?: string;
-  /** Number of submissions sent */
-  sentCount?: number;
-  /** Number of received transmissions */
-  receivedCount?: number;
-  /** Updated date time */
-  updatedAt?: string;
-  /** Updated label */
-  updatedAtLabel?: string;
-  /** Due date */
-  dueAt?: string;
-  /** Due date label */
-  dueAtLabel?: string;
 }
 
 export const DialogHeader = ({
@@ -43,6 +23,10 @@ export const DialogHeader = ({
   attachmentsCount,
   dueAt,
   dueAtLabel,
+  archivedAt,
+  archivedAtLabel,
+  trashedAt,
+  trashedAtLabel,
   activityLog,
   tooltips = {},
 }: DialogHeaderProps) => {
@@ -64,6 +48,10 @@ export const DialogHeader = ({
         updatedAtLabel={updatedAtLabel}
         dueAt={dueAt}
         dueAtLabel={dueAtLabel}
+        trashedAt={trashedAt}
+        trashedAtLabel={trashedAtLabel}
+        archivedAt={archivedAt}
+        archivedAtLabel={archivedAtLabel}
         attachmentsCount={attachmentsCount}
         activityLog={activityLog}
         tooltips={tooltips}

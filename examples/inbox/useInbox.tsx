@@ -241,27 +241,10 @@ export const useInbox = ({
         trashedAtLabel: trashed ? 'Arkivert' : undefined,
         href: undefined,
         recipient: header?.currentAccount,
-        unread: trashed || archived ? false : unread,
+        unread,
         seenByLog,
         ariaLabel: item.title,
         controls: <ContextMenu {...contextMenu} />,
-        badge:
-          (archived && {
-            variant: 'subtle',
-            color: 'neutral',
-            label: 'Arkiv',
-            size: 'sm',
-          }) ||
-          (trashed && {
-            variant: 'subtle',
-            color: 'neutral',
-            label: 'Papirkurv',
-            size: 'sm',
-          }) ||
-          (unread && {
-            size: 'xs',
-            label: 'Ny',
-          }),
         as: 'button',
         onClick: () => item.id && onDialogId(item.id),
       };
