@@ -4,11 +4,11 @@ import styles from './bulkHeader.module.css';
 
 import { XMarkIcon } from '@navikt/aksel-icons';
 import { useEscapeKey } from '../../hooks';
-import type { LayoutColor } from '../Layout';
+import type { Color } from '../../types';
 import { BulkButton, type BulkButtonProps } from './BulkButton';
 
 export interface BulkHeaderProps {
-  color?: LayoutColor;
+  color?: Color;
   dismissIconAltText?: string;
   title: string;
   hidden?: boolean;

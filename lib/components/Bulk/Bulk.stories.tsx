@@ -28,9 +28,11 @@ export default meta;
 export const Default = ({
   defaultAccountId = 'user',
   defaultBulkIds = [],
+  maxItems = 100,
 }: {
   defaultAccountId?: string;
   defaultBulkIds?: string[];
+  maxItems?: number;
 }) => {
   const { layout, toolbar, results } = useInbox({ defaultAccountId });
   const [loading, setLoading] = useState(false);
@@ -154,6 +156,8 @@ export const Default = ({
   const breadcrumbsItems = layout?.breadcrumbs?.items || [];
   const bulkBreadcrumbsItems = [...breadcrumbsItems, { label: 'Velg flere', href: '/inbox' }];
 
+  const maxItemsReached = bulkIds?.length === maxItems;
+
   return (
     <Layout
       {...layout}
@@ -167,10 +171,11 @@ export const Default = ({
       <PageBase>
         <BulkHeader
           hidden={!bulkMode}
-          title={bulkIds?.length + ' valgt'}
-          options={bulkOptions}
+          title={maxItemsReached ? 'Maks ' + maxItems + ' valgt' : bulkIds?.length + ' valgt'}
+          options={maxItemsReached ? [] : bulkOptions}
           dismissable={true}
           onDismiss={unselectAll}
+          color={maxItemsReached ? 'warning' : 'company'}
         />
         <Heading size="xl">Innboks</Heading>
         <Toolbar {...toolbar} search={{ value: 'Skatt', collapsible: true }} disabled={bulkMode} />
@@ -185,10 +190,26 @@ export const BulkModeOn = () => {
   return <Default defaultBulkIds={['item-0', 'item-1']} />;
 };
 
+export const BulkModeMax = () => {
+  return (
+    <Default maxItems={7} defaultBulkIds={['item-0', 'item-1', 'item-2', 'item-3', 'item-4', 'item-5', 'item-6']} />
+  );
+};
+
 export const Company = () => {
   return <Default defaultAccountId="diaspora" />;
 };
 
 export const CompanyBulkMode = () => {
   return <Default defaultAccountId="diaspora" defaultBulkIds={['item-0', 'item-1']} />;
+};
+
+export const CompanyBulkMax = () => {
+  return (
+    <Default
+      defaultAccountId="diaspora"
+      maxItems={7}
+      defaultBulkIds={['item-0', 'item-1', 'item-2', 'item-3', 'item-4', 'item-5', 'item-6']}
+    />
+  );
 };
