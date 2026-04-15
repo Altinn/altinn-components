@@ -1,0 +1,8 @@
+import{j as o}from"./iframe-BWWyepKi.js";import{S as s}from"./SeenByLogItem-BhGGgAAO.js";import{L as m}from"./List-QdfDgzch.js";import"./preload-helper-PPVm8Dsz.js";import"./Flex-C8xEqik7.js";import"./index-fkRlyifr.js";import"./Byline-B2BqakG-.js";import"./Skeleton-CYDyiFkf.js";import"./AvatarGroup-DPHuhQ41.js";import"./Avatar-CiKCHN1S.js";import"./useId-CMCVT55W.js";import"./Badge-CiufGa4u.js";import"./Tooltip-C4xENPhK.js";import"./floating-ui.dom-DCpi3RTt.js";import"./use-merge-refs-CbLzoZkL.js";import"./lite-DaUVFjkg.js";import"./ListItem-EuoB6Qe0.js";import"./Button-DaLP9UzX.js";import"./button-dq33hCwG.js";import"./Input-BcqR7Mo_.js";import"./input-CuS4pR7j.js";import"./XMark-DJOirLMA.js";import"./Icon-w9oNx8pI.js";import"./Heading-DQYelGqr.js";import"./useHighlightedText-BYfI8EMJ.js";import"./ChevronUp-BJ9TGsTi.js";import"./ChevronDown-DWRTbX5l.js";import"./ChevronRight-I2Pyvoyr.js";const O={title:"Inbox/Dialog/SeenByLogItem",component:s,tags:["autodocs","beta"],parameters:{},args:{id:"1",type:"person",name:"Felix Horn Myhre",seenAt:"2025-01-01 08:30",seenAtLabel:"1. januar kl 08.30"},decorators:[t=>o.jsx(m,{children:o.jsx(t,{})})]},r={args:{}},e={args:{isEndUser:!0,endUserLabel:"Deg"}};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`{
+  args: {}
+}`,...r.parameters?.docs?.source}}};e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:`{
+  args: {
+    isEndUser: true,
+    endUserLabel: 'Deg'
+  }
+}`,...e.parameters?.docs?.source}}};const R=["Default","EndUser"];export{r as Default,e as EndUser,R as __namedExportsOrder,O as default};
