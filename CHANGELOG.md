@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.58.4](https://github.com/Altinn/altinn-components/compare/v0.58.3...v0.58.4) (2026-04-16)
+
+
+### Bug Fixes
+
+* bulk mode hover state ([#1122](https://github.com/Altinn/altinn-components/issues/1122)) ([e6397fc](https://github.com/Altinn/altinn-components/commit/e6397fc86e7fd16ece38e9bf172e7d2c772bc33d))
+
 ## [0.58.3](https://github.com/Altinn/altinn-components/compare/v0.58.2...v0.58.3) (2026-04-15)
 
 
