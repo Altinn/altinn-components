@@ -27,10 +27,10 @@
 
 .item:hover {
   background: var(--dsc-item-background--hover);
-  border: 1px solid;
   outline: 1px solid;
   border-color: var(--dsc-item-border--hover);
   outline-color: var(--dsc-item-border--hover);
+  --dsc-item-border-style: solid;
   --dsc-line: var(--dsc-line--hover);
 }
 
@@ -52,6 +52,13 @@
   --dsc-item-unread: var(--ds-color-surface-active);
   --dsc-item-read: var(--ds-color-surface-tinted);
   --dsc-item-shadow: none;
+}
+
+.item[data-variant="select"]:not([data-selected="true"]):hover {
+  --dsc-item-border: var(--ds-color-border-default);
+  --dsc-item-border-style: dashed;
+  outline: none;
+  box-shadow: none;
 }
 
 .item[data-variant="select"][data-selected="true"] {
