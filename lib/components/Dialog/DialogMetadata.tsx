@@ -14,7 +14,16 @@ interface DialogMetadataButtonProps {
   onClick?: () => void;
 }
 
-import { type AvatarProps, DialogStatus, type DialogStatusProps, MetaBase, MetaItem, MetaTimestamp } from '..';
+import {
+  type AvatarProps,
+  Badge,
+  type BadgeProps,
+  DialogStatus,
+  type DialogStatusProps,
+  MetaBase,
+  MetaItem,
+  MetaTimestamp,
+} from '..';
 
 export type DialogMetadataTooltips = Record<string, string>;
 
@@ -22,6 +31,8 @@ export type DialogMetadataProps = {
   className?: string;
   /** Metadata is loading */
   loading?: boolean;
+  /** Dialog badge */
+  badge?: BadgeProps;
   /** Dialog status */
   status?: DialogStatusProps;
   /** Extended Status Label */
@@ -74,6 +85,7 @@ export const DialogMetadata = ({
   className,
   loading,
   status,
+  badge,
   sender,
   updatedAt,
   updatedAtLabel,
@@ -95,26 +107,22 @@ export const DialogMetadata = ({
 }: DialogMetadataProps) => {
   return (
     <MetaBase className={className} size="xs">
-      {status && <DialogStatus tooltip={tooltips.status} loading={loading} size="xs" {...status} />}
+      {status && <DialogStatus tooltip={tooltips.status} loading={loading} {...status} />}
+      {badge && <Badge {...badge} />}
       {extendedStatusLabel && (
-        <MetaItem tooltip={tooltips.extendedStatus} size="xs" variant="outline">
+        <Badge tooltip={tooltips.extendedStatus} variant="outline">
           {extendedStatusLabel}
-        </MetaItem>
+        </Badge>
       )}
       {draftsLabel && (
-        <MetaItem tooltip={tooltips.drafts} size="xs" variant="dotted">
+        <Badge tooltip={tooltips.drafts} variant="dotted">
           {draftsLabel}
-        </MetaItem>
+        </Badge>
       )}
-      {sentCount > 0 && (
-        <MetaItem tooltip={tooltips.sent} size="xs" variant="outline" icon={CheckmarkIcon}>
-          {sentCount}
-        </MetaItem>
-      )}
-      {receivedCount > 0 && (
-        <MetaItem tooltip={tooltips.received} size="xs" variant="outline" icon={ArrowDownIcon}>
-          {receivedCount}
-        </MetaItem>
+      {archivedAt && (
+        <Badge tooltip={tooltips.drafts} variant="outline">
+          {archivedAtLabel}
+        </Badge>
       )}
       {updatedAt && (
         <MetaTimestamp tooltip={tooltips.updatedAt} loading={loading} datetime={updatedAt} size="xs">
@@ -153,6 +161,16 @@ export const DialogMetadata = ({
             {archivedAtLabel}
           </MetaTimestamp>
         ))}
+      {sentCount > 0 && (
+        <MetaItem tooltip={tooltips.sent} size="xs" icon={CheckmarkIcon}>
+          {sentCount}
+        </MetaItem>
+      )}
+      {receivedCount > 0 && (
+        <MetaItem tooltip={tooltips.received} size="xs" icon={ArrowDownIcon}>
+          {receivedCount}
+        </MetaItem>
+      )}
 
       {activityLog && (
         <MetaItem

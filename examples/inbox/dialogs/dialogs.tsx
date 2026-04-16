@@ -49,10 +49,22 @@ export const dialogs: DialogDataProps[] = [
   },
   ssbAttention,
   { ...brregArchived, seenByLog: getSeenByLog(seenByLog.items.slice(0, 3)) },
-  brregTrashed,
+  { ...brregTrashed, seenByLog: getSeenByLog(seenByLog.items.slice(0, 10)) },
   brregCompleted,
   brregTable,
   tredjepart,
+  {
+    ...tredjepart,
+    title: 'Tredjepartsopplysninger for storfe',
+    trashed: true,
+    id: 'tredjepart-trashed',
+  },
+  {
+    ...tredjepart,
+    title: 'Tredjepartsopplysninger for småkre',
+    archived: true,
+    id: 'tredjepart-archived',
+  },
 ] as DialogDataProps[];
 
 export function sortDialogsByKey<DialogDataProps>(
