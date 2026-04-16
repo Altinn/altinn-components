@@ -1,1 +1,0 @@
-import{j as i}from"./iframe-Bka3lqwZ.js";import{S as r}from"./Section-DgAAlgWN.js";const a="_section_13ero_1",m={section:a},S=({size:s="sm",theme:t="default",shadow:o="xs",as:e,color:n,children:c})=>i.jsx(r,{as:e,size:s,color:n,theme:t,shadow:o,className:m.section,spacing:2,children:c});export{S};
