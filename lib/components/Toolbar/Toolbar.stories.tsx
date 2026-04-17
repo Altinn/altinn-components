@@ -437,7 +437,9 @@ export const AccountMenuAndSubmenu = () => {
   return (
     <Toolbar>
       <ToolbarMenu {...(accountMenu as ToolbarMenuProps)} />
-      {selectedIsParent && <ToolbarMenu id="subaccounts" items={subAccountsAndAll} label={getSubAccountLabel()} />}
+      {selectedIsParent && (
+        <ToolbarMenu id="subaccounts" items={subAccountsAndAll} label={getSubAccountLabel()} virtualized />
+      )}
       <ToolbarFilter {...removableFilter} />
     </Toolbar>
   );
