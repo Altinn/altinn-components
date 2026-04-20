@@ -1,7 +1,6 @@
+import { QuestionmarkCircleFillIcon } from '@navikt/aksel-icons';
 import type { ReactNode } from 'react';
 import { Button, ButtonGroup, type ButtonProps, Heading, Link, type LinkProps, Typography } from '..';
-
-import { QuestionmarkCircleFillIcon } from '@navikt/aksel-icons';
 
 import styles from './dialogContact.module.css';
 
@@ -32,11 +31,18 @@ export const DialogContact = ({
       {title && <Heading size="lg">{title}</Heading>}
       <Typography size="sm">{children}</Typography>
       {buttons && (
-        <ButtonGroup>
+        <ButtonGroup wrap>
           {buttons.map((item, index) => {
             const { as, href, onClick, label } = item;
             return (
-              <Button as={as} href={href} onClick={onClick} variant="outline" key={index}>
+              <Button
+                as={as}
+                href={href}
+                onClick={onClick}
+                variant="outline"
+                key={index}
+                className={styles.contactButton}
+              >
                 {label}
               </Button>
             );
