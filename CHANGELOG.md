@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.58.7](https://github.com/Altinn/altinn-components/compare/v0.58.6...v0.58.7) (2026-04-20)
+
+
+### Bug Fixes
+
+* **toolbar:** Remove 100% width ([#1129](https://github.com/Altinn/altinn-components/issues/1129)) ([d1bf600](https://github.com/Altinn/altinn-components/commit/d1bf60040e2b780d6aa9b5d4b4590b25e6773d5c))
+
 ## [0.58.6](https://github.com/Altinn/altinn-components/compare/v0.58.5...v0.58.6) (2026-04-20)
 
 
