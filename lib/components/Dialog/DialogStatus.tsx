@@ -1,5 +1,4 @@
-import { HourglassIcon } from '@navikt/aksel-icons';
-import { MetaItem, type MetaItemSize, MetaProgress } from '../';
+import { Badge } from '../';
 
 export enum DialogStatusEnum {
   /** No explicit status. This is the default. */
@@ -20,7 +19,6 @@ export type DialogStatusValue = keyof typeof DialogStatusEnum;
 
 export interface DialogStatusProps {
   loading?: boolean;
-  size?: MetaItemSize;
   value?: DialogStatusValue;
   tooltip?: string;
   label?: string;
@@ -30,7 +28,7 @@ export interface DialogStatusProps {
  * Dialog status.
  */
 
-export const DialogStatus = ({ loading, size = 'xs', value = 'not-applicable', label, tooltip }: DialogStatusProps) => {
+export const DialogStatus = ({ loading, value = 'not-applicable', label, tooltip }: DialogStatusProps) => {
   if (loading) {
     return null;
   }
@@ -38,35 +36,23 @@ export const DialogStatus = ({ loading, size = 'xs', value = 'not-applicable', l
   switch (value) {
     case 'draft':
       return (
-        <MetaItem tooltip={tooltip} size={size} variant="dotted">
+        <Badge tooltip={tooltip} variant="dotted">
           {label || value}
-        </MetaItem>
+        </Badge>
       );
     case 'requires-attention':
       return (
-        <MetaItem tooltip={tooltip} variant="solid">
+        <Badge tooltip={tooltip} variant="strong">
           {label || value}
-        </MetaItem>
+        </Badge>
       );
-    case 'awaiting':
-      return (
-        <MetaItem tooltip={tooltip} size={size} variant="outline" icon={HourglassIcon}>
-          {label || value}
-        </MetaItem>
-      );
-    case 'in-progress':
-      return (
-        <MetaProgress tooltip={tooltip} size={size} variant="outline" progress={75}>
-          {label || value}
-        </MetaProgress>
-      );
-    case 'completed':
-      return (
-        <MetaProgress tooltip={tooltip} size={size} variant="outline" progress={100}>
-          {label || value}
-        </MetaProgress>
-      );
-    default:
+    case 'not-applicable':
       return null;
+    default:
+      return (
+        <Badge tooltip={tooltip} variant="outline">
+          {label || value}
+        </Badge>
+      );
   }
 };

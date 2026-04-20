@@ -54,7 +54,6 @@ export const Default = {
 export const Unread = {
   args: {
     unread: true,
-    badge: { label: 'Ny' },
   },
 };
 
@@ -165,6 +164,60 @@ export const DraftAndStatus = {
   },
 };
 
+export const Archived = {
+  args: {
+    ...Completed.args,
+    archived: true,
+    archivedAt: '2024-11-27',
+    archivedAtLabel: 'Arkivert',
+  },
+};
+
+export const ArchivedBy = {
+  args: {
+    ...Completed.args,
+    archived: true,
+    archivedAt: '2024-11-27',
+    archivedAtLabel: 'Arkivert av deg',
+  },
+};
+
+export const ArchivedAt = {
+  args: {
+    ...Completed.args,
+    archived: true,
+    archivedAt: '2024-11-27',
+    archivedAtLabel: 'Arkivert 27.11.2024',
+  },
+};
+
+export const Trashed = {
+  args: {
+    ...RequiresAttention.args,
+    trashed: true,
+    trashedAt: '2024-11-27',
+    trashedAtLabel: 'Papirkurv',
+  },
+};
+
+export const TrashedAt = {
+  args: {
+    ...RequiresAttention.args,
+    trashed: true,
+    trashedAt: '2024-11-27',
+    trashedAtLabel: 'Slettet 27.11.2024',
+  },
+};
+
+export const TrashedBy = {
+  args: {
+    ...RequiresAttention.args,
+    trashed: true,
+    trashedAt: '2024-11-27',
+    trashedAtLabel: 'Slettet av deg',
+  },
+};
+
 export const SentCount = {
   args: {
     ...InProgress.args,
@@ -184,36 +237,6 @@ export const Transmissions = {
     summary: undefined,
     sentCount: 2,
     receivedCount: 3,
-  },
-};
-
-export const Archived = {
-  args: {
-    summary: undefined,
-    archived: true,
-    archivedAt: '2024-11-27',
-    archivedAtLabel: 'Arkivert',
-    badge: {
-      size: 'sm',
-      color: 'neutral',
-      variant: 'subtle',
-      label: 'Arkiv',
-    },
-  },
-};
-
-export const Trashed = {
-  args: {
-    summary: undefined,
-    trashed: true,
-    trashedAt: '2024-11-27',
-    trashedAtLabel: 'Papirkurv',
-    badge: {
-      size: 'sm',
-      color: 'neutral',
-      variant: 'subtle',
-      label: 'Papirkurv',
-    },
   },
 };
 

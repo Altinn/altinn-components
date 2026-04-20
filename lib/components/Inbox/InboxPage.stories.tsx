@@ -1,4 +1,4 @@
-import { Button, DialogList, type DialogListProps, Heading, InboxPage, Layout, Typography } from '..';
+import { Button, Dialog, DialogList, type DialogListProps, Heading, InboxPage, Layout, Typography } from '..';
 
 import { BookmarkFillIcon, BookmarkIcon } from '@navikt/aksel-icons';
 import { type ReactNode, useState } from 'react';
@@ -24,18 +24,40 @@ export const Inbox = ({
   summary?: ReactNode;
   sticky?: boolean;
 }) => {
-  const { layout, toolbar, results, pageTitle } = useInbox({ pageId });
+  const { layout, toolbar, results, dialog, pageTitle } = useInbox({ pageId });
+
+  const items = results?.items?.map((item) => {
+    return {
+      ...item,
+      sentCount: 0,
+      receivedCount: 0,
+      archivedAt: item?.archived && '2026-04-20T14:12:20+02:00',
+      archivedAtLabel: item?.archived && 'Arkivert',
+      trashedAt: item?.trashed && '2026-04-20T14:12:20+02:00',
+      trashedAtLabel: item?.trashed && 'Papirkurv',
+    };
+  });
 
   return (
     <Layout {...layout} useGlobalHeader={true}>
-      <InboxPage sticky={sticky} title={pageTitle} toolbar={toolbar}>
-        {summary && (
-          <Typography variant="subtle" size="sm">
-            {summary}
-          </Typography>
-        )}
-        {results && <DialogList items={results.items} groups={results?.groups} />}
-      </InboxPage>
+      {dialog ? (
+        <Dialog
+          {...dialog}
+          activityLog={{
+            onClick: () => alert('Aktivitetslogg'),
+            label: 'Aktivitetslogg',
+          }}
+        />
+      ) : (
+        <InboxPage sticky={sticky} title={pageTitle} toolbar={toolbar}>
+          {summary && (
+            <Typography variant="subtle" size="sm">
+              {summary}
+            </Typography>
+          )}
+          {results && <DialogList items={items as DialogListProps['items']} groups={results?.groups} />}
+        </InboxPage>
+      )}
     </Layout>
   );
 };

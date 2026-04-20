@@ -1,44 +1,14 @@
-import type { ReactNode } from 'react';
-import {
-  MetaItemBase,
-  MetaItemIcon,
-  type MetaItemIconProps,
-  MetaItemLabel,
-  type MetaItemSize,
-  type MetaItemVariant,
-} from '..';
+import { MetaItem, type MetaItemProps } from './MetaItem';
 
-export interface MetaTimestampProps {
-  loading?: boolean;
-  /** Meta size */
-  size?: MetaItemSize;
-  /** Variant */
-  variant?: MetaItemVariant;
+export interface MetaTimestampProps extends MetaItemProps {
   /** Datetime in ISO format */
   datetime?: string;
-  /** Icon name */
-  icon?: MetaItemIconProps['icon'];
-  /** Tooltip */
-  tooltip?: string;
-  /** Label */
-  children?: ReactNode;
 }
 
-export const MetaTimestamp = ({
-  loading,
-  size = 'xs',
-  variant = 'text',
-  datetime,
-  icon,
-  tooltip,
-  children,
-}: MetaTimestampProps) => {
+export const MetaTimestamp = ({ datetime, children, ...rest }: MetaTimestampProps) => {
   return (
-    <MetaItemBase tooltip={tooltip} loading={loading} as="time" variant={variant} datetime={datetime} size={size}>
-      {!loading && icon && <MetaItemIcon size={size} icon={icon} />}
-      <MetaItemLabel variant={variant} size={size}>
-        {children}
-      </MetaItemLabel>
-    </MetaItemBase>
+    <MetaItem as="time" datetime={datetime} {...rest}>
+      {children}
+    </MetaItem>
   );
 };
