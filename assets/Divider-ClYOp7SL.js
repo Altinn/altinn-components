@@ -1,0 +1,1 @@
+import{j as t}from"./iframe-yBEatwQ0.js";const d="_divider_1ismz_1",o={divider:d},n=({as:i,size:r,color:e="neutral"})=>{const s=i||"hr";return t.jsx(s,{"aria-hidden":"true",className:o.divider,"data-size":r,"data-color":e})};export{n as D};
