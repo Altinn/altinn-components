@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.58.5](https://github.com/Altinn/altinn-components/compare/v0.58.4...v0.58.5) (2026-04-20)
+
+
+### Bug Fixes
+
+* **virtualizedList:** add padding-bottom to list ([#1126](https://github.com/Altinn/altinn-components/issues/1126)) ([aa49a74](https://github.com/Altinn/altinn-components/commit/aa49a74b463bef00a4fa26bda17d91ad4811fbfd))
+
 ## [0.58.4](https://github.com/Altinn/altinn-components/compare/v0.58.3...v0.58.4) (2026-04-16)
 
 
