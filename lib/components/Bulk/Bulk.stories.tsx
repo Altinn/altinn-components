@@ -65,11 +65,13 @@ export const Default = ({
 
   const [bulkIds, setBulkIds] = useState<string[]>(defaultBulkIds);
   const bulkMode = bulkIds.length > 0;
+  const maxItemsReached = bulkIds?.length === maxItems;
 
   const onToggle = (id: string) => {
     if (bulkIds.includes(id)) {
       setBulkIds(bulkIds.filter((item) => item !== id));
     } else {
+      if (maxItemsReached) return;
       setBulkIds([...bulkIds, id]);
     }
   };
@@ -111,7 +113,7 @@ export const Default = ({
     return {
       ...item,
       id,
-      as: 'a',
+      as: bulkMode ? 'button' : 'a',
       href: '#',
       color: layout?.color,
       selectable: bulkMode,
@@ -125,7 +127,7 @@ export const Default = ({
       selected: bulkIds?.includes(id),
       onClick: () => (bulkMode ? onToggle(id) : alert('Open dialog')),
       controls: bulkMode ? (
-        <ItemSelect checked={bulkIds?.includes(id)} onClick={() => onToggle(id)} />
+        <ItemSelect checked={bulkIds?.includes(id)} onClick={() => onToggle(id)} disabled={maxItemsReached} />
       ) : (
         <ContextMenu {...itemContextMenu} />
       ),
@@ -155,8 +157,6 @@ export const Default = ({
 
   const breadcrumbsItems = layout?.breadcrumbs?.items || [];
   const bulkBreadcrumbsItems = [...breadcrumbsItems, { label: 'Velg flere', href: '/inbox' }];
-
-  const maxItemsReached = bulkIds?.length === maxItems;
 
   return (
     <Layout
@@ -191,9 +191,7 @@ export const BulkModeOn = () => {
 };
 
 export const BulkModeMax = () => {
-  return (
-    <Default maxItems={7} defaultBulkIds={['item-0', 'item-1', 'item-2', 'item-3', 'item-4', 'item-5', 'item-6']} />
-  );
+  return <Default maxItems={5} defaultBulkIds={['item-0', 'item-1', 'item-2', 'item-3', 'item-4']} />;
 };
 
 export const Company = () => {

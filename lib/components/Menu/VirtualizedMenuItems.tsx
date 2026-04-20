@@ -164,7 +164,7 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
     position: 'relative',
     maxHeight: style?.maxHeight || scrollMaxHeight,
     margin: '-0.5rem',
-    padding: '0.5rem',
+    padding: '0.5rem 0.5rem 1rem 0.5rem',
     minWidth: style?.minWidth ?? '20rem',
     overflowY: 'auto',
     ...style,
