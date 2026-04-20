@@ -1,0 +1,13 @@
+.wrap button,
+.wrap a {
+  white-space: normal;
+  height: auto;
+  text-align: left;
+}
+
+.wrap button > span,
+.wrap a > span {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
