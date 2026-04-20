@@ -10,3 +10,9 @@
 .item:last-child {
   padding-bottom: 0;
 }
+
+.item[aria-expanded="true"] {
+  background-color: var(--ds-color-background-tinted);
+  padding: 0.5em;
+  margin: -0.5em;
+}

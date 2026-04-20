@@ -19,6 +19,7 @@ export const MenuListItem = ({
   style,
   index,
   disabled,
+  expanded,
   onMouseEnter,
   onMouseLeave,
   'aria-checked': ariaChecked,
@@ -35,6 +36,7 @@ export const MenuListItem = ({
       data-index={index}
       aria-disabled={disabled}
       aria-checked={ariaChecked}
+      aria-expanded={expanded}
     >
       {children}
     </Component>
