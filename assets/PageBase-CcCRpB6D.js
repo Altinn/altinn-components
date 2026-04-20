@@ -1,0 +1,1 @@
+import{j as a}from"./iframe-Dj7Cj6th.js";import{F as m}from"./Flex-BFoeedqd.js";const i=({children:o,as:r="div",direction:s="col",spacing:e="page",...t})=>a.jsx(m,{as:r,spacing:e,direction:s,...t,children:o});export{i as P};

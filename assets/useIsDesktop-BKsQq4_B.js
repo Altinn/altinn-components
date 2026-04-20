@@ -1,0 +1,1 @@
+"use client";import{r as s}from"./iframe-Dj7Cj6th.js";const e=1024,o=()=>{const[i,n]=s.useState(()=>typeof window>"u"?!1:window.innerWidth>=e);return s.useEffect(()=>{n(window.innerWidth>=e);const t=()=>{n(window.innerWidth>=e)};return window.addEventListener("resize",t),()=>window.removeEventListener("resize",t)},[]),i};export{o as u};
