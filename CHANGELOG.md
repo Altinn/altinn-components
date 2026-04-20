@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.58.6](https://github.com/Altinn/altinn-components/compare/v0.58.5...v0.58.6) (2026-04-20)
+
+
+### Bug Fixes
+
+* **contactSection:** wrap buttons on overflow ([#1130](https://github.com/Altinn/altinn-components/issues/1130)) ([de10c05](https://github.com/Altinn/altinn-components/commit/de10c050d4159c239c6abba9360549dca03c427e))
+
 ## [0.58.5](https://github.com/Altinn/altinn-components/compare/v0.58.4...v0.58.5) (2026-04-20)
 
 
