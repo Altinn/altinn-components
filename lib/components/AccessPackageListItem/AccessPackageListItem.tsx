@@ -15,6 +15,7 @@ export interface AccessPackageListItemProps
     | 'border'
     | 'badge'
     | 'interactive'
+    | 'variant'
   > {
   id: string;
   name: string;
@@ -27,6 +28,7 @@ export const AccessPackageListItem = ({
   color = 'neutral',
   titleAs = 'h4',
   size = 'sm',
+  variant = 'tinted',
   ...props
 }: AccessPackageListItemProps) => {
   return (
@@ -37,7 +39,7 @@ export const AccessPackageListItem = ({
       ariaLabel={name}
       color={color}
       size={size}
-      variant="tinted"
+      variant={variant}
       {...props}
     />
   );
