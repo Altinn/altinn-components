@@ -20,6 +20,7 @@ const meta = {
     border: 'none',
     as: 'button',
     titleAs: 'h3',
+    variant: 'tinted',
   },
   argTypes: {
     size: {
@@ -54,6 +55,12 @@ const meta = {
     },
     titleAs: {
       options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'div', 'span'],
+      control: {
+        type: 'select',
+      },
+    },
+    variant: {
+      options: ['default', 'tinted', 'light'],
       control: {
         type: 'select',
       },
