@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.59.0](https://github.com/Altinn/altinn-components/compare/v0.58.7...v0.59.0) (2026-04-21)
+
+
+### Features
+
+* simplify dialog status + badges ([#1133](https://github.com/Altinn/altinn-components/issues/1133)) ([11ae85b](https://github.com/Altinn/altinn-components/commit/11ae85bf4353cc0e2cea5f614e71d24d9106e20e))
+
+
+### Bug Fixes
+
+* **AccessPackageListItem:** Forward variant field for better external color control ([#1135](https://github.com/Altinn/altinn-components/issues/1135)) ([3321401](https://github.com/Altinn/altinn-components/commit/3321401bc0c1b4d30c83e109d115c8f350370e8e))
+
 ## [0.58.7](https://github.com/Altinn/altinn-components/compare/v0.58.6...v0.58.7) (2026-04-20)
 
 
