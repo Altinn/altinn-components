@@ -1,0 +1,1 @@
+import{j as r}from"./iframe-BNDruhPA.js";import{B as o}from"./Button-CaDKAluY.js";const i="_divider_1eeu8_1",t="_border_1eeu8_17",e={divider:i,border:t},a=({variant:s})=>r.jsx(o,{as:"span",color:"inherit",variant:s,"aria-hidden":"true",className:e.divider,children:r.jsx("span",{className:e.border})});export{a as B};

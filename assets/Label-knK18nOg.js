@@ -1,1 +1,0 @@
-import{j as r}from"./iframe-Dj7Cj6th.js";import{F as i,L as n}from"./index-DyfHnAhP.js";const m=({size:a,color:t,reverse:o,children:s,...e})=>r.jsx(i,{...e,"data-size":a,"data-color":t,"data-position":o?"end":"start",children:s}),p=({size:a,color:t,children:o,...s})=>r.jsx(n,{...s,"data-size":a,"data-color":t,children:o});export{m as F,p as L};
