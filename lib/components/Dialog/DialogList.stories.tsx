@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { DialogList } from '..';
+import { Button, DialogList } from '..';
 import { inboxSearchResults, inboxSection } from '../../../examples';
 
 const meta = {
@@ -19,28 +19,37 @@ export const GroupedByDate: Story = {
 };
 
 export const SearchResults: Story = {
-  args: inboxSearchResults,
+  args: {
+    title: '14 treff i innboks',
+    description: (
+      <p>
+        Begrens søket til{' '}
+        <Button variant="tinted" size="mini">
+          Innboks
+        </Button>{' '}
+        <Button variant="tinted" size="mini">
+          Arkiv
+        </Button>
+        {' eller '}
+        <Button variant="tinted" size="mini">
+          Papirkurv
+        </Button>
+      </p>
+    ),
+    items: inboxSearchResults.items,
+    groups: {},
+  },
 };
 
-export const SingleGroup: Story = {
+export const Description: Story = {
   args: {
+    description: <p>Her finner du dialoger du har valgt å arkivere.</p>,
     items: inboxSection.items
       .filter((item) => item.archived)
       .map((item) => ({
         ...item,
         groupId: 'archived',
       })),
-    groups: {
-      archived: {
-        title: 'Arkivert',
-        description: (
-          <p>
-            <strong>Her finner du dialoger du har valgt å arkivere.</strong> Det er ikke et journal- og arkivsystem. Om
-            dialogen blir oppdatert vil du finne den igjen i innboksen.
-          </p>
-        ),
-      },
-    },
   },
 };
 

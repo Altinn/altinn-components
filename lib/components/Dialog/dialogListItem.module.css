@@ -143,7 +143,6 @@
 .title {
   font-size: var(--dsc-title-font-size);
   font-weight: var(--dsc-title-font-weight);
-  line-height: var(--dsc-title-line-height);
   text-wrap: balance;
   margin-right: 3rem;
   display: -webkit-box;
