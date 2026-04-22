@@ -49,7 +49,7 @@ export const MetaItem = ({
   tooltip,
   ...rest
 }: MetaItemProps) => {
-  const Component = as || datetime ? 'time' : 'span';
+  const Component = as || (datetime ? 'time' : 'span');
 
   if (tooltip) {
     return (
