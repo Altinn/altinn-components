@@ -13,7 +13,6 @@ export * from './DialogHistorySegment';
 export * from './DialogHistoryItem';
 
 export * from './DialogList';
-export * from './DialogListGroup';
 export * from './DialogListItem';
 
 export * from './DialogMetadata';
