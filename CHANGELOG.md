@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.59.1](https://github.com/Altinn/altinn-components/compare/v0.59.0...v0.59.1) (2026-04-22)
+
+
+### Bug Fixes
+
+* **backButton:** remove incorrect props being spread on button ([#1136](https://github.com/Altinn/altinn-components/issues/1136)) ([9ada891](https://github.com/Altinn/altinn-components/commit/9ada891d59f0640054deeff19f0d6b5cdbdd0783))
+
 ## [0.59.0](https://github.com/Altinn/altinn-components/compare/v0.58.7...v0.59.0) (2026-04-21)
 
 
