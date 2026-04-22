@@ -36,8 +36,8 @@ export const DialogLayout = ({ backButton, contextMenu, pageMenu, children, colo
       <article className={styles.article}>
         {backButton && (
           <nav className={styles.backButton}>
-            <Button {...backButton} size="sm" variant="ghost">
-              <ArrowUndoIcon />
+            <Button as={backButton.as} onClick={backButton.onClick} size="sm" variant="ghost">
+              <ArrowUndoIcon aria-hidden />
               <span>{backButton?.label || 'Back'}</span>
             </Button>
           </nav>
