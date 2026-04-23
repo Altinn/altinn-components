@@ -34,7 +34,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function 
       asChild
     >
       <Component {...rest} ref={ref} aria-busy={loading} aria-disabled={disabled}>
-        {children}
+        ☕{children}
       </Component>
     </DsButton>
   );
