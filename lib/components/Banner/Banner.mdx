@@ -15,20 +15,21 @@ Any parent component or consumer of the `Banner` should handle the logic for whe
 <Canvas of={BannerStories.Colors} />
 
 ### Real usage example of a Beta Banner in Arbeidsflate:
+
 ```jsx
+import { useState } from "react";
+import { Banner } from "./Banner";
 
-import { useState } from 'react';
-import { Banner } from './Banner';
-
-const BETA_BANNER_KEY = 'arbeidsflate:show_beta_banner';
+const BETA_BANNER_KEY = "arbeidsflate:show_beta_banner";
 
 export const BetaBanner = () => {
-  const isPreviouslyDismissed = localStorage.getItem(BETA_BANNER_KEY) === 'true';
+  const isPreviouslyDismissed =
+    localStorage.getItem(BETA_BANNER_KEY) === "true";
   const [showBetaBanner, setShowBetaBanner] = useState(!isPreviouslyDismissed);
 
   const handleClose = () => {
     setShowBetaBanner(false);
-    localStorage.setItem(BETA_BANNER_KEY, 'true');
+    localStorage.setItem(BETA_BANNER_KEY, "true");
   };
 
   if (!showBetaBanner) return null;
@@ -37,11 +38,9 @@ export const BetaBanner = () => {
     <Banner
       onClose={handleClose}
       closeTitle="close"
-      text="This is a beta version of Arbeidsflate. We are continuously working on improvements and new features. Please report any issues you encounter."
+      title="This is a beta version of Arbeidsflate. We are continuously working on improvements and new features. Please report any issues you encounter."
       color="warning"
     />
   );
 };
-
-
 ```
