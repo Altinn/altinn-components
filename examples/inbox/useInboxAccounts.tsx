@@ -4,13 +4,15 @@ import type { AvatarGroupProps, AvatarProps } from '../../lib';
 
 interface UseInboxAccountsProps {
   accountId?: string;
+  companyCount?: number;
 }
 
-export const useInboxAccounts = ({ accountId }: UseInboxAccountsProps) => {
+export const useInboxAccounts = ({ accountId, companyCount }: UseInboxAccountsProps) => {
   const accountMenu = useAccountMenu({
     accountId,
     accounts: defaultAccounts,
     includeGroups: true,
+    companyCount,
   });
 
   const defaultAccount = accountMenu?.items?.[0];

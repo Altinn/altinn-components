@@ -3,11 +3,12 @@ import { Button } from '../../lib';
 import type { AccountMenuProps, ToolbarMenuProps } from '../../lib';
 import { type UseAccountsProps, useAccounts } from './';
 
-export const useAccountMenu = ({ accountId, accounts, includeGroups = false }: UseAccountsProps) => {
+export const useAccountMenu = ({ accountId, accounts, includeGroups = false, companyCount }: UseAccountsProps) => {
   const { groups, items, currentAccount, onSelectAccount, onToggleFavourite } = useAccounts({
     accountId,
     accounts,
     includeGroups,
+    companyCount,
   });
 
   const search = {

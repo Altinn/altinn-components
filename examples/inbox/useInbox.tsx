@@ -36,6 +36,7 @@ interface UseInboxModalProps {
 
 export interface UseInboxProps extends LayoutProps {
   defaultAccountId?: string;
+  companyCount?: number;
   query?: UseInboxQuery;
   pageId?: string;
   pageTitle?: string;
@@ -62,6 +63,7 @@ function getAccountIdFromUrl(): string {
 
 export const useInbox = ({
   defaultAccountId = 'user',
+  companyCount,
   pageId = 'inbox',
   query,
   ...props
@@ -272,6 +274,7 @@ export const useInbox = ({
 
   const { accountMenu, subAccountMenu, currentAccount, defaultAccount } = useInboxAccounts({
     accountId,
+    companyCount,
   });
 
   const toolbarMenus = subAccountMenu ? [accountMenu, subAccountMenu] : [accountMenu];

@@ -11,6 +11,7 @@ export type UseAccountsProps = {
   accountId?: string | null;
   accounts?: AccountDataProps[];
   includeGroups?: boolean;
+  companyCount?: number;
 };
 
 export const useAccounts = ({ accountId, accounts = defaultAccounts, includeGroups = true }: UseAccountsProps) => {

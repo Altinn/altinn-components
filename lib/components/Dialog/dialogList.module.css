@@ -10,12 +10,6 @@
   row-gap: 0.5rem;
 }
 
-.description button[data-size="mini"] {
-  line-height: 1;
-  margin: 0 0.25em;
-  transform: translateY(-0.125em);
-}
-
 .list {
   list-style: none;
   padding: 0;
