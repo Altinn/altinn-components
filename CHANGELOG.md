@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.60.0](https://github.com/Altinn/altinn-components/compare/v0.59.1...v0.60.0) (2026-04-23)
+
+
+### Features
+
+* banner title + body and variants ([#1142](https://github.com/Altinn/altinn-components/issues/1142)) ([fe9b778](https://github.com/Altinn/altinn-components/commit/fe9b7785f051df24d354c95c239d8052d543b72d))
+* inbox all companies ([#1141](https://github.com/Altinn/altinn-components/issues/1141)) ([f2a3a5a](https://github.com/Altinn/altinn-components/commit/f2a3a5a670556a934a197fb0ef57bba63281e673))
+
+
+### Bug Fixes
+
+* dialog list title + description ([#1138](https://github.com/Altinn/altinn-components/issues/1138)) ([194bc78](https://github.com/Altinn/altinn-components/commit/194bc7838a957f0211f5be191643bdfba526502e))
+
 ## [0.59.1](https://github.com/Altinn/altinn-components/compare/v0.59.0...v0.59.1) (2026-04-22)
 
 
