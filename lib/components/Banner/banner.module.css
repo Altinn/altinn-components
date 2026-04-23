@@ -1,12 +1,18 @@
 .banner {
-  background-color: var(--ds-color-base-default);
-  color: var(--ds-color-base-contrast-default);
+  background-color: var(--ds-color-surface-tinted);
+  color: var(--ds-color-text-default);
+
   margin-top: 0;
-  padding: 0.5rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
+  padding: 0.5rem;
   column-gap: 0.5rem;
+}
+
+.banner[data-variant="strong"] {
+  background-color: var(--ds-color-base-default);
+  color: var(--ds-color-base-contrast-default);
 }
 
 .sticky {
@@ -15,20 +21,28 @@
   z-index: 1000;
 }
 
+.content {
+  padding: 0.5rem;
+}
+
 .title {
   margin: 0;
-  padding: 1rem;
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.5rem;
 }
-.infoIcon {
-  min-height: 1.5rem;
-  max-height: 1.5rem;
-  min-width: 1.5rem;
-  max-width: 1.5rem;
+
+.icon {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
   margin-right: 0.5rem;
   vertical-align: bottom;
+}
+
+.icon svg {
+  width: 100%;
+  height: 100%;
 }
 
 .closeIcon {
