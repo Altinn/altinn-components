@@ -53,7 +53,7 @@ importers:
         version: 10.2.10(@vitest/browser-playwright@4.0.16)(@vitest/browser@4.0.16(vite@7.3.2(@types/node@25.0.7)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.8.0))(vitest@4.0.18))(@vitest/runner@4.1.3)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(storybook@10.2.10(@testing-library/dom@10.4.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(vitest@4.0.18)
       '@storybook/react-vite':
         specifier: 10.2.10
-        version: 10.2.10(esbuild@0.27.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(rollup@4.55.1)(storybook@10.2.10(@testing-library/dom@10.4.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.3)(vite@7.3.2(@types/node@25.0.7)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.8.0))
+        version: 10.2.10(esbuild@0.27.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(rollup@4.55.1)(storybook@10.2.10(@testing-library/dom@10.4.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@6.0.3)(vite@7.3.2(@types/node@25.0.7)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.8.0))
       '@storycap-testrun/browser':
         specifier: ^2.0.0
         version: 2.1.0(@vitest/browser-playwright@4.0.16)
@@ -121,14 +121,14 @@ importers:
         specifier: ^4.21.0
         version: 4.21.0
       typescript:
-        specifier: ^5.8.3
-        version: 5.8.3
+        specifier: ^6.0.0
+        version: 6.0.3
       vite:
         specifier: 7.3.2
         version: 7.3.2(@types/node@25.0.7)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.8.0)
       vite-plugin-dts:
         specifier: ^4.5.4
-        version: 4.5.4(@types/node@25.0.7)(rollup@4.55.1)(typescript@5.8.3)(vite@7.3.2(@types/node@25.0.7)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.8.0))
+        version: 4.5.4(@types/node@25.0.7)(rollup@4.55.1)(typescript@6.0.3)(vite@7.3.2(@types/node@25.0.7)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.8.0))
       vite-plugin-lib-inject-css:
         specifier: ^2.2.2
         version: 2.2.2(vite@7.3.2(@types/node@25.0.7)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.8.0))
@@ -2380,13 +2380,13 @@ packages:
     engines: {node: '>=18.0.0'}
     hasBin: true
 
-  typescript@5.8.3:
-    resolution: {integrity: sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ==}
+  typescript@5.9.3:
+    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
-  typescript@5.9.3:
-    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
+  typescript@6.0.3:
+    resolution: {integrity: sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -2913,13 +2913,13 @@ snapshots:
 
   '@floating-ui/utils@0.2.9': {}
 
-  '@joshwooding/vite-plugin-react-docgen-typescript@0.6.4(typescript@5.8.3)(vite@7.3.2(@types/node@25.0.7)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.8.0))':
+  '@joshwooding/vite-plugin-react-docgen-typescript@0.6.4(typescript@6.0.3)(vite@7.3.2(@types/node@25.0.7)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.8.0))':
     dependencies:
       glob: 13.0.6
-      react-docgen-typescript: 2.4.0(typescript@5.8.3)
+      react-docgen-typescript: 2.4.0(typescript@6.0.3)
       vite: 7.3.2(@types/node@25.0.7)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.8.0)
     optionalDependencies:
-      typescript: 5.8.3
+      typescript: 6.0.3
 
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:
@@ -3238,12 +3238,12 @@ snapshots:
       react-dom: 19.1.0(react@19.1.0)
       storybook: 10.2.10(@testing-library/dom@10.4.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
 
-  '@storybook/react-vite@10.2.10(esbuild@0.27.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(rollup@4.55.1)(storybook@10.2.10(@testing-library/dom@10.4.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.3)(vite@7.3.2(@types/node@25.0.7)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.8.0))':
+  '@storybook/react-vite@10.2.10(esbuild@0.27.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(rollup@4.55.1)(storybook@10.2.10(@testing-library/dom@10.4.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@6.0.3)(vite@7.3.2(@types/node@25.0.7)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.8.0))':
     dependencies:
-      '@joshwooding/vite-plugin-react-docgen-typescript': 0.6.4(typescript@5.8.3)(vite@7.3.2(@types/node@25.0.7)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.8.0))
+      '@joshwooding/vite-plugin-react-docgen-typescript': 0.6.4(typescript@6.0.3)(vite@7.3.2(@types/node@25.0.7)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.8.0))
       '@rollup/pluginutils': 5.3.0(rollup@4.55.1)
       '@storybook/builder-vite': 10.2.10(esbuild@0.27.2)(rollup@4.55.1)(storybook@10.2.10(@testing-library/dom@10.4.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(vite@7.3.2(@types/node@25.0.7)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.8.0))
-      '@storybook/react': 10.2.10(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(storybook@10.2.10(@testing-library/dom@10.4.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.3)
+      '@storybook/react': 10.2.10(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(storybook@10.2.10(@testing-library/dom@10.4.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@6.0.3)
       empathic: 2.0.0
       magic-string: 0.30.21
       react: 19.1.0
@@ -3260,7 +3260,7 @@ snapshots:
       - typescript
       - webpack
 
-  '@storybook/react@10.2.10(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(storybook@10.2.10(@testing-library/dom@10.4.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.3)':
+  '@storybook/react@10.2.10(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(storybook@10.2.10(@testing-library/dom@10.4.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@6.0.3)':
     dependencies:
       '@storybook/global': 5.0.0
       '@storybook/react-dom-shim': 10.2.10(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(storybook@10.2.10(@testing-library/dom@10.4.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
@@ -3269,7 +3269,7 @@ snapshots:
       react-dom: 19.1.0(react@19.1.0)
       storybook: 10.2.10(@testing-library/dom@10.4.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
     optionalDependencies:
-      typescript: 5.8.3
+      typescript: 6.0.3
     transitivePeerDependencies:
       - supports-color
 
@@ -3644,7 +3644,7 @@ snapshots:
       de-indent: 1.0.2
       he: 1.2.0
 
-  '@vue/language-core@2.2.0(typescript@5.8.3)':
+  '@vue/language-core@2.2.0(typescript@6.0.3)':
     dependencies:
       '@volar/language-core': 2.4.28
       '@vue/compiler-dom': 3.5.32
@@ -3655,7 +3655,7 @@ snapshots:
       muggle-string: 0.4.1
       path-browserify: 1.0.1
     optionalDependencies:
-      typescript: 5.8.3
+      typescript: 6.0.3
 
   '@vue/shared@3.5.32': {}
 
@@ -4393,9 +4393,9 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
-  react-docgen-typescript@2.4.0(typescript@5.8.3):
+  react-docgen-typescript@2.4.0(typescript@6.0.3):
     dependencies:
-      typescript: 5.8.3
+      typescript: 6.0.3
 
   react-docgen@8.0.2:
     dependencies:
@@ -4659,9 +4659,9 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
-  typescript@5.8.3: {}
-
   typescript@5.9.3: {}
+
+  typescript@6.0.3: {}
 
   ufo@1.6.3: {}
 
@@ -4686,18 +4686,18 @@ snapshots:
     dependencies:
       react: 19.1.0
 
-  vite-plugin-dts@4.5.4(@types/node@25.0.7)(rollup@4.55.1)(typescript@5.8.3)(vite@7.3.2(@types/node@25.0.7)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.8.0)):
+  vite-plugin-dts@4.5.4(@types/node@25.0.7)(rollup@4.55.1)(typescript@6.0.3)(vite@7.3.2(@types/node@25.0.7)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.8.0)):
     dependencies:
       '@microsoft/api-extractor': 7.58.1(@types/node@25.0.7)
       '@rollup/pluginutils': 5.3.0(rollup@4.55.1)
       '@volar/typescript': 2.4.28
-      '@vue/language-core': 2.2.0(typescript@5.8.3)
+      '@vue/language-core': 2.2.0(typescript@6.0.3)
       compare-versions: 6.1.1
       debug: 4.4.3
       kolorist: 1.8.0
       local-pkg: 1.1.2
       magic-string: 0.30.21
-      typescript: 5.8.3
+      typescript: 6.0.3
     optionalDependencies:
       vite: 7.3.2(@types/node@25.0.7)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.8.0)
     transitivePeerDependencies:
