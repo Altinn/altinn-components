@@ -1,0 +1,127 @@
+"use client";import{S as d,a as u,b as v}from"./Paperplane-ei05N4jD.js";import{S as m}from"./Handshake-CPWAAl-m.js";import{S as c}from"./Bell-BlVOWxtn.js";import{r as b,a as p}from"./iframe-DDirkHus.js";import{u as I}from"./useId-CVUrh2ea.js";import{S}from"./Hashtag-BsBol1iz.js";import{A as f}from"./AccountListItemDetails-CQ1zd7hp.js";import"./preload-helper-PPVm8Dsz.js";import"./Section-CUHbf36A.js";import"./index-B2YDfdyU.js";import"./Flex-CKMYHSxr.js";import"./ButtonGroup-B-c85YOq.js";import"./Button-CdMyOsNo.js";import"./button-CnVt3gpj.js";import"./use-merge-refs-CIAaUVpb.js";import"./lite-DaUVFjkg.js";import"./List-Cjvw0Kzt.js";import"./ListItem-CNfUb6zi.js";import"./Input-C9yDHhzX.js";import"./input-CQTkCXgP.js";import"./XMark-DldqIUES.js";import"./Icon-Cv1R39O2.js";import"./Skeleton-0VOrezcL.js";import"./Avatar-DMl0Fglw.js";import"./AvatarGroup-CxNYw_3L.js";import"./Badge-BMZjltw3.js";import"./Tooltip-Di80zHO_.js";import"./floating-ui.dom-DCpi3RTt.js";import"./Heading-s9P5sHvn.js";import"./useHighlightedText-CWfqHJQe.js";import"./ChevronUp-CfXo5p6V.js";import"./ChevronDown-BujCn4TJ.js";import"./ChevronRight-BUOZMhwy.js";import"./Divider-Cl3reezY.js";import"./SettingsItem-0Qag2hvf.js";import"./SettingsItemBase-DBC9ng52.js";import"./ItemLink-ClwPv_--.js";import"./ItemMedia-ZkVlWcbo.js";import"./ItemControls-CqR56LSR.js";import"./SettingsModal-u_O97U3x.js";import"./ModalBase-DnjQHIZ0.js";import"./ModalBody-CM30JKF1.js";import"./ButtonIcon-Cvt6zSue.js";import"./ButtonLabel-D_WD8Z8N.js";import"./AccountOrganization-Da6lBOTC.js";import"./Byline-BkaYJt38.js";var y=function(n,i){var r={};for(var e in n)Object.prototype.hasOwnProperty.call(n,e)&&i.indexOf(e)<0&&(r[e]=n[e]);if(n!=null&&typeof Object.getOwnPropertySymbols=="function")for(var t=0,e=Object.getOwnPropertySymbols(n);t<e.length;t++)i.indexOf(e[t])<0&&Object.prototype.propertyIsEnumerable.call(n,e[t])&&(r[e[t]]=n[e[t]]);return r};const X=b.forwardRef((n,i)=>{var{title:r,titleId:e}=n,t=y(n,["title","titleId"]);let o=I();return o=r?e||"title-"+o:void 0,p.createElement("svg",Object.assign({xmlns:"http://www.w3.org/2000/svg",width:"1em",height:"1em",fill:"none",viewBox:"0 0 24 24",focusable:!1,role:"img",ref:i,"aria-labelledby":o},t),r?p.createElement("title",{id:o},r):null,p.createElement("path",{fill:"currentColor",fillRule:"evenodd",d:"M8.25 7.5a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0M12 2.25a5.25 5.25 0 1 0 0 10.5 5.25 5.25 0 0 0 0-10.5M8.288 17.288A5.25 5.25 0 0 1 17.25 21a.75.75 0 0 0 1.5 0 6.75 6.75 0 0 0-13.5 0 .75.75 0 0 0 1.5 0 5.25 5.25 0 0 1 1.538-3.712",clipRule:"evenodd"}))}),ue={title:"Account/AccountListItemDetails",component:f,tags:["autodocs"],parameters:{},args:{buttons:[{label:"Gå til innboks",variant:"outline"},{label:"Tilgangsstyring",variant:"outline"}]}},s={args:{settings:[{id:"1",title:"Mobiltelefon",value:"+47 123 45 678",icon:d,linkIcon:!0,badge:{variant:"text",label:"Endre"}},{id:"2",title:"E-postadresse",value:"mathias@brann.no",icon:u,linkIcon:!0,badge:{variant:"text",label:"Endre"}},{id:"3",title:"Adresse",value:"Inndalsveien 28, 5063 Bergen",icon:v,linkIcon:!0,badge:{variant:"text",label:"Endre"}}]}},l={args:{settings:[{id:"1",title:"Rolle og tilganger",value:"Ektefelle",badge:{label:"2 tilganger"},icon:m,linkIcon:!0},{id:"2",title:"Varslinger er på",value:"mathias@brann.no, +47 123 45 678",badge:{label:"SMS og e-post"},icon:c,linkIcon:!0},{id:"3",title:"Fødselsnummer",value:"XXXXXX YYYY",icon:X}]}},a={args:{settings:[{id:"1",title:"Rolle og tilganger",value:"Daglig leder",badge:{label:"4 tilganger"},icon:m,linkIcon:!0},{id:"2",title:"Ingen varslinger",icon:c,badge:{variant:"text",label:"Legg til"},linkIcon:!0},{id:"3",title:"Organisasjonsnummer",value:"XXX XXX XXX",icon:S}]}},g={args:{...a.args,organization:[{title:"Diaspora Bergensis",description:"Org nr. 928914038",avatar:{type:"company",name:"Diaspora Bergensis"},items:[{selected:!0,title:"Diaspora Bergensis",description:"Org nr. 928914038",avatar:{type:"company",name:"Diaspora Bergensis",variant:"outline"}},{title:"Sporting Bergensis",description:"Org nr. 928914038",avatar:{type:"company",name:"Sporting Bergensis",variant:"outline"}},{title:"Glasgow Bergensis",description:"Org nr. 928914038",avatar:{type:"company",name:"Glasgow  Bergensis",variant:"outline"}}]}]}};s.parameters={...s.parameters,docs:{...s.parameters?.docs,source:{originalSource:`{
+  args: {
+    settings: [{
+      id: '1',
+      title: 'Mobiltelefon',
+      value: '+47 123 45 678',
+      icon: MobileIcon,
+      linkIcon: true,
+      badge: {
+        variant: 'text',
+        label: 'Endre'
+      }
+    }, {
+      id: '2',
+      title: 'E-postadresse',
+      value: 'mathias@brann.no',
+      icon: PaperplaneIcon,
+      linkIcon: true,
+      badge: {
+        variant: 'text',
+        label: 'Endre'
+      }
+    }, {
+      id: '3',
+      title: 'Adresse',
+      value: 'Inndalsveien 28, 5063 Bergen',
+      icon: HouseHeartIcon,
+      linkIcon: true,
+      badge: {
+        variant: 'text',
+        label: 'Endre'
+      }
+    }]
+  }
+}`,...s.parameters?.docs?.source}}};l.parameters={...l.parameters,docs:{...l.parameters?.docs,source:{originalSource:`{
+  args: {
+    settings: [{
+      id: '1',
+      title: 'Rolle og tilganger',
+      value: 'Ektefelle',
+      badge: {
+        label: '2 tilganger'
+      },
+      icon: HandshakeIcon,
+      linkIcon: true
+    }, {
+      id: '2',
+      title: 'Varslinger er på',
+      value: 'mathias@brann.no, +47 123 45 678',
+      badge: {
+        label: 'SMS og e-post'
+      },
+      icon: BellIcon,
+      linkIcon: true
+    }, {
+      id: '3',
+      title: 'Fødselsnummer',
+      value: 'XXXXXX YYYY',
+      icon: PersonIcon
+    }]
+  }
+}`,...l.parameters?.docs?.source}}};a.parameters={...a.parameters,docs:{...a.parameters?.docs,source:{originalSource:`{
+  args: {
+    settings: [{
+      id: '1',
+      title: 'Rolle og tilganger',
+      value: 'Daglig leder',
+      badge: {
+        label: '4 tilganger'
+      },
+      icon: HandshakeIcon,
+      linkIcon: true
+    }, {
+      id: '2',
+      title: 'Ingen varslinger',
+      icon: BellIcon,
+      badge: {
+        variant: 'text',
+        label: 'Legg til'
+      },
+      linkIcon: true
+    }, {
+      id: '3',
+      title: 'Organisasjonsnummer',
+      value: 'XXX XXX XXX',
+      icon: HashtagIcon
+    }]
+  }
+}`,...a.parameters?.docs?.source}}};g.parameters={...g.parameters,docs:{...g.parameters?.docs,source:{originalSource:`{
+  args: {
+    ...CompanySettings.args,
+    organization: [{
+      title: 'Diaspora Bergensis',
+      description: 'Org nr. 928914038',
+      avatar: {
+        type: 'company',
+        name: 'Diaspora Bergensis'
+      },
+      items: [{
+        selected: true,
+        title: 'Diaspora Bergensis',
+        description: 'Org nr. 928914038',
+        avatar: {
+          type: 'company',
+          name: 'Diaspora Bergensis',
+          variant: 'outline'
+        }
+      }, {
+        title: 'Sporting Bergensis',
+        description: 'Org nr. 928914038',
+        avatar: {
+          type: 'company',
+          name: 'Sporting Bergensis',
+          variant: 'outline'
+        }
+      }, {
+        title: 'Glasgow Bergensis',
+        description: 'Org nr. 928914038',
+        avatar: {
+          type: 'company',
+          name: 'Glasgow  Bergensis',
+          variant: 'outline'
+        }
+      }]
+    }]
+  }
+}`,...g.parameters?.docs?.source}}};const ve=["UserSettings","PersonSettings","CompanySettings","OrganizationSettings"];export{a as CompanySettings,g as OrganizationSettings,l as PersonSettings,s as UserSettings,ve as __namedExportsOrder,ue as default};

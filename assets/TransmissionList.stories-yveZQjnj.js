@@ -1,0 +1,11 @@
+import{t as o}from"./transmissions-DGBPOkTW.js";import{T as m}from"./TransmissionList-BzqQkyoL.js";import"./iframe-DDirkHus.js";import"./preload-helper-PPVm8Dsz.js";import"./Transmission-BJsCLNcm.js";import"./Badge-BMZjltw3.js";import"./index-B2YDfdyU.js";import"./Tooltip-Di80zHO_.js";import"./floating-ui.dom-DCpi3RTt.js";import"./use-merge-refs-CIAaUVpb.js";import"./lite-DaUVFjkg.js";import"./ListItem-CNfUb6zi.js";import"./Button-CdMyOsNo.js";import"./button-CnVt3gpj.js";import"./Input-C9yDHhzX.js";import"./input-CQTkCXgP.js";import"./XMark-DldqIUES.js";import"./useId-CVUrh2ea.js";import"./Icon-Cv1R39O2.js";import"./Skeleton-0VOrezcL.js";import"./Avatar-DMl0Fglw.js";import"./AvatarGroup-CxNYw_3L.js";import"./Heading-s9P5sHvn.js";import"./useHighlightedText-CWfqHJQe.js";import"./ChevronUp-CfXo5p6V.js";import"./ChevronDown-BujCn4TJ.js";import"./ChevronRight-BUOZMhwy.js";import"./Section-CUHbf36A.js";import"./Flex-CKMYHSxr.js";import"./Typography-Do8CAd45.js";import"./AttachmentList-CjjodBKu.js";import"./AttachmentLink-BJZ_tMym.js";import"./SeenByLog-pSeQGP_J.js";import"./SeenByLogButton-BWyR3Ehk.js";import"./SeenByLogItem-8ctQdChS.js";import"./Byline-BkaYJt38.js";import"./Divider-Cl3reezY.js";import"./List-Cjvw0Kzt.js";const N={title:"Inbox/TransmissionList",component:m,tags:["beta"],parameters:{},args:{items:o}},r={args:{}},s={args:{items:o.filter(i=>i?.type?.value==="submission")}},t={args:{items:o.filter(i=>i?.type?.value!=="submission")}};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`{
+  args: {}
+}`,...r.parameters?.docs?.source}}};s.parameters={...s.parameters,docs:{...s.parameters?.docs,source:{originalSource:`{
+  args: {
+    items: transmissions.filter(item => item?.type?.value === 'submission') as TransmissionListProps['items']
+  }
+}`,...s.parameters?.docs?.source}}};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
+  args: {
+    items: transmissions.filter(item => item?.type?.value !== 'submission') as TransmissionListProps['items']
+  }
+}`,...t.parameters?.docs?.source}}};const Q=["Default","Outgoing","Incoming"];export{r as Default,t as Incoming,s as Outgoing,Q as __namedExportsOrder,N as default};

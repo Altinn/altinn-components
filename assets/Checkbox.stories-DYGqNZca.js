@@ -1,0 +1,3 @@
+import{C as o}from"./Checkbox-DUx8DoUm.js";import"./iframe-DDirkHus.js";import"./preload-helper-PPVm8Dsz.js";import"./Label-9QWpQ8Bw.js";import"./index-F2gU6D0V.js";import"./use-merge-refs-CIAaUVpb.js";import"./lite-DaUVFjkg.js";import"./Input-C9yDHhzX.js";import"./input-CQTkCXgP.js";const l={title:"Forms/Checkbox",component:o,tags:["autodocs"],parameters:{},args:{name:"checkbox",value:"1",label:"Checkbox"}},r={args:{}};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`{
+  args: {}
+}`,...r.parameters?.docs?.source}}};const u=["Default"];export{r as Default,u as __namedExportsOrder,l as default};
