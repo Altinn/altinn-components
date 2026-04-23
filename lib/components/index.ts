@@ -30,6 +30,7 @@ export * from './List';
 export * from './Menu';
 export * from './Metadata';
 export * from './Notifications';
+export * from './Pagination';
 export * from './RootProvider';
 export * from './Search';
 export * from './Searchbar';

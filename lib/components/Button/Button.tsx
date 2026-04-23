@@ -4,7 +4,7 @@ import type { ButtonIconProps } from './ButtonIcon';
 import styles from './button.module.css';
 
 export type ButtonColor = DsButtonProps['data-color'] | undefined;
-export type ButtonVariant = 'solid' | 'outline' | 'tinted' | 'ghost' | DsButtonProps['variant'];
+export type ButtonVariant = 'solid' | 'outline' | 'tinted' | 'ghost' | 'custom' | DsButtonProps['variant'];
 export type ButtonSize = 'xs' | 'mini' | DsButtonProps['data-size'];
 
 export type ButtonProps = {
