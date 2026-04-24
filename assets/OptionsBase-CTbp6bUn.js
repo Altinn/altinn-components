@@ -1,0 +1,1 @@
+import{j as t}from"./iframe-Dip44woq.js";const i=({size:o,color:r,inline:e,children:s})=>t.jsx("div",{"data-color":r,"data-size":o,style:{display:"flex",flexDirection:e?"row":"column",rowGap:"1rem",columnGap:"1rem"},children:s});export{i as O};
