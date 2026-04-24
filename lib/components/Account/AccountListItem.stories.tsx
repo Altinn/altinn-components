@@ -1,6 +1,7 @@
 import { BellIcon, HandshakeIcon, HashtagIcon } from '@navikt/aksel-icons';
+import { FilesIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { AccountListItem, AccountListItemDetails, type AccountListItemProps, List } from '..';
+import { AccountListItem, AccountListItemDetails, type AccountListItemProps, Button, List } from '..';
 const meta = {
   title: 'Account/AccountListItem',
   component: AccountListItem,
@@ -52,12 +53,25 @@ export const Expanded: Story = {
           },
           {
             id: '2',
-            title: 'Ingen varslinger',
+            title: 'Varslinger på SMS',
             icon: BellIcon,
             badge: {
               variant: 'text',
               label: 'Legg til',
             },
+            variant: 'modal',
+            linkIcon: true,
+          },
+          {
+            id: '2',
+            title: 'Varslinger på e-post',
+            value: 'mathias@gmail.com',
+            icon: BellIcon,
+            badge: {
+              variant: 'text',
+              label: 'Endre',
+            },
+            variant: 'modal',
             linkIcon: true,
           },
           {
@@ -65,6 +79,14 @@ export const Expanded: Story = {
             title: 'Organisasjonsnummer',
             value: 'XXX XXX XXX',
             icon: HashtagIcon,
+            as: 'button',
+            onClick: () => alert('Org nr. ble kopiert'),
+            controls: (
+              <Button as="div" size="xs" variant="ghost">
+                <FilesIcon />
+                <span>Kopier org. nr</span>
+              </Button>
+            ),
           },
         ]}
         organization={[

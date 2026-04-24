@@ -83,7 +83,7 @@ const VerifyField = ({ children, label, value, verified = false, ...props }: Ver
       )}
       {value && (
         <span data-size="sm" style={{ position: 'absolute', right: 0, top: 0, margin: '.5em' }}>
-          <Badge color={verified ? 'success' : 'company'}>{verified ? 'Verifisert' : 'Ny adresse'}</Badge>
+          <Badge color={verified ? 'success' : 'company'}>{verified ? 'Bekreftet' : 'Ubekreftet'}</Badge>
         </span>
       )}
     </div>
@@ -370,6 +370,40 @@ const Template = ({
     );
   }
 
+  // Account single view
+  if (accountId) {
+    const account = defaultUsedByItems?.find((item) => item.id === accountId);
+
+    return (
+      <SettingsModal
+        open={open}
+        onClose={() => setOpen(false)}
+        icon={account}
+        title={account?.name}
+        description="Org nr. XXX XXX XXX"
+      >
+        <Fieldset size="sm">
+          <Switch label="Motta varslinger på e-post" name="emailAlerts" checked={emailAlerts} onChange={onToggle} />
+          {emailAlerts && (
+            <VerifyField verified={verified} readOnly={readOnly} size="sm" value={value} onChange={onChange}>
+              {selectable && !selectNew ? (
+                <VerifySelectField options={verifiedEmails} value={value} onChange={onSelect} />
+              ) : (
+                ''
+              )}
+            </VerifyField>
+          )}
+        </Fieldset>
+
+        <Typography size="sm">
+          <p>Dette er din personlige varslingsadresse, ikke virksomhetens lovpålagte varslingsadresser.</p>
+        </Typography>
+
+        <VerifyFooter validEmail={validEmail} verified={verified} onSendCode={onSendCode} />
+      </SettingsModal>
+    );
+  }
+
   // Profile View
 
   return (
@@ -412,6 +446,11 @@ const Template = ({
 export const ProfileReadOnly = () => <Template readOnly={true} defaultValue="mathias@brann.no" />;
 export const ProfileInput = () => <Template defaultValue="mathias@new-domain.com" />;
 export const ProfileSelect = () => <Template selectable={true} defaultValue="mathias@brann.no" />;
+
+export const AccountSingleInput = () => <Template accountId="brann" defaultValue="mathias@new-domain.com" />;
+export const AccountSingleSelect = () => (
+  <Template accountId="brann" selectable={true} defaultValue="mathias@brann.no" />
+);
 
 export const AccountVerified = () => (
   <Template defaultState="account" accountId="brann" defaultValue="mathias@brann.no" />

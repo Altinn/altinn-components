@@ -14,15 +14,15 @@ export const useProfileLayout = ({ accountId = 'user', pageId = 'profile' }): Pr
   const storybookPages = {
     inbox: 'demo-inbox--inbox-page',
     admin: 'demo-admin--dashboard-page',
-    profile: 'demo-profile--dashboard-page',
-    accounts: 'demo-profile--accounts-page',
-    bookmarks: 'demo-profile--bookmarks-page',
-    alerts: 'demo-profile--alerts-page',
+    profile: 'settings-settingslist--person-settings',
+    accounts: 'account-accountlist--account-settings',
+    bookmarks: 'settings-settingslist--bookmark-settings',
+    alerts: 'settings-settingslist--alert-settings',
     contact: 'demo-profile--contact-page',
     settings: 'demo-profile--settings-page',
     access: 'demo-profile--access-page',
     users: 'demo-profile--users-page',
-    'activity-log': 'demo-profile--activity-log-page',
+    'activity-log': 'timeline-activitylog--profile-activity-log',
   };
 
   const menuItems = profileMenuItems.map((item) => {

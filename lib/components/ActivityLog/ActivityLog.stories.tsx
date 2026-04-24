@@ -1,11 +1,24 @@
 import { useState } from 'react';
-import { ActivityLog, Button, ModalBase, ModalBody, ModalHeader, Section, Toolbar } from '..';
-import { useActivityLog } from '../../../examples';
+import {
+  ActivityLog,
+  Button,
+  Heading,
+  Layout,
+  ModalBase,
+  ModalBody,
+  ModalHeader,
+  PageBase,
+  Section,
+  Toolbar,
+} from '..';
+import { useActivityLog, useProfile } from '../../../examples';
 
 const meta = {
   title: 'Timeline/ActivityLog',
   tags: ['beta'],
-  parameters: {},
+  parameters: {
+    layout: 'fullscreen',
+  },
   args: {},
 };
 
@@ -23,6 +36,20 @@ export const Controlled = () => {
       <Toolbar {...toolbar} />
       <ActivityLog items={items} />
     </Section>
+  );
+};
+
+export const ProfileActivityLog = () => {
+  const { layout } = useProfile({
+    pageId: 'activity-log',
+  });
+  return (
+    <Layout {...layout}>
+      <PageBase>
+        <Heading size="xl">Aktivitetslogg</Heading>
+        <Controlled />
+      </PageBase>
+    </Layout>
   );
 };
 

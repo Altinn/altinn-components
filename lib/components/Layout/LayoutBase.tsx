@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import styles from './layoutBase.module.css';
 
 export type LayoutColor = 'neutral' | 'company' | 'person';
-export type LayoutTheme = 'default' | 'subtle' | 'neutral' | 'inbox';
+export type LayoutTheme = 'default' | 'subtle' | 'neutral' | 'inbox' | 'settings';
 
 export interface LayoutBaseProps {
   color?: LayoutColor;

@@ -25,6 +25,10 @@ const meta = {
 
 export default meta;
 
+export const ProfilePage = () => {
+  return <SettingsStories.PersonSettings />;
+};
+
 export const DashboardPage = () => {
   const { layout } = useProfile({});
   const { defaultAccount } = useAccounts({});
@@ -97,75 +101,28 @@ export const DashboardPage = () => {
 };
 
 export const AccountsPage = () => {
-  const { layout } = useProfile({ pageId: "accounts" });
-  return (
-    <Layout {...layout} >
-      <PageBase>
-        <Heading size="xl">Mine aktører</Heading>
-        <AccountListStories.Collapsible />
-      </PageBase>
-    </Layout>
-  );
+  return <AccountListStories.AccountSettings />;
 };
 
 export const AccountsPageVirtualized = () => {
   const { layout } = useProfile({ pageId: "accounts" });
   return (
-    <Layout {...layout} >
-      <PageBase>
-        <Heading size="xl">Mine aktører (Virtualized)</Heading>
-        <AccountListStories.Virtualized />
-      </PageBase>
-    </Layout>
+      <Layout {...layout}>
+          <AccountListStories.Virtualized />
+      </Layout>
   );
 };
 
 export const AlertsPage = () => {
-  const { layout } = useProfile({ pageId: "alerts" });
-  return (
-    <Layout {...layout} >
-      <PageBase color="person">
-        <SettingsStories.AlertSettings />
-      </PageBase>
-    </Layout>
-  );
+  return <SettingsStories.AlertSettings />;
 };
 
 export const BookmarksPage = () => {
-  const { layout } = useProfile({ pageId: "bookmarks" });
-  return (
-    <Layout {...layout} >
-      <PageBase color="person">
-        <SettingsStories.BookmarkSettings />
-      </PageBase>
-    </Layout>
-  );
-};
-
-export const SettingsPage = () => {
-  const { layout } = useProfile({ pageId: "settings" });
-
-  return (
-    <Layout {...layout} >
-      <PageBase color="person">
-        <SettingsStories.AccountSettings />
-      </PageBase>
-    </Layout>
-  );
+  return <SettingsStories.BookmarkSettings />;
 };
 
 export const ActivityLogPage = () => {
-  const { layout } = useProfile({
-    pageId: "activity-log",
-  });
-  return (
-    <Layout {...layout} >
-      <PageBase color="person">
-        <Heading size="xl">Aktivitetslogg</Heading>
-        <ActivityLogStories.Controlled />
-      </PageBase>
-    </Layout>
-  );
+  return <ActivityLogStories.ProfileActivityLog />;
 };
 
 export const UsersPage = () => {

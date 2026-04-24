@@ -1,4 +1,4 @@
-import { ChevronRightIcon } from '@navikt/aksel-icons';
+import { ChevronDownIcon, ChevronRightIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 import type { ReactNode } from 'react';
 import {
   Badge,
@@ -12,6 +12,7 @@ import {
   type ItemLinkProps,
   ItemMedia,
   type ItemMediaProps,
+  Typography,
 } from '..';
 
 import styles from './settingsItemBase.module.css';
@@ -28,9 +29,12 @@ export interface SettingsItemBaseProps extends ItemLinkProps {
   descriptionProps?: HeadingProps;
   highlightWords?: string[];
   badge?: BadgeProps;
+  colllapsible?: boolean;
+  expanded?: boolean;
   linkIcon?: boolean;
   controls?: ReactNode;
   children?: ReactNode;
+  summary?: ReactNode;
 }
 
 export const SettingsItemBase = ({
@@ -39,11 +43,13 @@ export const SettingsItemBase = ({
   hidden,
   loading,
   color,
+  collapsible,
   expanded,
   icon,
   label,
   titleProps = {},
   descriptionProps = {},
+  summary,
   children,
   highlightWords,
   badge,
@@ -52,37 +58,50 @@ export const SettingsItemBase = ({
   ...rest
 }: SettingsItemBaseProps) => {
   return (
-    <ItemBase as="li" ref={ref} className={styles.item} color={color} aria-hidden={hidden} data-loading={loading}>
-      <ItemLink {...rest} className={styles.link} as={as}>
-        <ItemMedia icon={icon} className={styles.media} />
-        {label || (
-          <span className={styles.label}>
-            <Heading
-              {...titleProps}
-              as="span"
-              highlightWords={highlightWords}
-              loading={loading}
-              maxRows={2}
-              className={styles.title}
-            />
-            <Heading
-              {...descriptionProps}
-              as="span"
-              highlightWords={highlightWords}
-              loading={loading}
-              maxRows={2}
-              className={styles.description}
-            />
-          </span>
-        )}
-      </ItemLink>
-      <ItemControls className={styles.controls}>
-        {controls}
-        {badge && <Badge {...badge} />}
+    <li className={styles.listItem}>
+      <ItemBase ref={ref} className={styles.item} color={color} aria-hidden={hidden} data-loading={loading}>
+        <ItemLink {...rest} className={styles.link} as={as}>
+          <ItemMedia icon={icon} className={styles.media} />
+          {label || (
+            <span className={styles.label}>
+              <Heading
+                {...titleProps}
+                as="span"
+                highlightWords={highlightWords}
+                loading={loading}
+                maxRows={2}
+                className={styles.title}
+              />
+              <Heading
+                {...descriptionProps}
+                as="span"
+                highlightWords={highlightWords}
+                loading={loading}
+                maxRows={2}
+                className={styles.description}
+              />
+            </span>
+          )}
+        </ItemLink>
+        <ItemControls className={styles.controls}>
+          {controls}
+          {badge && <Badge {...badge} />}
 
-        {linkIcon && <ChevronRightIcon className={styles.linkIcon} />}
-      </ItemControls>
-      {children}
-    </ItemBase>
+          {(collapsible &&
+            (expanded ? (
+              <ChevronUpIcon className={styles.linkIcon} />
+            ) : (
+              <ChevronDownIcon className={styles.linkIcon} />
+            ))) ||
+            (linkIcon && <ChevronRightIcon className={styles.linkIcon} />)}
+        </ItemControls>
+        {children}
+      </ItemBase>
+      {summary && (
+        <Typography className={styles.summary} size="xs" variant="subtle">
+          {summary}
+        </Typography>
+      )}
+    </li>
   );
 };

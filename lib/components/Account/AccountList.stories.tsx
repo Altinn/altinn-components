@@ -12,6 +12,7 @@ import {
 } from '@navikt/aksel-icons';
 import type { Meta } from '@storybook/react-vite';
 import { type ChangeEvent, useState } from 'react';
+import { useProfile } from '../../../examples';
 
 import {
   AccountAlertsModal,
@@ -29,6 +30,8 @@ import {
   type AccountListProps,
   type BadgeProps,
   Heading,
+  Layout,
+  type LayoutProps,
   PageBase,
   Switch,
   Toolbar,
@@ -39,9 +42,7 @@ const meta = {
   title: 'Account/AccountList',
   component: AccountList,
   tags: ['autodocs'],
-  parameters: {
-    layout: 'fullscreen',
-  },
+  parameters: { layout: 'fullscreen' },
   args: accountList as AccountListProps,
 } satisfies Meta<typeof AccountList>;
 
@@ -128,15 +129,10 @@ export const Default = ({ includeGroups = false }: UseAccountsProps) => {
     };
   });
 
-  const style = {
-    backgroundColor: 'var(--ds-color-background-tinted)',
-    padding: '1em',
-  };
-
   return (
-    <div style={style}>
-      <PageBase>{items && <AccountList groups={groups} items={controlledItems as AccountListItemProps[]} />}</PageBase>
-    </div>
+    <Layout theme="settings">
+      <AccountList groups={groups} items={controlledItems as AccountListItemProps[]} />
+    </Layout>
   );
 };
 
@@ -160,17 +156,10 @@ export const Loading = () => {
     },
   };
 
-  const style = {
-    backgroundColor: 'var(--ds-color-background-tinted)',
-    padding: '1em',
-  };
-
   return (
-    <div style={style}>
-      <PageBase>
-        <AccountList items={loadingItems} groups={loadingGroups} />
-      </PageBase>
-    </div>
+    <Layout theme="settings">
+      <AccountList items={loadingItems} groups={loadingGroups} />
+    </Layout>
   );
 };
 
@@ -179,23 +168,32 @@ interface ModalProps {
   type?: string;
 }
 
-interface ControlledProps {
+interface ControlledPageQuery {
+  q?: string;
+}
+
+interface ControlledPageProps {
+  layout?: LayoutProps;
+  title?: string;
   includeGroups?: boolean;
   contextMenu?: boolean;
   collapsible?: boolean;
   color?: 'neutral';
   variant?: 'subtle' | 'tinted' | 'default';
   virtualized?: boolean;
+  query?: ControlledPageQuery;
 }
 
-export const Controlled = ({
+export const ControlledPage = ({
+  layout = { theme: 'settings' },
+  title = 'Controlled',
   includeGroups = false,
   collapsible = false,
   contextMenu = false,
   variant = 'default',
-  color,
   virtualized = false,
-}: ControlledProps) => {
+  query,
+}: ControlledPageProps) => {
   const { toolbar, items, groups, expandedId, onToggle, onToggleFavourite, onSettingsChange } = useAccountList({
     accounts: defaultAccounts,
     includeGroups,
@@ -225,13 +223,27 @@ export const Controlled = ({
     }
   };
 
-  const q = toolbar?.search?.value?.toString().toLowerCase() || '';
+  const q = query?.q || toolbar?.search?.value?.toString().toLowerCase() || '';
   const results = toolbar?.results;
 
   const listGroups = toolbar?.active ? results?.groups : groups;
   const listItems = toolbar?.active ? results?.items : items;
 
-  const collapsibleItems = listItems?.map((item) => {
+  const applicableItems =
+    (q &&
+      listItems?.filter((item) => {
+        if (q && item.title?.toLowerCase().includes(q)) {
+          return true;
+        }
+
+        if (q) {
+          return false;
+        }
+        return true;
+      })) ||
+    listItems;
+
+  const collapsibleItems = applicableItems?.map((item) => {
     if (collapsible && expandedId === item.id) {
       return {
         ...item,
@@ -257,15 +269,10 @@ export const Controlled = ({
     };
   });
 
-  const style = {
-    backgroundColor: variant === 'default' ? 'var(--ds-color-background-tinted)' : 'var(--ds-color-background-default)',
-    padding: '1em',
-  };
-
   return (
-    <div style={style} color={color}>
+    <Layout {...layout}>
       <PageBase>
-        <Heading size="xl">Account list</Heading>
+        <Heading size="xl">{title}</Heading>
         <Toolbar {...toolbar}>
           <Switch label="Vis slettede" size="sm" />
         </Toolbar>
@@ -298,20 +305,51 @@ export const Controlled = ({
           />
         )}
       </PageBase>
-    </div>
+    </Layout>
   );
 };
 
-export const ControlledTinted = () => {
-  return <Controlled color="neutral" variant="subtle" />;
+export const CollapsiblePage = () => {
+  return <ControlledPage title="Collapsible" collapsible={true} contextMenu={true} />;
 };
 
-export const Collapsible = () => {
-  return <Controlled collapsible={true} contextMenu={true} />;
+export const AccountSelector = () => {
+  const { layout } = useProfile({ pageId: 'accounts' });
+  return (
+    <ControlledPage
+      layout={{
+        ...layout,
+        breadcrumbs: undefined,
+        theme: 'default',
+        color: 'neutral',
+        sidebar: { hidden: true },
+      }}
+      title="Hvem vil du representere?"
+      variant="subtle"
+      collapsible={false}
+      contextMenu={true}
+    />
+  );
 };
 
-export const CollapsibleWithGroups = () => {
-  return <Controlled includeGroups={true} collapsible={true} contextMenu={true} />;
+export const AccountSettings = () => {
+  const { layout } = useProfile({ pageId: 'accounts' });
+  return <ControlledPage layout={layout} title="Aktørinnstillinger" collapsible={true} contextMenu={true} />;
+};
+
+export const AccountUserSettings = () => {
+  return <ControlledPage query={{ q: 'mathias' }} title="Aktørinnstillinger" collapsible={true} contextMenu={true} />;
+};
+
+export const AccountCompanySettings = () => {
+  return (
+    <ControlledPage
+      query={{ q: 'brann bataljonen' }}
+      title="Aktørinnstillinger"
+      collapsible={true}
+      contextMenu={true}
+    />
+  );
 };
 
 interface AccountDetailsProps extends AccountListItemProps {
@@ -391,6 +429,22 @@ export const CompanyDetails = ({
       value: 'Ektefelle',
       badge: { label: '2 tilganger' },
       linkIcon: true,
+      as: 'button',
+    },
+    {
+      id: '2a',
+      title: 'Varslinger på SMS',
+      icon: BellIcon,
+      linkIcon: true,
+      onClick: () => onModal?.(id, 'notifications'),
+      as: 'button',
+    },
+    {
+      id: '2b',
+      title: 'Varslinger på e-post',
+      icon: BellIcon,
+      linkIcon: true,
+      onClick: () => onModal?.(id, 'notifications'),
       as: 'button',
     },
     {
@@ -553,5 +607,5 @@ export const UserDetails = ({
 };
 
 export const Virtualized = () => {
-  return <Controlled virtualized={true} includeGroups={true} collapsible={true} contextMenu={true} />;
+  return <ControlledPage virtualized={true} includeGroups={true} collapsible={true} contextMenu={true} />;
 };

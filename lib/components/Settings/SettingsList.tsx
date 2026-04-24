@@ -33,6 +33,7 @@ export const SettingsList = ({ items, groups = {}, sortGroupBy }: SettingsListPr
               <List size="sm">
                 {group?.items.map((item, index) => {
                   const itemProps = item.props || {};
+
                   return (
                     <Fragment key={index}>
                       {index > 0 && <Divider as="li" />}

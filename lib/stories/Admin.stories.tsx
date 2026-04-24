@@ -2,7 +2,7 @@ import * as DashboardStories from "../components/Dashboard/Dashboard.stories";
 import * as SettingsStories from "../components/Settings/SettingsList.stories";
 import * as ActivityLogStories from "../components/ActivityLog/ActivityLog.stories";
 
-import { Heading, Layout, PageBase, Breadcrumbs, Toolbar } from "../components";
+import { Heading, Layout, PageBase, Toolbar, Breadcrumbs } from "../components";
 import { useAdmin } from "../../examples";
 
 const meta = {
@@ -123,17 +123,7 @@ export const ClientAdminPage = () => {
 };
 
 export const SettingsPage = () => {
-  const { breadcrumbs, color, layout } = useAdmin({
-    pageId: "settings",
-  });
-  return (
-    <Layout {...layout}>
-      <PageBase color={color}>
-        <Breadcrumbs items={breadcrumbs} />
-        <SettingsStories.AdminSettings />
-      </PageBase>
-    </Layout>
-  );
+  return <SettingsStories.CompanySettings />;
 };
 
 export const ActivityLogPage = () => {

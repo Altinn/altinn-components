@@ -28,3 +28,9 @@
 .base[data-theme="inbox"][data-color="person"] {
   --altinn-layout-background: var(--ds-color-neutral-background-tinted);
 }
+
+/** settings theme */
+
+.base[data-theme="settings"] {
+  --altinn-layout-background: var(--ds-color-neutral-background-tinted);
+}
