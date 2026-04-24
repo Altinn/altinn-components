@@ -93,7 +93,6 @@ export const GlobalAccountButton = ({
       color="company"
       aria-label={texts.login}
       className={cx(styles.loginButton, className)}
-      aria-expanded={expanded}
     >
       {!minimized && <span className={styles.label}>{texts.login}</span>}
       <EnterIcon className={styles.icon} aria-hidden />
