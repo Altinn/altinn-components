@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.60.1](https://github.com/Altinn/altinn-components/compare/v0.60.0...v0.60.1) (2026-04-24)
+
+
+### Bug Fixes
+
+* remove invalid aria-expanded from login button ([#1144](https://github.com/Altinn/altinn-components/issues/1144)) ([96d9613](https://github.com/Altinn/altinn-components/commit/96d96138a262c9640f0713851f65fbef3a679e05))
+
 ## [0.60.0](https://github.com/Altinn/altinn-components/compare/v0.59.1...v0.60.0) (2026-04-23)
 
 
