@@ -60,9 +60,14 @@ export const useFilter = ({ filters = [], filterState, onFilterStateChange }: Us
       .map((item) => item.name);
 
     setVisibleFilterNames((prev) => {
-      const newNames = externallyVisible.filter((name) => !prev.includes(name));
-      if (newNames.length === 0) return prev;
-      return [...prev, ...newNames];
+      const next = [
+        ...prev.filter((name) => externallyVisible.includes(name)),
+        ...externallyVisible.filter((name) => !prev.includes(name)),
+      ];
+      if (next.length === prev.length && next.every((name, i) => name === prev[i])) {
+        return prev;
+      }
+      return next;
     });
   }, [filters, applicableFilterState]);
 
