@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.60.2](https://github.com/Altinn/altinn-components/compare/v0.60.1...v0.60.2) (2026-04-27)
+
+
+### Bug Fixes
+
+* **ToolbarFilter:** sync internal visibility when filterState is cleared externally ([#1147](https://github.com/Altinn/altinn-components/issues/1147)) ([40abce9](https://github.com/Altinn/altinn-components/commit/40abce91bb049955bb9c5eead3e52d81d789c023))
+
 ## [0.60.1](https://github.com/Altinn/altinn-components/compare/v0.60.0...v0.60.1) (2026-04-24)
 
 
