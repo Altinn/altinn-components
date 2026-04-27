@@ -19,6 +19,7 @@ export interface ToolbarFilterProps {
   onFilterStateChange?: (state: FilterState) => void;
   virtualized?: boolean;
   controls?: ReactNode;
+  showResetButton?: boolean;
 }
 
 export const ToolbarFilter = ({
@@ -33,6 +34,7 @@ export const ToolbarFilter = ({
   submitLabel,
   getFilterLabel,
   virtualized,
+  showResetButton = true,
   controls,
 }: ToolbarFilterProps) => {
   const { visibleFilters, hiddenFilters, onFilterAdd, onFilterChange, onFilterRemove } = useFilter({
@@ -46,8 +48,10 @@ export const ToolbarFilter = ({
     () => filters?.filter((filter) => filter.removable)?.map((filter) => filter.name) ?? [],
     [filters],
   );
-  const showResetButton =
-    removableFilterNames.length > 0 && Object.values(filterState)?.some((values) => values && values?.length > 0);
+  const resetButton =
+    showResetButton &&
+    removableFilterNames.length > 0 &&
+    Object.values(filterState)?.some((values) => values && values?.length > 0);
   const [openId, setOpenId] = useState<string | undefined>(undefined);
 
   const onToggle = (id: string) => {
@@ -99,15 +103,17 @@ export const ToolbarFilter = ({
           virtualized={virtualized}
         />
       )}
-      <ToolbarControls>
-        {!disabled && showResetButton && (
-          <Button onClick={handleReset} variant="ghost">
-            <XMarkIcon aria-hidden="true" />
-            <span>{resetLabel}</span>
-          </Button>
-        )}
-        {controls}
-      </ToolbarControls>
+      {(resetButton || controls) && (
+        <ToolbarControls>
+          {!disabled && resetButton && (
+            <Button onClick={handleReset} variant="ghost">
+              <XMarkIcon aria-hidden="true" />
+              <span>{resetLabel}</span>
+            </Button>
+          )}
+          {controls}
+        </ToolbarControls>
+      )}
     </>
   );
 };
