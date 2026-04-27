@@ -1,1 +1,0 @@
-"use client";import{r as e,j as m}from"./iframe-B56t8i7v.js";import{S as n}from"./use-merge-refs-CJ3sV19d.js";import{c as i}from"./lite-DaUVFjkg.js";const p=e.forwardRef(({asChild:s,className:r,...o},t)=>{const a=s?n:"a";return m.jsx(a,{className:i("ds-link",r),ref:t,...o})});p.displayName="Link";export{p as L};
