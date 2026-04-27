@@ -1,6 +1,7 @@
+import { BookmarkIcon, XMarkIcon } from '@navikt/aksel-icons';
 import type { Meta } from '@storybook/react-vite';
 import { useEffect, useState } from 'react';
-import { QueryLabel } from '..';
+import { Button, QueryLabel } from '..';
 import { Switch } from '../Forms';
 import { Toolbar, ToolbarFilter, type ToolbarFilterProps, ToolbarMenu, type ToolbarMenuProps, ToolbarSearch } from './';
 import { inboxFilters } from './example.data';
@@ -350,7 +351,29 @@ export const AccountMenuAndSearchAutocomplete = () => {
     menu,
   };
 
-  return <Toolbar menus={menus} search={search} filter={removableFilter} />;
+  const handleReset = () => {
+    setQ('');
+    removableFilter.onFilterStateChange?.({});
+  };
+
+  const hasFilters = q || Object.values(removableFilter?.filterState ?? {}).some((v) => v?.length);
+
+  return (
+    <Toolbar menus={menus} search={search} filter={{ ...removableFilter, showResetButton: false }}>
+      {hasFilters && (
+        <>
+          <Button onClick={handleReset} variant="ghost">
+            <XMarkIcon aria-hidden="true" />
+            <span>Nullstill</span>
+          </Button>
+          <Button onClick={() => alert('Lagre søk')} variant="ghost">
+            <BookmarkIcon aria-hidden="true" />
+            <span>Lagre</span>
+          </Button>
+        </>
+      )}
+    </Toolbar>
+  );
 };
 
 export const AccountMenuAndSubmenu = () => {
