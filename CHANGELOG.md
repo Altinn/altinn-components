@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.61.0](https://github.com/Altinn/altinn-components/compare/v0.60.2...v0.61.0) (2026-04-27)
+
+
+### Features
+
+* **toolbar:** add support for controlled reset button ([#1149](https://github.com/Altinn/altinn-components/issues/1149)) ([4c3cbd6](https://github.com/Altinn/altinn-components/commit/4c3cbd6c761a3878b5fd25bf7d38959b71485774))
+
 ## [0.60.2](https://github.com/Altinn/altinn-components/compare/v0.60.1...v0.60.2) (2026-04-27)
 
 
