@@ -2,6 +2,7 @@ import { Button, type ButtonProps } from '../Button';
 import styles from './pagination.module.css';
 
 export interface PaginationButtonProps extends ButtonProps {
+  label?: string;
   selected?: boolean;
 }
 
@@ -9,8 +10,8 @@ export interface PaginationProps {
   size?: ButtonProps['size'];
   variant?: ButtonProps['variant'];
   selectedVariant?: ButtonProps['variant'];
-  prev?: ButtonProps;
-  next?: ButtonProps;
+  prev?: PaginationButtonProps;
+  next?: PaginationButtonProps;
   items?: PaginationButtonProps[];
   'aria-label': string;
 }
@@ -29,8 +30,8 @@ export const Pagination = ({
       <ul className={styles.list}>
         {prev && (
           <li>
-            <Button size={size} aria-label={prev['aria-label'] || 'Forrige side'} variant={variant}>
-              {prev.title || 'Forrige'}
+            <Button {...prev} size={size} aria-label={prev['aria-label'] || 'Forrige side'} variant={variant}>
+              {prev.label || 'Forrige'}
             </Button>
           </li>
         )}
@@ -44,7 +45,7 @@ export const Pagination = ({
                 </Button>
               ) : (
                 <Button {...item} size={size} variant={item?.selected ? selectedVariant : variant}>
-                  {item.title}
+                  {item.label}
                 </Button>
               )}
             </li>
@@ -53,8 +54,8 @@ export const Pagination = ({
 
         {next && (
           <li>
-            <Button size={size} aria-label={next['aria-label'] || 'Forrige side'} variant={variant}>
-              {next.title || 'Neste'}
+            <Button {...next} size={size} aria-label={next['aria-label'] || 'Forrige side'} variant={variant}>
+              {next.label || 'Neste'}
             </Button>
           </li>
         )}
