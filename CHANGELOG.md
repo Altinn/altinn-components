@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.61.1](https://github.com/Altinn/altinn-components/compare/v0.61.0...v0.61.1) (2026-04-28)
+
+
+### Bug Fixes
+
+* pagination label ([#1151](https://github.com/Altinn/altinn-components/issues/1151)) ([f79c3fa](https://github.com/Altinn/altinn-components/commit/f79c3fa55b474ff653f01c3cf8274cecb48d660f))
+
 ## [0.61.0](https://github.com/Altinn/altinn-components/compare/v0.60.2...v0.61.0) (2026-04-27)
 
 
