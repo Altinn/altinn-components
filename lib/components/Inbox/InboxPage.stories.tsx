@@ -177,22 +177,22 @@ export const AllCompaniesPage = () => {
   const pagination = {
     'aria-label': 'Velg side',
     prev: {
-      title: 'Forrige',
+      label: 'Forrige',
       'aria-label': 'Forrige',
     },
     next: {
-      title: 'Neste',
+      label: 'Neste',
       'aria-label': 'Neste',
     },
     items: [
       {
         id: '1',
-        title: '1',
+        label: '1',
         'aria-label': 'Side 1',
       },
       {
         id: '2',
-        title: '2',
+        label: '2',
         'aria-label': 'Side 2',
         selected: true,
       },
@@ -202,12 +202,12 @@ export const AllCompaniesPage = () => {
       {
         id: '9',
         'aria-label': 'Side 9',
-        title: '9',
+        label: '9',
       },
       {
         id: '10',
         'aria-label': 'Side 10',
-        title: '10',
+        label: '10',
       },
     ],
   };
