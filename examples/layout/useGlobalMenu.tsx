@@ -1,11 +1,13 @@
 import { defaultAccounts, globalMenu, loginMenu, useAccountMenu } from '../';
-import type { AccountListItemProps, GlobalMenuProps_old } from '../../lib';
+import type { AccountListItemProps, MenuItemProps, MenuProps } from '../../lib';
 import type { GlobalMenuProps } from '../../lib/components/GlobalMenu';
 
-interface UseGlobalMenuProps extends GlobalMenuProps_old {
+interface UseGlobalMenuProps {
   accountId?: string | null;
   sectionId?: string;
   accounts?: AccountListItemProps[];
+  menu?: MenuProps;
+  menuLabel?: string;
 }
 
 export const useGlobalMenu = ({
@@ -29,13 +31,13 @@ export const useGlobalMenu = ({
   // filter out admin if userId === "user"
 
   const applicableMenuItems = menu?.items
-    ?.filter((item) => {
+    ?.filter((item: MenuItemProps) => {
       if (currentAccount?.id === 'user' && item.id === 'admin') {
         return false;
       }
       return true;
     })
-    ?.map((item) => {
+    ?.map((item: MenuItemProps) => {
       return {
         ...item,
       };
@@ -55,11 +57,11 @@ export const useGlobalMenu = ({
     },
     currentAccount,
     onSelectAccount,
-  } as GlobalMenuProps_old;
+  };
 };
 
 export const useGlobalHeaderMenu = ({ menu = globalMenu.menu, menuLabel = 'Meny', ...props }: UseGlobalMenuProps) => {
-  const applicableMenuItems = menu?.items?.map((item) => {
+  const applicableMenuItems = menu?.items?.map((item: MenuItemProps) => {
     return {
       ...item,
     };

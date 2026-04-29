@@ -9,7 +9,7 @@ import {
   PersonCircleIcon,
 } from '@navikt/aksel-icons';
 import { accountMenu } from '../';
-import type { AccountMenuProps, GlobalMenuProps_old, MenuProps } from '../../lib';
+import type { AccountMenuProps, MenuProps } from '../../lib';
 
 const designReferenceMenuItems: MenuProps['items'] = [
   {
@@ -88,7 +88,7 @@ const designReferenceMenu: MenuProps = {
   items: designReferenceMenuItems,
 };
 
-export const globalMenuDesignReference: GlobalMenuProps_old = {
+export const globalMenuDesignReference = {
   accountMenu: {
     ...accountMenu,
     virtualized: true,

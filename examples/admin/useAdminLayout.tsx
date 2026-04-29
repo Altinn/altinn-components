@@ -1,5 +1,5 @@
-import { adminMenu, adminMenuItems, desktopMenu, desktopMenuItems, useLayout } from '../';
-import type { HeaderProps, LayoutProps, MenuProps } from '../../lib';
+import { adminMenu, adminMenuItems, desktopMenu, desktopMenuItems, useAccounts, useLayout } from '../';
+import type { LayoutProps, MenuProps } from '../../lib';
 
 interface AdminLayoutProps extends LayoutProps {
   accountId?: string;
@@ -59,16 +59,17 @@ export const useAdminLayout = ({ accountId = 'diaspora', pageId = 'admin' }): Ad
     },
   });
 
-  const header = layout?.header as HeaderProps;
-  const currentAccount = header?.currentAccount;
+  const { currentAccount } = useAccounts({ accountId });
+  const accountColor =
+    currentAccount?.type === 'company' || currentAccount?.type === 'person' ? currentAccount.type : 'neutral';
 
   return {
     ...layout,
-    color: currentAccount?.type,
+    color: accountColor,
     sidebar: {
       menu: {
         ...adminMenu,
-        color: currentAccount?.type,
+        color: accountColor,
         variant: 'tinted',
         items: menuItems?.filter((item) => {
           if (currentAccount?.type === 'person' && item.groupId === '5') {

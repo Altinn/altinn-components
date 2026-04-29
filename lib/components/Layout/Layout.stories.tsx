@@ -52,16 +52,10 @@ const meta = {
         <a href="https://altinn.no">with a focusable item</a>
       </Flex>
     ),
-    useGlobalHeader: true,
     color: 'company',
     forceOpenFullScreen: undefined,
   },
   argTypes: {
-    useGlobalHeader: {
-      control: {
-        type: 'boolean',
-      },
-    },
     color: { control: 'select', options: ['company', 'neutral', 'person'] },
     forceOpenFullScreen: {
       control: 'select',

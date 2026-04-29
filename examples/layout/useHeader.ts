@@ -1,10 +1,21 @@
 import { defaultAccounts, localeSwitcher, useGlobalMenu, useLocale, useSearchbar } from '../';
-import type { Account, AccountListItemProps, HeaderProps, MenuProps } from '../../lib';
+import type {
+  AccountListItemProps,
+  GlobalMenuProps,
+  LocaleSwitcherProps,
+  MenuItemProps,
+  MenuProps,
+  SearchbarProps,
+} from '../../lib';
+import type { AccountDataProps } from '../accounts';
 
-interface UseHeaderProps extends HeaderProps {
+interface UseHeaderProps {
   accountId?: string | null;
   accounts?: AccountListItemProps[];
   menu?: MenuProps;
+  globalMenu?: GlobalMenuProps;
+  locale?: LocaleSwitcherProps;
+  search?: SearchbarProps;
 }
 
 export const useHeader = ({ accountId, accounts = defaultAccounts, menu, ...args }: UseHeaderProps) => {
@@ -30,7 +41,7 @@ export const useHeader = ({ accountId, accounts = defaultAccounts, menu, ...args
   });
 
   /* setup mobileMenu */
-  const mobileMenuItems = globalMenu?.menu?.items?.map((item) => {
+  const mobileMenuItems = globalMenu?.menu?.items?.map((item: MenuItemProps) => {
     if (item.items) {
       return {
         ...item,
@@ -40,7 +51,7 @@ export const useHeader = ({ accountId, accounts = defaultAccounts, menu, ...args
     return item;
   });
 
-  const desktopMenuItems = globalMenu?.menu?.items?.map((item) => {
+  const desktopMenuItems = globalMenu?.menu?.items?.map((item: MenuItemProps) => {
     if (item.items) {
       return {
         ...item,
@@ -67,6 +78,6 @@ export const useHeader = ({ accountId, accounts = defaultAccounts, menu, ...args
     desktopMenu,
     locale,
     search,
-    currentAccount: globalMenu?.currentAccount as Account,
+    currentAccount: (globalMenu as { currentAccount?: AccountDataProps })?.currentAccount,
   };
 };

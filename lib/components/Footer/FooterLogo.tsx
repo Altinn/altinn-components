@@ -1,5 +1,5 @@
 import cx from 'classnames';
-import { DigdirLogomark } from '../Header/DigdirLogomark.tsx';
+import { DigdirLogomark } from '../Logo/DigdirLogomark.tsx';
 import styles from './footerLogo.module.css';
 
 export interface FooterLogoProps {

@@ -13,7 +13,6 @@ import {
 import { Breadcrumbs, type BreadcrumbsProps } from '../Breadcrumbs';
 import { Footer, type FooterProps } from '../Footer';
 import { GlobalHeader, type GlobalHeaderProps } from '../GlobalHeader';
-import { Header, type HeaderProps } from '../Header';
 import { Menu, type MenuProps } from '../Menu';
 import { useRootContext } from '../RootProvider';
 import { SkipLink, type SkipLinkProps } from '../SkipLink';
@@ -30,13 +29,12 @@ interface ContentProps {
 export interface LayoutProps {
   color?: LayoutColor;
   theme?: LayoutTheme;
-  header?: HeaderProps | GlobalHeaderProps;
+  header?: GlobalHeaderProps;
   footer?: FooterProps;
   sidebar?: SidebarProps;
   content?: ContentProps;
   children?: ReactNode;
   skipLink?: SkipLinkProps;
-  useGlobalHeader?: boolean; // TODO: Remove when new header is default
   breadcrumbs?: BreadcrumbsProps;
 }
 
@@ -50,14 +48,13 @@ export const Layout = ({
   children,
   skipLink,
   breadcrumbs,
-  useGlobalHeader = true,
 }: LayoutProps) => {
   const { currentId } = useRootContext();
 
   return (
     <LayoutBase color={color} theme={theme} currentId={currentId}>
       {skipLink && <SkipLink {...skipLink} />}
-      {header && (useGlobalHeader ? <GlobalHeader {...header} /> : <Header {...header} />)}
+      {header && <GlobalHeader {...header} />}
       <LayoutGrid currentId={currentId}>
         {breadcrumbs && <Breadcrumbs {...breadcrumbs} />}
         <LayoutBody currentId={currentId}>

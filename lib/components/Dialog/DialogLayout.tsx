@@ -1,17 +1,14 @@
-import type { ReactNode } from 'react';
-import {
-  type BackButtonProps,
-  Button,
-  type Color,
-  ContextMenu,
-  type ContextMenuProps,
-  PageBase,
-  PageMenu,
-  type PageMenuProps,
-} from '..';
+import type { ElementType, ReactNode } from 'react';
+import { Button, type Color, ContextMenu, type ContextMenuProps, PageBase, PageMenu, type PageMenuProps } from '..';
 
 import { ArrowUndoIcon } from '@navikt/aksel-icons';
 import styles from './dialogLayout.module.css';
+
+export interface BackButtonProps {
+  label: string;
+  onClick?: () => void;
+  as?: ElementType;
+}
 
 export interface DialogLayoutProps {
   /** Back button */

@@ -31,12 +31,12 @@ export const DashboardPage = () => {
 };
 
 export const UsersPage = () => {
-  const { currentAccount, breadcrumbs, layout, toolbar } = useAdmin({
+  const { currentAccount, breadcrumbs, color, layout, toolbar } = useAdmin({
     pageId: "users",
   });
   return (
     <Layout {...layout}>
-      <PageBase color={currentAccount?.type}>
+      <PageBase color={color}>
         <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">
           Brukere med fullmakt til {currentAccount?.name}
@@ -48,12 +48,12 @@ export const UsersPage = () => {
 };
 
 export const AccessPage = () => {
-  const { currentAccount, breadcrumbs, layout, toolbar } = useAdmin({
+  const { currentAccount, breadcrumbs, color, layout, toolbar } = useAdmin({
     pageId: "access",
   });
   return (
     <Layout {...layout}>
-      <PageBase color={currentAccount?.type}>
+      <PageBase color={color}>
         <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">Tilganger til {currentAccount?.name}</Heading>
         <Toolbar {...toolbar} />
@@ -63,12 +63,12 @@ export const AccessPage = () => {
 };
 
 export const RequestsPage = () => {
-  const { currentAccount, breadcrumbs, layout, toolbar } = useAdmin({
+  const { breadcrumbs, color, layout, toolbar } = useAdmin({
     pageId: "requests",
   });
   return (
     <Layout {...layout}>
-      <PageBase color={currentAccount?.type}>
+      <PageBase color={color}>
         <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">Tittel</Heading>
         <Toolbar {...toolbar} />
@@ -78,12 +78,12 @@ export const RequestsPage = () => {
 };
 
 export const ApiSettingsPage = () => {
-  const { currentAccount, breadcrumbs, layout, toolbar } = useAdmin({
+  const { breadcrumbs, color, layout, toolbar } = useAdmin({
     pageId: "api-settings",
   });
   return (
     <Layout {...layout}>
-      <PageBase color={currentAccount?.type}>
+      <PageBase color={color}>
         <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">Tittel</Heading>
         <Toolbar {...toolbar} />
@@ -93,12 +93,12 @@ export const ApiSettingsPage = () => {
 };
 
 export const ReverseAccessPage = () => {
-  const { currentAccount, breadcrumbs, layout, toolbar } = useAdmin({
+  const { breadcrumbs, color, layout, toolbar } = useAdmin({
     pageId: "reverse-access",
   });
   return (
     <Layout {...layout}>
-      <PageBase color={currentAccount?.type}>
+      <PageBase color={color}>
         <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">Tittel</Heading>
         <Toolbar {...toolbar} />
@@ -108,12 +108,12 @@ export const ReverseAccessPage = () => {
 };
 
 export const ClientAdminPage = () => {
-  const { currentAccount, breadcrumbs, layout, toolbar } = useAdmin({
+  const { breadcrumbs, color, layout, toolbar } = useAdmin({
     pageId: "client-admin",
   });
   return (
     <Layout {...layout}>
-      <PageBase color={currentAccount?.type}>
+      <PageBase color={color}>
         <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">Tittel</Heading>
         <Toolbar {...toolbar} />
@@ -123,12 +123,12 @@ export const ClientAdminPage = () => {
 };
 
 export const SettingsPage = () => {
-  const { currentAccount, breadcrumbs, layout } = useAdmin({
+  const { breadcrumbs, color, layout } = useAdmin({
     pageId: "settings",
   });
   return (
     <Layout {...layout}>
-      <PageBase color={currentAccount?.type}>
+      <PageBase color={color}>
         <Breadcrumbs items={breadcrumbs} />
         <SettingsStories.AdminSettings />
       </PageBase>
@@ -137,12 +137,12 @@ export const SettingsPage = () => {
 };
 
 export const ActivityLogPage = () => {
-  const { currentAccount, breadcrumbs, layout } = useAdmin({
+  const { breadcrumbs, color, layout } = useAdmin({
     pageId: "activity-log",
   });
   return (
     <Layout {...layout}>
-      <PageBase color={currentAccount?.type}>
+      <PageBase color={color}>
         <Breadcrumbs items={breadcrumbs} />
         <Heading size="xl">Aktivitetslogg</Heading>
         <ActivityLogStories.Default />

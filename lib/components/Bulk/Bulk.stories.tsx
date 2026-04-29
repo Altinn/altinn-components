@@ -166,7 +166,6 @@ export const Default = ({
         items: bulkMode ? bulkBreadcrumbsItems : breadcrumbsItems,
       }}
       sidebar={sidebar}
-      useGlobalHeader={true}
     >
       <PageBase>
         <BulkHeader
