@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.61.2](https://github.com/Altinn/altinn-components/compare/v0.61.1...v0.61.2) (2026-04-30)
+
+
+### Miscellaneous Chores
+
+* clean up old GlobalMenu, remove dead stories and wire header accountSelector in useLayout ([#1153](https://github.com/Altinn/altinn-components/issues/1153)) ([772efef](https://github.com/Altinn/altinn-components/commit/772efef22bdad6003ee812e8c1ec964db3874760))
+
 ## [0.61.1](https://github.com/Altinn/altinn-components/compare/v0.61.0...v0.61.1) (2026-04-28)
 
 
