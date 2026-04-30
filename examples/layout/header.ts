@@ -1,11 +1,7 @@
 import { globalMenu, localeSwitcher } from '../';
-import type { HeaderProps } from '../../lib';
+import type { GlobalHeaderProps } from '../../lib';
 
-export const header: HeaderProps = {
+export const header: GlobalHeaderProps = {
   globalMenu: globalMenu,
   locale: localeSwitcher,
-  search: {
-    name: 'global-search',
-    placeholder: 'Søk i Altinn',
-  },
 };

@@ -1,6 +1,6 @@
 import { ArrowLeftIcon } from '@navikt/aksel-icons';
 import type { ReactNode } from 'react';
-import { type BackButtonProps, Breadcrumbs, type BreadcrumbsLinkProps, Button, Flex } from '../';
+import { Breadcrumbs, type BreadcrumbsLinkProps, Button, type ButtonProps, Flex } from '../';
 import styles from './pageNav.module.css';
 
 export type PageNavColor = 'neutral' | 'company' | 'person';
@@ -9,7 +9,7 @@ export type PageNavPadding = 0 | 2;
 export interface PageNavProps {
   color?: PageNavColor;
   padding?: PageNavPadding;
-  backButton?: BackButtonProps;
+  backButton?: ButtonProps & { as?: 'a' | 'button'; label?: string };
   breadcrumbs?: BreadcrumbsLinkProps[];
   controls?: ReactNode;
 }

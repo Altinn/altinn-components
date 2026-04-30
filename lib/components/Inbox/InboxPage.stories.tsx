@@ -60,7 +60,7 @@ export const Inbox = ({
   });
 
   return (
-    <Layout {...layout} useGlobalHeader={true}>
+    <Layout {...layout}>
       {dialog ? (
         <Dialog
           {...dialog}
@@ -271,7 +271,7 @@ export const Search = ({
   );
 
   return (
-    <Layout {...layout} useGlobalHeader={true}>
+    <Layout {...layout}>
       {dialog ? (
         <Dialog
           {...dialog}

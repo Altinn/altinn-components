@@ -1,10 +1,11 @@
 import { desktopMenu, desktopMenuItems, profileMenu, profileMenuItems, useLayout } from '../';
-import type { Account, LayoutProps, MenuProps } from '../../lib';
+import type { LayoutProps, MenuProps } from '../../lib';
+import type { AccountDataProps } from '../accounts';
 
 interface ProfileLayoutProps extends LayoutProps {
   accountId?: string;
   pageId?: string;
-  account?: Account;
+  account?: AccountDataProps;
 }
 
 export const useProfileLayout = ({ accountId = 'user', pageId = 'profile' }): ProfileLayoutProps => {

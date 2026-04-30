@@ -1,9 +1,9 @@
-import { useAdminLayout, useAdminToolbar } from '../';
+import { useAccountMenu, useAdminLayout, useAdminToolbar } from '../';
 import type {
-  Account,
+  AccountMenuItemProps,
   AccountMenuProps,
   BreadcrumbsLinkProps,
-  GlobalMenuProps_old,
+  Color,
   LayoutProps,
   ToolbarProps,
 } from '../../lib';
@@ -12,19 +12,19 @@ export type AdminSettings = Record<string, string>;
 
 interface UseAdminProps {
   defaultAccountId?: string;
-  currentAccount?: Account;
+  currentAccount?: AccountMenuItemProps;
   accountMenu?: AccountMenuProps;
   pageId?: string;
   layout?: LayoutProps;
   breadcrumbs?: BreadcrumbsLinkProps[];
   toolbar?: ToolbarProps;
   settings?: AdminSettings;
+  color?: Color;
 }
 
 function getAccountIdFromUrl(): string {
   const parsedUrl = new URL(window.location.href);
-  const accountId = parsedUrl.searchParams.get('accountId') ?? '';
-  return accountId;
+  return parsedUrl.searchParams.get('accountId') ?? '';
 }
 
 function getAccountIdUrl(accountId: string): string {
@@ -44,20 +44,19 @@ export const useAdmin = ({ defaultAccountId = 'diaspora', pageId = 'admin' }): U
   const accountId = getAccountIdFromUrl() || defaultAccountId;
 
   const onSelectAccount = (id: string) => {
-    const accountUrl = getAccountIdUrl(id);
-    window.location.href = accountUrl;
+    window.location.href = getAccountIdUrl(id);
   };
 
   const layout = useAdminLayout({ accountId, pageId });
 
-  const globalMenu = layout?.header?.globalMenu as GlobalMenuProps_old;
   const menu = layout?.sidebar?.menu;
-  const currentAccount = globalMenu?.currentAccount;
+  const baseAccountMenu = useAccountMenu({ accountId });
+  const currentAccount = baseAccountMenu?.currentAccount;
 
   const accountMenu = {
-    search: globalMenu?.accountMenu?.search,
-    groups: globalMenu?.accountMenu?.groups || {},
-    items: globalMenu?.accountMenu?.items || [],
+    search: baseAccountMenu?.search,
+    groups: baseAccountMenu?.groups || {},
+    items: baseAccountMenu?.items || [],
     onSelectAccount,
     currentAccount,
   };
@@ -87,21 +86,16 @@ export const useAdmin = ({ defaultAccountId = 'diaspora', pageId = 'admin' }): U
 
   const toolbar = useAdminToolbar({ accountMenu });
 
+  const color: Color =
+    currentAccount?.type === 'company' || currentAccount?.type === 'person' ? currentAccount.type : 'neutral';
+
   return {
-    layout: {
-      ...layout,
-      header: {
-        ...layout.header,
-        globalMenu: {
-          ...layout.header?.globalMenu,
-          onSelectAccount,
-        },
-      },
-    },
+    layout,
     currentAccount,
     accountMenu: accountMenu as AccountMenuProps,
     breadcrumbs,
     settings,
     toolbar: toolbar as ToolbarProps,
+    color,
   };
 };

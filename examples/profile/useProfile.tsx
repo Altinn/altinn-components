@@ -1,10 +1,11 @@
-import { useProfileLayout } from '../';
-import type { Account, GlobalMenuProps_old, LayoutProps } from '../../lib';
+import { useAccountMenu, useProfileLayout } from '../';
+import type { LayoutProps } from '../../lib';
+import type { AccountDataProps } from '../accounts';
 
 interface UseProfileProps {
   defaultAccountId?: string;
   pageId?: string;
-  currentAccount?: Account;
+  currentAccount?: AccountDataProps;
   layout?: LayoutProps;
 }
 
@@ -14,35 +15,16 @@ function getAccountIdFromUrl(): string {
   return accountId;
 }
 
-function getAccountIdUrl(accountId: string): string {
-  const url = new URL(window.location.href);
-  url.searchParams.set('accountId', accountId);
-
-  // redirect to admin
-
-  if (accountId !== 'user') {
-    url.searchParams.set('id', 'demo-admin--dashboard-page');
-  }
-
-  return url.toString();
-}
-
 export const useProfile = ({ defaultAccountId = 'user', pageId = 'profile' }): UseProfileProps => {
   const accountId = getAccountIdFromUrl() || defaultAccountId;
-
-  const onSelectAccount = (id: string) => {
-    const accountUrl = getAccountIdUrl(id);
-    window.location.href = accountUrl;
-  };
 
   const layout = useProfileLayout({
     accountId,
     pageId,
   });
 
-  const globalMenu = layout?.header?.globalMenu as GlobalMenuProps_old;
+  const { currentAccount } = useAccountMenu({ accountId });
   const menu = layout?.sidebar?.menu;
-  const currentAccount = globalMenu?.currentAccount;
   const page = menu?.items?.find((item) => item.selected);
 
   const breadcrumbs = {
@@ -65,14 +47,7 @@ export const useProfile = ({ defaultAccountId = 'user', pageId = 'profile' }): U
       breadcrumbs,
       color: 'person',
       theme: 'neutral',
-      header: {
-        ...layout.header,
-        globalMenu: {
-          ...layout.header?.globalMenu,
-          onSelectAccount,
-        },
-      },
     },
-    currentAccount,
+    currentAccount: currentAccount as AccountDataProps,
   };
 };

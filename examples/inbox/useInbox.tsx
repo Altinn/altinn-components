@@ -9,7 +9,6 @@ import type {
   DialogLayoutProps,
   DialogListItemProps,
   DialogListProps,
-  HeaderProps,
   LayoutProps,
   SeenByLogProps,
   ToolbarProps,
@@ -71,6 +70,10 @@ export const useInbox = ({
   const accountId = getAccountIdFromUrl() || defaultAccountId;
 
   const layout = useInboxLayout({ accountId, pageId });
+  const { accountMenu, subAccountMenu, currentAccount, defaultAccount } = useInboxAccounts({
+    accountId,
+    companyCount,
+  });
   const floatingDropdown = useFloatingDropdown({
     showNewFunctionalityText: 'Show new functionality',
     helpPagesText: 'Help pages',
@@ -232,8 +235,6 @@ export const useInbox = ({
         onModal,
       });
 
-      const header = layout?.header as HeaderProps;
-
       return {
         ...item,
         groupId: pageId !== 'inbox' ? undefined : item.groupId,
@@ -242,7 +243,7 @@ export const useInbox = ({
         trashed,
         trashedAtLabel: trashed ? 'Arkivert' : undefined,
         href: undefined,
-        recipient: header?.currentAccount,
+        recipient: currentAccount,
         unread,
         seenByLog,
         ariaLabel: item.title,
@@ -271,11 +272,6 @@ export const useInbox = ({
     });
 
   // create toolbar
-
-  const { accountMenu, subAccountMenu, currentAccount, defaultAccount } = useInboxAccounts({
-    accountId,
-    companyCount,
-  });
 
   const toolbarMenus = subAccountMenu ? [accountMenu, subAccountMenu] : [accountMenu];
 
@@ -360,7 +356,7 @@ export const useInbox = ({
       theme: 'inbox',
       color,
       header: {
-        ...(layout?.header as HeaderProps),
+        ...layout?.header,
         globalMenu: {
           ...layout?.header?.globalMenu,
         } as GlobalHeaderProps,

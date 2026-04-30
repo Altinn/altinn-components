@@ -84,7 +84,7 @@ export const DashboardPage = () => {
   };
 
   return (
-    <Layout {...layout} useGlobalHeader={true}>
+    <Layout {...layout} >
       <PageBase>
         <DashboardHeader {...(defaultAccount as DashboardHeaderProps)} />
         <SettingsList
@@ -99,7 +99,7 @@ export const DashboardPage = () => {
 export const AccountsPage = () => {
   const { layout } = useProfile({ pageId: "accounts" });
   return (
-    <Layout {...layout} useGlobalHeader={true}>
+    <Layout {...layout} >
       <PageBase>
         <Heading size="xl">Mine aktører</Heading>
         <AccountListStories.Collapsible />
@@ -111,7 +111,7 @@ export const AccountsPage = () => {
 export const AccountsPageVirtualized = () => {
   const { layout } = useProfile({ pageId: "accounts" });
   return (
-    <Layout {...layout} useGlobalHeader={true}>
+    <Layout {...layout} >
       <PageBase>
         <Heading size="xl">Mine aktører (Virtualized)</Heading>
         <AccountListStories.Virtualized />
@@ -123,7 +123,7 @@ export const AccountsPageVirtualized = () => {
 export const AlertsPage = () => {
   const { layout } = useProfile({ pageId: "alerts" });
   return (
-    <Layout {...layout} useGlobalHeader={true}>
+    <Layout {...layout} >
       <PageBase color="person">
         <SettingsStories.AlertSettings />
       </PageBase>
@@ -134,7 +134,7 @@ export const AlertsPage = () => {
 export const BookmarksPage = () => {
   const { layout } = useProfile({ pageId: "bookmarks" });
   return (
-    <Layout {...layout} useGlobalHeader={true}>
+    <Layout {...layout} >
       <PageBase color="person">
         <SettingsStories.BookmarkSettings />
       </PageBase>
@@ -146,7 +146,7 @@ export const SettingsPage = () => {
   const { layout } = useProfile({ pageId: "settings" });
 
   return (
-    <Layout {...layout} useGlobalHeader={true}>
+    <Layout {...layout} >
       <PageBase color="person">
         <SettingsStories.AccountSettings />
       </PageBase>
@@ -159,7 +159,7 @@ export const ActivityLogPage = () => {
     pageId: "activity-log",
   });
   return (
-    <Layout {...layout} useGlobalHeader={true}>
+    <Layout {...layout} >
       <PageBase color="person">
         <Heading size="xl">Aktivitetslogg</Heading>
         <ActivityLogStories.Controlled />
@@ -171,7 +171,7 @@ export const ActivityLogPage = () => {
 export const UsersPage = () => {
   const { layout } = useProfile({ pageId: "users" });
   return (
-    <Layout {...layout} useGlobalHeader={true}>
+    <Layout {...layout} >
       <PageBase color="person">
         <Heading size="xl">Brukere med fullmakt til din profil</Heading>
       </PageBase>
@@ -182,7 +182,7 @@ export const UsersPage = () => {
 export const AccessPage = () => {
   const { layout } = useProfile({ pageId: "access" });
   return (
-    <Layout {...layout} useGlobalHeader={true}>
+    <Layout {...layout}>
       <PageBase>
         <Heading size="xl">Tilganger du har gitt til andre</Heading>
       </PageBase>

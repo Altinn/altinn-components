@@ -1,5 +1,12 @@
-import { defaultAccounts, header as defaultHeader, footer, skipLink, useHeader } from '..';
-import type { AccountListItemProps, HeaderProps, LayoutProps, MenuProps } from '../../lib';
+import { defaultAccounts, header as defaultHeader, footer, skipLink, useAccountMenu, useHeader } from '..';
+import type {
+  AccountListItemProps,
+  AccountMenuProps,
+  AccountSelectorProps,
+  GlobalHeaderProps,
+  LayoutProps,
+  MenuProps,
+} from '../../lib';
 
 interface UseLayoutProps extends LayoutProps {
   accounts?: AccountListItemProps[];
@@ -37,9 +44,17 @@ export const useLayout = ({
     menu,
   });
 
+  const baseAccountMenu = useAccountMenu({ accountId: applicableAccountId, accounts });
+
   const onSelectAccount = (id: string) => {
-    const accountUrl = getAccountIdUrl(id);
-    window.location.href = accountUrl;
+    window.location.href = getAccountIdUrl(id);
+  };
+
+  const accountSelector: AccountSelectorProps = {
+    accountMenu: {
+      ...baseAccountMenu,
+      onSelectAccount,
+    } as AccountMenuProps,
   };
 
   return {
@@ -50,11 +65,9 @@ export const useLayout = ({
     header: {
       ...headerProps,
       mobileMenu: headerProps?.mobileMenu,
-      globalMenu: {
-        ...headerProps?.globalMenu,
-        onSelectAccount,
-      },
-    } as HeaderProps,
+      globalMenu: headerProps?.globalMenu,
+      accountSelector,
+    } as unknown as GlobalHeaderProps,
     sidebar,
   };
 };

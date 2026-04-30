@@ -13,7 +13,7 @@ import {
   TrashIcon,
 } from '@navikt/aksel-icons';
 import { accountMenu } from '../';
-import type { AccountMenuProps, GlobalMenuProps_old, MenuProps } from '../../lib';
+import type { AccountMenuProps, MenuProps } from '../../lib';
 
 export const desktopMenuItems: MenuProps['items'] = [
   {
@@ -139,7 +139,7 @@ export const mobileMenu = {
   items: mobileMenuItems,
 };
 
-export const globalMenu: GlobalMenuProps_old = {
+export const globalMenu = {
   accountMenu: {
     ...accountMenu,
     virtualized: true,
