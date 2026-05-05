@@ -1,10 +1,24 @@
-import { BellIcon, GlobeIcon, HandshakeIcon, HouseHeartIcon, MobileIcon, SunIcon } from '@navikt/aksel-icons';
+import {
+  BellIcon,
+  GlobeIcon,
+  HandshakeIcon,
+  HouseHeartIcon,
+  InboxIcon,
+  MobileIcon,
+  SunIcon,
+} from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 import {
   BookmarkModal,
   BookmarkSettingsList,
+  Button,
+  ContextMenu,
+  type ContextMenuProps,
   Heading,
+  ItemControls,
+  Layout,
+  type LayoutProps,
   PageBase,
   SettingsList,
   type SettingsListProps,
@@ -16,8 +30,10 @@ import {
 import {
   type UseSettingsProps,
   defaultAccounts,
+  useAccountList,
   useAdmin,
   useBookmarks,
+  useProfile,
   useSettings,
   useSettingsToolbar,
 } from '../../../examples';
@@ -36,7 +52,9 @@ const meta = {
   title: 'Settings/SettingsList',
   component: SettingsList,
   tags: ['beta', 'autodocs'],
-  parameters: {},
+  parameters: {
+    layout: 'fullscreen',
+  },
   args: {
     items: [
       {
@@ -358,7 +376,24 @@ const ControlledSettingsModal = ({ id, icon, groupId, open, onClose, ...item }: 
   }
 };
 
-export const ControlledSettings = ({ query = {}, groups, includeGroups, excludeGroups }: UseSettingsProps) => {
+interface ControlledSettingsProps extends UseSettingsProps {
+  layout?: LayoutProps;
+  title?: string;
+}
+
+export const ControlledSettings = ({
+  layout = { theme: 'settings' },
+  title = 'Controlled settings',
+  groups,
+  includeGroups,
+  excludeGroups,
+}: ControlledSettingsProps) => {
+  const toolbar = useSettingsToolbar({});
+
+  const query = {
+    q: toolbar?.search?.value?.toString().toLowerCase(),
+  };
+
   const { onSettingsChange, results, ...settings } = useSettings({
     accounts: defaultAccounts,
     query,
@@ -398,147 +433,49 @@ export const ControlledSettings = ({ query = {}, groups, includeGroups, excludeG
   };
 
   return (
-    <>
-      {query?.q ? (
-        <SettingsList groups={results?.groups} items={results?.items as SettingsListProps['items']} />
-      ) : (
-        <SettingsList groups={allGroups} items={items as SettingsListProps['items']} />
-      )}
-      <ControlledSettingsModal
-        {...(item as ControlledSettingsModalProps)}
-        title={item?.title as string}
-        description={item?.description as string}
-        open={!!id}
-        onClose={onClose}
-      />
-    </>
-  );
-};
-
-export const SearchSettings = () => {
-  const toolbar = useSettingsToolbar({});
-
-  return (
-    <PageBase>
-      <Heading size="xl">Alle innstillinger</Heading>
-      <Toolbar {...toolbar} />
-      <ControlledSettings
-        query={{
-          q: toolbar?.search?.value,
-        }}
-      />
-    </PageBase>
-  );
-};
-
-export const AlertSettings = () => {
-  const toolbar = useSettingsToolbar({});
-
-  return (
-    <PageBase>
-      <Heading size="xl">Mine varslinger</Heading>
-      <Toolbar {...toolbar} />
-      <ControlledSettings
-        query={{
-          q: toolbar?.search?.value,
-        }}
-        includeGroups={['alerts', 'profile', 'person', 'company']}
-      />
-    </PageBase>
-  );
-};
-
-export const AccountSettings = () => {
-  const toolbar = useSettingsToolbar({});
-
-  return (
-    <PageBase>
-      <Heading size="xl">Innstillinger</Heading>
-      <Toolbar {...toolbar} />
-      <ControlledSettings
-        query={{
-          q: toolbar?.search?.value,
-        }}
-        includeGroups={['contact', 'accountSettings', 'other']}
-      />
-    </PageBase>
+    <Layout {...layout}>
+      <PageBase>
+        <Heading size="xl">{title}</Heading>
+        <Toolbar {...toolbar} />
+        {query?.q ? (
+          <SettingsList groups={results?.groups} items={results?.items as SettingsListProps['items']} />
+        ) : (
+          <SettingsList groups={allGroups} items={items as SettingsListProps['items']} />
+        )}
+        <ControlledSettingsModal
+          {...(item as ControlledSettingsModalProps)}
+          title={item?.title as string}
+          description={item?.description as string}
+          open={!!id}
+          onClose={onClose}
+        />
+      </PageBase>
+    </Layout>
   );
 };
 
 export const PersonSettings = () => {
-  const { accountMenu, currentAccount } = useAdmin({
-    defaultAccountId: 'person',
-  });
+  const { currentAccount, layout } = useProfile({ pageId: 'profile' });
 
-  const toolbar = useSettingsToolbar({
-    accountMenu: accountMenu as ToolbarMenuProps,
-  });
-
-  return (
-    <PageBase color="person">
-      <Heading size="xl">Innstillinger for {currentAccount?.name}</Heading>
-      <Toolbar {...toolbar} />
-      <ControlledSettings
-        query={{
-          q: toolbar?.search?.value,
-        }}
-        includeGroups={['contact']}
-        groups={{
-          contact: {
-            title: 'Kontaktinformasjon',
-          },
-        }}
-      />
-    </PageBase>
-  );
-};
-
-export const CompanySettings = () => {
-  const { accountMenu, currentAccount } = useAdmin({
-    defaultAccountId: 'diaspora',
-  });
-  const toolbar = useSettingsToolbar({
-    accountMenu: accountMenu as ToolbarMenuProps,
-  });
-
-  return (
-    <PageBase color="company">
-      <Heading size="xl">Innstillinger for {currentAccount?.name}</Heading>
-      <Toolbar {...toolbar} />
-      <ControlledSettings
-        includeGroups={['companyAlerts', 'companyInfo']}
-        query={{
-          q: toolbar?.search?.value,
-        }}
-        groups={{
-          companyAlerts: {
-            title: 'Varslingsadresser for virksomheten',
-          },
-          companyInfo: {
-            title: 'Opplysninger om virksomheten',
-          },
-        }}
-      />
-    </PageBase>
-  );
-};
-
-export const AdminSettings = () => {
-  const { currentAccount } = useAdmin({ defaultAccountId: 'diaspora' });
-
-  if (currentAccount?.type === 'person') {
-    return <PersonSettings />;
-  }
-
-  return <CompanySettings />;
-};
-
-export const DashboardSettings = () => {
   return (
     <ControlledSettings
-      includeGroups={['contact']}
+      title={`Innstillinger for ${currentAccount?.name}`}
+      layout={layout}
+      includeGroups={['personalia', 'alerts', 'alertsLink', 'accountsLink', 'accounts', 'bookmarksLink', 'other']}
       groups={{
-        contact: {
+        personalia: {
+          title: 'Dine personopplysninger',
+        },
+        alerts: {
+          title: 'Kontaktinformasjon og varslinger',
+        },
+        accountsLink: {
+          title: 'Dine aktører',
+        },
+        bookmarksLink: {
+          title: 'Andre innstillinger',
+        },
+        other: {
           title: '',
         },
       }}
@@ -546,32 +483,184 @@ export const DashboardSettings = () => {
   );
 };
 
+import { HeartFillIcon, HeartIcon } from '@navikt/aksel-icons';
+export type AccountListItemType = 'person' | 'company' | 'group';
+
+export interface AccountSettingsControlsProps {
+  id: string;
+  type: AccountListItemType;
+  isCurrentEndUser?: boolean; // Optional, used to indicate if this account is the current end user
+  isDeleted?: boolean;
+  favourite?: boolean; // Optional, used for marking favourite accounts
+  isPreselectedParty?: boolean;
+  favouriteLabel?: string; // Optional, label for the favourite icon
+  onToggleFavourite?: (id: string) => void; // Optional, callback for toggling favourite status
+  accountLabel?: string; // Optional, used for displaying a badge
+  loading?: boolean;
+}
+
+export const AlertSettings = () => {
+  const { layout } = useProfile({ pageId: 'alerts' });
+
+  return <ControlledSettings title="Varslinger" layout={layout} includeGroups={['smsAlerts', 'emailAlerts']} />;
+};
+
 export const BookmarkSettings = () => {
+  const { layout } = useProfile({ pageId: 'bookmarks' });
   const { expandedId, onClose, items, search, groups } = useBookmarks({
     grouped: true,
   });
   const modalProps = expandedId && items.find((item) => item.id === expandedId);
 
   return (
-    <PageBase>
-      <Heading size="xl">Bokmerker</Heading>
-      <Toolbar search={search} />
-      <BookmarkSettingsList items={items} groups={groups} />
-      <Heading size="xs" weight="normal">
-        Sist oppdatert 14. april 2025
-      </Heading>
-      {expandedId && (
-        <BookmarkModal
-          {...modalProps}
-          title="Rediger lagret søk"
-          open={expandedId !== ''}
-          onClose={onClose}
-          buttons={[
-            { label: 'Lagre', onClick: () => onClose() },
-            { label: 'Slett', variant: 'outline', onClick: () => onClose() },
-          ]}
-        />
+    <Layout {...layout}>
+      <PageBase>
+        <Heading size="xl">Bokmerker</Heading>
+        <Toolbar search={search} />
+        <BookmarkSettingsList items={items} groups={groups} />
+        <Heading size="xs" weight="normal">
+          Sist oppdatert 14. april 2025
+        </Heading>
+        {expandedId && (
+          <BookmarkModal
+            {...modalProps}
+            title="Rediger lagret søk"
+            open={expandedId !== ''}
+            onClose={onClose}
+            buttons={[
+              { label: 'Lagre', onClick: () => onClose() },
+              { label: 'Slett', variant: 'outline', onClick: () => onClose() },
+            ]}
+          />
+        )}
+      </PageBase>
+    </Layout>
+  );
+};
+
+export const CompanySettings = () => {
+  const { accountMenu, currentAccount, layout } = useAdmin({
+    defaultAccountId: 'diaspora',
+    pageId: 'settings',
+  });
+  const toolbar = useSettingsToolbar({
+    accountMenu: accountMenu as ToolbarMenuProps,
+  });
+
+  return (
+    <ControlledSettings
+      layout={layout}
+      title={currentAccount?.name ? `Innstillinger for ${currentAccount.name}` : ''}
+      includeGroups={['companyAlerts', 'companyInfo']}
+      query={{
+        q: toolbar?.search?.value,
+      }}
+      groups={{
+        companyAlerts: {
+          title: 'Varslingsadresser for virksomheten',
+        },
+        companyInfo: {
+          title: 'Opplysninger om virksomheten',
+        },
+      }}
+    />
+  );
+};
+
+const AccountSettingsControls = ({
+  id,
+  type,
+  isCurrentEndUser = false,
+  favourite = false,
+  isPreselectedParty = false,
+  favouriteLabel,
+  onToggleFavourite,
+}: AccountSettingsControlsProps) => {
+  const contextMenu = {
+    id: id + '-menu',
+    items: [
+      {
+        id: 'inbox',
+        groupId: 'apps',
+        icon: InboxIcon,
+        title: 'Gå til Innboks',
+      },
+      {
+        id: 'admin',
+        groupId: 'apps',
+        icon: HandshakeIcon,
+        title: 'Tilgangsstyring',
+      },
+      {
+        id: 'fav',
+        groupId: 'context',
+        icon: favourite ? HeartFillIcon : HeartIcon,
+        title: favourite ? 'Fjern fra favoritter' : 'Legg til favoritter',
+        onClick: () => onToggleFavourite?.(id),
+      },
+    ],
+    groups: {
+      apps: {
+        title: name,
+      },
+      context: {
+        hidden: isCurrentEndUser,
+      },
+      group: {
+        hidden: isCurrentEndUser,
+      },
+      new: {
+        hidden: isCurrentEndUser,
+      },
+    },
+  };
+
+  return (
+    <ItemControls>
+      {!isCurrentEndUser && !isPreselectedParty && type !== 'group' && (
+        <Button
+          size="xs"
+          variant="ghost"
+          rounded
+          aria-label={favouriteLabel || 'Toggle favourite'}
+          onClick={() => onToggleFavourite?.(id)}
+        >
+          {favourite ? <HeartFillIcon /> : <HeartIcon />}
+        </Button>
       )}
-    </PageBase>
+      {contextMenu && <ContextMenu {...(contextMenu as ContextMenuProps)} />}
+    </ItemControls>
+  );
+};
+
+export const AccountSettings = () => {
+  const { layout } = useProfile({ pageId: 'accounts' });
+  const { toolbar, items, groups, expandedId, onToggle, onToggleFavourite } = useAccountList({
+    accounts: defaultAccounts,
+  });
+
+  const listItems = items
+    ?.filter((item) => !item.isCurrentEndUser)
+    .map((item) => {
+      return {
+        ...item,
+        badge: undefined,
+        linkIcon: true,
+        collapsible: true,
+        expanded: expandedId === item.id,
+        as: 'button',
+        onClick: () => onToggle(item.id),
+        controls: <AccountSettingsControls {...item} onToggleFavourite={onToggleFavourite} />,
+      };
+    });
+
+  return (
+    <Layout {...layout}>
+      <PageBase>
+        <Heading size="xl">Aktører</Heading>
+        <Toolbar {...toolbar} />
+        <SettingsList groups={groups} items={listItems as SettingsListProps['items']} />
+      </PageBase>
+    </Layout>
   );
 };

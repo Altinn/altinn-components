@@ -90,10 +90,14 @@ export const useAdmin = ({ defaultAccountId = 'diaspora', pageId = 'admin' }): U
     currentAccount?.type === 'company' || currentAccount?.type === 'person' ? currentAccount.type : 'neutral';
 
   return {
-    layout,
+    layout: {
+      ...layout,
+      breadcrumbs: {
+        items: breadcrumbs,
+      },
+    },
     currentAccount,
     accountMenu: accountMenu as AccountMenuProps,
-    breadcrumbs,
     settings,
     toolbar: toolbar as ToolbarProps,
     color,

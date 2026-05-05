@@ -11,8 +11,7 @@ interface UseProfileProps {
 
 function getAccountIdFromUrl(): string {
   const parsedUrl = new URL(window.location.href);
-  const accountId = parsedUrl.searchParams.get('accountId') ?? '';
-  return accountId;
+  return parsedUrl.searchParams.get('accountId') ?? '';
 }
 
 export const useProfile = ({ defaultAccountId = 'user', pageId = 'profile' }): UseProfileProps => {

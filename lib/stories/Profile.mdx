@@ -1,5 +1,5 @@
 import { Meta, Controls, Primary, Canvas } from "@storybook/addon-docs/blocks";
-import * as ProfileStories from "./Profile.stories.tsx";
+import * as ProfileStories from "./Profile.stories";
 
 <Meta title="Demo/Profile" />
 
@@ -7,32 +7,32 @@ import * as ProfileStories from "./Profile.stories.tsx";
 
 Profile pages for user settings and account management. It should be accessible from the main menu.
 
-## Dashboard
+## Overview
 
-The Dashboard is the starting point for the profile settings. It show an overview of the current user and important settings. (Work-in-progress.)
+The starting page should give an overview of the user's settings. (Work-in-progress.)
 
-<Canvas of={ProfileStories.DashboardPage} />
+<Canvas of={ProfileStories.ProfilePage} />
 
 ## Accounts
 
-Overview of actors and groups. From this page the user can edit favourite actors and add or remove actors from groups. Expanding an account should shows more details, grouped into relevant parts.
+Overview of available accounts seen from the end user perspective. The page should only available for users with multiple actors. Expanding an account should shows more details, grouped into relevant parts, like roles, access management, notification settings per account.
 
 <Canvas of={ProfileStories.AccountsPage} />
 
-## Alert settings
+## Alerts
 
 Notification settings and notification settings per actor. Settings per actor are opened in i modal. The same setting can be accessed via the Accounts page.
 
 <Canvas of={ProfileStories.AlertsPage} />
 
-## Settings
+## Bookmarks
 
-Overview of settings. Complex settings like notifactions per actor will link to a separate page, while simpler settings might be accessed directly from a modal or by expanding an individual setting.
+Overview of bookmarks collected på the end user. For now this will be saved searches from inbox, but can be expanded to include other types of bookmarks, like frequently used forms that the user wants access to.
 
-<Canvas of={ProfileStories.SettingsPage} />
+<Canvas of={ProfileStories.BookmarksPage} />
 
 ## Activity log
 
-Users activity log.
+The activity log should include a history of actions performed by the user, across different services and domains.
 
 <Canvas of={ProfileStories.ActivityLogPage} />

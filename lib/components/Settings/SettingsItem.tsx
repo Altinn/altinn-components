@@ -57,6 +57,7 @@ export const SettingsItem = ({
         <SettingsItemBase
           {...props}
           titleProps={{
+            size: 'md',
             children: title,
           }}
           descriptionProps={{

@@ -1,17 +1,21 @@
 import {
   BellIcon,
+  BookmarkIcon,
   BriefcaseIcon,
   Buildings2Icon,
   EarthIcon,
+  ExternalLinkIcon,
+  FilesIcon,
   GlobeIcon,
   HardHatIcon,
   HashtagIcon,
+  HeartIcon,
   MobileIcon,
   PadlockLockedIcon,
   PaperplaneIcon,
   PersonCircleIcon,
   PersonRectangleIcon,
-  TrashIcon,
+  RecycleIcon,
 } from '@navikt/aksel-icons';
 import {
   type AccountDataProps,
@@ -34,6 +38,7 @@ import {
   type SettingsItemProps,
   type SettingsListProps,
   TextField,
+  TextareaField,
   Typography,
 } from '../../lib';
 
@@ -73,13 +78,115 @@ export const useSettings = ({
     includeGroups: false,
   });
 
+  // personalia settings
+
+  const personaliaSettings = [
+    {
+      id: 'profile',
+      variant: 'link',
+      title: defaultAccount?.name,
+      icon: defaultAccount?.icon,
+      controls: (
+        <Button size="xs" variant="outline">
+          Endre profil
+        </Button>
+      ),
+    },
+    {
+      id: 'birthnumber',
+      title: 'Fødselsnummer',
+      icon: HashtagIcon,
+      value: '071095XXXXX',
+      description: '071095 XXXXX.',
+      controls: (
+        <Button size="xs" variant="ghost">
+          <FilesIcon />
+          <span>Kopier</span>
+        </Button>
+      ),
+    },
+    {
+      id: 'address',
+      title: 'Adresse',
+      value: defaultAccount?.address,
+      icon: EarthIcon,
+      linkIcon: true,
+      variant: 'modal',
+      badge: {
+        variant: 'text',
+        label: 'Endre',
+      },
+
+      children: (
+        <>
+          <TextareaField label="Adresse" value="Idrettsveien 1, 5000 Bergen" size="sm" readOnly={true} />
+          <Typography size="sm">
+            <p>
+              Altinn bruker adressen din fra <a href="https://skatteetaten.no/">Folkeregisteret</a>.
+            </p>
+          </Typography>
+          <ButtonGroup size="md">
+            <Button variant="outline">
+              <span>Endre adresse</span>
+              <ExternalLinkIcon />
+            </Button>
+          </ButtonGroup>
+        </>
+      ),
+      summary: <p>Personlige opplysninger er hentet fra Folkeregisteret. Gå til Folkeregisteret for å endre.</p>,
+    },
+  ].map((item) => {
+    return {
+      ...item,
+      groupId: 'personalia',
+    };
+  });
+
   const defaultAccountSettings = useDefaultAccount(items);
+
+  const bookmarkLinkSettings = [
+    {
+      id: 'bookmarksLink',
+      as: 'a',
+      href: 'iframe.html?id=settings-settingslist--bookmark-settings',
+      icon: BookmarkIcon,
+      title: 'Lagrede søk',
+      variant: 'link',
+      linkIcon: true,
+      badge: {
+        label: '7 bokmerker',
+      },
+      summary: <p>Her kan du endre lagrede søk og andre bokmerker.</p>,
+    },
+  ].map((item) => {
+    return {
+      ...item,
+      groupId: 'bookmarksLink',
+    };
+  });
+
+  const accountLinkSettings = [
+    {
+      id: 'accounts',
+      as: 'a',
+      href: 'iframe.html?id=account-accountlist--account-settings',
+      icon: HeartIcon,
+      title: 'Aktører',
+      variant: 'link',
+      linkIcon: true,
+      badge: {
+        label: accounts?.length + ' aktører',
+      },
+      summary: <p>Her kan du endre favoritter og varslinger per aktør.</p>,
+      groupId: 'accountsLink',
+    },
+  ];
 
   const accountSettings = [
     defaultAccountSettings,
     {
       id: 'showDeleted',
-      icon: TrashIcon,
+      icon: RecycleIcon,
       name: 'showDeleted',
       title: 'Vis slettede aktører',
       value: data?.showDeleted,
@@ -122,8 +229,8 @@ export const useSettings = ({
     .map((item) => {
       return {
         ...item,
-        id: item?.name,
-        groupId: 'accountSettings',
+        id: item?.id || item?.name,
+        groupId: 'accounts',
       };
     });
 
@@ -314,7 +421,7 @@ export const useSettings = ({
       badge: {
         label,
       },
-      groupId: 'profile',
+      groupId: type === 'phone' ? 'smsAlerts' : 'emailAlerts',
       linkIcon: true,
     };
   });
@@ -355,22 +462,58 @@ export const useSettings = ({
     };
   });
 
-  const alertSettings = [
+  const alertGroupSettings = [
     {
       ...phoneSettings,
       id: 'smsAlerts',
       title: 'Varslinger på SMS',
+      groupId: 'smsAlerts',
     },
     {
       ...emailSettings,
       id: 'emailAlerts',
       title: 'Varslinger på e-post',
+      groupId: 'emailAlerts',
     },
   ].map((item) => {
     return {
       ...item,
       icon: BellIcon,
+      groupId: item?.groupId || 'alerts',
+    };
+  });
+
+  const alertSettings = [...alertGroupSettings].map((item) => {
+    return {
+      ...item,
       groupId: 'alerts',
+    };
+  });
+
+  const alertLinkSettings = [
+    {
+      id: 'alertProfiles',
+      as: 'a',
+      href: 'iframe.html?id=settings-settingslist--alert-settings',
+      icon: PersonRectangleIcon,
+      title: 'Varslingsprofiler',
+      variant: 'link',
+      linkIcon: true,
+      badge: {
+        label: accounts?.length + ' aktører',
+      },
+      summary: <p>Varslingsadresser i bruk.</p>,
+      groupId: 'alertsLink',
+    },
+    ...alertGroupSettings,
+  ].map((item) => {
+    if (item.groupId) {
+      return item;
+    }
+
+    return {
+      ...item,
+      groupId: 'alertsLink',
     };
   });
 
@@ -492,12 +635,17 @@ export const useSettings = ({
   // all settings
 
   const defaultItems = [
+    ...personaliaSettings,
     ...contactSettings,
     ...alertSettings,
+    ...alertLinkSettings,
+    ...alertGroupSettings,
     ...alertProfileSettings,
+    ...accountLinkSettings,
+    ...accountSettings,
+    ...bookmarkLinkSettings,
     ...people,
     ...companies,
-    ...accountSettings,
     ...otherSettings,
     ...companyAlerts,
     ...companyInfo,
@@ -518,11 +666,23 @@ export const useSettings = ({
   }) as SettingsItemProps[];
 
   const defaultGroups = {
+    personalia: {
+      title: 'Personalia',
+    },
     contact: {
       title: 'Kontaktinformasjon',
     },
     alerts: {
-      title: 'Primære varslingsadresser',
+      title: 'Varslingsinnstillinger',
+    },
+    alertsLink: {
+      title: '',
+    },
+    smsAlerts: {
+      title: 'Varslinger på sms',
+    },
+    emailAlerts: {
+      title: 'Varslinger på e-post',
     },
     profile: {
       title: 'Alternative varslingsadresser',
@@ -532,6 +692,12 @@ export const useSettings = ({
     },
     [firstCompanyGroup]: {
       title: 'Varslinger for virksomheter',
+    },
+    bookmarksLink: {
+      title: 'Bokmerker',
+    },
+    accountsLink: {
+      title: 'Aktørinnstillinger',
     },
     accountSettings: {
       title: 'Aktørinnstillinger',

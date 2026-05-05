@@ -2,7 +2,6 @@ import {
   BellIcon,
   BookmarkIcon,
   ClockDashedIcon,
-  CogIcon,
   HeartIcon,
   //  HandshakeIcon,
 } from '@navikt/aksel-icons';
@@ -32,7 +31,7 @@ export const profileMenuItems: MenuItemProps[] = [
   },
   {
     id: 'bookmarks',
-    groupId: '2',
+    groupId: '3',
     icon: BookmarkIcon,
     title: 'Bokmerker',
   },
@@ -55,13 +54,13 @@ export const profileMenuItems: MenuItemProps[] = [
     icon: PadlockUnlockedIcon,
     title: "Gi tilgang",
   },
-  */
   {
     id: 'settings',
     groupId: '9',
     icon: CogIcon,
     title: 'Innstillinger',
   },
+  */
   {
     id: 'activity-log',
     groupId: '10',
