@@ -15,7 +15,7 @@ export const useProfileLayout = ({ accountId = 'user', pageId = 'profile' }): Pr
     inbox: 'demo-inbox--inbox-page',
     admin: 'demo-admin--dashboard-page',
     profile: 'settings-settingslist--person-settings',
-    accounts: 'account-accountlist--account-settings',
+    accounts: 'settings-settingslist--account-settings',
     bookmarks: 'settings-settingslist--bookmark-settings',
     alerts: 'settings-settingslist--alert-settings',
     contact: 'demo-profile--contact-page',

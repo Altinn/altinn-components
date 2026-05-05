@@ -19,6 +19,10 @@
   }
 }
 
+.link[data-disabled="true"] {
+  opacity: 0.5;
+}
+
 .link:focus-visible {
   outline: none;
 }

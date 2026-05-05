@@ -39,8 +39,12 @@ export const ItemLink = ({
 }: ItemLinkProps) => {
   const Component = as || 'div';
 
-  if (Component === 'div') {
-    return <div className={cx(styles.link, className)}>{children}</div>;
+  if (Component === 'div' || disabled || loading) {
+    return (
+      <div className={cx(styles.link, className)} data-disabled={disabled || loading}>
+        {children}
+      </div>
+    );
   }
 
   // Only apply aria-label if the component has an href or is not an anchor element

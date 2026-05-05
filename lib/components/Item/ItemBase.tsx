@@ -9,11 +9,11 @@ import styles from './itemBase.module.css';
 
 // We use a generic 'T' to allow the component to inherit props
 // based on the 'as' element (e.g., href if as="a")
-export type ItemBaseProps<T extends ElementType = 'li'> = {
+export type ItemBaseProps = {
   /** The element type to render as. */
-  as?: T;
+  as?: ElementType;
   /** Optional ref */
-  ref?: React.Ref<T>;
+  ref?: React.Ref<ElementType>;
   /** The tab index of the list item. */
   tabIndex?: number;
   /** The size of item. */
@@ -32,7 +32,7 @@ export type ItemBaseProps<T extends ElementType = 'li'> = {
   children?: ReactNode;
   /** Id of list item. */
   id?: string;
-} & Omit<ComponentPropsWithRef<T>, 'color' | 'size'>;
+} & Omit<ComponentPropsWithRef<ElementType>, 'color' | 'size'>;
 
 export const ItemBase = ({
   id,
