@@ -1,0 +1,13 @@
+.container {
+  position: relative;
+  display: flex;
+  column-gap: 0.5rem;
+}
+
+.countryCode {
+  width: 7rem;
+}
+
+.phoneNumber {
+  flex-grow: 1;
+}
