@@ -6,7 +6,7 @@
 
 @media (max-width: 1023px) {
   .dropdown[data-variant="drawer-dropdown"] {
-    margin-top: 4.5rem;
+    margin-top: calc(4.5rem + var(--altinn-banner-height, 0px));
     box-shadow: none;
   }
 }
