@@ -21,6 +21,7 @@ export interface SettingsItemBaseProps extends ItemLinkProps {
   id?: string;
   groupId?: string;
   hidden?: boolean;
+  disabled?: boolean;
   ref?: ItemBaseProps['ref'];
   color?: ItemBaseProps['color'];
   icon?: ItemMediaProps['icon'];
@@ -41,6 +42,7 @@ export const SettingsItemBase = ({
   as,
   ref,
   hidden,
+  disabled,
   loading,
   color,
   collapsible,
@@ -58,9 +60,9 @@ export const SettingsItemBase = ({
   ...rest
 }: SettingsItemBaseProps) => {
   return (
-    <li className={styles.listItem}>
-      <ItemBase ref={ref} className={styles.item} color={color} aria-hidden={hidden} data-loading={loading}>
-        <ItemLink {...rest} className={styles.link} as={as}>
+    <li className={styles.listItem} data-collapsible={collapsible} data-expanded={expanded}>
+      <ItemBase ref={ref} as="div" className={styles.item} color={color} aria-hidden={hidden} data-loading={loading}>
+        <ItemLink {...rest} className={styles.link} disabled={disabled} as={as}>
           <ItemMedia icon={icon} className={styles.media} />
           {label || (
             <span className={styles.label}>
@@ -83,25 +85,26 @@ export const SettingsItemBase = ({
             </span>
           )}
         </ItemLink>
-        <ItemControls className={styles.controls}>
-          {controls}
-          {badge && <Badge {...badge} />}
-
-          {(collapsible &&
-            (expanded ? (
-              <ChevronUpIcon className={styles.linkIcon} />
-            ) : (
-              <ChevronDownIcon className={styles.linkIcon} />
-            ))) ||
-            (linkIcon && <ChevronRightIcon className={styles.linkIcon} />)}
-        </ItemControls>
-        {children}
+        {!disabled && (
+          <>
+            <ItemControls className={styles.controls}>{controls}</ItemControls>
+            {badge && <Badge {...badge} />}
+            {(collapsible &&
+              (expanded ? (
+                <ChevronUpIcon className={styles.linkIcon} />
+              ) : (
+                <ChevronDownIcon className={styles.linkIcon} />
+              ))) ||
+              (linkIcon && <ChevronRightIcon className={styles.linkIcon} />)}
+          </>
+        )}
       </ItemBase>
       {summary && (
         <Typography className={styles.summary} size="xs" variant="subtle">
           {summary}
         </Typography>
       )}
+      {children}
     </li>
   );
 };

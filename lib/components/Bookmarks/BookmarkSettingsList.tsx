@@ -1,14 +1,7 @@
 import { Fragment, type ReactNode } from 'react';
-import {
-  BookmarkSettingsItem,
-  type BookmarkSettingsItemProps,
-  Divider,
-  Flex,
-  Heading,
-  List,
-  SettingsSection,
-} from '..';
+import { BookmarkSettingsItem, type BookmarkSettingsItemProps, Heading } from '..';
 import { useMenu } from '../../hooks';
+import styles from '../Settings/settlingsList.module.css';
 
 export interface BookmarkSettingsGroupProps {
   title?: string | ReactNode;
@@ -42,34 +35,31 @@ export const BookmarkSettingsList = ({
   });
 
   return (
-    <Flex as="div" spacing="page" direction="col">
+    <div className={styles.section} data-variant="default">
       {menu?.map((group, groupIndex) => {
         const groupProps = group.props || {};
 
         return (
           <Fragment key={groupIndex}>
             {groupProps?.title && <Heading size="lg">{groupProps.title as string}</Heading>}
-            <SettingsSection>
-              <List size="sm">
+            <section className={styles.group}>
+              <ul className={styles.list}>
                 {group?.items.map((item, index) => {
                   const itemProps = item.props || {};
                   return (
-                    <Fragment key={index}>
-                      {index > 0 && <Divider as="li" />}
-                      <BookmarkSettingsItem
-                        {...itemProps}
-                        key={'settings-list-item' + index}
-                        highlightWords={highlightWords || itemProps?.highlightWords}
-                        loading={loading || itemProps?.loading}
-                      />
-                    </Fragment>
+                    <BookmarkSettingsItem
+                      {...itemProps}
+                      key={'settings-list-item' + index}
+                      highlightWords={highlightWords || itemProps?.highlightWords}
+                      loading={loading || itemProps?.loading}
+                    />
                   );
                 })}
-              </List>
-            </SettingsSection>
+              </ul>
+            </section>
           </Fragment>
         );
       })}
-    </Flex>
+    </div>
   );
 };

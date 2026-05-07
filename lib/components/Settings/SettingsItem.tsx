@@ -9,7 +9,7 @@ import {
 
 import { type ReactNode, useState } from 'react';
 
-export type SettingsItemVariant = 'default' | 'link' | 'modal' | 'switch';
+export type SettingsItemVariant = 'default' | 'link' | 'modal' | 'accordion' | 'switch';
 
 export interface SettingsItemModalProps {
   icon?: SettingsModalProps['icon'];
@@ -42,6 +42,7 @@ export const SettingsItem = ({
   checked,
   onChange,
   modalProps,
+  expanded,
   children,
   ...props
 }: SettingsItemProps) => {
@@ -68,6 +69,7 @@ export const SettingsItem = ({
           }}
         />
       );
+
     case 'switch':
       return (
         <SettingsItemBase
@@ -95,6 +97,28 @@ export const SettingsItem = ({
             />
           }
         />
+      );
+
+    case 'accordion':
+      return (
+        <SettingsItemBase
+          {...props}
+          as="button"
+          linkIcon={true}
+          collapsible={true}
+          expanded={expanded}
+          titleProps={{
+            children: title,
+          }}
+          descriptionProps={{
+            size: 'xs',
+            weight: 'normal',
+            variant: 'subtle',
+            children: description,
+          }}
+        >
+          {expanded && <div>{children}</div>}
+        </SettingsItemBase>
       );
 
     case 'modal':

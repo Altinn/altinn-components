@@ -1,7 +1,9 @@
 import {
   BellIcon,
+  FilesIcon,
   GlobeIcon,
   HandshakeIcon,
+  HashtagIcon,
   HouseHeartIcon,
   InboxIcon,
   MobileIcon,
@@ -10,9 +12,13 @@ import {
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 import {
+  AccountOrganization,
+  type AccountOrganizationProps,
   BookmarkModal,
   BookmarkSettingsList,
   Button,
+  ButtonGroup,
+  type ButtonProps,
   ContextMenu,
   type ContextMenuProps,
   Heading,
@@ -20,6 +26,8 @@ import {
   Layout,
   type LayoutProps,
   PageBase,
+  Section,
+  type SectionProps,
   SettingsList,
   type SettingsListProps,
   type SettingsModalProps,
@@ -483,28 +491,6 @@ export const PersonSettings = () => {
   );
 };
 
-import { HeartFillIcon, HeartIcon } from '@navikt/aksel-icons';
-export type AccountListItemType = 'person' | 'company' | 'group';
-
-export interface AccountSettingsControlsProps {
-  id: string;
-  type: AccountListItemType;
-  isCurrentEndUser?: boolean; // Optional, used to indicate if this account is the current end user
-  isDeleted?: boolean;
-  favourite?: boolean; // Optional, used for marking favourite accounts
-  isPreselectedParty?: boolean;
-  favouriteLabel?: string; // Optional, label for the favourite icon
-  onToggleFavourite?: (id: string) => void; // Optional, callback for toggling favourite status
-  accountLabel?: string; // Optional, used for displaying a badge
-  loading?: boolean;
-}
-
-export const AlertSettings = () => {
-  const { layout } = useProfile({ pageId: 'alerts' });
-
-  return <ControlledSettings title="Varslinger" layout={layout} includeGroups={['smsAlerts', 'emailAlerts']} />;
-};
-
 export const BookmarkSettings = () => {
   const { layout } = useProfile({ pageId: 'bookmarks' });
   const { expandedId, onClose, items, search, groups } = useBookmarks({
@@ -565,6 +551,28 @@ export const CompanySettings = () => {
       }}
     />
   );
+};
+
+import { HeartFillIcon, HeartIcon } from '@navikt/aksel-icons';
+export type AccountListItemType = 'person' | 'company' | 'group';
+
+export interface AccountSettingsControlsProps {
+  id: string;
+  type: AccountListItemType;
+  isCurrentEndUser?: boolean; // Optional, used to indicate if this account is the current end user
+  isDeleted?: boolean;
+  favourite?: boolean; // Optional, used for marking favourite accounts
+  isPreselectedParty?: boolean;
+  favouriteLabel?: string; // Optional, label for the favourite icon
+  onToggleFavourite?: (id: string) => void; // Optional, callback for toggling favourite status
+  accountLabel?: string; // Optional, used for displaying a badge
+  loading?: boolean;
+}
+
+export const AlertSettings = () => {
+  const { layout } = useProfile({ pageId: 'alerts' });
+
+  return <ControlledSettings title="Varslinger" layout={layout} includeGroups={['smsAlerts', 'emailAlerts']} />;
 };
 
 const AccountSettingsControls = ({
@@ -633,24 +641,178 @@ const AccountSettingsControls = ({
   );
 };
 
+interface AccountSettingsButtonProps extends ButtonProps {
+  label: string;
+}
+
+interface AccountSettingsDetailsProps {
+  color?: SectionProps['color'];
+  loading?: boolean;
+  loadingText?: string;
+  buttons?: AccountSettingsButtonProps[];
+  settings?: SettingsListProps;
+  organization?: AccountOrganizationProps['items'];
+}
+
+const AccountSettingsDetails = ({
+  color,
+  loading,
+  loadingText = 'Loading...',
+  buttons = [
+    {
+      label: 'Gå til innboks',
+      variant: 'outline',
+    },
+    {
+      label: 'Tilgangsstyring',
+      variant: 'outline',
+    },
+  ],
+  settings = {
+    groups: {
+      1: {},
+      alerts: {
+        title: 'Varslinger',
+      },
+      org: {
+        title: 'Organisasjonen',
+      },
+    },
+    items: [
+      {
+        id: '1',
+        title: 'Rolle og tilganger',
+        value: 'Daglig leder',
+        badge: {
+          label: '4 tilganger',
+        },
+        icon: HandshakeIcon,
+        linkIcon: true,
+      },
+      {
+        id: '2',
+        title: 'Varslinger på SMS',
+        variant: 'modal',
+        icon: BellIcon,
+        badge: {
+          variant: 'text',
+          label: 'Legg til',
+        },
+        linkIcon: true,
+      },
+      {
+        id: '2',
+        variant: 'modal',
+        title: 'Varslinger på e-post',
+        value: 'mathias@hotmail.com',
+        icon: BellIcon,
+        badge: {
+          variant: 'text',
+          label: 'Endre',
+        },
+        linkIcon: true,
+      },
+      {
+        id: '3',
+        title: 'Organisasjonsnummer',
+        value: 'XXX XXX XXX',
+        icon: HashtagIcon,
+        controls: (
+          <Button variant="ghost" size="xs">
+            <FilesIcon />
+            <span>Kopier</span>
+          </Button>
+        ),
+      },
+    ],
+  },
+  organization = [
+    {
+      title: 'Diaspora Bergensis',
+      description: 'Org nr. 928914038',
+      avatar: { type: 'company', name: 'Diaspora Bergensis' },
+      items: [
+        {
+          selected: true,
+          title: 'Diaspora Bergensis',
+          description: 'Org nr. 928914038',
+          avatar: {
+            type: 'company',
+            name: 'Diaspora Bergensis',
+            variant: 'outline',
+          },
+        },
+        {
+          title: 'Sporting Bergensis',
+          description: 'Org nr. 928914038',
+          avatar: {
+            type: 'company',
+            name: 'Sporting Bergensis',
+            variant: 'outline',
+          },
+        },
+        {
+          title: 'Glasgow Bergensis',
+          description: 'Org nr. 928914038',
+          avatar: {
+            type: 'company',
+            name: 'Glasgow  Bergensis',
+            variant: 'outline',
+          },
+        },
+      ],
+    },
+  ],
+}: AccountSettingsDetailsProps) => {
+  if (loading) {
+    return (
+      <Button variant="outline" loading>
+        {loadingText}
+      </Button>
+    );
+  }
+
+  return (
+    <Section spacing={3} color={color}>
+      {buttons && (
+        <ButtonGroup size="sm">
+          {buttons.map((button, index) => {
+            const { variant, label, ...buttonProps } = button;
+            return (
+              <Button {...buttonProps} variant={variant || 'outline'} key={index}>
+                {label}
+              </Button>
+            );
+          })}
+        </ButtonGroup>
+      )}
+
+      {settings && <SettingsList {...settings} variant="menu" />}
+      {organization && <AccountOrganization items={organization} />}
+    </Section>
+  );
+};
+
 export const AccountSettings = () => {
   const { layout } = useProfile({ pageId: 'accounts' });
-  const { toolbar, items, groups, expandedId, onToggle, onToggleFavourite } = useAccountList({
+  const { toolbar, items, groups, onToggle, expandedId, onToggleFavourite } = useAccountList({
     accounts: defaultAccounts,
   });
 
   const listItems = items
     ?.filter((item) => !item.isCurrentEndUser)
     .map((item) => {
+      const expanded = item.id === expandedId;
+
       return {
         ...item,
         badge: undefined,
-        linkIcon: true,
-        collapsible: true,
-        expanded: expandedId === item.id,
-        as: 'button',
+        expanded,
         onClick: () => onToggle(item.id),
+        description: expanded ? undefined : item.description,
+        variant: 'accordion',
         controls: <AccountSettingsControls {...item} onToggleFavourite={onToggleFavourite} />,
+        children: <AccountSettingsDetails />,
       };
     });
 
