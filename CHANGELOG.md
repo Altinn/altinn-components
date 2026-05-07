@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.63.0](https://github.com/Altinn/altinn-components/compare/v0.62.0...v0.63.0) (2026-05-07)
+
+
+### Features
+
+* **Settingslist:** add virtualization ([9eb597e](https://github.com/Altinn/altinn-components/commit/9eb597e8014e284b94a77b87b097bf4fb6d4b3e0))
+
+
+### Bug Fixes
+
+* **settingslist:** fix incorrect margin for virtualized list ([93171de](https://github.com/Altinn/altinn-components/commit/93171de67783c2b8c6936dc1690070f2d889526d))
+
 ## [0.62.0](https://github.com/Altinn/altinn-components/compare/v0.61.3...v0.62.0) (2026-05-07)
 
 
