@@ -93,70 +93,72 @@ export const SettingsListVirtual = ({
   }, [virtualItems]);
 
   return (
-    <div ref={scrollRef} className={styles.virtualScrollRef}>
-      <ul
-        className={styles.virtualList}
-        style={{
-          position: 'relative',
-          height: `${virtualizer.getTotalSize()}px`,
-        }}
-      >
-        {virtualItems.map((virtualRow) => {
-          const entry = flatList[virtualRow.index];
-          if (!entry) return null;
+    <div className={styles.virtualScrollRefWrapper}>
+      <div ref={scrollRef} className={styles.virtualScrollRef}>
+        <ul
+          className={styles.virtualList}
+          style={{
+            position: 'relative',
+            height: `${virtualizer.getTotalSize()}px`,
+          }}
+        >
+          {virtualItems.map((virtualRow) => {
+            const entry = flatList[virtualRow.index];
+            if (!entry) return null;
 
-          if (entry.type === 'title') {
+            if (entry.type === 'title') {
+              return (
+                <li
+                  key={virtualRow.key}
+                  data-index={virtualRow.index}
+                  className={styles.virtualTitleItem}
+                  style={{
+                    transform: `translateY(${virtualRow.start}px)`,
+                    paddingBottom: variant === 'menu' ? '0.5rem' : '1.5rem',
+                  }}
+                >
+                  {variant === 'menu' ? (
+                    <Heading size="xs" weight="normal" variant="subtle">
+                      {entry.title as string}
+                    </Heading>
+                  ) : (
+                    <Heading size="lg">{entry.title as string}</Heading>
+                  )}
+                </li>
+              );
+            }
+
+            const showCard = variant === 'default';
+            const wrapperClasses = [
+              styles.virtualListItem,
+              entry.isLastInGroup ? (variant === 'menu' ? styles.groupGapMenu : styles.groupGapDefault) : '',
+            ]
+              .filter(Boolean)
+              .join(' ');
+            const cardClasses = [
+              showCard ? styles.groupCard : '',
+              showCard && entry.isFirstInGroup ? styles.groupCardFirst : '',
+              showCard && entry.isLastInGroup ? styles.groupCardLast : '',
+              showCard && !entry.isFirstInGroup ? styles.groupCardNotFirst : '',
+            ]
+              .filter(Boolean)
+              .join(' ');
+
             return (
               <li
                 key={virtualRow.key}
                 data-index={virtualRow.index}
-                className={styles.virtualTitleItem}
-                style={{
-                  transform: `translateY(${virtualRow.start}px)`,
-                  paddingBottom: variant === 'menu' ? '0.5rem' : '1.5rem',
-                }}
+                className={wrapperClasses}
+                style={{ transform: `translateY(${virtualRow.start}px)` }}
               >
-                {variant === 'menu' ? (
-                  <Heading size="xs" weight="normal" variant="subtle">
-                    {entry.title as string}
-                  </Heading>
-                ) : (
-                  <Heading size="lg">{entry.title as string}</Heading>
-                )}
+                <div className={cardClasses}>
+                  <SettingsItem {...entry.itemProps} containerAs="div" />
+                </div>
               </li>
             );
-          }
-
-          const showCard = variant === 'default';
-          const wrapperClasses = [
-            styles.virtualListItem,
-            entry.isLastInGroup ? (variant === 'menu' ? styles.groupGapMenu : styles.groupGapDefault) : '',
-          ]
-            .filter(Boolean)
-            .join(' ');
-          const cardClasses = [
-            showCard ? styles.groupCard : '',
-            showCard && entry.isFirstInGroup ? styles.groupCardFirst : '',
-            showCard && entry.isLastInGroup ? styles.groupCardLast : '',
-            showCard && !entry.isFirstInGroup ? styles.groupCardNotFirst : '',
-          ]
-            .filter(Boolean)
-            .join(' ');
-
-          return (
-            <li
-              key={virtualRow.key}
-              data-index={virtualRow.index}
-              className={wrapperClasses}
-              style={{ transform: `translateY(${virtualRow.start}px)` }}
-            >
-              <div className={cardClasses}>
-                <SettingsItem {...entry.itemProps} containerAs="div" />
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+          })}
+        </ul>
+      </div>
     </div>
   );
 };

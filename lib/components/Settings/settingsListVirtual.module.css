@@ -1,9 +1,12 @@
+.virtualScrollRefWrapper {
+  margin: 0 -1rem;
+}
+
 .virtualScrollRef {
   height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
   padding: 0 1rem;
-  margin: 0 -1rem;
 }
 
 .virtualList {
