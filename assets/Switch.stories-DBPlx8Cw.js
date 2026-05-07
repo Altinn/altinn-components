@@ -1,0 +1,3 @@
+import{S as t}from"./Switch-tNambPi0.js";import"./iframe-V8BRfBgT.js";import"./preload-helper-PPVm8Dsz.js";import"./index-Dg3z2A9f.js";import"./Label-DdQ1zxpY.js";import"./index-ByKBsU4r.js";import"./use-merge-refs--fAMpcSQ.js";import"./lite-DaUVFjkg.js";import"./Input-zOuJx9ZS.js";import"./input-1VpPOyjR.js";const u={title:"Forms/Switch",component:t,tags:["autodocs"],parameters:{},args:{name:"switch",value:"1",label:"Switch"}},r={args:{}};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`{
+  args: {}
+}`,...r.parameters?.docs?.source}}};const d=["Default"];export{r as Default,d as __namedExportsOrder,u as default};
