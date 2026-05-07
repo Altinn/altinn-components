@@ -54,7 +54,7 @@ import {
   ContactProfileModal,
   EmailSettingsModal,
   PhoneSettingsModal,
-} from '../../components/Settings/SettingsModal.stories';
+} from './SettingsModal.stories.tsx';
 
 const meta = {
   title: 'Settings/SettingsList',
@@ -793,7 +793,7 @@ const AccountSettingsDetails = ({
   );
 };
 
-export const AccountSettings = () => {
+export const AccountSettings = ({ virtualized }: { virtualized: boolean }) => {
   const { layout } = useProfile({ pageId: 'accounts' });
   const { toolbar, items, groups, onToggle, expandedId, onToggleFavourite } = useAccountList({
     accounts: defaultAccounts,
@@ -808,9 +808,11 @@ export const AccountSettings = () => {
         ...item,
         badge: undefined,
         expanded,
-        onClick: () => onToggle(item.id),
-        description: expanded ? undefined : item.description,
         variant: 'accordion',
+        onClick: () => {
+          onToggle(item.id);
+        },
+        description: expanded ? undefined : item.description,
         controls: <AccountSettingsControls {...item} onToggleFavourite={onToggleFavourite} />,
         children: <AccountSettingsDetails />,
       };
@@ -821,8 +823,12 @@ export const AccountSettings = () => {
       <PageBase>
         <Heading size="xl">Aktører</Heading>
         <Toolbar {...toolbar} />
-        <SettingsList groups={groups} items={listItems as SettingsListProps['items']} />
+        <SettingsList groups={groups} items={listItems as SettingsListProps['items']} virtualized={virtualized} />
       </PageBase>
     </Layout>
   );
+};
+
+export const AccountSettingsVirtualized = () => {
+  return <AccountSettings virtualized />;
 };

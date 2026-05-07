@@ -1,6 +1,7 @@
 import { Fragment, type ReactNode } from 'react';
 import { Heading, SettingsItem, type SettingsItemProps } from '..';
 import { useMenu } from '../../hooks';
+import { SettingsListVirtual } from './SettingsListVirtual';
 import styles from './settlingsList.module.css';
 
 export interface SettingsGroupProps {
@@ -12,9 +13,20 @@ export interface SettingsListProps {
   items: SettingsItemProps[];
   groups?: Record<string, SettingsGroupProps>;
   sortGroupBy?: (a: [string, SettingsItemProps[]], b: [string, SettingsItemProps[]]) => number;
+  virtualized?: boolean;
 }
 
-export const SettingsList = ({ items, variant = 'default', groups = {}, sortGroupBy }: SettingsListProps) => {
+export const SettingsList = ({
+  items,
+  variant = 'default',
+  groups = {},
+  sortGroupBy,
+  virtualized,
+}: SettingsListProps) => {
+  if (virtualized) {
+    return <SettingsListVirtual items={items} variant={variant} groups={groups} sortGroupBy={sortGroupBy} />;
+  }
+
   const { menu } = useMenu<SettingsItemProps, SettingsGroupProps>({
     items,
     groups,

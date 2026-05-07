@@ -1,0 +1,68 @@
+.virtualScrollRef {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0 1rem;
+  margin: 0 -1rem;
+}
+
+.virtualList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  isolation: isolate;
+}
+
+.virtualListItem {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.virtualListItem:focus-within,
+.virtualListItem:has([aria-expanded="true"]) {
+  z-index: 20;
+}
+
+.virtualListItem > * {
+  margin: 0;
+}
+
+.virtualTitleItem {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-bottom: 1.5rem;
+}
+
+.groupCard {
+  background-color: var(--ds-color-surface-default);
+  padding: 0 0.5rem;
+  box-shadow: var(--ds-shadow-xs);
+}
+
+.groupCardFirst {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  padding-top: 0.375rem;
+}
+
+.groupCardLast {
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  padding-bottom: 0.375rem;
+}
+
+.groupCardNotFirst > * {
+  border-top: 1px solid var(--ds-color-border-subtle);
+}
+
+.groupGapDefault {
+  padding-bottom: 1.5rem;
+}
+
+.groupGapMenu {
+  padding-bottom: 0.5rem;
+}

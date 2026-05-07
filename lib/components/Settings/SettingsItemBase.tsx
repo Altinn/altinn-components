@@ -36,6 +36,7 @@ export interface SettingsItemBaseProps extends ItemLinkProps {
   controls?: ReactNode;
   children?: ReactNode;
   summary?: ReactNode;
+  containerAs?: 'li' | 'div';
 }
 
 export const SettingsItemBase = ({
@@ -57,10 +58,11 @@ export const SettingsItemBase = ({
   badge,
   linkIcon,
   controls,
+  containerAs: ContainerTag = 'li',
   ...rest
 }: SettingsItemBaseProps) => {
   return (
-    <li className={styles.listItem} data-collapsible={collapsible} data-expanded={expanded}>
+    <ContainerTag className={styles.listItem} data-collapsible={collapsible} data-expanded={expanded}>
       <ItemBase ref={ref} as="div" className={styles.item} color={color} aria-hidden={hidden} data-loading={loading}>
         <ItemLink {...rest} className={styles.link} disabled={disabled} as={as}>
           <ItemMedia icon={icon} className={styles.media} />
@@ -105,6 +107,6 @@ export const SettingsItemBase = ({
         </Typography>
       )}
       {children}
-    </li>
+    </ContainerTag>
   );
 };

@@ -1,6 +1,7 @@
 export * from './SettingsItem';
 export * from './SettingsItemBase';
 export * from './SettingsList';
+export * from './SettingsListVirtual';
 export * from './SettingsSection';
 export * from './SettingsModal';
 export * from './UsedByLog';
