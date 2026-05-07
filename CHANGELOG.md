@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.62.0](https://github.com/Altinn/altinn-components/compare/v0.61.3...v0.62.0) (2026-05-07)
+
+
+### Features
+
+* Integrate banner to layout component ([#1166](https://github.com/Altinn/altinn-components/issues/1166)) ([bae1922](https://github.com/Altinn/altinn-components/commit/bae19224bfeb41b549d8bf47ab501fbb36ac5d27))
+
 ## [0.61.3](https://github.com/Altinn/altinn-components/compare/v0.61.2...v0.61.3) (2026-05-07)
 
 
