@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.61.3](https://github.com/Altinn/altinn-components/compare/v0.61.2...v0.61.3) (2026-05-07)
+
+
+### Bug Fixes
+
+* accordion settings ([#1165](https://github.com/Altinn/altinn-components/issues/1165)) ([2e31466](https://github.com/Altinn/altinn-components/commit/2e31466171f2c25a50f6c91e26fb01844c7181d2))
+* settings ([#1162](https://github.com/Altinn/altinn-components/issues/1162)) ([341571d](https://github.com/Altinn/altinn-components/commit/341571dd71ee60d3a0cce588d7ccdbe3e55d4a26))
+
 ## [0.61.2](https://github.com/Altinn/altinn-components/compare/v0.61.1...v0.61.2) (2026-04-30)
 
 
