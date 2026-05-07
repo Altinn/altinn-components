@@ -1,0 +1,10 @@
+import{r as i,j as o}from"./iframe-Cqj3AiBb.js";import{B as e}from"./BookmarkModal-BENMAtxw.js";import{B as s}from"./Button-DYwdzfZG.js";import"./preload-helper-PPVm8Dsz.js";import"./SettingsModal-B16xHKIZ.js";import"./ModalBody-jsg5kTGr.js";import"./Section-BsXiOSXS.js";import"./index-CHG1hv9Q.js";import"./Flex-DFnlILDc.js";import"./XMark-ReENydG3.js";import"./useId-Bi-DL88I.js";import"./Icon-CHi77IUK.js";import"./Skeleton-B33vAz-c.js";import"./Avatar-D1U6ps5a.js";import"./AvatarGroup-CmMUwf3A.js";import"./Heading-CJiOkJPI.js";import"./useHighlightedText-Cyl54eZj.js";import"./ButtonGroup-HmC79Nv3.js";import"./ButtonIcon-CRk-Fq7D.js";import"./ButtonLabel-BBQgFKVt.js";import"./MagnifyingGlass-fMCV_alc.js";import"./QueryLabel-_2UOa2hv.js";import"./Plus-U9ILyx0n.js";import"./TextField-CKQo9ppU.js";import"./FieldBase-DDsWnoQi.js";import"./Typography-CV-E4tqG.js";import"./Label-URmODKr6.js";import"./index-BZqr7PxG.js";import"./use-merge-refs-CZYKnUm1.js";import"./lite-DaUVFjkg.js";import"./Input-BUdc9Inw.js";import"./input-DoJ0-ffR.js";import"./button-CcZ_KMhQ.js";const H={title:"Bookmarks/BookmarkModal",component:e,args:{title:"Lagre søk",params:[{type:"search",label:"skatt"},{type:"filter",label:"Krever handling"}],titleField:{placeholder:"Uten navn"},buttons:[{label:"Lagre"},{label:"Avbryt",variant:"outline"}]},parameters:{layout:"centered"}},t=p=>{const[a,n]=i.useState(!0),r=()=>{n(m=>!m)};return o.jsxs(o.Fragment,{children:[o.jsx(s,{onClick:r,children:"Open modal"}),o.jsx(e,{...p,open:a,onClose:r})]})};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`(args: BookmarkModalProps) => {
+  const [open, setOpen] = useState<boolean>(true);
+  const onToggle = () => {
+    setOpen(prevState => !prevState);
+  };
+  return <>
+      <Button onClick={onToggle}>Open modal</Button>
+      <BookmarkModal {...args} open={open} onClose={onToggle} />
+    </>;
+}`,...t.parameters?.docs?.source}}};const I=["Default"];export{t as Default,I as __namedExportsOrder,H as default};
