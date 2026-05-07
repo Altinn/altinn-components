@@ -5,6 +5,7 @@
   min-height: 100vh;
   background-color: var(--altinn-layout-background);
   /*  overflow: hidden; */
+  --altinn-banner-height: 0px;
 }
 
 .base[data-theme="default"] {

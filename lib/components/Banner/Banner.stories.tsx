@@ -141,3 +141,11 @@ export const Colors = (args: BannerProps) => {
     </Flex>
   );
 };
+
+export const StrongCompany = (args: BannerProps) => {
+  return (
+    <div data-color="company">
+      <Banner {...args} title="Color inherited from parent, variant strong" variant={'strong'} />
+    </div>
+  );
+};

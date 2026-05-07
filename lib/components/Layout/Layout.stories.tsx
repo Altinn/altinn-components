@@ -326,6 +326,60 @@ export const SidebarReference = (args: LayoutStoryArgs) => {
   );
 };
 
+export const WithBanner = (args: LayoutStoryArgs) => {
+  const layout = useLayout(args);
+  const accountMenu = {
+    ...useAccountMenu({ accountId: 'diaspora' }),
+    virtualized: true,
+  };
+  const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
+  const accountSelector: AccountSelectorProps = { accountMenu };
+
+  return (
+    <RootProvider>
+      <Layout
+        {...args}
+        {...layout}
+        header={{ ...layout.header, accountSelector, globalMenu }}
+        banner={{
+          title: '19. juni skrus gamle Altinn av.',
+          link: { label: 'Dette må du passe på.', href: '#' },
+        }}
+      >
+        {args.children}
+      </Layout>
+    </RootProvider>
+  );
+};
+
+export const WithCustomBanner = (args: LayoutStoryArgs) => {
+  const layout = useLayout(args);
+  const accountMenu = {
+    ...useAccountMenu({ accountId: 'diaspora' }),
+    virtualized: true,
+  };
+  const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
+  const accountSelector: AccountSelectorProps = { accountMenu };
+
+  return (
+    <RootProvider>
+      <Layout
+        {...args}
+        {...layout}
+        header={{ ...layout.header, accountSelector, globalMenu }}
+        banner={{
+          title: '19. juni skrus gamle Altinn av.',
+          link: { label: 'Dette må du passe på.', href: '#' },
+          color: 'warning',
+          variant: 'alert',
+        }}
+      >
+        {args.children}
+      </Layout>
+    </RootProvider>
+  );
+};
+
 export const InboxLayout = (args: LayoutStoryArgs) => {
   const layout = useLayout(args);
   const accountMenu = useAccountMenu({ accountId: 'diaspora' });
