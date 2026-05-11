@@ -180,7 +180,12 @@ export const Dropdown = ({
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') {
+        e.stopPropagation();
+        e.preventDefault();
+
+        onClose();
+      }
     };
 
     const handleClickOutside = (event: MouseEvent) => {
