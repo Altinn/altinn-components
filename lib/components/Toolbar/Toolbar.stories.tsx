@@ -255,9 +255,7 @@ export const StaticFilters = () => {
 };
 
 export const StaticFiltersInDialog = () => {
-  const staticFilters = useInboxFilter({
-    filters: inboxFilters
-  });
+  const staticFilters = useInboxFilter({ filters: inboxFilters });
   return (
     <DsDialog.TriggerContext>
       <DsDialog.Trigger>Open Dialog</DsDialog.Trigger>
