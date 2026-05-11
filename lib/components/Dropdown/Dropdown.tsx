@@ -181,7 +181,6 @@ export const Dropdown = ({
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        e.stopPropagation();
         e.preventDefault();
 
         onClose();
