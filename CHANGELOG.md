@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.63.1](https://github.com/Altinn/altinn-components/compare/v0.63.0...v0.63.1) (2026-05-12)
+
+
+### Bug Fixes
+
+* add tabIndex: '-1' to main-content element to focus after using skip-link correct ([#1177](https://github.com/Altinn/altinn-components/issues/1177)) ([baded5f](https://github.com/Altinn/altinn-components/commit/baded5fab1a5b26a1c1513a866f8464c48d3cd9e))
+* preventDefault when closing dropdown with ESC key ([#1171](https://github.com/Altinn/altinn-components/issues/1171)) ([5b02abd](https://github.com/Altinn/altinn-components/commit/5b02abd34eb0947b378b2a51c44a6da5535edf76))
+* **settingsitem:** prevent chevron icon from shrinking ([#1178](https://github.com/Altinn/altinn-components/issues/1178)) ([aee47fb](https://github.com/Altinn/altinn-components/commit/aee47fb393d230681f4bcfa5f9270a406a1fb46d))
+
 ## [0.63.0](https://github.com/Altinn/altinn-components/compare/v0.62.0...v0.63.0) (2026-05-07)
 
 
