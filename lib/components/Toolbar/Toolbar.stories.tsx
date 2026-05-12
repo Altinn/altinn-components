@@ -1,7 +1,7 @@
 import { BookmarkIcon, XMarkIcon } from '@navikt/aksel-icons';
 import type { Meta } from '@storybook/react-vite';
 import { useEffect, useState } from 'react';
-import { Button, QueryLabel } from '..';
+import { Button, DsDialog, QueryLabel } from '..';
 import { Switch } from '../Forms';
 import { Toolbar, ToolbarFilter, type ToolbarFilterProps, ToolbarMenu, type ToolbarMenuProps, ToolbarSearch } from './';
 import { inboxFilters } from './example.data';
@@ -252,6 +252,18 @@ export const SearchAndSwitch = () => {
 export const StaticFilters = () => {
   const staticFilters = useInboxFilter({ filters: inboxFilters?.map((item) => ({ ...item })) });
   return <Toolbar filter={staticFilters} />;
+};
+
+export const StaticFiltersInDialog = () => {
+  const staticFilters = useInboxFilter({ filters: inboxFilters });
+  return (
+    <DsDialog.TriggerContext>
+      <DsDialog.Trigger>Open Dialog</DsDialog.Trigger>
+      <DsDialog style={{ height: '20rem' }}>
+        <Toolbar filter={staticFilters} />
+      </DsDialog>
+    </DsDialog.TriggerContext>
+  );
 };
 
 export const RemovableFilters = () => {
