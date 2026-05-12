@@ -15,7 +15,7 @@ interface LayoutContentProps {
  */
 export const LayoutContent = ({ color, children, id = 'main-content' }: LayoutContentProps) => {
   return (
-    <main className={styles.content} data-color={color} id={id}>
+    <main className={styles.content} data-color={color} id={id} tabIndex={-1}>
       {children}
     </main>
   );
