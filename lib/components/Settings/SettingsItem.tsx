@@ -104,8 +104,8 @@ export const SettingsItem = ({
         <SettingsItemBase
           {...props}
           as="button"
-          linkIcon={true}
-          collapsible={true}
+          linkIcon
+          collapsible
           expanded={expanded}
           titleProps={{
             children: title,
@@ -137,7 +137,7 @@ export const SettingsItem = ({
             children: description || value,
           }}
           as="button"
-          linkIcon={true}
+          linkIcon
           onClick={() => setOpen(true)}
           expanded={open}
         >

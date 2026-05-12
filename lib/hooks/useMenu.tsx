@@ -91,30 +91,41 @@ export const useMenu = <T, V>({
     [groupedItems],
   );
 
+  const indexByItem = useMemo(() => {
+    const map = new Map<T, number>();
+    for (let i = 0; i < flatItems.length; i++) {
+      map.set(flatItems[i], i);
+    }
+    return map;
+  }, [flatItems]);
+
   const menu = useMemo(() => {
     return Object.entries(groupedItems)
       .sort(sortGroupBy || (() => 0))
       .map(([key, groupItems]) => ({
-        items: groupItems.map((item) => ({
-          menuIndex: flatItems.indexOf(item),
-          active: activeIndex === flatItems.indexOf(item),
-          onMouseEnter: keyboardEvents
-            ? () => {
-                setActiveIndex(flatItems.indexOf(item));
-              }
-            : undefined,
-          onMouseLeave: keyboardEvents
-            ? () => {
-                setActiveIndex(-1);
-              }
-            : undefined,
-          props: item,
-        })),
+        items: groupItems.map((item) => {
+          const menuIndex = indexByItem.get(item) ?? -1;
+          return {
+            menuIndex,
+            active: activeIndex === menuIndex,
+            onMouseEnter: keyboardEvents
+              ? () => {
+                  setActiveIndex(menuIndex);
+                }
+              : undefined,
+            onMouseLeave: keyboardEvents
+              ? () => {
+                  setActiveIndex(-1);
+                }
+              : undefined,
+            props: item,
+          };
+        }),
         props: {
           ...(groups[key] || {}),
         },
       }));
-  }, [groupedItems, flatItems, activeIndex, keyboardEvents, sortGroupBy, groups]);
+  }, [groupedItems, indexByItem, activeIndex, keyboardEvents, sortGroupBy, groups]);
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
