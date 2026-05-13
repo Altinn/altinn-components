@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.63.3](https://github.com/Altinn/altinn-components/compare/v0.63.2...v0.63.3) (2026-05-13)
+
+
+### Bug Fixes
+
+* dialog unread items ([#1181](https://github.com/Altinn/altinn-components/issues/1181)) ([aa8781d](https://github.com/Altinn/altinn-components/commit/aa8781d7940ced4996e0dcd74ac5ec9f60502334))
+* **GlobalMenu:** reset scroll position on open/close toggle ([#1183](https://github.com/Altinn/altinn-components/issues/1183)) ([8b68d90](https://github.com/Altinn/altinn-components/commit/8b68d90881056a9881a283a805eeec19aa78a1a2))
+
 ## [0.63.2](https://github.com/Altinn/altinn-components/compare/v0.63.1...v0.63.2) (2026-05-13)
 
 
