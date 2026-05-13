@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { type ReactNode, forwardRef } from 'react';
 import type { Color } from '../';
 import styles from './globalMenuBase.module.css';
 
@@ -11,13 +11,14 @@ export interface GlobalMenuFooterProps {
   children: ReactNode;
 }
 
-export const GlobalMenuBase = ({ color, children, ...rest }: GlobalMenuBaseProps) => {
+export const GlobalMenuBase = forwardRef<HTMLElement, GlobalMenuBaseProps>(({ color, children, ...rest }, ref) => {
   return (
-    <nav className={styles.nav} data-color={color} {...rest}>
+    <nav ref={ref} className={styles.nav} data-color={color} {...rest}>
       {children}
     </nav>
   );
-};
+});
+GlobalMenuBase.displayName = 'GlobalMenuBase';
 
 export const GlobalMenuFooter = ({ children }: GlobalMenuFooterProps) => {
   return <footer className={styles.footer}>{children}</footer>;
