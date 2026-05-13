@@ -57,6 +57,10 @@ export interface DialogListItemProps extends ItemLinkProps, DialogMetadataProps 
   unread?: boolean;
   /** Dialog unread label */
   unreadLabel?: string;
+  /** Dialog has unread items */
+  unreadItems?: boolean;
+  /** Dialog unread items label */
+  unreadItemsLabel?: string;
   /** Seen by log */
   seenByLog?: SeenByLogProps;
   /** Number of attachments */
@@ -106,6 +110,8 @@ export const DialogListItem = memo(
     dueAtLabel,
     unread,
     unreadLabel = 'Ulest',
+    unreadItems,
+    unreadItemsLabel = 'Ulest innhold',
     seenByLog,
     draftsLabel,
     sentCount,
@@ -148,9 +154,12 @@ export const DialogListItem = memo(
                 className={styles.title}
               >
                 {title}
-                {unread && (
+                {(unread && (
                   <Badge label={unreadLabel} variant="tinted" style={{ marginLeft: '0.75em', marginTop: '-2px' }} />
-                )}
+                )) ||
+                  (unreadItems && (
+                    <Badge label={unreadItemsLabel} style={{ marginLeft: '0.75em', marginTop: '-2px' }} />
+                  ))}
               </Heading>
               <DialogByline
                 size="xs"

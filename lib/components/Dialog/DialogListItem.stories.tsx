@@ -57,6 +57,28 @@ export const Unread = {
   },
 };
 
+export const UnreadTrashed = {
+  args: {
+    trashedAt: '2024-11-27',
+    trashedAtLabel: 'Slettet',
+    unread: true,
+  },
+};
+
+export const UnreadItems = {
+  args: {
+    unreadItems: true,
+  },
+};
+
+export const UnreadItemsArchived = {
+  args: {
+    archivedAt: '2024-11-27',
+    archivedAtLabel: 'Arkivert',
+    unreadItems: true,
+  },
+};
+
 export const SeenByEndUser = {
   args: {
     seenByLog: {
