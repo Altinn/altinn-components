@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.63.2](https://github.com/Altinn/altinn-components/compare/v0.63.1...v0.63.2) (2026-05-13)
+
+
+### Bug Fixes
+
+* **AccountSelector:** remount AccountMenu on each open ([#1179](https://github.com/Altinn/altinn-components/issues/1179)) ([3bbd0f1](https://github.com/Altinn/altinn-components/commit/3bbd0f12806e65f322ee9ddf0be0054139ecc694))
+
 ## [0.63.1](https://github.com/Altinn/altinn-components/compare/v0.63.0...v0.63.1) (2026-05-12)
 
 
