@@ -1,5 +1,5 @@
 import cx from 'classnames';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AccountMenu, type AccountMenuProps } from '../Account';
 import { DsHeading, DsSpinner } from '../DsComponents';
 import { SearchField, Switch } from '../Forms';
@@ -31,10 +31,26 @@ export const AccountSelector = ({
   onShowDeletedUnitsChange,
   isFullScreen,
 }: AccountSelectorProps) => {
-  const { closeAll, languageCode } = useRootContext();
+  const { closeAll, languageCode, currentId } = useRootContext();
+  const isOpen = currentId === 'account' || !!forceOpenFullScreen;
 
   const [searchString, setSearchString] = useState('');
   const [forceOpenFullScreenState, setForceOpenFullScreenState] = useState<boolean | undefined>(forceOpenFullScreen);
+
+  // Force a fresh AccountMenu (and thus a fresh @tanstack/react-virtual
+  // instance) on every open. HeaderDrawer keeps children mounted inside its
+  // `<dialog>`, so the virtualizer's internal scrollOffset and measured-size
+  // cache otherwise survive across opens. After interacting with the list and
+  // then having items shift (e.g. selection change), the stale state can leave
+  // the list rendering only a small slice anchored at the previous offset.
+  const [openCount, setOpenCount] = useState(0);
+  const prevIsOpenRef = useRef(isOpen);
+  useEffect(() => {
+    if (isOpen && !prevIsOpenRef.current) {
+      setOpenCount((c) => c + 1);
+    }
+    prevIsOpenRef.current = isOpen;
+  }, [isOpen]);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: we want to run this effect only when forceOpenFullScreen changes
   useEffect(() => {
@@ -88,6 +104,7 @@ export const AccountSelector = ({
         )}
       >
         <AccountMenu
+          key={openCount}
           {...accountMenu}
           onSelectAccount={onAccountSelection}
           keyboardEvents={false}
