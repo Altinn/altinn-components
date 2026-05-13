@@ -1,1 +1,0 @@
-import{j as e}from"./iframe-CU9tIbvZ.js";import{S as m}from"./Select-W3pYdA7h.js";import{F as i}from"./FieldBase-Bc5lvX-i.js";const x=({size:r="md",label:t,children:o,...s})=>e.jsx(i,{label:t,size:r,children:e.jsx(m,{...s,size:r,children:o})});export{x as S};
