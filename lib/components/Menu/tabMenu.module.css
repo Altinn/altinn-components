@@ -34,10 +34,11 @@
   margin-bottom: -1px;
 }
 
-.item[aria-selected="true"] {
+.item[data-selected="true"] {
   --dsc-border-color: var(--ds-color-border-strong);
 }
 
-.link[aria-selected="true"] {
+.link[aria-selected="true"],
+.link[aria-current="page"] {
   background-color: transparent;
 }
