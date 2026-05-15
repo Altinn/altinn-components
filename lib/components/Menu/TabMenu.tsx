@@ -12,7 +12,7 @@ export const TabMenu = ({ items = [], variant = 'default', size = 'sm' }: TabMen
   return (
     <ul className={styles.menu} data-variant={variant}>
       {items?.map((item: MenuItemProps) => (
-        <li key={item.id} className={styles.item} aria-selected={item.selected}>
+        <li key={item.id} className={styles.item} data-selected={item.selected}>
           <MenuItem {...item} className={styles.link} variant={variant} size={size} />
         </li>
       ))}

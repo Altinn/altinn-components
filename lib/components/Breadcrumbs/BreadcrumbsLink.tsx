@@ -26,7 +26,7 @@ export const BreadcrumbsLink = ({
   return (
     <Component
       tabIndex={tabIndex}
-      aria-selected={selected}
+      aria-current={selected ? 'page' : undefined}
       aria-disabled={disabled}
       disabled={disabled}
       className={cx(styles.link, className)}
