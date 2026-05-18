@@ -7,6 +7,8 @@ export interface ToolbarSearchProps extends SearchFieldProps {
 
 export const ToolbarSearch = memo(
   ({
+    label,
+    hideLabel = true,
     value,
     name,
     placeholder = 'Search',
@@ -23,6 +25,8 @@ export const ToolbarSearch = memo(
     return (
       <SearchField
         size="xs"
+        label={label}
+        hideLabel={hideLabel}
         value={value}
         name={name}
         placeholder={placeholder}

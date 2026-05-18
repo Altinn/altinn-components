@@ -3,14 +3,19 @@ import { Field, type FieldProps, Label, Typography } from '..';
 
 export type FieldBaseProps = {
   label?: ReactNode;
+  htmlFor?: string;
   helperText?: ReactNode;
   children?: ReactNode;
 } & FieldProps;
 
-export const FieldBase = ({ size, color, label, helperText, children, ...restProps }: FieldBaseProps) => {
+export const FieldBase = ({ size, color, label, htmlFor, helperText, children, ...restProps }: FieldBaseProps) => {
   return (
     <Field size={size} color={color} {...restProps}>
-      {label && <Label size={size}>{label}</Label>}
+      {label && (
+        <Label size={size} htmlFor={htmlFor}>
+          {label}
+        </Label>
+      )}
       {children}
       {helperText && <Typography size="xs">{helperText}</Typography>}
     </Field>

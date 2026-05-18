@@ -23,6 +23,7 @@ const meta = {
   ],
   args: {
     name: 'search',
+    label: 'Search',
   },
 } satisfies Meta<typeof ToolbarSearch>;
 
