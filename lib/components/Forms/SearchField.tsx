@@ -16,6 +16,7 @@ export interface SearchFieldProps extends InputProps {
   collapsible?: boolean;
   value?: InputProps['value'];
   label?: FieldBaseProps['label'];
+  hideLabel?: boolean;
   clearButtonAltText?: string;
   loading?: boolean;
   loadingLabel?: string;
@@ -31,6 +32,7 @@ export const SearchField = ({
   size,
   color = 'neutral',
   label,
+  hideLabel,
   value,
   onClear,
   clearButtonAltText = 'Clear search',
@@ -107,11 +109,14 @@ export const SearchField = ({
     rest.onBlur?.(event);
   };
 
+  const renderedLabel = hideLabel && label ? <span className={styles.srOnly}>{label}</span> : label;
+
   const fieldBaseComponent = (
     <FieldBase
       size={size}
       color={color}
-      label={label}
+      label={renderedLabel}
+      htmlFor={inputId}
       className={cx(styles.field, className)}
       data-collapsible={collapsible}
       onBlurCapture={handleBlurCapture}

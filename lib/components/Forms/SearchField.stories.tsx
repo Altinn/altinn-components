@@ -23,6 +23,14 @@ export const Default: Story = {
   },
 };
 
+export const HiddenLabel: Story = {
+  args: {
+    label: 'Search',
+    hideLabel: true,
+    placeholder: 'Søk',
+  },
+};
+
 export const ClearButton: Story = {
   args: {
     placeholder: 'Søk',
