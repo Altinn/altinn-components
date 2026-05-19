@@ -17,6 +17,8 @@ export interface ResourceListItemProps
   ownerLogoUrl?: string;
   /** Alternative text for the owner's logo (optional) */
   ownerLogoUrlAlt?: string;
+  /** Optional override for the secondary description line. Falls back to ownerName. */
+  description?: string;
   /** Badge properties for the resource item (optional) */
   badge?: BadgeProps;
   /** Title element for the resource item (optional) */
@@ -28,6 +30,7 @@ export const ResourceListItem = ({
   resourceName,
   ownerLogoUrlAlt,
   ownerLogoUrl,
+  description,
   titleAs = 'h3',
   ...props
 }: ResourceListItemProps) => {
@@ -40,7 +43,7 @@ export const ResourceListItem = ({
         type: 'company',
       }}
       title={{ children: resourceName, as: titleAs }}
-      description={ownerName}
+      description={description ?? ownerName}
       {...props}
     />
   );
