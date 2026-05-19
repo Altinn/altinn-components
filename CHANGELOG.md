@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.63.4](https://github.com/Altinn/altinn-components/compare/v0.63.3...v0.63.4) (2026-05-19)
+
+
+### Bug Fixes
+
+* Account selector aria label fix ([#1188](https://github.com/Altinn/altinn-components/issues/1188)) ([7b5b5fd](https://github.com/Altinn/altinn-components/commit/7b5b5fd74dc939f415d1ef5ba2f9b560b9d8433e))
+* Account selector favourite triggers user selection ([#1190](https://github.com/Altinn/altinn-components/issues/1190)) ([c3cb19a](https://github.com/Altinn/altinn-components/commit/c3cb19a4a376ea82a708ee65c82f4e7ec2fbcb17))
+* ToolbarSearch input label and sronly label fix ([#1187](https://github.com/Altinn/altinn-components/issues/1187)) ([92b8638](https://github.com/Altinn/altinn-components/commit/92b8638227b5a0f497e28fd42ebba5307c1c6c69))
+* Update active menu links to have aria-current ([#1185](https://github.com/Altinn/altinn-components/issues/1185)) ([46f5103](https://github.com/Altinn/altinn-components/commit/46f51036b00c8f1772a8a3a2dcbade05907f7df8))
+
 ## [0.63.3](https://github.com/Altinn/altinn-components/compare/v0.63.2...v0.63.3) (2026-05-13)
 
 
