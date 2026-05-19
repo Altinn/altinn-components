@@ -134,7 +134,7 @@ export const MenuItem = ({
         data-testid={dataTestId}
         onKeyUp={(e: KeyboardEvent) => {
           if (disabled) return;
-          e.key === 'Enter' && onClick?.();
+          e.target === e.currentTarget && e.key === 'Enter' && onClick?.();
           onKeyPress?.(e);
         }}
         onClick={onClick}
@@ -204,7 +204,7 @@ export const MenuItem = ({
       data-testid={dataTestId}
       onKeyUp={(e: KeyboardEvent) => {
         if (disabled) return;
-        e.key === 'Enter' && onClick?.();
+        e.target === e.currentTarget && e.key === 'Enter' && onClick?.();
         onKeyPress?.(e);
       }}
       onClick={onClick}
