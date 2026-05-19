@@ -109,13 +109,11 @@ export const SearchField = ({
     rest.onBlur?.(event);
   };
 
-  const renderedLabel = hideLabel && label ? <span className={styles.srOnly}>{label}</span> : label;
-
   const fieldBaseComponent = (
     <FieldBase
       size={size}
       color={color}
-      label={renderedLabel}
+      label={hideLabel ? undefined : label}
       htmlFor={inputId}
       className={cx(styles.field, className)}
       data-collapsible={collapsible}
@@ -127,6 +125,7 @@ export const SearchField = ({
       <Input
         {...rest}
         id={inputId}
+        aria-label={hideLabel && typeof label === 'string' ? label : undefined}
         inputSize={5}
         type="search"
         value={value}

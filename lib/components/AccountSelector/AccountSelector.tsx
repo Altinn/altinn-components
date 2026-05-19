@@ -80,6 +80,8 @@ export const AccountSelector = ({
       <div className={styles.searchSection}>
         <SearchField
           size="sm"
+          label={searchText}
+          hideLabel
           name={searchText}
           placeholder={searchText}
           value={searchString}
