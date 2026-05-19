@@ -1,0 +1,13 @@
+import{j as i}from"./iframe-GJv3-kpe.js";import{S as s}from"./Bell-BTom6BN8.js";import{N as m}from"./NotificationItemIcon-DTx_ZuhL.js";import{L as a}from"./List-4WWtcier.js";import"./preload-helper-PPVm8Dsz.js";import"./useId-B1GQrjht.js";import"./ListItem-D03tI2LI.js";import"./index-D19pPnAw.js";import"./Button-XgEODhFb.js";import"./button-5jjXov6B.js";import"./use-merge-refs-oF7p1rqv.js";import"./lite-DaUVFjkg.js";import"./Input-WbVs78EM.js";import"./input-B1NrCnvc.js";import"./XMark-D7blLnze.js";import"./Icon-DKgAzIsH.js";import"./Skeleton-dVNdeapn.js";import"./Avatar-CGv-fnY8.js";import"./AvatarGroup-DxuzyW4n.js";import"./Badge-CyLczarF.js";import"./Tooltip-Dv6bEDCe.js";import"./floating-ui.dom-DCpi3RTt.js";import"./Heading-CiHDuood.js";import"./useHighlightedText-ClfYglU-.js";import"./ChevronUp-DpWMs-eZ.js";import"./ChevronDown-DZsHrJjp.js";import"./ChevronRight-C3wqtQo3.js";import"./ContextMenu-DR011-2b.js";import"./useDropdownMenuController-CTnnTueZ.js";import"./Dropdown-CFn-KtHz.js";import"./MenuElipsisHorizontal-C_K0JSPh.js";import"./SearchField-D4OrqN5V.js";import"./MagnifyingGlass-a5jU8Ia_.js";import"./FieldBase-D2hpNZAE.js";import"./Typography-XN79jGlV.js";import"./Label-Bx3ShTJ6.js";import"./index-OoPsm9QB.js";import"./MenuListItem-BuleDevk.js";import"./MenuListHeading-w-EtPB4c.js";import"./MenuItem-CRhKMxAm.js";import"./ItemMedia-45ogcwRE.js";import"./Checkmark-DXLqUvZZ.js";import"./ItemControls-3C4JbZ3m.js";import"./useMenu-D_O6qRR4.js";import"./index-CNHiDjij.js";import"./InformationSquare-Crm3l9Sr.js";import"./Flex-CxS25VqD.js";const tr={title:"Notifications/NotificationItem",component:m,tags:["beta","autodocs"],parameters:{},args:{id:"settings",variant:"tinted",ariaLabel:"Title",icon:s,title:"Du har fått en beskjed",description:"Dette er en beskrivelse av notifikasjonen. Her kan du lese mer om innholdet i meldingen.",dismissable:!0},decorators:[e=>i.jsx(a,{children:i.jsx(e,{})})]},r={args:{}},t={args:{iconBadge:{label:"Nytt innhold"}}},o={args:{dismissable:!1}};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`{
+  args: {}
+}`,...r.parameters?.docs?.source}}};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
+  args: {
+    iconBadge: {
+      label: 'Nytt innhold'
+    }
+  }
+}`,...t.parameters?.docs?.source}}};o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
+  args: {
+    dismissable: false
+  }
+}`,...o.parameters?.docs?.source}}};const or=["Default","WithBadge","NotDismissable"];export{r as Default,o as NotDismissable,t as WithBadge,or as __namedExportsOrder,tr as default};
