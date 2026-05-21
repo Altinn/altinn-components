@@ -22,6 +22,7 @@ const meta = {
     linkIcon: false,
     collapsible: false,
     as: 'div',
+    containerAs: 'li',
     interactive: true,
     subUnit: false,
     deleted: false,
@@ -52,6 +53,12 @@ const meta = {
     },
     as: {
       options: ['div', 'button', 'a', 'span'],
+      control: {
+        type: 'select',
+      },
+    },
+    containerAs: {
+      options: ['li', 'div'],
       control: {
         type: 'select',
       },
