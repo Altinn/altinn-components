@@ -47,7 +47,7 @@ export const useAccounts = ({ accountId, accounts = defaultAccounts, includeGrou
   } as AccountDataProps;
 
   const allCompanies = accounts?.filter((item) => item.type === 'company');
-  const allCompanyÌtem = {
+  const allCompanyItem = {
     id: 'all-companies',
     type: 'group',
     name: 'Alle virksomheter',
@@ -83,7 +83,7 @@ export const useAccounts = ({ accountId, accounts = defaultAccounts, includeGrou
 
   /** filter items */
 
-  const allAccouns = [...accounts, allCompanyÌtem, allPeopleItem];
+  const allAccouns = [...accounts, allCompanyItem, allPeopleItem];
 
   const filteredAccounts = allAccouns?.filter((item) => {
     if (!includeGroups && item.type === 'group') {
