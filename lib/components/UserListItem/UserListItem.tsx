@@ -22,6 +22,7 @@ export interface UserListItemProps
     | 'interactive'
     | 'id'
     | 'className'
+    | 'containerAs'
   > {
   /** Unique identifier for the user item */
   id: string;
