@@ -358,19 +358,7 @@ export const WithBanner = (args: LayoutStoryArgs) => {
           link: { label: "Dette må du passe på.", href: "#" },
         }}
       >
-        <Flex
-          align="center"
-          justify="center"
-          style={{
-            border: "1px dashed",
-            width: "100%",
-            height: "40rem",
-            gap: 5,
-          }}
-        >
-          Content
-          <a href="https://altinn.no">with a focusable item</a>
-        </Flex>
+        {args.children}
       </Layout>
     </RootProvider>
   );
