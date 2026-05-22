@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.63.5](https://github.com/Altinn/altinn-components/compare/v0.63.4...v0.63.5) (2026-05-22)
+
+
+### Bug Fixes
+
+* Add prop containerAs on UserListItem ([#1195](https://github.com/Altinn/altinn-components/issues/1195)) ([249de56](https://github.com/Altinn/altinn-components/commit/249de56c6028bea149f687e33a031a6818e303e8))
+* **header:** scroll to top when opening account selector ([#1200](https://github.com/Altinn/altinn-components/issues/1200)) ([616779d](https://github.com/Altinn/altinn-components/commit/616779dd62c1efcde09c69ccedac224c529da83c))
+* **safari:** lock background scroll when global menu is open on mobile ([#1199](https://github.com/Altinn/altinn-components/issues/1199)) ([3ffa8d8](https://github.com/Altinn/altinn-components/commit/3ffa8d88d8d45594c3ec25218a13366e4d7483ff))
+
+
+### Miscellaneous Chores
+
+* **deps:** update @digdir/designsystemet-* to 1.14.0 ([#1196](https://github.com/Altinn/altinn-components/issues/1196)) ([bd5bc37](https://github.com/Altinn/altinn-components/commit/bd5bc37a042b6e7700c9447424dbca24b2cb1662))
+
 ## [0.63.4](https://github.com/Altinn/altinn-components/compare/v0.63.3...v0.63.4) (2026-05-19)
 
 
