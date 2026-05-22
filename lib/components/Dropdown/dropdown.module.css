@@ -113,6 +113,14 @@
     border-radius: 0;
     padding-top: 0;
   }
+
+  /* Lock background scroll while the mobile drawer-dropdown is open, so the
+     in-flow header doesn't drift away from the fixed-position dropdown when
+     the user swipes (most visible on iOS Safari). */
+  html:has([data-variant="drawer-dropdown"]:not([aria-hidden="true"])) {
+    overflow: hidden;
+    scrollbar-gutter: stable;
+  }
 }
 
 @media (min-width: 1024px) {
