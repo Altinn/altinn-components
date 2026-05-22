@@ -1,0 +1,23 @@
+import{r as l,j as g}from"./iframe-D-ID03Ik.js";import{a as I}from"./SearchField-D--HBqax.js";import{T as v}from"./ToolbarMenu-B1E5Clfm.js";import{F as R}from"./Flex-pOoXofWS.js";import"./preload-helper-PPVm8Dsz.js";import"./index-DpFyEq-2.js";import"./MagnifyingGlass-DWkFIUI5.js";import"./useId-DxZoCrQU.js";import"./XMark-DAr8sgUQ.js";import"./FieldBase-DmpPz6xV.js";import"./Typography-COzCTzPW.js";import"./useHighlightedText-Db1ksA0v.js";import"./Skeleton--3bwKnDN.js";import"./Label-DsF9mxAr.js";import"./tooltip-CH7-mov_.js";import"./Input-BflTpPuJ.js";import"./Button-CO1zFGa4.js";import"./MenuListItem-Ba7wKRG_.js";import"./MenuListHeading-D9YSE4Po.js";import"./MenuItem-Czug_8v9.js";import"./ItemMedia-BTzF80jS.js";import"./Avatar-CUF81_T9.js";import"./AvatarGroup-ZBmyex5T.js";import"./Icon-CER3YkDn.js";import"./Checkmark-WbwQiDGB.js";import"./Heading-BD0s_Obx.js";import"./ItemControls-Bpd8WrWV.js";import"./ChevronRight-CxM-6AgC.js";import"./Badge-BH60Kfyy.js";import"./Tooltip-DuVvkEGb.js";import"./useMenu-OLkOIIh8.js";import"./index-B-QoLJUi.js";import"./InformationSquare-BLDef__3.js";import"./useDropdownMenuController-CvvhEQZ7.js";import"./ChevronUpDown-BHEUhOzV.js";import"./Dropdown-CPTBx2eu.js";const z=(r=10)=>{const s=["Nordic","Global","Norwegian","Alpha","Beta","Gamma","Rapid","Smart","Green","Future"],h=["Solutions","Logistics","Systems","Consulting","Bakery","Tech","Holdings","Ventures","Media","Group"],M=["AS","ASA","AB","Inc","Ltd","Corp"],a=e=>e[Math.floor(Math.random()*e.length)],f=()=>Math.floor(1e8+Math.random()*9e8).toString(),S=(e=>{const i=[],m=[];for(let o=0;o<e;o++){const t=`company-${o}`,d=`${a(s)} ${a(h)} ${a(M)}`,n=d.charAt(0).toLowerCase(),b=o>0&&Math.random()<.5?m[Math.floor(Math.random()*m.length)]:void 0;i.push({id:t,groupId:n,name:d,orgNumber:f(),parentId:b}),m.push(t)}return i.sort((o,t)=>o.name.localeCompare(t.name))})(r),A=[{id:"user",groupId:"favourites",name:"Kari Nordmann",birthdate:"03037712345"},...S].map(e=>{const i=[e.name,e.orgNumber,e.birthdate];if(e.birthdate)return{...e,searchWords:i,title:e.name,description:"Født: "+e.birthdate,icon:{type:"person",name:e.name}};function m(t){if(!t)return"";const d=t.length,n=Math.ceil(d/3),C=t.slice(0,n),b=t.slice(n,n*2),y=t.slice(n*2);return[C,b,y].join(" ")}const o="Org. nr. "+m(e?.orgNumber);return{id:e.id,groupId:e?.parentId||e.id,title:e.name,description:o,searchWords:i,icon:{type:"company",name:e.name,isParent:!!e.parentId}}}),x=A.find(e=>e.icon.type==="company")?.groupId||"aa",N={favourites:{title:"Favoritter"},[x]:{title:"Alle virksomheter"},search:{title:"{count} treff"}};return{items:A,groups:N}},le={title:"Menu/VirtualizedMenu",component:I,parameters:{layout:"fullscreen"},args:{variant:"default"}},u=()=>{const{items:r,groups:s}=l.useMemo(()=>z(10),[]);return g.jsx(I,{searchable:!0,items:r,groups:s,size:"md"})};u.parameters={screenshot:{skip:!0}};const c=()=>{const{items:r,groups:s}=l.useMemo(()=>z(1e4),[]);return g.jsx(I,{virtualized:!0,searchable:!0,items:r,groups:s,size:"md"})};c.parameters={screenshot:{skip:!0}};const p=()=>{const{items:r,groups:s}=l.useMemo(()=>z(1e4),[]),[h,M]=l.useState(""),a=r.find(f=>f.id===h)?.title;return g.jsx(R,{padding:3,children:g.jsx(v,{size:"md",items:r,groups:s,virtualized:!0,searchable:!0,title:"Title",onSelectId:M,label:a??"Select account"})})};p.parameters={screenshot:{skip:!0}};u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`() => {
+  const {
+    items,
+    groups
+  } = useMemo(() => useRandomMenuItems(10), []);
+  return <Menu searchable items={items as MenuItemProps[]} groups={groups} size="md" />;
+}`,...u.parameters?.docs?.source}}};c.parameters={...c.parameters,docs:{...c.parameters?.docs,source:{originalSource:`() => {
+  const {
+    items,
+    groups
+  } = useMemo(() => useRandomMenuItems(10000), []);
+  return <Menu virtualized searchable items={items as MenuItemProps[]} groups={groups} size="md" />;
+}`,...c.parameters?.docs?.source}}};p.parameters={...p.parameters,docs:{...p.parameters?.docs,source:{originalSource:`() => {
+  const {
+    items,
+    groups
+  } = useMemo(() => useRandomMenuItems(10000), []);
+  const [currentAccount, setCurrentAccount] = useState<string>('');
+  const currentAccountName = items.find(item => item.id === currentAccount)?.title;
+  return <Flex padding={3}>
+      <ToolbarMenu size="md" items={items} groups={groups} virtualized searchable title="Title" onSelectId={setCurrentAccount} label={currentAccountName ?? 'Select account'} />
+    </Flex>;
+}`,...p.parameters?.docs?.source}}};const ge=["NotVirtualized","Virtualized","ToolbarVirtualizedMenu"];export{u as NotVirtualized,p as ToolbarVirtualizedMenu,c as Virtualized,ge as __namedExportsOrder,le as default};
