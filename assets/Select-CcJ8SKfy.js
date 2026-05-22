@@ -1,0 +1,1 @@
+import{j as s}from"./iframe-BM6RZuQM.js";import{b as a}from"./tooltip-DKLQ4JCb.js";const p=({size:t="md",color:o,children:e,...r})=>s.jsx(a,{"data-color":o,"data-size":t,...r,children:e});export{p as S};
