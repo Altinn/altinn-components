@@ -1,9 +1,17 @@
-import type { Meta } from '@storybook/react-vite';
-import { useState } from 'react';
-import { Badge, Flex, RootProvider } from '..';
-import type { LayoutProps } from '../';
-import { DialogList, Heading, Layout, List, type ListItemProps, PageBase, Toolbar } from '../';
-import { inboxSection } from '../../../examples';
+import type { Meta } from "@storybook/react-vite";
+import { useState } from "react";
+import { Badge, Flex, RootProvider } from "..";
+import type { LayoutProps } from "../";
+import {
+  DialogList,
+  Heading,
+  Layout,
+  List,
+  type ListItemProps,
+  PageBase,
+  Toolbar,
+} from "../";
+import { inboxSection } from "../../../examples";
 import {
   footer,
   getAuthorizedPartiesData,
@@ -13,9 +21,9 @@ import {
   useAccountMenu,
   useGlobalMenu,
   useLayout,
-} from '../../../examples';
-import { useAccountSelector } from '../../hooks';
-import type { AccountSelectorProps } from '../AccountSelector';
+} from "../../../examples";
+import { useAccountSelector } from "../../hooks";
+import type { AccountSelectorProps } from "../AccountSelector";
 
 // Add custom story args interface for easier testing
 interface LayoutStoryArgs extends LayoutProps {
@@ -23,14 +31,14 @@ interface LayoutStoryArgs extends LayoutProps {
 }
 
 const meta = {
-  title: 'Layout/Layout',
+  title: "Layout/Layout",
   component: Layout,
   //  tags: ["autodocs"],
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
   args: {
-    theme: 'subtle',
+    theme: "subtle",
     skipLink,
     header,
     footer,
@@ -42,9 +50,9 @@ const meta = {
         align="center"
         justify="center"
         style={{
-          border: '1px dashed',
-          width: '100%',
-          height: '100%',
+          border: "1px dashed",
+          width: "100%",
+          height: "100%",
           gap: 5,
         }}
       >
@@ -52,13 +60,13 @@ const meta = {
         <a href="https://altinn.no">with a focusable item</a>
       </Flex>
     ),
-    color: 'company',
+    color: "company",
     forceOpenFullScreen: undefined,
   },
   argTypes: {
-    color: { control: 'select', options: ['company', 'neutral', 'person'] },
+    color: { control: "select", options: ["company", "neutral", "person"] },
     forceOpenFullScreen: {
-      control: 'select',
+      control: "select",
       options: [true, false, undefined],
     },
   },
@@ -69,10 +77,10 @@ export default meta;
 export const Preview = (args: LayoutStoryArgs) => {
   const layout = useLayout(args);
   const accountMenu = {
-    ...useAccountMenu({ accountId: 'diaspora' }),
+    ...useAccountMenu({ accountId: "diaspora" }),
     virtualized: true,
   };
-  const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
+  const globalMenu = useGlobalMenu({ accountId: "diaspora" });
   const accountSelector: AccountSelectorProps = {
     accountMenu: accountMenu,
     forceOpenFullScreen: args.forceOpenFullScreen,
@@ -96,18 +104,20 @@ export const Preview = (args: LayoutStoryArgs) => {
 
 export const UsingUseAccountHook = (args: LayoutStoryArgs) => {
   const layout = useLayout(args);
-  const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
+  const globalMenu = useGlobalMenu({ accountId: "diaspora" });
 
   // Use the useAccountSelector hook to get account menu and loading state
   const [favoriteUuids, setFavoriteUuids] = useState<string[]>([]);
   const [showDeletedAccounts, setShowDeletedAccounts] = useState(false); // Get actual value from user profile
-  const [currentAccountUuid, setCurrentAccountUuid] = useState<string | undefined>(
-    '167536b5-f8ed-4c5a-8f48-0279507e53ae',
-  );
+  const [currentAccountUuid, setCurrentAccountUuid] = useState<
+    string | undefined
+  >("167536b5-f8ed-4c5a-8f48-0279507e53ae");
   const authorizedParties = getAuthorizedPartiesData(); // Fetch your authorized parties data from external source
-  const selfAccountUuid = '167536b5-f8ed-4c5a-8f48-0279507e53ae';
+  const selfAccountUuid = "167536b5-f8ed-4c5a-8f48-0279507e53ae";
   const onToggleFavorite = (uuid: string) => {
-    setFavoriteUuids((prev) => (prev.includes(uuid) ? prev.filter((id) => id !== uuid) : [...prev, uuid]));
+    setFavoriteUuids((prev) =>
+      prev.includes(uuid) ? prev.filter((id) => id !== uuid) : [...prev, uuid],
+    );
   };
   const accountSelector = useAccountSelector({
     partyListDTO: authorizedParties,
@@ -118,7 +128,7 @@ export const UsingUseAccountHook = (args: LayoutStoryArgs) => {
     onSelectAccount: (accountId: string) => {
       setCurrentAccountUuid(accountId);
     },
-    languageCode: 'nb',
+    languageCode: "nb",
     isLoading: false,
     showDeletedUnits: showDeletedAccounts,
     onShowDeletedUnitsChange: (newValue: boolean) => {
@@ -145,7 +155,7 @@ export const UsingUseAccountHook = (args: LayoutStoryArgs) => {
 export const LogInView = (args: LayoutStoryArgs) => {
   const layout = useLayout(args);
   const accountMenu = {
-    ...useAccountMenu({ accountId: 'diaspora' }),
+    ...useAccountMenu({ accountId: "diaspora" }),
     virtualized: true,
   };
   const accountMenuNotLoggedIn = {
@@ -153,13 +163,13 @@ export const LogInView = (args: LayoutStoryArgs) => {
     currentAccount: undefined,
     items: [],
   };
-  const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
+  const globalMenu = useGlobalMenu({ accountId: "diaspora" });
   const accountSelector: AccountSelectorProps = {
     accountMenu: accountMenuNotLoggedIn,
     forceOpenFullScreen: args.forceOpenFullScreen,
   };
   const onLoginClick = () => {
-    alert('Login clicked');
+    alert("Login clicked");
   };
 
   console.info(globalMenu);
@@ -183,8 +193,8 @@ export const LogInView = (args: LayoutStoryArgs) => {
 
 export const WithEnglishLanguage = (args: LayoutStoryArgs) => {
   const layout = useLayout(args);
-  const accountMenu = useAccountMenu({ accountId: 'diaspora' });
-  const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
+  const accountMenu = useAccountMenu({ accountId: "diaspora" });
+  const globalMenu = useGlobalMenu({ accountId: "diaspora" });
   const accountSelector: AccountSelectorProps = {
     accountMenu: accountMenu,
   };
@@ -223,13 +233,13 @@ export const StickySidebar = (args: LayoutStoryArgs) => {
             items={
               Array.from({ length: 30 }, (_, i) => {
                 const avatar = {
-                  type: 'person',
-                  name: i + 'Item ' + i * i,
+                  type: "person",
+                  name: i + "Item " + i * i,
                 };
 
                 return {
-                  id: 'i' + i,
-                  groupId: i > 10 ? '2' : '1',
+                  id: "i" + i,
+                  groupId: i > 10 ? "2" : "1",
                   icon: avatar,
                   title: `Item ${i + 1}`,
                 };
@@ -275,8 +285,8 @@ export const Fullscreen = (args: LayoutStoryArgs) => {
 
 export const Profile = (args: LayoutStoryArgs) => {
   const layout = useLayout(args);
-  const accountMenu = useAccountMenu({ accountId: 'diaspora' });
-  const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
+  const accountMenu = useAccountMenu({ accountId: "diaspora" });
+  const globalMenu = useGlobalMenu({ accountId: "diaspora" });
   const accountSelector: AccountSelectorProps = {
     accountMenu: accountMenu,
   };
@@ -300,8 +310,8 @@ export const Profile = (args: LayoutStoryArgs) => {
 
 export const SidebarReference = (args: LayoutStoryArgs) => {
   const layout = useLayout(args);
-  const accountMenu = useAccountMenu({ accountId: 'diaspora' });
-  const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
+  const accountMenu = useAccountMenu({ accountId: "diaspora" });
+  const globalMenu = useGlobalMenu({ accountId: "diaspora" });
   const accountSelector: AccountSelectorProps = {
     accountMenu: accountMenu,
   };
@@ -317,7 +327,9 @@ export const SidebarReference = (args: LayoutStoryArgs) => {
         }}
         sidebar={{
           ...args.sidebar,
-          footer: <Badge label="Beta" variant="base" color="neutral" size="sm" />,
+          footer: (
+            <Badge label="Beta" variant="base" color="neutral" size="sm" />
+          ),
         }}
       >
         {args.children}
@@ -329,10 +341,10 @@ export const SidebarReference = (args: LayoutStoryArgs) => {
 export const WithBanner = (args: LayoutStoryArgs) => {
   const layout = useLayout(args);
   const accountMenu = {
-    ...useAccountMenu({ accountId: 'diaspora' }),
+    ...useAccountMenu({ accountId: "diaspora" }),
     virtualized: true,
   };
-  const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
+  const globalMenu = useGlobalMenu({ accountId: "diaspora" });
   const accountSelector: AccountSelectorProps = { accountMenu };
 
   return (
@@ -342,11 +354,23 @@ export const WithBanner = (args: LayoutStoryArgs) => {
         {...layout}
         header={{ ...layout.header, accountSelector, globalMenu }}
         banner={{
-          title: '19. juni skrus gamle Altinn av.',
-          link: { label: 'Dette må du passe på.', href: '#' },
+          title: "19. juni skrus gamle Altinn av.",
+          link: { label: "Dette må du passe på.", href: "#" },
         }}
       >
-        {args.children}
+        <Flex
+          align="center"
+          justify="center"
+          style={{
+            border: "1px dashed",
+            width: "100%",
+            height: "40rem",
+            gap: 5,
+          }}
+        >
+          Content
+          <a href="https://altinn.no">with a focusable item</a>
+        </Flex>
       </Layout>
     </RootProvider>
   );
@@ -355,10 +379,10 @@ export const WithBanner = (args: LayoutStoryArgs) => {
 export const WithCustomBanner = (args: LayoutStoryArgs) => {
   const layout = useLayout(args);
   const accountMenu = {
-    ...useAccountMenu({ accountId: 'diaspora' }),
+    ...useAccountMenu({ accountId: "diaspora" }),
     virtualized: true,
   };
-  const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
+  const globalMenu = useGlobalMenu({ accountId: "diaspora" });
   const accountSelector: AccountSelectorProps = { accountMenu };
 
   return (
@@ -368,10 +392,10 @@ export const WithCustomBanner = (args: LayoutStoryArgs) => {
         {...layout}
         header={{ ...layout.header, accountSelector, globalMenu }}
         banner={{
-          title: '19. juni skrus gamle Altinn av.',
-          link: { label: 'Dette må du passe på.', href: '#' },
-          color: 'warning',
-          variant: 'alert',
+          title: "19. juni skrus gamle Altinn av.",
+          link: { label: "Dette må du passe på.", href: "#" },
+          color: "warning",
+          variant: "alert",
         }}
       >
         {args.children}
@@ -382,8 +406,8 @@ export const WithCustomBanner = (args: LayoutStoryArgs) => {
 
 export const InboxLayout = (args: LayoutStoryArgs) => {
   const layout = useLayout(args);
-  const accountMenu = useAccountMenu({ accountId: 'diaspora' });
-  const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
+  const accountMenu = useAccountMenu({ accountId: "diaspora" });
+  const globalMenu = useGlobalMenu({ accountId: "diaspora" });
   const accountSelector: AccountSelectorProps = {
     accountMenu: accountMenu,
   };
@@ -400,15 +424,15 @@ export const InboxLayout = (args: LayoutStoryArgs) => {
   };
 
   const breadcrumbs = {
-    ariaLabel: 'Du er her:',
+    ariaLabel: "Du er her:",
     items: [
       {
-        label: 'Innboks',
-        href: '#',
+        label: "Innboks",
+        href: "#",
       },
       {
-        label: 'Arkiv',
-        href: '#',
+        label: "Arkiv",
+        href: "#",
       },
     ],
   };
@@ -420,14 +444,20 @@ export const InboxLayout = (args: LayoutStoryArgs) => {
       searchable: true,
     },
     search: {
-      placeholder: 'Søk',
+      placeholder: "Søk",
       collapsible: true,
     },
   };
 
   return (
     <RootProvider>
-      <Layout {...args} {...layout} sidebar={sidebar} header={header} breadcrumbs={breadcrumbs}>
+      <Layout
+        {...args}
+        {...layout}
+        sidebar={sidebar}
+        header={header}
+        breadcrumbs={breadcrumbs}
+      >
         <PageBase>
           <Heading size="xl">Page title</Heading>
           <Toolbar {...toolbar} />
