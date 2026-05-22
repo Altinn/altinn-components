@@ -170,7 +170,7 @@ export const WithShortAccountList = () => {
   const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
 
   const [favoriteUuids, setFavoriteUuids] = useState<string[]>([]);
-  const authorizedParties = getSyntheticAuthorizedPartiesData(1);
+  const authorizedParties = getSyntheticAuthorizedPartiesData(2);
   const selfAccountUuid = authorizedParties.find((p) => p.type === 'Person' || p.type === 'SelfIdentified')?.partyUuid;
   const [currentAccountUuid, setCurrentAccountUuid] = useState<string | undefined>(selfAccountUuid);
   const onToggleFavorite = (uuid: string) => {

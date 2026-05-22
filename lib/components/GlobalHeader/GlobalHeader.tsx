@@ -76,7 +76,7 @@ export const GlobalHeader = ({
                 closedBy={accountSelector?.forceOpenFullScreen ? 'none' : 'any'}
                 expanded={accountSelector?.forceOpenFullScreen || expanded}
                 onToggle={() => setExpanded(!expanded)}
-                canExpand={accountSelector.accountMenu.items.length > 2}
+                canExpand={accountSelector.accountMenu.items.length > 3}
               >
                 <AccountSelector {...accountSelector} forceOpenFullScreen={accountSelector.forceOpenFullScreen} />
               </HeaderDrawer>
