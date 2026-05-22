@@ -2,7 +2,7 @@ import type { Meta } from '@storybook/react-vite';
 import { useState } from 'react';
 import {
   getAuthorizedPartiesData,
-  getLargeAuthorizedPartiesData,
+  getSyntheticAuthorizedPartiesData,
   header,
   useGlobalHeader,
   useGlobalMenu,
@@ -86,7 +86,10 @@ export const ForcedFullScreenAccountSelection = () => {
           {
             ...accountSelector,
             forceOpenFullScreen: true,
-            accountMenu: { ...accountSelector?.accountMenu, currentAccount: undefined },
+            accountMenu: {
+              ...accountSelector?.accountMenu,
+              currentAccount: undefined,
+            },
           } as AccountSelectorProps
         }
         onLoginClick={onLoginClick}
@@ -137,9 +140,39 @@ export const WithVirtualizationEnabled = () => {
   const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
 
   const [favoriteUuids, setFavoriteUuids] = useState<string[]>([]);
-  const authorizedParties = getLargeAuthorizedPartiesData(1000);
-  const [currentAccountUuid, setCurrentAccountUuid] = useState<string | undefined>(authorizedParties[0].partyUuid);
-  const selfAccountUuid = authorizedParties[0].partyUuid;
+  const authorizedParties = getSyntheticAuthorizedPartiesData(1000);
+  const selfAccountUuid = authorizedParties.find((p) => p.type === 'Person' || p.type === 'SelfIdentified')?.partyUuid;
+  const [currentAccountUuid, setCurrentAccountUuid] = useState<string | undefined>(selfAccountUuid);
+  const onToggleFavorite = (uuid: string) => {
+    setFavoriteUuids((prev) => (prev.includes(uuid) ? prev.filter((id) => id !== uuid) : [...prev, uuid]));
+  };
+  const accountSelector = useAccountSelector({
+    partyListDTO: authorizedParties,
+    favoriteAccountUuids: favoriteUuids,
+    onToggleFavorite: onToggleFavorite,
+    selfAccountUuid,
+    currentAccountUuid: currentAccountUuid,
+    onSelectAccount: (accountId: string) => {
+      setCurrentAccountUuid(accountId);
+    },
+    languageCode: 'nb',
+    isLoading: false,
+    virtualized: true,
+  });
+  return (
+    <RootProvider>
+      <GlobalHeader globalMenu={globalMenu} accountSelector={accountSelector} />
+    </RootProvider>
+  );
+};
+
+export const WithShortAccountList = () => {
+  const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
+
+  const [favoriteUuids, setFavoriteUuids] = useState<string[]>([]);
+  const authorizedParties = getSyntheticAuthorizedPartiesData(1);
+  const selfAccountUuid = authorizedParties.find((p) => p.type === 'Person' || p.type === 'SelfIdentified')?.partyUuid;
+  const [currentAccountUuid, setCurrentAccountUuid] = useState<string | undefined>(selfAccountUuid);
   const onToggleFavorite = (uuid: string) => {
     setFavoriteUuids((prev) => (prev.includes(uuid) ? prev.filter((id) => id !== uuid) : [...prev, uuid]));
   };

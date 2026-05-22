@@ -10,6 +10,7 @@ export interface HeaderDrawerProps {
   onClose: () => void;
   closedBy?: 'any' | 'closerequest' | 'none';
   expanded?: boolean;
+  canExpand?: boolean;
   onToggle?: () => void;
   children: ReactNode;
 }
@@ -20,6 +21,7 @@ export const HeaderDrawer = ({
   onClose,
   closedBy = 'any',
   expanded,
+  canExpand,
   onToggle,
   children,
 }: HeaderDrawerProps) => {
@@ -101,7 +103,7 @@ export const HeaderDrawer = ({
         onClose={closedBy !== 'none' ? onClose : undefined}
       >
         <div className={styles.body}>{children}</div>
-        {closedBy !== 'none' && (
+        {closedBy !== 'none' && canExpand && (
           <footer className={styles.footer}>
             <Button className={styles.toggleButton} variant="outline" onClick={onToggle}>
               {expanded ? (

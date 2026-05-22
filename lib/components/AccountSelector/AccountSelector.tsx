@@ -74,12 +74,13 @@ export const AccountSelector = ({
 
   return (
     <div className={cx(className, styles.accountSelector)}>
-      <DsHeading data-size="sm" level={2} className={styles.heading}>
+      <DsHeading data-size="sm" level={2} className={styles.heading} id="account-selector-heading">
         {heading}
       </DsHeading>
       <div className={styles.searchSection}>
         <SearchField
           size="sm"
+          aria-labelledby="account-selector-heading"
           label={searchText}
           hideLabel
           name={searchText}
