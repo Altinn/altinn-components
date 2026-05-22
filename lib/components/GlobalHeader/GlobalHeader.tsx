@@ -39,6 +39,9 @@ export const GlobalHeader = ({
   const { currentId, toggleId, closeAll } = useRootContext();
 
   const onToggleAccountMenu = () => {
+    if (currentId !== 'account') {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
     toggleId('account');
   };
 
