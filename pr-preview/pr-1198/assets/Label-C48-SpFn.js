@@ -1,0 +1,1 @@
+import{j as r}from"./iframe-C6Awlou2.js";import{d,L as i}from"./tooltip-wBWP-9p3.js";const m=({size:a,color:t,reverse:o,children:s,...e})=>r.jsx(d,{...e,"data-size":a,"data-color":t,"data-position":o?"end":"start",children:s}),p=({size:a,color:t,children:o,...s})=>r.jsx(i,{...s,"data-size":a,"data-color":t,children:o});export{m as F,p as L};
