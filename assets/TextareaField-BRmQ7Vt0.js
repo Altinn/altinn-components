@@ -1,1 +1,0 @@
-import{j as t}from"./iframe-BM6RZuQM.js";import{e as x}from"./tooltip-DKLQ4JCb.js";import{F as i}from"./FieldBase-lFVyN1xh.js";const m=({size:r,color:e,...a})=>t.jsx(x,{...a,"data-size":r,"data-color":e}),p=({size:r,color:e,label:a,helperText:s,...o})=>t.jsx(i,{size:r,color:e,label:a,helperText:s,children:t.jsx(m,{...o})});export{p as T};

@@ -1,1 +1,0 @@
-import{j as s}from"./iframe-BM6RZuQM.js";import{S as i}from"./Section-h9TGEdkh.js";import{H as o}from"./Heading-aHWaPGZz.js";const m=({title:r,children:e})=>s.jsxs(i,{as:"header",spacing:2,children:[r&&s.jsx(o,{size:"xl",children:r}),e]});export{m as A};
