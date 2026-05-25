@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.63.6](https://github.com/Altinn/altinn-components/compare/v0.63.5...v0.63.6) (2026-05-25)
+
+
+### Bug Fixes
+
+* **SearchField:** restore collapsible behavior with &lt;ds-field&gt; custom element ([#1201](https://github.com/Altinn/altinn-components/issues/1201)) ([b87dde0](https://github.com/Altinn/altinn-components/commit/b87dde052ae5e76b34106fda2b0c0b353e0ac8c1))
+
 ## [0.63.5](https://github.com/Altinn/altinn-components/compare/v0.63.4...v0.63.5) (2026-05-22)
 
 
