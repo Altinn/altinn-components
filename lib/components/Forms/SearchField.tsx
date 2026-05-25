@@ -116,7 +116,7 @@ export const SearchField = ({
       label={hideLabel ? undefined : label}
       htmlFor={inputId}
       className={cx(styles.field, className)}
-      data-collapsible={collapsible}
+      data-collapsible={collapsible ? true : undefined}
       onBlurCapture={handleBlurCapture}
     >
       <span className={styles.hiddenInput} aria-hidden="true">
@@ -130,7 +130,7 @@ export const SearchField = ({
         type="search"
         value={value}
         className={styles.input}
-        data-collapsible={collapsible}
+        data-collapsible={collapsible ? true : undefined}
         autoCapitalize="off"
         autoComplete="off"
         minLength={minLength}
