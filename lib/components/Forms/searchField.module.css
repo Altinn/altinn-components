@@ -21,7 +21,7 @@
   justify-items: start;
 }
 
-.field[data-collapsible="true"] {
+.field[data-collapsible] {
   width: auto;
 }
 
@@ -30,8 +30,8 @@
   min-width: 25ch;
 }
 
-.field[data-collapsible="true"] .input,
-.field[data-collapsible="true"] .hiddenInput {
+.field[data-collapsible] .input,
+.field[data-collapsible] .hiddenInput {
   min-width: 12.5ch;
   max-width: 25ch;
 }
@@ -55,7 +55,7 @@
   padding-right: 2.25em;
 }
 
-.input[data-collapsible="true"]:placeholder-shown {
+.input[data-collapsible]:placeholder-shown {
   padding-right: 0;
 }
 
@@ -104,16 +104,16 @@
 
 /** Collapsible search field */
 
-.input[data-collapsible="true"] {
+.input[data-collapsible] {
   transition: width 0.5s ease-in-out;
 }
 
-.input[data-collapsible="true"]:placeholder-shown {
+.input[data-collapsible]:placeholder-shown {
   background-color: transparent;
 }
 
-.input[data-collapsible="true"]:focus,
-.input[data-collapsible="true"]:not(:placeholder-shown) {
+.input[data-collapsible]:focus,
+.input[data-collapsible]:not(:placeholder-shown) {
   background-color: var(--ds-color-background-default);
 }
 
@@ -171,12 +171,12 @@
     display: none;
   }
 
-  .field[data-collapsible="true"] {
+  .field[data-collapsible] {
     width: 100%;
   }
 
-  .field[data-collapsible="true"] .input,
-  .field[data-collapsible="true"] .hiddenInput {
+  .field[data-collapsible] .input,
+  .field[data-collapsible] .hiddenInput {
     max-width: 100%;
   }
 
