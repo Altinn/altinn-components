@@ -1,0 +1,1 @@
+import{p as r}from"./iframe-Ca1pxjCh.js";import{F as i,L as n}from"./tooltip-DBInG_0S.js";const l=({size:a,color:t,reverse:o,children:s,...e})=>r.jsx(i,{...e,"data-size":a,"data-color":t,"data-position":o?"end":"start",children:s}),m=({size:a,color:t,children:o,...s})=>r.jsx(n,{...s,"data-size":a,"data-color":t,children:o});export{l as F,m as L};
