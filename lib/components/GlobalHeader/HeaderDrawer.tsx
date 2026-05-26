@@ -105,7 +105,7 @@ export const HeaderDrawer = ({
         <div className={styles.body}>{children}</div>
         {closedBy !== 'none' && canExpand && (
           <footer className={styles.footer}>
-            <Button className={styles.toggleButton} variant="outline" onClick={onToggle}>
+            <Button className={styles.toggleButton} size="xs" variant="outline" onClick={onToggle}>
               {expanded ? (
                 <>
                   <ChevronUpIcon className={styles.btnIcon} aria-hidden="true" />

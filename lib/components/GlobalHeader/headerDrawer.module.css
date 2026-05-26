@@ -78,7 +78,7 @@ html:has(dialog[open]) {
     right: 0;
     margin: 0;
     height: auto;
-    max-height: 50vh;
+    max-height: 55vh;
     overflow-y: auto;
   }
 
