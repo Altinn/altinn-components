@@ -130,7 +130,7 @@ const getTexts = (languageCode: string | undefined) => {
     case 'nn':
       return {
         searchText: 'Søk i aktørar',
-        heading: 'Kven vil du bruke Altinn på vegne av?',
+        heading: 'Kven vil du bruke Altinn på vegner av?',
         switchLabel: 'Vis slettede',
       };
     case 'en':

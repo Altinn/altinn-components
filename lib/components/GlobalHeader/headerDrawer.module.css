@@ -34,7 +34,7 @@ html:has(dialog[open]) {
   max-width: 100vw;
 
   height: auto;
-  max-height: auto;
+  max-height: none;
 
   box-sizing: border-box;
   padding: 0 0 0 0;
@@ -71,16 +71,22 @@ html:has(dialog[open]) {
   }
 
   .drawer {
+    inset: auto;
+    position: fixed;
     top: calc(4.5rem + var(--altinn-banner-height, 0px));
+    left: 0;
+    right: 0;
+    margin: 0;
+    height: auto;
     max-height: 50vh;
-    min-height: fit-content;
-    bottom: unset;
     overflow-y: auto;
   }
 
   .drawer[data-expanded="true"] {
-    max-height: none;
     bottom: 0;
+    height: auto;
+    max-height: none;
+    overflow-y: scroll;
   }
 
   .footer {
