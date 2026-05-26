@@ -1,3 +1,0 @@
-import{T as e}from"./TextField-B4w005z3.js";import"./iframe-Ca1pxjCh.js";import"./preload-helper-PPVm8Dsz.js";import"./FieldBase-B_jWg1W2.js";import"./Typography-B47euKof.js";import"./index-qsemo-NB.js";import"./useHighlightedText-B4z3dUTF.js";import"./Skeleton-CjJRr45L.js";import"./Label-Dpkw0Wq9.js";import"./tooltip-DBInG_0S.js";import"./Input-CnEzvrKf.js";const u={title:"Forms/TextField",component:e,tags:["autodocs"],parameters:{},args:{name:"text",label:"Label",placeholder:"Placeholder"}},r={args:{}};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`{
-  args: {}
-}`,...r.parameters?.docs?.source}}};const g=["Default"];export{r as Default,g as __namedExportsOrder,u as default};

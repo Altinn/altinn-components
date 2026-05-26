@@ -1,1 +1,0 @@
-import{p as a}from"./iframe-Ca1pxjCh.js";import{n as p}from"./tooltip-DBInG_0S.js";const n=({color:o,size:i,children:s,href:t})=>a.jsx(p,{"data-color":o,"data-size":i,href:t,children:s});export{n as S};
