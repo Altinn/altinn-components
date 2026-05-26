@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.63.7](https://github.com/Altinn/altinn-components/compare/v0.63.6...v0.63.7) (2026-05-26)
+
+
+### Bug Fixes
+
+* Highlight DueAt label in Dialog Metadata ([#1203](https://github.com/Altinn/altinn-components/issues/1203)) ([bd6b3dc](https://github.com/Altinn/altinn-components/commit/bd6b3dccf75338f0dfa530f93403549c5a18dd8f))
+
+
+### Miscellaneous Chores
+
+* **deps:** bump rollup, picomatch and fast-uri ([#1205](https://github.com/Altinn/altinn-components/issues/1205)) ([44d5db4](https://github.com/Altinn/altinn-components/commit/44d5db4a9fc8ef6ebf3fe912887ebee32ca00dca))
+
 ## [0.63.6](https://github.com/Altinn/altinn-components/compare/v0.63.5...v0.63.6) (2026-05-25)
 
 
