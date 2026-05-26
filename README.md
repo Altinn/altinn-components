@@ -9,7 +9,6 @@ Today these teams are [Team Arbeidsflate](https://github.com/digdir/dialogporten
 Note that this package is specifically designed to meet the unique needs of the aforementioned teams and is not intended to serve as a general-purpose library.
 We already have the amazing [Norwegian public sector's Design System](https://designsystemet.no/), and we aim to incorporate its elements wherever it makes sense, ensuring alignment and leveraging its strengths while adapting to the specific requirements of Altinn.
 
-
 ## Strategy for Adopting Designsystemet
 
 As of April 10th, 2025, we’ve decided to start importing components from the [Norwegian public sector’s Design System](https://designsystemet.no/) as needed. These components will be exported from our own library using the `DS<Component>` prefix.
