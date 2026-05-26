@@ -55,6 +55,34 @@ export const Completed: Story = {
   },
 };
 
+export const Archived: Story = {
+  args: {
+    status: {
+      value: 'completed',
+      label: 'Avsluttet',
+    },
+    sentCount: 1,
+    attachmentsCount: 1,
+    receivedCount: 1,
+    archivedAt: '1999-05-26',
+    archivedAtLabel: 'Arkivert',
+  },
+};
+
+export const Trashed: Story = {
+  args: {
+    status: {
+      value: 'completed',
+      label: 'Avsluttet',
+    },
+    sentCount: 1,
+    attachmentsCount: 1,
+    receivedCount: 1,
+    trashedAt: '1999-05-26',
+    trashedAtLabel: 'Slettet',
+  },
+};
+
 export const NotApplicable: Story = {
   args: {
     status: {

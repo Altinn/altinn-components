@@ -114,11 +114,6 @@ export const DialogMetadata = ({
           {updatedAtLabel}
         </MetaItem>
       )}
-      {dueAt && dueAtLabel && (
-        <MetaItem tooltip={tooltips.dueAt} loading={loading} datetime={dueAt} size="xs" icon={CalendarIcon}>
-          {dueAtLabel}
-        </MetaItem>
-      )}
       {attachmentsCount > 0 && (
         <MetaItem tooltip={tooltips.attachments} loading={loading} size="xs" icon={PaperclipIcon}>
           {attachmentsLabel || attachmentsCount}
@@ -137,6 +132,19 @@ export const DialogMetadata = ({
       {receivedCount > 0 && (
         <MetaItem tooltip={tooltips.received} size="xs" icon={ArrowDownIcon}>
           {receivedCount}
+        </MetaItem>
+      )}
+      {dueAt && dueAtLabel && (
+        <MetaItem
+          variant="tinted"
+          color="warning"
+          tooltip={tooltips.dueAt}
+          loading={loading}
+          datetime={dueAt}
+          size="xs"
+          icon={CalendarIcon}
+        >
+          {dueAtLabel}
         </MetaItem>
       )}
       {(trashedAtLabel && (
