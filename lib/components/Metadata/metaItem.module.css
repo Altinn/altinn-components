@@ -46,7 +46,8 @@
   --var-meta-background: var(--ds-color-background-tinted);
   --var-meta-font-size: 0.875em;
   --var-meta-font-weight: 500;
-  padding: 0 0.25em;
+  padding: 0 0.375em;
+  column-gap: 0.375em;
   border-radius: 2px;
 }
 
