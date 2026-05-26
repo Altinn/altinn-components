@@ -1,0 +1,1 @@
+import{j as r}from"./iframe-YdRL1NzV.js";import{T as a}from"./tooltip-D0NJwlFT.js";const e="_tooltip_10ebf_1",l={tooltip:e},f=({size:s="xs",placement:i,children:o,content:t,hidden:p})=>t?r.jsx(a,{"aria-hidden":p,"data-size":s,content:t,placement:i,className:l.tooltip,children:o}):o;export{f as T};
