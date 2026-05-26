@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.63.8](https://github.com/Altinn/altinn-components/compare/v0.63.7...v0.63.8) (2026-05-26)
+
+
+### Bug Fixes
+
+* Aria Current for side menu ([#1206](https://github.com/Altinn/altinn-components/issues/1206)) ([6bdabe3](https://github.com/Altinn/altinn-components/commit/6bdabe3aace3712eb79715522bd99a1a312d455d))
+
 ## [0.63.7](https://github.com/Altinn/altinn-components/compare/v0.63.6...v0.63.7) (2026-05-26)
 
 
