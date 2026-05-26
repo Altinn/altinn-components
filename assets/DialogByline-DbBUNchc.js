@@ -1,0 +1,1 @@
+import{p as t}from"./iframe-Ca1pxjCh.js";import{B as u}from"./Byline-Bxl3RlNN.js";const j=({sender:a,recipient:o,recipientLabel:m="to",grouped:r=!1,loading:s,size:l="xs"})=>{if(!a&&!o)return null;const x=!s&&r&&a&&o?{items:[o,a]}:void 0;return t.jsxs(u,{loading:s,size:l,avatar:a,avatarGroup:x,children:[t.jsx("strong",{children:a?.name})," ",o&&m+" "+o?.name]})};export{j as D};
