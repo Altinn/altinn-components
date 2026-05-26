@@ -1,0 +1,1 @@
+import{p as e}from"./iframe-a6n42jIx.js";import{S as l}from"./CircleFill-BvYl4bgM.js";import{T as n}from"./TimelineBase-Bm2hA2nR.js";import{B as p}from"./Byline-ByWU9zoP.js";const c=({loading:r,as:i="li",color:o="neutral",icon:m=l,iconColor:s,children:t})=>e.jsx(n,{loading:r,as:i,icon:m,color:o,iconColor:s,border:"hidden",children:e.jsx(p,{loading:r,children:t})});export{c as T};
