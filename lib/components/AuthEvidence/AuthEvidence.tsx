@@ -7,9 +7,8 @@ import {
 } from '.';
 
 import { Fragment } from 'react';
-import { Heading } from '../Typography';
-
 import { useMenu } from '../../hooks';
+import { Heading } from '../Typography';
 import styles from './AuthEvidence.module.css';
 
 export interface AuthEvidenceGroupProps {
@@ -36,7 +35,6 @@ export const AuthEvidence = ({ owner, service, items = [], groups = {} }: AuthEv
       <section className={styles.evidence}>
         {menu?.map((group, groupIndex) => {
           const groupProps = group.props || {};
-
           return (
             <Fragment key={groupIndex}>
               {groupProps.title && <Heading className={styles.title}>{groupProps?.title as string}</Heading>}
@@ -57,37 +55,4 @@ export const AuthEvidence = ({ owner, service, items = [], groups = {} }: AuthEv
       </section>
     </div>
   );
-  /*
-  return (
-    <section>
-      {owner && <AuthEvidenceParent owner={owner} service={service} />}
-      <ul className={styles.list}>
-        {menu?.map((group, groupIndex) => {
-          const groupProps = group.props || {};
-
-          return (
-            <li key={groupIndex} className={styles.evidence}>
-              {groupProps.title && (
-                <strong className={styles.label}>
-                  {groupProps?.title as string}
-                </strong>
-              )}
-              <ul className={styles.list}>
-                {group?.items?.map((item) => {
-                  const itemProps = item.props || {};
-
-                  return (
-                    <li key={itemProps.id}>
-                      <AuthEvidenceItem {...itemProps} />
-                    </li>
-                  );
-                })}
-              </ul>
-            </li>
-          );
-        })}
-      </ul>
-    </section>
-  );
-  */
 };

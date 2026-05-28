@@ -52,5 +52,6 @@ export * from './ActivityLog';
 export * from './Article';
 export * from './Modal';
 export * from './Tooltip';
+export * from './AuthEvidence';
 
 export * from './DsComponents';
