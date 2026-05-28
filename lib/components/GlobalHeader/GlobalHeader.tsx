@@ -13,6 +13,8 @@ import { HeaderDropdown } from './HeaderDropdown';
 import { HeaderLogo, type HeaderLogoProps } from './HeaderLogo.tsx';
 import styles from './globalHeader.module.css';
 
+const MIN_ITEMS_FOR_EXPANDABLE_DRAWER = 5;
+
 export interface GlobalHeaderProps {
   globalMenu: GlobalMenuProps;
   /** Use to override globalMenu.menu on desktop */
@@ -76,7 +78,7 @@ export const GlobalHeader = ({
                 closedBy={accountSelector?.forceOpenFullScreen ? 'none' : 'any'}
                 expanded={accountSelector?.forceOpenFullScreen || expanded}
                 onToggle={() => setExpanded(!expanded)}
-                canExpand={accountSelector.accountMenu.items.length > 5}
+                expandable={accountSelector.accountMenu.items.length > MIN_ITEMS_FOR_EXPANDABLE_DRAWER}
               >
                 <AccountSelector {...accountSelector} forceOpenFullScreen={accountSelector.forceOpenFullScreen} />
               </HeaderDrawer>
