@@ -1,0 +1,1 @@
+import{p as t}from"./iframe-DrMVe4hJ.js";import{A as n}from"./AttachmentLink-lV3ZcjXe.js";const r="_list_sdpdt_1",l="_item_sdpdt_9",i={list:r,item:l},c=({items:s})=>s.length?t.jsx("ul",{className:i.list,children:s.map(e=>t.jsx("li",{className:i.item,children:t.jsx(n,{...e})},e.href))}):null;export{c as A};
