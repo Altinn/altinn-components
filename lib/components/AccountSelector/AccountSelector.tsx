@@ -74,12 +74,13 @@ export const AccountSelector = ({
 
   return (
     <div className={cx(className, styles.accountSelector)}>
-      <DsHeading data-size="sm" level={2} className={styles.heading}>
+      <DsHeading data-size="sm" level={2} className={styles.heading} id="account-selector-heading">
         {heading}
       </DsHeading>
       <div className={styles.searchSection}>
         <SearchField
           size="sm"
+          aria-labelledby="account-selector-heading"
           label={searchText}
           hideLabel
           name={searchText}
@@ -129,19 +130,19 @@ const getTexts = (languageCode: string | undefined) => {
     case 'nn':
       return {
         searchText: 'Søk i aktørar',
-        heading: 'Kven vil du representere?',
+        heading: 'Kven vil du bruke Altinn på vegner av?',
         switchLabel: 'Vis slettede',
       };
     case 'en':
       return {
         searchText: 'Search in actors',
-        heading: 'Who do you want to represent?',
+        heading: 'Who do you want to use Altinn on behalf of?',
         switchLabel: 'Show deleted',
       };
     default:
       return {
         searchText: 'Søk i aktører',
-        heading: 'Hvem vil du representere?',
+        heading: 'Hvem vil du bruke Altinn på vegne av?',
         switchLabel: 'Vis slettede',
       };
   }

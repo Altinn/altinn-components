@@ -5,7 +5,7 @@ export const getAuthorizedPartiesData = (): AuthorizedParty[] => {
   return data as unknown as AuthorizedParty[];
 };
 
-export const getLargeAuthorizedPartiesData = (count = 1000): AuthorizedParty[] => {
+export const getSyntheticAuthorizedPartiesData = (count = 1000): AuthorizedParty[] => {
   const baseData = data as unknown as AuthorizedParty[];
   const largeData: AuthorizedParty[] = [];
 

@@ -1,5 +1,19 @@
 [
   {
+    "partyUuid": "5c0656db-cf51-43a4-bd64-6a91c8caacfb",
+    "name": "INTELLIGENT ALBATROSS",
+    "organizationNumber": null,
+    "dateOfBirth": "1951-09-19",
+    "partyId": 51175615,
+    "type": "Person",
+    "unitType": null,
+    "isDeleted": false,
+    "onlyHierarchyElementWithNoAccess": false,
+    "authorizedResources": [],
+    "authorizedRoles": [],
+    "subunits": []
+  },
+  {
     "partyUuid": "1d1a5bf4-17b0-4266-84d9-00475378ecf5",
     "name": "LENGRE VENSTRE TIGER AS",
     "organizationNumber": "313207927",
@@ -11,6 +25,19 @@
     "onlyHierarchyElementWithNoAccess": false,
     "authorizedResources": [],
     "authorizedRoles": [],
+    "subunits": []
+  },
+  {
+    "partyUuid": "7d125913-fd0b-47cd-84e4-ac0457d48fa7",
+    "name": "selvidentifiser",
+    "organizationNumber": null,
+    "partyId": 51842396,
+    "type": "SelfIdentified",
+    "unitType": null,
+    "isDeleted": false,
+    "onlyHierarchyElementWithNoAccess": false,
+    "authorizedResources": [],
+    "authorizedRoles": ["SELN"],
     "subunits": []
   },
   {
@@ -41,20 +68,6 @@
         "subunits": []
       }
     ]
-  },
-  {
-    "partyUuid": "5c0656db-cf51-43a4-bd64-6a91c8caacfb",
-    "name": "INTELLIGENT ALBATROSS",
-    "organizationNumber": null,
-    "dateOfBirth": "1951-09-19",
-    "partyId": 51175615,
-    "type": "Person",
-    "unitType": null,
-    "isDeleted": false,
-    "onlyHierarchyElementWithNoAccess": false,
-    "authorizedResources": [],
-    "authorizedRoles": [],
-    "subunits": []
   },
   {
     "partyUuid": "60fb3d5b-99c2-4df0-aa77-f3fca3bc5199",
@@ -241,19 +254,6 @@
       "A0212",
       "A0282"
     ],
-    "subunits": []
-  },
-  {
-    "partyUuid": "7d125913-fd0b-47cd-84e4-ac0457d48fa7",
-    "name": "selvidentifiser",
-    "organizationNumber": null,
-    "partyId": 51842396,
-    "type": "SelfIdentified",
-    "unitType": null,
-    "isDeleted": false,
-    "onlyHierarchyElementWithNoAccess": false,
-    "authorizedResources": [],
-    "authorizedRoles": ["SELN"],
     "subunits": []
   }
 ]
