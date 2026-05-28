@@ -36,6 +36,8 @@ export type DialogMetadataProps = {
   updatedAtLabel?: string;
   /** Due date */
   dueAt?: string;
+  /** Due date expired */
+  dueAtExpired?: boolean;
   /** Due date label */
   dueAtLabel?: string;
   /** Dialog is moved to archive */
@@ -80,6 +82,7 @@ export const DialogMetadata = ({
   updatedAt,
   updatedAtLabel,
   dueAt,
+  dueAtExpired,
   dueAtLabel,
   archivedAt,
   archivedAtLabel,
@@ -136,8 +139,8 @@ export const DialogMetadata = ({
       )}
       {dueAt && dueAtLabel && (
         <MetaItem
-          variant="tinted"
-          color="warning"
+          variant={'tinted'}
+          color={dueAtExpired ? 'danger' : 'warning'}
           tooltip={tooltips.dueAt}
           loading={loading}
           datetime={dueAt}

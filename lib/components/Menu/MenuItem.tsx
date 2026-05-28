@@ -197,8 +197,8 @@ export const MenuItem = ({
       data-active={active}
       aria-disabled={disabled}
       {...(disabled ? { disabled } : {})}
-      aria-current={href && selected ? 'page' : undefined}
-      aria-selected={!href ? selected : undefined}
+      aria-current={role !== 'option' && selected ? 'page' : undefined}
+      aria-selected={role === 'option' ? selected : undefined}
       data-selected={selected}
       aria-label={title}
       data-testid={dataTestId}

@@ -27,8 +27,29 @@ export const RequiresAttention: Story = {
       value: 'requires-attention',
       label: 'Krever handling',
     },
+  },
+};
+
+export const DueAt: Story = {
+  args: {
+    status: {
+      value: 'requires-attention',
+      label: 'Krever handling',
+    },
     dueAt: '2000-01-01',
     dueAtLabel: 'Frist: 1. januar 2001',
+  },
+};
+
+export const DueAtExpired: Story = {
+  args: {
+    status: {
+      value: 'requires-attention',
+      label: 'Krever handling',
+    },
+    dueAt: '2000-01-01',
+    dueAtExpired: true,
+    dueAtLabel: 'Frist utgått: 1. januar 2001',
   },
 };
 

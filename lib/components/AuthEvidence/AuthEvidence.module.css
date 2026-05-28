@@ -1,0 +1,23 @@
+.evidence {
+  margin-left: 1rem;
+  border-left: 1px solid;
+  border-color: var(--ds-color-border-subtle);
+  padding-left: 1rem;
+}
+
+.title {
+  display: block;
+  font-size: 1rem;
+  font-weight: normal;
+  color: var(--ds-color-text-subtle);
+  margin: 1rem 0;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+}
