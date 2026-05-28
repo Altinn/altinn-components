@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.64.1](https://github.com/Altinn/altinn-components/compare/v0.64.0...v0.64.1) (2026-05-28)
+
+
+### Bug Fixes
+
+* **AuthEvidence:** export AuthEvidence and remove dead code ([#1212](https://github.com/Altinn/altinn-components/issues/1212)) ([1b1264d](https://github.com/Altinn/altinn-components/commit/1b1264d7ef7521d715a4f7ab287cef8f5407177a))
+* **Header:** Fix buggy visuals ([#1198](https://github.com/Altinn/altinn-components/issues/1198)) ([d94ccf2](https://github.com/Altinn/altinn-components/commit/d94ccf279a0435325344dcda9c985310c5ae303e))
+
+
+### Miscellaneous Chores
+
+* **deps:** update storybook v10.4.1 ([#1209](https://github.com/Altinn/altinn-components/issues/1209)) ([22e2234](https://github.com/Altinn/altinn-components/commit/22e223452f96701038bd42942897ed5e4b24243e))
+
 ## [0.64.0](https://github.com/Altinn/altinn-components/compare/v0.63.8...v0.64.0) (2026-05-27)
 
 
