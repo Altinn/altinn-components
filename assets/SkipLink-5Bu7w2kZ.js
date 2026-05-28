@@ -1,0 +1,1 @@
+import{p as a}from"./iframe-43_RSSTf.js";import{n as p}from"./tooltip-CaRi0lSN.js";const n=({color:o,size:i,children:s,href:t})=>a.jsx(p,{"data-color":o,"data-size":i,href:t,children:s});export{n as S};
