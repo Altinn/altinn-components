@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.64.2](https://github.com/Altinn/altinn-components/compare/v0.64.1...v0.64.2) (2026-05-29)
+
+
+### Bug Fixes
+
+* **ResourceListItem:** Add new titleBadge ([#1213](https://github.com/Altinn/altinn-components/issues/1213)) ([4609587](https://github.com/Altinn/altinn-components/commit/46095874699f518e0fca61d412b2b9608d3bf632))
+
 ## [0.64.1](https://github.com/Altinn/altinn-components/compare/v0.64.0...v0.64.1) (2026-05-28)
 
 
