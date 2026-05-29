@@ -1,1 +1,0 @@
-import{p as r}from"./iframe-43_RSSTf.js";import{c as m}from"./index-D9XEmR3s.js";import{F as a}from"./Flex-CbLPS6D2.js";const p="_section_1w6kc_1",x={section:p},j=({as:s="section",direction:t="col",align:o="initial",variant:c,className:e,children:i,...n})=>r.jsx(a,{as:s,align:o,direction:t,theme:c,className:m(x.section,e),...n,children:i});export{j as S};
