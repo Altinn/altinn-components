@@ -32,6 +32,7 @@ const meta = {
     border: 'none',
     as: 'div',
     titleAs: 'h3',
+    titleBadge: undefined,
   },
   argTypes: {
     size: {
@@ -90,6 +91,15 @@ export const Default: Story = {
         {...args}
         onClick={() => alert(`You clicked me - yay!`)}
       />
+    </List>
+  ),
+  args: {},
+};
+
+export const TitleBadge: Story = {
+  render: (args) => (
+    <List>
+      <ResourceListItem {...args} titleBadge={{ label: 'Arkivert', color: 'neutral', theme: 'subtle' }} />
     </List>
   ),
   args: {},

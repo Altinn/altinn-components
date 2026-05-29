@@ -1,0 +1,14 @@
+.label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+
+.label > span {
+  min-width: 0;
+  overflow: hidden;
+}

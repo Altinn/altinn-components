@@ -1,3 +1,4 @@
+import { Badge } from '../Badge';
 import type { BadgeProps } from '../Badge';
 import { ListItem } from '../List';
 import type { ListItemProps } from '../List';
@@ -21,6 +22,8 @@ export interface ResourceListItemProps
   description?: string;
   /** Badge properties for the resource item (optional) */
   badge?: BadgeProps;
+  /** Badge displayed inline next to the title */
+  titleBadge?: BadgeProps;
   /** Title element for the resource item (optional) */
   titleAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'div' | 'span';
 }
@@ -32,8 +35,21 @@ export const ResourceListItem = ({
   ownerLogoUrl,
   description,
   titleAs = 'h3',
+  titleBadge,
+  size,
+  loading,
   ...props
 }: ResourceListItemProps) => {
+  const titleChildren =
+    titleBadge && !loading ? (
+      <>
+        {resourceName}
+        <Badge {...titleBadge} style={{ marginLeft: '0.5em', verticalAlign: 'middle' }} />
+      </>
+    ) : (
+      resourceName
+    );
+
   return (
     <ListItem
       icon={{
@@ -42,8 +58,10 @@ export const ResourceListItem = ({
         imageUrlAlt: ownerLogoUrlAlt,
         type: 'company',
       }}
-      title={{ children: resourceName, as: titleAs }}
+      title={{ children: titleChildren, as: titleAs }}
       description={description ?? ownerName}
+      size={size}
+      loading={loading}
       {...props}
     />
   );
