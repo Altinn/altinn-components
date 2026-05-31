@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import styles from "./storyDecorator.module.css";
-import { RootProvider } from "../lib";
+import {RootProvider, Snackbar} from "../lib";
 
 interface StoryDecoratorProps {
   tags: string[];
@@ -16,6 +16,7 @@ export const StoryDecorator = ({ theme, children }: StoryDecoratorProps) => {
           {children}
         </div>
       </div>
+     <Snackbar />
     </RootProvider>
   );
 };

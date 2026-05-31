@@ -1,37 +1,32 @@
-import * as DialogStories from "./Dialog/Dialog.stories";
+import * as DialogStories from './Dialog/Dialog.stories';
 
+import { useState } from 'react';
+import { useActivityLog, useBookmarks, useFloatingDropdown, useInbox } from '../../examples';
 import {
-    BookmarkSettingsList,
-    BookmarkModal,
-    Dialog,
-    DialogList,
-    Layout,
-    PageBase,
-    Toolbar,
-    Section,
-    Heading,
-    Typography,
-    ModalBase,
-    ModalHeader,
-    ModalBody,
-    ActivityLog,
-    SeenByLog,
-    SeenByLogProps,
-    FloatingDropdown,
-} from "../components";
-import {
-  useBookmarks,
-  useInbox,
-  useActivityLog,
-  useFloatingDropdown,
-} from "../../examples";
-import { useState } from "react";
+  ActivityLog,
+  BookmarkModal,
+  BookmarkSettingsList,
+  Dialog,
+  DialogList,
+  FloatingDropdown,
+  Heading,
+  Layout,
+  ModalBase,
+  ModalBody,
+  ModalHeader,
+  PageBase,
+  Section,
+  SeenByLog,
+  type SeenByLogProps,
+  Toolbar,
+  Typography,
+} from '../components';
 
 const meta = {
-  title: "Demo/Inbox",
-  tags: ["beta"],
+  title: 'Demo/Inbox',
+  tags: ['beta'],
   parameters: {
-    layout: "fullscreen",
+    layout: 'fullscreen',
   },
   args: {},
 };
@@ -44,29 +39,23 @@ export const InboxPage = () => {
   const activityLog = useActivityLog();
 
   return (
-    <Layout {...layout} >
+    <Layout {...layout}>
       {dialog ? (
         <Dialog {...dialog} />
       ) : (
         <PageBase>
           <Heading size="xl">Innboks</Heading>
           <Toolbar {...toolbar} />
-          {results && (
-            <DialogList items={results.items} groups={results?.groups} />
-          )}
+          {results && <DialogList items={results.items} groups={results?.groups} />}
         </PageBase>
       )}
 
       {modal && (
-        <ModalBase open={true} onClose={closeModal!!} variant="content">
+        <ModalBase open={true} onClose={closeModal!} variant="content">
           <ModalHeader title={modal?.title} onClose={closeModal} />
           <ModalBody>
-            {modal?.type === "seen-by-log" ? (
-              <SeenByLog
-                {...(modal?.seenByLog as SeenByLogProps)}
-                title={undefined}
-                collapsible={false}
-              />
+            {modal?.type === 'seen-by-log' ? (
+              <SeenByLog {...(modal?.seenByLog as SeenByLogProps)} title={undefined} collapsible={false} />
             ) : (
               activityLog && <ActivityLog {...activityLog} />
             )}
@@ -83,9 +72,7 @@ interface SearchQueryProps {
 
 const EmptyLink = () => (
   <p>
-    <a href="?id=demo-inbox--about-inbox-page">
-      Hvor finner jeg de gamle meldingene mine?
-    </a>
+    <a href="?id=demo-inbox--about-inbox-page">Hvor finner jeg de gamle meldingene mine?</a>
   </p>
 );
 
@@ -94,8 +81,7 @@ const EmptySection = () => (
     <Heading size="lg">Innboksen er tom</Heading>
     <Typography size="sm">
       <p>
-        <strong>Vi jobber med å flytte meldinger.</strong> Etterhvert vil du
-        kunne se flere elementer i din nye innboks.
+        <strong>Vi jobber med å flytte meldinger.</strong> Etterhvert vil du kunne se flere elementer i din nye innboks.
       </p>
       <EmptyLink />
     </Typography>
@@ -107,8 +93,7 @@ const EmptyDraftsSection = () => (
     <Heading size="lg">Du har ingen utkast</Heading>
     <Typography size="sm">
       <p>
-        Her finner du dialoger <strong>som inneholder utkast</strong>, for
-        eksempel skjemaer du jobber med.
+        Her finner du dialoger <strong>som inneholder utkast</strong>, for eksempel skjemaer du jobber med.
       </p>
       <EmptyLink />
     </Typography>
@@ -120,8 +105,7 @@ const EmptySentSection = () => (
     <Heading size="lg">Du har ikke sendt noe fra deg</Heading>
     <Typography size="sm">
       <p>
-        Her finner du dialoger som inneholder ting du har{" "}
-        <strong>sendt fra deg</strong>.
+        Her finner du dialoger som inneholder ting du har <strong>sendt fra deg</strong>.
       </p>
       <EmptyLink />
     </Typography>
@@ -133,9 +117,8 @@ const EmptyArchiveSection = () => (
     <Heading size="lg">Arkivet er tomt</Heading>
     <Typography size="sm">
       <p>
-        <strong>Her finner du dialoger du har valgt å arkivere.</strong> Dette
-        er ikke et journal- og arkivsystem. Om dialogen blir oppdatert vil du
-        finne den igjen i innboksen.
+        <strong>Her finner du dialoger du har valgt å arkivere.</strong> Dette er ikke et journal- og arkivsystem. Om
+        dialogen blir oppdatert vil du finne den igjen i innboksen.
       </p>
       <EmptyLink />
     </Typography>
@@ -147,8 +130,8 @@ const EmptyTrashSection = () => (
     <Heading size="lg">Papirkurven er tom</Heading>
     <Typography size="sm">
       <p>
-        <strong>Her finner du dialoger du har lagt i papirkurven.</strong> Om
-        dialogen blir oppdatert vil du finne den igjen i innboksen.
+        <strong>Her finner du dialoger du har lagt i papirkurven.</strong> Om dialogen blir oppdatert vil du finne den
+        igjen i innboksen.
       </p>
       <EmptyLink />
     </Typography>
@@ -158,18 +141,15 @@ const EmptyTrashSection = () => (
 const SearchTips = () => (
   <>
     <p>
-      <strong>Vi jobber med å gjøre søket bedre.</strong> Inntil videre kan du
-      prøve følgende:
+      <strong>Vi jobber med å gjøre søket bedre.</strong> Inntil videre kan du prøve følgende:
     </p>
     <ul>
       <li>
-        I fritekst kan du søke på <strong>ett søkeord</strong> eller{" "}
-        <strong>hele setninger</strong>.
+        I fritekst kan du søke på <strong>ett søkeord</strong> eller <strong>hele setninger</strong>.
       </li>
       <li>Bruk filter for å begrense trefflisten.</li>
       <li>
-        Du kan filtere på <strong>tjenesteeier</strong>, <strong>status</strong>{" "}
-        og <strong>oppdatert dato</strong>.
+        Du kan filtere på <strong>tjenesteeier</strong>, <strong>status</strong> og <strong>oppdatert dato</strong>.
       </li>
     </ul>
     <EmptyLink />
@@ -190,7 +170,7 @@ export const InboxEmptyPage = () => {
   const { layout, toolbar } = useInbox({});
 
   return (
-    <Layout {...layout} >
+    <Layout {...layout}>
       <PageBase>
         <Heading size="xl">Innboks</Heading>
         <Toolbar {...toolbar} />
@@ -208,29 +188,29 @@ export const InboxFloatingDropdown = () => {
 
   // Custom handlers for the FloatingDropdown
   const handleStartTour = () => {
-    alert("Custom tour started!");
+    alert('Custom tour started!');
   };
 
   const handleGoToHelp = () => {
-    alert("Custom help page opened!");
+    alert('Custom help page opened!');
   };
 
   const handleGoBack = () => {
-    alert("Custom exit action!");
+    alert('Custom exit action!');
   };
 
   const floatingDropdownProps = useFloatingDropdown({
     onStartTour: handleStartTour,
     onGoToHelp: handleGoToHelp,
     onGoBack: handleGoBack,
-    iconAltText: "Custom help",
+    iconAltText: 'Custom help',
     showNewFunctionalityText: "Show me what's new",
-    helpPagesText: "Get help",
-    exitText: "Go back",
+    helpPagesText: 'Get help',
+    exitText: 'Go back',
   });
 
   return (
-    <Layout {...layout} >
+    <Layout {...layout}>
       <PageBase>
         <Heading size="xl">Innboks</Heading>
         <Toolbar {...toolbar} />
@@ -242,8 +222,8 @@ export const InboxFloatingDropdown = () => {
 };
 
 export const SearchPage = () => {
-  let params = new URL(document.location.toString()).searchParams;
-  let q = params.get("q") || "regnskap";
+  const params = new URL(document.location.toString()).searchParams;
+  const q = params.get('q') || 'regnskap';
 
   const { layout, toolbar, results, dialog } = useInbox({
     query: { q },
@@ -251,7 +231,7 @@ export const SearchPage = () => {
 
   if (dialog) {
     return (
-      <Layout {...layout} >
+      <Layout {...layout}>
         <Dialog {...dialog} />
       </Layout>
     );
@@ -275,8 +255,8 @@ export const SearchPage = () => {
   const descriptionTips = expanded ? (
     <>
       <p>
-        {description}{" "}
-        <a href="#" onClick={onToggle}>
+        {description} {/* biome-ignore lint/a11y/useValidAnchor: <explanation> */}
+        <a href="#1" onClick={onToggle}>
           Skjul søketips ↑
         </a>
       </p>
@@ -284,8 +264,8 @@ export const SearchPage = () => {
     </>
   ) : (
     <p>
-      {description}{" "}
-      <a href="#" onClick={onToggle}>
+      {description} {/* biome-ignore lint/a11y/useValidAnchor: <explanation> */}
+      <a href="#2" onClick={onToggle}>
         Vis søketips ↓
       </a>
     </p>
@@ -293,7 +273,7 @@ export const SearchPage = () => {
 
   if (!hits) {
     return (
-      <Layout {...layout} >
+      <Layout {...layout}>
         <PageBase>
           <Heading size="xl">Innboks</Heading>
           <Toolbar {...toolbar} />
@@ -304,14 +284,14 @@ export const SearchPage = () => {
   }
 
   return (
-    <Layout {...layout} >
+    <Layout {...layout}>
       <PageBase>
         <Heading size="xl">Innboks</Heading>
         <Toolbar {...toolbar} />
         {results?.items?.length ? (
           <DialogList
             items={results.items?.map((item) => {
-              return { ...item, groupId: "q" };
+              return { ...item, groupId: 'q' };
             })}
             groups={{
               q: {
@@ -330,15 +310,15 @@ export const SearchPage = () => {
 };
 
 export const SearchEmptyPage = () => {
-  let params = new URL(document.location.toString()).searchParams;
-  let q = params.get("q") || "bergen";
+  const params = new URL(document.location.toString()).searchParams;
+  const q = params.get('q') || 'bergen';
 
   const { layout, toolbar } = useInbox({
     query: { q },
   });
 
   return (
-    <Layout {...layout} >
+    <Layout {...layout}>
       <PageBase>
         <Heading size="xl">Innboks</Heading>
         <Toolbar {...toolbar} />
@@ -349,18 +329,18 @@ export const SearchEmptyPage = () => {
 };
 
 export const DraftsPage = () => {
-  const { layout, toolbar, results, dialog } = useInbox({ pageId: "drafts" });
+  const { layout, toolbar, results, dialog } = useInbox({ pageId: 'drafts' });
 
   if (dialog) {
     return (
-      <Layout {...layout} >
+      <Layout {...layout}>
         <Dialog {...dialog} />
       </Layout>
     );
   }
 
   return (
-    <Layout {...layout} >
+    <Layout {...layout}>
       <PageBase>
         <Heading size="xl">Utkast</Heading>
         <Toolbar {...toolbar} />
@@ -368,18 +348,16 @@ export const DraftsPage = () => {
           <DialogList
             groups={{
               drafts: {
-                title: results?.items?.length + " utkast",
+                title: results?.items?.length + ' utkast',
                 description: (
                   <p>
-                    Her finner du dialoger{" "}
-                    <strong>som inneholder utkast</strong>, for eksempel
-                    skjemaer du jobber med.
+                    Her finner du dialoger <strong>som inneholder utkast</strong>, for eksempel skjemaer du jobber med.
                   </p>
                 ),
               },
             }}
             items={results.items?.map((item) => {
-              return { ...item, groupId: "drafts" };
+              return { ...item, groupId: 'drafts' };
             })}
           />
         )}
@@ -389,10 +367,10 @@ export const DraftsPage = () => {
 };
 
 export const DraftsEmptyPage = () => {
-  const { layout, toolbar } = useInbox({ pageId: "drafts" });
+  const { layout, toolbar } = useInbox({ pageId: 'drafts' });
 
   return (
-    <Layout {...layout} >
+    <Layout {...layout}>
       <PageBase>
         <Heading size="xl">Utkast</Heading>
         <Toolbar {...toolbar} />
@@ -404,19 +382,19 @@ export const DraftsEmptyPage = () => {
 
 export const SentPage = () => {
   const { layout, toolbar, results, dialog } = useInbox({
-    pageId: "sent",
+    pageId: 'sent',
   });
 
   if (dialog) {
     return (
-      <Layout {...layout} >
+      <Layout {...layout}>
         <Dialog {...dialog} />
       </Layout>
     );
   }
 
   return (
-    <Layout {...layout} >
+    <Layout {...layout}>
       <PageBase>
         <Heading size="xl">Sendt</Heading>
         <Toolbar {...toolbar} />
@@ -424,17 +402,16 @@ export const SentPage = () => {
           <DialogList
             groups={{
               sent: {
-                title: results?.items?.length + " treff i sendt",
+                title: results?.items?.length + ' treff i sendt',
                 description: (
                   <p>
-                    Her finner du dialoger som inneholder{" "}
-                    <strong>ting du har sendt fra deg.</strong>
+                    Her finner du dialoger som inneholder <strong>ting du har sendt fra deg.</strong>
                   </p>
                 ),
               },
             }}
             items={results.items?.map((item) => {
-              return { ...item, groupId: "sent" };
+              return { ...item, groupId: 'sent' };
             })}
           />
         )}
@@ -444,10 +421,10 @@ export const SentPage = () => {
 };
 
 export const SentEmptyPage = () => {
-  const { layout, toolbar } = useInbox({ pageId: "sent" });
+  const { layout, toolbar } = useInbox({ pageId: 'sent' });
 
   return (
-    <Layout {...layout} >
+    <Layout {...layout}>
       <PageBase>
         <Heading size="xl">Sendt</Heading>
         <Toolbar {...toolbar} />
@@ -459,19 +436,19 @@ export const SentEmptyPage = () => {
 
 export const ArchivePage = () => {
   const { layout, toolbar, results, dialog } = useInbox({
-    pageId: "archive",
+    pageId: 'archive',
   });
 
   if (dialog) {
     return (
-      <Layout {...layout} >
+      <Layout {...layout}>
         <Dialog {...dialog} />
       </Layout>
     );
   }
 
   return (
-    <Layout {...layout} >
+    <Layout {...layout}>
       <PageBase>
         <Heading size="xl">Arkiv</Heading>
         {toolbar && <Toolbar {...toolbar} />}
@@ -479,20 +456,17 @@ export const ArchivePage = () => {
           <DialogList
             groups={{
               archived: {
-                title: results?.items?.length + " treff i arkivet",
+                title: results?.items?.length + ' treff i arkivet',
                 description: (
                   <p>
-                    <strong>
-                      Her finner du dialoger du har valgt å arkivere.
-                    </strong>{" "}
-                    Dette er ikke et journal- og arkivsystem. Om dialogen blir
-                    oppdatert vil du finne den igjen i innboksen.
+                    <strong>Her finner du dialoger du har valgt å arkivere.</strong> Dette er ikke et journal- og
+                    arkivsystem. Om dialogen blir oppdatert vil du finne den igjen i innboksen.
                   </p>
                 ),
               },
             }}
             items={results.items?.map((item) => {
-              return { ...item, groupId: "archived" };
+              return { ...item, groupId: 'archived' };
             })}
           />
         )}
@@ -502,10 +476,10 @@ export const ArchivePage = () => {
 };
 
 export const ArchiveEmptyPage = () => {
-  const { layout, toolbar } = useInbox({ pageId: "archive" });
+  const { layout, toolbar } = useInbox({ pageId: 'archive' });
 
   return (
-    <Layout {...layout} >
+    <Layout {...layout}>
       <PageBase>
         <Heading size="xl">Arkiv</Heading>
         <Toolbar {...toolbar} />
@@ -516,18 +490,18 @@ export const ArchiveEmptyPage = () => {
 };
 
 export const TrashPage = () => {
-  const { layout, toolbar, results, dialog } = useInbox({ pageId: "trash" });
+  const { layout, toolbar, results, dialog } = useInbox({ pageId: 'trash' });
 
   if (dialog) {
     return (
-      <Layout {...layout} >
-        <Dialog {...dialog} badge={{ color: "neutral", label: "Papirkurv" }} />
+      <Layout {...layout}>
+        <Dialog {...dialog} badge={{ color: 'neutral', label: 'Papirkurv' }} />
       </Layout>
     );
   }
 
   return (
-    <Layout {...layout} >
+    <Layout {...layout}>
       <PageBase>
         <Heading size="xl">Papirkurv</Heading>
         {toolbar && <Toolbar {...toolbar} />}
@@ -535,20 +509,17 @@ export const TrashPage = () => {
           <DialogList
             groups={{
               trashed: {
-                title: results?.items?.length + " treff i papirkurven",
+                title: results?.items?.length + ' treff i papirkurven',
                 description: (
                   <p>
-                    <strong>
-                      Her finner du dialoger du har lagt i papirkurven.
-                    </strong>{" "}
-                    Om dialogen blir oppdatert vil du finne den igjen i
-                    innboksen.
+                    <strong>Her finner du dialoger du har lagt i papirkurven.</strong> Om dialogen blir oppdatert vil du
+                    finne den igjen i innboksen.
                   </p>
                 ),
               },
             }}
             items={results.items?.map((item) => {
-              return { ...item, groupId: "trashed" };
+              return { ...item, groupId: 'trashed' };
             })}
           />
         )}
@@ -558,10 +529,10 @@ export const TrashPage = () => {
 };
 
 export const TrashEmptyPage = () => {
-  const { layout, toolbar } = useInbox({ pageId: "trash" });
+  const { layout, toolbar } = useInbox({ pageId: 'trash' });
 
   return (
-    <Layout {...layout} >
+    <Layout {...layout}>
       <PageBase>
         <Heading size="xl">Papirkurv</Heading>
         <Toolbar {...toolbar} />
@@ -600,7 +571,7 @@ export const DialogTransmissions = () => {
 
 export const BookmarksPage = () => {
   const { layout, toolbar } = useInbox({
-    pageId: "bookmarks",
+    pageId: 'bookmarks',
   });
   const { items, expandedId, onClose } = useBookmarks({ grouped: false });
   const modalProps = expandedId && items.find((item) => item.id === expandedId);
@@ -618,11 +589,11 @@ export const BookmarksPage = () => {
           <BookmarkModal
             {...modalProps}
             title="Rediger lagret søk"
-            open={expandedId !== ""}
+            open={expandedId !== ''}
             onClose={onClose}
             buttons={[
-              { label: "Lagre", onClick: () => onClose() },
-              { label: "Slett", variant: "outline", onClick: () => onClose() },
+              { label: 'Lagre', onClick: () => onClose() },
+              { label: 'Slett', variant: 'outline', onClick: () => onClose() },
             ]}
           />
         )}
@@ -630,7 +601,3 @@ export const BookmarksPage = () => {
     </Layout>
   );
 };
-
-
-
-

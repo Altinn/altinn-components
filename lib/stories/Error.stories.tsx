@@ -1,20 +1,12 @@
-import {
-  Breadcrumbs,
-  Article,
-  ArticleHeader,
-  ArticleContact,
-  Typography,
-  Layout,
-  AccountList,
-} from "../components";
+import { AccountList, Article, ArticleContact, ArticleHeader, Breadcrumbs, Layout, Typography } from '../components';
 
-import { useLayout, accountList } from "../../examples";
+import { accountList, useLayout } from '../../examples';
 
 const meta = {
-  title: "Demo/Error",
-  tags: ["beta"],
+  title: 'Demo/Error',
+  tags: ['beta'],
   parameters: {
-    layout: "fullscreen",
+    layout: 'fullscreen',
   },
   args: {},
 };
@@ -28,21 +20,19 @@ export const Default = () => {
   return (
     <Layout {...layout} sidebar={{ hidden: true }}>
       <Article>
-        <Breadcrumbs
-          items={[{ label: "Forside", href: "#" }, { label: "Error" }]}
-        />
+        <Breadcrumbs items={[{ label: 'Forside', href: '#' }, { label: 'Error' }]} />
         <ArticleHeader title="Title">
           <Typography>
             <p>A short explanation of what went wrong:</p>
             <ul>
               <li>
-                <a href="#">Helpful link 1</a>
+                <a href="#1">Helpful link 1</a>
               </li>
               <li>
-                <a href="#">Helpful link 2</a>
+                <a href="#2">Helpful link 2</a>
               </li>
               <li>
-                <a href="#">Helpful link 3</a>
+                <a href="#3">Helpful link 3</a>
               </li>
             </ul>
           </Typography>
@@ -59,39 +49,31 @@ export const WithContact = () => {
   return (
     <Layout {...layout} sidebar={{ hidden: true }}>
       <Article>
-        <Breadcrumbs
-          items={[{ label: "Forside", href: "#" }, { label: "Error" }]}
-        />
+        <Breadcrumbs items={[{ label: 'Forside', href: '#' }, { label: 'Error' }]} />
         <ArticleHeader title="Title">
           <Typography>
             <p>A short explanation of what went wrong:</p>
             <ul>
               <li>
-                <a href="#">Helpful link 1</a>
+                <a href="#1">Helpful link 1</a>
               </li>
               <li>
-                <a href="#">Helpful link 2</a>
+                <a href="#2">Helpful link 2</a>
               </li>
               <li>
-                <a href="#">Helpful link 3</a>
+                <a href="#3">Helpful link 3</a>
               </li>
             </ul>
           </Typography>
         </ArticleHeader>
         <ArticleContact
           title="Trenger du hjelp?"
-          items={[
-            { label: "Chat med en veileder" },
-            { label: "Ring 75 00 60 00" },
-            { label: "Skriv til Altinn" },
-          ]}
+          items={[{ label: 'Chat med en veileder' }, { label: 'Ring 75 00 60 00' }, { label: 'Skriv til Altinn' }]}
         >
           <p>
-            Maecenas sed diam eget risus varius blandit sit amet non magna.
-            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
-            auctor. Duis mollis, est non commodo luctus, nisi erat porttitor
-            ligula, eget lacinia odio sem nec elit. Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit. Donec sed odio dui.
+            Maecenas sed diam eget risus varius blandit sit amet non magna. Vivamus sagittis lacus vel augue laoreet
+            rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia
+            odio sem nec elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed odio dui.
           </p>
         </ArticleContact>
       </Article>
@@ -101,23 +83,21 @@ export const WithContact = () => {
 
 export const PageNotFound = () => {
   const layout = useLayout({
-    accountId: "user",
+    accountId: 'user',
   });
   return (
     <Layout {...layout} sidebar={{ hidden: true }}>
       <Article>
-        <Breadcrumbs
-          items={[{ label: "Forside", href: "#" }, { label: "Feilmelding" }]}
-        />
+        <Breadcrumbs items={[{ label: 'Forside', href: '#' }, { label: 'Feilmelding' }]} />
         <ArticleHeader title="Siden finnes ikke">
           <Typography>
             <p>Mange kommer til Altinn for å gjøre en av disse tingene:</p>
             <ul>
               <li>
-                <a href="#">Se meldinger eller oppgaver i innboksen</a>
+                <a href="#1">Se meldinger eller oppgaver i innboksen</a>
               </li>
               <li>
-                <a href="#">Finne og sende inn et skjema</a>
+                <a href="#2">Finne og sende inn et skjema</a>
               </li>
             </ul>
           </Typography>
@@ -125,17 +105,12 @@ export const PageNotFound = () => {
 
         <ArticleContact
           title="Trenger du hjelp?"
-          items={[
-            { label: "Chat med en veileder" },
-            { label: "Ring 75 00 60 00" },
-            { label: "Skriv til Altinn" },
-          ]}
+          items={[{ label: 'Chat med en veileder' }, { label: 'Ring 75 00 60 00' }, { label: 'Skriv til Altinn' }]}
         >
           <p>
-            Spør et ekte menneske i Norge.no sin brukerservice. Vi hjelper deg
-            med å finne frem i det offentlige, bruke innboksen og gi fullmakter
-            til andre. Åpningstider på telefon og chat er hverdager 08.00-15.30.
-            Hvis du skriver til oss svarer vi vanligvis innen en virkedag.
+            Spør et ekte menneske i Norge.no sin brukerservice. Vi hjelper deg med å finne frem i det offentlige, bruke
+            innboksen og gi fullmakter til andre. Åpningstider på telefon og chat er hverdager 08.00-15.30. Hvis du
+            skriver til oss svarer vi vanligvis innen en virkedag.
           </p>
         </ArticleContact>
       </Article>
@@ -145,26 +120,21 @@ export const PageNotFound = () => {
 
 export const UnknownError = () => {
   const layout = useLayout({
-    accountId: "user",
+    accountId: 'user',
   });
   return (
     <Layout {...layout} sidebar={{ hidden: true }}>
       <Article>
-        <Breadcrumbs
-          items={[{ label: "Forside", href: "#" }, { label: "Feilmelding" }]}
-        />
+        <Breadcrumbs items={[{ label: 'Forside', href: '#' }, { label: 'Feilmelding' }]} />
         <ArticleHeader title="Oops, noe gikk galt">
           <Typography>
-            <p>
-              Det har oppstått en ukjent feil. Du kan prøve å laste siden på
-              nytt, eller gå tilbake til forsiden.
-            </p>
+            <p>Det har oppstått en ukjent feil. Du kan prøve å laste siden på nytt, eller gå tilbake til forsiden.</p>
             <ul>
               <li>
-                <a href="#">Gå tilbake og prøv igjen.</a>
+                <a href="#1">Gå tilbake og prøv igjen.</a>
               </li>
               <li>
-                <a href="#">Gå til Altinn.no</a>
+                <a href="#2">Gå til Altinn.no</a>
               </li>
             </ul>
           </Typography>
@@ -176,20 +146,18 @@ export const UnknownError = () => {
 
 export const DownForMaintenance = () => {
   const layout = useLayout({
-    accountId: "user",
+    accountId: 'user',
   });
   return (
     <Layout {...layout} sidebar={{ hidden: true }}>
       <Article>
-        <Breadcrumbs
-          items={[{ label: "Forside", href: "#" }, { label: "Informasjon" }]}
-        />
+        <Breadcrumbs items={[{ label: 'Forside', href: '#' }, { label: 'Informasjon' }]} />
         <ArticleHeader title="Siden er nede for vedlikehold">
           <Typography>
             <p>Prøv igjen 3. september kl 12.00.</p>
             <ul>
               <li>
-                <a href="#">Til Altinn.no</a>
+                <a href="#1">Til Altinn.no</a>
               </li>
             </ul>
           </Typography>
@@ -202,15 +170,13 @@ export const DownForMaintenance = () => {
 export const LoginError = () => {
   const layout = useLayout({
     accountId: null,
-    color: "neutral",
-    theme: "default",
+    color: 'neutral',
+    theme: 'default',
   });
   return (
     <Layout {...layout} sidebar={{ hidden: true }}>
       <Article>
-        <Breadcrumbs
-          items={[{ label: "Forside", href: "#" }, { label: "Feilmelding" }]}
-        />
+        <Breadcrumbs items={[{ label: 'Forside', href: '#' }, { label: 'Feilmelding' }]} />
         <ArticleHeader title="Du ble logget ut">
           <Typography>
             <p>Velg en konto for å fortsette:</p>
@@ -220,12 +186,12 @@ export const LoginError = () => {
         <AccountList
           groups={accountList.groups}
           items={accountList?.items
-            .filter((item) => item.type !== "group" && !item.isDeleted)
+            .filter((item) => item.type !== 'group' && !item.isDeleted)
             ?.map((item) => {
               return {
                 ...item,
-                color: "neutral",
-                variant: "subtle",
+                color: 'neutral',
+                variant: 'subtle',
               };
             })}
         />
