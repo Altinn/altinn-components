@@ -1,0 +1,119 @@
+import{s as n,p as r}from"./iframe-B0raGbVc.js";import{S as u}from"./SearchField-x-7DN5Df.js";import{Q as c}from"./QueryLabel-DGYI0S1S.js";import"./preload-helper-PPVm8Dsz.js";import"./index-BFPoepm_.js";import"./MagnifyingGlass-M1myOHdK.js";import"./useId-DjmMrSjF.js";import"./XMark-Vu63tlKp.js";import"./FieldBase-COYRg4qt.js";import"./Typography-aMX_Xall.js";import"./useHighlightedText-Cy927kZm.js";import"./Skeleton-Bie46BNt.js";import"./Label-BU6sA0x8.js";import"./tooltip-C563LrpG.js";import"./Input-DWL065bb.js";import"./Button-DaZ5Xj9O.js";import"./useMenu-DBDHaupH.js";import"./MenuListItem-Cqp8gCsN.js";import"./MenuListHeading-BOiM7js_.js";import"./MenuItem-CO5pm5KV.js";import"./ItemMedia-vIK6hHXj.js";import"./Avatar-C_p7vVVJ.js";import"./AvatarGroup-CCFl7ITU.js";import"./Icon-CkGS8ofh.js";import"./Checkmark-w1Y8-xSD.js";import"./ItemLabel-WiIVldH2.js";import"./Heading-HwRbtbil.js";import"./ItemControls-0LHp_bwC.js";import"./Badge-LVeKbEwp.js";import"./Tooltip-drcV-Psw.js";import"./ChevronRight-B1cS3dE4.js";import"./index-BdK8fp8H.js";import"./InformationSquare-C1Z5-XLz.js";import"./Plus-Ddu_AJ6f.js";const ae={title:"Forms/SearchField",component:u,tags:["autodocs"],parameters:{},args:{name:"search",placeholder:"Søk"}},i={args:{placeholder:"Søk"}},p={args:{label:"Search",hideLabel:!0,placeholder:"Søk"}},d={args:{placeholder:"Søk",value:"Test",onClear:()=>{console.log("Clear")}}},m=a=>{const[e,t]=n.useState("");function o(l,S){const[f,v]=n.useState(l);return n.useEffect(()=>{const k=setTimeout(()=>{v(l)},S);return()=>{clearTimeout(k)}},[l,S]),f}const s=o(e,500),y=e!==s;return n.useEffect(()=>{s&&console.log("Triggering API search for:",s)},[s]),r.jsx(u,{...a,loading:y,value:e,onChange:l=>t(l.target.value),onClear:()=>t("")})},g=a=>{const[e,t]=n.useState("");return r.jsx(u,{...a,value:e,onChange:o=>t(o.target.value),onClear:()=>t("")})},h=a=>{const[e,t]=n.useState("");return r.jsx(u,{...a,collapsible:!0,value:e,onChange:o=>t(o.target.value),onClear:()=>t("")})},b=a=>{const[e,t]=n.useState(""),o={open:e.length>=1,onClose:()=>{console.log("Close")},groups:{1:{title:""},2:{title:"Lagrede søk"}},items:[{groupId:"1",title:"Nytt søk",label:r.jsx(c,{params:[{type:"search",value:e,label:e}]}),linkIcon:!0},{groupId:"1",title:"Nytt søk + filter",label:r.jsx(c,{params:[{type:"search",value:e,label:e},{type:"filter",value:"Test",label:"2 filter"}]}),linkIcon:!0},{groupId:"2",title:"Lagret søk 1",label:r.jsx(c,{params:[{type:"search",value:e,label:"Skattemelding"},{type:"filter",value:"Test",label:"2 filter"}]}),linkIcon:!0},{groupId:"2",title:"Lagret søk 2",label:r.jsx(c,{params:[{type:"filter",value:"Test",label:"Skatteetaten"}]}),linkIcon:!0}]};return r.jsx(u,{...a,value:e,onChange:s=>t(s.target.value),onClear:()=>t(""),menu:o})};i.parameters={...i.parameters,docs:{...i.parameters?.docs,source:{originalSource:`{
+  args: {
+    placeholder: 'Søk'
+  }
+}`,...i.parameters?.docs?.source}}};p.parameters={...p.parameters,docs:{...p.parameters?.docs,source:{originalSource:`{
+  args: {
+    label: 'Search',
+    hideLabel: true,
+    placeholder: 'Søk'
+  }
+}`,...p.parameters?.docs?.source}}};d.parameters={...d.parameters,docs:{...d.parameters?.docs,source:{originalSource:`{
+  args: {
+    placeholder: 'Søk',
+    value: 'Test',
+    onClear: () => {
+      console.log('Clear');
+    }
+  }
+}`,...d.parameters?.docs?.source}}};m.parameters={...m.parameters,docs:{...m.parameters?.docs,source:{originalSource:`(args: SearchFieldProps) => {
+  const [q, setQ] = useState('');
+  function useDebounce<T>(value: T, delay: number): T {
+    const [debouncedValue, setDebouncedValue] = useState<T>(value);
+    useEffect(() => {
+      // Set a timer to update the value after the delay
+      const handler = setTimeout(() => {
+        setDebouncedValue(value);
+      }, delay);
+
+      // If the value changes (user types again), clear the previous timer
+      return () => {
+        clearTimeout(handler);
+      };
+    }, [value, delay]);
+    return debouncedValue;
+  }
+
+  // Use the hook with a 500ms delay
+  const debouncedQuery = useDebounce(q, 500);
+
+  // We are "loading" if the current text hasn't caught up to the debounced text
+  // OR if an actual API call is in progress (args.loading)
+  const isTyping = q !== debouncedQuery;
+  const loading = isTyping;
+  useEffect(() => {
+    if (debouncedQuery) {
+      console.log('Triggering API search for:', debouncedQuery);
+      // Perform your fetch/search logic here
+    }
+  }, [debouncedQuery]);
+  return <SearchField {...args} loading={loading} value={q} onChange={e => setQ(e.target.value)} onClear={() => setQ('')} />;
+}`,...m.parameters?.docs?.source}}};g.parameters={...g.parameters,docs:{...g.parameters?.docs,source:{originalSource:`(args: SearchFieldProps) => {
+  const [q, setQ] = useState('');
+  return <SearchField {...args} value={q} onChange={e => setQ(e.target.value)} onClear={() => setQ('')} />;
+}`,...g.parameters?.docs?.source}}};h.parameters={...h.parameters,docs:{...h.parameters?.docs,source:{originalSource:`(args: SearchFieldProps) => {
+  const [q, setQ] = useState('');
+  return <SearchField {...args} collapsible value={q} onChange={e => setQ(e.target.value)} onClear={() => setQ('')} />;
+}`,...h.parameters?.docs?.source}}};b.parameters={...b.parameters,docs:{...b.parameters?.docs,source:{originalSource:`(args: SearchFieldProps) => {
+  const [q, setQ] = useState('');
+  const menu = {
+    open: q.length >= 1,
+    onClose: () => {
+      console.log('Close');
+    },
+    groups: {
+      '1': {
+        title: ''
+      },
+      '2': {
+        title: 'Lagrede søk'
+      }
+    },
+    items: [{
+      groupId: '1',
+      title: 'Nytt søk',
+      label: <QueryLabel params={[{
+        type: 'search',
+        value: q,
+        label: q
+      }]} />,
+      linkIcon: true
+    }, {
+      groupId: '1',
+      title: 'Nytt søk + filter',
+      label: <QueryLabel params={[{
+        type: 'search',
+        value: q,
+        label: q
+      }, {
+        type: 'filter',
+        value: 'Test',
+        label: '2 filter'
+      }]} />,
+      linkIcon: true
+    }, {
+      groupId: '2',
+      title: 'Lagret søk 1',
+      label: <QueryLabel params={[{
+        type: 'search',
+        value: q,
+        label: 'Skattemelding'
+      }, {
+        type: 'filter',
+        value: 'Test',
+        label: '2 filter'
+      }]} />,
+      linkIcon: true
+    }, {
+      groupId: '2',
+      title: 'Lagret søk 2',
+      label: <QueryLabel params={[{
+        type: 'filter',
+        value: 'Test',
+        label: 'Skatteetaten'
+      }]} />,
+      linkIcon: true
+    }]
+  };
+  return <SearchField {...args} value={q} onChange={e => setQ(e.target.value)} onClear={() => setQ('')} menu={menu} />;
+}`,...b.parameters?.docs?.source}}};const oe=["Default","HiddenLabel","ClearButton","DebouncedQuery","Controlled","Collapsible","Autocomplete"];export{b as Autocomplete,d as ClearButton,h as Collapsible,g as Controlled,m as DebouncedQuery,i as Default,p as HiddenLabel,oe as __namedExportsOrder,ae as default};
