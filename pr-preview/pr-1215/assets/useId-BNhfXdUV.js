@@ -1,0 +1,1 @@
+import{R as o,s}from"./iframe-HmDeAVAp.js";let n=0;function l(t){const[e,a]=s.useState(t),c=t||e;return s.useEffect(()=>{e==null&&(n+=1,a(`aksel-icon-${n}`))},[e]),c}const u=o.useId;function d(t){var e;return u!==void 0?u().replace(/(:)/g,""):(e=l(t))!==null&&e!==void 0?e:""}export{d as u};
