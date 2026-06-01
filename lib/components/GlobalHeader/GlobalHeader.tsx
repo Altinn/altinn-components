@@ -60,8 +60,8 @@ export const GlobalHeader = ({
   return (
     <header className={styles.header} data-current-id={currentId}>
       <div className={styles.container}>
-        <HeaderLogo {...logo} badge={badge} className={styles.logo} />
-        <nav className={styles.nav}>
+        <nav className={styles.nav} aria-label="hovednavigasjon">
+          <HeaderLogo {...logo} badge={badge} className={styles.logo} />
           {accountSelector && (
             <>
               <GlobalAccountButton
