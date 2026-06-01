@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.65.0](https://github.com/Altinn/altinn-components/compare/v0.64.2...v0.65.0) (2026-06-01)
+
+
+### Features
+
+* **Snackbar:** cap visible snacks with configurable maxSnacks (default 3) ([#1216](https://github.com/Altinn/altinn-components/issues/1216)) ([8a5594d](https://github.com/Altinn/altinn-components/commit/8a5594d0622f3a869ab369fffe3fa172af7a15c7))
+
+
+### Miscellaneous Chores
+
+* **deps:** bump axe-playwright to 2.2.2 to resolve lodash CVE-2026-4800 ([#1217](https://github.com/Altinn/altinn-components/issues/1217)) ([c6fdd1f](https://github.com/Altinn/altinn-components/commit/c6fdd1f7cded0333cce9c5dacf0e4bf79699e666))
+* **docs:** input validation pattern - example ([#1215](https://github.com/Altinn/altinn-components/issues/1215)) ([2c1f723](https://github.com/Altinn/altinn-components/commit/2c1f723bab5056b23bc23b14e72573f1bb9bd341))
+
 ## [0.64.2](https://github.com/Altinn/altinn-components/compare/v0.64.1...v0.64.2) (2026-05-29)
 
 
