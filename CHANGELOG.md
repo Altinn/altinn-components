@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.66.0](https://github.com/Altinn/altinn-components/compare/v0.65.0...v0.66.0) (2026-06-01)
+
+
+### Features
+
+* **Toolbar:** add optional htmlTitle for native title attribute on controls ([#1219](https://github.com/Altinn/altinn-components/issues/1219)) ([222cc75](https://github.com/Altinn/altinn-components/commit/222cc75844108b54ef93ab1eba1c0ff0a5921cd8))
+
 ## [0.65.0](https://github.com/Altinn/altinn-components/compare/v0.64.2...v0.65.0) (2026-06-01)
 
 
