@@ -93,6 +93,65 @@ export const Composition = () => {
   );
 };
 
+export const WithHtmlTitle = () => {
+  return (
+    <Toolbar>
+      <ToolbarMenu
+        label="Menu"
+        htmlTitle="Velg en handling fra menyen"
+        items={[{ title: 'MenuItem 1' }, { title: 'MenuItem 2' }, { title: 'MenuItem 3' }]}
+      />
+      <ToolbarSearch name="search" placeholder="Search" htmlTitle="Søk i innboksen" />
+      <ToolbarFilter
+        filterState={{}}
+        filters={[
+          {
+            label: 'Filter 1',
+            name: 'f1',
+            htmlTitle: 'Filtrer på alternativ',
+            items: [
+              {
+                role: 'radio',
+                name: 'f1',
+                htmlTitle: 'valg 1',
+                value: '1',
+                label: 'Filter 1',
+              },
+              {
+                role: 'radio',
+                name: 'f1',
+                value: '2',
+                htmlTitle: 'valg 2',
+                label: 'Filter 2',
+              },
+            ],
+          },
+          {
+            label: 'Filter 2',
+            name: 'f2',
+            htmlTitle: 'Filtrer på flere alternativer',
+            removable: true,
+            items: [
+              {
+                role: 'checkbox',
+                name: 'f2',
+                value: '1',
+                label: 'Filter 1',
+              },
+              {
+                role: 'checkbox',
+                name: 'f2',
+                value: '2',
+                label: 'Filter 2',
+              },
+            ],
+          },
+        ]}
+      />
+    </Toolbar>
+  );
+};
+
 export const SearchAndFilter = () => {
   return (
     <Toolbar>

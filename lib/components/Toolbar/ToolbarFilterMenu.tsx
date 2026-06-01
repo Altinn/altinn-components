@@ -45,6 +45,7 @@ export const ToolbarFilterMenu = ({
   search,
   virtualized,
   title,
+  htmlTitle,
   variant: customVariant,
   dropdownSize = 'sm',
 }: ToolbarFilterMenuProps) => {
@@ -101,6 +102,7 @@ export const ToolbarFilterMenu = ({
         variant={customVariant || variant}
         removeLabel={removeLabel}
         open={open}
+        htmlTitle={htmlTitle}
       >
         {label}
       </ToolbarFilterButton>
@@ -123,6 +125,7 @@ export const ToolbarFilterMenu = ({
             variant={customVariant || variant}
             removeLabel={removeLabel}
             open={open}
+            htmlTitle={htmlTitle}
             aria-expanded={open}
             aria-controls={ctrl.menuId}
             ref={ctrl.triggerRef as React.Ref<HTMLButtonElement>}
@@ -160,7 +163,7 @@ export const ToolbarFilterMenu = ({
       variant="drawer-dropdown"
       submitLabel={submitLabel}
       trigger={
-        <ToolbarFilterButton name={name} onClick={onToggle} variant={customVariant || variant}>
+        <ToolbarFilterButton name={name} onClick={onToggle} variant={customVariant || variant} htmlTitle={htmlTitle}>
           {label}
         </ToolbarFilterButton>
       }

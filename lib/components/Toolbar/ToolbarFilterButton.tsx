@@ -15,6 +15,8 @@ interface ToolbarFilterButtonProps {
   menuId?: string;
   ref?: React.Ref<HTMLButtonElement>;
   variant?: ButtonProps['variant'];
+  /** Advisory text set as the native HTML `title` attribute (tooltip) on the filter button. */
+  htmlTitle?: string;
 }
 
 export function ToolbarFilterButton({
@@ -28,11 +30,19 @@ export function ToolbarFilterButton({
   open,
   variant,
   ref,
+  htmlTitle,
 }: ToolbarFilterButtonProps) {
   if (removable) {
     return (
       <ButtonGroup disabled={disabled} variant={variant} connected>
-        <Button variant={variant} onClick={onClick} data-id={`filter-button-${name}`} aria-expanded={open} ref={ref}>
+        <Button
+          variant={variant}
+          onClick={onClick}
+          data-id={`filter-button-${name}`}
+          aria-expanded={open}
+          title={htmlTitle}
+          ref={ref}
+        >
           <span>{children}</span>
         </Button>
         <ButtonGroupDivider variant={variant} />
@@ -53,7 +63,7 @@ export function ToolbarFilterButton({
   }
 
   return (
-    <Button disabled={disabled} variant={variant} onClick={onClick} data-id={`filter-button-${name}`}>
+    <Button disabled={disabled} variant={variant} onClick={onClick} data-id={`filter-button-${name}`} title={htmlTitle}>
       <span>{children}</span>
       <ChevronUpDownIcon />
     </Button>

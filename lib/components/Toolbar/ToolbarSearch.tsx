@@ -3,6 +3,8 @@ import { SearchField, type SearchFieldProps } from '../Forms';
 
 export interface ToolbarSearchProps extends SearchFieldProps {
   collapsible?: boolean;
+  /** Advisory text set as the native HTML `title` attribute (tooltip) on the search input. */
+  htmlTitle?: string;
 }
 
 export const ToolbarSearch = memo(
@@ -21,6 +23,7 @@ export const ToolbarSearch = memo(
     menu,
     minLength,
     disabled,
+    htmlTitle,
   }: ToolbarSearchProps) => {
     return (
       <SearchField
@@ -29,6 +32,7 @@ export const ToolbarSearch = memo(
         hideLabel={hideLabel}
         value={value}
         name={name}
+        title={htmlTitle}
         placeholder={placeholder}
         clearButtonAltText={clearButtonAltText}
         onChange={onChange}
