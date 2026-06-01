@@ -88,8 +88,8 @@ importers:
         specifier: ^4.10.3
         version: 4.10.3
       axe-playwright:
-        specifier: ^2.1.0
-        version: 2.1.0(playwright@1.57.0)
+        specifier: ^2.2.2
+        version: 2.2.2(playwright@1.57.0)
       glob:
         specifier: ^13.0.6
         version: 13.0.6
@@ -1598,8 +1598,8 @@ packages:
     peerDependencies:
       axe-core: '>=3'
 
-  axe-playwright@2.1.0:
-    resolution: {integrity: sha512-tY48SX56XaAp16oHPyD4DXpybz8Jxdz9P7exTjF/4AV70EGUavk+1fUPWirM0OYBR+YyDx6hUeDvuHVA6fB9YA==}
+  axe-playwright@2.2.2:
+    resolution: {integrity: sha512-h350/grzDCPgpuWV7eEOqr/f61Xn07Gi9f9B3Ew4rW6/nFtpdEJYW6jgRATorgAGXjEAYFTnaY3sEys39wDw4A==}
     peerDependencies:
       playwright: '>1.0.0'
 
@@ -2124,9 +2124,6 @@ packages:
   local-pkg@1.1.2:
     resolution: {integrity: sha512-arhlxbFRmoQHl33a0Zkle/YWlmNwoyt6QNZEIJcqNbdrsix5Lvc4HyyI3EnwxTYlZYc32EbYrQ8SzEZ7dqgg9A==}
     engines: {node: '>=14'}
-
-  lodash@4.17.21:
-    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
 
   lodash@4.18.1:
     resolution: {integrity: sha512-dMInicTPVE8d1e5otfwmmjlxkZoUpiVLwyeTdUsi/Caj/gfzzblBcCE5sRHV/AsjuCmxWrte2TNGSYuCeCq+0Q==}
@@ -4130,7 +4127,7 @@ snapshots:
       axe-core: 4.10.3
       mustache: 4.2.0
 
-  axe-playwright@2.1.0(playwright@1.57.0):
+  axe-playwright@2.2.2(playwright@1.57.0):
     dependencies:
       '@types/junit-report-builder': 3.0.2
       axe-core: 4.10.3
@@ -4502,7 +4499,7 @@ snapshots:
 
   junit-report-builder@5.1.1:
     dependencies:
-      lodash: 4.17.21
+      lodash: 4.18.1
       make-dir: 3.1.0
       xmlbuilder: 15.1.1
 
@@ -4589,8 +4586,6 @@ snapshots:
       mlly: 1.8.2
       pkg-types: 2.3.0
       quansync: 0.2.11
-
-  lodash@4.17.21: {}
 
   lodash@4.18.1: {}
 
