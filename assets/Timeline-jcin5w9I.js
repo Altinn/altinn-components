@@ -1,0 +1,1 @@
+import{p as s}from"./iframe-HmDeAVAp.js";import{S as e}from"./Section-0rDkal-t.js";const n=({as:t="ul",spacing:o=2,children:r})=>s.jsx(e,{as:t,spacing:o,style:{width:"100%"},children:r});export{n as T};
