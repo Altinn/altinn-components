@@ -1,1 +1,0 @@
-import{p as e}from"./iframe-HmDeAVAp.js";import{F as i}from"./tooltip-DaXe8rKK.js";const d=({size:t,color:o,reverse:a,children:r,...s})=>e.jsx(i,{...s,"data-size":t,"data-color":o,"data-position":a?"end":"start",children:r});export{d as F};
