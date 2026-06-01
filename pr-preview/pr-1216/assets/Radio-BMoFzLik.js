@@ -1,1 +1,0 @@
-import{a7 as r}from"./iframe-cf7ESM3q.js";import{F as m}from"./Field-DXqmeB6L.js";import{I as a}from"./Input-DT4mbTp0.js";import{L as p}from"./Label-8tLoYVxb.js";const f=({size:s,color:t,label:o,...i})=>r.jsxs(m,{size:s,color:t,children:[r.jsx(a,{...i,type:"radio"}),!!o&&r.jsx(p,{children:o})]});export{f as R};
