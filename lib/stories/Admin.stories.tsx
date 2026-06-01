@@ -1,15 +1,15 @@
-import * as DashboardStories from "../components/Dashboard/Dashboard.stories";
-import * as SettingsStories from "../components/Settings/SettingsList.stories";
-import * as ActivityLogStories from "../components/ActivityLog/ActivityLog.stories";
+import * as ActivityLogStories from '../components/ActivityLog/ActivityLog.stories';
+import * as DashboardStories from '../components/Dashboard/Dashboard.stories';
+import * as SettingsStories from '../components/Settings/SettingsList.stories';
 
-import { Heading, Layout, PageBase, Toolbar, Breadcrumbs } from "../components";
-import { useAdmin } from "../../examples";
+import { useAdmin } from '../../examples';
+import { Breadcrumbs, Heading, Layout, PageBase, Toolbar } from '../components';
 
 const meta = {
-  title: "Demo/Admin",
-  tags: ["beta", "autodocs"],
+  title: 'Demo/Admin',
+  tags: ['beta', 'autodocs'],
   parameters: {
-    layout: "fullscreen",
+    layout: 'fullscreen',
   },
   args: {},
 };
@@ -21,7 +21,7 @@ export const DashboardPage = () => {
 
   return (
     <Layout {...layout}>
-      {currentAccount?.type === "company" ? (
+      {currentAccount?.type === 'company' ? (
         <DashboardStories.CompanyDashboard />
       ) : (
         <DashboardStories.PersonDashboard />
@@ -32,15 +32,13 @@ export const DashboardPage = () => {
 
 export const UsersPage = () => {
   const { currentAccount, breadcrumbs, color, layout, toolbar } = useAdmin({
-    pageId: "users",
+    pageId: 'users',
   });
   return (
     <Layout {...layout}>
       <PageBase color={color}>
         <Breadcrumbs items={breadcrumbs} />
-        <Heading size="xl">
-          Brukere med fullmakt til {currentAccount?.name}
-        </Heading>
+        <Heading size="xl">Brukere med fullmakt til {currentAccount?.name}</Heading>
         <Toolbar {...toolbar} />
       </PageBase>
     </Layout>
@@ -49,7 +47,7 @@ export const UsersPage = () => {
 
 export const AccessPage = () => {
   const { currentAccount, breadcrumbs, color, layout, toolbar } = useAdmin({
-    pageId: "access",
+    pageId: 'access',
   });
   return (
     <Layout {...layout}>
@@ -64,7 +62,7 @@ export const AccessPage = () => {
 
 export const RequestsPage = () => {
   const { breadcrumbs, color, layout, toolbar } = useAdmin({
-    pageId: "requests",
+    pageId: 'requests',
   });
   return (
     <Layout {...layout}>
@@ -79,7 +77,7 @@ export const RequestsPage = () => {
 
 export const ApiSettingsPage = () => {
   const { breadcrumbs, color, layout, toolbar } = useAdmin({
-    pageId: "api-settings",
+    pageId: 'api-settings',
   });
   return (
     <Layout {...layout}>
@@ -94,7 +92,7 @@ export const ApiSettingsPage = () => {
 
 export const ReverseAccessPage = () => {
   const { breadcrumbs, color, layout, toolbar } = useAdmin({
-    pageId: "reverse-access",
+    pageId: 'reverse-access',
   });
   return (
     <Layout {...layout}>
@@ -109,7 +107,7 @@ export const ReverseAccessPage = () => {
 
 export const ClientAdminPage = () => {
   const { breadcrumbs, color, layout, toolbar } = useAdmin({
-    pageId: "client-admin",
+    pageId: 'client-admin',
   });
   return (
     <Layout {...layout}>
@@ -128,7 +126,7 @@ export const SettingsPage = () => {
 
 export const ActivityLogPage = () => {
   const { breadcrumbs, color, layout } = useAdmin({
-    pageId: "activity-log",
+    pageId: 'activity-log',
   });
   return (
     <Layout {...layout}>

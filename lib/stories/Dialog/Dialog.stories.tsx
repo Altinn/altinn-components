@@ -1,9 +1,10 @@
-import type { Meta } from "@storybook/react-vite";
-import { useEffect, useState } from "react";
+import type { Meta } from '@storybook/react-vite';
+import { useEffect, useState } from 'react';
 import {
-  DialogBody,
-  DialogAttachments,
+  Button,
   DialogActions,
+  DialogAttachments,
+  DialogBody,
   DialogContact,
   DialogHeader,
   DialogLayout,
@@ -14,15 +15,15 @@ import {
   TransmissionList,
   type TransmissionProps,
   Typography,
-  Button,
-} from "../../";
-import { dialogContact, dialogLayout, seenByLog } from "../../../examples";
-import { ssb } from "../../../examples/avatar";
+  useSnackbar,
+} from '../../';
+import { dialogContact, dialogLayout, seenByLog } from '../../../examples';
+import { ssb } from '../../../examples/avatar';
 
 const meta = {
-  title: "Demo/Inbox/Dialog",
+  title: 'Demo/Inbox/Dialog',
   component: DialogLayout,
-  tags: ["beta", "skip-test"],
+  tags: ['beta', 'skip-test'],
   parameters: {},
   args: {
     ...dialogLayout,
@@ -33,122 +34,122 @@ export default meta;
 
 const transmissions = [
   {
-    id: "s1.1",
-    type: { value: "submission" },
-    byline: "Felix Horn Myhre, 16. mars 2025 kl 08.30",
+    id: 's1.1',
+    type: { value: 'submission' },
+    byline: 'Felix Horn Myhre, 16. mars 2025 kl 08.30',
     sender: {
-      name: "Felix Horn Myhre",
+      name: 'Felix Horn Myhre',
     },
-    title: "Bedriftsdata er sendt inn",
+    title: 'Bedriftsdata er sendt inn',
     attachments: {
       items: [
         {
-          href: "#x",
-          label: "Innsending 1.pdf",
+          href: '#x',
+          label: 'Innsending 1.pdf',
         },
       ],
     },
   },
   {
-    id: "s2.1",
-    type: { value: "submission" },
-    byline: "Niklas Castro, 13. mars 2025 kl 08.00",
+    id: 's2.1',
+    type: { value: 'submission' },
+    byline: 'Niklas Castro, 13. mars 2025 kl 08.00',
     sender: {
-      name: "Niklas Castro",
+      name: 'Niklas Castro',
     },
-    title: "Bedriftsdata er sendt inn",
+    title: 'Bedriftsdata er sendt inn',
     attachments: {
       items: [
         {
-          href: "#x",
-          label: "Innsending 2.pdf",
+          href: '#x',
+          label: 'Innsending 2.pdf',
         },
       ],
     },
   },
   {
-    id: "s2.1",
-    type: { value: "submission" },
-    byline: "Mathias Dyngeland, 10. mars 2025 kl 07.23",
+    id: 's2.1',
+    type: { value: 'submission' },
+    byline: 'Mathias Dyngeland, 10. mars 2025 kl 07.23',
     sender: {
-      name: "Mathias Dyngeland",
+      name: 'Mathias Dyngeland',
     },
-    title: "Bedriftsdata er sendt inn",
+    title: 'Bedriftsdata er sendt inn',
     attachments: {
       items: [
         {
-          href: "#x",
-          label: "Innsending 3.pdf",
+          href: '#x',
+          label: 'Innsending 3.pdf',
         },
       ],
     },
   },
   {
-    id: "r1",
-    byline: "Statistisk sentralbyrå, 17. mars 2025 kl 08.50",
+    id: 'r1',
+    byline: 'Statistisk sentralbyrå, 17. mars 2025 kl 08.50',
     sender: ssb,
-    type: { value: "acceptance", label: "Godkjent" },
-    title: "Bedriftsdata er godkjent",
+    type: { value: 'acceptance', label: 'Godkjent' },
+    title: 'Bedriftsdata er godkjent',
     badge: {
-      color: "success",
-      label: "Godkjent",
+      color: 'success',
+      label: 'Godkjent',
     },
   },
   {
-    id: "r2",
-    byline: "Statistisk sentralbyrå, 14. mars 2025 kl 08.05",
+    id: 'r2',
+    byline: 'Statistisk sentralbyrå, 14. mars 2025 kl 08.05',
     sender: ssb,
-    type: { value: "rejection", label: "Avvist" },
-    title: "Bedriftsdata er avvist",
+    type: { value: 'rejection', label: 'Avvist' },
+    title: 'Bedriftsdata er avvist',
     badge: {
-      color: "danger",
-      label: "Avvist",
+      color: 'danger',
+      label: 'Avvist',
     },
   },
   {
-    id: "r3",
-    byline: "Statistisk sentralbyrå, 10. mars 2025 kl 11.35",
+    id: 'r3',
+    byline: 'Statistisk sentralbyrå, 10. mars 2025 kl 11.35',
     sender: ssb,
-    type: { value: "decision", label: "Vedtak" },
-    title: "Tilbakemelding på bedriftsdata",
+    type: { value: 'decision', label: 'Vedtak' },
+    title: 'Tilbakemelding på bedriftsdata',
     badge: {
-      label: "Vedtak",
+      label: 'Vedtak',
     },
   },
   {
-    id: "r4",
-    byline: "Statistisk sentralbyrå, 1. mars 2025 kl. 12.05",
+    id: 'r4',
+    byline: 'Statistisk sentralbyrå, 1. mars 2025 kl. 12.05',
     sender: ssb,
-    type: { value: "request", label: "Forespørsel" },
-    title: "Du må sende inn bedriftsdata",
+    type: { value: 'request', label: 'Forespørsel' },
+    title: 'Du må sende inn bedriftsdata',
     badge: {
-      label: "Forespørsel",
+      label: 'Forespørsel',
     },
     seenByLog: {
-      title: "Sett av deg+2",
+      title: 'Sett av deg+2',
       collapsible: true,
       items: [
         {
-          id: "1",
-          type: "person",
-          name: "Niklas Castro",
-          seenAt: "2025-02-03 08:45",
-          seenAtLabel: "6. januar kl 08.45",
+          id: '1',
+          type: 'person',
+          name: 'Niklas Castro',
+          seenAt: '2025-02-03 08:45',
+          seenAtLabel: '6. januar kl 08.45',
         },
         {
-          id: "2",
-          type: "person",
-          name: "Felix Horn Myhre",
-          seenAt: "2025-02-03 08:45",
-          seenAtLabel: "6. januar kl 08.45",
+          id: '2',
+          type: 'person',
+          name: 'Felix Horn Myhre',
+          seenAt: '2025-02-03 08:45',
+          seenAtLabel: '6. januar kl 08.45',
         },
         {
-          id: "3",
-          type: "person",
-          name: "Mathias Dyngeland",
+          id: '3',
+          type: 'person',
+          name: 'Mathias Dyngeland',
           isEndUser: true,
-          seenAt: "2025-02-03 08:45",
-          seenAtLabel: "6. januar kl 08.45",
+          seenAt: '2025-02-03 08:45',
+          seenAtLabel: '6. januar kl 08.45',
         },
       ],
     },
@@ -166,11 +167,11 @@ export const TransmissionsHistory = () => {
   };
 
   const sent = transmissions
-    .filter((item) => item.type.value === "submission")
+    .filter((item) => item.type.value === 'submission')
     .map((item) => {
       return {
         ...item,
-        variant: "default",
+        variant: 'default',
       };
     });
 
@@ -183,7 +184,7 @@ export const TransmissionsHistory = () => {
   };
 
   const received = transmissions
-    .filter((item) => item.type.value !== "submission")
+    .filter((item) => item.type.value !== 'submission')
     .map((item) => {
       const { id } = item;
 
@@ -192,16 +193,16 @@ export const TransmissionsHistory = () => {
       const seenByLog =
         item?.seenByLog ||
         (seenIds && {
-          title: "Sett av deg",
+          title: 'Sett av deg',
           collapsible: true,
           items: [
             {
-              id: "2",
-              type: "person",
-              name: "Mathias Dyngeland",
+              id: '2',
+              type: 'person',
+              name: 'Mathias Dyngeland',
               isEndUser: true,
-              seenAt: "2025-02-03 08:45",
-              seenAtLabel: "6. januar kl 08.45",
+              seenAt: '2025-02-03 08:45',
+              seenAtLabel: '6. januar kl 08.45',
             },
           ],
         });
@@ -211,9 +212,9 @@ export const TransmissionsHistory = () => {
         id,
         unread,
         badge: unread && {
-          color: "company",
-          label: "Ny",
-          size: "xs",
+          color: 'company',
+          label: 'Ny',
+          size: 'xs',
         },
         seenByLog,
         children: <TransmissionBody id={id} />,
@@ -265,17 +266,15 @@ export const Transmissions = () => {
       <Divider />
       <DialogSection title="Mer informasjon">
         <p>
-          Maecenas sed diam eget risus varius blandit sit amet non magna. Aenean
-          eu leo quam. Pellentesque ornare sem lacinia quam venenatis
-          vestibulum. Etiam porta sem malesuada magna mollis euismod.
+          Maecenas sed diam eget risus varius blandit sit amet non magna. Aenean eu leo quam. Pellentesque ornare sem
+          lacinia quam venenatis vestibulum. Etiam porta sem malesuada magna mollis euismod.
         </p>
       </DialogSection>
       <Divider />
       <DialogContact {...dialogContact} title="Ta kontakt">
         <p>
-          Maecenas sed diam eget risus varius blandit sit amet non magna. Aenean
-          eu leo quam. Pellentesque ornare sem lacinia quam venenatis
-          vestibulum. Etiam porta sem malesuada magna mollis euismod.
+          Maecenas sed diam eget risus varius blandit sit amet non magna. Aenean eu leo quam. Pellentesque ornare sem
+          lacinia quam venenatis vestibulum. Etiam porta sem malesuada magna mollis euismod.
         </p>
       </DialogContact>
     </DialogLayout>
@@ -283,6 +282,8 @@ export const Transmissions = () => {
 };
 
 export const StatusAttention = () => {
+  const { openSnackbar } = useSnackbar();
+
   return (
     <DialogLayout {...dialogLayout}>
       <DialogHeader
@@ -292,19 +293,19 @@ export const StatusAttention = () => {
         dueAt="2025-05-31T12:00:00Z"
         dueAtLabel="Frist: 31. mai 2025"
         status={{
-          label: "Krever handling",
-          value: "requires-attention",
+          label: 'Krever handling',
+          value: 'requires-attention',
         }}
       />
 
       <DialogBody
         sender={ssb}
         recipientLabel="til"
-        recipient={{ name: "Mottakers navn" }}
+        recipient={{ name: 'Mottakers navn' }}
         seenByLog={{
           ...seenByLog,
           items: seenByLog.items.slice(0, 1),
-          title: "Sett av deg",
+          title: 'Sett av deg',
         }}
       >
         <p>Du må levere bedriftsdata innen 31. mai 2025.</p>
@@ -312,14 +313,26 @@ export const StatusAttention = () => {
           title="1 vedlegg"
           items={[
             {
-              label: "Vedtak om innrapportering av bedrifsdata.pdf",
-              href: "#",
+              label: 'Vedtak om innrapportering av bedrifsdata.pdf',
+              href: '#',
             },
           ]}
         />
         <DialogActions
           items={[
-              { id: "1", priority: "primary", label: "Til rapportering" },
+            {
+              id: '1',
+              priority: 'primary',
+              label: 'Til rapportering',
+              onClick: () => {
+                openSnackbar({
+                  color: 'company',
+                  message: Math.random() + ' - ' + 'rapportering',
+                  duration: 1000,
+                  dismissable: true,
+                });
+              },
+            },
           ]}
         />
       </DialogBody>
@@ -335,17 +348,15 @@ export const StatusAttention = () => {
       <Divider />
       <DialogSection title="Mer informasjon">
         <p>
-          Maecenas sed diam eget risus varius blandit sit amet non magna. Aenean
-          eu leo quam. Pellentesque ornare sem lacinia quam venenatis
-          vestibulum. Etiam porta sem malesuada magna mollis euismod.
+          Maecenas sed diam eget risus varius blandit sit amet non magna. Aenean eu leo quam. Pellentesque ornare sem
+          lacinia quam venenatis vestibulum. Etiam porta sem malesuada magna mollis euismod.
         </p>
       </DialogSection>
       <Divider />
       <DialogContact {...dialogContact} title="Ta kontakt">
         <p>
-          Maecenas sed diam eget risus varius blandit sit amet non magna. Aenean
-          eu leo quam. Pellentesque ornare sem lacinia quam venenatis
-          vestibulum. Etiam porta sem malesuada magna mollis euismod.
+          Maecenas sed diam eget risus varius blandit sit amet non magna. Aenean eu leo quam. Pellentesque ornare sem
+          lacinia quam venenatis vestibulum. Etiam porta sem malesuada magna mollis euismod.
         </p>
       </DialogContact>
     </DialogLayout>
@@ -360,8 +371,8 @@ export const StatusTransmissions = () => {
         updatedAt="2015-03-03 12:15:00"
         updatedAtLabel="17. mars 2025 kl. 14.15"
         status={{
-          label: "Avsluttet",
-          value: "completed",
+          label: 'Avsluttet',
+          value: 'completed',
         }}
         sentCount={3}
         receivedCount={4}
@@ -370,18 +381,15 @@ export const StatusTransmissions = () => {
       <DialogBody
         sender={ssb}
         recipientLabel="til"
-        recipient={{ name: "Mottakers navn" }}
+        recipient={{ name: 'Mottakers navn' }}
         seenByLog={{
           ...seenByLog,
           items: seenByLog.items.slice(0, 3),
-          title: "Sett av deg+2",
+          title: 'Sett av deg+2',
         }}
       >
         <p>Bedriftsdata er godkjent.</p>
-        <DialogAttachments
-          title="1 vedlegg"
-          items={[{ label: "Søknaden er godkjent.pdf", href: "#" }]}
-        />
+        <DialogAttachments title="1 vedlegg" items={[{ label: 'Søknaden er godkjent.pdf', href: '#' }]} />
       </DialogBody>
 
       <TransmissionsHistory />
@@ -389,17 +397,15 @@ export const StatusTransmissions = () => {
       <Divider />
       <DialogSection title="Mer informasjon">
         <p>
-          Maecenas sed diam eget risus varius blandit sit amet non magna. Aenean
-          eu leo quam. Pellentesque ornare sem lacinia quam venenatis
-          vestibulum. Etiam porta sem malesuada magna mollis euismod.
+          Maecenas sed diam eget risus varius blandit sit amet non magna. Aenean eu leo quam. Pellentesque ornare sem
+          lacinia quam venenatis vestibulum. Etiam porta sem malesuada magna mollis euismod.
         </p>
       </DialogSection>
       <Divider />
       <DialogContact {...dialogContact} title="Ta kontakt">
         <p>
-          Maecenas sed diam eget risus varius blandit sit amet non magna. Aenean
-          eu leo quam. Pellentesque ornare sem lacinia quam venenatis
-          vestibulum. Etiam porta sem malesuada magna mollis euismod.
+          Maecenas sed diam eget risus varius blandit sit amet non magna. Aenean eu leo quam. Pellentesque ornare sem
+          lacinia quam venenatis vestibulum. Etiam porta sem malesuada magna mollis euismod.
         </p>
       </DialogContact>
     </DialogLayout>

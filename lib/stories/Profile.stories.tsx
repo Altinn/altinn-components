@@ -1,24 +1,24 @@
-import { BellIcon, CogIcon, HeartIcon } from "@navikt/aksel-icons";
-import * as SettingsStories from "../components/Settings/SettingsList.stories";
-import * as ActivityLogStories from "../components/ActivityLog/ActivityLog.stories";
-import * as AccountListStories from "../components/Account/AccountList.stories";
+import { BellIcon, CogIcon, HeartIcon } from '@navikt/aksel-icons';
+import * as AccountListStories from '../components/Account/AccountList.stories';
+import * as ActivityLogStories from '../components/ActivityLog/ActivityLog.stories';
+import * as SettingsStories from '../components/Settings/SettingsList.stories';
 
+import { useAccounts, useProfile, useSettings } from '../../examples';
 import {
+  DashboardHeader,
+  type DashboardHeaderProps,
   Heading,
   Layout,
   PageBase,
-  SettingsList,
-  DashboardHeader,
-  type DashboardHeaderProps,
   type SettingsItemProps,
-} from "../components";
-import { useProfile, useAccounts, useSettings } from "../../examples";
+  SettingsList,
+} from '../components';
 
 const meta = {
-  title: "Demo/Profile",
-  tags: ["beta"],
+  title: 'Demo/Profile',
+  tags: ['beta'],
   parameters: {
-    layout: "fullscreen",
+    layout: 'fullscreen',
   },
   args: {},
 };
@@ -37,64 +37,59 @@ export const DashboardPage = () => {
   const linkSettings = [
     {
       icon: HeartIcon,
-      title: "Mine aktører",
-      description: "Administrer aktører, favoritter og grupper.",
-      href: "/iframe.html?id=demo-profile--accounts-page",
-      groupId: "1",
-      badge: { label: "20 aktører" },
+      title: 'Mine aktører',
+      description: 'Administrer aktører, favoritter og grupper.',
+      href: '/iframe.html?id=demo-profile--accounts-page',
+      groupId: '1',
+      badge: { label: '20 aktører' },
     },
     {
       icon: BellIcon,
-      title: "Mine varslinger",
-      description: "Varslinger og varslingsprofiler.",
-      href: "/iframe.html?id=demo-profile--alerts-page",
-      groupId: "1",
-      badge: { label: "3 profiler" },
+      title: 'Mine varslinger',
+      description: 'Varslinger og varslingsprofiler.',
+      href: '/iframe.html?id=demo-profile--alerts-page',
+      groupId: '1',
+      badge: { label: '3 profiler' },
     },
     {
       icon: CogIcon,
-      title: "Flere innstillinger",
-      href: "/iframe.html?id=demo-profile--settings-page",
-      as: "a",
+      title: 'Flere innstillinger',
+      href: '/iframe.html?id=demo-profile--settings-page',
+      as: 'a',
     },
   ].map((item) => ({
     ...item,
-    variant: "link",
-    as: "a",
-    groupId: "1",
+    variant: 'link',
+    as: 'a',
+    groupId: '1',
     linkIcon: true,
   }));
 
   const contactSettings =
     items
-      ?.filter((item) => item.groupId === "contact")
+      ?.filter((item) => item.groupId === 'contact')
       ?.map((item) => ({
         ...item,
-        groupId: "0",
+        groupId: '0',
       })) || [];
 
-  const dashboardItems = [...contactSettings, ...linkSettings]?.map(
-    (item, index) => {
-      return {
-        ...item,
-        id: "s" + index,
-      };
-    },
-  );
+  const dashboardItems = [...contactSettings, ...linkSettings]?.map((item, index) => {
+    return {
+      ...item,
+      id: 's' + index,
+    };
+  });
 
   const groups = {
-    "1": { title: "Min profil" },
-    "0": { title: "" },
+    '1': { title: 'Min profil' },
+    '0': { title: '' },
   };
 
   return (
-    <Layout {...layout} >
+    <Layout {...layout}>
       <PageBase>
         <DashboardHeader {...(defaultAccount as DashboardHeaderProps)} />
-        <SettingsList
-          groups={groups}
-          items={dashboardItems as SettingsItemProps[]}
-        />
+        <SettingsList groups={groups} items={dashboardItems as SettingsItemProps[]} />
       </PageBase>
     </Layout>
   );
@@ -105,11 +100,11 @@ export const AccountsPage = () => {
 };
 
 export const AccountsPageVirtualized = () => {
-  const { layout } = useProfile({ pageId: "accounts" });
+  const { layout } = useProfile({ pageId: 'accounts' });
   return (
-      <Layout {...layout}>
-          <AccountListStories.Virtualized />
-      </Layout>
+    <Layout {...layout}>
+      <AccountListStories.Virtualized />
+    </Layout>
   );
 };
 
@@ -126,9 +121,9 @@ export const ActivityLogPage = () => {
 };
 
 export const UsersPage = () => {
-  const { layout } = useProfile({ pageId: "users" });
+  const { layout } = useProfile({ pageId: 'users' });
   return (
-    <Layout {...layout} >
+    <Layout {...layout}>
       <PageBase color="person">
         <Heading size="xl">Brukere med fullmakt til din profil</Heading>
       </PageBase>
@@ -137,7 +132,7 @@ export const UsersPage = () => {
 };
 
 export const AccessPage = () => {
-  const { layout } = useProfile({ pageId: "access" });
+  const { layout } = useProfile({ pageId: 'access' });
   return (
     <Layout {...layout}>
       <PageBase>

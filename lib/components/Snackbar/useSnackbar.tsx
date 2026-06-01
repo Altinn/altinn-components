@@ -49,8 +49,12 @@ interface SnackbarContextValue {
 
 const SnackbarContext = createContext<SnackbarContextValue | undefined>(undefined);
 const defaultDuration = SnackbarDuration.normal;
+const defaultMaxSnacks = 3;
 
-export const SnackbarProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const SnackbarProvider: React.FC<{ children: React.ReactNode; maxSnacks?: number }> = ({
+  children,
+  maxSnacks = defaultMaxSnacks,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [storedMessages, setStoredMessages] = useState<SnackbarQueueItem[]>([]);
   const closingTime = useRef<number | null>(null);
@@ -65,7 +69,10 @@ export const SnackbarProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   const openSnackbar = (message: OpenSnackbarInput): string => {
     const id = btoa(String(Math.random())).substring(0, 12);
-    setStoredMessages((prevMessages) => [...prevMessages, { ...message, id }]);
+    setStoredMessages((prevMessages) => {
+      const nextMessages = [...prevMessages, { ...message, id }];
+      return nextMessages.length > maxSnacks ? nextMessages.slice(nextMessages.length - maxSnacks) : nextMessages;
+    });
     setIsOpen(true);
     return id;
   };

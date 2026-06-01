@@ -1,9 +1,4 @@
-import {
-  CardIcon,
-  ClockDashedIcon,
-  HourglassIcon,
-  TeddyBearIcon,
-} from "@navikt/aksel-icons";
+import { CardIcon, ClockDashedIcon, HourglassIcon, TeddyBearIcon } from '@navikt/aksel-icons';
 import {
   Article,
   ArticleContact,
@@ -13,6 +8,8 @@ import {
   Byline,
   Divider,
   Grid,
+  Heading,
+  ItemMedia,
   Layout,
   List,
   ListItem,
@@ -21,24 +18,17 @@ import {
   SearchItem,
   Section,
   Toolbar,
-  Heading,
   Typography,
-  ItemMedia,
-} from "../components";
+} from '../components';
 
-import { Fragment } from "react";
-import {
-  categoryItems,
-  useCategoryPage,
-  useHomepage,
-  useSearchResults,
-} from "../../examples";
+import { Fragment } from 'react';
+import { categoryItems, useCategoryPage, useHomepage, useSearchResults } from '../../examples';
 
 const meta = {
-  title: "Demo/Portal",
-  tags: ["beta"],
+  title: 'Demo/Portal',
+  tags: ['beta'],
   parameters: {
-    layout: "fullscreen",
+    layout: 'fullscreen',
   },
   args: {},
 };
@@ -52,8 +42,8 @@ export const Home = () => {
       <PageBase color="company">
         <Section>
           <Typography>
-            Logg inn for oversikt over din dialog med det offentlige. Innboks,
-            innstillinger, oversikt over brukere og historikk.
+            Logg inn for oversikt over din dialog med det offentlige. Innboks, innstillinger, oversikt over brukere og
+            historikk.
           </Typography>
         </Section>
 
@@ -63,8 +53,8 @@ export const Home = () => {
               {...item}
               title={{
                 children: item.title as string,
-                size: "md",
-                weight: "bold",
+                size: 'md',
+                weight: 'bold',
               }}
               variant="subtle"
               size="lg"
@@ -80,14 +70,12 @@ export const Home = () => {
 
 export const Search = () => {
   const { results, toolbar, layout } = useSearchResults({
-    query: { q: "Lønn" },
+    query: { q: 'Lønn' },
   });
   return (
     <Layout {...layout}>
       <PageBase color="company">
-        <Breadcrumbs
-          items={[{ label: "Forside", href: "#" }, { label: "Søk: Query" }]}
-        />
+        <Breadcrumbs items={[{ label: 'Forside', href: '#' }, { label: 'Søk: Query' }]} />
         <Toolbar {...toolbar} />
         <List>
           {results?.items?.map((item, index) => {
@@ -101,17 +89,12 @@ export const Search = () => {
         </List>
         <ArticleContact
           title="Står du fortsatt fast fast?"
-          items={[
-            { label: "Chat med en veileder" },
-            { label: "Ring 75 00 60 00" },
-            { label: "Skriv til Altinn" },
-          ]}
+          items={[{ label: 'Chat med en veileder' }, { label: 'Ring 75 00 60 00' }, { label: 'Skriv til Altinn' }]}
         >
           <p>
-            Spør et ekte menneske i Norge.no sin brukerservice. Vi hjelper deg
-            med å finne frem i det offentlige, bruke innboksen og gi fullmakter
-            til andre. Åpningstider på telefon og chat er hverdager 08.00-15.30.
-            Hvis du skriver til oss svarer vi vanligvis innen en virkedag.{" "}
+            Spør et ekte menneske i Norge.no sin brukerservice. Vi hjelper deg med å finne frem i det offentlige, bruke
+            innboksen og gi fullmakter til andre. Åpningstider på telefon og chat er hverdager 08.00-15.30. Hvis du
+            skriver til oss svarer vi vanligvis innen en virkedag.{' '}
           </p>
         </ArticleContact>
       </PageBase>
@@ -122,7 +105,7 @@ export const Search = () => {
 export const Category = () => {
   const { category, layout, breadcrumbs } = useCategoryPage({
     accountId: undefined,
-    categoryId: "skatt",
+    categoryId: 'skatt',
   });
 
   return (
@@ -132,9 +115,8 @@ export const Category = () => {
         <ArticleHeader title={category?.title as string}>
           <Typography>
             <p>
-              Skjemaet brukes til å melde fra om at du tar ansvar for gravferden
-              etter et dødsfall. Det skal fylles ut av en nær etterlatt, som
-              ektefelle, barn eller foreldre. Ved kremasjon og askespredning må
+              Skjemaet brukes til å melde fra om at du tar ansvar for gravferden etter et dødsfall. Det skal fylles ut
+              av en nær etterlatt, som ektefelle, barn eller foreldre. Ved kremasjon og askespredning må
               Statsforvalterens tillatelse vedlegges.
             </p>
           </Typography>
@@ -157,17 +139,12 @@ export const Category = () => {
 
         <ArticleContact
           title="Står du fast?"
-          items={[
-            { label: "Chat med en veileder" },
-            { label: "Ring 75 00 60 00" },
-            { label: "Skriv til Altinn" },
-          ]}
+          items={[{ label: 'Chat med en veileder' }, { label: 'Ring 75 00 60 00' }, { label: 'Skriv til Altinn' }]}
         >
           <p>
-            Spør et ekte menneske i Norge.no sin brukerservice. Vi hjelper deg
-            med å finne frem i det offentlige, bruke innboksen og gi fullmakter
-            til andre. Åpningstider på telefon og chat er hverdager 08.00-15.30.
-            Hvis du skriver til oss svarer vi vanligvis innen en virkedag.
+            Spør et ekte menneske i Norge.no sin brukerservice. Vi hjelper deg med å finne frem i det offentlige, bruke
+            innboksen og gi fullmakter til andre. Åpningstider på telefon og chat er hverdager 08.00-15.30. Hvis du
+            skriver til oss svarer vi vanligvis innen en virkedag.
           </p>
         </ArticleContact>
       </Article>
@@ -178,7 +155,7 @@ export const Category = () => {
 export const Topic = () => {
   const { category, layout, breadcrumbs } = useCategoryPage({
     accountId: undefined,
-    categoryId: "skatt",
+    categoryId: 'skatt',
   });
 
   return (
@@ -189,9 +166,9 @@ export const Topic = () => {
           <Heading
             size="xl"
             style={{
-              display: "flex",
-              alignItems: "center",
-              columnGap: ".5em",
+              display: 'flex',
+              alignItems: 'center',
+              columnGap: '.5em',
             }}
           >
             <ItemMedia icon={TeddyBearIcon} />
@@ -200,9 +177,8 @@ export const Topic = () => {
         </ArticleHeader>
         <Typography>
           <p>
-            Når du betaler ut lønn til ansatte, er det flere
-            rapporteringsplikter du må oppfylle overfor offentlige myndigheter i
-            Norge. De viktigste rapporteringspliktene inkluderer:
+            Når du betaler ut lønn til ansatte, er det flere rapporteringsplikter du må oppfylle overfor offentlige
+            myndigheter i Norge. De viktigste rapporteringspliktene inkluderer:
           </p>
         </Typography>
 
@@ -211,11 +187,7 @@ export const Topic = () => {
             {category.items.map((item) => (
               <Fragment key={item.id}>
                 <Divider as="li" />
-                <SearchItem
-                  key={item.id}
-                  title={item.title as string}
-                  summary="Lorem ipsum dolor sit amet"
-                />
+                <SearchItem key={item.id} title={item.title as string} summary="Lorem ipsum dolor sit amet" />
               </Fragment>
             ))}
           </List>
@@ -223,17 +195,12 @@ export const Topic = () => {
 
         <ArticleContact
           title="Står du fast?"
-          items={[
-            { label: "Chat med en veileder" },
-            { label: "Ring 75 00 60 00" },
-            { label: "Skriv til Altinn" },
-          ]}
+          items={[{ label: 'Chat med en veileder' }, { label: 'Ring 75 00 60 00' }, { label: 'Skriv til Altinn' }]}
         >
           <p>
-            Spør et ekte menneske i Norge.no sin brukerservice. Vi hjelper deg
-            med å finne frem i det offentlige, bruke innboksen og gi fullmakter
-            til andre. Åpningstider på telefon og chat er hverdager 08.00-15.30.
-            Hvis du skriver til oss svarer vi vanligvis innen en virkedag.
+            Spør et ekte menneske i Norge.no sin brukerservice. Vi hjelper deg med å finne frem i det offentlige, bruke
+            innboksen og gi fullmakter til andre. Åpningstider på telefon og chat er hverdager 08.00-15.30. Hvis du
+            skriver til oss svarer vi vanligvis innen en virkedag.
           </p>
         </ArticleContact>
       </Article>
@@ -248,7 +215,7 @@ export const Service = () => {
     page = {},
   } = useCategoryPage({
     accountId: undefined,
-    pageId: "rf-1086",
+    pageId: 'rf-1086',
   });
 
   const { owner, title, summary } = page;
@@ -273,15 +240,15 @@ export const Service = () => {
             items={[
               {
                 icon: ClockDashedIcon,
-                label: "Frist: 11. mai 2024",
+                label: 'Frist: 11. mai 2024',
               },
               {
                 icon: HourglassIcon,
-                label: "Behandlingstid: 14 dager",
+                label: 'Behandlingstid: 14 dager',
               },
               {
                 icon: CardIcon,
-                label: "Gebyr: 500 kroner",
+                label: 'Gebyr: 500 kroner',
               },
             ]}
           />
@@ -289,17 +256,12 @@ export const Service = () => {
         </Section>
         <ArticleContact
           title="Står du fast?"
-          items={[
-            { label: "Chat med en veileder" },
-            { label: "Ring 75 00 60 00" },
-            { label: "Skriv til Altinn" },
-          ]}
+          items={[{ label: 'Chat med en veileder' }, { label: 'Ring 75 00 60 00' }, { label: 'Skriv til Altinn' }]}
         >
           <p>
-            Spør et ekte menneske i Norge.no sin brukerservice. Vi hjelper deg
-            med å finne frem i det offentlige, bruke innboksen og gi fullmakter
-            til andre. Åpningstider på telefon og chat er hverdager 08.00-15.30.
-            Hvis du skriver til oss svarer vi vanligvis innen en virkedag.
+            Spør et ekte menneske i Norge.no sin brukerservice. Vi hjelper deg med å finne frem i det offentlige, bruke
+            innboksen og gi fullmakter til andre. Åpningstider på telefon og chat er hverdager 08.00-15.30. Hvis du
+            skriver til oss svarer vi vanligvis innen en virkedag.
           </p>
         </ArticleContact>
       </Article>
@@ -310,7 +272,7 @@ export const Service = () => {
 export const ArticlePage = () => {
   const { layout, breadcrumbs } = useCategoryPage({
     accountId: undefined,
-    pageId: "rf-1086",
+    pageId: 'rf-1086',
   });
 
   return (
@@ -323,11 +285,9 @@ export const ArticlePage = () => {
           </Heading>
           <Typography>
             <p>
-              Folk opplever for tiden en bølge av svindelforsøk via e-poster som
-              ser ut som de kommer fra Altinn. Mottakerne blir bedt om å klikke
-              på en lenke som tilsynelatende fører til ID-porten. Hensikten med
-              e-postene er sannsynligvis å lure til seg sensitiv informasjon
-              eller penger.
+              Folk opplever for tiden en bølge av svindelforsøk via e-poster som ser ut som de kommer fra Altinn.
+              Mottakerne blir bedt om å klikke på en lenke som tilsynelatende fører til ID-porten. Hensikten med
+              e-postene er sannsynligvis å lure til seg sensitiv informasjon eller penger.
             </p>
           </Typography>
           <Byline>Sist oppdatert: 09.10.2025</Byline>
@@ -336,16 +296,14 @@ export const ArticlePage = () => {
         <Typography>
           <div className="rich-text">
             <p>
-              Svindel-e-postene sier at du må logge inn via ID-porten for å
-              «bekrefte personopplysninger i henhold til ny forskrift om digital
-              identitetsbekreftelse». Dette stemmer ikke, e-postene er ikke fra
-              Altinn, og du må ikke klikke på lenken.
+              Svindel-e-postene sier at du må logge inn via ID-porten for å «bekrefte personopplysninger i henhold til
+              ny forskrift om digital identitetsbekreftelse». Dette stemmer ikke, e-postene er ikke fra Altinn, og du må
+              ikke klikke på lenken.
             </p>
             <p>
-              Det er alltid noen som prøver å svindle andre på nett, via e-post,
-              tekstmeldinger eller over telefon. Det viktigste rådet for å unngå
-              svindel er at du aldri må oppgi passord, koder eller annen
-              hemmelig informasjon – ikke engang til politiet eller banken.
+              Det er alltid noen som prøver å svindle andre på nett, via e-post, tekstmeldinger eller over telefon. Det
+              viktigste rådet for å unngå svindel er at du aldri må oppgi passord, koder eller annen hemmelig
+              informasjon – ikke engang til politiet eller banken.
             </p>
             <p>
               <img
@@ -355,65 +313,50 @@ export const ArticlePage = () => {
                 height="683"
               />
             </p>
-            <p>
-              Her får du noen flere, generelle råd for å unngå å bli svindlet.
-            </p>
+            <p>Her får du noen flere, generelle råd for å unngå å bli svindlet.</p>
             <h2>Dette er vanlige svindelmetoder:</h2>
             <ul>
               <li>
-                Misbruk av telefonnummer (spoofing): Det kan se ut som
-                svindleren ringer fra vår brukerstøtte, fra politiet eller for
-                eksempel banken – altså noen du vanligvis stoler på. Målet er å
-                få deg til å gi fra deg privat informasjon som passord, koder og
-                personopplysninger.
+                Misbruk av telefonnummer (spoofing): Det kan se ut som svindleren ringer fra vår brukerstøtte, fra
+                politiet eller for eksempel banken – altså noen du vanligvis stoler på. Målet er å få deg til å gi fra
+                deg privat informasjon som passord, koder og personopplysninger.
               </li>
               <li>
-                Lenker i e-post eller SMS (phishing): Svindleren sender deg en
-                lenke som ser ut som den kommer fra en virksomhet du stoler på.
-                De gjør dette for å «fiske» etter informasjon. Målet er å få deg
-                til å klikke på lenken og legge igjen personopplysninger,
-                passord og lignende. Vær kritisk. En lenke som fører deg til en
-                innlogging eller en nettbutikk kan være en falsk side, selv om
-                den ser ekte ut. Søk heller opp virksomheten selv dersom du vil
-                logge inn eller besøke en nettbutikk, bank eller offentlig etat.
+                Lenker i e-post eller SMS (phishing): Svindleren sender deg en lenke som ser ut som den kommer fra en
+                virksomhet du stoler på. De gjør dette for å «fiske» etter informasjon. Målet er å få deg til å klikke
+                på lenken og legge igjen personopplysninger, passord og lignende. Vær kritisk. En lenke som fører deg
+                til en innlogging eller en nettbutikk kan være en falsk side, selv om den ser ekte ut. Søk heller opp
+                virksomheten selv dersom du vil logge inn eller besøke en nettbutikk, bank eller offentlig etat.
               </li>
               <li>
-                Svindel på internett og sosiale medier: Vær på vakt når du
-                kommer over nettbutikker med uvanlig gode tilbud. Før du handler
-                på en nettside du ikke kjenner fra før, er det lurt å gjøre et
-                søk på internett for å sjekke andres erfaringer. Og husk at
-                svindelforsøk også skjer på nettsteder for bruktmarked.
+                Svindel på internett og sosiale medier: Vær på vakt når du kommer over nettbutikker med uvanlig gode
+                tilbud. Før du handler på en nettside du ikke kjenner fra før, er det lurt å gjøre et søk på internett
+                for å sjekke andres erfaringer. Og husk at svindelforsøk også skjer på nettsteder for bruktmarked.
               </li>
             </ul>
             <h2>Tips og råd mot svindel: Stopp, tenk, sjekk!</h2>
             <ul>
               <li>
-                Vern om passordene og kodene dine. Ikke del BankID, passord
-                eller sensitive personopplysninger – uansett hvem som spør.
+                Vern om passordene og kodene dine. Ikke del BankID, passord eller sensitive personopplysninger – uansett
+                hvem som spør.
               </li>
               <li>
-                Vær kritisk til å klikke på lenker du får på e-post og SMS. Søk
-                heller opp nettstedet enn å bruke lenken.
+                Vær kritisk til å klikke på lenker du får på e-post og SMS. Søk heller opp nettstedet enn å bruke
+                lenken.
               </li>
               <li>
-                Mistanke om at du er i ferd med å bli utsatt for telefonsvindel?
-                Spør etter navnet på den som kontakter deg og avslutt samtalen.
-                Ta kontakt via virksomhetens offisielle kanaler. Svindlere som
-                tar kontakt utgir seg ofte for å være fra banken din eller
-                politiet, og kan forfalske telefonnummer, e-postadresser og SMS.
+                Mistanke om at du er i ferd med å bli utsatt for telefonsvindel? Spør etter navnet på den som kontakter
+                deg og avslutt samtalen. Ta kontakt via virksomhetens offisielle kanaler. Svindlere som tar kontakt
+                utgir seg ofte for å være fra banken din eller politiet, og kan forfalske telefonnummer, e-postadresser
+                og SMS.
               </li>
               <li>
-                Vær kritisk til personer som bruker kjærlighetsforhold,
-                investeringer og penger for å komme i kontakt med deg. Hvis noe
-                virker for godt til å være sant, så er det som regel det – og
-                det kan være svindel.
+                Vær kritisk til personer som bruker kjærlighetsforhold, investeringer og penger for å komme i kontakt
+                med deg. Hvis noe virker for godt til å være sant, så er det som regel det – og det kan være svindel.
               </li>
             </ul>
             <h2>Er du utsatt for svindel og ID-tyveri?</h2>
-            <p>
-              Du bør kontakte politiet, banken og forsikringsselskapet ditt
-              dersom du er utsatt for svindel.
-            </p>
+            <p>Du bør kontakte politiet, banken og forsikringsselskapet ditt dersom du er utsatt for svindel.</p>
             <p>
               <a
                 title="https://www.politiet.no/tjenester/anmelde/anmelde-svindel-og-id-tyveri/"

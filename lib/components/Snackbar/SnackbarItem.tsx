@@ -1,6 +1,6 @@
 import { BellFillIcon, XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
-import type { ElementType, ReactNode } from 'react';
+import type { CSSProperties, ElementType, ReactNode } from 'react';
 import { Button, Icon, type SvgElement } from '..';
 import styles from './snackbarItem.module.css';
 
@@ -22,6 +22,7 @@ export interface SnackbarItemProps {
   iconAltText?: string;
   href?: string;
   className?: string;
+  style?: CSSProperties;
   dismissable?: boolean;
   onDismiss?: () => void;
   children?: ReactNode;
@@ -41,16 +42,18 @@ export const SnackbarItem = ({
   const Component = as || 'div';
 
   return (
-    <Component className={cx(styles.item, className)} data-color={color} role="alert" {...rest}>
-      <Icon svgElement={icon} className={styles.icon} aria-hidden="true" />
-      <div className={styles.content}>{message}</div>
-      {dismissable && (
-        <div className={styles.action}>
-          <Button variant="solid" onClick={onDismiss} aria-label="close">
-            <XMarkIcon style={{ fontSize: '1.5em' }} />
-          </Button>
-        </div>
-      )}
-    </Component>
+    <span className={styles.itemWrapper}>
+      <Component className={cx(styles.item, className)} data-color={color} role="alert" {...rest}>
+        <Icon svgElement={icon} className={styles.icon} aria-hidden="true" />
+        <div className={styles.content}>{message}</div>
+        {dismissable && (
+          <div className={styles.action}>
+            <Button variant="solid" onClick={onDismiss} aria-label="close">
+              <XMarkIcon style={{ fontSize: '1.5em' }} />
+            </Button>
+          </div>
+        )}
+      </Component>
+    </span>
   );
 };
