@@ -9,6 +9,8 @@ import styles from './toolbarMenu.module.css';
 export interface ToolbarMenuProps extends Omit<MenuProps, 'variant'> {
   disabled?: boolean;
   title?: string;
+  /** Advisory text set as the native HTML `title` attribute (tooltip) on the trigger button. */
+  htmlTitle?: string;
   label?: string;
   variant?: ButtonProps['variant'];
   dropdownSize?: DropdownProps['size'];
@@ -21,6 +23,7 @@ export const ToolbarMenu = memo(
     label = 'Label',
     variant = 'solid',
     title = 'Title',
+    htmlTitle,
     items = [],
     dropdownSize = 'sm',
     id = 'toolbar-menu',
@@ -47,7 +50,7 @@ export const ToolbarMenu = memo(
 
     if (disabled) {
       return (
-        <Button className={styles.button} variant={variant} disabled>
+        <Button className={styles.button} variant={variant} title={htmlTitle} disabled>
           <span className={styles.label}>{label}</span>
           <ChevronUpDownIcon aria-hidden="true" focusable="false" />
         </Button>
@@ -65,6 +68,7 @@ export const ToolbarMenu = memo(
             <Button
               className={styles.button}
               variant={variant}
+              title={htmlTitle}
               onClick={ctrl.toggleMenu}
               aria-expanded={ctrl.open}
               aria-haspopup="menu"

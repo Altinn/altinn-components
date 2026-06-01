@@ -17,6 +17,8 @@ export interface FilterProps extends Omit<MenuProps, 'variant'> {
   icon?: MenuItemProps['icon'];
   label?: string;
   title?: MenuItemProps['title'];
+  /** Advisory text set as the native HTML `title` attribute (tooltip) on the filter button. */
+  htmlTitle?: string;
   description?: MenuItemProps['description'];
   removable?: boolean;
   groups?: FilterGroups;

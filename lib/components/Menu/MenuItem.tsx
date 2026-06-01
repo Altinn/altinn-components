@@ -36,6 +36,8 @@ export interface MenuItemProps extends AriaAttributes {
   icon?: IconProps | SvgElement | AvatarProps | AvatarGroupProps;
   /** Title */
   title?: string;
+  /** Advisory text set as the native HTML `title` attribute (tooltip) on the item element. */
+  htmlTitle?: string;
   /** Description */
   description?: string;
   /** Custom label */
@@ -96,6 +98,7 @@ export const MenuItem = ({
   badge,
   controls,
   title,
+  htmlTitle,
   description,
   highlightWords,
   count,
@@ -131,6 +134,7 @@ export const MenuItem = ({
         aria-selected={checked}
         data-selected={checked}
         aria-label={title}
+        title={htmlTitle}
         data-testid={dataTestId}
         onKeyUp={(e: KeyboardEvent) => {
           if (disabled) return;
@@ -201,6 +205,7 @@ export const MenuItem = ({
       aria-selected={role === 'option' ? selected : undefined}
       data-selected={selected}
       aria-label={title}
+      title={htmlTitle}
       data-testid={dataTestId}
       onKeyUp={(e: KeyboardEvent) => {
         if (disabled) return;
