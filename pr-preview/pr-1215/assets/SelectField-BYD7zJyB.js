@@ -1,1 +1,0 @@
-import{p as e}from"./iframe-HmDeAVAp.js";import{S as m}from"./Select-C0-7yvHH.js";import{F as i}from"./FieldBase-DgiW3HLY.js";const x=({size:r="md",label:t,children:o,...s})=>e.jsx(i,{label:t,size:r,children:e.jsx(m,{...s,size:r,children:o})});export{x as S};
