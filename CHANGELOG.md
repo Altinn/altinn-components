@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.66.1](https://github.com/Altinn/altinn-components/compare/v0.66.0...v0.66.1) (2026-06-02)
+
+
+### Bug Fixes
+
+* **GlobalHeader:** improve logo link accessibility ([#1222](https://github.com/Altinn/altinn-components/issues/1222)) ([9d72159](https://github.com/Altinn/altinn-components/commit/9d721599f01179bc10be5ecdf5639cd9ad36106e))
+
 ## [0.66.0](https://github.com/Altinn/altinn-components/compare/v0.65.0...v0.66.0) (2026-06-01)
 
 
