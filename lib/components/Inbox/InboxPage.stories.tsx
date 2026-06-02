@@ -229,7 +229,8 @@ export const AllCompaniesPage = () => {
 
 export const Search = ({
   pageId = 'inbox',
-  title = '35 treff',
+  title,
+  hightlightWords,
   description = (
     <p>
       Begrens søket til{' '}
@@ -253,6 +254,7 @@ export const Search = ({
   description?: ReactNode;
   query?: UseInboxQuery;
   children?: ReactNode;
+  hightlightWords?: string[];
 }) => {
   const { layout, toolbar, results, dialog } = useInbox({
     pageId,
@@ -269,6 +271,8 @@ export const Search = ({
       <span>{bookmark ? 'Lagret' : 'Lagre'}</span>
     </Button>
   );
+
+  const defaultHighlightWords = query?.q ? [query.q] : undefined;
 
   return (
     <Layout {...layout}>
@@ -294,6 +298,7 @@ export const Search = ({
                 description={description as DialogListProps['description']}
                 items={items as DialogListProps['items']}
                 groups={results?.groups}
+                highlightWords={hightlightWords ?? defaultHighlightWords}
               />
             ))}
         </PageBase>
@@ -306,8 +311,9 @@ export const SearchInbox = () => {
   return (
     <Search
       pageId="inbox"
-      title="33 treff i innboks"
-      query={{ folder: ['inbox'] }}
+      title="5 treff i innboks"
+      query={{ folder: ['inbox'], q: 'støtte godkjent' }}
+      hightlightWords={['støtte', 'godkjent']}
       description={
         <p>
           Utvid søket til{' '}
