@@ -6,6 +6,8 @@ import { SearchField, Switch } from '../Forms';
 import { useRootContext } from '../RootProvider';
 import styles from './accountSelector.module.css';
 
+const MAX_ACCOUNTS_WITHOUT_SEARCH = 5;
+
 export interface AccountSelectorProps {
   accountMenu: AccountMenuProps;
   /** External control of fullscreen mode. When this flag is true, the account menu will open and cannot be minimized or closed.
@@ -20,6 +22,14 @@ export interface AccountSelectorProps {
   onShowDeletedUnitsChange?: (newValue: boolean) => void;
   /** Show in fullscreen*/
   isFullScreen?: boolean;
+  /**
+   * Total number of accounts the user has, including deleted ones. Used to
+   * decide whether to show the search field, so the decision stays stable when
+   * the user toggles deleted accounts on/off (toggling only changes how many
+   * accounts are currently listed, not how many the user actually has).
+   * Falls back to the number of currently listed accounts when not provided.
+   */
+  accountCount?: number;
 }
 
 export const AccountSelector = ({
@@ -30,9 +40,13 @@ export const AccountSelector = ({
   showDeletedUnits,
   onShowDeletedUnitsChange,
   isFullScreen,
+  accountCount,
 }: AccountSelectorProps) => {
   const { closeAll, languageCode, currentId } = useRootContext();
   const isOpen = currentId === 'account' || !!forceOpenFullScreen;
+
+  const showSearch = (accountCount ?? accountMenu.items.length) > MAX_ACCOUNTS_WITHOUT_SEARCH;
+  const showDeletedToggle = showDeletedUnits !== undefined;
 
   const [searchString, setSearchString] = useState('');
   const [forceOpenFullScreenState, setForceOpenFullScreenState] = useState<boolean | undefined>(forceOpenFullScreen);
@@ -77,28 +91,32 @@ export const AccountSelector = ({
       <DsHeading data-size="sm" level={2} className={styles.heading} id="account-selector-heading">
         {heading}
       </DsHeading>
-      <div className={styles.searchSection}>
-        <SearchField
-          size="sm"
-          aria-labelledby="account-selector-heading"
-          label={searchText}
-          hideLabel
-          name={searchText}
-          placeholder={searchText}
-          value={searchString}
-          onChange={(e) => setSearchString(e.target.value)}
-          onClear={() => setSearchString('')}
-          className={styles.searchField}
-        />
-        {showDeletedUnits !== undefined && (
-          <Switch
-            size="sm"
-            checked={showDeletedUnits}
-            onChange={(e) => onShowDeletedUnitsChange?.(e.target.checked)}
-            label={switchLabel}
-          />
-        )}
-      </div>
+      {(showSearch || showDeletedToggle) && (
+        <div className={styles.searchSection}>
+          {showSearch && (
+            <SearchField
+              size="sm"
+              aria-labelledby="account-selector-heading"
+              label={searchText}
+              hideLabel
+              name={searchText}
+              placeholder={searchText}
+              value={searchString}
+              onChange={(e) => setSearchString(e.target.value)}
+              onClear={() => setSearchString('')}
+              className={styles.searchField}
+            />
+          )}
+          {showDeletedToggle && (
+            <Switch
+              size="sm"
+              checked={showDeletedUnits}
+              onChange={(e) => onShowDeletedUnitsChange?.(e.target.checked)}
+              label={switchLabel}
+            />
+          )}
+        </div>
+      )}
       <div
         className={cx(
           styles.accountMenu,

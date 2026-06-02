@@ -1,56 +1,71 @@
 import type { Meta } from '@storybook/react-vite';
 import { useState } from 'react';
-import { getAuthorizedPartiesData, useGlobalHeader } from '../../../examples';
+import { Flex, RootProvider } from '..';
+import type { LayoutProps } from '../';
+import { Layout } from '../';
+import {
+  footer,
+  getAuthorizedPartiesData,
+  header,
+  inboxMenu,
+  skipLink,
+  useGlobalMenu,
+  useLayout,
+} from '../../../examples';
 import { type AuthorizedParty, useAccountSelector } from '../../hooks';
-import { RootProvider } from '../RootProvider';
-import { AccountSelector, type AccountSelectorProps } from './AccountSelector';
 
+// Add custom story args interface for easier testing
+interface LayoutStoryArgs extends LayoutProps {
+  forceOpenFullScreen?: boolean | undefined;
+}
+
+/**
+ * AccountSelector demos rendered inside a full Layout, so you can see how the
+ * selector behaves alongside the header, sidebar and global menu. The same
+ * cases are available as standalone-component stories under Layout/AccountSelector.
+ */
 const meta = {
-  title: 'Layout/AccountSelector',
-  component: AccountSelector,
-  tags: ['autodocs'],
+  title: 'Layout/AccountSelector/In Layout',
+  component: Layout,
   parameters: {
     layout: 'fullscreen',
   },
   args: {
-    accountMenu: undefined,
+    theme: 'subtle',
+    skipLink,
+    header,
+    footer,
+    sidebar: {
+      menu: inboxMenu,
+    },
+    children: (
+      <Flex
+        align="center"
+        justify="center"
+        style={{
+          border: '1px dashed',
+          width: '100%',
+          height: '100%',
+          gap: 5,
+        }}
+      >
+        Content
+        <a href="https://altinn.no">with a focusable item</a>
+      </Flex>
+    ),
+    color: 'company',
     forceOpenFullScreen: undefined,
-    loading: false,
   },
   argTypes: {
-    accountMenu: { control: 'object' },
-    forceOpenFullScreen: { control: 'boolean' },
-    loading: { control: 'boolean' },
+    color: { control: 'select', options: ['company', 'neutral', 'person'] },
+    forceOpenFullScreen: {
+      control: 'select',
+      options: [true, false, undefined],
+    },
   },
-} satisfies Meta<typeof AccountSelector>;
+} satisfies Meta<LayoutStoryArgs>;
 
 export default meta;
-
-export const WithAccounts = (args: AccountSelectorProps) => {
-  const accountSelector = useGlobalHeader({}).accountSelector as AccountSelectorProps;
-
-  return (
-    <RootProvider>
-      <AccountSelector {...accountSelector} forceOpenFullScreen={args.forceOpenFullScreen} />
-    </RootProvider>
-  );
-};
-
-export const NoAccounts = (args: AccountSelectorProps) => {
-  return (
-    <RootProvider>
-      <AccountSelector {...args} accountMenu={{ items: [], groups: {}, currentAccount: undefined }} />
-    </RootProvider>
-  );
-};
-
-export const Loading = (args: AccountSelectorProps) => {
-  return (
-    <RootProvider>
-      <AccountSelector {...args} accountMenu={{ items: [], groups: {}, currentAccount: undefined }} loading />
-    </RootProvider>
-  );
-};
 
 const SELF_UUID = '167536b5-f8ed-4c5a-8f48-0279507e53ae';
 
@@ -85,10 +100,11 @@ const buildParties = (total: number, deletedCount = 0): AuthorizedParty[] => {
   return [selfParty, ...others];
 };
 
-/** Shared wiring that drives the standalone AccountSelector via the
- * useAccountSelector hook. The full-Layout equivalents live under
- * Layout/AccountSelector/In Layout. */
-const AccountSelectorDemo = ({ args, parties }: { args: AccountSelectorProps; parties: AuthorizedParty[] }) => {
+/** Shared demo wiring for the account-count stories below. */
+const AccountSelectorDemo = ({ args, parties }: { args: LayoutStoryArgs; parties: AuthorizedParty[] }) => {
+  const layout = useLayout(args);
+  const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
+
   const [favoriteUuids, setFavoriteUuids] = useState<string[]>([]);
   const [showDeletedAccounts, setShowDeletedAccounts] = useState(true);
   const [currentAccountUuid, setCurrentAccountUuid] = useState<string | undefined>(SELF_UUID);
@@ -113,16 +129,30 @@ const AccountSelectorDemo = ({ args, parties }: { args: AccountSelectorProps; pa
   });
   return (
     <RootProvider languageCode="nb">
-      <AccountSelector {...accountSelector} forceOpenFullScreen={args.forceOpenFullScreen} />
+      <Layout
+        {...args}
+        {...layout}
+        header={{
+          ...layout.header,
+          accountSelector: accountSelector,
+          globalMenu: globalMenu,
+        }}
+      >
+        {args.children}
+      </Layout>
     </RootProvider>
   );
 };
 
-export const UsingUseAccountHook = (args: AccountSelectorProps) => {
+export const UsingUseAccountHook = (args: LayoutStoryArgs) => {
+  const layout = useLayout(args);
+  const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
+
+  // Use the useAccountSelector hook to get account menu and loading state
   const [favoriteUuids, setFavoriteUuids] = useState<string[]>([]);
-  const [showDeletedAccounts, setShowDeletedAccounts] = useState(false);
+  const [showDeletedAccounts, setShowDeletedAccounts] = useState(false); // Get actual value from user profile
   const [currentAccountUuid, setCurrentAccountUuid] = useState<string | undefined>(SELF_UUID);
-  const authorizedParties = getAuthorizedPartiesData();
+  const authorizedParties = getAuthorizedPartiesData(); // Fetch your authorized parties data from external source
   const onToggleFavorite = (uuid: string) => {
     setFavoriteUuids((prev) => (prev.includes(uuid) ? prev.filter((id) => id !== uuid) : [...prev, uuid]));
   };
@@ -144,23 +174,35 @@ export const UsingUseAccountHook = (args: AccountSelectorProps) => {
   });
   return (
     <RootProvider languageCode="nb">
-      <AccountSelector {...accountSelector} forceOpenFullScreen={args.forceOpenFullScreen} />
+      <Layout
+        {...args}
+        {...layout}
+        header={{
+          ...layout.header,
+          accountSelector: accountSelector,
+          globalMenu: globalMenu,
+        }}
+      >
+        {args.children}
+      </Layout>
     </RootProvider>
   );
 };
 
-export const ThreeAccounts = (args: AccountSelectorProps) => (
-  <AccountSelectorDemo args={args} parties={buildParties(3)} />
-);
+// 3 accounts, none deleted: no search field, no "show deleted" toggle.
+export const ThreeAccounts = (args: LayoutStoryArgs) => <AccountSelectorDemo args={args} parties={buildParties(3)} />;
 
-export const FourAccountsOneDeleted = (args: AccountSelectorProps) => (
+// 4 accounts, one deleted: no search field (<= 5), but the toggle is shown.
+export const FourAccountsOneDeleted = (args: LayoutStoryArgs) => (
   <AccountSelectorDemo args={args} parties={buildParties(4, 1)} />
 );
 
-export const SixAccountsThreeDeleted = (args: AccountSelectorProps) => (
+// 6 accounts, three deleted: search field shown (> 5) and the toggle is shown.
+export const SixAccountsThreeDeleted = (args: LayoutStoryArgs) => (
   <AccountSelectorDemo args={args} parties={buildParties(6, 3)} />
 );
 
-export const TenAccountsNoneDeleted = (args: AccountSelectorProps) => (
+// 10 accounts, none deleted: search field shown (> 5), no toggle.
+export const TenAccountsNoneDeleted = (args: LayoutStoryArgs) => (
   <AccountSelectorDemo args={args} parties={buildParties(10)} />
 );

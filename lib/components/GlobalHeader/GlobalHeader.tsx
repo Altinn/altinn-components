@@ -78,7 +78,10 @@ export const GlobalHeader = ({
                 closedBy={accountSelector?.forceOpenFullScreen ? 'none' : 'any'}
                 expanded={accountSelector?.forceOpenFullScreen || expanded}
                 onToggle={() => setExpanded(!expanded)}
-                expandable={accountSelector.accountMenu.items.length > MIN_ITEMS_FOR_EXPANDABLE_DRAWER}
+                expandable={
+                  (accountSelector.accountCount ?? accountSelector.accountMenu.items.length) >
+                  MIN_ITEMS_FOR_EXPANDABLE_DRAWER
+                }
               >
                 <AccountSelector {...accountSelector} forceOpenFullScreen={accountSelector.forceOpenFullScreen} />
               </HeaderDrawer>

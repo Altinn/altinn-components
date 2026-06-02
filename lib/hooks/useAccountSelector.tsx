@@ -112,6 +112,16 @@ export const useAccountSelector = ({
     return [...partyListDTO].sort(compareFn);
   }, [partyListDTO, languageCode]);
 
+  const hasDeletedUnits = useMemo(
+    () => partyListDTO.some((party) => party.isDeleted || party.subunits?.some((subunit) => subunit.isDeleted)),
+    [partyListDTO],
+  );
+
+  const accountCount = useMemo(
+    () => partyListDTO.reduce((count, party) => count + 1 + (party.subunits?.length ?? 0), 0),
+    [partyListDTO],
+  );
+
   const [accountItems, accountGroups] = useMemo((): [
     {
       selfAccountItem: AccountMenuItemProps | undefined;
@@ -293,8 +303,9 @@ export const useAccountSelector = ({
       currentAccount: currentAccount,
     },
     loading: false,
-    showDeletedUnits: showDeletedUnits,
-    onShowDeletedUnitsChange: onShowDeletedUnitsChange,
+    showDeletedUnits: hasDeletedUnits ? showDeletedUnits : undefined,
+    onShowDeletedUnitsChange: hasDeletedUnits ? onShowDeletedUnitsChange : undefined,
+    accountCount: accountCount,
   };
 };
 

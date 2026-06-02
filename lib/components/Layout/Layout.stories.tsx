@@ -1,20 +1,9 @@
 import type { Meta } from '@storybook/react-vite';
-import { useState } from 'react';
 import { Badge, Flex, RootProvider } from '..';
 import type { LayoutProps } from '../';
 import { DialogList, Heading, Layout, List, type ListItemProps, PageBase, Toolbar } from '../';
 import { inboxSection } from '../../../examples';
-import {
-  footer,
-  getAuthorizedPartiesData,
-  header,
-  inboxMenu,
-  skipLink,
-  useAccountMenu,
-  useGlobalMenu,
-  useLayout,
-} from '../../../examples';
-import { useAccountSelector } from '../../hooks';
+import { footer, header, inboxMenu, skipLink, useAccountMenu, useGlobalMenu, useLayout } from '../../../examples';
 import type { AccountSelectorProps } from '../AccountSelector';
 
 // Add custom story args interface for easier testing
@@ -79,54 +68,6 @@ export const Preview = (args: LayoutStoryArgs) => {
   };
   return (
     <RootProvider>
-      <Layout
-        {...args}
-        {...layout}
-        header={{
-          ...layout.header,
-          accountSelector: accountSelector,
-          globalMenu: globalMenu,
-        }}
-      >
-        {args.children}
-      </Layout>
-    </RootProvider>
-  );
-};
-
-export const UsingUseAccountHook = (args: LayoutStoryArgs) => {
-  const layout = useLayout(args);
-  const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
-
-  // Use the useAccountSelector hook to get account menu and loading state
-  const [favoriteUuids, setFavoriteUuids] = useState<string[]>([]);
-  const [showDeletedAccounts, setShowDeletedAccounts] = useState(false); // Get actual value from user profile
-  const [currentAccountUuid, setCurrentAccountUuid] = useState<string | undefined>(
-    '167536b5-f8ed-4c5a-8f48-0279507e53ae',
-  );
-  const authorizedParties = getAuthorizedPartiesData(); // Fetch your authorized parties data from external source
-  const selfAccountUuid = '167536b5-f8ed-4c5a-8f48-0279507e53ae';
-  const onToggleFavorite = (uuid: string) => {
-    setFavoriteUuids((prev) => (prev.includes(uuid) ? prev.filter((id) => id !== uuid) : [...prev, uuid]));
-  };
-  const accountSelector = useAccountSelector({
-    partyListDTO: authorizedParties,
-    favoriteAccountUuids: favoriteUuids,
-    onToggleFavorite: onToggleFavorite,
-    selfAccountUuid,
-    currentAccountUuid: currentAccountUuid,
-    onSelectAccount: (accountId: string) => {
-      setCurrentAccountUuid(accountId);
-    },
-    languageCode: 'nb',
-    isLoading: false,
-    showDeletedUnits: showDeletedAccounts,
-    onShowDeletedUnitsChange: (newValue: boolean) => {
-      setShowDeletedAccounts(newValue);
-    },
-  });
-  return (
-    <RootProvider languageCode="nb">
       <Layout
         {...args}
         {...layout}
