@@ -1,5 +1,5 @@
 import { MenuElipsisHorizontalIcon } from '@navikt/aksel-icons';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { Button } from '../Button';
 import { Dropdown, type DropdownProps } from '../Dropdown';
 import { Menu, type MenuItemColor, type MenuProps } from '../Menu';
@@ -26,6 +26,20 @@ export const ContextMenu = ({
 }: ContextMenuProps) => {
   const ctrl = useDropdownMenuController({ id, returnFocusOnClose: true });
   const { languageCode } = useRootContext();
+
+  const prevOpenRef = useRef(ctrl.open);
+  useEffect(() => {
+    const wasOpen = prevOpenRef.current;
+    prevOpenRef.current = ctrl.open;
+    if (!wasOpen || ctrl.open) return;
+    const trigger = ctrl.triggerRef.current;
+    const tooltip = trigger?.getAttribute('data-tooltip');
+    if (!trigger || tooltip == null) return;
+    trigger.removeAttribute('data-tooltip');
+    const raf = requestAnimationFrame(() => trigger.setAttribute('data-tooltip', tooltip));
+    return () => cancelAnimationFrame(raf);
+  }, [ctrl.open, ctrl.triggerRef]);
+
   const itemsWithToggle = useMemo(() => {
     return items.map((item) => ({
       ...item,
@@ -36,33 +50,29 @@ export const ContextMenu = ({
     }));
   }, [items, ctrl]);
 
-  const ContextMenuButton = () => {
-    return (
-      <Tooltip content={title || getTexts(languageCode).title} hidden={ctrl.open}>
-        <Button
-          ref={ctrl.triggerRef as React.Ref<HTMLButtonElement>}
-          icon
-          variant="ghost"
-          rounded
-          size="xs"
-          aria-label={ariaLabel}
-          onClick={() => ctrl.toggleMenu()}
-          aria-haspopup="menu"
-          aria-expanded={ctrl.open}
-          aria-controls={ctrl.open ? ctrl.menuId : undefined}
-          color={color}
-        >
-          <MenuElipsisHorizontalIcon aria-hidden="true" />
-        </Button>
-      </Tooltip>
-    );
-  };
-
   return (
     <Dropdown
       backdrop={false}
       color={color}
-      trigger={<ContextMenuButton />}
+      trigger={
+        <Tooltip content={ctrl.open ? '' : title || getTexts(languageCode).title}>
+          <Button
+            ref={ctrl.triggerRef as React.Ref<HTMLButtonElement>}
+            icon
+            variant="ghost"
+            rounded
+            size="xs"
+            aria-label={ariaLabel}
+            onClick={() => ctrl.toggleMenu()}
+            aria-haspopup="menu"
+            aria-expanded={ctrl.open}
+            aria-controls={ctrl.open ? ctrl.menuId : undefined}
+            color={color}
+          >
+            <MenuElipsisHorizontalIcon aria-hidden="true" />
+          </Button>
+        </Tooltip>
+      }
       open={ctrl.open}
       onClose={() => ctrl.setOpen(false)}
       id={ctrl.menuId}

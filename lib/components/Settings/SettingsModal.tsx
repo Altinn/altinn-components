@@ -39,7 +39,7 @@ export const SettingsModal = ({
       <ModalBody>
         {children}
         {buttons?.length && (
-          <ButtonGroup>
+          <ButtonGroup wrap>
             {buttons?.map((button, index) => {
               const { icon, label, ...buttonProps } = button;
               return (

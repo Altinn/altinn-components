@@ -4,17 +4,16 @@ import styles from './tooltip.module.css';
 export type TooltipProps = {
   children: React.ReactNode;
   content: string;
-  hidden?: boolean;
   size?: Size;
 } & Omit<DsTooltipProps, 'content | children'>;
 
-export const Tooltip = ({ size = 'xs' as Size, placement, children, content, hidden }: TooltipProps) => {
+export const Tooltip = ({ size = 'xs' as Size, placement, children, content }: TooltipProps) => {
   if (!content) {
     return children;
   }
 
   return (
-    <DsTooltip aria-hidden={hidden} data-size={size} content={content} placement={placement} className={styles.tooltip}>
+    <DsTooltip data-size={size} content={content} placement={placement} className={styles.tooltip}>
       {children}
     </DsTooltip>
   );
