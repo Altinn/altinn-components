@@ -54,6 +54,7 @@ export const GlobalMenuButton = ({
       color={color}
       variant={variant}
       className={styles.button}
+      aria-haspopup="menu"
       aria-expanded={expanded}
     >
       {expanded ? (

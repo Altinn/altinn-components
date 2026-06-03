@@ -39,6 +39,7 @@ export function ToolbarFilterButton({
           variant={variant}
           onClick={onClick}
           data-id={`filter-button-${name}`}
+          aria-haspopup="menu"
           aria-expanded={open}
           title={htmlTitle}
           ref={ref}
