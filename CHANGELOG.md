@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.67.0](https://github.com/Altinn/altinn-components/compare/v0.66.1...v0.67.0) (2026-06-03)
+
+
+### Features
+
+* **AccountSelector:** hide search for few accounts, gate deleted toggle ([#1226](https://github.com/Altinn/altinn-components/issues/1226)) ([43fd2bc](https://github.com/Altinn/altinn-components/commit/43fd2bc81a0ef503368a1a0d10fa0b9bf0ddc3ab))
+
 ## [0.66.1](https://github.com/Altinn/altinn-components/compare/v0.66.0...v0.66.1) (2026-06-02)
 
 
