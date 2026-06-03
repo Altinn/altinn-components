@@ -141,7 +141,7 @@ export const SearchField = ({
           'aria-autocomplete': 'list',
           'aria-expanded': Boolean(showMenu),
           'aria-haspopup': 'listbox',
-          'aria-controls': listId,
+          'aria-controls': showMenu ? listId : undefined,
           'aria-activedescendant': showMenu ? activeDescendantId : undefined,
           onFocus: handleOnFocus,
         })}

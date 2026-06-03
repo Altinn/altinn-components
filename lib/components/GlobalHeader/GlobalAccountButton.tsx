@@ -59,6 +59,7 @@ export const GlobalAccountButton = ({
         color="company"
         className={cx(styles.accountButton, className)}
         aria-label={expanded ? texts.close : currentAccount.name}
+        aria-haspopup="menu"
         aria-expanded={expanded}
       >
         <Avatar {...(currentAccount?.icon as AvatarProps)} className={styles.avatar} />
