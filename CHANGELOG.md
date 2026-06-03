@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.67.2](https://github.com/Altinn/altinn-components/compare/v0.67.1...v0.67.2) (2026-06-03)
+
+
+### Bug Fixes
+
+* **settingsmodal:** add wrap to ButtonGroup ([#1231](https://github.com/Altinn/altinn-components/issues/1231)) ([4280cf7](https://github.com/Altinn/altinn-components/commit/4280cf72c235dc9c48aefaf49a5ab2344ff65ad0))
+
 ## [0.67.1](https://github.com/Altinn/altinn-components/compare/v0.67.0...v0.67.1) (2026-06-03)
 
 
