@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.67.1](https://github.com/Altinn/altinn-components/compare/v0.67.0...v0.67.1) (2026-06-03)
+
+
+### Bug Fixes
+
+* Aria-haspopup, aria-levels, aria-controlls ([#1229](https://github.com/Altinn/altinn-components/issues/1229)) ([6c6d1ea](https://github.com/Altinn/altinn-components/commit/6c6d1ea41043139d72e689c60d5104735dd81884))
+
 ## [0.67.0](https://github.com/Altinn/altinn-components/compare/v0.66.1...v0.67.0) (2026-06-03)
 
 
