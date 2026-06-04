@@ -76,6 +76,7 @@ export const GlobalHeader = ({
                 open={accountSelectionOpen}
                 onClose={closeAll}
                 closedBy={accountSelector?.forceOpenFullScreen ? 'none' : 'any'}
+                ariaLabelledby="account-selector-heading"
                 expanded={accountSelector?.forceOpenFullScreen || expanded}
                 onToggle={() => setExpanded(!expanded)}
                 expandable={
