@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.67.3](https://github.com/Altinn/altinn-components/compare/v0.67.2...v0.67.3) (2026-06-04)
+
+
+### Bug Fixes
+
+* **modal:** close dismissable dialogs on Escape via native cancel event ([#1233](https://github.com/Altinn/altinn-components/issues/1233)) ([3f7aca9](https://github.com/Altinn/altinn-components/commit/3f7aca911d04c42aaf24657f79c04a02e21f4d3c))
+
 ## [0.67.2](https://github.com/Altinn/altinn-components/compare/v0.67.1...v0.67.2) (2026-06-03)
 
 
