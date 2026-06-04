@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useId, useRef } from 'react';
 import type { BackdropColor } from '../';
 import { Section, type SectionProps } from '../';
 import styles from './modalBase.module.css';
@@ -17,6 +17,7 @@ export interface ModalBaseProps {
   color?: SectionProps['color'];
   padding?: SectionProps['padding'];
   spacing?: SectionProps['spacing'];
+  title?: string;
 }
 
 export const ModalBase = ({
@@ -31,8 +32,10 @@ export const ModalBase = ({
   spacing = 0,
   height = 'auto',
   variant = 'default',
+  title,
 }: ModalBaseProps) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const titleId = useId();
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -86,7 +89,7 @@ export const ModalBase = ({
     <dialog
       ref={dialogRef}
       aria-modal="true"
-      aria-labelledby="modal-title"
+      aria-labelledby={title ? titleId : undefined}
       onCancel={handleCancel}
       data-backdrop-color={backdropColor}
       className={styles.modal}
@@ -94,6 +97,11 @@ export const ModalBase = ({
       data-height={height}
       onClose={closedBy !== 'none' ? onClose : undefined}
     >
+      {title && (
+        <h2 id={titleId} className={styles.srOnly}>
+          {title}
+        </h2>
+      )}
       <Section
         className={styles.content}
         aria-label="modal content"

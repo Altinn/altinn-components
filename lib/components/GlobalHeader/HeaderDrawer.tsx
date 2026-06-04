@@ -13,6 +13,7 @@ export interface HeaderDrawerProps {
   expandable?: boolean;
   onToggle?: () => void;
   children: ReactNode;
+  ariaLabelledby?: string;
 }
 
 export const HeaderDrawer = ({
@@ -24,6 +25,7 @@ export const HeaderDrawer = ({
   expandable = true,
   onToggle,
   children,
+  ariaLabelledby,
 }: HeaderDrawerProps) => {
   const { languageCode } = useRootContext();
   const texts = getTexts(languageCode);
@@ -88,7 +90,7 @@ export const HeaderDrawer = ({
         id={id}
         ref={dialogRef}
         aria-modal="true"
-        aria-labelledby="modal-title"
+        aria-labelledby={ariaLabelledby}
         data-open={open}
         data-expanded={expanded}
         onCancel={handleCancel}
