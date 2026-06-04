@@ -1,1 +1,0 @@
-import{a7 as p,W as a}from"./iframe-CDUjh_2z.js";const l="_tooltip_t2itc_1",r={tooltip:l},x=({size:s="xs",placement:i,children:t,content:o})=>o?p.jsx(a,{"data-size":s,content:o,placement:i,className:r.tooltip,children:t}):t;export{x as T};
