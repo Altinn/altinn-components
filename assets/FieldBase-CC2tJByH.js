@@ -1,0 +1,1 @@
+import{a7 as r}from"./iframe-CDUjh_2z.js";import{T as e}from"./Typography-HCvo8I75.js";import{F as n}from"./Field-BLni3K_t.js";import{L as x}from"./Label-BeOd8owz.js";const F=({size:s,color:m,label:o,htmlFor:a,helperText:i,children:t,...p})=>r.jsxs(n,{size:s,color:m,...p,children:[o&&r.jsx(x,{size:s,htmlFor:a,children:o}),t,i&&r.jsx(e,{size:"xs",children:i})]});export{F};
