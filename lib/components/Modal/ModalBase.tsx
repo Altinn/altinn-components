@@ -36,24 +36,16 @@ export const ModalBase = ({
 
   useEffect(() => {
     const dialog = dialogRef.current;
-    const handleClosedby = (event: Event) => {
-      const { clientY: y, clientX: x, target } = event as MouseEvent;
-      if (event instanceof KeyboardEvent) {
-        if (event.key === 'Escape') {
-          if (closedBy === 'none') {
-            event.preventDefault();
-            return;
-          }
-          onClose();
-          return;
-        }
-      }
+    // Light dismiss: close when the backdrop (the dialog element itself) is
+    // clicked. Escape is handled natively via the dialog "cancel" event.
+    const handleBackdropClick = (event: MouseEvent) => {
       if (window.getSelection()?.toString()) return;
+      const { clientY: y, clientX: x, target } = event;
       if (dialog && target === dialog && closedBy === 'any') {
         const { top, left, right, bottom } = dialog.getBoundingClientRect();
         const isInDialog = top <= y && y <= bottom && left <= x && x <= right;
 
-        if (!isInDialog) dialog?.close();
+        if (!isInDialog) dialog.close();
       }
     };
 
@@ -63,14 +55,12 @@ export const ModalBase = ({
     };
 
     dialog?.addEventListener('animationend', handleAutoFocus);
-    dialog?.addEventListener('click', handleClosedby);
-    dialog?.addEventListener('keydown', handleClosedby);
+    dialog?.addEventListener('click', handleBackdropClick);
     return () => {
       dialog?.removeEventListener('animationend', handleAutoFocus);
-      dialog?.removeEventListener('click', handleClosedby);
-      dialog?.removeEventListener('keydown', handleClosedby);
+      dialog?.removeEventListener('click', handleBackdropClick);
     };
-  }, [closedBy, onClose]);
+  }, [closedBy]);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -88,8 +78,8 @@ export const ModalBase = ({
   }, [open]);
 
   const handleCancel = (e: React.SyntheticEvent<HTMLDialogElement>) => {
-    e.preventDefault();
-    closedBy === 'any' && onClose();
+    /* The "cancel" event fires on Escape (a close request). Block it only when the dialog must not be dismissed; */
+    if (closedBy === 'none') e.preventDefault();
   };
 
   return (
