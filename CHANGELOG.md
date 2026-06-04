@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.67.4](https://github.com/Altinn/altinn-components/compare/v0.67.3...v0.67.4) (2026-06-04)
+
+
+### Bug Fixes
+
+* WAVE WCAG error fixes ([#1235](https://github.com/Altinn/altinn-components/issues/1235)) ([e771e4b](https://github.com/Altinn/altinn-components/commit/e771e4be9160c2f06d6ea57c4ec45729fdd45e8e))
+
 ## [0.67.3](https://github.com/Altinn/altinn-components/compare/v0.67.2...v0.67.3) (2026-06-04)
 
 
