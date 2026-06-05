@@ -178,7 +178,7 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
       color={color}
       expanded={expanded}
       id={listId}
-      role={isCombobox ? 'listbox' : undefined}
+      role={isCombobox ? 'listbox' : 'menu'}
     >
       {search && (
         <MenuListSearch

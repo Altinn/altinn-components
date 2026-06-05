@@ -141,7 +141,7 @@ export const MenuItems = ({
       ref={ref}
       style={scrollRefStyles}
       id={listId}
-      role={isCombobox ? 'listbox' : undefined}
+      role={isCombobox ? 'listbox' : 'menu'}
       tabIndex={keyboardEvents ? -1 : undefined}
     >
       {search && (

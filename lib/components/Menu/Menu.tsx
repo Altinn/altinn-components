@@ -30,7 +30,9 @@ export const Menu = ({
   id,
 }: MenuProps) => {
   const autoSearch = useMenuSearch({ ...search, items, groups });
-  const applicableSearch = searchable ? autoSearch.search : search;
+  const applicableSearch = searchable
+    ? { label: search?.label, hideLabel: search?.hideLabel, ...autoSearch.search }
+    : search;
   const announceNoResults = searchable && autoSearch.hasQuery && autoSearch.resultCount === 0;
   const applicableItems = searchable ? autoSearch.items : items;
   const applicableGroups = searchable ? { ...groups, ...autoSearch.groups } : groups;

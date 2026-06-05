@@ -294,9 +294,9 @@ export const Dropdown = ({
       data-expanded={expanded}
       data-size={size}
       tabIndex={-1}
-      role="menu"
-      aria-modal={variant === 'drawer-dropdown' ? true : undefined}
-      aria-activedescendant={activeDescendantId}
+      role={open ? 'menu' : undefined}
+      aria-modal={open && variant === 'drawer-dropdown' ? true : undefined}
+      aria-activedescendant={open ? activeDescendantId : undefined}
     >
       <header className={styles.header}>
         <h2 className={styles.title}>{title}</h2>

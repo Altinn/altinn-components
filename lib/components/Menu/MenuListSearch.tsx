@@ -14,6 +14,8 @@ export interface MenuListSearchProps extends React.ComponentProps<'input'> {
   onNavigate?: () => void;
   combobox?: boolean;
   listId?: string;
+  label?: string;
+  hideLabel?: boolean;
 }
 
 export const MenuListSearch = ({
