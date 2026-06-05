@@ -1,1 +1,1 @@
-export type MenuListRole = 'presentation' | 'group' | 'list' | 'listbox';
+export type MenuListRole = 'presentation' | 'group' | 'list' | 'listbox' | 'menu';
