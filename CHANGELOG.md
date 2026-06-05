@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.67.5](https://github.com/Altinn/altinn-components/compare/v0.67.4...v0.67.5) (2026-06-05)
+
+
+### Bug Fixes
+
+* WAVE error menu fixes ([#1237](https://github.com/Altinn/altinn-components/issues/1237)) ([729fd88](https://github.com/Altinn/altinn-components/commit/729fd884b0b6911c18f7e1f6b10868835450f340))
+
 ## [0.67.4](https://github.com/Altinn/altinn-components/compare/v0.67.3...v0.67.4) (2026-06-04)
 
 
