@@ -39,23 +39,25 @@ export const GlobalHeader = ({
   onLoginClick,
 }: GlobalHeaderProps) => {
   const { currentId, toggleId, closeAll } = useRootContext();
+  const isDesktop = useIsDesktop();
 
   const onToggleAccountMenu = () => {
-    if (currentId !== 'account') {
-      window.scrollTo({ top: 0, behavior: 'instant' });
-    }
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: -window.scrollY, behavior: 'instant' });
+    });
     toggleId('account');
   };
 
   const onToggleMenu = () => {
     toggleId('menu');
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: -window.scrollY, behavior: 'instant' });
+    });
   };
 
   const accountSelectionOpen = currentId === 'account' || accountSelector?.forceOpenFullScreen || false;
 
   const [expanded, setExpanded] = useState(false);
-
-  const isDesktop = useIsDesktop();
 
   return (
     <header className={styles.header} data-current-id={currentId}>

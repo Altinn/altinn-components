@@ -105,6 +105,11 @@ export const AccountSelector = ({
               onChange={(e) => setSearchString(e.target.value)}
               onClear={() => setSearchString('')}
               className={styles.searchField}
+              onBlur={() => {
+                requestAnimationFrame(() => {
+                  window.scrollTo({ top: -window.scrollY, behavior: 'instant' });
+                });
+              }}
             />
           )}
           {showDeletedToggle && (
