@@ -47,6 +47,8 @@ html:has(dialog[open]) {
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
+  /* Prevent touch scroll from chaining to the page behind the modal (iOS) */
+  overscroll-behavior: contain;
 }
 
 .drawer::backdrop {

@@ -8,6 +8,12 @@ import styles from './accountSelector.module.css';
 
 const MAX_ACCOUNTS_WITHOUT_SEARCH = 5;
 
+const isIOS =
+  typeof navigator !== 'undefined' &&
+  (/iP(hone|ad|od)/.test(navigator.userAgent) ||
+    // iPadOS 13+ reports itself as Mac
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1));
+
 export interface AccountSelectorProps {
   accountMenu: AccountMenuProps;
   /** External control of fullscreen mode. When this flag is true, the account menu will open and cannot be minimized or closed.
@@ -59,9 +65,20 @@ export const AccountSelector = ({
   // the list rendering only a small slice anchored at the previous offset.
   const [openCount, setOpenCount] = useState(0);
   const prevIsOpenRef = useRef(isOpen);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const accountMenuRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (isOpen && !prevIsOpenRef.current) {
       setOpenCount((c) => c + 1);
+      // Reset scroll position on open. The drawer keeps children mounted, so
+      // scroll offsets otherwise persist across opens. The virtualized list
+      // resets via the openCount remount above; this also covers the
+      // non-virtualized list, which scrolls within the enclosing <dialog>
+      // drawer rather than the .accountMenu element itself.
+      requestAnimationFrame(() => {
+        accountMenuRef.current?.scrollTo({ top: 0 });
+        rootRef.current?.closest('dialog')?.scrollTo({ top: 0 });
+      });
     }
     prevIsOpenRef.current = isOpen;
   }, [isOpen]);
@@ -76,6 +93,16 @@ export const AccountSelector = ({
 
   const { searchText, heading, switchLabel } = getTexts(languageCode);
 
+  // On iOS Safari, focusing an input scrolls the document so the field sits
+  // above the keyboard. Inside the fixed <dialog> drawer this shows up as a
+  // jump. The search field is sticky at the top of the drawer, so it stays
+  // visible regardless — undo the pan to keep the layout stable.
+  const preventIOSFocusScroll: React.FocusEventHandler<HTMLInputElement> = () => {
+    if (isIOS) {
+      requestAnimationFrame(() => window.scrollTo({ top: -window.scrollY, behavior: 'instant' }));
+    }
+  };
+
   const onAccountSelection = (accountId: string) => {
     accountMenu.onSelectAccount?.(accountId);
     closeAll();
@@ -87,7 +114,7 @@ export const AccountSelector = ({
   }
 
   return (
-    <div className={cx(className, styles.accountSelector)}>
+    <div ref={rootRef} className={cx(className, styles.accountSelector)}>
       <DsHeading data-size="sm" level={2} className={styles.heading} id="account-selector-heading">
         {heading}
       </DsHeading>
@@ -104,6 +131,7 @@ export const AccountSelector = ({
               value={searchString}
               onChange={(e) => setSearchString(e.target.value)}
               onClear={() => setSearchString('')}
+              onBlur={preventIOSFocusScroll}
               className={styles.searchField}
             />
           )}
@@ -118,6 +146,7 @@ export const AccountSelector = ({
         </div>
       )}
       <div
+        ref={accountMenuRef}
         className={cx(
           styles.accountMenu,
           isFullScreen && styles.fullScreen,

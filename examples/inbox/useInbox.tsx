@@ -355,6 +355,11 @@ export const useInbox = ({
       ...layout,
       theme: 'inbox',
       color,
+      banner: {
+        title: 'Nytt i innboksen',
+        variant: 'alert',
+        color: 'warning',
+      },
       header: {
         ...layout?.header,
         globalMenu: {

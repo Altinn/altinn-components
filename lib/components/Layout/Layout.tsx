@@ -83,7 +83,15 @@ export const Layout = ({
     <LayoutBase color={color} theme={theme} currentId={currentId} bannerHeight={banner ? bannerHeight : 0}>
       {skipLink && <SkipLink {...skipLink} />}
       {banner && (
-        <div ref={bannerRef} className={styles.bannerWrapper} data-color="company">
+        <div
+          ref={bannerRef}
+          className={
+            currentId === 'account' || currentId === 'menu' || currentId === 'locale'
+              ? styles.bannerWrapperPinned
+              : undefined
+          }
+          data-color="company"
+        >
           <Banner
             title={
               banner.link ? (
