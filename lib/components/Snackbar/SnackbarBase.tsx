@@ -1,4 +1,4 @@
-import { type Ref, type ReactNode } from 'react';
+import type { ReactNode, Ref } from 'react';
 import styles from './snackbarBase.module.css';
 
 export interface SnackbarBaseProps {

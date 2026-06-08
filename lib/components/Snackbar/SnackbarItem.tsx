@@ -1,6 +1,6 @@
 import { BellFillIcon, XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
-import { useEffect, type CSSProperties, type ElementType, type ReactNode } from 'react';
+import { type CSSProperties, type ElementType, type ReactNode, useEffect } from 'react';
 import { Button, Icon, type SvgElement } from '..';
 import styles from './snackbarItem.module.css';
 
