@@ -1,0 +1,1 @@
+import{a7 as t}from"./iframe-B0WoJH5H.js";import{A as a}from"./AttachmentList-1Uq_Rr5e.js";import{S as n}from"./Section-BK9NUwy5.js";import{H as i}from"./Heading-DxONre_z.js";const h=({title:r="Attachments",items:s})=>s?.length?t.jsxs(n,{spacing:1,children:[t.jsx(i,{as:"h2",size:"xs",weight:"normal",variant:"subtle",children:r}),t.jsx(a,{items:s})]}):null;export{h as D};

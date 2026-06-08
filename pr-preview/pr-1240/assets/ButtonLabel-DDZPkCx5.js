@@ -1,1 +1,0 @@
-import{a7 as e,a3 as l}from"./iframe-C3-39QZn.js";const n="_label_18rn3_1",o={label:n},b=({className:a,size:s,children:t})=>e.jsx("span",{className:l(o.label,a),"data-size":s,children:t});export{b as B};
