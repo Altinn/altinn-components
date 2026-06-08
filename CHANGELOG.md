@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.67.6](https://github.com/Altinn/altinn-components/compare/v0.67.5...v0.67.6) (2026-06-08)
+
+
+### Bug Fixes
+
+* **GlobalHeader:** pin header to overlays and lock iOS background scroll ([#1240](https://github.com/Altinn/altinn-components/issues/1240)) ([76f412d](https://github.com/Altinn/altinn-components/commit/76f412d541f8608f35e2685bf744b8c65ca67d32))
+
 ## [0.67.5](https://github.com/Altinn/altinn-components/compare/v0.67.4...v0.67.5) (2026-06-05)
 
 
