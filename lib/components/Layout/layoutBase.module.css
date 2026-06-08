@@ -8,6 +8,17 @@
   --altinn-banner-height: 0px;
 }
 
+/* While a header overlay is open, pin the banner above the (also-pinned) header
+   so the overlay offset — which reserves the banner height — stays aligned. The
+   banner scrolls away normally otherwise. */
+.bannerWrapperPinned {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
 .base[data-theme="default"] {
   --altinn-layout-background: var(--ds-color-background-default);
 }

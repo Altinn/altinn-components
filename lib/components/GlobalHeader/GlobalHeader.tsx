@@ -40,10 +40,10 @@ export const GlobalHeader = ({
 }: GlobalHeaderProps) => {
   const { currentId, toggleId, closeAll } = useRootContext();
 
+  // The header pins itself (position: fixed) while an overlay is open (see
+  // globalHeader.module.css), so the fixed overlays line up with it without
+  // forcing the page to the top before opening.
   const onToggleAccountMenu = () => {
-    if (currentId !== 'account') {
-      window.scrollTo({ top: 0, behavior: 'instant' });
-    }
     toggleId('account');
   };
 
