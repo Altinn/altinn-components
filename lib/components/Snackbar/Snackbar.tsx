@@ -1,4 +1,5 @@
 'use client';
+import { useEffect, useRef } from 'react';
 import { SnackbarBase } from './SnackbarBase.tsx';
 import { SnackbarItem } from './SnackbarItem';
 import { useSnackbar } from './useSnackbar';
@@ -15,16 +16,23 @@ const minOpacity = 0.4;
 
 export const Snackbar = ({ className }: SnackbarProps) => {
   const { storedMessages, open, closeSnackbarItem } = useSnackbar();
+  const ref = useRef<HTMLElement>(null);
 
-  if (!open) {
-    return null;
-  }
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (open) {
+      el.showPopover();
+    } else if (el.matches(':popover-open')) {
+      el.hidePopover();
+    }
+  }, [open]);
 
   const messages = storedMessages || [];
   const newestIndex = messages.length - 1;
 
   return (
-    <SnackbarBase className={className}>
+    <SnackbarBase ref={ref} className={className}>
       {messages.map((item, index) => {
         // Newest snack (rendered last) is fully opaque; each older one fades.
         const depth = newestIndex - index;

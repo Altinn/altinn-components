@@ -1,6 +1,6 @@
 import { BellFillIcon, XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
-import type { CSSProperties, ElementType, ReactNode } from 'react';
+import { useEffect, type CSSProperties, type ElementType, type ReactNode } from 'react';
 import { Button, Icon, type SvgElement } from '..';
 import styles from './snackbarItem.module.css';
 
@@ -40,6 +40,42 @@ export const SnackbarItem = ({
   ...rest
 }: SnackbarItemProps) => {
   const Component = as || 'div';
+
+  useEffect(() => {
+    if (!message) {
+      return;
+    }
+    const openDialog = document.querySelector('dialog[open]');
+    if (!openDialog) {
+      return;
+    }
+
+    // Reuse or create a visually-hidden live region inside the dialog
+    let announcer = openDialog.querySelector<HTMLElement>('[data-snackbar-live]');
+    if (!announcer) {
+      announcer = document.createElement('div');
+      announcer.setAttribute('data-snackbar-live', '');
+      announcer.setAttribute('aria-live', 'polite');
+      announcer.setAttribute('aria-atomic', 'true');
+      Object.assign(announcer.style, {
+        position: 'absolute',
+        width: '1px',
+        height: '1px',
+        padding: '0',
+        overflow: 'hidden',
+        clip: 'rect(0,0,0,0)',
+        whiteSpace: 'nowrap',
+        border: '0',
+      });
+      openDialog.appendChild(announcer);
+    }
+
+    // Clear then set to re-trigger announcement
+    announcer.textContent = '';
+    requestAnimationFrame(() => {
+      announcer!.textContent = message as string;
+    });
+  }, [message]);
 
   return (
     <span className={styles.itemWrapper}>

@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { type Ref, type ReactNode } from 'react';
 import styles from './snackbarBase.module.css';
 
 export interface SnackbarBaseProps {
@@ -6,8 +6,13 @@ export interface SnackbarBaseProps {
   className?: string;
   /** Children */
   children: string | ReactNode;
+  ref?: Ref<HTMLElement>;
 }
 
-export const SnackbarBase = ({ children }: SnackbarBaseProps) => {
-  return <section className={styles.stack}>{children}</section>;
+export const SnackbarBase = ({ children, ref }: SnackbarBaseProps) => {
+  return (
+    <section ref={ref} popover="manual" className={styles.stack}>
+      {children}
+    </section>
+  );
 };

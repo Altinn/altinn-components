@@ -1,13 +1,17 @@
 .stack {
-  position: fixed;
-  top: auto;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  /* Position at the bottom of the viewport, overriding popover UA inset: 0 */
+  inset: auto 0 0 0;
+  /* Override remaining popover UA defaults */
+  width: 100%;
+  margin: 0;
+  border: none;
+  padding: 1rem;
+  background: transparent;
+  overflow: visible;
+  /* Layout */
   display: flex;
   flex-direction: column;
   row-gap: 0.5rem;
-  padding: 1rem;
   pointer-events: none;
 }
 
