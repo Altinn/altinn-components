@@ -4,18 +4,15 @@
   width: 100%;
 }
 
-/* While a header overlay (account drawer / global menu / locale) is open, pin
-   the header so the fixed overlay — which sits at `top: calc(4.5rem + banner)` —
-   meets the header bottom without scrolling the page. The header still scrolls
-   away normally during regular browsing; it only pins for the duration of the
-   overlay, which covers the page behind it anyway. */
-.header[data-current-id="account"],
-.header[data-current-id="menu"],
-.header[data-current-id="locale"] {
-  position: fixed;
-  top: var(--altinn-banner-height, 0px);
-  left: 0;
-  right: 0;
+@media (max-width: 1023px) {
+  .header[data-current-id="account"],
+  .header[data-current-id="menu"],
+  .header[data-current-id="locale"] {
+    position: fixed;
+    top: var(--altinn-banner-height, 0px);
+    left: 0;
+    right: 0;
+  }
 }
 
 .container {
