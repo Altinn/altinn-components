@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.67.8](https://github.com/Altinn/altinn-components/compare/v0.67.7...v0.67.8) (2026-06-09)
+
+
+### Bug Fixes
+
+* **GlobalHeader:** only pin header/banner to overlays on mobile ([#1246](https://github.com/Altinn/altinn-components/issues/1246)) ([a240085](https://github.com/Altinn/altinn-components/commit/a24008593740816eb2edf559affbaab4e350e517))
+
 ## [0.67.7](https://github.com/Altinn/altinn-components/compare/v0.67.6...v0.67.7) (2026-06-08)
 
 
