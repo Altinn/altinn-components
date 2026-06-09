@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.67.7](https://github.com/Altinn/altinn-components/compare/v0.67.6...v0.67.7) (2026-06-08)
+
+
+### Bug Fixes
+
+* refactor snackbar to use popover HTML attribute ([#1241](https://github.com/Altinn/altinn-components/issues/1241)) ([9ecd253](https://github.com/Altinn/altinn-components/commit/9ecd253aebb1f3e8394b31b7fdfef91f794d5889))
+
 ## [0.67.6](https://github.com/Altinn/altinn-components/compare/v0.67.5...v0.67.6) (2026-06-08)
 
 
