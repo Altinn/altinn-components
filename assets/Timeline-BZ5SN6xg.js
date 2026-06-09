@@ -1,0 +1,1 @@
+import{a7 as s}from"./iframe-D6Pw3lmv.js";import{S as e}from"./Section-B6MiXL8W.js";const n=({as:t="ul",spacing:o=2,children:r})=>s.jsx(e,{as:t,spacing:o,style:{width:"100%"},children:r});export{n as T};
