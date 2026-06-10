@@ -27,12 +27,12 @@
   height: 2.25rem;
 }
 
-.button[aria-selected="true"] {
+.button[aria-pressed="true"] {
   background-color: var(--ds-color-surface-active);
   color: var(--ds-color-text-default);
 }
 
-.button[aria-selected="true"]:hover,
+.button[aria-pressed="true"]:hover,
 .button:hover {
   background-color: var(--ds-color-surface-hover);
 }

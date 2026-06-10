@@ -7,11 +7,19 @@ export interface MenuListGroupProps {
   index?: number;
   style?: React.CSSProperties;
   children?: React.ReactNode;
+  role?: React.AriaRole;
 }
 
-export const MenuListGroup = ({ ref, hidden, index, style, children }: MenuListGroupProps) => {
+export const MenuListGroup = ({ ref, hidden, index, style, children, role = 'presentation' }: MenuListGroupProps) => {
   return (
-    <li ref={ref} className={cx(styles.group)} style={style} data-index={index} aria-hidden={hidden}>
+    <li
+      ref={ref}
+      className={cx(styles.group)}
+      style={style}
+      data-index={index}
+      aria-hidden={hidden || undefined}
+      role={role}
+    >
       {children}
     </li>
   );
