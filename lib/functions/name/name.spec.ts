@@ -59,4 +59,56 @@ describe('formatDisplayName', () => {
   it('does not affect person names with periods', () => {
     expect(formatDisplayName({ fullName: 'TEST A.B.C', type: 'person' })).toBe('Test A.b.c');
   });
+
+  describe('municipalities (kommuner)', () => {
+    it('lowercases "kommune" for a single-word municipality', () => {
+      expect(formatDisplayName({ fullName: 'OSLO KOMMUNE', type: 'company' })).toBe('Oslo kommune');
+    });
+
+    it('lowercases "kommune" for a multi-word place name', () => {
+      expect(formatDisplayName({ fullName: 'NORDRE LAND KOMMUNE', type: 'company' })).toBe('Nordre Land kommune');
+    });
+
+    it('handles hyphenated municipality names', () => {
+      expect(formatDisplayName({ fullName: 'NORD-AURDAL KOMMUNE', type: 'company' })).toBe('Nord-Aurdal kommune');
+    });
+
+    it('handles Norwegian characters in municipality names', () => {
+      expect(formatDisplayName({ fullName: 'BÆRUM KOMMUNE', type: 'company' })).toBe('Bærum kommune');
+      expect(formatDisplayName({ fullName: 'TRØNDELAG FYLKESKOMMUNE', type: 'company' })).toBe(
+        'Trøndelag fylkeskommune',
+      );
+    });
+
+    it('lowercases "fylkeskommune" for county municipalities', () => {
+      expect(formatDisplayName({ fullName: 'VIKEN FYLKESKOMMUNE', type: 'company' })).toBe('Viken fylkeskommune');
+    });
+
+    it('lowercases the conjunction "og" in county municipality names', () => {
+      expect(formatDisplayName({ fullName: 'MØRE OG ROMSDAL FYLKESKOMMUNE', type: 'company' })).toBe(
+        'Møre og Romsdal fylkeskommune',
+      );
+      expect(formatDisplayName({ fullName: 'TROMS OG FINNMARK FYLKESKOMMUNE', type: 'company' })).toBe(
+        'Troms og Finnmark fylkeskommune',
+      );
+    });
+
+    it('keeps capitalizing subsequent words (e.g. sub-units)', () => {
+      expect(formatDisplayName({ fullName: 'OSLO KOMMUNE UTDANNINGSETATEN', type: 'company' })).toBe(
+        'Oslo kommune Utdanningsetaten',
+      );
+    });
+
+    it('capitalizes "Kommune" when it is the first word of the name', () => {
+      expect(formatDisplayName({ fullName: 'KOMMUNE TEST AS', type: 'company' })).toBe('Kommune Test AS');
+    });
+
+    it('capitalizes "Og" when it is the first word of the name', () => {
+      expect(formatDisplayName({ fullName: 'OG TEST AS', type: 'company' })).toBe('Og Test AS');
+    });
+
+    it('does not lowercase generic nouns for person names', () => {
+      expect(formatDisplayName({ fullName: 'OLA KOMMUNE', type: 'person' })).toBe('Ola Kommune');
+    });
+  });
 });

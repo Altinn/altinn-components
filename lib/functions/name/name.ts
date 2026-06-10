@@ -25,6 +25,10 @@ export const formatDisplayName = ({ fullName, type, reverseNameOrder }: FormatDi
   if (!fullName) return '';
 
   const legalEntityTypes = ['enk', 'as', 'da', 'sa', 'asa', 'ba', 'ans', 'sti', 'nuf'];
+  // Common Norwegian nouns/conjunctions that should stay lowercase when they
+  // appear after the first word, e.g. "Oslo kommune", "Viken fylkeskommune"
+  // and "Møre og Romsdal fylkeskommune".
+  const lowercaseWords = ['kommune', 'fylkeskommune', 'og'];
   const parts = fullName.split(' ');
 
   const isAbbreviation = (word: string): boolean => {
@@ -39,6 +43,12 @@ export const formatDisplayName = ({ fullName, type, reverseNameOrder }: FormatDi
 
     if (type === 'company' && isLastWord && legalEntityTypes.includes(lowerWord)) {
       return lowerWord.toUpperCase();
+    }
+
+    // Keep generic nouns/conjunctions lowercase, but never as the first word
+    // (a name should always start with a capital letter).
+    if (type === 'company' && idx > 0 && lowercaseWords.includes(lowerWord)) {
+      return lowerWord;
     }
 
     if (type === 'company' && isAbbreviation(word)) {
