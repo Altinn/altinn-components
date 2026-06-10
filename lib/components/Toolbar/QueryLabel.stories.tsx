@@ -21,7 +21,12 @@ export const Default: Story = {
       },
       {
         type: 'search',
-        label: 'query',
+        label: 'part1',
+        value: 'value',
+      },
+      {
+        type: 'search',
+        label: 'part2',
         value: 'value',
       },
       {

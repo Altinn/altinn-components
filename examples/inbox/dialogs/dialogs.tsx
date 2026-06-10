@@ -105,8 +105,9 @@ export const getDialogGroup = ({ updatedAt = '2000-01-01' }: DialogDataProps) =>
 };
 
 function matchAnyWord(input: string, words: string[]): boolean {
-  const lowerInput = input.toLowerCase();
-  return words.some((word) => word.toLowerCase().includes(lowerInput));
+  const haystack = words.join(' ').toLowerCase();
+  const terms = input.toLowerCase().split(/\s+/).filter(Boolean);
+  return terms.some((term) => haystack.includes(term));
 }
 
 export function getDialogList(data: DialogDataProps[], q?: string): DialogListProps {
