@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.67.10](https://github.com/Altinn/altinn-components/compare/v0.67.9...v0.67.10) (2026-06-10)
+
+
+### Miscellaneous Chores
+
+* update story for search inbox ([#1224](https://github.com/Altinn/altinn-components/issues/1224)) ([0a8cc5e](https://github.com/Altinn/altinn-components/commit/0a8cc5ebf2a7920ef8f61d10b5225d5e900eec4d))
+
 ## [0.67.9](https://github.com/Altinn/altinn-components/compare/v0.67.8...v0.67.9) (2026-06-10)
 
 
