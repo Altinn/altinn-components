@@ -101,6 +101,7 @@ export const ToolbarFilter = ({
           onAdd={onFilterAdd}
           label={visibleFilters?.length > 0 ? addNextLabel : addLabel}
           virtualized={virtualized}
+          title={addLabel}
         />
       )}
       {(resetButton || controls) && (

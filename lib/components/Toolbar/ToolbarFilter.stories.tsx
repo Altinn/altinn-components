@@ -19,13 +19,15 @@ export default meta;
 
 export const Controlled = () => {
   const [filterState, setFilterState] = useState<ToolbarFilterProps['filterState']>({});
+  const filters = inboxFilters.map((item) => ({ ...item, removable: true }));
   return (
     <Toolbar>
       <ToolbarFilter
+        addLabel="Legg til filter"
         getFilterLabel={(name) => filterState?.[name]?.join(',') || 'Choose ' + name}
         filterState={filterState}
         onFilterStateChange={setFilterState}
-        filters={inboxFilters.map((item) => ({ ...item, removable: true }))}
+        filters={filters}
       />
       <Button onClick={() => setFilterState({})}>Reset</Button>
     </Toolbar>
