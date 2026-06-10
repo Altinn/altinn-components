@@ -22,6 +22,7 @@ export const ToolbarFilterAddMenu = ({
   onToggle,
   onClose,
   open,
+  title,
   dropdownSize = 'sm',
 }: ToolbarFilterAddMenuProps) => {
   const ctrl = useDropdownMenuController({ id: 'tool-filter-add' });
@@ -56,6 +57,7 @@ export const ToolbarFilterAddMenu = ({
     <Dropdown
       variant="drawer-dropdown"
       size={dropdownSize}
+      title={title}
       trigger={
         <Button
           variant="secondary"
