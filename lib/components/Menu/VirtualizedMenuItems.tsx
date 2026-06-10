@@ -43,7 +43,7 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
     () =>
       items.map((item, index) => ({
         ...item,
-        id: item.id || `${id}-item-${index}`,
+        id: `${id}-item-${index}`,
       })),
     [items, id],
   );
@@ -253,13 +253,16 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
 
               default: {
                 const isCheckable = entry.itemProps?.role === 'checkbox' || entry.itemProps?.role === 'radio';
-                const resolvedRole = isCombobox && !isCheckable ? 'option' : entry.itemProps?.role;
+                const menuCheckableRole = entry.itemProps?.role === 'radio' ? 'menuitemradio' : 'menuitemcheckbox';
+                const resolvedRole = isCombobox
+                  ? isCheckable
+                    ? entry.itemProps?.role
+                    : 'option'
+                  : isCheckable
+                    ? menuCheckableRole
+                    : entry.itemProps?.role;
                 return (
-                  <MenuListItem
-                    key={virtualRow.key}
-                    {...commonProps}
-                    role={isCombobox || isCheckable ? 'presentation' : 'menuitem'}
-                  >
+                  <MenuListItem key={virtualRow.key} {...commonProps} role="presentation">
                     <MenuItem
                       {...(entry.itemProps || {})}
                       size={entry.itemProps?.size || size}

@@ -35,8 +35,22 @@ export const Datepicker = ({
 
   return (
     <div className={cx(styles.datepicker, className)}>
-      <DatepickerHeader title={resolvedMonths[month]} onNext={() => setDate(next)} onPrev={() => setDate(prev)} />
-      <DatepickerTable rows={rows} weekdays={resolvedWeekdays} onSelect={onSelect} />
+      <DatepickerHeader
+        title={resolvedMonths[month]}
+        prevLabel={texts.prevLabel}
+        nextLabel={texts.nextLabel}
+        onNext={() => setDate(next)}
+        onPrev={() => setDate(prev)}
+      />
+      <DatepickerTable
+        rows={rows}
+        weekdays={resolvedWeekdays}
+        months={resolvedMonths}
+        selectFrom={selectFrom}
+        selectTo={selectTo}
+        selectionLabels={texts.dateSelection}
+        onSelect={onSelect}
+      />
     </div>
   );
 };
@@ -62,6 +76,9 @@ const getTexts = (languageCode: string | undefined) => {
           'Desember',
         ],
         weekdays: ['måndag', 'tysdag', 'onsdag', 'torsdag', 'fredag', 'laurdag', 'søndag'],
+        prevLabel: 'Førre månad',
+        nextLabel: 'Neste månad',
+        dateSelection: { from: 'frå-dato', to: 'til-dato', inRange: 'i vald periode' },
       };
     case 'en':
       return {
@@ -80,6 +97,9 @@ const getTexts = (languageCode: string | undefined) => {
           'December',
         ],
         weekdays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        prevLabel: 'Previous month',
+        nextLabel: 'Next month',
+        dateSelection: { from: 'start date', to: 'end date', inRange: 'in selected range' },
       };
     default:
       return {
@@ -98,6 +118,9 @@ const getTexts = (languageCode: string | undefined) => {
           'Desember',
         ],
         weekdays: ['mandag', 'tirsdag', 'onsdag', 'torsdag', 'fredag', 'lørdag', 'søndag'],
+        prevLabel: 'Forrige måned',
+        nextLabel: 'Neste måned',
+        dateSelection: { from: 'fra-dato', to: 'til-dato', inRange: 'i valgt periode' },
       };
   }
 };

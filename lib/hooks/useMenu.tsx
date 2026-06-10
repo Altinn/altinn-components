@@ -129,15 +129,18 @@ export const useMenu = <T, V>({
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
+      if (flatItems.length === 0) {
+        return;
+      }
       if (event.key === 'ArrowDown') {
         event.preventDefault();
-        setActiveIndex((prevIndex) => (prevIndex + 1) % items.length);
+        setActiveIndex((prevIndex) => (prevIndex + 1) % flatItems.length);
       } else if (event.key === 'ArrowUp') {
         event.preventDefault();
         setActiveIndex((prevIndex) => (prevIndex <= 0 ? 0 : prevIndex - 1));
       }
     },
-    [items.length],
+    [flatItems.length],
   );
 
   useEffect(() => {

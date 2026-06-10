@@ -81,25 +81,39 @@ export const DatepickerFilter = ({
   };
 
   return (
-    <MenuList>
-      <MenuListItem>
-        <MenuItem variant="default" icon={ArrowUndoIcon} title={backLabel} onClick={submit} />
+    <MenuList role="presentation">
+      <MenuListItem role="presentation">
+        <MenuItem variant="default" role="button" icon={ArrowUndoIcon} title={backLabel} onClick={submit} />
       </MenuListItem>
       <MenuListDivider />
-      <MenuListItem>
+      <MenuListItem role="presentation">
         <Fieldset size="xs">
           <Field>
             <Label>{fromLabel}</Label>
-            <Input className={styles.input} name="fromDate" value={fromDate} type="date" onChange={onFromDateChange} />
+            <Input
+              className={styles.input}
+              name="fromDate"
+              value={fromDate}
+              type="date"
+              autoComplete="off"
+              onChange={onFromDateChange}
+            />
           </Field>
           <Field>
             <Label>{toLabel}</Label>
-            <Input className={styles.input} name="toDate" value={toDate} type="date" onChange={onToDateChange} />
+            <Input
+              className={styles.input}
+              name="toDate"
+              value={toDate}
+              type="date"
+              autoComplete="off"
+              onChange={onToDateChange}
+            />
           </Field>
         </Fieldset>
       </MenuListItem>
       <MenuListDivider />
-      <MenuListItem>
+      <MenuListItem role="presentation">
         <Datepicker onSelect={onDatepickerSelect} selectFrom={fromDate} selectTo={toDate} />
       </MenuListItem>
     </MenuList>

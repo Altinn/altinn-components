@@ -50,7 +50,7 @@ export const ToolbarFilterMenu = ({
   dropdownSize = 'sm',
 }: ToolbarFilterMenuProps) => {
   const prevOpenRef = useRef(open);
-  const ctrl = useDropdownMenuController({ id: 'toolbar-filter-menu' });
+  const ctrl = useDropdownMenuController({ id: `toolbar-filter-menu-${name}` });
 
   useEffect(() => {
     const wasOpen = prevOpenRef.current;
@@ -61,17 +61,19 @@ export const ToolbarFilterMenu = ({
     }
   }, [open, ctrl.triggerRef]);
 
-  const onFilterItemChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const type = e.target.type;
-    const name = e.target.name;
-    const value = e.target.value;
-    onFilterChange?.(type, name, value);
-    type === 'radio' ? onClose() : null;
+  const onFilterItemSelect = (option: FilterProps['items'][number]) => {
+    const type = option.role === 'radio' ? 'radio' : 'checkbox';
+    const itemName = option.name ?? name;
+    const value = option.value !== undefined ? String(option.value) : 'on';
+    onFilterChange?.(type, itemName, value);
+    if (type === 'radio') {
+      onClose();
+    }
   };
 
   const filterItems = items?.map((option) => ({
     ...option,
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => onFilterItemChange(e),
+    onClick: () => onFilterItemSelect(option),
   }));
 
   const filterValue = items?.filter((option) => option.checked)?.map((option) => option.value || 'true');
@@ -79,6 +81,7 @@ export const ToolbarFilterMenu = ({
   const variant = isActive ? 'tinted' : 'outline';
   const FilterMenu = as || Menu;
   const a11yMode = searchable ? 'combobox' : 'menu';
+  const menuControlsId = !as && a11yMode === 'menu' && open ? ctrl.menuId : undefined;
 
   /** Remove the filter if filterState is empty or no options are checked */
 
@@ -125,9 +128,8 @@ export const ToolbarFilterMenu = ({
             variant={customVariant || variant}
             removeLabel={removeLabel}
             open={open}
+            menuId={menuControlsId}
             htmlTitle={htmlTitle}
-            aria-expanded={open}
-            aria-controls={ctrl.menuId}
             ref={ctrl.triggerRef as React.Ref<HTMLButtonElement>}
           >
             {label}
@@ -163,7 +165,14 @@ export const ToolbarFilterMenu = ({
       variant="drawer-dropdown"
       submitLabel={submitLabel}
       trigger={
-        <ToolbarFilterButton name={name} onClick={onToggle} variant={customVariant || variant} htmlTitle={htmlTitle}>
+        <ToolbarFilterButton
+          name={name}
+          onClick={onToggle}
+          variant={customVariant || variant}
+          htmlTitle={htmlTitle}
+          open={open}
+          menuId={menuControlsId}
+        >
           {label}
         </ToolbarFilterButton>
       }

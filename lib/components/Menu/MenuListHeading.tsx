@@ -8,9 +8,9 @@ export interface MenuListHeadingProps {
   style?: React.CSSProperties;
 }
 
-export const MenuListHeading = ({ ref, title, level = 1, index, style }: MenuListHeadingProps) => {
+export const MenuListHeading = ({ ref, title, index, style }: MenuListHeadingProps) => {
   return (
-    <li className={styles.heading} aria-level={Math.max(1, level)} data-index={index} ref={ref} style={style}>
+    <li className={styles.heading} role="presentation" data-index={index} ref={ref} style={style}>
       {title}
     </li>
   );
