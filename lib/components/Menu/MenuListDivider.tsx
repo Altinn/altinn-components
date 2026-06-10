@@ -8,7 +8,7 @@ export interface MenuListDividerProps {
 
 export const MenuListDivider = ({ ref, style, index }: MenuListDividerProps) => {
   return (
-    <li className={styles.item} role="presentation" ref={ref} style={style} data-index={index}>
+    <li className={styles.item} role="presentation" aria-hidden="true" ref={ref} style={style} data-index={index}>
       <hr className={styles.divider} />
     </li>
   );
