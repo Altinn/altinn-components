@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.67.9](https://github.com/Altinn/altinn-components/compare/v0.67.8...v0.67.9) (2026-06-10)
+
+
+### Bug Fixes
+
+* Add aria hidden to line separator/divider ([#1251](https://github.com/Altinn/altinn-components/issues/1251)) ([525fc0e](https://github.com/Altinn/altinn-components/commit/525fc0e045f1c2aad97b8fa4ec2063157720d0f1))
+* **formatDisplayName:** keep generic nouns lowercase in municipality names ([#1250](https://github.com/Altinn/altinn-components/issues/1250)) ([9f65e86](https://github.com/Altinn/altinn-components/commit/9f65e86bf654bcff37bd59f504855b46d7c35da5))
+* **toolbar:** reuse addLabel as title for ToolbarFilterAddMenu ([#1249](https://github.com/Altinn/altinn-components/issues/1249)) ([52c4af2](https://github.com/Altinn/altinn-components/commit/52c4af292e1bb604283b746b644f991140d5feef))
+
 ## [0.67.8](https://github.com/Altinn/altinn-components/compare/v0.67.7...v0.67.8) (2026-06-09)
 
 
