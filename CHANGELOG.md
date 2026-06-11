@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.67.11](https://github.com/Altinn/altinn-components/compare/v0.67.10...v0.67.11) (2026-06-11)
+
+
+### Bug Fixes
+
+* **settingsitem:** broken aria-labelledby ([#1257](https://github.com/Altinn/altinn-components/issues/1257)) ([53745ec](https://github.com/Altinn/altinn-components/commit/53745ecf8e0a89c603c1a8a96a36365a6a692501))
+
 ## [0.67.10](https://github.com/Altinn/altinn-components/compare/v0.67.9...v0.67.10) (2026-06-10)
 
 
