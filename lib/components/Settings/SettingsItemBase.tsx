@@ -62,7 +62,7 @@ export const SettingsItemBase = ({
   ...rest
 }: SettingsItemBaseProps) => {
   return (
-    <ContainerTag className={styles.listItem} data-collapsible={collapsible} data-expanded={expanded}>
+    <ContainerTag className={styles.listItem} data-collapsible={collapsible} data-expanded={expanded} id={rest.id}>
       <ItemBase ref={ref} as="div" className={styles.item} color={color} aria-hidden={hidden} data-loading={loading}>
         <ItemLink {...rest} className={styles.link} disabled={disabled} as={as}>
           <ItemMedia icon={icon} className={styles.media} />

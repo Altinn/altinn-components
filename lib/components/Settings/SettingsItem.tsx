@@ -73,6 +73,7 @@ export const SettingsItem = ({
     case 'switch':
       return (
         <SettingsItemBase
+          id={id}
           {...props}
           as="div"
           titleProps={{
