@@ -85,7 +85,7 @@
     "vite-plugin-dts": "^4.5.4",
     "vite-plugin-lib-inject-css": "^2.2.2",
     "vite-plugin-static-copy": "^2.3.2",
-    "vitest": "4.0.18"
+    "vitest": "4.1.0"
   },
   "peerDependencies": {
     "react": ">=18.3.1 || ^19.0.0",
