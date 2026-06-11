@@ -1,1 +1,0 @@
-import{a7 as r,F as i}from"./iframe-B2qSCuzl.js";const d=({size:t,color:a,reverse:o,children:s,...e})=>r.jsx(i,{...e,"data-size":t,"data-color":a,"data-position":o?"end":"start",children:s});export{d as F};
