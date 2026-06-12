@@ -1,6 +1,6 @@
 import { MenuHamburgerIcon, XMarkIcon } from '@navikt/aksel-icons';
 import type { ElementType } from 'react';
-import { Button, type ButtonProps, useRootContext } from '..';
+import { Button, type ButtonProps } from '..';
 import { Badge, type BadgeProps } from '../Badge';
 import styles from './globalMenuButton.module.css';
 
@@ -13,24 +13,6 @@ export interface GlobalMenuButtonProps extends ButtonProps {
   tabIndex?: number;
 }
 
-// TODO: Move to a common texts files when i18next is added
-const getTexts = (languageCode: string | undefined) => {
-  switch (languageCode) {
-    case 'nn':
-      return {
-        close: 'Lukk meny',
-      };
-    case 'en':
-      return {
-        close: 'Close menu',
-      };
-    default:
-      return {
-        close: 'Lukk Meny',
-      };
-  }
-};
-
 export const GlobalMenuButton = ({
   className,
   as = 'button',
@@ -42,14 +24,10 @@ export const GlobalMenuButton = ({
   badge,
   ...buttonProps
 }: GlobalMenuButtonProps) => {
-  const { languageCode } = useRootContext();
-  const { close } = getTexts(languageCode);
-
   return (
     <Button
       {...buttonProps}
       type="button"
-      title={expanded ? close : label}
       onClick={onClick}
       color={color}
       variant={variant}
