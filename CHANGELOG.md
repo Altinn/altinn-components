@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.67.12](https://github.com/Altinn/altinn-components/compare/v0.67.11...v0.67.12) (2026-06-12)
+
+
+### Bug Fixes
+
+* **wcag:** remove redundant title from global menu button ([#1259](https://github.com/Altinn/altinn-components/issues/1259)) ([536f778](https://github.com/Altinn/altinn-components/commit/536f77849af470cd0a72c4377c902aa6fb176452))
+
 ## [0.67.11](https://github.com/Altinn/altinn-components/compare/v0.67.10...v0.67.11) (2026-06-11)
 
 
