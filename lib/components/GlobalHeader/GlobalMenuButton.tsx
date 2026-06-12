@@ -24,7 +24,6 @@ export const GlobalMenuButton = ({
   badge,
   ...buttonProps
 }: GlobalMenuButtonProps) => {
-
   return (
     <Button
       {...buttonProps}
