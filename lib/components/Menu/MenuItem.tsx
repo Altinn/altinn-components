@@ -84,14 +84,11 @@ export const MenuItem = ({
   as,
   href,
   onClick,
-  onChange,
   onKeyPress,
   onMouseEnter,
   size = 'sm',
   variant,
   color,
-  name,
-  value,
   checked,
   icon,
   label,
@@ -114,11 +111,14 @@ export const MenuItem = ({
   const applicableLabel = typeof label === 'function' ? label() : label;
   const ariaProps = pickAriaProps(attributes as Record<string, unknown>);
 
-  if (role === 'checkbox' || role === 'radio') {
+  const isCheckableRole =
+    role === 'radio' || role === 'checkbox' || role === 'menuitemradio' || role === 'menuitemcheckbox';
+
+  if (isCheckableRole) {
     const applicableIcon = icon || (checked ? CheckmarkIcon : MinusIcon);
 
     return (
-      <label
+      <div
         {...ariaProps}
         className={cx(styles.item, className)}
         id={id}
@@ -130,8 +130,7 @@ export const MenuItem = ({
         data-active={active}
         role={role}
         aria-disabled={disabled}
-        aria-checked={checked}
-        aria-selected={checked}
+        aria-checked={Boolean(checked)}
         data-selected={checked}
         aria-label={title}
         title={htmlTitle}
@@ -141,20 +140,10 @@ export const MenuItem = ({
           e.target === e.currentTarget && e.key === 'Enter' && onClick?.();
           onKeyPress?.(e);
         }}
-        onClick={onClick}
+        onClick={disabled ? undefined : onClick}
         onMouseEnter={onMouseEnter}
         tabIndex={tabIndex}
       >
-        <input
-          name={name}
-          value={value}
-          type={role}
-          checked={Boolean(checked)}
-          onChange={onChange}
-          readOnly={!onChange}
-          style={{ opacity: 0, position: 'absolute' }}
-          tabIndex={-1}
-        />
         <ItemMedia icon={applicableIcon} className={styles.media} />
         <ItemLabel
           className={styles.label}
@@ -181,7 +170,7 @@ export const MenuItem = ({
           {badge && <Badge {...badge} />}
           {!disabled && controls}
         </ItemControls>
-      </label>
+      </div>
     );
   }
 

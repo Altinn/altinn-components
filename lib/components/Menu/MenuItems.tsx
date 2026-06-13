@@ -77,7 +77,7 @@ export const MenuItems = ({
     () =>
       items.map((item, index) => ({
         ...item,
-        id: item.id || `${id}-item-${index}`,
+        id: `${id}-item-${index}`,
       })),
     [items, id],
   );
@@ -191,13 +191,20 @@ export const MenuItems = ({
                     const { expanded } = itemProps;
                     const hasSubmenu = Array.isArray(itemProps?.items) && itemProps.items.length > 0;
                     const isCheckable = itemProps.role === 'checkbox' || itemProps.role === 'radio';
-                    const resolvedRole = isCombobox && !isCheckable ? 'option' : itemProps.role;
+                    const menuCheckableRole = itemProps.role === 'radio' ? 'menuitemradio' : 'menuitemcheckbox';
+                    const resolvedRole = isCombobox
+                      ? isCheckable
+                        ? itemProps.role
+                        : 'option'
+                      : isCheckable
+                        ? menuCheckableRole
+                        : itemProps.role;
                     return (
                       <MenuListItem
                         key={index}
                         expanded={expanded}
                         onMouseLeave={() => setActiveIndex(-1)}
-                        role={isCombobox || isCheckable ? 'presentation' : undefined}
+                        role="presentation"
                       >
                         <MenuItem
                           {...itemProps}

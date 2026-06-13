@@ -28,6 +28,7 @@ export function ToolbarFilterButton({
   onRemove,
   children,
   open,
+  menuId,
   variant,
   ref,
   htmlTitle,
@@ -41,6 +42,7 @@ export function ToolbarFilterButton({
           data-id={`filter-button-${name}`}
           aria-haspopup="menu"
           aria-expanded={open}
+          aria-controls={menuId}
           title={htmlTitle}
           ref={ref}
         >
@@ -64,9 +66,18 @@ export function ToolbarFilterButton({
   }
 
   return (
-    <Button disabled={disabled} variant={variant} onClick={onClick} data-id={`filter-button-${name}`} title={htmlTitle}>
+    <Button
+      disabled={disabled}
+      variant={variant}
+      onClick={onClick}
+      data-id={`filter-button-${name}`}
+      title={htmlTitle}
+      aria-haspopup="menu"
+      aria-expanded={open}
+      aria-controls={menuId}
+    >
       <span>{children}</span>
-      <ChevronUpDownIcon />
+      <ChevronUpDownIcon aria-hidden="true" />
     </Button>
   );
 }
