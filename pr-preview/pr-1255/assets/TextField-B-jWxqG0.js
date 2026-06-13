@@ -1,0 +1,1 @@
+import{a7 as r}from"./iframe-2h8IP8d3.js";import{F as m}from"./FieldBase-DGYDbbnf.js";import{I as a}from"./Input-CcSuNkw7.js";const d=({size:s,color:t,label:o,helperText:e,...i})=>r.jsx(m,{size:s,color:t,label:o,helperText:e,children:r.jsx(a,{...i})});export{d as T};

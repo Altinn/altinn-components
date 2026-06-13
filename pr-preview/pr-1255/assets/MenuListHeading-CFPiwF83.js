@@ -1,0 +1,1 @@
+import{a7 as t}from"./iframe-2h8IP8d3.js";const i="_heading_1logo_1",o={heading:i},d=({ref:e,title:n,index:s,style:a})=>t.jsx("li",{className:o.heading,role:"presentation","data-index":s,ref:e,style:a,children:n});export{d as M};

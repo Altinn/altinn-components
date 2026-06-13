@@ -1,0 +1,1 @@
+import{a7 as r,c as i}from"./iframe-2h8IP8d3.js";const o="_divider_1eeu8_1",d="_border_1eeu8_17",e={divider:o,border:d},a=({variant:s})=>r.jsx(i,{as:"span",color:"inherit",variant:s,"aria-hidden":"true",className:e.divider,children:r.jsx("span",{className:e.border})});export{a as B};
