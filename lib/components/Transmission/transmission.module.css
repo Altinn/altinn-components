@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   column-gap: 0.5em;
+  user-select: text;
 }
 
 .title h2 {
@@ -10,4 +11,8 @@
   font-size: inherit;
   line-height: inherit;
   margin: 0;
+}
+
+.content {
+  user-select: text;
 }
