@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.68.1](https://github.com/Altinn/altinn-components/compare/v0.68.0...v0.68.1) (2026-06-15)
+
+
+### Bug Fixes
+
+* dialog recipient avatar ([#1264](https://github.com/Altinn/altinn-components/issues/1264)) ([b5c9fb1](https://github.com/Altinn/altinn-components/commit/b5c9fb1aaba0b2d899c382d8b4a3b1eceda0f075))
+* **Menu:** use valid ARIA roles for selectable menu items ([#1255](https://github.com/Altinn/altinn-components/issues/1255)) ([bbf1f34](https://github.com/Altinn/altinn-components/commit/bbf1f34032bd2b70f299045228a59791f8ca3839))
+
 ## [0.68.0](https://github.com/Altinn/altinn-components/compare/v0.67.12...v0.68.0) (2026-06-15)
 
 
