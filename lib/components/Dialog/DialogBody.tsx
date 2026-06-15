@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react';
+import styles from './dialogBody.module.css';
 
 import {
+  Avatar,
   type AvatarProps,
   SeenByLog,
   type SeenByLogProps,
@@ -43,8 +45,18 @@ export const DialogBody = ({
   return (
     <Timeline>
       <TimelineHeader loading={loading} icon={sender}>
-        <strong>{sender?.name}</strong>
-        {recipientLabel + ' ' + recipient?.name}
+        <span className={styles.byline}>
+          <strong className={styles.senderName}>{sender?.name}</strong>
+          {recipient && (
+            <span className={styles.recipient}>
+              {recipientLabel}
+              <span className={styles.recipient}>
+                <Avatar {...recipient} className={styles.recipientAvatar} />
+                <span className={styles.recipientName}>{recipient?.name}</span>
+              </span>
+            </span>
+          )}
+        </span>
       </TimelineHeader>
       <TimelineSection unread={unread} loading={loading} spacing={4} color={loading ? 'neutral' : undefined}>
         {!loading && (
