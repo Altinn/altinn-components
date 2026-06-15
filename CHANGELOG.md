@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.68.2](https://github.com/Altinn/altinn-components/compare/v0.68.1...v0.68.2) (2026-06-15)
+
+
+### Bug Fixes
+
+* **accountSelector:** nested virtualized crashing on escape ([#1271](https://github.com/Altinn/altinn-components/issues/1271)) ([819f548](https://github.com/Altinn/altinn-components/commit/819f5489fd44cf68f38e00d76fc15dcda9a0ea5c))
+* Remove ariaLabel from ListItem in AccessAreaListItem ([#1266](https://github.com/Altinn/altinn-components/issues/1266)) ([e33845e](https://github.com/Altinn/altinn-components/commit/e33845eb6d5f31db54037f29fc2ccee8c1d69421))
+
 ## [0.68.1](https://github.com/Altinn/altinn-components/compare/v0.68.0...v0.68.1) (2026-06-15)
 
 
