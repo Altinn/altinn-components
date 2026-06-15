@@ -45,7 +45,7 @@
     "@digdir/designsystemet-react": "^1.14.0",
     "@digdir/designsystemet-theme": "^1.11.0",
     "@navikt/aksel-icons": "^8.9.0",
-    "@tanstack/react-virtual": "^3.13.9",
+    "@tanstack/react-virtual": "^3.14.2",
     "classnames": "^2.5.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
