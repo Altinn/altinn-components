@@ -1,0 +1,1 @@
+import{a7 as t,V as x}from"./iframe-B7zm1HIO.js";import{F as i}from"./FieldBase-gSBe5vO6.js";const n=({size:a,color:e,...r})=>t.jsx(x,{...r,"data-size":a,"data-color":e}),c=({size:a,color:e,label:r,helperText:s,...o})=>t.jsx(i,{size:a,color:e,label:r,helperText:s,children:t.jsx(n,{...o})});export{c as T};
