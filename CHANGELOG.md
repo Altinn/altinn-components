@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.68.0](https://github.com/Altinn/altinn-components/compare/v0.67.12...v0.68.0) (2026-06-15)
+
+
+### Features
+
+* **transmission:** allow selecting title and body text ([#1262](https://github.com/Altinn/altinn-components/issues/1262)) ([20e995f](https://github.com/Altinn/altinn-components/commit/20e995f0f97f064100cafce2f145daa7e6a44ec3))
+
 ## [0.67.12](https://github.com/Altinn/altinn-components/compare/v0.67.11...v0.67.12) (2026-06-12)
 
 
