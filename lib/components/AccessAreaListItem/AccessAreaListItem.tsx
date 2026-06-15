@@ -52,7 +52,6 @@ export const AccessAreaListItem = ({
       as="button"
       icon={themedIcon}
       title={{ children: name, as: titleAs }}
-      ariaLabel={name}
       size={size}
       collapsible={!loading}
       expanded={expanded}
