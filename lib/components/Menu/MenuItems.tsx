@@ -77,7 +77,7 @@ export const MenuItems = ({
     () =>
       items.map((item, index) => ({
         ...item,
-        id: item.id || `${id}-item-${index}`,
+        id: `${id}-item-${index}`,
       })),
     [items, id],
   );
@@ -134,7 +134,37 @@ export const MenuItems = ({
     }
   }, [announceNoResults, isCombobox, setActiveIndex]);
 
-  return (
+  const searchElement = search ? (
+    <MenuListSearch
+      {...search}
+      combobox={isCombobox}
+      listId={listId}
+      aria-activedescendant={isCombobox && isListNavigationActive ? activeItem?.id : undefined}
+      onNavigate={isCombobox ? () => setIsListNavigationActive(true) : undefined}
+      onChange={(e) => {
+        setIsListNavigationActive(false);
+        search.onChange?.(e);
+      }}
+      onFocus={(e) => {
+        setIsListNavigationActive(false);
+        search.onFocus?.(e);
+      }}
+      onInput={(e) => {
+        setIsListNavigationActive(false);
+        search.onInput?.(e);
+      }}
+      onKeyDown={(e) => {
+        const isArrow = e.key === 'ArrowUp' || e.key === 'ArrowDown';
+        const isTypingKey = e.key.length === 1 || e.key === 'Backspace' || e.key === 'Delete';
+        if (isCombobox && !isArrow && isTypingKey) {
+          setIsListNavigationActive(false);
+        }
+        search.onKeyDown?.(e);
+      }}
+    />
+  ) : null;
+
+  const list = (
     <MenuList
       variant={variant}
       expanded={expanded}
@@ -144,35 +174,7 @@ export const MenuItems = ({
       role={isCombobox ? 'listbox' : 'menu'}
       tabIndex={keyboardEvents ? -1 : undefined}
     >
-      {search && (
-        <MenuListSearch
-          {...search}
-          combobox={isCombobox}
-          listId={listId}
-          aria-activedescendant={isCombobox && isListNavigationActive ? activeItem?.id : undefined}
-          onNavigate={isCombobox ? () => setIsListNavigationActive(true) : undefined}
-          onChange={(e) => {
-            setIsListNavigationActive(false);
-            search.onChange?.(e);
-          }}
-          onFocus={(e) => {
-            setIsListNavigationActive(false);
-            search.onFocus?.(e);
-          }}
-          onInput={(e) => {
-            setIsListNavigationActive(false);
-            search.onInput?.(e);
-          }}
-          onKeyDown={(e) => {
-            const isArrow = e.key === 'ArrowUp' || e.key === 'ArrowDown';
-            const isTypingKey = e.key.length === 1 || e.key === 'Backspace' || e.key === 'Delete';
-            if (isCombobox && !isArrow && isTypingKey) {
-              setIsListNavigationActive(false);
-            }
-            search.onKeyDown?.(e);
-          }}
-        />
-      )}
+      {!isCombobox && searchElement}
       {menu.map((group, groupIndex) => {
         const groupProps: MenuGroupProps = group?.props || {};
         const { title, hidden = false, divider = true } = groupProps;
@@ -191,13 +193,14 @@ export const MenuItems = ({
                     const { expanded } = itemProps;
                     const hasSubmenu = Array.isArray(itemProps?.items) && itemProps.items.length > 0;
                     const isCheckable = itemProps.role === 'checkbox' || itemProps.role === 'radio';
-                    const resolvedRole = isCombobox && !isCheckable ? 'option' : itemProps.role;
+                    const menuCheckableRole = itemProps.role === 'radio' ? 'menuitemradio' : 'menuitemcheckbox';
+                    const resolvedRole = isCombobox ? 'option' : isCheckable ? menuCheckableRole : itemProps.role;
                     return (
                       <MenuListItem
                         key={index}
                         expanded={expanded}
                         onMouseLeave={() => setActiveIndex(-1)}
-                        role={isCombobox || isCheckable ? 'presentation' : undefined}
+                        role="presentation"
                       >
                         <MenuItem
                           {...itemProps}
@@ -235,5 +238,14 @@ export const MenuItems = ({
         );
       })}
     </MenuList>
+  );
+
+  return isCombobox && searchElement ? (
+    <>
+      {searchElement}
+      {list}
+    </>
+  ) : (
+    list
   );
 };

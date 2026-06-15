@@ -36,67 +36,52 @@ export const MenuListSearch = ({
   onFocus,
   ...props
 }: MenuListSearchProps) => {
-  return (
+  const searchField = (
+    <SearchField
+      size="xs"
+      className={styles.searchInput}
+      name={name}
+      value={value}
+      placeholder={placeholder}
+      onChange={onChange}
+      onClear={onClear}
+      clearButtonAltText={clearButtonAltText}
+      autoComplete="off"
+      autoCorrect="off"
+      autoCapitalize="off"
+      autoFocus
+      onKeyDown={(e) => {
+        if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          onNavigate?.();
+        }
+        onKeyDown?.(e);
+      }}
+      onInput={onInput}
+      onFocus={onFocus}
+      {...(combobox
+        ? {
+            role: 'combobox',
+            'aria-autocomplete': 'list',
+            'aria-expanded': true,
+            'aria-haspopup': 'listbox',
+            'aria-controls': listId,
+            'aria-activedescendant': activeDescendantId,
+          }
+        : {})}
+      {...(props as SearchFieldProps)}
+    />
+  );
+
+  // In combobox mode the search sits next to (not inside) the listbox, so it must
+  // not be a list item; the input itself carries the combobox role and activedescendant.
+  return combobox ? (
+    <div className={styles.search} style={style} data-index={index} data-menu-search="true">
+      {searchField}
+    </div>
+  ) : (
     <li className={styles.search} style={style} data-index={index} data-menu-search="true">
-      {combobox ? (
-        // biome-ignore lint/a11y/useFocusableInteractive: <explanation>
-        // biome-ignore lint/a11y/useAriaPropsForRole: <explanation>
-        // biome-ignore lint/a11y/useSemanticElements: <explanation>
-        <div role="combobox" aria-expanded aria-haspopup="listbox" aria-owns={listId}>
-          <SearchField
-            size="xs"
-            className={styles.searchInput}
-            name={name}
-            value={value}
-            placeholder={placeholder}
-            onChange={onChange}
-            onClear={onClear}
-            clearButtonAltText={clearButtonAltText}
-            autoComplete="off"
-            autoCorrect="off"
-            autoCapitalize="off"
-            aria-autocomplete="list"
-            aria-controls={listId}
-            aria-activedescendant={activeDescendantId}
-            autoFocus
-            onKeyDown={(e) => {
-              if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
-                e.preventDefault();
-                onNavigate?.();
-              }
-              onKeyDown?.(e);
-            }}
-            onInput={onInput}
-            onFocus={onFocus}
-            {...(props as SearchFieldProps)}
-          />
-        </div>
-      ) : (
-        <SearchField
-          size="xs"
-          className={styles.searchInput}
-          name={name}
-          value={value}
-          placeholder={placeholder}
-          onChange={onChange}
-          onClear={onClear}
-          clearButtonAltText={clearButtonAltText}
-          autoComplete="off"
-          autoCorrect="off"
-          autoCapitalize="off"
-          autoFocus
-          onKeyDown={(e) => {
-            if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
-              e.preventDefault();
-              onNavigate?.();
-            }
-            onKeyDown?.(e);
-          }}
-          onInput={onInput}
-          onFocus={onFocus}
-          {...(props as SearchFieldProps)}
-        />
-      )}
+      {searchField}
     </li>
   );
 };

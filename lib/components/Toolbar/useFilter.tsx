@@ -120,10 +120,9 @@ export const useFilter = ({ filters = [], filterState, onFilterStateChange }: Us
       ...item,
       items: item.items?.map((option) => ({
         ...option,
-        checked:
-          option?.name && option?.value !== undefined
-            ? applicableFilterState?.[option.name]?.includes(option.value)
-            : false,
+        checked: Boolean(
+          option?.name && option?.value !== undefined && applicableFilterState?.[option.name]?.includes(option.value),
+        ),
       })),
       id: getFilterId(item.name, item.id),
     })),

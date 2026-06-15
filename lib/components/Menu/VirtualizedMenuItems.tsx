@@ -43,7 +43,7 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
     () =>
       items.map((item, index) => ({
         ...item,
-        id: item.id || `${id}-item-${index}`,
+        id: `${id}-item-${index}`,
       })),
     [items, id],
   );
@@ -170,7 +170,37 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
     ...style,
   } as CSSProperties;
 
-  return (
+  const searchElement = search ? (
+    <MenuListSearch
+      {...search}
+      combobox={isCombobox}
+      listId={listId}
+      aria-activedescendant={isCombobox && isListNavigationActive ? activeItem?.id : undefined}
+      onNavigate={isCombobox ? () => setIsListNavigationActive(true) : undefined}
+      onChange={(e) => {
+        setIsListNavigationActive(false);
+        search.onChange?.(e);
+      }}
+      onFocus={(e) => {
+        setIsListNavigationActive(false);
+        search.onFocus?.(e);
+      }}
+      onInput={(e) => {
+        setIsListNavigationActive(false);
+        search.onInput?.(e);
+      }}
+      onKeyDown={(e) => {
+        const isArrow = e.key === 'ArrowUp' || e.key === 'ArrowDown';
+        const isTypingKey = e.key.length === 1 || e.key === 'Backspace' || e.key === 'Delete';
+        if (isCombobox && !isArrow && isTypingKey) {
+          setIsListNavigationActive(false);
+        }
+        search.onKeyDown?.(e);
+      }}
+    />
+  ) : null;
+
+  const list = (
     <MenuList
       ref={scrollRef}
       style={scrollRefStyle}
@@ -180,35 +210,7 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
       id={listId}
       role={isCombobox ? 'listbox' : 'menu'}
     >
-      {search && (
-        <MenuListSearch
-          {...search}
-          combobox={isCombobox}
-          listId={listId}
-          aria-activedescendant={isCombobox && isListNavigationActive ? activeItem?.id : undefined}
-          onNavigate={isCombobox ? () => setIsListNavigationActive(true) : undefined}
-          onChange={(e) => {
-            setIsListNavigationActive(false);
-            search.onChange?.(e);
-          }}
-          onFocus={(e) => {
-            setIsListNavigationActive(false);
-            search.onFocus?.(e);
-          }}
-          onInput={(e) => {
-            setIsListNavigationActive(false);
-            search.onInput?.(e);
-          }}
-          onKeyDown={(e) => {
-            const isArrow = e.key === 'ArrowUp' || e.key === 'ArrowDown';
-            const isTypingKey = e.key.length === 1 || e.key === 'Backspace' || e.key === 'Delete';
-            if (isCombobox && !isArrow && isTypingKey) {
-              setIsListNavigationActive(false);
-            }
-            search.onKeyDown?.(e);
-          }}
-        />
-      )}
+      {!isCombobox && searchElement}
 
       <MenuListGroup
         ref={listGroupRef}
@@ -253,13 +255,10 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
 
               default: {
                 const isCheckable = entry.itemProps?.role === 'checkbox' || entry.itemProps?.role === 'radio';
-                const resolvedRole = isCombobox && !isCheckable ? 'option' : entry.itemProps?.role;
+                const menuCheckableRole = entry.itemProps?.role === 'radio' ? 'menuitemradio' : 'menuitemcheckbox';
+                const resolvedRole = isCombobox ? 'option' : isCheckable ? menuCheckableRole : entry.itemProps?.role;
                 return (
-                  <MenuListItem
-                    key={virtualRow.key}
-                    {...commonProps}
-                    role={isCombobox || isCheckable ? 'presentation' : 'menuitem'}
-                  >
+                  <MenuListItem key={virtualRow.key} {...commonProps} role="presentation">
                     <MenuItem
                       {...(entry.itemProps || {})}
                       size={entry.itemProps?.size || size}
@@ -280,5 +279,14 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
         </MenuList>
       </MenuListGroup>
     </MenuList>
+  );
+
+  return isCombobox && searchElement ? (
+    <>
+      {searchElement}
+      {list}
+    </>
+  ) : (
+    list
   );
 };

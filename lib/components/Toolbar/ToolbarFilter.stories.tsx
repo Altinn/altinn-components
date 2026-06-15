@@ -46,6 +46,44 @@ export const Removable = () => {
   );
 };
 
+export const AccountFilter = () => {
+  const filters = [
+    {
+      name: 'partyScope',
+      label: 'Legg til filter',
+      title: 'Velg aktør',
+      items: [
+        {
+          role: 'radio',
+          name: 'partyScope',
+          groupId: '1',
+          label: 'Alle aktører',
+          value: 'ALL_PARTIES',
+        },
+        {
+          role: 'radio',
+          name: 'partyScope',
+          groupId: '2',
+          label: 'Personer',
+          value: 'PERSONS',
+        },
+        {
+          role: 'radio',
+          name: 'partyScope',
+          groupId: '2',
+          label: 'Virksomheter',
+          value: 'COMPANIES',
+        },
+      ],
+    },
+  ];
+  return (
+    <Toolbar>
+      <ToolbarFilter filters={filters} addLabel="Legg til filter" />
+    </Toolbar>
+  );
+};
+
 export const Datepicker = () => {
   const inboxFilter = useInboxFilter({
     filters: [{ ...timeFilter, as: SelectDateFilter }],
