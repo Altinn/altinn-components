@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Button, DialogList } from '..';
+import { useState } from 'react';
+import { Button, ContextMenu, type ContextMenuProps, DialogList, Modal, ModalBody, ModalHeader } from '..';
 import { inboxSearchResults, inboxSection } from '../../../examples';
 
 const meta = {
@@ -74,6 +75,39 @@ export const WithExtendedStatus: Story = {
       extendedStatusLabel: index % 2 === 0 ? 'Venter på svar' : undefined,
     })),
   },
+};
+
+export const WithContextMenu = () => {
+  const [open, setOpen] = useState(false);
+  const items = inboxSection.items.map((item) => {
+    const contextMenu: ContextMenuProps = {
+      id: item.id + '-contextmenu',
+      onSelect: () => setOpen(false),
+      items: [
+        {
+          id: '1',
+          label: 'Del',
+          onClick: () => setOpen(true),
+        },
+      ],
+    };
+    return {
+      ...item,
+      controls: <ContextMenu {...contextMenu} />,
+    };
+  });
+
+  return (
+    <>
+      <DialogList items={items} />
+      <Modal padding={0} spacing={0} open={open} onClose={() => setOpen(false)} variant="content">
+        <ModalHeader title="Del" onClose={() => setOpen(false)} closeTitle="Lukk" />
+        <ModalBody>
+          <p>Innhold i modal</p>
+        </ModalBody>
+      </Modal>
+    </>
+  );
 };
 
 export const Loading: Story = {
