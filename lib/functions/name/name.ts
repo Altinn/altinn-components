@@ -24,11 +24,33 @@ interface FormatDisplayNameInput {
 export const formatDisplayName = ({ fullName, type, reverseNameOrder }: FormatDisplayNameInput): string => {
   if (!fullName) return '';
 
-  const legalEntityTypes = ['enk', 'as', 'da', 'sa', 'asa', 'ba', 'ans', 'sti', 'nuf'];
+  const legalEntityTypes = [
+    'enk',
+    'as',
+    'da',
+    'sa',
+    'asa',
+    'ba',
+    'ans',
+    'sti',
+    'nuf',
+    'se',
+    'fkf',
+    'kf',
+    'ks',
+    'iks',
+    'gfs',
+    'sf',
+    'hf',
+    'rhf',
+  ];
   // Common Norwegian nouns/conjunctions that should stay lowercase when they
   // appear after the first word, e.g. "Oslo kommune", "Viken fylkeskommune"
   // and "Møre og Romsdal fylkeskommune".
   const lowercaseWords = ['kommune', 'fylkeskommune', 'og'];
+  // Nobiliary particles that stay lowercase when they are not the first word,
+  // e.g. "Charles de Gaulle" or "Ludwig van Beethoven".
+  const nobiliaryParticles = ['von', 'van', 'der', 'de', 'la', 'dos'];
   const parts = fullName.split(' ');
 
   const isAbbreviation = (word: string): boolean => {
@@ -51,8 +73,15 @@ export const formatDisplayName = ({ fullName, type, reverseNameOrder }: FormatDi
       return lowerWord;
     }
 
-    if (type === 'company' && isAbbreviation(word)) {
-      return word;
+    // Keep nobiliary particles lowercase, but never as the first word.
+    if (idx > 0 && nobiliaryParticles.includes(lowerWord)) {
+      return lowerWord;
+    }
+
+    // Preserve initials/abbreviations and write them in uppercase, e.g. "J. K."
+    // or company names like "A.B.C AS".
+    if (isAbbreviation(word)) {
+      return word.toUpperCase();
     }
 
     return lowerWord
