@@ -21,7 +21,7 @@ export interface MenuItemsProps {
   level?: number;
   maxLevels?: number;
   expanded?: boolean;
-  a11yMode?: 'menu' | 'combobox';
+  a11yMode?: 'menu' | 'combobox' | 'navigation';
   open?: boolean;
   scrollToTopOnOpen?: boolean;
   autoActivateFirstItem?: boolean;
@@ -68,6 +68,7 @@ export const MenuItems = ({
   }
 
   const isCombobox = a11yMode === 'combobox';
+  const isNavigation = a11yMode === 'navigation';
   const listId = isCombobox && id ? `${id}-listbox` : id;
   const prevOpenRef = useRef<boolean | undefined>(open);
   const prevFocusOpenRef = useRef<boolean | undefined>(open);
@@ -171,7 +172,7 @@ export const MenuItems = ({
       ref={ref}
       style={scrollRefStyles}
       id={listId}
-      role={isCombobox ? 'listbox' : 'menu'}
+      role={isCombobox ? 'listbox' : isNavigation ? 'list' : 'menu'}
       tabIndex={keyboardEvents ? -1 : undefined}
     >
       {!isCombobox && searchElement}
@@ -194,13 +195,19 @@ export const MenuItems = ({
                     const hasSubmenu = Array.isArray(itemProps?.items) && itemProps.items.length > 0;
                     const isCheckable = itemProps.role === 'checkbox' || itemProps.role === 'radio';
                     const menuCheckableRole = itemProps.role === 'radio' ? 'menuitemradio' : 'menuitemcheckbox';
-                    const resolvedRole = isCombobox ? 'option' : isCheckable ? menuCheckableRole : itemProps.role;
+                    const resolvedRole = isNavigation
+                      ? undefined
+                      : isCombobox
+                        ? 'option'
+                        : isCheckable
+                          ? menuCheckableRole
+                          : itemProps.role;
                     return (
                       <MenuListItem
                         key={index}
                         expanded={expanded}
                         onMouseLeave={() => setActiveIndex(-1)}
-                        role="presentation"
+                        role={isNavigation ? 'listitem' : 'presentation'}
                       >
                         <MenuItem
                           {...itemProps}
@@ -209,10 +216,11 @@ export const MenuItems = ({
                           variant={itemProps?.variant || groupProps?.variant || variant}
                           active={active}
                           role={resolvedRole}
+                          a11yMode={a11yMode}
                           selected={itemProps.selected}
                           tabIndex={itemProps?.disabled || keyboardEvents ? -1 : (itemProps.tabIndex ?? 0)}
                           onMouseEnter={onMouseEnter}
-                          aria-haspopup={hasSubmenu ? 'menu' : undefined}
+                          aria-haspopup={hasSubmenu && !isNavigation ? 'menu' : undefined}
                           aria-expanded={hasSubmenu ? expanded : undefined}
                           aria-controls={hasSubmenu ? itemProps.id + '-menu' : undefined}
                         />
@@ -227,6 +235,7 @@ export const MenuItems = ({
                             size={size}
                             color={color}
                             variant={variant}
+                            a11yMode={a11yMode}
                           />
                         )}
                       </MenuListItem>

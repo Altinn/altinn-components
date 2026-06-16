@@ -35,6 +35,7 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
   } = props;
 
   const isCombobox = a11yMode === 'combobox';
+  const isNavigation = a11yMode === 'navigation';
   const listId = isCombobox && id ? `${id}-listbox` : id;
   const prevOpenRef = useRef<boolean | undefined>(open);
   const [isListNavigationActive, setIsListNavigationActive] = useState(false);
@@ -208,7 +209,7 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
       color={color}
       expanded={expanded}
       id={listId}
-      role={isCombobox ? 'listbox' : 'menu'}
+      role={isCombobox ? 'listbox' : isNavigation ? 'list' : 'menu'}
     >
       {!isCombobox && searchElement}
 
@@ -256,9 +257,15 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
               default: {
                 const isCheckable = entry.itemProps?.role === 'checkbox' || entry.itemProps?.role === 'radio';
                 const menuCheckableRole = entry.itemProps?.role === 'radio' ? 'menuitemradio' : 'menuitemcheckbox';
-                const resolvedRole = isCombobox ? 'option' : isCheckable ? menuCheckableRole : entry.itemProps?.role;
+                const resolvedRole = isNavigation
+                  ? undefined
+                  : isCombobox
+                    ? 'option'
+                    : isCheckable
+                      ? menuCheckableRole
+                      : entry.itemProps?.role;
                 return (
-                  <MenuListItem key={virtualRow.key} {...commonProps} role="presentation">
+                  <MenuListItem key={virtualRow.key} {...commonProps} role={isNavigation ? 'listitem' : 'presentation'}>
                     <MenuItem
                       {...(entry.itemProps || {})}
                       size={entry.itemProps?.size || size}
@@ -266,6 +273,7 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
                       variant={entry.itemProps?.variant || variant}
                       active={entry.active}
                       role={resolvedRole}
+                      a11yMode={a11yMode}
                       selected={entry.itemProps?.selected}
                       aria-posinset={isCombobox ? itemPositions.positions.get(virtualRow.index) : undefined}
                       aria-setsize={isCombobox ? itemPositions.total : undefined}

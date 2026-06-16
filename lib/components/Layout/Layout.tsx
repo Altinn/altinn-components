@@ -22,6 +22,8 @@ import styles from './layoutBase.module.css';
 
 interface SidebarProps extends LayoutSidebarProps {
   menu?: MenuProps;
+  /** Accessible label for the sidebar navigation landmark. */
+  ariaLabel?: string;
   children?: ReactNode;
 }
 
@@ -123,7 +125,11 @@ export const Layout = ({
               color={sidebar?.color}
               footer={sidebar?.footer}
             >
-              {sidebar?.menu && <Menu {...sidebar?.menu} />}
+              {sidebar?.menu && (
+                <nav aria-label={sidebar?.ariaLabel ?? 'Sidebar'}>
+                  <Menu {...sidebar?.menu} a11yMode="navigation" />
+                </nav>
+              )}
               {sidebar?.children}
             </LayoutSidebar>
           )}

@@ -25,6 +25,8 @@ export interface MenuItemProps extends AriaAttributes {
   id?: string;
   groupId?: string;
   role?: MenuItemRole;
+  /** @internal a11y context set by the parent list. In `navigation` mode the item renders without a menu role. */
+  a11yMode?: 'menu' | 'combobox' | 'navigation';
   as?: ElementType;
   /** Size, default is sm */
   size?: MenuItemSize;
@@ -81,6 +83,7 @@ export const MenuItem = ({
   id,
   groupId,
   role = 'menuItem',
+  a11yMode,
   as,
   href,
   onClick,
@@ -210,7 +213,7 @@ export const MenuItem = ({
       onClick={onClick}
       onMouseEnter={onMouseEnter}
       tabIndex={disabled ? -1 : (tabIndex ?? 0)}
-      role={role === 'menuItem' ? 'menuitem' : role}
+      role={a11yMode === 'navigation' ? undefined : role === 'menuItem' ? 'menuitem' : role}
       {...ariaProps}
     >
       {icon && <ItemMedia icon={icon} className={styles.media} />}

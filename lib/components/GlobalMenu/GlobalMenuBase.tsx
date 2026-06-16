@@ -14,7 +14,7 @@ export interface GlobalMenuFooterProps {
 export const GlobalMenuBase = forwardRef<HTMLElement, GlobalMenuBaseProps>(({ color, children, ...rest }, ref) => {
   return (
     <nav ref={ref} className={styles.nav} data-color={color} {...rest}>
-      <div role="menu">{children}</div>
+      {children}
     </nav>
   );
 });
