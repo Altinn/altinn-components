@@ -77,8 +77,11 @@ export const useMenuVirtualization = <TItemProps = { [key: string]: unknown }>({
           return 9;
         case 'header':
           return 36;
-        default:
-          return 44;
+        default: {
+          const description = (entry?.itemProps as { description?: unknown })?.description;
+          const hasDescription = typeof description === 'string' ? description.length > 0 : description != null;
+          return hasDescription ? 60 : 44;
+        }
       }
     },
     gap: 0,

@@ -150,16 +150,14 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
   }, [announceNoResults, isCombobox, setActiveIndex]);
 
   useEffect(() => {
-    if (!scrollToTopOnOpen) {
-      prevOpenRef.current = open;
-      return;
-    }
     const wasOpen = prevOpenRef.current;
     prevOpenRef.current = open;
-    if (open && !wasOpen) {
+    if (!open || wasOpen) return;
+    virtualizer.measure();
+    if (scrollToTopOnOpen) {
       scrollRef.current?.scrollTo({ top: 0 });
     }
-  }, [open, scrollToTopOnOpen]);
+  }, [open, scrollToTopOnOpen, virtualizer]);
 
   const scrollRefStyle = {
     position: 'relative',
