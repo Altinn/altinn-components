@@ -1,8 +1,0 @@
-import{a7 as t}from"./iframe-B7zm1HIO.js";import{D as o}from"./DatepickerFilter-D62zbdz4.js";import{D as a}from"./Datepicker-Bhi79_kD.js";import"./preload-helper-PPVm8Dsz.js";import"./MenuListItem-6z1MFl70.js";import"./MenuItem-B-gSoajH.js";import"./ItemMedia-DpKMg9GF.js";import"./Avatar-moSMPGHi.js";import"./AvatarGroup-BaLNA_5N.js";import"./Checkmark-BLhcN1Ai.js";import"./ItemLabel-CWIv-i-M.js";import"./Heading-C4G9hOYj.js";import"./useHighlightedText-DWzAFf8R.js";import"./ItemControls-Cwe9s8QR.js";import"./Badge-C4nIiofZ.js";import"./Tooltip-Cey7ITFK.js";import"./ChevronRight-BItcH0VL.js";import"./ArrowUndo-Cse4EeXq.js";import"./MenuListDivider-Bbe3EvM4.js";import"./Fieldset-DmGeVaah.js";import"./Field-09k_Fgnw.js";import"./Label-DrdmFEDz.js";import"./Input-w1DANTSA.js";const b={title:"Datepicker/Accessibility",parameters:{a11y:{test:"error"}}},r={render:()=>t.jsx(a,{defaultDate:"2024-05-02",selectFrom:"2024-05-02",selectTo:"2024-05-10",onSelect:()=>{}})},e={render:()=>t.jsx(o,{formData:{fromDate:"2024-05-02",toDate:"2024-05-10"}})};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`{
-  render: () => <Datepicker defaultDate="2024-05-02" selectFrom="2024-05-02" selectTo="2024-05-10" onSelect={() => {}} />
-}`,...r.parameters?.docs?.source}}};e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:`{
-  render: () => <DatepickerFilter formData={{
-    fromDate: '2024-05-02',
-    toDate: '2024-05-10'
-  }} />
-}`,...e.parameters?.docs?.source}}};const A=["Calendar","RangeFilter"];export{r as Calendar,e as RangeFilter,A as __namedExportsOrder,b as default};
