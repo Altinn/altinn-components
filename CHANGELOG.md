@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.68.3](https://github.com/Altinn/altinn-components/compare/v0.68.2...v0.68.3) (2026-06-16)
+
+
+### Bug Fixes
+
+* extend formatDisplayName heuristics ([#1273](https://github.com/Altinn/altinn-components/issues/1273)) ([90a7205](https://github.com/Altinn/altinn-components/commit/90a7205f0e1b334377323252c091762a33f82dfe))
+
 ## [0.68.2](https://github.com/Altinn/altinn-components/compare/v0.68.1...v0.68.2) (2026-06-15)
 
 
