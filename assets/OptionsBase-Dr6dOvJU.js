@@ -1,1 +1,0 @@
-import{a7 as s}from"./iframe-Dai1liu3.js";const i=({size:o,color:r,inline:a,children:e})=>s.jsx("div",{"data-color":r,"data-size":o,style:{display:"flex",flexDirection:a?"row":"column",rowGap:"1rem",columnGap:"1rem"},children:e});export{i as O};
