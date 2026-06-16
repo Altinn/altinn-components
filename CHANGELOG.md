@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.68.4](https://github.com/Altinn/altinn-components/compare/v0.68.3...v0.68.4) (2026-06-16)
+
+
+### Bug Fixes
+
+* **menu:** use navigation semantics for sidebar instead of role=menu ([#1276](https://github.com/Altinn/altinn-components/issues/1276)) ([9c53ad7](https://github.com/Altinn/altinn-components/commit/9c53ad7ca86b4538985e8d5b844600fc49a0542f))
+
 ## [0.68.3](https://github.com/Altinn/altinn-components/compare/v0.68.2...v0.68.3) (2026-06-16)
 
 
