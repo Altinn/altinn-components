@@ -56,8 +56,29 @@ describe('formatDisplayName', () => {
     expect(formatDisplayName({ fullName: 'test.company AS', type: 'company' })).toBe('Test.company AS');
   });
 
-  it('does not affect person names with periods', () => {
-    expect(formatDisplayName({ fullName: 'TEST A.B.C', type: 'person' })).toBe('Test A.b.c');
+  it('preserves and uppercases initials in person names', () => {
+    expect(formatDisplayName({ fullName: 'TEST A.B.C', type: 'person' })).toBe('Test A.B.C');
+    expect(formatDisplayName({ fullName: 'ola j. k. nordmann', type: 'person' })).toBe('Ola J. K. Nordmann');
+  });
+
+  describe('legal entity suffixes', () => {
+    it.each(['se', 'fkf', 'kf', 'ks', 'iks', 'gfs', 'sf', 'hf', 'rhf', 'sti'])(
+      'uppercases the "%s" suffix for companies',
+      (suffix) => {
+        expect(formatDisplayName({ fullName: `test ${suffix}`, type: 'company' })).toBe(`Test ${suffix.toUpperCase()}`);
+      },
+    );
+  });
+
+  describe('nobiliary particles', () => {
+    it('lowercases particles when not the first word', () => {
+      expect(formatDisplayName({ fullName: 'CHARLES DE GAULLE', type: 'person' })).toBe('Charles de Gaulle');
+      expect(formatDisplayName({ fullName: 'LUDWIG VAN BEETHOVEN', type: 'person' })).toBe('Ludwig van Beethoven');
+    });
+
+    it('capitalizes a particle when it is the first word', () => {
+      expect(formatDisplayName({ fullName: 'DE GAULLE CHARLES', type: 'person' })).toBe('De Gaulle Charles');
+    });
   });
 
   describe('municipalities (kommuner)', () => {
