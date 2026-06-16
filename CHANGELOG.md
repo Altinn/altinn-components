@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.68.5](https://github.com/Altinn/altinn-components/compare/v0.68.4...v0.68.5) (2026-06-16)
+
+
+### Bug Fixes
+
+* **menu:** prevent virtualized menu jitter when opening dropdown ([#1279](https://github.com/Altinn/altinn-components/issues/1279)) ([4c80060](https://github.com/Altinn/altinn-components/commit/4c800607e72ea322adf477a73c6c1a2895370092))
+
 ## [0.68.4](https://github.com/Altinn/altinn-components/compare/v0.68.3...v0.68.4) (2026-06-16)
 
 
