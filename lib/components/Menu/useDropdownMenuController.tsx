@@ -30,8 +30,22 @@ export function useDropdownMenuController(options: UseDropdownMenuControllerOpti
 
     // Only run focus return on actual close transition (true -> false)
     if (prevOpen && !open && returnFocusOnClose) {
-      requestAnimationFrame(() => triggerRef.current?.focus?.());
-      return;
+      const raf = requestAnimationFrame(() => {
+        const trigger = triggerRef.current;
+        if (!trigger) return;
+        trigger.focus?.();
+
+        // Re-assert focus on the trigger once that modal dialog closes so it isn't lost.
+        if (document.activeElement === trigger) return;
+        const dialog = document.querySelector<HTMLDialogElement>('dialog[open]');
+        if (!dialog || dialog.contains(trigger)) return;
+        const handleDialogClose = () => {
+          dialog.removeEventListener('close', handleDialogClose);
+          triggerRef.current?.focus?.();
+        };
+        dialog.addEventListener('close', handleDialogClose);
+      });
+      return () => cancelAnimationFrame(raf);
     }
 
     // Only run panel focus on actual open transition (false -> true)
