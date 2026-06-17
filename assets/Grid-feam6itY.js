@@ -1,0 +1,1 @@
+import{a7 as g,a3 as l}from"./iframe-CGVyzYP6.js";const p="_grid_aha67_1",x={grid:p},f=({as:a="div",size:s,theme:t,color:r,cols:e=2,reverse:o=!1,spacing:d,className:i,style:c,children:n})=>{const m=a;return g.jsx(m,{className:l(x.grid,i),style:c,"data-theme":t,"data-size":s,"data-color":r,"data-cols":e,"data-reverse":o,"data-spacing":d,children:n})};export{f as G};
