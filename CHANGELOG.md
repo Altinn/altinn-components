@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.68.6](https://github.com/Altinn/altinn-components/compare/v0.68.5...v0.68.6) (2026-06-17)
+
+
+### Bug Fixes
+
+* **menu:** return focus to trigger after modal opened from menu item ([#1283](https://github.com/Altinn/altinn-components/issues/1283)) ([68e3382](https://github.com/Altinn/altinn-components/commit/68e3382b37c2c4a8b50c1dc974597bd465b9cbed))
+
 ## [0.68.5](https://github.com/Altinn/altinn-components/compare/v0.68.4...v0.68.5) (2026-06-16)
 
 
