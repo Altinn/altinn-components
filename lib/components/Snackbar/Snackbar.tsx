@@ -1,12 +1,9 @@
 'use client';
+import { isSupported, apply as polyfillPopover } from '@oddbird/popover-polyfill/fn';
 import { useEffect, useRef } from 'react';
 import { SnackbarBase } from './SnackbarBase.tsx';
 import { SnackbarItem } from './SnackbarItem';
 import { useSnackbar } from './useSnackbar';
-import {
-  isSupported,
-  apply as polyfillPopover,
-} from '@oddbird/popover-polyfill/fn';
 
 const isBrowser = () => typeof window !== 'undefined' && typeof document !== 'undefined';
 if (isBrowser() && !isSupported()) polyfillPopover();
