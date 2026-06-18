@@ -8,6 +8,10 @@
   margin: 0 auto;
 }
 
+.content:focus-visible {
+  outline: none;
+}
+
 @media (min-width: 1024px) {
   [aria-hidden="true"] + .content {
     padding: 1rem 112px;
