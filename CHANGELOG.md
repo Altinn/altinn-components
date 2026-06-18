@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.68.8](https://github.com/Altinn/altinn-components/compare/v0.68.7...v0.68.8) (2026-06-18)
+
+
+### Bug Fixes
+
+* **layout:** remove visible focus on main content ([#1288](https://github.com/Altinn/altinn-components/issues/1288)) ([728857d](https://github.com/Altinn/altinn-components/commit/728857d30d2782304f1c1fc9425ba2d483656fe0))
+
+
+### Miscellaneous Chores
+
+* Add screenshots tests regenerate failed script ([#1281](https://github.com/Altinn/altinn-components/issues/1281)) ([e982853](https://github.com/Altinn/altinn-components/commit/e9828530ee3b5e6c9b26a2fa7be068cc10813e33))
+
 ## [0.68.7](https://github.com/Altinn/altinn-components/compare/v0.68.6...v0.68.7) (2026-06-18)
 
 
