@@ -182,6 +182,9 @@ pnpm test:screenshots:filter "Button"
 
 # Delete all screenshots and generate new
 pnpm test:screenshots:regenerate-all
+
+# Regenerate only the screenshots that are currently failing
+pnpm test:screenshots:regenerate-failed
 ```
 
 
