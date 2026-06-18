@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.68.7](https://github.com/Altinn/altinn-components/compare/v0.68.6...v0.68.7) (2026-06-18)
+
+
+### Bug Fixes
+
+* add minimal polyfill for popover to Snackbar component ([#1284](https://github.com/Altinn/altinn-components/issues/1284)) ([d0fa455](https://github.com/Altinn/altinn-components/commit/d0fa4550fb2d1c30376db27a3a46464da22f89ef))
+
 ## [0.68.6](https://github.com/Altinn/altinn-components/compare/v0.68.5...v0.68.6) (2026-06-17)
 
 
