@@ -36,8 +36,24 @@ export const DueAt: Story = {
       value: 'requires-attention',
       label: 'Krever handling',
     },
-    dueAt: '2000-01-01',
-    dueAtLabel: 'Frist: 1. januar 2001',
+    dueAt: {
+      datetime: '2000-01-01',
+      label: 'Frist: 1. januar 2001',
+    },
+  },
+};
+
+export const DueAtSoon: Story = {
+  args: {
+    status: {
+      value: 'requires-attention',
+      label: 'Krever handling',
+    },
+    dueAt: {
+      datetime: '2000-01-01',
+      color: 'danger',
+      label: 'Frist: 1. januar 2001',
+    },
   },
 };
 
@@ -47,9 +63,41 @@ export const DueAtExpired: Story = {
       value: 'requires-attention',
       label: 'Krever handling',
     },
-    dueAt: '2000-01-01',
-    dueAtExpired: true,
-    dueAtLabel: 'Frist utgått: 1. januar 2001',
+    dueAt: {
+      datetime: '2000-01-01',
+      color: 'danger',
+      label: 'Frist utgått: 1. januar 2001',
+    },
+  },
+};
+
+export const CompletedDueAt: Story = {
+  args: {
+    status: {
+      value: 'completed',
+      label: 'Avsluttet',
+    },
+    dueAt: {
+      datetime: '2000-01-01',
+      color: 'neutral',
+      variant: 'outline',
+      label: 'Frist: 1. januar 2001',
+    },
+  },
+};
+
+export const CompletedDueAtExpired: Story = {
+  args: {
+    status: {
+      value: 'completed',
+      label: 'Avsluttet',
+    },
+    dueAt: {
+      datetime: '2000-01-01',
+      color: 'neutral',
+      variant: 'outline',
+      label: 'Frist utgått: 1. januar 2001',
+    },
   },
 };
 

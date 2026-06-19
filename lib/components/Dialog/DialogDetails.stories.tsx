@@ -81,8 +81,10 @@ export const DialogDetails: Story = {
           value: 'requires-attention',
           label: 'Krever handling',
         }}
-        dueAt="2025-05-31T21:59:59.999Z"
-        dueAtLabel="Frist: 31. mai 2025"
+        dueAt={{
+          datetime: '2025-05-31T21:59:59.999Z',
+          label: 'Frist: 31. mai 2025',
+        }}
         attachmentsCount={2}
         sentCount={1}
         receivedCount={0}

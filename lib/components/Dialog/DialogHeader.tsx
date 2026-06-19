@@ -22,8 +22,6 @@ export const DialogHeader = ({
   updatedAtLabel,
   attachmentsCount,
   dueAt,
-  dueAtExpired,
-  dueAtLabel,
   archivedAt,
   archivedAtLabel,
   trashedAt,
@@ -48,8 +46,6 @@ export const DialogHeader = ({
         updatedAt={updatedAt}
         updatedAtLabel={updatedAtLabel}
         dueAt={dueAt}
-        dueAtExpired={dueAtExpired}
-        dueAtLabel={dueAtLabel}
         trashedAt={trashedAt}
         trashedAtLabel={trashedAtLabel}
         archivedAt={archivedAt}

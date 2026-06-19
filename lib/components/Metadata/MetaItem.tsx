@@ -6,7 +6,7 @@ import { Tooltip } from '../Tooltip';
 import { MetaItemIcon, type MetaItemIconProps } from './MetaItemIcon';
 import styles from './metaItem.module.css';
 
-export type MetaItemVariant = 'default' | 'tinted';
+export type MetaItemVariant = 'default' | 'tinted' | 'outline';
 export type MetaItemSize = 'xs' | 'sm';
 export type MetaItemColor = Color;
 

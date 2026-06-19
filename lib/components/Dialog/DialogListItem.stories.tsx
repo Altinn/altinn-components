@@ -134,8 +134,10 @@ export const RequiresAttention = {
 export const DueAt = {
   args: {
     ...RequiresAttention.args,
-    dueAt: '2025-01-01',
-    dueAtLabel: 'Frist: 1. januar 2025',
+    dueAt: {
+      datetime: '2025-01-01',
+      label: 'Frist: 1. januar 2025',
+    },
   },
 };
 

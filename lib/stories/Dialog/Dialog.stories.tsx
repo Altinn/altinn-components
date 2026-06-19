@@ -290,8 +290,10 @@ export const StatusAttention = () => {
         title="Rapportering av bedriftsdata"
         updatedAt="2015-03-03 12:15:00"
         updatedAtLabel="17. mars 2025 kl. 14.15"
-        dueAt="2025-05-31T12:00:00Z"
-        dueAtLabel="Frist: 31. mai 2025"
+        dueAt={{
+          datetime: '2025-05-31T12:00:00Z',
+          label: 'Frist: 31. mai 2025',
+        }}
         status={{
           label: 'Krever handling',
           value: 'requires-attention',

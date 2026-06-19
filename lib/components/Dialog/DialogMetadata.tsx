@@ -18,6 +18,17 @@ import { type AvatarProps, Badge, type BadgeProps, DialogStatus, type DialogStat
 
 export type DialogMetadataTooltips = Record<string, string>;
 
+export type DialogMetadataDueAtProps = {
+  /** Due date, ISO datetime */
+  datetime: string;
+  /** Visible label */
+  label: string;
+  /** Defaults to 'warning' */
+  color?: 'warning' | 'danger' | 'neutral';
+  /** Defaults to 'tinted' */
+  variant?: 'outline' | 'tinted';
+};
+
 export type DialogMetadataProps = {
   className?: string;
   /** Metadata is loading */
@@ -35,11 +46,7 @@ export type DialogMetadataProps = {
   /** Updated label */
   updatedAtLabel?: string;
   /** Due date */
-  dueAt?: string;
-  /** Due date expired */
-  dueAtExpired?: boolean;
-  /** Due date label */
-  dueAtLabel?: string;
+  dueAt?: DialogMetadataDueAtProps;
   /** Dialog is moved to archive */
   archived?: boolean;
   /** Archived date time */
@@ -82,8 +89,6 @@ export const DialogMetadata = ({
   updatedAt,
   updatedAtLabel,
   dueAt,
-  dueAtExpired,
-  dueAtLabel,
   archivedAt,
   archivedAtLabel,
   trashedAt,
@@ -137,17 +142,17 @@ export const DialogMetadata = ({
           {receivedCount}
         </MetaItem>
       )}
-      {dueAt && dueAtLabel && (
+      {dueAt && (
         <MetaItem
-          variant={'tinted'}
-          color={dueAtExpired ? 'danger' : 'warning'}
+          variant={dueAt.variant ?? 'tinted'}
+          color={dueAt.color ?? 'warning'}
           tooltip={tooltips.dueAt}
           loading={loading}
-          datetime={dueAt}
+          datetime={dueAt.datetime}
           size="xs"
           icon={CalendarIcon}
         >
-          {dueAtLabel}
+          {dueAt.label}
         </MetaItem>
       )}
       {(trashedAtLabel && (

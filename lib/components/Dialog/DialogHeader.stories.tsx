@@ -22,8 +22,10 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    dueAt: '2025-04-01',
-    dueAtLabel: 'Frist: 1. april 2025',
+    dueAt: {
+      datetime: '2025-04-01',
+      label: 'Frist: 1. april 2025',
+    },
   },
 };
 

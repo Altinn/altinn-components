@@ -15,7 +15,6 @@ export const nabovarsel = {
   attachmentsCount: 4,
   sender: { ...oslo, name: 'Skattekontoret i Oslo, avdeling Løren' },
   dueAt: undefined,
-  dueAtLabel: undefined,
   additionalInfo: {
     title: 'Mer informasjon',
     children: (
