@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.68.9](https://github.com/Altinn/altinn-components/compare/v0.68.8...v0.68.9) (2026-06-19)
+
+
+### Bug Fixes
+
+* dueAt variant + color ([#1289](https://github.com/Altinn/altinn-components/issues/1289)) ([965ddc2](https://github.com/Altinn/altinn-components/commit/965ddc2f11de8fdbe17d6ac58129b3e6a09331b4))
+
 ## [0.68.8](https://github.com/Altinn/altinn-components/compare/v0.68.7...v0.68.8) (2026-06-18)
 
 
