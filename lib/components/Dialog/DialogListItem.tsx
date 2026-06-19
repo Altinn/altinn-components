@@ -107,8 +107,6 @@ export const DialogListItem = memo(
     trashedAtLabel,
     badge,
     dueAt,
-    dueAtExpired,
-    dueAtLabel,
     unread,
     unreadLabel = 'Ulest',
     unreadItems,
@@ -199,8 +197,6 @@ export const DialogListItem = memo(
               trashedAt={trashedAt}
               trashedAtLabel={trashedAtLabel}
               dueAt={dueAt}
-              dueAtExpired={dueAtExpired}
-              dueAtLabel={dueAtLabel}
               attachmentsCount={attachmentsCount}
               attachmentsLabel={attachmentsLabel}
               tooltips={tooltips}

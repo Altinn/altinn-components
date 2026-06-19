@@ -11,7 +11,6 @@ export const reportingInProgressDialog: DialogProps = {
     label: 'Under arbeid',
   },
   dueAt: undefined,
-  dueAtLabel: undefined,
   updatedAtLabel: '27. november 2024 kl 10.30',
 
   summary: 'Saken er sendt til manuell behandling. Forventet behandlingstid: 2 uker.',

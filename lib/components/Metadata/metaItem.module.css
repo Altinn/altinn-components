@@ -51,6 +51,17 @@
   border-radius: 2px;
 }
 
+.item[data-variant="outline"] {
+  --var-meta-background: transparent;
+  --var-meta-font-size: 0.875em;
+  --var-meta-font-weight: 500;
+  padding: 0 0.375em;
+  column-gap: 0.375em;
+  border: 1px solid var(--ds-color-border-subtle);
+  color: var(--ds-color-text-subtle);
+  border-radius: 2px;
+}
+
 .label {
   display: inline;
   font-size: var(--var-meta-font-size);

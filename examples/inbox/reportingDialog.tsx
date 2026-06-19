@@ -9,8 +9,10 @@ export const reportingDialog: DialogProps = {
     label: 'Krever handling',
   },
   sender: ssb,
-  dueAt: '2024-10-31',
-  dueAtLabel: 'Frist: 31. oktober 2024',
+  dueAt: {
+    datetime: '2024-10-31',
+    label: 'Frist: 31. oktober 2024',
+  },
   title: 'Rapportering av bedriftsdata',
   summary: 'Du må levere bedriftsdata innen 31. oktober.',
   attachments: {

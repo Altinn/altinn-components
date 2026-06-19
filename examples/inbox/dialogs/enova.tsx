@@ -115,7 +115,6 @@ export const enovaProgress = {
   sender: enova,
   sentCount: 1,
   dueAt: undefined,
-  dueAtLabel: undefined,
   history: {
     items: [
       {
