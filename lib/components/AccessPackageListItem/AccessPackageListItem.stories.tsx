@@ -73,7 +73,7 @@ export default meta;
 export const AccessPackageListStory = (args: AccessPackageListItemProps) => {
   return (
     <List>
-      <AccessPackageListItem {...args} description={"3 tjenester"} />
+      <AccessPackageListItem {...args} description={'3 tjenester'} />
     </List>
   );
 };
