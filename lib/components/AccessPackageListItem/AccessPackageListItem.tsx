@@ -36,7 +36,6 @@ export const AccessPackageListItem = ({
       icon={PackageIcon}
       as={as}
       title={{ children: name, as: titleAs }}
-      ariaLabel={name}
       color={color}
       size={size}
       variant={variant}
