@@ -41,7 +41,7 @@ export const Icon = ({
       <Skeleton loading={loading} variant="circle" className={styles.shape}>
         <span className={styles.shape} />
         {SvgElement && <SvgElement aria-hidden="true" alt-label={altText} className={styles.svg} />}
-        {iconUrl && <img src={iconUrl} alt={altText} className={styles.image} />}
+        {iconUrl && <img src={iconUrl} alt={altText} aria-hidden={!altText} className={styles.image} />}
         {children}
       </Skeleton>
     </span>
