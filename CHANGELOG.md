@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.68.10](https://github.com/Altinn/altinn-components/compare/v0.68.9...v0.68.10) (2026-06-26)
+
+
+### Bug Fixes
+
+* **AccessPackageListItem:** remove hardcoded aria-label ([#1294](https://github.com/Altinn/altinn-components/issues/1294)) ([9be256c](https://github.com/Altinn/altinn-components/commit/9be256c75df5aa5cc35a2f701cfc1d95a7027c37))
+* set aria-hidden=true on Icon with iconUrl if altText is not set ([#1295](https://github.com/Altinn/altinn-components/issues/1295)) ([27a0c71](https://github.com/Altinn/altinn-components/commit/27a0c717b95df2092a369366ada40ffce5f84abe))
+
 ## [0.68.9](https://github.com/Altinn/altinn-components/compare/v0.68.8...v0.68.9) (2026-06-19)
 
 
