@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.68.13](https://github.com/Altinn/altinn-components/compare/v0.68.12...v0.68.13) (2026-07-09)
+
+
+### Miscellaneous Chores
+
+* **deps:** update dependency vite to v7.3.5 [security] ([#1272](https://github.com/Altinn/altinn-components/issues/1272)) ([b1ac4b1](https://github.com/Altinn/altinn-components/commit/b1ac4b1f2016177c1faded91228c5b2f0edb01b7))
+
 ## [0.68.12](https://github.com/Altinn/altinn-components/compare/v0.68.11...v0.68.12) (2026-07-09)
 
 
