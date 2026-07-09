@@ -38,7 +38,11 @@ export interface AuthorizedParty {
 export interface useAccountSelectorProps {
   /** UUID of the user's own personal account */
   selfAccountUuid?: string;
-  /** Array of authorized parties that the user can act on behalf of */
+  /**
+   * Array of authorized parties that the user can act on behalf of.
+   * Pass a referentially stable array: a fresh reference on every render
+   * forces the full list to be re-sorted and rebuilt.
+   */
   partyListDTO?: AuthorizedParty[];
   /** Array of parties (defined by their partyUUIDs) marked as favorites by the user */
   favoriteAccountUuids?: string[];
@@ -67,6 +71,20 @@ export interface useAccountSelectorProps {
  */
 const getAccountType = (type: string): 'company' | 'person' => {
   return type === 'Organization' ? 'company' : 'person';
+};
+
+// Collators are cached per locale: a comparator that passes options to
+// localeCompare re-resolves the locale and options on every single call,
+// which dominates sort cost for large party lists.
+const collatorCache = new Map<string, Intl.Collator>();
+const getCollator = (languageCode?: string): Intl.Collator => {
+  const locale = languageCode || 'nb';
+  let collator = collatorCache.get(locale);
+  if (!collator) {
+    collator = new Intl.Collator(locale, { sensitivity: 'base', ignorePunctuation: true });
+    collatorCache.set(locale, collator);
+  }
+  return collator;
 };
 
 /**
@@ -103,13 +121,8 @@ export const useAccountSelector = ({
   // Sort parties once: only re-sorts when partyListDTO or languageCode changes
   const sortedParties = useMemo(() => {
     if (!partyListDTO || partyListDTO.length === 0) return [];
-    const locale = languageCode || 'nb';
-    const compareFn = (a: AuthorizedParty, b: AuthorizedParty) =>
-      a.name.localeCompare(b.name, locale, {
-        sensitivity: 'base',
-        ignorePunctuation: true,
-      });
-    return [...partyListDTO].sort(compareFn);
+    const collator = getCollator(languageCode);
+    return [...partyListDTO].sort((a, b) => collator.compare(a.name, b.name));
   }, [partyListDTO, languageCode]);
 
   const hasDeletedUnits = useMemo(
@@ -121,6 +134,11 @@ export const useAccountSelector = ({
     () => partyListDTO.reduce((count, party) => count + 1 + (party.subunits?.length ?? 0), 0),
     [partyListDTO],
   );
+
+  // Key the favorites by content so a fresh-but-equal array from the caller
+  // doesn't invalidate the expensive materialization memo below.
+  const favoritesKey = favoriteAccountUuids?.join(',') ?? '';
+  const favoriteSet = useMemo(() => new Set(favoritesKey ? favoritesKey.split(',') : []), [favoritesKey]);
 
   const [accountItems, accountGroups] = useMemo((): [
     {
@@ -138,7 +156,6 @@ export const useAccountSelector = ({
       ];
     }
 
-    const favoriteSet = new Set(favoriteAccountUuids);
     const isFavorite = (partyUuid: string) => favoriteSet.has(partyUuid);
 
     const isVisible = (party: AuthorizedParty) => {
@@ -146,12 +163,8 @@ export const useAccountSelector = ({
     };
 
     const texts = getTexts(languageCode);
-    const locale = languageCode || 'nb';
-    const compareFn = (a: AuthorizedParty, b: AuthorizedParty) =>
-      a.name.localeCompare(b.name, locale, {
-        sensitivity: 'base',
-        ignorePunctuation: true,
-      });
+    const collator = getCollator(languageCode);
+    const compareFn = (a: AuthorizedParty, b: AuthorizedParty) => collator.compare(a.name, b.name);
 
     let selfAccountItem: AccountMenuItemProps | undefined = undefined;
     const peopleAccountItems: AccountMenuItemProps[] = [];
@@ -252,7 +265,7 @@ export const useAccountSelector = ({
     };
 
     return [{ selfAccountItem, peopleAccountItems, organizationAccountItems, favoriteAccountItems }, groups];
-  }, [sortedParties, selfAccountUuid, favoriteAccountUuids, isLoading, languageCode, isDesktop, showDeletedUnits]);
+  }, [sortedParties, selfAccountUuid, favoriteSet, isLoading, languageCode, isDesktop, showDeletedUnits]);
 
   const allAccounts = useMemo((): AccountMenuItemProps[] => {
     const { selfAccountItem, peopleAccountItems, organizationAccountItems, favoriteAccountItems } = accountItems;
@@ -343,8 +356,8 @@ const FavoriteButton = ({
  * Converts an AuthorizedParty object into an AccountMenuItemProps object
  * with proper formatting, localization, and interactive elements.
  *
- * Uses a ref for toggleFavorite to avoid capturing the callback in the memo closure,
- * and defers JSX creation for controls to render time via a lazy getter pattern.
+ * Uses a ref for toggleFavorite so the FavoriteButton reads the current
+ * callback at click time instead of capturing it in the memo closure.
  */
 const getAccountItemData = (
   languageCode: string,
