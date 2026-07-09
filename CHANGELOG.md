@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.68.11](https://github.com/Altinn/altinn-components/compare/v0.68.10...v0.68.11) (2026-07-09)
+
+
+### Bug Fixes
+
+* **useAccountSelector:** cache Intl.Collator and stabilize favorites memo for large party lists ([#1297](https://github.com/Altinn/altinn-components/issues/1297)) ([7c55db4](https://github.com/Altinn/altinn-components/commit/7c55db4f7d73fc376ca57b9e102f6e89364635cc))
+
 ## [0.68.10](https://github.com/Altinn/altinn-components/compare/v0.68.9...v0.68.10) (2026-06-26)
 
 
