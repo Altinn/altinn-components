@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.68.12](https://github.com/Altinn/altinn-components/compare/v0.68.11...v0.68.12) (2026-07-09)
+
+
+### Miscellaneous Chores
+
+* **deps:** update dependency @vitest/browser to v4.1.8 [security] ([#1274](https://github.com/Altinn/altinn-components/issues/1274)) ([6fd81ad](https://github.com/Altinn/altinn-components/commit/6fd81ade5c90e0bb8d528db334a92978f2955ef9))
+
 ## [0.68.11](https://github.com/Altinn/altinn-components/compare/v0.68.10...v0.68.11) (2026-07-09)
 
 
