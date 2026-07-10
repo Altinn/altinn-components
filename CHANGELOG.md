@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.68.14](https://github.com/Altinn/altinn-components/compare/v0.68.13...v0.68.14) (2026-07-10)
+
+
+### Miscellaneous Chores
+
+* **node:** bump node-version to 24.15.0 ([#1301](https://github.com/Altinn/altinn-components/issues/1301)) ([2aaf489](https://github.com/Altinn/altinn-components/commit/2aaf4897c7bab7ee5faad693b84a945290af783a))
+
 ## [0.68.13](https://github.com/Altinn/altinn-components/compare/v0.68.12...v0.68.13) (2026-07-09)
 
 
