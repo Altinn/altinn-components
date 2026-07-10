@@ -29,15 +29,11 @@ jobs:
           node-version-file: .node-version
           registry-url: "https://registry.npmjs.org"
         if: ${{ steps.release.outputs.release_created }}
+      # pnpm version comes from the packageManager field in package.json.
+      # pnpm >=10.13 handles trusted publishing (OIDC + provenance) natively,
+      # so no npm CLI upgrade is needed.
       - name: Setup PNPM
         uses: pnpm/action-setup@eae0cfeb286e66ffb5155f1a79b90583a127a68b # v2.4.1
-        if: ${{ steps.release.outputs.release_created }}
-        with:
-          version: "9.12.3"
-      # Ensure npm 11.5.1 or later for trusted publishing
-      # https://github.com/orgs/community/discussions/173102
-      - name: Install npm@latest
-        run: npm install -g npm@latest
         if: ${{ steps.release.outputs.release_created }}
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
