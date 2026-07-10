@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.68.15](https://github.com/Altinn/altinn-components/compare/v0.68.14...v0.68.15) (2026-07-10)
+
+
+### Bug Fixes
+
+* **ci:** pnpm 10 trusted publishing ([#1303](https://github.com/Altinn/altinn-components/issues/1303)) ([d2835df](https://github.com/Altinn/altinn-components/commit/d2835df5ec743223c89ec3b79464c1ae58aaba9f))
+
 ## [0.68.14](https://github.com/Altinn/altinn-components/compare/v0.68.13...v0.68.14) (2026-07-10)
 
 

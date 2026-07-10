@@ -1,12 +1,18 @@
 {
   "name": "@altinn/altinn-components",
-  "version": "0.68.14",
+  "version": "0.68.15",
   "main": "dist/index.js",
-  "files": ["dist/", "!dist/stories/", "!dist/components/*/*.stories.js"],
+  "files": [
+    "dist/",
+    "!dist/stories/",
+    "!dist/components/*/*.stories.js"
+  ],
   "types": "dist/types/lib/index.d.ts",
   "type": "module",
   "description": "Reusable react components",
-  "sideEffects": ["*.css"],
+  "sideEffects": [
+    "*.css"
+  ],
   "scripts": {
     "test": "vitest run",
     "test:unit": "vitest run --project=unit",
@@ -92,7 +98,11 @@
   },
   "packageManager": "pnpm@10.15.1",
   "pnpm": {
-    "onlyBuiltDependencies": ["@biomejs/biome", "@swc/core", "esbuild"]
+    "onlyBuiltDependencies": [
+      "@biomejs/biome",
+      "@swc/core",
+      "esbuild"
+    ]
   },
   "repository": {
     "type": "git",
