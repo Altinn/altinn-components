@@ -22,8 +22,6 @@ jobs:
           node-version-file: '.node-version'
       - name: Setup PNPM
         uses: pnpm/action-setup@eae0cfeb286e66ffb5155f1a79b90583a127a68b # v2.4.1
-        with:
-          version: '9.12.3'
       - run: pnpm install --frozen-lockfile
       - run: pnpm build-storybook
       - name: Deploy to GitHub Pages

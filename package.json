@@ -2,17 +2,11 @@
   "name": "@altinn/altinn-components",
   "version": "0.68.14",
   "main": "dist/index.js",
-  "files": [
-    "dist/",
-    "!dist/stories/",
-    "!dist/components/*/*.stories.js"
-  ],
+  "files": ["dist/", "!dist/stories/", "!dist/components/*/*.stories.js"],
   "types": "dist/types/lib/index.d.ts",
   "type": "module",
   "description": "Reusable react components",
-  "sideEffects": [
-    "*.css"
-  ],
+  "sideEffects": ["*.css"],
   "scripts": {
     "test": "vitest run",
     "test:unit": "vitest run --project=unit",
@@ -96,7 +90,10 @@
   "lint-staged": {
     "**/*.*": "biome check --staged --no-errors-on-unmatched --write"
   },
-  "packageManager": "pnpm@9.13.0",
+  "packageManager": "pnpm@10.15.1",
+  "pnpm": {
+    "onlyBuiltDependencies": ["@biomejs/biome", "@swc/core", "esbuild"]
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Altinn/altinn-components.git"
