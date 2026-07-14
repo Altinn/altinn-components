@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.68.17](https://github.com/Altinn/altinn-components/compare/v0.68.16...v0.68.17) (2026-07-14)
+
+
+### Bug Fixes
+
+* Move dialog details modal buttons ([#1307](https://github.com/Altinn/altinn-components/issues/1307)) ([f18a7cc](https://github.com/Altinn/altinn-components/commit/f18a7ccdcc7c5396bf7e273763a30bbc248eb30d))
+
 ## [0.68.16](https://github.com/Altinn/altinn-components/compare/v0.68.15...v0.68.16) (2026-07-14)
 
 
