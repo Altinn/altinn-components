@@ -88,11 +88,21 @@ export const UserListItem = ({
 
   const deletedBadge = deleted ? (
     <div>
-      <Badge label={texts.deleted} color="neutral"/>
+      <Badge label={texts.deleted} color="neutral" />
     </div>
   ) : null;
 
-  return <ListItem icon={icon} ariaLabel={name} label={label} description={description} loading={loading} badge={deletedBadge} {...props} />;
+  return (
+    <ListItem
+      icon={icon}
+      ariaLabel={name}
+      label={label}
+      description={description}
+      loading={loading}
+      badge={deletedBadge}
+      {...props}
+    />
+  );
 };
 
 // TODO: Move to a common texts files when i18next is added
