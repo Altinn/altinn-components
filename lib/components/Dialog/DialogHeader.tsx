@@ -2,7 +2,7 @@ import { Badge, DialogMetadata, type DialogMetadataProps, Heading } from '..';
 
 import styles from './dialogHeader.module.css';
 
-export interface DialogHeaderProps extends DialogMetadataProps {
+export interface DialogHeaderProps extends Omit<DialogMetadataProps, 'activityLog'> {
   /** Loading state */
   loading?: boolean;
   /** Dialog title */
@@ -26,7 +26,6 @@ export const DialogHeader = ({
   archivedAtLabel,
   trashedAt,
   trashedAtLabel,
-  activityLog,
   tooltips = {},
 }: DialogHeaderProps) => {
   return (
@@ -51,7 +50,6 @@ export const DialogHeader = ({
         archivedAt={archivedAt}
         archivedAtLabel={archivedAtLabel}
         attachmentsCount={attachmentsCount}
-        activityLog={activityLog}
         tooltips={tooltips}
       />
     </header>

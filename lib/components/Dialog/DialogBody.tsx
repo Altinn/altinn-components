@@ -1,10 +1,14 @@
+import { ClockDashedIcon, InformationSquareIcon } from '@navikt/aksel-icons';
 import type { ReactNode } from 'react';
 import styles from './dialogBody.module.css';
 
 import {
   Avatar,
   type AvatarProps,
-  SeenByLog,
+  type DialogMetadataButtonProps,
+  MetaBase,
+  MetaItem,
+  SeenByLogButton,
   type SeenByLogProps,
   Timeline,
   TimelineHeader,
@@ -25,8 +29,12 @@ export interface DialogBodyProps {
   recipientLabel?: string;
   /** Group recipient, show both sender and recipient avatars */
   recipientGroup?: boolean;
-  /** Dialog is seen by the end user or others */
+  /** Dialog is seen by the end user or others. Renders as a trigger button; provide `onClick` to open a modal. */
   seenByLog?: SeenByLogProps;
+  /** Activity log trigger button */
+  activityLog?: DialogMetadataButtonProps;
+  /** "About authorization and service" trigger button */
+  accessInfo?: DialogMetadataButtonProps;
   /** Content */
   children?: ReactNode;
 }
@@ -41,6 +49,8 @@ export const DialogBody = ({
   recipientLabel = 'to',
   children,
   seenByLog,
+  activityLog,
+  accessInfo,
 }: DialogBodyProps) => {
   return (
     <Timeline>
@@ -64,7 +74,25 @@ export const DialogBody = ({
             <Typography maxWidth="60ch" style={{ marginTop: '0.5em' }}>
               {children}
             </Typography>
-            {seenByLog && <SeenByLog {...seenByLog} collapsible={true} />}
+            {(seenByLog || activityLog || accessInfo) && (
+              <MetaBase size="xs">
+                {seenByLog && (
+                  <SeenByLogButton items={seenByLog.items} as="button" onClick={seenByLog.onClick}>
+                    {seenByLog.title}
+                  </SeenByLogButton>
+                )}
+                {activityLog && (
+                  <MetaItem as="button" icon={ClockDashedIcon} onClick={activityLog.onClick}>
+                    {activityLog.label}
+                  </MetaItem>
+                )}
+                {accessInfo && (
+                  <MetaItem as="button" icon={InformationSquareIcon} onClick={accessInfo.onClick}>
+                    {accessInfo.label}
+                  </MetaItem>
+                )}
+              </MetaBase>
+            )}
           </>
         )}
       </TimelineSection>

@@ -47,4 +47,10 @@ export const dialogBody: DialogBodyProps = {
       },
     ],
   },
+  activityLog: {
+    label: 'Aktivitetslogg',
+  },
+  accessInfo: {
+    label: 'Om fullmakt og tjeneste',
+  },
 };
