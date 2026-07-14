@@ -1,6 +1,6 @@
 {
   "name": "@altinn/altinn-components",
-  "version": "0.68.16",
+  "version": "0.68.17",
   "main": "dist/index.js",
   "files": [
     "dist/",
