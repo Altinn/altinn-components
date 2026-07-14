@@ -1,0 +1,1 @@
+import{a7 as x,a3 as f}from"./iframe-DymAqe7-.js";const p="_item_1c4n2_1",u={item:p},j=({id:a,ref:t,as:s,size:e,color:i,variant:o="default",hidden:n=!1,disabled:m=!1,className:r,children:c,...d})=>{const l=s||"li";return x.jsx(l,{...d,id:a,ref:t,className:f(u.item,r),"data-size":e,"data-color":i,"data-variant":o,"aria-disabled":m,"aria-hidden":n,children:c})};export{j as I};

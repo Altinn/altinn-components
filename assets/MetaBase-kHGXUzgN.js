@@ -1,0 +1,1 @@
+import{a7 as e,a3 as m}from"./iframe-DymAqe7-.js";const o="_meta_17kd2_1",c={meta:o},r=({size:s="xs",className:t,children:a})=>e.jsx("section",{className:m(c.meta,t),"data-size":s,children:a});export{r as M};

@@ -1,1 +1,0 @@
-import{a7 as e}from"./iframe-BZiA3Dc9.js";const d="_item_10r5c_1",a="_divider_10r5c_6",i={item:d,divider:a},o=({ref:r,style:t,index:s})=>e.jsx("li",{className:i.item,role:"presentation","aria-hidden":"true",ref:r,style:t,"data-index":s,children:e.jsx("hr",{className:i.divider})});export{o as M};
