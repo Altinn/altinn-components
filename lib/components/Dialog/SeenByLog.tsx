@@ -9,6 +9,8 @@ export interface SeenByLogProps {
   items: SeenByLogItemProps[];
   size?: 'sm' | 'md';
   endUserLabel?: string;
+  /** Called when the seen-by trigger is clicked. Used by DialogBody to open a modal instead of expanding inline. */
+  onClick?: () => void;
 }
 
 /**

@@ -9,7 +9,7 @@ import {
   TrashFillIcon,
 } from '@navikt/aksel-icons';
 
-interface DialogMetadataButtonProps {
+export interface DialogMetadataButtonProps {
   label: string;
   onClick?: () => void;
 }

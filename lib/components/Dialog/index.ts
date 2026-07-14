@@ -22,6 +22,7 @@ export * from './DialogActions';
 export * from './DialogActivityLog';
 
 export * from './DialogSeenBy';
+export * from './DialogSeenByLog';
 export * from './DialogSelect';
 export * from './DialogStatus';
 

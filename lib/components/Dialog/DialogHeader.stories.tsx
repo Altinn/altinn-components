@@ -85,15 +85,10 @@ export const WithTooltips: Story = {
     },
     sentCount: 1,
     receivedCount: 2,
-    activityLog: {
-      label: 'Aktivitetslogg',
-      onClick: () => alert('Open activity log'),
-    },
     tooltips: {
       sent: 'Sendte meldinger',
       received: 'Meldinger mottatt',
       attachments: 'Vedlegg',
-      activityLog: 'Åpne aktivitetslogg',
     },
   },
 };

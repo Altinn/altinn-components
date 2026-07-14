@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { DialogActions, DialogAttachments, DialogBody } from '..';
+import { useState } from 'react';
+import { DialogActions, DialogAttachments, DialogBody, DialogSeenByLog } from '..';
+import { dialogBody } from '../../../examples';
 
 const meta = {
   title: 'Inbox/Dialog/DialogBody',
@@ -180,4 +182,37 @@ export const WithActions: Story = {
       </>
     ),
   },
+};
+
+export const WithInfoRow = () => {
+  const [seenByLogOpen, setSeenByLogOpen] = useState(false);
+
+  return (
+    <>
+      <DialogBody
+        {...dialogBody}
+        seenByLog={{
+          title: dialogBody.seenByLog?.title,
+          items: dialogBody.seenByLog?.items ?? [],
+          onClick: () => setSeenByLogOpen(true),
+        }}
+        activityLog={{ label: 'Aktivitetslogg', onClick: () => console.log('Aktivitetslogg clicked') }}
+        accessInfo={{ label: 'Om fullmakt og tjeneste', onClick: () => console.log('Om fullmakt og tjeneste clicked') }}
+      >
+        <p>Dialog summary.</p>
+        <DialogActions
+          items={[
+            { id: '1', priority: 'primary', label: 'Primary' },
+            { id: '2', priority: 'secondary', label: 'Secondary' },
+          ]}
+        />
+      </DialogBody>
+      <DialogSeenByLog
+        title="Hvem har sett dialogen?"
+        items={dialogBody.seenByLog?.items ?? []}
+        open={seenByLogOpen}
+        onClose={() => setSeenByLogOpen(false)}
+      />
+    </>
+  );
 };
