@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.68.16](https://github.com/Altinn/altinn-components/compare/v0.68.15...v0.68.16) (2026-07-14)
+
+
+### Miscellaneous Chores
+
+* **deps:** bump vitest packages to 4.1.10 to fix audit findings ([#1305](https://github.com/Altinn/altinn-components/issues/1305)) ([73403f9](https://github.com/Altinn/altinn-components/commit/73403f9bfaa01dcc1b97aa0d8f337628542a7ad7))
+
 ## [0.68.15](https://github.com/Altinn/altinn-components/compare/v0.68.14...v0.68.15) (2026-07-10)
 
 
