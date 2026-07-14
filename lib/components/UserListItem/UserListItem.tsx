@@ -1,3 +1,4 @@
+import { useRootContext } from '../..';
 import { Badge } from '../Badge';
 import { ListItem, ListItemLabel } from '../List';
 import type { ListItemProps } from '../List';
@@ -53,6 +54,8 @@ export const UserListItem = ({
   deleted = false,
   ...props
 }: UserListItemProps) => {
+  const { languageCode } = useRootContext();
+  const texts = getTexts(languageCode);
   const icon = {
     name: name,
     type: type,
@@ -83,5 +86,30 @@ export const UserListItem = ({
     </div>
   );
 
-  return <ListItem icon={icon} ariaLabel={name} label={label} description={description} loading={loading} {...props} />;
+  const deletedBadge = deleted ? (
+    <div>
+      <Badge label={texts.deleted} color="neutral"/>
+    </div>
+  ) : null;
+
+  return <ListItem icon={icon} ariaLabel={name} label={label} description={description} loading={loading} badge={deletedBadge} {...props} />;
+};
+
+// TODO: Move to a common texts files when i18next is added
+// This is only a temporary solution for providing texts in different languages in a very simple POC
+const getTexts = (languageCode: string | undefined) => {
+  switch (languageCode) {
+    case 'nn':
+      return {
+        deleted: 'Sletta',
+      };
+    case 'en':
+      return {
+        deleted: 'Deleted',
+      };
+    default:
+      return {
+        deleted: 'Slettet',
+      };
+  }
 };
