@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.68.18](https://github.com/Altinn/altinn-components/compare/v0.68.17...v0.68.18) (2026-07-15)
+
+
+### Miscellaneous Chores
+
+* **deps:** harden pnpm against supply-chain attacks ([#1310](https://github.com/Altinn/altinn-components/issues/1310)) ([ce279ce](https://github.com/Altinn/altinn-components/commit/ce279ce7e0597d48316f11b341eea5fb37b92f59))
+
 ## [0.68.17](https://github.com/Altinn/altinn-components/compare/v0.68.16...v0.68.17) (2026-07-14)
 
 
