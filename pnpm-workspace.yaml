@@ -1,0 +1,6 @@
+# Supply-chain hardening (requires pnpm >=10.21, see packageManager in package.json).
+# Delay installing newly published versions for 7 days so compromised releases
+# can be caught and unpublished before they reach us.
+minimumReleaseAge: 10080
+# Refuse packages whose trust signals (provenance, signatures) weaken between versions.
+trustPolicy: no-downgrade
