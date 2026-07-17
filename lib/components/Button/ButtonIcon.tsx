@@ -39,7 +39,9 @@ export const ButtonIcon = ({ icon, size, iconAltText, className }: ButtonIconPro
       {(isAvatarProps(icon) && <Avatar {...icon} className={styles.avatar} />) ||
         (isAvatarGroupProps(icon) && <AvatarGroup {...icon} className={styles.avatarGroup} />) ||
         (isIconProps(icon) && <Icon {...(icon as IconProps)} className={styles.icon} />) ||
-        (isReactNode(icon) && icon) || <Icon svgElement={icon as SvgElement} className={styles.icon} />}
+        (isReactNode(icon) && <Icon className={styles.icon}>{icon}</Icon>) || (
+          <Icon svgElement={icon as SvgElement} className={styles.icon} />
+        )}
     </span>
   );
 };
