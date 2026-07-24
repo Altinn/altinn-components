@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.68.18](https://github.com/Altinn/altinn-components/compare/v0.68.17...v0.68.18) (2026-07-24)
+
+
+### Bug Fixes
+
+* **MetaBase:** keep meta item z-index from escaping the row ([#1321](https://github.com/Altinn/altinn-components/issues/1321)) ([1c2dc2b](https://github.com/Altinn/altinn-components/commit/1c2dc2bac094150721c852a734d3aea98bbeed12))
+
+
+### Miscellaneous Chores
+
+* **deps:** harden pnpm against supply-chain attacks ([#1310](https://github.com/Altinn/altinn-components/issues/1310)) ([ce279ce](https://github.com/Altinn/altinn-components/commit/ce279ce7e0597d48316f11b341eea5fb37b92f59))
+
 ## [0.68.17](https://github.com/Altinn/altinn-components/compare/v0.68.16...v0.68.17) (2026-07-14)
 
 
