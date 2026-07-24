@@ -309,6 +309,8 @@ export const StatusAttention = () => {
           items: seenByLog.items.slice(0, 1),
           title: 'Sett av deg',
         }}
+        activityLog={{ label: 'Aktivitetslogg' }}
+        accessInfo={{ label: 'Om fullmakt og tjeneste' }}
       >
         <p>Du må levere bedriftsdata innen 31. mai 2025.</p>
         <DialogAttachments
