@@ -3,4 +3,8 @@
   align-items: center;
   flex-wrap: wrap;
   column-gap: 0.5rem;
+  /* Items are flex children, so their z-index applies even though they are
+     statically positioned. Keep that stacking local to the row, otherwise it
+     escapes to the root stacking context and paints over the global header. */
+  isolation: isolate;
 }
