@@ -38,8 +38,8 @@ export default () => {
       react(),
       libInjectCss(),
       dts({
-        root: 'dist',
-        outDir: 'types',
+        outDirs: 'dist/types',
+        entryRoot: '.',
       }),
       preserveDirectives(),
     ],
