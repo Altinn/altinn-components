@@ -54,7 +54,7 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@chromatic-com/storybook": "5.2.1",
-    "@oddbird/popover-polyfill": "0.6.1",
+    "@oddbird/popover-polyfill": "0.7.1",
     "@storybook/addon-a11y": "10.4.1",
     "@storybook/addon-docs": "10.4.1",
     "@storybook/addon-themes": "10.4.1",
