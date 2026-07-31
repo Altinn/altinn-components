@@ -13,6 +13,6 @@ jobs:
         uses: pnpm/action-setup@eae0cfeb286e66ffb5155f1a79b90583a127a68b # v2.4.1
       - run: pnpm install --frozen-lockfile
       - name: Install Playwright
-        run: pnpm exec playwright install
+        run: pnpm exec playwright install firefox
       - name: Serve Storybook and run tests
         run: pnpm ci:test-storybook

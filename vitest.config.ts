@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url';
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 import storycapPlugin from '@storycap-testrun/browser/vitest-plugin';
 import { playwright } from '@vitest/browser-playwright';
+import type { PluginOption } from 'vite';
 import { defineConfig } from 'vitest/config';
 
 const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
@@ -51,7 +52,7 @@ export default defineConfig({
                       );
                     },
                   },
-                }),
+                }) as PluginOption,
               ]
             : []),
         ],
@@ -61,6 +62,7 @@ export default defineConfig({
           browser: {
             enabled: true,
             headless: true,
+            isolate: false,
             provider: playwright({
               launchOptions: {
                 args: ['--font-render-hinting=none', '--disable-font-subpixel-positioning'],
