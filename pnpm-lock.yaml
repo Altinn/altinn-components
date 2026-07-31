@@ -58,8 +58,8 @@ importers:
         specifier: 10.4.1
         version: 10.4.1(@types/react-dom@19.2.3(@types/react@19.1.5))(@types/react@19.1.5)(esbuild@0.27.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(rollup@4.60.4)(storybook@10.4.1(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@testing-library/dom@10.4.0)(@types/react@19.1.5)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@7.0.2)(vite@7.3.5(@types/node@25.0.7)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.9.0))
       '@storycap-testrun/browser':
-        specifier: ^2.1.0
-        version: 2.1.0(@vitest/browser-playwright@4.1.10)
+        specifier: ^2.1.1
+        version: 2.1.1(@vitest/browser-playwright@4.1.10)
       '@testing-library/react':
         specifier: ^16.3.0
         version: 16.3.0(@testing-library/dom@10.4.0)(@types/react-dom@19.2.3(@types/react@19.1.5))(@types/react@19.1.5)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1253,13 +1253,13 @@ packages:
     peerDependencies:
       storybook: ^8.2.0 || ^8.3.0-0 || ^8.4.0-0 || ^8.5.0-0 || ^8.6.0-0
 
-  '@storycap-testrun/browser@2.1.0':
-    resolution: {integrity: sha512-O8lwk35j/Gm0lYGLOlYGU7K5Wnc1cJaj9muImvlVbKs9xUEOL+XEO/pBqcjHHE/JQk8+lb1bpcYRXhDLgTctNA==}
+  '@storycap-testrun/browser@2.1.1':
+    resolution: {integrity: sha512-LQpkmPExjdojELXNzw98IBgWnX2LYkCRzZ4gyBvUk+4ut1vNCOQhbMrT6dhRa/h31OdP/E2utoJXHoITYQKjTw==}
     peerDependencies:
       '@vitest/browser-playwright': '*'
 
-  '@storycap-testrun/internal@2.1.0':
-    resolution: {integrity: sha512-/i4Dhi5qsOsbXvSZZ82AIiTJntnEw3SBaLSe1HGJnNjiSpYo6Ly7fP/YIrPk/WVNGfgfuqXmxKoW8gFhM0w1Dw==}
+  '@storycap-testrun/internal@2.1.1':
+    resolution: {integrity: sha512-+B+bx8C9ylqVCNJJ6cU3Zrwd+zmjUA4frKrvXUwTUOH1an5DJPYoPELFuwADLoBhCvkiCLqaPabdlmn5j8xcVw==}
 
   '@swc/core-darwin-arm64@1.15.24':
     resolution: {integrity: sha512-uM5ZGfFXjtvtJ+fe448PVBEbn/CSxS3UAyLj3O9xOqKIWy3S6hPTXSPbszxkSsGDYKi+YFhzAsR4r/eXLxEQ0g==}
@@ -3928,12 +3928,12 @@ snapshots:
       storybook: 10.4.1(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@testing-library/dom@10.4.0)(@types/react@19.1.5)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
     optional: true
 
-  '@storycap-testrun/browser@2.1.0(@vitest/browser-playwright@4.1.10)':
+  '@storycap-testrun/browser@2.1.1(@vitest/browser-playwright@4.1.10)':
     dependencies:
-      '@storycap-testrun/internal': 2.1.0
+      '@storycap-testrun/internal': 2.1.1
       '@vitest/browser-playwright': 4.1.10(playwright@1.57.0)(vite@7.3.5(@types/node@25.0.7)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.9.0))(vitest@4.1.10)
 
-  '@storycap-testrun/internal@2.1.0': {}
+  '@storycap-testrun/internal@2.1.1': {}
 
   '@swc/core-darwin-arm64@1.15.24':
     optional: true

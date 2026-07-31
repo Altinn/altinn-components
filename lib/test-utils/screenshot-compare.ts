@@ -1,6 +1,8 @@
 import * as fs from 'node:fs/promises';
+import { availableParallelism } from 'node:os';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { Worker } from 'node:worker_threads';
 import { glob } from 'glob';
 import pixelmatch from 'pixelmatch';
 import { PNG } from 'pngjs';
@@ -91,6 +93,12 @@ export async function compareScreenshots(
   try {
     // Read both files in parallel
     const [baselineBuffer, actualBuffer] = await Promise.all([fs.readFile(baselinePath), fs.readFile(actualPath)]);
+
+    // Unchanged stories re-encode to byte-identical PNGs, which is the common case on
+    // CI. Skip the decode and pixel diff entirely for those.
+    if (baselineBuffer.equals(actualBuffer)) {
+      return { match: true, mismatchedPixels: 0, totalPixels: 0, percentage: 0 };
+    }
 
     const actualImg = PNG.sync.read(actualBuffer);
     const baselineImg = PNG.sync.read(baselineBuffer);
@@ -187,6 +195,90 @@ interface ComparisonFailure {
   error?: string;
 }
 
+interface ComparisonJob {
+  index: number;
+  actualPath: string;
+  baselinePath: string;
+  diffPath: string;
+}
+
+/**
+ * Decoding PNGs and diffing them is synchronous CPU work, so comparisons are spread
+ * across worker threads rather than run on the main thread one at a time.
+ *
+ * Workers boot a small CommonJS shim that registers tsx before importing this module,
+ * because `execArgv` does not carry the tsx loader into a worker thread.
+ */
+const WORKER_BOOTSTRAP = `
+const { parentPort, workerData } = require('node:worker_threads');
+(async () => {
+  const { register } = await import('tsx/esm/api');
+  register();
+  const { compareScreenshots } = await import(workerData.moduleUrl);
+  parentPort.on('message', async (job) => {
+    const result = await compareScreenshots(job.actualPath, job.baselinePath, job.diffPath);
+    parentPort.postMessage({ index: job.index, result });
+  });
+  parentPort.postMessage({ ready: true });
+})().catch((error) => {
+  parentPort.postMessage({ fatal: error instanceof Error ? error.message : String(error) });
+});
+`;
+
+/** Below this many screenshots, spawning workers costs more than it saves. */
+const PARALLEL_THRESHOLD = 8;
+
+async function compareInWorkers(jobs: ComparisonJob[]): Promise<ComparisonResult[]> {
+  const results = new Array<ComparisonResult>(jobs.length);
+  const workerCount = Math.min(availableParallelism(), jobs.length);
+  let nextJob = 0;
+
+  await Promise.all(
+    Array.from(
+      { length: workerCount },
+      () =>
+        new Promise<void>((resolve, reject) => {
+          const worker = new Worker(WORKER_BOOTSTRAP, {
+            eval: true,
+            workerData: { moduleUrl: import.meta.url },
+          });
+
+          const takeNextJob = () => {
+            if (nextJob >= jobs.length) {
+              void worker.terminate();
+              resolve();
+              return;
+            }
+            worker.postMessage(jobs[nextJob++]);
+          };
+
+          worker.on('message', (message) => {
+            if (message.fatal) {
+              void worker.terminate();
+              reject(new Error(message.fatal));
+              return;
+            }
+            if (!message.ready) {
+              results[message.index] = message.result;
+            }
+            takeNextJob();
+          });
+          worker.on('error', reject);
+        }),
+    ),
+  );
+
+  return results;
+}
+
+async function compareSequentially(jobs: ComparisonJob[]): Promise<ComparisonResult[]> {
+  const results: ComparisonResult[] = [];
+  for (const job of jobs) {
+    results.push(await compareScreenshots(job.actualPath, job.baselinePath, job.diffPath));
+  }
+  return results;
+}
+
 /**
  * Compare all captured screenshots against baselines.
  * - Baselines are stored in component-local \_\_screenshots\_\_ directories
@@ -239,13 +331,29 @@ export async function compareAllScreenshots(filterPattern?: string): Promise<{
   let passedCount = 0;
   let baselinesCreated = 0;
 
-  // Compare each screenshot
-  for (const relativePath of actualScreenshots) {
-    const actualPath = path.join(actualDir, relativePath);
-    const baselinePath = path.join(rootDir, relativePath);
-    const diffPath = path.join(tempDir, 'diff', relativePath);
+  const jobs: ComparisonJob[] = actualScreenshots.map((relativePath, index) => ({
+    index,
+    actualPath: path.join(actualDir, relativePath),
+    baselinePath: path.join(rootDir, relativePath),
+    diffPath: path.join(tempDir, 'diff', relativePath),
+  }));
 
-    const result = await compareScreenshots(actualPath, baselinePath, diffPath);
+  let results: ComparisonResult[];
+  if (jobs.length < PARALLEL_THRESHOLD) {
+    results = await compareSequentially(jobs);
+  } else {
+    try {
+      results = await compareInWorkers(jobs);
+    } catch (error) {
+      // Never fail the run over a worker problem — fall back to the in-process path.
+      console.warn(`Parallel comparison unavailable (${(error as Error).message}), comparing sequentially...`);
+      results = await compareSequentially(jobs);
+    }
+  }
+
+  // Reported in capture order so output stays stable regardless of completion order.
+  for (const [index, relativePath] of actualScreenshots.entries()) {
+    const result = results[index];
 
     if (result.baselineCreated) {
       baselinesCreated++;
@@ -253,9 +361,9 @@ export async function compareAllScreenshots(filterPattern?: string): Promise<{
     } else if (!result.match) {
       failures.push({
         testName: relativePath,
-        actualPath,
-        baselinePath,
-        diffPath,
+        actualPath: jobs[index].actualPath,
+        baselinePath: jobs[index].baselinePath,
+        diffPath: jobs[index].diffPath,
         percentage: result.percentage,
         mismatchedPixels: result.mismatchedPixels,
         totalPixels: result.totalPixels,
