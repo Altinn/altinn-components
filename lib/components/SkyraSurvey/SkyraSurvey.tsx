@@ -1,8 +1,8 @@
 'use client';
 import { useEffect, useRef } from 'react';
+import type { SkyraWindow } from './skyraWindow';
 
-// TODO: placeholders until the first capture lands. Both lines are owned by
-// .github/workflows/skyra-check-upstream.yml and must not be edited by hand.
+// Owned by .github/workflows/skyra-check-upstream.yml. Do not edit by hand.
 const SKYRA_SRC =
   'https://cdn.jsdelivr.net/gh/altinn/altinn-components@main/vendor/skyra/releases/2026-08-12/skyra-survey.js';
 const SKYRA_INTEGRITY = 'sha384-ZodGTLfNBgoyM2MXkOrslTR3emFIWsFIXJquUc2svN6SZZ7/a5o/l+q1MeMou6YF';
@@ -10,23 +10,30 @@ const SKYRA_ORG = 'digitaliseringsdirektoratet';
 
 const SCRIPT_ID = 'skyra-survey-sdk';
 
-interface SkyraWindow extends Window {
-  SKYRA_CONFIG?: { org: string; consent: boolean };
-  skyra?: { setConsent: (consent: boolean) => void };
-  skyraStart?: () => void;
-}
+const applyDebug = (skyraWindow: SkyraWindow, debug: boolean) => {
+  if (!skyraWindow.skyra) {
+    return;
+  }
+  skyraWindow.skyra._debugEnabled = debug;
+  if (debug) {
+    skyraWindow.skyra.debugInfo?.();
+  }
+};
 
 export interface SkyraSurveyProps {
   consent: boolean;
+  debug?: boolean;
 }
 
-export const SkyraSurvey = ({ consent }: SkyraSurveyProps) => {
+export const SkyraSurvey = ({ consent, debug = false }: SkyraSurveyProps) => {
   const consentRef = useRef(consent);
+  const debugRef = useRef(debug);
 
   useEffect(() => {
     const skyraWindow = window as SkyraWindow;
 
     skyraWindow.skyraStart = () => {
+      applyDebug(skyraWindow, debugRef.current);
       skyraWindow.skyra?.setConsent(consentRef.current);
     };
 
@@ -49,6 +56,11 @@ export const SkyraSurvey = ({ consent }: SkyraSurveyProps) => {
     consentRef.current = consent;
     (window as SkyraWindow).skyra?.setConsent(consent);
   }, [consent]);
+
+  useEffect(() => {
+    debugRef.current = debug;
+    applyDebug(window as SkyraWindow, debug);
+  }, [debug]);
 
   return null;
 };
