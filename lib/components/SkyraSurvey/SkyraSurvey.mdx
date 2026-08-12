@@ -1,0 +1,69 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="SkyraSurvey" />
+
+# Skyra surveys
+
+`SkyraSurvey` loads the Skyra survey SDK and gates it on cookie consent. It renders nothing.
+
+Skyra serves its script unversioned and updates it continuously, so it cannot be pinned with Subresource
+Integrity. The component instead points at a dated copy we host ourselves and passes the matching hash, so the
+browser refuses to execute the script if the bytes differ from the ones that were reviewed.
+
+## Usage
+
+Render it once, near the root of the app.
+
+```tsx
+import { SkyraSurvey } from "@altinn/altinn-components";
+
+<SkyraSurvey consent={cookieConsent.statistics} />;
+```
+
+`consent` is the only required prop. Wire it to the statistics category of your cookie banner and let it
+follow changes, the component handles both a fresh click and a returning user who consented earlier.
+
+The script always loads; it is the cookies that are gated. Inline surveys and Findability work without
+consent. Popups do not, because they need a cookie to remember that a user has answered or dismissed them.
+
+## Route changes (for SPA only)
+
+Survey targeting is evaluated per URL, so single-page apps must tell Skyra when the route changed. The hook
+takes whatever value changes on navigation, so it works with any router.
+
+```tsx
+import { useSkyraReload } from "@altinn/altinn-components";
+
+useSkyraReload(useLocation().pathname); // React Router
+useSkyraReload(usePathname()); // Next App Router
+useSkyraReload(router.asPath); // Next Pages Router
+```
+
+## Debugging
+
+```tsx
+<SkyraSurvey consent={hasConsent} debug />
+```
+
+Enables Skyra's own debug logging and prints its diagnostic dump once. Logging from the SDK's own
+initialisation is not captured. Note: the flag can only be set after the script has loaded.
+
+## Why nothing shows up
+
+By far the most common cause is targeting. Skyra matches the hostname of a show rule by **exact equality**,
+with a leading `www.` as the only alias. `localhost` does not match `app.localhost`, and `altinn.no` does not
+match any subdomain of it. Every hostname you want surveys on needs its own show rule in Skyra, including the
+one you develop against.
+
+After that, check in order: that a survey is published and live, that `consent` is actually `true`, and that
+the survey's own retake and retrigger timers have not already been satisfied for this visitor.
+
+## Cookies to register in your cookie banner
+
+All three are first-party and functional.
+
+| Cookie | Purpose | Lifetime |
+| --- | --- | --- |
+| `skyra.state` | Visitor id and survey status, so answered or dismissed surveys are not shown again | 365 days |
+| `skyra.<survey-slug>` | In-progress answers while a survey is being filled out | Session |
+| `skyra._test` | Verifies that cookies work at all | Momentary |
