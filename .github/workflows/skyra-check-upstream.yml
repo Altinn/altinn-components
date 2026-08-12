@@ -1,0 +1,278 @@
+name: Skyra check upstream
+
+# Detection is automated, adoption is not: this job only ever opens a PR.
+# A human reviews the captured bytes and merges.
+
+on:
+  schedule:
+    - cron: '0 5 1 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  UPSTREAM_URL: https://survey.skyra.no/skyra-survey.js
+  RELEASES_DIR: vendor/skyra/releases
+  CDN_BASE: https://cdn.jsdelivr.net/gh/altinn/altinn-components@main/vendor/skyra/releases
+  COMPONENT: lib/components/SkyraSurvey/SkyraSurvey.tsx
+
+jobs:
+  check-upstream:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@eae0cfeb286e66ffb5155f1a79b90583a127a68b # v2.4.1
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Fetch upstream script
+        run: |
+          set -euo pipefail
+          content_type=$(curl \
+            --fail --silent --show-error --location --max-time 60 \
+            --write-out '%{content_type}' \
+            --output "$RUNNER_TEMP/skyra-survey.js" \
+            "$UPSTREAM_URL")
+
+          size=$(wc -c < "$RUNNER_TEMP/skyra-survey.js")
+          echo "Fetched $size bytes, content-type: $content_type"
+
+          # A 200 carrying an error page or a truncated body would otherwise be
+          # hashed, committed and sent to a reviewer as if it were the SDK.
+          if [ "$size" -lt 1024 ]; then
+            echo "::error::Refusing to capture: response is only $size bytes"
+            exit 1
+          fi
+          case "$content_type" in
+            *javascript*|*ecmascript*) ;;
+            *) echo "::error::Refusing to capture: unexpected content-type '$content_type'"; exit 1 ;;
+          esac
+          if ! node --check "$RUNNER_TEMP/skyra-survey.js"; then
+            echo "::error::Refusing to capture: response does not parse as JavaScript"
+            exit 1
+          fi
+
+      - name: Compare against newest release
+        id: compare
+        run: |
+          set -euo pipefail
+          integrity="sha384-$(openssl dgst -sha384 -binary "$RUNNER_TEMP/skyra-survey.js" | openssl base64 -A)"
+          echo "integrity=$integrity" >> "$GITHUB_OUTPUT"
+          echo "size=$(wc -c < "$RUNNER_TEMP/skyra-survey.js")" >> "$GITHUB_OUTPUT"
+
+          previous=""
+          if [ -d "$RELEASES_DIR" ]; then
+            previous=$(find "$RELEASES_DIR" -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort -V | tail -n 1)
+          fi
+          echo "previous=$previous" >> "$GITHUB_OUTPUT"
+
+          if [ -n "$previous" ]; then
+            previous_integrity=$(jq -r '.integrity' "$RELEASES_DIR/$previous/manifest.json")
+            echo "previous_integrity=$previous_integrity" >> "$GITHUB_OUTPUT"
+            echo "previous_size=$(wc -c < "$RELEASES_DIR/$previous/skyra-survey.js")" >> "$GITHUB_OUTPUT"
+            if [ "$integrity" = "$previous_integrity" ]; then
+              echo "Upstream is unchanged since $previous"
+              echo "changed=false" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+          fi
+
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+          # A version is taken if it exists on main, or if an earlier run already
+          # claimed it with a pushed branch. Without the second check a rerun on
+          # the same day allocates the same version, and both the push and
+          # `gh pr create` fail on the branch that run left behind.
+          claimed=$(git ls-remote --heads origin | sed -n 's#.*refs/heads/release/skyra-##p')
+
+          version_taken() {
+            if [ -d "$RELEASES_DIR/$1" ]; then
+              return 0
+            fi
+            printf '%s\n' "$claimed" | grep -qxF -- "$1"
+          }
+
+          base=$(date -u +%F)
+          version="$base"
+          suffix=1
+          while version_taken "$version"; do
+            version="$base-$suffix"
+            suffix=$((suffix + 1))
+          done
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Write release
+        if: steps.compare.outputs.changed == 'true'
+        env:
+          VERSION: ${{ steps.compare.outputs.version }}
+          INTEGRITY: ${{ steps.compare.outputs.integrity }}
+          SIZE: ${{ steps.compare.outputs.size }}
+        run: |
+          set -euo pipefail
+          dir="$RELEASES_DIR/$VERSION"
+          mkdir -p "$dir"
+          cp "$RUNNER_TEMP/skyra-survey.js" "$dir/skyra-survey.js"
+
+          jq -n \
+            --arg version "$VERSION" \
+            --arg integrity "$INTEGRITY" \
+            --argjson sizeBytes "$SIZE" \
+            --arg capturedAt "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            --arg url "$CDN_BASE/$VERSION/skyra-survey.js" \
+            --arg upstreamUrl "$UPSTREAM_URL" \
+            '{$version, $integrity, $sizeBytes, $capturedAt, $url, $upstreamUrl,
+              note: "integrity covers skyra-survey.js only. skyra-survey.pretty.js is a review aid and is never served."}' \
+            > "$dir/manifest.json"
+
+      - name: Generate review copy
+        if: steps.compare.outputs.changed == 'true'
+        continue-on-error: true
+        env:
+          VERSION: ${{ steps.compare.outputs.version }}
+          PREVIOUS: ${{ steps.compare.outputs.previous }}
+        run: |
+          set -euo pipefail
+          beautify() {
+            cp "$1" "$RUNNER_TEMP/$2"
+            (cd "$RUNNER_TEMP" && "$GITHUB_WORKSPACE/node_modules/.bin/biome" format --write "$2") > /dev/null 2>&1 || true
+          }
+
+          beautify "$RELEASES_DIR/$VERSION/skyra-survey.js" new.pretty.js
+          cp "$RUNNER_TEMP/new.pretty.js" "$RELEASES_DIR/$VERSION/skyra-survey.pretty.js"
+
+          if [ -n "$PREVIOUS" ]; then
+            if [ -f "$RELEASES_DIR/$PREVIOUS/skyra-survey.pretty.js" ]; then
+              cp "$RELEASES_DIR/$PREVIOUS/skyra-survey.pretty.js" "$RUNNER_TEMP/old.pretty.js"
+            else
+              beautify "$RELEASES_DIR/$PREVIOUS/skyra-survey.js" old.pretty.js
+            fi
+            diff -u \
+              --label "$PREVIOUS/skyra-survey.pretty.js" \
+              --label "$VERSION/skyra-survey.pretty.js" \
+              "$RUNNER_TEMP/old.pretty.js" "$RUNNER_TEMP/new.pretty.js" > "$RUNNER_TEMP/pretty.diff" || true
+          fi
+
+      - name: Point component at the new release
+        if: steps.compare.outputs.changed == 'true'
+        env:
+          VERSION: ${{ steps.compare.outputs.version }}
+          INTEGRITY: ${{ steps.compare.outputs.integrity }}
+        run: |
+          set -euo pipefail
+          cat > "$RUNNER_TEMP/update-component.mjs" <<'SCRIPT'
+          import { readFileSync, writeFileSync } from 'node:fs';
+
+          const [file, src, integrity] = process.argv.slice(2);
+          let source = readFileSync(file, 'utf8');
+
+          const replaceExactlyOnce = (pattern, replacement) => {
+            const matches = source.match(pattern);
+            if (matches?.length !== 1) {
+              throw new Error(`Expected 1 match for ${pattern}, found ${matches?.length ?? 0}`);
+            }
+            source = source.replace(pattern, replacement);
+          };
+
+          replaceExactlyOnce(/const SKYRA_SRC =[\s\S]*?;/g, `const SKYRA_SRC =\n  '${src}';`);
+          replaceExactlyOnce(/const SKYRA_INTEGRITY = '[^']*';/g, `const SKYRA_INTEGRITY = '${integrity}';`);
+
+          writeFileSync(file, source);
+          SCRIPT
+
+          # Fails loudly rather than opening a PR that adds a file nobody points at.
+          node "$RUNNER_TEMP/update-component.mjs" \
+            "$COMPONENT" "$CDN_BASE/$VERSION/skyra-survey.js" "$INTEGRITY"
+          pnpm exec biome format --write "$COMPONENT"
+
+      - name: Build pull request body
+        if: steps.compare.outputs.changed == 'true'
+        env:
+          VERSION: ${{ steps.compare.outputs.version }}
+          INTEGRITY: ${{ steps.compare.outputs.integrity }}
+          SIZE: ${{ steps.compare.outputs.size }}
+          PREVIOUS: ${{ steps.compare.outputs.previous }}
+          PREVIOUS_INTEGRITY: ${{ steps.compare.outputs.previous_integrity }}
+          PREVIOUS_SIZE: ${{ steps.compare.outputs.previous_size }}
+        run: |
+          set -euo pipefail
+          body="$RUNNER_TEMP/pr-body.md"
+          {
+            echo "Upstream \`skyra-survey.js\` changed. Captured as \`$VERSION\`."
+            echo
+            echo "|  | Previous | New |"
+            echo "| --- | --- | --- |"
+            echo "| Version | ${PREVIOUS:-none} | \`$VERSION\` |"
+            echo "| SRI | \`${PREVIOUS_INTEGRITY:-none}\` | \`$INTEGRITY\` |"
+            if [ -n "${PREVIOUS_SIZE:-}" ]; then
+              echo "| Size | $PREVIOUS_SIZE B | $SIZE B ($((SIZE - PREVIOUS_SIZE)) B) |"
+            else
+              echo "| Size | none | $SIZE B |"
+            fi
+            echo
+            echo "Source: \`$UPSTREAM_URL\`"
+            echo "Serves as: \`$CDN_BASE/$VERSION/skyra-survey.js\`"
+            echo
+          } > "$body"
+
+          if [ -s "$RUNNER_TEMP/pretty.diff" ]; then
+            {
+              echo "<details><summary>Beautified diff against \`$PREVIOUS\`</summary>"
+              echo
+              echo '```diff'
+              head -c 50000 "$RUNNER_TEMP/pretty.diff"
+              echo
+              echo '```'
+              echo
+              echo "</details>"
+              echo
+            } >> "$body"
+            if [ "$(wc -c < "$RUNNER_TEMP/pretty.diff")" -gt 50000 ]; then
+              echo "> Diff truncated at 50 kB. Diff the committed \`skyra-survey.pretty.js\` files for the rest." >> "$body"
+              echo >> "$body"
+            fi
+          else
+            echo "> No beautified diff available. Compare the committed \`skyra-survey.pretty.js\` files manually." >> "$body"
+            echo >> "$body"
+          fi
+
+          {
+            echo "### Before merging"
+            echo
+            echo "- [ ] The beautified diff contains no unexpected network calls, storage access or obfuscation"
+            echo "- [ ] The change is plausible as a vendor release, not a compromise"
+            echo "- [ ] \`SKYRA_SRC\` and \`SKYRA_INTEGRITY\` in the component match the manifest"
+            echo
+            echo "Merging cuts a patch release. Frontends pick it up via their normal dependency bump."
+          } >> "$body"
+
+      - name: Open pull request
+        if: steps.compare.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.compare.outputs.version }}
+        run: |
+          set -euo pipefail
+          branch="release/skyra-$VERSION"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git add "$RELEASES_DIR" "$COMPONENT"
+          git commit -m "fix(SkyraSurvey): point at skyra-survey.js captured $VERSION"
+          git push --set-upstream origin "$branch"
+
+          url=$(gh pr create \
+            --title "fix(SkyraSurvey): point at skyra-survey.js captured $VERSION" \
+            --body-file "$RUNNER_TEMP/pr-body.md" \
+            --base main \
+            --head "$branch")
+          echo "Opened $url"
