@@ -4,8 +4,8 @@ import { useEffect, useRef } from 'react';
 // TODO: placeholders until the first capture lands. Both lines are owned by
 // .github/workflows/skyra-check-upstream.yml and must not be edited by hand.
 const SKYRA_SRC =
-  'https://cdn.jsdelivr.net/gh/altinn/altinn-components@main/vendor/skyra/releases/2026-08-10/skyra-survey.js';
-const SKYRA_INTEGRITY = 'sha384-PLACEHOLDER_UPDATED_BY_GITHUB_ACTION';
+  'https://cdn.jsdelivr.net/gh/altinn/altinn-components@main/vendor/skyra/releases/2026-08-12/skyra-survey.js';
+const SKYRA_INTEGRITY = 'sha384-ZodGTLfNBgoyM2MXkOrslTR3emFIWsFIXJquUc2svN6SZZ7/a5o/l+q1MeMou6YF';
 const SKYRA_ORG = 'digitaliseringsdirektoratet';
 
 const SCRIPT_ID = 'skyra-survey-sdk';
