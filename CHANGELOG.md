@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.69.0](https://github.com/Altinn/altinn-components/compare/v0.68.18...v0.69.0) (2026-08-12)
+
+
+### Features
+
+* **SkyraSurvey:** add headless component and workflow for Skyra  ([#1331](https://github.com/Altinn/altinn-components/issues/1331)) ([4b44156](https://github.com/Altinn/altinn-components/commit/4b4415672b97f9e7d055590a0b245f3f17d69847))
+
+
+### Bug Fixes
+
+* **SkyraSurvey:** point at skyra-survey.js captured 2026-08-12 ([#1332](https://github.com/Altinn/altinn-components/issues/1332)) ([22de9a1](https://github.com/Altinn/altinn-components/commit/22de9a17bbfabf02cb98f7e35bd94f4af406213f))
+
+
+### Miscellaneous Chores
+
+* **deps:** resolve high-severity audit advisories by bumping vite-plugin-dts ([#1324](https://github.com/Altinn/altinn-components/issues/1324)) ([d4fe9da](https://github.com/Altinn/altinn-components/commit/d4fe9da78c400a85877034763f5b018fb4899945))
+* **deps:** update actions/checkout action to v7 ([#1315](https://github.com/Altinn/altinn-components/issues/1315)) ([2161c62](https://github.com/Altinn/altinn-components/commit/2161c62f79c8a12307b82a1b264d2da4a47544ba))
+* **deps:** update actions/setup-node action to v7 ([#1317](https://github.com/Altinn/altinn-components/issues/1317)) ([0ff3574](https://github.com/Altinn/altinn-components/commit/0ff357450d1d2382a88299c1ba44f302acdb76bc))
+* **deps:** update dependency @oddbird/popover-polyfill to v0.7.1 ([#1312](https://github.com/Altinn/altinn-components/issues/1312)) ([8956b22](https://github.com/Altinn/altinn-components/commit/8956b2215662a62d9423b94b72d2700870b67c85))
+* **deps:** update dependency lint-staged to v17 ([#1318](https://github.com/Altinn/altinn-components/issues/1318)) ([d40d61c](https://github.com/Altinn/altinn-components/commit/d40d61c7b11d5e7e6f44d9ec62a281c20097408a))
+* **deps:** update github-actions non-major dependencies ([#1322](https://github.com/Altinn/altinn-components/issues/1322)) ([16e8879](https://github.com/Altinn/altinn-components/commit/16e8879eb865bca9e143a36cbed951fdc1d1bfff))
+* **deps:** update to typescript 7 ([#1326](https://github.com/Altinn/altinn-components/issues/1326)) ([01e8d88](https://github.com/Altinn/altinn-components/commit/01e8d88875749975b133543f21618abb58d8ca01))
+* **tests:** speed up storybook and screenshot test runs ([#1327](https://github.com/Altinn/altinn-components/issues/1327)) ([4ff8628](https://github.com/Altinn/altinn-components/commit/4ff8628e475968bf1208ff16b7bfd2dc0e1ab540))
+
 ## [0.68.18](https://github.com/Altinn/altinn-components/compare/v0.68.17...v0.68.18) (2026-07-24)
 
 
