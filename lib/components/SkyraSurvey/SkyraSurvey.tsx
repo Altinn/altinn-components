@@ -1,11 +1,12 @@
 'use client';
 import { useEffect, useRef } from 'react';
 
-// TODO: update this to point to actual url
-const SKYRA_SRC = 'https://cdn.jsdelivr.net/gh/altinn/altinn-components/vendor/skyra/2026-08-10/skyra-survey.min.js';
-// TODO: update this to point to actual sha384
+// TODO: placeholders until the first capture lands. Both lines are owned by
+// .github/workflows/skyra-check-upstream.yml and must not be edited by hand.
+const SKYRA_SRC =
+  'https://cdn.jsdelivr.net/gh/altinn/altinn-components@main/vendor/skyra/releases/2026-08-10/skyra-survey.js';
 const SKYRA_INTEGRITY = 'sha384-PLACEHOLDER_UPDATED_BY_GITHUB_ACTION';
-const SKYRA_ORG = 'altinn';
+const SKYRA_ORG = 'digitaliseringsdirektoratet';
 
 const SCRIPT_ID = 'skyra-survey-sdk';
 
