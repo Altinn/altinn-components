@@ -62,8 +62,8 @@ the survey's own retake and retrigger timers have not already been satisfied for
 
 All three are first-party and functional.
 
-| Cookie | Purpose | Lifetime |
-| --- | --- | --- |
-| `skyra.state` | Visitor id and survey status, so answered or dismissed surveys are not shown again | 365 days |
-| `skyra.<survey-slug>` | In-progress answers while a survey is being filled out | Session |
-| `skyra._test` | Verifies that cookies work at all | Momentary |
+- **`skyra.state`** — visitor id and the status of each survey, so a survey that has been answered or
+  dismissed is not shown again. Lasts 365 days.
+- **`skyra.<survey-slug>`** — answers in progress while a survey is being filled out, so it can be started on
+  one page and finished on another. Session, and cleared when the survey is completed or closed.
+- **`skyra._test`** — verifies that cookies work at all. Momentary, deleted immediately after the check.
