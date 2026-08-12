@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.70.0](https://github.com/Altinn/altinn-components/compare/v0.69.0...v0.70.0) (2026-08-12)
+
+
+### Features
+
+* **SkyraSurvey:** add useSkyraReload hook and debug prop ([#1333](https://github.com/Altinn/altinn-components/issues/1333)) ([de35f9b](https://github.com/Altinn/altinn-components/commit/de35f9b0d82689a060b7da9aec9ee37be574e703))
+
 ## [0.69.0](https://github.com/Altinn/altinn-components/compare/v0.68.18...v0.69.0) (2026-08-12)
 
 
