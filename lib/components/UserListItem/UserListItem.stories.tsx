@@ -354,6 +354,18 @@ export const WithControls = (args: UserListItemProps) => {
       />
       <UserListItem
         {...args}
+        name="Finansmarked AS"
+        type="company"
+        description="Org.nr.: 987654323"
+        roleNames={['Regnskapsfører']}
+        controls={menu('3')}
+        linkIcon={true}
+        onClick={() => alert(`You clicked the link - yay!`)}
+        as={'button'}
+        deleted={true}
+      />
+      <UserListItem
+        {...args}
         name="Hal 9000"
         type="system"
         description="fra Odyssey Inc."
