@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.71.0](https://github.com/Altinn/altinn-components/compare/v0.70.0...v0.71.0) (2026-08-18)
+
+
+### Features
+
+* **consent:** add useConsent hook and shared cookie contract ([#1342](https://github.com/Altinn/altinn-components/issues/1342)) ([4f020e9](https://github.com/Altinn/altinn-components/commit/4f020e9a7f7f0160afdd634a0cce1876eb99d8e0))
+
+
+### Bug Fixes
+
+* **UserListItem:** Added deleted badge on deleted items ([#1309](https://github.com/Altinn/altinn-components/issues/1309)) ([fdeb59b](https://github.com/Altinn/altinn-components/commit/fdeb59bd3d06d44d5a2c6973396bb9b4b1981e77))
+
+
+### Miscellaneous Chores
+
+* **SkyraSurvey:** replace docs table with a list ([#1335](https://github.com/Altinn/altinn-components/issues/1335)) ([0eb2c79](https://github.com/Altinn/altinn-components/commit/0eb2c799d4e9983cb766593514dbc01a7f4dd616))
+
 ## [0.70.0](https://github.com/Altinn/altinn-components/compare/v0.69.0...v0.70.0) (2026-08-12)
 
 
