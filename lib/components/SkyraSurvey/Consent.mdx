@@ -1,0 +1,75 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Surveys and consent/Cookie consent" />
+
+# Cookie consent
+
+`useConsent` reads and writes the shared Altinn consent cookie. It resolves the environment's cookie domain
+itself, so an application never has to know about domains or the value format.
+
+Every instance shares one store, so a banner and the components gated by it stay in sync without a provider
+above them, including where there is no common React root.
+
+## Usage
+
+```tsx
+import { SkyraSurvey, useConsent } from "@altinn/altinn-components";
+
+const { consent, isAnswered, acceptAll, rejectAll } = useConsent();
+
+return (
+  <>
+    <SkyraSurvey consent={consent.statistics} />
+    {!isAnswered && <CookieBanner onAccept={acceptAll} onReject={rejectAll} />}
+  </>
+);
+```
+
+- `consent.statistics` — boolean, true only when granted. This is the one to gate on.
+- `status.statistics` — `granted`, `denied` or `unknown`. `unknown` means the user has not answered.
+- `isAnswered` — false until every category has an answer. Show the banner while it is false.
+- `setConsent({ statistics: true })` — answers specific categories. `acceptAll` and `rejectAll` cover the rest.
+- `clear()` — deletes the cookie, so nothing is answered and the banner comes back.
+
+A boolean cannot express all three states, which is why the banner is driven by `isAnswered` rather than by
+`consent`. Anything unanswered, malformed or stale reads as `unknown`, so an ambiguous cookie asks again
+instead of assuming an answer.
+
+## Withdrawing versus resetting
+
+These are different things, and a settings page usually wants the first.
+
+- **Withdraw consent** is `rejectAll()`, or `setConsent({ statistics: false })` for one category. It records a
+  denial: tracking stops, cookies set under the old answer should be cleaned up, and the user is not asked
+  again. This is what a "withdraw consent" control in a privacy page should do.
+- **Reset** is `clear()`. It deletes the cookie entirely, so the user counts as never having answered and the
+  banner appears on the next page view. Useful for a "ask me again" control and for testing.
+
+Reaching for `clear()` on a withdraw button means the banner returns on every visit, which is worse for the
+user and is not what withdrawing requires.
+
+`clear()` deletes the cookie at the two scopes this module writes, the environment's shared domain and
+host-only. It deliberately does not walk up to parent domains, so resetting in a test environment cannot
+remove the production answer. The consequence is that on a host under `tt02.altinn.no` a production cookie
+stays visible and the reset appears not to take.
+
+## The cookie
+
+- **Name** `altinn-consent`, on the environment's shared domain, so an answer given in one Altinn application
+  applies to the others.
+- **Value** a raw, unencoded query string, currently `v=1&statistics=granted`. Write it raw; a
+  percent-encoded value is still read, but only as a fallback for helpers that encode by default.
+- **Attributes** `Path=/`, `SameSite=Lax`, `Secure` over https, and a one year `Max-Age`. Not `HttpOnly`, so
+  it is a user preference and never an authorisation signal.
+- **Domain** `.altinn.no` in production, `.tt02.altinn.no`, `.at23.altinn.cloud` and `.yt01.altinn.cloud` in
+  test. The leading dot is legacy syntax, not a wildcard. Unrecognised hosts, including localhost and preview
+  deployments, get a host-only cookie.
+
+`v` is the policy version. A cookie written by an older version counts as unanswered, which is how a
+re-consent is forced. Unknown keys are ignored, so an application that adds a category does not invalidate
+the answer for the categories other applications already understand — adding a category is not a reason to
+bump `v`.
+
+Because a host in a test environment also matches the production domain, the same cookie name can appear
+twice with no way to tell which domain each value came from. Values that disagree resolve to the most
+restrictive one.

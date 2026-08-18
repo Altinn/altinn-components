@@ -1,6 +1,6 @@
 import { Meta } from "@storybook/addon-docs/blocks";
 
-<Meta title="SkyraSurvey" />
+<Meta title="Surveys and consent/SkyraSurvey" />
 
 # Skyra surveys
 
@@ -15,13 +15,17 @@ browser refuses to execute the script if the bytes differ from the ones that wer
 Render it once, near the root of the app.
 
 ```tsx
-import { SkyraSurvey } from "@altinn/altinn-components";
+import { SkyraSurvey, useConsent } from "@altinn/altinn-components";
 
-<SkyraSurvey consent={cookieConsent.statistics} />;
+const { consent } = useConsent();
+
+<SkyraSurvey consent={consent.statistics} />;
 ```
 
 `consent` is the only required prop. Wire it to the statistics category of your cookie banner and let it
 follow changes, the component handles both a fresh click and a returning user who consented earlier.
+`useConsent` is the ready-made source for it, but any boolean works if your application already tracks
+consent itself.
 
 The script always loads; it is the cookies that are gated. Inline surveys and Findability work without
 consent. Popups do not, because they need a cookie to remember that a user has answered or dismissed them.
