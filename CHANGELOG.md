@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.72.1](https://github.com/Altinn/altinn-components/compare/v0.72.0...v0.72.1) (2026-08-19)
+
+
+### Bug Fixes
+
+* **footer:** support buttons as actionable items in footer - styled as links ([#1346](https://github.com/Altinn/altinn-components/issues/1346)) ([4f122c4](https://github.com/Altinn/altinn-components/commit/4f122c4caeb04ca2badc30fe2a9105a16ae45f83))
+
 ## [0.72.0](https://github.com/Altinn/altinn-components/compare/v0.71.0...v0.72.0) (2026-08-19)
 
 
