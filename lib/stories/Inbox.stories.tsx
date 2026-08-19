@@ -18,9 +18,11 @@ import {
   Section,
   SeenByLog,
   type SeenByLogProps,
+  SkyraSurvey,
   Toolbar,
   Typography,
 } from '../components';
+import { useConsent } from '../hooks';
 
 const meta = {
   title: 'Demo/Inbox',
@@ -368,7 +370,6 @@ export const DraftsPage = () => {
 
 export const DraftsEmptyPage = () => {
   const { layout, toolbar } = useInbox({ pageId: 'drafts' });
-
   return (
     <Layout {...layout}>
       <PageBase>
@@ -597,6 +598,22 @@ export const BookmarksPage = () => {
             ]}
           />
         )}
+      </PageBase>
+    </Layout>
+  );
+};
+
+export const InboxCookieBanner = () => {
+  const { layout, toolbar, results } = useInbox({});
+  const { isAnswered, acceptAll, rejectAll, consent } = useConsent();
+
+  return (
+    <Layout {...layout} cookieBanner={isAnswered ? undefined : { onAccept: acceptAll, onReject: rejectAll }}>
+      <SkyraSurvey consent={consent.statistics} />
+      <PageBase>
+        <Heading size="xl">Innboks</Heading>
+        <Toolbar {...toolbar} />
+        {results && <DialogList items={results.items} groups={results?.groups} />}
       </PageBase>
     </Layout>
   );

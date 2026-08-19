@@ -18,6 +18,7 @@ import type { SvgElement } from '../Icon';
 import { Menu, type MenuProps } from '../Menu';
 import { useRootContext } from '../RootProvider';
 import { SkipLink, type SkipLinkProps } from '../SkipLink';
+import { CookieBanner, type CookieBannerProps } from '../SkyraSurvey';
 import styles from './layoutBase.module.css';
 
 interface SidebarProps extends LayoutSidebarProps {
@@ -52,6 +53,7 @@ export interface LayoutProps {
   content?: ContentProps;
   children?: ReactNode;
   skipLink?: SkipLinkProps;
+  cookieBanner?: CookieBannerProps;
   breadcrumbs?: BreadcrumbsProps;
 }
 
@@ -65,6 +67,7 @@ export const Layout = ({
   content = {},
   children,
   skipLink,
+  cookieBanner,
   breadcrumbs,
 }: LayoutProps) => {
   const { currentId } = useRootContext();
@@ -84,6 +87,7 @@ export const Layout = ({
   return (
     <LayoutBase color={color} theme={theme} currentId={currentId} bannerHeight={banner ? bannerHeight : 0}>
       {skipLink && <SkipLink {...skipLink} />}
+      {cookieBanner && <CookieBanner {...cookieBanner} />}
       {banner && (
         <div
           ref={bannerRef}

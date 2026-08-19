@@ -35,6 +35,45 @@ A boolean cannot express all three states, which is why the banner is driven by 
 `consent`. Anything unanswered, malformed or stale reads as `unknown`, so an ambiguous cookie asks again
 instead of assuming an answer.
 
+## The banner
+
+`CookieBanner` is the question itself. It renders whenever it is mounted and never reads the cookie, so the
+application decides when to show it — normally while `isAnswered` is false, as above.
+
+`onAccept` and `onReject` are the only required props. Everything else has a default.
+
+With `Layout`, pass it as the `cookieBanner` prop rather than rendering it yourself. `Layout` puts it before
+the rest of the page, so the question comes first both on screen and in reading order:
+
+```tsx
+const { isAnswered, acceptAll, rejectAll } = useConsent();
+
+<Layout {...layout} cookieBanner={isAnswered ? undefined : { onAccept: acceptAll, onReject: rejectAll }}>
+  {children}
+</Layout>;
+```
+
+The prop takes the banner's own props, so everything below applies to it unchanged. Leaving it out is what
+hides the banner, which is why the answered case passes `undefined`.
+
+Without `Layout`, render it standalone, before anything else of content:
+
+```tsx
+<>
+  {!isAnswered && <CookieBanner onAccept={acceptAll} onReject={rejectAll} />}
+  <main>{children}</main>
+</>
+```
+
+The text follows the `languageCode` set on `RootProvider`, in bokmål, nynorsk and English. Bokmål is the
+fallback, so a banner rendered without a `RootProvider` still reads correctly.
+
+Each string can still be replaced, for an application that brings its own translations: `heading`,
+`description` and `necessaryText` take a node as well as a string, and `acceptLabel` and `rejectLabel` are
+`Ja` and `Nei`. Replacing `necessaryText` drops its trailing link, so pass a node if you want to keep one.
+
+`necessaryUrl` is where that trailing link points, https://info.altinn.no/om-altinn/personvern/ by default.
+
 ## Withdrawing versus resetting
 
 These are different things, and a settings page usually wants the first.
