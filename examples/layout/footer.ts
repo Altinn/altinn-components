@@ -1,4 +1,4 @@
-import type { FooterProps } from '../../lib';
+import { type FooterProps, clearConsent } from '../../lib';
 
 export const footer: FooterProps = {
   address: 'Postboks 1382 Vika, 0114 Oslo.',
@@ -24,6 +24,12 @@ export const footer: FooterProps = {
       {
         id: '5',
         title: 'Tilgjengelighet',
+      },
+      {
+        id: '6',
+        title: 'Endre samtykke for informasjonskapsler',
+        href: '#',
+        onClick: clearConsent,
       },
     ],
   },

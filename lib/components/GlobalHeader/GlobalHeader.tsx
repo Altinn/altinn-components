@@ -44,6 +44,7 @@ export const GlobalHeader = ({
   // globalHeader.module.css), so the fixed overlays line up with it without
   // forcing the page to the top before opening.
   const onToggleAccountMenu = () => {
+    window?.scrollTo(0, 0);
     toggleId('account');
   };
 

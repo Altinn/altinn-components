@@ -11,6 +11,7 @@ export interface FooterLinkProps {
   id: string;
   as?: ElementType;
   href?: string;
+  onClick?: () => void;
   title?: string;
   className?: string;
 }
