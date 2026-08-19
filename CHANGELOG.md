@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.72.0](https://github.com/Altinn/altinn-components/compare/v0.71.0...v0.72.0) (2026-08-19)
+
+
+### Features
+
+* **CookieBanner:** add cookie consent banner ([#1343](https://github.com/Altinn/altinn-components/issues/1343)) ([b373105](https://github.com/Altinn/altinn-components/commit/b37310523c4510b35fea36c3b9f04debb37d8d90))
+
+
+### Miscellaneous Chores
+
+* **deps:** update googleapis/release-please-action action to v5 ([#1338](https://github.com/Altinn/altinn-components/issues/1338)) ([db3f7ca](https://github.com/Altinn/altinn-components/commit/db3f7ca980c5f2e03ffe68be1385a20e7a5dbc7a))
+
 ## [0.71.0](https://github.com/Altinn/altinn-components/compare/v0.70.0...v0.71.0) (2026-08-18)
 
 
