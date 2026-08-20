@@ -4,6 +4,15 @@
   width: 100%;
 }
 
+/* The drawer renders inside the header and is no longer in the top layer, so lift the
+   header above the page chrome it must cover (sticky banners, floating buttons sit at 1000). */
+.header[data-current-id="account"],
+.header[data-current-id="menu"],
+.header[data-current-id="locale"] {
+  position: relative;
+  z-index: 1100;
+}
+
 @media (max-width: 1023px) {
   .header[data-current-id="account"],
   .header[data-current-id="menu"],

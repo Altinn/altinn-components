@@ -34,7 +34,10 @@ export const footer: FooterProps = {
         id: '6',
         title: 'Endre samtykke for informasjonskapsler',
         as: 'button',
-        onClick: clearConsent,
+        onClick: () => {
+          clearConsent();
+          window.scrollTo(0, 0);
+        },
       },
     ],
   },
