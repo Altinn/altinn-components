@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.72.2](https://github.com/Altinn/altinn-components/compare/v0.72.1...v0.72.2) (2026-08-20)
+
+
+### Bug Fixes
+
+* **HeaderDrawer:** open non-modally so the header stays interactive ([#1350](https://github.com/Altinn/altinn-components/issues/1350)) ([3ebbcf2](https://github.com/Altinn/altinn-components/commit/3ebbcf2393bac49b5ec426d4be57b3f47d7f28db))
+
 ## [0.72.1](https://github.com/Altinn/altinn-components/compare/v0.72.0...v0.72.1) (2026-08-19)
 
 
