@@ -17,8 +17,6 @@ html:has(dialog[open]) {
   right: 0;
   bottom: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
 }
 
 .backdrop[aria-hidden="true"] {
@@ -51,6 +49,7 @@ html:has(dialog[open]) {
   overscroll-behavior: contain;
 }
 
+/* Only the forced fullscreen variant opens modally and has a ::backdrop; the dim is .backdrop above. */
 .drawer::backdrop {
   background-color: transparent;
 }
