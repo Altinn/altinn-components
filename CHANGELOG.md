@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.72.3](https://github.com/Altinn/altinn-components/compare/v0.72.2...v0.72.3) (2026-08-20)
+
+
+### Bug Fixes
+
+* adjusts cookie banner ([#1352](https://github.com/Altinn/altinn-components/issues/1352)) ([33a57aa](https://github.com/Altinn/altinn-components/commit/33a57aa086e3d1b600c03f9b9bc2354b51f31114))
+
 ## [0.72.2](https://github.com/Altinn/altinn-components/compare/v0.72.1...v0.72.2) (2026-08-20)
 
 
