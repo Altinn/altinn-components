@@ -1,7 +1,7 @@
 import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import type { LanguageCode } from '../../types';
 import { RootProvider } from '../RootProvider';
-import { CookieBanner } from './CookieBanner';
+import { CookieBanner } from './CookieBanner.tsx';
 
 const meta = {
   title: 'Surveys and consent/CookieBanner',
