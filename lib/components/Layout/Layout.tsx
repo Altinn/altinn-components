@@ -12,13 +12,13 @@ import {
 } from '.';
 import { Banner, type BannerColor, type BannerVariant } from '../Banner';
 import { Breadcrumbs, type BreadcrumbsProps } from '../Breadcrumbs';
+import { CookieBanner, type CookieBannerProps } from '../CookieBanner';
 import { Footer, type FooterProps } from '../Footer';
 import { GlobalHeader, type GlobalHeaderProps } from '../GlobalHeader';
 import type { SvgElement } from '../Icon';
 import { Menu, type MenuProps } from '../Menu';
 import { useRootContext } from '../RootProvider';
 import { SkipLink, type SkipLinkProps } from '../SkipLink';
-import { CookieBanner, type CookieBannerProps } from '../SkyraSurvey';
 import styles from './layoutBase.module.css';
 
 interface SidebarProps extends LayoutSidebarProps {
