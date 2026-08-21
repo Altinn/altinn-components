@@ -21,7 +21,7 @@ Follow these steps to set up Storybook and the necessary tools for development.
 
 - The project uses `pnpm` as package manager. It is recommended to use install and use correct version of `pnpm` by using `corepack`, cf. [Using corepack section](https://pnpm.io/installation).
 - Install dependencies with `pnpm install`
-- Required node version is `20.x` or higher.
+- Required node version is `24.x` or higher, as pinned in `.node-version`.
 
 #### Storybook
 Run storybook with `pnpm storybook` and navigate to `http://localhost:6006/` in your browser.
@@ -32,8 +32,8 @@ This command runs the tests through [Storybook's Test Runner](https://storybook.
 
 When adding new components or features, it’s encouraged to write tests as separate play functions in the corresponding Storybook stories. This approach is particularly recommended for complex components. For examples, refer to:
 
-- `src/components/Searchbar/Searchbar.stories.tsx`
-- `src/components/ContextMenu/ContextMenu.stories.tsx`
+- `lib/components/Searchbar/Searchbar.stories.tsx`
+- `lib/components/ContextMenu/ContextMenu.stories.tsx`
 
 ### Pull requests
 A lot has been written already about how to write good pull requests. [Here are some](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/getting-started/best-practices-for-pull-requests) tips to make the process smoother.
@@ -48,7 +48,7 @@ Use `pnpm format` to format staged files.
 
 ### Commit Messages
 
-This project uses Changesets with the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+This project uses [release-please](https://github.com/googleapis/release-please) with the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 specification in order to generate changelogs, communicating the nature of changes.
 
 To include commits in the changelog, please ensure that you include the following keywords:
