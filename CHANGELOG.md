@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.72.4](https://github.com/Altinn/altinn-components/compare/v0.72.3...v0.72.4) (2026-08-21)
+
+
+### Miscellaneous Chores
+
+* **deps:** update pnpm/action-setup action to v6 ([#1349](https://github.com/Altinn/altinn-components/issues/1349)) ([62a3438](https://github.com/Altinn/altinn-components/commit/62a34387679f820f6f2a3bc2914ae332da41503c))
+
 ## [0.72.3](https://github.com/Altinn/altinn-components/compare/v0.72.2...v0.72.3) (2026-08-20)
 
 
