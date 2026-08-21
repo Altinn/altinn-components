@@ -13,6 +13,7 @@ export * from './Breadcrumbs';
 export * from './Button';
 export * from './Byline';
 export * from './ContextMenu';
+export * from './CookieBanner';
 export * from './Inbox';
 export * from './Dialog';
 export * from './Divider';
