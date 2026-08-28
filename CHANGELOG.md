@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.72.5](https://github.com/Altinn/altinn-components/compare/v0.72.4...v0.72.5) (2026-08-28)
+
+
+### Bug Fixes
+
+* **Layout:** include the cookie banner in the header offset ([#1360](https://github.com/Altinn/altinn-components/issues/1360)) ([aee390e](https://github.com/Altinn/altinn-components/commit/aee390e2f47fe0908ededf67f9c58f1b08ab176a))
+
 ## [0.72.4](https://github.com/Altinn/altinn-components/compare/v0.72.3...v0.72.4) (2026-08-21)
 
 
