@@ -54,34 +54,34 @@ const getTexts = (languageCode: string | undefined) => {
   switch (languageCode) {
     case 'nn':
       return {
-        heading: 'Får vi samle informasjon om korleis du bruker nettsida?',
+        heading: 'Får vi samle informasjon om korleis du bruker Altinn?',
         description:
-          'Om du svarer ja, bruker vi i Digdir informasjonen til statistikk og analyse for å forbetre nettsida før innlogging. Du kan endre valet nedst på sida.',
+          'Om du svarer ja, bruker vi i Altinn informasjonen til statistikk og analyse for å forbetre Altinn. Du kan endre valet via lenka nedst på denne sida.',
         accept: 'Ja',
         reject: 'Nei',
-        necessary: 'Vi lagrar også informasjon fordi det er nødvendig for at nettsida skal fungere.',
+        necessary: 'Vi lagrar alltid informasjon som er nødvendig for at nettsida skal fungere.',
         necessaryLink: 'Sjå oversikt over nødvendig informasjon.',
         necessaryUrl: 'https://info.altinn.no/nn/om-altinn/personvern/',
       };
     case 'en':
       return {
-        heading: 'Do you allow us to collect information about how you use this website?',
+        heading: 'Do you allow us to collect information about how you use Altinn?',
         description:
-          'If you agree, Digdir will use the information for statistics and analysis to improve the website before login. You can change your preference at the bottom of the page.',
+          'If you agree, Altinn will use the information for statistics and analysis to improve Altinn. You can change your preference via the link at the bottom of this page.',
         accept: 'Yes',
         reject: 'No',
-        necessary: 'We also store information that is necessary for the website to work properly.',
+        necessary: 'We always store information that is necessary for the website to work properly.',
         necessaryLink: 'See an overview of necessary information.',
         necessaryUrl: 'https://info.altinn.no/en/about-altinn/privacy/',
       };
     default:
       return {
-        heading: 'Får vi samle informasjon om hvordan du bruker nettsiden?',
+        heading: 'Får vi samle informasjon om hvordan du bruker Altinn?',
         description:
-          'Hvis du svarer ja, bruker vi i Digdir informasjonen til statistikk og analyse for å forbedre nettsiden før innlogging. Du kan endre valget nederst på siden.',
+          'Hvis du svarer ja, bruker vi i Altinn informasjonen til statistikk og analyse for å forbedre Altinn. Du kan endre valget via lenken nederst på denne siden.',
         accept: 'Ja',
         reject: 'Nei',
-        necessary: 'Vi lagrer også informasjon fordi det er nødvendig for at nettsiden skal fungere.',
+        necessary: 'Vi lagrer alltid informasjon som er nødvendig for at nettsiden skal fungere.',
         necessaryLink: 'Se oversikt over nødvendig informasjon.',
         necessaryUrl: 'https://info.altinn.no/om-altinn/personvern/',
       };
