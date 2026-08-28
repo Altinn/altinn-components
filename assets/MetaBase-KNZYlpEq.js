@@ -1,0 +1,1 @@
+import{a7 as e,a3 as o}from"./iframe-Drliw4W2.js";const m="_meta_1so2q_1",c={meta:m},r=({size:s="xs",className:t,children:a})=>e.jsx("section",{className:o(c.meta,t),"data-size":s,children:a});export{r as M};
