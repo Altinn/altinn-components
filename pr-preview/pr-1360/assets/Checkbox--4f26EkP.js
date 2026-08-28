@@ -1,1 +1,0 @@
-import{a7 as r}from"./iframe-BRgClhpr.js";import{F as m}from"./Field-DqCTTwOm.js";import{I as i}from"./Input-C7r6_Ftd.js";import{L as p}from"./Label-BrO-Curr.js";const f=({size:s,color:t,label:o,...e})=>r.jsxs(m,{size:s,color:t,children:[r.jsx(i,{...e,type:"checkbox"}),!!o&&r.jsx(p,{children:o})]});export{f as C};
