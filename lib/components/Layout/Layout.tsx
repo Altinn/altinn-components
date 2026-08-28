@@ -1,5 +1,5 @@
 'use client';
-import { type ReactNode, useEffect, useRef, useState } from 'react';
+import { type ReactNode, useCallback, useRef, useState } from 'react';
 import {
   LayoutBase,
   LayoutBody,
@@ -71,51 +71,55 @@ export const Layout = ({
   breadcrumbs,
 }: LayoutProps) => {
   const { currentId } = useRootContext();
-  const bannerRef = useRef<HTMLDivElement>(null);
   const [bannerHeight, setBannerHeight] = useState(0);
+  const observerRef = useRef<ResizeObserver | null>(null);
+  const hasTopBar = Boolean(cookieBanner || banner);
+  const isHeaderDrawerOpen = currentId === 'account' || currentId === 'menu' || currentId === 'locale';
 
-  useEffect(() => {
-    const el = bannerRef.current;
-    if (!el) return;
+  // The header and its drawer are placed from the top of the viewport, so they need the height of
+  // everything stacked above them, the cookie banner included.
+  const measureTopBar = useCallback((el: HTMLDivElement | null) => {
+    observerRef.current?.disconnect();
+    if (!el) {
+      observerRef.current = null;
+      setBannerHeight(0);
+      return;
+    }
     const observer = new ResizeObserver(([entry]) => {
       setBannerHeight(entry.borderBoxSize[0]?.blockSize ?? entry.contentRect.height);
     });
     observer.observe(el);
-    return () => observer.disconnect();
+    observerRef.current = observer;
   }, []);
 
   return (
-    <LayoutBase color={color} theme={theme} currentId={currentId} bannerHeight={banner ? bannerHeight : 0}>
+    <LayoutBase color={color} theme={theme} currentId={currentId} bannerHeight={hasTopBar ? bannerHeight : 0}>
       {skipLink && <SkipLink {...skipLink} />}
-      {cookieBanner && <CookieBanner {...cookieBanner} />}
-      {banner && (
-        <div
-          ref={bannerRef}
-          className={
-            currentId === 'account' || currentId === 'menu' || currentId === 'locale'
-              ? styles.bannerWrapperPinned
-              : undefined
-          }
-          data-color="company"
-        >
-          <Banner
-            title={
-              banner.link ? (
-                <>
-                  {banner.title}{' '}
-                  <a href={banner.link.href} target="_blank" rel="noreferrer">
-                    {banner.link.label}
-                  </a>
-                </>
-              ) : (
-                banner.title
-              )
-            }
-            color={banner.color}
-            variant={banner.variant || 'strong'}
-            icon={banner.icon}
-            sticky={false}
-          />
+      {hasTopBar && (
+        <div ref={measureTopBar} className={isHeaderDrawerOpen ? styles.bannerWrapperPinned : undefined}>
+          {cookieBanner && <CookieBanner {...cookieBanner} />}
+          {banner && (
+            <div data-color="company">
+              <Banner
+                title={
+                  banner.link ? (
+                    <>
+                      {banner.title}{' '}
+                      <a href={banner.link.href} target="_blank" rel="noreferrer">
+                        {banner.link.label}
+                      </a>
+                    </>
+                  ) : (
+                    banner.title
+                  )
+                }
+                color={banner.color}
+                variant={banner.variant || 'strong'}
+                icon={banner.icon}
+                sticky={false}
+              />
+            </div>
+          )}
         </div>
       )}
       {header && <GlobalHeader {...header} />}
