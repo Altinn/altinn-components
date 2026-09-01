@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.72.7](https://github.com/Altinn/altinn-components/compare/v0.72.6...v0.72.7) (2026-09-01)
+
+
+### Bug Fixes
+
+* **SkyraSurvey:** point at skyra-survey.js captured 2026-09-01 ([#1362](https://github.com/Altinn/altinn-components/issues/1362)) ([6e1a75b](https://github.com/Altinn/altinn-components/commit/6e1a75bbf2fc287fa92a4310e821d17678521a92))
+
 ## [0.72.6](https://github.com/Altinn/altinn-components/compare/v0.72.5...v0.72.6) (2026-09-01)
 
 
