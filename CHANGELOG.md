@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.72.6](https://github.com/Altinn/altinn-components/compare/v0.72.5...v0.72.6) (2026-09-01)
+
+
+### Bug Fixes
+
+* **GlobalHeader:** Display main unit marker on main units ([#1363](https://github.com/Altinn/altinn-components/issues/1363)) ([170d31c](https://github.com/Altinn/altinn-components/commit/170d31cf38f2b8ed4cb7eb362f8346dff1a0eb74))
+
 ## [0.72.5](https://github.com/Altinn/altinn-components/compare/v0.72.4...v0.72.5) (2026-08-28)
 
 

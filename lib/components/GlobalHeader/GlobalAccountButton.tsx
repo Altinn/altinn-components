@@ -46,9 +46,14 @@ export const GlobalAccountButton = ({
 
   if (currentAccount) {
     let description = currentAccount.description;
-    if (currentAccount.role === 'subunit' && typeof description === 'string' && description) {
-      const orgNoDescription = description.split(',');
-      description = `${orgNoDescription[0]}, ${texts.subunit}`;
+    if (
+      (currentAccount.type === 'company' || currentAccount.type === 'subunit') &&
+      typeof description === 'string' &&
+      description
+    ) {
+      const [orgNo] = description.split(',');
+      const suffix = currentAccount.type === 'company' ? texts.mainunit : texts.subunit;
+      description = `${orgNo}, ${suffix}`;
     }
     return (
       <Button
@@ -110,18 +115,21 @@ const getTexts = (languageCode: string | undefined) => {
         login: 'Logg inn',
         close: 'Lukk kontomeny',
         subunit: 'undereining',
+        mainunit: 'hovudeining',
       };
     case 'en':
       return {
         login: 'Log in',
         close: 'Close Account Menu',
         subunit: 'subunit',
+        mainunit: 'main unit',
       };
     default:
       return {
         login: 'Logg inn',
         close: 'Lukk kontomeny',
         subunit: 'underenhet',
+        mainunit: 'hovedenhet',
       };
   }
 };
