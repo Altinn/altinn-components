@@ -15,6 +15,7 @@ import {
   ModalBody,
   ModalHeader,
   PageBase,
+  RootProvider,
   Section,
   SeenByLog,
   type SeenByLogProps,
@@ -606,15 +607,24 @@ export const BookmarksPage = () => {
 export const InboxCookieBanner = () => {
   const { layout, toolbar, results } = useInbox({});
   const { isAnswered, acceptAll, rejectAll, consent } = useConsent();
+  const [language, setLanguage] = useState<'nb' | 'en' | 'nn'>('nb');
 
   return (
-    <Layout {...layout} cookieBanner={isAnswered ? undefined : { onAccept: acceptAll, onReject: rejectAll }}>
-      <SkyraSurvey consent={consent.statistics} />
-      <PageBase>
-        <Heading size="xl">Innboks</Heading>
-        <Toolbar {...toolbar} />
-        {results && <DialogList items={results.items} groups={results?.groups} />}
-      </PageBase>
-    </Layout>
+    <RootProvider languageCode={language}>
+      <Layout {...layout} cookieBanner={isAnswered ? undefined : { onAccept: acceptAll, onReject: rejectAll }}>
+        <SkyraSurvey consent={consent.statistics} />
+        <PageBase>
+          <Heading size="xl">Innboks</Heading>
+          <Toolbar {...toolbar} />
+          {results && <DialogList items={results.items} groups={results?.groups} />}
+        </PageBase>
+      </Layout>
+      {(['en', 'nn', 'nb'] as const).map((lang) => (
+        <button type="button" key={lang} onClick={() => setLanguage(lang)}>
+          {lang}
+        </button>
+      ))}
+      <h1>{language}</h1>
+    </RootProvider>
   );
 };
