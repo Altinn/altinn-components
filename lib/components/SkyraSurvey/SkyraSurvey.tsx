@@ -4,8 +4,8 @@ import type { SkyraWindow } from './skyraWindow';
 
 // Owned by .github/workflows/skyra-check-upstream.yml. Do not edit by hand.
 const SKYRA_SRC =
-  'https://cdn.jsdelivr.net/gh/altinn/altinn-components@main/vendor/skyra/releases/2026-09-01/skyra-survey.js';
-const SKYRA_INTEGRITY = 'sha384-id6BaieUWaPWtgoSc73HiTgLSBdEnj+vwT1cTlGHymT/Wtwv04w8ERCfX0yYlypi';
+  'https://cdn.jsdelivr.net/gh/altinn/altinn-components@main/vendor/skyra/releases/2026-09-04/skyra-survey.js';
+const SKYRA_INTEGRITY = 'sha384-gpS+kZefR0tnqo6fG06vFIxktjMV2JtCh0ifInNUZK/lbKQJk5U26z4R7TX1jq/b';
 const SKYRA_ORG = 'digitaliseringsdirektoratet';
 
 const SCRIPT_ID = 'skyra-survey-sdk';
