@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.73.0](https://github.com/Altinn/altinn-components/compare/v0.72.7...v0.73.0) (2026-09-04)
+
+
+### Features
+
+* **SkyraSurvey:** follow the language from RootProvider ([#1367](https://github.com/Altinn/altinn-components/issues/1367)) ([a82cd28](https://github.com/Altinn/altinn-components/commit/a82cd281c548692b2cdc8fb7e8816d8d82371e86))
+
+
+### Bug Fixes
+
+* **SkyraSurvey:** point at skyra-survey.js captured 2026-09-04 ([#1368](https://github.com/Altinn/altinn-components/issues/1368)) ([c68fc12](https://github.com/Altinn/altinn-components/commit/c68fc12bcb48b5b14d691bab5096eb47aaa9412e))
+
 ## [0.72.7](https://github.com/Altinn/altinn-components/compare/v0.72.6...v0.72.7) (2026-09-01)
 
 
