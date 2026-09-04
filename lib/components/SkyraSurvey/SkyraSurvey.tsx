@@ -1,6 +1,8 @@
 'use client';
 import { useEffect, useRef } from 'react';
-import type { SkyraWindow } from './skyraWindow';
+import type { LanguageCode } from '../../types';
+import { useRootContext } from '../RootProvider';
+import type { SkyraCapture, SkyraWindow } from './skyraWindow';
 
 // Owned by .github/workflows/skyra-check-upstream.yml. Do not edit by hand.
 const SKYRA_SRC =
@@ -9,6 +11,9 @@ const SKYRA_INTEGRITY = 'sha384-gpS+kZefR0tnqo6fG06vFIxktjMV2JtCh0ifInNUZK/lbKQJ
 const SKYRA_ORG = 'digitaliseringsdirektoratet';
 
 const SCRIPT_ID = 'skyra-survey-sdk';
+
+// Skyra calls Bokmål "no" for backward compatibility
+const SKYRA_LANGUAGES: Record<LanguageCode, string> = { nb: 'no', nn: 'nn', en: 'en' };
 
 const applyDebug = (skyraWindow: SkyraWindow, debug: boolean) => {
   if (!skyraWindow.skyra) {
@@ -20,6 +25,29 @@ const applyDebug = (skyraWindow: SkyraWindow, debug: boolean) => {
   }
 };
 
+const runningSurveys = (skyraWindow: SkyraWindow): SkyraCapture[] => {
+  const context = skyraWindow.skyra?.controller?.getSnapshot().context;
+  if (!context) {
+    return [];
+  }
+  return [
+    context.popupCapture,
+    ...Object.values(context.inlineCaptures ?? {}),
+    ...Object.values(context.headlessCaptures ?? {}),
+  ].filter((survey): survey is SkyraCapture => typeof survey?.send === 'function');
+};
+
+const applyLanguage = (skyraWindow: SkyraWindow, languageCode: LanguageCode | undefined) => {
+  const language = languageCode && SKYRA_LANGUAGES[languageCode];
+  if (!language || !skyraWindow.skyra) {
+    return;
+  }
+  skyraWindow.skyra.setLanguage(language);
+  for (const survey of runningSurveys(skyraWindow)) {
+    survey.send({ type: 'setLanguage', language });
+  }
+};
+
 export interface SkyraSurveyProps {
   consent: boolean;
   debug?: boolean;
@@ -28,6 +56,8 @@ export interface SkyraSurveyProps {
 export const SkyraSurvey = ({ consent, debug = false }: SkyraSurveyProps) => {
   const consentRef = useRef(consent);
   const debugRef = useRef(debug);
+  const { languageCode } = useRootContext();
+  const languageRef = useRef(languageCode);
 
   useEffect(() => {
     const skyraWindow = window as SkyraWindow;
@@ -35,6 +65,7 @@ export const SkyraSurvey = ({ consent, debug = false }: SkyraSurveyProps) => {
     skyraWindow.skyraStart = () => {
       applyDebug(skyraWindow, debugRef.current);
       skyraWindow.skyra?.setConsent(consentRef.current);
+      skyraWindow.skyra?.on?.('ready', () => applyLanguage(skyraWindow, languageRef.current));
     };
 
     if (document.getElementById(SCRIPT_ID)) {
@@ -61,6 +92,11 @@ export const SkyraSurvey = ({ consent, debug = false }: SkyraSurveyProps) => {
     debugRef.current = debug;
     applyDebug(window as SkyraWindow, debug);
   }, [debug]);
+
+  useEffect(() => {
+    languageRef.current = languageCode;
+    applyLanguage(window as SkyraWindow, languageCode);
+  }, [languageCode]);
 
   return null;
 };
