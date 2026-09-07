@@ -58,9 +58,21 @@ export const GlobalAccountButton = ({
       description = `${orgNo}, ${suffix}`;
     }
 
-    const buttonClassName = cx(styles.accountButton, className);
-    const buttonContent = (
-      <>
+    const as = disableAccountSelection ? 'div' : 'button';
+
+    return (
+      <Button
+        {...buttonProps}
+        onClick={disableAccountSelection ? undefined : buttonProps.onClick}
+        as={as}
+        type="button"
+        variant="ghost"
+        color="company"
+        className={cx(styles.accountButton, className)}
+        aria-label={expanded ? texts.close : currentAccount.name}
+        aria-haspopup="menu"
+        aria-expanded={expanded}
+      >
         <Avatar {...(currentAccount?.icon as AvatarProps)} className={styles.avatar} />
         {!minimized && (
           <div className={styles.label}>
@@ -70,30 +82,12 @@ export const GlobalAccountButton = ({
             </span>
           </div>
         )}
-      </>
-    );
-
-    if (disableAccountSelection) {
-      return <div className={buttonClassName}>{buttonContent}</div>;
-    }
-
-    return (
-      <Button
-        {...buttonProps}
-        as="button"
-        type="button"
-        variant="ghost"
-        color="company"
-        className={buttonClassName}
-        aria-label={expanded ? texts.close : currentAccount.name}
-        aria-haspopup="menu"
-        aria-expanded={expanded}
-      >
-        {buttonContent}
-        {expanded ? (
-          <XMarkIcon className={styles.icon} aria-hidden />
-        ) : (
-          <ChevronDownIcon className={styles.icon} aria-hidden />
+        {!disableAccountSelection && (
+          <>{expanded ? (
+            <XMarkIcon className={styles.icon} aria-hidden />
+          ) : (
+            <ChevronDownIcon className={styles.icon} aria-hidden />
+          )}</>
         )}
       </Button>
     );
