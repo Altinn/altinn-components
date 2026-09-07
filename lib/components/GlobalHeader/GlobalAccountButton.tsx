@@ -82,13 +82,12 @@ export const GlobalAccountButton = ({
             </span>
           </div>
         )}
-        {!disableAccountSelection && (
-          expanded ? (
+        {!disableAccountSelection &&
+          (expanded ? (
             <XMarkIcon className={styles.icon} aria-hidden />
           ) : (
             <ChevronDownIcon className={styles.icon} aria-hidden />
-          )
-        )}
+          ))}
       </Button>
     );
   }
