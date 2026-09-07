@@ -14,6 +14,7 @@ export interface GlobalAccountButtonProps extends ButtonProps {
   minimized?: boolean;
   tabIndex?: number;
   loading?: boolean;
+  disableAccountSelection?: boolean;
 }
 
 export const GlobalAccountButton = ({
@@ -22,6 +23,7 @@ export const GlobalAccountButton = ({
   expanded = false,
   minimized = false,
   loading = false,
+  disableAccountSelection = false,
   ...buttonProps
 }: GlobalAccountButtonProps) => {
   const { languageCode } = useRootContext();
@@ -55,18 +57,10 @@ export const GlobalAccountButton = ({
       const suffix = currentAccount.type === 'company' ? texts.mainunit : texts.subunit;
       description = `${orgNo}, ${suffix}`;
     }
-    return (
-      <Button
-        {...buttonProps}
-        as="button"
-        type="button"
-        variant="ghost"
-        color="company"
-        className={cx(styles.accountButton, className)}
-        aria-label={expanded ? texts.close : currentAccount.name}
-        aria-haspopup="menu"
-        aria-expanded={expanded}
-      >
+
+    const buttonClassName = cx(styles.accountButton, className);
+    const buttonContent = (
+      <>
         <Avatar {...(currentAccount?.icon as AvatarProps)} className={styles.avatar} />
         {!minimized && (
           <div className={styles.label}>
@@ -76,6 +70,26 @@ export const GlobalAccountButton = ({
             </span>
           </div>
         )}
+      </>
+    );
+
+    if (disableAccountSelection) {
+      return <div className={buttonClassName}>{buttonContent}</div>;
+    }
+
+    return (
+      <Button
+        {...buttonProps}
+        as="button"
+        type="button"
+        variant="ghost"
+        color="company"
+        className={buttonClassName}
+        aria-label={expanded ? texts.close : currentAccount.name}
+        aria-haspopup="menu"
+        aria-expanded={expanded}
+      >
+        {buttonContent}
         {expanded ? (
           <XMarkIcon className={styles.icon} aria-hidden />
         ) : (

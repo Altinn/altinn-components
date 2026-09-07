@@ -68,6 +68,7 @@ export const GlobalHeader = ({
                 expanded={accountSelectionOpen}
                 loading={accountSelector.loading}
                 disabled={accountSelector.forceOpenFullScreen}
+                disableAccountSelection={accountSelector.disableAccountSelection}
               />
               <HeaderDrawer
                 id="header-account"
