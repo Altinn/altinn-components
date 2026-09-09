@@ -76,6 +76,11 @@ export const CompanyAccount = () => {
   );
 };
 
+export const DisabledAccountSelection = () => {
+  const header = useGlobalHeader({ currentAccountIndex: 5 });
+  return <GlobalHeader {...(header as GlobalHeaderProps)} disableAccountSelection />;
+};
+
 export const ForcedFullScreenAccountSelection = () => {
   const { globalMenu, accountSelector, onLoginClick, locale } = useGlobalHeader({});
   return (

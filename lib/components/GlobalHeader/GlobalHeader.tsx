@@ -25,6 +25,8 @@ export interface GlobalHeaderProps {
   accountSelector?: AccountSelectorProps;
   badge?: BadgeProps | undefined;
   logo?: HeaderLogoProps;
+  /** Whether to disable account selection */
+  disableAccountSelection?: boolean;
   onLoginClick?: () => void;
 }
 
@@ -36,6 +38,7 @@ export const GlobalHeader = ({
   accountSelector,
   logo = {},
   badge,
+  disableAccountSelection,
   onLoginClick,
 }: GlobalHeaderProps) => {
   const { currentId, toggleId, closeAll } = useRootContext();
@@ -68,6 +71,7 @@ export const GlobalHeader = ({
                 expanded={accountSelectionOpen}
                 loading={accountSelector.loading}
                 disabled={accountSelector.forceOpenFullScreen}
+                disableAccountSelection={disableAccountSelection}
               />
               <HeaderDrawer
                 id="header-account"
