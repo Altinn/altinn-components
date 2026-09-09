@@ -81,9 +81,9 @@ export const GlobalAccountButton = ({
           </div>
         )}
         {expanded ? (
-            <XMarkIcon className={cx(styles.icon, { [styles.hidden]: disableAccountSelection })} aria-hidden />
-          ) : (
-            <ChevronDownIcon className={cx(styles.icon, { [styles.hidden]: disableAccountSelection })} aria-hidden />
+          <XMarkIcon className={cx(styles.icon, { [styles.hidden]: disableAccountSelection })} aria-hidden />
+        ) : (
+          <ChevronDownIcon className={cx(styles.icon, { [styles.hidden]: disableAccountSelection })} aria-hidden />
         )}
       </Button>
     );
