@@ -93,11 +93,11 @@ export const SettingsItemBase = ({
             {badge && <Badge {...badge} />}
             {(collapsible &&
               (expanded ? (
-                <ChevronUpIcon className={styles.linkIcon} />
+                <ChevronUpIcon className={styles.linkIcon} aria-hidden="true" focusable="false" />
               ) : (
-                <ChevronDownIcon className={styles.linkIcon} />
+                <ChevronDownIcon className={styles.linkIcon} aria-hidden="true" focusable="false" />
               ))) ||
-              (linkIcon && <ChevronRightIcon className={styles.linkIcon} />)}
+              (linkIcon && <ChevronRightIcon className={styles.linkIcon} aria-hidden="true" focusable="false" />)}
           </>
         )}
       </ItemBase>
