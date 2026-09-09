@@ -20,8 +20,6 @@ export interface AccountSelectorProps {
    * Otherwise, open state is handled internally and the user can toggle fullscreen mode via the button below the account list.
    */
   forceOpenFullScreen?: boolean;
-  /** Whether to disable account selection */
-  disableAccountSelection?: boolean;
   className?: string;
   loading?: boolean;
   /** The external value of the include deleted accounts switch */

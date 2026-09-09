@@ -78,13 +78,8 @@ export const CompanyAccount = () => {
 
 export const DisabledAccountSelection = () => {
   const header = useGlobalHeader({ currentAccountIndex: 5 });
-  if (header.accountSelector) {
-    header.accountSelector.disableAccountSelection = true;
-  }
   return (
-    <RootProvider>
-      <GlobalHeader {...(header as GlobalHeaderProps)} />
-    </RootProvider>
+    <GlobalHeader {...(header as GlobalHeaderProps)} disableAccountSelection />
   );
 };
 

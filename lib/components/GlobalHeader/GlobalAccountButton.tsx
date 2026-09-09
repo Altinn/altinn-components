@@ -58,13 +58,11 @@ export const GlobalAccountButton = ({
       description = `${orgNo}, ${suffix}`;
     }
 
-    const as = disableAccountSelection ? 'div' : 'button';
-
     return (
       <Button
         {...buttonProps}
         onClick={disableAccountSelection ? undefined : buttonProps.onClick}
-        as={as}
+        as={disableAccountSelection ? 'div' : 'button'}
         type="button"
         variant="ghost"
         color="company"
@@ -82,12 +80,11 @@ export const GlobalAccountButton = ({
             </span>
           </div>
         )}
-        {!disableAccountSelection &&
-          (expanded ? (
-            <XMarkIcon className={styles.icon} aria-hidden />
+        {expanded ? (
+            <XMarkIcon className={cx(styles.icon, { [styles.hidden]: disableAccountSelection })} aria-hidden />
           ) : (
-            <ChevronDownIcon className={styles.icon} aria-hidden />
-          ))}
+            <ChevronDownIcon className={cx(styles.icon, { [styles.hidden]: disableAccountSelection })} aria-hidden />
+        )}
       </Button>
     );
   }
