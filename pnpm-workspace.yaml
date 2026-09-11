@@ -4,3 +4,6 @@
 minimumReleaseAge: 10080
 # Refuse packages whose trust signals (provenance, signatures) weaken between versions.
 trustPolicy: no-downgrade
+minimumReleaseAgeExclude:
+  # Renovate security update: vitest@4.1.11
+  - vitest@4.1.11
