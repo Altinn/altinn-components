@@ -1,6 +1,16 @@
+import { Alert, type AlertProps } from '@digdir/designsystemet-react';
+import type { ForwardRefExoticComponent, RefAttributes } from 'react';
+
+/**
+ * Support `xs` iby our own theme.css (`[data-size="xs"]`), but is missing from Designsystemet's `Size` type.
+ */
+export type DsAlertProps = Omit<AlertProps, 'data-size'> & {
+  'data-size'?: 'xs' | AlertProps['data-size'];
+};
+
+export const DsAlert = Alert as ForwardRefExoticComponent<DsAlertProps & RefAttributes<HTMLDivElement>>;
+
 export {
-  Alert as DsAlert,
-  type AlertProps as DsAlertProps,
   Badge as DsBadge,
   Button as DsButton,
   type ButtonProps as DsButtonProps,
