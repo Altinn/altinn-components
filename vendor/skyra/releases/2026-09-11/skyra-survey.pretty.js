@@ -1,0 +1,20861 @@
+var skyraSurvey = (function (on) {
+	"use strict";
+	var Ju, Gu;
+	var sn,
+		H,
+		Vi,
+		Wi,
+		ut,
+		qi,
+		Ki,
+		Ji,
+		Gi,
+		no,
+		ro,
+		oo,
+		Yi,
+		an = {},
+		Xi = [],
+		Xu = /acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i,
+		Un = Array.isArray;
+	function Pe(e, t) {
+		for (var n in t) e[n] = t[n];
+		return e;
+	}
+	function io(e) {
+		e && e.parentNode && e.parentNode.removeChild(e);
+	}
+	function _t(e, t, n) {
+		var r,
+			o,
+			i,
+			s = {};
+		for (i in t)
+			i == "key" ? (r = t[i]) : i == "ref" ? (o = t[i]) : (s[i] = t[i]);
+		if (
+			(arguments.length > 2 &&
+				(s.children = arguments.length > 3 ? sn.call(arguments, 2) : n),
+			typeof e == "function" && e.defaultProps != null)
+		)
+			for (i in e.defaultProps) s[i] === void 0 && (s[i] = e.defaultProps[i]);
+		return ln(e, s, r, o, null);
+	}
+	function ln(e, t, n, r, o) {
+		var i = {
+			type: e,
+			props: t,
+			key: n,
+			ref: r,
+			__k: null,
+			__: null,
+			__b: 0,
+			__e: null,
+			__c: null,
+			constructor: void 0,
+			__v: o ?? ++Vi,
+			__i: -1,
+			__u: 0,
+		};
+		return o == null && H.vnode != null && H.vnode(i), i;
+	}
+	function Ae(e) {
+		return e.children;
+	}
+	function cn(e, t) {
+		(this.props = e), (this.context = t);
+	}
+	function St(e, t) {
+		if (t == null) return e.__ ? St(e.__, e.__i + 1) : null;
+		for (var n; t < e.__k.length; t++)
+			if ((n = e.__k[t]) != null && n.__e != null) return n.__e;
+		return typeof e.type == "function" ? St(e) : null;
+	}
+	function Qi(e) {
+		var t, n;
+		if ((e = e.__) != null && e.__c != null) {
+			for (e.__e = e.__c.base = null, t = 0; t < e.__k.length; t++)
+				if ((n = e.__k[t]) != null && n.__e != null) {
+					e.__e = e.__c.base = n.__e;
+					break;
+				}
+			return Qi(e);
+		}
+	}
+	function so(e) {
+		((!e.__d && (e.__d = !0) && ut.push(e) && !Hn.__r++) ||
+			qi != H.debounceRendering) &&
+			((qi = H.debounceRendering) || Ki)(Hn);
+	}
+	function Hn() {
+		for (var e, t, n, r, o, i, s, a = 1; ut.length; )
+			ut.length > a && ut.sort(Ji),
+				(e = ut.shift()),
+				(a = ut.length),
+				e.__d &&
+					((n = void 0),
+					(r = void 0),
+					(o = (r = (t = e).__v).__e),
+					(i = []),
+					(s = []),
+					t.__P &&
+						(((n = Pe({}, r)).__v = r.__v + 1),
+						H.vnode && H.vnode(n),
+						ao(
+							t.__P,
+							n,
+							r,
+							t.__n,
+							t.__P.namespaceURI,
+							32 & r.__u ? [o] : null,
+							i,
+							o ?? St(r),
+							!!(32 & r.__u),
+							s,
+						),
+						(n.__v = r.__v),
+						(n.__.__k[n.__i] = n),
+						os(i, n, s),
+						(r.__e = r.__ = null),
+						n.__e != o && Qi(n)));
+		Hn.__r = 0;
+	}
+	function es(e, t, n, r, o, i, s, a, c, l, d) {
+		var u,
+			f,
+			p,
+			m,
+			g,
+			b,
+			v,
+			_ = (r && r.__k) || Xi,
+			k = t.length;
+		for (c = Qu(n, t, _, c, k), u = 0; u < k; u++)
+			(p = n.__k[u]) != null &&
+				((f = p.__i == -1 ? an : _[p.__i] || an),
+				(p.__i = u),
+				(b = ao(e, p, f, o, i, s, a, c, l, d)),
+				(m = p.__e),
+				p.ref &&
+					f.ref != p.ref &&
+					(f.ref && co(f.ref, null, p), d.push(p.ref, p.__c || m, p)),
+				g == null && m != null && (g = m),
+				(v = !!(4 & p.__u)) || f.__k === p.__k
+					? (c = ts(p, c, e, v))
+					: typeof p.type == "function" && b !== void 0
+						? (c = b)
+						: m && (c = m.nextSibling),
+				(p.__u &= -7));
+		return (n.__e = g), c;
+	}
+	function Qu(e, t, n, r, o) {
+		var i,
+			s,
+			a,
+			c,
+			l,
+			d = n.length,
+			u = d,
+			f = 0;
+		for (e.__k = new Array(o), i = 0; i < o; i++)
+			(s = t[i]) != null && typeof s != "boolean" && typeof s != "function"
+				? (typeof s == "string" ||
+					typeof s == "number" ||
+					typeof s == "bigint" ||
+					s.constructor == String
+						? (s = e.__k[i] = ln(null, s, null, null, null))
+						: Un(s)
+							? (s = e.__k[i] = ln(Ae, { children: s }, null, null, null))
+							: s.constructor === void 0 && s.__b > 0
+								? (s = e.__k[i] =
+										ln(s.type, s.props, s.key, s.ref ? s.ref : null, s.__v))
+								: (e.__k[i] = s),
+					(c = i + f),
+					(s.__ = e),
+					(s.__b = e.__b + 1),
+					(a = null),
+					(l = s.__i = ed(s, n, c, u)) != -1 &&
+						(u--, (a = n[l]) && (a.__u |= 2)),
+					a == null || a.__v == null
+						? (l == -1 && (o > d ? f-- : o < d && f++),
+							typeof s.type != "function" && (s.__u |= 4))
+						: l != c &&
+							(l == c - 1
+								? f--
+								: l == c + 1
+									? f++
+									: (l > c ? f-- : f++, (s.__u |= 4))))
+				: (e.__k[i] = null);
+		if (u)
+			for (i = 0; i < d; i++)
+				(a = n[i]) != null &&
+					(2 & a.__u) == 0 &&
+					(a.__e == r && (r = St(a)), ss(a, a));
+		return r;
+	}
+	function ts(e, t, n, r) {
+		var o, i;
+		if (typeof e.type == "function") {
+			for (o = e.__k, i = 0; o && i < o.length; i++)
+				o[i] && ((o[i].__ = e), (t = ts(o[i], t, n, r)));
+			return t;
+		}
+		e.__e != t &&
+			(r &&
+				(t && e.type && !t.parentNode && (t = St(e)),
+				n.insertBefore(e.__e, t || null)),
+			(t = e.__e));
+		do t = t && t.nextSibling;
+		while (t != null && t.nodeType == 8);
+		return t;
+	}
+	function ed(e, t, n, r) {
+		var o,
+			i,
+			s,
+			a = e.key,
+			c = e.type,
+			l = t[n],
+			d = l != null && (2 & l.__u) == 0;
+		if ((l === null && a == null) || (d && a == l.key && c == l.type)) return n;
+		if (r > (d ? 1 : 0)) {
+			for (o = n - 1, i = n + 1; o >= 0 || i < t.length; )
+				if (
+					(l = t[(s = o >= 0 ? o-- : i++)]) != null &&
+					(2 & l.__u) == 0 &&
+					a == l.key &&
+					c == l.type
+				)
+					return s;
+		}
+		return -1;
+	}
+	function ns(e, t, n) {
+		t[0] == "-"
+			? e.setProperty(t, n ?? "")
+			: (e[t] =
+					n == null ? "" : typeof n != "number" || Xu.test(t) ? n : n + "px");
+	}
+	function Zn(e, t, n, r, o) {
+		var i, s;
+		e: if (t == "style")
+			if (typeof n == "string") e.style.cssText = n;
+			else {
+				if ((typeof r == "string" && (e.style.cssText = r = ""), r))
+					for (t in r) (n && t in n) || ns(e.style, t, "");
+				if (n) for (t in n) (r && n[t] == r[t]) || ns(e.style, t, n[t]);
+			}
+		else if (t[0] == "o" && t[1] == "n")
+			(i = t != (t = t.replace(Gi, "$1"))),
+				(s = t.toLowerCase()),
+				(t =
+					s in e || t == "onFocusOut" || t == "onFocusIn"
+						? s.slice(2)
+						: t.slice(2)),
+				e.l || (e.l = {}),
+				(e.l[t + i] = n),
+				n
+					? r
+						? (n.u = r.u)
+						: ((n.u = no), e.addEventListener(t, i ? oo : ro, i))
+					: e.removeEventListener(t, i ? oo : ro, i);
+		else {
+			if (o == "http://www.w3.org/2000/svg")
+				t = t.replace(/xlink(H|:h)/, "h").replace(/sName$/, "s");
+			else if (
+				t != "width" &&
+				t != "height" &&
+				t != "href" &&
+				t != "list" &&
+				t != "form" &&
+				t != "tabIndex" &&
+				t != "download" &&
+				t != "rowSpan" &&
+				t != "colSpan" &&
+				t != "role" &&
+				t != "popover" &&
+				t in e
+			)
+				try {
+					e[t] = n ?? "";
+					break e;
+				} catch {}
+			typeof n == "function" ||
+				(n == null || (n === !1 && t[4] != "-")
+					? e.removeAttribute(t)
+					: e.setAttribute(t, t == "popover" && n == 1 ? "" : n));
+		}
+	}
+	function rs(e) {
+		return function (t) {
+			if (this.l) {
+				var n = this.l[t.type + e];
+				if (t.t == null) t.t = no++;
+				else if (t.t < n.u) return;
+				return n(H.event ? H.event(t) : t);
+			}
+		};
+	}
+	function ao(e, t, n, r, o, i, s, a, c, l) {
+		var d,
+			u,
+			f,
+			p,
+			m,
+			g,
+			b,
+			v,
+			_,
+			k,
+			x,
+			A,
+			z,
+			M,
+			O,
+			j,
+			L,
+			I = t.type;
+		if (t.constructor !== void 0) return null;
+		128 & n.__u && ((c = !!(32 & n.__u)), (i = [(a = t.__e = n.__e)])),
+			(d = H.__b) && d(t);
+		e: if (typeof I == "function")
+			try {
+				if (
+					((v = t.props),
+					(_ = "prototype" in I && I.prototype.render),
+					(k = (d = I.contextType) && r[d.__c]),
+					(x = d ? (k ? k.props.value : d.__) : r),
+					n.__c
+						? (b = (u = t.__c = n.__c).__ = u.__E)
+						: (_
+								? (t.__c = u = new I(v, x))
+								: ((t.__c = u = new cn(v, x)),
+									(u.constructor = I),
+									(u.render = nd)),
+							k && k.sub(u),
+							u.state || (u.state = {}),
+							(u.__n = r),
+							(f = u.__d = !0),
+							(u.__h = []),
+							(u._sb = [])),
+					_ && u.__s == null && (u.__s = u.state),
+					_ &&
+						I.getDerivedStateFromProps != null &&
+						(u.__s == u.state && (u.__s = Pe({}, u.__s)),
+						Pe(u.__s, I.getDerivedStateFromProps(v, u.__s))),
+					(p = u.props),
+					(m = u.state),
+					(u.__v = t),
+					f)
+				)
+					_ &&
+						I.getDerivedStateFromProps == null &&
+						u.componentWillMount != null &&
+						u.componentWillMount(),
+						_ && u.componentDidMount != null && u.__h.push(u.componentDidMount);
+				else {
+					if (
+						(_ &&
+							I.getDerivedStateFromProps == null &&
+							v !== p &&
+							u.componentWillReceiveProps != null &&
+							u.componentWillReceiveProps(v, x),
+						t.__v == n.__v ||
+							(!u.__e &&
+								u.shouldComponentUpdate != null &&
+								u.shouldComponentUpdate(v, u.__s, x) === !1))
+					) {
+						for (
+							t.__v != n.__v &&
+								((u.props = v), (u.state = u.__s), (u.__d = !1)),
+								t.__e = n.__e,
+								t.__k = n.__k,
+								t.__k.some(function (B) {
+									B && (B.__ = t);
+								}),
+								A = 0;
+							A < u._sb.length;
+							A++
+						)
+							u.__h.push(u._sb[A]);
+						(u._sb = []), u.__h.length && s.push(u);
+						break e;
+					}
+					u.componentWillUpdate != null && u.componentWillUpdate(v, u.__s, x),
+						_ &&
+							u.componentDidUpdate != null &&
+							u.__h.push(function () {
+								u.componentDidUpdate(p, m, g);
+							});
+				}
+				if (
+					((u.context = x),
+					(u.props = v),
+					(u.__P = e),
+					(u.__e = !1),
+					(z = H.__r),
+					(M = 0),
+					_)
+				) {
+					for (
+						u.state = u.__s,
+							u.__d = !1,
+							z && z(t),
+							d = u.render(u.props, u.state, u.context),
+							O = 0;
+						O < u._sb.length;
+						O++
+					)
+						u.__h.push(u._sb[O]);
+					u._sb = [];
+				} else
+					do
+						(u.__d = !1),
+							z && z(t),
+							(d = u.render(u.props, u.state, u.context)),
+							(u.state = u.__s);
+					while (u.__d && ++M < 25);
+				(u.state = u.__s),
+					u.getChildContext != null && (r = Pe(Pe({}, r), u.getChildContext())),
+					_ &&
+						!f &&
+						u.getSnapshotBeforeUpdate != null &&
+						(g = u.getSnapshotBeforeUpdate(p, m)),
+					(j = d),
+					d != null &&
+						d.type === Ae &&
+						d.key == null &&
+						(j = is(d.props.children)),
+					(a = es(e, Un(j) ? j : [j], t, n, r, o, i, s, a, c, l)),
+					(u.base = t.__e),
+					(t.__u &= -161),
+					u.__h.length && s.push(u),
+					b && (u.__E = u.__ = null);
+			} catch (B) {
+				if (((t.__v = null), c || i != null))
+					if (B.then) {
+						for (
+							t.__u |= c ? 160 : 128;
+							a && a.nodeType == 8 && a.nextSibling;
+						)
+							a = a.nextSibling;
+						(i[i.indexOf(a)] = null), (t.__e = a);
+					} else {
+						for (L = i.length; L--; ) io(i[L]);
+						lo(t);
+					}
+				else (t.__e = n.__e), (t.__k = n.__k), B.then || lo(t);
+				H.__e(B, t, n);
+			}
+		else
+			i == null && t.__v == n.__v
+				? ((t.__k = n.__k), (t.__e = n.__e))
+				: (a = t.__e = td(n.__e, t, n, r, o, i, s, c, l));
+		return (d = H.diffed) && d(t), 128 & t.__u ? void 0 : a;
+	}
+	function lo(e) {
+		e && e.__c && (e.__c.__e = !0), e && e.__k && e.__k.forEach(lo);
+	}
+	function os(e, t, n) {
+		for (var r = 0; r < n.length; r++) co(n[r], n[++r], n[++r]);
+		H.__c && H.__c(t, e),
+			e.some(function (o) {
+				try {
+					(e = o.__h),
+						(o.__h = []),
+						e.some(function (i) {
+							i.call(o);
+						});
+				} catch (i) {
+					H.__e(i, o.__v);
+				}
+			});
+	}
+	function is(e) {
+		return typeof e != "object" || e == null || (e.__b && e.__b > 0)
+			? e
+			: Un(e)
+				? e.map(is)
+				: Pe({}, e);
+	}
+	function td(e, t, n, r, o, i, s, a, c) {
+		var l,
+			d,
+			u,
+			f,
+			p,
+			m,
+			g,
+			b = n.props || an,
+			v = t.props,
+			_ = t.type;
+		if (
+			(_ == "svg"
+				? (o = "http://www.w3.org/2000/svg")
+				: _ == "math"
+					? (o = "http://www.w3.org/1998/Math/MathML")
+					: o || (o = "http://www.w3.org/1999/xhtml"),
+			i != null)
+		) {
+			for (l = 0; l < i.length; l++)
+				if (
+					(p = i[l]) &&
+					"setAttribute" in p == !!_ &&
+					(_ ? p.localName == _ : p.nodeType == 3)
+				) {
+					(e = p), (i[l] = null);
+					break;
+				}
+		}
+		if (e == null) {
+			if (_ == null) return document.createTextNode(v);
+			(e = document.createElementNS(o, _, v.is && v)),
+				a && (H.__m && H.__m(t, i), (a = !1)),
+				(i = null);
+		}
+		if (_ == null) b === v || (a && e.data == v) || (e.data = v);
+		else {
+			if (((i = i && sn.call(e.childNodes)), !a && i != null))
+				for (b = {}, l = 0; l < e.attributes.length; l++)
+					b[(p = e.attributes[l]).name] = p.value;
+			for (l in b)
+				if (((p = b[l]), l != "children")) {
+					if (l == "dangerouslySetInnerHTML") u = p;
+					else if (!(l in v)) {
+						if (
+							(l == "value" && "defaultValue" in v) ||
+							(l == "checked" && "defaultChecked" in v)
+						)
+							continue;
+						Zn(e, l, null, p, o);
+					}
+				}
+			for (l in v)
+				(p = v[l]),
+					l == "children"
+						? (f = p)
+						: l == "dangerouslySetInnerHTML"
+							? (d = p)
+							: l == "value"
+								? (m = p)
+								: l == "checked"
+									? (g = p)
+									: (a && typeof p != "function") ||
+										b[l] === p ||
+										Zn(e, l, p, b[l], o);
+			if (d)
+				a ||
+					(u && (d.__html == u.__html || d.__html == e.innerHTML)) ||
+					(e.innerHTML = d.__html),
+					(t.__k = []);
+			else if (
+				(u && (e.innerHTML = ""),
+				es(
+					t.type == "template" ? e.content : e,
+					Un(f) ? f : [f],
+					t,
+					n,
+					r,
+					_ == "foreignObject" ? "http://www.w3.org/1999/xhtml" : o,
+					i,
+					s,
+					i ? i[0] : n.__k && St(n, 0),
+					a,
+					c,
+				),
+				i != null)
+			)
+				for (l = i.length; l--; ) io(i[l]);
+			a ||
+				((l = "value"),
+				_ == "progress" && m == null
+					? e.removeAttribute("value")
+					: m != null &&
+						(m !== e[l] ||
+							(_ == "progress" && !m) ||
+							(_ == "option" && m != b[l])) &&
+						Zn(e, l, m, b[l], o),
+				(l = "checked"),
+				g != null && g != e[l] && Zn(e, l, g, b[l], o));
+		}
+		return e;
+	}
+	function co(e, t, n) {
+		try {
+			if (typeof e == "function") {
+				var r = typeof e.__u == "function";
+				r && e.__u(), (r && t == null) || (e.__u = e(t));
+			} else e.current = t;
+		} catch (o) {
+			H.__e(o, n);
+		}
+	}
+	function ss(e, t, n) {
+		var r, o;
+		if (
+			(H.unmount && H.unmount(e),
+			(r = e.ref) && ((r.current && r.current != e.__e) || co(r, null, t)),
+			(r = e.__c) != null)
+		) {
+			if (r.componentWillUnmount)
+				try {
+					r.componentWillUnmount();
+				} catch (i) {
+					H.__e(i, t);
+				}
+			r.base = r.__P = null;
+		}
+		if ((r = e.__k))
+			for (o = 0; o < r.length; o++)
+				r[o] && ss(r[o], t, n || typeof e.type != "function");
+		n || io(e.__e), (e.__c = e.__ = e.__e = void 0);
+	}
+	function nd(e, t, n) {
+		return this.constructor(e, n);
+	}
+	function Vn(e, t, n) {
+		var r, o, i, s;
+		t == document && (t = document.documentElement),
+			H.__ && H.__(e, t),
+			(o = (r = typeof n == "function") ? null : (n && n.__k) || t.__k),
+			(i = []),
+			(s = []),
+			ao(
+				t,
+				(e = ((!r && n) || t).__k = _t(Ae, null, [e])),
+				o || an,
+				an,
+				t.namespaceURI,
+				!r && n ? [n] : o ? null : t.firstChild ? sn.call(t.childNodes) : null,
+				i,
+				!r && n ? n : o ? o.__e : t.firstChild,
+				r,
+				s,
+			),
+			os(i, e, s);
+	}
+	function as(e, t) {
+		Vn(e, t, as);
+	}
+	function ls(e, t, n) {
+		var r,
+			o,
+			i,
+			s,
+			a = Pe({}, e.props);
+		for (i in (e.type && e.type.defaultProps && (s = e.type.defaultProps), t))
+			i == "key"
+				? (r = t[i])
+				: i == "ref"
+					? (o = t[i])
+					: (a[i] = t[i] === void 0 && s != null ? s[i] : t[i]);
+		return (
+			arguments.length > 2 &&
+				(a.children = arguments.length > 3 ? sn.call(arguments, 2) : n),
+			ln(e.type, a, r || e.key, o || e.ref, null)
+		);
+	}
+	function rd(e) {
+		function t(n) {
+			var r, o;
+			return (
+				this.getChildContext ||
+					((r = new Set()),
+					((o = {})[t.__c] = this),
+					(this.getChildContext = function () {
+						return o;
+					}),
+					(this.componentWillUnmount = function () {
+						r = null;
+					}),
+					(this.shouldComponentUpdate = function (i) {
+						this.props.value != i.value &&
+							r.forEach(function (s) {
+								(s.__e = !0), so(s);
+							});
+					}),
+					(this.sub = function (i) {
+						r.add(i);
+						var s = i.componentWillUnmount;
+						i.componentWillUnmount = function () {
+							r && r.delete(i), s && s.call(i);
+						};
+					})),
+				n.children
+			);
+		}
+		return (
+			(t.__c = "__cC" + Yi++),
+			(t.__ = e),
+			(t.Provider =
+				t.__l =
+				(t.Consumer = function (n, r) {
+					return n.children(r);
+				}).contextType =
+					t),
+			t
+		);
+	}
+	(sn = Xi.slice),
+		(H = {
+			__e: function (e, t, n, r) {
+				for (var o, i, s; (t = t.__); )
+					if ((o = t.__c) && !o.__)
+						try {
+							if (
+								((i = o.constructor) &&
+									i.getDerivedStateFromError != null &&
+									(o.setState(i.getDerivedStateFromError(e)), (s = o.__d)),
+								o.componentDidCatch != null &&
+									(o.componentDidCatch(e, r || {}), (s = o.__d)),
+								s)
+							)
+								return (o.__E = o);
+						} catch (a) {
+							e = a;
+						}
+				throw e;
+			},
+		}),
+		(Vi = 0),
+		(Wi = function (e) {
+			return e != null && e.constructor === void 0;
+		}),
+		(cn.prototype.setState = function (e, t) {
+			var n;
+			(n =
+				this.__s != null && this.__s != this.state
+					? this.__s
+					: (this.__s = Pe({}, this.state))),
+				typeof e == "function" && (e = e(Pe({}, n), this.props)),
+				e && Pe(n, e),
+				e != null && this.__v && (t && this._sb.push(t), so(this));
+		}),
+		(cn.prototype.forceUpdate = function (e) {
+			this.__v && ((this.__e = !0), e && this.__h.push(e), so(this));
+		}),
+		(cn.prototype.render = Ae),
+		(ut = []),
+		(Ki =
+			typeof Promise == "function"
+				? Promise.prototype.then.bind(Promise.resolve())
+				: setTimeout),
+		(Ji = function (e, t) {
+			return e.__v.__b - t.__v.__b;
+		}),
+		(Hn.__r = 0),
+		(Gi = /(PointerCapture)$|Capture$/i),
+		(no = 0),
+		(ro = rs(!1)),
+		(oo = rs(!0)),
+		(Yi = 0);
+	var dt,
+		q,
+		uo,
+		cs,
+		un = 0,
+		us = [],
+		ne = H,
+		ds = ne.__b,
+		fs = ne.__r,
+		ps = ne.diffed,
+		hs = ne.__c,
+		ms = ne.unmount,
+		gs = ne.__;
+	function dn(e, t) {
+		ne.__h && ne.__h(q, e, un || t), (un = 0);
+		var n = q.__H || (q.__H = { __: [], __h: [] });
+		return e >= n.__.length && n.__.push({}), n.__[e];
+	}
+	function ue(e) {
+		return (un = 1), ys(ws, e);
+	}
+	function ys(e, t, n) {
+		var r = dn(dt++, 2);
+		if (
+			((r.t = e),
+			!r.__c &&
+				((r.__ = [
+					ws(void 0, t),
+					function (a) {
+						var c = r.__N ? r.__N[0] : r.__[0],
+							l = r.t(c, a);
+						c !== l && ((r.__N = [l, r.__[1]]), r.__c.setState({}));
+					},
+				]),
+				(r.__c = q),
+				!q.__f))
+		) {
+			var o = function (a, c, l) {
+				if (!r.__c.__H) return !0;
+				var d = r.__c.__H.__.filter(function (f) {
+					return !!f.__c;
+				});
+				if (
+					d.every(function (f) {
+						return !f.__N;
+					})
+				)
+					return !i || i.call(this, a, c, l);
+				var u = r.__c.props !== a;
+				return (
+					d.forEach(function (f) {
+						if (f.__N) {
+							var p = f.__[0];
+							(f.__ = f.__N), (f.__N = void 0), p !== f.__[0] && (u = !0);
+						}
+					}),
+					(i && i.call(this, a, c, l)) || u
+				);
+			};
+			q.__f = !0;
+			var i = q.shouldComponentUpdate,
+				s = q.componentWillUpdate;
+			(q.componentWillUpdate = function (a, c, l) {
+				if (this.__e) {
+					var d = i;
+					(i = void 0), o(a, c, l), (i = d);
+				}
+				s && s.call(this, a, c, l);
+			}),
+				(q.shouldComponentUpdate = o);
+		}
+		return r.__N || r.__;
+	}
+	function re(e, t) {
+		var n = dn(dt++, 3);
+		!ne.__s && po(n.__H, t) && ((n.__ = e), (n.u = t), q.__H.__h.push(n));
+	}
+	function od(e, t) {
+		var n = dn(dt++, 4);
+		!ne.__s && po(n.__H, t) && ((n.__ = e), (n.u = t), q.__h.push(n));
+	}
+	function Y(e) {
+		return (
+			(un = 5),
+			kt(function () {
+				return { current: e };
+			}, [])
+		);
+	}
+	function kt(e, t) {
+		var n = dn(dt++, 7);
+		return po(n.__H, t) && ((n.__ = e()), (n.__H = t), (n.__h = e)), n.__;
+	}
+	function vs(e, t) {
+		return (
+			(un = 8),
+			kt(function () {
+				return e;
+			}, t)
+		);
+	}
+	function Wn(e) {
+		var t = q.context[e.__c],
+			n = dn(dt++, 9);
+		return (
+			(n.c = e),
+			t ? (n.__ == null && ((n.__ = !0), t.sub(q)), t.props.value) : e.__
+		);
+	}
+	function id() {
+		for (var e; (e = us.shift()); )
+			if (e.__P && e.__H)
+				try {
+					e.__H.__h.forEach(qn), e.__H.__h.forEach(fo), (e.__H.__h = []);
+				} catch (t) {
+					(e.__H.__h = []), ne.__e(t, e.__v);
+				}
+	}
+	(ne.__b = function (e) {
+		(q = null), ds && ds(e);
+	}),
+		(ne.__ = function (e, t) {
+			e && t.__k && t.__k.__m && (e.__m = t.__k.__m), gs && gs(e, t);
+		}),
+		(ne.__r = function (e) {
+			fs && fs(e), (dt = 0);
+			var t = (q = e.__c).__H;
+			t &&
+				(uo === q
+					? ((t.__h = []),
+						(q.__h = []),
+						t.__.forEach(function (n) {
+							n.__N && (n.__ = n.__N), (n.u = n.__N = void 0);
+						}))
+					: (t.__h.forEach(qn), t.__h.forEach(fo), (t.__h = []), (dt = 0))),
+				(uo = q);
+		}),
+		(ne.diffed = function (e) {
+			ps && ps(e);
+			var t = e.__c;
+			t &&
+				t.__H &&
+				(t.__H.__h.length &&
+					((us.push(t) !== 1 && cs === ne.requestAnimationFrame) ||
+						((cs = ne.requestAnimationFrame) || sd)(id)),
+				t.__H.__.forEach(function (n) {
+					n.u && (n.__H = n.u), (n.u = void 0);
+				})),
+				(uo = q = null);
+		}),
+		(ne.__c = function (e, t) {
+			t.some(function (n) {
+				try {
+					n.__h.forEach(qn),
+						(n.__h = n.__h.filter(function (r) {
+							return !r.__ || fo(r);
+						}));
+				} catch (r) {
+					t.some(function (o) {
+						o.__h && (o.__h = []);
+					}),
+						(t = []),
+						ne.__e(r, n.__v);
+				}
+			}),
+				hs && hs(e, t);
+		}),
+		(ne.unmount = function (e) {
+			ms && ms(e);
+			var t,
+				n = e.__c;
+			n &&
+				n.__H &&
+				(n.__H.__.forEach(function (r) {
+					try {
+						qn(r);
+					} catch (o) {
+						t = o;
+					}
+				}),
+				(n.__H = void 0),
+				t && ne.__e(t, n.__v));
+		});
+	var bs = typeof requestAnimationFrame == "function";
+	function sd(e) {
+		var t,
+			n = function () {
+				clearTimeout(r), bs && cancelAnimationFrame(t), setTimeout(e);
+			},
+			r = setTimeout(n, 35);
+		bs && (t = requestAnimationFrame(n));
+	}
+	function qn(e) {
+		var t = q,
+			n = e.__c;
+		typeof n == "function" && ((e.__c = void 0), n()), (q = t);
+	}
+	function fo(e) {
+		var t = q;
+		(e.__c = e.__()), (q = t);
+	}
+	function po(e, t) {
+		return (
+			!e ||
+			e.length !== t.length ||
+			t.some(function (n, r) {
+				return n !== e[r];
+			})
+		);
+	}
+	function ws(e, t) {
+		return typeof t == "function" ? t(e) : t;
+	}
+	function Kn() {
+		return (
+			(Kn = Object.assign
+				? Object.assign.bind()
+				: function (e) {
+						for (var t = 1; t < arguments.length; t++) {
+							var n = arguments[t];
+							for (var r in n)
+								Object.prototype.hasOwnProperty.call(n, r) && (e[r] = n[r]);
+						}
+						return e;
+					}),
+			Kn.apply(this, arguments)
+		);
+	}
+	function _s(e, t) {
+		if (e == null) return {};
+		var n,
+			r,
+			o = {},
+			i = Object.keys(e);
+		for (r = 0; r < i.length; r++) t.indexOf((n = i[r])) >= 0 || (o[n] = e[n]);
+		return o;
+	}
+	var ad = ["context", "children"],
+		ld = ["useFragment"];
+	function Ss(e, t, n, r) {
+		function o() {
+			var i,
+				s = Reflect.construct(HTMLElement, [], o);
+			return (
+				(s._vdomComponent = e),
+				r && r.shadow
+					? ((s._root = s.attachShadow({
+							mode: r.mode || "open",
+							serializable: (i = r.serializable) != null && i,
+						})),
+						r.adoptedStyleSheets &&
+							(s._root.adoptedStyleSheets = r.adoptedStyleSheets))
+					: (s._root = s),
+				s
+			);
+		}
+		return (
+			((o.prototype = Object.create(HTMLElement.prototype)).constructor = o),
+			(o.prototype.connectedCallback = function () {
+				ud.call(this, r);
+			}),
+			(o.prototype.attributeChangedCallback = dd),
+			(o.prototype.disconnectedCallback = fd),
+			(n = n || e.observedAttributes || Object.keys(e.propTypes || {})),
+			(o.observedAttributes = n),
+			e.formAssociated && (o.formAssociated = !0),
+			n.forEach(function (i) {
+				Object.defineProperty(o.prototype, i, {
+					get: function () {
+						return this._vdom ? this._vdom.props[i] : this._props[i];
+					},
+					set: function (s) {
+						this._vdom
+							? this.attributeChangedCallback(i, null, s)
+							: (this._props || (this._props = {}), (this._props[i] = s));
+						var a = typeof s;
+						(s != null &&
+							a !== "string" &&
+							a !== "boolean" &&
+							a !== "number") ||
+							this.setAttribute(i, s);
+					},
+				});
+			}),
+			customElements.define(t || e.tagName || e.displayName || e.name, o),
+			o
+		);
+	}
+	function cd(e) {
+		this.getChildContext = function () {
+			return e.context;
+		};
+		var t = e.children,
+			n = _s(e, ad);
+		return ls(t, n);
+	}
+	function ud(e) {
+		var t = new CustomEvent("_preact", {
+			detail: {},
+			bubbles: !0,
+			cancelable: !0,
+		});
+		this.dispatchEvent(t),
+			(this._vdom = _t(
+				cd,
+				Kn({}, this._props, { context: t.detail.context }),
+				Cs(this, this._vdomComponent, e),
+			)),
+			(this.hasAttribute("hydrate") ? as : Vn)(this._vdom, this._root);
+	}
+	function ks(e) {
+		return e.replace(/-(\w)/g, function (t, n) {
+			return n ? n.toUpperCase() : "";
+		});
+	}
+	function dd(e, t, n) {
+		if (this._vdom) {
+			var r = {};
+			(r[e] = n = n ?? void 0),
+				(r[ks(e)] = n),
+				(this._vdom = ls(this._vdom, r)),
+				Vn(this._vdom, this._root);
+		}
+	}
+	function fd() {
+		Vn((this._vdom = null), this._root);
+	}
+	function xs(e, t) {
+		var n = this,
+			r = e.useFragment,
+			o = _s(e, ld);
+		return _t(
+			r ? Ae : "slot",
+			Kn({}, o, {
+				ref: function (i) {
+					i
+						? ((n.ref = i),
+							n._listener ||
+								((n._listener = function (s) {
+									s.stopPropagation(), (s.detail.context = t);
+								}),
+								i.addEventListener("_preact", n._listener)))
+						: n.ref.removeEventListener("_preact", n._listener);
+				},
+			}),
+		);
+	}
+	function Cs(e, t, n) {
+		if (e.nodeType === 3) return e.data;
+		if (e.nodeType !== 1) return null;
+		var r = [],
+			o = {},
+			i = 0,
+			s = e.attributes,
+			a = e.childNodes;
+		for (i = s.length; i--; )
+			s[i].name !== "slot" &&
+				((o[s[i].name] = s[i].value), (o[ks(s[i].name)] = s[i].value));
+		for (i = a.length; i--; ) {
+			var c = Cs(a[i], null, n),
+				l = a[i].slot;
+			l ? (o[l] = _t(xs, { name: l }, c)) : (r[i] = c);
+		}
+		var d = !(!n || !n.shadow),
+			u = t ? _t(xs, { useFragment: !d }, r) : r;
+		return (
+			!d && t && (e.innerHTML = ""), _t(t || e.nodeName.toLowerCase(), o, u)
+		);
+	}
+	var pd = Symbol.for("preact-signals");
+	function Jn() {
+		if (Je > 1) Je--;
+		else {
+			for (var e, t = !1; fn !== void 0; ) {
+				var n = fn;
+				for (fn = void 0, ho++; n !== void 0; ) {
+					var r = n.o;
+					if (((n.o = void 0), (n.f &= -3), !(8 & n.f) && Es(n)))
+						try {
+							n.c();
+						} catch (o) {
+							t || ((e = o), (t = !0));
+						}
+					n = r;
+				}
+			}
+			if (((ho = 0), Je--, t)) throw e;
+		}
+	}
+	function zs(e) {
+		if (Je > 0) return e();
+		Je++;
+		try {
+			return e();
+		} finally {
+			Jn();
+		}
+	}
+	var Z = void 0;
+	function Ts(e) {
+		var t = Z;
+		Z = void 0;
+		try {
+			return e();
+		} finally {
+			Z = t;
+		}
+	}
+	var fn = void 0,
+		Je = 0,
+		ho = 0,
+		Gn = 0;
+	function Is(e) {
+		if (Z !== void 0) {
+			var t = e.n;
+			if (t === void 0 || t.t !== Z)
+				return (
+					(t = {
+						i: 0,
+						S: e,
+						p: Z.s,
+						n: void 0,
+						t: Z,
+						e: void 0,
+						x: void 0,
+						r: t,
+					}),
+					Z.s !== void 0 && (Z.s.n = t),
+					(Z.s = t),
+					(e.n = t),
+					32 & Z.f && e.S(t),
+					t
+				);
+			if (t.i === -1)
+				return (
+					(t.i = 0),
+					t.n !== void 0 &&
+						((t.n.p = t.p),
+						t.p !== void 0 && (t.p.n = t.n),
+						(t.p = Z.s),
+						(t.n = void 0),
+						(Z.s.n = t),
+						(Z.s = t)),
+					t
+				);
+		}
+	}
+	function se(e, t) {
+		(this.v = e),
+			(this.i = 0),
+			(this.n = void 0),
+			(this.t = void 0),
+			(this.W = t == null ? void 0 : t.watched),
+			(this.Z = t == null ? void 0 : t.unwatched),
+			(this.name = t == null ? void 0 : t.name);
+	}
+	(se.prototype.brand = pd),
+		(se.prototype.h = function () {
+			return !0;
+		}),
+		(se.prototype.S = function (e) {
+			var t = this,
+				n = this.t;
+			n !== e &&
+				e.e === void 0 &&
+				((e.x = n),
+				(this.t = e),
+				n !== void 0
+					? (n.e = e)
+					: Ts(function () {
+							var r;
+							(r = t.W) == null || r.call(t);
+						}));
+		}),
+		(se.prototype.U = function (e) {
+			var t = this;
+			if (this.t !== void 0) {
+				var n = e.e,
+					r = e.x;
+				n !== void 0 && ((n.x = r), (e.e = void 0)),
+					r !== void 0 && ((r.e = n), (e.x = void 0)),
+					e === this.t &&
+						((this.t = r),
+						r === void 0 &&
+							Ts(function () {
+								var o;
+								(o = t.Z) == null || o.call(t);
+							}));
+			}
+		}),
+		(se.prototype.subscribe = function (e) {
+			var t = this;
+			return Ct(
+				function () {
+					var n = t.value,
+						r = Z;
+					Z = void 0;
+					try {
+						e(n);
+					} finally {
+						Z = r;
+					}
+				},
+				{ name: "sub" },
+			);
+		}),
+		(se.prototype.valueOf = function () {
+			return this.value;
+		}),
+		(se.prototype.toString = function () {
+			return this.value + "";
+		}),
+		(se.prototype.toJSON = function () {
+			return this.value;
+		}),
+		(se.prototype.peek = function () {
+			var e = Z;
+			Z = void 0;
+			try {
+				return this.value;
+			} finally {
+				Z = e;
+			}
+		}),
+		Object.defineProperty(se.prototype, "value", {
+			get: function () {
+				var e = Is(this);
+				return e !== void 0 && (e.i = this.i), this.v;
+			},
+			set: function (e) {
+				if (e !== this.v) {
+					if (ho > 100) throw new Error("Cycle detected");
+					(this.v = e), this.i++, Gn++, Je++;
+					try {
+						for (var t = this.t; t !== void 0; t = t.x) t.t.N();
+					} finally {
+						Jn();
+					}
+				}
+			},
+		});
+	function $s(e, t) {
+		return new se(e, t);
+	}
+	function Es(e) {
+		for (var t = e.s; t !== void 0; t = t.n)
+			if (t.S.i !== t.i || !t.S.h() || t.S.i !== t.i) return !0;
+		return !1;
+	}
+	function Rs(e) {
+		for (var t = e.s; t !== void 0; t = t.n) {
+			var n = t.S.n;
+			if (
+				(n !== void 0 && (t.r = n), (t.S.n = t), (t.i = -1), t.n === void 0)
+			) {
+				e.s = t;
+				break;
+			}
+		}
+	}
+	function Ms(e) {
+		for (var t = e.s, n = void 0; t !== void 0; ) {
+			var r = t.p;
+			t.i === -1
+				? (t.S.U(t), r !== void 0 && (r.n = t.n), t.n !== void 0 && (t.n.p = r))
+				: (n = t),
+				(t.S.n = t.r),
+				t.r !== void 0 && (t.r = void 0),
+				(t = r);
+		}
+		e.s = n;
+	}
+	function ft(e, t) {
+		se.call(this, void 0),
+			(this.x = e),
+			(this.s = void 0),
+			(this.g = Gn - 1),
+			(this.f = 4),
+			(this.W = t == null ? void 0 : t.watched),
+			(this.Z = t == null ? void 0 : t.unwatched),
+			(this.name = t == null ? void 0 : t.name);
+	}
+	(ft.prototype = new se()),
+		(ft.prototype.h = function () {
+			if (((this.f &= -3), 1 & this.f)) return !1;
+			if ((36 & this.f) == 32 || ((this.f &= -5), this.g === Gn)) return !0;
+			if (((this.g = Gn), (this.f |= 1), this.i > 0 && !Es(this)))
+				return (this.f &= -2), !0;
+			var e = Z;
+			try {
+				Rs(this), (Z = this);
+				var t = this.x();
+				(16 & this.f || this.v !== t || this.i === 0) &&
+					((this.v = t), (this.f &= -17), this.i++);
+			} catch (n) {
+				(this.v = n), (this.f |= 16), this.i++;
+			}
+			return (Z = e), Ms(this), (this.f &= -2), !0;
+		}),
+		(ft.prototype.S = function (e) {
+			if (this.t === void 0) {
+				this.f |= 36;
+				for (var t = this.s; t !== void 0; t = t.n) t.S.S(t);
+			}
+			se.prototype.S.call(this, e);
+		}),
+		(ft.prototype.U = function (e) {
+			if (
+				this.t !== void 0 &&
+				(se.prototype.U.call(this, e), this.t === void 0)
+			) {
+				this.f &= -33;
+				for (var t = this.s; t !== void 0; t = t.n) t.S.U(t);
+			}
+		}),
+		(ft.prototype.N = function () {
+			if (!(2 & this.f)) {
+				this.f |= 6;
+				for (var e = this.t; e !== void 0; e = e.x) e.t.N();
+			}
+		}),
+		Object.defineProperty(ft.prototype, "value", {
+			get: function () {
+				if (1 & this.f) throw new Error("Cycle detected");
+				var e = Is(this);
+				if ((this.h(), e !== void 0 && (e.i = this.i), 16 & this.f))
+					throw this.v;
+				return this.v;
+			},
+		});
+	function Ps(e, t) {
+		return new ft(e, t);
+	}
+	function As(e) {
+		var t = e.u;
+		if (((e.u = void 0), typeof t == "function")) {
+			Je++;
+			var n = Z;
+			Z = void 0;
+			try {
+				t();
+			} catch (r) {
+				throw ((e.f &= -2), (e.f |= 8), mo(e), r);
+			} finally {
+				(Z = n), Jn();
+			}
+		}
+	}
+	function mo(e) {
+		for (var t = e.s; t !== void 0; t = t.n) t.S.U(t);
+		(e.x = void 0), (e.s = void 0), As(e);
+	}
+	function hd(e) {
+		if (Z !== this) throw new Error("Out-of-order effect");
+		Ms(this), (Z = e), (this.f &= -2), 8 & this.f && mo(this), Jn();
+	}
+	function xt(e, t) {
+		(this.x = e),
+			(this.u = void 0),
+			(this.s = void 0),
+			(this.o = void 0),
+			(this.f = 32),
+			(this.name = t == null ? void 0 : t.name);
+	}
+	(xt.prototype.c = function () {
+		var e = this.S();
+		try {
+			if (8 & this.f || this.x === void 0) return;
+			var t = this.x();
+			typeof t == "function" && (this.u = t);
+		} finally {
+			e();
+		}
+	}),
+		(xt.prototype.S = function () {
+			if (1 & this.f) throw new Error("Cycle detected");
+			(this.f |= 1), (this.f &= -9), As(this), Rs(this), Je++;
+			var e = Z;
+			return (Z = this), hd.bind(this, e);
+		}),
+		(xt.prototype.N = function () {
+			2 & this.f || ((this.f |= 2), (this.o = fn), (fn = this));
+		}),
+		(xt.prototype.d = function () {
+			(this.f |= 8), 1 & this.f || mo(this);
+		}),
+		(xt.prototype.dispose = function () {
+			this.d();
+		});
+	function Ct(e, t) {
+		var n = new xt(e, t);
+		try {
+			n.c();
+		} catch (o) {
+			throw (n.d(), o);
+		}
+		var r = n.d.bind(n);
+		return (r[Symbol.dispose] = r), r;
+	}
+	var go,
+		Yn,
+		md = typeof window < "u" && !!window.__PREACT_SIGNALS_DEVTOOLS__,
+		Os = [],
+		Ls = [];
+	Ct(function () {
+		go = this.N;
+	})();
+	function zt(e, t) {
+		H[e] = t.bind(null, H[e] || function () {});
+	}
+	function Xn(e) {
+		if (Yn) {
+			var t = Yn;
+			(Yn = void 0), t();
+		}
+		Yn = e && e.S();
+	}
+	function Ns(e) {
+		var t = this,
+			n = e.data,
+			r = Oe(n);
+		r.value = n;
+		var o = kt(function () {
+				for (var a = t, c = t.__v; (c = c.__); )
+					if (c.__c) {
+						c.__c.__$f |= 4;
+						break;
+					}
+				var l = Ps(function () {
+						var p = r.value.value;
+						return p === 0 ? 0 : p === !0 ? "" : p || "";
+					}),
+					d = Ps(function () {
+						return !Array.isArray(l.value) && !Wi(l.value);
+					}),
+					u = Ct(function () {
+						if (((this.N = js), d.value)) {
+							var p = l.value;
+							a.__v &&
+								a.__v.__e &&
+								a.__v.__e.nodeType === 3 &&
+								(a.__v.__e.data = p);
+						}
+					}),
+					f = t.__$u.d;
+				return (
+					(t.__$u.d = function () {
+						u(), f.call(this);
+					}),
+					[d, l]
+				);
+			}, []),
+			i = o[0],
+			s = o[1];
+		return i.value ? s.peek() : s.value;
+	}
+	(Ns.displayName = "ReactiveTextNode"),
+		Object.defineProperties(se.prototype, {
+			constructor: { configurable: !0, value: void 0 },
+			type: { configurable: !0, value: Ns },
+			props: {
+				configurable: !0,
+				get: function () {
+					return { data: this };
+				},
+			},
+			__b: { configurable: !0, value: 1 },
+		}),
+		zt("__b", function (e, t) {
+			if (typeof t.type == "string") {
+				var n,
+					r = t.props;
+				for (var o in r)
+					if (o !== "children") {
+						var i = r[o];
+						i instanceof se &&
+							(n || (t.__np = n = {}), (n[o] = i), (r[o] = i.peek()));
+					}
+			}
+			e(t);
+		}),
+		zt("__r", function (e, t) {
+			if ((e(t), t.type !== Ae)) {
+				Xn();
+				var n,
+					r = t.__c;
+				r &&
+					((r.__$f &= -2),
+					(n = r.__$u) === void 0 &&
+						(r.__$u = n =
+							(function (o, i) {
+								var s;
+								return (
+									Ct(
+										function () {
+											s = this;
+										},
+										{ name: i },
+									),
+									(s.c = o),
+									s
+								);
+							})(
+								function () {
+									var o;
+									md && ((o = n.y) == null || o.call(n)),
+										(r.__$f |= 1),
+										r.setState({});
+								},
+								typeof t.type == "function"
+									? t.type.displayName || t.type.name
+									: "",
+							))),
+					Xn(n);
+			}
+		}),
+		zt("__e", function (e, t, n, r) {
+			Xn(), e(t, n, r);
+		}),
+		zt("diffed", function (e, t) {
+			Xn();
+			var n;
+			if (typeof t.type == "string" && (n = t.__e)) {
+				var r = t.__np,
+					o = t.props;
+				if (r) {
+					var i = n.U;
+					if (i)
+						for (var s in i) {
+							var a = i[s];
+							a !== void 0 && !(s in r) && (a.d(), (i[s] = void 0));
+						}
+					else (i = {}), (n.U = i);
+					for (var c in r) {
+						var l = i[c],
+							d = r[c];
+						l === void 0 ? ((l = gd(n, c, d, o)), (i[c] = l)) : l.o(d, o);
+					}
+				}
+			}
+			e(t);
+		});
+	function gd(e, t, n, r) {
+		var o = t in e && e.ownerSVGElement === void 0,
+			i = $s(n);
+		return {
+			o: function (s, a) {
+				(i.value = s), (r = a);
+			},
+			d: Ct(function () {
+				this.N = js;
+				var s = i.value.value;
+				r[t] !== s &&
+					((r[t] = s),
+					o
+						? (e[t] = s)
+						: s != null && (s !== !1 || t[4] === "-")
+							? e.setAttribute(t, s)
+							: e.removeAttribute(t));
+			}),
+		};
+	}
+	zt("unmount", function (e, t) {
+		if (typeof t.type == "string") {
+			var n = t.__e;
+			if (n) {
+				var r = n.U;
+				if (r) {
+					n.U = void 0;
+					for (var o in r) {
+						var i = r[o];
+						i && i.d();
+					}
+				}
+			}
+		} else {
+			var s = t.__c;
+			if (s) {
+				var a = s.__$u;
+				a && ((s.__$u = void 0), a.d());
+			}
+		}
+		e(t);
+	}),
+		zt("__h", function (e, t, n, r) {
+			(r < 3 || r === 9) && (t.__$f |= 2), e(t, n, r);
+		}),
+		(cn.prototype.shouldComponentUpdate = function (e, t) {
+			if (this.__R) return !0;
+			var n = this.__$u,
+				r = n && n.s !== void 0;
+			for (var o in t) return !0;
+			if (this.__f || (typeof this.u == "boolean" && this.u === !0)) {
+				var i = 2 & this.__$f;
+				if (!(r || i || 4 & this.__$f) || 1 & this.__$f) return !0;
+			} else if (!(r || 4 & this.__$f) || 3 & this.__$f) return !0;
+			for (var s in e)
+				if (s !== "__source" && e[s] !== this.props[s]) return !0;
+			for (var a in this.props) if (!(a in e)) return !0;
+			return !1;
+		});
+	function Oe(e, t) {
+		return kt(function () {
+			return $s(e, t);
+		}, []);
+	}
+	var yd =
+			typeof requestAnimationFrame > "u"
+				? setTimeout
+				: function (e) {
+						var t = function () {
+								clearTimeout(n), cancelAnimationFrame(r), e();
+							},
+							n = setTimeout(t, 35),
+							r = requestAnimationFrame(t);
+					},
+		vd = function (e) {
+			queueMicrotask(function () {
+				queueMicrotask(e);
+			});
+		};
+	function bd() {
+		zs(function () {
+			for (var e; (e = Os.shift()); ) go.call(e);
+		});
+	}
+	function wd() {
+		Os.push(this) === 1 && (H.requestAnimationFrame || yd)(bd);
+	}
+	function _d() {
+		zs(function () {
+			for (var e; (e = Ls.shift()); ) go.call(e);
+		});
+	}
+	function js() {
+		Ls.push(this) === 1 && (H.requestAnimationFrame || vd)(_d);
+	}
+	function Bs(e, t) {
+		var n = Y(e);
+		(n.current = e),
+			re(function () {
+				return Ct(function () {
+					return (this.N = wd), n.current();
+				}, t);
+			}, []);
+	}
+	const Tt = { device: "desktop", traits: {} };
+	function Ds(e) {
+		return e === "or" ? "or" : "and";
+	}
+	function It(e) {
+		const t = e == null ? void 0 : e.trim().toLowerCase();
+		return t || null;
+	}
+	function Qn(e) {
+		return (
+			(e == null
+				? void 0
+				: e.map((t) => t.trim().toLowerCase()).filter(Boolean)) ?? []
+		);
+	}
+	function Sd(e, t) {
+		return e[t] ?? !0;
+	}
+	function Fs(e, t) {
+		return Sd(e, t);
+	}
+	function kd(e, t) {
+		const n = Qn(e.languages),
+			r = Qn(e.locales),
+			o = It(t.language),
+			i = It(t.locale),
+			s = n.length === 0 || (o != null && n.includes(o)),
+			a = r.length === 0 || (i != null && r.includes(i));
+		return s && a;
+	}
+	function xd(e) {
+		if (typeof e != "object" || e == null) return !1;
+		const t = e;
+		return (
+			typeof t.traitId == "string" &&
+			typeof t.traitSlug == "string" &&
+			(t.valueType === "string" || t.valueType === "number") &&
+			typeof t.operator == "string" &&
+			Array.isArray(t.values) &&
+			t.values.every((n) => typeof n == "string")
+		);
+	}
+	function Cd(e) {
+		return Array.isArray(e.traitConditions) ? e.traitConditions.filter(xd) : [];
+	}
+	function er(e) {
+		return typeof e == "string" && e.trim().length > 0;
+	}
+	function yo(e) {
+		if (!er(e)) return null;
+		const t = Number(e);
+		return Number.isFinite(t) ? t : null;
+	}
+	function zd(e, t) {
+		const n = yo(t);
+		if (n == null) return !1;
+		if (e.operator === "in")
+			return e.values.some((o) => {
+				const i = yo(o);
+				return i != null && n === i;
+			});
+		const r = yo(e.values[0]);
+		if (r == null) return !1;
+		switch (e.operator) {
+			case "equals":
+				return n === r;
+			case "notEquals":
+				return n !== r;
+			case "greaterThan":
+				return n > r;
+			case "greaterThanOrEqual":
+				return n >= r;
+			case "lessThan":
+				return n < r;
+			case "lessThanOrEqual":
+				return n <= r;
+			default:
+				return !1;
+		}
+	}
+	function Td(e, t) {
+		switch (e.operator) {
+			case "equals":
+				return t === e.values[0];
+			case "notEquals":
+				return t !== e.values[0];
+			case "in":
+				return e.values.includes(t);
+			case "contains":
+				return t.includes(e.values[0] ?? "");
+			default:
+				return !1;
+		}
+	}
+	function Id(e, t) {
+		const n = t[e.traitSlug];
+		return e.operator === "exists"
+			? er(n)
+			: e.operator === "notExists"
+				? !er(n)
+				: er(n)
+					? e.valueType === "number"
+						? zd(e, n)
+						: Td(e, n)
+					: !1;
+	}
+	function Us(e, t) {
+		return Cd(e).every((r) => Id(r, t));
+	}
+	function Hs(e, t) {
+		const n = [],
+			r = Qn(e.languages),
+			o = Qn(e.locales);
+		return (
+			Fs(e, t.device) || n.push("blocked_by_device"),
+			((r.length > 0 && !It(t.language)) ||
+				(r.length > 0 && !r.includes(It(t.language) ?? ""))) &&
+				n.push("blocked_by_language"),
+			((o.length > 0 && !It(t.locale)) ||
+				(o.length > 0 && !o.includes(It(t.locale) ?? ""))) &&
+				n.push("blocked_by_locale"),
+			Us(e, t.traits) || n.push("blocked_by_trait"),
+			n
+		);
+	}
+	function Zs(e) {
+		return [...new Set(e)];
+	}
+	function $t(e, t) {
+		return Fs(e, t.device) && kd(e, t) && Us(e, t.traits);
+	}
+	function vo(e, t = Tt, n = "and") {
+		if (!e || e.length === 0) return !0;
+		const r = { ...Tt, ...t, traits: t.traits ?? Tt.traits },
+			o = e.filter((s) => s.type !== "Exclude");
+		return e.filter((s) => s.type === "Exclude").some((s) => $t(s, r))
+			? !1
+			: o.length === 0
+				? !0
+				: Ds(n) === "or"
+					? o.some((s) => $t(s, r))
+					: o.every((s) => $t(s, r));
+	}
+	function $d(e, t = Tt, n = "and") {
+		if (!e || e.length === 0) return [];
+		const r = { ...Tt, ...t, traits: t.traits ?? Tt.traits },
+			o = e.filter((s) => s.type !== "Exclude");
+		return e.filter((s) => s.type === "Exclude").some((s) => $t(s, r))
+			? ["blocked_by_audience_rule"]
+			: o.length === 0
+				? []
+				: Ds(n) === "or"
+					? o.some((s) => $t(s, r))
+						? []
+						: Zs(o.flatMap((s) => Hs(s, r)))
+					: Zs(o.flatMap((s) => Hs(s, r)));
+	}
+	function Vs(e, t) {
+		return e === t;
+	}
+	function Ed(e) {
+		return e === "or" ? "or" : "and";
+	}
+	function bo(e, t, n) {
+		const r = e.completion == null || e.completion === t.completion,
+			o = e.recruited == null || e.recruited === t.recruited,
+			i =
+				e.tasks.length === 0 ||
+				e.tasks.some((u) => t.task != null && n(u.id, t.task)),
+			s =
+				e.segmentValues.length === 0 ||
+				e.segmentValues.some((u) => t.segments.some((f) => n(u.id, f))),
+			a =
+				e.singleSelectItems.length === 0 ||
+				e.singleSelectItems.some((u) => t.singleSelect.some((f) => n(u.id, f))),
+			c =
+				e.multiSelectItems.length === 0 ||
+				e.multiSelectItems.some((u) => t.multiSelect.some((f) => n(u.id, f))),
+			l =
+				e.likertScaleItems.length === 0 ||
+				e.likertScaleItems.some((u) => t.scales.some((f) => n(u.id, f))),
+			d = $t(e, t);
+		return r && o && i && s && a && c && l && d;
+	}
+	function Ws(e, t, n = Vs, r = "and") {
+		if (e.length === 0) return !0;
+		const o = typeof n == "function" ? n : Vs,
+			i = Ed(typeof n == "string" ? n : r),
+			s = e.filter((l) => l.type === "Include");
+		return e.filter((l) => l.type === "Exclude").some((l) => bo(l, t, o))
+			? !1
+			: s.length === 0
+				? !0
+				: i === "or"
+					? s.some((l) => bo(l, t, o))
+					: s.every((l) => bo(l, t, o));
+	}
+	const qs = {
+		en: {
+			minLength: (e) => `At least ${e} character${e > 1 ? "s" : ""}`,
+			inputLengthMaximum: (e) => `Up to ${e} character${e > 1 ? "s" : ""}`,
+			inputLengthRange: (e, t) => `At least ${e}, max ${t} characters`,
+			maxLength: (e) => `Text exceeds ${e} character limit`,
+			selectionMin: (e) =>
+				`Please select at least ${e} option${e > 1 ? "s" : ""}`,
+			selectionMax: (e) =>
+				`Please select no more than ${e} option${e > 1 ? "s" : ""}`,
+			selectionRange: (e, t) =>
+				`Select at least ${e} option${e > 1 ? "s" : ""}, max ${t}`,
+			selectionBetween: (e, t) => `Select ${e} to ${t} options`,
+			selectionAtLeast: (e) => `Select at least ${e}`,
+			selectionUpTo: (e) => `Select max ${e}`,
+			optionRequired: "Please select an option",
+			invalidEmail: "Invalid email address",
+			consentRequired: "Please provide consent to store your information",
+			contactInfoRequired: "Please provide your contact information",
+			emailRequired: "Please provide your email address",
+		},
+		pt: {
+			minLength: (e) => `Mínimo ${e} caractere${e > 1 ? "s" : ""}`,
+			inputLengthMaximum: (e) => `Máximo ${e} caractere${e > 1 ? "s" : ""}`,
+			inputLengthRange: (e, t) => `Mínimo ${e}, máximo ${t} caracteres`,
+			maxLength: (e) => `Texto excede o limite de ${e} caracteres`,
+			selectionMin: (e) =>
+				`Selecione pelo menos ${e} opç${e > 1 ? "ões" : "ão"}`,
+			selectionMax: (e) =>
+				`Selecione no máximo ${e} opç${e > 1 ? "ões" : "ão"}`,
+			selectionRange: (e, t) =>
+				`Selecione pelo menos ${e} opç${e > 1 ? "ões" : "ão"}, no máximo ${t}`,
+			selectionBetween: (e, t) => `Selecione entre ${e} e ${t} opções`,
+			selectionAtLeast: (e) =>
+				`Selecione pelo menos ${e} opç${e > 1 ? "ões" : "ão"}`,
+			selectionUpTo: (e) => `Selecione até ${e} opç${e > 1 ? "ões" : "ão"}`,
+			optionRequired: "Selecione uma opção",
+			invalidEmail: "Endereço de email inválido",
+			consentRequired: "Forneça consentimento para armazenar suas informações",
+			contactInfoRequired: "Forneça suas informações de contato",
+			emailRequired: "Forneça seu endereço de email",
+		},
+		de: {
+			minLength: (e) => `Mindestens ${e} Zeichen`,
+			inputLengthMaximum: (e) => `Höchstens ${e} Zeichen`,
+			inputLengthRange: (e, t) => `Mindestens ${e}, höchstens ${t} Zeichen`,
+			maxLength: (e) => `Text überschreitet das Limit von ${e} Zeichen`,
+			selectionMin: (e) =>
+				`Bitte wählen Sie mindestens ${e} Option${e > 1 ? "en" : ""}`,
+			selectionMax: (e) =>
+				`Bitte wählen Sie höchstens ${e} Option${e > 1 ? "en" : ""}`,
+			selectionRange: (e, t) =>
+				`Wählen Sie mindestens ${e} Option${e > 1 ? "en" : ""}, maximal ${t}`,
+			selectionBetween: (e, t) => `Wählen Sie zwischen ${e} und ${t} Optionen`,
+			selectionAtLeast: (e) =>
+				`Wählen Sie mindestens ${e} Option${e > 1 ? "en" : ""}`,
+			selectionUpTo: (e) => `Wählen Sie bis zu ${e} Option${e > 1 ? "en" : ""}`,
+			optionRequired: "Bitte wählen Sie eine Option",
+			invalidEmail: "Ungültige E-Mail-Adresse",
+			consentRequired:
+				"Bitte geben Sie Ihre Einwilligung zur Speicherung Ihrer Daten",
+			contactInfoRequired: "Bitte geben Sie Ihre Kontaktinformationen an",
+			emailRequired: "Bitte geben Sie Ihre E-Mail-Adresse an",
+		},
+		no: {
+			minLength: (e) => `Minst ${e} tegn`,
+			inputLengthMaximum: (e) => `Maks ${e} tegn`,
+			inputLengthRange: (e, t) => `Minst ${e}, maks ${t} tegn`,
+			maxLength: (e) => `Tekst overskrider ${e} tegn`,
+			selectionMin: (e) => `Velg minst ${e} alternativ${e > 1 ? "er" : ""}`,
+			selectionMax: (e) => `Velg maksimalt ${e} alternativ${e > 1 ? "er" : ""}`,
+			selectionRange: (e, t) =>
+				`Velg minst ${e} alternativ${e > 1 ? "er" : ""}, maks ${t}`,
+			selectionBetween: (e, t) => `Velg mellom ${e} og ${t} alternativer`,
+			selectionAtLeast: (e) => `Velg minst ${e} alternativ${e > 1 ? "er" : ""}`,
+			selectionUpTo: (e) => `Velg opptil ${e} alternativ${e > 1 ? "er" : ""}`,
+			optionRequired: "Velg et alternativ",
+			invalidEmail: "Ugyldig e-postadresse",
+			consentRequired: "Gi samtykke til å lagre informasjonen din",
+			contactInfoRequired: "Oppgi kontaktinformasjonen din",
+			emailRequired: "Oppgi e-postadressen din",
+		},
+		nn: {
+			minLength: (e) => `Minst ${e} teikn`,
+			inputLengthMaximum: (e) => `Maks ${e} teikn`,
+			inputLengthRange: (e, t) => `Minst ${e}, maks ${t} teikn`,
+			maxLength: (e) => `Teksten er lengre enn grensa på ${e} teikn`,
+			selectionMin: (e) => `Vel minst ${e} alternativ`,
+			selectionMax: (e) => `Vel maksimalt ${e} alternativ`,
+			selectionRange: (e, t) => `Vel minst ${e} alternativ, maks ${t}`,
+			selectionBetween: (e, t) => `Vel mellom ${e} og ${t} alternativ`,
+			selectionAtLeast: (e) => `Vel minst ${e} alternativ`,
+			selectionUpTo: (e) => `Vel opptil ${e} alternativ`,
+			optionRequired: "Vel eit alternativ",
+			invalidEmail: "Ugyldig e-postadresse",
+			consentRequired: "Samtykk til at vi lagrar informasjonen din",
+			contactInfoRequired: "Oppgi kontaktinformasjonen din",
+			emailRequired: "Oppgi e-postadressa di",
+		},
+		sv: {
+			minLength: (e) => `Minst ${e} tecken`,
+			inputLengthMaximum: (e) => `Högst ${e} tecken`,
+			inputLengthRange: (e, t) => `Minst ${e}, högst ${t} tecken`,
+			maxLength: (e) => `Text överskrider ${e} tecken`,
+			selectionMin: (e) => `Välj minst ${e} alternativ`,
+			selectionMax: (e) => `Välj högst ${e} alternativ`,
+			selectionRange: (e, t) => `Välj minst ${e} alternativ, max ${t}`,
+			selectionBetween: (e, t) => `Välj mellan ${e} och ${t} alternativ`,
+			selectionAtLeast: (e) => `Välj minst ${e} alternativ`,
+			selectionUpTo: (e) => `Välj upp till ${e} alternativ`,
+			optionRequired: "Välj ett alternativ",
+			invalidEmail: "Ogiltig e-postadress",
+			consentRequired: "Ge samtycke för att lagra din information",
+			contactInfoRequired: "Ange din kontaktinformation",
+			emailRequired: "Ange din e-postadress",
+		},
+	};
+	function Et(e) {
+		return qs[e || "no"] || qs.no;
+	}
+	function Ks(e) {
+		const {
+			dirty: t,
+			minValid: n,
+			maxValid: r,
+			min: o,
+			max: i,
+			language: s,
+		} = e;
+		if (!t) return null;
+		const a = Et(s);
+		return (!n || !r) && o && i
+			? a.selectionRange(o, i)
+			: !n && o
+				? a.selectionMin(o)
+				: !r && i
+					? a.selectionMax(i)
+					: null;
+	}
+	function Js(e) {
+		const { min: t = 0, max: n, language: r } = e,
+			o = t > 0,
+			i = typeof n == "number" && n > 0;
+		if (!(o || i)) return null;
+		const s = Et(r);
+		return o && i
+			? s.inputLengthRange(t, n)
+			: o
+				? s.minLength(t)
+				: s.inputLengthMaximum(n ?? 0);
+	}
+	function Gs(e) {
+		return Et(e.language).selectionMax(e.max);
+	}
+	function Ys(e) {
+		const { min: t = 0, max: n, totalOptions: r, language: o } = e,
+			i = t > 0,
+			s = n !== void 0 && n < r;
+		if (!(i || s)) return null;
+		const a = Et(o);
+		return i && s
+			? a.selectionBetween(t, n)
+			: i
+				? a.selectionAtLeast(t)
+				: a.selectionUpTo(n ?? r);
+	}
+	function Xs(e, t) {
+		var r;
+		if (!t) return;
+		const n =
+			(r = e == null ? void 0 : e.find((o) => o.code === t)) == null
+				? void 0
+				: r["@errMessage"];
+		return n != null && n.trim() ? n : void 0;
+	}
+	function Rd(e, t) {
+		const n = e.validation;
+		return (
+			Xs(e.tr, t) ??
+			((n == null ? void 0 : n.type) === "OrgValidationRegex"
+				? Xs(n.tr, t)
+				: void 0) ??
+			e.errMessage ??
+			(n == null ? void 0 : n.errMessage) ??
+			"Pattern validation failed"
+		);
+	}
+	function Qs(e) {
+		const { content: t, card: n, hasBeenTouched: r, language: o } = e,
+			{ minLength: i = 0, maxLength: s, validations: a } = n,
+			c = Et(o);
+		for (const l of a) {
+			const d = l.validation;
+			let u = !0;
+			if (
+				(d.type === "ValidationRegex" || d.type === "OrgValidationRegex") &&
+				((u = new RegExp(d.regex ?? "").test(t)), !(d.negate !== u))
+			)
+				return {
+					status: "validation-regex-failed",
+					valid: !1,
+					color: "error",
+					shouldAnnounce: !1,
+					errorMessage: Rd(l, o),
+				};
+		}
+		if (i > 0 && t.length < i)
+			return {
+				status: "under-minimum",
+				valid: !1,
+				color: r ? "error" : "warning",
+				shouldAnnounce: !1,
+				errorMessage: c.minLength(i),
+			};
+		if (s && s > 10) {
+			if (t.length > s)
+				return {
+					status: "over-limit",
+					valid: !1,
+					color: "error",
+					shouldAnnounce: !0,
+					errorMessage: c.maxLength(s),
+				};
+			if (t.length >= s * 0.9)
+				return {
+					status: "approaching-limit",
+					valid: !0,
+					color: "warning",
+					shouldAnnounce: !0,
+					errorMessage: null,
+				};
+		}
+		return {
+			status: "valid",
+			valid: !0,
+			color: void 0,
+			shouldAnnounce: !1,
+			errorMessage: null,
+		};
+	}
+	function tr(e) {
+		const { selectedCount: t, card: n, hasBeenSubmitted: r, language: o } = e,
+			{ min: i = 0, max: s } = n;
+		return s && t > s
+			? {
+					status: "over-max",
+					valid: !1,
+					color: "error",
+					shouldAnnounce: !0,
+					errorMessage:
+						Ks({
+							dirty: !0,
+							minValid: !0,
+							maxValid: !1,
+							min: i,
+							max: s,
+							language: o,
+						}) || `Please select no more than ${s} option${s > 1 ? "s" : ""}`,
+				}
+			: r && i > 0 && t < i
+				? {
+						status: "under-minimum",
+						valid: !1,
+						color: "error",
+						shouldAnnounce: !1,
+						errorMessage:
+							Ks({
+								dirty: !0,
+								minValid: !1,
+								maxValid: !0,
+								min: i,
+								max: s,
+								language: o,
+							}) || `Please select at least ${i} option${i > 1 ? "s" : ""}`,
+					}
+				: {
+						status: "valid",
+						valid: !0,
+						color: void 0,
+						shouldAnnounce: !1,
+						errorMessage: null,
+					};
+	}
+	function nr(e) {
+		const {
+			email: t,
+			name: n,
+			phone: r,
+			consented: o,
+			consentEnable: i,
+			isRequired: s,
+			hasBeenSubmitted: a,
+			language: c,
+		} = e;
+		if (!a)
+			return {
+				status: "valid",
+				valid: !0,
+				color: void 0,
+				shouldAnnounce: !1,
+				errorMessage: null,
+			};
+		const l = Et(c),
+			d = t.value || n.value || r.value;
+		return t.value && !t.valid
+			? {
+					status: "email-invalid",
+					valid: !1,
+					color: "error",
+					shouldAnnounce: !1,
+					errorMessage: l.invalidEmail,
+				}
+			: i && !o && d
+				? {
+						status: "consent-required",
+						valid: !1,
+						color: "error",
+						shouldAnnounce: !1,
+						errorMessage: l.consentRequired,
+					}
+				: i && o && !t.value
+					? {
+							status: "email-required",
+							valid: !1,
+							color: "error",
+							shouldAnnounce: !1,
+							errorMessage: l.emailRequired,
+						}
+					: s && !t.value
+						? {
+								status: "email-required",
+								valid: !1,
+								color: "error",
+								shouldAnnounce: !1,
+								errorMessage: l.emailRequired,
+							}
+						: s && i && !o
+							? {
+									status: "consent-required",
+									valid: !1,
+									color: "error",
+									shouldAnnounce: !1,
+									errorMessage: l.consentRequired,
+								}
+							: {
+									status: "valid",
+									valid: !0,
+									color: void 0,
+									shouldAnnounce: !1,
+									errorMessage: null,
+								};
+	}
+	const ea = { nb: "no" };
+	function ta(e) {
+		return e.trim().toLowerCase().split(/[-_]/)[0] ?? "";
+	}
+	function Md(e, t) {
+		if (!e) return null;
+		const n = ta(e),
+			r = t.find((i) => i === n);
+		if (r) return r;
+		const o = ea[n] ?? n;
+		return t.find((i) => (ea[i] ?? i) === o) ?? null;
+	}
+	const rr = {
+		en: {
+			textClose: "Close",
+			textNext: "Next",
+			textPrev: "Back",
+			textMinimized: "Continue survey",
+			textHide: "Hide",
+			textReplyLater: "Reply later",
+		},
+		no: {
+			textClose: "Lukk",
+			textNext: "Neste",
+			textPrev: "Tilbake",
+			textMinimized: "Fortsett undersøkelsen",
+			textHide: "Skjul",
+			textReplyLater: "Svar senere",
+		},
+		nn: {
+			textClose: "Lukk",
+			textNext: "Neste",
+			textPrev: "Tilbake",
+			textMinimized: "Hald fram med undersøkinga",
+			textHide: "Gøym",
+			textReplyLater: "Svar seinare",
+		},
+		pt: {
+			textClose: "Fechar",
+			textNext: "Próximo",
+			textPrev: "Anterior",
+			textMinimized: "Continuar pesquisa",
+			textHide: "Esconder",
+			textReplyLater: "Responder mais tarde",
+		},
+		de: {
+			textClose: "Schließen",
+			textNext: "Weiter",
+			textPrev: "Zurück",
+			textMinimized: "Umfrage fortsetzen",
+			textHide: "Verbergen",
+			textReplyLater: "Später antworten",
+		},
+		sv: {
+			textClose: "Stäng",
+			textNext: "Nästa",
+			textPrev: "Tillbaka",
+			textMinimized: "Fortsätt undersökningen",
+			textHide: "Dölj",
+			textReplyLater: "Svara senare",
+		},
+	};
+	function Rt(e) {
+		if (!(typeof e == "object" && e !== null && "name" in e)) return !1;
+		const t = e.name;
+		return typeof t == "string" || t === null;
+	}
+	function na(e, t) {
+		return e == null ? void 0 : e.find((n) => n.code === t);
+	}
+	function F(e, t, n, r) {
+		const o = na(t, n),
+			i = o == null ? void 0 : o[r];
+		return i == null || i === "" ? e : i;
+	}
+	function Ge(e, t, n, r, o, i) {
+		const s = na(t, n),
+			a = s == null ? void 0 : s[r],
+			c = r.slice(1);
+		return a != null && a !== ""
+			? a
+			: i && (e == null || e === (o == null ? void 0 : o[c]))
+				? i[c]
+				: e;
+	}
+	function Pd(e, t) {
+		var o, i;
+		if (((o = e.language) == null ? void 0 : o.code) === t) return e;
+		const n = (i = e.language) != null && i.code ? rr[e.language.code] : void 0,
+			r = rr[t];
+		return {
+			...e,
+			textNext: Ge(e.textNext, e.tr, t, "@textNext", n, r),
+			textPrev: Ge(e.textPrev, e.tr, t, "@textPrev", n, r),
+			textClose: Ge(e.textClose, e.tr, t, "@textClose", n, r),
+			textHide: Ge(e.textHide, e.tr, t, "@textHide", n, r),
+			textMinimized: Ge(e.textMinimized, e.tr, t, "@textMinimized", n, r),
+			textReplyLater: Ge(e.textReplyLater, e.tr, t, "@textReplyLater", n, r),
+		};
+	}
+	function Le(e, t) {
+		const n = e.tr;
+		return {
+			...e,
+			name: F(e.name, n, t, "@name"),
+			body: F(e.body, n, t, "@body"),
+			bodyHtml: F(e.bodyHtml, n, t, "@bodyHtml"),
+			bodyJson: F(e.bodyJson, n, t, "@bodyJson"),
+			textNext: F(e.textNext, n, t, "@textNext"),
+			textPrev: F(e.textPrev, n, t, "@textPrev"),
+			textClose: F(e.textClose, n, t, "@textClose"),
+			textHide: F(e.textHide, n, t, "@textHide"),
+			textMinimized: F(e.textMinimized, n, t, "@textMinimized"),
+			textReplyLater: F(e.textReplyLater, n, t, "@textReplyLater"),
+		};
+	}
+	function Ad(e, t) {
+		const n = Le(e, t),
+			r = e.tr;
+		return {
+			...n,
+			label: F(e.label, r, t, "@label"),
+			placeholder: F(e.placeholder, r, t, "@placeholder"),
+		};
+	}
+	function Od(e, t) {
+		const n = Le(e, t),
+			r = e.tr;
+		return {
+			...n,
+			positive: F(e.positive, r, t, "@positive"),
+			negative: F(e.negative, r, t, "@negative"),
+		};
+	}
+	function Ld(e, t) {
+		const n = Le(e, t),
+			r = e.tr;
+		return {
+			...n,
+			positive: F(e.positive, r, t, "@positive"),
+			negative: F(e.negative, r, t, "@negative"),
+		};
+	}
+	function Nd(e, t) {
+		const n = Le(e, t),
+			r = e.tr;
+		return {
+			...n,
+			email_label: F(e.email_label, r, t, "@email_label"),
+			email_placeholder: F(e.email_placeholder, r, t, "@email_placeholder"),
+			phone_label: F(e.phone_label, r, t, "@phone_label"),
+			phone_placeholder: F(e.phone_placeholder, r, t, "@phone_placeholder"),
+			nameLabel: F(e.nameLabel, r, t, "@nameLabel"),
+			namePlaceholder: F(e.namePlaceholder, r, t, "@namePlaceholder"),
+			consentTermsUrl: F(e.consentTermsUrl, r, t, "@consentTermsUrl"),
+			consentTermsTitle: F(e.consentTermsTitle, r, t, "@consentTermsTitle"),
+			consentTermsText: F(e.consentTermsText, r, t, "@consentTermsText"),
+			consentTermsLabel: F(e.consentTermsLabel, r, t, "@consentTermsLabel"),
+		};
+	}
+	function jd(e, t) {
+		return {
+			...Le(e, t),
+			selectItems: e.selectItems.map((r) => ({
+				...r,
+				label: F(r.label, r.tr, t, "@label"),
+			})),
+		};
+	}
+	function Bd(e, t) {
+		return {
+			...Le(e, t),
+			selectItems: e.selectItems.map((r) => ({
+				...r,
+				label: F(r.label, r.tr, t, "@label"),
+			})),
+		};
+	}
+	function Dd(e, t) {
+		var i;
+		const n = Le(e, t),
+			r =
+				((i = e.LikertCard) == null ? void 0 : i.likertScale) ?? e.likertScale;
+		if (!r) return n;
+		const o = {
+			...r,
+			likertItems: r.likertItems.map((s) => ({
+				...s,
+				label: F(s.label, s.tr, t, "@label"),
+			})),
+		};
+		return {
+			...n,
+			likertScale: o,
+			...(e.LikertCard
+				? { LikertCard: { ...e.LikertCard, likertScale: o } }
+				: {}),
+		};
+	}
+	function Fd(e, t, n) {
+		const r = Le(e, t);
+		return e.taskItems
+			? {
+					...r,
+					taskItems: e.taskItems.map((o) => {
+						const i = o.task,
+							s = Rt(i) ? i.name : "",
+							a = Rt(i) ? F(i.name, i.tr, t, "@name") : s,
+							c = Rt(i) ? { ...i, name: a } : i,
+							l = F(o.label, "tr" in o ? o.tr : void 0, t, "@label");
+						return { ...o, label: l || a || o.label || s, task: c };
+					}),
+				}
+			: r;
+	}
+	function Ud(e, t, n) {
+		return {
+			...Le(e, t),
+			segment: Rt(e.segment)
+				? { ...e.segment, name: F(e.segment.name, e.segment.tr, t, "@name") }
+				: e.segment,
+			items: e.items.map((o) => {
+				const i = o.value,
+					s = Rt(i) ? { ...i, name: F(i.name, i.tr, t, "@name") } : i,
+					a = F(o.label, "tr" in o ? o.tr : void 0, t, "@label"),
+					c = Rt(s) ? s.name : void 0;
+				return { ...o, label: a || c || o.label, value: s };
+			}),
+		};
+	}
+	function ra(e, t, n) {
+		switch (e.type) {
+			case "InputCard":
+				return Ad(e, t);
+			case "RecruitmentCard":
+				return Nd(e, t);
+			case "CompletionCard":
+				return Od(e, t);
+			case "FindabilityCard":
+				return Ld(e, t);
+			case "SingleSelectCard":
+				return jd(e, t);
+			case "MultiSelectCard":
+				return Bd(e, t);
+			case "LikertCard":
+				return Dd(e, t);
+			case "TopTaskCard":
+				return Fd(e, t);
+			case "SegmentCard":
+				return Ud(e, t);
+			default:
+				return Le(e, t);
+		}
+	}
+	function Hd(e, t, n) {
+		var s, a, c;
+		const r = Pd(e, t),
+			o = (s = e.language) != null && s.code ? rr[e.language.code] : void 0,
+			i = rr[t];
+		return {
+			...r,
+			cards:
+				((a = r.cards) == null ? void 0 : a.map((l) => ra(l, t))) ?? r.cards,
+			pages:
+				(c = r.pages) == null
+					? void 0
+					: c.map((l) => {
+							var d;
+							return {
+								...l,
+								title: F(l.title, l.tr, t, "@title"),
+								textNext: Ge(l.textNext, l.tr, t, "@textNext", o, i),
+								textPrev: Ge(l.textPrev, l.tr, t, "@textPrev", o, i),
+								cards:
+									((d = l.cards) == null ? void 0 : d.map((u) => ra(u, t))) ??
+									l.cards,
+							};
+						}),
+		};
+	}
+	function oa(e) {
+		const { selectedValues: t, value: n, max: r } = e;
+		return t.includes(n)
+			? { values: t.filter((o) => o !== n), changed: !0, limitReached: !1 }
+			: r && t.length >= r
+				? { values: [...t], changed: !1, limitReached: !0 }
+				: { values: [...t, n], changed: !0, limitReached: !1 };
+	}
+	const Zd = "0123456789ABCDEFGHJKMNPQRSTVWXYZ";
+	function or(e, t) {
+		const r = t
+				.substring(20)
+				.split("")
+				.reduce((a, c) => {
+					const l = Zd.indexOf(c);
+					return a * (l || 1);
+				}, 1),
+			o = e.filter((a) => a.orderLocked !== !0),
+			i = Vd([...o], r),
+			s = [];
+		for (let a = 0; a < e.length; a++)
+			if (e[a].orderLocked) s.push(e[a]);
+			else {
+				const c = i.shift();
+				c && s.push(c);
+			}
+		return s;
+	}
+	function Vd(e, t) {
+		let n = e.length,
+			r,
+			o;
+		for (; n; )
+			(o = Math.floor(Wd(t) * n--)), (r = e[n]), (e[n] = e[o]), (e[o] = r), t++;
+		return e;
+	}
+	function Wd(e) {
+		const t = Math.sin(e++) * 1e4;
+		return t - Math.floor(t);
+	}
+	function qd(e) {
+		if (e.length >= 255) throw new TypeError("Alphabet too long");
+		const t = new Uint8Array(256);
+		for (let l = 0; l < t.length; l++) t[l] = 255;
+		for (let l = 0; l < e.length; l++) {
+			const d = e.charAt(l),
+				u = d.charCodeAt(0);
+			if (t[u] !== 255) throw new TypeError(d + " is ambiguous");
+			t[u] = l;
+		}
+		const n = e.length,
+			r = e.charAt(0),
+			o = Math.log(n) / Math.log(256),
+			i = Math.log(256) / Math.log(n);
+		function s(l) {
+			if (
+				(l instanceof Uint8Array ||
+					(ArrayBuffer.isView(l)
+						? (l = new Uint8Array(l.buffer, l.byteOffset, l.byteLength))
+						: Array.isArray(l) && (l = Uint8Array.from(l))),
+				!(l instanceof Uint8Array))
+			)
+				throw new TypeError("Expected Uint8Array");
+			if (l.length === 0) return "";
+			let d = 0,
+				u = 0,
+				f = 0;
+			const p = l.length;
+			for (; f !== p && l[f] === 0; ) f++, d++;
+			const m = ((p - f) * i + 1) >>> 0,
+				g = new Uint8Array(m);
+			for (; f !== p; ) {
+				let _ = l[f],
+					k = 0;
+				for (let x = m - 1; (_ !== 0 || k < u) && x !== -1; x--, k++)
+					(_ += (256 * g[x]) >>> 0),
+						(g[x] = (_ % n) >>> 0),
+						(_ = (_ / n) >>> 0);
+				if (_ !== 0) throw new Error("Non-zero carry");
+				(u = k), f++;
+			}
+			let b = m - u;
+			for (; b !== m && g[b] === 0; ) b++;
+			let v = r.repeat(d);
+			for (; b < m; ++b) v += e.charAt(g[b]);
+			return v;
+		}
+		function a(l) {
+			if (typeof l != "string") throw new TypeError("Expected String");
+			if (l.length === 0) return new Uint8Array();
+			let d = 0,
+				u = 0,
+				f = 0;
+			for (; l[d] === r; ) u++, d++;
+			const p = ((l.length - d) * o + 1) >>> 0,
+				m = new Uint8Array(p);
+			for (; d < l.length; ) {
+				const _ = l.charCodeAt(d);
+				if (_ > 255) return;
+				let k = t[_];
+				if (k === 255) return;
+				let x = 0;
+				for (let A = p - 1; (k !== 0 || x < f) && A !== -1; A--, x++)
+					(k += (n * m[A]) >>> 0),
+						(m[A] = (k % 256) >>> 0),
+						(k = (k / 256) >>> 0);
+				if (k !== 0) throw new Error("Non-zero carry");
+				(f = x), d++;
+			}
+			let g = p - f;
+			for (; g !== p && m[g] === 0; ) g++;
+			const b = new Uint8Array(u + (p - g));
+			let v = u;
+			for (; g !== p; ) b[v++] = m[g++];
+			return b;
+		}
+		function c(l) {
+			const d = a(l);
+			if (d) return d;
+			throw new Error("Non-base" + n + " character");
+		}
+		return { encode: s, decodeUnsafe: a, decode: c };
+	}
+	const Kd = qd(
+		"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+	);
+	function X(e) {
+		const t = e.replace(/-/g, "").match(/.{2}/g);
+		if (!t) return e;
+		const n = t.map((o) => Number.parseInt(o, 16)),
+			r = new Uint8Array(n);
+		return Kd.encode(r);
+	}
+	function ia(e, t) {
+		const n = t.length === 36 ? X(t) : t;
+		return (e.length === 36 ? X(e) : e) === n;
+	}
+	function Jd(e, t) {
+		return e === t;
+	}
+	function be(e, t, n = Jd) {
+		const r = Y(t),
+			o = Y(n);
+		(r.current = t), (o.current = n);
+		const [i, s] = ue(() => (e ? t(e.getSnapshot()) : void 0));
+		return (
+			re(() => {
+				if (!e) return;
+				const a = () => {
+					const l = r.current(e.getSnapshot());
+					s((d) => (o.current(d, l) ? d : l));
+				};
+				a();
+				const { unsubscribe: c } = e.subscribe(a);
+				return c;
+			}, [e]),
+			i
+		);
+	}
+	var Gd = 0;
+	function y(e, t, n, r, o, i) {
+		t || (t = {});
+		var s,
+			a,
+			c = t;
+		if ("ref" in c)
+			for (a in ((c = {}), t)) a == "ref" ? (s = t[a]) : (c[a] = t[a]);
+		var l = {
+			type: e,
+			props: c,
+			key: n,
+			ref: s,
+			__k: null,
+			__: null,
+			__b: 0,
+			__e: null,
+			__c: null,
+			constructor: void 0,
+			__v: --Gd,
+			__i: -1,
+			__u: 0,
+			__source: o,
+			__self: i,
+		};
+		if (typeof e == "function" && (s = e.defaultProps))
+			for (a in s) c[a] === void 0 && (c[a] = s[a]);
+		return H.vnode && H.vnode(l), l;
+	}
+	const pn = rd(void 0),
+		Yd = ({ survey: e, state: t, children: n, api: r, captureMachine: o }) => {
+			const i = Oe(!0);
+			Bs(() => {
+				if (i.value === !1) {
+					const c = setTimeout(() => {
+						i.value = !0;
+					}, 500);
+					return () => clearTimeout(c);
+				}
+			});
+			const s = be(o, (c) => c.context.language),
+				a = kt(() => Hd(e, s), [e, s]);
+			return y(pn.Provider, {
+				value: {
+					api: r,
+					survey: a,
+					state: t,
+					captureMachine: o,
+					cardValidState: i,
+				},
+				children: n,
+			});
+		};
+	function ir() {
+		const e = Wn(pn);
+		if (!e) throw new Error("useSurvey must be used within a SkyraProvider");
+		return e.survey;
+	}
+	function Xd() {
+		const e = Wn(pn);
+		if (!e)
+			throw new Error("useSessionState must be used within a SkyraProvider");
+		return e.state;
+	}
+	function wo() {
+		const e = Wn(pn);
+		if (!e)
+			throw new Error("useCaptureMachine must be used within a SkyraProvider");
+		return e.captureMachine;
+	}
+	function Ye() {
+		const e = Wn(pn);
+		if (!e)
+			throw new Error("useCardValidState must be used within a SkyraProvider");
+		return e.cardValidState;
+	}
+	function Mt() {
+		const e = wo();
+		return be(e, (n) => n.context.language);
+	}
+	function Qd(e) {
+		return {
+			all: (e = e || new Map()),
+			on: function (t, n) {
+				var r = e.get(t);
+				r ? r.push(n) : e.set(t, [n]);
+			},
+			off: function (t, n) {
+				var r = e.get(t);
+				r && (n ? r.splice(r.indexOf(n) >>> 0, 1) : e.set(t, []));
+			},
+			emit: function (t, n) {
+				var r = e.get(t);
+				r &&
+					r.slice().map(function (o) {
+						o(n);
+					}),
+					(r = e.get("*")) &&
+						r.slice().map(function (o) {
+							o(t, n);
+						});
+			},
+		};
+	}
+	function sa(e) {
+		const t = Object.values(e).filter((r) => typeof r == "number");
+		return Object.entries(e)
+			.filter(([r, o]) => t.indexOf(+r) === -1)
+			.map(([r, o]) => o);
+	}
+	function aa(e, t = "|") {
+		return e.map((n) => da(n)).join(t);
+	}
+	function _o(e, t) {
+		return typeof t == "bigint" ? t.toString() : t;
+	}
+	function sr(e) {
+		return {
+			get value() {
+				{
+					const t = e();
+					return Object.defineProperty(this, "value", { value: t }), t;
+				}
+			},
+		};
+	}
+	function ef(e) {
+		return e == null;
+	}
+	function So(e) {
+		const t = e.startsWith("^") ? 1 : 0,
+			n = e.endsWith("$") ? e.length - 1 : e.length;
+		return e.slice(t, n);
+	}
+	function tf(e, t) {
+		const n = e / t,
+			r = Math.round(n),
+			o = 4 * Number.EPSILON * Math.max(Math.abs(n), 1);
+		return Math.abs(n - r) < o ? 0 : n - r;
+	}
+	const la = Symbol("evaluating");
+	function nf(e, t, n) {
+		let r;
+		Object.defineProperty(e, t, {
+			get() {
+				if (r !== la) return r === void 0 && ((r = la), (r = n())), r;
+			},
+			set(o) {
+				Object.defineProperty(e, t, { value: o });
+			},
+			configurable: !0,
+		});
+	}
+	function de(e, t, n) {
+		Object.defineProperty(e, t, {
+			value: n,
+			writable: !0,
+			enumerable: !0,
+			configurable: !0,
+		});
+	}
+	function Xe(...e) {
+		const t = {};
+		for (const n of e) {
+			const r = Object.getOwnPropertyDescriptors(n);
+			Object.assign(t, r);
+		}
+		return Object.defineProperties({}, t);
+	}
+	function rf(e) {
+		return JSON.stringify(e);
+	}
+	function of(e) {
+		return e
+			.toLowerCase()
+			.trim()
+			.replace(/[^\w\s-]/g, "")
+			.replace(/[\s_-]+/g, "-")
+			.replace(/^-+|-+$/g, "");
+	}
+	const ca =
+		"captureStackTrace" in Error ? Error.captureStackTrace : (...e) => {};
+	function hn(e) {
+		return typeof e == "object" && e !== null && !Array.isArray(e);
+	}
+	const sf = sr(() => {
+		var e;
+		if (
+			we.jitless ||
+			(typeof navigator < "u" &&
+				(e = navigator == null ? void 0 : navigator.userAgent) != null &&
+				e.includes("Cloudflare"))
+		)
+			return !1;
+		try {
+			const t = Function;
+			return new t(""), !0;
+		} catch {
+			return !1;
+		}
+	});
+	function Pt(e) {
+		if (hn(e) === !1) return !1;
+		const t = e.constructor;
+		if (t === void 0 || typeof t != "function") return !0;
+		const n = t.prototype;
+		return !(
+			hn(n) === !1 ||
+			Object.prototype.hasOwnProperty.call(n, "isPrototypeOf") === !1
+		);
+	}
+	function ua(e) {
+		return Pt(e)
+			? { ...e }
+			: Array.isArray(e)
+				? [...e]
+				: e instanceof Map
+					? new Map(e)
+					: e instanceof Set
+						? new Set(e)
+						: e;
+	}
+	const af = new Set(["string", "number", "symbol"]);
+	function At(e) {
+		return e.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+	}
+	function Qe(e, t, n) {
+		const r = new e._zod.constr(t ?? e._zod.def);
+		return (!t || (n != null && n.parent)) && (r._zod.parent = e), r;
+	}
+	function E(e) {
+		const t = e;
+		if (!t) return {};
+		if (typeof t == "string") return { error: () => t };
+		if ((t == null ? void 0 : t.message) !== void 0) {
+			if ((t == null ? void 0 : t.error) !== void 0)
+				throw new Error("Cannot specify both `message` and `error` params");
+			t.error = t.message;
+		}
+		return (
+			delete t.message,
+			typeof t.error == "string" ? { ...t, error: () => t.error } : t
+		);
+	}
+	function da(e) {
+		return typeof e == "bigint"
+			? e.toString() + "n"
+			: typeof e == "string"
+				? `"${e}"`
+				: `${e}`;
+	}
+	function lf(e) {
+		return Object.keys(e).filter(
+			(t) => e[t]._zod.optin !== void 0 && e[t]._zod.optout === "optional",
+		);
+	}
+	const cf = {
+		safeint: [Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER],
+		int32: [-2147483648, 2147483647],
+		uint32: [0, 4294967295],
+		float32: [-34028234663852886e22, 34028234663852886e22],
+		float64: [-Number.MAX_VALUE, Number.MAX_VALUE],
+	};
+	function uf(e, t) {
+		const n = e._zod.def,
+			r = n.checks;
+		if (r && r.length > 0)
+			throw new Error(
+				".pick() cannot be used on object schemas containing refinements",
+			);
+		const i = Xe(e._zod.def, {
+			get shape() {
+				const s = {};
+				for (const a of Reflect.ownKeys(t)) {
+					if (!Object.prototype.hasOwnProperty.call(n.shape, a))
+						throw new Error(`Unrecognized key: "${String(a)}"`);
+					t[a] && de(s, a, n.shape[a]);
+				}
+				return de(this, "shape", s), s;
+			},
+			checks: [],
+		});
+		return Qe(e, i);
+	}
+	function df(e, t) {
+		const n = e._zod.def,
+			r = n.checks;
+		if (r && r.length > 0)
+			throw new Error(
+				".omit() cannot be used on object schemas containing refinements",
+			);
+		const i = Xe(e._zod.def, {
+			get shape() {
+				const s = { ...e._zod.def.shape };
+				for (const a of Reflect.ownKeys(t)) {
+					if (!Object.prototype.hasOwnProperty.call(n.shape, a))
+						throw new Error(`Unrecognized key: "${String(a)}"`);
+					t[a] && delete s[a];
+				}
+				return de(this, "shape", s), s;
+			},
+			checks: [],
+		});
+		return Qe(e, i);
+	}
+	function ff(e, t) {
+		if (!Pt(t))
+			throw new Error("Invalid input to extend: expected a plain object");
+		const n = e._zod.def.checks;
+		if (n && n.length > 0) {
+			const i = e._zod.def.shape;
+			for (const s of Reflect.ownKeys(t))
+				if (Object.getOwnPropertyDescriptor(i, s) !== void 0)
+					throw new Error(
+						"Cannot overwrite keys on object schemas containing refinements. Use `.safeExtend()` instead.",
+					);
+		}
+		const o = Xe(e._zod.def, {
+			get shape() {
+				const i = { ...e._zod.def.shape, ...t };
+				return de(this, "shape", i), i;
+			},
+		});
+		return Qe(e, o);
+	}
+	function pf(e, t) {
+		if (!Pt(t))
+			throw new Error("Invalid input to safeExtend: expected a plain object");
+		const n = Xe(e._zod.def, {
+			get shape() {
+				const r = { ...e._zod.def.shape, ...t };
+				return de(this, "shape", r), r;
+			},
+		});
+		return Qe(e, n);
+	}
+	function hf(e, t) {
+		var r, o;
+		if (!((r = t == null ? void 0 : t._zod) != null && r.def))
+			throw new Error(
+				"Invalid input to merge: expected an object schema. To merge a plain shape, use `.extend()`.",
+			);
+		if ((o = e._zod.def.checks) != null && o.length)
+			throw new Error(
+				".merge() cannot be used on object schemas containing refinements. Use .safeExtend() instead.",
+			);
+		const n = Xe(e._zod.def, {
+			get shape() {
+				const i = { ...e._zod.def.shape, ...t._zod.def.shape };
+				return de(this, "shape", i), i;
+			},
+			get catchall() {
+				return t._zod.def.catchall;
+			},
+			checks: t._zod.def.checks ?? [],
+		});
+		return Qe(e, n);
+	}
+	function fa(e, t, n, r = "partial") {
+		const i = t._zod.def.checks;
+		if (i && i.length > 0)
+			throw new Error(
+				`.${r}() cannot be used on object schemas containing refinements`,
+			);
+		const a = Xe(t._zod.def, {
+			get shape() {
+				const c = t._zod.def.shape,
+					l = { ...c };
+				if (n)
+					for (const d of Reflect.ownKeys(n)) {
+						if (!Object.prototype.hasOwnProperty.call(c, d))
+							throw new Error(`Unrecognized key: "${String(d)}"`);
+						n[d] &&
+							(l[d] = e ? new e({ type: "optional", innerType: c[d] }) : c[d]);
+					}
+				else
+					for (const d of Reflect.ownKeys(c))
+						l[d] = e ? new e({ type: "optional", innerType: c[d] }) : c[d];
+				return de(this, "shape", l), l;
+			},
+			checks: [],
+		});
+		return Qe(t, a);
+	}
+	function mf(e, t, n) {
+		const r = Xe(t._zod.def, {
+			get shape() {
+				const o = t._zod.def.shape,
+					i = { ...o };
+				if (n)
+					for (const s of Reflect.ownKeys(n)) {
+						if (!Object.prototype.hasOwnProperty.call(i, s))
+							throw new Error(`Unrecognized key: "${String(s)}"`);
+						n[s] && (i[s] = new e({ type: "nonoptional", innerType: o[s] }));
+					}
+				else
+					for (const s of Reflect.ownKeys(o))
+						i[s] = new e({ type: "nonoptional", innerType: o[s] });
+				return de(this, "shape", i), i;
+			},
+		});
+		return Qe(t, r);
+	}
+	function Ot(e, t = 0) {
+		var n;
+		if (e.aborted === !0) return !0;
+		for (let r = t; r < e.issues.length; r++)
+			if (((n = e.issues[r]) == null ? void 0 : n.continue) !== !0) return !0;
+		return !1;
+	}
+	function gf(e, t = 0) {
+		var n;
+		if (e.aborted === !0) return !0;
+		for (let r = t; r < e.issues.length; r++)
+			if (((n = e.issues[r]) == null ? void 0 : n.continue) === !1) return !0;
+		return !1;
+	}
+	function et(e, t) {
+		return t.map((n) => {
+			var r;
+			return (r = n).path ?? (r.path = []), n.path.unshift(e), n;
+		});
+	}
+	function mn(e) {
+		return typeof e == "string" ? e : e == null ? void 0 : e.message;
+	}
+	function pa(e, t, n) {
+		var r;
+		for (let o = t; o < e.length; o++) (r = e[o]).schema ?? (r.schema = n);
+	}
+	function tt(e, t, n) {
+		var f, p, m, g, b, v, _, k, x, A;
+		var r;
+		const o =
+			(p = (f = e.inst) == null ? void 0 : f._zod) == null ? void 0 : p.traits;
+		o != null &&
+			o.has("$ZodType") &&
+			(o.has("$ZodCheck")
+				? ((r = e).schema ?? (r.schema = e.inst))
+				: (e.schema = e.inst));
+		const i =
+				e.schema !== e.inst
+					? (g = (m = e.schema) == null ? void 0 : m._zod.def) == null
+						? void 0
+						: g.error
+					: void 0,
+			s = e.message
+				? e.message
+				: (mn(
+						(_ =
+							(v = (b = e.inst) == null ? void 0 : b._zod.def) == null
+								? void 0
+								: v.error) == null
+							? void 0
+							: _.call(v, e),
+					) ??
+					mn(i == null ? void 0 : i(e)) ??
+					mn(
+						(k = t == null ? void 0 : t.error) == null ? void 0 : k.call(t, e),
+					) ??
+					mn((x = n.customError) == null ? void 0 : x.call(n, e)) ??
+					mn((A = n.localeError) == null ? void 0 : A.call(n, e)) ??
+					"Invalid input"),
+			{ inst: a, schema: c, continue: l, input: d, ...u } = e;
+		return (
+			u.path ?? (u.path = []),
+			(u.message = s),
+			t != null && t.reportInput && (u.input = d),
+			u
+		);
+	}
+	const yf = /[\uD800-\uDBFF]/;
+	function ko(e) {
+		const t = e.length;
+		if (!yf.test(e)) return t;
+		let n = t;
+		for (let r = 0; r < t - 1; r++)
+			(e.charCodeAt(r) & 64512) === 55296 &&
+				(e.charCodeAt(r + 1) & 64512) === 56320 &&
+				(n--, r++);
+		return n;
+	}
+	function xo(e) {
+		return Array.isArray(e)
+			? "array"
+			: typeof e == "string"
+				? "string"
+				: "unknown";
+	}
+	function vf(e) {
+		const t = typeof e;
+		switch (t) {
+			case "number":
+				return Number.isNaN(e) ? "nan" : "number";
+			case "object": {
+				if (e === null) return "null";
+				if (Array.isArray(e)) return "array";
+				const n = e;
+				if (
+					n &&
+					Object.getPrototypeOf(n) !== Object.prototype &&
+					"constructor" in n &&
+					n.constructor
+				)
+					return n.constructor.name;
+			}
+		}
+		return t;
+	}
+	function gn(...e) {
+		const [t, n, r] = e;
+		return typeof t == "string"
+			? { message: t, code: "custom", input: n, inst: r }
+			: { ...t };
+	}
+	function bf(e, t) {
+		for (const n in t) {
+			const r = Object.getOwnPropertyDescriptor(t, n);
+			r.get
+				? Object.defineProperty(e, n, { ...r, enumerable: !1 })
+				: wf(e, n, r.value);
+		}
+	}
+	function Lt(e, t, n, r = !0) {
+		return (
+			Object.defineProperty(e, t, {
+				configurable: !0,
+				writable: !0,
+				enumerable: r,
+				value: n,
+			}),
+			n
+		);
+	}
+	function ha(e, t, n) {
+		return Lt(e, t, n, !1);
+	}
+	function wf(e, t, n) {
+		Object.defineProperty(e, t, {
+			configurable: !0,
+			get() {
+				return this == null ? n : Lt(this, t, n.bind(this));
+			},
+			set(r) {
+				Lt(this, t, r);
+			},
+		});
+	}
+	function _f(e, t) {
+		const n = Object.getPrototypeOf(e);
+		return t in n ? void 0 : n;
+	}
+	let Co,
+		nt = !1;
+	const Sf = {
+		configurable: !0,
+		get() {
+			nt = !0;
+		},
+	};
+	function D(e, t, n) {
+		const r = Object.getPrototypeOf(e._zod);
+		if (t in r && Co !== e._zod) {
+			Co = void 0;
+			return;
+		}
+		(Co = e._zod),
+			Object.defineProperty(r, t, {
+				configurable: !0,
+				get() {
+					Object.defineProperty(this, t, Sf);
+					const o = nt;
+					nt = !1;
+					try {
+						const i = n(this);
+						return (
+							nt
+								? delete this[t]
+								: Object.defineProperty(this, t, {
+										configurable: !0,
+										writable: !0,
+										value: i,
+									}),
+							(nt = nt || o),
+							i
+						);
+					} catch (i) {
+						throw (delete this[t], (nt = nt || o), i);
+					}
+				},
+				set(o) {
+					Object.defineProperty(this, t, {
+						configurable: !0,
+						writable: !0,
+						value: o,
+					});
+				},
+			});
+	}
+	function kf(e, t, n, r) {
+		const o = _f(e, t);
+		o &&
+			Object.defineProperty(o, t, {
+				configurable: !0,
+				get() {
+					const i = {
+						configurable: !0,
+						writable: !0,
+						enumerable: r,
+						value: void 0,
+					};
+					return (
+						Object.defineProperty(this, t, i),
+						(i.value = n(this)),
+						Object.defineProperty(this, t, i),
+						i.value
+					);
+				},
+				set(i) {
+					Object.defineProperty(this, t, {
+						configurable: !0,
+						writable: !0,
+						enumerable: r,
+						value: i,
+					});
+				},
+			});
+	}
+	const xf = "~constantCatch";
+	function Cf(e) {
+		const t = () => e;
+		return (t[xf] = !0), t;
+	}
+	var ma;
+	const ga = Object.freeze({ status: "aborted" }),
+		zo = { value: void 0, enumerable: !1 };
+	let ya = "captureStackTrace" in Error ? Error : null;
+	function zf(e) {
+		const t = ya;
+		if (t) {
+			const n = t.stackTraceLimit;
+			if (typeof n == "number") {
+				try {
+					t.stackTraceLimit = 0;
+				} catch {
+					return (ya = null), new e();
+				}
+				try {
+					return new e();
+				} finally {
+					t.stackTraceLimit = n;
+				}
+			}
+		}
+		return new e();
+	}
+	function w(e, t, n, r) {
+		const o = {};
+		function i(f) {
+			(this.def = f), (this.constr = u), (this.traits = new Set());
+		}
+		i.prototype = o;
+		const s = n,
+			a = s && new WeakSet();
+		function c(f, p) {
+			if (!f._zod) {
+				zo.value = new i(p);
+				try {
+					Object.defineProperty(f, "_zod", zo);
+				} finally {
+					zo.value = void 0;
+				}
+			}
+			if (f._zod.traits.has(e)) return;
+			if ((f._zod.traits.add(e), t(f, p), a)) {
+				const g = Object.getPrototypeOf(f),
+					b = f._zod.constr.prototype;
+				let v = g;
+				for (; v && v !== b; ) v = Object.getPrototypeOf(v);
+				const _ = v ?? g;
+				a.has(_) || (a.add(_), bf(_, s));
+			}
+			const m = u.prototype;
+			for (const g in m)
+				Object.prototype.hasOwnProperty.call(m, g) &&
+					(g in f || (f[g] = m[g].bind(f)));
+		}
+		const l = (r == null ? void 0 : r.Parent) ?? Object;
+		class d extends l {}
+		Object.defineProperty(d, "name", { value: e });
+		function u(f) {
+			var b;
+			const p = r != null && r.Parent ? zf(d) : this;
+			c(p, f);
+			const m = p._zod.deferred;
+			if (m) {
+				for (const v of m) v();
+				p._zod.deferred = void 0;
+			}
+			const g =
+				(b = globalThis.__zod_globalConfig) == null ? void 0 : b.postProcessor;
+			return g && g(p), p;
+		}
+		return (
+			Object.defineProperty(u, "init", { value: c }),
+			Object.defineProperty(u, Symbol.hasInstance, {
+				value: (f) => {
+					var p, m;
+					return r != null && r.Parent && f instanceof r.Parent
+						? !0
+						: (m =
+									(p = f == null ? void 0 : f._zod) == null
+										? void 0
+										: p.traits) == null
+							? void 0
+							: m.has(e);
+				},
+			}),
+			Object.defineProperty(u, "name", { value: e }),
+			u
+		);
+	}
+	class Nt extends Error {
+		constructor() {
+			super(
+				"Encountered Promise during synchronous parse. Use .parseAsync() instead.",
+			);
+		}
+	}
+	class va extends Error {
+		constructor(t) {
+			super(`Encountered unidirectional transform during encode: ${t}`),
+				(this.name = "ZodEncodeError");
+		}
+	}
+	(ma = globalThis).__zod_globalConfig ?? (ma.__zod_globalConfig = {});
+	const we = globalThis.__zod_globalConfig;
+	function Ne(e) {
+		return e && Object.assign(we, e), we;
+	}
+	function Tf() {
+		const e = this._zod;
+		return e.message ?? (e.message = JSON.stringify(e.def, _o, 2)), e.message;
+	}
+	function If(e) {
+		this._zod.message = e;
+	}
+	const $f = { get: Tf, set: If, enumerable: !0, configurable: !0 },
+		To = { value: void 0, enumerable: !1 },
+		Io = { value: void 0, enumerable: !1 },
+		ba = new WeakSet([Object.prototype, Error.prototype]),
+		wa = (e, t) => {
+			(e.name = "$ZodError"),
+				(To.value = e._zod),
+				Object.defineProperty(e, "_zod", To),
+				(Io.value = t),
+				Object.defineProperty(e, "issues", Io),
+				(To.value = void 0),
+				(Io.value = void 0),
+				Object.defineProperty(e, "message", $f);
+			const n = Object.getPrototypeOf(e);
+			ba.has(n) ||
+				(ba.add(n),
+				Object.defineProperty(n, "toString", {
+					configurable: !0,
+					enumerable: !1,
+					get() {
+						const r = () => this.message;
+						return (
+							Object.defineProperty(this, "toString", {
+								value: r,
+								configurable: !0,
+								writable: !0,
+							}),
+							r
+						);
+					},
+					set(r) {
+						Object.defineProperty(this, "toString", {
+							value: r,
+							configurable: !0,
+							writable: !0,
+						});
+					},
+				}));
+		},
+		_a = w("$ZodError", wa),
+		Sa = w("$ZodError", wa, void 0, { Parent: Error });
+	function Ef(e, t, n) {
+		return (
+			Object.prototype.hasOwnProperty.call(e, t) ||
+				(t === "__proto__"
+					? Object.defineProperty(e, t, {
+							value: n(),
+							writable: !0,
+							enumerable: !0,
+							configurable: !0,
+						})
+					: (e[t] = n())),
+			e[t]
+		);
+	}
+	function Rf(e, t = (n) => n.message) {
+		const n = {},
+			r = [];
+		for (const o of e.issues)
+			o.path.length > 0 ? Ef(n, o.path[0], () => []).push(t(o)) : r.push(t(o));
+		return { formErrors: r, fieldErrors: n };
+	}
+	function Mf(e, t = (n) => n.message) {
+		const n = { _errors: [] },
+			r = (o, i = []) => {
+				for (const s of o.issues)
+					if (s.code === "invalid_union" && s.errors.length)
+						s.errors.map((a) => r({ issues: a }, [...i, ...s.path]));
+					else if (s.code === "invalid_key")
+						r({ issues: s.issues }, [...i, ...s.path]);
+					else if (s.code === "invalid_element")
+						r({ issues: s.issues }, [...i, ...s.path]);
+					else {
+						const a = [...i, ...s.path];
+						if (a.length === 0) n._errors.push(t(s));
+						else {
+							let c = n,
+								l = 0;
+							for (; l < a.length; ) {
+								const d = a[l],
+									u = l === a.length - 1;
+								if (d === "_errors") {
+									u && c._errors.push(t(s)), l++;
+									continue;
+								}
+								Object.prototype.hasOwnProperty.call(c, d) ||
+									Object.defineProperty(c, d, {
+										value: { _errors: [] },
+										enumerable: !0,
+										writable: !0,
+										configurable: !0,
+									});
+								const f = c[d];
+								u && f._errors.push(t(s)), (c = f), l++;
+							}
+						}
+					}
+			};
+		return r(e), n;
+	}
+	function ar(e, t) {
+		return {
+			callee: (t == null ? void 0 : t.callee) ?? e,
+			Err: t == null ? void 0 : t.Err,
+		};
+	}
+	const $o = (e) => {
+			const t = (n, r, o, i) => {
+				const s = o ? { ...o, async: !1 } : { async: !1 },
+					a = n._zod.run({ value: r, issues: [] }, s);
+				if (a instanceof Promise) throw new Nt();
+				if (a.issues.length) {
+					const c = new ((i == null ? void 0 : i.Err) ?? e)(
+						a.issues.map((l) => tt(l, s, Ne())),
+					);
+					throw (ca(c, (i == null ? void 0 : i.callee) ?? t), c);
+				}
+				return a.value;
+			};
+			return t;
+		},
+		Eo = (e) => {
+			const t = async (n, r, o, i) => {
+				const s = o ? { ...o, async: !0 } : { async: !0 };
+				let a = n._zod.run({ value: r, issues: [] }, s);
+				if ((a instanceof Promise && (a = await a), a.issues.length)) {
+					const c = new ((i == null ? void 0 : i.Err) ?? e)(
+						a.issues.map((l) => tt(l, s, Ne())),
+					);
+					throw (ca(c, (i == null ? void 0 : i.callee) ?? t), c);
+				}
+				return a.value;
+			};
+			return t;
+		},
+		lr = (e) => (t, n, r) => {
+			const o = r ? { ...r, async: !1 } : { async: !1 },
+				i = t._zod.run({ value: n, issues: [] }, o);
+			if (i instanceof Promise) throw new Nt();
+			return i.issues.length
+				? {
+						success: !1,
+						error: new (e ?? _a)(i.issues.map((s) => tt(s, o, Ne()))),
+					}
+				: { success: !0, data: i.value };
+		},
+		Pf = lr(Sa),
+		cr = (e) => async (t, n, r) => {
+			const o = r ? { ...r, async: !0 } : { async: !0 };
+			let i = t._zod.run({ value: n, issues: [] }, o);
+			return (
+				i instanceof Promise && (i = await i),
+				i.issues.length
+					? { success: !1, error: new e(i.issues.map((s) => tt(s, o, Ne()))) }
+					: { success: !0, data: i.value }
+			);
+		},
+		Af = cr(Sa),
+		Of = (e) => {
+			const t = $o(e),
+				n = (r, o, i, s) => {
+					const a = i
+						? { ...i, direction: "backward" }
+						: { direction: "backward" };
+					return t(r, o, a, ar(n, s));
+				};
+			return n;
+		},
+		Lf = (e) => {
+			const t = $o(e),
+				n = (r, o, i, s) => t(r, o, i, ar(n, s));
+			return n;
+		},
+		Nf = (e) => {
+			const t = Eo(e),
+				n = async (r, o, i, s) => {
+					const a = i
+						? { ...i, direction: "backward" }
+						: { direction: "backward" };
+					return await t(r, o, a, ar(n, s));
+				};
+			return n;
+		},
+		jf = (e) => {
+			const t = Eo(e),
+				n = async (r, o, i, s) => await t(r, o, i, ar(n, s));
+			return n;
+		},
+		Bf = (e) => (t, n, r) => {
+			const o = r ? { ...r, direction: "backward" } : { direction: "backward" };
+			return lr(e)(t, n, o);
+		},
+		Df = (e) => (t, n, r) => lr(e)(t, n, r),
+		Ff = (e) => async (t, n, r) => {
+			const o = r ? { ...r, direction: "backward" } : { direction: "backward" };
+			return cr(e)(t, n, o);
+		},
+		Uf = (e) => async (t, n, r) => cr(e)(t, n, r),
+		Hf = /^[cC][0-9a-z]{6,}$/,
+		Zf = /^[0-9a-z]+$/,
+		Vf = /^[0-7][0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{25}$/,
+		Wf = /^[0-9a-vA-V]{20}$/,
+		qf = /^[A-Za-z0-9]{27}$/,
+		Kf = /^[a-zA-Z0-9_-]{21}$/;
+	function Jf(e) {
+		return new RegExp(`^[a-zA-Z0-9_-]{${e}}$`);
+	}
+	const Gf =
+			/^P(?:(\d+W)|(?!.*W)(?=\d|T\d)(\d+Y)?(\d+M)?(\d+D)?(T(?=\d)(\d+H)?(\d+M)?(\d+([.,]\d+)?S)?)?)$/,
+		Yf =
+			/^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})$/,
+		ka = (e) =>
+			e
+				? new RegExp(
+						`^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-${e}[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$`,
+					)
+				: /^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$/,
+		Xf =
+			/^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/,
+		Qf = "^[\\p{Extended_Pictographic}\\p{Emoji_Component}]+$";
+	function ep() {
+		return new RegExp(Qf, "u");
+	}
+	const tp =
+			/^(?:(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])$/,
+		np =
+			/^(([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:))$/,
+		rp =
+			/^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\/([0-9]|[1-2][0-9]|3[0-2])$/,
+		op =
+			/^(([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:))\/(12[0-8]|1[01][0-9]|[1-9]?[0-9])$/,
+		ip =
+			/^$|^(?:[0-9a-zA-Z+/]{4})*(?:(?:[0-9a-zA-Z+/]{2}==)|(?:[0-9a-zA-Z+/]{3}=))?$/,
+		xa = /^[A-Za-z0-9_-]*$/,
+		sp = /^https?$/,
+		ap = /^\+[1-9]\d{6,14}$/,
+		Ca =
+			"(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))";
+	function lp(e) {
+		return new RegExp(`^${e}$`);
+	}
+	const cp = lp(Ca);
+	function Ro(e) {
+		const t = "(?:[01]\\d|2[0-3]):[0-5]\\d";
+		return typeof e.precision == "number"
+			? e.precision === -1
+				? `${t}`
+				: e.precision === 0
+					? `${t}:[0-5]\\d`
+					: `${t}:[0-5]\\d\\.\\d{${e.precision}}`
+			: e.seconds
+				? `${t}:[0-5]\\d(?:\\.\\d+)?`
+				: `${t}(?::[0-5]\\d(?:\\.\\d+)?)?`;
+	}
+	function up(e) {
+		return new RegExp(`^${Ro(e)}$`);
+	}
+	function dp(e) {
+		const t = ["Z"];
+		e.offset && t.push("([+-](?:[01]\\d|2[0-3]):[0-5]\\d)");
+		const n = `${Ro({ precision: e.precision, seconds: !0 })}(?:${t.join("|")})`,
+			r = e.local ? `${n}|${Ro({ precision: e.precision })}` : n;
+		return new RegExp(`^${Ca}T(?:${r})$`);
+	}
+	const fp = (e) => {
+			const t = e
+				? `[\\s\\S]{${(e == null ? void 0 : e.minimum) ?? 0},${(e == null ? void 0 : e.maximum) ?? ""}}`
+				: "[\\s\\S]*";
+			return new RegExp(`^${t}$`);
+		},
+		za = /^-?\d+$/,
+		Mo = /^-?\d+(?:\.\d+)?$/,
+		pp = /^(?:true|false)$/i,
+		hp = /^null$/i,
+		mp = /^[^A-Z]*$/,
+		gp = /^[^a-z]*$/,
+		he = w("$ZodCheck", (e, t) => {
+			var n;
+			e._zod ?? (e._zod = {}),
+				(e._zod.def = t),
+				(n = e._zod).onattach ?? (n.onattach = []);
+		}),
+		Po = (e) => {
+			const t = e.value;
+			return !ef(t) && t.length !== void 0;
+		},
+		ur = { number: "number", bigint: "bigint", object: "date" },
+		Ta = w("$ZodCheckLessThan", (e, t) => {
+			he.init(e, t);
+			const n = ur[typeof t.value];
+			e._zod.onattach.push((r) => {
+				const o = r._zod.bag,
+					i =
+						(t.inclusive ? o.maximum : o.exclusiveMaximum) ??
+						Number.POSITIVE_INFINITY;
+				t.value < i &&
+					(t.inclusive
+						? (o.maximum = t.value)
+						: (o.exclusiveMaximum = t.value));
+			}),
+				(e._zod.check = (r) => {
+					(t.inclusive ? r.value <= t.value : r.value < t.value) ||
+						r.issues.push({
+							origin: ur[typeof r.value] ?? n,
+							code: "too_big",
+							maximum: typeof t.value == "object" ? t.value.getTime() : t.value,
+							input: r.value,
+							inclusive: t.inclusive,
+							inst: e,
+							continue: !t.abort,
+						});
+				});
+		}),
+		Ia = w("$ZodCheckGreaterThan", (e, t) => {
+			he.init(e, t);
+			const n = ur[typeof t.value];
+			e._zod.onattach.push((r) => {
+				const o = r._zod.bag,
+					i =
+						(t.inclusive ? o.minimum : o.exclusiveMinimum) ??
+						Number.NEGATIVE_INFINITY;
+				t.value > i &&
+					(t.inclusive
+						? (o.minimum = t.value)
+						: (o.exclusiveMinimum = t.value));
+			}),
+				(e._zod.check = (r) => {
+					(t.inclusive ? r.value >= t.value : r.value > t.value) ||
+						r.issues.push({
+							origin: ur[typeof r.value] ?? n,
+							code: "too_small",
+							minimum: typeof t.value == "object" ? t.value.getTime() : t.value,
+							input: r.value,
+							inclusive: t.inclusive,
+							inst: e,
+							continue: !t.abort,
+						});
+				});
+		}),
+		yp = w("$ZodCheckMultipleOf", (e, t) => {
+			he.init(e, t),
+				e._zod.onattach.push((n) => {
+					var r;
+					(r = n._zod.bag).multipleOf ?? (r.multipleOf = t.value);
+				}),
+				(e._zod.check = (n) => {
+					if (typeof n.value != typeof t.value)
+						throw new Error(
+							"Cannot mix number and bigint in multiple_of check.",
+						);
+					(typeof n.value == "bigint"
+						? t.value !== BigInt(0) && n.value % t.value === BigInt(0)
+						: tf(n.value, t.value) === 0) ||
+						n.issues.push({
+							origin: typeof n.value,
+							code: "not_multiple_of",
+							divisor: t.value,
+							input: n.value,
+							inst: e,
+							continue: !t.abort,
+						});
+				});
+		}),
+		vp = w("$ZodCheckNumberFormat", (e, t) => {
+			var s;
+			he.init(e, t), (t.format = t.format || "float64");
+			const n = (s = t.format) == null ? void 0 : s.includes("int"),
+				r = n ? "int" : "number",
+				[o, i] = cf[t.format];
+			e._zod.onattach.push((a) => {
+				const c = a._zod.bag;
+				(c.format = t.format),
+					(c.minimum = o),
+					(c.maximum = i),
+					n && (c.pattern = za);
+			}),
+				(e._zod.check = (a) => {
+					const c = a.value;
+					if (n) {
+						if (!Number.isInteger(c)) {
+							a.issues.push({
+								expected: r,
+								format: t.format,
+								code: "invalid_type",
+								continue: !1,
+								input: c,
+								inst: e,
+							});
+							return;
+						}
+						if (!Number.isSafeInteger(c)) {
+							c > 0
+								? a.issues.push({
+										input: c,
+										code: "too_big",
+										maximum: Number.MAX_SAFE_INTEGER,
+										note: "Integers must be within the safe integer range.",
+										inst: e,
+										origin: r,
+										inclusive: !0,
+										continue: !t.abort,
+									})
+								: a.issues.push({
+										input: c,
+										code: "too_small",
+										minimum: Number.MIN_SAFE_INTEGER,
+										note: "Integers must be within the safe integer range.",
+										inst: e,
+										origin: r,
+										inclusive: !0,
+										continue: !t.abort,
+									});
+							return;
+						}
+					}
+					c < o &&
+						a.issues.push({
+							origin: "number",
+							input: c,
+							code: "too_small",
+							minimum: o,
+							inclusive: !0,
+							inst: e,
+							continue: !t.abort,
+						}),
+						c > i &&
+							a.issues.push({
+								origin: "number",
+								input: c,
+								code: "too_big",
+								maximum: i,
+								inclusive: !0,
+								inst: e,
+								continue: !t.abort,
+							});
+				});
+		}),
+		bp = w("$ZodCheckMaxLength", (e, t) => {
+			var n;
+			he.init(e, t),
+				(n = e._zod.def).when ?? (n.when = Po),
+				e._zod.onattach.push((r) => {
+					const o = r._zod.bag.maximum ?? Number.POSITIVE_INFINITY;
+					t.maximum < o && (r._zod.bag.maximum = t.maximum);
+				}),
+				(e._zod.check = (r) => {
+					const o = r.value,
+						i = o.length;
+					if ((typeof o == "string" && i > t.maximum ? ko(o) : i) <= t.maximum)
+						return;
+					const a = xo(o);
+					r.issues.push({
+						origin: a,
+						code: "too_big",
+						maximum: t.maximum,
+						inclusive: !0,
+						input: o,
+						inst: e,
+						continue: !t.abort,
+					});
+				});
+		}),
+		wp = w("$ZodCheckMinLength", (e, t) => {
+			var n;
+			he.init(e, t),
+				(n = e._zod.def).when ?? (n.when = Po),
+				e._zod.onattach.push((r) => {
+					const o = r._zod.bag.minimum ?? Number.NEGATIVE_INFINITY;
+					t.minimum > o && (r._zod.bag.minimum = t.minimum);
+				}),
+				(e._zod.check = (r) => {
+					const o = r.value,
+						i = o.length;
+					if (
+						(typeof o == "string" && i >= t.minimum && i < t.minimum * 2
+							? ko(o)
+							: i) >= t.minimum
+					)
+						return;
+					const a = xo(o);
+					r.issues.push({
+						origin: a,
+						code: "too_small",
+						minimum: t.minimum,
+						inclusive: !0,
+						input: o,
+						inst: e,
+						continue: !t.abort,
+					});
+				});
+		}),
+		_p = w("$ZodCheckLengthEquals", (e, t) => {
+			var n;
+			he.init(e, t),
+				(n = e._zod.def).when ?? (n.when = Po),
+				e._zod.onattach.push((r) => {
+					const o = r._zod.bag;
+					(o.minimum = t.length), (o.maximum = t.length), (o.length = t.length);
+				}),
+				(e._zod.check = (r) => {
+					const o = r.value,
+						i = o.length,
+						s =
+							typeof o == "string" && i >= t.length && i <= t.length * 2
+								? ko(o)
+								: i;
+					if (s === t.length) return;
+					const a = xo(o),
+						c = s > t.length;
+					r.issues.push({
+						origin: a,
+						...(c
+							? { code: "too_big", maximum: t.length }
+							: { code: "too_small", minimum: t.length }),
+						inclusive: !0,
+						exact: !0,
+						input: r.value,
+						inst: e,
+						continue: !t.abort,
+					});
+				});
+		}),
+		dr = w("$ZodCheckStringFormat", (e, t) => {
+			var n, r;
+			he.init(e, t),
+				e._zod.onattach.push((o) => {
+					const i = o._zod.bag;
+					(i.format = t.format),
+						t.pattern &&
+							(i.patterns ?? (i.patterns = new Set()),
+							i.patterns.add(t.pattern));
+				}),
+				t.pattern
+					? ((n = e._zod).check ??
+						(n.check = (o) => {
+							(t.pattern.lastIndex = 0),
+								!t.pattern.test(o.value) &&
+									o.issues.push({
+										origin: "string",
+										code: "invalid_format",
+										format: t.format,
+										input: o.value,
+										...(t.pattern ? { pattern: t.pattern.toString() } : {}),
+										inst: e,
+										continue: !t.abort,
+									});
+						}))
+					: ((r = e._zod).check ?? (r.check = () => {}));
+		}),
+		Sp = w("$ZodCheckRegex", (e, t) => {
+			dr.init(e, t),
+				(e._zod.check = (n) => {
+					(t.pattern.lastIndex = 0),
+						!t.pattern.test(n.value) &&
+							n.issues.push({
+								origin: "string",
+								code: "invalid_format",
+								format: "regex",
+								input: n.value,
+								pattern: t.pattern.toString(),
+								inst: e,
+								continue: !t.abort,
+							});
+				});
+		}),
+		kp = w("$ZodCheckLowerCase", (e, t) => {
+			t.pattern ?? (t.pattern = mp), dr.init(e, t);
+		}),
+		xp = w("$ZodCheckUpperCase", (e, t) => {
+			t.pattern ?? (t.pattern = gp), dr.init(e, t);
+		}),
+		Cp = w("$ZodCheckIncludes", (e, t) => {
+			he.init(e, t);
+			const n = At(t.includes),
+				r = new RegExp(
+					typeof t.position == "number" ? `^.{${t.position},}${n}` : n,
+				);
+			(t.pattern = r),
+				e._zod.onattach.push((o) => {
+					const i = o._zod.bag;
+					i.patterns ?? (i.patterns = new Set()), i.patterns.add(r);
+				}),
+				(e._zod.check = (o) => {
+					o.value.includes(t.includes, t.position) ||
+						o.issues.push({
+							origin: "string",
+							code: "invalid_format",
+							format: "includes",
+							includes: t.includes,
+							input: o.value,
+							inst: e,
+							continue: !t.abort,
+						});
+				});
+		}),
+		zp = w("$ZodCheckStartsWith", (e, t) => {
+			he.init(e, t);
+			const n = new RegExp(`^${At(t.prefix)}.*`);
+			t.pattern ?? (t.pattern = n),
+				e._zod.onattach.push((r) => {
+					const o = r._zod.bag;
+					o.patterns ?? (o.patterns = new Set()), o.patterns.add(n);
+				}),
+				(e._zod.check = (r) => {
+					r.value.startsWith(t.prefix) ||
+						r.issues.push({
+							origin: "string",
+							code: "invalid_format",
+							format: "starts_with",
+							prefix: t.prefix,
+							input: r.value,
+							inst: e,
+							continue: !t.abort,
+						});
+				});
+		}),
+		Tp = w("$ZodCheckEndsWith", (e, t) => {
+			he.init(e, t);
+			const n = new RegExp(`.*${At(t.suffix)}$`);
+			t.pattern ?? (t.pattern = n),
+				e._zod.onattach.push((r) => {
+					const o = r._zod.bag;
+					o.patterns ?? (o.patterns = new Set()), o.patterns.add(n);
+				}),
+				(e._zod.check = (r) => {
+					r.value.endsWith(t.suffix) ||
+						r.issues.push({
+							origin: "string",
+							code: "invalid_format",
+							format: "ends_with",
+							suffix: t.suffix,
+							input: r.value,
+							inst: e,
+							continue: !t.abort,
+						});
+				});
+		}),
+		Ip = w("$ZodCheckOverwrite", (e, t) => {
+			he.init(e, t),
+				(e._zod.check = (n) => {
+					n.value = t.tx(n.value);
+				});
+		});
+	class $p {
+		constructor(t = [], n = {}) {
+			(this.content = []),
+				(this.indent = 0),
+				(this.args = t),
+				(this.closed = n);
+		}
+		indented(t) {
+			(this.indent += 1), t(this), (this.indent -= 1);
+		}
+		write(t) {
+			if (typeof t == "function") {
+				t(this, { execution: "sync" }), t(this, { execution: "async" });
+				return;
+			}
+			const r = t
+					.split(`
+`)
+					.filter((s) => s),
+				o = Math.min(...r.map((s) => s.length - s.trimStart().length)),
+				i = r
+					.map((s) => s.slice(o))
+					.map((s) => " ".repeat(this.indent * 2) + s);
+			for (const s of i) this.content.push(s);
+		}
+		compile() {
+			const t = Function,
+				n = (this == null ? void 0 : this.content) ?? [""];
+			return new t(
+				...Object.keys(this.closed),
+				`return function (${this.args.join(", ")}) {
+${n.join(`
+`)}
+};`,
+			)(...Object.values(this.closed));
+		}
+	}
+	const Ep = { major: 4, minor: 5, patch: 4 },
+		V = w(
+			"$ZodType",
+			(e, t) => {
+				var i;
+				var n;
+				e ?? (e = {}),
+					(e._zod.def = t),
+					(e._zod.bag = e._zod.bag || {}),
+					(e._zod.version = Ep);
+				const r = e._zod.def.checks,
+					o = e._zod.traits.has("$ZodCheck")
+						? [e, ...(r ?? [])]
+						: r != null && r.length
+							? [...r]
+							: [];
+				for (const s of o) for (const a of s._zod.onattach) a(e);
+				if (o.length === 0)
+					(n = e._zod).deferred ?? (n.deferred = []),
+						(i = e._zod.deferred) == null ||
+							i.push(() => {
+								e._zod.run = e._zod.parse;
+							});
+				else {
+					const s = (c, l, d) => {
+							if (c.memo) return c;
+							let u = Ot(c),
+								f;
+							for (const p of l) {
+								if (p._zod.def.when) {
+									if (gf(c) || !p._zod.def.when(c)) continue;
+								} else if (u) continue;
+								const m = c.issues.length,
+									g = p._zod.check(c);
+								if (
+									g instanceof Promise &&
+									(d == null ? void 0 : d.async) === !1
+								)
+									throw new Nt();
+								if (f || g instanceof Promise)
+									f = (f ?? Promise.resolve()).then(async () => {
+										await g,
+											c.issues.length !== m &&
+												(pa(c.issues, m, e), u || (u = Ot(c, m)));
+									});
+								else {
+									if (c.issues.length === m) continue;
+									pa(c.issues, m, e), u || (u = Ot(c, m));
+								}
+							}
+							return f ? f.then(() => c) : c;
+						},
+						a = (c, l, d) => {
+							if (Ot(c)) return (c.aborted = !0), c;
+							const u = s(l, o, d);
+							if (u instanceof Promise) {
+								if (d.async === !1) throw new Nt();
+								return u.then((f) => e._zod.parse(f, d));
+							}
+							return e._zod.parse(u, d);
+						};
+					e._zod.run = (c, l) => {
+						if (l.skipChecks) return e._zod.parse(c, l);
+						if (l.direction === "backward") {
+							const u = e._zod.parse(
+								{ value: c.value, issues: [] },
+								{ ...l, skipChecks: !0 },
+							);
+							return u instanceof Promise
+								? u.then((f) => a(f, c, l))
+								: a(u, c, l);
+						}
+						const d = e._zod.parse(c, l);
+						if (d instanceof Promise) {
+							if (l.async === !1) throw new Nt();
+							return d.then((u) => s(u, o, l));
+						}
+						return s(d, o, l);
+					};
+				}
+			},
+			{
+				get "~standard"() {
+					return ha(this, "~standard", Ea(this));
+				},
+				set "~standard"(e) {
+					Lt(this, "~standard", e);
+				},
+			},
+		),
+		$a = (e) => {
+			var t;
+			return e.success
+				? { value: e.data }
+				: { issues: (t = e.error) == null ? void 0 : t.issues };
+		};
+	function Ea(e) {
+		return {
+			validate: (t) => {
+				try {
+					return $a(Pf(e, t));
+				} catch {
+					return Af(e, t).then($a);
+				}
+			},
+			vendor: "zod",
+			version: 1,
+		};
+	}
+	const fr = w("$ZodString", (e, t) => {
+			var n;
+			V.init(e, t),
+				(e._zod.pattern =
+					[
+						...(((n = e == null ? void 0 : e._zod.bag) == null
+							? void 0
+							: n.patterns) ?? []),
+					].pop() ?? fp(e._zod.bag)),
+				(e._zod.parse = (r, o) => {
+					if (t.coerce)
+						try {
+							r.value = String(r.value);
+						} catch {}
+					return (
+						typeof r.value == "string" ||
+							r.issues.push({
+								expected: "string",
+								code: "invalid_type",
+								input: r.value,
+								inst: e,
+							}),
+						r
+					);
+				});
+		}),
+		K = w("$ZodStringFormat", (e, t) => {
+			dr.init(e, t), fr.init(e, t);
+		}),
+		Rp = w("$ZodGUID", (e, t) => {
+			t.pattern ?? (t.pattern = Yf), K.init(e, t);
+		}),
+		Mp = w("$ZodUUID", (e, t) => {
+			if (t.version) {
+				const r = { v1: 1, v2: 2, v3: 3, v4: 4, v5: 5, v6: 6, v7: 7, v8: 8 }[
+					t.version
+				];
+				if (r === void 0)
+					throw new Error(`Invalid UUID version: "${t.version}"`);
+				t.pattern ?? (t.pattern = ka(r));
+			} else t.pattern ?? (t.pattern = ka());
+			K.init(e, t);
+		}),
+		Pp = w("$ZodEmail", (e, t) => {
+			t.pattern ?? (t.pattern = Xf), K.init(e, t);
+		}),
+		Ra = 1,
+		Ma = 2;
+	function Ap(e, t) {
+		var n;
+		if (
+			!t.normalize &&
+			((n = t.protocol) == null ? void 0 : n.source) === sp.source &&
+			!/^https?:\/\//i.test(e)
+		)
+			return Ra;
+		try {
+			return new URL(e);
+		} catch {
+			return Ma;
+		}
+	}
+	const Op = /[\t\n\r]/g;
+	function Lp(e) {
+		return e.replace(Op, "");
+	}
+	function Np(e, t) {
+		return (t.lastIndex = 0), t.test(e.hostname);
+	}
+	function jp(e, t) {
+		return (
+			(t.lastIndex = 0),
+			t.test(e.protocol.endsWith(":") ? e.protocol.slice(0, -1) : e.protocol)
+		);
+	}
+	const Bp = w("$ZodURL", (e, t) => {
+			K.init(e, t),
+				(e._zod.check = (n) => {
+					try {
+						const r = n.value.trim(),
+							o = Ap(r, t);
+						if (o === Ra) {
+							n.issues.push({
+								code: "invalid_format",
+								format: "url",
+								note: "Invalid URL format",
+								input: n.value,
+								inst: e,
+								continue: !t.abort,
+							});
+							return;
+						}
+						if (o === Ma) {
+							n.issues.push({
+								code: "invalid_format",
+								format: "url",
+								input: n.value,
+								inst: e,
+								continue: !t.abort,
+							});
+							return;
+						}
+						t.hostname &&
+							!Np(o, t.hostname) &&
+							n.issues.push({
+								code: "invalid_format",
+								format: "url",
+								note: "Invalid hostname",
+								pattern: t.hostname.source,
+								input: n.value,
+								inst: e,
+								continue: !t.abort,
+							}),
+							t.protocol &&
+								!jp(o, t.protocol) &&
+								n.issues.push({
+									code: "invalid_format",
+									format: "url",
+									note: "Invalid protocol",
+									pattern: t.protocol.source,
+									input: n.value,
+									inst: e,
+									continue: !t.abort,
+								}),
+							(n.value = t.normalize ? o.href : Lp(r));
+						return;
+					} catch {
+						n.issues.push({
+							code: "invalid_format",
+							format: "url",
+							input: n.value,
+							inst: e,
+							continue: !t.abort,
+						});
+					}
+				});
+		}),
+		Dp = w("$ZodEmoji", (e, t) => {
+			t.pattern ?? (t.pattern = ep()), K.init(e, t);
+		}),
+		Fp = w("$ZodNanoID", (e, t) => {
+			if (t.length !== void 0 && (!Number.isInteger(t.length) || t.length < 1))
+				throw new Error(`Invalid nanoid length: ${t.length}`);
+			t.pattern ?? (t.pattern = t.length === void 0 ? Kf : Jf(t.length)),
+				K.init(e, t);
+		}),
+		Up = w("$ZodCUID", (e, t) => {
+			t.pattern ?? (t.pattern = Hf), K.init(e, t);
+		}),
+		Hp = w("$ZodCUID2", (e, t) => {
+			t.pattern ?? (t.pattern = Zf), K.init(e, t);
+		}),
+		Zp = w("$ZodULID", (e, t) => {
+			t.pattern ?? (t.pattern = Vf), K.init(e, t);
+		}),
+		Vp = w("$ZodXID", (e, t) => {
+			t.pattern ?? (t.pattern = Wf), K.init(e, t);
+		}),
+		Wp = w("$ZodKSUID", (e, t) => {
+			t.pattern ?? (t.pattern = qf), K.init(e, t);
+		}),
+		qp = w("$ZodISODateTime", (e, t) => {
+			t.pattern ?? (t.pattern = dp(t)),
+				K.init(e, t),
+				(t.local || t.precision === -1) &&
+					((e._zod.bag.laxFormat = !0),
+					e._zod.onattach.push((n) => {
+						n._zod.bag.laxFormat = !0;
+					}));
+		}),
+		Kp = w("$ZodISODate", (e, t) => {
+			t.pattern ?? (t.pattern = cp), K.init(e, t);
+		}),
+		Jp = w("$ZodISOTime", (e, t) => {
+			t.pattern ?? (t.pattern = up(t)), K.init(e, t);
+		}),
+		Gp = w("$ZodISODuration", (e, t) => {
+			t.pattern ?? (t.pattern = Gf), K.init(e, t);
+		}),
+		Yp = w("$ZodIPv4", (e, t) => {
+			t.pattern ?? (t.pattern = tp), K.init(e, t), (e._zod.bag.format = "ipv4");
+		}),
+		Xp = /^[0-9a-fA-F:.]+$/;
+	function Pa(e) {
+		if (!Xp.test(e)) return !1;
+		try {
+			return new URL(`http://[${e}]`), !0;
+		} catch {
+			return !1;
+		}
+	}
+	const Qp = w("$ZodIPv6", (e, t) => {
+			t.pattern ?? (t.pattern = np),
+				K.init(e, t),
+				(e._zod.bag.format = "ipv6"),
+				(e._zod.check = (n) => {
+					Pa(n.value) ||
+						n.issues.push({
+							code: "invalid_format",
+							format: "ipv6",
+							input: n.value,
+							inst: e,
+							continue: !t.abort,
+						});
+				});
+		}),
+		eh = w("$ZodCIDRv4", (e, t) => {
+			t.pattern ?? (t.pattern = rp), K.init(e, t);
+		});
+	function th(e) {
+		const t = e.split("/");
+		if (t.length !== 2) return !1;
+		const [n, r] = t;
+		if (!r) return !1;
+		const o = Number(r);
+		return `${o}` !== r || o < 0 || o > 128 ? !1 : Pa(n);
+	}
+	const nh = w("$ZodCIDRv6", (e, t) => {
+		t.pattern ?? (t.pattern = op),
+			K.init(e, t),
+			(e._zod.check = (n) => {
+				th(n.value) ||
+					n.issues.push({
+						code: "invalid_format",
+						format: "cidrv6",
+						input: n.value,
+						inst: e,
+						continue: !t.abort,
+					});
+			});
+	});
+	function Aa(e) {
+		if (e === "") return !0;
+		if (/\s/.test(e) || e.length % 4 !== 0) return !1;
+		try {
+			return atob(e), !0;
+		} catch {
+			return !1;
+		}
+	}
+	const rh = w("$ZodBase64", (e, t) => {
+		t.pattern ?? (t.pattern = ip),
+			K.init(e, t),
+			(e._zod.bag.contentEncoding = "base64"),
+			(e._zod.check = (n) => {
+				Aa(n.value) ||
+					n.issues.push({
+						code: "invalid_format",
+						format: "base64",
+						input: n.value,
+						inst: e,
+						continue: !t.abort,
+					});
+			});
+	});
+	function oh(e) {
+		if (!xa.test(e)) return !1;
+		const t = e.replace(/[-_]/g, (r) => (r === "-" ? "+" : "/")),
+			n = t.padEnd(Math.ceil(t.length / 4) * 4, "=");
+		return Aa(n);
+	}
+	const ih = w("$ZodBase64URL", (e, t) => {
+			t.pattern ?? (t.pattern = xa),
+				K.init(e, t),
+				(e._zod.bag.contentEncoding = "base64url"),
+				(e._zod.check = (n) => {
+					oh(n.value) ||
+						n.issues.push({
+							code: "invalid_format",
+							format: "base64url",
+							input: n.value,
+							inst: e,
+							continue: !t.abort,
+						});
+				});
+		}),
+		sh = w("$ZodE164", (e, t) => {
+			t.pattern ?? (t.pattern = ap), K.init(e, t);
+		});
+	function ah(e, t = null) {
+		try {
+			const n = e.split(".");
+			if (n.length !== 3) return !1;
+			const [r] = n;
+			if (!r) return !1;
+			const o = JSON.parse(atob(r));
+			return !(
+				("typ" in o && (o == null ? void 0 : o.typ) !== "JWT") ||
+				!o.alg ||
+				(t && (!("alg" in o) || o.alg !== t))
+			);
+		} catch {
+			return !1;
+		}
+	}
+	const lh = w("$ZodJWT", (e, t) => {
+			K.init(e, t),
+				(e._zod.check = (n) => {
+					ah(n.value, t.alg) ||
+						n.issues.push({
+							code: "invalid_format",
+							format: "jwt",
+							input: n.value,
+							inst: e,
+							continue: !t.abort,
+						});
+				});
+		}),
+		Oa = w("$ZodNumber", (e, t) => {
+			V.init(e, t),
+				(e._zod.pattern = e._zod.bag.pattern ?? Mo),
+				(e._zod.parse = (n, r) => {
+					if (t.coerce)
+						try {
+							n.value = Number(n.value);
+						} catch {}
+					const o = n.value;
+					if (typeof o == "number" && !Number.isNaN(o) && Number.isFinite(o))
+						return n;
+					const i =
+						typeof o == "number"
+							? Number.isNaN(o)
+								? "NaN"
+								: Number.isFinite(o)
+									? void 0
+									: String(o)
+							: void 0;
+					return (
+						n.issues.push({
+							expected: "number",
+							code: "invalid_type",
+							input: o,
+							inst: e,
+							...(i ? { received: i } : {}),
+						}),
+						n
+					);
+				});
+		}),
+		ch = w("$ZodNumberFormat", (e, t) => {
+			vp.init(e, t), Oa.init(e, t);
+		}),
+		La = w("$ZodBoolean", (e, t) => {
+			V.init(e, t),
+				(e._zod.pattern = pp),
+				(e._zod.parse = (n, r) => {
+					if (t.coerce)
+						try {
+							n.value = !!n.value;
+						} catch {}
+					const o = n.value;
+					return (
+						typeof o == "boolean" ||
+							n.issues.push({
+								expected: "boolean",
+								code: "invalid_type",
+								input: o,
+								inst: e,
+							}),
+						n
+					);
+				});
+		}),
+		uh = w("$ZodNull", (e, t) => {
+			V.init(e, t),
+				(e._zod.pattern = hp),
+				(e._zod.values = new Set([null])),
+				(e._zod.parse = (n, r) => {
+					const o = n.value;
+					return (
+						o === null ||
+							n.issues.push({
+								expected: "null",
+								code: "invalid_type",
+								input: o,
+								inst: e,
+							}),
+						n
+					);
+				});
+		}),
+		dh = w("$ZodAny", (e, t) => {
+			V.init(e, t), (e._zod.parse = (n) => n);
+		}),
+		fh = w("$ZodUnknown", (e, t) => {
+			V.init(e, t), (e._zod.parse = (n) => n);
+		}),
+		ph = w("$ZodNever", (e, t) => {
+			V.init(e, t),
+				(e._zod.parse = (n, r) => (
+					n.issues.push({
+						expected: "never",
+						code: "invalid_type",
+						input: n.value,
+						inst: e,
+					}),
+					n
+				));
+		}),
+		hh = w("$ZodDate", (e, t) => {
+			V.init(e, t),
+				(e._zod.parse = (n, r) => {
+					if (t.coerce)
+						try {
+							n.value = new Date(n.value);
+						} catch {}
+					const o = n.value,
+						i = o instanceof Date;
+					return (
+						(i && !Number.isNaN(o.getTime())) ||
+							n.issues.push({
+								expected: "date",
+								code: "invalid_type",
+								input: o,
+								...(i ? { received: "Invalid Date" } : {}),
+								inst: e,
+							}),
+						n
+					);
+				});
+		});
+	function Na(e, t, n) {
+		e.issues.length && t.issues.push(...et(n, e.issues)),
+			(t.value[n] = e.value);
+	}
+	const mh = w("$ZodArray", (e, t) => {
+		V.init(e, t);
+		const n = we.memoizer;
+		n == null || n.attach(e),
+			(e._zod.parse = (r, o) => {
+				const i = r.value;
+				if (!Array.isArray(i))
+					return (
+						r.issues.push({
+							expected: "array",
+							code: "invalid_type",
+							input: i,
+							inst: e,
+						}),
+						r
+					);
+				r.value = n ? n.alloc(e, r, Array(i.length), o) : Array(i.length);
+				const s = [];
+				for (let a = 0; a < i.length; a++) {
+					const c = i[a],
+						l = t.element._zod.run({ value: c, issues: [] }, o);
+					l instanceof Promise
+						? s.push(l.then((d) => Na(d, r, a)))
+						: Na(l, r, a);
+				}
+				return s.length ? Promise.all(s).then(() => r) : r;
+			});
+	});
+	function pr(e, t, n, r, o, i) {
+		const s = n in r,
+			a = i === "optional";
+		if (!(!s && a && o === "optional")) {
+			if (e.issues.length) {
+				if (o !== void 0 && a && !s) return;
+				t.issues.push(...et(n, e.issues));
+			}
+			if (!s && o === void 0) {
+				e.issues.length ||
+					t.issues.push({
+						code: "invalid_type",
+						expected: "nonoptional",
+						input: void 0,
+						path: [n],
+					});
+				return;
+			}
+			e.value === void 0 ? s && (t.value[n] = void 0) : (t.value[n] = e.value);
+		}
+	}
+	const gh = [];
+	function ja(e) {
+		var s, a, c, l;
+		const t = Object.keys(e.shape),
+			n = Object.getOwnPropertySymbols(e.shape),
+			r = n.length ? n : gh,
+			o = r.length ? [...t, ...r] : t;
+		for (const d of o)
+			if (
+				!(
+					(l =
+						(c =
+							(a = (s = e.shape) == null ? void 0 : s[d]) == null
+								? void 0
+								: a._zod) == null
+							? void 0
+							: c.traits) != null && l.has("$ZodType")
+				)
+			)
+				throw new Error(
+					`Invalid element at key "${String(d)}": expected a Zod schema`,
+				);
+		const i = lf(e.shape);
+		return {
+			...e,
+			allKeys: o,
+			symbolKeys: r,
+			keySet: new Set(t),
+			numKeys: t.length,
+			optionalKeys: new Set(i),
+		};
+	}
+	function Ba(e, t, n, r, o, i) {
+		const s = [],
+			a = o.keySet,
+			c = o.catchall._zod,
+			l = c.def.type,
+			d = c.optin,
+			u = c.optout;
+		for (const f in t) {
+			if (a.has(f)) continue;
+			if (f === "__proto__") {
+				l === "never" && s.push(f);
+				continue;
+			}
+			if (l === "never") {
+				s.push(f);
+				continue;
+			}
+			const p = c.run({ value: t[f], issues: [] }, r);
+			p instanceof Promise
+				? e.push(p.then((m) => pr(m, n, f, t, d, u)))
+				: pr(p, n, f, t, d, u);
+		}
+		return (
+			s.length &&
+				n.issues.push({
+					code: "unrecognized_keys",
+					keys: s,
+					input: t,
+					inst: i,
+					continue: !0,
+				}),
+			e.length ? Promise.all(e).then(() => n) : n
+		);
+	}
+	const Ao = new WeakMap(),
+		yh = w("$ZodObject", (e, t) => {
+			V.init(e, t);
+			const n = Object.getOwnPropertyDescriptor(t, "shape");
+			if (!(n != null && n.get)) {
+				const c = t.shape;
+				Ao.set(t, c),
+					Object.defineProperty(t, "shape", {
+						get: () => {
+							const l = { ...c };
+							return (
+								Object.defineProperty(t, "shape", { value: l }), Ao.set(t, l), l
+							);
+						},
+					});
+			}
+			const r = sr(() => ja(t));
+			D(e, "propValues", (c) => {
+				const l = c.def.shape,
+					d = {};
+				for (const u in l) {
+					const f = l[u]._zod;
+					if (f.values) {
+						Object.prototype.hasOwnProperty.call(d, u) || de(d, u, new Set());
+						for (const p of f.values) d[u].add(p);
+						f.optin !== void 0 && d[u].add(void 0);
+					}
+				}
+				return d;
+			});
+			const o = hn,
+				i = t.catchall;
+			let s;
+			const a = we.memoizer;
+			a == null || a.attach(e),
+				(e._zod.parse = (c, l) => {
+					s ?? (s = r.value);
+					const d = c.value;
+					if (!o(d))
+						return (
+							c.issues.push({
+								expected: "object",
+								code: "invalid_type",
+								input: d,
+								inst: e,
+							}),
+							c
+						);
+					c.value = a ? a.alloc(e, c, {}, l) : {};
+					const u = [],
+						f = s.shape;
+					for (const p of s.allKeys) {
+						if (p === "__proto__") continue;
+						const m = f[p],
+							g = m._zod.optin,
+							b = m._zod.optout,
+							v = m._zod.run({ value: d[p], issues: [] }, l);
+						v instanceof Promise
+							? u.push(v.then((_) => pr(_, c, p, d, g, b)))
+							: pr(v, c, p, d, g, b);
+					}
+					return i
+						? Ba(u, d, c, l, r.value, e)
+						: u.length
+							? Promise.all(u).then(() => c)
+							: c;
+				});
+		}),
+		vh = w("$ZodObjectJIT", (e, t) => {
+			yh.init(e, t);
+			const n = e._zod.parse,
+				r = sr(() => ja(t)),
+				o = we.memoizer,
+				i = (p) => {
+					var A, z;
+					const m = r.value,
+						g = m.symbolKeys,
+						b = new $p(["payload", "ctx"], {
+							shape: p,
+							inst: e,
+							memo: o,
+							syms: g,
+						}),
+						v = (M) =>
+							`shape[${M}]._zod.run({ value: input[${M}], issues: [] }, ctx)`,
+						_ = (M, O) => `
+          for (let i = 0; i < ${M}.issues.length; i++) {
+            const iss = ${M}.issues[i];
+            iss.path = iss.path ? [${O}, ...iss.path] : [${O}];
+            payload.issues.push(iss);
+          }`;
+					b.write("const input = payload.value;");
+					const k = Object.create(null);
+					let x = 0;
+					for (const M of m.allKeys) k[M] = `key_${x++}`;
+					b.write(
+						o
+							? "const newResult = memo.alloc(inst, payload, {}, ctx);"
+							: "const newResult = {};",
+					);
+					for (const M of m.allKeys) {
+						if (M === "__proto__") continue;
+						const O = k[M],
+							j = typeof M == "symbol" ? `syms[${g.indexOf(M)}]` : rf(M),
+							L = `${j} in input`,
+							I = p[M],
+							B = (A = I == null ? void 0 : I._zod) == null ? void 0 : A.optin,
+							oe = B !== void 0,
+							pe =
+								((z = I == null ? void 0 : I._zod) == null
+									? void 0
+									: z.optout) === "optional";
+						if ((b.write(`const ${O} = ${v(j)};`), oe && pe)) {
+							const Te =
+								B === "optional"
+									? `${O}_present`
+									: `${O}.value !== undefined || ${O}_present`;
+							b.write(`
+        const ${O}_present = ${L};
+        if (!${O}.issues.length || ${O}_present) {
+          if (${O}.issues.length) {${_(O, j)}
+          }
+
+          if (${Te}) {
+            newResult[${j}] = ${O}.value;
+          }
+        }
+
+      `);
+						} else
+							oe
+								? b.write(`
+        if (${O}.issues.length) {${_(O, j)}
+        }
+        
+        if (${O}.value === undefined) {
+          if (${L}) {
+            newResult[${j}] = undefined;
+          }
+        } else {
+          newResult[${j}] = ${O}.value;
+        }
+
+      `)
+								: b.write(`
+        const ${O}_present = ${L};
+        if (${O}.issues.length) {${_(O, j)}
+        }
+        if (!${O}_present && !${O}.issues.length) {
+          payload.issues.push({
+            code: "invalid_type",
+            expected: "nonoptional",
+            input: undefined,
+            path: [${j}]
+          });
+        }
+
+        if (${O}_present) {
+          newResult[${j}] = ${O}.value;
+        }
+
+      `);
+					}
+					return (
+						b.write("payload.value = newResult;"),
+						b.write("return payload;"),
+						b.compile()
+					);
+				};
+			let s;
+			const a = hn,
+				c = !we.jitless,
+				d = c && sf.value,
+				u = t.catchall;
+			let f;
+			e._zod.parse = (p, m) => {
+				f ?? (f = r.value);
+				const g = p.value;
+				return a(g)
+					? c && d && (m == null ? void 0 : m.async) === !1 && m.jitless !== !0
+						? (s || (s = i(t.shape)),
+							(p = s(p, m)),
+							u ? Ba([], g, p, m, f, e) : p)
+						: n(p, m)
+					: (p.issues.push({
+							expected: "object",
+							code: "invalid_type",
+							input: g,
+							inst: e,
+						}),
+						p);
+			};
+		});
+	function Da(e, t, n, r) {
+		for (const i of e) if (i.issues.length === 0) return (t.value = i.value), t;
+		const o = e.filter((i) => !Ot(i));
+		return o.length === 1
+			? ((t.value = o[0].value), o[0])
+			: (t.issues.push({
+					code: "invalid_union",
+					input: t.value,
+					inst: n,
+					errors: e.map((i) => i.issues.map((s) => tt(s, r, Ne()))),
+				}),
+				t);
+	}
+	const Fa = w("$ZodUnion", (e, t) => {
+			V.init(e, t),
+				D(e, "optin", (r) =>
+					r.def.options.some((o) => o._zod.optin === "defaulted")
+						? "defaulted"
+						: r.def.options.some((o) => o._zod.optin !== void 0)
+							? "optional"
+							: void 0,
+				),
+				D(e, "optout", (r) =>
+					r.def.options.some((o) => o._zod.optout === "optional")
+						? "optional"
+						: void 0,
+				),
+				D(e, "values", (r) => {
+					if (r.def.options.every((o) => o._zod.values))
+						return new Set(
+							r.def.options.flatMap((o) => Array.from(o._zod.values)),
+						);
+				}),
+				D(e, "pattern", (r) => {
+					if (r.def.options.every((o) => o._zod.pattern)) {
+						const o = r.def.options.map((i) => i._zod.pattern);
+						return new RegExp(`^(${o.map((i) => So(i.source)).join("|")})$`);
+					}
+				});
+			const n = t.options.length === 1 ? t.options[0]._zod.run : null;
+			e._zod.parse = (r, o) => {
+				if (n) return n(r, o);
+				let i = !1;
+				const s = [];
+				for (const a of t.options) {
+					const c = a._zod.run({ value: r.value, issues: [] }, o);
+					if (c instanceof Promise) s.push(c), (i = !0);
+					else {
+						if (c.issues.length === 0) return c;
+						s.push(c);
+					}
+				}
+				return i ? Promise.all(s).then((a) => Da(a, r, e, o)) : Da(s, r, e, o);
+			};
+		}),
+		bh = w("$ZodDiscriminatedUnion", (e, t) => {
+			(t.inclusive = !1), Fa.init(e, t);
+			const n = e._zod.parse;
+			D(e, "propValues", (o) => {
+				const i = {};
+				for (const s of o.def.options) {
+					const a = s._zod.propValues;
+					if (!a || Object.keys(a).length === 0)
+						throw new Error(
+							`Invalid discriminated union option at index "${o.def.options.indexOf(s)}"`,
+						);
+					for (const [c, l] of Object.entries(a)) {
+						Object.prototype.hasOwnProperty.call(i, c) || de(i, c, new Set());
+						for (const d of l) i[c].add(d);
+					}
+				}
+				return i;
+			}),
+				t.options.forEach((o, i) => {
+					const s = Ao.get(o._zod.def);
+					if (s && !Object.prototype.hasOwnProperty.call(s, t.discriminator))
+						throw new Error(
+							`Invalid discriminated union option at index "${i}"`,
+						);
+				});
+			const r = sr(() => {
+				var s;
+				const o = t.options,
+					i = new Map();
+				for (const a of o) {
+					const c =
+						(s = a._zod.propValues) == null ? void 0 : s[t.discriminator];
+					if (!c || c.size === 0)
+						throw new Error(
+							`Invalid discriminated union option at index "${t.options.indexOf(a)}"`,
+						);
+					for (const l of c) {
+						if (i.has(l))
+							throw new Error(`Duplicate discriminator value "${String(l)}"`);
+						i.set(l, a);
+					}
+				}
+				return i;
+			});
+			e._zod.parse = (o, i) => {
+				const s = o.value;
+				if (!hn(s))
+					return (
+						o.issues.push({
+							code: "invalid_type",
+							expected: "object",
+							input: s,
+							inst: e,
+						}),
+						o
+					);
+				const a = r.value.get(s == null ? void 0 : s[t.discriminator]);
+				return a
+					? a._zod.run(o, i)
+					: t.unionFallback || i.direction === "backward"
+						? n(o, i)
+						: (o.issues.push({
+								code: "invalid_union",
+								errors: [],
+								note: "No matching discriminator",
+								discriminator: t.discriminator,
+								options: Array.from(r.value.keys()),
+								input: s,
+								path: [t.discriminator],
+								inst: e,
+							}),
+							o);
+			};
+		}),
+		wh = w("$ZodIntersection", (e, t) => {
+			V.init(e, t),
+				(e._zod.parse = (n, r) => {
+					const o = n.value,
+						i = t.left._zod.run({ value: o, issues: [] }, r),
+						s = t.right._zod.run({ value: o, issues: [] }, r);
+					return i instanceof Promise || s instanceof Promise
+						? Promise.all([i, s]).then(([c, l]) => Ua(n, c, l))
+						: Ua(n, i, s);
+				});
+		});
+	function Oo(e, t) {
+		if (e === t) return { valid: !0, data: e };
+		if (e instanceof Date && t instanceof Date && +e == +t)
+			return { valid: !0, data: e };
+		if (Pt(e) && Pt(t)) {
+			const n = Object.keys(t),
+				r = Object.keys(e).filter((i) => n.indexOf(i) !== -1),
+				o = { ...e, ...t };
+			Object.prototype.hasOwnProperty.call(o, "__proto__") &&
+				delete o.__proto__;
+			for (const i of r) {
+				if (i === "__proto__") continue;
+				const s = Oo(e[i], t[i]);
+				if (!s.valid)
+					return { valid: !1, mergeErrorPath: [i, ...s.mergeErrorPath] };
+				o[i] = s.data;
+			}
+			return { valid: !0, data: o };
+		}
+		if (Array.isArray(e) && Array.isArray(t)) {
+			if (e.length !== t.length) return { valid: !1, mergeErrorPath: [] };
+			const n = [];
+			for (let r = 0; r < e.length; r++) {
+				const o = e[r],
+					i = t[r],
+					s = Oo(o, i);
+				if (!s.valid)
+					return { valid: !1, mergeErrorPath: [r, ...s.mergeErrorPath] };
+				n.push(s.data);
+			}
+			return { valid: !0, data: n };
+		}
+		return { valid: !1, mergeErrorPath: [] };
+	}
+	function Ua(e, t, n) {
+		const r = new Map();
+		let o;
+		const i = new Map(),
+			s = (l, d) => {
+				var f, p;
+				let u;
+				if (
+					l.code === "unrecognized_keys" &&
+					!((f = l.path) != null && f.length)
+				)
+					o ?? (o = l), (u = l.keys);
+				else if (
+					l.code === "invalid_key" &&
+					l.origin === "record" &&
+					((p = l.path) == null ? void 0 : p.length) === 1
+				) {
+					const m = String(l.path[0]);
+					i.has(m) || i.set(m, l), (u = [m]);
+				} else return !1;
+				for (const m of u) r.has(m) || r.set(m, {}), (r.get(m)[d] = !0);
+				return !0;
+			};
+		for (const l of t.issues) s(l, "l") || e.issues.push(l);
+		for (const l of n.issues) s(l, "r") || e.issues.push(l);
+		const a = [...r].filter(([, l]) => l.l && l.r).map(([l]) => l);
+		if (a.length) {
+			const l = o ? a.filter((d) => o.keys.includes(d)) : [];
+			l.length && e.issues.push({ ...o, keys: l });
+			for (const d of a) !l.includes(d) && i.has(d) && e.issues.push(i.get(d));
+		}
+		const c = Oo(t.value, n.value);
+		if (!c.valid) {
+			if (Ot(e)) return e;
+			throw new Error(
+				`Unmergable intersection. Error path: ${JSON.stringify(c.mergeErrorPath)}`,
+			);
+		}
+		return (e.value = c.data), e;
+	}
+	const _h = w("$ZodTuple", (e, t) => {
+		V.init(e, t);
+		const n = t.items,
+			r = we.memoizer;
+		r == null || r.attach(e),
+			(e._zod.parse = (o, i) => {
+				const s = o.value;
+				if (!Array.isArray(s))
+					return (
+						o.issues.push({
+							input: s,
+							inst: e,
+							expected: "tuple",
+							code: "invalid_type",
+						}),
+						o
+					);
+				o.value = r ? r.alloc(e, o, [], i) : [];
+				const a = [],
+					c = Ha(n, "optin"),
+					l = Ha(n, "optout");
+				if (!t.rest) {
+					if (s.length < c)
+						return (
+							o.issues.push({
+								code: "too_small",
+								minimum: c,
+								inclusive: !0,
+								input: s,
+								inst: e,
+								origin: "array",
+							}),
+							o
+						);
+					s.length > n.length &&
+						o.issues.push({
+							code: "too_big",
+							maximum: n.length,
+							inclusive: !0,
+							input: s,
+							inst: e,
+							origin: "array",
+						});
+				}
+				const d = new Array(n.length);
+				for (let u = 0; u < n.length; u++) {
+					const f = n[u]._zod.run({ value: s[u], issues: [] }, i);
+					f instanceof Promise
+						? a.push(
+								f.then((p) => {
+									d[u] = p;
+								}),
+							)
+						: (d[u] = f);
+				}
+				if (t.rest) {
+					let u = n.length - 1;
+					const f = s.slice(n.length);
+					for (const p of f) {
+						u++;
+						const m = t.rest._zod.run({ value: p, issues: [] }, i);
+						m instanceof Promise
+							? a.push(m.then((g) => Za(g, o, u)))
+							: Za(m, o, u);
+					}
+				}
+				return a.length
+					? Promise.all(a).then(() => Va(d, o, n, s, l))
+					: Va(d, o, n, s, l);
+			});
+	});
+	function Ha(e, t) {
+		for (let n = e.length - 1; n >= 0; n--)
+			if (
+				!(t === "optin"
+					? e[n]._zod.optin !== void 0
+					: e[n]._zod.optout === "optional")
+			)
+				return n + 1;
+		return 0;
+	}
+	function Za(e, t, n) {
+		e.issues.length && t.issues.push(...et(n, e.issues)),
+			(t.value[n] = e.value);
+	}
+	function Va(e, t, n, r, o) {
+		for (let i = 0; i < n.length; i++) {
+			const s = e[i],
+				a = i < r.length;
+			if (!a && i >= o && n[i]._zod.optin === "optional") {
+				t.value.length = i;
+				break;
+			}
+			if (s.issues.length) {
+				if (!a && i >= o) {
+					t.value.length = i;
+					break;
+				}
+				t.issues.push(...et(i, s.issues));
+			}
+			t.value[i] = s.value;
+		}
+		for (
+			let i = t.value.length - 1;
+			i >= r.length && n[i]._zod.optout === "optional" && t.value[i] === void 0;
+			i--
+		)
+			t.value.length = i;
+		return t;
+	}
+	const Sh = w("$ZodRecord", (e, t) => {
+			V.init(e, t);
+			const n = we.memoizer;
+			n == null || n.attach(e),
+				(e._zod.parse = (r, o) => {
+					const i = r.value;
+					if (!Pt(i))
+						return (
+							r.issues.push({
+								expected: "record",
+								code: "invalid_type",
+								input: i,
+								inst: e,
+							}),
+							r
+						);
+					const s = [],
+						a = t.keyType._zod.values;
+					if (a && !t.partial) {
+						r.value = n ? n.alloc(e, r, {}, o) : {};
+						const c = new Set();
+						for (const d of a)
+							if (
+								typeof d == "string" ||
+								typeof d == "number" ||
+								typeof d == "symbol"
+							) {
+								if (
+									(c.add(typeof d == "number" ? d.toString() : d),
+									d === "__proto__")
+								)
+									continue;
+								const u = t.keyType._zod.run({ value: d, issues: [] }, o);
+								if (u instanceof Promise)
+									throw new Error(
+										"Async schemas not supported in object keys currently",
+									);
+								if (u.issues.length) {
+									r.issues.push({
+										code: "invalid_key",
+										origin: "record",
+										issues: u.issues.map((m) => tt(m, o, Ne())),
+										input: d,
+										path: [d],
+										inst: e,
+									});
+									continue;
+								}
+								const f = u.value;
+								if (f === "__proto__") continue;
+								const p = t.valueType._zod.run({ value: i[d], issues: [] }, o);
+								p instanceof Promise
+									? s.push(
+											p.then((m) => {
+												m.issues.length && r.issues.push(...et(d, m.issues)),
+													(r.value[f] = m.value);
+											}),
+										)
+									: (p.issues.length && r.issues.push(...et(d, p.issues)),
+										(r.value[f] = p.value));
+							}
+						let l;
+						for (const d in i)
+							if (!c.has(d))
+								if (t.mode === "loose") {
+									if (d === "__proto__") continue;
+									r.value[d] = i[d];
+								} else (l = l ?? []), l.push(d);
+						l &&
+							l.length > 0 &&
+							r.issues.push({
+								code: "unrecognized_keys",
+								input: i,
+								inst: e,
+								keys: l,
+								continue: !0,
+							});
+					} else {
+						r.value = n ? n.alloc(e, r, {}, o) : {};
+						let c;
+						for (const l of Reflect.ownKeys(i)) {
+							if (
+								l === "__proto__" ||
+								!Object.prototype.propertyIsEnumerable.call(i, l)
+							)
+								continue;
+							let d = t.keyType._zod.run({ value: l, issues: [] }, o);
+							if (d instanceof Promise)
+								throw new Error(
+									"Async schemas not supported in object keys currently",
+								);
+							if (typeof l == "string" && Mo.test(l) && d.issues.length) {
+								const m = t.keyType._zod.run(
+									{ value: Number(l), issues: [] },
+									o,
+								);
+								if (m instanceof Promise)
+									throw new Error(
+										"Async schemas not supported in object keys currently",
+									);
+								m.issues.length === 0 && (d = m);
+							}
+							if (d.issues.length) {
+								t.mode === "loose"
+									? (r.value[l] = i[l])
+									: a
+										? ((c = c ?? []), c.push(l))
+										: r.issues.push({
+												code: "invalid_key",
+												origin: "record",
+												issues: d.issues.map((m) => tt(m, o, Ne())),
+												input: l,
+												path: [l],
+												inst: e,
+											});
+								continue;
+							}
+							const f = d.value;
+							if (f === "__proto__") continue;
+							const p = t.valueType._zod.run({ value: i[l], issues: [] }, o);
+							p instanceof Promise
+								? s.push(
+										p.then((m) => {
+											m.issues.length && r.issues.push(...et(l, m.issues)),
+												(r.value[f] = m.value);
+										}),
+									)
+								: (p.issues.length && r.issues.push(...et(l, p.issues)),
+									(r.value[f] = p.value));
+						}
+						c &&
+							c.length > 0 &&
+							r.issues.push({
+								code: "unrecognized_keys",
+								input: i,
+								inst: e,
+								keys: c,
+								continue: !0,
+							});
+					}
+					return s.length ? Promise.all(s).then(() => r) : r;
+				});
+		}),
+		kh = w("$ZodEnum", (e, t) => {
+			V.init(e, t);
+			const n = sa(t.entries),
+				r = new Set(n);
+			e._zod.values = r;
+			const o = n.filter((i) => af.has(typeof i));
+			(e._zod.pattern = new RegExp(
+				o.length
+					? `^(${o.map((i) => At(i.toString())).join("|")})$`
+					: "^[^\\s\\S]$",
+			)),
+				(e._zod.parse = (i, s) => {
+					const a = i.value;
+					return (
+						r.has(a) ||
+							i.issues.push({
+								code: "invalid_value",
+								values: n,
+								input: a,
+								inst: e,
+							}),
+						i
+					);
+				});
+		}),
+		xh = w("$ZodLiteral", (e, t) => {
+			V.init(e, t);
+			const n = new Set(t.values);
+			(e._zod.values = n),
+				(e._zod.pattern = new RegExp(
+					t.values.length
+						? `^(${t.values.map((r) => (typeof r == "string" ? At(r) : r ? At(r.toString()) : String(r))).join("|")})$`
+						: "^[^\\s\\S]$",
+				)),
+				(e._zod.parse = (r, o) => {
+					const i = r.value;
+					return (
+						n.has(i) ||
+							r.issues.push({
+								code: "invalid_value",
+								values: t.values,
+								input: i,
+								inst: e,
+							}),
+						r
+					);
+				});
+		}),
+		Ch = w("$ZodTransform", (e, t) => {
+			var n;
+			V.init(e, t),
+				(e._zod.optin = "optional"),
+				(n = we.memoizer) == null || n.guard(e),
+				(e._zod.parse = (r, o) => {
+					if (o.direction === "backward") throw new va(e.constructor.name);
+					const i = t.transform(r.value, r);
+					if (o.async)
+						return (i instanceof Promise ? i : Promise.resolve(i)).then(
+							(a) => ((r.value = a), r),
+						);
+					if (i instanceof Promise) throw new Nt();
+					return (r.value = i), r;
+				});
+		});
+	function Wa(e, t) {
+		return (e.value = t.issues.length ? void 0 : t.value), e;
+	}
+	const qa = w("$ZodOptional", (e, t) => {
+			V.init(e, t),
+				D(e, "optin", (n) =>
+					n.def.innerType._zod.optin === "defaulted" ? "defaulted" : "optional",
+				),
+				(e._zod.optout = "optional"),
+				D(e, "values", (n) => {
+					const r = n.def.innerType._zod.values;
+					return r ? new Set([...r, void 0]) : void 0;
+				}),
+				D(e, "pattern", (n) => {
+					const r = n.def.innerType._zod.pattern;
+					return r ? new RegExp(`^(${So(r.source)})?$`) : void 0;
+				}),
+				(e._zod.parse = (n, r) => {
+					if (n.value === void 0) {
+						if (t.innerType._zod.optin !== "defaulted") return n;
+						const o = t.innerType._zod.run({ value: n.value, issues: [] }, r);
+						return o instanceof Promise ? o.then((i) => Wa(n, i)) : Wa(n, o);
+					}
+					return t.innerType._zod.run(n, r);
+				});
+		}),
+		zh = w("$ZodExactOptional", (e, t) => {
+			qa.init(e, t),
+				D(e, "values", (n) => n.def.innerType._zod.values),
+				D(e, "pattern", (n) => n.def.innerType._zod.pattern),
+				(e._zod.parse = (n, r) => t.innerType._zod.run(n, r));
+		}),
+		Th = w("$ZodNullable", (e, t) => {
+			V.init(e, t),
+				D(e, "optin", (n) => n.def.innerType._zod.optin),
+				D(e, "optout", (n) => n.def.innerType._zod.optout),
+				D(e, "pattern", (n) => {
+					const r = n.def.innerType._zod.pattern;
+					return r ? new RegExp(`^(${So(r.source)}|null)$`) : void 0;
+				}),
+				D(e, "values", (n) =>
+					n.def.innerType._zod.values
+						? new Set([...n.def.innerType._zod.values, null])
+						: void 0,
+				),
+				(e._zod.parse = (n, r) =>
+					n.value === null ? n : t.innerType._zod.run(n, r));
+		}),
+		Ih = w("$ZodDefault", (e, t) => {
+			V.init(e, t),
+				(e._zod.optin = "defaulted"),
+				D(e, "values", (n) => n.def.innerType._zod.values),
+				(e._zod.parse = (n, r) => {
+					if (r.direction === "backward") return t.innerType._zod.run(n, r);
+					if (n.value === void 0) return (n.value = t.defaultValue), n;
+					const o = t.innerType._zod.run(n, r);
+					return o instanceof Promise ? o.then((i) => Ka(i, t)) : Ka(o, t);
+				});
+		});
+	function Ka(e, t) {
+		return e.value === void 0 && (e.value = t.defaultValue), e;
+	}
+	const $h = w("$ZodPrefault", (e, t) => {
+			V.init(e, t),
+				(e._zod.optin = "defaulted"),
+				D(e, "values", (n) => n.def.innerType._zod.values),
+				(e._zod.parse = (n, r) => (
+					r.direction === "backward" ||
+						(n.value === void 0 && (n.value = t.defaultValue)),
+					t.innerType._zod.run(n, r)
+				));
+		}),
+		Eh = w("$ZodNonOptional", (e, t) => {
+			V.init(e, t),
+				D(e, "values", (n) => {
+					const r = n.def.innerType._zod.values;
+					return r ? new Set([...r].filter((o) => o !== void 0)) : void 0;
+				}),
+				(e._zod.parse = (n, r) => {
+					const o = t.innerType._zod.run(n, r);
+					return o instanceof Promise ? o.then((i) => Ja(i, e)) : Ja(o, e);
+				});
+		});
+	function Ja(e, t) {
+		return (
+			!e.issues.length &&
+				e.value === void 0 &&
+				e.issues.push({
+					code: "invalid_type",
+					expected: "nonoptional",
+					input: e.value,
+					inst: t,
+				}),
+			e
+		);
+	}
+	function Ga(e, t, n, r) {
+		return t.issues.length
+			? ((e.value = n.catchValue({
+					...t,
+					value: e.value,
+					error: { issues: t.issues.map((o) => tt(o, r, Ne())) },
+					input: e.value,
+				})),
+				e)
+			: ((e.value = t.value), t.memo && (e.memo = !0), e);
+	}
+	const Rh = w("$ZodCatch", (e, t) => {
+			V.init(e, t),
+				D(e, "optin", (n) =>
+					n.def.innerType._zod.optin === "defaulted" ? "defaulted" : "optional",
+				),
+				D(e, "optout", (n) => n.def.innerType._zod.optout),
+				D(e, "values", (n) => n.def.innerType._zod.values),
+				(e._zod.parse = (n, r) => {
+					if (r.direction === "backward") return t.innerType._zod.run(n, r);
+					const o = t.innerType._zod.run({ value: n.value, issues: [] }, r);
+					return o instanceof Promise
+						? o.then((i) => Ga(n, i, t, r))
+						: Ga(n, o, t, r);
+				});
+		}),
+		Ya = w("$ZodPipe", (e, t) => {
+			V.init(e, t),
+				D(e, "values", (n) => n.def.in._zod.values),
+				D(e, "optin", (n) => n.def.in._zod.optin),
+				D(e, "optout", (n) => n.def.out._zod.optout),
+				D(e, "propValues", (n) => n.def.in._zod.propValues),
+				(e._zod.parse = (n, r) => {
+					if (r.direction === "backward") {
+						const i = t.out._zod.run(n, r);
+						return i instanceof Promise
+							? i.then((s) => hr(s, t.in, r))
+							: hr(i, t.in, r);
+					}
+					const o = t.in._zod.run(n, r);
+					return o instanceof Promise
+						? o.then((i) => hr(i, t.out, r))
+						: hr(o, t.out, r);
+				});
+		});
+	function hr(e, t, n) {
+		return e.issues.some((r) => r.code !== "unrecognized_keys")
+			? ((e.aborted = !0), e)
+			: t._zod.run({ value: e.value, issues: e.issues }, n);
+	}
+	const Xa = w("$ZodCodec", (e, t) => {
+		V.init(e, t),
+			D(e, "values", (n) => n.def.in._zod.values),
+			D(e, "optin", (n) => n.def.in._zod.optin),
+			D(e, "optout", (n) => n.def.out._zod.optout),
+			D(e, "propValues", (n) => n.def.in._zod.propValues),
+			(e._zod.parse = (n, r) => {
+				if ((r.direction || "forward") === "forward") {
+					const i = t.in._zod.run(n, r);
+					return i instanceof Promise
+						? i.then((s) => mr(s, t, r))
+						: mr(i, t, r);
+				} else {
+					const i = t.out._zod.run(n, r);
+					return i instanceof Promise
+						? i.then((s) => mr(s, t, r))
+						: mr(i, t, r);
+				}
+			});
+	});
+	function mr(e, t, n) {
+		if (e.issues.length) return (e.aborted = !0), e;
+		if ((n.direction || "forward") === "forward") {
+			const o = t.transform(e.value, e);
+			return o instanceof Promise
+				? o.then((i) => gr(e, i, t.out, n))
+				: gr(e, o, t.out, n);
+		} else {
+			const o = t.reverseTransform(e.value, e);
+			return o instanceof Promise
+				? o.then((i) => gr(e, i, t.in, n))
+				: gr(e, o, t.in, n);
+		}
+	}
+	function gr(e, t, n, r) {
+		return e.issues.length
+			? ((e.aborted = !0), e)
+			: n._zod.run({ value: t, issues: e.issues }, r);
+	}
+	const Mh = w("$ZodPreprocess", (e, t) => {
+			Ya.init(e, t);
+		}),
+		Ph = w("$ZodReadonly", (e, t) => {
+			V.init(e, t),
+				D(e, "propValues", (n) => n.def.innerType._zod.propValues),
+				D(e, "values", (n) => n.def.innerType._zod.values),
+				D(e, "optin", (n) => {
+					var r, o;
+					return (o = (r = n.def.innerType) == null ? void 0 : r._zod) == null
+						? void 0
+						: o.optin;
+				}),
+				D(e, "optout", (n) => {
+					var r, o;
+					return (o = (r = n.def.innerType) == null ? void 0 : r._zod) == null
+						? void 0
+						: o.optout;
+				}),
+				(e._zod.parse = (n, r) => {
+					if (r.direction === "backward") return t.innerType._zod.run(n, r);
+					const o = t.innerType._zod.run(n, r);
+					return o instanceof Promise ? o.then(Qa) : Qa(o);
+				});
+		});
+	function Qa(e) {
+		return e.memo || (e.value = Object.freeze(e.value)), e;
+	}
+	const Ah = w("$ZodLazy", (e, t) => {
+			V.init(e, t),
+				nf(e._zod, "innerType", () => {
+					const n = t;
+					return (
+						n._cachedInner || (n._cachedInner = t.getter()), n._cachedInner
+					);
+				}),
+				D(e, "pattern", (n) => {
+					var r, o;
+					return (o = (r = n.innerType) == null ? void 0 : r._zod) == null
+						? void 0
+						: o.pattern;
+				}),
+				D(e, "propValues", (n) => {
+					var r, o;
+					return (o = (r = n.innerType) == null ? void 0 : r._zod) == null
+						? void 0
+						: o.propValues;
+				}),
+				D(e, "optin", (n) => {
+					var r, o;
+					return (
+						((o = (r = n.innerType) == null ? void 0 : r._zod) == null
+							? void 0
+							: o.optin) ?? void 0
+					);
+				}),
+				D(e, "optout", (n) => {
+					var r, o;
+					return (
+						((o = (r = n.innerType) == null ? void 0 : r._zod) == null
+							? void 0
+							: o.optout) ?? void 0
+					);
+				}),
+				(e._zod.parse = (n, r) => e._zod.innerType._zod.run(n, r));
+		}),
+		Oh = w("$ZodCustom", (e, t) => {
+			he.init(e, t),
+				V.init(e, t),
+				(e._zod.parse = (n, r) => n),
+				(e._zod.check = (n) => {
+					const r = n.value,
+						o = t.fn(r);
+					if (o instanceof Promise) return o.then((i) => el(i, n, r, e));
+					el(o, n, r, e);
+				});
+		});
+	function el(e, t, n, r) {
+		if (!e) {
+			const o = {
+				code: "custom",
+				input: n,
+				inst: r,
+				path: [...(r._zod.def.path ?? [])],
+				continue: !r._zod.def.abort,
+			};
+			r._zod.def.params && (o.params = r._zod.def.params), t.issues.push(gn(o));
+		}
+	}
+	class Lh extends Error {
+		constructor() {
+			super("Cannot parse a reference cycle that closes through a transform"),
+				(this.name = "ZodCyclicError");
+		}
+	}
+	const Lo = "~memo",
+		tl = [];
+	function No(e) {
+		return e.map((t) => (t.path ? { ...t, path: t.path.slice() } : { ...t }));
+	}
+	const nl = new WeakMap();
+	function rl(e, t) {
+		const n = nl.get(e);
+		if (n !== void 0) return n;
+		if (t.has(e)) return !0;
+		t.add(e);
+		let r = !1;
+		const o = (a) => {
+				!r && a != null && a._zod && rl(a, t) && (r = !0);
+			},
+			i = e._zod.def;
+		switch (i.type) {
+			case "object": {
+				for (const a of Reflect.ownKeys(i.shape)) o(i.shape[a]);
+				o(i.catchall);
+				break;
+			}
+			case "array":
+				o(i.element);
+				break;
+			case "tuple":
+				for (const a of i.items) o(a);
+				o(i.rest);
+				break;
+			case "record":
+			case "map":
+				o(i.keyType), o(i.valueType);
+				break;
+			case "set":
+				o(i.valueType);
+				break;
+			case "union":
+				for (const a of i.options) o(a);
+				break;
+			case "intersection":
+				o(i.left), o(i.right);
+				break;
+			case "optional":
+			case "nullable":
+			case "default":
+			case "prefault":
+			case "catch":
+			case "readonly":
+			case "nonoptional":
+			case "promise":
+			case "success":
+				o(i.innerType);
+				break;
+			case "pipe":
+				o(i.in), o(i.out);
+				break;
+			case "function":
+				o(i.input), o(i.output);
+				break;
+			case "lazy":
+				o(e._zod.innerType);
+				break;
+			case "template_literal":
+			case "string":
+			case "number":
+			case "int":
+			case "boolean":
+			case "bigint":
+			case "symbol":
+			case "undefined":
+			case "null":
+			case "void":
+			case "never":
+			case "any":
+			case "unknown":
+			case "date":
+			case "nan":
+			case "enum":
+			case "literal":
+			case "file":
+			case "transform":
+			case "custom":
+				break;
+			default:
+				for (const a in i) {
+					const c = Object.getOwnPropertyDescriptor(i, a);
+					if (!c || c.get) continue;
+					const l = c.value;
+					if (!(!l || typeof l != "object")) {
+						if (l._zod) o(l);
+						else if (Array.isArray(l)) for (const d of l) o(d);
+					}
+				}
+		}
+		return t.delete(e), nl.set(e, r), r;
+	}
+	function Nh(e, t) {
+		let n = e.buckets.get(t);
+		return n || ((n = new Map()), e.buckets.set(t, n)), n;
+	}
+	let yr;
+	const vr = [],
+		jh = {
+			alloc(e, t, n) {
+				const r = yr;
+				if (!r) return n;
+				yr = void 0;
+				const o = { value: n, issues: null };
+				return r.set(t.value, o), vr.push(o), n;
+			},
+			guard(e) {
+				var t;
+				(t = e._zod).deferred ?? (t.deferred = []),
+					e._zod.deferred.push(() => {
+						const n = e._zod.parse,
+							r = (o, i) => {
+								if (i.direction !== "backward" && Dh(i, o.value))
+									throw new Lh();
+								return n(o, i);
+							};
+						(e._zod.parse = r), e._zod.run === n && (e._zod.run = r);
+					});
+			},
+			attach(e) {
+				var t;
+				let n, r, o;
+				(t = e._zod).deferred ?? (t.deferred = []),
+					e._zod.deferred.push(() => {
+						const i = e._zod.parse,
+							s = (a, c) => {
+								if (n === void 0 && ((n = rl(e, new Set())), !n))
+									return (
+										(e._zod.parse = i),
+										e._zod.run === s && (e._zod.run = i),
+										i(a, c)
+									);
+								const l = a.value;
+								if (l === null || typeof l != "object") return i(a, c);
+								let d = c[Lo];
+								d ||
+									((d = { buckets: new Map(), backEdges: void 0 }),
+									(c[Lo] = d));
+								let u;
+								r === c ? (u = o) : ((u = Nh(d, e)), (r = c), (o = u));
+								const f = u.get(l);
+								if (f)
+									return (
+										(a.value = f.value),
+										f.issues
+											? f.issues.length && a.issues.push(...No(f.issues))
+											: ((a.memo = !0),
+												d.backEdges ?? (d.backEdges = new Set()),
+												d.backEdges.add(f.value)),
+										a
+									);
+								yr = u;
+								const p = vr.length,
+									m = i(a, c);
+								yr = void 0;
+								const g = vr.length > p ? vr.pop() : void 0;
+								return m instanceof Promise
+									? m.then(
+											(b) => (
+												g && (g.issues = b.issues.length ? No(b.issues) : tl), b
+											),
+										)
+									: (g && (g.issues = m.issues.length ? No(m.issues) : tl), m);
+							};
+						(e._zod.parse = s), e._zod.run === i && (e._zod.run = s);
+					});
+			},
+		};
+	function Bh() {
+		return jh;
+	}
+	function Dh(e, t) {
+		var r;
+		const n = (r = e[Lo]) == null ? void 0 : r.backEdges;
+		return n !== void 0 && t !== null && typeof t == "object" && n.has(t);
+	}
+	const Fh = () => {
+		const e = {
+			string: { unit: "characters", verb: "to have" },
+			file: { unit: "bytes", verb: "to have" },
+			array: { unit: "items", verb: "to have" },
+			set: { unit: "items", verb: "to have" },
+			map: { unit: "entries", verb: "to have" },
+		};
+		function t(i) {
+			return e[i] ?? null;
+		}
+		const n = {
+				regex: "input",
+				email: "email address",
+				url: "URL",
+				emoji: "emoji",
+				uuid: "UUID",
+				uuidv4: "UUIDv4",
+				uuidv6: "UUIDv6",
+				nanoid: "nanoid",
+				guid: "GUID",
+				cuid: "cuid",
+				cuid2: "cuid2",
+				ulid: "ULID",
+				xid: "XID",
+				ksuid: "KSUID",
+				datetime: "ISO datetime",
+				date: "ISO date",
+				time: "ISO time",
+				duration: "ISO duration",
+				ipv4: "IPv4 address",
+				ipv6: "IPv6 address",
+				mac: "MAC address",
+				cidrv4: "IPv4 range",
+				cidrv6: "IPv6 range",
+				base64: "base64-encoded string",
+				base64url: "base64url-encoded string",
+				json_string: "JSON string",
+				e164: "E.164 number",
+				credit_card: "credit card number",
+				jwt: "JWT",
+				template_literal: "input",
+			},
+			r = { nan: "NaN" };
+		function o(i, s) {
+			return i === "number" && typeof s == "number" && !Number.isFinite(s)
+				? String(s)
+				: (r[i] ?? i);
+		}
+		return (i) => {
+			switch (i.code) {
+				case "invalid_type": {
+					const s = o(i.expected),
+						a = vf(i.input),
+						c = o(a, i.input);
+					return `Invalid input: expected ${s}, received ${c}`;
+				}
+				case "invalid_value":
+					return i.values.length === 1
+						? `Invalid input: expected ${da(i.values[0])}`
+						: `Invalid option: expected one of ${aa(i.values, "|")}`;
+				case "too_big": {
+					const s = i.exact ? "exactly " : i.inclusive ? "<=" : "<",
+						a = t(i.origin);
+					return a
+						? `Too big: expected ${i.origin ?? "value"} to have ${s}${i.maximum.toString()} ${a.unit ?? "elements"}`
+						: `Too big: expected ${i.origin ?? "value"} to be ${s}${i.maximum.toString()}`;
+				}
+				case "too_small": {
+					const s = i.exact ? "exactly " : i.inclusive ? ">=" : ">",
+						a = t(i.origin);
+					return a
+						? `Too small: expected ${i.origin} to have ${s}${i.minimum.toString()} ${a.unit}`
+						: `Too small: expected ${i.origin} to be ${s}${i.minimum.toString()}`;
+				}
+				case "invalid_format": {
+					const s = i;
+					return s.format === "starts_with"
+						? `Invalid string: must start with "${s.prefix}"`
+						: s.format === "ends_with"
+							? `Invalid string: must end with "${s.suffix}"`
+							: s.format === "includes"
+								? `Invalid string: must include "${s.includes}"`
+								: s.format === "regex"
+									? `Invalid string: must match pattern ${s.pattern}`
+									: `Invalid ${n[s.format] ?? i.format}`;
+				}
+				case "not_multiple_of":
+					return `Invalid number: must be a multiple of ${i.divisor}`;
+				case "unrecognized_keys":
+					return `Unrecognized key${i.keys.length > 1 ? "s" : ""}: ${aa(i.keys, ", ")}`;
+				case "invalid_key":
+					return `Invalid key in ${i.origin}`;
+				case "invalid_union":
+					return i.options && Array.isArray(i.options) && i.options.length > 0
+						? `Invalid discriminator value. Expected ${i.options.map((a) => `'${a}'`).join(" | ")}`
+						: i.inclusive === !1
+							? "Invalid input: more than one option matched"
+							: "Invalid input";
+				case "invalid_element":
+					return `Invalid value in ${i.origin}`;
+				default:
+					return "Invalid input";
+			}
+		};
+	};
+	function Uh() {
+		return { localeError: Fh() };
+	}
+	var ol;
+	class Hh {
+		constructor() {
+			(this._map = new WeakMap()), (this._idmap = new Map());
+		}
+		add(t, ...n) {
+			const r = n[0];
+			return (
+				this._map.set(t, r),
+				r && typeof r == "object" && "id" in r && this._idmap.set(r.id, t),
+				this
+			);
+		}
+		clear() {
+			return (this._map = new WeakMap()), (this._idmap = new Map()), this;
+		}
+		remove(t) {
+			const n = this._map.get(t);
+			return (
+				n && typeof n == "object" && "id" in n && this._idmap.delete(n.id),
+				this._map.delete(t),
+				this
+			);
+		}
+		get(t) {
+			const n = t._zod.parent;
+			if (n) {
+				const r = { ...(this.get(n) ?? {}) };
+				delete r.id;
+				const o = { ...r, ...this._map.get(t) };
+				return Object.keys(o).length ? o : void 0;
+			}
+			return this._map.get(t);
+		}
+		has(t) {
+			return this._map.has(t);
+		}
+	}
+	function il() {
+		return new Hh();
+	}
+	(ol = globalThis).__zod_globalRegistry ?? (ol.__zod_globalRegistry = il());
+	const yn = globalThis.__zod_globalRegistry;
+	function Zh(e, t) {
+		return new e({ type: "string", ...E(t) });
+	}
+	function sl(e, t) {
+		return new e({
+			type: "string",
+			format: "email",
+			check: "string_format",
+			abort: !1,
+			...E(t),
+		});
+	}
+	function Vh(e, t) {
+		return new e({
+			type: "string",
+			format: "guid",
+			check: "string_format",
+			abort: !1,
+			...E(t),
+		});
+	}
+	function al(e, t) {
+		return new e({
+			type: "string",
+			format: "uuid",
+			check: "string_format",
+			abort: !1,
+			...E(t),
+		});
+	}
+	function Wh(e, t) {
+		return new e({
+			type: "string",
+			format: "uuid",
+			check: "string_format",
+			abort: !1,
+			version: "v4",
+			...E(t),
+		});
+	}
+	function qh(e, t) {
+		return new e({
+			type: "string",
+			format: "uuid",
+			check: "string_format",
+			abort: !1,
+			version: "v6",
+			...E(t),
+		});
+	}
+	function Kh(e, t) {
+		return new e({
+			type: "string",
+			format: "uuid",
+			check: "string_format",
+			abort: !1,
+			version: "v7",
+			...E(t),
+		});
+	}
+	function Jh(e, t) {
+		return new e({
+			type: "string",
+			format: "url",
+			check: "string_format",
+			abort: !1,
+			...E(t),
+		});
+	}
+	function Gh(e, t) {
+		return new e({
+			type: "string",
+			format: "emoji",
+			check: "string_format",
+			abort: !1,
+			...E(t),
+		});
+	}
+	function Yh(e, t) {
+		return new e({
+			type: "string",
+			format: "nanoid",
+			check: "string_format",
+			abort: !1,
+			...E(t),
+		});
+	}
+	function Xh(e, t) {
+		return new e({
+			type: "string",
+			format: "cuid",
+			check: "string_format",
+			abort: !1,
+			...E(t),
+		});
+	}
+	function Qh(e, t) {
+		return new e({
+			type: "string",
+			format: "cuid2",
+			check: "string_format",
+			abort: !1,
+			...E(t),
+		});
+	}
+	function em(e, t) {
+		return new e({
+			type: "string",
+			format: "ulid",
+			check: "string_format",
+			abort: !1,
+			...E(t),
+		});
+	}
+	function tm(e, t) {
+		return new e({
+			type: "string",
+			format: "xid",
+			check: "string_format",
+			abort: !1,
+			...E(t),
+		});
+	}
+	function nm(e, t) {
+		return new e({
+			type: "string",
+			format: "ksuid",
+			check: "string_format",
+			abort: !1,
+			...E(t),
+		});
+	}
+	function rm(e, t) {
+		return new e({
+			type: "string",
+			format: "ipv4",
+			check: "string_format",
+			abort: !1,
+			...E(t),
+		});
+	}
+	function om(e, t) {
+		return new e({
+			type: "string",
+			format: "ipv6",
+			check: "string_format",
+			abort: !1,
+			...E(t),
+		});
+	}
+	function im(e, t) {
+		return new e({
+			type: "string",
+			format: "cidrv4",
+			check: "string_format",
+			abort: !1,
+			...E(t),
+		});
+	}
+	function sm(e, t) {
+		return new e({
+			type: "string",
+			format: "cidrv6",
+			check: "string_format",
+			abort: !1,
+			...E(t),
+		});
+	}
+	function am(e, t) {
+		return new e({
+			type: "string",
+			format: "base64",
+			check: "string_format",
+			abort: !1,
+			...E(t),
+		});
+	}
+	function lm(e, t) {
+		return new e({
+			type: "string",
+			format: "base64url",
+			check: "string_format",
+			abort: !1,
+			...E(t),
+		});
+	}
+	function cm(e, t) {
+		return new e({
+			type: "string",
+			format: "e164",
+			check: "string_format",
+			abort: !1,
+			...E(t),
+		});
+	}
+	function um(e, t) {
+		return new e({
+			type: "string",
+			format: "jwt",
+			check: "string_format",
+			abort: !1,
+			...E(t),
+		});
+	}
+	function dm(e, t) {
+		return new e({
+			type: "string",
+			format: "datetime",
+			check: "string_format",
+			offset: !1,
+			local: !1,
+			precision: null,
+			...E(t),
+		});
+	}
+	function fm(e, t) {
+		return new e({
+			type: "string",
+			format: "date",
+			check: "string_format",
+			...E(t),
+		});
+	}
+	function pm(e, t) {
+		return new e({
+			type: "string",
+			format: "time",
+			check: "string_format",
+			precision: null,
+			...E(t),
+		});
+	}
+	function hm(e, t) {
+		return new e({
+			type: "string",
+			format: "duration",
+			check: "string_format",
+			...E(t),
+		});
+	}
+	function mm(e, t) {
+		return new e({ type: "number", checks: [], ...E(t) });
+	}
+	function gm(e, t) {
+		return new e({ type: "number", coerce: !0, checks: [], ...E(t) });
+	}
+	function ym(e, t) {
+		return new e({
+			type: "number",
+			check: "number_format",
+			abort: !1,
+			format: "safeint",
+			...E(t),
+		});
+	}
+	function vm(e, t) {
+		return new e({ type: "boolean", ...E(t) });
+	}
+	function bm(e, t) {
+		return new e({ type: "boolean", coerce: !0, ...E(t) });
+	}
+	function wm(e, t) {
+		return new e({ type: "null", ...E(t) });
+	}
+	function _m(e) {
+		return new e({ type: "any" });
+	}
+	function Sm(e) {
+		return new e({ type: "unknown" });
+	}
+	function km(e, t) {
+		return new e({ type: "never", ...E(t) });
+	}
+	function xm(e, t) {
+		return new e({ type: "date", ...E(t) });
+	}
+	function Cm(e, t) {
+		return new e({ type: "date", coerce: !0, ...E(t) });
+	}
+	function ll(e, t) {
+		return new Ta({ check: "less_than", ...E(t), value: e, inclusive: !1 });
+	}
+	function br(e, t) {
+		return new Ta({ check: "less_than", ...E(t), value: e, inclusive: !0 });
+	}
+	function cl(e, t) {
+		return new Ia({ check: "greater_than", ...E(t), value: e, inclusive: !1 });
+	}
+	function wr(e, t) {
+		return new Ia({ check: "greater_than", ...E(t), value: e, inclusive: !0 });
+	}
+	function ul(e, t) {
+		return new yp({ check: "multiple_of", ...E(t), value: e });
+	}
+	function dl(e, t) {
+		return new bp({ check: "max_length", ...E(t), maximum: e });
+	}
+	function _r(e, t) {
+		return new wp({ check: "min_length", ...E(t), minimum: e });
+	}
+	function fl(e, t) {
+		return new _p({ check: "length_equals", ...E(t), length: e });
+	}
+	function zm(e, t) {
+		return new Sp({
+			check: "string_format",
+			format: "regex",
+			...E(t),
+			pattern: e,
+		});
+	}
+	function Tm(e) {
+		return new kp({ check: "string_format", format: "lowercase", ...E(e) });
+	}
+	function Im(e) {
+		return new xp({ check: "string_format", format: "uppercase", ...E(e) });
+	}
+	function $m(e, t) {
+		return new Cp({
+			check: "string_format",
+			format: "includes",
+			...E(t),
+			includes: e,
+		});
+	}
+	function Em(e, t) {
+		return new zp({
+			check: "string_format",
+			format: "starts_with",
+			...E(t),
+			prefix: e,
+		});
+	}
+	function Rm(e, t) {
+		return new Tp({
+			check: "string_format",
+			format: "ends_with",
+			...E(t),
+			suffix: e,
+		});
+	}
+	function jt(e) {
+		return new Ip({ check: "overwrite", tx: e });
+	}
+	function Mm(e) {
+		return jt((t) => t.normalize(e));
+	}
+	function Pm() {
+		return jt((e) => e.trim());
+	}
+	function Am() {
+		return jt((e) => e.toLowerCase());
+	}
+	function Om() {
+		return jt((e) => e.toUpperCase());
+	}
+	function Lm() {
+		return jt((e) => of(e));
+	}
+	function Nm(e, t, n) {
+		return new e({ type: "array", element: t, ...E(n) });
+	}
+	function jm(e, t, n) {
+		return new e({ type: "custom", check: "custom", fn: t, ...E(n) });
+	}
+	function Bm(e, t) {
+		const n = Dm(
+			(r) => (
+				(r.addIssue = (o) => {
+					if (typeof o == "string") r.issues.push(gn(o, r.value, n._zod.def));
+					else {
+						const i = o;
+						i.fatal && (i.continue = !1),
+							i.code ?? (i.code = "custom"),
+							"input" in i || (i.input = r.value),
+							i.inst ?? (i.inst = n),
+							i.continue ?? (i.continue = !n._zod.def.abort),
+							r.issues.push(gn(i));
+					}
+				}),
+				e(r.value, r)
+			),
+			t,
+		);
+		return n;
+	}
+	function Dm(e, t) {
+		const n = new he({ check: "custom", ...E(t) });
+		return (n._zod.check = e), n;
+	}
+	function Fm(e, t) {
+		const n = E(t);
+		let r = n.truthy ?? ["true", "1", "yes", "on", "y", "enabled"],
+			o = n.falsy ?? ["false", "0", "no", "off", "n", "disabled"];
+		n.case !== "sensitive" &&
+			((r = r.map((p) => (typeof p == "string" ? p.toLowerCase() : p))),
+			(o = o.map((p) => (typeof p == "string" ? p.toLowerCase() : p))));
+		const i = new Set(r),
+			s = new Set(o),
+			a = e.Codec ?? Xa,
+			c = e.Boolean ?? La,
+			l = e.String ?? fr,
+			d = new l({ type: "string", error: n.error }),
+			u = new c({ type: "boolean", error: n.error }),
+			f = new a({
+				type: "pipe",
+				in: d,
+				out: u,
+				transform: (p, m) => {
+					let g = p;
+					return (
+						n.case !== "sensitive" && (g = g.toLowerCase()),
+						i.has(g)
+							? !0
+							: s.has(g)
+								? !1
+								: (m.issues.push({
+										code: "invalid_value",
+										expected: "stringbool",
+										values: [...i, ...s],
+										input: m.value,
+										inst: f,
+										continue: !1,
+									}),
+									{})
+					);
+				},
+				reverseTransform: (p, m) =>
+					p === !0 ? r[0] || "true" : o[0] || "false",
+				error: n.error,
+			});
+		return (
+			(f._zod.bag.truthy = r),
+			(f._zod.bag.falsy = o),
+			(f._zod.bag.case = n.case ?? "insensitive"),
+			f
+		);
+	}
+	function vn(e, ...t) {
+		for (const n of t)
+			for (const r of Reflect.ownKeys(n))
+				Object.prototype.propertyIsEnumerable.call(n, r) && de(e, r, n[r]);
+		return e;
+	}
+	function pl(e) {
+		let t = (e == null ? void 0 : e.target) ?? "draft-2020-12";
+		return (
+			t === "draft-4" && (t = "draft-04"),
+			t === "draft-7" && (t = "draft-07"),
+			{
+				processors: e.processors ?? {},
+				metadataRegistry: (e == null ? void 0 : e.metadata) ?? yn,
+				target: t,
+				unrepresentable: (e == null ? void 0 : e.unrepresentable) ?? "throw",
+				override: (e == null ? void 0 : e.override) ?? (() => {}),
+				io: (e == null ? void 0 : e.io) ?? "output",
+				counter: 0,
+				seen: new Map(),
+				sharedDefsExtractedFor: void 0,
+				sharedEmitDoneFor: void 0,
+				cycles: (e == null ? void 0 : e.cycles) ?? "ref",
+				reused: (e == null ? void 0 : e.reused) ?? "inline",
+				intersections: [],
+				deferred: [],
+				external: (e == null ? void 0 : e.external) ?? void 0,
+			}
+		);
+	}
+	function Fe(e, t, n, r, o) {
+		const i =
+			typeof t.unrepresentable == "function"
+				? t.unrepresentable({ zodSchema: e, path: r.path, message: o })
+				: t.unrepresentable;
+		if (i === "any") return !1;
+		if (i === void 0 || i === "throw") throw new Error(o);
+		return Object.assign(n, i), !0;
+	}
+	function Q(e, t, n = { path: [], schemaPath: [] }) {
+		var d, u;
+		var r;
+		const o = e._zod.def,
+			i = t.seen.get(e);
+		if (i)
+			return (
+				i.count++, n.schemaPath.includes(e) && (i.cycle = n.path), i.schema
+			);
+		const s = { schema: {}, count: 1, cycle: void 0, path: n.path };
+		t.seen.set(e, s),
+			(t.sharedDefsExtractedFor = void 0),
+			(t.sharedEmitDoneFor = void 0);
+		const a = (u = (d = e._zod).toJSONSchema) == null ? void 0 : u.call(d);
+		if (a) s.schema = a;
+		else {
+			const f = { ...n, schemaPath: [...n.schemaPath, e], path: n.path };
+			if (e._zod.processJSONSchema) e._zod.processJSONSchema(t, s.schema, f);
+			else {
+				const m = s.schema,
+					g = t.processors[o.type];
+				if (!g)
+					throw new Error(
+						`[toJSONSchema]: Non-representable type encountered: ${o.type}`,
+					);
+				g(e, t, m, f);
+			}
+			const p = e._zod.parent;
+			p && (s.ref || (s.ref = p), Q(p, t, f), (t.seen.get(p).isParent = !0));
+		}
+		const c = t.metadataRegistry.get(e);
+		return (
+			c && vn(s.schema, c),
+			t.io === "input" &&
+				fe(e) &&
+				(delete s.schema.examples, delete s.schema.default),
+			t.io === "input" &&
+				"_prefault" in s.schema &&
+				((r = s.schema).default ?? (r.default = s.schema._prefault)),
+			delete s.schema._prefault,
+			t.seen.get(e).schema
+		);
+	}
+	function hl(e) {
+		return e.replace(/~/g, "~0").replace(/\//g, "~1");
+	}
+	function ml(e, t) {
+		var s, a, c, l;
+		const n = e.seen.get(t);
+		if (!n) throw new Error("Unprocessed schema. This is a bug in Zod.");
+		if (e.external && e.sharedDefsExtractedFor === e.external) return;
+		const r = new Map();
+		for (const d of e.seen.entries()) {
+			const u = (s = e.metadataRegistry.get(d[0])) == null ? void 0 : s.id;
+			if (u) {
+				const f = r.get(u);
+				if (f && f !== d[0])
+					throw new Error(
+						`Duplicate schema id "${u}" detected during JSON Schema conversion. Two different schemas cannot share the same id when converted together.`,
+					);
+				r.set(u, d[0]);
+			}
+		}
+		const o = (d) => {
+				var g;
+				const u = e.target === "draft-2020-12" ? "$defs" : "definitions";
+				if (e.external) {
+					const b = (g = e.external.registry.get(d[0])) == null ? void 0 : g.id,
+						v = e.external.uri ?? ((k) => k);
+					if (b) return { ref: v(b) };
+					const _ = d[1].defId ?? d[1].schema.id ?? `schema${e.counter++}`;
+					return (
+						(d[1].defId = _),
+						{ defId: _, ref: `${v("__shared")}#/${u}/${hl(_)}` }
+					);
+				}
+				const f = "#",
+					p = `${f}/${u}/`;
+				if (d[1] === n && !d[1].schema.id) return { ref: f };
+				const m = d[1].schema.id ?? `__schema${e.counter++}`;
+				return { defId: m, ref: p + hl(m) };
+			},
+			i = (d) => {
+				if (d[1].schema.$ref) return;
+				const u = d[1],
+					{ ref: f, defId: p } = o(d);
+				(u.def = { ...u.schema }), p && (u.defId = p);
+				const m = u.schema;
+				for (const g in m) delete m[g];
+				m.$ref = f;
+			};
+		if (e.cycles === "throw")
+			for (const d of e.seen.entries()) {
+				const u = d[1];
+				if (u.cycle)
+					throw new Error(`Cycle detected: #/${((a = u.cycle)) == null ? void 0 : a.join("/")}/<root>
+
+Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.`);
+			}
+		for (const d of e.seen.entries()) {
+			const u = d[1];
+			if (t === d[0]) {
+				i(d);
+				continue;
+			}
+			if (e.external) {
+				const p = (c = e.external.registry.get(d[0])) == null ? void 0 : c.id;
+				if (t !== d[0] && p) {
+					i(d);
+					continue;
+				}
+			}
+			if ((l = e.metadataRegistry.get(d[0])) == null ? void 0 : l.id) {
+				i(d);
+				continue;
+			}
+			if (u.cycle) {
+				i(d);
+				continue;
+			}
+			if (u.count > 1 && e.reused === "ref") {
+				i(d);
+				continue;
+			}
+		}
+		e.external && (e.sharedDefsExtractedFor = e.external);
+	}
+	function gl(e) {
+		const t = e.anyOf;
+		if (!Array.isArray(t) || t.length === 0 || e.type !== void 0) return;
+		const n = [];
+		for (const r of t) {
+			if (!r || typeof r != "object") return;
+			gl(r);
+			const o = Object.keys(r);
+			if (o.length !== 1 || o[0] !== "type") return;
+			const i = r.type;
+			for (const s of Array.isArray(i) ? i : [i]) {
+				if (typeof s != "string") return;
+				n.includes(s) || n.push(s);
+			}
+		}
+		delete e.anyOf, (e.type = n.length === 1 ? n[0] : n);
+	}
+	const yl = new Set([
+			"type",
+			"properties",
+			"required",
+			"additionalProperties",
+		]),
+		vl = ["oneOf", "anyOf"];
+	function bl(e) {
+		const t = e.additionalProperties;
+		return t === void 0 || t === !1 || typeof t != "object" || t === null
+			? null
+			: Object.keys(t).length
+				? t
+				: null;
+	}
+	function jo(e) {
+		var i;
+		const t = [];
+		for (const s of e) {
+			if (typeof s != "object" || s.type !== "object") return null;
+			for (const a in s) if (!yl.has(a)) return null;
+			t.push(s);
+		}
+		const n = {},
+			r = new Set();
+		for (const s of t) {
+			for (const a in s.properties) {
+				if (Object.prototype.hasOwnProperty.call(n, a)) continue;
+				const c = [];
+				for (const d of t) {
+					const u = ((i = d.properties) == null ? void 0 : i[a]) ?? bl(d);
+					u != null &&
+						(c.some((f) => JSON.stringify(f) === JSON.stringify(u)) ||
+							c.push(u));
+				}
+				const l = c.length === 1 ? c[0] : (jo(c) ?? { allOf: c });
+				de(n, a, l);
+			}
+			for (const a of s.required ?? []) r.add(a);
+		}
+		const o = { type: "object", properties: n };
+		if (
+			(r.size && (o.required = [...r]),
+			t.every((s) => s.additionalProperties === !1))
+		)
+			o.additionalProperties = !1;
+		else {
+			const s = [];
+			for (const a of t) {
+				const c = bl(a);
+				c &&
+					!s.some((l) => JSON.stringify(l) === JSON.stringify(c)) &&
+					s.push(c);
+			}
+			s.length === 1
+				? (o.additionalProperties = s[0])
+				: s.length > 1 && (o.additionalProperties = { allOf: s });
+		}
+		return o;
+	}
+	function Um(e) {
+		const t = e.allOf;
+		if (!Array.isArray(t) || t.length < 2) return;
+		for (const o of yl) if (o in e) return;
+		const n = t.filter((o) => vl.some((i) => Array.isArray(o[i])));
+		let r = null;
+		if (!n.length) r = jo(t);
+		else {
+			const o = n[0],
+				i = vl.find((c) => Array.isArray(o[c]));
+			if (Object.keys(o).length !== 1) return;
+			const s = t.filter((c) => c !== o),
+				a = o[i].map((c) => jo([...s, c]));
+			if (a.some((c) => !c)) return;
+			r = { [i]: a };
+		}
+		r && (delete e.allOf, vn(e, r));
+	}
+	function wl(e, t) {
+		var a, c, l, d;
+		const n = e.seen.get(t);
+		if (!n) throw new Error("Unprocessed schema. This is a bug in Zod.");
+		const r = (u) => {
+			const f = e.seen.get(u);
+			if (f.ref === null) return;
+			const p = f.def ?? f.schema,
+				m = { ...p },
+				g = f.ref;
+			if (((f.ref = null), g)) {
+				r(g);
+				const v = e.seen.get(g),
+					_ = v.schema;
+				if (
+					(_.$ref &&
+					(e.target === "draft-07" ||
+						e.target === "draft-04" ||
+						e.target === "openapi-3.0")
+						? ((p.allOf = p.allOf ?? []), p.allOf.push(_))
+						: vn(p, _),
+					vn(p, m),
+					u._zod.parent === g)
+				)
+					for (const x in p)
+						x === "$ref" || x === "allOf" || x in m || delete p[x];
+				if (_.$ref && v.def)
+					for (const x in p)
+						x === "$ref" ||
+							x === "allOf" ||
+							(x in v.def &&
+								JSON.stringify(p[x]) === JSON.stringify(v.def[x]) &&
+								delete p[x]);
+			}
+			const b = u._zod.parent;
+			if (b && b !== g) {
+				r(b);
+				const v = e.seen.get(b);
+				if (v != null && v.schema.$ref && ((p.$ref = v.schema.$ref), v.def))
+					for (const _ in p)
+						_ === "$ref" ||
+							_ === "allOf" ||
+							(_ in v.def &&
+								JSON.stringify(p[_]) === JSON.stringify(v.def[_]) &&
+								delete p[_]);
+			}
+			e.override({ zodSchema: u, jsonSchema: p, path: f.path ?? [] });
+		};
+		if (!e.external || e.sharedEmitDoneFor !== e.external) {
+			for (const u of [...e.seen.entries()].reverse()) r(u[0]);
+			if (e.target !== "openapi-3.0")
+				for (const u of e.seen.entries()) gl(u[1].def ?? u[1].schema);
+			for (const u of e.deferred) u();
+			if (e.intersections.length) {
+				const u = new Map();
+				for (const f of e.seen.values())
+					for (const p of [f.schema, f.def]) {
+						const m = p == null ? void 0 : p.allOf;
+						if (!Array.isArray(m)) continue;
+						const g = u.get(m);
+						g ? g.push(p) : u.set(m, [p]);
+					}
+				for (const f of e.intersections) for (const p of u.get(f) ?? []) Um(p);
+			}
+		}
+		const o = {};
+		if (
+			(e.target === "draft-2020-12"
+				? (o.$schema = "https://json-schema.org/draft/2020-12/schema")
+				: e.target === "draft-07"
+					? (o.$schema = "http://json-schema.org/draft-07/schema#")
+					: e.target === "draft-04" &&
+						(o.$schema = "http://json-schema.org/draft-04/schema#"),
+			(a = e.external) != null && a.uri)
+		) {
+			const u = (c = e.external.registry.get(t)) == null ? void 0 : c.id;
+			if (!u) throw new Error("Schema is missing an `id` property");
+			o.$id = e.external.uri(u);
+		}
+		vn(o, n.defId ? n.schema : (n.def ?? n.schema));
+		const i = (l = e.metadataRegistry.get(t)) == null ? void 0 : l.id;
+		i !== void 0 && o.id === i && delete o.id;
+		const s = ((d = e.external) == null ? void 0 : d.defs) ?? {};
+		if (!e.external || e.sharedEmitDoneFor !== e.external)
+			for (const u of e.seen.entries()) {
+				const f = u[1];
+				f.def &&
+					f.defId &&
+					(f.def.id === f.defId && delete f.def.id, de(s, f.defId, f.def));
+			}
+		e.external && (e.sharedEmitDoneFor = e.external),
+			e.external ||
+				(Object.keys(s).length > 0 &&
+					(e.target === "draft-2020-12" ? (o.$defs = s) : (o.definitions = s)));
+		try {
+			const u = JSON.parse(JSON.stringify(o));
+			return (
+				Object.defineProperty(u, "~standard", {
+					value: {
+						...t["~standard"],
+						jsonSchema: {
+							input: Sr(t, "input", e.processors),
+							output: Sr(t, "output", e.processors),
+						},
+					},
+					enumerable: !1,
+					writable: !1,
+				}),
+				u
+			);
+		} catch {
+			throw new Error("Error converting schema to JSON.");
+		}
+	}
+	function fe(e, t) {
+		const n = t ?? { seen: new Set() };
+		if (n.seen.has(e)) return !1;
+		n.seen.add(e);
+		const r = e._zod.def;
+		if (r.type === "transform") return !0;
+		if (r.type === "array") return fe(r.element, n);
+		if (r.type === "set") return fe(r.valueType, n);
+		if (r.type === "lazy") return fe(r.getter(), n);
+		if (
+			r.type === "promise" ||
+			r.type === "optional" ||
+			r.type === "nonoptional" ||
+			r.type === "nullable" ||
+			r.type === "readonly" ||
+			r.type === "default" ||
+			r.type === "prefault" ||
+			r.type === "catch"
+		)
+			return fe(r.innerType, n);
+		if (r.type === "intersection") return fe(r.left, n) || fe(r.right, n);
+		if (r.type === "record" || r.type === "map")
+			return fe(r.keyType, n) || fe(r.valueType, n);
+		if (r.type === "pipe")
+			return e._zod.traits.has("$ZodCodec") ? !0 : fe(r.in, n) || fe(r.out, n);
+		if (r.type === "object") {
+			for (const o in r.shape) if (fe(r.shape[o], n)) return !0;
+			return !1;
+		}
+		if (r.type === "union") {
+			for (const o of r.options) if (fe(o, n)) return !0;
+			return !1;
+		}
+		if (r.type === "tuple") {
+			for (const o of r.items) if (fe(o, n)) return !0;
+			return !!(r.rest && fe(r.rest, n));
+		}
+		return !1;
+	}
+	const Hm =
+			(e, t = {}) =>
+			(n) => {
+				const r = pl({ ...n, processors: t });
+				return Q(e, r), ml(r, e), wl(r, e);
+			},
+		Sr =
+			(e, t, n = {}) =>
+			(r) => {
+				const { libraryOptions: o, target: i } = r ?? {},
+					s = pl({ ...(o ?? {}), target: i, io: t, processors: n });
+				return Q(e, s), ml(s, e), wl(s, e);
+			},
+		Zm = {
+			guid: "uuid",
+			url: "uri",
+			datetime: "date-time",
+			json_string: "json-string",
+			regex: "",
+		},
+		Vm = (e, t, n, r) => {
+			const o = n;
+			o.type = "string";
+			const {
+				minimum: i,
+				maximum: s,
+				format: a,
+				patterns: c,
+				contentEncoding: l,
+				laxFormat: d,
+			} = e._zod.bag;
+			if (
+				(typeof i == "number" && (o.minLength = i),
+				typeof s == "number" && (o.maxLength = s),
+				a &&
+					((o.format = Zm[a] ?? a),
+					o.format === "" && delete o.format,
+					(a === "time" || d) && delete o.format),
+				l && (o.contentEncoding = l),
+				c && c.size > 0)
+			) {
+				const u = [...c];
+				u.length === 1
+					? (o.pattern = u[0].source)
+					: u.length > 1 &&
+						(o.allOf = [
+							...u.map((f) => ({
+								...(t.target === "draft-07" ||
+								t.target === "draft-04" ||
+								t.target === "openapi-3.0"
+									? { type: "string" }
+									: {}),
+								pattern: f.source,
+							})),
+						]);
+			}
+		},
+		Wm = (e, t, n, r) => {
+			const o = n,
+				{
+					minimum: i,
+					maximum: s,
+					format: a,
+					multipleOf: c,
+					exclusiveMaximum: l,
+					exclusiveMinimum: d,
+				} = e._zod.bag;
+			typeof a == "string" && a.includes("int")
+				? (o.type = "integer")
+				: (o.type = "number");
+			const u = typeof d == "number" && d >= (i ?? Number.NEGATIVE_INFINITY),
+				f = typeof l == "number" && l <= (s ?? Number.POSITIVE_INFINITY),
+				p = t.target === "draft-04" || t.target === "openapi-3.0";
+			u
+				? p
+					? ((o.minimum = d), (o.exclusiveMinimum = !0))
+					: (o.exclusiveMinimum = d)
+				: typeof i == "number" && (o.minimum = i),
+				f
+					? p
+						? ((o.maximum = l), (o.exclusiveMaximum = !0))
+						: (o.exclusiveMaximum = l)
+					: typeof s == "number" && (o.maximum = s),
+				typeof c == "number" &&
+					(Number.isFinite(c) && c !== 0
+						? (o.multipleOf = Math.abs(c))
+						: Fe(
+								e,
+								t,
+								o,
+								r,
+								`A multipleOf divisor of ${c} cannot be represented in JSON Schema`,
+							));
+		},
+		qm = (e, t, n, r) => {
+			n.type = "boolean";
+		},
+		Km = (e, t, n, r) => {
+			t.target === "openapi-3.0"
+				? ((n.type = "string"), (n.nullable = !0), (n.enum = [null]))
+				: (n.type = "null");
+		},
+		Jm = (e, t, n, r) => {
+			n.not = {};
+		},
+		Gm = (e, t, n, r) => {},
+		Ym = (e, t, n, r) => {},
+		Xm = (e, t, n, r) => {
+			Fe(e, t, n, r, "Date cannot be represented in JSON Schema");
+		},
+		Qm = (e, t, n, r) => {
+			const o = e._zod.def,
+				i = sa(o.entries);
+			if (i.length === 0) {
+				n.not = {};
+				return;
+			}
+			i.every((s) => typeof s == "number") && (n.type = "number"),
+				i.every((s) => typeof s == "string") && (n.type = "string"),
+				(n.enum = i);
+		},
+		eg = (e, t, n, r) => {
+			const o = e._zod.def;
+			if (o.values.length === 0) {
+				n.not = {};
+				return;
+			}
+			const i = [];
+			for (const s of o.values)
+				if (s === void 0) {
+					if (
+						Fe(
+							e,
+							t,
+							n,
+							r,
+							"Literal `undefined` cannot be represented in JSON Schema",
+						)
+					)
+						return;
+				} else if (typeof s == "bigint") {
+					if (
+						Fe(
+							e,
+							t,
+							n,
+							r,
+							"BigInt literals cannot be represented in JSON Schema",
+						)
+					)
+						return;
+					i.push(Number(s));
+				} else i.push(s);
+			if (i.length !== 0)
+				if (i.length === 1) {
+					const s = i[0];
+					(n.type = s === null ? "null" : typeof s),
+						t.target === "draft-04" || t.target === "openapi-3.0"
+							? (n.enum = [s])
+							: (n.const = s);
+				} else
+					i.every((s) => typeof s == "number") && (n.type = "number"),
+						i.every((s) => typeof s == "string") && (n.type = "string"),
+						i.every((s) => typeof s == "boolean") && (n.type = "boolean"),
+						i.every((s) => s === null) && (n.type = "null"),
+						(n.enum = i);
+		},
+		tg = (e, t, n, r) => {
+			Fe(e, t, n, r, "Custom types cannot be represented in JSON Schema");
+		},
+		ng = (e, t, n, r) => {
+			Fe(e, t, n, r, "Transforms cannot be represented in JSON Schema");
+		},
+		rg = (e, t, n, r) => {
+			const o = n,
+				i = e._zod.def,
+				{ minimum: s, maximum: a } = e._zod.bag;
+			typeof s == "number" && (o.minItems = s),
+				typeof a == "number" && (o.maxItems = a),
+				(o.type = "array"),
+				(o.items = Q(i.element, t, { ...r, path: [...r.path, "items"] }));
+		};
+	function bn(e) {
+		const t = e._zod.def;
+		return t.type === "pipe" && t.in._zod.traits.has("$ZodTransform")
+			? bn(t.out)
+			: t.type === "catch"
+				? bn(t.innerType)
+				: e._zod.optin;
+	}
+	const og = (e, t, n, r) => {
+			var d;
+			const o = n,
+				i = e._zod.def,
+				s = i.shape;
+			if (
+				Object.getOwnPropertySymbols(s).length &&
+				Fe(e, t, o, r, "Symbol keys cannot be represented in JSON Schema")
+			)
+				return;
+			(o.type = "object"), (o.properties = {});
+			for (const u in s)
+				de(
+					o.properties,
+					u,
+					Q(s[u], t, { ...r, path: [...r.path, "properties", u] }),
+				);
+			const c = new Set(Object.keys(s)),
+				l = new Set(
+					[...c].filter((u) => {
+						const f = i.shape[u];
+						return t.io === "input"
+							? bn(f) === void 0
+							: f._zod.optout === void 0;
+					}),
+				);
+			l.size > 0 && (o.required = Array.from(l)),
+				((d = i.catchall) == null ? void 0 : d._zod.def.type) === "never"
+					? (o.additionalProperties = !1)
+					: i.catchall
+						? i.catchall &&
+							(o.additionalProperties = Q(i.catchall, t, {
+								...r,
+								path: [...r.path, "additionalProperties"],
+							}))
+						: t.io === "output" && (o.additionalProperties = !1);
+		},
+		ig = (e, t, n, r) => {
+			const o = e._zod.def,
+				i = o.inclusive === !1,
+				s = o.options.map((a, c) =>
+					Q(a, t, { ...r, path: [...r.path, i ? "oneOf" : "anyOf", c] }),
+				);
+			i ? (n.oneOf = s) : (n.anyOf = s);
+		},
+		sg = (e, t, n, r) => {
+			const o = e._zod.def,
+				i = Q(o.left, t, { ...r, path: [...r.path, "allOf", 0] }),
+				s = Q(o.right, t, { ...r, path: [...r.path, "allOf", 1] }),
+				a = (l) => "allOf" in l && Object.keys(l).length === 1,
+				c = [...(a(i) ? i.allOf : [i]), ...(a(s) ? s.allOf : [s])];
+			(n.allOf = c), t.intersections.push(c);
+		},
+		ag = (e, t, n, r) => {
+			const o = n,
+				i = e._zod.def;
+			o.type = "array";
+			const s = t.target === "draft-2020-12" ? "prefixItems" : "items",
+				a =
+					t.target === "draft-2020-12" || t.target === "openapi-3.0"
+						? "items"
+						: "additionalItems",
+				c = i.items.map((g, b) => Q(g, t, { ...r, path: [...r.path, s, b] })),
+				l = i.rest
+					? Q(i.rest, t, {
+							...r,
+							path: [
+								...r.path,
+								a,
+								...(t.target === "openapi-3.0" ? [i.items.length] : []),
+							],
+						})
+					: null;
+			let d = i.items.length;
+			for (; d > 0; ) {
+				const g = i.items[d - 1];
+				if (
+					!(t.io === "input" ? bn(g) !== void 0 : g._zod.optout === "optional")
+				)
+					break;
+				d--;
+			}
+			const u = i.items.length,
+				f = !i.rest;
+			t.target === "draft-2020-12"
+				? ((o.prefixItems = c),
+					f ? (o.items = !1) : l && (o.items = l),
+					d > 0 && (o.minItems = d),
+					f && (o.maxItems = u))
+				: t.target === "openapi-3.0"
+					? ((o.items = { anyOf: c }),
+						l && o.items.anyOf.push(l),
+						d > 0 && (o.minItems = d),
+						f && (o.maxItems = u))
+					: ((o.items = c),
+						f ? (o.additionalItems = !1) : l && (o.additionalItems = l),
+						d > 0 && (o.minItems = d),
+						f && (o.maxItems = u));
+			const { minimum: p, maximum: m } = e._zod.bag;
+			typeof p == "number" && (o.minItems = p),
+				typeof m == "number" && (o.maxItems = m);
+		};
+	function Bo(e, t, n) {
+		var m;
+		if (t.$ref) {
+			if (n.has(t)) return t;
+			n.add(t);
+			const g = (m = e.get(t)) == null ? void 0 : m.def;
+			if (!g) return t;
+			const b = Bo(e, g, n);
+			return b === g ? t : b;
+		}
+		for (const g of ["anyOf", "oneOf"]) {
+			const b = t[g];
+			if (!Array.isArray(b)) continue;
+			const v = b.map((_) => Bo(e, _, n));
+			v.some((_, k) => _ !== b[k]) && (t = { ...t, [g]: v });
+		}
+		const r = Array.isArray(t.type) ? t.type : [t.type],
+			o =
+				!r.includes("string") &&
+				r.some((g) => g === "number" || g === "integer"),
+			i = t.enum ?? (t.const !== void 0 ? [t.const] : void 0);
+		if (!o && !(i != null && i.some((g) => typeof g == "number"))) return t;
+		const {
+			minimum: s,
+			maximum: a,
+			exclusiveMinimum: c,
+			exclusiveMaximum: l,
+			multipleOf: d,
+			format: u,
+			id: f,
+			...p
+		} = t;
+		return (
+			p.enum
+				? (p.enum = p.enum.map((g) => (typeof g == "number" ? String(g) : g)))
+				: typeof p.const == "number" && (p.const = String(p.const)),
+			o &&
+				((p.type = "string"),
+				i || (p.pattern = (r.includes("number") ? Mo : za).source)),
+			p
+		);
+	}
+	const Do = new WeakMap();
+	function lg(e) {
+		var r;
+		const t = new Map();
+		for (const o of e.seen.values())
+			o.def && !t.has(o.schema) && t.set(o.schema, o);
+		const n = new Map();
+		for (const o of Do.get(e) ?? []) {
+			const i = e.seen.get(o),
+				s =
+					(r =
+						(i == null ? void 0 : i.def) ?? (i == null ? void 0 : i.schema)) ==
+					null
+						? void 0
+						: r.propertyNames;
+			if (!s || s === !0 || n.has(s)) continue;
+			const a = Bo(t, s, new Set());
+			a !== s && n.set(s, a);
+		}
+		if (n.size)
+			for (const o of e.seen.values())
+				for (const i of [o.schema, o.def]) {
+					const s = i && n.get(i.propertyNames);
+					s && (i.propertyNames = s);
+				}
+	}
+	const cg = (e, t, n, r) => {
+			const o = n,
+				i = e._zod.def;
+			o.type = "object";
+			const s = i.keyType,
+				a = s._zod.bag,
+				c = a == null ? void 0 : a.patterns;
+			if (i.mode === "loose" && c && c.size > 0) {
+				const u = Q(i.valueType, t, {
+					...r,
+					path: [...r.path, "patternProperties", "*"],
+				});
+				o.patternProperties = {};
+				for (const f of c) de(o.patternProperties, f.source, u);
+			} else {
+				if (t.target === "draft-07" || t.target === "draft-2020-12") {
+					o.propertyNames = Q(i.keyType, t, {
+						...r,
+						path: [...r.path, "propertyNames"],
+					});
+					let u = Do.get(t);
+					u || ((u = []), Do.set(t, u), t.deferred.push(() => lg(t))),
+						u.push(e);
+				}
+				o.additionalProperties = Q(i.valueType, t, {
+					...r,
+					path: [...r.path, "additionalProperties"],
+				});
+			}
+			const l = s._zod.values,
+				d = t.io === "input" && bn(i.valueType) !== void 0;
+			if (l && !i.partial && !d) {
+				const u = [...l].filter(
+					(f) => typeof f == "string" || typeof f == "number",
+				);
+				u.length > 0 && (o.required = u.map(String));
+			}
+		},
+		ug = (e, t, n, r) => {
+			const o = e._zod.def,
+				i = Q(o.innerType, t, r),
+				s = t.seen.get(e);
+			t.target === "openapi-3.0"
+				? ((s.ref = o.innerType), (n.nullable = !0))
+				: (n.anyOf = [i, { type: "null" }]);
+		},
+		dg = (e, t, n, r) => {
+			const o = e._zod.def;
+			Q(o.innerType, t, r);
+			const i = t.seen.get(e);
+			i.ref = o.innerType;
+		},
+		Fo = Symbol();
+	function _l(e, t, n, r, o) {
+		let i = !1;
+		const s = JSON.stringify(e, (a, c) =>
+			typeof c != "bigint" ? c : ((i = !0), null),
+		);
+		return i
+			? (Fe(t, n, r, o, "BigInt defaults cannot be represented in JSON Schema"),
+				Fo)
+			: JSON.parse(s);
+	}
+	const fg = (e, t, n, r) => {
+			const o = e._zod.def;
+			Q(o.innerType, t, r);
+			const i = t.seen.get(e);
+			i.ref = o.innerType;
+			const s = _l(o.defaultValue, e, t, n, r);
+			s !== Fo && (n.default = s);
+		},
+		pg = (e, t, n, r) => {
+			const o = e._zod.def;
+			Q(o.innerType, t, r);
+			const i = t.seen.get(e);
+			if (((i.ref = o.innerType), t.io !== "input")) return;
+			const s = _l(o.defaultValue, e, t, n, r);
+			s !== Fo && (n._prefault = s);
+		},
+		hg = (e, t, n, r) => {
+			const o = e._zod.def;
+			Q(o.innerType, t, r);
+			const i = t.seen.get(e);
+			i.ref = o.innerType;
+			let s;
+			try {
+				s = o.catchValue(void 0);
+			} catch {
+				Fe(e, t, n, r, "Dynamic catch values are not supported in JSON Schema");
+				return;
+			}
+			n.default = s;
+		},
+		mg = (e, t, n, r) => {
+			const o = e._zod.def,
+				i = o.in._zod.traits.has("$ZodTransform"),
+				s = t.io === "input" ? (i ? o.out : o.in) : o.out;
+			Q(s, t, r);
+			const a = t.seen.get(e);
+			a.ref = s;
+		},
+		gg = (e, t, n, r) => {
+			const o = e._zod.def;
+			Q(o.innerType, t, r);
+			const i = t.seen.get(e);
+			(i.ref = o.innerType), (n.readOnly = !0);
+		},
+		Sl = (e, t, n, r) => {
+			const o = e._zod.def;
+			Q(o.innerType, t, r);
+			const i = t.seen.get(e);
+			i.ref = o.innerType;
+		},
+		yg = (e, t, n, r) => {
+			const o = e._zod.innerType;
+			Q(o, t, r);
+			const i = t.seen.get(e);
+			i.ref = o;
+		},
+		kl = new WeakSet([Object.prototype, Error.prototype]);
+	function kr(e, t, n) {
+		Object.defineProperty(e, t, {
+			configurable: !0,
+			enumerable: !1,
+			get() {
+				const r = n(this);
+				return (
+					Object.defineProperty(this, t, {
+						value: r,
+						configurable: !0,
+						writable: !0,
+					}),
+					r
+				);
+			},
+			set(r) {
+				Object.defineProperty(this, t, {
+					value: r,
+					configurable: !0,
+					writable: !0,
+				});
+			},
+		});
+	}
+	const xl = (e, t) => {
+			_a.init(e, t), (e.name = "ZodError");
+			const n = Object.getPrototypeOf(e);
+			kl.has(n) ||
+				(kl.add(n),
+				kr(n, "format", (r) => (o) => Mf(r, o)),
+				kr(n, "flatten", (r) => (o) => Rf(r, o)),
+				kr(n, "addIssue", (r) => (o) => {
+					r.issues.push(o), (r.message = JSON.stringify(r.issues, _o, 2));
+				}),
+				kr(n, "addIssues", (r) => (o) => {
+					r.issues.push(...o), (r.message = JSON.stringify(r.issues, _o, 2));
+				}),
+				Object.defineProperty(n, "isEmpty", {
+					configurable: !0,
+					enumerable: !1,
+					get() {
+						return this.issues.length === 0;
+					},
+				}));
+		},
+		vg = w("ZodError", xl),
+		_e = w("ZodError", xl, void 0, { Parent: Error }),
+		bg = $o(_e),
+		wg = Eo(_e),
+		_g = lr(_e),
+		Sg = cr(_e),
+		kg = Of(_e),
+		xg = Lf(_e),
+		Cg = Nf(_e),
+		zg = jf(_e),
+		Tg = Bf(_e),
+		Ig = Df(_e),
+		$g = Ff(_e),
+		Eg = Uf(_e);
+	function Rg() {
+		we.localeError || Ne(Uh());
+	}
+	function wn() {
+		we.memoizer || Ne({ memoizer: Bh() });
+	}
+	const W = w(
+			"ZodType",
+			(e, t) => (Rg(), V.init(e, t), (e.def = t), (e.type = t.type), e),
+			{
+				check(...e) {
+					const t = this.def;
+					return this.clone(
+						Xe(t, {
+							checks: [
+								...(t.checks ?? []),
+								...e.map((n) =>
+									typeof n == "function"
+										? {
+												_zod: {
+													check: n,
+													def: { check: "custom" },
+													onattach: [],
+												},
+											}
+										: n,
+								),
+							],
+						}),
+						{ parent: !0 },
+					);
+				},
+				with(...e) {
+					return this.check(...e);
+				},
+				clone(e, t) {
+					return Qe(this, e, t);
+				},
+				brand() {
+					return this;
+				},
+				register(e, t) {
+					return e.add(this, t), this;
+				},
+				refine(e, t) {
+					return this.check(My(e, t));
+				},
+				superRefine(e, t) {
+					return this.check(Py(e, t));
+				},
+				overwrite(e) {
+					return this.check(jt(e));
+				},
+				optional() {
+					return Al(this);
+				},
+				exactOptional() {
+					return gy(this);
+				},
+				nullable() {
+					return Ll(this);
+				},
+				nullish() {
+					return Al(Ll(this));
+				},
+				nonoptional(e) {
+					return Sy(this, e);
+				},
+				array() {
+					return P(this);
+				},
+				or(e) {
+					return J([this, e]);
+				},
+				and(e) {
+					return dy(this, e);
+				},
+				transform(e) {
+					return jl(this, Pl(e));
+				},
+				default(e) {
+					return by(this, e);
+				},
+				prefault(e) {
+					return _y(this, e);
+				},
+				catch(e) {
+					return xy(this, e);
+				},
+				pipe(e) {
+					return jl(this, e);
+				},
+				readonly() {
+					return Iy(this);
+				},
+				describe(e) {
+					const t = this.clone();
+					return yn.add(t, { description: e }), t;
+				},
+				meta(...e) {
+					if (e.length === 0) return yn.get(this);
+					const t = this.clone();
+					return yn.add(t, e[0]), t;
+				},
+				isOptional() {
+					return this.safeParse(void 0).success;
+				},
+				isNullable() {
+					return this.safeParse(null).success;
+				},
+				apply(e, ...t) {
+					return t.length === 0 ? e(this) : e(this, ...t);
+				},
+				get "~standard"() {
+					return ha(this, "~standard", {
+						...Ea(this),
+						jsonSchema: {
+							input: Sr(this, "input"),
+							output: Sr(this, "output"),
+						},
+					});
+				},
+				set "~standard"(e) {
+					Lt(this, "~standard", e);
+				},
+				parse: function e(t, n) {
+					return bg(this, t, n, { callee: e });
+				},
+				parseAsync: async function e(t, n) {
+					return await wg(this, t, n, { callee: e });
+				},
+				safeParse(e, t) {
+					return _g(this, e, t);
+				},
+				async safeParseAsync(e, t) {
+					return Sg(this, e, t);
+				},
+				get spa() {
+					return this == null ? void 0 : this.safeParseAsync;
+				},
+				set spa(e) {
+					Lt(this, "spa", e);
+				},
+				encode: function e(t, n) {
+					return kg(this, t, n, { callee: e });
+				},
+				decode: function e(t, n) {
+					return xg(this, t, n, { callee: e });
+				},
+				encodeAsync: async function e(t, n) {
+					return await Cg(this, t, n, { callee: e });
+				},
+				decodeAsync: async function e(t, n) {
+					return await zg(this, t, n, { callee: e });
+				},
+				safeEncode(e, t) {
+					return Tg(this, e, t);
+				},
+				safeDecode(e, t) {
+					return Ig(this, e, t);
+				},
+				async safeEncodeAsync(e, t) {
+					return $g(this, e, t);
+				},
+				async safeDecodeAsync(e, t) {
+					return Eg(this, e, t);
+				},
+				toJSONSchema(e) {
+					return Hm(this, {})(e);
+				},
+				get description() {
+					var e;
+					return (e = yn.get(this)) == null ? void 0 : e.description;
+				},
+				get _def() {
+					return this._zod.def;
+				},
+			},
+		),
+		Cl = w(
+			"_ZodString",
+			(e, t) => {
+				fr.init(e, t),
+					W.init(e, t),
+					(e._zod.processJSONSchema = (r, o, i) => Vm(e, r, o));
+				const n = e._zod.bag;
+				(e.format = n.format ?? null),
+					(e.minLength = n.minimum ?? null),
+					(e.maxLength = n.maximum ?? null);
+			},
+			{
+				regex(...e) {
+					return this.check(zm(...e));
+				},
+				includes(...e) {
+					return this.check($m(...e));
+				},
+				startsWith(...e) {
+					return this.check(Em(...e));
+				},
+				endsWith(...e) {
+					return this.check(Rm(...e));
+				},
+				min(...e) {
+					return this.check(_r(...e));
+				},
+				max(...e) {
+					return this.check(dl(...e));
+				},
+				length(...e) {
+					return this.check(fl(...e));
+				},
+				nonempty(...e) {
+					return this.check(_r(1, ...e));
+				},
+				lowercase(e) {
+					return this.check(Tm(e));
+				},
+				uppercase(e) {
+					return this.check(Im(e));
+				},
+				trim() {
+					return this.check(Pm());
+				},
+				normalize(...e) {
+					return this.check(Mm(...e));
+				},
+				toLowerCase() {
+					return this.check(Am());
+				},
+				toUpperCase() {
+					return this.check(Om());
+				},
+				slugify() {
+					return this.check(Lm());
+				},
+			},
+		),
+		zl = w(
+			"ZodString",
+			(e, t) => {
+				fr.init(e, t), Cl.init(e, t);
+			},
+			{
+				email(e) {
+					return this.check(sl(Tl, e));
+				},
+				url(e) {
+					return this.check(Jh(Ng, e));
+				},
+				jwt(e) {
+					return this.check(um(Xg, e));
+				},
+				emoji(e) {
+					return this.check(Gh(jg, e));
+				},
+				guid(e) {
+					return this.check(Vh(Lg, e));
+				},
+				uuid(e) {
+					return this.check(al(_n, e));
+				},
+				uuidv4(e) {
+					return this.check(Wh(_n, e));
+				},
+				uuidv6(e) {
+					return this.check(qh(_n, e));
+				},
+				uuidv7(e) {
+					return this.check(Kh(_n, e));
+				},
+				nanoid(e) {
+					return this.check(Yh(Bg, e));
+				},
+				cuid(e) {
+					return this.check(Xh(Dg, e));
+				},
+				cuid2(e) {
+					return this.check(Qh(Fg, e));
+				},
+				ulid(e) {
+					return this.check(em(Ug, e));
+				},
+				base64(e) {
+					return this.check(am(Jg, e));
+				},
+				base64url(e) {
+					return this.check(lm(Gg, e));
+				},
+				xid(e) {
+					return this.check(tm(Hg, e));
+				},
+				ksuid(e) {
+					return this.check(nm(Zg, e));
+				},
+				ipv4(e) {
+					return this.check(rm(Vg, e));
+				},
+				ipv6(e) {
+					return this.check(om(Wg, e));
+				},
+				cidrv4(e) {
+					return this.check(im(qg, e));
+				},
+				cidrv6(e) {
+					return this.check(sm(Kg, e));
+				},
+				e164(e) {
+					return this.check(cm(Yg, e));
+				},
+				datetime(e) {
+					return this.check(dm(Mg, e));
+				},
+				date(e) {
+					return this.check(fm(Pg, e));
+				},
+				time(e) {
+					return this.check(pm(Ag, e));
+				},
+				duration(e) {
+					return this.check(hm(Og, e));
+				},
+			},
+		);
+	function h(e) {
+		return Zh(zl, e);
+	}
+	const ee = w("ZodStringFormat", (e, t) => {
+			K.init(e, t), Cl.init(e, t);
+		}),
+		Mg = w("ZodISODateTime", (e, t) => {
+			qp.init(e, t), ee.init(e, t);
+		}),
+		Pg = w("ZodISODate", (e, t) => {
+			Kp.init(e, t), ee.init(e, t);
+		}),
+		Ag = w("ZodISOTime", (e, t) => {
+			Jp.init(e, t), ee.init(e, t);
+		}),
+		Og = w("ZodISODuration", (e, t) => {
+			Gp.init(e, t), ee.init(e, t);
+		}),
+		Tl = w("ZodEmail", (e, t) => {
+			Pp.init(e, t), ee.init(e, t);
+		});
+	function Il(e) {
+		return sl(Tl, e);
+	}
+	const Lg = w("ZodGUID", (e, t) => {
+			Rp.init(e, t), ee.init(e, t);
+		}),
+		_n = w("ZodUUID", (e, t) => {
+			Mp.init(e, t), ee.init(e, t);
+		});
+	function C(e) {
+		return al(_n, e);
+	}
+	const Ng = w("ZodURL", (e, t) => {
+			Bp.init(e, t), ee.init(e, t);
+		}),
+		jg = w("ZodEmoji", (e, t) => {
+			Dp.init(e, t), ee.init(e, t);
+		}),
+		Bg = w("ZodNanoID", (e, t) => {
+			Fp.init(e, t), ee.init(e, t);
+		}),
+		Dg = w("ZodCUID", (e, t) => {
+			Up.init(e, t), ee.init(e, t);
+		}),
+		Fg = w("ZodCUID2", (e, t) => {
+			Hp.init(e, t), ee.init(e, t);
+		}),
+		Ug = w("ZodULID", (e, t) => {
+			Zp.init(e, t), ee.init(e, t);
+		}),
+		Hg = w("ZodXID", (e, t) => {
+			Vp.init(e, t), ee.init(e, t);
+		}),
+		Zg = w("ZodKSUID", (e, t) => {
+			Wp.init(e, t), ee.init(e, t);
+		}),
+		Vg = w("ZodIPv4", (e, t) => {
+			Yp.init(e, t), ee.init(e, t);
+		}),
+		Wg = w("ZodIPv6", (e, t) => {
+			Qp.init(e, t), ee.init(e, t);
+		}),
+		qg = w("ZodCIDRv4", (e, t) => {
+			eh.init(e, t), ee.init(e, t);
+		}),
+		Kg = w("ZodCIDRv6", (e, t) => {
+			nh.init(e, t), ee.init(e, t);
+		}),
+		Jg = w("ZodBase64", (e, t) => {
+			rh.init(e, t), ee.init(e, t);
+		}),
+		Gg = w("ZodBase64URL", (e, t) => {
+			ih.init(e, t), ee.init(e, t);
+		}),
+		Yg = w("ZodE164", (e, t) => {
+			sh.init(e, t), ee.init(e, t);
+		}),
+		Xg = w("ZodJWT", (e, t) => {
+			lh.init(e, t), ee.init(e, t);
+		}),
+		Uo = w(
+			"ZodNumber",
+			(e, t) => {
+				Oa.init(e, t),
+					W.init(e, t),
+					(e._zod.processJSONSchema = (r, o, i) => Wm(e, r, o, i));
+				const n = e._zod.bag;
+				(e.minValue =
+					Math.max(
+						n.minimum ?? Number.NEGATIVE_INFINITY,
+						n.exclusiveMinimum ?? Number.NEGATIVE_INFINITY,
+					) ?? null),
+					(e.maxValue =
+						Math.min(
+							n.maximum ?? Number.POSITIVE_INFINITY,
+							n.exclusiveMaximum ?? Number.POSITIVE_INFINITY,
+						) ?? null),
+					(e.isInt =
+						(n.format ?? "").includes("int") ||
+						Number.isSafeInteger(n.multipleOf ?? 0.5)),
+					(e.isFinite = !0),
+					(e.format = n.format ?? null);
+			},
+			{
+				gt(e, t) {
+					return this.check(cl(e, t));
+				},
+				gte(e, t) {
+					return this.check(wr(e, t));
+				},
+				min(e, t) {
+					return this.check(wr(e, t));
+				},
+				lt(e, t) {
+					return this.check(ll(e, t));
+				},
+				lte(e, t) {
+					return this.check(br(e, t));
+				},
+				max(e, t) {
+					return this.check(br(e, t));
+				},
+				int(e) {
+					return this.check($l(e));
+				},
+				safe(e) {
+					return this.check($l(e));
+				},
+				positive(e) {
+					return this.check(cl(0, e));
+				},
+				nonnegative(e) {
+					return this.check(wr(0, e));
+				},
+				negative(e) {
+					return this.check(ll(0, e));
+				},
+				nonpositive(e) {
+					return this.check(br(0, e));
+				},
+				multipleOf(e, t) {
+					return this.check(ul(e, t));
+				},
+				step(e, t) {
+					return this.check(ul(e, t));
+				},
+				finite() {
+					return this;
+				},
+			},
+		);
+	function U(e) {
+		return mm(Uo, e);
+	}
+	const Qg = w("ZodNumberFormat", (e, t) => {
+		ch.init(e, t), Uo.init(e, t);
+	});
+	function $l(e) {
+		return ym(Qg, e);
+	}
+	const Ho = w("ZodBoolean", (e, t) => {
+		La.init(e, t),
+			W.init(e, t),
+			(e._zod.processJSONSchema = (n, r, o) => qm(e, n, r));
+	});
+	function $(e) {
+		return vm(Ho, e);
+	}
+	const ey = w("ZodNull", (e, t) => {
+		uh.init(e, t),
+			W.init(e, t),
+			(e._zod.processJSONSchema = (n, r, o) => Km(e, n, r));
+	});
+	function ty(e) {
+		return wm(ey, e);
+	}
+	const ny = w("ZodAny", (e, t) => {
+		dh.init(e, t), W.init(e, t), (e._zod.processJSONSchema = (n, r, o) => Gm());
+	});
+	function Sn() {
+		return _m(ny);
+	}
+	const ry = w("ZodUnknown", (e, t) => {
+		fh.init(e, t), W.init(e, t), (e._zod.processJSONSchema = (n, r, o) => Ym());
+	});
+	function Zo() {
+		return Sm(ry);
+	}
+	const oy = w("ZodNever", (e, t) => {
+		ph.init(e, t),
+			W.init(e, t),
+			(e._zod.processJSONSchema = (n, r, o) => Jm(e, n, r));
+	});
+	function iy(e) {
+		return km(oy, e);
+	}
+	const El = w("ZodDate", (e, t) => {
+		hh.init(e, t),
+			W.init(e, t),
+			(e._zod.processJSONSchema = (r, o, i) => Xm(e, r, o, i)),
+			(e.min = (r, o) => e.check(wr(r, o))),
+			(e.max = (r, o) => e.check(br(r, o)));
+		const n = e._zod.bag;
+		(e.minDate = n.minimum ? new Date(n.minimum) : null),
+			(e.maxDate = n.maximum ? new Date(n.maximum) : null);
+	});
+	function sy(e) {
+		return xm(El, e);
+	}
+	const ay = w(
+		"ZodArray",
+		(e, t) => {
+			wn(),
+				mh.init(e, t),
+				W.init(e, t),
+				(e._zod.processJSONSchema = (n, r, o) => rg(e, n, r, o)),
+				(e.element = t.element);
+		},
+		{
+			min(e, t) {
+				return this.check(_r(e, t));
+			},
+			nonempty(e) {
+				return this.check(_r(1, e));
+			},
+			max(e, t) {
+				return this.check(dl(e, t));
+			},
+			length(e, t) {
+				return this.check(fl(e, t));
+			},
+			unwrap() {
+				return this.element;
+			},
+		},
+	);
+	function P(e, t) {
+		return Nm(ay, e, t);
+	}
+	const ly = w(
+		"ZodObject",
+		(e, t) => {
+			wn(),
+				vh.init(e, t),
+				W.init(e, t),
+				(e._zod.processJSONSchema = (n, r, o) => og(e, n, r, o)),
+				kf(e, "shape", (n) => n._zod.def.shape, !1);
+		},
+		{
+			keyof() {
+				return N(Object.keys(this._zod.def.shape));
+			},
+			catchall(e) {
+				return this.clone({ ...this._zod.def, catchall: e });
+			},
+			passthrough() {
+				return this.clone({ ...this._zod.def, catchall: Zo() });
+			},
+			loose() {
+				return this.clone({ ...this._zod.def, catchall: Zo() });
+			},
+			strict() {
+				return this.clone({ ...this._zod.def, catchall: iy() });
+			},
+			strip() {
+				return this.clone({ ...this._zod.def, catchall: void 0 });
+			},
+			extend(e) {
+				return ff(this, e);
+			},
+			safeExtend(e) {
+				return pf(this, e);
+			},
+			merge(e) {
+				return hf(this, e);
+			},
+			pick(e) {
+				return uf(this, e);
+			},
+			omit(e) {
+				return df(this, e);
+			},
+			partial(...e) {
+				return fa(Wo, this, e[0]);
+			},
+			exactPartial(...e) {
+				return fa(Ol, this, e[0], "exactPartial");
+			},
+			required(...e) {
+				return mf(Nl, this, e[0]);
+			},
+		},
+	);
+	function S(e, t) {
+		const n = { type: "object", shape: e ?? {}, ...E(t) };
+		return new ly(n);
+	}
+	const Rl = w("ZodUnion", (e, t) => {
+		Fa.init(e, t),
+			W.init(e, t),
+			(e._zod.processJSONSchema = (n, r, o) => ig(e, n, r, o)),
+			(e.options = t.options);
+	});
+	function J(e, t) {
+		return new Rl({ type: "union", options: e, ...E(t) });
+	}
+	const cy = w("ZodDiscriminatedUnion", (e, t) => {
+		Rl.init(e, t), bh.init(e, t);
+	});
+	function Ue(e, t, n) {
+		return new cy({ type: "union", options: t, discriminator: e, ...E(n) });
+	}
+	const uy = w("ZodIntersection", (e, t) => {
+		wh.init(e, t),
+			W.init(e, t),
+			(e._zod.processJSONSchema = (n, r, o) => sg(e, n, r, o));
+	});
+	function dy(e, t) {
+		return new uy({ type: "intersection", left: e, right: t });
+	}
+	const fy = w(
+		"ZodTuple",
+		(e, t) => {
+			wn(),
+				_h.init(e, t),
+				W.init(e, t),
+				(e._zod.processJSONSchema = (n, r, o) => ag(e, n, r, o));
+		},
+		{
+			rest(e) {
+				return this.clone({ ...this._zod.def, rest: e });
+			},
+			partial() {
+				var t;
+				const e = this._zod.def;
+				if ((t = e.checks) != null && t.length)
+					throw new Error(
+						".partial() cannot be used on tuple schemas containing refinements",
+					);
+				return this.clone({
+					...e,
+					items: e.items.map((n) => new Wo({ type: "optional", innerType: n })),
+				});
+			},
+		},
+	);
+	function py(e, t, n) {
+		const r = t instanceof V,
+			o = r ? n : t,
+			i = r ? t : null;
+		return new fy({ type: "tuple", items: e, rest: i, ...E(o) });
+	}
+	const Ml = w("ZodRecord", (e, t) => {
+		wn(),
+			Sh.init(e, t),
+			W.init(e, t),
+			(e._zod.processJSONSchema = (n, r, o) => cg(e, n, r, o)),
+			(e.keyType = t.keyType),
+			(e.valueType = t.valueType);
+	});
+	function ie(e, t, n) {
+		return !t || !t._zod
+			? new Ml({ type: "record", keyType: h(), valueType: e, ...E(t) })
+			: new Ml({ type: "record", keyType: e, valueType: t, ...E(n) });
+	}
+	const Vo = w("ZodEnum", (e, t) => {
+		kh.init(e, t),
+			W.init(e, t),
+			(e._zod.processJSONSchema = (r, o, i) => Qm(e, r, o)),
+			(e.enum = t.entries),
+			(e.options = Object.values(t.entries));
+		const n = new Set(Object.keys(t.entries));
+		(e.extract = (r, o) => {
+			const i = {};
+			for (const s of r)
+				if (n.has(s)) i[s] = t.entries[s];
+				else throw new Error(`Key ${s} not found in enum`);
+			return new Vo({ ...t, checks: [], ...E(o), entries: i });
+		}),
+			(e.exclude = (r, o) => {
+				const i = { ...t.entries };
+				for (const s of r)
+					if (n.has(s)) delete i[s];
+					else throw new Error(`Key ${s} not found in enum`);
+				return new Vo({ ...t, checks: [], ...E(o), entries: i });
+			});
+	});
+	function N(e, t) {
+		const n = Array.isArray(e) ? Object.fromEntries(e.map((r) => [r, r])) : e;
+		return new Vo({ type: "enum", entries: n, ...E(t) });
+	}
+	const hy = w("ZodLiteral", (e, t) => {
+		xh.init(e, t),
+			W.init(e, t),
+			(e._zod.processJSONSchema = (n, r, o) => eg(e, n, r, o)),
+			(e.values = new Set(t.values)),
+			Object.defineProperty(e, "value", {
+				get() {
+					if (t.values.length > 1)
+						throw new Error(
+							"This schema contains multiple valid literal values. Use `.values` instead.",
+						);
+					return t.values[0];
+				},
+			});
+	});
+	function R(e, t) {
+		return new hy({
+			type: "literal",
+			values: Array.isArray(e) ? e : [e],
+			...E(t),
+		});
+	}
+	const my = w("ZodTransform", (e, t) => {
+		wn(),
+			Ch.init(e, t),
+			W.init(e, t),
+			(e._zod.processJSONSchema = (n, r, o) => ng(e, n, r, o)),
+			(e._zod.parse = (n, r) => {
+				if (r.direction === "backward") throw new va(e.constructor.name);
+				n.addIssue = (i) => {
+					if (typeof i == "string") n.issues.push(gn(i, n.value, t));
+					else {
+						const s = i;
+						s.fatal && (s.continue = !1),
+							s.code ?? (s.code = "custom"),
+							"input" in s || (s.input = n.value),
+							s.inst ?? (s.inst = e),
+							n.issues.push(gn(s));
+					}
+				};
+				const o = t.transform(n.value, n);
+				return o instanceof Promise
+					? o.then((i) => ((n.value = i), n))
+					: ((n.value = o), n);
+			});
+	});
+	function Pl(e) {
+		return new my({ type: "transform", transform: e });
+	}
+	const Wo = w("ZodOptional", (e, t) => {
+		qa.init(e, t),
+			W.init(e, t),
+			(e._zod.processJSONSchema = (n, r, o) => Sl(e, n, r, o)),
+			(e.unwrap = () => e._zod.def.innerType);
+	});
+	function Al(e) {
+		return new Wo({ type: "optional", innerType: e });
+	}
+	const Ol = w("ZodExactOptional", (e, t) => {
+		zh.init(e, t),
+			W.init(e, t),
+			(e._zod.processJSONSchema = (n, r, o) => Sl(e, n, r, o)),
+			(e.unwrap = () => e._zod.def.innerType);
+	});
+	function gy(e) {
+		return new Ol({ type: "optional", innerType: e });
+	}
+	const yy = w("ZodNullable", (e, t) => {
+		Th.init(e, t),
+			W.init(e, t),
+			(e._zod.processJSONSchema = (n, r, o) => ug(e, n, r, o)),
+			(e.unwrap = () => e._zod.def.innerType);
+	});
+	function Ll(e) {
+		return new yy({ type: "nullable", innerType: e });
+	}
+	const vy = w("ZodDefault", (e, t) => {
+		Ih.init(e, t),
+			W.init(e, t),
+			(e._zod.processJSONSchema = (n, r, o) => fg(e, n, r, o)),
+			(e.unwrap = () => e._zod.def.innerType),
+			(e.removeDefault = e.unwrap);
+	});
+	function by(e, t) {
+		return new vy({
+			type: "default",
+			innerType: e,
+			get defaultValue() {
+				return typeof t == "function" ? t() : ua(t);
+			},
+		});
+	}
+	const wy = w("ZodPrefault", (e, t) => {
+		$h.init(e, t),
+			W.init(e, t),
+			(e._zod.processJSONSchema = (n, r, o) => pg(e, n, r, o)),
+			(e.unwrap = () => e._zod.def.innerType);
+	});
+	function _y(e, t) {
+		return new wy({
+			type: "prefault",
+			innerType: e,
+			get defaultValue() {
+				return typeof t == "function" ? t() : ua(t);
+			},
+		});
+	}
+	const Nl = w("ZodNonOptional", (e, t) => {
+		Eh.init(e, t),
+			W.init(e, t),
+			(e._zod.processJSONSchema = (n, r, o) => dg(e, n, r, o)),
+			(e.unwrap = () => e._zod.def.innerType);
+	});
+	function Sy(e, t) {
+		return new Nl({ type: "nonoptional", innerType: e, ...E(t) });
+	}
+	const ky = w("ZodCatch", (e, t) => {
+		Rh.init(e, t),
+			W.init(e, t),
+			(e._zod.processJSONSchema = (n, r, o) => hg(e, n, r, o)),
+			(e.unwrap = () => e._zod.def.innerType),
+			(e.removeCatch = e.unwrap);
+	});
+	function xy(e, t) {
+		return new ky({
+			type: "catch",
+			innerType: e,
+			catchValue: typeof t == "function" ? t : Cf(t),
+		});
+	}
+	const qo = w("ZodPipe", (e, t) => {
+		Ya.init(e, t),
+			W.init(e, t),
+			(e._zod.processJSONSchema = (n, r, o) => mg(e, n, r, o)),
+			(e.in = t.in),
+			(e.out = t.out);
+	});
+	function jl(e, t) {
+		return new qo({ type: "pipe", in: e, out: t });
+	}
+	const Cy = w("ZodCodec", (e, t) => {
+			qo.init(e, t), Xa.init(e, t);
+		}),
+		zy = w("ZodPreprocess", (e, t) => {
+			qo.init(e, t), Mh.init(e, t);
+		}),
+		Ty = w("ZodReadonly", (e, t) => {
+			Ph.init(e, t),
+				W.init(e, t),
+				(e._zod.processJSONSchema = (n, r, o) => gg(e, n, r, o)),
+				(e.unwrap = () => e._zod.def.innerType);
+		});
+	function Iy(e) {
+		return new Ty({ type: "readonly", innerType: e });
+	}
+	const $y = w("ZodLazy", (e, t) => {
+		Ah.init(e, t),
+			W.init(e, t),
+			(e._zod.processJSONSchema = (n, r, o) => yg(e, n, r, o)),
+			(e.unwrap = () => e._zod.def.getter());
+	});
+	function Ey(e) {
+		return new $y({ type: "lazy", getter: e });
+	}
+	const Ry = w("ZodCustom", (e, t) => {
+		Oh.init(e, t),
+			W.init(e, t),
+			(e._zod.processJSONSchema = (n, r, o) => tg(e, n, r, o));
+	});
+	function My(e, t = {}) {
+		return jm(Ry, e, t);
+	}
+	function Py(e, t) {
+		return Bm(e, t);
+	}
+	const rt = (...e) => Fm({ Codec: Cy, Boolean: Ho, String: zl }, ...e);
+	function Bl(e, t) {
+		return new zy({ type: "pipe", in: Pl(e), out: t });
+	}
+	function te(e) {
+		return gm(Uo, e);
+	}
+	function ae(e) {
+		return bm(Ho, e);
+	}
+	function le(e) {
+		return Cm(El, e);
+	}
+	function Ko(e) {
+		return typeof e == "boolean"
+			? e
+			: e === "false" || e === "0" || e === "" || e === null
+				? !1
+				: !!e;
+	}
+	const ot = N(["Draft", "Published", "Paused", "Archived", "Deleted"]),
+		Ay = N(["Published", "Archived"]),
+		Dl = N(["Draft", "Published", "Paused", "Archived"]),
+		Oy = S({ id: C(), type: R("TopTask"), status: Ay }),
+		Ly = S({ id: C(), type: R("Tag"), status: ot }),
+		Ny = S({ id: C(), type: R("Card"), status: ot });
+	Ue("type", [Oy, Ly, Ny]);
+	const pt = S({ id: C() }),
+		kn = S({ id: C(), name: h().optional() }),
+		xn = S({ id: h(), name: h(), native: h() }),
+		jy = S({ id: C(), code: h().optional(), name: h().optional() });
+	function ce(e, t) {
+		const r = Object.fromEntries((t ?? []).map((i) => [i, h().nullish()])),
+			o = jy.extend({ ...e, ...r });
+		return P(o).optional().nullable().default([]);
+	}
+	const By = h().meta({ title: "Email label" }),
+		Dy = h().meta({
+			title: "Email placeholder",
+			description:
+				"The placeholder to show in the input field before user writes anything",
+		}),
+		G = J([$(), h()]).optional().transform(Ko),
+		Fl = N([
+			"LikertScaleThree",
+			"LikertScaleFive",
+			"LikertScaleSix",
+			"LikertScaleSeven",
+		]),
+		Ul = N([
+			"Average",
+			"Median",
+			"Mode",
+			"PositivePercentage",
+			"NegativePercentage",
+		]),
+		Hl = S({
+			id: C(),
+			label: h(),
+			value: te(),
+			emoji: xn.optional().nullable().default(null),
+			tr: ce({}, ["@label"]),
+		}),
+		Zl = S({
+			id: C(),
+			name: h(),
+			type: Fl,
+			aggregationMethod: Ul,
+			status: ot.optional(),
+			description: h().optional().nullable(),
+			likertItems: P(Hl),
+			defaultCardTitle: h().optional().nullable(),
+			defaultLanguage: S({ id: C(), code: h(), name: h() })
+				.optional()
+				.nullable(),
+			showInDashboard: $().or(h()).optional().transform(Ko),
+		}),
+		Fy = Zl.omit({
+			name: !0,
+			status: !0,
+			description: !0,
+			defaultCardTitle: !0,
+		});
+	S({
+		name: h(),
+		type: Fl,
+		status: ot.optional(),
+		description: h().optional().nullable(),
+		aggregationMethod: Ul.optional().nullable().default("Average"),
+		likertItems: P(Hl.omit({ id: !0, tr: !0 })),
+		defaultCardTitle: h().optional().nullable(),
+		showInDashboard: $().or(h()).optional().transform(Ko),
+	});
+	const Uy = ce({ "@errMessage": h().nullish() }, []),
+		Vl = ie(h(), h()).optional(),
+		Wl = J([$(), h()]).transform((e) =>
+			typeof e == "boolean" ? e : e === "true" || e === "1",
+		),
+		Jo = S({
+			id: C(),
+			type: h(),
+			name: h(),
+			errMessage: h(),
+			negate: $(),
+			enabled: $().nullish(),
+			tr: Uy,
+		}),
+		ql = Jo.extend({
+			name: h(),
+			description: h(),
+			applyToAllInputCards: $(),
+			enabled: $(),
+			isOrgSpecific: $(),
+			createdAt: le(),
+			updatedAt: le().nullable(),
+			cardCount: U(),
+			cards: P(
+				S({
+					id: C(),
+					name: h(),
+					survey: S({ id: C(), name: h(), slug: h() }).nullable(),
+				}),
+			),
+		}),
+		Hy = S({
+			id: C(),
+			name: h(),
+			description: h().optional(),
+			errMessage: h(),
+			negate: ae(),
+			applyToAllInputCards: Wl.optional().default(!1),
+			translations: Vl,
+		});
+	S({
+		type: R("OrgValidationRegex"),
+		name: h(),
+		description: h().optional(),
+		errMessage: h(),
+		negate: ae(),
+		applyToAllInputCards: Wl.optional().default(!1),
+		regex: h(),
+		translations: Vl,
+	});
+	const Zy = Jo.extend({ regex: h().nullable(), type: R("ValidationRegex") }),
+		Vy = Jo.extend({ regex: h().nullable(), type: R("OrgValidationRegex") }),
+		Wy = Ue("type", [Zy, Vy]),
+		qy = ql.extend({ regex: h().nullable(), type: R("ValidationRegex") }),
+		Ky = ql.extend({ regex: h().nullable(), type: R("OrgValidationRegex") }),
+		Jy = Ue("type", [qy, Ky]);
+	Hy.extend({
+		regex: h(),
+		type: R("OrgValidationRegex"),
+		enabled: ae().optional(),
+	});
+	const Gy = N(["Include", "Exclude"]),
+		Kl = N(["and", "or"]),
+		Yy = N(["string", "number"]),
+		Xy = N([
+			"exists",
+			"notExists",
+			"equals",
+			"notEquals",
+			"in",
+			"contains",
+			"greaterThan",
+			"greaterThanOrEqual",
+			"lessThan",
+			"lessThanOrEqual",
+		]),
+		Qy = new Set([
+			"greaterThan",
+			"greaterThanOrEqual",
+			"lessThan",
+			"lessThanOrEqual",
+		]),
+		ev = new Set([
+			"equals",
+			"notEquals",
+			"contains",
+			"greaterThan",
+			"greaterThanOrEqual",
+			"lessThan",
+			"lessThanOrEqual",
+		]),
+		tv = S({
+			traitId: C(),
+			traitSlug: h().min(1),
+			valueType: Yy,
+			operator: Xy,
+			values: P(h()),
+		}).superRefine((e, t) => {
+			if (
+				(e.valueType === "string" &&
+					Qy.has(e.operator) &&
+					t.addIssue({
+						code: "custom",
+						path: ["operator"],
+						message: "String traits cannot use numeric operators",
+					}),
+				e.valueType === "number" &&
+					e.operator === "contains" &&
+					t.addIssue({
+						code: "custom",
+						path: ["operator"],
+						message: "Numeric traits cannot use contains",
+					}),
+				e.operator === "exists" || e.operator === "notExists")
+			) {
+				e.values.length !== 0 &&
+					t.addIssue({
+						code: "custom",
+						path: ["values"],
+						message: "Exists operators must not include values",
+					});
+				return;
+			}
+			if (
+				(e.operator === "in"
+					? e.values.length === 0 &&
+						t.addIssue({
+							code: "custom",
+							path: ["values"],
+							message: "In operator must include at least one value",
+						})
+					: ev.has(e.operator) &&
+						e.values.length !== 1 &&
+						t.addIssue({
+							code: "custom",
+							path: ["values"],
+							message: "Scalar operators must include exactly one value",
+						}),
+				e.valueType === "number")
+			) {
+				for (const n of e.values)
+					if (!Number.isFinite(Number(n))) {
+						t.addIssue({
+							code: "custom",
+							path: ["values"],
+							message: "Numeric trait values must be finite numbers",
+						});
+						return;
+					}
+			}
+		}),
+		nv = Bl((e) => {
+			if (typeof e != "string") return e;
+			try {
+				return JSON.parse(e);
+			} catch {
+				return e;
+			}
+		}, P(tv)),
+		Jl = S({
+			desktop: $()
+				.nullish()
+				.transform((e) => e ?? !0),
+			mobile: $()
+				.nullish()
+				.transform((e) => e ?? !0),
+			tablet: $()
+				.nullish()
+				.transform((e) => e ?? !0),
+			languages: P(h())
+				.nullish()
+				.transform((e) => e ?? []),
+			locales: P(h())
+				.nullish()
+				.transform((e) => e ?? []),
+			traitConditions: nv.optional().default([]),
+		}),
+		Gl = Jl.extend({ id: C(), type: Gy }),
+		rv =
+			/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$/i;
+	function ov(e) {
+		return typeof e == "string" && rv.test(e);
+	}
+	const Yl = N(["Viewer", "Curator", "Editor", "Admin"]);
+	N(["Viewer", "Admin"]),
+		S({
+			id: C(),
+			name: h().optional().nullable(),
+			image: h().optional().nullable(),
+		});
+	const Go = S({
+			id: C(),
+			name: h().optional().nullable(),
+			email: Il(),
+			image: h().optional().nullable(),
+			superAdmin: $().optional().nullable(),
+		}),
+		iv = N(["Minimal", "Regular", "Large"]),
+		sv = ot.or(R("Paused")),
+		Xl = Date.parse("2026-01-27T14:29:10Z");
+	function av({ optionsLayout: e, createdAt: t, updatedAt: n }) {
+		if (e !== "vertical" || !t) return e;
+		const r = n ?? t;
+		return t.getTime() < Xl && r.getTime() < Xl ? "horizontal" : e;
+	}
+	const Ql = S({
+		id: C(),
+		errMessage: h().optional().nullable(),
+		validation: Wy,
+		tr: ce({ "@errMessage": h().nullish() }, []).optional().nullable(),
+	});
+	S({
+		id: C(),
+		errMessage: h().optional().nullable(),
+		validation: Jy,
+		tr: ce({ "@errMessage": h().nullish() }, []).optional().nullable(),
+	});
+	const lv = J([h(), U(), $(), ty()]),
+		Yo = Ey(() => J([lv, P(Yo), ie(h(), Yo)])),
+		ec = Yo.optional()
+			.nullable()
+			.transform((e) => (typeof e == "string" ? JSON.parse(e) : e));
+	S({ id: C(), errMessage: h().optional().nullable(), cardId: C() }),
+		Ql.extend({ card: pt, validation: pt }).omit({ id: !0 });
+	function He(e) {
+		return typeof e == "string" && e.length === 0 ? null : e;
+	}
+	const cv = Jl.extend({
+			id: C().optional(),
+			card: pt,
+			type: N(["Include", "Exclude"]),
+			segmentValues: P(kn),
+			tasks: P(kn),
+			multiSelectItems: P(kn).optional().default([]),
+			singleSelectItems: P(kn).optional().default([]),
+			likertScaleItems: P(kn).optional().default([]),
+			completion: $().optional().nullable(),
+			recruited: $().optional().nullable(),
+		}),
+		uv = N(["and", "or"]),
+		Cn = {
+			"@name": h().nullish(),
+			"@body": h().nullish(),
+			"@bodyHtml": h().nullish(),
+			"@bodyJson": ec,
+			"@textNext": h().nullish(),
+			"@textPrev": h().nullish(),
+			"@textClose": h().nullish(),
+			"@textHide": h().nullish(),
+			"@textMinimized": h().nullish(),
+			"@textReplyLater": h().nullish(),
+		},
+		Xo = ce(Cn, []),
+		Ie = S({
+			id: C(),
+			revision: te().default(0),
+			name: h().min(3, "Heading must be at least 3 characters"),
+			icon: h().optional().nullable(),
+			order: te(),
+			textNext: h().optional().nullable().transform(He),
+			textPrev: h().optional().nullable().transform(He),
+			textHide: h().optional().nullable().transform(He),
+			textMinimized: h().optional().nullable().transform(He),
+			textReplyLater: h().optional().nullable().transform(He),
+			textClose: h().optional().nullable().transform(He),
+			tr: Xo.optional().nullable(),
+			field: J([h(), S({ id: C() })])
+				.optional()
+				.nullable()
+				.transform((e) =>
+					typeof e == "string" ? (ov(e) ? e : null) : e == null ? void 0 : e.id,
+				),
+			page: pt.optional().nullable(),
+			createdAt: le().optional(),
+			createdBy: Go.optional().nullable(),
+			updatedAt: le().optional().nullable(),
+			updatedBy: Go.optional().nullable(),
+			firstResponse: le().optional().nullish(),
+			lastResponse: le().optional().nullish(),
+			status: sv,
+			statusSetAt: le().optional().nullable(),
+			statusSetBy: Go.optional().nullable(),
+			body: h().optional().nullable(),
+			bodyHtml: h().optional().nullable(),
+			bodyJson: ec,
+			type: h(),
+			size: iv.optional(),
+			description: h().optional().nullable(),
+			optionsLayout: N(["vertical", "horizontal"])
+				.optional()
+				.nullable()
+				.transform((e) => e ?? "vertical"),
+			ruleMode: uv.optional().default("and"),
+			rules: P(cv).optional().default([]),
+			validations: P(Ql).optional().default([]),
+			isRequired: ae()
+				.optional()
+				.nullable()
+				.transform((e) => e ?? void 0),
+		});
+	Ie.omit({
+		id: !0,
+		revision: !0,
+		tr: !0,
+		createdAt: !0,
+		createdBy: !0,
+		updatedAt: !0,
+		updatedBy: !0,
+		statusSetAt: !0,
+		statusSetBy: !0,
+	}).extend({ status: ot.optional().nullable() });
+	const dv = S({
+			id: C(),
+			name: h(),
+			tr: ce({ "@name": h().nullish(), "@description": h().nullish() }, [])
+				.optional()
+				.nullable(),
+		}),
+		fv = ce({ "@label": h().nullish() }, []),
+		tc = S({
+			id: C().optional(),
+			label: h().optional().nullable().transform(He),
+			order: te(),
+			orderLocked: G.default(!1),
+			task: J([dv, pt]),
+			tr: fv.optional().nullable(),
+		}),
+		pv = Ie.extend({
+			type: R("TopTaskCard"),
+			TopTaskCard: S({
+				tr: Xo,
+				randomize: ae().optional().default(!1),
+				taskItems: J([
+					P(tc),
+					ie(h(), tc).transform((e) => Object.values(e)),
+				]).nullable(),
+			}),
+		}),
+		hv = Ie.extend({
+			type: R("LikertCard"),
+			LikertCard: S({
+				tr: Xo,
+				likertScale: J([Zl, Fy]),
+				showEmoji: G.default(!1),
+			}),
+		}),
+		mv = Ie.extend({ type: R("MessageCard") }),
+		gv = Ie.extend({
+			type: R("CompletionCard"),
+			CompletionCard: S({
+				tr: ce(Cn, ["@positive", "@negative"]),
+				positive: h()
+					.optional()
+					.nullable()
+					.meta({ description: "Text on button to signal task was completed" }),
+				negative: h()
+					.optional()
+					.nullable()
+					.meta({ description: "Text on button to signal task was failed" }),
+			}),
+		}),
+		yv = Ie.extend({
+			type: R("FindabilityCard"),
+			FindabilityCard: S({
+				tr: ce(Cn, ["@positive", "@negative"]),
+				positive: h()
+					.optional()
+					.nullable()
+					.meta({ description: "Text on button to signal task was completed" }),
+				negative: h()
+					.optional()
+					.nullable()
+					.meta({ description: "Text on button to signal task was failed" }),
+			}),
+		}),
+		vv = Ie.extend({
+			type: R("InputCard"),
+			InputCard: S({
+				label: h().nullable().optional(),
+				placeholder: h()
+					.optional()
+					.meta({
+						description: "Dimmed text in the input field before user writes",
+					}),
+				maxLength: te()
+					.optional()
+					.nullable()
+					.overwrite((e) => (!e || e <= 0 ? null : e))
+					.meta({ description: "Maximum number of characters allowed" }),
+				minLength: te()
+					.optional()
+					.nullable()
+					.default(0)
+					.meta({ description: "Minimum number of characters allowed" }),
+				multiline: G.meta({ description: "Allow multiline text input" }),
+				tr: ce(Cn, ["@label", "@placeholder"]),
+			}),
+		}),
+		bv = Ie.extend({
+			type: R("RecruitmentCard"),
+			RecruitmentCard: S({
+				maxLeads: Bl(
+					(e) => (e === "" ? null : e),
+					te().int().positive().optional().nullable(),
+				),
+				email: G.nullable(),
+				email_label: By.optional().nullable(),
+				email_placeholder: Dy.optional().nullable(),
+				phone: G.nullable(),
+				phone_label: h().optional().nullable(),
+				phone_placeholder: h().optional().nullable(),
+				nameEnable: G.nullable(),
+				nameLabel: h().optional().nullable(),
+				namePlaceholder: h().optional().nullable(),
+				consentEnable: G.nullable(),
+				consentTermsUrl: h().optional().nullable(),
+				consentTermsTitle: h().optional().nullable(),
+				consentTermsText: h().optional().nullable(),
+				consentTermsLabel: h().optional().nullable(),
+				autoEmail: ae().default(!0),
+				relatedCards: P(S({ id: C(), name: h(), type: h() }))
+					.optional()
+					.default([]),
+				tr: ce(Cn, [
+					"@email_label",
+					"@email_placeholder",
+					"@phone_label",
+					"@phone_placeholder",
+					"@nameLabel",
+					"@namePlaceholder",
+					"@consentTermsUrl",
+					"@consentTermsTitle",
+					"@consentTermsText",
+					"@consentTermsLabel",
+				]),
+			}),
+		}),
+		wv = S({
+			id: C(),
+			name: h(),
+			tr: ce({ name: h().nullish(), description: h().nullish() }, [])
+				.optional()
+				.nullable(),
+		}),
+		_v = S({
+			id: C(),
+			name: h(),
+			tr: ce({ "@name": h().nullish(), "@description": h().nullish() }, [])
+				.optional()
+				.nullable(),
+		}),
+		nc = S({
+			id: C().optional(),
+			name: h().optional(),
+			label: h().optional().nullable().transform(He),
+			tr: ce({ "@label": h().nullish() }, []),
+			order: te(),
+			orderLocked: G.default(!1),
+			value: J([_v, pt]),
+		}),
+		Sv = Ie.extend({
+			type: R("SegmentCard"),
+			SegmentCard: S({
+				randomize: ae().optional().nullable().default(!1),
+				segment: J([wv, pt]),
+				items: J([P(nc), ie(h(), nc).transform((e) => Object.values(e))]),
+			}),
+		}),
+		rc = S({
+			id: C(),
+			createdAt: le().default(() => new Date()),
+			label: h(),
+			order: te(),
+			orderLocked: G.default(!1),
+			tr: ce({ "@label": h().nullish() }, []).optional().nullable(),
+		}),
+		oc = J([P(rc), ie(h(), rc).transform((e) => Object.values(e))]),
+		kv = Ie.extend({
+			type: R("SingleSelectCard"),
+			SingleSelectCard: S({
+				randomize: ae().optional().nullable().default(!1),
+				selectItems: oc,
+			}),
+		}),
+		xv = Ie.extend({
+			type: R("MultiSelectCard"),
+			MultiSelectCard: S({
+				randomize: ae().optional().nullable().default(!1),
+				min: J([U(), h()])
+					.optional()
+					.nullable()
+					.transform((e) => {
+						if (typeof e > "u" || e === null) return null;
+						if (typeof e == "number") return Math.max(0, e);
+						const t = Number.parseInt(e, 10);
+						return isNaN(t) ? null : Math.max(0, t);
+					}),
+				max: J([U(), h()])
+					.optional()
+					.nullable()
+					.transform((e) => {
+						if (typeof e > "u" || e === null) return null;
+						if (typeof e == "number") return Math.max(1, e);
+						const t = Number.parseInt(e, 10);
+						return isNaN(t) ? null : Math.max(1, t);
+					}),
+				selectItems: oc,
+			}),
+		});
+	S({
+		id: C(),
+		name: h(),
+		label: h().optional().nullable().transform(He),
+		orderLocked: G.default(!1),
+		card: S({ id: C() }),
+		value: S({ id: C() }),
+	});
+	const ic = J([
+			bv.transform((e) => ({ ...e, ...e.RecruitmentCard })),
+			pv.transform((e) => ({ ...e, ...e.TopTaskCard })),
+			mv,
+			gv.transform((e) => ({
+				...e,
+				...e.CompletionCard,
+				optionsLayout: av(e),
+			})),
+			yv.transform((e) => ({ ...e, ...e.FindabilityCard })),
+			vv.transform((e) => ({ ...e, ...e.InputCard })),
+			Sv.transform((e) => ({ ...e, ...e.SegmentCard })),
+			xv.transform((e) => ({ ...e, ...e.MultiSelectCard })),
+			kv.transform((e) => ({ ...e, ...e.SingleSelectCard })),
+			hv.transform((e) => ({ ...e, ...e.LikertCard })),
+		]),
+		sc = N([
+			"TopTaskCard",
+			"MessageCard",
+			"CompletionCard",
+			"FindabilityCard",
+			"InputCard",
+			"RecruitmentCard",
+			"SegmentCard",
+			"MultiSelectCard",
+			"SingleSelectCard",
+			"LikertCard",
+		]),
+		xr = [
+			"bgColor",
+			"textColor",
+			"interfaceColor",
+			"borderColor",
+			"actionColor",
+			"actionTextColor",
+			"secondaryColor",
+			"linkColor",
+			"errorColor",
+			"warningColor",
+			"successColor",
+			"mutedTextColor",
+			"focusColor",
+		],
+		Cr = [
+			"minimizedBgColor",
+			"minimizedTextColor",
+			"minimizedBorderColor",
+			"minimizedShadow",
+		],
+		zr = ["shadowSm", "shadowMd", "shadowLg"],
+		Cv = [
+			"borderStyle",
+			"borderWidth",
+			"radiusSm",
+			"radiusMd",
+			"radiusLg",
+			"radiusPill",
+		],
+		zv = ["focusRingStyle", "focusRingWidth", "focusRingOffset"];
+	function Se(e, t) {
+		return `${e}${t[0].toUpperCase()}${t.slice(1)}`;
+	}
+	const Tv = xr.map((e) => Se("light", e)),
+		Iv = xr.map((e) => Se("dark", e)),
+		$v = Cr.map((e) => Se("light", e)),
+		Ev = Cr.map((e) => Se("dark", e)),
+		Rv = zr.map((e) => Se("light", e)),
+		Mv = zr.map((e) => Se("dark", e)),
+		Pv = [...Tv, ...$v, ...Rv],
+		Av = [...Iv, ...Ev, ...Mv],
+		Ov = [...Pv, ...Av],
+		Lv = [
+			{ key: "bgColor", cssVar: "--skyra-bg-color" },
+			{ key: "textColor", cssVar: "--skyra-text-color" },
+			{ key: "interfaceColor", cssVar: "--skyra-interface-color" },
+			{ key: "borderColor", cssVar: "--skyra-border-color" },
+			{ key: "actionColor", cssVar: "--skyra-action-color" },
+			{ key: "actionTextColor", cssVar: "--skyra-action-text-color" },
+			{ key: "secondaryColor", cssVar: "--skyra-secondary-color" },
+			{ key: "linkColor", cssVar: "--skyra-link-color" },
+			{ key: "errorColor", cssVar: "--skyra-error-color" },
+			{ key: "warningColor", cssVar: "--skyra-warning-color" },
+			{ key: "successColor", cssVar: "--skyra-success-color" },
+			{ key: "mutedTextColor", cssVar: "--skyra-muted-text-color" },
+			{ key: "focusColor", cssVar: "--skyra-focus-color" },
+			{ key: "fontSize", cssVar: "--skyra-font-size" },
+			{ key: "fontBody", cssVar: "--skyra-font-body" },
+			{ key: "fontHeading", cssVar: "--skyra-font-heading" },
+			{ key: "borderStyle", cssVar: "--skyra-border-style" },
+			{ key: "borderWidth", cssVar: "--skyra-border-width" },
+			{ key: "radiusSm", cssVar: "--skyra-radius-sm" },
+			{ key: "radiusMd", cssVar: "--skyra-radius-md" },
+			{ key: "radiusLg", cssVar: "--skyra-radius-lg" },
+			{ key: "radiusPill", cssVar: "--skyra-radius-pill" },
+			{ key: "focusRingStyle", cssVar: "--skyra-focus-ring-style" },
+			{ key: "focusRingWidth", cssVar: "--skyra-focus-ring-width" },
+			{ key: "focusRingOffset", cssVar: "--skyra-focus-ring-offset" },
+			{ key: "shadowSm", cssVar: "--skyra-shadow-sm" },
+			{ key: "shadowMd", cssVar: "--skyra-shadow-md" },
+			{ key: "shadowMd", cssVar: "--skyra-shadow" },
+			{ key: "shadowLg", cssVar: "--skyra-shadow-lg" },
+			{ key: "minimizedBgColor", cssVar: "--skyra-minimized-bg" },
+			{ key: "minimizedTextColor", cssVar: "--skyra-minimized-text" },
+			{ key: "minimizedBorderColor", cssVar: "--skyra-minimized-border" },
+			{ key: "minimizedShadow", cssVar: "--skyra-minimized-shadow" },
+		];
+	function ac(e, t) {
+		if (!t) return null;
+		const n = [];
+		for (const { key: r, cssVar: o } of Lv) {
+			const i = t[r];
+			typeof i != "string" || !i || n.push(`${o}: ${i};`);
+		}
+		return n.length === 0
+			? null
+			: `${e} {
+  ${n.join(`
+  `)}
+}`;
+	}
+	function Nv(e) {
+		var c, l, d, u, f, p, m, g, b;
+		const t = e.light ?? {},
+			n = e.dark ?? {},
+			r = e.lightMinimized ?? {},
+			o = e.darkMinimized ?? {},
+			i = e.lightShadow ?? {},
+			s = e.darkShadow ?? {},
+			a = {
+				fontSize: e.fontSize,
+				fontBody: e.fontBody ?? e.fontHeading,
+				fontHeading: e.fontHeading ?? e.fontBody,
+				borderStyle: (c = e.border) == null ? void 0 : c.borderStyle,
+				borderWidth: (l = e.border) == null ? void 0 : l.borderWidth,
+				radiusSm: (d = e.border) == null ? void 0 : d.radiusSm,
+				radiusMd: (u = e.border) == null ? void 0 : u.radiusMd,
+				radiusLg: (f = e.border) == null ? void 0 : f.radiusLg,
+				radiusPill: (p = e.border) == null ? void 0 : p.radiusPill,
+				focusRingStyle: (m = e.focus) == null ? void 0 : m.focusRingStyle,
+				focusRingWidth: (g = e.focus) == null ? void 0 : g.focusRingWidth,
+				focusRingOffset: (b = e.focus) == null ? void 0 : b.focusRingOffset,
+			};
+		return {
+			light: {
+				...a,
+				shadowSm: i.shadowSm,
+				shadowMd: i.shadowMd,
+				shadowLg: i.shadowLg,
+				bgColor: t.bgColor,
+				textColor: t.textColor,
+				interfaceColor: t.interfaceColor,
+				borderColor: t.borderColor,
+				actionColor: t.actionColor,
+				actionTextColor: t.actionTextColor,
+				secondaryColor: t.secondaryColor,
+				linkColor: t.linkColor,
+				errorColor: t.errorColor,
+				warningColor: t.warningColor,
+				successColor: t.successColor,
+				mutedTextColor: t.mutedTextColor,
+				focusColor: t.focusColor,
+				minimizedBgColor: r.minimizedBgColor,
+				minimizedTextColor: r.minimizedTextColor,
+				minimizedBorderColor: r.minimizedBorderColor,
+				minimizedShadow: r.minimizedShadow,
+			},
+			dark: {
+				...a,
+				shadowSm: s.shadowSm,
+				shadowMd: s.shadowMd,
+				shadowLg: s.shadowLg,
+				bgColor: n.bgColor,
+				textColor: n.textColor,
+				interfaceColor: n.interfaceColor,
+				borderColor: n.borderColor,
+				actionColor: n.actionColor,
+				actionTextColor: n.actionTextColor,
+				secondaryColor: n.secondaryColor,
+				linkColor: n.linkColor,
+				errorColor: n.errorColor,
+				warningColor: n.warningColor,
+				successColor: n.successColor,
+				mutedTextColor: n.mutedTextColor,
+				focusColor: n.focusColor,
+				minimizedBgColor: o.minimizedBgColor,
+				minimizedTextColor: o.minimizedTextColor,
+				minimizedBorderColor: o.minimizedBorderColor,
+				minimizedShadow: o.minimizedShadow,
+			},
+		};
+	}
+	function lc(e, t) {
+		const { themeMode: n, selector: r = ":host" } = t ?? {},
+			{ light: o, dark: i } = Nv(e),
+			s = ac(r, o),
+			a = ac(r, i);
+		return n === "Dark"
+			? a
+			: n === "Auto" && s && a
+				? `${s}
+@media (prefers-color-scheme: dark) {
+${a}
+}`
+				: (s ?? a);
+	}
+	const Bt = {};
+	for (const e of xr)
+		(Bt[Se("light", e)] = { group: "light", field: e }),
+			(Bt[Se("dark", e)] = { group: "dark", field: e });
+	for (const e of Cr)
+		(Bt[Se("light", e)] = { group: "lightMinimized", field: e }),
+			(Bt[Se("dark", e)] = { group: "darkMinimized", field: e });
+	for (const e of zr)
+		(Bt[Se("light", e)] = { group: "lightShadow", field: e }),
+			(Bt[Se("dark", e)] = { group: "darkShadow", field: e });
+	const jv = [
+			{
+				id: "skyra/library/skyra",
+				version: "1.0.0",
+				name: "Skyra",
+				slug: "skyra",
+				description:
+					"Airy gradients and cool contrast for modern product experiences.",
+				tags: ["gradient", "modern", "cool"],
+				fontSize: "16px",
+				fontBody:
+					'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+				fontHeading:
+					'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+				border: {
+					borderStyle: "solid",
+					borderWidth: "1px",
+					radiusSm: "4px",
+					radiusMd: "4px",
+					radiusLg: "10px",
+					radiusPill: "999px",
+				},
+				focus: {
+					focusRingStyle: "solid",
+					focusRingWidth: "2px",
+					focusRingOffset: "2px",
+				},
+				lightShadow: {
+					shadowSm:
+						"0 2px 8px rgba(15, 23, 42, 0.06), 0 8px 24px -6px rgba(76, 132, 255, 0.08)",
+					shadowMd:
+						"0 3px 8px rgba(15, 18, 114, 0.12), 0 0 32px rgba(36, 204, 255, 0.1), 0 0 80px rgba(154, 154, 154, 0.18)",
+					shadowLg:
+						"0 10px 24px rgba(15, 18, 114, 0.16), 0 0 42px rgba(36, 204, 255, 0.12), 0 0 96px rgba(154, 154, 154, 0.2)",
+				},
+				darkShadow: {
+					shadowSm: "0 2px 8px rgba(0, 0, 0, 0.2)",
+					shadowMd:
+						"0 10px 28px rgba(0, 0, 0, 0.35), 0 0 34px rgba(84, 181, 255, 0.12)",
+					shadowLg:
+						"0 18px 42px rgba(0, 0, 0, 0.44), 0 0 54px rgba(84, 181, 255, 0.16)",
+				},
+				light: {
+					bgColor:
+						"radial-gradient(circle at 0% 0%, #d9f0ff 0%, #f5fbff 45%, #eef8ff 100%)",
+					textColor: "#012a53",
+					interfaceColor: "#25acb1",
+					borderColor: "#315386",
+					actionColor: "#081f4f",
+					actionTextColor: "#ffffff",
+					secondaryColor: "#ffffff",
+					linkColor: "#012a53",
+					errorColor: "#b42318",
+					warningColor: "#b45309",
+					successColor: "#166534",
+					mutedTextColor: "#315386",
+					focusColor: "#081f4f",
+				},
+				dark: {
+					bgColor:
+						"linear-gradient(145deg, #071321 0%, #0b1d34 55%, #0f2a4a 100%)",
+					textColor: "#e6f3ff",
+					interfaceColor: "#7ea8d1",
+					borderColor: "#264566",
+					actionColor: "#d7f0ff",
+					actionTextColor: "#071321",
+					secondaryColor: "#17314f",
+					linkColor: "#80cbff",
+					errorColor: "#ef4444",
+					warningColor: "#f59e0b",
+					successColor: "#34d399",
+					mutedTextColor: "#9ab7d4",
+					focusColor: "#7fc9ff",
+				},
+				lightMinimized: {
+					minimizedBgColor: "#081f4f",
+					minimizedTextColor: "#ffffff",
+					minimizedBorderColor: "#081f4f",
+					minimizedShadow:
+						"inset 0 2px 0 rgba(255, 255, 255, 0.08), 0 6px 16px rgba(0, 95, 243, 0.15), 0 4px 10px rgba(3, 24, 74, 0.1), 0 0 24px rgba(0, 95, 243, 0.15)",
+				},
+				darkMinimized: {
+					minimizedBgColor: "#10263f",
+					minimizedTextColor: "#e6f3ff",
+					minimizedBorderColor: "#264566",
+					minimizedShadow: "0 10px 24px rgba(0, 0, 0, 0.35)",
+				},
+			},
+			{
+				id: "skyra/library/linen-editorial",
+				version: "1.0.0",
+				name: "Linen Editorial",
+				slug: "linen-editorial",
+				description:
+					"Warm neutral tones and serif-forward typography for content-heavy surveys.",
+				tags: ["editorial", "warm", "serif"],
+				fontSize: "17px",
+				fontBody: "'Source Sans 3', sans-serif",
+				fontHeading: "'Merriweather', serif",
+				border: {
+					borderStyle: "solid",
+					borderWidth: "1px",
+					radiusSm: "6px",
+					radiusMd: "10px",
+					radiusLg: "12px",
+					radiusPill: "999px",
+				},
+				focus: {
+					focusRingStyle: "solid",
+					focusRingWidth: "2px",
+					focusRingOffset: "2px",
+				},
+				lightShadow: {
+					shadowSm: "0 4px 12px rgba(60, 40, 20, 0.08)",
+					shadowMd: "0 8px 20px rgba(60, 40, 20, 0.14)",
+					shadowLg: "0 14px 28px rgba(60, 40, 20, 0.2)",
+				},
+				darkShadow: {
+					shadowSm: "0 4px 12px rgba(60, 40, 20, 0.08)",
+					shadowMd: "0 8px 20px rgba(60, 40, 20, 0.14)",
+					shadowLg: "0 14px 28px rgba(60, 40, 20, 0.2)",
+				},
+				light: {
+					bgColor: "linear-gradient(180deg, #faf6ee 0%, #f3e9d8 100%)",
+					textColor: "#2b1f12",
+					interfaceColor: "#7a5f44",
+					borderColor: "#dac8ad",
+					actionColor: "#8a5a2b",
+					actionTextColor: "#fff9f1",
+					secondaryColor: "#efe2cd",
+					linkColor: "#6f4722",
+					errorColor: "#b33a25",
+					warningColor: "#9a6117",
+					successColor: "#3f6c2a",
+					mutedTextColor: "#7d6248",
+					focusColor: "#a1682f",
+				},
+				dark: {
+					bgColor: "linear-gradient(170deg, #20160f 0%, #2f2117 100%)",
+					textColor: "#f2e5d2",
+					interfaceColor: "#b89473",
+					borderColor: "#5a4331",
+					actionColor: "#d29a67",
+					actionTextColor: "#2b1c10",
+					secondaryColor: "#4a3423",
+					linkColor: "#f1be89",
+					errorColor: "#f87171",
+					warningColor: "#fbbf24",
+					successColor: "#86efac",
+					mutedTextColor: "#c9ae92",
+					focusColor: "#e7b684",
+				},
+				lightMinimized: {
+					minimizedBgColor: "#fffdf8",
+					minimizedTextColor: "#2b1f12",
+					minimizedBorderColor: "#dac8ad",
+					minimizedShadow: "0 8px 18px rgba(60, 40, 20, 0.18)",
+				},
+				darkMinimized: {
+					minimizedBgColor: "#2d2016",
+					minimizedTextColor: "#f2e5d2",
+					minimizedBorderColor: "#5a4331",
+					minimizedShadow: "0 10px 22px rgba(0, 0, 0, 0.34)",
+				},
+			},
+			{
+				id: "skyra/library/night-operator",
+				version: "1.0.0",
+				name: "Night Operator",
+				slug: "night-operator",
+				description:
+					"Dark command-center styling with electric accents for high-focus workflows.",
+				tags: ["dark", "high-contrast", "operations"],
+				fontSize: "15px",
+				fontBody: "'IBM Plex Mono', monospace",
+				fontHeading: "'Rajdhani', sans-serif",
+				border: {
+					borderStyle: "solid",
+					borderWidth: "1px",
+					radiusSm: "4px",
+					radiusMd: "8px",
+					radiusLg: "12px",
+					radiusPill: "999px",
+				},
+				focus: {
+					focusRingStyle: "solid",
+					focusRingWidth: "2px",
+					focusRingOffset: "2px",
+				},
+				lightShadow: {
+					shadowSm: "0 4px 12px rgba(0, 0, 0, 0.4)",
+					shadowMd: "0 10px 24px rgba(0, 0, 0, 0.5)",
+					shadowLg: "0 16px 38px rgba(0, 0, 0, 0.6)",
+				},
+				darkShadow: {
+					shadowSm: "0 4px 12px rgba(0, 0, 0, 0.4)",
+					shadowMd: "0 10px 24px rgba(0, 0, 0, 0.5)",
+					shadowLg: "0 16px 38px rgba(0, 0, 0, 0.6)",
+				},
+				light: {
+					bgColor: "linear-gradient(160deg, #f4f8fb 0%, #e6edf3 100%)",
+					textColor: "#0d1b2a",
+					interfaceColor: "#5a738d",
+					borderColor: "#b7c8d8",
+					actionColor: "#0a84ff",
+					actionTextColor: "#000000",
+					secondaryColor: "#dce8f2",
+					linkColor: "#0468c8",
+					errorColor: "#d14343",
+					warningColor: "#b7721f",
+					successColor: "#2d8f5a",
+					mutedTextColor: "#4b6177",
+					focusColor: "#0a84ff",
+				},
+				dark: {
+					bgColor:
+						"radial-gradient(circle at 15% 0%, #102033 0%, #0a0f17 55%, #070b12 100%)",
+					textColor: "#d9e7f5",
+					interfaceColor: "#7f9dbb",
+					borderColor: "#2a394c",
+					actionColor: "#2bd4ff",
+					actionTextColor: "#05131f",
+					secondaryColor: "#182536",
+					linkColor: "#66e3ff",
+					errorColor: "#ff6b6b",
+					warningColor: "#ffd166",
+					successColor: "#48e5a5",
+					mutedTextColor: "#8ba4bf",
+					focusColor: "#6ce6ff",
+				},
+				lightMinimized: {
+					minimizedBgColor: "#ffffff",
+					minimizedTextColor: "#0d1b2a",
+					minimizedBorderColor: "#b7c8d8",
+					minimizedShadow: "0 8px 20px rgba(2, 12, 27, 0.22)",
+				},
+				darkMinimized: {
+					minimizedBgColor: "#121a26",
+					minimizedTextColor: "#d9e7f5",
+					minimizedBorderColor: "#2a394c",
+					minimizedShadow: "0 12px 24px rgba(0, 0, 0, 0.45)",
+				},
+			},
+			{
+				id: "skyra/library/citrus-pop",
+				version: "1.0.0",
+				name: "Citrus Pop",
+				slug: "citrus-pop",
+				description:
+					"Energetic citrus accents and crisp neutrals for upbeat customer touchpoints.",
+				tags: ["vibrant", "friendly", "consumer"],
+				fontSize: "16px",
+				fontBody: "'Nunito', sans-serif",
+				fontHeading: "'Cabin Condensed', sans-serif",
+				border: {
+					borderStyle: "solid",
+					borderWidth: "1px",
+					radiusSm: "10px",
+					radiusMd: "14px",
+					radiusLg: "18px",
+					radiusPill: "999px",
+				},
+				focus: {
+					focusRingStyle: "solid",
+					focusRingWidth: "2px",
+					focusRingOffset: "2px",
+				},
+				lightShadow: {
+					shadowSm: "0 6px 14px rgba(67, 31, 5, 0.08)",
+					shadowMd: "0 10px 22px rgba(67, 31, 5, 0.14)",
+					shadowLg: "0 14px 30px rgba(67, 31, 5, 0.2)",
+				},
+				darkShadow: {
+					shadowSm: "0 6px 14px rgba(67, 31, 5, 0.08)",
+					shadowMd: "0 10px 22px rgba(67, 31, 5, 0.14)",
+					shadowLg: "0 14px 30px rgba(67, 31, 5, 0.2)",
+				},
+				light: {
+					bgColor: "linear-gradient(165deg, #fffef7 0%, #fff7d6 100%)",
+					textColor: "#2f220b",
+					interfaceColor: "#8c6b2e",
+					borderColor: "#f0d79d",
+					actionColor: "#ea7b13",
+					actionTextColor: "#000000",
+					secondaryColor: "#ffe9b8",
+					linkColor: "#c76207",
+					errorColor: "#c53030",
+					warningColor: "#b7791f",
+					successColor: "#2f855a",
+					mutedTextColor: "#7b603a",
+					focusColor: "#f08a1f",
+				},
+				dark: {
+					bgColor: "linear-gradient(150deg, #1d1408 0%, #2f1e0b 100%)",
+					textColor: "#ffecc9",
+					interfaceColor: "#d3a96e",
+					borderColor: "#6a4923",
+					actionColor: "#ffb13b",
+					actionTextColor: "#2a1704",
+					secondaryColor: "#4e3315",
+					linkColor: "#ffd08a",
+					errorColor: "#fc8181",
+					warningColor: "#f6ad55",
+					successColor: "#68d391",
+					mutedTextColor: "#d8b98d",
+					focusColor: "#ffc56a",
+				},
+				lightMinimized: {
+					minimizedBgColor: "#ffffff",
+					minimizedTextColor: "#2f220b",
+					minimizedBorderColor: "#f0d79d",
+					minimizedShadow: "0 8px 20px rgba(67, 31, 5, 0.2)",
+				},
+				darkMinimized: {
+					minimizedBgColor: "#33220f",
+					minimizedTextColor: "#ffecc9",
+					minimizedBorderColor: "#6a4923",
+					minimizedShadow: "0 12px 24px rgba(0, 0, 0, 0.4)",
+				},
+			},
+			{
+				id: "skyra/library/island-carnival",
+				version: "1.0.0",
+				name: "Island Carnival",
+				slug: "island-carnival",
+				description:
+					"Summer party energy with tropical gradients, bright accents, and readable contrast.",
+				tags: ["summer", "tropical", "vibrant", "party"],
+				fontSize: "16px",
+				fontBody: "'Nunito Sans', sans-serif",
+				fontHeading: "'Bebas Neue', sans-serif",
+				border: {
+					borderStyle: "solid",
+					borderWidth: "1px",
+					radiusSm: "10px",
+					radiusMd: "14px",
+					radiusLg: "18px",
+					radiusPill: "999px",
+				},
+				focus: {
+					focusRingStyle: "solid",
+					focusRingWidth: "2px",
+					focusRingOffset: "2px",
+				},
+				lightShadow: {
+					shadowSm: "0 8px 18px rgba(82, 18, 10, 0.12)",
+					shadowMd: "0 14px 30px rgba(82, 18, 10, 0.2)",
+					shadowLg: "0 22px 44px rgba(82, 18, 10, 0.28)",
+				},
+				darkShadow: {
+					shadowSm: "0 8px 18px rgba(82, 18, 10, 0.12)",
+					shadowMd: "0 14px 30px rgba(82, 18, 10, 0.2)",
+					shadowLg: "0 22px 44px rgba(82, 18, 10, 0.28)",
+				},
+				light: {
+					bgColor:
+						"linear-gradient(140deg, #ffe47a 0%, #ffa13d 32%, #ff5f6d 66%, #2bc0e4 100%)",
+					textColor: "#2f1a0f",
+					interfaceColor: "#7d4c2a",
+					borderColor: "#efc77d",
+					actionColor: "#008d8a",
+					actionTextColor: "#000000",
+					secondaryColor: "#ffe4ad",
+					linkColor: "#00706e",
+					errorColor: "#b52b2b",
+					warningColor: "#9d5a00",
+					successColor: "#1f7f42",
+					mutedTextColor: "#6d4d3b",
+					focusColor: "#00a7a3",
+				},
+				dark: {
+					bgColor:
+						"linear-gradient(145deg, #1a0e12 0%, #3a1422 28%, #55201e 62%, #103244 100%)",
+					textColor: "#ffeed1",
+					interfaceColor: "#c9988e",
+					borderColor: "#70413f",
+					actionColor: "#35d6c0",
+					actionTextColor: "#05211f",
+					secondaryColor: "#4b2529",
+					linkColor: "#7eeff0",
+					errorColor: "#ff7b7b",
+					warningColor: "#ffd166",
+					successColor: "#6be6a3",
+					mutedTextColor: "#d8b7a1",
+					focusColor: "#67ece8",
+				},
+				lightMinimized: {
+					minimizedBgColor: "#fffaf1",
+					minimizedTextColor: "#2f1a0f",
+					minimizedBorderColor: "#efc77d",
+					minimizedShadow: "0 10px 22px rgba(96, 33, 13, 0.24)",
+				},
+				darkMinimized: {
+					minimizedBgColor: "#2a161a",
+					minimizedTextColor: "#ffeed1",
+					minimizedBorderColor: "#70413f",
+					minimizedShadow: "0 12px 26px rgba(0, 0, 0, 0.4)",
+				},
+			},
+			{
+				id: "skyra/library/slate-enterprise",
+				version: "1.0.0",
+				name: "Slate Enterprise",
+				slug: "slate-enterprise",
+				description:
+					"Professional blue-slate system optimized for dashboards and B2B workflows.",
+				tags: ["enterprise", "neutral", "b2b"],
+				fontSize: "16px",
+				fontBody: "'Public Sans', sans-serif",
+				fontHeading: "'Manrope', sans-serif",
+				border: {
+					borderStyle: "solid",
+					borderWidth: "1px",
+					radiusSm: "6px",
+					radiusMd: "8px",
+					radiusLg: "12px",
+					radiusPill: "999px",
+				},
+				focus: {
+					focusRingStyle: "solid",
+					focusRingWidth: "2px",
+					focusRingOffset: "1px",
+				},
+				lightShadow: {
+					shadowSm: "0 2px 8px rgba(15, 23, 42, 0.06)",
+					shadowMd: "0 6px 18px rgba(15, 23, 42, 0.12)",
+					shadowLg: "0 10px 28px rgba(15, 23, 42, 0.16)",
+				},
+				darkShadow: {
+					shadowSm: "0 2px 8px rgba(15, 23, 42, 0.06)",
+					shadowMd: "0 6px 18px rgba(15, 23, 42, 0.12)",
+					shadowLg: "0 10px 28px rgba(15, 23, 42, 0.16)",
+				},
+				light: {
+					bgColor: "linear-gradient(180deg, #f7f9fc 0%, #edf2f8 100%)",
+					textColor: "#13243b",
+					interfaceColor: "#5e7694",
+					borderColor: "#c7d5e8",
+					actionColor: "#1f5fbf",
+					actionTextColor: "#ffffff",
+					secondaryColor: "#dfe8f5",
+					linkColor: "#164ea0",
+					errorColor: "#c93b3b",
+					warningColor: "#b7791f",
+					successColor: "#2f855a",
+					mutedTextColor: "#4e637f",
+					focusColor: "#246ad1",
+				},
+				dark: {
+					bgColor: "linear-gradient(165deg, #0f1724 0%, #152237 100%)",
+					textColor: "#dbe7f7",
+					interfaceColor: "#94acc9",
+					borderColor: "#334861",
+					actionColor: "#7db1ff",
+					actionTextColor: "#0f1d31",
+					secondaryColor: "#25364e",
+					linkColor: "#a6c9ff",
+					errorColor: "#f87171",
+					warningColor: "#f6ad55",
+					successColor: "#68d391",
+					mutedTextColor: "#9fb4ce",
+					focusColor: "#9cc3ff",
+				},
+				lightMinimized: {
+					minimizedBgColor: "#ffffff",
+					minimizedTextColor: "#13243b",
+					minimizedBorderColor: "#c7d5e8",
+					minimizedShadow: "0 8px 18px rgba(15, 23, 42, 0.16)",
+				},
+				darkMinimized: {
+					minimizedBgColor: "#1a273a",
+					minimizedTextColor: "#dbe7f7",
+					minimizedBorderColor: "#334861",
+					minimizedShadow: "0 10px 22px rgba(0, 0, 0, 0.36)",
+				},
+			},
+		],
+		Bv = {
+			bgColor: {
+				key: "bgColor",
+				label: "Background",
+				category: "surface",
+				valueKind: "background",
+				status: "used",
+				description: "Primary background value for rendered survey surfaces.",
+				semanticUsage: {
+					fullPage:
+						"Page and card backgrounds as authored by the theme background token.",
+					survey:
+						"Widget container and surface backgrounds as authored by the theme background token.",
+				},
+				helpText:
+					"Background value for survey surfaces. Supports solid colors and gradients.",
+			},
+			textColor: {
+				key: "textColor",
+				label: "Text",
+				category: "content",
+				valueKind: "color",
+				status: "used",
+				description: "Primary readable text color for content and labels.",
+				semanticUsage: {
+					fullPage: "Body copy, labels, and default text foreground.",
+					survey: "Widget body text and default control label foreground.",
+				},
+				helpText: "Primary readable text color for survey content.",
+			},
+			interfaceColor: {
+				key: "interfaceColor",
+				label: "Interface",
+				category: "content",
+				valueKind: "color",
+				status: "used",
+				description: "Neutral UI color for supportive interface affordances.",
+				semanticUsage: {
+					fullPage: "Muted text and neutral border/interface accents.",
+					survey:
+						"Neutral border tones for inputs, toggles, and helper UI framing.",
+				},
+				helpText: "Neutral interface color for borders and muted UI text.",
+			},
+			borderColor: {
+				key: "borderColor",
+				label: "Border",
+				category: "surface",
+				valueKind: "color",
+				status: "used",
+				description: "Default border color for survey containers and controls.",
+				semanticUsage: {
+					fullPage: "Primary card and option border color.",
+					survey: "Expanded widget container border and border fallback.",
+				},
+				helpText: "Default border color for cards and containers.",
+			},
+			actionColor: {
+				key: "actionColor",
+				label: "Action",
+				category: "interaction",
+				valueKind: "color",
+				status: "used",
+				description:
+					"Primary interactive accent for actions and selected states.",
+				semanticUsage: {
+					fullPage:
+						"Buttons, active controls, focus accents, and visual effects.",
+					survey: "Buttons, selected options, hover/focus accents, and rings.",
+				},
+				helpText: "Primary action color for buttons and selected states.",
+			},
+			actionTextColor: {
+				key: "actionTextColor",
+				label: "Action text",
+				category: "interaction",
+				valueKind: "color",
+				status: "used",
+				description:
+					"Foreground text color shown on action-colored backgrounds.",
+				semanticUsage: {
+					fullPage: "Button and selected-control text foreground.",
+					survey: "Primary action label foreground text.",
+				},
+				helpText: "Text color on top of action backgrounds.",
+			},
+			secondaryColor: {
+				key: "secondaryColor",
+				label: "Secondary",
+				category: "surface",
+				valueKind: "color",
+				status: "used",
+				description:
+					"Secondary surface or accent tone for non-primary emphasis.",
+				semanticUsage: {
+					fullPage:
+						"Secondary surfaces such as progress track/background accents.",
+					survey:
+						"Theme palette tone available for secondary surfaces and chips.",
+				},
+				helpText: "Secondary surface/accent color.",
+			},
+			linkColor: {
+				key: "linkColor",
+				label: "Link",
+				category: "content",
+				valueKind: "color",
+				status: "used",
+				description: "Hyperlink foreground color.",
+				semanticUsage: {
+					fullPage: "Anchor/link text and effect palette input.",
+					survey: "Inline link text and link-variant controls.",
+				},
+				helpText: "Color used for links and link-like controls.",
+			},
+			errorColor: {
+				key: "errorColor",
+				label: "Error",
+				category: "feedback",
+				valueKind: "color",
+				status: "used",
+				description: "Negative/error feedback color.",
+				semanticUsage: {
+					fullPage: "Validation errors, required markers, and invalid states.",
+					survey: "Validation text, error borders, and invalid control states.",
+				},
+				helpText: "Color for errors and invalid state feedback.",
+			},
+			warningColor: {
+				key: "warningColor",
+				label: "Warning",
+				category: "feedback",
+				valueKind: "color",
+				status: "used",
+				description: "Warning or caution feedback color.",
+				semanticUsage: {
+					fullPage: "Soft validation warnings such as nearing limits.",
+					survey: "Warning semantic token for cautionary messages.",
+				},
+				helpText: "Color for warning and caution states.",
+			},
+			successColor: {
+				key: "successColor",
+				label: "Success",
+				category: "feedback",
+				valueKind: "color",
+				status: "unused",
+				description: "Success or positive feedback color.",
+				semanticUsage: {
+					fullPage: "Defined token, currently not consumed by renderer styles.",
+					survey: "Not currently consumed by renderer styles.",
+				},
+				helpText: "Reserved for success feedback states.",
+				notes:
+					"Defined in theme model but currently not active in renderer styling.",
+			},
+			mutedTextColor: {
+				key: "mutedTextColor",
+				label: "Muted text",
+				category: "content",
+				valueKind: "color",
+				status: "unused",
+				description: "Secondary/de-emphasized text color.",
+				semanticUsage: {
+					fullPage: "Defined token, currently not consumed directly.",
+					survey: "Defined token, currently not consumed directly.",
+				},
+				helpText: "Reserved for secondary and de-emphasized text.",
+				notes:
+					"Current renderers mostly use interfaceColor for muted text semantics.",
+			},
+			focusColor: {
+				key: "focusColor",
+				label: "Focus",
+				category: "focus",
+				valueKind: "color",
+				status: "partial",
+				description:
+					"Focus indicator color token for accessible keyboard focus.",
+				semanticUsage: {
+					fullPage: "Used by explicit focus ring/outline tokenized styles.",
+					survey:
+						"Defined token, but most focus treatments derive from action color classes.",
+				},
+				helpText: "Color used by focus outlines and rings when applicable.",
+			},
+			minimizedBgColor: {
+				key: "minimizedBgColor",
+				label: "Minimized background",
+				category: "minimized",
+				valueKind: "color",
+				status: "partial",
+				description: "Surface color for minimized widget state.",
+				semanticUsage: {
+					fullPage: "Not used.",
+					survey: "Background color for minimized/collapsed widget container.",
+				},
+				helpText: "Background for minimized widget state.",
+			},
+			minimizedTextColor: {
+				key: "minimizedTextColor",
+				label: "Minimized text",
+				category: "minimized",
+				valueKind: "color",
+				status: "partial",
+				description: "Foreground text color for minimized widget state.",
+				semanticUsage: {
+					fullPage: "Not used.",
+					survey: "Text/icon color for minimized widget state.",
+				},
+				helpText: "Foreground text color for minimized widget state.",
+			},
+			minimizedBorderColor: {
+				key: "minimizedBorderColor",
+				label: "Minimized border",
+				category: "minimized",
+				valueKind: "color",
+				status: "partial",
+				description: "Border color for minimized widget state.",
+				semanticUsage: {
+					fullPage: "Not used.",
+					survey: "Border color for minimized widget container.",
+				},
+				helpText: "Border color for minimized widget state.",
+			},
+			minimizedShadow: {
+				key: "minimizedShadow",
+				label: "Minimized shadow",
+				category: "minimized",
+				valueKind: "shadow",
+				status: "partial",
+				description: "Shadow/elevation for minimized widget state.",
+				semanticUsage: {
+					fullPage: "Not used.",
+					survey: "Shadow for minimized widget container.",
+				},
+				helpText: "Shadow used by minimized widget state.",
+			},
+			fontSize: {
+				key: "fontSize",
+				label: "Font size",
+				category: "typography",
+				valueKind: "length",
+				status: "used",
+				description: "Global base font size applied across renderers.",
+				semanticUsage: {
+					fullPage: "Base font sizing for survey typography.",
+					survey: "Base font sizing for widget typography.",
+				},
+				helpText: "Base font size for survey text.",
+			},
+			fontBody: {
+				key: "fontBody",
+				label: "Body font",
+				category: "typography",
+				valueKind: "font",
+				status: "used",
+				description: "Body/content font family token.",
+				semanticUsage: {
+					fullPage: "Primary font family for body copy.",
+					survey: "Primary font family for widget body copy.",
+				},
+				helpText: "Font family for body content.",
+			},
+			fontHeading: {
+				key: "fontHeading",
+				label: "Heading font",
+				category: "typography",
+				valueKind: "font",
+				status: "used",
+				description: "Heading/title font family token.",
+				semanticUsage: {
+					fullPage: "Font family for headings and emphasized labels.",
+					survey: "Font family for headings and emphasized labels.",
+				},
+				helpText: "Font family for headings.",
+			},
+			borderStyle: {
+				key: "borderStyle",
+				label: "Border style",
+				category: "border",
+				valueKind: "select",
+				status: "used",
+				description: "Global border style for tokenized controls and surfaces.",
+				semanticUsage: {
+					fullPage: "Border style for cards, options, and controls.",
+					survey: "Border style for widget controls and containers.",
+				},
+				helpText: "Style used for borders (solid, dashed, etc.).",
+			},
+			borderWidth: {
+				key: "borderWidth",
+				label: "Border width",
+				category: "border",
+				valueKind: "length",
+				status: "used",
+				description: "Global border thickness token.",
+				semanticUsage: {
+					fullPage: "Border thickness across cards and controls.",
+					survey: "Border thickness across widget controls and containers.",
+				},
+				helpText: "Thickness used for borders.",
+			},
+			radiusSm: {
+				key: "radiusSm",
+				label: "Radius sm",
+				category: "border",
+				valueKind: "length",
+				status: "partial",
+				description: "Small corner radius token.",
+				semanticUsage: {
+					fullPage: "Limited usage for small-radius components.",
+					survey: "Used by minimized widget container shape.",
+				},
+				helpText: "Small corner radius.",
+			},
+			radiusMd: {
+				key: "radiusMd",
+				label: "Radius md",
+				category: "border",
+				valueKind: "length",
+				status: "partial",
+				description: "Medium corner radius token.",
+				semanticUsage: {
+					fullPage: "Used by medium-radius controls/components.",
+					survey: "Used by selected widget controls.",
+				},
+				helpText: "Medium corner radius.",
+			},
+			radiusLg: {
+				key: "radiusLg",
+				label: "Radius lg",
+				category: "border",
+				valueKind: "length",
+				status: "used",
+				description: "Large corner radius token.",
+				semanticUsage: {
+					fullPage: "Primary radius for cards/options/inputs.",
+					survey: "Primary radius for expanded widget container and cards.",
+				},
+				helpText: "Large corner radius for primary surfaces.",
+			},
+			radiusPill: {
+				key: "radiusPill",
+				label: "Radius pill",
+				category: "border",
+				valueKind: "length",
+				status: "used",
+				description: "Pill corner radius token for rounded controls.",
+				semanticUsage: {
+					fullPage: "Rounded pill controls and chips.",
+					survey: "Rounded pill controls and toggles.",
+				},
+				helpText: "Full rounded radius for pill-shaped controls.",
+			},
+			focusRingStyle: {
+				key: "focusRingStyle",
+				label: "Focus ring style",
+				category: "focus",
+				valueKind: "select",
+				status: "used",
+				description: "Style of keyboard focus ring.",
+				semanticUsage: {
+					fullPage: "Determines focus outline style.",
+					survey:
+						"Determines widget focus ring style where tokenized focus is used.",
+				},
+				helpText: "Style used by keyboard focus ring.",
+			},
+			focusRingWidth: {
+				key: "focusRingWidth",
+				label: "Focus ring width",
+				category: "focus",
+				valueKind: "length",
+				status: "used",
+				description: "Thickness of keyboard focus ring.",
+				semanticUsage: {
+					fullPage: "Controls focus outline thickness.",
+					survey: "Controls tokenized focus ring thickness.",
+				},
+				helpText: "Thickness of focus ring.",
+			},
+			focusRingOffset: {
+				key: "focusRingOffset",
+				label: "Focus ring offset",
+				category: "focus",
+				valueKind: "length",
+				status: "used",
+				description: "Offset between element edge and focus ring.",
+				semanticUsage: {
+					fullPage: "Controls focus outline offset distance.",
+					survey: "Controls tokenized focus ring offset.",
+				},
+				helpText: "Distance between component and focus ring.",
+			},
+			shadowSm: {
+				key: "shadowSm",
+				label: "Shadow sm",
+				category: "shadow",
+				valueKind: "shadow",
+				status: "partial",
+				description:
+					"Subtle elevation shadow token for future secondary surfaces.",
+				semanticUsage: {
+					fullPage: "Reserved for future low-emphasis surfaces.",
+					survey: "Reserved for future low-emphasis surfaces.",
+				},
+				helpText: "Subtle shadow reserved for future use cases.",
+			},
+			shadowMd: {
+				key: "shadowMd",
+				label: "Shadow md",
+				category: "shadow",
+				valueKind: "shadow",
+				status: "used",
+				description: "Medium elevation shadow token.",
+				semanticUsage: {
+					fullPage: "Standard card and container elevation shadow.",
+					survey: "Expanded widget container elevation shadow.",
+				},
+				helpText: "Default elevation shadow for main survey surfaces.",
+			},
+			shadowLg: {
+				key: "shadowLg",
+				label: "Shadow lg",
+				category: "shadow",
+				valueKind: "shadow",
+				status: "partial",
+				description: "High-emphasis elevation shadow token for future use.",
+				semanticUsage: {
+					fullPage: "Reserved for future high-emphasis surfaces.",
+					survey: "Reserved for future high-emphasis surfaces.",
+				},
+				helpText: "High-emphasis shadow reserved for future use cases.",
+			},
+		};
+	function Dv(e) {
+		return Bv[e];
+	}
+	const Fv = il();
+	function ye(e) {
+		const t = Dv(e);
+		return h()
+			.nullable()
+			.optional()
+			.register(Fv, t)
+			.meta({ title: t.label, description: t.helpText });
+	}
+	function zn(e) {
+		const t = Object.fromEntries(e.map((n) => [n, ye(n)]));
+		return S(t);
+	}
+	const Uv = [
+			"borderStyle",
+			"borderWidth",
+			"radiusSm",
+			"radiusMd",
+			"radiusLg",
+			"radiusPill",
+		],
+		Hv = ["focusRingStyle", "focusRingWidth", "focusRingOffset"],
+		Zv = zr,
+		ke = ["fontSize", "fontBody", "fontHeading"];
+	function Vv(e) {
+		return typeof e == "boolean"
+			? e
+			: e === "false" || e === "0" || e === "" || e === null
+				? !1
+				: !!e;
+	}
+	const Qo = J([$(), h()]).optional().transform(Vv),
+		Dt = N(["Auto", "Light", "Dark"]),
+		Ft = zn(xr),
+		Ut = zn(Cr),
+		ei = zn(Uv),
+		ti = zn(Hv),
+		Ht = zn(Zv),
+		cc = S({
+			name: h().min(1).max(120),
+			slug: h().min(1).max(120),
+			description: h().max(4e3).nullable().optional(),
+			archived: Qo.optional(),
+			sourceId: h().max(200).nullable().optional(),
+			sourceVersion: h().max(64).nullable().optional(),
+			installedFrom: h().max(32).nullable().optional(),
+			fontSize: ye(ke[0]),
+			fontBody: ye(ke[1]),
+			fontHeading: ye(ke[2]),
+			border: ei.partial().optional(),
+			focus: ti.partial().optional(),
+			lightShadow: Ht.partial().optional(),
+			darkShadow: Ht.partial().optional(),
+			light: Ft.partial().optional(),
+			dark: Ft.partial().optional(),
+			lightMinimized: Ut.partial().optional(),
+			darkMinimized: Ut.partial().optional(),
+		});
+	cc.extend({
+		slug: h().min(1).max(120).optional(),
+		archived: Qo.optional().default(!1),
+		installedFrom: N(["catalog", "import", "manual"]).nullable().optional(),
+	}),
+		cc
+			.partial()
+			.extend({
+				id: h().uuid().optional(),
+				archived: Qo.optional(),
+				installedFrom: N(["catalog", "import", "manual"]).nullable().optional(),
+			}),
+		S({
+			id: h().min(1).max(200),
+			version: h().min(1).max(64),
+			name: h().min(1).max(120),
+			slug: h().min(1).max(120),
+			description: h().max(4e3).nullable().optional(),
+			tags: P(h().min(1).max(40)).max(30).optional(),
+			fontSize: ye(ke[0]),
+			fontBody: ye(ke[1]),
+			fontHeading: ye(ke[2]),
+			border: ei.partial().optional(),
+			focus: ti.partial().optional(),
+			lightShadow: Ht.partial().optional(),
+			darkShadow: Ht.partial().optional(),
+			light: Ft.partial().optional(),
+			dark: Ft.partial().optional(),
+			lightMinimized: Ut.partial().optional(),
+			darkMinimized: Ut.partial().optional(),
+		});
+	const Wv = S({
+			id: h().uuid(),
+			name: h(),
+			slug: h(),
+			description: h().nullable().optional(),
+			archived: $().optional(),
+			sourceId: h().nullable().optional(),
+			sourceVersion: h().nullable().optional(),
+			installedFrom: h().nullable().optional(),
+			fontSize: ye(ke[0]),
+			fontBody: ye(ke[1]),
+			fontHeading: ye(ke[2]),
+			border: ei.partial().optional(),
+			focus: ti.partial().optional(),
+			lightShadow: Ht.partial().optional(),
+			darkShadow: Ht.partial().optional(),
+			light: Ft.partial().optional(),
+			dark: Ft.partial().optional(),
+			lightMinimized: Ut.partial().optional(),
+			darkMinimized: Ut.partial().optional(),
+		}),
+		qv = Object.fromEntries(Ov.map((e) => [e, h().nullable().optional()])),
+		Kv = Object.fromEntries(
+			[...Cv, ...zv].map((e) => [e, h().nullable().optional()]),
+		),
+		Jv = S({
+			id: h().uuid(),
+			name: h(),
+			slug: h(),
+			description: h().nullable().optional(),
+			archived: $().optional(),
+			sourceId: h().nullable().optional(),
+			sourceVersion: h().nullable().optional(),
+			installedFrom: h().nullable().optional(),
+			fontSize: ye(ke[0]),
+			fontBody: ye(ke[1]),
+			fontHeading: ye(ke[2]),
+			...Kv,
+			...qv,
+		}),
+		Tn = ie(h(), h()).nullable().optional(),
+		ni = J([Wv, Jv]),
+		Tr = N(["AllAtOnce", "OneAtATime"]),
+		In = N(["Public", "InvitationOnly", "Password"]),
+		Gv = N(["Visible", "Hidden", "Published"]).transform((e) =>
+			e === "Published" ? "Visible" : e,
+		),
+		Yv = N([
+			"Pending",
+			"Sent",
+			"Opened",
+			"Started",
+			"Completed",
+			"Bounced",
+			"Expired",
+		]),
+		Ir = N(["Bar", "Percentage", "Fraction", "None"]),
+		it = N(["End", "Restart", "Redirect"]),
+		st = N([
+			"below-title",
+			"above-title",
+			"split-left",
+			"split-right",
+			"split-top",
+			"background",
+		]),
+		$r = N(["cover", "contain"]),
+		ri = S({
+			imageLayout: st.nullable().optional(),
+			imageLayoutMobile: st.nullable().optional(),
+			imageBrightness: U().min(0).max(1).nullable().optional(),
+			imageFit: $r.nullable().optional(),
+		}),
+		uc = N([
+			"confetti",
+			"fireworks",
+			"emojis",
+			"balloons",
+			"sparkles",
+			"snow",
+			"bubbles",
+			"stars",
+		]),
+		dc = N(["low", "medium", "high"]),
+		fc = N(["burst", "continuous", "burst-then-ambient"]),
+		pc = S({
+			pageEffect: uc.nullable().optional(),
+			pageEffectIntensity: dc.nullable().optional(),
+			pageEffectBehavior: fc.nullable().optional(),
+			pageEffectEmojis: P(h()).min(1).max(10).nullable().optional(),
+		}),
+		xe = S({
+			id: h().uuid(),
+			key: h(),
+			filename: h(),
+			mimeType: h(),
+			width: U().int().nullable().optional(),
+			height: U().int().nullable().optional(),
+			altText: h().nullable().optional(),
+			focalX: U().min(0).max(1).nullable().optional(),
+			focalY: U().min(0).max(1).nullable().optional(),
+		})
+			.nullable()
+			.optional(),
+		Ce = S({ id: h().uuid() }).nullable().optional();
+	S({
+		displayMode: Tr.nullable().optional(),
+		themeId: h().uuid().nullable().optional(),
+		themeMode: Dt.nullable().optional(),
+		showProgressBar: G.nullable().optional(),
+		progressBarStyle: Ir.nullable().optional(),
+		showQuestionNumbers: G.nullable().optional(),
+		allowBackNavigation: G.nullable().optional(),
+		completionBehavior: it.nullable().optional(),
+		completionRedirectUrl: h().nullable().optional(),
+		completionRedirectDelay: te().int().nullable().optional(),
+		ogTitle: h().nullable().optional(),
+		ogDescription: h().nullable().optional(),
+		ogImage: Ce,
+		logo: Ce,
+		headerImage: Ce,
+		backgroundImage: Ce,
+		favicon: Ce,
+		...ri.shape,
+	});
+	const Xv = S({
+			displayMode: Tr.nullable().optional(),
+			theme: N(["Light", "Dark"]).nullable().optional(),
+			bgColor: h().nullable().optional(),
+			textColor: h().nullable().optional(),
+			interfaceColor: h().nullable().optional(),
+			actionColor: h().nullable().optional(),
+			actionTextColor: h().nullable().optional(),
+			secondaryColor: h().nullable().optional(),
+			linkColor: h().nullable().optional(),
+			errorColor: h().nullable().optional(),
+			warningColor: h().nullable().optional(),
+			fontSize: h().nullable().optional(),
+			fontBody: h().nullable().optional(),
+			fontHeading: h().nullable().optional(),
+			logo: Ce,
+			headerImage: Ce,
+			backgroundImage: Ce,
+			favicon: Ce,
+			showProgressBar: G.nullable().optional(),
+			progressBarStyle: Ir.nullable().optional(),
+			showQuestionNumbers: G.nullable().optional(),
+			allowBackNavigation: G.nullable().optional(),
+			completionBehavior: it.nullable().optional(),
+			completionRedirectUrl: h().nullable().optional(),
+			completionRedirectDelay: te().int().nullable().optional(),
+			ogTitle: h().nullable().optional(),
+			ogDescription: h().nullable().optional(),
+			ogImage: Ce,
+		}),
+		hc = S({
+			id: h().uuid().optional(),
+			displayMode: Tr.nullable().optional(),
+			theme: N(["Light", "Dark"]).nullable().optional(),
+			bgColor: h().nullable().optional(),
+			textColor: h().nullable().optional(),
+			interfaceColor: h().nullable().optional(),
+			actionColor: h().nullable().optional(),
+			actionTextColor: h().nullable().optional(),
+			secondaryColor: h().nullable().optional(),
+			linkColor: h().nullable().optional(),
+			errorColor: h().nullable().optional(),
+			warningColor: h().nullable().optional(),
+			fontSize: h().nullable().optional(),
+			fontBody: h().nullable().optional(),
+			fontHeading: h().nullable().optional(),
+			logo: xe,
+			headerImage: xe,
+			backgroundImage: xe,
+			favicon: xe,
+			showProgressBar: $().nullable().optional(),
+			progressBarStyle: Ir.nullable().optional(),
+			showQuestionNumbers: $().nullable().optional(),
+			allowBackNavigation: $().nullable().optional(),
+			completionBehavior: it.nullable().optional(),
+			completionRedirectUrl: h().nullable().optional(),
+			completionRedirectDelay: U().int().nullable().optional(),
+			ogTitle: h().nullable().optional(),
+			ogDescription: h().nullable().optional(),
+			ogImage: xe,
+		});
+	S({
+		themeId: h().uuid().nullable().optional(),
+		themeMode: Dt.nullable().optional(),
+		textNext: h().nullable().optional(),
+		textPrev: h().nullable().optional(),
+		headerImage: Ce,
+		...ri.shape,
+		...pc.shape,
+		themeOverrides: Tn,
+	});
+	const Qv = S({
+			theme: ni.nullable().optional(),
+			themeMode: Dt.nullable().optional(),
+			textNext: h().nullable().optional(),
+			textPrev: h().nullable().optional(),
+			headerImage: xe,
+			...ri.shape,
+			...pc.shape,
+			themeOverrides: Tn,
+		}),
+		eb = ce(
+			{
+				"@title": h().nullish(),
+				"@description": h().nullish(),
+				"@textNext": h().nullish(),
+				"@textPrev": h().nullish(),
+			},
+			[],
+		),
+		tb = S({
+			id: h().uuid(),
+			name: h(),
+			title: h().nullable().optional(),
+			description: h().nullable().optional(),
+			tr: eb.optional().nullable(),
+			order: U().int(),
+			pageStatus: Gv.nullable().optional(),
+			presentation: Qv.nullable().optional(),
+			config: hc.nullable().optional(),
+			theme: ni.nullable().optional(),
+			themeMode: Dt.nullable().optional(),
+			textNext: h().nullable().optional(),
+			textPrev: h().nullable().optional(),
+			headerImage: xe,
+			imageLayout: st.nullable().optional(),
+			imageLayoutMobile: st.nullable().optional(),
+			imageBrightness: U().nullable().optional(),
+			imageFit: $r.nullable().optional(),
+			themeOverrides: Tn,
+			pageEffect: uc.nullable().optional(),
+			pageEffectIntensity: dc.nullable().optional(),
+			pageEffectBehavior: fc.nullable().optional(),
+			pageEffectEmojis: P(h()).nullable().optional(),
+		});
+	S({
+		id: h().uuid(),
+		surveyId: h().uuid(),
+		code: h(),
+		email: h().email().nullable().optional(),
+		phone: h().nullable().optional(),
+		recipientName: h().nullable().optional(),
+		status: Yv.nullable().optional(),
+		sentAt: le().nullable().optional(),
+		openedAt: le().nullable().optional(),
+		startedAt: le().nullable().optional(),
+		completedAt: le().nullable().optional(),
+		maxResponses: U().int().nullable().optional(),
+		expiresAt: le().nullable().optional(),
+		responseCount: U().int().nullable().optional(),
+	});
+	const ht = S({
+			event: h(),
+			survey: h(),
+			session: h(),
+			url: h().optional(),
+			visitor: h().ulid(),
+		}),
+		nb = ht.extend({ event: R("CardView"), type: sc }),
+		rb = ht.extend({ event: R("PageView"), value: h() }),
+		Ze = ht.extend({
+			event: R("CardValue"),
+			card: h(),
+			type: sc,
+			value: J([h(), $(), ie(h(), Zo()), P(h())]),
+			languageCode: h().optional(),
+			cardOrder: U().int().nonnegative().optional(),
+		}),
+		ob = Ze.extend({ type: R("InputCard") }),
+		ib = Ze.extend({ type: R("TopTaskCard") }),
+		sb = Ze.extend({ type: R("CompletionCard") }),
+		ab = Ze.extend({ type: R("SegmentCard") }),
+		lb = Ze.extend({ type: R("LikertCard") }),
+		cb = Ze.extend({
+			type: R("RecruitmentCard"),
+			value: S({
+				email: h().optional().nullable(),
+				phone: h().optional().nullable(),
+				name: h().optional().nullable(),
+				consented: $().optional(),
+				autoEmail: $().optional(),
+				optedOut: $().optional(),
+			}),
+		}),
+		ub = Ze.extend({ type: R("MultiSelectCard"), value: P(C()) }),
+		db = Ze.extend({ type: R("SingleSelectCard"), value: C() }),
+		fb = Ze.extend({ type: R("FindabilityCard") }),
+		pb = ht.extend({ event: R("Value"), value: J([h(), $()]) }),
+		hb = ht.extend({
+			event: R("SessionInit"),
+			ua: h(),
+			screenSize: py([U(), U()]),
+			pixelRatio: U(),
+			connection: h(),
+			traits: ie(h(), h()).optional(),
+			languageCode: h().optional(),
+		}),
+		mb = ht.extend({ event: R("Custom"), key: h(), value: h() }),
+		gb = ht.extend({ event: R("SessionTraits"), traits: ie(h(), h()) }),
+		oi = Ue("type", [ob, cb, ab, ib, sb, fb, lb, ub, db]);
+	J([oi, nb, rb, pb, mb, hb, gb]);
+	const mc = /[\\*+{}[\]()|^$]/;
+	function yb(e) {
+		var l;
+		const t = e.trim();
+		if (!t) throw new Error("Enter a website address");
+		if (/\s/.test(t))
+			throw new Error("Website addresses cannot contain spaces");
+		if (mc.test(t))
+			throw new Error("Wildcards and regular expressions are not supported");
+		if (t.includes("?") || t.includes("#"))
+			throw new Error("Query strings and fragments are not supported");
+		const n = /^([a-z][a-z\d+.-]*):/i.exec(t),
+			r = /^[a-z][a-z\d+.-]*:\/\//i.test(t);
+		if (n && !r) {
+			const d = (l = n[1]) == null ? void 0 : l.toLowerCase();
+			if (d === "http" || d === "https")
+				throw new Error("Enter a valid website address");
+		}
+		if (/^https?\/\//i.test(t) || /^https?:\/\/\//i.test(t))
+			throw new Error("Enter a valid website address");
+		let o;
+		try {
+			o = new URL(r ? t : `https://${t}`);
+		} catch {
+			throw new Error("Enter a valid website address");
+		}
+		if (!["http:", "https:"].includes(o.protocol))
+			throw new Error("Only HTTP and HTTPS website addresses are supported");
+		if (o.username || o.password)
+			throw new Error("Credentials are not supported");
+		const i = o.hostname.toLowerCase().replace(/\.$/, "");
+		if (!i || i.includes("*")) throw new Error("Enter a valid website domain");
+		let s;
+		try {
+			s = decodeURIComponent(o.pathname);
+		} catch {
+			throw new Error("Enter a valid website path");
+		}
+		if (mc.test(s))
+			throw new Error("Wildcards and regular expressions are not supported");
+		if (/\s/.test(s))
+			throw new Error("Website addresses cannot contain spaces");
+		const a = s
+			.replace(/\/{2,}/g, "/")
+			.replace(/\/$/, "")
+			.split("/")
+			.map((d) => encodeURIComponent(d))
+			.join("/");
+		return { domain: i, pathPrefix: a === "/" ? "" : a };
+	}
+	const vb = h().transform((e, t) => {
+			try {
+				return yb(e);
+			} catch (n) {
+				return (
+					t.addIssue({
+						code: "custom",
+						message:
+							n instanceof Error ? n.message : "Enter a valid website address",
+					}),
+					ga
+				);
+			}
+		}),
+		bb = S({
+			id: C(),
+			domain: h().min(1),
+			pathPrefix: h(),
+			allowSurveyFollowOutside: $(),
+		});
+	S({ websiteAddress: vb, allowSurveyFollowOutside: $() });
+	function ii(e, t) {
+		if (e === t) return !0;
+		const n = (r) => (r.startsWith("www.") ? r.slice(4) : r);
+		return n(e) === n(t);
+	}
+	S({
+		name: h().min(1),
+		slug: h().min(1),
+		description: h().optional(),
+		canCreateTasks: G,
+		canCreateSegments: G,
+		canCreateScales: G,
+		canCreateLabels: G,
+	}),
+		S({
+			id: C(),
+			name: h().min(1),
+			slug: h()
+				.min(1)
+				.optional()
+				.transform((e) => e || ""),
+			canCreateTasks: G,
+			canCreateSegments: G,
+			canCreateScales: G,
+			canCreateLabels: G,
+			description: h().optional(),
+		});
+	const wb = S({
+			id: C(),
+			user: S({
+				id: C(),
+				name: h().nullable().optional(),
+				email: Il().optional(),
+			}),
+			role: Yl,
+		}),
+		gc = J([R("View"), R("Edit")]),
+		_b = S({ id: C(), survey: S({ id: C(), name: h().optional() }), role: gc });
+	S({ team: C(), survey: C(), role: gc }),
+		S({ team: C(), survey: C() }),
+		S({ team: C(), user: C(), role: Yl }),
+		S({ team: C(), user: C() }),
+		S({
+			id: C(),
+			name: h().min(1),
+			slug: h().min(1),
+			description: h().nullable(),
+			emoji: xn.nullable().optional(),
+			createdAt: le(),
+			updatedAt: le().nullable(),
+			members: P(wb),
+			surveys: P(_b),
+			websiteAreas: P(bb),
+			canCreateTasks: $().optional().default(!1),
+			canCreateSegments: $().optional().default(!1),
+			canCreateScales: $().optional().default(!1),
+			canCreateLabels: $().optional().default(!0),
+		});
+	const ze = h().nullable(),
+		Er = h().min(3),
+		si = h()
+			.min(3)
+			.regex(/^[a-z0-9-.]+$/),
+		yc = N(["Popup", "Inline", "Headless", "FullPage"]),
+		ai = N(["Survey", "Discovery", "TopTask", "Findability"]),
+		Rr = N(["BottomRight", "BottomLeft", "TopRight", "TopLeft"]),
+		Sb = N(["default", "floating-controls"]),
+		li = $().or(rt()).optional(),
+		ci = te().min(0).max(100),
+		$n = te().min(0),
+		ui = te().min(0),
+		di = te().min(0).max(6e4).optional().default(0),
+		fi = te().min(0).optional(),
+		kb = N(
+			[
+				"TriggerPathIs",
+				"TriggerPathBeginsWith",
+				"FollowPathIs",
+				"FollowPathBeginsWith",
+				"PathBeginsWith",
+				"PathIs",
+			],
+			{ error: () => "Please select a rule type" },
+		),
+		xb = 100,
+		En = new Map();
+	function Cb(e) {
+		try {
+			return new RegExp(e);
+		} catch {
+			return null;
+		}
+	}
+	function zb(e) {
+		return e.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+	}
+	function Tb(e, t) {
+		try {
+			const n = e.indexOf("?"),
+				o =
+					(n >= 0 ? e.slice(0, n) : e)
+						.split("/")
+						.filter(Boolean)
+						.reduce((i, s) => `${i}\\/${Cb(s) ? `(${s})` : zb(s)}`, "^") +
+					(t ? "(\\/.*)?" : "") +
+					"$";
+			return new RegExp(o);
+		} catch {
+			return null;
+		}
+	}
+	function pi(e, t, n, r) {
+		if (!t) return !1;
+		if (r) {
+			const a = `${t}:${n}`,
+				c = En.get(a);
+			if (c) return c.test(e);
+			const l = Tb(t, n);
+			if (!l) return !1;
+			if (En.size >= xb) {
+				const d = En.keys().next().value;
+				d && En.delete(d);
+			}
+			return En.set(a, l), l.test(e);
+		}
+		const o = (a) => (a.length > 1 && a.endsWith("/") ? a.slice(0, -1) : a),
+			i = o(e),
+			s = o(t);
+		return n
+			? s === "/"
+				? i.startsWith("/")
+				: i === s || i.startsWith(`${s}/`)
+			: i === s;
+	}
+	function vc(e, t) {
+		try {
+			const n = new URL(t),
+				r = e.domain ? ii(e.domain.name, n.hostname) : !0,
+				o =
+					e.path &&
+					pi(
+						decodeURI(n.pathname),
+						decodeURI(e.path),
+						e.applyBelow,
+						e.isRegex ?? !1,
+					);
+			return !!(r && o);
+		} catch {
+			return !1;
+		}
+	}
+	const bc = S({
+			textClose: ze,
+			textHide: ze,
+			textNext: ze,
+			textPrev: ze,
+			textMinimized: ze,
+			textReplyLater: ze,
+		}),
+		Ib = S({
+			id: C(),
+			isRegexp: $().default(!1),
+			negate: $().default(!1),
+			type: kb,
+			value: h(),
+			domains: P(S({ id: C(), name: h() })),
+		}),
+		hi = S({
+			id: C(),
+			ruleType: N(["Show", "Hide", "FollowOnly"]),
+			path: h().optional(),
+			desktop: $(),
+			mobile: $(),
+			tablet: $(),
+			applyBelow: $(),
+			follow: $(),
+			isRegex: $().optional().default(!1),
+			domain: S({ id: C(), name: h() }).optional().nullable(),
+		}),
+		at = bc.partial().extend({
+			mode: R("create"),
+			name: Er,
+			slug: si,
+			description: h().optional().nullable(),
+			emoji: xn.optional(),
+			active: ae().optional(),
+			status: ot.optional(),
+			surveyType: ai.optional(),
+			capturePercent: ci.optional(),
+			minTimeForRetake: $n.optional(),
+			minTimeForRetrigger: ui.optional(),
+			allowedOrigins: P(h()).optional(),
+			initialDelay: di,
+			autoCloseAfter: fi,
+			path: h()
+				.optional()
+				.overwrite((e) => (e === "" ? void 0 : e)),
+			domain: h().optional(),
+			applyBelow: ae().optional().default(!1),
+			follow: ae().optional().default(!1),
+			language: C(),
+			editTeams: ie(C(), $().or(rt())).default({}),
+			visibleToAllTeams: $().or(rt()).optional().default(!1),
+		}),
+		Mr = h()
+			.min(1, "Enter a password to protect this survey")
+			.max(256, "Password must be 256 characters or fewer"),
+		wc = Ue("generalType", [
+			at
+				.extend({
+					generalType: R("Popup"),
+					renderType: R("Popup"),
+					surveyPosition: Rr.optional(),
+					showCloseButton: li,
+				})
+				.strict(),
+			at.extend({ generalType: R("Inline"), renderType: R("Inline") }).strict(),
+			at
+				.extend({ generalType: R("Headless"), renderType: R("Headless") })
+				.strict(),
+			at
+				.extend({
+					generalType: R("FullPage"),
+					renderType: R("FullPage"),
+					accessMode: In.optional().nullable(),
+					password: Mr.optional().nullable(),
+					completionBehavior: it.optional(),
+					completionRedirectUrl: h().optional().nullable(),
+					completionRedirectDelay: te().int().optional().nullable(),
+				})
+				.strict(),
+		]),
+		$b = Ue("generalType", [
+			at.extend({
+				generalType: R("Popup"),
+				renderType: R("Popup"),
+				surveyPosition: Rr.optional(),
+				showCloseButton: li,
+			}),
+			at.extend({ generalType: R("Inline"), renderType: R("Inline") }),
+			at.extend({ generalType: R("Headless"), renderType: R("Headless") }),
+			at.extend({
+				generalType: R("FullPage"),
+				renderType: R("FullPage"),
+				accessMode: In.optional().nullable(),
+				password: Mr.optional().nullable(),
+				completionBehavior: it.optional(),
+				completionRedirectUrl: h().optional().nullable(),
+				completionRedirectDelay: te().int().optional().nullable(),
+			}),
+		]).transform((e, t) => {
+			const n = wc.safeParse(e);
+			if (n.success) return n.data;
+			const [r] = n.error.issues;
+			return (
+				t.addIssue({
+					code: "custom",
+					message:
+						(r == null ? void 0 : r.message) ?? "Invalid survey create payload",
+					path: r == null ? void 0 : r.path,
+				}),
+				ga
+			);
+		}),
+		_c = S({
+			mode: R("copy"),
+			name: Er,
+			slug: si,
+			emoji: xn.optional(),
+			copySurvey: C(),
+			keepRules: $().or(rt()).optional().default(!0),
+			cards: ie(C(), $().or(rt())).optional(),
+			editTeams: ie(C(), $().or(rt())).default({}),
+			visibleToAllTeams: $().or(rt()).optional().default(!1),
+			description: h().optional().nullable(),
+			accessMode: In.optional().nullable(),
+			password: Mr.optional().nullable(),
+			completionBehavior: it.optional(),
+			minTimeForRetake: $n.optional(),
+			completionRedirectUrl: h().optional().nullable(),
+			completionRedirectDelay: te().int().optional().nullable(),
+		});
+	Ue("mode", [wc, _c]),
+		J([$b, _c]),
+		N(["Completion", "Demand"]),
+		N(["Absolute", "Relative"]);
+	const Eb = S({
+			name: Er.optional(),
+			emoji: xn.nullable().optional(),
+			description: h().optional().nullable(),
+			language: C().optional(),
+			timezone: h().optional(),
+			surveyType: ai.optional(),
+		}),
+		Rb = S({
+			accessMode: In.optional().nullable(),
+			password: Mr.optional().nullable(),
+			completionBehavior: it.optional(),
+			minTimeForRetake: $n.optional(),
+			completionRedirectUrl: h().optional().nullable(),
+			completionRedirectDelay: te().int().optional().nullable(),
+		}),
+		Pr = S({ id: C(), visibleToAllTeams: $().or(rt()).optional() }).merge(Eb),
+		Sc = Pr.extend({
+			generalType: R("Popup"),
+			renderType: R("Popup").optional(),
+			surveyPosition: Rr.optional(),
+			showCloseButton: li,
+		}),
+		kc = Pr.extend({
+			generalType: R("Inline"),
+			renderType: R("Inline").optional(),
+		}),
+		xc = Pr.extend({
+			generalType: R("Headless"),
+			renderType: R("Headless").optional(),
+		}),
+		Cc = Pr.extend({
+			generalType: R("FullPage"),
+			renderType: R("FullPage").optional(),
+		}).merge(Rb);
+	Ue("generalType", [Sc, kc, xc, Cc]),
+		Ue("generalType", [Sc.strict(), kc.strict(), xc.strict(), Cc.strict()]);
+	const Mb = S({
+		capturePercent: ci.optional(),
+		minTimeForRetake: $n.optional(),
+		minTimeForRetrigger: ui.optional(),
+		allowedOrigins: P(h()).optional(),
+		initialDelay: di,
+		autoCloseAfter: fi,
+	});
+	S({ id: C() }).merge(Mb).strict();
+	const Pb = S({
+		ogTitle: h().optional().nullable(),
+		ogDescription: h().optional().nullable(),
+		ogImage: Ce,
+	});
+	S({ id: C() }).merge(Pb).strict();
+	const Ab = S({
+		themeId: C().optional().nullable(),
+		themeMode: Dt.optional().nullable(),
+		themeOverrides: Tn,
+		fullPageConfig: Xv.optional(),
+		imageLayout: st.optional().nullable(),
+		imageLayoutMobile: st.optional().nullable(),
+		imageBrightness: U().min(0).max(1).optional().nullable(),
+		imageFit: $r.optional().nullable(),
+	});
+	S({ id: C() }).merge(Ab).strict();
+	const Ob = S({ language: C().optional(), languages: P(C()).optional() });
+	S({ id: C() }).merge(Ob).strict();
+	const Lb = bc.partial();
+	S({ id: C() }).merge(Lb).strict(),
+		S({
+			publishingState: Dl,
+			publishStartAt: le().nullable(),
+			publishEndAt: le().nullable(),
+		});
+	const Nb = C().brand(),
+		jb = S({
+			id: Nb,
+			revision: te().default(0),
+			name: Er,
+			slug: si,
+			fullSlug: h(),
+			status: ot.nullable().optional(),
+			publishingState: Dl.optional(),
+			isLive: $().optional(),
+			description: h().optional().nullable(),
+			customCss: h().nullish(),
+			renderType: yc,
+			accessMode: In.optional().nullable(),
+			displayMode: Tr.optional().nullable(),
+			themeMode: Dt.optional().nullable(),
+			themeOverrides: Tn,
+			showProgressBar: ae().optional().nullable(),
+			progressBarStyle: Ir.optional().nullable(),
+			showQuestionNumbers: ae().optional().nullable(),
+			allowBackNavigation: ae().optional().nullable(),
+			completionBehavior: it.optional().nullable(),
+			completionRedirectUrl: h().optional().nullable(),
+			completionRedirectDelay: te().int().optional().nullable(),
+			ogTitle: h().optional().nullable(),
+			ogDescription: h().optional().nullable(),
+			ogImage: xe,
+			logo: xe,
+			headerImage: xe,
+			backgroundImage: xe,
+			favicon: xe,
+			imageLayout: st.optional().nullable(),
+			imageLayoutMobile: st.optional().nullable(),
+			imageBrightness: U().optional().nullable(),
+			imageFit: $r.optional().nullable(),
+			theme: ni.optional().nullable(),
+			fullPageConfig: hc.optional().nullable(),
+			surveyType: ai,
+			surveyPosition: Rr,
+			showCloseButton: $(),
+			popupLayout: Sb,
+			capturePercent: ci,
+			minTimeForRetake: $n,
+			minTimeForRetrigger: ui,
+			initialDelay: di,
+			autoCloseAfter: fi,
+			allowedOrigins: P(h()).optional(),
+			trackPageViews: ae().optional().nullable(),
+			debugEnabled: ae().optional().nullable(),
+			urlRules: P(Ib),
+			showRules: P(hi).default([]),
+			followRules: P(hi).default([]),
+			hideRules: P(hi).default([]),
+			audienceRuleMode: Kl.optional().default("and"),
+			audienceRules: P(Gl).optional().default([]),
+			language: S({ id: C(), name: h(), code: h() }).nullable(),
+			languages: P(S({ id: C(), name: h(), code: h() }))
+				.optional()
+				.nullable(),
+			tr: P(
+				S({
+					code: h().nullish(),
+					name: h().nullish(),
+					"@textNext": h().nullish(),
+					"@textPrev": h().nullish(),
+					"@textClose": h().nullish(),
+					"@textHide": h().nullish(),
+					"@textMinimized": h().nullish(),
+					"@textReplyLater": h().nullish(),
+				}),
+			)
+				.optional()
+				.nullable(),
+			ipBlacklist: P(S({ id: C(), ip: h() })).optional(),
+			textClose: ze.optional(),
+			textHide: ze.optional(),
+			textNext: ze.optional(),
+			textPrev: ze.optional(),
+			textMinimized: ze.optional(),
+			textReplyLater: ze.optional(),
+			pages: P(tb).optional().nullable(),
+		});
+	S({
+		autoClose: $().optional().default(!0),
+		constrainHeight: $().optional().default(!0),
+		testMode: $().optional().default(!1),
+		apiHost: h().optional(),
+	});
+	function Ar(e) {
+		const t = new Error(e);
+		return (t.source = "ulid"), t;
+	}
+	const mi = "0123456789ABCDEFGHJKMNPQRSTVWXYZ",
+		Rn = mi.length,
+		zc = Math.pow(2, 48) - 1,
+		Bb = 10,
+		Db = 16;
+	function Fb(e) {
+		let t = Math.floor(e() * Rn);
+		return t === Rn && (t = Rn - 1), mi.charAt(t);
+	}
+	function Ub(e, t) {
+		if (isNaN(e)) throw new Error(e + " must be a number");
+		if (e > zc) throw Ar("cannot encode time greater than " + zc);
+		if (e < 0) throw Ar("time must be positive");
+		if (Number.isInteger(Number(e)) === !1) throw Ar("time must be an integer");
+		let n,
+			r = "";
+		for (; t > 0; t--) (n = e % Rn), (r = mi.charAt(n) + r), (e = (e - n) / Rn);
+		return r;
+	}
+	function Hb(e, t) {
+		let n = "";
+		for (; e > 0; e--) n = Fb(t) + n;
+		return n;
+	}
+	function Zb(e = !1, t) {
+		t || (t = typeof window < "u" ? window : null);
+		const n = t && (t.crypto || t.msCrypto);
+		if (n)
+			return () => {
+				const r = new Uint8Array(1);
+				return n.getRandomValues(r), r[0] / 255;
+			};
+		try {
+			const r = require("crypto");
+			return () => r.randomBytes(1).readUInt8() / 255;
+		} catch {}
+		if (e) {
+			try {
+				console.error(
+					"secure crypto unusable, falling back to insecure Math.random()!",
+				);
+			} catch {}
+			return () => Math.random();
+		}
+		throw Ar("secure crypto unusable, insecure Math.random not allowed");
+	}
+	function Vb(e) {
+		return (
+			e || (e = Zb()),
+			function (n) {
+				return isNaN(n) && (n = Date.now()), Ub(n, Bb) + Hb(Db, e);
+			}
+		);
+	}
+	const je = Vb();
+	function Wb() {
+		if (typeof globalThis < "u") return globalThis;
+		if (typeof self < "u") return self;
+		if (typeof window < "u") return window;
+		if (typeof global < "u") return global;
+	}
+	function qb() {
+		const e = Wb();
+		if (e.__xstate__) return e.__xstate__;
+	}
+	const Kb = (e) => {
+		if (typeof window > "u") return;
+		const t = qb();
+		t && t.register(e);
+	};
+	class Tc {
+		constructor(t) {
+			(this._process = t),
+				(this._active = !1),
+				(this._current = null),
+				(this._last = null);
+		}
+		start() {
+			(this._active = !0), this.flush();
+		}
+		clear() {
+			this._current &&
+				((this._current.next = null), (this._last = this._current));
+		}
+		enqueue(t) {
+			const n = { value: t, next: null };
+			if (this._current) {
+				(this._last.next = n), (this._last = n);
+				return;
+			}
+			(this._current = n), (this._last = n), this._active && this.flush();
+		}
+		flush() {
+			for (; this._current; ) {
+				const t = this._current;
+				this._process(t.value), (this._current = t.next);
+			}
+			this._last = null;
+		}
+	}
+	const Ic = ".",
+		Jb = "",
+		$c = "",
+		Gb = "#",
+		Yb = "*",
+		Ec = "xstate.init",
+		Xb = "xstate.error",
+		Or = "xstate.stop";
+	function Qb(e, t) {
+		return { type: `xstate.after.${e}.${t}` };
+	}
+	function gi(e, t) {
+		return { type: `xstate.done.state.${e}`, output: t };
+	}
+	function ew(e, t) {
+		return { type: `xstate.done.actor.${e}`, output: t, actorId: e };
+	}
+	function Rc(e, t) {
+		return { type: `xstate.error.actor.${e}`, error: t, actorId: e };
+	}
+	function Mc(e) {
+		return { type: Ec, input: e };
+	}
+	function Be(e) {
+		setTimeout(() => {
+			throw e;
+		});
+	}
+	const tw =
+		(typeof Symbol == "function" && Symbol.observable) || "@@observable";
+	function Pc(e, t) {
+		const n = Ac(e),
+			r = Ac(t);
+		return typeof r == "string"
+			? typeof n == "string"
+				? r === n
+				: !1
+			: typeof n == "string"
+				? n in r
+				: Object.keys(n).every((o) => (o in r ? Pc(n[o], r[o]) : !1));
+	}
+	function yi(e) {
+		if (Nc(e)) return e;
+		const t = [];
+		let n = "";
+		for (let r = 0; r < e.length; r++) {
+			switch (e.charCodeAt(r)) {
+				case 92:
+					(n += e[r + 1]), r++;
+					continue;
+				case 46:
+					t.push(n), (n = "");
+					continue;
+			}
+			n += e[r];
+		}
+		return t.push(n), t;
+	}
+	function Ac(e) {
+		if (jw(e)) return e.value;
+		if (typeof e != "string") return e;
+		const t = yi(e);
+		return nw(t);
+	}
+	function nw(e) {
+		if (e.length === 1) return e[0];
+		const t = {};
+		let n = t;
+		for (let r = 0; r < e.length - 1; r++)
+			if (r === e.length - 2) n[e[r]] = e[r + 1];
+			else {
+				const o = n;
+				(n = {}), (o[e[r]] = n);
+			}
+		return t;
+	}
+	function Oc(e, t) {
+		const n = {},
+			r = Object.keys(e);
+		for (let o = 0; o < r.length; o++) {
+			const i = r[o];
+			n[i] = t(e[i], i, e, o);
+		}
+		return n;
+	}
+	function Lc(e) {
+		return Nc(e) ? e : [e];
+	}
+	function Ve(e) {
+		return e === void 0 ? [] : Lc(e);
+	}
+	function vi(e, t, n, r) {
+		return typeof e == "function" ? e({ context: t, event: n, self: r }) : e;
+	}
+	function Nc(e) {
+		return Array.isArray(e);
+	}
+	function rw(e) {
+		return e.type.startsWith("xstate.error.actor");
+	}
+	function Zt(e) {
+		return Lc(e).map((t) =>
+			typeof t > "u" || typeof t == "string" ? { target: t } : t,
+		);
+	}
+	function jc(e) {
+		if (!(e === void 0 || e === Jb)) return Ve(e);
+	}
+	function bi(e, t, n) {
+		var i, s, a;
+		const r = typeof e == "object",
+			o = r ? e : void 0;
+		return {
+			next: (i = r ? e.next : e) == null ? void 0 : i.bind(o),
+			error: (s = r ? e.error : t) == null ? void 0 : s.bind(o),
+			complete: (a = r ? e.complete : n) == null ? void 0 : a.bind(o),
+		};
+	}
+	function Bc(e, t) {
+		return `${t}.${e}`;
+	}
+	function wi(e, t) {
+		const n = t.match(/^xstate\.invoke\.(\d+)\.(.*)/);
+		if (!n) return e.implementations.actors[t];
+		const [, r, o] = n,
+			s = e.getStateNodeById(o).config.invoke;
+		return (Array.isArray(s) ? s[r] : s).src;
+	}
+	function Dc(e, t) {
+		return `${e.sessionId}.${t}`;
+	}
+	let ow = 0;
+	function iw(e, t) {
+		const n = new Map(),
+			r = new Map(),
+			o = new WeakMap(),
+			i = new Set(),
+			s = {},
+			{ clock: a, logger: c } = t,
+			l = {
+				schedule: (f, p, m, g, b = Math.random().toString(36).slice(2)) => {
+					const v = {
+							source: f,
+							target: p,
+							event: m,
+							delay: g,
+							id: b,
+							startedAt: Date.now(),
+						},
+						_ = Dc(f, b);
+					u._snapshot._scheduledEvents[_] = v;
+					const k = a.setTimeout(() => {
+						delete s[_],
+							delete u._snapshot._scheduledEvents[_],
+							u._relay(f, p, m);
+					}, g);
+					s[_] = k;
+				},
+				cancel: (f, p) => {
+					const m = Dc(f, p),
+						g = s[m];
+					delete s[m],
+						delete u._snapshot._scheduledEvents[m],
+						g !== void 0 && a.clearTimeout(g);
+				},
+				cancelAll: (f) => {
+					for (const p in u._snapshot._scheduledEvents) {
+						const m = u._snapshot._scheduledEvents[p];
+						m.source === f && l.cancel(f, m.id);
+					}
+				},
+			},
+			d = (f) => {
+				if (!i.size) return;
+				const p = { ...f, rootId: e.sessionId };
+				i.forEach((m) => {
+					var g;
+					return (g = m.next) == null ? void 0 : g.call(m, p);
+				});
+			},
+			u = {
+				_snapshot: {
+					_scheduledEvents:
+						((t == null ? void 0 : t.snapshot) && t.snapshot.scheduler) ?? {},
+				},
+				_bookId: () => `x:${ow++}`,
+				_register: (f, p) => (n.set(f, p), f),
+				_unregister: (f) => {
+					n.delete(f.sessionId);
+					const p = o.get(f);
+					p !== void 0 && (r.delete(p), o.delete(f));
+				},
+				get: (f) => r.get(f),
+				_set: (f, p) => {
+					const m = r.get(f);
+					if (m && m !== p)
+						throw new Error(`Actor with system ID '${f}' already exists.`);
+					r.set(f, p), o.set(p, f);
+				},
+				inspect: (f) => {
+					const p = bi(f);
+					return (
+						i.add(p),
+						{
+							unsubscribe() {
+								i.delete(p);
+							},
+						}
+					);
+				},
+				_sendInspectionEvent: d,
+				_relay: (f, p, m) => {
+					u._sendInspectionEvent({
+						type: "@xstate.event",
+						sourceRef: f,
+						actorRef: p,
+						event: m,
+					}),
+						p._send(m);
+				},
+				scheduler: l,
+				getSnapshot: () => ({
+					_scheduledEvents: { ...u._snapshot._scheduledEvents },
+				}),
+				start: () => {
+					const f = u._snapshot._scheduledEvents;
+					u._snapshot._scheduledEvents = {};
+					for (const p in f) {
+						const { source: m, target: g, event: b, delay: v, id: _ } = f[p];
+						l.schedule(m, g, b, v, _);
+					}
+				},
+				_clock: a,
+				_logger: c,
+			};
+		return u;
+	}
+	const _i = 1;
+	let me = (function (e) {
+		return (
+			(e[(e.NotStarted = 0)] = "NotStarted"),
+			(e[(e.Running = 1)] = "Running"),
+			(e[(e.Stopped = 2)] = "Stopped"),
+			e
+		);
+	})({});
+	const sw = {
+		clock: {
+			setTimeout: (e, t) => setTimeout(e, t),
+			clearTimeout: (e) => clearTimeout(e),
+		},
+		logger: console.log.bind(console),
+		devTools: !1,
+	};
+	class aw {
+		constructor(t, n) {
+			(this.logic = t),
+				(this._snapshot = void 0),
+				(this.clock = void 0),
+				(this.options = void 0),
+				(this.id = void 0),
+				(this.mailbox = new Tc(this._process.bind(this))),
+				(this.observers = new Set()),
+				(this.eventListeners = new Map()),
+				(this.logger = void 0),
+				(this._processingStatus = me.NotStarted),
+				(this._parent = void 0),
+				(this._syncSnapshot = void 0),
+				(this.ref = void 0),
+				(this._actorScope = void 0),
+				(this._systemId = void 0),
+				(this.sessionId = void 0),
+				(this.system = void 0),
+				(this._doneEvent = void 0),
+				(this.src = void 0),
+				(this._deferred = []);
+			const r = { ...sw, ...n },
+				{
+					clock: o,
+					logger: i,
+					parent: s,
+					syncSnapshot: a,
+					id: c,
+					systemId: l,
+					inspect: d,
+				} = r;
+			(this.system = s ? s.system : iw(this, { clock: o, logger: i })),
+				d && !s && this.system.inspect(bi(d)),
+				(this.sessionId = this.system._bookId()),
+				(this.id = c ?? this.sessionId),
+				(this.logger = (n == null ? void 0 : n.logger) ?? this.system._logger),
+				(this.clock = (n == null ? void 0 : n.clock) ?? this.system._clock),
+				(this._parent = s),
+				(this._syncSnapshot = a),
+				(this.options = r),
+				(this.src = r.src ?? t),
+				(this.ref = this),
+				(this._actorScope = {
+					self: this,
+					id: this.id,
+					sessionId: this.sessionId,
+					logger: this.logger,
+					defer: (u) => {
+						this._deferred.push(u);
+					},
+					system: this.system,
+					stopChild: (u) => {
+						if (u._parent !== this)
+							throw new Error(
+								`Cannot stop child actor ${u.id} of ${this.id} because it is not a child`,
+							);
+						u._stop();
+					},
+					emit: (u) => {
+						const f = this.eventListeners.get(u.type),
+							p = this.eventListeners.get("*");
+						if (!f && !p) return;
+						const m = [...(f ? f.values() : []), ...(p ? p.values() : [])];
+						for (const g of m)
+							try {
+								g(u);
+							} catch (b) {
+								Be(b);
+							}
+					},
+					actionExecutor: (u) => {
+						const f = () => {
+							if (
+								(this._actorScope.system._sendInspectionEvent({
+									type: "@xstate.action",
+									actorRef: this,
+									action: { type: u.type, params: u.params },
+								}),
+								!!u.exec)
+							)
+								try {
+									u.exec(u.info, u.params);
+								} finally {
+								}
+						};
+						this._processingStatus === me.Running
+							? f()
+							: this._deferred.push(f);
+					},
+				}),
+				(this.send = this.send.bind(this)),
+				this.system._sendInspectionEvent({
+					type: "@xstate.actor",
+					actorRef: this,
+				}),
+				l && ((this._systemId = l), this.system._set(l, this)),
+				this._initState(
+					(n == null ? void 0 : n.snapshot) ?? (n == null ? void 0 : n.state),
+				),
+				l &&
+					this._snapshot.status !== "active" &&
+					this.system._unregister(this);
+		}
+		_initState(t) {
+			var n;
+			try {
+				this._snapshot = t
+					? this.logic.restoreSnapshot
+						? this.logic.restoreSnapshot(t, this._actorScope)
+						: t
+					: this.logic.getInitialSnapshot(
+							this._actorScope,
+							(n = this.options) == null ? void 0 : n.input,
+						);
+			} catch (r) {
+				this._snapshot = { status: "error", output: void 0, error: r };
+			}
+		}
+		update(t, n) {
+			var o, i;
+			this._snapshot = t;
+			let r;
+			for (; (r = this._deferred.shift()); )
+				try {
+					r();
+				} catch (s) {
+					(this._deferred.length = 0),
+						(this._snapshot = { ...t, status: "error", error: s });
+				}
+			switch (this._snapshot.status) {
+				case "active":
+					for (const s of this.observers)
+						try {
+							(o = s.next) == null || o.call(s, t);
+						} catch (a) {
+							Be(a);
+						}
+					break;
+				case "done":
+					for (const s of this.observers)
+						try {
+							(i = s.next) == null || i.call(s, t);
+						} catch (a) {
+							Be(a);
+						}
+					this._stopProcedure(),
+						this._complete(),
+						(this._doneEvent = ew(this.id, this._snapshot.output)),
+						this._parent &&
+							this.system._relay(this, this._parent, this._doneEvent);
+					break;
+				case "error":
+					this._error(this._snapshot.error);
+					break;
+			}
+			this.system._sendInspectionEvent({
+				type: "@xstate.snapshot",
+				actorRef: this,
+				event: n,
+				snapshot: t,
+			});
+		}
+		subscribe(t, n, r) {
+			var i;
+			const o = bi(t, n, r);
+			if (this._processingStatus !== me.Stopped) this.observers.add(o);
+			else
+				switch (this._snapshot.status) {
+					case "done":
+						try {
+							(i = o.complete) == null || i.call(o);
+						} catch (s) {
+							Be(s);
+						}
+						break;
+					case "error": {
+						const s = this._snapshot.error;
+						if (!o.error) Be(s);
+						else
+							try {
+								o.error(s);
+							} catch (a) {
+								Be(a);
+							}
+						break;
+					}
+				}
+			return {
+				unsubscribe: () => {
+					this.observers.delete(o);
+				},
+			};
+		}
+		on(t, n) {
+			let r = this.eventListeners.get(t);
+			r || ((r = new Set()), this.eventListeners.set(t, r));
+			const o = n.bind(void 0);
+			return (
+				r.add(o),
+				{
+					unsubscribe: () => {
+						r.delete(o);
+					},
+				}
+			);
+		}
+		start() {
+			if (this._processingStatus === me.Running) return this;
+			this._syncSnapshot &&
+				this.subscribe({
+					next: (r) => {
+						r.status === "active" &&
+							this.system._relay(this, this._parent, {
+								type: `xstate.snapshot.${this.id}`,
+								snapshot: r,
+							});
+					},
+					error: () => {},
+				}),
+				this.system._register(this.sessionId, this),
+				this._systemId && this.system._set(this._systemId, this),
+				(this._processingStatus = me.Running);
+			const t = Mc(this.options.input);
+			switch (
+				(this.system._sendInspectionEvent({
+					type: "@xstate.event",
+					sourceRef: this._parent,
+					actorRef: this,
+					event: t,
+				}),
+				this._snapshot.status)
+			) {
+				case "done":
+					return this.update(this._snapshot, t), this;
+				case "error":
+					return this._error(this._snapshot.error), this;
+			}
+			if ((this._parent || this.system.start(), this.logic.start))
+				try {
+					this.logic.start(this._snapshot, this._actorScope);
+				} catch (r) {
+					return (
+						(this._snapshot = { ...this._snapshot, status: "error", error: r }),
+						this._error(r),
+						this
+					);
+				}
+			return (
+				this.update(this._snapshot, t),
+				this.options.devTools && this.attachDevTools(),
+				this.mailbox.start(),
+				this
+			);
+		}
+		_process(t) {
+			let n, r;
+			try {
+				n = this.logic.transition(this._snapshot, t, this._actorScope);
+			} catch (o) {
+				r = { err: o };
+			}
+			if (r) {
+				const { err: o } = r;
+				(this._snapshot = { ...this._snapshot, status: "error", error: o }),
+					this._error(o);
+				return;
+			}
+			this.update(n, t),
+				t.type === Or && (this._stopProcedure(), this._complete());
+		}
+		_stop() {
+			return this._processingStatus === me.Stopped
+				? this
+				: (this.mailbox.clear(),
+					this._processingStatus === me.NotStarted
+						? ((this._processingStatus = me.Stopped), this)
+						: (this.mailbox.enqueue({ type: Or }), this));
+		}
+		stop() {
+			if (this._parent)
+				throw new Error("A non-root actor cannot be stopped directly.");
+			return this._stop();
+		}
+		_complete() {
+			var t;
+			for (const n of this.observers)
+				try {
+					(t = n.complete) == null || t.call(n);
+				} catch (r) {
+					Be(r);
+				}
+			this.observers.clear();
+		}
+		_reportError(t) {
+			if (!this.observers.size) {
+				this._parent || Be(t);
+				return;
+			}
+			let n = !1;
+			for (const r of this.observers) {
+				const o = r.error;
+				n || (n = !o);
+				try {
+					o == null || o(t);
+				} catch (i) {
+					Be(i);
+				}
+			}
+			this.observers.clear(), n && Be(t);
+		}
+		_error(t) {
+			this._stopProcedure(),
+				this._reportError(t),
+				this._parent && this.system._relay(this, this._parent, Rc(this.id, t));
+		}
+		_stopProcedure() {
+			return this._processingStatus !== me.Running
+				? this
+				: (this.system.scheduler.cancelAll(this),
+					this.mailbox.clear(),
+					(this.mailbox = new Tc(this._process.bind(this))),
+					(this._processingStatus = me.Stopped),
+					this.system._unregister(this),
+					this);
+		}
+		_send(t) {
+			this._processingStatus !== me.Stopped && this.mailbox.enqueue(t);
+		}
+		send(t) {
+			this.system._relay(void 0, this, t);
+		}
+		attachDevTools() {
+			const { devTools: t } = this.options;
+			t && (typeof t == "function" ? t : Kb)(this);
+		}
+		toJSON() {
+			return { xstate$$type: _i, id: this.id };
+		}
+		getPersistedSnapshot(t) {
+			return this.logic.getPersistedSnapshot(this._snapshot, t);
+		}
+		[tw]() {
+			return this;
+		}
+		getSnapshot() {
+			return this._snapshot;
+		}
+	}
+	function Vt(e, ...[t]) {
+		return new aw(e, t);
+	}
+	function lw(e, t, n, r, { sendId: o }) {
+		const i = typeof o == "function" ? o(n, r) : o;
+		return [t, { sendId: i }, void 0];
+	}
+	function cw(e, t) {
+		e.defer(() => {
+			e.system.scheduler.cancel(e.self, t.sendId);
+		});
+	}
+	function uw(e) {
+		function t(n, r) {}
+		return (
+			(t.type = "xstate.cancel"),
+			(t.sendId = e),
+			(t.resolve = lw),
+			(t.execute = cw),
+			t
+		);
+	}
+	function dw(
+		e,
+		t,
+		n,
+		r,
+		{ id: o, systemId: i, src: s, input: a, syncSnapshot: c },
+	) {
+		const l = typeof s == "string" ? wi(t.machine, s) : s,
+			d = typeof o == "function" ? o(n) : o;
+		let u, f;
+		return (
+			l &&
+				((f =
+					typeof a == "function"
+						? a({ context: t.context, event: n.event, self: e.self })
+						: a),
+				(u = Vt(l, {
+					id: d,
+					src: s,
+					parent: e.self,
+					syncSnapshot: c,
+					systemId: i,
+					input: f,
+				}))),
+			[
+				vt(t, { children: { ...t.children, [d]: u } }),
+				{ id: o, systemId: i, actorRef: u, src: s, input: f },
+				void 0,
+			]
+		);
+	}
+	function fw(e, { actorRef: t }) {
+		t &&
+			e.defer(() => {
+				t._processingStatus !== me.Stopped && t.start();
+			});
+	}
+	function pw(
+		...[e, { id: t, systemId: n, input: r, syncSnapshot: o = !1 } = {}]
+	) {
+		function i(s, a) {}
+		return (
+			(i.type = "xstate.spawnChild"),
+			(i.id = t),
+			(i.systemId = n),
+			(i.src = e),
+			(i.input = r),
+			(i.syncSnapshot = o),
+			(i.resolve = dw),
+			(i.execute = fw),
+			i
+		);
+	}
+	function hw(e, t, n, r, { actorRef: o }) {
+		const i = typeof o == "function" ? o(n, r) : o,
+			s = typeof i == "string" ? t.children[i] : i;
+		let a = t.children;
+		return (
+			s && ((a = { ...a }), delete a[s.id]), [vt(t, { children: a }), s, void 0]
+		);
+	}
+	function mw(e, t) {
+		if (t) {
+			if ((e.system._unregister(t), t._processingStatus !== me.Running)) {
+				e.stopChild(t);
+				return;
+			}
+			e.defer(() => {
+				e.stopChild(t);
+			});
+		}
+	}
+	function mt(e) {
+		function t(n, r) {}
+		return (
+			(t.type = "xstate.stopChild"),
+			(t.actorRef = e),
+			(t.resolve = hw),
+			(t.execute = mw),
+			t
+		);
+	}
+	function gw(e, { context: t, event: n }, { guards: r }) {
+		return !Mn(r[0], t, n, e);
+	}
+	function yw(e) {
+		function t(n, r) {
+			return !1;
+		}
+		return (t.check = gw), (t.guards = [e]), t;
+	}
+	function vw(e, { context: t, event: n }, { guards: r }) {
+		return r.every((o) => Mn(o, t, n, e));
+	}
+	function Si(e) {
+		function t(n, r) {
+			return !1;
+		}
+		return (t.check = vw), (t.guards = e), t;
+	}
+	function Mn(e, t, n, r) {
+		const { machine: o } = r,
+			i = typeof e == "function",
+			s = i ? e : o.implementations.guards[typeof e == "string" ? e : e.type];
+		if (!i && !s)
+			throw new Error(
+				`Guard '${typeof e == "string" ? e : e.type}' is not implemented.'.`,
+			);
+		if (typeof s != "function") return Mn(s, t, n, r);
+		const a = { context: t, event: n },
+			c =
+				i || typeof e == "string"
+					? void 0
+					: "params" in e
+						? typeof e.params == "function"
+							? e.params({ context: t, event: n })
+							: e.params
+						: void 0;
+		return "check" in s ? s.check(r, a, s) : s(a, c);
+	}
+	const ki = (e) => e.type === "atomic" || e.type === "final";
+	function Wt(e) {
+		return Object.values(e.states).filter((t) => t.type !== "history");
+	}
+	function Pn(e, t) {
+		const n = [];
+		if (t === e) return n;
+		let r = e.parent;
+		for (; r && r !== t; ) n.push(r), (r = r.parent);
+		return n;
+	}
+	function Lr(e) {
+		const t = new Set(e),
+			n = Uc(t);
+		for (const r of t)
+			if (r.type === "compound" && (!n.get(r) || !n.get(r).length))
+				Vc(r).forEach((o) => t.add(o));
+			else if (r.type === "parallel") {
+				for (const o of Wt(r))
+					if (o.type !== "history" && !t.has(o)) {
+						const i = Vc(o);
+						for (const s of i) t.add(s);
+					}
+			}
+		for (const r of t) {
+			let o = r.parent;
+			for (; o; ) t.add(o), (o = o.parent);
+		}
+		return t;
+	}
+	function Fc(e, t) {
+		const n = t.get(e);
+		if (!n) return {};
+		if (e.type === "compound") {
+			const o = n[0];
+			if (o) {
+				if (ki(o)) return o.key;
+			} else return {};
+		}
+		const r = {};
+		for (const o of n) r[o.key] = Fc(o, t);
+		return r;
+	}
+	function Uc(e) {
+		const t = new Map();
+		for (const n of e)
+			t.has(n) || t.set(n, []),
+				n.parent &&
+					(t.has(n.parent) || t.set(n.parent, []), t.get(n.parent).push(n));
+		return t;
+	}
+	function Hc(e, t) {
+		const n = Lr(t);
+		return Fc(e, Uc(n));
+	}
+	function xi(e, t) {
+		return t.type === "compound"
+			? Wt(t).some((n) => n.type === "final" && e.has(n))
+			: t.type === "parallel"
+				? Wt(t).every((n) => xi(e, n))
+				: t.type === "final";
+	}
+	const Nr = (e) => e[0] === Gb;
+	function bw(e, t) {
+		return (
+			e.transitions.get(t) ||
+			[...e.transitions.keys()]
+				.filter((r) => {
+					if (r === Yb) return !0;
+					if (!r.endsWith(".*")) return !1;
+					const o = r.split("."),
+						i = t.split(".");
+					for (let s = 0; s < o.length; s++) {
+						const a = o[s],
+							c = i[s];
+						if (a === "*") return s === o.length - 1;
+						if (a !== c) return !1;
+					}
+					return !0;
+				})
+				.sort((r, o) => o.length - r.length)
+				.flatMap((r) => e.transitions.get(r))
+		);
+	}
+	function ww(e) {
+		const t = e.config.after;
+		if (!t) return [];
+		const n = (o) => {
+			const i = Qb(o, e.id),
+				s = i.type;
+			return e.entry.push(Kw(i, { id: s, delay: o })), e.exit.push(uw(s)), s;
+		};
+		return Object.keys(t)
+			.flatMap((o) => {
+				const i = t[o],
+					s = typeof i == "string" ? { target: i } : i,
+					a = Number.isNaN(+o) ? o : +o,
+					c = n(a);
+				return Ve(s).map((l) => ({ ...l, event: c, delay: a }));
+			})
+			.map((o) => {
+				const { delay: i } = o;
+				return { ...gt(e, o.event, o), delay: i };
+			});
+	}
+	function gt(e, t, n) {
+		const r = jc(n.target),
+			o = n.reenter ?? !1,
+			i = kw(e, r),
+			s = {
+				...n,
+				actions: Ve(n.actions),
+				guard: n.guard,
+				target: i,
+				source: e,
+				reenter: o,
+				eventType: t,
+				toJSON: () => ({
+					...s,
+					source: `#${e.id}`,
+					target: i ? i.map((a) => `#${a.id}`) : void 0,
+				}),
+			};
+		return s;
+	}
+	function _w(e) {
+		const t = new Map();
+		if (e.config.on)
+			for (const n of Object.keys(e.config.on)) {
+				if (n === $c)
+					throw new Error(
+						'Null events ("") cannot be specified as a transition key. Use `always: { ... }` instead.',
+					);
+				const r = e.config.on[n];
+				t.set(
+					n,
+					Zt(r).map((o) => gt(e, n, o)),
+				);
+			}
+		if (e.config.onDone) {
+			const n = `xstate.done.state.${e.id}`;
+			t.set(
+				n,
+				Zt(e.config.onDone).map((r) => gt(e, n, r)),
+			);
+		}
+		for (const n of e.invoke) {
+			if (n.onDone) {
+				const r = `xstate.done.actor.${n.id}`;
+				t.set(
+					r,
+					Zt(n.onDone).map((o) => gt(e, r, o)),
+				);
+			}
+			if (n.onError) {
+				const r = `xstate.error.actor.${n.id}`;
+				t.set(
+					r,
+					Zt(n.onError).map((o) => gt(e, r, o)),
+				);
+			}
+			if (n.onSnapshot) {
+				const r = `xstate.snapshot.${n.id}`;
+				t.set(
+					r,
+					Zt(n.onSnapshot).map((o) => gt(e, r, o)),
+				);
+			}
+		}
+		for (const n of e.after) {
+			let r = t.get(n.eventType);
+			r || ((r = []), t.set(n.eventType, r)), r.push(n);
+		}
+		return t;
+	}
+	function Sw(e, t) {
+		const n =
+			typeof t == "string" ? e.states[t] : t ? e.states[t.target] : void 0;
+		if (!n && t)
+			throw new Error(
+				`Initial state node "${t}" not found on parent state node #${e.id}`,
+			);
+		const r = {
+			source: e,
+			actions: !t || typeof t == "string" ? [] : Ve(t.actions),
+			eventType: null,
+			reenter: !1,
+			target: n ? [n] : [],
+			toJSON: () => ({
+				...r,
+				source: `#${e.id}`,
+				target: n ? [`#${n.id}`] : [],
+			}),
+		};
+		return r;
+	}
+	function kw(e, t) {
+		if (t !== void 0)
+			return t.map((n) => {
+				if (typeof n != "string") return n;
+				if (Nr(n)) return e.machine.getStateNodeById(n);
+				const r = n[0] === Ic;
+				if (r && !e.parent) return jr(e, n.slice(1));
+				const o = r ? e.key + n : n;
+				if (e.parent)
+					try {
+						return jr(e.parent, o);
+					} catch (i) {
+						throw new Error(`Invalid transition definition for state node '${e.id}':
+${i.message}`);
+					}
+				else
+					throw new Error(
+						`Invalid target: "${n}" is not a valid target from the root node. Did you mean ".${n}"?`,
+					);
+			});
+	}
+	function Zc(e) {
+		const t = jc(e.config.target);
+		return t
+			? { target: t.map((n) => (typeof n == "string" ? jr(e.parent, n) : n)) }
+			: e.parent.initial;
+	}
+	function yt(e) {
+		return e.type === "history";
+	}
+	function Vc(e) {
+		const t = Wc(e);
+		for (const n of t) for (const r of Pn(n, e)) t.add(r);
+		return t;
+	}
+	function Wc(e) {
+		const t = new Set();
+		function n(r) {
+			if (!t.has(r)) {
+				if ((t.add(r), r.type === "compound")) n(r.initial.target[0]);
+				else if (r.type === "parallel") for (const o of Wt(r)) n(o);
+			}
+		}
+		return n(e), t;
+	}
+	function qt(e, t) {
+		if (Nr(t)) return e.machine.getStateNodeById(t);
+		if (!e.states)
+			throw new Error(
+				`Unable to retrieve child state '${t}' from '${e.id}'; no child states exist.`,
+			);
+		const n = e.states[t];
+		if (!n) throw new Error(`Child state '${t}' does not exist on '${e.id}'`);
+		return n;
+	}
+	function jr(e, t) {
+		if (typeof t == "string" && Nr(t))
+			try {
+				return e.machine.getStateNodeById(t);
+			} catch {}
+		const n = yi(t).slice();
+		let r = e;
+		for (; n.length; ) {
+			const o = n.shift();
+			if (!o.length) break;
+			r = qt(r, o);
+		}
+		return r;
+	}
+	function Br(e, t) {
+		if (typeof t == "string") {
+			const o = e.states[t];
+			if (!o) throw new Error(`State '${t}' does not exist on '${e.id}'`);
+			return [e, o];
+		}
+		const n = Object.keys(t),
+			r = n.map((o) => qt(e, o)).filter(Boolean);
+		return [e.machine.root, e].concat(
+			r,
+			n.reduce((o, i) => {
+				const s = qt(e, i);
+				if (!s) return o;
+				const a = Br(s, t[i]);
+				return o.concat(a);
+			}, []),
+		);
+	}
+	function xw(e, t, n, r) {
+		const i = qt(e, t).next(n, r);
+		return !i || !i.length ? e.next(n, r) : i;
+	}
+	function Cw(e, t, n, r) {
+		const o = Object.keys(t),
+			i = qt(e, o[0]),
+			s = Ci(i, t[o[0]], n, r);
+		return !s || !s.length ? e.next(n, r) : s;
+	}
+	function zw(e, t, n, r) {
+		const o = [];
+		for (const i of Object.keys(t)) {
+			const s = t[i];
+			if (!s) continue;
+			const a = qt(e, i),
+				c = Ci(a, s, n, r);
+			c && o.push(...c);
+		}
+		return o.length ? o : e.next(n, r);
+	}
+	function Ci(e, t, n, r) {
+		return typeof t == "string"
+			? xw(e, t, n, r)
+			: Object.keys(t).length === 1
+				? Cw(e, t, n, r)
+				: zw(e, t, n, r);
+	}
+	function Tw(e) {
+		return Object.keys(e.states)
+			.map((t) => e.states[t])
+			.filter((t) => t.type === "history");
+	}
+	function lt(e, t) {
+		let n = e;
+		for (; n.parent && n.parent !== t; ) n = n.parent;
+		return n.parent === t;
+	}
+	function Iw(e, t) {
+		const n = new Set(e),
+			r = new Set(t);
+		for (const o of n) if (r.has(o)) return !0;
+		for (const o of r) if (n.has(o)) return !0;
+		return !1;
+	}
+	function qc(e, t, n) {
+		const r = new Set();
+		for (const o of e) {
+			let i = !1;
+			const s = new Set();
+			for (const a of r)
+				if (Iw(Ti([o], t, n), Ti([a], t, n)))
+					if (lt(o.source, a.source)) s.add(a);
+					else {
+						i = !0;
+						break;
+					}
+			if (!i) {
+				for (const a of s) r.delete(a);
+				r.add(o);
+			}
+		}
+		return Array.from(r);
+	}
+	function $w(e) {
+		const [t, ...n] = e;
+		for (const r of Pn(t, void 0)) if (n.every((o) => lt(o, r))) return r;
+	}
+	function zi(e, t) {
+		if (!e.target) return [];
+		const n = new Set();
+		for (const r of e.target)
+			if (yt(r))
+				if (t[r.id]) for (const o of t[r.id]) n.add(o);
+				else for (const o of zi(Zc(r), t)) n.add(o);
+			else n.add(r);
+		return [...n];
+	}
+	function Kc(e, t) {
+		const n = zi(e, t);
+		if (!n) return;
+		if (!e.reenter && n.every((o) => o === e.source || lt(o, e.source)))
+			return e.source;
+		const r = $w(n.concat(e.source));
+		if (r) return r;
+		if (!e.reenter) return e.source.machine.root;
+	}
+	function Ti(e, t, n) {
+		var o;
+		const r = new Set();
+		for (const i of e)
+			if ((o = i.target) != null && o.length) {
+				const s = Kc(i, n);
+				i.reenter && i.source === s && r.add(s);
+				for (const a of t) lt(a, s) && r.add(a);
+			}
+		return [...r];
+	}
+	function Ew(e, t) {
+		if (e.length !== t.size) return !1;
+		for (const n of e) if (!t.has(n)) return !1;
+		return !0;
+	}
+	function Ii(e, t, n, r, o, i) {
+		if (!e.length) return t;
+		const s = new Set(t._nodes);
+		let a = t.historyValue;
+		const c = qc(e, s, a);
+		let l = t;
+		o || ([l, a] = Aw(l, r, n, c, s, a, i)),
+			(l = Jt(
+				l,
+				r,
+				n,
+				c.flatMap((u) => u.actions),
+				i,
+				void 0,
+			)),
+			(l = Mw(l, r, n, c, s, i, a, o));
+		const d = [...s];
+		l.status === "done" &&
+			(l = Jt(
+				l,
+				r,
+				n,
+				d.sort((u, f) => f.order - u.order).flatMap((u) => u.exit),
+				i,
+				void 0,
+			));
+		try {
+			return a === t.historyValue && Ew(t._nodes, s)
+				? l
+				: vt(l, { _nodes: d, historyValue: a });
+		} catch (u) {
+			throw u;
+		}
+	}
+	function Rw(e, t, n, r, o) {
+		if (r.output === void 0) return;
+		const i = gi(
+			o.id,
+			o.output !== void 0 && o.parent
+				? vi(o.output, e.context, t, n.self)
+				: void 0,
+		);
+		return vi(r.output, e.context, i, n.self);
+	}
+	function Mw(e, t, n, r, o, i, s, a) {
+		let c = e;
+		const l = new Set(),
+			d = new Set();
+		Pw(r, s, d, l), a && d.add(e.machine.root);
+		const u = new Set();
+		for (const f of [...l].sort((p, m) => p.order - m.order)) {
+			o.add(f);
+			const p = [];
+			p.push(...f.entry);
+			for (const m of f.invoke)
+				p.push(pw(m.src, { ...m, syncSnapshot: !!m.onSnapshot }));
+			if (d.has(f)) {
+				const m = f.initial.actions;
+				p.push(...m);
+			}
+			if (
+				((c = Jt(
+					c,
+					t,
+					n,
+					p,
+					i,
+					f.invoke.map((m) => m.id),
+				)),
+				f.type === "final")
+			) {
+				const m = f.parent;
+				let g =
+						(m == null ? void 0 : m.type) === "parallel"
+							? m
+							: m == null
+								? void 0
+								: m.parent,
+					b = g || f;
+				for (
+					(m == null ? void 0 : m.type) === "compound" &&
+					i.push(
+						gi(
+							m.id,
+							f.output !== void 0 ? vi(f.output, c.context, t, n.self) : void 0,
+						),
+					);
+					(g == null ? void 0 : g.type) === "parallel" && !u.has(g) && xi(o, g);
+				)
+					u.add(g), i.push(gi(g.id)), (b = g), (g = g.parent);
+				if (g) continue;
+				c = vt(c, { status: "done", output: Rw(c, t, n, c.machine.root, b) });
+			}
+		}
+		return c;
+	}
+	function Pw(e, t, n, r) {
+		for (const o of e) {
+			const i = Kc(o, t);
+			for (const a of o.target || [])
+				!yt(a) &&
+					(o.source !== a || o.source !== i || o.reenter) &&
+					(r.add(a), n.add(a)),
+					Kt(a, t, n, r);
+			const s = zi(o, t);
+			for (const a of s) {
+				const c = Pn(a, i);
+				(i == null ? void 0 : i.type) === "parallel" && c.push(i),
+					Jc(r, t, n, c, !o.source.parent && o.reenter ? void 0 : i);
+			}
+		}
+	}
+	function Kt(e, t, n, r) {
+		var o;
+		if (yt(e))
+			if (t[e.id]) {
+				const i = t[e.id];
+				for (const s of i) r.add(s), Kt(s, t, n, r);
+				for (const s of i) $i(s, e.parent, r, t, n);
+			} else {
+				const i = Zc(e);
+				for (const s of i.target)
+					r.add(s),
+						i === ((o = e.parent) == null ? void 0 : o.initial) &&
+							n.add(e.parent),
+						Kt(s, t, n, r);
+				for (const s of i.target) $i(s, e.parent, r, t, n);
+			}
+		else if (e.type === "compound") {
+			const [i] = e.initial.target;
+			yt(i) || (r.add(i), n.add(i)), Kt(i, t, n, r), $i(i, e, r, t, n);
+		} else if (e.type === "parallel")
+			for (const i of Wt(e).filter((s) => !yt(s)))
+				[...r].some((s) => lt(s, i)) ||
+					(yt(i) || (r.add(i), n.add(i)), Kt(i, t, n, r));
+	}
+	function Jc(e, t, n, r, o) {
+		for (const i of r)
+			if (((!o || lt(i, o)) && e.add(i), i.type === "parallel"))
+				for (const s of Wt(i).filter((a) => !yt(a)))
+					[...e].some((a) => lt(a, s)) || (e.add(s), Kt(s, t, n, e));
+	}
+	function $i(e, t, n, r, o) {
+		Jc(n, r, o, Pn(e, t));
+	}
+	function Aw(e, t, n, r, o, i, s, a) {
+		let c = e;
+		const l = Ti(r, o, i);
+		l.sort((u, f) => f.order - u.order);
+		let d;
+		for (const u of l)
+			for (const f of Tw(u)) {
+				let p;
+				f.history === "deep"
+					? (p = (m) => ki(m) && lt(m, u))
+					: (p = (m) => m.parent === u),
+					d ?? (d = { ...i }),
+					(d[f.id] = Array.from(o).filter(p));
+			}
+		for (const u of l)
+			(c = Jt(
+				c,
+				t,
+				n,
+				[...u.exit, ...u.invoke.map((f) => mt(f.id))],
+				s,
+				void 0,
+			)),
+				o.delete(u);
+		return [c, d || i];
+	}
+	function Ow(e, t) {
+		return e.implementations.actions[t];
+	}
+	function Gc(e, t, n, r, o, i) {
+		const { machine: s } = e;
+		let a = e;
+		for (const c of r) {
+			const l = typeof c == "function",
+				d = l ? c : Ow(s, typeof c == "string" ? c : c.type),
+				u = { context: a.context, event: t, self: n.self, system: n.system },
+				f =
+					l || typeof c == "string"
+						? void 0
+						: "params" in c
+							? typeof c.params == "function"
+								? c.params({ context: a.context, event: t })
+								: c.params
+							: void 0;
+			if (!d || !("resolve" in d)) {
+				n.actionExecutor({
+					type:
+						typeof c == "string"
+							? c
+							: typeof c == "object"
+								? c.type
+								: c.name || "(anonymous)",
+					info: u,
+					params: f,
+					exec: d,
+				});
+				continue;
+			}
+			const p = d,
+				[m, g, b] = p.resolve(n, a, u, f, d, o);
+			(a = m),
+				"retryResolve" in p && (i == null || i.push([p, g])),
+				"execute" in p &&
+					n.actionExecutor({
+						type: p.type,
+						info: u,
+						params: g,
+						exec: p.execute.bind(null, n, g),
+					}),
+				b && (a = Gc(a, t, n, b, o, i));
+		}
+		return a;
+	}
+	function Jt(e, t, n, r, o, i) {
+		const s = i ? [] : void 0,
+			a = Gc(e, t, n, r, { internalQueue: o, deferredActorIds: i }, s);
+		return (
+			s == null ||
+				s.forEach(([c, l]) => {
+					c.retryResolve(n, a, l);
+				}),
+			a
+		);
+	}
+	function Ei(e, t, n, r) {
+		let o = e;
+		const i = [];
+		function s(l, d, u) {
+			n.system._sendInspectionEvent({
+				type: "@xstate.microstep",
+				actorRef: n.self,
+				event: d,
+				snapshot: l,
+				_transitions: u,
+			}),
+				i.push(l);
+		}
+		if (t.type === Or)
+			return (
+				(o = vt(Yc(o, t, n), { status: "stopped" })),
+				s(o, t, []),
+				{ snapshot: o, microstates: i }
+			);
+		let a = t;
+		if (a.type !== Ec) {
+			const l = a,
+				d = rw(l),
+				u = Xc(l, o);
+			if (d && !u.length)
+				return (
+					(o = vt(e, { status: "error", error: l.error })),
+					s(o, l, []),
+					{ snapshot: o, microstates: i }
+				);
+			(o = Ii(u, e, n, a, !1, r)), s(o, l, u);
+		}
+		let c = !0;
+		for (; o.status === "active"; ) {
+			let l = c ? Lw(o, a) : [];
+			const d = l.length ? o : void 0;
+			if (!l.length) {
+				if (!r.length) break;
+				(a = r.shift()), (l = Xc(a, o));
+			}
+			(o = Ii(l, o, n, a, !1, r)), (c = o !== d), s(o, a, l);
+		}
+		return (
+			o.status !== "active" && Yc(o, a, n), { snapshot: o, microstates: i }
+		);
+	}
+	function Yc(e, t, n) {
+		return Jt(
+			e,
+			t,
+			n,
+			Object.values(e.children).map((r) => mt(r)),
+			[],
+			void 0,
+		);
+	}
+	function Xc(e, t) {
+		return t.machine.getTransitionData(t, e);
+	}
+	function Lw(e, t) {
+		const n = new Set(),
+			r = e._nodes.filter(ki);
+		for (const o of r)
+			e: for (const i of [o].concat(Pn(o, void 0)))
+				if (i.always) {
+					for (const s of i.always)
+						if (s.guard === void 0 || Mn(s.guard, e.context, t, e)) {
+							n.add(s);
+							break e;
+						}
+				}
+		return qc(Array.from(n), new Set(e._nodes), e.historyValue);
+	}
+	function Nw(e, t) {
+		const n = Lr(Br(e, t));
+		return Hc(e, [...n]);
+	}
+	function jw(e) {
+		return !!e && typeof e == "object" && "machine" in e && "value" in e;
+	}
+	const Bw = function (t) {
+			return Pc(t, this.value);
+		},
+		Dw = function (t) {
+			return this.tags.has(t);
+		},
+		Fw = function (t) {
+			const n = this.machine.getTransitionData(this, t);
+			return (
+				!!(n != null && n.length) &&
+				n.some((r) => r.target !== void 0 || r.actions.length)
+			);
+		},
+		Uw = function () {
+			const {
+				_nodes: t,
+				tags: n,
+				machine: r,
+				getMeta: o,
+				toJSON: i,
+				can: s,
+				hasTag: a,
+				matches: c,
+				...l
+			} = this;
+			return { ...l, tags: Array.from(n) };
+		},
+		Hw = function () {
+			return this._nodes.reduce(
+				(t, n) => (n.meta !== void 0 && (t[n.id] = n.meta), t),
+				{},
+			);
+		};
+	function Dr(e, t) {
+		return {
+			status: e.status,
+			output: e.output,
+			error: e.error,
+			machine: t,
+			context: e.context,
+			_nodes: e._nodes,
+			value: Hc(t.root, e._nodes),
+			tags: new Set(e._nodes.flatMap((n) => n.tags)),
+			children: e.children,
+			historyValue: e.historyValue || {},
+			matches: Bw,
+			hasTag: Dw,
+			can: Fw,
+			getMeta: Hw,
+			toJSON: Uw,
+		};
+	}
+	function vt(e, t = {}) {
+		return Dr({ ...e, ...t }, e.machine);
+	}
+	function Zw(e) {
+		if (typeof e != "object" || e === null) return {};
+		const t = {};
+		for (const n in e) {
+			const r = e[n];
+			Array.isArray(r) && (t[n] = r.map((o) => ({ id: o.id })));
+		}
+		return t;
+	}
+	function Vw(e, t) {
+		const {
+				_nodes: n,
+				tags: r,
+				machine: o,
+				children: i,
+				context: s,
+				can: a,
+				hasTag: c,
+				matches: l,
+				getMeta: d,
+				toJSON: u,
+				...f
+			} = e,
+			p = {};
+		for (const g in i) {
+			const b = i[g];
+			p[g] = {
+				snapshot: b.getPersistedSnapshot(t),
+				src: b.src,
+				systemId: b._systemId,
+				syncSnapshot: b._syncSnapshot,
+			};
+		}
+		return {
+			...f,
+			context: Qc(s),
+			children: p,
+			historyValue: Zw(f.historyValue),
+		};
+	}
+	function Qc(e) {
+		let t;
+		for (const n in e) {
+			const r = e[n];
+			if (r && typeof r == "object")
+				if ("sessionId" in r && "send" in r && "ref" in r)
+					t ?? (t = Array.isArray(e) ? e.slice() : { ...e }),
+						(t[n] = { xstate$$type: _i, id: r.id });
+				else {
+					const o = Qc(r);
+					o !== r &&
+						(t ?? (t = Array.isArray(e) ? e.slice() : { ...e }), (t[n] = o));
+				}
+		}
+		return t ?? e;
+	}
+	function Ww(e, t, n, r, { event: o, id: i, delay: s }, { internalQueue: a }) {
+		const c = t.machine.implementations.delays;
+		if (typeof o == "string")
+			throw new Error(
+				`Only event objects may be used with raise; use raise({ type: "${o}" }) instead`,
+			);
+		const l = typeof o == "function" ? o(n, r) : o;
+		let d;
+		if (typeof s == "string") {
+			const u = c && c[s];
+			d = typeof u == "function" ? u(n, r) : u;
+		} else d = typeof s == "function" ? s(n, r) : s;
+		return (
+			typeof d != "number" && a.push(l),
+			[t, { event: l, id: i, delay: d }, void 0]
+		);
+	}
+	function qw(e, t) {
+		const { event: n, delay: r, id: o } = t;
+		if (typeof r == "number") {
+			e.defer(() => {
+				const i = e.self;
+				e.system.scheduler.schedule(i, i, n, r, o);
+			});
+			return;
+		}
+	}
+	function Kw(e, t) {
+		function n(r, o) {}
+		return (
+			(n.type = "xstate.raise"),
+			(n.event = e),
+			(n.id = t == null ? void 0 : t.id),
+			(n.delay = t == null ? void 0 : t.delay),
+			(n.resolve = Ww),
+			(n.execute = qw),
+			n
+		);
+	}
+	const eu = "xstate.promise.resolve",
+		tu = "xstate.promise.reject",
+		Fr = new WeakMap();
+	function $e(e) {
+		return {
+			config: e,
+			transition: (n, r, o) => {
+				var i;
+				if (n.status !== "active") return n;
+				switch (r.type) {
+					case eu: {
+						const s = r.data;
+						return { ...n, status: "done", output: s, input: void 0 };
+					}
+					case tu:
+						return { ...n, status: "error", error: r.data, input: void 0 };
+					case Or:
+						return (
+							(i = Fr.get(o.self)) == null || i.abort(),
+							{ ...n, status: "stopped", input: void 0 }
+						);
+					default:
+						return n;
+				}
+			},
+			start: (n, { self: r, system: o, emit: i }) => {
+				if (n.status !== "active") return;
+				const s = new AbortController();
+				Fr.set(r, s),
+					Promise.resolve(
+						e({
+							input: n.input,
+							system: o,
+							self: r,
+							signal: s.signal,
+							emit: i,
+						}),
+					).then(
+						(c) => {
+							r.getSnapshot().status === "active" &&
+								(Fr.delete(r), o._relay(r, r, { type: eu, data: c }));
+						},
+						(c) => {
+							r.getSnapshot().status === "active" &&
+								(Fr.delete(r), o._relay(r, r, { type: tu, data: c }));
+						},
+					);
+			},
+			getInitialSnapshot: (n, r) => ({
+				status: "active",
+				output: void 0,
+				error: void 0,
+				input: r,
+			}),
+			getPersistedSnapshot: (n) => n,
+			restoreSnapshot: (n) => n,
+		};
+	}
+	function Jw(e, { machine: t, context: n }, r, o) {
+		const i = (s, a) => {
+			if (typeof s == "string") {
+				const c = wi(t, s);
+				if (!c)
+					throw new Error(
+						`Actor logic '${s}' not implemented in machine '${t.id}'`,
+					);
+				const l = Vt(c, {
+					id: a == null ? void 0 : a.id,
+					parent: e.self,
+					syncSnapshot: a == null ? void 0 : a.syncSnapshot,
+					input:
+						typeof (a == null ? void 0 : a.input) == "function"
+							? a.input({ context: n, event: r, self: e.self })
+							: a == null
+								? void 0
+								: a.input,
+					src: s,
+					systemId: a == null ? void 0 : a.systemId,
+				});
+				return (o[l.id] = l), l;
+			} else
+				return Vt(s, {
+					id: a == null ? void 0 : a.id,
+					parent: e.self,
+					syncSnapshot: a == null ? void 0 : a.syncSnapshot,
+					input: a == null ? void 0 : a.input,
+					src: s,
+					systemId: a == null ? void 0 : a.systemId,
+				});
+		};
+		return (s, a) => {
+			const c = i(s, a);
+			return (
+				(o[c.id] = c),
+				e.defer(() => {
+					c._processingStatus !== me.Stopped && c.start();
+				}),
+				c
+			);
+		};
+	}
+	function Gw(e, t, n, r, { assignment: o }) {
+		if (!t.context)
+			throw new Error(
+				"Cannot assign to undefined `context`. Ensure that `context` is defined in the machine config.",
+			);
+		const i = {},
+			s = {
+				context: t.context,
+				event: n.event,
+				spawn: Jw(e, t, n.event, i),
+				self: e.self,
+				system: e.system,
+			};
+		let a = {};
+		if (typeof o == "function") a = o(s, r);
+		else
+			for (const l of Object.keys(o)) {
+				const d = o[l];
+				a[l] = typeof d == "function" ? d(s, r) : d;
+			}
+		const c = Object.assign({}, t.context, a);
+		return [
+			vt(t, {
+				context: c,
+				children: Object.keys(i).length ? { ...t.children, ...i } : t.children,
+			}),
+			void 0,
+			void 0,
+		];
+	}
+	function T(e) {
+		function t(n, r) {}
+		return (t.type = "xstate.assign"), (t.assignment = e), (t.resolve = Gw), t;
+	}
+	const nu = new WeakMap();
+	function Gt(e, t, n) {
+		let r = nu.get(e);
+		return (
+			r ? t in r || (r[t] = n()) : ((r = { [t]: n() }), nu.set(e, r)), r[t]
+		);
+	}
+	const Yw = {},
+		An = (e) =>
+			typeof e == "string"
+				? { type: e }
+				: typeof e == "function"
+					? "resolve" in e
+						? { type: e.type }
+						: { type: e.name }
+					: e;
+	class Ur {
+		constructor(t, n) {
+			if (
+				((this.config = t),
+				(this.key = void 0),
+				(this.id = void 0),
+				(this.type = void 0),
+				(this.path = void 0),
+				(this.states = void 0),
+				(this.history = void 0),
+				(this.entry = void 0),
+				(this.exit = void 0),
+				(this.parent = void 0),
+				(this.machine = void 0),
+				(this.meta = void 0),
+				(this.output = void 0),
+				(this.order = -1),
+				(this.description = void 0),
+				(this.tags = []),
+				(this.transitions = void 0),
+				(this.always = void 0),
+				(this.parent = n._parent),
+				(this.key = n._key),
+				(this.machine = n._machine),
+				(this.path = this.parent ? this.parent.path.concat(this.key) : []),
+				(this.id = this.config.id || [this.machine.id, ...this.path].join(Ic)),
+				(this.type =
+					this.config.type ||
+					(this.config.states && Object.keys(this.config.states).length
+						? "compound"
+						: this.config.history
+							? "history"
+							: "atomic")),
+				(this.description = this.config.description),
+				(this.order = this.machine.idMap.size),
+				this.machine.idMap.set(this.id, this),
+				(this.states = this.config.states
+					? Oc(
+							this.config.states,
+							(r, o) =>
+								new Ur(r, { _parent: this, _key: o, _machine: this.machine }),
+						)
+					: Yw),
+				this.type === "compound" && !this.config.initial)
+			)
+				throw new Error(
+					`No initial state specified for compound state node "#${this.id}". Try adding { initial: "${Object.keys(this.states)[0]}" } to the state config.`,
+				);
+			(this.history =
+				this.config.history === !0 ? "shallow" : this.config.history || !1),
+				(this.entry = Ve(this.config.entry).slice()),
+				(this.exit = Ve(this.config.exit).slice()),
+				(this.meta = this.config.meta),
+				(this.output =
+					this.type === "final" || !this.parent ? this.config.output : void 0),
+				(this.tags = Ve(t.tags).slice());
+		}
+		_initialize() {
+			(this.transitions = _w(this)),
+				this.config.always &&
+					(this.always = Zt(this.config.always).map((t) => gt(this, $c, t))),
+				Object.keys(this.states).forEach((t) => {
+					this.states[t]._initialize();
+				});
+		}
+		get definition() {
+			return {
+				id: this.id,
+				key: this.key,
+				version: this.machine.version,
+				type: this.type,
+				initial: this.initial
+					? {
+							target: this.initial.target,
+							source: this,
+							actions: this.initial.actions.map(An),
+							eventType: null,
+							reenter: !1,
+							toJSON: () => ({
+								target: this.initial.target.map((t) => `#${t.id}`),
+								source: `#${this.id}`,
+								actions: this.initial.actions.map(An),
+								eventType: null,
+							}),
+						}
+					: void 0,
+				history: this.history,
+				states: Oc(this.states, (t) => t.definition),
+				on: this.on,
+				transitions: [...this.transitions.values()]
+					.flat()
+					.map((t) => ({ ...t, actions: t.actions.map(An) })),
+				entry: this.entry.map(An),
+				exit: this.exit.map(An),
+				meta: this.meta,
+				order: this.order || -1,
+				output: this.output,
+				invoke: this.invoke,
+				description: this.description,
+				tags: this.tags,
+			};
+		}
+		toJSON() {
+			return this.definition;
+		}
+		get invoke() {
+			return Gt(this, "invoke", () =>
+				Ve(this.config.invoke).map((t, n) => {
+					const { src: r, systemId: o } = t,
+						i = t.id ?? Bc(this.id, n),
+						s = typeof r == "string" ? r : `xstate.invoke.${Bc(this.id, n)}`;
+					return {
+						...t,
+						src: s,
+						id: i,
+						systemId: o,
+						toJSON() {
+							const { onDone: a, onError: c, ...l } = t;
+							return { ...l, type: "xstate.invoke", src: s, id: i };
+						},
+					};
+				}),
+			);
+		}
+		get on() {
+			return Gt(this, "on", () =>
+				[...this.transitions]
+					.flatMap(([n, r]) => r.map((o) => [n, o]))
+					.reduce((n, [r, o]) => ((n[r] = n[r] || []), n[r].push(o), n), {}),
+			);
+		}
+		get after() {
+			return Gt(this, "delayedTransitions", () => ww(this));
+		}
+		get initial() {
+			return Gt(this, "initial", () => Sw(this, this.config.initial));
+		}
+		next(t, n) {
+			const r = n.type;
+			let o;
+			const i = Gt(this, `candidates-${r}`, () => bw(this, r));
+			for (const s of i) {
+				const { guard: a } = s,
+					c = t.context;
+				let l = !1;
+				try {
+					l = !a || Mn(a, c, n, t);
+				} catch (d) {
+					const u =
+						typeof a == "string" ? a : typeof a == "object" ? a.type : void 0;
+					throw new Error(`Unable to evaluate guard ${u ? `'${u}' ` : ""}in transition for event '${r}' in state node '${this.id}':
+${d.message}`);
+				}
+				if (l) {
+					o = s;
+					break;
+				}
+			}
+			return o ? [o] : void 0;
+		}
+		get events() {
+			return Gt(this, "events", () => {
+				const { states: t } = this,
+					n = new Set(this.ownEvents);
+				if (t)
+					for (const r of Object.keys(t)) {
+						const o = t[r];
+						if (o.states) for (const i of o.events) n.add(`${i}`);
+					}
+				return Array.from(n);
+			});
+		}
+		get ownEvents() {
+			const t = new Set(
+				[...this.transitions.keys()].filter((n) =>
+					this.transitions
+						.get(n)
+						.some((r) => !(!r.target && !r.actions.length && !r.reenter)),
+				),
+			);
+			return Array.from(t);
+		}
+	}
+	const Xw = "#";
+	class Ri {
+		constructor(t, n) {
+			(this.config = t),
+				(this.version = void 0),
+				(this.schemas = void 0),
+				(this.implementations = void 0),
+				(this.__xstatenode = !0),
+				(this.idMap = new Map()),
+				(this.root = void 0),
+				(this.id = void 0),
+				(this.states = void 0),
+				(this.events = void 0),
+				(this.id = t.id || "(machine)"),
+				(this.implementations = {
+					actors: (n == null ? void 0 : n.actors) ?? {},
+					actions: (n == null ? void 0 : n.actions) ?? {},
+					delays: (n == null ? void 0 : n.delays) ?? {},
+					guards: (n == null ? void 0 : n.guards) ?? {},
+				}),
+				(this.version = this.config.version),
+				(this.schemas = this.config.schemas),
+				(this.transition = this.transition.bind(this)),
+				(this.getInitialSnapshot = this.getInitialSnapshot.bind(this)),
+				(this.getPersistedSnapshot = this.getPersistedSnapshot.bind(this)),
+				(this.restoreSnapshot = this.restoreSnapshot.bind(this)),
+				(this.start = this.start.bind(this)),
+				(this.root = new Ur(t, { _key: this.id, _machine: this })),
+				this.root._initialize(),
+				(this.states = this.root.states),
+				(this.events = this.root.events);
+		}
+		provide(t) {
+			const {
+				actions: n,
+				guards: r,
+				actors: o,
+				delays: i,
+			} = this.implementations;
+			return new Ri(this.config, {
+				actions: { ...n, ...t.actions },
+				guards: { ...r, ...t.guards },
+				actors: { ...o, ...t.actors },
+				delays: { ...i, ...t.delays },
+			});
+		}
+		resolveState(t) {
+			const n = Nw(this.root, t.value),
+				r = Lr(Br(this.root, n));
+			return Dr(
+				{
+					_nodes: [...r],
+					context: t.context || {},
+					children: {},
+					status: xi(r, this.root) ? "done" : t.status || "active",
+					output: t.output,
+					error: t.error,
+					historyValue: t.historyValue,
+				},
+				this,
+			);
+		}
+		transition(t, n, r) {
+			return Ei(t, n, r, []).snapshot;
+		}
+		microstep(t, n, r) {
+			return Ei(t, n, r, []).microstates;
+		}
+		getTransitionData(t, n) {
+			return Ci(this.root, t.value, t, n) || [];
+		}
+		getPreInitialState(t, n, r) {
+			const { context: o } = this.config,
+				i = Dr(
+					{
+						context: typeof o != "function" && o ? o : {},
+						_nodes: [this.root],
+						children: {},
+						status: "active",
+					},
+					this,
+				);
+			return typeof o == "function"
+				? Jt(
+						i,
+						n,
+						t,
+						[
+							T(({ spawn: a, event: c, self: l }) =>
+								o({ spawn: a, input: c.input, self: l }),
+							),
+						],
+						r,
+						void 0,
+					)
+				: i;
+		}
+		getInitialSnapshot(t, n) {
+			const r = Mc(n),
+				o = [],
+				i = this.getPreInitialState(t, r, o),
+				s = Ii(
+					[
+						{
+							target: [...Wc(this.root)],
+							source: this.root,
+							reenter: !0,
+							actions: [],
+							eventType: null,
+							toJSON: null,
+						},
+					],
+					i,
+					t,
+					r,
+					!0,
+					o,
+				),
+				{ snapshot: a } = Ei(s, r, t, o);
+			return a;
+		}
+		start(t) {
+			Object.values(t.children).forEach((n) => {
+				n.getSnapshot().status === "active" && n.start();
+			});
+		}
+		getStateNodeById(t) {
+			const n = yi(t),
+				r = n.slice(1),
+				o = Nr(n[0]) ? n[0].slice(Xw.length) : n[0],
+				i = this.idMap.get(o);
+			if (!i)
+				throw new Error(
+					`Child state node '#${o}' does not exist on machine '${this.id}'`,
+				);
+			return jr(i, r);
+		}
+		get definition() {
+			return this.root.definition;
+		}
+		toJSON() {
+			return this.definition;
+		}
+		getPersistedSnapshot(t, n) {
+			return Vw(t, n);
+		}
+		restoreSnapshot(t, n) {
+			const r = {},
+				o = t.children;
+			Object.keys(o).forEach((u) => {
+				const f = o[u],
+					p = f.snapshot,
+					m = f.src,
+					g = typeof m == "string" ? wi(this, m) : m;
+				if (!g) return;
+				const b = Vt(g, {
+					id: u,
+					parent: n.self,
+					syncSnapshot: f.syncSnapshot,
+					snapshot: p,
+					src: m,
+					systemId: f.systemId,
+				});
+				r[u] = b;
+			});
+			function i(u, f) {
+				if (f instanceof Ur) return f;
+				try {
+					return u.machine.getStateNodeById(f.id);
+				} catch {}
+			}
+			function s(u, f) {
+				if (!f || typeof f != "object") return {};
+				const p = {};
+				for (const m in f) {
+					const g = f[m];
+					for (const b of g) {
+						const v = i(u, b);
+						v && (p[m] ?? (p[m] = []), p[m].push(v));
+					}
+				}
+				return p;
+			}
+			const a = s(this.root, t.historyValue),
+				c = Dr(
+					{
+						...t,
+						children: r,
+						_nodes: Array.from(Lr(Br(this.root, t.value))),
+						historyValue: a,
+					},
+					this,
+				),
+				l = new Set();
+			function d(u, f) {
+				if (!l.has(u)) {
+					l.add(u);
+					for (const p in u) {
+						const m = u[p];
+						if (m && typeof m == "object") {
+							if ("xstate$$type" in m && m.xstate$$type === _i) {
+								u[p] = f[m.id];
+								continue;
+							}
+							d(m, f);
+						}
+					}
+				}
+			}
+			return d(c.context, r), c;
+		}
+	}
+	function Qw(e, t, n, r, { event: o }) {
+		const i = typeof o == "function" ? o(n, r) : o;
+		return [t, { event: i }, void 0];
+	}
+	function e_(e, { event: t }) {
+		e.defer(() => e.emit(t));
+	}
+	function ge(e) {
+		function t(n, r) {}
+		return (
+			(t.type = "xstate.emit"),
+			(t.event = e),
+			(t.resolve = Qw),
+			(t.execute = e_),
+			t
+		);
+	}
+	let Mi = (function (e) {
+		return (e.Parent = "#_parent"), (e.Internal = "#_internal"), e;
+	})({});
+	function t_(e, t, n, r, { to: o, event: i, id: s, delay: a }, c) {
+		var m;
+		const l = t.machine.implementations.delays;
+		if (typeof i == "string")
+			throw new Error(
+				`Only event objects may be used with sendTo; use sendTo({ type: "${i}" }) instead`,
+			);
+		const d = typeof i == "function" ? i(n, r) : i;
+		let u;
+		if (typeof a == "string") {
+			const g = l && l[a];
+			u = typeof g == "function" ? g(n, r) : g;
+		} else u = typeof a == "function" ? a(n, r) : a;
+		const f = typeof o == "function" ? o(n, r) : o;
+		let p;
+		if (typeof f == "string") {
+			if (
+				(f === Mi.Parent
+					? (p = e.self._parent)
+					: f === Mi.Internal
+						? (p = e.self)
+						: f.startsWith("#_")
+							? (p = t.children[f.slice(2)])
+							: (p =
+									(m = c.deferredActorIds) != null && m.includes(f)
+										? f
+										: t.children[f]),
+				!p)
+			)
+				throw new Error(
+					`Unable to send event to actor '${f}' from machine '${t.machine.id}'.`,
+				);
+		} else p = f || e.self;
+		return [
+			t,
+			{
+				to: p,
+				targetId: typeof f == "string" ? f : void 0,
+				event: d,
+				id: s,
+				delay: u,
+			},
+			void 0,
+		];
+	}
+	function n_(e, t, n) {
+		typeof n.to == "string" && (n.to = t.children[n.to]);
+	}
+	function r_(e, t) {
+		e.defer(() => {
+			const { to: n, event: r, delay: o, id: i } = t;
+			if (typeof o == "number") {
+				e.system.scheduler.schedule(e.self, n, r, o, i);
+				return;
+			}
+			e.system._relay(e.self, n, r.type === Xb ? Rc(e.self.id, r.data) : r);
+		});
+	}
+	function ru(e, t, n) {
+		function r(o, i) {}
+		return (
+			(r.type = "xstate.sendTo"),
+			(r.to = e),
+			(r.event = t),
+			(r.id = n == null ? void 0 : n.id),
+			(r.delay = n == null ? void 0 : n.delay),
+			(r.resolve = t_),
+			(r.retryResolve = n_),
+			(r.execute = r_),
+			r
+		);
+	}
+	function o_(e, t) {
+		return ru(Mi.Parent, e, t);
+	}
+	function On(e, t) {
+		const n = Ve(t);
+		if (!n.includes(e.type)) {
+			const r =
+				n.length === 1 ? `type "${n[0]}"` : `one of types "${n.join('", "')}"`;
+			throw new Error(`Expected event ${JSON.stringify(e)} to have ${r}`);
+		}
+	}
+	function i_(e, t) {
+		return new Ri(e, t);
+	}
+	function Ln({ schemas: e, actors: t, actions: n, guards: r, delays: o }) {
+		return {
+			createStateConfig: (i) => i,
+			createMachine: (i) =>
+				i_(
+					{ ...i, schemas: e },
+					{ actors: t, actions: n, guards: r, delays: o },
+				),
+		};
+	}
+	async function Yt(e, t = {}) {
+		const n = (t == null ? void 0 : t.apiHost) ?? "https://ingest.skyra.no";
+		return fetch(`${n}/response`, {
+			method: "POST",
+			body: JSON.stringify(e),
+			headers: { "Content-Type": "application/json" },
+		});
+	}
+	function s_(e, t = {}) {
+		const n = (t == null ? void 0 : t.apiHost) ?? "https://ingest.skyra.no";
+		fetch(`${n}/diagnostics`, {
+			method: "POST",
+			body: JSON.stringify(e),
+			headers: { "Content-Type": "application/json" },
+			keepalive: !0,
+		}).catch(() => {});
+	}
+	function a_(e, t) {
+		const n = Md(e, t);
+		return n || (e && ta(e) === "nn" && t.includes("no") ? "no" : null);
+	}
+	function Hr(e) {
+		const t = [
+			e.explicitLanguage,
+			e.savedLanguage,
+			e.htmlLang,
+			e.browserLanguage,
+		];
+		for (const n of t) {
+			const r = a_(n, e.enabledLanguages);
+			if (r) return r;
+		}
+		return e.surveyDefault;
+	}
+	function ou(e) {
+		var r, o;
+		const t = (r = e.language) == null ? void 0 : r.code,
+			n = ((o = e.languages) == null ? void 0 : o.map((i) => i.code)) || [];
+		return t ? [t, ...n] : n;
+	}
+	function iu(e) {
+		const t = [];
+		return (
+			e.language && t.push(e.language), e.languages && t.push(...e.languages), t
+		);
+	}
+	function Nn() {
+		return typeof window > "u"
+			? "desktop"
+			: window.innerWidth < 768
+				? "mobile"
+				: window.innerWidth < 1024
+					? "tablet"
+					: "desktop";
+	}
+	function Zr() {
+		return typeof navigator < "u" ? navigator.language : void 0;
+	}
+	function Vr(e) {
+		return {
+			device: Nn(),
+			traits: e.traits ?? {},
+			language: e.language,
+			locale: e.locale ?? Zr(),
+		};
+	}
+	function su(e, t) {
+		return {
+			completion: e.completion ?? null,
+			recruited: e.recruited ?? null,
+			task: e.task ?? null,
+			device: (t == null ? void 0 : t.device) ?? "desktop",
+			traits: (t == null ? void 0 : t.traits) ?? {},
+			language: t == null ? void 0 : t.language,
+			locale: t == null ? void 0 : t.locale,
+			segments: Object.values((e == null ? void 0 : e.segments) ?? {}),
+			singleSelect: Object.values((e == null ? void 0 : e.singleSelect) ?? {}),
+			multiSelect: Object.values(
+				(e == null ? void 0 : e.multiSelect) ?? {},
+			).flat(),
+			scales: Object.values((e == null ? void 0 : e.scales) ?? {}),
+		};
+	}
+	function jn(e, t, n) {
+		const r = e.findIndex((s) => s.order === t.currentCard),
+			o = e.slice(r + 1),
+			i = su(t.variables, n);
+		for (const s of o) if (Ws(s.rules, i, ia, s.ruleMode ?? "and")) return s;
+		return null;
+	}
+	function l_(e, t, n) {
+		const r = su(t.variables, n);
+		for (const o of e) if (Ws(o.rules, r, ia, o.ruleMode ?? "and")) return o;
+		return null;
+	}
+	function c_(e, t, n, r, o) {
+		const i = e.find((s) => s.order === t.currentCard);
+		if (!i) return t;
+		if (i.type === "TopTaskCard") t.variables.task = X(o);
+		else if (i.type === "SegmentCard" && r) {
+			const s = X(r),
+				a = X(o);
+			t.variables.segments = { ...t.variables.segments, [s]: a };
+		} else if (i.type === "CompletionCard") t.variables.completion = o;
+		else if (i.type === "LikertCard" && "likertItems" in i.likertScale) {
+			if (i.likertScale.likertItems.find((a) => a.id === o)) {
+				const a = X(i.id),
+					c = X(o);
+				t.variables.scales = { ...t.variables.scales, [a]: c };
+			}
+		} else if (i.type === "MultiSelectCard") {
+			const s = X(i.id),
+				a = o.map(X);
+			t.variables.multiSelect = { ...t.variables.multiSelect, [s]: a };
+		} else if (i.type === "InputCard") t.values[i.id] = o;
+		else if (i.type === "RecruitmentCard") {
+			const s = o;
+			(t.variables.recruited = s !== void 0),
+				s !== void 0 && (t.values[i.id] = s);
+		} else if (i.type === "SingleSelectCard") {
+			const s = X(i.id),
+				a = X(o);
+			t.variables.singleSelect = { ...t.variables.singleSelect, [s]: a };
+		}
+		return t;
+	}
+	function u_(e, t, n) {
+		const r = jn(e, t, n);
+		return t.currentCard !== void 0 && r
+			? {
+					...t,
+					history: [...t.history, t.currentCard],
+					currentCard: (r == null ? void 0 : r.order) ?? t.currentCard,
+				}
+			: t;
+	}
+	function d_(e) {
+		if (e.history.length === 0) return e;
+		const [t, ...n] = [...e.history].reverse();
+		return { ...e, currentCard: t, history: n.reverse() };
+	}
+	function f_(e, t, n) {
+		return !!jn(e, t, n);
+	}
+	function p_(e, t, n) {
+		const r = jn(e, t, n);
+		if (!r) return !1;
+		const o = e.find((i) => i.order === r.order);
+		return (o == null ? void 0 : o.size) === "Minimal";
+	}
+	function h_(e, t, n) {
+		return !jn(e, t, n);
+	}
+	function m_(e, t) {
+		const n = t.currentCard,
+			r = e.find((o) => o.order === n);
+		return (r == null ? void 0 : r.type) === "MessageCard";
+	}
+	const g_ = S({ id: h(), code: h(), name: h() }),
+		y_ = S({
+			code: h().nullish(),
+			name: h().nullish(),
+			"@textNext": h().nullish(),
+			"@textPrev": h().nullish(),
+			"@textClose": h().nullish(),
+			"@textHide": h().nullish(),
+			"@textMinimized": h().nullish(),
+			"@textReplyLater": h().nullish(),
+		}),
+		Wr = jb.extend({
+			cards: P(ic),
+			confineToDomain: $().optional().default(!1),
+			rendererVariant: N(["classic", "beta"]).optional(),
+			languages: P(g_).optional().nullable(),
+			tr: P(y_).optional().nullable(),
+		});
+	Wr.array(), h().brand("SessionId");
+	const v_ = h().brand("VisitorId");
+	N(["open", "minimized", "closed", "loading", "hidden"]),
+		N(["init", "capture", "completed", "closed", "blocked", "noconsent"]);
+	const b_ = S({
+			task: h().nullable().default(null),
+			segments: ie(h(), h()).nullable().default({}),
+			completion: $().nullable().default(null),
+			scales: ie(h(), h()).nullable().default({}),
+			traits: ie(h(), h()).nullable().default({}),
+			multiSelect: ie(h(), P(h())).nullable().default({}),
+			singleSelect: ie(h(), h()).nullable().default({}),
+			recruited: $().nullable().default(null),
+		}),
+		Bn = S({
+			values: ie(
+				h(),
+				h()
+					.or($())
+					.or(ie(h(), h().or($()))),
+			).default({}),
+			variables: b_.partial().default({}),
+			history: P(U().int()).default([]),
+			currentCard: U().min(0).optional(),
+			path: h().optional(),
+			state: h().optional(),
+			lastSync: U().optional(),
+		});
+	S({ i: v_, c: U() });
+	function We(...e) {
+		var t;
+		(t = window.skyra) != null && t._debugEnabled && console.log(...e);
+	}
+	const w_ = "0123456789ABCDEFGHJKMNPQRSTVWXYZ";
+	function qr(e, t) {
+		const r = t
+				.substring(20)
+				.split("")
+				.reduce((a, c) => {
+					const l = w_.indexOf(c);
+					return a * l;
+				}, 1),
+			o = e.filter((a) => a.orderLocked !== !0),
+			i = __(o, r);
+		let s = [];
+		for (let a = 0; a < e.length; a++)
+			if (e[a].orderLocked) s.push(e[a]);
+			else {
+				const c = i.shift();
+				c && s.push(c);
+			}
+		return s;
+	}
+	function __(e, t) {
+		let n = e.length,
+			r,
+			o;
+		for (; n; )
+			(o = Math.floor(S_(t) * n--)), (r = e[n]), (e[n] = e[o]), (e[o] = r), t++;
+		return e;
+	}
+	function S_(e) {
+		let t = Math.sin(e++) * 1e4;
+		return t - Math.floor(t);
+	}
+	function au(e, t, { firstCard: n, finalCard: r }) {
+		var s;
+		const o = (s = t.textClose) == null ? void 0 : s.trim(),
+			i = e.renderType !== "Inline" && e.surveyType !== "Findability";
+		return n && !r && i && o ? o : null;
+	}
+	function Ee(e, t, n = {}) {
+		return {
+			next:
+				[
+					t.textNext,
+					n.finalCard && t.type !== "MessageCard" ? t.textClose : null,
+					n.finalCard ? e.textClose : null,
+					e.textNext,
+				].find(Boolean) ?? (n.finalCard ? "Close" : "Next"),
+			back: t.textPrev ?? e.textPrev ?? "Back",
+			minimized: t.textMinimized ?? e.textMinimized ?? "Continue",
+			hide: t.textHide ?? e.textHide ?? "Hide",
+			close: t.textClose ?? e.textClose ?? "Close",
+			replyLater: t.textReplyLater ?? e.textReplyLater ?? "Reply later",
+		};
+	}
+	const k_ = /^(Trigger|Path)/;
+	S({
+		id: C().optional(),
+		ruleType: N(["Show", "Hide", "FollowOnly"]),
+		desktop: $().default(!1),
+		mobile: $().default(!1),
+		tablet: $().default(!1),
+		path: h().nullable().optional(),
+		follow: $().default(!1),
+		applyBelow: $().default(!1),
+		isRegex: $().default(!1).optional(),
+		domain: S({ id: C(), name: h() }).optional().nullable(),
+	});
+	function Pi(e) {
+		return [e.showRules, e.followRules, e.hideRules].some(
+			(t) => t && t.length > 0,
+		);
+	}
+	function x_(e, t, n, r) {
+		const o = new URL(t),
+			i = o.hostname,
+			s = o.pathname,
+			a = e.domain ? ii(e.domain.name, i) : !0,
+			c =
+				e.path &&
+				pi(decodeURI(s), decodeURI(e.path), e.applyBelow, e.isRegex ?? !1),
+			l = n && e.follow;
+		return [e[r], a, c || l].every(Boolean);
+	}
+	function C_(e, t, n, r) {
+		return e.follow && n ? !1 : vc(e, t) && e[r];
+	}
+	function Ai({
+		urlString: e,
+		surveyStarted: t,
+		showRules: n,
+		followRules: r = [],
+		hideRules: o,
+		device: i,
+		isInline: s,
+	}) {
+		const a = n.some((u) => x_(u, e, t, i)),
+			c = r.some((u) => {
+				const f = new URL(e),
+					p = f.hostname,
+					m = f.pathname,
+					g = u.domain ? ii(u.domain.name, p) : !0,
+					b =
+						u.path &&
+						pi(decodeURI(m), decodeURI(u.path), u.applyBelow, u.isRegex ?? !1);
+				return u[i] && g && b;
+			});
+		return o.some((u) => C_(u, e, t, i))
+			? !1
+			: a
+				? !0
+				: c
+					? t
+					: !!(n.length === 0 && r.length === 0 && o.length === 0 && s);
+	}
+	function Kr(e, t, n, r) {
+		if (n) return new RegExp(t).test(e);
+		const o = t.at(-1) === "/" && t.length > 1 ? t.slice(0, -1) : t,
+			i = e.at(-1) === "/" && e.length > 1 ? e.slice(0, -1) : e;
+		return r ? i === o : i.startsWith(o);
+	}
+	function Oi(e, t, n) {
+		if (e.domains.length > 0 && !e.domains.some((r) => n.hostname === r.name))
+			return !1;
+		if (t === "Trigger") {
+			if (["PathBeginsWith", "TriggerPathBeginsWith"].includes(e.type))
+				return Kr(n.pathname, e.value, e.isRegexp, !1);
+			if (["PathIs", "TriggerPathIs"].includes(e.type))
+				return Kr(n.pathname, e.value, e.isRegexp, !0);
+		} else if (t === "Follow")
+			return e.type === "FollowPathBeginsWith"
+				? Kr(n.pathname, e.value, e.isRegexp, !1)
+				: e.type === "FollowPathIs"
+					? Kr(n.pathname, e.value, e.isRegexp, !0)
+					: !1;
+		return !1;
+	}
+	function lu(e, t, n) {
+		if (n.length === 0) return !0;
+		const r = new URL(e);
+		for (const i of n) if (i.negate && Oi(i, t, r)) return !1;
+		const o = n.filter((i) => !i.negate);
+		if (o.length === 0) return !0;
+		if (t === "Trigger") {
+			const i = o.filter((s) => s.type.match(k_));
+			for (const s of i) if (Oi(s, t, r)) return !0;
+		} else if (t === "Follow") {
+			const i = o.filter((s) => s.type.startsWith("Follow"));
+			if (i.length === 0) return !0;
+			for (const s of i) if (Oi(s, t, r)) return !0;
+			return !1;
+		}
+		return !1;
+	}
+	const z_ = h(),
+		T_ = h(),
+		I_ = h(),
+		$_ = h(),
+		E_ = h(),
+		R_ = $(),
+		M_ = yc,
+		P_ = h(),
+		A_ = U(),
+		O_ = U().nullable(),
+		L_ = U().nullable(),
+		N_ = J([h(), sy()]).transform((e) => (e instanceof Date ? e : new Date(e))),
+		j_ = S({ name: h(), code: h() }).nullable(),
+		B_ = P(S({ id: h(), name: h(), code: h() }))
+			.optional()
+			.nullable(),
+		D_ = P(Sn()).optional(),
+		F_ = P(Sn()).optional(),
+		U_ = P(Sn()).optional(),
+		H_ = P(Sn()).optional(),
+		Z_ = Kl.optional().default("and"),
+		V_ = P(Gl).optional().default([]),
+		W_ = P(h()).optional(),
+		q_ = U().gte(0).lte(1).default(1),
+		K_ = U(),
+		cu = S({
+			id: z_,
+			fullSlug: T_,
+			name: I_,
+			status: $_,
+			publishingState: E_,
+			isLive: R_,
+			urlRules: D_,
+			showRules: F_,
+			followRules: U_,
+			hideRules: H_,
+			audienceRuleMode: Z_,
+			audienceRules: V_,
+			renderType: M_,
+			surveyType: P_,
+			capturePercent: A_,
+			minTimeForRetake: O_,
+			minTimeForRetrigger: L_,
+			updatedAt: N_,
+			language: j_,
+			languages: B_,
+			blockedIps: W_,
+			priorityScore: q_,
+			numCards: K_,
+		});
+	S({ survey: Wr });
+	const J_ = P(cu),
+		G_ = P(Wr),
+		Y_ = S({
+			id: h(),
+			slug: h(),
+			valueType: N(["string", "number"]).optional().nullable(),
+		}),
+		uu = S({
+			surveys: P(cu),
+			traits: P(Y_).optional().default([]),
+			organisation: S({
+				completionTimeout: U().optional().nullable(),
+				rejectionTimeout: U().optional().nullable(),
+			}).optional(),
+		});
+	function X_(e, t) {
+		return t && e.minTimeForRetake != null
+			? Date.now() - t >= e.minTimeForRetake * 1e3
+			: !1;
+	}
+	function Q_(e, t) {
+		return t && e.minTimeForRetrigger != null
+			? Date.now() - t >= e.minTimeForRetrigger * 1e3
+			: !1;
+	}
+	function e0(e, t) {
+		const n = `skyra.${t.replace(/\//g, ".")}`,
+			r = e.getItem(n),
+			o = r ? JSON.parse(r) : {},
+			i = Bn.safeParse(o);
+		return i.success ? i.data : Bn.parse({});
+	}
+	const t0 = $e(async ({ input: e }) => {
+			const t = new URLSearchParams();
+			e.testMode && t.append("mode", "test"),
+				We("Load survey summaries", { ...e });
+			const r = await (
+					await fetch(`${e.apiHost}/survey/${e.orgSlug}?` + t.toString())
+				).json(),
+				o = uu.safeParse(r);
+			if (o.success) return o.data.surveys;
+			const i = J_.safeParse(r);
+			if (!i.success) {
+				const s = new Error("Invalid response");
+				throw ((s.cause = i.error), s);
+			}
+			return i.data;
+		}),
+		n0 = $e(async ({ input: e }) => {
+			const t = new URLSearchParams();
+			e.testMode && t.append("mode", "test"),
+				We("Load org with surveys", { ...e });
+			const r = await (
+					await fetch(`${e.apiHost}/survey/${e.orgSlug}?` + t.toString())
+				).json(),
+				o = uu.safeParse(r);
+			if (!o.success) {
+				const i = new Error("Invalid response");
+				throw ((i.cause = o.error), i);
+			}
+			return o.data;
+		}),
+		Li = $e(async ({ input: e }) => {
+			if (e.slugs.length === 0) return [];
+			const t = new URLSearchParams();
+			for (const s of e.slugs) t.append("slug", s.split("/")[1]);
+			e.testMode && t.append("mode", "test");
+			const n = `${e.apiHost}/survey/${e.orgSlug}/fullSurveys?`,
+				o = await (await fetch(n + t.toString())).json(),
+				i = G_.safeParse(o);
+			if (!i.success)
+				throw (
+					(console.error("Invalid survey response", i.error, o),
+					new Error("Invalid survey response"))
+				);
+			return i.data;
+		});
+	function du(e) {
+		return !!e && Object.keys(e).length > 0;
+	}
+	const fu = $e(({ input: e }) =>
+		Promise.all(
+			e.map(async (t) => {
+				var o;
+				if (t.sessionId) {
+					if (du(t.traits))
+						try {
+							await Yt(
+								{
+									event: "SessionTraits",
+									survey: t.surveyId,
+									visitor: t.visitorId,
+									session: t.sessionId,
+									traits: t.traits,
+								},
+								{ apiHost: t.apiHost },
+							);
+						} catch (i) {
+							We(
+								"[sessionInit] Failed to sync SessionTraits for reused session",
+								{ sessionId: t.sessionId, surveyId: t.surveyId, error: i },
+							);
+						}
+					return { sessionId: t.sessionId, slug: t.slug };
+				}
+				let n = "unknown";
+				"connection" in navigator &&
+					(n =
+						(o = navigator == null ? void 0 : navigator.connection) == null
+							? void 0
+							: o.effectiveType);
+				const r = je();
+				return (
+					await Yt(
+						{
+							event: "SessionInit",
+							survey: t.surveyId,
+							visitor: t.visitorId,
+							session: r,
+							ua: t.ua,
+							screenSize: t.screenSize,
+							pixelRatio: t.pixelRatio,
+							traits: t.traits,
+							connection: n,
+							languageCode: t.languageCode,
+						},
+						{ apiHost: t.apiHost },
+					),
+					{ sessionId: r, slug: t.slug }
+				);
+			}),
+		),
+	);
+	function pu(e) {
+		const t = e.survey.fullSlug,
+			n = e.customElementName ?? "skyra-survey";
+		return document.querySelector(e.selector)
+			? document.querySelector(`${n}[slug="${t}"]`)
+				? "existing_element"
+				: null
+			: "missing_container";
+	}
+	const r0 = $e(async ({ input: e }) => {
+			let t = pu(e);
+			return (
+				t === "missing_container" &&
+					e.retryDelayMs !== 0 &&
+					(await new Promise((n) => setTimeout(n, e.retryDelayMs ?? 100)),
+					(t = pu(e))),
+				t ? { canRender: !1, reason: t } : { canRender: !0 }
+			);
+		}),
+		hu = $e(({ input: e }) => {
+			const t = e.survey.fullSlug,
+				n = document.querySelector(e.selector),
+				r = e.customElementName ?? "skyra-survey",
+				o = e.replace ?? !1;
+			n ||
+				console.error(
+					`[Skyra] Could not find DOM element with selector "${e.selector}"`,
+				);
+			const i = document.querySelector(`${r}[slug="${t}"]`);
+			if (i) {
+				if (o) {
+					const a = document.createElement(r);
+					return (
+						a.setAttribute("slug", t),
+						i.replaceWith(a),
+						Promise.resolve({ survey: e.survey, selector: e.selector })
+					);
+				}
+				return (
+					console.warn(
+						`[Skyra] Survey with slug "${t}" already exists as a custom element. Please check your implementation.`,
+					),
+					Promise.resolve(!1)
+				);
+			}
+			const s = document.createElement(r);
+			return (
+				s.setAttribute("slug", t),
+				n == null || n.appendChild(s),
+				Promise.resolve({ survey: e.survey, selector: e.selector })
+			);
+		});
+	function mu(e) {
+		Xt({
+			apiHost: e.apiHost,
+			event: "popup_render_preflight_failed",
+			org: e.org,
+			slug: e.slug,
+			surveyId: e.surveyId,
+			visitorId: e.visitorId,
+			sessionId: e.sessionId,
+			reason: e.reason,
+			url: e.url,
+		});
+	}
+	function Xt(e) {
+		s_(
+			{
+				event: e.event,
+				org: e.org,
+				slug: e.slug,
+				survey: e.surveyId,
+				visitor: e.visitorId,
+				session: e.sessionId,
+				cardId: e.cardId,
+				reason: e.reason,
+				url: e.url,
+				metadata: e.metadata,
+			},
+			{ apiHost: e.apiHost },
+		);
+	}
+	const o0 = $e(({ input: e }) => {
+		if (!e.consent) return Promise.reject(new Error("Cookies not supported"));
+		const t = "skyra._test";
+		return (
+			(document.cookie = `${t}=1`),
+			new Promise((n, r) => {
+				setTimeout(() => {
+					try {
+						const o = document.cookie.indexOf(`${t}=`) !== -1;
+						(document.cookie = `${t}=; expires=Thu, 01 Jan 1970 00:00:00 GMT`),
+							o ? n(o) : r(new Error("Cookies not supported"));
+					} catch {
+						r(new Error("Cookies not supported"));
+					}
+				}, 5);
+			})
+		);
+	});
+	async function i0(e) {
+		let t = e.path ?? "/",
+			n = e.expires ?? 3600 * 2;
+		switch (e.renderType) {
+			case "Inline":
+				(n = 0), (t = window.location.pathname);
+				break;
+			case "Popup":
+				n = 7200;
+				break;
+		}
+		const r = `skyra.${e.slug.replace(/\//g, ".")}`;
+		e.state.lastSync = Date.now();
+		const { values: o, ...i } = e.state,
+			s = JSON.stringify(i),
+			a = e.confineToDomain
+				? { domain: void 0, expires: n, path: t }
+				: { expires: n, path: t };
+		return e.storage.setItem(r, s, a), e.state;
+	}
+	function gu(e) {
+		return e.split("/").filter(Boolean).length;
+	}
+	function yu(e, t) {
+		const n = gu(t);
+		return e === t ? 3 : e.startsWith(t + "/") ? Math.min(1 + n * 0.5, 2.9) : 0;
+	}
+	const Jr = /\/$/;
+	function s0(e, t, n, r = [], o = []) {
+		var a;
+		let i = 1,
+			s;
+		try {
+			s = new URL(e).pathname.replace(Jr, "");
+		} catch {
+			s = e.replace(Jr, "");
+		}
+		if (!Pi({ showRules: n, followRules: r, hideRules: o }))
+			for (const c of t) {
+				const l = c.value.replace(Jr, "");
+				if (c.isRegexp)
+					try {
+						new RegExp(c.value).test(s) && (i += 0.5);
+					} catch {}
+				else i += yu(s, l);
+			}
+		for (const c of n) {
+			const l = ((a = c.path) == null ? void 0 : a.replace(Jr, "")) ?? "";
+			if (c.isRegex && c.path)
+				try {
+					const u =
+						c.path
+							.split("/")
+							.filter(Boolean)
+							.reduce((p, m) => {
+								const g = (v) => {
+										try {
+											return new RegExp(v);
+										} catch {
+											return null;
+										}
+									},
+									b = (v) => v.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+								return p + "\\/" + (g(m) ? `(${m})` : b(m));
+							}, "^") +
+						(c.applyBelow ? "(\\/.*)?" : "") +
+						"$";
+					if (new RegExp(u).test(s)) {
+						const m = 1 + gu(c.path) * 0.5 + 0.5;
+						i += m;
+					}
+				} catch {}
+			else c.applyBelow && (i += yu(s, l));
+		}
+		return i;
+	}
+	const a0 = $e(({ input: e }) => {
+		const t = {
+				event: "CardValue",
+				survey: e.surveyId,
+				visitor: e.visitorId,
+				session: e.sessionId,
+				card: e.cardId,
+				type: e.cardType,
+				url: window.skyra.getUrl(),
+				value: e.value,
+				languageCode: e.languageCode,
+				cardOrder: e.cardOrder,
+			},
+			n = oi.parse(t);
+		return Yt(n, { apiHost: e.apiHost }), Promise.resolve();
+	});
+	function l0(e) {
+		const t = e.path ?? "/",
+			n = `skyra.${e.slug.replace(/\//g, ".")}`;
+		e.storage.removeItem(n, { path: t });
+	}
+	const vu = Ln({
+			actors: { postCardValue: a0 },
+			delays: {
+				initial: 0,
+				autoClose: ({ context: e }) => e.survey.autoCloseAfter ?? 0,
+			},
+			actions: {
+				setNextCards: T({
+					state: ({ context: e }) =>
+						u_(e.survey.cards, e.state, e.audienceContext),
+				}),
+				setPrevCard: T({ state: ({ context: e }) => d_(e.state) }),
+				clearCookieState: ({ context: e }) => {
+					const t = e.survey.renderType === "Popup";
+					l0({
+						storage: e.cookieStorage,
+						path: t ? void 0 : window.location.pathname,
+						slug: e.survey.fullSlug,
+					});
+				},
+				setMinimized: T({
+					state: ({ context: e }) => ({ ...e.state, state: "Minimized" }),
+				}),
+				setShowCard: T({
+					state: ({ context: e }) => ({ ...e.state, state: "ShowCard" }),
+				}),
+				storeCookieState: ({ context: e }) => {
+					const { survey: t, cookieConsent: n } = e;
+					n &&
+						t.renderType === "Popup" &&
+						i0({
+							storage: e.cookieStorage,
+							state: e.state,
+							slug: e.survey.fullSlug,
+							renderType: e.survey.renderType,
+							confineToDomain: e.survey.confineToDomain,
+						});
+				},
+				setCardValue: T({
+					state: ({ context: e, event: t }) => (
+						On(t, "submit"),
+						c_(e.survey.cards, e.state, t.cardId, t.key, t.value)
+					),
+				}),
+				diagnoseCurrentCardMissing: ({ context: e, event: t }) => {
+					On(t, "submit"),
+						Xt({
+							apiHost: e.apiHost,
+							event: "current_card_missing",
+							slug: e.survey.fullSlug,
+							surveyId: e.survey.id,
+							sessionId: e.sessionId,
+							visitorId: e.visitorId,
+							cardId: t.cardId,
+							url: e.url,
+						});
+				},
+				diagnoseExplicitReject: ({ context: e }) => {
+					Xt({
+						apiHost: e.apiHost,
+						event: "survey_rejected_explicit_click",
+						slug: e.survey.fullSlug,
+						surveyId: e.survey.id,
+						sessionId: e.sessionId,
+						visitorId: e.visitorId,
+						url: e.url,
+					});
+				},
+			},
+			guards: {
+				submittedCardExists: ({ context: e, event: t }) => (
+					On(t, "submit"), e.survey.cards.some((n) => n.id === t.cardId)
+				),
+				hasEmptyValue: ({ event: e }) => {
+					On(e, "submit");
+					const t = e.value;
+					return typeof t == "string"
+						? t.trim() === ""
+						: Array.isArray(t)
+							? t.length === 0
+							: t === void 0;
+				},
+				hasNextCard: ({ context: e }) =>
+					f_(e.survey.cards, e.state, e.audienceContext),
+				nextCardStartsMinimized: ({ context: e }) =>
+					p_(e.survey.cards, e.state, e.audienceContext),
+				isLastCard: ({ context: e }) =>
+					h_(e.survey.cards, e.state, e.audienceContext),
+				isMessageCard: ({ context: e }) => m_(e.survey.cards, e.state),
+				isPopup: ({ context: e }) => e.survey.renderType === "Popup",
+				isInline: ({ context: e }) => e.survey.renderType === "Inline",
+				isMinimized: ({ context: e }) => e.state.state === "Minimized",
+				wasPreviouslyVisible: ({ context: e }) => e.state.state === "ShowCard",
+				cookieConsented: ({ context: e }) => e.cookieConsent,
+			},
+		}).createMachine({
+			id: "Capture",
+			context: ({ input: e }) => {
+				var b, v, _, k, x, A, z;
+				const t = (b = e.state) == null ? void 0 : b.state;
+				let n = t;
+				if (typeof t == "string") {
+					const M = t.toLowerCase();
+					M === "minimized"
+						? (n = "Minimized")
+						: M === "showcard" && (n = "ShowCard");
+				}
+				const r =
+						e.language ||
+						((v = e.survey.language) == null ? void 0 : v.code) ||
+						"en",
+					o = {
+						device: e.device ?? "desktop",
+						traits: e.traits ?? {},
+						language: r,
+						locale: e.locale,
+					},
+					i = ((_ = e.survey.cards[0]) == null ? void 0 : _.order) ?? 0,
+					s = ((k = e.state) == null ? void 0 : k.currentCard) ?? i,
+					a = window.location.pathname,
+					c = e.survey.renderType === "Inline",
+					l = a === ((x = e.state) == null ? void 0 : x.path),
+					d =
+						((A = e.state) == null ? void 0 : A.currentCard) === void 0 ||
+						(c && !l),
+					u = Bn.parse(
+						!c || l
+							? { ...e.state, state: n, currentCard: s }
+							: { currentCard: i },
+					),
+					f = d
+						? Bn.parse({
+								...u,
+								currentCard:
+									((z = l_(e.survey.cards, u, o)) == null ? void 0 : z.order) ??
+									i,
+							})
+						: u,
+					p = e.survey.cards.find((M) => M.order === f.currentCard),
+					m = n === void 0 && (p == null ? void 0 : p.size) === "Minimal",
+					g = Bn.parse({ ...f, state: m ? "Minimized" : f.state, path: a });
+				return {
+					url: e.url,
+					survey: e.survey,
+					language: r,
+					apiHost: e.apiHost,
+					sessionId: e.sessionId,
+					visitorId: e.visitorId,
+					parentRef: e.parentRef,
+					cookieStorage: e.cookieStorage,
+					cookieConsent: (e == null ? void 0 : e.cookieConsent) ?? !0,
+					output: {},
+					state: g,
+					audienceContext: o,
+				};
+			},
+			on: {
+				setConsent: [
+					{
+						target: "#Done",
+						actions: [T({ cookieConsent: ({ event: e }) => e.value })],
+						guard: Si(["isPopup", ({ event: e }) => e.value === !1]),
+					},
+					{ actions: T({ cookieConsent: ({ event: e }) => e.value }) },
+				],
+				setUrl: { actions: T({ url: ({ event: e }) => e.url }) },
+				updateSurvey: { actions: T({ survey: ({ event: e }) => e.survey }) },
+				setLanguage: {
+					actions: [
+						T({
+							language: ({ event: e }) => e.language,
+							audienceContext: ({ context: e, event: t }) => ({
+								...e.audienceContext,
+								language: t.language,
+							}),
+						}),
+						o_(({ event: e }) => ({
+							type: "setLanguage",
+							language: e.language,
+						})),
+					],
+				},
+				setTraits: {
+					actions: T({
+						audienceContext: ({ context: e, event: t }) => ({
+							...e.audienceContext,
+							traits:
+								t.mode === "replace"
+									? t.traits
+									: { ...e.audienceContext.traits, ...t.traits },
+						}),
+					}),
+				},
+				reject: { target: "#Rejected", actions: "diagnoseExplicitReject" },
+			},
+			initial: "Validating",
+			states: {
+				Entry: {
+					on: {
+						setConsent: [{ target: "Validating", guard: "cookieConsented" }],
+					},
+					always: [{ target: "Validating", guard: "cookieConsented" }],
+				},
+				Validating: {
+					always: [
+						{ target: "#Minimized", guard: "isMinimized" },
+						{ target: "Running", guard: "wasPreviouslyVisible" },
+						{ target: "Running" },
+					],
+				},
+				Running: {
+					initial: "ShowCard",
+					states: {
+						ShowCard: {
+							entry: ["setShowCard", "storeCookieState"],
+							after: {
+								500: {
+									guard: Si(["isInline", "isLastCard", "isMessageCard"]),
+									actions: "clearCookieState",
+								},
+								autoClose: {
+									guard: Si([
+										"isPopup",
+										"isLastCard",
+										"isMessageCard",
+										({ context: e }) =>
+											typeof e.survey.autoCloseAfter == "number" &&
+											e.survey.autoCloseAfter > 0,
+									]),
+									target: "#Done",
+								},
+							},
+							on: {
+								minimize: {
+									target: "Minimized",
+									actions: ["setMinimized", "storeCookieState"],
+								},
+								goBack: { target: "GoBack" },
+								completeSurvey: "#Done",
+								submit: [
+									{ target: "GoToNextCard", guard: "isMessageCard" },
+									{
+										target: "GoToNextCard",
+										guard: "hasEmptyValue",
+										actions: ["setCardValue", "storeCookieState"],
+									},
+									{
+										target: "GoToNextCard",
+										guard: yw("submittedCardExists"),
+										actions: "diagnoseCurrentCardMissing",
+									},
+									{
+										target: "SubmitCard",
+										actions: [
+											"setCardValue",
+											"storeCookieState",
+											ge(({ event: e, context: t }) => {
+												var s, a;
+												const n = t.state,
+													r = t.survey.cards.find(
+														(c) => c.order === n.currentCard,
+													),
+													o = ic.parse(r);
+												if (!r) throw new Error("Card found");
+												const i = {
+													type: "cardSaved",
+													sessionId: t.sessionId,
+													visitorId: t.visitorId,
+													surveyId: t.survey.id,
+													surveyName: t.survey.name,
+													cardId: e.cardId,
+												};
+												if (o.type === "TopTaskCard") {
+													const c = e.value,
+														l =
+															(s = o.taskItems) == null
+																? void 0
+																: s.find((d) => d.task.id === c);
+													return {
+														...i,
+														cardType: "TopTaskCard",
+														value: {
+															id: c,
+															name:
+																l && "name" in l.task ? l.task.name : "Unknown",
+															label: l == null ? void 0 : l.label,
+														},
+													};
+												}
+												if (o.type === "RecruitmentCard") {
+													const c = e.value;
+													return { ...i, cardType: o.type, value: c };
+												}
+												if (o.type === "LikertCard") {
+													const c = r,
+														l = e.value,
+														d = c.likertScale.likertItems.find(
+															(u) => u.id === l,
+														);
+													return {
+														...i,
+														cardType: "LikertCard",
+														value: {
+															id: l,
+															name: (d == null ? void 0 : d.label) ?? "Unknown",
+															emoji:
+																(a = d == null ? void 0 : d.emoji) == null
+																	? void 0
+																	: a.native,
+														},
+													};
+												}
+												if (o.type === "SegmentCard") {
+													const c = r,
+														l = e.value,
+														d = c.items.find((u) => u.value.id === l);
+													return {
+														...i,
+														cardType: "SegmentCard",
+														value: {
+															id: l,
+															name: (d == null ? void 0 : d.name) ?? "Unknown",
+															label: d == null ? void 0 : d.label,
+														},
+													};
+												}
+												if (o.type === "SingleSelectCard") {
+													const c = r,
+														l = e.value,
+														d = c.selectItems.find((u) => u.id === l);
+													return {
+														...i,
+														cardType: "SingleSelectCard",
+														value: {
+															id: l,
+															label: d == null ? void 0 : d.label,
+														},
+													};
+												}
+												return { ...i, cardType: o.type, value: e.value };
+											}),
+										],
+									},
+								],
+							},
+						},
+						GoToNextCard: {
+							always: [
+								{
+									guard: "nextCardStartsMinimized",
+									target: "Minimized",
+									actions: ["setNextCards", "setMinimized", "storeCookieState"],
+								},
+								{
+									guard: "hasNextCard",
+									target: "ShowCard",
+									actions: ["setNextCards", "storeCookieState"],
+								},
+								{ target: "#Done" },
+							],
+						},
+						GoBack: {
+							entry: ["setPrevCard", "storeCookieState"],
+							always: { target: "ShowCard" },
+						},
+						SubmitCard: {
+							invoke: {
+								src: "postCardValue",
+								input: ({ context: e, event: t }) => {
+									On(t, "submit");
+									const n = e.survey.cards.find((r) => r.id === t.cardId);
+									if (!n)
+										throw (
+											(Xt({
+												apiHost: e.apiHost,
+												event: "current_card_missing",
+												slug: e.survey.fullSlug,
+												surveyId: e.survey.id,
+												sessionId: e.sessionId,
+												visitorId: e.visitorId,
+												cardId: t.cardId,
+												url: e.url,
+											}),
+											new Error("No card found"))
+										);
+									return {
+										surveyId: e.survey.id,
+										sessionId: e.sessionId,
+										visitorId: e.visitorId,
+										apiHost: e.apiHost,
+										cardId: t.cardId,
+										cardType: n.type,
+										cardOrder: n.order,
+										languageCode: e.language,
+										value: t.value,
+									};
+								},
+								onError: { target: "GoToNextCard" },
+								onDone: { target: "GoToNextCard" },
+							},
+						},
+						Minimized: {
+							id: "Minimized",
+							on: { maximize: { target: "ShowCard" } },
+						},
+					},
+				},
+				Rejected: {
+					id: "Rejected",
+					type: "final",
+					entry: ["clearCookieState", T({ output: { type: "rejected" } })],
+				},
+				Done: {
+					id: "Done",
+					type: "final",
+					entry: ["clearCookieState", T({ output: { type: "completed" } })],
+				},
+			},
+			output: ({ context: e }) => e.output,
+		}),
+		bu = (e) => {
+			var t;
+			return e.surveyAlreadyCaptured
+				? 0
+				: (((t = e.fullSurvey) == null ? void 0 : t.initialDelay) ?? 0);
+		},
+		Qt = (e, t, n) => {
+			var r;
+			return Hr({
+				savedLanguage: t,
+				browserLanguage: n,
+				surveyDefault: ((r = e.language) == null ? void 0 : r.code) || "en",
+				enabledLanguages: ou(e),
+			});
+		},
+		c0 = Ln({
+			actors: {
+				checkCookieSupport: o0,
+				loadFullSurveys: Li,
+				sessionInit: fu,
+				renderSurvey: hu,
+				canRenderSurvey: r0,
+				sleepActor: $e(
+					({ input: e }) => new Promise((t) => setTimeout(t, e.delay)),
+				),
+				checkCaptureRate: $e(
+					({ input: e }) =>
+						new Promise((t) => {
+							const n = e.rate > 0 ? e.rate / 100 : 0,
+								r = e.capture || Math.random() < n;
+							t({ selected: r });
+						}),
+				),
+			},
+			guards: {},
+			actions: {
+				updateTraits: T(({ context: e, event: t }) =>
+					t.type !== "setTraits"
+						? {}
+						: {
+								traits:
+									t.mode === "replace"
+										? t.traits
+										: { ...e.traits, ...t.traits },
+							},
+				),
+				filterEligibleSurveys: T(({ context: e }) => {
+					var r;
+					const t =
+						(r = Object.entries(e.surveyOverrides || {}).find(([, o]) =>
+							o == null ? void 0 : o.only,
+						)) == null
+							? void 0
+							: r[0];
+					if (t) {
+						const o = e.surveys.find((i) => i.fullSlug === t);
+						if (o) return { eligibleSurveys: [o] };
+					}
+					return {
+						eligibleSurveys: e.surveys.filter((o) => {
+							var l;
+							const i = (l = e.cookieState) == null ? void 0 : l[o.fullSlug],
+								s = Vr({
+									traits: e.traits,
+									language: Qt(o, e.language, e.locale),
+									locale: e.locale,
+								}),
+								a = o.urlRules && o.urlRules.length > 0,
+								c = Pi(o);
+							if (!a && !c) return !1;
+							if (!c && a && o.urlRules) {
+								const d =
+									(i == null ? void 0 : i.state) === "Capture"
+										? "Follow"
+										: "Trigger";
+								if (!lu(e.url, d, o.urlRules)) return !1;
+							}
+							return (c &&
+								!Ai({
+									urlString: e.url,
+									surveyStarted: (i == null ? void 0 : i.state) === "Capture",
+									showRules: o.showRules || [],
+									followRules: o.followRules || [],
+									hideRules: o.hideRules || [],
+									device: Nn(),
+									isInline: !1,
+								})) ||
+								!vo(o.audienceRules, s, o.audienceRuleMode)
+								? !1
+								: i
+									? i.state === "Completed"
+										? X_(o, i.lastSync)
+										: i.state === "Rejected" || i.state === "NotSelected"
+											? Q_(o, i.lastSync)
+											: i.state === "Capture" || i.state === "Selected"
+									: !0;
+						}),
+					};
+				}),
+				selectFirstEligibleSurvey: T(({ context: e }) => {
+					const t = e.eligibleSurveys.find((s) => {
+						var c;
+						const a = (c = e.cookieState) == null ? void 0 : c[s.fullSlug];
+						return (a == null ? void 0 : a.state) === "Capture";
+					});
+					if (t)
+						return {
+							selectedSurvey: t.fullSlug,
+							resolvedLanguage: Qt(t, e.language, e.locale),
+							surveyAlreadyCaptured: !0,
+						};
+					let n = !1;
+					if (e.requestedSurvey) {
+						const s = e.eligibleSurveys.find(
+							(a) => a.fullSlug === e.requestedSurvey,
+						);
+						if (s)
+							return {
+								selectedSurvey: s.fullSlug,
+								resolvedLanguage: Qt(s, e.language, e.locale),
+								requestedSurvey: void 0,
+							};
+						n = !0;
+					}
+					const i = e.eligibleSurveys
+						.map((s) => {
+							const a = s0(
+								e.url,
+								s.urlRules || [],
+								s.showRules || [],
+								s.followRules || [],
+								s.hideRules || [],
+							);
+							return { ...s, priorityScore: s.priorityScore + a };
+						})
+						.sort(
+							(s, a) =>
+								a.priorityScore - s.priorityScore ||
+								+a.updatedAt - +s.updatedAt,
+						)[0];
+					return {
+						selectedSurvey: (i == null ? void 0 : i.fullSlug) || null,
+						resolvedLanguage: i ? Qt(i, e.language, e.locale) : null,
+						...(n && { requestedSurvey: void 0 }),
+					};
+				}),
+				rememberSelection: T(({ context: e }) =>
+					e.selectedSurvey
+						? {
+								cookieState: {
+									...e.cookieState,
+									[e.selectedSurvey]: {
+										state: "Selected",
+										lastSync: Date.now(),
+									},
+								},
+							}
+						: {},
+				),
+				emitSurveySelected: ge(({ context: e }) => {
+					if (!e.selectedSurvey) throw new Error("No survey selected");
+					return { type: "surveySelected", slug: e.selectedSurvey };
+				}),
+				postPreflightDiagnostic: ({ context: e, event: t }) => {
+					if (!("output" in t)) return;
+					const n = t.output;
+					if (n.canRender) return;
+					const r = e.selectedSurvey;
+					if (!r) return;
+					const o = e.surveys.find((i) => i.fullSlug === r);
+					mu({
+						apiHost: e.apiHost,
+						org: e.org,
+						slug: r,
+						surveyId: o == null ? void 0 : o.id,
+						visitorId: e.visitorId,
+						reason: n.reason,
+						url: e.url,
+					});
+				},
+				postRenderReturnedFalseDiagnostic: ({ context: e }) => {
+					var n;
+					const t = e.selectedSurvey;
+					t &&
+						mu({
+							apiHost: e.apiHost,
+							org: e.org,
+							slug: t,
+							surveyId: (n = e.fullSurvey) == null ? void 0 : n.id,
+							visitorId: e.visitorId,
+							sessionId: e.sessionId ?? void 0,
+							reason: "render_returned_false",
+							url: e.url,
+						});
+				},
+				postMissingFullSurveyDiagnostic: ({ context: e }) => {
+					const t = e.selectedSurvey;
+					if (!t) return;
+					const n = e.surveys.find((r) => r.fullSlug === t);
+					Xt({
+						apiHost: e.apiHost,
+						event: "selected_survey_missing_full_survey",
+						org: e.org,
+						slug: t,
+						surveyId: n == null ? void 0 : n.id,
+						visitorId: e.visitorId,
+						url: e.url,
+					});
+				},
+			},
+		}).createMachine({
+			id: "popupCoordinator",
+			context: ({ input: e }) => ({
+				...e,
+				surveys: e.surveys.filter((t) => t.renderType === "Popup"),
+				eligibleSurveys: [],
+				selectedSurvey: null,
+				surveyAlreadyCaptured: !1,
+				fullSurvey: null,
+				resolvedLanguage: null,
+				sessionId: null,
+			}),
+			initial: "Init",
+			on: {
+				startSurvey: {
+					actions: T({ requestedSurvey: ({ event: e }) => e.slug }),
+				},
+				setTraits: { actions: "updateTraits" },
+				setConsent: [
+					{
+						target: ".NoConsent",
+						guard: ({ event: e }) => e.value === !1,
+						actions: T({ consent: ({ event: e }) => e.value }),
+					},
+					{ actions: T({ consent: ({ event: e }) => e.value }) },
+				],
+			},
+			states: {
+				Init: {
+					description: "Check if we have consent",
+					always: [
+						{
+							target: "CheckCookieSupport",
+							guard: ({ context: e }) => e.consent,
+						},
+						{ target: "NoConsent" },
+					],
+				},
+				NoConsent: {
+					description: "Waiting for cookie consent",
+					on: {
+						setConsent: {
+							target: "CheckCookieSupport",
+							guard: ({ event: e }) => e.value === !0,
+							actions: T({ consent: ({ event: e }) => e.value }),
+						},
+					},
+				},
+				CheckCookieSupport: {
+					description: "Verify cookies work",
+					invoke: {
+						src: "checkCookieSupport",
+						input: ({ context: e }) => ({ consent: e.consent }),
+						onDone: { target: "FilterEligible" },
+						onError: {
+							target: "Failed",
+							actions: T({ error: ({ event: e }) => e.error }),
+						},
+					},
+				},
+				FilterEligible: {
+					description: "Apply retake/retrigger/spam rules",
+					entry: ["filterEligibleSurveys"],
+					always: [
+						{
+							target: "SelectSurvey",
+							guard: ({ context: e }) => {
+								var u, f, p;
+								if (e.eligibleSurveys.length === 0) return !1;
+								const t = Date.now(),
+									n = e.eligibleSurveys.filter((m) => {
+										var b;
+										const g =
+											(b = e.cookieState) == null ? void 0 : b[m.fullSlug];
+										return (
+											!g || g.state === "Capture" || g.state === "Selected"
+										);
+									}),
+									r = n
+										.map((m) => m.minTimeForRetake)
+										.filter((m) => m !== null)
+										.map((m) => m * 1e3),
+									o =
+										(((u = e.organisation) == null
+											? void 0
+											: u.completionTimeout) ?? 14400) * 1e3,
+									i =
+										(((f = e.organisation) == null
+											? void 0
+											: f.rejectionTimeout) ?? 28800) * 1e3,
+									s = r.length > 0 ? Math.min(...r, o) : o,
+									a = n
+										.map((m) => m.minTimeForRetrigger)
+										.filter((m) => m !== null)
+										.map((m) => m * 1e3),
+									c = a.length > 0 ? Math.min(...a, i) : i;
+								let l = null,
+									d = null;
+								for (const m of e.surveys) {
+									const g =
+										(p = e.cookieState) == null ? void 0 : p[m.fullSlug];
+									g &&
+										g.lastSync &&
+										m.renderType !== "Inline" &&
+										(g.state === "Completed" &&
+											(l = Math.max(l ?? 0, g.lastSync)),
+										g.state === "Rejected" &&
+											(d = Math.max(d ?? 0, g.lastSync)));
+								}
+								return !((l && t - l < s) || (d && t - d < c));
+							},
+						},
+						{ target: "Idle" },
+					],
+				},
+				SelectSurvey: {
+					description: "Pick active/requested/first eligible",
+					entry: ["selectFirstEligibleSurvey"],
+					always: [
+						{
+							target: "LoadAndInit",
+							guard: ({ context: e }) => {
+								var t;
+								return (
+									e.selectedSurvey !== null &&
+									(e.surveyAlreadyCaptured ||
+										((t = e.cookieState[e.selectedSurvey]) == null
+											? void 0
+											: t.state) === "Selected")
+								);
+							},
+						},
+						{
+							target: "CheckCaptureRate",
+							guard: ({ context: e }) => e.selectedSurvey !== null,
+						},
+						{ target: "Idle" },
+					],
+				},
+				CheckCaptureRate: {
+					description: "Random selection based on capturePercent",
+					invoke: {
+						src: "checkCaptureRate",
+						input: ({ context: e }) => {
+							const t = e.selectedSurvey,
+								n = e.surveys.find((r) => r.fullSlug === t);
+							if (!n) throw new Error("No survey selected");
+							return { capture: e.testMode, rate: n.capturePercent };
+						},
+						onDone: [
+							{
+								target: "LoadAndInit",
+								guard: ({ event: e }) => e.output.selected === !0,
+								actions: ["rememberSelection", "emitSurveySelected"],
+							},
+							{
+								target: "Idle",
+								actions: ge(({ context: e }) => {
+									const t = e.selectedSurvey;
+									if (!t)
+										throw new Error(
+											"Invalid state: selectedSurvey is required for surveyNotSelected event",
+										);
+									return { type: "surveyNotSelected", slug: t };
+								}),
+							},
+						],
+					},
+				},
+				LoadAndInit: {
+					description: "Load full survey + initialize session",
+					initial: "LoadFullSurvey",
+					states: {
+						LoadFullSurvey: {
+							description: "Fetch full survey definition",
+							invoke: {
+								src: "loadFullSurveys",
+								input: ({ context: e }) => {
+									const t = e.selectedSurvey;
+									if (!t)
+										throw new Error(
+											"Invalid state: selectedSurvey is required for LoadFullSurvey",
+										);
+									return {
+										orgSlug: e.org,
+										slugs: [t],
+										apiHost: e.apiHost,
+										testMode: e.testMode,
+									};
+								},
+								onDone: [
+									{
+										target: "CheckRenderTarget",
+										guard: ({ event: e }) => !!e.output[0],
+										actions: T({
+											fullSurvey: ({ event: e }) => e.output[0] || null,
+											resolvedLanguage: ({ context: e, event: t }) => {
+												const n = t.output[0];
+												return n ? Qt(n, e.language, e.locale) : null;
+											},
+										}),
+									},
+									{
+										target: "#popupCoordinator.Idle",
+										actions: "postMissingFullSurveyDiagnostic",
+									},
+								],
+								onError: {
+									target: "#popupCoordinator.Idle",
+									actions: T({ error: ({ event: e }) => e.error }),
+								},
+							},
+						},
+						CheckRenderTarget: {
+							description:
+								"Check that the popup can be injected before recording an impression",
+							invoke: {
+								src: "canRenderSurvey",
+								input: ({ context: e }) => {
+									const t = e.selectedSurvey;
+									if (!t)
+										throw new Error(
+											"Invalid state: selectedSurvey is required for CheckRenderTarget",
+										);
+									const n = e.surveys.find((r) => r.fullSlug === t);
+									if (!n) throw new Error("No survey found for slug: " + t);
+									return { survey: n, selector: e.selector };
+								},
+								onDone: [
+									{
+										target: "InitialDelay",
+										guard: ({ event: e }) => e.output.canRender,
+									},
+									{
+										target: "#popupCoordinator.Idle",
+										actions: "postPreflightDiagnostic",
+									},
+								],
+								onError: {
+									target: "#popupCoordinator.Idle",
+									actions: T({ error: ({ event: e }) => e.error }),
+								},
+							},
+						},
+						InitialDelay: {
+							description:
+								"Wait until the popup is allowed to appear before recording an impression",
+							always: {
+								target: "SessionInit",
+								guard: ({ context: e }) => bu(e) <= 0,
+							},
+							invoke: {
+								src: "sleepActor",
+								input: ({ context: e }) => ({ delay: bu(e) }),
+								onDone: { target: "SessionInit" },
+							},
+						},
+						SessionInit: {
+							description: "Initialize session with API",
+							invoke: {
+								src: "sessionInit",
+								input: ({ context: e }) => {
+									var o;
+									const t = e.selectedSurvey;
+									if (!t)
+										throw new Error(
+											"Invalid state: selectedSurvey is required for SessionInit",
+										);
+									const n = e.surveys.find((i) => i.fullSlug === t);
+									if (!n) throw new Error("No survey found for slug: " + t);
+									const r =
+										(o = e.cookieState) == null ? void 0 : o[n.fullSlug];
+									return [
+										{
+											apiHost: e.apiHost,
+											surveyId: n.id,
+											visitorId: e.visitorId,
+											sessionId: r == null ? void 0 : r.sessionId,
+											slug: n.fullSlug,
+											traits: e.traits,
+											ua:
+												typeof navigator < "u"
+													? navigator.userAgent
+													: "test-agent",
+											screenSize:
+												typeof window < "u"
+													? [window.screen.width, window.screen.height]
+													: [1920, 1080],
+											pixelRatio:
+												typeof window < "u" ? window.devicePixelRatio : 1,
+											languageCode: e.resolvedLanguage ?? void 0,
+										},
+									];
+								},
+								onDone: {
+									target: "Done",
+									actions: T({
+										sessionId: ({ event: e }) => {
+											var t;
+											return (
+												((t = e.output[0]) == null ? void 0 : t.sessionId) ||
+												null
+											);
+										},
+									}),
+								},
+								onError: {
+									target: "#popupCoordinator.Idle",
+									actions: T({ error: ({ event: e }) => e.error }),
+								},
+							},
+						},
+						Done: { type: "final" },
+					},
+					onDone: "Render",
+				},
+				Render: {
+					description: "Inject survey DOM element",
+					invoke: {
+						src: "renderSurvey",
+						input: ({ context: e }) => {
+							const t = e.selectedSurvey;
+							if (!t)
+								throw new Error(
+									"Invalid state: selectedSurvey is required for Render",
+								);
+							const n = e.surveys.find((r) => r.fullSlug === t);
+							if (!n) throw new Error("No survey found for slug: " + t);
+							return { survey: n, selector: e.selector };
+						},
+						onDone: [
+							{ target: "Done", guard: ({ event: e }) => e.output !== !1 },
+							{ target: "Idle", actions: "postRenderReturnedFalseDiagnostic" },
+						],
+						onError: {
+							target: "Failed",
+							actions: T({ error: ({ event: e }) => e.error }),
+						},
+					},
+				},
+				Done: {
+					description: "Survey ready, emit to controller",
+					entry: [
+						ge(({ context: e }) => {
+							const t = e.selectedSurvey,
+								n = e.fullSurvey,
+								r = e.sessionId;
+							if (!(t && n && r))
+								throw new Error(
+									"Invalid state: selectedSurvey, fullSurvey, and sessionId are required for readyToCapture",
+								);
+							return {
+								type: "readyToCapture",
+								slug: t,
+								survey: n,
+								sessionId: r,
+								language: e.resolvedLanguage ?? Qt(n, e.language, e.locale),
+							};
+						}),
+					],
+					type: "final",
+				},
+				Idle: {
+					description: "No survey to show",
+					on: {
+						setTraits: { target: "FilterEligible", actions: "updateTraits" },
+						startSurvey: {
+							target: "SelectSurvey",
+							actions: T({ requestedSurvey: ({ event: e }) => e.slug }),
+						},
+					},
+				},
+				Failed: { description: "Error occurred", type: "final" },
+			},
+		});
+	function wu(e, t) {
+		return e instanceof Error ? e.message : t;
+	}
+	function _u(e, t) {
+		var o, i, s;
+		const n =
+				typeof window < "u"
+					? (i = (o = window.skyra) == null ? void 0 : o.getExplicitLanguage) ==
+						null
+						? void 0
+						: i.call(o, t)
+					: void 0,
+			r =
+				(typeof document < "u" &&
+					(document.documentElement.lang ||
+						document.documentElement.getAttribute("lang"))) ||
+				void 0;
+		return Hr({
+			explicitLanguage: n,
+			htmlLang: r,
+			browserLanguage: Zr(),
+			surveyDefault: ((s = e.language) == null ? void 0 : s.code) || "en",
+			enabledLanguages: ou(e),
+		});
+	}
+	const u0 = Ln({
+		actors: { loadFullSurveys: Li, sessionInit: fu },
+	}).createMachine({
+		id: "surveySessionInitializer",
+		context: ({ input: e }) => ({
+			...e,
+			kind: e.kind ?? "inline",
+			fullSurvey: null,
+			language: null,
+			sessionId: null,
+		}),
+		initial: "LoadFullSurvey",
+		on: {
+			setTraits: {
+				actions: T({
+					traits: ({ context: e, event: t }) =>
+						t.mode === "replace" ? t.traits : { ...e.traits, ...t.traits },
+				}),
+			},
+		},
+		states: {
+			LoadFullSurvey: {
+				invoke: {
+					src: "loadFullSurveys",
+					input: ({ context: e }) => ({
+						slugs: [e.slug],
+						orgSlug: e.org,
+						apiHost: e.apiHost,
+						testMode: e.testMode,
+					}),
+					onDone: {
+						actions: T({
+							fullSurvey: ({ event: e }) => e.output[0],
+							language: ({ context: e, event: t }) => {
+								const n = t.output[0];
+								return n ? _u(n, e.slug) : null;
+							},
+						}),
+						target: "CheckEligibility",
+					},
+					onError: {
+						target: "Failed",
+						actions: ge(({ context: e, event: t }) => ({
+							type:
+								e.kind === "headless"
+									? "headlessInitializationFailed"
+									: "inlineInitializationFailed",
+							slug: e.slug,
+							code: "load_failed",
+							message: wu(t.error, `Failed to load ${e.kind} survey.`),
+							cause: t.error,
+						})),
+					},
+				},
+			},
+			CheckEligibility: {
+				always: [
+					{
+						guard: ({ context: e }) => {
+							if (!e.fullSurvey) return !1;
+							const t = e.fullSurvey.renderType;
+							return t !== "Inline" && t !== "Headless"
+								? !1
+								: t === "Headless"
+									? vo(
+											e.fullSurvey.audienceRules,
+											Vr({ traits: e.traits, language: e.language ?? void 0 }),
+											e.fullSurvey.audienceRuleMode,
+										)
+									: t === "Inline" &&
+											Ai({
+												urlString: e.url,
+												surveyStarted: !1,
+												showRules: e.fullSurvey.showRules,
+												followRules: e.fullSurvey.followRules || [],
+												hideRules: e.fullSurvey.hideRules,
+												device: Nn(),
+												isInline: !0,
+											})
+										? vo(
+												e.fullSurvey.audienceRules,
+												Vr({
+													traits: e.traits,
+													language: e.language ?? void 0,
+												}),
+												e.fullSurvey.audienceRuleMode,
+											)
+										: !1;
+						},
+						target: "SessionInit",
+					},
+					{
+						target: "Failed",
+						actions: ge(({ context: e }) => ({
+							type:
+								e.kind === "headless"
+									? "headlessInitializationFailed"
+									: "inlineInitializationFailed",
+							slug: e.slug,
+							code: "not_eligible",
+							message: `${e.kind === "headless" ? "Headless" : "Inline"} survey "${e.slug}" is not eligible.`,
+						})),
+					},
+				],
+			},
+			SessionInit: {
+				invoke: {
+					src: "sessionInit",
+					input: ({ context: e }) => {
+						if (!e.fullSurvey) throw new Error("No full survey loaded");
+						return [
+							{
+								apiHost: e.apiHost,
+								surveyId: e.fullSurvey.id,
+								visitorId: e.visitorId,
+								slug: e.slug,
+								traits: e.traits,
+								url: e.url,
+								ua: typeof navigator < "u" ? navigator.userAgent : "",
+								screenSize:
+									typeof window < "u"
+										? [window.innerWidth, window.innerHeight]
+										: [0, 0],
+								pixelRatio: typeof window < "u" ? window.devicePixelRatio : 1,
+								languageCode: e.language ?? void 0,
+							},
+						];
+					},
+					onDone: {
+						actions: [
+							T({ sessionId: ({ event: e }) => e.output[0].sessionId }),
+							ge(({ context: e, event: t }) => {
+								var o, i;
+								const n =
+										typeof window < "u"
+											? (i =
+													(o = window.skyra) == null
+														? void 0
+														: o.getExplicitLanguage) == null
+												? void 0
+												: i.call(o, e.slug)
+											: void 0,
+									r = e.fullSurvey;
+								if (!r)
+									throw new Error(
+										"Invalid state: fullSurvey is required for readyToCapture",
+									);
+								return {
+									type: "readyToCapture",
+									slug: e.slug,
+									survey: r,
+									sessionId: t.output[0].sessionId,
+									language: e.language ?? _u(r, e.slug),
+									explicitLanguage: n,
+								};
+							}),
+						],
+						target: "Done",
+					},
+					onError: {
+						target: "Failed",
+						actions: ge(({ context: e, event: t }) => ({
+							type:
+								e.kind === "headless"
+									? "headlessInitializationFailed"
+									: "inlineInitializationFailed",
+							slug: e.slug,
+							code: "session_init_failed",
+							message: wu(
+								t.error,
+								`Failed to initialize ${e.kind} survey session.`,
+							),
+							cause: t.error,
+						})),
+					},
+				},
+			},
+			Done: { type: "final" },
+			Failed: { type: "final" },
+		},
+	});
+	function d0(e) {
+		var r, o, i;
+		let t;
+		typeof document < "u" &&
+			document.documentElement &&
+			((t = document.documentElement.lang),
+			!t &&
+				typeof document.documentElement.getAttribute == "function" &&
+				(t = document.documentElement.getAttribute("lang") || void 0));
+		const n = [
+			(r = e.language) == null ? void 0 : r.code,
+			...(((o = e.languages) == null ? void 0 : o.map((s) => s.code)) || []),
+		].filter(Boolean);
+		return Hr({
+			explicitLanguage: void 0,
+			savedLanguage: void 0,
+			htmlLang: t,
+			browserLanguage: typeof navigator < "u" ? navigator.language : void 0,
+			surveyDefault: ((i = e.language) == null ? void 0 : i.code) || "en",
+			enabledLanguages: n,
+		});
+	}
+	function f0(e) {
+		var o;
+		if (e.state._l) return e.state._l;
+		let t;
+		typeof document < "u" &&
+			document.documentElement &&
+			((t = document.documentElement.lang),
+			!t &&
+				typeof document.documentElement.getAttribute == "function" &&
+				(t = document.documentElement.getAttribute("lang") || void 0));
+		const n = e.surveys[0];
+		if (!n) return "en";
+		const r = Array.from(
+			new Set(
+				e.surveys.flatMap((i) => {
+					var s, a;
+					return [
+						(s = i.language) == null ? void 0 : s.code,
+						...(((a = i.languages) == null ? void 0 : a.map((c) => c.code)) ||
+							[]),
+					];
+				}),
+			),
+		).filter(Boolean);
+		return Hr({
+			explicitLanguage: void 0,
+			savedLanguage: void 0,
+			htmlLang: t,
+			browserLanguage: typeof navigator < "u" ? navigator.language : void 0,
+			surveyDefault: ((o = n.language) == null ? void 0 : o.code) || "en",
+			enabledLanguages: r,
+		});
+	}
+	function Su(e, t) {
+		const n = e.getItem("skyra.state");
+		if (!n) return bt.parse({ _id: je() });
+		try {
+			const r = JSON.parse(n);
+			return bt.parse(r);
+		} catch (r) {
+			return (
+				t &&
+					Xt({
+						apiHost: t.apiHost,
+						event: "cookie_state_parse_failed",
+						reason:
+							r instanceof SyntaxError ? "invalid_json" : "invalid_schema",
+						org: t.org,
+						url: t.url,
+					}),
+				bt.parse({ _id: je() })
+			);
+		}
+	}
+	function p0(e, t) {
+		e.setItem("skyra.state", JSON.stringify(t));
+	}
+	function ku(e, t) {
+		const n = Pi(e),
+			r = e.urlRules && e.urlRules.length > 0;
+		if (!n && r && !lu(t, "Follow", e.urlRules)) return !1;
+		const o = Nn(),
+			i = (e.hideRules || []).filter((s) => s[o] && vc(s, t));
+		return i.some((s) => !s.follow)
+			? !1
+			: n
+				? Ai({
+						urlString: t,
+						surveyStarted: !0,
+						showRules: e.showRules || [],
+						followRules: e.followRules || [],
+						hideRules: e.hideRules || [],
+						device: o,
+						isInline: !1,
+					}) || i.some((s) => s.follow)
+				: !!r;
+	}
+	function Gr(e) {
+		var n, r, o;
+		if (e.popupCapture)
+			return (
+				e.activePopupSurvey ??
+				((n = e.popupCapture.getSnapshot().context) == null
+					? void 0
+					: n.survey) ??
+				null
+			);
+		const t =
+			(o =
+				(r = e.popupCoordinator) == null ? void 0 : r.getSnapshot().context) ==
+			null
+				? void 0
+				: o.selectedSurvey;
+		return t ? (e.surveys.find((i) => i.fullSlug === t) ?? null) : null;
+	}
+	function en(e, t) {
+		return e.renderType && e.renderType !== "Popup"
+			? !1
+			: t
+				? !(
+						t.renderType !== "Popup" ||
+						(e.id && e.id !== t.id) ||
+						(e.slug && e.slug !== t.fullSlug)
+					)
+				: !(e.id || e.slug);
+	}
+	function tn(e) {
+		return !e.id && !e.slug && (!e.renderType || e.renderType === "Popup");
+	}
+	function h0(e, t) {
+		return e.id === t.id || e.fullSlug === t.fullSlug;
+	}
+	function Ni(e, t) {
+		return t.some((n) => h0(e, n));
+	}
+	function m0(e) {
+		return e.popupHidden
+			? []
+			: e.hiddenPopupSurveys.length === 0
+				? e.popupSurveys
+				: e.popupSurveys.filter((t) => !Ni(t, e.hiddenPopupSurveys));
+	}
+	function xu(e) {
+		return e.popupCapture
+			? e.popupHidden
+				? !0
+				: e.activePopupSurvey
+					? Ni(e.activePopupSurvey, e.hiddenPopupSurveys)
+					: !1
+			: !1;
+	}
+	function g0(e, t) {
+		return tn(t) ? [] : e.filter((n) => en(t, n) === !1);
+	}
+	function Cu(e, t, n) {
+		return n === "replace" ? t : { ...e, ...t };
+	}
+	const y0 = Ln({
+		actors: {
+			loadSurveys: n0,
+			popupCoordinator: c0,
+			surveySessionInitializer: u0,
+			captureMachine: vu,
+		},
+		guards: {
+			activePopupBlockedOnReload: ({ context: e, event: t }) => {
+				if (t.type !== "reload" || !e.popupCapture) return !1;
+				if (xu(e)) return !0;
+				const n = e.popupCapture.getSnapshot().context.survey;
+				return !ku(n, t.url);
+			},
+			activePopupAllowedOnReload: ({ context: e, event: t }) => {
+				if (t.type !== "reload" || !e.popupCapture || xu(e)) return !1;
+				const n = e.popupCapture.getSnapshot().context.survey;
+				return ku(n, t.url);
+			},
+			hideTargetsPopup: ({ context: e, event: t }) =>
+				t.type !== "hideSurveys" ? !1 : en(t, Gr(e)),
+			showTargetsPopup: ({ context: e, event: t }) =>
+				t.type !== "showSurveys"
+					? !1
+					: tn(t) || e.hiddenPopupSurveys.some((n) => en(t, n))
+						? !0
+						: en(t, Gr(e)),
+			noActivePopupCapture: ({ context: e }) => !e.popupCapture,
+			removeSurveyTargetsActiveOrPendingPopup: ({ context: e, event: t }) => {
+				if (t.type !== "removeSurvey" || !t.slug) return !1;
+				const n = Gr(e);
+				return (n == null ? void 0 : n.fullSlug) === t.slug;
+			},
+			removeSurveyTargetsKnownPopup: ({ context: e, event: t }) => {
+				if (t.type !== "removeSurvey" || !t.slug) return !1;
+				const n = e.surveys.find((r) => r.fullSlug === t.slug);
+				return (n == null ? void 0 : n.renderType) === "Popup";
+			},
+		},
+		actions: {
+			writeCookieState: ({ context: e }) => {
+				e.consent && p0(e.cookieStorage, e.state);
+			},
+			initializeContext: T(({ context: e }) => ({ visitorId: e.state._id })),
+			readCookieState: T(({ context: e }) => {
+				const t = Su(e.cookieStorage, {
+						apiHost: e.apiHost,
+						org: e.org,
+						url: e.url,
+					}),
+					n = t._id;
+				return { state: t, visitorId: n };
+			}),
+			separateSurveysByRenderType: T(({ context: e }) => {
+				const t = e.surveys.filter((o) => o.renderType === "Popup"),
+					n = e.surveys.filter((o) => o.renderType === "Inline"),
+					r = e.surveys.filter((o) => o.renderType === "Headless");
+				return { popupSurveys: t, inlineSurveys: n, headlessSurveys: r };
+			}),
+			detectAndSetLanguage: T(({ context: e }) => {
+				const t = f0(e);
+				return { state: bt.parse({ ...e.state, _l: t }) };
+			}),
+			spawnPopupCoordinator: T(({ context: e, spawn: t, self: n }) => {
+				const r = m0(e);
+				if (r.length === 0) return {};
+				if (e.popupCoordinator) return {};
+				const o = t("popupCoordinator", {
+					id: "popup-coordinator",
+					input: {
+						surveys: r,
+						url: e.url,
+						org: e.org,
+						apiHost: e.apiHost,
+						visitorId: e.visitorId,
+						cookieStorage: e.cookieStorage,
+						cookieState: e.state,
+						traits: e.traits,
+						language: e.state._l,
+						locale: Zr(),
+						testMode: e.testMode,
+						surveyOverrides: e.surveyOverrides,
+						selector: e.selector,
+						requestedSurvey: e.requestedSurvey,
+						consent: e.consent,
+						organisation: e.organisation,
+					},
+					systemId: "popup-coordinator",
+				});
+				return (
+					o.on("*", (i) => {
+						n.send(i);
+					}),
+					{ popupCoordinator: o }
+				);
+			}),
+			spawnInlineInitializer: T(
+				({ context: e, event: t, spawn: n, self: r }) => {
+					if (t.type !== "surveyMounted") return {};
+					if (!e.inlineSurveys.some((a) => a.fullSlug === t.slug)) return {};
+					const i = `inline-${t.slug}-${t.instanceId}`;
+					if (e.surveySessionInitializers[i]) return {};
+					const s = n("surveySessionInitializer", {
+						id: i,
+						input: {
+							kind: "inline",
+							slug: t.slug,
+							org: e.org,
+							apiHost: e.apiHost,
+							visitorId: e.visitorId,
+							cookieStorage: e.cookieStorage,
+							traits: e.traits,
+							url: e.url,
+							testMode: e.testMode,
+						},
+						systemId: i,
+					});
+					return (
+						s.on("*", (a) => {
+							r.send(a);
+						}),
+						{
+							inlineFailures: Object.fromEntries(
+								Object.entries(e.inlineFailures).filter(([a]) => a !== t.slug),
+							),
+							surveySessionInitializers: {
+								...e.surveySessionInitializers,
+								[i]: s,
+							},
+						}
+					);
+				},
+			),
+			spawnHeadlessInitializer: T(
+				({ context: e, event: t, spawn: n, self: r }) => {
+					if (t.type !== "headlessSessionRequested") return {};
+					if (
+						!e.headlessSurveys.some((a) => a.fullSlug === t.slug) ||
+						e.headlessCaptures[t.slug]
+					)
+						return {};
+					const i = `headless-${t.slug}`;
+					if (e.surveySessionInitializers[i]) return {};
+					const s = n("surveySessionInitializer", {
+						id: i,
+						input: {
+							kind: "headless",
+							slug: t.slug,
+							org: e.org,
+							apiHost: e.apiHost,
+							visitorId: e.visitorId,
+							cookieStorage: e.cookieStorage,
+							traits: e.traits,
+							url: e.url,
+							testMode: e.testMode,
+						},
+						systemId: i,
+					});
+					return (
+						s.on("*", (a) => {
+							r.send(a);
+						}),
+						{
+							headlessFailures: Object.fromEntries(
+								Object.entries(e.headlessFailures).filter(
+									([a]) => a !== t.slug,
+								),
+							),
+							surveySessionInitializers: {
+								...e.surveySessionInitializers,
+								[i]: s,
+							},
+						}
+					);
+				},
+			),
+			clearHeadlessInitializer: T(({ context: e, event: t }) => {
+				if (t.type !== "readyToCapture" || t.survey.renderType !== "Headless")
+					return {};
+				const n = `headless-${t.slug}`;
+				return {
+					surveySessionInitializers: Object.fromEntries(
+						Object.entries(e.surveySessionInitializers).filter(
+							([r]) => r !== n,
+						),
+					),
+				};
+			}),
+			storeInlineFailure: T(({ context: e, event: t }) =>
+				t.type !== "inlineInitializationFailed"
+					? {}
+					: {
+							inlineFailures: {
+								...e.inlineFailures,
+								[t.slug]: {
+									slug: t.slug,
+									code: t.code,
+									message: t.message,
+									cause: t.cause,
+								},
+							},
+						},
+			),
+			storeHeadlessFailure: T(({ context: e, event: t }) =>
+				t.type !== "headlessInitializationFailed"
+					? {}
+					: {
+							headlessFailures: {
+								...e.headlessFailures,
+								[t.slug]: {
+									slug: t.slug,
+									code: t.code,
+									message: t.message,
+									cause: t.cause,
+								},
+							},
+							surveySessionInitializers: Object.fromEntries(
+								Object.entries(e.surveySessionInitializers).filter(
+									([n]) => n !== `headless-${t.slug}`,
+								),
+							),
+						},
+			),
+			saveCaptureStateToContext: T(({ context: e, event: t }) => {
+				if (t.type !== "readyToCapture") return {};
+				const { slug: n, sessionId: r } = t;
+				return {
+					state: {
+						...e.state,
+						[n]: { state: "Capture", sessionId: r, lastSync: Date.now() },
+					},
+				};
+			}),
+			spawnCaptureMachine: T(({ context: e, event: t, spawn: n, self: r }) => {
+				if (t.type !== "readyToCapture") return {};
+				const {
+						slug: o,
+						survey: i,
+						sessionId: s,
+						language: a,
+						explicitLanguage: c,
+					} = t,
+					l = `capture-${o}-${s}`,
+					d = e0(e.cookieStorage, o),
+					u = i.renderType === "Inline" || i.renderType === "Headless",
+					f = a ?? (u ? c || d0(i) : e.state._l),
+					p = n("captureMachine", {
+						id: l,
+						input: {
+							url: e.url,
+							survey: i,
+							state: d,
+							sessionId: s,
+							visitorId: e.visitorId,
+							parentRef: r,
+							cookieStorage: e.cookieStorage,
+							cookieConsent: e.consent,
+							apiHost: e.apiHost,
+							language: f,
+							traits: e.traits,
+							device: Nn(),
+							locale: Zr(),
+						},
+						systemId: l,
+					});
+				p.subscribe({
+					complete() {
+						const v = p.getSnapshot().output;
+						(v == null ? void 0 : v.type) === "rejected"
+							? r.send({ type: "surveyRejected", slug: o, captureId: l })
+							: (v == null ? void 0 : v.type) === "completed" &&
+								r.send({ type: "surveyDone", slug: o, captureId: l });
+					},
+				}),
+					p.on("cardSaved", (b) => {
+						r.send(b);
+					});
+				const m = i.renderType === "Inline",
+					g = i.renderType === "Headless";
+				return {
+					popupCapture: m || g ? e.popupCapture : p,
+					activePopupSurvey: m || g ? e.activePopupSurvey : i,
+					inlineCaptures: m
+						? { ...e.inlineCaptures, [l]: p }
+						: e.inlineCaptures,
+					headlessCaptures: g
+						? { ...e.headlessCaptures, [o]: p }
+						: e.headlessCaptures,
+				};
+			}),
+			updateCookieState: T(({ context: e, event: t }) => {
+				var s;
+				if (t.type !== "surveyDone" && t.type !== "surveyRejected") return {};
+				const n = t.slug;
+				if (e.inlineSurveys.some((a) => a.fullSlug === n)) return {};
+				const o = (s = e.state[n]) == null ? void 0 : s.sessionId;
+				return (
+					o ||
+						console.warn(
+							`[Skyra V2] Survey ${t.type} event received without sessionId in state for ${n}. This indicates a bug in the coordinator flow.`,
+						),
+					{
+						state: {
+							...e.state,
+							[n]: {
+								state: t.type === "surveyDone" ? "Completed" : "Rejected",
+								lastSync: Date.now(),
+								...(o && { sessionId: o }),
+							},
+						},
+					}
+				);
+			}),
+			updateCookieStateSelected: T(({ context: e, event: t }) =>
+				t.type !== "surveySelected"
+					? {}
+					: {
+							state: {
+								...e.state,
+								[t.slug]: { state: "Selected", lastSync: Date.now() },
+							},
+						},
+			),
+			updateCookieStateNotSelected: T(({ context: e, event: t }) => {
+				if (t.type !== "surveyNotSelected") return {};
+				const n = t.slug;
+				return {
+					state: {
+						...e.state,
+						[n]: { state: "NotSelected", lastSync: Date.now() },
+					},
+				};
+			}),
+			removeCompletedCaptureMachine: T(({ context: e, event: t }) => {
+				var a;
+				if (t.type !== "surveyDone" && t.type !== "surveyRejected") return {};
+				const n = t.captureId,
+					r = t.slug;
+				let o = e.popupCapture;
+				const i = { ...e.inlineCaptures },
+					s = { ...e.headlessCaptures };
+				if (n) {
+					((a = e.popupCapture) == null ? void 0 : a.id) === n && (o = null),
+						n in i && delete i[n];
+					for (const [c, l] of Object.entries(s)) l.id === n && delete s[c];
+				} else {
+					for (const [c, l] of Object.entries(e.inlineCaptures))
+						c.startsWith(`capture-${r}-`) && delete i[c];
+					e.popupCapture &&
+						e.popupCapture.id.startsWith(`capture-${r}-`) &&
+						(o = null),
+						delete s[r];
+				}
+				return {
+					popupCapture: o,
+					activePopupSurvey: o ? e.activePopupSurvey : null,
+					inlineCaptures: i,
+					headlessCaptures: s,
+				};
+			}),
+			updateUrl: T(({ event: e }) =>
+				e.type !== "reload" ? {} : { url: e.url },
+			),
+			updateActivePopupUrlOnReload: ({ context: e, event: t }) => {
+				var n;
+				t.type === "reload" &&
+					((n = e.popupCapture) == null ||
+						n.send({ type: "setUrl", url: t.url }));
+			},
+			removeBlockedActivePopupOnReload: T(({ context: e, event: t }) => {
+				if (t.type !== "reload") return {};
+				if (!e.popupCapture) return {};
+				const r = e.popupCapture.getSnapshot().context.survey;
+				if (typeof document < "u") {
+					const o = document.querySelector(
+						`skyra-survey[slug="${r.fullSlug}"]`,
+					);
+					o == null || o.remove();
+				}
+				return { popupCapture: null, activePopupSurvey: null };
+			}),
+			updateConsent: T(({ event: e }) =>
+				e.type !== "setConsent" ? {} : { consent: e.value },
+			),
+			updateTraits: T(({ context: e, event: t }) =>
+				t.type !== "setTraits"
+					? {}
+					: { traits: Cu(e.traits, t.traits, t.mode) },
+			),
+			clearPopupCoordinator: T(() => ({ popupCoordinator: null })),
+			hidePopupSurveys: T(({ context: e, event: t }) => {
+				var o;
+				if (t.type !== "hideSurveys") return {};
+				const n = Gr(e);
+				return (
+					(o = e.popupCapture) == null || o.send({ type: "minimize" }),
+					tn(t)
+						? { popupHidden: !0, hiddenPopupSurveys: [] }
+						: {
+								hiddenPopupSurveys:
+									n && !Ni(n, e.hiddenPopupSurveys)
+										? [...e.hiddenPopupSurveys, n]
+										: e.hiddenPopupSurveys,
+							}
+				);
+			}),
+			showPopupSurveys: T(({ context: e, event: t }) => {
+				var r;
+				if (t.type !== "showSurveys") return {};
+				const n = e.popupCapture ? e.activePopupSurvey : null;
+				return (
+					n &&
+						(tn(t) || en(t, n)) &&
+						((r = e.popupCapture) == null || r.send({ type: "maximize" })),
+					{
+						popupHidden: tn(t) ? !1 : e.popupHidden,
+						hiddenPopupSurveys: g0(e.hiddenPopupSurveys, t),
+					}
+				);
+			}),
+			removePopupSurveyElement: ({ event: e }) => {
+				if (e.type !== "removeSurvey") return;
+				const t = e.slug;
+				if (t && typeof document < "u") {
+					const n = document.querySelector(`skyra-survey[slug="${t}"]`);
+					n == null || n.remove();
+				}
+			},
+			forwardConsentToChildren: ({ context: e, event: t }) => {
+				if (t.type === "setConsent") {
+					e.popupCapture &&
+						e.popupCapture.send({ type: "setConsent", value: t.value });
+					for (const n of Object.values(e.inlineCaptures))
+						n.send({ type: "setConsent", value: t.value });
+					for (const n of Object.values(e.headlessCaptures))
+						n.send({ type: "setConsent", value: t.value });
+					e.popupCoordinator &&
+						e.popupCoordinator.send({ type: "setConsent", value: t.value });
+				}
+			},
+			forwardTraitsToChildren: ({ context: e, event: t }) => {
+				var n, r;
+				if (t.type === "setTraits") {
+					(n = e.popupCoordinator) == null || n.send(t),
+						(r = e.popupCapture) == null || r.send(t);
+					for (const o of Object.values(e.inlineCaptures)) o.send(t);
+					for (const o of Object.values(e.headlessCaptures)) o.send(t);
+					for (const o of Object.values(e.surveySessionInitializers)) o.send(t);
+				}
+			},
+			syncTraitsForActiveCaptures: ({ context: e, event: t }) => {
+				if (t.type !== "setTraits") return;
+				const n = Cu(e.traits, t.traits, t.mode);
+				if (!du(n)) return;
+				const r = [
+					...(e.popupCapture ? [e.popupCapture] : []),
+					...Object.values(e.inlineCaptures),
+					...Object.values(e.headlessCaptures),
+				];
+				for (const o of r) {
+					const i = o.getSnapshot().context;
+					Yt(
+						{
+							event: "SessionTraits",
+							survey: i.survey.id,
+							visitor: i.visitorId,
+							session: i.sessionId,
+							traits: n,
+						},
+						{ apiHost: e.apiHost },
+					).catch((s) => {
+						console.warn("[Skyra] Failed to sync updated traits", s);
+					});
+				}
+			},
+			updateTestMode: T(({ event: e }) =>
+				e.type !== "setTestMode" ? {} : { testMode: e.value },
+			),
+			emitReady: ge({ type: "ready" }),
+			emitSurveyStarted: ge(({ event: e }) =>
+				e.type !== "readyToCapture"
+					? { type: "ready" }
+					: { type: "surveyStarted", slug: e.slug },
+			),
+			emitSurveyCompleted: ge(({ event: e }) =>
+				e.type !== "surveyDone"
+					? { type: "ready" }
+					: { type: "surveyCompleted", slug: e.slug },
+			),
+			emitSurveyRejected: ge(({ event: e }) => {
+				if (e.type !== "surveyRejected")
+					throw new Error("Unexpected event type");
+				return { type: "surveyRejected", slug: e.slug };
+			}),
+			emitSurveyNotSelected: ge(({ event: e }) => {
+				if (e.type !== "surveyNotSelected")
+					throw new Error("Unexpected event type");
+				return { type: "surveyNotSelected", slug: e.slug };
+			}),
+		},
+	}).createMachine({
+		id: "controllerV2",
+		context: ({ input: e }) => ({
+			url: e.url,
+			org: e.org,
+			cookieStorage: e.cookieStorage,
+			consent: e.consent ?? e.cookieConsent ?? !0,
+			apiHost: e.apiHost,
+			testMode: e.testMode ?? !1,
+			traits: e.traits,
+			state:
+				e.state ||
+				Su(e.cookieStorage, { apiHost: e.apiHost, org: e.org, url: e.url }),
+			visitorId: "",
+			surveys: [],
+			popupSurveys: [],
+			inlineSurveys: [],
+			headlessSurveys: [],
+			requestedSurvey: void 0,
+			surveyOverrides: e.surveyOverrides,
+			selector: e.cssSelector || "#skyra-widget",
+			ready: !1,
+			popupCoordinator: null,
+			surveySessionInitializers: {},
+			inlineFailures: {},
+			headlessFailures: {},
+			popupCapture: null,
+			activePopupSurvey: null,
+			inlineCaptures: {},
+			headlessCaptures: {},
+			popupHidden: !1,
+			hiddenPopupSurveys: [],
+		}),
+		initial: "Startup",
+		on: {
+			reload: [
+				{
+					guard: "activePopupBlockedOnReload",
+					actions: [
+						"updateUrl",
+						"readCookieState",
+						mt(({ context: e }) => {
+							var t;
+							return ((t = e.popupCapture) == null ? void 0 : t.id) ?? "";
+						}),
+						"removeBlockedActivePopupOnReload",
+						mt("popup-coordinator"),
+						"clearPopupCoordinator",
+					],
+					target: ".Startup",
+				},
+				{
+					guard: "activePopupAllowedOnReload",
+					actions: [
+						"updateUrl",
+						"readCookieState",
+						"updateActivePopupUrlOnReload",
+					],
+				},
+				{
+					actions: [
+						"updateUrl",
+						"readCookieState",
+						"updateActivePopupUrlOnReload",
+						mt("popup-coordinator"),
+						"clearPopupCoordinator",
+					],
+					target: ".Startup",
+				},
+			],
+			setConsent: { actions: ["updateConsent", "forwardConsentToChildren"] },
+			setTraits: {
+				actions: [
+					"syncTraitsForActiveCaptures",
+					"updateTraits",
+					"forwardTraitsToChildren",
+				],
+			},
+		},
+		states: {
+			Startup: {
+				initial: "Init",
+				states: {
+					Init: { entry: ["initializeContext"], always: "LoadSurveys" },
+					LoadSurveys: {
+						invoke: {
+							src: "loadSurveys",
+							input: ({ context: e }) => ({
+								orgSlug: e.org,
+								apiHost: e.apiHost,
+								testMode: e.testMode,
+							}),
+							onDone: {
+								target: "FilterSurveys",
+								actions: T({
+									surveys: ({ event: e }) => e.output.surveys,
+									organisation: ({ event: e }) => e.output.organisation,
+								}),
+							},
+							onError: {
+								target: "#controllerV2.Failed",
+								actions: T({ error: ({ event: e }) => e.error }),
+							},
+						},
+					},
+					FilterSurveys: {
+						entry: ["separateSurveysByRenderType"],
+						always: "#controllerV2.Ready",
+					},
+				},
+			},
+			Ready: {
+				entry: ["detectAndSetLanguage", "spawnPopupCoordinator", "emitReady"],
+				on: {
+					surveyMounted: { actions: ["spawnInlineInitializer"] },
+					headlessSessionRequested: { actions: ["spawnHeadlessInitializer"] },
+					inlineInitializationFailed: { actions: ["storeInlineFailure"] },
+					headlessInitializationFailed: { actions: ["storeHeadlessFailure"] },
+					readyToCapture: {
+						actions: [
+							"saveCaptureStateToContext",
+							"writeCookieState",
+							"spawnCaptureMachine",
+							"clearHeadlessInitializer",
+							"emitSurveyStarted",
+						],
+					},
+					startSurvey: {
+						actions: ru("popup-coordinator", ({ event: e }) => ({
+							type: "startSurvey",
+							slug: e.slug,
+						})),
+					},
+					surveyDone: {
+						actions: [
+							"updateCookieState",
+							"writeCookieState",
+							"emitSurveyCompleted",
+							"removeCompletedCaptureMachine",
+						],
+					},
+					surveyRejected: {
+						actions: [
+							"updateCookieState",
+							"writeCookieState",
+							"emitSurveyRejected",
+							"removeCompletedCaptureMachine",
+						],
+					},
+					surveySelected: {
+						actions: ["updateCookieStateSelected", "writeCookieState"],
+					},
+					surveyNotSelected: {
+						actions: [
+							"updateCookieStateNotSelected",
+							"writeCookieState",
+							"emitSurveyNotSelected",
+						],
+					},
+					setLanguage: {
+						actions: [
+							T({
+								state: ({ event: e, context: t }) =>
+									bt.parse({ ...t.state, _l: e.language }),
+							}),
+							"writeCookieState",
+						],
+					},
+					hideSurveys: {
+						guard: "hideTargetsPopup",
+						actions: [
+							"hidePopupSurveys",
+							mt("popup-coordinator"),
+							"clearPopupCoordinator",
+						],
+					},
+					showSurveys: [
+						{
+							guard: ({ context: e, event: t }) =>
+								t.type === "showSurveys" &&
+								!e.popupCapture &&
+								(tn(t) || e.hiddenPopupSurveys.some((n) => en(t, n))),
+							actions: "showPopupSurveys",
+							target: "Startup",
+						},
+						{ guard: "showTargetsPopup", actions: "showPopupSurveys" },
+					],
+					removeSurvey: [
+						{
+							guard: "removeSurveyTargetsActiveOrPendingPopup",
+							actions: [
+								"removePopupSurveyElement",
+								mt("popup-coordinator"),
+								"clearPopupCoordinator",
+							],
+						},
+						{
+							guard: "removeSurveyTargetsKnownPopup",
+							actions: "removePopupSurveyElement",
+						},
+					],
+					setTestMode: { actions: ["updateTestMode"], target: "Startup" },
+				},
+			},
+			Failed: { type: "final" },
+		},
+	});
+	class v0 {
+		constructor(t, n, r) {
+			this.eventHandlers = new Map();
+			const o = {
+				org: t.org,
+				url: t.url,
+				cookieStorage: t.cookieStorage,
+				apiHost: t.apiHost,
+				traits: t.traits,
+				testMode: t.testMode,
+				surveyOverrides: t.surveyOverrides,
+				cssSelector: t.selector || t.cssSelector || "body",
+				cookieConsent: t.consent ?? t.cookieConsent ?? !0,
+			};
+			(this.actor = Vt(r || y0, { input: o, inspect: n })),
+				this.actor.on("*", (i) => {
+					const s = this.eventHandlers.get(i.type);
+					s && s.forEach((c) => c(i));
+					const a = this.eventHandlers.get("*");
+					a && a.forEach((c) => c(i));
+				});
+		}
+		start() {
+			this.actor.start();
+		}
+		stop() {
+			this.actor.stop();
+		}
+		send(t) {
+			this.actor.send(t);
+		}
+		getSnapshot() {
+			const t = this.actor.getSnapshot();
+			return {
+				value: t.value,
+				context: {
+					...t.context,
+					selector: t.context.selector || "body",
+					consent: t.context.consent ?? !0,
+					url: t.context.url,
+					orgSlug: t.context.org,
+					testMode: t.context.testMode,
+					traits: t.context.traits,
+				},
+				status: t.status,
+			};
+		}
+		on(t, n) {
+			var r;
+			this.eventHandlers.has(t) || this.eventHandlers.set(t, new Set()),
+				(r = this.eventHandlers.get(t)) == null || r.add(n);
+		}
+		off(t, n) {
+			const r = this.eventHandlers.get(t);
+			r && r.delete(n);
+		}
+		findCaptureBySlug(t) {
+			const n = this.actor.getSnapshot();
+			if (
+				n.context.popupCapture &&
+				n.context.popupCapture.id.startsWith(`capture-${t}-`)
+			)
+				return n.context.popupCapture;
+			for (const [r, o] of Object.entries(n.context.inlineCaptures))
+				if (r.startsWith(`capture-${t}-`)) return o;
+			if (n.context.headlessCaptures[t]) return n.context.headlessCaptures[t];
+		}
+		getActor() {
+			return this.actor;
+		}
+		getVersion() {
+			return "v2";
+		}
+		getDebugInfo(t, n) {
+			var l;
+			const r = this.actor.getSnapshot(),
+				o = r.context,
+				i = r.value,
+				s = typeof i == "string" ? i : JSON.stringify(i),
+				a = [
+					...(o.popupCapture ? [o.popupCapture] : []),
+					...Object.values(o.inlineCaptures),
+					...Object.values(o.headlessCaptures),
+				],
+				c = o.popupCoordinator
+					? o.popupCoordinator.getSnapshot().context.eligibleSurveys
+					: [];
+			return {
+				config: {
+					org: o.org,
+					cookieConsent: o.consent ?? !0,
+					testMode: o.testMode,
+					cssSelector: o.selector || "body",
+					traits: o.traits,
+				},
+				runtime: {
+					currentUrl: o.url,
+					visitorId: o.visitorId,
+					language: (l = o.state) == null ? void 0 : l._l,
+					currentState: s,
+					cookieSupport: !!t.getItem("skyra.state"),
+				},
+				details: o.surveys
+					.filter((d) => !n || d.fullSlug === n)
+					.map((d) => {
+						var _, k, x, A, z, M, O, j;
+						const u = (_ = o.state) == null ? void 0 : _[d.fullSlug],
+							f = Vr({
+								traits: o.traits,
+								language: (k = o.state) == null ? void 0 : k._l,
+								locale: (x = o.state) == null ? void 0 : x._l,
+							}),
+							p = $d(d.audienceRules, f, d.audienceRuleMode),
+							m = a.find((L) => L.id.startsWith(`capture-${d.fullSlug}-`));
+						let g = null;
+						if (m) {
+							const L = m.getSnapshot();
+							g = {
+								id: m.id,
+								state:
+									typeof L.value == "string"
+										? L.value
+										: JSON.stringify(L.value),
+								status: L.status,
+								currentCard:
+									(z = (A = L.context) == null ? void 0 : A.state) == null
+										? void 0
+										: z.currentCard,
+								totalCards:
+									(j =
+										(O = (M = L.context) == null ? void 0 : M.survey) == null
+											? void 0
+											: O.cards) == null
+										? void 0
+										: j.length,
+							};
+						}
+						const b = c.some((L) => L.fullSlug === d.fullSlug),
+							v = o.inlineSurveys.some((L) => L.fullSlug === d.fullSlug);
+						return {
+							slug: d.fullSlug,
+							id: d.id,
+							name: d.name,
+							renderType: d.renderType,
+							isLive: d.isLive,
+							publishingState: d.publishingState,
+							numCards: d.numCards,
+							eligible: b || v,
+							capturePercent: d.capturePercent,
+							priorityScore: d.priorityScore,
+							reasons: p,
+							state: u
+								? {
+										state: String(u.state),
+										sessionId: u.sessionId,
+										lastSync: u.lastSync
+											? new Date(u.lastSync).toISOString()
+											: void 0,
+									}
+								: null,
+							captureMachine: g,
+						};
+					}),
+			};
+		}
+		surveyById(t) {
+			var r;
+			return (r = this.actor.getSnapshot().context.surveys) == null
+				? void 0
+				: r.find((o) => o.id === t);
+		}
+		surveyIdBySlug(t) {
+			var r, o;
+			return (o =
+				(r = this.actor.getSnapshot().context.surveys) == null
+					? void 0
+					: r.find((i) => i.fullSlug === t)) == null
+				? void 0
+				: o.id;
+		}
+	}
+	function zu(e, t) {
+		return new v0(e, t);
+	}
+	const b0 = Ln({
+		actors: {
+			captureMachine: vu.provide({
+				actions: { storeCookieState: () => {}, clearCookieState: () => {} },
+				actors: { postCardValue: $e(async () => {}) },
+			}),
+			loadSurveys: t0,
+			loadFullSurveys: Li,
+			renderSurvey: hu,
+		},
+		actions: {
+			removeSurvey: (e, t) => {
+				const n = t.slug;
+				if (!n) return !1;
+				const r = document.querySelector(`skyra-preview[slug="${n}"]`);
+				return r ? (r.remove(), !0) : !1;
+			},
+		},
+	}).createMachine({
+		context: ({ input: e }) => ({
+			url: e.url,
+			org: e.org,
+			selector: "body",
+			surveys: [],
+			fullSurveys: {},
+			cookieStorage: e.cookieStorage,
+			visitorId: je(),
+			apiHost: e.apiHost ?? "https://ingest.skyra.no",
+			ready: !1,
+			previewTarget: e.previewTarget,
+			captureMachines: [],
+		}),
+		id: "Controller machine",
+		on: {
+			setOrg: {
+				target: "#Startup",
+				actions: T({ org: ({ event: e }) => e.org }),
+			},
+			previewSurvey: [
+				{
+					target: "#PreviewSurvey",
+					actions: [
+						T({
+							previewSlug: ({ event: e }) => e.slug,
+							previewTarget: ({ event: e }) => e.target ?? void 0,
+						}),
+					],
+					guard: ({ context: e, event: t }) =>
+						!!e.surveys.find((r) => r.fullSlug === t.slug),
+				},
+				{
+					target: "#Startup",
+					actions: [
+						T({
+							previewSlug: ({ event: e }) => e.slug,
+							previewTarget: ({ event: e }) => e.target ?? void 0,
+						}),
+					],
+				},
+			],
+		},
+		initial: "Startup",
+		states: {
+			Startup: {
+				id: "Startup",
+				description: "Load all org surveys from the API",
+				invoke: {
+					src: "loadSurveys",
+					input: ({ context: e }) => ({
+						apiHost: e.apiHost,
+						orgSlug: e.org,
+						testMode: !0,
+					}),
+					onDone: [
+						{
+							target: "#PreviewSurvey",
+							actions: T({ surveys: ({ event: e }) => e.output }),
+							guard: ({ context: e }) => !!e.previewSlug,
+						},
+						{
+							target: "#Ready",
+							actions: T({ surveys: ({ event: e }) => e.output }),
+						},
+					],
+					onError: {
+						target: "#Idle",
+						actions: T({ surveys: [], error: ({ event: e }) => e.error }),
+					},
+				},
+			},
+			Ready: {
+				id: "Ready",
+				initial: "Idle",
+				on: {
+					removeSurvey: {
+						actions: {
+							type: "removeSurvey",
+							params: ({ event: e }) => ({ slug: e.slug }),
+						},
+					},
+				},
+				states: {
+					Idle: { id: "Idle" },
+					PreviewSurvey: {
+						id: "PreviewSurvey",
+						initial: "prepare",
+						states: {
+							prepare: {
+								invoke: {
+									src: "loadFullSurveys",
+									input: ({ context: e }) => {
+										const t = e.previewSlug;
+										if (!t) throw new Error("No preview slug");
+										return {
+											orgSlug: e.org,
+											slugs: [t],
+											apiHost: e.apiHost,
+											testMode: !0,
+										};
+									},
+									onError: {
+										target: "#Idle",
+										actions: ({ event: e }) => {
+											console.error(e);
+										},
+									},
+									onDone: {
+										target: "run",
+										actions: T({
+											fullSurveys: ({ event: e, context: t }) => {
+												const n = t.fullSurveys;
+												for (const r of e.output) n[r.fullSlug] = r;
+												return n;
+											},
+										}),
+									},
+								},
+							},
+							run: {
+								entry: [
+									T(({ self: e, context: t, spawn: n }) => {
+										const r = t.previewSlug;
+										if (!r) return {};
+										const o = t.fullSurveys[r];
+										if (!o) return { machine: void 0 };
+										const i = n("captureMachine", {
+											id: r,
+											input: {
+												url: t.url,
+												survey: o,
+												parentRef: e,
+												cookieStorage: t.cookieStorage,
+												cookieConsent: !0,
+												apiHost: t.apiHost,
+												visitorId: je(),
+												sessionId: je(),
+											},
+										});
+										return (
+											i.subscribe({
+												complete() {
+													const a = i.getSnapshot().output;
+													(a == null ? void 0 : a.type) === "rejected"
+														? e.send({ type: "removeSurvey", slug: i.id })
+														: (a == null ? void 0 : a.type) === "completed" &&
+															e.send({ type: "removeSurvey", slug: i.id });
+												},
+											}),
+											{ machine: i }
+										);
+									}),
+								],
+								invoke: {
+									src: "renderSurvey",
+									input: ({ context: e }) => {
+										const t = e.machine;
+										if (!t) throw new Error("Preview machine not found");
+										const n = e.surveys.find((r) => r.fullSlug === t.id);
+										if (!n)
+											throw new Error(`Survey summary not found [${t.id}]`);
+										return {
+											survey: n,
+											selector:
+												(e == null ? void 0 : e.previewTarget) ?? "body",
+											customElementName: "skyra-preview",
+											replace: !0,
+										};
+									},
+									onError: { target: "#Idle" },
+									onDone: {
+										target: "#Idle",
+										actions: [
+											ge(({ event: e }) => {
+												if (!e.output) throw new Error("No survey selected");
+												return {
+													type: "surveyStarted",
+													slug: e.output.survey.fullSlug,
+												};
+											}),
+										],
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+	});
+	function w0(e, t) {
+		return t === "classic" || t === "beta" ? t : "classic";
+	}
+	function _0(e, t, n = "classic") {
+		var o, i;
+		const r = t
+			? (i = (o = e.surveyOverrides) == null ? void 0 : o[t]) == null
+				? void 0
+				: i.rendererVariant
+			: void 0;
+		return r === "classic" || r === "beta"
+			? r
+			: e.rendererVariantExplicit
+				? e.rendererVariant
+				: n;
+	}
+	function ji(e, t) {
+		const n = { ...e, ...t },
+			r = n.org || "";
+		if (!r)
+			throw new Error(
+				'[Skyra] No organization specified. Set it via window.SKYRA_CONFIG = { org: "your-org" } or pass as parameter to start().',
+			);
+		return {
+			org: r,
+			selector: n.cssSelector || "body",
+			consent: n.cookieConsent ?? n.consent ?? !0,
+			testMode: n.testMode ?? !1,
+			rendererVariant: w0(r, n.rendererVariant),
+			rendererVariantExplicit: n.rendererVariant !== void 0,
+			traits: n.traits,
+			surveyOverrides: n.surveyOverrides,
+		};
+	}
+	function Tu(e) {
+		return e.split("/")[0];
+	}
+	const S0 = [
+		"fhs.no",
+		"folkebibl.no",
+		"fylkesbibl.no",
+		"idrett.no",
+		"museum.no",
+		"priv.no",
+		"vgs.no",
+		"dep.no",
+		"herad.no",
+		"kommune.no",
+		"mil.no",
+		"stat.no",
+		"aa.no",
+		"ah.no",
+		"bu.no",
+		"fm.no",
+		"hl.no",
+		"hm.no",
+		"jan-mayen.no",
+		"mr.no",
+		"nl.no",
+		"nt.no",
+		"of.no",
+		"ol.no",
+		"oslo.no",
+		"rl.no",
+		"sf.no",
+		"st.no",
+		"svalbard.no",
+		"tm.no",
+		"tr.no",
+		"va.no",
+		"vf.no",
+		"gs.aa.no",
+		"gs.ah.no",
+		"gs.bu.no",
+		"gs.fm.no",
+		"gs.hl.no",
+		"gs.hm.no",
+		"gs.jan-mayen.no",
+		"gs.mr.no",
+		"gs.nl.no",
+		"gs.nt.no",
+		"gs.of.no",
+		"gs.ol.no",
+		"gs.oslo.no",
+		"gs.rl.no",
+		"gs.sf.no",
+		"gs.st.no",
+		"gs.svalbard.no",
+		"gs.tm.no",
+		"gs.tr.no",
+		"gs.va.no",
+		"gs.vf.no",
+		"akrehamn.no",
+		"åkrehamn.no",
+		"algard.no",
+		"ålgård.no",
+		"arna.no",
+		"bronnoysund.no",
+		"brønnøysund.no",
+		"brumunddal.no",
+		"bryne.no",
+		"drobak.no",
+		"drøbak.no",
+		"egersund.no",
+		"fetsund.no",
+		"floro.no",
+		"florø.no",
+		"fredrikstad.no",
+		"hokksund.no",
+		"honefoss.no",
+		"hønefoss.no",
+		"jessheim.no",
+		"jorpeland.no",
+		"jørpeland.no",
+		"kirkenes.no",
+		"kopervik.no",
+		"krokstadelva.no",
+		"langevag.no",
+		"langevåg.no",
+		"leirvik.no",
+		"mjondalen.no",
+		"mjøndalen.no",
+		"mo-i-rana.no",
+		"mosjoen.no",
+		"mosjøen.no",
+		"nesoddtangen.no",
+		"orkanger.no",
+		"osoyro.no",
+		"osøyro.no",
+		"raholt.no",
+		"råholt.no",
+		"sandnessjoen.no",
+		"sandnessjøen.no",
+		"skedsmokorset.no",
+		"slattum.no",
+		"spjelkavik.no",
+		"stathelle.no",
+		"stavern.no",
+		"stjordalshalsen.no",
+		"stjørdalshalsen.no",
+		"tananger.no",
+		"tranby.no",
+		"vossevangen.no",
+	];
+	function k0(e) {
+		const t = e.split(".");
+		if (t.length === 1) return t[0];
+		if (t.length === 2) return t.join(".");
+		if (t.length > 2)
+			return S0.includes(t.slice(-2).join(".")) ||
+				["com", "net", "org", "gov", "edu", "mil", "co"].includes(t.at(-2))
+				? t.slice(-3).join(".")
+				: t.slice(-2).join(".");
+		console.error("Invalid hostname:", e);
+	}
+	class x0 {
+		constructor(t) {
+			this.api = t;
+		}
+		async init(t) {
+			var c;
+			const n = t.survey,
+				r = n.split("/");
+			if (r.length !== 2 || r.some((l) => !l))
+				throw new Error(
+					'Invalid survey slug format. Expected "org/survey-name"',
+				);
+			const o = this.api.controller;
+			if (!o)
+				throw new Error(
+					"Skyra not initialized. Call skyra.start() before using headless API.",
+				);
+			await this.waitForReady(o, 5e3);
+			const i =
+				(c = o.getSnapshot().context.surveys) == null
+					? void 0
+					: c.find((l) => l.fullSlug === n);
+			if (!i) throw new Error(`Survey "${n}" was not found`);
+			if (i.renderType !== "Headless")
+				throw new Error(`Survey "${n}" is not a headless survey`);
+			const s = o.findCaptureBySlug(n);
+			if (s) return this.wrapCaptureMachine(s);
+			o.send({ type: "headlessSessionRequested", slug: n });
+			const a = await this.waitForCaptureMachine(o, n, 5e3);
+			return this.wrapCaptureMachine(a);
+		}
+		getController(t) {
+			const n = t.survey,
+				r = this.api.controller;
+			if (!r) return null;
+			const o = r.findCaptureBySlug(n);
+			return o ? this.wrapCaptureMachine(o) : null;
+		}
+		wrapCaptureMachine(t) {
+			return {
+				getCurrentCard: () => {
+					const n = t.getSnapshot();
+					if (n.status === "done") return;
+					const r = n.context.state.currentCard;
+					return n.context.survey.cards.find((i) => i.order === r);
+				},
+				getNextCard: () => {
+					const n = t.getSnapshot(),
+						r = n.context.survey,
+						o = jn(r.cards, n.context.state, n.context.audienceContext);
+					return (
+						r.cards.find((i) => i.id === (o == null ? void 0 : o.id)) ?? null
+					);
+				},
+				postValue: (n) =>
+					new Promise((r, o) => {
+						const i = t.getSnapshot();
+						if (i.status === "done") {
+							o(new Error("Cannot submit a value after the survey has ended"));
+							return;
+						}
+						const s = i.context.state.currentCard,
+							a = i.context.survey.cards.find((l) => l.order === s);
+						if ((a == null ? void 0 : a.id) !== n.cardId) {
+							o(new Error(`Card "${n.cardId}" is not the current card`));
+							return;
+						}
+						const c = t.subscribe((l) => {
+							(l.status === "done" || l.context.state.currentCard !== s) &&
+								(c.unsubscribe(), r());
+						});
+						t.send({ type: "submit", cardId: n.cardId, value: n.value });
+					}),
+				getSnapshot: () => t.getSnapshot(),
+				goBack: () => {
+					t.getSnapshot().context.state.history.length !== 0 &&
+						t.send({ type: "goBack" });
+				},
+				reject: () => {
+					t.send({ type: "reject" });
+				},
+			};
+		}
+		waitForReady(t, n = 5e3) {
+			return new Promise((r, o) => {
+				const i = t.getSnapshot();
+				if (
+					i.value === "Ready" ||
+					(typeof i.value == "object" && "Ready" in i.value)
+				) {
+					r();
+					return;
+				}
+				const s = Date.now(),
+					a = setInterval(() => {
+						const c = t.getSnapshot();
+						if (
+							c.value === "Ready" ||
+							(typeof c.value == "object" && "Ready" in c.value)
+						) {
+							clearInterval(a), r();
+							return;
+						}
+						Date.now() - s > n &&
+							(clearInterval(a),
+							o(new Error("Timeout waiting for controller to be ready")));
+					}, 50);
+			});
+		}
+		waitForCaptureMachine(t, n, r = 5e3) {
+			return new Promise((o, i) => {
+				const s = t.findCaptureBySlug(n);
+				if (s) {
+					o(s);
+					return;
+				}
+				const a = Date.now(),
+					c = setInterval(() => {
+						var u;
+						const l =
+							(u = t.getSnapshot().context.headlessFailures) == null
+								? void 0
+								: u[n];
+						if (l) {
+							clearInterval(c), i(new Error(l.message));
+							return;
+						}
+						const d = t.findCaptureBySlug(n);
+						if (d) {
+							clearInterval(c), o(d);
+							return;
+						}
+						Date.now() - a > r &&
+							(clearInterval(c),
+							i(
+								new Error(
+									`Timeout waiting for capture machine for survey ${n}`,
+								),
+							));
+					}, 50);
+			});
+		}
+	}
+	class C0 {
+		constructor(t = {}) {
+			(this.config = {}), this.configure(t);
+		}
+		configure(t) {
+			return (this.config = { ...this.config, ...t }), this.config;
+		}
+		getItem(t) {
+			const r = decodeURIComponent(document.cookie).split(";");
+			for (const o of r) {
+				const [i, s] = o.trim().split("=");
+				if (i === t) return s;
+			}
+			return null;
+		}
+		setItem(t, n, r) {
+			const o = encodeURIComponent(t),
+				i = encodeURIComponent(n),
+				s = { ...this.config, ...r };
+			let a = `${o}=${i}`;
+			if (s.expires) {
+				const c = new Date(Date.now() + s.expires * 1e3);
+				a += `; Expires=${c.toUTCString()}`;
+			}
+			s.path && (a += `; Path=${s.path}`),
+				s.domain && (a += `; Domain=${s.domain}`),
+				We(`Cookie size: ${a.length} bytes`),
+				We(n),
+				(document.cookie = a);
+		}
+		removeItem(t, n) {
+			this.setItem(t, "", { ...n, expires: -1 });
+		}
+	}
+	function z0(e, t, n = "REDACTED") {
+		return t.reduce((r, o) => {
+			var s;
+			const i = new URL(r);
+			if (o.type === "Path") {
+				const a = i.pathname.split("/"),
+					c = o.path.split("/");
+				if (
+					c.every((d, u) =>
+						d === ":redacted" || d === ":keep" ? !0 : a[u] === d,
+					)
+				) {
+					const d = a.map((u, f) =>
+						c[f] === ":redacted" ? n : (c[f] === ":keep", u),
+					);
+					i.pathname = d.join("/");
+				}
+			} else
+				o.type === "SearchParam" &&
+					o.param &&
+					(!((s = o.options) != null && s.path) ||
+						i.pathname.startsWith(o.options.path)) &&
+					i.searchParams.has(o.param) &&
+					i.searchParams.set(o.param, n);
+			return i.toString();
+		}, e);
+	}
+	const T0 = !1;
+	let Bi;
+	const Dn = S({
+			state: N([
+				"Completed",
+				"Capture",
+				"Selected",
+				"Rejected",
+				"NotSelected",
+			]).or(ie(h(), Sn())),
+			sessionId: h().optional(),
+			lastSync: U().optional(),
+		}),
+		bt = S({ _id: h(), _l: h().optional() }).catchall(Dn.optional());
+	class I0 {
+		constructor() {
+			(this.config = {}),
+				(this.urlRedactions = []),
+				(this.explicitLanguages = new Map()),
+				(this.events = Qd()),
+				(this._debugEnabled = T0),
+				(this.injectUsed = !1);
+			const t = window.location.hostname,
+				n = t.match(/^\d+\.\d+\.\d+\.\d+$/),
+				r = window.SKYRA_CONFIG || {},
+				o = (r == null ? void 0 : r.cookieDomain) ?? k0(t);
+			We("Cookie settings:", { isIp: n, tld: o }),
+				(this.cookieStorage = new C0({
+					domain: n ? void 0 : o,
+					expires: 31536e3,
+					path: "/",
+				})),
+				"skyraStart" in window &&
+					typeof window.skyraStart == "function" &&
+					setTimeout(() => {
+						window.skyraStart();
+					}, 0),
+				(this.unstable_headless = new x0(this));
+		}
+		on(t, n) {
+			this.events.on(t, n);
+		}
+		off(t, n) {
+			this.events.off(t, n);
+		}
+		setConfig(t) {
+			this.config = t;
+		}
+		getRendererVariant(t, n = "classic") {
+			return this.normalizedConfig
+				? _0(this.normalizedConfig, t, n)
+				: "classic";
+		}
+		setTraits(t, n) {
+			const r = typeof t == "string" ? n : t;
+			if (!r) {
+				console.warn("[Skyra] setTraits() called without traits");
+				return;
+			}
+			const o = this.getAdapter("setTraits");
+			o && o.send({ type: "setTraits", traits: r, mode: "merge" });
+		}
+		hideSurveys(t) {
+			const n = this.getAdapter("hideSurveys");
+			n && n.send({ type: "hideSurveys", ...t });
+		}
+		showSurveys(t) {
+			const n = this.getAdapter("showSurveys");
+			n && n.send({ type: "showSurveys", ...t });
+		}
+		async syncTraits(t, n) {}
+		setLanguage(t) {
+			const n = this.getAdapter("setLanguage");
+			n && n.send({ type: "setLanguage", language: t });
+		}
+		getLanguage() {
+			const t = this.getAdapter("getLanguage");
+			if (t) return t.getSnapshot().context.state._l;
+		}
+		getAvailableLanguages() {
+			const t = this.getAdapter("getAvailableLanguages");
+			if (!t) return [];
+			const n = t.getSnapshot().context.surveys;
+			if (n.length === 0) return [];
+			const r = n[0],
+				o = [];
+			if ((r.language && o.push(r.language), r.languages))
+				for (const i of r.languages) o.push({ code: i.code, name: i.name });
+			return o;
+		}
+		debug(...t) {
+			this._debugEnabled && console.log(...t);
+		}
+		surveyById(t) {
+			const n = this.getAdapter("surveyById");
+			return n == null ? void 0 : n.surveyById(t);
+		}
+		surveyIdBySlug(t) {
+			const n = this.getAdapter("surveyIdBySlug");
+			return n == null ? void 0 : n.surveyIdBySlug(t);
+		}
+		get apiHost() {
+			var t;
+			return (
+				((t = this.config) == null ? void 0 : t.apiHost) ??
+				"https://ingest.skyra.no"
+			);
+		}
+		start(t = {}) {
+			if (this.injectUsed)
+				throw new Error(
+					"skyra.start() and skyra.inject() cannot be used together",
+				);
+			if (this._adapter)
+				return (
+					console.error("skyra.start() was called multiple times"),
+					this._adapter
+				);
+			const n = window.SKYRA_CONFIG || {},
+				r = ji(n, t);
+			this.normalizedConfig = r;
+			const o = window.location.href;
+			return (
+				document.querySelector(r.selector) ||
+					console.error(
+						`[Skyra] Could not find DOM element with selector "${r.selector}"`,
+					),
+				(this._adapter = zu(
+					{
+						org: r.org,
+						url: o,
+						cookieStorage: this.cookieStorage,
+						apiHost: this.apiHost,
+						traits: r.traits,
+						testMode: r.testMode,
+						surveyOverrides: r.surveyOverrides,
+						selector: r.selector,
+						consent: r.consent,
+					},
+					Bi,
+				)),
+				this._adapter.on("*", (s) => {
+					this.events.emit(s.type, s);
+				}),
+				this._adapter.start(),
+				this._adapter
+			);
+		}
+		stop() {
+			this._adapter && (this._adapter.stop(), (this._adapter = void 0)),
+				document.querySelectorAll("skyra-survey").forEach((n) => n.remove());
+		}
+		restart(t = {}) {
+			return this.stop(), this.start(t);
+		}
+		reload() {
+			const t = this.getAdapter("reload");
+			t && t.send({ type: "reload", url: window.location.href });
+		}
+		setConsent(t) {
+			const n = this.getAdapter("setConsent");
+			n && n.send({ type: "setConsent", value: t });
+		}
+		getAdapter(t) {
+			if (!this._adapter) {
+				console.warn(
+					`[Skyra] ${t}() called before skyra.start(). Controller not initialized.`,
+				);
+				return;
+			}
+			return this._adapter;
+		}
+		get controller() {
+			return this._adapter ?? null;
+		}
+		get previewController() {
+			return this.previewMachine ?? null;
+		}
+		preview({ slug: t, target: n }) {
+			var o;
+			console.log("preview", t, this._adapter, this.config);
+			const r = Tu(t);
+			if (
+				((this.normalizedConfig = ji(window.SKYRA_CONFIG || {}, { org: r })),
+				this.previewMachine)
+			)
+				this.previewMachine.send({ type: "setOrg", org: r });
+			else {
+				const i = window.location.href;
+				(this.previewMachine = Vt(b0, {
+					inspect: Bi,
+					input: {
+						url: i,
+						org: r,
+						apiHost: this.apiHost,
+						cookieStorage: this.cookieStorage,
+						previewTarget: n,
+					},
+				})),
+					this.previewMachine.start();
+			}
+			(o = this.previewMachine) == null ||
+				o.send({ type: "previewSurvey", slug: t, target: n });
+		}
+		inject({
+			slug: t,
+			traits: n,
+			selector: r = "body",
+			test: o,
+			cookieConsent: i = !0,
+		}) {
+			if (
+				(console.warn(
+					"[Skyra] inject() is deprecated. Please use window.SKYRA_CONFIG for automatic initialization. See: https://docs.skyra.ai/migration/autostart",
+				),
+				o)
+			) {
+				console.error(
+					"[Skyra] inject() does not support test mode. Use window.SKYRA_CONFIG with testMode instead.",
+				);
+				return;
+			}
+			if (this._adapter) {
+				console.error(
+					"skyra.start() and skyra.inject() cannot be used together",
+				);
+				return;
+			}
+			this.injectUsed = !0;
+			const s = Tu(t),
+				a = window.location.href,
+				c = window.SKYRA_CONFIG || {};
+			this.normalizedConfig = ji(c, { org: s });
+			const l = zu(
+				{
+					org: s,
+					url: a,
+					cookieStorage: this.cookieStorage,
+					apiHost: this.apiHost,
+					traits: n,
+					testMode: !1,
+					selector: r,
+					consent: i,
+				},
+				Bi,
+			);
+			(this._adapter = l),
+				l.start(),
+				l.on("ready", () => {
+					l.send({ type: "startSurvey", slug: t });
+				});
+		}
+		redactPathname(t) {
+			this.urlRedactions.push({ type: "Path", path: t });
+		}
+		redactSearchParam(t, n) {
+			this.urlRedactions.push({ type: "SearchParam", param: t, options: n });
+		}
+		setExplicitLanguage(t, n) {
+			this.explicitLanguages.set(t, n);
+		}
+		getExplicitLanguage(t) {
+			return this.explicitLanguages.get(t);
+		}
+		getUrl() {
+			return z0(window.location.href, this.urlRedactions);
+		}
+		debugInfo(t) {
+			var s;
+			const n = (t == null ? void 0 : t.format) ?? "console",
+				r = t == null ? void 0 : t.survey,
+				o = this.getAdapter("debugInfo");
+			if (!o) return null;
+			const i = o.getDebugInfo(this.cookieStorage, r);
+			if (n === "json") return i;
+			console.group("🔍 Skyra Debug Info"),
+				console.group("⚙ Configuration"),
+				console.table(i.config),
+				console.groupEnd(),
+				console.group("🏃 Runtime"),
+				console.table(i.runtime),
+				console.groupEnd(),
+				console.group("📋 Survey Details");
+			for (const a of i.details) {
+				const c = a.eligible ? "✅" : "❌",
+					d =
+						(((s = a.issues) == null ? void 0 : s.length) ?? 0) > 0 ? "!" : "";
+				(a.eligible ? console.group : console.groupCollapsed)(
+					`${c} ${d} ${a.slug} (${a.renderType})`,
+				);
+				const f = {
+					id: a.id,
+					name: a.name,
+					isLive: a.isLive,
+					publishingState: a.publishingState,
+					numCards: a.numCards,
+					eligible: a.eligible,
+					capturePercent: `${a.capturePercent}%`,
+					priorityScore: a.priorityScore,
+				};
+				a.renderType === "Inline" && (f.domElement = a.domElement),
+					console.table(f),
+					a.state && console.log("State:", a.state),
+					a.reasons &&
+						(console.log("❌ Not eligible because:"),
+						a.reasons.forEach((p) => console.log(`  • ${p}`))),
+					a.issues &&
+						(console.log("! Issues:"),
+						a.issues.forEach((p) => console.log(`  • ${p}`))),
+					console.groupEnd();
+			}
+			return console.groupEnd(), console.groupEnd(), i;
+		}
+		async fetchSurvey(t) {
+			const r = await (await fetch(`${this.apiHost}/survey/${t}`)).json();
+			return Wr.parse(r.survey);
+		}
+		async unstable_sessionInit(t) {
+			var p;
+			const n = t.survey,
+				[r, o] = n.split("/");
+			if (!r || !o)
+				throw new Error(
+					'Invalid survey slug format. Expected "org/survey-name"',
+				);
+			const i = `skyra.${n.replace(/\//g, ".")}`,
+				s = this.cookieStorage.getItem(i);
+			if (s)
+				try {
+					const m = Dn.parse(JSON.parse(s));
+					if (m.sessionId) {
+						const g = await this.fetchSurvey(n);
+						return { sessionId: m.sessionId, surveyId: g.id };
+					}
+				} catch {}
+			const a = this.cookieStorage.getItem("skyra.state");
+			let c;
+			if (a)
+				try {
+					c = bt.parse(JSON.parse(a))._id || je();
+				} catch {
+					c = je();
+				}
+			else
+				(c = je()),
+					this.cookieStorage.setItem("skyra.state", JSON.stringify({ _id: c }));
+			const l = await this.fetchSurvey(n),
+				d = je();
+			let u = "unknown";
+			"connection" in navigator &&
+				(u =
+					(p = navigator == null ? void 0 : navigator.connection) == null
+						? void 0
+						: p.effectiveType),
+				await Yt(
+					{
+						event: "SessionInit",
+						survey: l.id,
+						visitor: c,
+						session: d,
+						ua: navigator.userAgent,
+						screenSize: [window.screen.width, window.screen.height],
+						pixelRatio: window.devicePixelRatio,
+						connection: u,
+						languageCode: this.getLanguage(),
+					},
+					{ apiHost: this.apiHost },
+				);
+			const f = Dn.parse({
+				sessionId: d,
+				state: "Capture",
+				lastSync: Date.now(),
+			});
+			return (
+				this.cookieStorage.setItem(i, JSON.stringify(f)),
+				{ sessionId: d, surveyId: l.id }
+			);
+		}
+		async unstable_postCardValue(t) {
+			const { survey: n, card: r, value: o, complete: i } = t,
+				[s, a] = n.split("/");
+			if (!s || !a)
+				throw new Error(
+					'Invalid survey slug format. Expected "org/survey-name"',
+				);
+			const c = `skyra.${n.replace(/\//g, ".")}`,
+				l = this.cookieStorage.getItem(c);
+			if (!l)
+				throw new Error("No session found. Call unstable_sessionInit first.");
+			let d;
+			try {
+				if (((d = Dn.parse(JSON.parse(l)).sessionId ?? ""), !d))
+					throw new Error("Invalid session state");
+			} catch {
+				throw new Error(
+					"Invalid session state. Call unstable_sessionInit first.",
+				);
+			}
+			const u = this.cookieStorage.getItem("skyra.state");
+			if (!u) throw new Error("No visitor ID found");
+			const { _id: f } = bt.parse(JSON.parse(u)),
+				p = await this.fetchSurvey(n),
+				m = p.cards.find((v) => v.id === r);
+			if (!m) throw new Error(`Card ${r} not found in survey ${n}`);
+			const { type: g, order: b } = m;
+			if (!g) throw new Error(`Card ${r} is missing type information`);
+			try {
+				const v = {
+						event: "CardValue",
+						survey: p.id,
+						visitor: f,
+						session: d,
+						card: r,
+						type: g,
+						url: this.getUrl(),
+						value: o,
+						languageCode: this.getLanguage(),
+						cardOrder: b,
+					},
+					_ = oi.parse(v);
+				await Yt(_, { apiHost: this.apiHost });
+				const k = Dn.parse({
+					sessionId: d,
+					state: "Capture",
+					lastSync: Date.now(),
+				});
+				this.cookieStorage.setItem(c, JSON.stringify(k)),
+					i && this.cookieStorage.removeItem(c);
+			} catch (v) {
+				if (v instanceof vg) {
+					const _ = v.issues.map((k) => k.message).join(", ");
+					throw new Error(`Invalid card value: ${_}`);
+				}
+				throw v;
+			}
+		}
+	}
+	function Iu(e, t, n, r) {
+		if (!e) return;
+		const o = new CustomEvent(t, { detail: n, bubbles: !0, composed: !0 });
+		e.dispatchEvent(o), r == null || r(o);
+	}
+	function $0(e, t, n, r) {
+		return e.ready || e.terminal
+			? !1
+			: (Iu(t, "skyra-ready", n, r), (e.ready = !0), !0);
+	}
+	function Fn(e, t, n, r, o) {
+		return e.ready || e.terminal ? !1 : (Iu(t, n, r, o), (e.terminal = !0), !0);
+	}
+	function E0(e, t, n) {
+		if (!t)
+			return {
+				slug: e,
+				code: "survey_not_found",
+				message: `Inline survey "${e}" was not found.`,
+			};
+		if (t.renderType !== "Inline")
+			return {
+				slug: e,
+				code: "not_inline",
+				message: `Survey "${e}" is not configured as an inline survey.`,
+			};
+		if (!n)
+			return {
+				slug: e,
+				code: "not_eligible",
+				message: `Inline survey "${e}" is not eligible on this page.`,
+			};
+	}
+	function R0(e, t) {
+		return t.code === "not_eligible"
+			? {
+					name: "skyra-unavailable",
+					detail: { slug: e, code: "not_eligible", message: t.message },
+				}
+			: {
+					name: "skyra-error",
+					detail: { slug: e, code: t.code, message: t.message, cause: t.cause },
+				};
+	}
+	function M0(e) {
+		return {
+			slug: e,
+			code: "controller_unavailable",
+			message:
+				"Skyra controller was not available before the inline survey timed out.",
+		};
+	}
+	function P0(e) {
+		return {
+			slug: e,
+			code: "unsupported_controller_version",
+			message: "Inline lifecycle events require the Skyra V2 controller.",
+		};
+	}
+	function nn(e) {
+		const t = e == null ? void 0 : e.getRootNode();
+		return typeof ShadowRoot < "u" && t instanceof ShadowRoot ? t.host : null;
+	}
+	function De({
+		card: e,
+		children: t,
+		chrome: n,
+		showHeader: r = !0,
+		inline: o = !1,
+	}) {
+		const i = Y(null),
+			s = Y(null);
+		return (
+			re(() => {
+				var u;
+				(u = i.current) == null ||
+					u.toggleAttribute(
+						"has-language-picker",
+						n.enabledLanguages.length > 1,
+					);
+				const a = s.current;
+				if (!a) return;
+				a.languages = n.enabledLanguages.map(({ code: f, name: p }) => ({
+					code: f,
+					name: p,
+				}));
+				const c = (f) => n.onLanguageChange(f.detail.language),
+					l = () => n.onMinimize(),
+					d = () => n.onClose();
+				return (
+					a.addEventListener("skyra-language-change", c),
+					a.addEventListener("skyra-minimize", l),
+					a.addEventListener("skyra-close", d),
+					() => {
+						a.removeEventListener("skyra-language-change", c),
+							a.removeEventListener("skyra-minimize", l),
+							a.removeEventListener("skyra-close", d);
+					}
+				);
+			}, [n]),
+			y("skyra-survey-card", {
+				ref: i,
+				mode: o ? "inline" : "popup",
+				children: [
+					y("skyra-survey-chrome", {
+						ref: s,
+						className: "chrome",
+						slot: "chrome",
+						value: n.currentLanguage,
+						"language-label": n.languageLabel,
+						"minimize-label": n.minimizeLabel,
+						"close-label": n.closeLabel,
+						"show-minimize": n.showMinimizeButton,
+						"show-close": n.showCloseButton,
+					}),
+					r
+						? y("skyra-survey-message-content", {
+								heading: e.name,
+								body: e.body ?? "",
+								"body-html": e.bodyHtml ?? "",
+							})
+						: null,
+					t,
+				],
+			})
+		);
+	}
+	const $u = {
+		en: { up: "Scroll up", down: "Scroll down" },
+		no: { up: "Rull opp", down: "Rull ned" },
+		nn: { up: "Rull opp", down: "Rull ned" },
+		sv: { up: "Rulla upp", down: "Rulla ned" },
+		de: { up: "Nach oben scrollen", down: "Nach unten scrollen" },
+		pt: { up: "Rolar para cima", down: "Rolar para baixo" },
+	};
+	function Yr(e) {
+		return $u[e ?? "en"] ?? $u.en;
+	}
+	function Re(e, t, n) {
+		re(() => {
+			const r = e.current;
+			if (!r) return;
+			const o = (i) => n(i.detail);
+			return r.addEventListener(t, o), () => r.removeEventListener(t, o);
+		}, [n, t, e]);
+	}
+	function ct(e, t, n) {
+		od(() => {
+			const r = e.current;
+			r && (r[t] = n);
+		}, [t, e, n]);
+	}
+	function A0({ card: e, chrome: t, next: n, survey: r, texts: o }) {
+		const i = Y(null);
+		return (
+			Re(i, "skyra-completion-select", ({ value: s }) => n(s)),
+			Re(i, "skyra-completion-reply-later", () => t.onMinimize()),
+			y(De, {
+				card: e,
+				chrome: t,
+				inline: r.renderType === "Inline",
+				showHeader: !1,
+				children: y("skyra-survey-completion-content", {
+					ref: i,
+					heading: e.name,
+					body: e.body ?? "",
+					"body-html": e.bodyHtml ?? "",
+					"positive-label": e.positive,
+					"negative-label": e.negative,
+					"reply-later-label":
+						r.renderType === "Inline" ? void 0 : o.replyLater,
+					layout: e.optionsLayout === "vertical" ? "vertical" : "horizontal",
+				}),
+			})
+		);
+	}
+	function O0({ card: e, chrome: t, next: n, survey: r }) {
+		const o = Y(null);
+		return (
+			Re(o, "skyra-completion-select", ({ value: i }) => n(i)),
+			y(De, {
+				card: e,
+				chrome: t,
+				inline: r.renderType === "Inline",
+				showHeader: !1,
+				children: y("skyra-survey-completion-content", {
+					ref: o,
+					heading: e.name,
+					body: e.body ?? "",
+					"body-html": e.bodyHtml ?? "",
+					"positive-label": e.positive,
+					"negative-label": e.negative,
+					layout: e.optionsLayout === "vertical" ? "vertical" : "horizontal",
+				}),
+			})
+		);
+	}
+	function Eu(e) {
+		var t,
+			n,
+			r = "";
+		if (typeof e == "string" || typeof e == "number") r += e;
+		else if (typeof e == "object")
+			if (Array.isArray(e)) {
+				var o = e.length;
+				for (t = 0; t < o; t++)
+					e[t] && (n = Eu(e[t])) && (r && (r += " "), (r += n));
+			} else for (n in e) e[n] && (r && (r += " "), (r += n));
+		return r;
+	}
+	function L0() {
+		for (var e, t, n = 0, r = "", o = arguments.length; n < o; n++)
+			(e = arguments[n]) && (t = Eu(e)) && (r && (r += " "), (r += t));
+		return r;
+	}
+	const Ru = (e) => (typeof e == "boolean" ? `${e}` : e === 0 ? "0" : e),
+		Mu = L0,
+		Xr = (e, t) => (n) => {
+			var r;
+			if ((t == null ? void 0 : t.variants) == null)
+				return Mu(
+					e,
+					n == null ? void 0 : n.class,
+					n == null ? void 0 : n.className,
+				);
+			const { variants: o, defaultVariants: i } = t,
+				s = Object.keys(o).map((l) => {
+					const d = n == null ? void 0 : n[l],
+						u = i == null ? void 0 : i[l];
+					if (d === null) return null;
+					const f = Ru(d) || Ru(u);
+					return o[l][f];
+				}),
+				a =
+					n &&
+					Object.entries(n).reduce((l, d) => {
+						let [u, f] = d;
+						return f === void 0 || (l[u] = f), l;
+					}, {}),
+				c =
+					t == null || (r = t.compoundVariants) === null || r === void 0
+						? void 0
+						: r.reduce((l, d) => {
+								let { class: u, className: f, ...p } = d;
+								return Object.entries(p).every((m) => {
+									let [g, b] = m;
+									return Array.isArray(b)
+										? b.includes({ ...i, ...a }[g])
+										: { ...i, ...a }[g] === b;
+								})
+									? [...l, u, f]
+									: l;
+							}, []);
+			return Mu(
+				e,
+				s,
+				c,
+				n == null ? void 0 : n.class,
+				n == null ? void 0 : n.className,
+			);
+		};
+	function Pu({ label: e, placeholder: t, heading: n, usePlaceholder: r }) {
+		return (
+			(r ? (t == null ? void 0 : t.trim()) : e == null ? void 0 : e.trim()) ||
+			(e == null ? void 0 : e.trim()) ||
+			n
+		);
+	}
+	const Au = Xr(
+		`
+  rounded-sm
+  border-2 border-interface
+  p-2
+  bg-bg
+  text-base md:text-sm
+
+  transition-colors
+
+  placeholder:text-text/60
+
+  focus-visible:outline-action
+  focus-visible:outline-2
+  focus-visible:outline-offset-2
+  focus:ring-none
+
+  hover:border-action/80
+  focus-visible:bg-action/10
+
+  aria-[invalid=true]:border-error
+  aria-[invalid=true]:hover:border-error/50
+  aria-[invalid=true]:focus-visible:ring-error/20
+  `,
+		{ variants: {} },
+	);
+	function Ou(e) {
+		return e
+			? {
+					onKeyDown: (t) => {
+						t.key === "Enter" && t.metaKey && e && e();
+					},
+				}
+			: {};
+	}
+	function Qr({
+		label: e,
+		labelHidden: t = !1,
+		className: n,
+		metaEnter: r,
+		style: o,
+		...i
+	}) {
+		return y("label", {
+			class: "flex flex-col gap-1",
+			children: [
+				y("span", {
+					className: t ? "sr-only" : "font-bold text-xs",
+					children: e,
+				}),
+				y("input", {
+					className: Au({ className: n }),
+					style: {
+						borderRadius: "var(--skyra-radius-md, var(--skyra-radius-lg, 4px))",
+						...(typeof o == "object" ? o : {}),
+					},
+					...Ou(r),
+					...i,
+				}),
+			],
+		});
+	}
+	const N0 = ({
+		label: e,
+		labelHidden: t = !1,
+		className: n,
+		metaEnter: r,
+		style: o,
+		...i
+	}) =>
+		y("label", {
+			class: "flex flex-col gap-1",
+			children: [
+				y("span", {
+					className: t ? "sr-only" : "font-bold text-xs",
+					children: e,
+				}),
+				y("textarea", {
+					className: Au({ className: n }),
+					style: {
+						borderRadius: "var(--skyra-radius-md, var(--skyra-radius-lg, 4px))",
+						...(typeof o == "object" ? o : {}),
+					},
+					...Ou(r),
+					...i,
+				}),
+			],
+		});
+	function j0({
+		card: e,
+		chrome: t,
+		firstCard: n,
+		next: r,
+		prev: o,
+		storedValue: i,
+		survey: s,
+		texts: a,
+	}) {
+		const [c, l] = ue(typeof i == "string" ? i : ""),
+			[d, u] = ue(!1),
+			f = Ye(),
+			p = Mt(),
+			m = Y(null);
+		Re(m, "skyra-input-change", ({ value: A }) => l(A));
+		const g = Qs({
+				content: c,
+				card: {
+					minLength: e.minLength ?? 0,
+					maxLength: e.maxLength ?? void 0,
+					validations: e.validations ?? [],
+				},
+				hasBeenTouched: d,
+				language: p,
+			}),
+			b = e.maxLength ?? void 0,
+			v = Js({ min: e.minLength ?? 0, max: b, language: p }),
+			_ = d && g.status === "under-minimum",
+			k = d && !g.valid && g.status !== "under-minimum";
+		function x() {
+			u(!0), (f.value = g.valid), g.valid && r(c);
+		}
+		return y(De, {
+			card: e,
+			chrome: t,
+			inline: s.renderType === "Inline",
+			showHeader: !1,
+			children: [
+				y("skyra-survey-input-content", {
+					ref: m,
+					heading: e.name,
+					label: Pu({
+						label: e.label,
+						placeholder: e.placeholder,
+						heading: e.name,
+						usePlaceholder: s.surveyType === "Findability",
+					}),
+					body: e.body ?? "",
+					"body-html": e.bodyHtml ?? "",
+					name: "value",
+					placeholder: e.placeholder ?? "",
+					value: c,
+					multiline: !!e.multiline,
+					invalid: d && !g.valid,
+					instruction: v ?? "",
+					"instruction-invalid": _,
+					"character-count": typeof b == "number" ? `${c.length}/${b}` : "",
+					"max-length": b,
+					error: k ? g.errorMessage : "",
+				}),
+				y("skyra-survey-actions", {
+					align: n ? "end" : "between",
+					children: [
+						!n && y("skyra-survey-button", { onClick: o, children: a.back }),
+						y("skyra-survey-button", {
+							variant: "primary",
+							onClick: x,
+							children: a.next,
+						}),
+					],
+				}),
+			],
+		});
+	}
+	function B0({
+		card: e,
+		chrome: t,
+		firstCard: n,
+		prev: r,
+		storedValue: o,
+		survey: i,
+		texts: s,
+		next: a,
+	}) {
+		var p;
+		const c = "likertItems" in e.likertScale ? e.likertScale.likertItems : [],
+			l =
+				typeof o == "string"
+					? (p = c.find((m) => m.id === o || X(m.id) === o)) == null
+						? void 0
+						: p.id
+					: void 0,
+			[d, u] = ue(l),
+			f = Y(null);
+		return (
+			ct(
+				f,
+				"choices",
+				c.map((m) => {
+					var g;
+					return {
+						id: m.id,
+						label: m.label,
+						emoji: e.showEmoji
+							? (((g = m.emoji) == null ? void 0 : g.native) ?? void 0)
+							: void 0,
+					};
+				}),
+			),
+			Re(f, "skyra-likert-select", ({ value: m }) => {
+				u(m), a(m, e.id);
+			}),
+			re(() => u(l), [l]),
+			y(De, {
+				card: e,
+				chrome: t,
+				inline: i.renderType === "Inline",
+				showHeader: !1,
+				children: [
+					y("skyra-survey-likert-content", {
+						ref: f,
+						heading: e.name,
+						body: e.body ?? "",
+						"body-html": e.bodyHtml ?? "",
+						"selected-value": d ?? "",
+						layout:
+							e.optionsLayout === "horizontal" ? "horizontal" : "vertical",
+					}),
+					!n &&
+						y("skyra-survey-actions", {
+							children: y("skyra-survey-button", {
+								onClick: r,
+								children: s.back,
+							}),
+						}),
+				],
+			})
+		);
+	}
+	function D0({
+		card: e,
+		chrome: t,
+		finalCard: n,
+		firstCard: r,
+		next: o,
+		prev: i,
+		survey: s,
+		texts: a,
+	}) {
+		const c = au(s, e, { firstCard: r, finalCard: n }),
+			l = !c && !r;
+		return y(De, {
+			card: e,
+			chrome: t,
+			inline: s.renderType === "Inline",
+			children: y("skyra-survey-actions", {
+				align: c || l ? "between" : "end",
+				children: [
+					c
+						? y("skyra-survey-button", { onClick: t.onClose, children: c })
+						: l
+							? y("skyra-survey-button", { onClick: i, children: a.back })
+							: null,
+					y("skyra-survey-button", {
+						variant: "primary",
+						onClick: () => o(),
+						children: a.next,
+					}),
+				],
+			}),
+		});
+	}
+	const Lu = "ABCDEFGHJKMNPQRSTVWXYZ".split(""),
+		Nu = {
+			en: { min: "Select at least", max: "max", maxOnly: "Max" },
+			pt: { min: "Selecione pelo menos", max: "máx.", maxOnly: "Máx." },
+			de: { min: "Wählen Sie mindestens", max: "max.", maxOnly: "Max." },
+			no: { min: "Velg minst", max: "maks", maxOnly: "Maks" },
+			nn: { min: "Vel minst", max: "maks", maxOnly: "Maks" },
+			sv: { min: "Välj minst", max: "max", maxOnly: "Max" },
+		};
+	function F0({
+		card: e,
+		chrome: t,
+		firstCard: n,
+		next: r,
+		prev: o,
+		sessionId: i,
+		storedValue: s,
+		survey: a,
+		texts: c,
+	}) {
+		const l = e.randomize ? or(e.selectItems, i) : e.selectItems,
+			[d, u] = ue(
+				Array.isArray(s)
+					? s
+							.filter((I) => typeof I == "string")
+							.map((I) => {
+								var B;
+								return (B = l.find((oe) => oe.id === I || X(oe.id) === I)) ==
+									null
+									? void 0
+									: B.id;
+							})
+							.filter((I) => !!I)
+					: [],
+			),
+			[f, p] = ue(!1),
+			[m, g] = ue(!1),
+			b = Ye(),
+			v = Mt(),
+			_ = Nu[v ?? "en"] ?? Nu.en,
+			k = Yr(v),
+			x = Y(null);
+		ct(
+			x,
+			"options",
+			l.map((I, B) => ({ id: I.id, label: I.label, shortcut: Lu[B] })),
+		),
+			ct(x, "selectedValues", d),
+			Re(x, "skyra-multiselect-change", ({ values: I }) => {
+				g(!1), u(I);
+			}),
+			Re(x, "skyra-multiselect-limit-reached", () => {
+				g(!0);
+			});
+		const A = tr({
+				selectedCount: d.length,
+				card: { min: e.min ?? void 0, max: e.max ?? void 0 },
+				hasBeenSubmitted: f,
+				language: v,
+			}),
+			z = m || A.status === "over-max" || (f && !A.valid),
+			M = Ys({
+				min: e.min ?? void 0,
+				max: e.max ?? void 0,
+				totalOptions: l.length,
+				language: v,
+			}),
+			O =
+				m && e.max
+					? Gs({ max: e.max, language: v })
+					: z
+						? A.errorMessage
+						: null,
+			j = vs(
+				(I) => {
+					if (I.defaultPrevented || I.altKey || I.ctrlKey || I.metaKey) return;
+					const B = I.target;
+					if (
+						B instanceof HTMLInputElement ||
+						B instanceof HTMLTextAreaElement ||
+						B instanceof HTMLSelectElement
+					)
+						return;
+					const oe = Lu.indexOf(I.key.toUpperCase());
+					if (oe < 0 || oe >= l.length) return;
+					const pe = l[oe].id,
+						Te = oa({ selectedValues: d, value: pe, max: e.max ?? void 0 });
+					if (Te.limitReached) {
+						g(!0);
+						return;
+					}
+					g(!1), u(Te.values);
+				},
+				[e.max, l, d],
+			);
+		re(() => {
+			var B;
+			const I = (B = x.current) == null ? void 0 : B.closest(".beta-wrapper");
+			if (I)
+				return (
+					I.addEventListener("keyup", j),
+					() => I.removeEventListener("keyup", j)
+				);
+		}, [j]);
+		function L() {
+			const I = tr({
+				selectedCount: d.length,
+				card: { min: e.min ?? void 0, max: e.max ?? void 0 },
+				hasBeenSubmitted: !0,
+				language: v,
+			});
+			p(!0), (b.value = I.valid), I.valid && r(d);
+		}
+		return y(De, {
+			card: e,
+			chrome: t,
+			inline: a.renderType === "Inline",
+			showHeader: !1,
+			children: [
+				y("skyra-survey-multiselect-content", {
+					ref: x,
+					heading: e.name,
+					body: e.body ?? "",
+					"body-html": e.bodyHtml ?? "",
+					layout: e.optionsLayout === "horizontal" ? "horizontal" : "vertical",
+					inline: a.renderType === "Inline",
+					min: e.min ?? 0,
+					max: e.max ?? 0,
+					instruction: M ?? "",
+					"minimum-label": _.min,
+					"maximum-label": _.max,
+					"maximum-only-label": _.maxOnly,
+					"scroll-up-label": k.up,
+					"scroll-down-label": k.down,
+					invalid: z,
+					error: O ?? "",
+				}),
+				y("skyra-survey-actions", {
+					align: n ? "end" : "between",
+					children: [
+						!n && y("skyra-survey-button", { onClick: o, children: c.back }),
+						y("skyra-survey-button", {
+							variant: "primary",
+							onClick: L,
+							children: c.next,
+						}),
+					],
+				}),
+			],
+		});
+	}
+	function U0({
+		card: e,
+		chrome: t,
+		firstCard: n,
+		next: r,
+		prev: o,
+		storedValue: i,
+		survey: s,
+		texts: a,
+	}) {
+		const c = typeof i == "object" && i !== null ? i : void 0,
+			[l, d] = ue(c ?? {}),
+			[u, f] = ue(!1),
+			p = Ye(),
+			m = Mt(),
+			g = Y(null),
+			b = l.email ?? "",
+			v = b ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(b) : !1,
+			_ = !!(l.email || l.phone || l.name),
+			k = nr({
+				email: { value: b, valid: v },
+				name: { value: l.name ?? "" },
+				phone: { value: l.phone ?? "" },
+				consented: !!l.consented,
+				consentEnable: !!e.consentEnable,
+				isRequired: !!e.isRequired,
+				hasBeenSubmitted: u,
+				language: m,
+			});
+		ct(g, "fields", {
+			name: !!e.nameEnable,
+			nameLabel: e.nameLabel ?? "Name",
+			namePlaceholder: e.namePlaceholder ?? "",
+			email: !!e.email,
+			emailLabel: e.email_label ?? "Email",
+			emailPlaceholder: e.email_placeholder ?? "",
+			phone: !!e.phone,
+			phoneLabel: e.phone_label ?? "Phone",
+			phonePlaceholder: e.phone_placeholder ?? "",
+			consent: !!e.consentEnable,
+			consentLabel: e.consentTermsLabel ?? "I agree to be contacted",
+			consentTermsText: e.consentTermsText ?? "",
+			consentTermsTitle: e.consentTermsTitle ?? "",
+			consentTermsUrl: e.consentTermsUrl ?? "",
+		}),
+			ct(g, "value", l),
+			Re(g, "skyra-recruitment-change", ({ value: A }) => d(A));
+		function x() {
+			const A = nr({
+				email: { value: b, valid: v },
+				name: { value: l.name ?? "" },
+				phone: { value: l.phone ?? "" },
+				consented: !!l.consented,
+				consentEnable: !!e.consentEnable,
+				isRequired: !!e.isRequired,
+				hasBeenSubmitted: !0,
+				language: m,
+			});
+			f(!0), (p.value = A.valid), A.valid && r(_ ? l : void 0);
+		}
+		return y(De, {
+			card: e,
+			chrome: t,
+			inline: s.renderType === "Inline",
+			showHeader: !1,
+			children: [
+				y("skyra-survey-recruitment-content", {
+					ref: g,
+					heading: e.name,
+					body: e.body ?? "",
+					"body-html": e.bodyHtml ?? "",
+					invalid: k.status === "email-invalid",
+					error:
+						k.status === "email-invalid" ||
+						k.status === "consent-required" ||
+						k.status === "email-required"
+							? k.errorMessage
+							: "",
+				}),
+				y("skyra-survey-actions", {
+					align: n ? "end" : "between",
+					children: [
+						!n && y("skyra-survey-button", { onClick: o, children: a.back }),
+						y("skyra-survey-button", {
+							variant: "primary",
+							onClick: x,
+							children: a.next,
+						}),
+					],
+				}),
+			],
+		});
+	}
+	function H0({
+		card: e,
+		chrome: t,
+		firstCard: n,
+		prev: r,
+		sessionId: o,
+		storedValue: i,
+		survey: s,
+		texts: a,
+		next: c,
+	}) {
+		var p, m;
+		const l = Y(null),
+			d = e.randomize ? or(e.items, o) : e.items,
+			u = Yr((p = s.language) == null ? void 0 : p.code),
+			f =
+				typeof i == "string"
+					? (((m = d.find((g) => g.value.id === i || X(g.value.id) === i)) ==
+						null
+							? void 0
+							: m.value.id) ?? "")
+					: "";
+		return (
+			ct(
+				l,
+				"options",
+				d.map((g) => ({ id: g.value.id, label: g.label })),
+			),
+			Re(l, "skyra-choice-select", ({ value: g }) => c(g, e.segment.id)),
+			y(De, {
+				card: e,
+				chrome: t,
+				inline: s.renderType === "Inline",
+				showHeader: !1,
+				children: [
+					y("skyra-survey-choice-content", {
+						ref: l,
+						heading: e.name,
+						body: e.body ?? "",
+						"body-html": e.bodyHtml ?? "",
+						layout:
+							e.optionsLayout === "horizontal" ? "horizontal" : "vertical",
+						inline: s.renderType === "Inline",
+						"scroll-up-label": u.up,
+						"scroll-down-label": u.down,
+						"selected-value": f,
+					}),
+					!n &&
+						y("skyra-survey-actions", {
+							children: y("skyra-survey-button", {
+								onClick: r,
+								children: a.back,
+							}),
+						}),
+				],
+			})
+		);
+	}
+	function Z0({
+		card: e,
+		chrome: t,
+		firstCard: n,
+		prev: r,
+		sessionId: o,
+		storedValue: i,
+		survey: s,
+		texts: a,
+		next: c,
+	}) {
+		var p, m;
+		const l = Y(null),
+			d = e.randomize ? or(e.selectItems, o) : e.selectItems,
+			u = Yr((p = s.language) == null ? void 0 : p.code),
+			f =
+				typeof i == "string"
+					? (((m = d.find((g) => g.id === i || X(g.id) === i)) == null
+							? void 0
+							: m.id) ?? "")
+					: "";
+		return (
+			ct(
+				l,
+				"options",
+				d.map((g) => ({ id: g.id, label: g.label })),
+			),
+			Re(l, "skyra-choice-select", ({ value: g }) => c(g)),
+			y(De, {
+				card: e,
+				chrome: t,
+				inline: s.renderType === "Inline",
+				showHeader: !1,
+				children: [
+					y("skyra-survey-choice-content", {
+						ref: l,
+						heading: e.name,
+						body: e.body ?? "",
+						"body-html": e.bodyHtml ?? "",
+						layout:
+							e.optionsLayout === "horizontal" ? "horizontal" : "vertical",
+						"selected-value": f,
+						inline: s.renderType === "Inline",
+						"scroll-up-label": u.up,
+						"scroll-down-label": u.down,
+					}),
+					!n &&
+						y("skyra-survey-actions", {
+							children: y("skyra-survey-button", {
+								onClick: r,
+								children: a.back,
+							}),
+						}),
+				],
+			})
+		);
+	}
+	function V0({
+		card: e,
+		chrome: t,
+		firstCard: n,
+		prev: r,
+		sessionId: o,
+		storedValue: i,
+		survey: s,
+		texts: a,
+		next: c,
+	}) {
+		var p, m;
+		const l = Y(null),
+			d = e.randomize ? or(e.taskItems ?? [], o) : (e.taskItems ?? []),
+			u = Yr((p = s.language) == null ? void 0 : p.code),
+			f =
+				typeof i == "string"
+					? (((m = d.find((g) => g.task.id === i || X(g.task.id) === i)) == null
+							? void 0
+							: m.task.id) ?? "")
+					: "";
+		return (
+			ct(
+				l,
+				"options",
+				d.map((g) => ({ id: g.task.id, label: g.label })),
+			),
+			Re(l, "skyra-choice-select", ({ value: g }) => c(g)),
+			y(De, {
+				card: e,
+				chrome: t,
+				inline: s.renderType === "Inline",
+				showHeader: !1,
+				children: [
+					y("skyra-survey-choice-content", {
+						ref: l,
+						heading: e.name,
+						body: e.body ?? "",
+						"body-html": e.bodyHtml ?? "",
+						layout:
+							e.optionsLayout === "horizontal" ? "horizontal" : "vertical",
+						inline: s.renderType === "Inline",
+						"selected-value": f,
+						"scroll-up-label": u.up,
+						"scroll-down-label": u.down,
+					}),
+					!n &&
+						y("skyra-survey-actions", {
+							children: y("skyra-survey-button", {
+								onClick: r,
+								children: a.back,
+							}),
+						}),
+				],
+			})
+		);
+	}
+	const ju = {
+		en: "Language",
+		no: "Språk",
+		nn: "Språk",
+		sv: "Språk",
+		de: "Sprache",
+		pt: "Idioma",
+	};
+	function W0({
+		card: e,
+		currentLanguage: t,
+		enabledLanguages: n,
+		finalCard: r,
+		firstCard: o,
+		minimized: i,
+		next: s,
+		onClose: a,
+		onLanguageChange: c,
+		onMaximize: l,
+		onMinimize: d,
+		prev: u,
+		showCloseButton: f,
+		showMinimizeButton: p,
+		sessionId: m,
+		storedValue: g,
+		survey: b,
+	}) {
+		const v = Ee(b, e, { finalCard: r }),
+			k = {
+				chrome: {
+					closeLabel: v.close,
+					currentLanguage: t,
+					enabledLanguages: n,
+					languageLabel: ju[t] ?? ju.en,
+					minimizeLabel: v.hide,
+					onClose: a,
+					onLanguageChange: c,
+					onMinimize: d,
+					showCloseButton: f,
+					showMinimizeButton: p,
+				},
+				finalCard: r,
+				firstCard: o,
+				next: s,
+				prev: u,
+				storedValue: g,
+				survey: b,
+				sessionId: m,
+				texts: v,
+			};
+		let x;
+		switch (e.type) {
+			case "CompletionCard":
+				x = y(A0, { card: e, ...k });
+				break;
+			case "FindabilityCard":
+				x = y(O0, { card: e, ...k });
+				break;
+			case "InputCard":
+				x = y(j0, { card: e, ...k });
+				break;
+			case "LikertCard":
+				x = y(B0, { card: e, ...k });
+				break;
+			case "MessageCard":
+				x = y(D0, { card: e, ...k });
+				break;
+			case "MultiSelectCard":
+				x = y(F0, { card: e, ...k });
+				break;
+			case "RecruitmentCard":
+				x = y(U0, { card: e, ...k });
+				break;
+			case "SegmentCard":
+				x = y(H0, { card: e, ...k });
+				break;
+			case "SingleSelectCard":
+				x = y(Z0, { card: e, ...k });
+				break;
+			case "TopTaskCard":
+				x = y(V0, { card: e, ...k });
+				break;
+			default:
+				return null;
+		}
+		return b.renderType === "Inline"
+			? x
+			: y("div", {
+					className: "beta-transition-container",
+					"data-minimized": i ? "true" : "false",
+					children: [
+						y("div", { className: "beta-transition-content", children: x }),
+						y("skyra-survey-pill", {
+							className: "beta-transition-pill",
+							onClick: l,
+							children: v.minimized,
+						}),
+					],
+				});
+	}
+	const q0 =
+		':host{color-scheme:light dark}.beta-wrapper{box-sizing:border-box;color:var(--skyra-text-color, #151515);font-family:var(--skyra-font-body, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);font-size:var(--skyra-font-size, 16px);outline:none}.beta-wrapper[data-inline=false]{position:fixed;right:0;bottom:0;left:0;display:flex;align-items:flex-end;justify-content:flex-end;margin:8px;z-index:2147483647}.beta-wrapper[data-inline=false][data-position=BottomLeft]{justify-content:flex-start}.beta-wrapper[data-inline=false][data-position=TopLeft]{top:0;bottom:auto;align-items:flex-start;justify-content:flex-start}.beta-wrapper[data-inline=false][data-position=TopRight]{top:0;bottom:auto;align-items:flex-start}@media(min-width:768px){.beta-wrapper[data-inline=false]{margin:16px}}.beta-wrapper[data-inline=true]{width:100%}@keyframes beta-enter-up{0%{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}@keyframes beta-enter-down{0%{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}.beta-wrapper.beta-enter-up{animation:beta-enter-up var(--duration, .3s) ease-out both}.beta-wrapper.beta-enter-down{animation:beta-enter-down var(--duration, .3s) ease-out both}@keyframes beta-content-enter{0%{opacity:0}to{opacity:1}}.beta-transition-content{animation:beta-content-enter var(--duration, .3s) ease-out both}.beta-transition-container{width:min(420px,100%)}.beta-transition-pill{display:none;flex:0 1 auto;inline-size:-moz-fit-content;inline-size:fit-content;max-inline-size:100%;min-inline-size:0}.beta-transition-container[data-minimized=true]{display:flex;justify-content:flex-end}.beta-transition-container[data-minimized=true] .beta-transition-content{display:none}.beta-transition-container[data-minimized=true] .beta-transition-pill{display:block;animation:beta-content-enter var(--duration, .3s) ease-out both}.beta-transition-pill::part(label){min-inline-size:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@keyframes beta-shake{0%{transform:translate(0)}25%{transform:translate(-6px)}50%{transform:translate(6px)}75%{transform:translate(-6px)}to{transform:translate(0)}}.beta-wrapper.survey-shake{animation:beta-shake var(--duration, .3s) ease-in-out}@media(prefers-reduced-motion:reduce){.beta-wrapper.survey-shake,.beta-wrapper.beta-enter-up,.beta-wrapper.beta-enter-down,.beta-wrapper[data-inline=false],.beta-transition-content,.beta-transition-pill{animation:none}}';
+	function Bu(e, t) {
+		const n = Y(null),
+			r = Y(e);
+		return (
+			re(() => {
+				if (r.current === e) return;
+				r.current = e;
+				const o = requestAnimationFrame(() => {
+					var s;
+					const i = t
+						? (s = n.current) == null
+							? void 0
+							: s.querySelector(t)
+						: n.current;
+					i == null || i.focus({ preventScroll: !0 });
+				});
+				return () => cancelAnimationFrame(o);
+			}, [e, t]),
+			n
+		);
+	}
+	function K0({
+		cardKey: e,
+		children: t,
+		label: n,
+		inline: r = !1,
+		position: o,
+		customCss: i,
+		theme: s,
+		themeMode: a,
+		minimized: c = !1,
+	}) {
+		const l = Ye(),
+			d = Bu(e),
+			u = Y(c),
+			[f, p] = ue(!0),
+			m = (a ?? "Auto").toLowerCase(),
+			g = lc(s ?? jv[0], { themeMode: a ?? "Auto", selector: ":host" }),
+			b =
+				o === "TopLeft" || o === "TopRight"
+					? " beta-enter-down"
+					: " beta-enter-up";
+		return (
+			re(() => {
+				p(!1);
+			}, []),
+			re(() => {
+				if (u.current === c || ((u.current = c), r)) return;
+				const v = requestAnimationFrame(() => {
+					var _, k, x;
+					c
+						? (k =
+								(_ = d.current) == null
+									? void 0
+									: _.querySelector("skyra-survey-pill")) == null ||
+							k.focus({ preventScroll: !0 })
+						: (x = d.current) == null || x.focus({ preventScroll: !0 });
+				});
+				return () => cancelAnimationFrame(v);
+			}, [r, c]),
+			y(Ae, {
+				children: [
+					y("style", { "data-beta-styles": !0, children: q0 }),
+					g && y("style", { children: g }),
+					i && y("style", { children: i }),
+					y("aside", {
+						ref: d,
+						className: `beta-wrapper${l.value ? "" : " survey-shake"}${f && !r ? b : ""}`,
+						"data-inline": r ? "true" : "false",
+						"data-minimized": c ? "true" : "false",
+						"data-position": o,
+						"data-theme-mode": m,
+						role: r ? void 0 : "dialog",
+						"aria-label": n,
+						tabIndex: -1,
+						children: t,
+					}),
+				],
+			})
+		);
+	}
+	function J0({
+		card: e,
+		capture: t,
+		finalCard: n,
+		firstCard: r,
+		sessionId: o,
+		storedValue: i,
+		survey: s,
+	}) {
+		const a = be(t, (p) => p.context.language),
+			c = be(t, (p) => p.matches({ Running: "Minimized" })),
+			l = iu(s),
+			d = s.renderType === "Inline" || s.surveyType === "Findability",
+			u = (n && e.type === "MessageCard") || d,
+			f = s.showCloseButton !== !1 && !d;
+		return y(K0, {
+			cardKey: e.id,
+			label: e.name,
+			inline: s.renderType === "Inline",
+			position: s.surveyPosition,
+			customCss: s.customCss,
+			theme: s.theme,
+			themeMode: s.themeMode,
+			minimized: c,
+			children: y(
+				W0,
+				{
+					card: e,
+					currentLanguage: a,
+					enabledLanguages: l,
+					finalCard: n,
+					firstCard: r,
+					onClose: () => t.send({ type: "reject" }),
+					onLanguageChange: (p) => t.send({ type: "setLanguage", language: p }),
+					onMaximize: () => t.send({ type: "maximize" }),
+					onMinimize: () => t.send({ type: "minimize" }),
+					next: (p, m) => {
+						t.send({ type: "submit", cardId: e.id, key: m, value: p });
+					},
+					prev: () => t.send({ type: "goBack" }),
+					minimized: c,
+					showCloseButton: f,
+					showMinimizeButton: !u,
+					sessionId: o,
+					storedValue: i,
+					survey: s,
+				},
+				`${e.id}-${a}`,
+			),
+		});
+	}
+	const Du = Xr(
+		`cursor-pointer
+        focus-visible:outline-action
+        focus-visible:outline-2
+        focus-visible:outline-offset-2
+  px-2 py-1
+  `,
+		{
+			variants: {
+				variant: {
+					primary: `
+          bg-action text-action-text
+          hover:bg-action/80
+        `,
+					secondary: `
+          bg-transparent text-text
+          border border-current
+          hover:bg-action/10
+        `,
+					link: `
+          bg-transparent
+          underline underline-offset-4
+
+          px-0 md:px-0
+          text-link hover:text-link/80
+              focus-visible:outline-current
+              focus-visible:no-underline
+
+          border border-transparent
+        `,
+					chip: `
+          bg-bg
+          text-text
+          border border-current
+          text-left
+
+          hover:bg-action
+          hover:text-action-text
+          
+          data-[selected=true]:bg-action
+          data-[selected=true]:text-action-text
+          data-[selected=true]:border-action
+          data-[selected=true]:font-semibold
+        `,
+				},
+				size: { small: "text-sm", default: "text", large: "text-md" },
+				rounded: { none: "", small: "rounded-sm", full: "rounded-full" },
+				disabled: { true: "opacity-50 cursor-not-allowed", false: "" },
+			},
+			defaultVariants: { size: "small", variant: "primary", rounded: "small" },
+		},
+	);
+	function wt({
+		className: e,
+		variant: t,
+		size: n,
+		rounded: r,
+		disabled: o,
+		style: i,
+		...s
+	}) {
+		let a = "var(--skyra-radius-md, var(--skyra-radius-lg, 4px))";
+		return (
+			r === "none"
+				? (a = "0")
+				: r === "full" && (a = "var(--skyra-radius-pill, 999px)"),
+			y("button", {
+				part: `button-${t}`,
+				className: Du({
+					variant: t,
+					size: n,
+					rounded: r,
+					disabled: o,
+					className: e,
+				}),
+				style: {
+					minWidth: "36px",
+					borderRadius: a,
+					...(typeof i == "object" ? i : {}),
+				},
+				disabled: o,
+				...s,
+			})
+		);
+	}
+	function Fu(e) {
+		const t = e.querySelector("div > *:first-child");
+		if (t) {
+			const n = window.getComputedStyle(t),
+				r = t.offsetHeight,
+				o = Number.parseInt(n.marginTop) || 0,
+				i = Number.parseInt(n.marginBottom) || 0;
+			return r + o + i;
+		}
+		return 48;
+	}
+	function eo({ className: e, children: t, scrollAmount: n = 2.5 }) {
+		const o = ir().renderType === "Inline",
+			i = Y(null),
+			[s, a] = ue(null);
+		re(() => {
+			if (o) return;
+			const d = i.current;
+			if (!d) return;
+			const u = () => {
+				const p = d.scrollHeight > d.clientHeight;
+				a(p);
+			};
+			u();
+			const f = new ResizeObserver(u);
+			return f.observe(d), () => f.disconnect();
+		}, [o]),
+			re(() => {
+				if (o) return;
+				const d = i.current;
+				if (!(d && s)) return;
+				if (!CSS.supports("animation-timeline: scroll()")) {
+					const f = () => {
+						const { scrollTop: p, scrollHeight: m, clientHeight: g } = d,
+							b = p <= 5,
+							v = p + g >= m - 5;
+						d.setAttribute("data-at-top", b.toString()),
+							d.setAttribute("data-at-bottom", v.toString());
+					};
+					return (
+						f(),
+						d.addEventListener("scroll", f, { passive: !0 }),
+						() => d.removeEventListener("scroll", f)
+					);
+				}
+			}, [o, s]);
+		const c = () => {
+				if (i.current) {
+					const u = Fu(i.current) * n;
+					i.current.scrollBy({ top: -u, behavior: "smooth" });
+				}
+			},
+			l = () => {
+				if (i.current) {
+					const u = Fu(i.current) * n;
+					i.current.scrollBy({ top: u, behavior: "smooth" });
+				}
+			};
+		return o
+			? y("div", { className: e, children: t })
+			: y("div", {
+					ref: i,
+					className: `scroll-area ${e || ""}`,
+					"data-scrollable": s === null ? "unknown" : s.toString(),
+					children: [
+						y("button", {
+							className: "scroll-area-up",
+							onClick: c,
+							"aria-label": "Scroll up",
+							type: "button",
+							children: y("svg", {
+								xmlns: "http://www.w3.org/2000/svg",
+								fill: "none",
+								viewBox: "0 0 24 24",
+								"stroke-width": "1.5",
+								stroke: "currentColor",
+								width: "20",
+								role: "img",
+								"aria-hidden": "true",
+								children: y("path", {
+									"stroke-linecap": "round",
+									"stroke-linejoin": "round",
+									d: "M4.5 15.75l7.5-7.5 7.5 7.5",
+								}),
+							}),
+						}),
+						t,
+						y("button", {
+							className: "scroll-area-down",
+							onClick: l,
+							"aria-label": "Scroll down",
+							type: "button",
+							children: y("svg", {
+								xmlns: "http://www.w3.org/2000/svg",
+								fill: "none",
+								viewBox: "0 0 24 24",
+								"stroke-width": "1.5",
+								stroke: "currentColor",
+								width: "20",
+								role: "img",
+								"aria-hidden": "true",
+								children: y("path", {
+									"stroke-linecap": "round",
+									"stroke-linejoin": "round",
+									d: "M19.5 8.25l-7.5 7.5-7.5-7.5",
+								}),
+							}),
+						}),
+					],
+				});
+	}
+	const G0 = ({ className: e, ...t }) =>
+			y("svg", {
+				width: "18",
+				height: "18",
+				viewBox: "0 0 25 25",
+				fill: "none",
+				xmlns: "http://www.w3.org/2000/svg",
+				role: "img",
+				...t,
+				children: [
+					y("title", { children: "Maximize" }),
+					y("path", { d: "M15.084 3.5H21.084V9.5", className: e }),
+					y("path", { d: "M9.08398 21.5H3.08398V15.5", className: e }),
+					y("path", { d: "M21.084 3.5L14.084 10.5", className: e }),
+					y("path", { d: "M3.08398 21.5L10.084 14.5", className: e }),
+				],
+			}),
+		Y0 = ({ className: e, title: t }) =>
+			y("svg", {
+				width: "18",
+				height: "18",
+				viewBox: "0 0 16 17",
+				xmlns: "http://www.w3.org/2000/svg",
+				role: "img",
+				className: e,
+				children: [
+					y("title", { children: t ?? "Minimize" }),
+					y("path", {
+						d: "M4 6.5L8 10.5L12 6.5",
+						"stroke-width": "2",
+						"stroke-linecap": "round",
+						"stroke-linejoin": "round",
+					}),
+				],
+			}),
+		Di = ({ className: e, ...t }) =>
+			y("svg", {
+				xmlns: "http://www.w3.org/2000/svg",
+				viewBox: "0 0 16 16",
+				fill: "currentColor",
+				className: `size-4 inline-block ${e ?? ""}`,
+				"aria-hidden": "true",
+				...t,
+				children: y("path", {
+					fillRule: "evenodd",
+					d: "M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z",
+					clipRule: "evenodd",
+				}),
+			});
+	function X0({ onClose: e, visible: t }) {
+		return t
+			? y("button", {
+					type: "button",
+					className:
+						" p-2 h-10 w-10 flex items-center justify-center text-text text-lg hover:bg-action/10 focus-visible:outline-action focus-visible:outline-2 focus-visible:outline-offset-2 ",
+					onClick: e,
+					children: "×",
+				})
+			: null;
+	}
+	function Q0({ languages: e, currentLanguage: t, onChange: n }) {
+		const [r, o] = ue(!1),
+			i = Y(null),
+			s = Y(null),
+			a = Y(null);
+		re(() => {
+			if (!r) return;
+			const d = (u) => {
+				var f;
+				i.current &&
+					!i.current.contains(u.target) &&
+					!((f = a.current) != null && f.contains(u.target)) &&
+					o(!1);
+			};
+			return (
+				document.addEventListener("click", d),
+				() => document.removeEventListener("click", d)
+			);
+		}, [r]),
+			re(() => {
+				if (!r) return;
+				const d = (u) => {
+					u.key === "Escape" && o(!1);
+				};
+				return (
+					document.addEventListener("keydown", d),
+					() => document.removeEventListener("keydown", d)
+				);
+			}, [r]);
+		const c = e.find((d) => d.code === t),
+			l = e.filter((d) => d.code !== t);
+		return (
+			re(() => {
+				const d = a.current,
+					u = s.current;
+				if (!d || !u) return;
+				if (!r) {
+					d.matches(":popover-open") && d.hidePopover();
+					return;
+				}
+				d.showPopover();
+				const f = () => {
+					var pe;
+					const g = u.getBoundingClientRect(),
+						b = 4,
+						v = 8,
+						_ = g.top - b - v,
+						k = window.innerHeight - g.bottom - b - v,
+						x =
+							(pe = u.closest(".survey-content")) == null
+								? void 0
+								: pe.getBoundingClientRect(),
+						A = x ? x.bottom - g.bottom - b : 0,
+						z = Math.min(d.scrollHeight, 256),
+						M = A >= z,
+						O = _ >= z,
+						j = M || (!O && k > _),
+						L = j ? Math.min(k, A || k) : _;
+					(d.style.maxHeight = `${Math.max(64, L)}px`),
+						(d.style.minWidth = `${g.width}px`);
+					const I = d.getBoundingClientRect(),
+						B = j ? g.bottom + b : g.top - I.height - b,
+						oe = Math.min(Math.max(v, g.left), window.innerWidth - I.width - v);
+					(d.style.top = `${Math.max(v, B)}px`),
+						(d.style.left = `${Math.max(v, oe)}px`);
+				};
+				f();
+				const p = requestAnimationFrame(f),
+					m = new ResizeObserver(f);
+				return (
+					m.observe(d),
+					window.addEventListener("resize", f),
+					window.addEventListener("scroll", f, !0),
+					() => {
+						cancelAnimationFrame(p),
+							m.disconnect(),
+							window.removeEventListener("resize", f),
+							window.removeEventListener("scroll", f, !0);
+					}
+				);
+			}, [r]),
+			e.length <= 1
+				? null
+				: y("div", {
+						ref: i,
+						className: "min-w-0 max-w-[calc(100%-5rem)] text-sm text-text",
+						children: [
+							y("button", {
+								ref: s,
+								type: "button",
+								onClick: () => o((d) => !d),
+								className:
+									" h-8 max-w-full w-max pl-4 pr-5 flex items-center gap-2 bg-bg rounded-br-md border-b border-r hover:bg-action/10 focus-visible:outline-action focus-visible:outline-2 focus-visible:outline-offset-2 cursor-pointer ",
+								"aria-label": "Select language",
+								"aria-haspopup": "menu",
+								"aria-expanded": r,
+								children: [
+									y("span", { "aria-hidden": "true", children: "🌐" }),
+									y("span", {
+										className: "font-medium whitespace-nowrap truncate",
+										children: (c == null ? void 0 : c.name) || t,
+									}),
+								],
+							}),
+							y("div", {
+								ref: a,
+								popover: "manual",
+								role: "menu",
+								style: { boxShadow: "0 8px 24px rgb(0 0 0 / 0.18)" },
+								className:
+									" fixed m-0 p-0 z-50 w-max max-w-[calc(100vw-1rem)] overflow-x-hidden overflow-y-auto text-sm text-text bg-bg rounded-md border ",
+								children: l.map((d) =>
+									y(
+										"button",
+										{
+											type: "button",
+											onClick: () => {
+												n(d.code), o(!1);
+											},
+											className:
+												" h-8 min-w-full px-4 flex items-center gap-2 whitespace-nowrap hover:bg-action/10 focus-visible:outline-action focus-visible:outline-2 focus-visible:outline-offset-[-2px] cursor-pointer ",
+											role: "menuitem",
+											children: [
+												y("span", { "aria-hidden": "true", children: "🌐" }),
+												y("span", { children: d.name }),
+											],
+										},
+										d.code,
+									),
+								),
+							}),
+						],
+					})
+		);
+	}
+	const eS = Xr("", {
+		variants: {
+			type: {
+				heading: "text-md md:text-lg font-bold font-heading",
+				body: "text-sm",
+				small: "text-xs",
+			},
+			color: { error: "text-error", warning: "text-warning" },
+			size: { sm: "text-xs md:text-sm", default: "" },
+		},
+		defaultVariants: { type: "body", size: "default" },
+	});
+	function qe({ className: e, type: t, color: n, size: r, as: o = "p", ...i }) {
+		return y(o, {
+			className: eS({ type: t, color: n, size: r, className: e }),
+			...i,
+		});
+	}
+	const Me = ({
+		heading: e,
+		isForm: t = !0,
+		body: n,
+		bodyHtml: r,
+		children: o,
+		texts: i,
+		actionsSpacing: s,
+		actionsLayout: a,
+		actions: c = [],
+		closeable: l,
+		onKeyUp: d,
+		skipWrapperLabeling: u = !1,
+		cardId: f,
+		groupActionsWithContent: p = !1,
+	}) => {
+		var Yu;
+		const m = wo(),
+			{ currentCard: g } = Xd(),
+			b = be(m, (Ke) => Ke.context.language),
+			v = ir(),
+			_ = iu(v),
+			k = v.renderType === "Inline",
+			x = t ? "form" : "div",
+			A = be(m, (Ke) => Ke.matches({ Running: "Minimized" })),
+			z = v.cards.find(({ order: Ke }) => Ke === g);
+		if (!z) return null;
+		const M = ((Yu = v.cards.at(-1)) == null ? void 0 : Yu.id) === z.id,
+			O = v.renderType === "Inline",
+			j = v.renderType === "Inline" || v.surveyType === "Findability",
+			L = (M && z.type === "MessageCard") || j,
+			I = v.showCloseButton !== !1 && (l ?? !0) && !A && !j,
+			B = f || `skyra-card-${v.slug}`,
+			oe = `${B}-body`,
+			Te = {
+				onKeyUp: d,
+				tabIndex: -1,
+				"data-card-focus-target": !0,
+				...(!u && { "aria-labelledby": B }),
+				...(t && { onSubmit: (Ke) => Ke.preventDefault(), name: v.name }),
+			},
+			Zi = () => {
+				m.send({ type: "minimize" });
+			},
+			to = () => {
+				m.send({ type: "maximize" });
+			},
+			rn = !(k || L),
+			IS =
+				z.type === "LikertCard" && z.likertScale.likertItems.length >= 5
+					? "Large"
+					: "Regular",
+			$S = { Minimal: 300, Large: 500, Regular: 400 };
+		return O
+			? y("div", {
+					className: "flex flex-col",
+					children: y(x, {
+						...Te,
+						className:
+							"flex flex-col gap-2 md:gap-4 w-full text-text focus:outline-none",
+						children: [
+							y(qe, {
+								part: "heading",
+								as: "h2",
+								type: "heading",
+								id: B,
+								children: e,
+							}),
+							Hu(r, n, oe),
+							o && y("div", { children: o }),
+							c.length > 0 &&
+								y(Uu, {
+									spacing: s,
+									layout: a,
+									actions: c,
+									labelledBy: p ? B : void 0,
+									describedBy: p && (n || r) ? oe : void 0,
+								}),
+						],
+					}),
+				})
+			: y("div", {
+					"data-minimized": A,
+					className: "survey-container",
+					style: { "--card-max-width": `${$S[IS]}px` },
+					children: [
+						y("div", {
+							className: "survey-content relative",
+							children: [
+								rn &&
+									y("header", {
+										className:
+											"absolute top-0 right-0 left-0 flex justify-between items-start z-10",
+										children: [
+											_.length > 1 &&
+												y(Q0, {
+													languages: _,
+													currentLanguage: b,
+													onChange: (Ke) => {
+														m.send({ type: "setLanguage", language: Ke });
+													},
+												}),
+											y("div", {
+												className: "flex ml-auto",
+												children: [
+													y(tS, { onMinimize: Zi, texts: i }),
+													y(X0, {
+														onClose: () => m.send({ type: "reject" }),
+														visible: I,
+													}),
+												],
+											}),
+										],
+									}),
+								y(x, {
+									...Te,
+									className: `flex flex-col gap-2 md:gap-4 w-full text-text px-4 md:px-6 pb-4 md:pb-6 focus:outline-none ${rn ? "pt-10" : "pt-4 md:pt-6"}`,
+									children: [
+										y(qe, {
+											part: "heading",
+											as: "h2",
+											type: "heading",
+											id: B,
+											children: e,
+										}),
+										Hu(r, n, oe),
+										o && y("div", { children: o }),
+										c.length > 0 &&
+											y(Uu, {
+												spacing: s,
+												layout: a,
+												actions: c,
+												labelledBy: p ? B : void 0,
+												describedBy: p && (n || r) ? oe : void 0,
+											}),
+									],
+								}),
+							],
+						}),
+						y("button", {
+							type: "button",
+							className: "survey-pill",
+							onClick: to,
+							children: [
+								y("span", {
+									className: "flex-1 text-left whitespace-nowrap",
+									children: (i == null ? void 0 : i.minimized) ?? e,
+								}),
+								y(G0, { className: "stroke-current fill-transparent" }),
+							],
+						}),
+					],
+				});
+	};
+	function tS({ onMinimize: e, texts: t }) {
+		return y("button", {
+			type: "button",
+			className:
+				" p-2 h-10 w-10 flex items-center justify-center text-text text-lg hover:bg-action/10 focus-visible:outline-action focus-visible:outline-2 focus-visible:outline-offset-2 ",
+			onClick: e,
+			children: y(Y0, {
+				title: (t == null ? void 0 : t.hide) ?? "Minimize",
+				className: "stroke-current fill-transparent",
+			}),
+		});
+	}
+	function Uu({
+		spacing: e = "between",
+		layout: t = "horizontal",
+		actions: n = [],
+		labelledBy: r,
+		describedBy: o,
+	}) {
+		const i = n.filter((s) => s.if !== !1);
+		return y("div", {
+			role: r ? "group" : void 0,
+			"aria-labelledby": r,
+			"aria-describedby": o,
+			className: `
+        flex w-full items-center
+        ${t === "vertical" ? "flex-col gap-2 items-start" : "flex-row"}
+        ${e === "between" ? "flex-wrap gap-3" : "gap-4"}
+      `,
+			children: i.map((s) => {
+				const a = (s.type ?? "primary") === "primary",
+					c = e === "between" && t === "horizontal" && a;
+				return y(
+					wt,
+					{
+						type: "button",
+						variant: s.type ?? "primary",
+						disabled: s.disabled,
+						onClick: s.action,
+						className: `${c ? "ms-auto" : ""} ${s.className ?? ""}`.trim(),
+						children: s.label,
+					},
+					s.key,
+				);
+			}),
+		});
+	}
+	function Hu(e, t, n) {
+		return e
+			? y("div", {
+					id: n,
+					part: "bodyHtml",
+					className: "body-content",
+					dangerouslySetInnerHTML: { __html: e },
+				})
+			: t
+				? y(qe, {
+						id: n,
+						part: "description",
+						className: "body-content",
+						children: t,
+					})
+				: null;
+	}
+	function nS({
+		card: e,
+		next: t,
+		prev: n,
+		sessionId: r,
+		survey: o,
+		storedValue: i,
+		firstCard: s,
+		finalCard: a,
+	}) {
+		We("top task card", e);
+		const c = e.randomize ? qr(e.taskItems ?? [], r) : (e.taskItems ?? []),
+			l = Ee(o, e, { finalCard: a }),
+			d = `skyra-card-${e.id}`,
+			u = typeof i == "string" ? i : void 0,
+			f = (p) => {
+				const m = p && p.trim() !== "" ? p : "";
+				t == null || t(m);
+			};
+		return y(
+			Me,
+			{
+				isForm: !1,
+				heading: e.name,
+				cardId: d,
+				body: e.body,
+				bodyHtml: e.bodyHtml,
+				texts: l,
+				skipWrapperLabeling: !0,
+				actions: [
+					{
+						key: "prev",
+						action: n,
+						label: l.back,
+						type: "link",
+						className: "mr-auto",
+						if: !s,
+					},
+				],
+				children: y("fieldset", {
+					className: "m-0 border-0 p-0 min-w-0",
+					"aria-labelledby": d,
+					children: y(eo, {
+						children: y("div", {
+							part: "options",
+							className: `flex ${e.optionsLayout === "horizontal" ? "flex-row flex-wrap gap-2 p-1" : "flex-col items-start gap-1 md:gap-2"}`,
+							children: c.map((p) => {
+								const g = X(p.task.id) === u;
+								return y(
+									wt,
+									{
+										type: "button",
+										variant: "chip",
+										"data-selected": g,
+										"aria-pressed": g ? "true" : "false",
+										onClick: () => {
+											f(p.task.id);
+										},
+										children: [g && y(Di, { className: "mr-1.5" }), p.label],
+									},
+									p.task.id,
+								);
+							}),
+						}),
+					}),
+				}),
+			},
+			e.id,
+		);
+	}
+	function rS({
+		card: e,
+		next: t,
+		prev: n,
+		survey: r,
+		finalCard: o,
+		firstCard: i,
+		close: s,
+	}) {
+		const a = Ee(r, e, { finalCard: o }),
+			c = au(r, e, { firstCard: i, finalCard: o }),
+			l = r.surveyType === "Findability",
+			d = c
+				? { key: "decline", type: "secondary", label: c, action: s }
+				: i
+					? null
+					: {
+							key: "prev",
+							type: "link",
+							label: a.back,
+							if: !l,
+							className: "mr-auto",
+							action: n,
+						},
+			u = [
+				...(d ? [d] : []),
+				{
+					key: "next",
+					type: "primary",
+					label: a.next,
+					action: () => t(),
+					if: !l,
+				},
+			],
+			f = `skyra-card-${e.id}`;
+		return y(
+			Me,
+			{
+				isForm: !1,
+				heading: e.name,
+				body: e.body,
+				bodyHtml: e.bodyHtml,
+				texts: a,
+				actions: u,
+				cardId: f,
+			},
+			e.id,
+		);
+	}
+	function oS({
+		card: e,
+		next: t,
+		minimize: n,
+		survey: r,
+		finalCard: o,
+		isInline: i,
+	}) {
+		const s = Ee(r, e, { finalCard: o }),
+			a = `skyra-card-${e.id}`,
+			c = e.optionsLayout === "horizontal";
+		return c
+			? y(
+					Me,
+					{
+						isForm: !1,
+						heading: e.name,
+						cardId: a,
+						body: e.body,
+						bodyHtml: e.bodyHtml,
+						texts: s,
+						actionsSpacing: "tight",
+						actionsLayout: c ? "horizontal" : "vertical",
+						actions: [
+							{ key: "accept", action: () => t(!0), label: e.positive },
+							{ key: "decline", action: () => t(!1), label: e.negative },
+							{
+								key: "wait",
+								action: n,
+								if: !i,
+								label: s.replyLater,
+								type: "link",
+								className: "ml-auto",
+							},
+						],
+					},
+					e.id,
+				)
+			: y(
+					Me,
+					{
+						isForm: !1,
+						heading: e.name,
+						cardId: a,
+						body: e.body,
+						bodyHtml: e.bodyHtml,
+						texts: s,
+						children: y("div", {
+							className: "flex w-full flex-col gap-2",
+							children: [
+								y(wt, {
+									type: "button",
+									className: "self-start",
+									onClick: () => t(!0),
+									children: e.positive,
+								}),
+								y("div", {
+									className: "flex w-full items-center gap-4",
+									children: [
+										y(wt, {
+											type: "button",
+											onClick: () => t(!1),
+											children: e.negative,
+										}),
+										!i &&
+											y(wt, {
+												type: "button",
+												variant: "link",
+												onClick: n,
+												className: "ml-auto",
+												children: s.replyLater,
+											}),
+									],
+								}),
+							],
+						}),
+					},
+					e.id,
+				);
+	}
+	function Fi({
+		id: e,
+		message: t,
+		type: n = "validation",
+		color: r = "error",
+		className: o = "",
+	}) {
+		return t
+			? y(qe, {
+					id: e,
+					color: r,
+					type: "small",
+					role: "alert",
+					"aria-live": "polite",
+					className: o,
+					children: t,
+				})
+			: null;
+	}
+	function iS(e, t) {
+		return (n) => {
+			(e.value = n.target.value), t == null || t(e.value);
+		};
+	}
+	function sS({
+		card: e,
+		next: t,
+		prev: n,
+		survey: r,
+		value: o,
+		storedValue: i,
+		firstCard: s,
+		finalCard: a,
+	}) {
+		var to;
+		const c = Oe(!1),
+			l = Oe(!1),
+			u = Oe(typeof i == "string" ? i : typeof o == "string" ? o : ""),
+			f = u.value.length,
+			p = Ye(),
+			m = Mt(),
+			g = (e == null ? void 0 : e.minLength) ?? 0,
+			b = (e == null ? void 0 : e.maxLength) ?? void 0,
+			v = Qs({
+				content: u.value,
+				card: { minLength: g, maxLength: b, validations: e.validations },
+				hasBeenTouched: c.value,
+				language: m,
+			}),
+			_ = v.valid,
+			k = e.multiline ? N0 : Qr,
+			x = Ee(r, e, { finalCard: a }),
+			A = `skyra-card-${e.id}`,
+			z = `${A}-length-instruction`,
+			M = `${A}-error`,
+			O = v.status === "under-minimum",
+			j = l.value && O,
+			L = !_ && l.value,
+			I = l.value && !O && !!v.errorMessage,
+			B = Js({ min: g, max: b, language: m });
+		function oe() {
+			(c.value = !0), (l.value = !0), (p.value = _), _ && t(u.value);
+		}
+		const pe = r.surveyType === "Findability",
+			Te = (to = e.label) == null ? void 0 : to.trim(),
+			Zi = Pu({
+				label: Te,
+				placeholder: e.placeholder,
+				heading: e.name,
+				usePlaceholder: pe,
+			});
+		return y(
+			Me,
+			{
+				heading: e.name,
+				body: e.body,
+				bodyHtml: e.bodyHtml,
+				texts: x,
+				cardId: A,
+				actions: [
+					{
+						key: "prev",
+						action: () => n(),
+						type: "link",
+						label: x.back,
+						if: !(s || pe),
+					},
+					{ key: "next", action: oe, label: x.next },
+				],
+				children: [
+					y(k, {
+						id: e.id,
+						label: Zi,
+						labelHidden: pe || !Te,
+						"aria-invalid": L ? "true" : void 0,
+						"aria-describedby":
+							O && B
+								? z
+								: I
+									? M
+									: B
+										? z
+										: typeof b == "number"
+											? `${A}-char-count`
+											: void 0,
+						placeholder: e.placeholder,
+						value: u.value,
+						autoComplete: "off",
+						onInput: iS(u, () => {
+							c.value = !0;
+						}),
+						onKeyDown: (rn) => {
+							rn.key === "Enter" &&
+								(!e.multiline || rn.metaKey) &&
+								(rn.preventDefault(), oe());
+						},
+						required: g > 0,
+						minLength: g,
+						maxLength: b,
+						name: "value",
+						type: "text",
+					}),
+					y("div", {
+						className: "flex justify-between mt-1",
+						children: [
+							B && !I
+								? y(qe, {
+										id: z,
+										type: "small",
+										color: j ? v.color : void 0,
+										role: j ? "alert" : void 0,
+										"aria-live": j ? "polite" : void 0,
+										children: B,
+									})
+								: I && v.errorMessage
+									? y(Fi, {
+											id: M,
+											message: v.errorMessage,
+											type: "character-limit",
+											color: v.color,
+										})
+									: y("span", {}),
+							typeof b == "number" &&
+								y(qe, {
+									id: `${A}-char-count`,
+									type: "small",
+									color: v.color,
+									role: v.shouldAnnounce ? "status" : void 0,
+									children: [f, "/", b],
+								}),
+						],
+					}),
+				],
+			},
+			e.id,
+		);
+	}
+	function Zu({
+		className: e,
+		onCheckedChange: t,
+		checked: n,
+		disabled: r,
+		...o
+	}) {
+		const [i, s] = ue(!1);
+		return y("input", {
+			className: `
+          appearance-none
+          m-0
+          text-current size-5
+          border-2 rounded-sm
+          border-current
+          shrink-0
+
+          grid place-content-center
+
+          focus-visible:ring-transparent
+          focus-visible:outline-hidden
+          before:content-['']
+          before:size-2.5
+          before:scale-0
+          before:transition-all
+          before:[transition-duration:100ms]
+          before:rounded-xs
+          before:shadow-[inset_1em_1em_currentcolor]
+          checked:before:scale-100
+          before:origin-bottom-left
+          before:[clip-path:polygon(14%_44%,0_65%,50%_100%,100%_16%,80%_0%,43%_62%)]
+          ${e ?? ""}
+        `,
+			type: "checkbox",
+			checked: n !== void 0 ? n : i,
+			onChange: (a) => {
+				const c = a.target.checked;
+				s(c), t == null || t(c);
+			},
+			disabled: r,
+			...o,
+		});
+	}
+	function aS({
+		className: e,
+		size: t,
+		disabled: n,
+		blocked: r,
+		onCheckedChange: o,
+		checked: i,
+		children: s,
+		...a
+	}) {
+		return y("label", {
+			part: "list-item",
+			class: `
+      ${r ? "cursor-not-allowed" : "cursor-pointer"}
+      flex items-center gap-3
+      border
+      rounded-sm p-2
+      border-interface
+
+      hover:bg-action/10
+
+      ring-offset-[3px]
+      focus-within:ring-2
+      focus-within:ring-offset-bg
+      focus-within:ring-action
+    `,
+			children: [
+				y(Zu, {
+					onCheckedChange: o,
+					checked: i,
+					disabled: n,
+					"aria-disabled": r || void 0,
+					className: "checked:bg-action checked:border-action checked:text-bg",
+					...a,
+				}),
+				s,
+			],
+		});
+	}
+	function Ui(e = "", t = "text") {
+		const n = Oe({
+				value: e,
+				valid: e ? lS(e, t) : null,
+				touched: e.length > 0,
+				dirty: !1,
+			}),
+			r = (i) => {
+				const s = i.target,
+					a = s.value;
+				n.value = {
+					...n.value,
+					value: a,
+					valid: s.checkValidity(),
+					touched: n.value.touched || a.length > 0,
+				};
+			},
+			o = (i) => {
+				n.value = { ...n.value, dirty: n.value.touched };
+			};
+		return {
+			signal: n,
+			value: n.value.value,
+			valid: n.value.valid,
+			touched: n.value.touched,
+			dirty: n.value.dirty,
+			onInput: r,
+			onBlur: o,
+		};
+	}
+	function lS(e, t) {
+		return t === "email"
+			? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)
+			: t === "tel"
+				? e.length > 0
+				: !0;
+	}
+	function cS({
+		card: e,
+		survey: t,
+		firstCard: n,
+		finalCard: r,
+		next: o,
+		prev: i,
+		close: s,
+		storedValue: a,
+	}) {
+		const c = Ye(),
+			l = Mt(),
+			d = typeof a == "object" && a !== null ? a : void 0,
+			u = Ui((d == null ? void 0 : d.email) || "", "email"),
+			f = Ui((d == null ? void 0 : d.phone) || "", "tel"),
+			p = Ui((d == null ? void 0 : d.name) || "", "text"),
+			m = Oe((d == null ? void 0 : d.consented) ?? !1),
+			g = Oe(!1),
+			b = Ee(t, e, { finalCard: r }),
+			v = nr({
+				email: { value: u.value, valid: u.valid ?? !1 },
+				name: { value: p.value },
+				phone: { value: f.value },
+				consented: m.value,
+				consentEnable: !!e.consentEnable,
+				isRequired: !!e.isRequired,
+				hasBeenSubmitted: g.value,
+				language: l,
+			}),
+			_ = v.status === "email-invalid",
+			k = v.status === "consent-required" || v.status === "email-required",
+			x = u.value || p.value || f.value;
+		function A() {
+			const M = nr({
+				email: { value: u.value, valid: u.valid ?? !1 },
+				name: { value: p.value },
+				phone: { value: f.value },
+				consented: m.value,
+				consentEnable: !!e.consentEnable,
+				isRequired: !!e.isRequired,
+				hasBeenSubmitted: !0,
+				language: l,
+			});
+			(g.value = !0),
+				(c.value = M.valid),
+				M.valid &&
+					o(
+						x
+							? {
+									email: u.value,
+									phone: f.value,
+									name: p.value,
+									consented: m.value,
+								}
+							: void 0,
+					);
+		}
+		const z = `skyra-card-${e.id}`;
+		return y(
+			Me,
+			{
+				heading: e.name,
+				body: e.body,
+				bodyHtml: e.bodyHtml,
+				texts: b,
+				skipWrapperLabeling: !0,
+				cardId: z,
+				actions: [
+					{ key: "prev", action: i, type: "link", if: !n, label: b.back },
+					{ key: "next", action: A, label: b.next },
+				],
+				children: y("fieldset", {
+					"aria-labelledby": z,
+					children: [
+						y("legend", {
+							className: "sr-only",
+							children: "Enter your contact information",
+						}),
+						y("div", {
+							className: "flex flex-col gap-2",
+							children: [
+								e.nameEnable &&
+									y(Qr, {
+										name: "name",
+										autocomplete: "name",
+										label: e.nameLabel ?? "Name",
+										placeholder: e.namePlaceholder ?? void 0,
+										value: p.value,
+										onInput: p.onInput,
+									}),
+								e.email &&
+									y(Qr, {
+										label: e.email_label
+											? `${e.email_label} ${e.isRequired || (e.consentEnable && m.value) ? "*" : ""}`
+											: `Email ${e.isRequired || (e.consentEnable && m.value) ? "*" : ""}`,
+										placeholder: e.email_placeholder ?? void 0,
+										value: u.value,
+										"aria-invalid": _ ? "true" : void 0,
+										"aria-describedby": _ ? `${z}-email-error` : void 0,
+										onInput: u.onInput,
+										onBlur: u.onBlur,
+										autocomplete: "email",
+										name: "email",
+										type: "email",
+									}),
+								e.phone &&
+									y(Qr, {
+										label: e.phone_label ?? "Phone",
+										placeholder: e.phone_placeholder ?? void 0,
+										value: f.value,
+										onInput: f.onInput,
+										autocomplete: "tel",
+										name: "phone",
+										type: "tel",
+									}),
+								_ &&
+									y(Fi, {
+										id: `${z}-email-error`,
+										message: v.errorMessage,
+										type: "validation",
+										color: v.color,
+									}),
+								e.consentEnable &&
+									y(Ae, {
+										children: [
+											y(qe, {
+												type: "small",
+												className:
+													"flex flex-col gap-0 items-center text-center",
+												children: [
+													e.consentTermsText,
+													e.consentTermsUrl &&
+														y("a", {
+															href: e.consentTermsUrl,
+															target: "_blank",
+															rel: "noopener noreferrer",
+															className: Du({
+																variant: "link",
+																size: "default",
+																className:
+																	"p-0! font-bold pl-0.5 whitespace-nowrap",
+															}),
+															children: e.consentTermsTitle,
+														}),
+												],
+											}),
+											y(qe, {
+												as: "label",
+												type: "small",
+												className: `
+              mt-2 mb-2 inline-flex gap-1.5 items-center self-center
+              font-semibold
+              rounded-sm
+              has-focus-visible:outline-2
+              has-focus-visible:outline-offset-4
+              has-focus-visible:outline-current
+            `,
+												children: [
+													y(Zu, {
+														name: "consent",
+														checked: m.value,
+														onCheckedChange: (M) => {
+															m.value = M;
+														},
+													}),
+													y("span", {
+														children: [
+															e.consentTermsLabel,
+															(e.isRequired || x) &&
+																y("span", {
+																	className: "text-red-600",
+																	"aria-label": "required",
+																	children: [" ", "*"],
+																}),
+														],
+													}),
+												],
+											}),
+										],
+									}),
+							],
+						}),
+						k
+							? y(Fi, {
+									id: `${z}-error`,
+									message: v.errorMessage,
+									type: "validation",
+									color: v.color,
+								})
+							: y("div", { className: "h-4" }),
+					],
+				}),
+			},
+			e.id,
+		);
+	}
+	function uS({
+		card: e,
+		next: t,
+		prev: n,
+		sessionId: r,
+		survey: o,
+		storedValue: i,
+		firstCard: s,
+		finalCard: a,
+	}) {
+		const c = e.randomize ? qr(e.items, r) : e.items,
+			l = Ee(o, e, { finalCard: a }),
+			d = `skyra-card-${e.id}`,
+			u = typeof i == "string" ? i : void 0,
+			f = (p, m) => {
+				const g = p && p.trim() !== "" ? p : "";
+				t == null || t(g, m);
+			};
+		return y(
+			Me,
+			{
+				isForm: !1,
+				heading: e.name,
+				cardId: d,
+				body: e.body,
+				bodyHtml: e.bodyHtml,
+				texts: l,
+				skipWrapperLabeling: !0,
+				actions: [
+					{
+						key: "prev",
+						action: n,
+						label: l.back,
+						type: "link",
+						className: "mr-auto",
+						if: !s,
+					},
+				],
+				children: y("fieldset", {
+					className: "m-0 border-0 p-0 min-w-0",
+					"aria-labelledby": d,
+					children: y(eo, {
+						children: y("div", {
+							part: "options",
+							className: `flex ${e.optionsLayout === "horizontal" ? "flex-row flex-wrap gap-2 p-1" : "flex-col items-start gap-1 md:gap-2"}`,
+							children: c.map((p) => {
+								const g = X(p.value.id) === u;
+								return y(
+									wt,
+									{
+										type: "button",
+										variant: "chip",
+										"data-selected": g,
+										"aria-pressed": g ? "true" : "false",
+										onClick: () => {
+											f(p.value.id, e.segment.id);
+										},
+										children: [g && y(Di, { className: "mr-1.5" }), p.label],
+									},
+									p.value.id,
+								);
+							}),
+						}),
+					}),
+				}),
+			},
+			e.id,
+		);
+	}
+	function dS({ className: e, value: { name: t, native: n } }) {
+		return y("span", {
+			className: `inline ${e}`,
+			role: "img",
+			"aria-label": t,
+			"aria-hidden": t ? "false" : "true",
+			children: n,
+		});
+	}
+	const fS = Xr(
+		`
+  appearance-none
+  m-0 bg-transparent
+  cursor-pointer
+  font-normal
+
+  aspect-square
+  rounded-full
+  border-2
+  border-solid
+  border-action
+  text-text
+  checked:border-8
+
+  focus-visible:outline-action
+  focus-visible:outline-2
+  focus-visible:outline-offset-2
+
+  disabled:cursor-not-allowed
+  disabled:opacity-50
+
+  hover:outline-action
+  hover:outline-2
+  hover:outline-offset-2
+  `,
+		{
+			variants: {
+				size: { small: "size-4", default: "size-6", large: "size-8" },
+			},
+			defaultVariants: { size: "default" },
+		},
+	);
+	function Vu({ className: e, size: t, ...n }) {
+		return y("input", {
+			type: "radio",
+			className: fS({ size: t, className: e }),
+			...n,
+		});
+	}
+	function pS({
+		card: e,
+		next: t,
+		prev: n,
+		survey: r,
+		storedValue: o,
+		firstCard: i,
+		finalCard: s,
+	}) {
+		var A;
+		const a = e.likertScale;
+		if (!("likertItems" in a)) return null;
+		const c = a.likertItems,
+			l =
+				(typeof o == "string" &&
+					((A = c.find((z) => X(z.id) === o)) == null ? void 0 : A.id)) ||
+				"",
+			d = Oe(l),
+			u = Ee(r, e, { finalCard: s }),
+			f = e.showEmoji && c.every((z) => !!z.emoji),
+			p = (z) => {
+				(d.value = z), t(z, e.id);
+			},
+			m = (z, M) => {
+				var L, I;
+				let O;
+				switch (z.key) {
+					case "ArrowLeft":
+					case "ArrowUp":
+						O = (M - 1 + c.length) % c.length;
+						break;
+					case "ArrowRight":
+					case "ArrowDown":
+						O = (M + 1) % c.length;
+						break;
+					case "Home":
+						O = 0;
+						break;
+					case "End":
+						O = c.length - 1;
+						break;
+					case "Enter":
+						z.preventDefault(), p(c[M].id);
+						return;
+					default:
+						return;
+				}
+				z.preventDefault(), (d.value = c[O].id);
+				const j =
+					(L = z.currentTarget.closest('[role="radiogroup"]')) == null
+						? void 0
+						: L.querySelectorAll('input[type="radio"]');
+				(I = j == null ? void 0 : j[O]) == null || I.focus();
+			},
+			g = [
+				{ key: "prev", action: () => n(), label: u.back, type: "link", if: !i },
+			],
+			b = e.optionsLayout === "horizontal";
+		let v = "grid-cols-5";
+		a.type === "LikertScaleThree"
+			? (v = "grid-cols-3")
+			: a.type === "LikertScaleSix"
+				? (v = "grid-cols-6")
+				: a.type === "LikertScaleSeven" && (v = "grid-cols-7");
+		const _ = b ? `grid ${v} gap-1 md:gap-2` : "flex flex-col gap-1 md:gap-2",
+			k = b
+				? "flex flex-col items-center gap-1"
+				: "flex flex-row items-center gap-2 justify-start",
+			x = `skyra-card-${e.id}`;
+		return y(
+			Me,
+			{
+				heading: e.name,
+				body: e.body,
+				bodyHtml: e.bodyHtml,
+				texts: u,
+				actions: g,
+				skipWrapperLabeling: !0,
+				cardId: x,
+				children: y("fieldset", {
+					"aria-labelledby": x,
+					children: [
+						y("legend", {
+							className: "sr-only",
+							children: "Select your rating",
+						}),
+						y("div", {
+							className: _,
+							role: "radiogroup",
+							"aria-labelledby": x,
+							children: c.map((z, M) => {
+								const O = z.id == d.value;
+								return f
+									? y(
+											"label",
+											{
+												part: "list-item",
+												className: `
+                  cursor-pointer
+                  ${b ? "flex flex-col items-center gap-0.5 text-center" : "flex flex-row items-center gap-2 justify-start"}
+                  py-0.5
+                  px-1
+                  rounded-sm
+                  ${O ? "bg-action text-bg" : ""}
+                  hover:ring-action hover:ring-offset-2
+                  hover:ring-offset-bg hover:ring-2
+
+                  focus-within:ring-action focus-within:ring-offset-2
+                  focus-within:ring-offset-bg focus-within:ring-2
+                `,
+												children: [
+													z.emoji &&
+														y(dS, {
+															value: z.emoji,
+															className: b ? "text-4xl" : "text-2xl",
+														}),
+													b
+														? y("input", {
+																type: "radio",
+																id: z.id,
+																name: e.id,
+																value: z.id,
+																checked: O,
+																className: "appearance-none",
+																onClick: () => p(z.id),
+																onKeyDown: (j) => m(j, M),
+															})
+														: y(Vu, {
+																id: z.id,
+																name: e.id,
+																value: z.id,
+																checked: O,
+																onClick: () => p(z.id),
+																onKeyDown: (j) => m(j, M),
+															}),
+													y("span", {
+														className: "text-xs font-semibold",
+														children: z.label,
+													}),
+												],
+											},
+											M,
+										)
+									: y(
+											"label",
+											{
+												part: "list-item",
+												className: `${k} cursor-pointer`,
+												children: [
+													y(Vu, {
+														id: z.id,
+														name: e.id,
+														value: z.id,
+														checked: O,
+														onClick: () => p(z.id),
+														onKeyDown: (j) => m(j, M),
+													}),
+													y("span", {
+														className: "text-xs font-semibold text-center",
+														children: z.label,
+													}),
+												],
+											},
+											M,
+										);
+							}),
+						}),
+					],
+				}),
+			},
+			e.id,
+		);
+	}
+	function hS(e) {
+		return y("kbd", {
+			...e,
+			class: `
+        ml-auto
+        shrink-0
+        text-text
+        bg-action/10
+        text-xs
+        font-medium
+        rounded-xs border border-interface
+        size-5 grid place-content-center
+        pointer-coarse:hidden
+      `,
+		});
+	}
+	const Wu = "ABCDEFGHJKMNPQRSTVWXYZ".split("");
+	function mS(e, t) {
+		switch (t.type) {
+			case "toggle": {
+				const n = oa({
+					selectedValues: Array.from(e.selected),
+					value: t.id,
+					max: t.max,
+				});
+				return {
+					...e,
+					selected: new Set(n.values),
+					dirty: !0,
+					limitAttempted: n.limitReached,
+				};
+			}
+			case "setDirty":
+				return { ...e, dirty: !0 };
+			default:
+				throw new Error("Invalid action type");
+		}
+	}
+	function gS({
+		card: e,
+		next: t,
+		prev: n,
+		sessionId: r,
+		survey: o,
+		storedValue: i,
+		firstCard: s,
+		finalCard: a,
+	}) {
+		We("multiselect card", e);
+		const c = Ye(),
+			l = Mt(),
+			u = (e.randomize ? qr(e.selectItems, r) : e.selectItems).map((L, I) => ({
+				...L,
+				order: I,
+			})),
+			f = Array.isArray(i)
+				? new Set(
+						i
+							.map((L) => {
+								var I;
+								return (I = u.find((B) => X(B.id) === L)) == null
+									? void 0
+									: I.id;
+							})
+							.filter(Boolean),
+					)
+				: new Set(),
+			[p, m] = ys(mS, { selected: f, dirty: !1, limitAttempted: !1 }),
+			[g, b] = ue(!1),
+			v = vs(
+				(L) => {
+					const I = L.currentTarget,
+						B = L.target,
+						oe = L.key.toUpperCase();
+					if (I.contains(B)) {
+						const pe = Wu.indexOf(oe);
+						if (pe >= 0 && pe < u.length) {
+							const Te = u[pe];
+							m({ type: "toggle", id: Te.id, max: e.max ?? void 0 });
+						}
+					}
+				},
+				[e.max, u],
+			),
+			_ = tr({
+				selectedCount: p.selected.size,
+				card: { min: e.min ?? void 0, max: e.max ?? void 0 },
+				hasBeenSubmitted: g,
+				language: l,
+			}),
+			k = Ys({
+				min: e.min ?? void 0,
+				max: e.max ?? void 0,
+				totalOptions: u.length,
+				language: l,
+			}),
+			x = e.max ? Gs({ max: e.max, language: l }) : null,
+			A = p.limitAttempted
+				? x
+				: _.status === "over-max" || (g && !_.valid)
+					? _.errorMessage
+					: k,
+			z = p.limitAttempted || _.status === "over-max" || (g && !_.valid),
+			M = Ee(o, e, { finalCard: a }),
+			O = `skyra-card-${e.id}`;
+		function j() {
+			const L = tr({
+				selectedCount: p.selected.size,
+				card: { min: e.min ?? void 0, max: e.max ?? void 0 },
+				hasBeenSubmitted: !0,
+				language: l,
+			});
+			if ((b(!0), (c.value = L.valid), L.valid)) {
+				const I = p.selected.size > 0 ? Array.from(p.selected) : [];
+				t(I);
+			}
+		}
+		return y(
+			Me,
+			{
+				onKeyUp: v,
+				heading: e.name,
+				body: e.body,
+				bodyHtml: e.bodyHtml,
+				texts: M,
+				skipWrapperLabeling: !0,
+				cardId: O,
+				actions: [
+					{
+						key: "prev",
+						action: () => (n == null ? void 0 : n()),
+						label: M.back,
+						type: "link",
+						if: !s,
+					},
+					{ key: "next", action: j, label: M.next },
+				],
+				children: y("fieldset", {
+					"aria-labelledby": O,
+					"aria-describedby": A ? `${O}-feedback` : void 0,
+					"aria-invalid": z ? "true" : void 0,
+					children: [
+						y(eo, {
+							children: y("div", {
+								part: "options",
+								className: `flex ${e.optionsLayout === "horizontal" ? "flex-row flex-wrap gap-2 p-1 -m-1" : "flex-col items-stretch gap-1 md:gap-2"}`,
+								children: u.map((L) => {
+									const I = p.selected.has(L.id),
+										B = !!(e.max && p.selected.size >= e.max && !I);
+									return y(
+										aS,
+										{
+											checked: I,
+											blocked: B,
+											onCheckedChange: () => {
+												m({ type: "toggle", id: L.id, max: e.max ?? void 0 });
+											},
+											children: [
+												y("span", { children: L.label }),
+												y(hS, { children: Wu[L.order] }),
+											],
+										},
+										L.id,
+									);
+								}),
+							}),
+						}),
+						A
+							? y("div", {
+									class: "my-2 shrink-0",
+									children: y(qe, {
+										type: "small",
+										color: z ? "error" : void 0,
+										role: z ? "alert" : void 0,
+										id: `${O}-feedback`,
+										children: A,
+									}),
+								})
+							: null,
+					],
+				}),
+			},
+			e.id,
+		);
+	}
+	function yS({ card: e, next: t, survey: n, finalCard: r }) {
+		const o = `skyra-card-${e.id}`;
+		return y(
+			Me,
+			{
+				isForm: !1,
+				heading: e.name,
+				cardId: o,
+				body: e.body,
+				bodyHtml: e.bodyHtml,
+				texts: Ee(n, e, { finalCard: r }),
+				actionsSpacing: "tight",
+				groupActionsWithContent: !0,
+				actions: [
+					{ key: "accept", action: () => t(!0), label: e.positive },
+					{ key: "decline", action: () => t(!1), label: e.negative },
+				],
+			},
+			e.id,
+		);
+	}
+	function vS({
+		card: e,
+		next: t,
+		prev: n,
+		sessionId: r,
+		survey: o,
+		storedValue: i,
+		firstCard: s,
+		finalCard: a,
+	}) {
+		const c = e.randomize ? qr(e.selectItems, r) : e.selectItems,
+			l = Ee(o, e, { finalCard: a }),
+			d = `skyra-card-${e.id}`,
+			u = typeof i == "string" ? i : void 0,
+			f = (p) => {
+				const m = p && p.trim() !== "" ? p : "";
+				t == null || t(m);
+			};
+		return y(
+			Me,
+			{
+				heading: e.name,
+				body: e.body,
+				cardId: d,
+				bodyHtml: e.bodyHtml,
+				texts: l,
+				skipWrapperLabeling: !0,
+				actions: [
+					{
+						key: "prev",
+						action: n,
+						label: l.back,
+						type: "link",
+						className: "mr-auto",
+						if: !s,
+					},
+				],
+				children: y("fieldset", {
+					className: "m-0 border-0 p-0 min-w-0",
+					"aria-labelledby": d,
+					children: y(eo, {
+						children: y("div", {
+							part: "options",
+							className: `flex ${e.optionsLayout === "horizontal" ? "flex-row flex-wrap gap-2 p-1" : "flex-col items-start gap-1 md:gap-2"}`,
+							children: c.map((p) => {
+								const g = X(p.id) === u;
+								return y(
+									wt,
+									{
+										type: "button",
+										variant: "chip",
+										"data-selected": g,
+										"aria-pressed": g ? "true" : "false",
+										onClick: () => {
+											f(p.id);
+										},
+										children: [g && y(Di, { className: "mr-1.5" }), p.label],
+									},
+									p.id,
+								);
+							}),
+						}),
+					}),
+				}),
+			},
+			e.id,
+		);
+	}
+	function bS({ card: e, ...t }) {
+		const n = ir(),
+			r = n.renderType === "Inline",
+			o = { ...t, survey: n };
+		switch (e.type) {
+			case "TopTaskCard":
+				return y(nS, { card: e, ...o });
+			case "MessageCard":
+				return y(rS, { card: e, ...o });
+			case "CompletionCard":
+				return y(oS, { card: e, ...o, isInline: r });
+			case "FindabilityCard":
+				return y(yS, { card: e, ...o });
+			case "RecruitmentCard":
+				return y(cS, { card: e, ...o });
+			case "InputCard":
+				return y(sS, { card: e, ...o });
+			case "SegmentCard":
+				return y(uS, { card: e, ...o });
+			case "LikertCard":
+				return y(pS, { card: e, ...o });
+			case "MultiSelectCard":
+				return y(gS, { card: e, ...o });
+			case "SingleSelectCard":
+				return y(vS, { card: { ...e, type: "SingleSelectCard" }, ...o });
+			default:
+				throw new Error(`Unknown card type: ${e.type}`);
+		}
+	}
+	const wS = `/*! tailwindcss v4.1.18 | MIT License | https://tailwindcss.com */@layer properties{@supports ((-webkit-hyphens:none) and (not (margin-trim:inline))) or ((-moz-orient:inline) and (not (color:rgb(from red r g b)))){*,:before,:after,::backdrop{--tw-scale-x:1;--tw-scale-y:1;--tw-scale-z:1;--tw-rotate-x:initial;--tw-rotate-y:initial;--tw-rotate-z:initial;--tw-skew-x:initial;--tw-skew-y:initial;--tw-space-y-reverse:0;--tw-border-style:solid;--tw-leading:initial;--tw-font-weight:initial;--tw-shadow:0 0 #0000;--tw-shadow-color:initial;--tw-shadow-alpha:100%;--tw-inset-shadow:0 0 #0000;--tw-inset-shadow-color:initial;--tw-inset-shadow-alpha:100%;--tw-ring-color:initial;--tw-ring-shadow:0 0 #0000;--tw-inset-ring-color:initial;--tw-inset-ring-shadow:0 0 #0000;--tw-ring-inset:initial;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-offset-shadow:0 0 #0000;--tw-blur:initial;--tw-brightness:initial;--tw-contrast:initial;--tw-grayscale:initial;--tw-hue-rotate:initial;--tw-invert:initial;--tw-opacity:initial;--tw-saturate:initial;--tw-sepia:initial;--tw-drop-shadow:initial;--tw-drop-shadow-color:initial;--tw-drop-shadow-alpha:100%;--tw-drop-shadow-size:initial;--tw-duration:initial;--tw-ease:initial;--tw-content:"";--tw-outline-style:solid}}}@layer theme{:root,:host{--font-sans:ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--font-mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;--spacing:4px;--container-6xl:1152px;--text-xs--line-height:calc(1/.75);--text-sm--line-height:calc(1.25/.875);--text-base:16px;--text-base--line-height: 1.5 ;--text-lg--line-height:calc(1.75/1.125);--text-xl:20px;--text-xl--line-height:calc(1.75/1.25);--text-2xl:24px;--text-2xl--line-height:calc(2/1.5);--text-3xl:30px;--text-3xl--line-height: 1.2 ;--text-4xl:36px;--text-4xl--line-height:calc(2.5/2.25);--text-5xl:48px;--text-5xl--line-height:1;--text-6xl:60px;--text-6xl--line-height:1;--font-weight-normal:400;--font-weight-medium:500;--font-weight-semibold:600;--font-weight-bold:700;--leading-tight:1.25;--ease-out:cubic-bezier(0,0,.2,1);--default-transition-duration:.15s;--default-transition-timing-function:cubic-bezier(.4,0,.2,1);--default-font-family:var(--font-sans);--default-mono-font-family:var(--font-mono)}}@layer base{*,:after,:before,::backdrop{box-sizing:border-box;border:0 solid;margin:0;padding:0}::file-selector-button{box-sizing:border-box;border:0 solid;margin:0;padding:0}html,:host{-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;line-height:1.5;font-family:var(--default-font-family,ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji");font-feature-settings:var(--default-font-feature-settings,normal);font-variation-settings:var(--default-font-variation-settings,normal);-webkit-tap-highlight-color:transparent}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,samp,pre{font-family:var(--default-mono-font-family,ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace);font-feature-settings:var(--default-mono-font-feature-settings,normal);font-variation-settings:var(--default-mono-font-variation-settings,normal);font-size:1em}small{font-size:80%}sub,sup{vertical-align:baseline;font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}:-moz-focusring{outline:auto}progress{vertical-align:baseline}summary{display:list-item}ol,ul,menu{list-style:none}img,svg,video,canvas,audio,iframe,embed,object{vertical-align:middle;display:block}img,video{max-width:100%;height:auto}button,input,select,optgroup,textarea{font:inherit;font-feature-settings:inherit;font-variation-settings:inherit;letter-spacing:inherit;color:inherit;opacity:1;background-color:#0000;border-radius:0}::file-selector-button{font:inherit;font-feature-settings:inherit;font-variation-settings:inherit;letter-spacing:inherit;color:inherit;opacity:1;background-color:#0000;border-radius:0}:where(select:is([multiple],[size])) optgroup{font-weight:bolder}:where(select:is([multiple],[size])) optgroup option{padding-inline-start:20px}::file-selector-button{margin-inline-end:4px}::-moz-placeholder{opacity:1}::placeholder{opacity:1}@supports (not (-webkit-appearance:-apple-pay-button)) or (contain-intrinsic-size:1px){::-moz-placeholder{color:currentColor}::placeholder{color:currentColor}@supports (color:color-mix(in lab,red,red)){::-moz-placeholder{color:color-mix(in oklab,currentcolor 50%,transparent)}::placeholder{color:color-mix(in oklab,currentcolor 50%,transparent)}}}textarea{resize:vertical}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-date-and-time-value{min-height:1lh;text-align:inherit}::-webkit-datetime-edit{display:inline-flex}::-webkit-datetime-edit-fields-wrapper{padding:0}::-webkit-datetime-edit{padding-block:0}::-webkit-datetime-edit-year-field{padding-block:0}::-webkit-datetime-edit-month-field{padding-block:0}::-webkit-datetime-edit-day-field{padding-block:0}::-webkit-datetime-edit-hour-field{padding-block:0}::-webkit-datetime-edit-minute-field{padding-block:0}::-webkit-datetime-edit-second-field{padding-block:0}::-webkit-datetime-edit-millisecond-field{padding-block:0}::-webkit-datetime-edit-meridiem-field{padding-block:0}::-webkit-calendar-picker-indicator{line-height:1}:-moz-ui-invalid{box-shadow:none}button,input:where([type=button],[type=reset],[type=submit]){-webkit-appearance:button;-moz-appearance:button;appearance:button}::file-selector-button{-webkit-appearance:button;-moz-appearance:button;appearance:button}::-webkit-inner-spin-button{height:auto}::-webkit-outer-spin-button{height:auto}[hidden]:where(:not([hidden=until-found])){display:none!important}}@layer components{:host{--skyra-bg-color:#f5f7fa;--skyra-text-color:#012a53;--skyra-interface-color:#315386;--skyra-border-color:var(--skyra-interface-color);--skyra-action-color:#002052;--skyra-action-text-color:var(--skyra-bg-color);--skyra-minimized-bg:#002052;--skyra-minimized-text:#fff;--skyra-minimized-border:#106eff;--skyra-minimized-shadow:0px 0px 20px 4px #013d9666;--skyra-secondary-color:#dde7f7;--skyra-link-color:blue;--skyra-error-color:#ca0a15;--skyra-warning-color:#92400e;--skyra-focus-color:var(--skyra-action-color);--skyra-border-style:solid;--skyra-border-width:1px;--skyra-radius-sm:4px;--skyra-radius-md:6px;--skyra-radius-lg:8px;--skyra-radius-pill:999px;--skyra-focus-ring-style:solid;--skyra-focus-ring-width:2px;--skyra-focus-ring-offset:2px;--skyra-shadow-sm:none;--skyra-shadow-md:none;--skyra-shadow-lg:none;--skyra-z-index:2147480000;--skyra-font-heading:ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--skyra-font-body:ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--skyra-option-list-max-height:400px;--skyra-body-max-height:none;font-size:var(--skyra-font-size,16px);background:var(--skyra-bg-color)}:host li{margin-left:24px;list-style-type:disc}:host a{color:var(--skyra-link-color);text-decoration:underline}.body-content{max-height:var(--skyra-body-max-height,none);overflow-y:auto}}@layer utilities{.visible{visibility:visible}.sr-only{clip-path:inset(50%);white-space:nowrap;border-width:0;width:1px;height:1px;margin:-1px;padding:0;position:absolute;overflow:hidden}.absolute{position:absolute}.fixed{position:fixed}.relative{position:relative}.static{position:static}.inset-x-0{inset-inline:calc(var(--spacing)*0)}.top-0{top:calc(var(--spacing)*0)}.right-0{right:calc(var(--spacing)*0)}.right-auto{right:auto}.bottom-0{bottom:calc(var(--spacing)*0)}.left-0{left:calc(var(--spacing)*0)}.left-auto{left:auto}.z-0{z-index:0}.z-10{z-index:10}.z-50{z-index:50}.z-wrapper{z-index:var(--skyra-z-index)}.container{width:100%}@media(min-width:40rem){.container{max-width:640px}}@media(min-width:48rem){.container{max-width:768px}}@media(min-width:64rem){.container{max-width:1024px}}@media(min-width:80rem){.container{max-width:1280px}}@media(min-width:96rem){.container{max-width:1536px}}.-m-1{margin:calc(var(--spacing)*-1)}.m-0{margin:calc(var(--spacing)*0)}.m-2{margin:calc(var(--spacing)*2)}.m-auto{margin:auto}.mx-2{margin-inline:calc(var(--spacing)*2)}.mx-auto{margin-inline:auto}.my-2{margin-block:calc(var(--spacing)*2)}.my-4{margin-block:calc(var(--spacing)*4)}.my-5{margin-block:calc(var(--spacing)*5)}.ms-auto{margin-inline-start:auto}.mt-1{margin-top:calc(var(--spacing)*1)}.mt-2{margin-top:calc(var(--spacing)*2)}.mt-3{margin-top:calc(var(--spacing)*3)}.mt-8{margin-top:calc(var(--spacing)*8)}.mt-10{margin-top:calc(var(--spacing)*10)}.mt-12{margin-top:calc(var(--spacing)*12)}.mr-1\\.5{margin-right:calc(var(--spacing)*1.5)}.mr-auto{margin-right:auto}.mb-2{margin-bottom:calc(var(--spacing)*2)}.mb-3{margin-bottom:calc(var(--spacing)*3)}.mb-4{margin-bottom:calc(var(--spacing)*4)}.mb-6{margin-bottom:calc(var(--spacing)*6)}.mb-8{margin-bottom:calc(var(--spacing)*8)}.mb-10{margin-bottom:calc(var(--spacing)*10)}.ml-0\\.5{margin-left:calc(var(--spacing)*.5)}.ml-auto{margin-left:auto}.\\!inline{display:inline!important}.block{display:block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.inline{display:inline}.inline-block{display:inline-block}.inline-flex{display:inline-flex}.list-item{display:list-item}.table{display:table}.aspect-square{aspect-ratio:1}.size-3\\.5{width:calc(var(--spacing)*3.5);height:calc(var(--spacing)*3.5)}.size-4{width:calc(var(--spacing)*4);height:calc(var(--spacing)*4)}.size-5{width:calc(var(--spacing)*5);height:calc(var(--spacing)*5)}.size-6{width:calc(var(--spacing)*6);height:calc(var(--spacing)*6)}.size-8{width:calc(var(--spacing)*8);height:calc(var(--spacing)*8)}.size-11{width:calc(var(--spacing)*11);height:calc(var(--spacing)*11)}.h-2{height:calc(var(--spacing)*2)}.h-4{height:calc(var(--spacing)*4)}.h-5{height:calc(var(--spacing)*5)}.h-8{height:calc(var(--spacing)*8)}.h-10{height:calc(var(--spacing)*10)}.h-48{height:calc(var(--spacing)*48)}.h-\\[50px\\]{height:50px}.h-\\[100px\\]{height:100px}.h-full{height:100%}.h-screen{height:100vh}.min-h-screen{min-height:100vh}.w-5{width:calc(var(--spacing)*5)}.w-8{width:calc(var(--spacing)*8)}.w-10{width:calc(var(--spacing)*10)}.w-20{width:calc(var(--spacing)*20)}.w-32{width:calc(var(--spacing)*32)}.w-48{width:calc(var(--spacing)*48)}.w-\\[400px\\]{width:400px}.w-full{width:100%}.w-max{width:-moz-max-content;width:max-content}.w-screen{width:100vw}.max-w-6xl{max-width:var(--container-6xl)}.max-w-\\[400px\\]{max-width:400px}.max-w-\\[450px\\]{max-width:450px}.max-w-\\[calc\\(100\\%-5rem\\)\\]{max-width:calc(100% - 80px)}.max-w-\\[calc\\(100vw-1rem\\)\\]{max-width:calc(100vw - 16px)}.max-w-full{max-width:100%}.min-w-0{min-width:calc(var(--spacing)*0)}.min-w-20{min-width:calc(var(--spacing)*20)}.min-w-\\[300px\\]{min-width:300px}.min-w-full{min-width:100%}.flex-1{flex:1}.shrink-0{flex-shrink:0}.grow{flex-grow:1}.scale-1{--tw-scale-x:1%;--tw-scale-y:1%;--tw-scale-z:1%;scale:var(--tw-scale-x)var(--tw-scale-y)}.scale-2{--tw-scale-x:2%;--tw-scale-y:2%;--tw-scale-z:2%;scale:var(--tw-scale-x)var(--tw-scale-y)}.transform{transform:var(--tw-rotate-x,)var(--tw-rotate-y,)var(--tw-rotate-z,)var(--tw-skew-x,)var(--tw-skew-y,)}.cursor-not-allowed{cursor:not-allowed}.cursor-pointer{cursor:pointer}.resize{resize:both}.list-inside{list-style-position:inside}.list-disc{list-style-type:disc}.appearance-none{-webkit-appearance:none;-moz-appearance:none;appearance:none}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.grid-cols-6{grid-template-columns:repeat(6,minmax(0,1fr))}.grid-cols-7{grid-template-columns:repeat(7,minmax(0,1fr))}.flex-col{flex-direction:column}.flex-row{flex-direction:row}.flex-wrap{flex-wrap:wrap}.place-content-center{place-content:center}.items-center{align-items:center}.items-end{align-items:flex-end}.items-start{align-items:flex-start}.items-stretch{align-items:stretch}.justify-between{justify-content:space-between}.justify-center{justify-content:center}.justify-start{justify-content:flex-start}.gap-0{gap:calc(var(--spacing)*0)}.gap-0\\.5{gap:calc(var(--spacing)*.5)}.gap-1{gap:calc(var(--spacing)*1)}.gap-1\\.5{gap:calc(var(--spacing)*1.5)}.gap-2{gap:calc(var(--spacing)*2)}.gap-3{gap:calc(var(--spacing)*3)}.gap-4{gap:calc(var(--spacing)*4)}.gap-5{gap:calc(var(--spacing)*5)}.gap-6{gap:calc(var(--spacing)*6)}:where(.space-y-1>:not(:last-child)){--tw-space-y-reverse:0;margin-block-start:calc(calc(var(--spacing)*1)*var(--tw-space-y-reverse));margin-block-end:calc(calc(var(--spacing)*1)*calc(1 - var(--tw-space-y-reverse)))}:where(.space-y-2>:not(:last-child)){--tw-space-y-reverse:0;margin-block-start:calc(calc(var(--spacing)*2)*var(--tw-space-y-reverse));margin-block-end:calc(calc(var(--spacing)*2)*calc(1 - var(--tw-space-y-reverse)))}:where(.space-y-4>:not(:last-child)){--tw-space-y-reverse:0;margin-block-start:calc(calc(var(--spacing)*4)*var(--tw-space-y-reverse));margin-block-end:calc(calc(var(--spacing)*4)*calc(1 - var(--tw-space-y-reverse)))}.gap-x-3{-moz-column-gap:calc(var(--spacing)*3);column-gap:calc(var(--spacing)*3)}.gap-y-1{row-gap:calc(var(--spacing)*1)}.gap-y-1\\.5{row-gap:calc(var(--spacing)*1.5)}.self-center{align-self:center}.self-end{align-self:flex-end}.self-start{align-self:flex-start}.truncate{text-overflow:ellipsis;white-space:nowrap;overflow:hidden}.overflow-hidden{overflow:hidden}.overflow-x-hidden{overflow-x:hidden}.overflow-y-auto{overflow-y:auto}.rounded{border-radius:var(--skyra-radius-md,6px)}.rounded-\\[99999px\\]{border-radius:99999px}.rounded-full{border-radius:var(--skyra-radius-pill,999px)}.rounded-lg{border-radius:var(--skyra-radius-lg,8px)}.rounded-md{border-radius:var(--skyra-radius-md,6px)}.rounded-none{border-radius:0}.rounded-sm{border-radius:var(--skyra-radius-sm,4px)}.rounded-xs{border-radius:var(--skyra-radius-sm,2px)}.rounded-br-md{border-bottom-right-radius:var(--skyra-radius-md,6px)}.border{border-style:var(--tw-border-style);border-width:1px}.border-0{border-style:var(--tw-border-style);border-width:0}.border-2{border-style:var(--tw-border-style);border-width:2px}.border-t{border-top-style:var(--tw-border-style);border-top-width:1px}.border-r{border-right-style:var(--tw-border-style);border-right-width:1px}.border-b{border-bottom-style:var(--tw-border-style);border-bottom-width:1px}.border-l-4{border-left-style:var(--tw-border-style);border-left-width:4px}.border-solid{--tw-border-style:solid;border-style:solid}.border-action{border-color:var(--skyra-action-color)}@supports (color:color-mix(in lab,red,red)){.border-action{border-color:color-mix(in srgb,var(--skyra-action-color),transparent 0%)}}.border-current{border-color:currentColor}.border-interface{border-color:var(--skyra-interface-color)}@supports (color:color-mix(in lab,red,red)){.border-interface{border-color:color-mix(in srgb,var(--skyra-interface-color),transparent 0%)}}.border-transparent{border-color:#0000}.bg-action{background-color:var(--skyra-action-color)}@supports (color:color-mix(in lab,red,red)){.bg-action{background-color:color-mix(in srgb,var(--skyra-action-color),transparent 0%)}}.bg-action\\/10{background-color:var(--skyra-action-color)}@supports (color:color-mix(in lab,red,red)){.bg-action\\/10{background-color:color-mix(in oklab,color-mix(in srgb,var(--skyra-action-color),transparent 0%)10%,transparent)}}.bg-bg{background-color:var(--skyra-bg-color)}@supports (color:color-mix(in lab,red,red)){.bg-bg{background-color:color-mix(in srgb,var(--skyra-bg-color),transparent 0%)}}.bg-minimized{background-color:var(--skyra-minimized-bg)}@supports (color:color-mix(in lab,red,red)){.bg-minimized{background-color:color-mix(in srgb,var(--skyra-minimized-bg),transparent 0%)}}.bg-transparent{background-color:#0000}.fill-\\[\\#003355\\]{fill:#035}.fill-transparent{fill:#0000}.stroke-current{stroke:currentColor}.object-cover{-o-object-fit:cover;object-fit:cover}.p-0{padding:calc(var(--spacing)*0)}.p-0\\!{padding:calc(var(--spacing)*0)!important}.p-1{padding:calc(var(--spacing)*1)}.p-2{padding:calc(var(--spacing)*2)}.p-3{padding:calc(var(--spacing)*3)}.p-4{padding:calc(var(--spacing)*4)}.p-6{padding:calc(var(--spacing)*6)}.p-8{padding:calc(var(--spacing)*8)}.px-0{padding-inline:calc(var(--spacing)*0)}.px-1{padding-inline:calc(var(--spacing)*1)}.px-1\\.5{padding-inline:calc(var(--spacing)*1.5)}.px-2{padding-inline:calc(var(--spacing)*2)}.px-4{padding-inline:calc(var(--spacing)*4)}.py-0{padding-block:calc(var(--spacing)*0)}.py-0\\.5{padding-block:calc(var(--spacing)*.5)}.py-1{padding-block:calc(var(--spacing)*1)}.py-2{padding-block:calc(var(--spacing)*2)}.py-6{padding-block:calc(var(--spacing)*6)}.pt-4{padding-top:calc(var(--spacing)*4)}.pt-10{padding-top:calc(var(--spacing)*10)}.pr-5{padding-right:calc(var(--spacing)*5)}.pb-4{padding-bottom:calc(var(--spacing)*4)}.pl-0\\.5{padding-left:calc(var(--spacing)*.5)}.pl-4{padding-left:calc(var(--spacing)*4)}.text-center{text-align:center}.text-left{text-align:left}.font-body{font-family:var(--skyra-font-body)}.font-heading{font-family:var(--skyra-font-heading)}.text-2xl{font-size:var(--text-2xl);line-height:var(--tw-leading,var(--text-2xl--line-height))}.text-3xl{font-size:var(--text-3xl);line-height:var(--tw-leading,var(--text-3xl--line-height))}.text-4xl{font-size:var(--text-4xl);line-height:var(--tw-leading,var(--text-4xl--line-height))}.text-5xl{font-size:var(--text-5xl);line-height:var(--tw-leading,var(--text-5xl--line-height))}.text-base{font-size:var(--text-base);line-height:var(--tw-leading,var(--text-base--line-height))}.text-lg{font-size:1.25em;line-height:var(--tw-leading,var(--text-lg--line-height))}.text-sm{font-size:.875em;line-height:var(--tw-leading,var(--text-sm--line-height))}.text-xl{font-size:var(--text-xl);line-height:var(--tw-leading,var(--text-xl--line-height))}.text-xs{font-size:.75em;line-height:var(--tw-leading,var(--text-xs--line-height))}.text-\\[10px\\]{font-size:10px}.text-\\[11px\\]{font-size:11px}.text-md{font-size:1.125em}.leading-4{--tw-leading:calc(var(--spacing)*4);line-height:calc(var(--spacing)*4)}.leading-none{--tw-leading:1;line-height:1}.leading-tight{--tw-leading:var(--leading-tight);line-height:var(--leading-tight)}.font-bold{--tw-font-weight:var(--font-weight-bold);font-weight:var(--font-weight-bold)}.font-medium{--tw-font-weight:var(--font-weight-medium);font-weight:var(--font-weight-medium)}.font-normal{--tw-font-weight:var(--font-weight-normal);font-weight:var(--font-weight-normal)}.font-semibold{--tw-font-weight:var(--font-weight-semibold);font-weight:var(--font-weight-semibold)}.whitespace-nowrap{white-space:nowrap}.text-\\[\\#012A53\\]{color:#012a53}.text-action-text{color:var(--skyra-action-text-color)}@supports (color:color-mix(in lab,red,red)){.text-action-text{color:color-mix(in srgb,var(--skyra-action-text-color),transparent 0%)}}.text-bg{color:var(--skyra-bg-color)}@supports (color:color-mix(in lab,red,red)){.text-bg{color:color-mix(in srgb,var(--skyra-bg-color),transparent 0%)}}.text-current{color:currentColor}.text-error{color:var(--skyra-error-color)}@supports (color:color-mix(in lab,red,red)){.text-error{color:color-mix(in srgb,var(--skyra-error-color),transparent 0%)}}.text-link{color:var(--skyra-link-color)}@supports (color:color-mix(in lab,red,red)){.text-link{color:color-mix(in srgb,var(--skyra-link-color),transparent 0%)}}.text-minimized-text{color:var(--skyra-minimized-text)}@supports (color:color-mix(in lab,red,red)){.text-minimized-text{color:color-mix(in srgb,var(--skyra-minimized-text),transparent 0%)}}.text-text{color:var(--skyra-text-color)}@supports (color:color-mix(in lab,red,red)){.text-text{color:color-mix(in srgb,var(--skyra-text-color),transparent 0%)}}.text-transparent{color:#0000}.text-warning{color:var(--skyra-warning-color)}@supports (color:color-mix(in lab,red,red)){.text-warning{color:color-mix(in srgb,var(--skyra-warning-color),transparent 0%)}}.lowercase{text-transform:lowercase}.uppercase{text-transform:uppercase}.underline{text-decoration-line:underline}.underline-offset-4{text-underline-offset:4px}.opacity-50{opacity:.5}.opacity-85{opacity:.85}.shadow{--tw-shadow:var(--skyra-shadow,0 0 20px 4px rgb(from var(--skyra-action-color)r g b/.25));box-shadow:var(--tw-inset-shadow),var(--tw-inset-ring-shadow),var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px var(--tw-shadow-color,#0000001a),0 4px 6px -4px var(--tw-shadow-color,#0000001a);box-shadow:var(--tw-inset-shadow),var(--tw-inset-ring-shadow),var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow)}.shadow-minimized{--tw-shadow:var(--skyra-minimized-shadow);box-shadow:var(--tw-inset-shadow),var(--tw-inset-ring-shadow),var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow)}.ring-offset-\\[3px\\]{--tw-ring-offset-width:3px;--tw-ring-offset-shadow:var(--tw-ring-inset,)0 0 0 var(--tw-ring-offset-width)var(--tw-ring-offset-color)}.blur-\\[75px\\]{--tw-blur:blur(75px);filter:var(--tw-blur,)var(--tw-brightness,)var(--tw-contrast,)var(--tw-grayscale,)var(--tw-hue-rotate,)var(--tw-invert,)var(--tw-saturate,)var(--tw-sepia,)var(--tw-drop-shadow,)}.filter{filter:var(--tw-blur,)var(--tw-brightness,)var(--tw-contrast,)var(--tw-grayscale,)var(--tw-hue-rotate,)var(--tw-invert,)var(--tw-saturate,)var(--tw-sepia,)var(--tw-drop-shadow,)}.transition{transition-property:color,background-color,border-color,outline-color,text-decoration-color,fill,stroke,--tw-gradient-from,--tw-gradient-via,--tw-gradient-to,opacity,box-shadow,transform,translate,scale,rotate,filter,backdrop-filter,display,content-visibility,overlay,pointer-events;transition-timing-function:var(--tw-ease,var(--default-transition-timing-function));transition-duration:var(--tw-duration,var(--default-transition-duration))}.transition\\!{transition-property:color,background-color,border-color,outline-color,text-decoration-color,fill,stroke,--tw-gradient-from,--tw-gradient-via,--tw-gradient-to,opacity,box-shadow,transform,translate,scale,rotate,filter,backdrop-filter,display,content-visibility,overlay,pointer-events!important;transition-timing-function:var(--tw-ease,var(--default-transition-timing-function))!important;transition-duration:var(--tw-duration,var(--default-transition-duration))!important}.transition-all{transition-property:all;transition-timing-function:var(--tw-ease,var(--default-transition-timing-function));transition-duration:var(--tw-duration,var(--default-transition-duration))}.transition-colors{transition-property:color,background-color,border-color,outline-color,text-decoration-color,fill,stroke,--tw-gradient-from,--tw-gradient-via,--tw-gradient-to;transition-timing-function:var(--tw-ease,var(--default-transition-timing-function));transition-duration:var(--tw-duration,var(--default-transition-duration))}.duration-200{--tw-duration:.2s;transition-duration:.2s}.ease-out{--tw-ease:var(--ease-out);transition-timing-function:var(--ease-out)}.\\[background\\:linear-gradient\\(180deg\\,rgb\\(224\\,251\\,166\\)_0\\%\\,rgb\\(223\\.85\\,250\\.83\\,166\\.74\\)_11\\.79\\%\\,rgb\\(223\\.42\\,250\\.35\\,168\\.85\\)_21\\.38\\%\\,rgb\\(222\\.73\\,249\\.59\\,172\\.2\\)_29\\.12\\%\\,rgb\\(221\\.83\\,248\\.59\\,176\\.62\\)_35\\.34\\%\\,rgb\\(220\\.73\\,247\\.37\\,181\\.97\\)_40\\.37\\%\\,rgb\\(219\\.48\\,245\\.98\\,188\\.11\\)_44\\.56\\%\\,rgb\\(218\\.09\\,244\\.44\\,194\\.87\\)_48\\.24\\%\\,rgb\\(216\\.61\\,242\\.79\\,202\\.13\\)_51\\.76\\%\\,rgb\\(215\\.06\\,241\\.06\\,209\\.72\\)_55\\.44\\%\\,rgb\\(213\\.47\\,239\\.3\\,217\\.5\\)_59\\.63\\%\\,rgb\\(211\\.87\\,237\\.52\\,225\\.31\\)_64\\.66\\%\\,rgb\\(210\\.29\\,235\\.77\\,233\\.02\\)_70\\.88\\%\\,rgb\\(208\\.77\\,234\\.07\\,240\\.47\\)_78\\.62\\%\\,rgb\\(207\\.33\\,232\\.47\\,247\\.51\\)_88\\.21\\%\\,rgb\\(206\\,231\\,254\\)_100\\%\\)\\]{background:linear-gradient(#e0fba6,#e0fba7 11.79%,#dffaa9 21.38%,#dffaac 29.12%,#def9b1 35.34%,#ddf7b6 40.37%,#dbf6bc 44.56%,#daf4c3 48.24%,#d9f3ca 51.76%,#d7f1d2 55.44%,#d5efda 59.63%,#d4eee1 64.66%,#d2ece9 70.88%,#d1eaf0 78.62%,#cfe8f8 88.21%,#cee7fe)}.placeholder\\:text-text\\/60::-moz-placeholder{color:var(--skyra-text-color)}.placeholder\\:text-text\\/60::placeholder{color:var(--skyra-text-color)}@supports (color:color-mix(in lab,red,red)){.placeholder\\:text-text\\/60::-moz-placeholder{color:color-mix(in oklab,color-mix(in srgb,var(--skyra-text-color),transparent 0%)60%,transparent)}.placeholder\\:text-text\\/60::placeholder{color:color-mix(in oklab,color-mix(in srgb,var(--skyra-text-color),transparent 0%)60%,transparent)}}.before\\:size-2\\.5:before{content:var(--tw-content);width:calc(var(--spacing)*2.5);height:calc(var(--spacing)*2.5)}.before\\:origin-bottom-left:before{content:var(--tw-content);transform-origin:0 100%}.before\\:scale-0:before{content:var(--tw-content);--tw-scale-x:0%;--tw-scale-y:0%;--tw-scale-z:0%;scale:var(--tw-scale-x)var(--tw-scale-y)}.before\\:rounded-xs:before{content:var(--tw-content);border-radius:var(--skyra-radius-sm,2px)}.before\\:shadow-\\[inset_1em_1em_currentcolor\\]:before{content:var(--tw-content);--tw-shadow:inset 1em 1em var(--tw-shadow-color,currentcolor);box-shadow:var(--tw-inset-shadow),var(--tw-inset-ring-shadow),var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow)}.before\\:transition-all:before{content:var(--tw-content);transition-property:all;transition-timing-function:var(--tw-ease,var(--default-transition-timing-function));transition-duration:var(--tw-duration,var(--default-transition-duration))}.before\\:\\[transition-duration\\:100ms\\]:before{content:var(--tw-content);transition-duration:.1s}.before\\:content-\\[\\'\\'\\]:before{--tw-content:"";content:var(--tw-content)}.before\\:\\[clip-path\\:polygon\\(14\\%_44\\%\\,0_65\\%\\,50\\%_100\\%\\,100\\%_16\\%\\,80\\%_0\\%\\,43\\%_62\\%\\)\\]:before{content:var(--tw-content);clip-path:polygon(14% 44%,0 65%,50% 100%,100% 16%,80% 0%,43% 62%)}.checked\\:border-8:checked{border-style:var(--tw-border-style);border-width:8px}.checked\\:border-action:checked{border-color:var(--skyra-action-color)}@supports (color:color-mix(in lab,red,red)){.checked\\:border-action:checked{border-color:color-mix(in srgb,var(--skyra-action-color),transparent 0%)}}.checked\\:bg-action:checked{background-color:var(--skyra-action-color)}@supports (color:color-mix(in lab,red,red)){.checked\\:bg-action:checked{background-color:color-mix(in srgb,var(--skyra-action-color),transparent 0%)}}.checked\\:text-bg:checked{color:var(--skyra-bg-color)}@supports (color:color-mix(in lab,red,red)){.checked\\:text-bg:checked{color:color-mix(in srgb,var(--skyra-bg-color),transparent 0%)}}.checked\\:before\\:scale-100:checked:before{content:var(--tw-content);--tw-scale-x:100%;--tw-scale-y:100%;--tw-scale-z:100%;scale:var(--tw-scale-x)var(--tw-scale-y)}.focus-within\\:ring-2:focus-within{--tw-ring-shadow:var(--tw-ring-inset,)0 0 0 calc(2px + var(--tw-ring-offset-width))var(--tw-ring-color,currentcolor);box-shadow:var(--tw-inset-shadow),var(--tw-inset-ring-shadow),var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow)}.focus-within\\:ring-action:focus-within{--tw-ring-color:var(--skyra-action-color)}@supports (color:color-mix(in lab,red,red)){.focus-within\\:ring-action:focus-within{--tw-ring-color:color-mix(in srgb,var(--skyra-action-color),transparent 0% )}}.focus-within\\:ring-offset-2:focus-within{--tw-ring-offset-width:2px;--tw-ring-offset-shadow:var(--tw-ring-inset,)0 0 0 var(--tw-ring-offset-width)var(--tw-ring-offset-color)}.focus-within\\:ring-offset-bg:focus-within{--tw-ring-offset-color:var(--skyra-bg-color)}@supports (color:color-mix(in lab,red,red)){.focus-within\\:ring-offset-bg:focus-within{--tw-ring-offset-color:color-mix(in srgb,var(--skyra-bg-color),transparent 0% )}}@media(hover:hover){.hover\\:border-action\\/80:hover{border-color:var(--skyra-action-color)}@supports (color:color-mix(in lab,red,red)){.hover\\:border-action\\/80:hover{border-color:color-mix(in oklab,color-mix(in srgb,var(--skyra-action-color),transparent 0%)80%,transparent)}}.hover\\:bg-action:hover{background-color:var(--skyra-action-color)}@supports (color:color-mix(in lab,red,red)){.hover\\:bg-action:hover{background-color:color-mix(in srgb,var(--skyra-action-color),transparent 0%)}}.hover\\:bg-action\\/10:hover{background-color:var(--skyra-action-color)}@supports (color:color-mix(in lab,red,red)){.hover\\:bg-action\\/10:hover{background-color:color-mix(in oklab,color-mix(in srgb,var(--skyra-action-color),transparent 0%)10%,transparent)}}.hover\\:bg-action\\/80:hover{background-color:var(--skyra-action-color)}@supports (color:color-mix(in lab,red,red)){.hover\\:bg-action\\/80:hover{background-color:color-mix(in oklab,color-mix(in srgb,var(--skyra-action-color),transparent 0%)80%,transparent)}}.hover\\:text-action-text:hover{color:var(--skyra-action-text-color)}@supports (color:color-mix(in lab,red,red)){.hover\\:text-action-text:hover{color:color-mix(in srgb,var(--skyra-action-text-color),transparent 0%)}}.hover\\:text-link\\/80:hover{color:var(--skyra-link-color)}@supports (color:color-mix(in lab,red,red)){.hover\\:text-link\\/80:hover{color:color-mix(in oklab,color-mix(in srgb,var(--skyra-link-color),transparent 0%)80%,transparent)}}.hover\\:ring-2:hover{--tw-ring-shadow:var(--tw-ring-inset,)0 0 0 calc(2px + var(--tw-ring-offset-width))var(--tw-ring-color,currentcolor);box-shadow:var(--tw-inset-shadow),var(--tw-inset-ring-shadow),var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow)}.hover\\:ring-action:hover{--tw-ring-color:var(--skyra-action-color)}@supports (color:color-mix(in lab,red,red)){.hover\\:ring-action:hover{--tw-ring-color:color-mix(in srgb,var(--skyra-action-color),transparent 0% )}}.hover\\:ring-offset-2:hover{--tw-ring-offset-width:2px;--tw-ring-offset-shadow:var(--tw-ring-inset,)0 0 0 var(--tw-ring-offset-width)var(--tw-ring-offset-color)}.hover\\:ring-offset-bg:hover{--tw-ring-offset-color:var(--skyra-bg-color)}@supports (color:color-mix(in lab,red,red)){.hover\\:ring-offset-bg:hover{--tw-ring-offset-color:color-mix(in srgb,var(--skyra-bg-color),transparent 0% )}}.hover\\:outline-2:hover{outline-style:var(--tw-outline-style);outline-width:2px}.hover\\:outline-offset-2:hover{outline-offset:2px}.hover\\:outline-action:hover{outline-color:var(--skyra-action-color)}@supports (color:color-mix(in lab,red,red)){.hover\\:outline-action:hover{outline-color:color-mix(in srgb,var(--skyra-action-color),transparent 0%)}}}.focus\\:outline-none:focus{--tw-outline-style:none;outline-style:none}.focus-visible\\:bg-action\\/10:focus-visible{background-color:var(--skyra-action-color)}@supports (color:color-mix(in lab,red,red)){.focus-visible\\:bg-action\\/10:focus-visible{background-color:color-mix(in oklab,color-mix(in srgb,var(--skyra-action-color),transparent 0%)10%,transparent)}}.focus-visible\\:no-underline:focus-visible{text-decoration-line:none}.focus-visible\\:ring-transparent:focus-visible{--tw-ring-color:transparent}.focus-visible\\:outline-hidden:focus-visible{--tw-outline-style:none;outline-style:none}@media(forced-colors:active){.focus-visible\\:outline-hidden:focus-visible{outline-offset:2px;outline:2px solid #0000}}.focus-visible\\:outline-2:focus-visible{outline-style:var(--tw-outline-style);outline-width:2px}.focus-visible\\:outline-offset-2:focus-visible{outline-offset:2px}.focus-visible\\:outline-offset-\\[-2px\\]:focus-visible{outline-offset:-2px}.focus-visible\\:outline-action:focus-visible{outline-color:var(--skyra-action-color)}@supports (color:color-mix(in lab,red,red)){.focus-visible\\:outline-action:focus-visible{outline-color:color-mix(in srgb,var(--skyra-action-color),transparent 0%)}}.focus-visible\\:outline-current:focus-visible{outline-color:currentColor}.disabled\\:cursor-not-allowed:disabled{cursor:not-allowed}.disabled\\:opacity-50:disabled{opacity:.5}.has-focus-visible\\:outline-2:has(:focus-visible){outline-style:var(--tw-outline-style);outline-width:2px}.has-focus-visible\\:outline-offset-4:has(:focus-visible){outline-offset:4px}.has-focus-visible\\:outline-current:has(:focus-visible){outline-color:currentColor}.aria-\\[invalid\\=true\\]\\:border-error[aria-invalid=true]{border-color:var(--skyra-error-color)}@supports (color:color-mix(in lab,red,red)){.aria-\\[invalid\\=true\\]\\:border-error[aria-invalid=true]{border-color:color-mix(in srgb,var(--skyra-error-color),transparent 0%)}}@media(hover:hover){.aria-\\[invalid\\=true\\]\\:hover\\:border-error\\/50[aria-invalid=true]:hover{border-color:var(--skyra-error-color)}@supports (color:color-mix(in lab,red,red)){.aria-\\[invalid\\=true\\]\\:hover\\:border-error\\/50[aria-invalid=true]:hover{border-color:color-mix(in oklab,color-mix(in srgb,var(--skyra-error-color),transparent 0%)50%,transparent)}}}.aria-\\[invalid\\=true\\]\\:focus-visible\\:ring-error\\/20[aria-invalid=true]:focus-visible{--tw-ring-color:var(--skyra-error-color)}@supports (color:color-mix(in lab,red,red)){.aria-\\[invalid\\=true\\]\\:focus-visible\\:ring-error\\/20[aria-invalid=true]:focus-visible{--tw-ring-color:color-mix(in oklab,color-mix(in srgb,var(--skyra-error-color),transparent 0% )20%,transparent)}}.data-\\[selected\\=true\\]\\:border-action[data-selected=true]{border-color:var(--skyra-action-color)}@supports (color:color-mix(in lab,red,red)){.data-\\[selected\\=true\\]\\:border-action[data-selected=true]{border-color:color-mix(in srgb,var(--skyra-action-color),transparent 0%)}}.data-\\[selected\\=true\\]\\:bg-action[data-selected=true]{background-color:var(--skyra-action-color)}@supports (color:color-mix(in lab,red,red)){.data-\\[selected\\=true\\]\\:bg-action[data-selected=true]{background-color:color-mix(in srgb,var(--skyra-action-color),transparent 0%)}}.data-\\[selected\\=true\\]\\:font-semibold[data-selected=true]{--tw-font-weight:var(--font-weight-semibold);font-weight:var(--font-weight-semibold)}.data-\\[selected\\=true\\]\\:text-action-text[data-selected=true]{color:var(--skyra-action-text-color)}@supports (color:color-mix(in lab,red,red)){.data-\\[selected\\=true\\]\\:text-action-text[data-selected=true]{color:color-mix(in srgb,var(--skyra-action-text-color),transparent 0%)}}@media(min-width:40rem){.sm\\:h-screen{height:100vh}.sm\\:w-4\\/12{width:33.3333%}.sm\\:w-8\\/12{width:66.6667%}.sm\\:p-10{padding:calc(var(--spacing)*10)}}@media(min-width:48rem){.md\\:col-span-2{grid-column:span 2/span 2}.md\\:m-4{margin:calc(var(--spacing)*4)}.md\\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.md\\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.md\\:gap-2{gap:calc(var(--spacing)*2)}.md\\:gap-4{gap:calc(var(--spacing)*4)}.md\\:px-0{padding-inline:calc(var(--spacing)*0)}.md\\:px-6{padding-inline:calc(var(--spacing)*6)}.md\\:pt-6{padding-top:calc(var(--spacing)*6)}.md\\:pb-6{padding-bottom:calc(var(--spacing)*6)}.md\\:text-lg{font-size:1.25em;line-height:var(--tw-leading,var(--text-lg--line-height))}.md\\:text-sm{font-size:.875em;line-height:var(--tw-leading,var(--text-sm--line-height))}}@media(min-width:64rem){.lg\\:mt-0{margin-top:calc(var(--spacing)*0)}.lg\\:flex{display:flex}.lg\\:text-6xl{font-size:var(--text-6xl);line-height:var(--tw-leading,var(--text-6xl--line-height))}}@media(prefers-color-scheme:dark){.dark\\:bg-\\[\\#000F0D\\]{background-color:#000f0d}.dark\\:text-\\[\\#FFFFFF\\]{color:#fff}}@media(pointer:coarse){.pointer-coarse\\:hidden{display:none}}.sr-only{clip:rect(0,0,0,0);white-space:nowrap;border:0;width:1px;height:1px;margin:-1px;padding:0;position:absolute;overflow:hidden}}:host{--tw-divide-y-reverse:0;--tw-border-style:solid;--tw-outline-style:solid;--tw-font-weight:initial;--tw-tracking:initial;--tw-translate-x:0;--tw-translate-y:0;--tw-translate-z:0;--tw-rotate-x:rotateX(0);--tw-rotate-y:rotateY(0);--tw-rotate-z:rotateZ(0);--tw-skew-x:skewX(0);--tw-skew-y:skewY(0);--tw-space-x-reverse:0;--tw-gradient-position:initial;--tw-gradient-from:#0000;--tw-gradient-via:#0000;--tw-gradient-to:#0000;--tw-gradient-stops:initial;--tw-gradient-via-stops:initial;--tw-gradient-from-position:0%;--tw-gradient-via-position:50%;--tw-gradient-to-position:100%;--tw-shadow:0 0 #0000;--tw-shadow-color:initial;--tw-inset-shadow:0 0 #0000;--tw-inset-shadow-color:initial;--tw-ring-color:initial;--tw-ring-shadow:0 0 #0000;--tw-inset-ring-color:initial;--tw-inset-ring-shadow:0 0 #0000;--tw-ring-inset:initial;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-offset-shadow:0 0 #0000;--tw-blur:initial;--tw-brightness:initial;--tw-contrast:initial;--tw-grayscale:initial;--tw-hue-rotate:initial;--tw-invert:initial;--tw-opacity:initial;--tw-saturate:initial;--tw-sepia:initial;--tw-drop-shadow:initial;--tw-duration:initial;--tw-ease:initial}.scroll-area{scroll-timeline:--scroll-timeline y;scroll-timeline:--scroll-timeline vertical;max-height:min(var(--skyra-option-list-max-height,400px),35vh);position:relative;overflow-y:auto}@media(min-width:1024px){.scroll-area{max-height:clamp(20vh,var(--skyra-option-list-max-height,400px),35vh)}}.scroll-area .scroll-area-up,.scroll-area .scroll-area-down{background-color:var(--skyra-bg-color)}@supports (color:color-mix(in lab,red,red)){.scroll-area .scroll-area-up,.scroll-area .scroll-area-down{background-color:color-mix(in oklab,color-mix(in srgb,var(--skyra-bg-color),transparent 0%)80%,transparent)}}.scroll-area .scroll-area-up,.scroll-area .scroll-area-down{-webkit-backdrop-filter:blur(1px);backdrop-filter:blur(1px);cursor:pointer;border:none;justify-content:center;align-items:center;width:100%;height:1.5em;transition:background-color .2s,transform .1s,opacity .2s;display:flex;position:sticky;left:0;right:0}.scroll-area .scroll-area-up:hover,.scroll-area .scroll-area-down:hover{background-color:var(--skyra-bg-color)}@supports (color:color-mix(in lab,red,red)){.scroll-area .scroll-area-up:hover,.scroll-area .scroll-area-down:hover{background-color:color-mix(in oklab,color-mix(in srgb,var(--skyra-bg-color),transparent 0%)90%,transparent)}}.scroll-area .scroll-area-up:focus,.scroll-area .scroll-area-down:focus{background-color:var(--skyra-bg-color)}@supports (color:color-mix(in lab,red,red)){.scroll-area .scroll-area-up:focus,.scroll-area .scroll-area-down:focus{background-color:color-mix(in oklab,color-mix(in srgb,var(--skyra-bg-color),transparent 0%)90%,transparent)}}.scroll-area .scroll-area-up:focus,.scroll-area .scroll-area-down:focus{outline:2px solid var(--color-interface);outline-offset:-2px}.scroll-area .scroll-area-up:active,.scroll-area .scroll-area-down:active{background-color:var(--skyra-bg-color)}@supports (color:color-mix(in lab,red,red)){.scroll-area .scroll-area-up:active,.scroll-area .scroll-area-down:active{background-color:color-mix(in oklab,color-mix(in srgb,var(--skyra-bg-color),transparent 0%)95%,transparent)}}.scroll-area .scroll-area-up:active,.scroll-area .scroll-area-down:active{transform:scale(.98)}.scroll-area-up{opacity:1;pointer-events:auto;top:-2px}.scroll-area-down{opacity:1;pointer-events:auto;bottom:-1px}.scroll-area[data-scrollable=false] .scroll-area-up,.scroll-area[data-scrollable=false] .scroll-area-down,.scroll-area[data-scrollable=unknown] .scroll-area-up,.scroll-area[data-scrollable=unknown] .scroll-area-down{opacity:0!important;pointer-events:none!important;display:none!important}.scroll-area[data-at-top=true] .scroll-area-up,.scroll-area[data-at-bottom=true] .scroll-area-down{opacity:0!important;pointer-events:none!important}@supports (animation-timeline:scroll()){.scroll-area-up{opacity:1;pointer-events:auto;animation:linear reveal-top;animation-timeline:--scroll-timeline;animation-range:0 1px}.scroll-area-down{animation:linear reveal-bottom;animation-timeline:--scroll-timeline;animation-range:entry exit 0%}}@keyframes reveal-top{0%{opacity:0;pointer-events:none}to{opacity:1;pointer-events:auto}}@keyframes reveal-bottom{0%{opacity:1;pointer-events:auto}to{opacity:0;pointer-events:none}}:host{--ease-out:cubic-bezier(.16,1,.3,1);--ease-out-soft:cubic-bezier(.33,1,.68,1);--duration-fast:.15s;--duration:.28s;--duration-slow:.5s}@keyframes content-enter{0%{opacity:0;transform:translate(8px)}to{opacity:1;transform:translate(0)}}.survey-content-enter{animation:content-enter var(--duration-slow)var(--ease-out)both}@keyframes wrapper-enter-up{0%{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}@keyframes wrapper-enter-down{0%{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}@keyframes shake{0%{transform:translate(0)}25%{transform:translate(-6px)}50%{transform:translate(6px)}75%{transform:translate(-6px)}to{transform:translate(0)}}.survey-enter-up{animation:wrapper-enter-up var(--duration)var(--ease-out)both}.survey-enter-down{animation:wrapper-enter-down var(--duration)var(--ease-out)both}.survey-shake{animation:shake var(--duration)ease-in-out}.survey-container{interpolate-size:allow-keywords;border:var(--skyra-border-width,1px)var(--skyra-border-style,solid)var(--skyra-border-color,var(--skyra-action-color));grid-template:1fr/1fr;display:grid}@supports (color:color-mix(in lab,red,red)){.survey-container{border:var(--skyra-border-width,1px)var(--skyra-border-style,solid)var(--skyra-border-color,color-mix(in srgb,var(--skyra-action-color)50%,transparent))}}.survey-container{background:var(--skyra-bg-color);border-radius:var(--skyra-radius-lg,8px);box-shadow:var(--skyra-shadow-md,var(--skyra-shadow,0 0 20px 4px rgb(from var(--skyra-action-color)r g b/.25)));transition:background-color 0s,border-color var(--duration-fast)var(--ease-out-soft),border-radius var(--duration)var(--ease-out-soft),box-shadow var(--duration-fast)var(--ease-out-soft);overflow:hidden}.survey-container[data-minimized=true]{background:var(--skyra-minimized-bg);border-color:var(--skyra-minimized-border);border-radius:var(--skyra-radius-sm,4px);box-shadow:var(--skyra-minimized-shadow);transition:background-color 0s,border-color var(--duration)var(--ease-out-soft),border-radius var(--duration)var(--ease-out-soft),box-shadow var(--duration)var(--ease-out-soft)}.survey-content,.survey-pill{grid-area:1/1}.survey-content{width:min(var(--card-max-width,400px),calc(100vw - 32px));opacity:1;visibility:visible;height:auto;transition:opacity var(--duration)var(--ease-out-soft),visibility 0s,width var(--duration-fast)var(--ease-out),height var(--duration-fast)var(--ease-out);overflow:visible}.survey-container[data-minimized=true] .survey-content{opacity:0;visibility:hidden;pointer-events:none;width:0;height:0;transition:opacity var(--duration-fast)var(--ease-out-soft),visibility 0s var(--duration-fast),width 0s,height 0s;overflow:hidden}.survey-pill{color:var(--skyra-minimized-text);cursor:pointer;white-space:nowrap;opacity:0;visibility:hidden;width:0;height:0;transition:opacity var(--duration-fast)var(--ease-out-soft),visibility 0s var(--duration-fast),width 0s var(--duration-fast),height 0s var(--duration-fast);background:0 0;border:none;align-items:center;gap:8px;padding:8px;display:flex;overflow:hidden}.survey-container[data-minimized=true] .survey-pill{opacity:1;visibility:visible;width:auto;height:auto;transition:opacity var(--duration)var(--ease-out-soft),visibility 0s,width 0s,height 0s;overflow:visible}.survey-pill:hover{background-color:#ffffff1a}.survey-pill:focus-visible{outline:2px solid var(--skyra-bg-color);outline-offset:2px}@media(prefers-reduced-motion:reduce){.survey-container,.survey-content,.survey-pill{transition-duration:.01ms!important}.survey-content-enter,.survey-enter-up,.survey-enter-down,.survey-shake{animation:none!important}}@property --tw-scale-x{syntax:"*";inherits:false;initial-value:1}@property --tw-scale-y{syntax:"*";inherits:false;initial-value:1}@property --tw-scale-z{syntax:"*";inherits:false;initial-value:1}@property --tw-rotate-x{syntax:"*";inherits:false}@property --tw-rotate-y{syntax:"*";inherits:false}@property --tw-rotate-z{syntax:"*";inherits:false}@property --tw-skew-x{syntax:"*";inherits:false}@property --tw-skew-y{syntax:"*";inherits:false}@property --tw-space-y-reverse{syntax:"*";inherits:false;initial-value:0}@property --tw-border-style{syntax:"*";inherits:false;initial-value:solid}@property --tw-leading{syntax:"*";inherits:false}@property --tw-font-weight{syntax:"*";inherits:false}@property --tw-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}@property --tw-shadow-color{syntax:"*";inherits:false}@property --tw-shadow-alpha{syntax:"<percentage>";inherits:false;initial-value:100%}@property --tw-inset-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}@property --tw-inset-shadow-color{syntax:"*";inherits:false}@property --tw-inset-shadow-alpha{syntax:"<percentage>";inherits:false;initial-value:100%}@property --tw-ring-color{syntax:"*";inherits:false}@property --tw-ring-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}@property --tw-inset-ring-color{syntax:"*";inherits:false}@property --tw-inset-ring-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}@property --tw-ring-inset{syntax:"*";inherits:false}@property --tw-ring-offset-width{syntax:"<length>";inherits:false;initial-value:0}@property --tw-ring-offset-color{syntax:"*";inherits:false;initial-value:#fff}@property --tw-ring-offset-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}@property --tw-blur{syntax:"*";inherits:false}@property --tw-brightness{syntax:"*";inherits:false}@property --tw-contrast{syntax:"*";inherits:false}@property --tw-grayscale{syntax:"*";inherits:false}@property --tw-hue-rotate{syntax:"*";inherits:false}@property --tw-invert{syntax:"*";inherits:false}@property --tw-opacity{syntax:"*";inherits:false}@property --tw-saturate{syntax:"*";inherits:false}@property --tw-sepia{syntax:"*";inherits:false}@property --tw-drop-shadow{syntax:"*";inherits:false}@property --tw-drop-shadow-color{syntax:"*";inherits:false}@property --tw-drop-shadow-alpha{syntax:"<percentage>";inherits:false;initial-value:100%}@property --tw-drop-shadow-size{syntax:"*";inherits:false}@property --tw-duration{syntax:"*";inherits:false}@property --tw-ease{syntax:"*";inherits:false}@property --tw-content{syntax:"*";inherits:false;initial-value:""}@property --tw-outline-style{syntax:"*";inherits:false;initial-value:solid}`,
+		_S = "",
+		SS =
+			"@layer components{@media(prefers-color-scheme:dark){:host{--skyra-bg-color: #00173a;--skyra-text-color: white;--skyra-interface-color: white;--skyra-action-color: white;--skyra-secondary-color: #3d4e5f;--skyra-link-color: #d7f0fe;--skyra-error-color: #ff5555;--skyra-warning-color: #feb570;--skyra-z-index: 2147483647}}}";
+	function kS({
+		cardKey: e,
+		inline: t = !1,
+		children: n,
+		size: r = "Regular",
+		customCss: o,
+		theme: i,
+		themeMode: s,
+		...a
+	}) {
+		const c = Ye(),
+			l = a.position ?? "BottomLeft",
+			d = Oe(!0),
+			u = Bu(e, "[data-card-focus-target]");
+		Bs(() => {
+			d.value = !1;
+		});
+		const f = kt(
+				() => (i ? lc(i, { themeMode: s ?? "Auto", selector: ":host" }) : null),
+				[i, s],
+			),
+			p = {
+				TopLeft: "top-0 right-auto",
+				TopRight: "top-0 left-auto items-end",
+				BottomLeft: "bottom-0 right-auto",
+				BottomRight: "bottom-0 left-auto items-end",
+			},
+			m = {
+				TopLeft: "survey-enter-down",
+				TopRight: "survey-enter-down",
+				BottomLeft: "survey-enter-up",
+				BottomRight: "survey-enter-up",
+			};
+		return y(Ae, {
+			children: [
+				y("style", { children: [wS, t ? _S : SS] }),
+				f && y("style", { children: f }),
+				y("style", { children: o }),
+				y(
+					"aside",
+					{
+						ref: u,
+						"data-nosnippet": !0,
+						part: "wrapper",
+						"data-position": l,
+						className: `
+          ${
+						t === !1 &&
+						`
+            fixed inset-x-0
+            m-2 md:m-4
+            z-wrapper
+            ${l ? p[l] : ""}
+          `
+					}
+          font-body
+          ${c.value ? "" : "survey-shake"}
+          ${d.value ? m[l] : ""}
+        `,
+						children: n,
+					},
+					"skyra-wrapper",
+				),
+			],
+		});
+	}
+	function xS({
+		card: e,
+		capture: t,
+		finalCard: n,
+		firstCard: r,
+		sessionId: o,
+		size: i,
+		storedValue: s,
+		survey: a,
+	}) {
+		const c = be(t, (l) => l.context.language);
+		return y(kS, {
+			cardKey: e.id,
+			size: i,
+			inline: a.renderType === "Inline",
+			position: a.surveyPosition,
+			customCss: a.customCss,
+			theme: a.theme,
+			themeMode: a.themeMode,
+			children: y(
+				bS,
+				{
+					card: e,
+					sessionId: o,
+					storedValue: s,
+					close: () => t.send({ type: "reject" }),
+					minimize: () => t.send({ type: "minimize" }),
+					maximize: () => t.send({ type: "maximize" }),
+					next: (l, d) => {
+						t.send({ type: "submit", cardId: e.id, key: d, value: l });
+					},
+					prev: () => {
+						t.send({ type: "goBack" });
+					},
+					survey: a,
+					firstCard: r,
+					finalCard: n,
+				},
+				`${e.id}-${c}`,
+			),
+		});
+	}
+	const ve = new I0();
+	if (typeof window < "u") {
+		window.skyra || (window.skyra = ve),
+			window.SKYRA_CONFIG ||
+				(window.SKYRA_CONFIG = {
+					autoStart: !0,
+					org: "",
+					cookieConsent: !0,
+					testMode: !1,
+				});
+		const e =
+				((Ju = window.SKYRA_CONFIG) == null ? void 0 : Ju.autoStart) !== !1,
+			t = !!((Gu = window.SKYRA_CONFIG) != null && Gu.org);
+		e && t
+			? ve.start()
+			: e && !t && console.warn("Skyra: org is not specified in SKYRA_CONFIG");
+	}
+	function CS(e, t) {
+		if (t === void 0) return { card: e[0], isFirstCard: !0, isLastCard: !1 };
+		let n,
+			r = !1,
+			o = !1;
+		for (let i = 0; i < e.length; i++) {
+			const s = e[i];
+			if (s.order === t) {
+				(n = s), (r = i === 0), (o = i === e.length - 1);
+				break;
+			}
+		}
+		return { card: n, isFirstCard: r, isLastCard: o };
+	}
+	function zS(e, t) {
+		var r, o, i, s, a, c, l, d, u, f, p, m;
+		if (!e) return;
+		const n = X(e.id);
+		switch (e.type) {
+			case "InputCard":
+				return (r = t.values) == null ? void 0 : r[e.id];
+			case "RecruitmentCard":
+				return (o = t.values) == null ? void 0 : o[e.id];
+			case "LikertCard":
+				return (s = (i = t.variables) == null ? void 0 : i.scales) == null
+					? void 0
+					: s[n];
+			case "MultiSelectCard":
+				return (c = (a = t.variables) == null ? void 0 : a.multiSelect) == null
+					? void 0
+					: c[n];
+			case "SingleSelectCard":
+				return (d = (l = t.variables) == null ? void 0 : l.singleSelect) == null
+					? void 0
+					: d[n];
+			case "SegmentCard": {
+				const g = X(e.segment.id);
+				return (f = (u = t.variables) == null ? void 0 : u.segments) == null
+					? void 0
+					: f[g];
+			}
+			case "TopTaskCard":
+				return (p = t.variables) == null ? void 0 : p.task;
+			case "CompletionCard":
+				return (m = t.variables) == null ? void 0 : m.completion;
+			default:
+				return;
+		}
+	}
+	function Hi({ capture: e }) {
+		const {
+			survey: t,
+			sessionId: n,
+			capturing: r,
+			currentCard: o,
+		} = be(e, (i) => {
+			var s;
+			return {
+				capturing:
+					(s = i == null ? void 0 : i.matches) == null
+						? void 0
+						: s.call(i, "Running"),
+				sessionId: i == null ? void 0 : i.context.sessionId,
+				state: i == null ? void 0 : i.context.state,
+				survey: i == null ? void 0 : i.context.survey,
+				currentCard: i == null ? void 0 : i.context.state.currentCard,
+			};
+		});
+		return r && t && n
+			? y(Yd, {
+					api: ve,
+					survey: t,
+					state: e.getSnapshot().context.state,
+					captureMachine: e,
+					children: y(TS, { currentCard: o, sessionId: n, capture: e }),
+				})
+			: null;
+	}
+	function TS({ currentCard: e, sessionId: t, capture: n }) {
+		const r = ir(),
+			o = wo(),
+			i = be(o, (u) => u.context.state),
+			{ card: s, isFirstCard: a, isLastCard: c } = CS(r.cards, e);
+		if (!s) return null;
+		const l = zS(s, i),
+			d =
+				s.type === "LikertCard" && s.likertScale.likertItems.length >= 5
+					? "Large"
+					: "Regular";
+		return ve.getRendererVariant(r.fullSlug, r.rendererVariant ?? "classic") ===
+			"beta"
+			? y(J0, {
+					card: s,
+					capture: n,
+					finalCard: c,
+					firstCard: a,
+					sessionId: t,
+					storedValue: l,
+					survey: r,
+				})
+			: y(xS, {
+					card: s,
+					capture: n,
+					finalCard: c,
+					firstCard: a,
+					sessionId: t,
+					size: d,
+					storedValue: l,
+					survey: r,
+				});
+	}
+	function qu({
+		slug: e,
+		inline: t,
+		cookieConsent: n,
+		consent: r = !0,
+		lang: o,
+		onReady: i,
+		onUnavailable: s,
+		onError: a,
+	}) {
+		const [c, l] = ue(0),
+			d = 30,
+			u = Y(null),
+			f = Y({ ready: !1, terminal: !1 });
+		re(() => {
+			o && ve.setExplicitLanguage(e, o);
+		}, [e, o]),
+			re(() => {
+				var v;
+				if (!ve.controller && c < d) {
+					const _ = setInterval(() => {
+						ve.controller ? (clearInterval(_), l(0)) : l((k) => k + 1);
+					}, 100);
+					return () => clearInterval(_);
+				}
+				c >= d &&
+					!ve.controller &&
+					(((v = window.SKYRA_CONFIG) == null ? void 0 : v.autoStart) !== !1 &&
+						We(`Skyra survey (${e}): No controller found after ${d} attempts`),
+					Fn(f.current, nn(u.current), "skyra-error", M0(e), a));
+			}, [e, c, ve.controller, a]),
+			re(() => {
+				var A, z;
+				const v = ve.controller;
+				if (!v) return;
+				const _ = `${e}-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+				let k = !1;
+				const x = () => {
+					k ||
+						((k = !0),
+						v.send({ type: "surveyMounted", slug: e, instanceId: _ }));
+				};
+				return (
+					(A = v.on) == null || A.call(v, "ready", x),
+					((z = v.getSnapshot) == null ? void 0 : z.call(v).value) ===
+						"Ready" && x(),
+					() => {
+						var M;
+						(M = v.off) == null || M.call(v, "ready", x);
+					}
+				);
+			}, [e, ve.controller]);
+		const p = ve.controller;
+		if (!p) return y("span", { ref: u, hidden: !0 });
+		const m = p.getVersion() === "v2";
+		if (
+			(re(() => {
+				m ||
+					f.current.terminal ||
+					Fn(f.current, nn(u.current), "skyra-unavailable", P0(e), s);
+			}, [m, e, s]),
+			!m)
+		)
+			return y("span", { ref: u, hidden: !0 });
+		const g = be(p.getActor(), (v) => p.findCaptureBySlug(e)),
+			b = be(p.getActor(), (v) => {
+				var x, A, z;
+				const _ =
+						(x = v.context.surveys) == null
+							? void 0
+							: x.find((M) => M.fullSlug === e),
+					k =
+						(A = v.context.inlineSurveys) == null
+							? void 0
+							: A.some((M) => M.fullSlug === e);
+				return {
+					ready: v.value === "Ready",
+					survey: _,
+					isInlineEligible: k,
+					failure: (z = v.context.inlineFailures) == null ? void 0 : z[e],
+				};
+			});
+		return (
+			re(() => {
+				if (!g || f.current.ready || f.current.terminal) return;
+				const v = g.getSnapshot(),
+					_ = v.context.survey,
+					k = v.context.sessionId;
+				!_ ||
+					_.renderType !== "Inline" ||
+					!k ||
+					$0(
+						f.current,
+						nn(u.current),
+						{ slug: e, surveyId: _.id, sessionId: k },
+						i,
+					);
+			}, [g, e, i]),
+			re(() => {
+				if (!b.failure || f.current.ready || f.current.terminal) return;
+				const v = R0(e, b.failure);
+				v.name === "skyra-unavailable"
+					? Fn(f.current, nn(u.current), v.name, v.detail, s)
+					: Fn(f.current, nn(u.current), v.name, v.detail, a);
+			}, [b.failure, e, s, a]),
+			re(() => {
+				if (!b.ready || g || b.failure || f.current.ready || f.current.terminal)
+					return;
+				const v = window.setTimeout(() => {
+					if (f.current.ready || f.current.terminal) return;
+					const _ = E0(e, b.survey, b.isInlineEligible);
+					_ && Fn(f.current, nn(u.current), "skyra-unavailable", _, s);
+				}, 100);
+				return () => window.clearTimeout(v);
+			}, [g, b, e, s]),
+			y(Ae, {
+				children: [
+					y("span", { ref: u, hidden: !0 }),
+					g ? y(Hi, { capture: g }) : null,
+				],
+			})
+		);
+	}
+	function Ku({ slug: e }) {
+		const t = ve.previewController,
+			n = be(t ?? void 0, (r) => (r == null ? void 0 : r.context.machine));
+		return n ? y(Hi, { capture: n }) : null;
+	}
+	return (
+		typeof customElements.get("skyra-survey") < "u" ||
+			Ss(
+				qu,
+				"skyra-survey",
+				[
+					"slug",
+					"inline",
+					"consent",
+					"cookieConsent",
+					"lang",
+					"onReady",
+					"onUnavailable",
+					"onError",
+				],
+				{ shadow: !0 },
+			),
+		typeof customElements.get("skyra-preview") < "u" ||
+			Ss(Ku, "skyra-preview", ["slug"], { shadow: !0 }),
+		(on.Survey = qu),
+		(on.SurveyPreview = Ku),
+		(on.SurveyWidget = Hi),
+		Object.defineProperty(on, Symbol.toStringTag, { value: "Module" }),
+		on
+	);
+})({});
