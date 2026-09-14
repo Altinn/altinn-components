@@ -18,7 +18,7 @@ export interface SkyraWindow extends Window {
   skyra?: {
     setConsent: (consent: boolean) => void;
     setLanguage: (code: string) => void;
-    on?: (event: 'ready', handler: () => void) => void;
+    on?: (event: 'ready' | 'surveyStarted', handler: () => void) => void;
     reload?: () => void;
     debugInfo?: () => void;
     controller?: SkyraController | null;

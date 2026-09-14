@@ -53,11 +53,12 @@ export interface SkyraSurveyProps {
   debug?: boolean;
 }
 
+let currentLanguage: LanguageCode | undefined;
+
 export const SkyraSurvey = ({ consent, debug = false }: SkyraSurveyProps) => {
   const consentRef = useRef(consent);
   const debugRef = useRef(debug);
   const { languageCode } = useRootContext();
-  const languageRef = useRef(languageCode);
 
   useEffect(() => {
     const skyraWindow = window as SkyraWindow;
@@ -65,7 +66,9 @@ export const SkyraSurvey = ({ consent, debug = false }: SkyraSurveyProps) => {
     skyraWindow.skyraStart = () => {
       applyDebug(skyraWindow, debugRef.current);
       skyraWindow.skyra?.setConsent(consentRef.current);
-      skyraWindow.skyra?.on?.('ready', () => applyLanguage(skyraWindow, languageRef.current));
+      const syncLanguage = () => applyLanguage(skyraWindow, currentLanguage);
+      skyraWindow.skyra?.on?.('ready', syncLanguage);
+      skyraWindow.skyra?.on?.('surveyStarted', syncLanguage);
     };
 
     if (document.getElementById(SCRIPT_ID)) {
@@ -94,7 +97,7 @@ export const SkyraSurvey = ({ consent, debug = false }: SkyraSurveyProps) => {
   }, [debug]);
 
   useEffect(() => {
-    languageRef.current = languageCode;
+    currentLanguage = languageCode;
     applyLanguage(window as SkyraWindow, languageCode);
   }, [languageCode]);
 
