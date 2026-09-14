@@ -47,6 +47,10 @@ export const GlobalAccountButton = ({
   }
 
   if (currentAccount) {
+    const iconProps = {
+      className: cx(styles.icon, { [styles.hiddenIcon]: disableAccountSelection }),
+      ariaHidden: true,
+    };
     let description = currentAccount.description;
     if (
       (currentAccount.type === 'company' || currentAccount.type === 'subunit') &&
@@ -80,11 +84,7 @@ export const GlobalAccountButton = ({
             </span>
           </div>
         )}
-        {expanded ? (
-          <XMarkIcon className={cx(styles.icon, { [styles.hidden]: disableAccountSelection })} aria-hidden />
-        ) : (
-          <ChevronDownIcon className={cx(styles.icon, { [styles.hidden]: disableAccountSelection })} aria-hidden />
-        )}
+        {expanded ? <XMarkIcon {...iconProps} /> : <ChevronDownIcon {...iconProps} />}
       </Button>
     );
   }
