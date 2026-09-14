@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.73.2](https://github.com/Altinn/altinn-components/compare/v0.73.1...v0.73.2) (2026-09-14)
+
+
+### Bug Fixes
+
+* **SkyraSurvey:** open new surveys in the RootProvider language ([#1378](https://github.com/Altinn/altinn-components/issues/1378)) ([9c9e72d](https://github.com/Altinn/altinn-components/commit/9c9e72d5f83178cc8e8534be1261a5d208c6f773))
+
 ## [0.73.1](https://github.com/Altinn/altinn-components/compare/v0.73.0...v0.73.1) (2026-09-11)
 
 
