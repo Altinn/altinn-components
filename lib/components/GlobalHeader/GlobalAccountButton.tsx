@@ -14,6 +14,7 @@ export interface GlobalAccountButtonProps extends ButtonProps {
   minimized?: boolean;
   tabIndex?: number;
   loading?: boolean;
+  disableAccountSelection?: boolean;
 }
 
 export const GlobalAccountButton = ({
@@ -22,6 +23,7 @@ export const GlobalAccountButton = ({
   expanded = false,
   minimized = false,
   loading = false,
+  disableAccountSelection = false,
   ...buttonProps
 }: GlobalAccountButtonProps) => {
   const { languageCode } = useRootContext();
@@ -45,6 +47,10 @@ export const GlobalAccountButton = ({
   }
 
   if (currentAccount) {
+    const iconProps = {
+      className: cx(styles.icon, { [styles.hiddenIcon]: disableAccountSelection }),
+      ariaHidden: true,
+    };
     let description = currentAccount.description;
     if (
       (currentAccount.type === 'company' || currentAccount.type === 'subunit') &&
@@ -55,10 +61,12 @@ export const GlobalAccountButton = ({
       const suffix = currentAccount.type === 'company' ? texts.mainunit : texts.subunit;
       description = `${orgNo}, ${suffix}`;
     }
+
     return (
       <Button
         {...buttonProps}
-        as="button"
+        onClick={disableAccountSelection ? undefined : buttonProps.onClick}
+        as={disableAccountSelection ? 'div' : 'button'}
         type="button"
         variant="ghost"
         color="company"
@@ -76,11 +84,7 @@ export const GlobalAccountButton = ({
             </span>
           </div>
         )}
-        {expanded ? (
-          <XMarkIcon className={styles.icon} aria-hidden />
-        ) : (
-          <ChevronDownIcon className={styles.icon} aria-hidden />
-        )}
+        {expanded ? <XMarkIcon {...iconProps} /> : <ChevronDownIcon {...iconProps} />}
       </Button>
     );
   }
