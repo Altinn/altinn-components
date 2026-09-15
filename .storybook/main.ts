@@ -9,7 +9,11 @@ const config: StorybookConfig = {
     "../lib/components/**/*.stories.@(ts|tsx)",
     ...(screenshotMode
       ? []
-      : ["../lib/stories/**/*.stories.@(ts|tsx)", "../lib/stories/**/*.@(mdx)"]),
+      : [
+          "../lib/stories/**/*.stories.@(ts|tsx)",
+          "../lib/stories/**/*.@(mdx)",
+          "../lib/functions/**/*.stories.@(ts|tsx)",
+        ]),
   ],
 
   addons: [
