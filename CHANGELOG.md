@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.73.3](https://github.com/Altinn/altinn-components/compare/v0.73.2...v0.73.3) (2026-09-16)
+
+
+### Bug Fixes
+
+* **formatDisplayName:** capitalize Van, De and Der as given names ([#1380](https://github.com/Altinn/altinn-components/issues/1380)) ([8c43bfd](https://github.com/Altinn/altinn-components/commit/8c43bfd58da7794be1d1d968db51284d02429ee5))
+
 ## [0.73.2](https://github.com/Altinn/altinn-components/compare/v0.73.1...v0.73.2) (2026-09-14)
 
 
