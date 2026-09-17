@@ -2,6 +2,7 @@
 import { useEffect, useRef } from 'react';
 import type { LanguageCode } from '../../types';
 import { useRootContext } from '../RootProvider';
+import { type SkyraScript, syncSkyraConsent } from './skyraLoader';
 import type { SkyraCapture, SkyraWindow } from './skyraWindow';
 
 // Owned by .github/workflows/skyra-check-upstream.yml. Do not edit by hand.
@@ -10,7 +11,7 @@ const SKYRA_SRC =
 const SKYRA_INTEGRITY = 'sha384-ISqybf02yQvc96/0S0NiFWPx48lRh3CuxdncMKLDJ1cUWPQUt+f/IrXNPIRl+4Lb';
 const SKYRA_ORG = 'digitaliseringsdirektoratet';
 
-const SCRIPT_ID = 'skyra-survey-sdk';
+const SKYRA_SCRIPT: SkyraScript = { org: SKYRA_ORG, src: SKYRA_SRC, integrity: SKYRA_INTEGRITY };
 
 // Skyra calls Bokmål "no" for backward compatibility
 const SKYRA_LANGUAGES: Record<LanguageCode, string> = { nb: 'no', nn: 'nn', en: 'en' };
@@ -65,30 +66,16 @@ export const SkyraSurvey = ({ consent, debug = false }: SkyraSurveyProps) => {
 
     skyraWindow.skyraStart = () => {
       applyDebug(skyraWindow, debugRef.current);
-      skyraWindow.skyra?.setConsent(consentRef.current);
+      syncSkyraConsent(skyraWindow, consentRef.current, SKYRA_SCRIPT);
       const syncLanguage = () => applyLanguage(skyraWindow, currentLanguage);
       skyraWindow.skyra?.on?.('ready', syncLanguage);
       skyraWindow.skyra?.on?.('surveyStarted', syncLanguage);
     };
-
-    if (document.getElementById(SCRIPT_ID)) {
-      return;
-    }
-
-    skyraWindow.SKYRA_CONFIG = { org: SKYRA_ORG, consent: false };
-
-    const script = document.createElement('script');
-    script.id = SCRIPT_ID;
-    script.src = SKYRA_SRC;
-    script.integrity = SKYRA_INTEGRITY;
-    script.crossOrigin = 'anonymous';
-    script.onerror = () => console.error('[Skyra] Failed to load survey script');
-    document.head.appendChild(script);
   }, []);
 
   useEffect(() => {
     consentRef.current = consent;
-    (window as SkyraWindow).skyra?.setConsent(consent);
+    syncSkyraConsent(window as SkyraWindow, consent, SKYRA_SCRIPT);
   }, [consent]);
 
   useEffect(() => {
