@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.74.1](https://github.com/Altinn/altinn-components/compare/v0.74.0...v0.74.1) (2026-09-17)
+
+
+### Bug Fixes
+
+* **settingsItem:** expand title prop type to ReactNode ([#1387](https://github.com/Altinn/altinn-components/issues/1387)) ([8623ccd](https://github.com/Altinn/altinn-components/commit/8623ccdaa84cba44e2812f910ca35eb2c52832e4))
+
 ## [0.74.0](https://github.com/Altinn/altinn-components/compare/v0.73.3...v0.74.0) (2026-09-17)
 
 
