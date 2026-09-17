@@ -21,9 +21,9 @@ export interface SettingsItemModalProps {
 export interface SettingsItemProps extends SettingsItemBaseProps {
   variant?: SettingsItemVariant;
   id: string;
-  title?: string;
+  title?: ReactNode;
   value?: string;
-  description?: string;
+  description?: ReactNode;
   name?: InputProps['name'];
   checked?: InputProps['checked'];
   onChange?: InputProps['onChange'];
