@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.74.0](https://github.com/Altinn/altinn-components/compare/v0.73.3...v0.74.0) (2026-09-17)
+
+
+### Features
+
+* **GlobalHeader:** add option to disable account selector button ([#1370](https://github.com/Altinn/altinn-components/issues/1370)) ([0987268](https://github.com/Altinn/altinn-components/commit/09872683a6146e1f85b5a3f38a60f1a615f5add2))
+
+
+### Bug Fixes
+
+* **SkyraSurvey:** load the Skyra script only after consent ([#1386](https://github.com/Altinn/altinn-components/issues/1386)) ([4679c71](https://github.com/Altinn/altinn-components/commit/4679c71ad714b8fa21749cf7427103c3d8b476ea))
+
 ## [0.73.3](https://github.com/Altinn/altinn-components/compare/v0.73.2...v0.73.3) (2026-09-16)
 
 
