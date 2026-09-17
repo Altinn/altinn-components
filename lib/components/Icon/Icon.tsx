@@ -40,9 +40,15 @@ export const Icon = ({
     <span data-ui="icon" data-size={size} data-color={color} className={cx(styles.icon, className)} style={style}>
       <Skeleton loading={loading} variant="circle" className={styles.shape}>
         <span className={styles.shape} />
-        {SvgElement && <SvgElement aria-hidden="true" alt-label={altText} className={styles.svg} />}
+        {SvgElement && (
+          <SvgElement aria-hidden={altText ? undefined : true} aria-label={altText} className={styles.svg} />
+        )}
         {iconUrl && <img src={iconUrl} alt={altText} aria-hidden={!altText} className={styles.image} />}
-        {children}
+        {children && (
+          <span aria-hidden={altText ? undefined : true} aria-label={altText}>
+            {children}
+          </span>
+        )}
       </Skeleton>
     </span>
   );

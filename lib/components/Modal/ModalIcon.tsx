@@ -47,7 +47,9 @@ export const ModalIcon = ({ loading, icon, theme }: ModalIconProps) => {
       {(isAvatarProps(icon) && <Avatar {...icon} className={styles.avatar} />) ||
         (isAvatarGroupProps(icon) && <AvatarGroup {...icon} className={styles.avatarGroup} />) ||
         (isIconProps(icon) && <Icon {...(icon as IconProps)} theme={icon.theme || theme} className={styles.icon} />) ||
-        (isReactNode(icon) && icon) || <Icon theme={theme} svgElement={icon as SvgElement} className={styles.icon} />}
+        (isReactNode(icon) && <Icon className={styles.icon}>{icon}</Icon>) || (
+          <Icon theme={theme} svgElement={icon as SvgElement} className={styles.icon} />
+        )}
     </div>
   );
 };
