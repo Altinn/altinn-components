@@ -49,7 +49,7 @@ export const GlobalAccountButton = ({
   if (currentAccount) {
     const iconProps = {
       className: cx(styles.icon, { [styles.hiddenIcon]: disableAccountSelection }),
-      ariaHidden: true,
+      'aria-hidden': true,
     };
     let description = currentAccount.description;
     if (
