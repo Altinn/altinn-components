@@ -1,0 +1,17 @@
+import{ag as e,a7 as t,r as m,C as r}from"./iframe-ypmT5Gk0.js";import{a as p,D as s,W as a,b as d,E as c,L as h}from"./DialogBody.stories-ByLI4Ho3.js";import"./preload-helper-PPVm8Dsz.js";import"./dialogBody-Bo7lZf5Q.js";import"./DialogAttachments-BcNAdXiI.js";import"./AttachmentList-BO16r-Lf.js";import"./AttachmentLink-Dz7oBAC6.js";import"./File-9SorHaEc.js";import"./Badge-X9Z0TOu_.js";import"./Tooltip-Blob_TyK.js";import"./Section-DHk6b8dD.js";import"./Flex-Chd0QM3i.js";import"./Heading-DYP7M4_m.js";import"./useHighlightedText-BRp5NYS8.js";import"./SeenByLog-DGg7yLUM.js";import"./SeenByLogItem-CAQun9F9.js";import"./Byline-DpOxNcqU.js";import"./AvatarGroup-SlU2nii8.js";import"./Avatar-CjSTwin0.js";import"./SeenByLogButton-QHtIvJwM.js";import"./Divider-BjtaC-QR.js";import"./List-Cf_BolQ2.js";import"./ListItem-BwY6iPn6.js";import"./Input-CoYipzRW.js";import"./ChevronUp-BtRg68CV.js";import"./ChevronDown-BK7qLjN-.js";import"./ChevronRight-3_fnpscT.js";import"./ModalBody--kpGACBM.js";import"./DialogBody-BoSHR39v.js";import"./Timeline-B-Wnv8Qh.js";import"./TimelineHeader-ir_CamXS.js";import"./TimelineIcon-fJ-DWaoG.js";import"./TimelineSection-DAhoB4p2.js";import"./TimelineBase-BwGp-6yx.js";import"./Typography-D_BM_-lf.js";import"./MetaBase-DPat0jZh.js";import"./MetaItem-B3SdI3dX.js";import"./ProgressIcon-J8Sx4UEX.js";import"./ClockDashed-Bl3VtxuG.js";import"./InformationSquare-BGmi6Zvl.js";import"./DialogActions-C500cTub.js";import"./ButtonGroupDivider-C43QU8jH.js";import"./DropdownBase-j72W2v_8.js";import"./useClickOutside-I_3xNTTG.js";import"./ButtonGroup-CRz61zp4.js";import"./SearchField-gC-2ROHv.js";import"./MagnifyingGlass-BsJL0696.js";import"./FieldBase-BZNWpkh0.js";import"./Field-fCHogA_W.js";import"./Label-CuLDpT5S.js";import"./useMenu-Roya_qW1.js";import"./MenuListItem-aY-AAikt.js";import"./MenuListDivider-p3sa3VdL.js";import"./MenuListHeading-j9n_Lc05.js";import"./MenuItem-CZo5oRhh.js";import"./ItemMedia-4IfksOuS.js";import"./Checkmark-kMy6EMLN.js";import"./ItemLabel-BlYQpqbv.js";import"./ItemControls-Bqvxib6z.js";function n(i){const o={code:"code",h1:"h1",h2:"h2",li:"li",ol:"ol",p:"p",...e(),...i.components};return t.jsxs(t.Fragment,{children:[t.jsx(m,{of:p}),`
+`,t.jsx(o.h1,{id:"dialogbody",children:"DialogBody"}),`
+`,t.jsx(o.p,{children:"Dialog body represents the main part of a dialog. It is made up three parts;"}),`
+`,t.jsxs(o.ol,{children:[`
+`,t.jsxs(o.li,{children:["A header with ",t.jsx(o.code,{children:"sender"})," and ",t.jsx(o.code,{children:"recipient"})," and the sender's logo or avatar."]}),`
+`,t.jsxs(o.li,{children:["The content part which should contain a ",t.jsx(o.code,{children:"summary"})," pointing to optional ",t.jsx(o.code,{children:"attachments"})," and/or ",t.jsx(o.code,{children:"actions"}),"."]}),`
+`,t.jsxs(o.li,{children:["A footer indicating who have seen the dialog, exposing a ",t.jsx(o.code,{children:"SeenByLog"})," on interaction."]}),`
+`]}),`
+`,t.jsx(r,{of:s}),`
+`,t.jsx(o.h2,{id:"actions",children:"Actions"}),`
+`,t.jsx(r,{of:a}),`
+`,t.jsx(o.h2,{id:"attachments",children:"Attachments"}),`
+`,t.jsx(r,{of:d}),`
+`,t.jsx(o.h2,{id:"extended-content",children:"Extended content"}),`
+`,t.jsx(r,{of:c}),`
+`,t.jsx(o.h2,{id:"loading-state",children:"Loading state"}),`
+`,t.jsx(r,{of:h})]})}function ut(i={}){const{wrapper:o}={...e(),...i.components};return o?t.jsx(o,{...i,children:t.jsx(n,{...i})}):n(i)}export{ut as default};
