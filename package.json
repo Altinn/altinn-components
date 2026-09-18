@@ -2,17 +2,11 @@
   "name": "@altinn/altinn-components",
   "version": "0.74.2",
   "main": "dist/index.js",
-  "files": [
-    "dist/",
-    "!dist/stories/",
-    "!dist/components/*/*.stories.js"
-  ],
+  "files": ["dist/", "!dist/stories/", "!dist/components/*/*.stories.js"],
   "types": "dist/types/lib/index.d.ts",
   "type": "module",
   "description": "Reusable react components",
-  "sideEffects": [
-    "*.css"
-  ],
+  "sideEffects": ["*.css"],
   "scripts": {
     "test": "vitest run",
     "test:unit": "vitest run --project=unit",
@@ -54,7 +48,7 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@chromatic-com/storybook": "5.2.1",
-    "@oddbird/popover-polyfill": "0.7.1",
+    "@oddbird/popover-polyfill": "0.7.2",
     "@storybook/addon-a11y": "10.4.1",
     "@storybook/addon-docs": "10.4.1",
     "@storybook/addon-themes": "10.4.1",
@@ -99,11 +93,7 @@
   },
   "packageManager": "pnpm@10.34.5",
   "pnpm": {
-    "onlyBuiltDependencies": [
-      "@biomejs/biome",
-      "@swc/core",
-      "esbuild"
-    ]
+    "onlyBuiltDependencies": ["@biomejs/biome", "@swc/core", "esbuild"]
   },
   "repository": {
     "type": "git",
