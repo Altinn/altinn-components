@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.74.3](https://github.com/Altinn/altinn-components/compare/v0.74.2...v0.74.3) (2026-09-18)
+
+
+### Miscellaneous Chores
+
+* **deps:** update dependency @oddbird/popover-polyfill to v0.7.1 ([#1357](https://github.com/Altinn/altinn-components/issues/1357)) ([b569cdf](https://github.com/Altinn/altinn-components/commit/b569cdf866461d72ea1a4362fec162a6836ebd08))
+
 ## [0.74.2](https://github.com/Altinn/altinn-components/compare/v0.74.1...v0.74.2) (2026-09-18)
 
 
