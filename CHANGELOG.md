@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.74.2](https://github.com/Altinn/altinn-components/compare/v0.74.1...v0.74.2) (2026-09-18)
+
+
+### Bug Fixes
+
+* **GlobalAccountButton:** fix spelling of aria-hidden prop ([#1394](https://github.com/Altinn/altinn-components/issues/1394)) ([48f6ccb](https://github.com/Altinn/altinn-components/commit/48f6ccb262e2610b571f8090147ae63ca05d9edf))
+* **modal:** adjust padding to header so that spacing in header aligns with content ([#1393](https://github.com/Altinn/altinn-components/issues/1393)) ([9e6cec3](https://github.com/Altinn/altinn-components/commit/9e6cec3fcacdb0b7088bca345da228c311e42b66))
+
+
+### Miscellaneous Chores
+
+* **deps:** fix pnpm audit findings ([#1389](https://github.com/Altinn/altinn-components/issues/1389)) ([56fb30e](https://github.com/Altinn/altinn-components/commit/56fb30e78715150d68d4819bf932259712ae19f4))
+
 ## [0.74.1](https://github.com/Altinn/altinn-components/compare/v0.74.0...v0.74.1) (2026-09-17)
 
 
