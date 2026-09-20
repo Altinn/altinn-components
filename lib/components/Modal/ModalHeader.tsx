@@ -5,7 +5,7 @@ import { Button, Flex, Heading, ModalIcon, type ModalIconProps } from '../';
 import styles from './modalHeader.module.css';
 
 export interface ModalHeaderProps {
-  title?: string;
+  title?: ReactNode;
   description?: string;
   icon?: ModalIconProps['icon'];
   closeTitle?: string;

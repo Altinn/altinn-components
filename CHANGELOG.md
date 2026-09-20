@@ -1,5 +1,44 @@
 # Changelog
 
+## [0.74.3](https://github.com/Altinn/altinn-components/compare/v0.74.2...v0.74.3) (2026-09-18)
+
+
+### Miscellaneous Chores
+
+* **deps:** update dependency @oddbird/popover-polyfill to v0.7.1 ([#1357](https://github.com/Altinn/altinn-components/issues/1357)) ([b569cdf](https://github.com/Altinn/altinn-components/commit/b569cdf866461d72ea1a4362fec162a6836ebd08))
+
+## [0.74.2](https://github.com/Altinn/altinn-components/compare/v0.74.1...v0.74.2) (2026-09-18)
+
+
+### Bug Fixes
+
+* **GlobalAccountButton:** fix spelling of aria-hidden prop ([#1394](https://github.com/Altinn/altinn-components/issues/1394)) ([48f6ccb](https://github.com/Altinn/altinn-components/commit/48f6ccb262e2610b571f8090147ae63ca05d9edf))
+* **modal:** adjust padding to header so that spacing in header aligns with content ([#1393](https://github.com/Altinn/altinn-components/issues/1393)) ([9e6cec3](https://github.com/Altinn/altinn-components/commit/9e6cec3fcacdb0b7088bca345da228c311e42b66))
+
+
+### Miscellaneous Chores
+
+* **deps:** fix pnpm audit findings ([#1389](https://github.com/Altinn/altinn-components/issues/1389)) ([56fb30e](https://github.com/Altinn/altinn-components/commit/56fb30e78715150d68d4819bf932259712ae19f4))
+
+## [0.74.1](https://github.com/Altinn/altinn-components/compare/v0.74.0...v0.74.1) (2026-09-17)
+
+
+### Bug Fixes
+
+* **settingsItem:** expand title prop type to ReactNode ([#1387](https://github.com/Altinn/altinn-components/issues/1387)) ([8623ccd](https://github.com/Altinn/altinn-components/commit/8623ccdaa84cba44e2812f910ca35eb2c52832e4))
+
+## [0.74.0](https://github.com/Altinn/altinn-components/compare/v0.73.3...v0.74.0) (2026-09-17)
+
+
+### Features
+
+* **GlobalHeader:** add option to disable account selector button ([#1370](https://github.com/Altinn/altinn-components/issues/1370)) ([0987268](https://github.com/Altinn/altinn-components/commit/09872683a6146e1f85b5a3f38a60f1a615f5add2))
+
+
+### Bug Fixes
+
+* **SkyraSurvey:** load the Skyra script only after consent ([#1386](https://github.com/Altinn/altinn-components/issues/1386)) ([4679c71](https://github.com/Altinn/altinn-components/commit/4679c71ad714b8fa21749cf7427103c3d8b476ea))
+
 ## [0.73.3](https://github.com/Altinn/altinn-components/compare/v0.73.2...v0.73.3) (2026-09-16)
 
 

@@ -249,6 +249,7 @@ jobs:
             echo
             echo "- [ ] The beautified diff contains no unexpected network calls, storage access or obfuscation"
             echo "- [ ] The change is plausible as a vendor release, not a compromise"
+            echo "- [ ] \`skyraStart\`, \`skyra.start()\`, \`skyra.stop()\` and \`skyra.setConsent()\` behave as \`skyraLoader.ts\` expects, or withdrawing consent stops working"
             echo "- [ ] \`SKYRA_SRC\` and \`SKYRA_INTEGRITY\` in the component match the manifest"
             echo
             echo "Merging cuts a patch release. Frontends pick it up via their normal dependency bump."

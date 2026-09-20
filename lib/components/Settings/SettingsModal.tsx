@@ -16,7 +16,7 @@ export interface SettingsModalButtonProps extends ButtonProps {
   close?: boolean;
 }
 
-export interface SettingsModalProps extends ModalBaseProps {
+export interface SettingsModalProps extends Omit<ModalBaseProps, 'title'> {
   icon?: ModalHeaderProps['icon'];
   title?: ModalHeaderProps['title'];
   description?: ModalHeaderProps['description'];
