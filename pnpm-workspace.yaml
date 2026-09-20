@@ -1,6 +1,20 @@
-# Supply-chain hardening (requires pnpm >=10.21, see packageManager in package.json).
+# Supply-chain hardening (requires pnpm >=11, see packageManager in package.json).
 # Delay installing newly published versions for 7 days so compromised releases
 # can be caught and unpublished before they reach us.
 minimumReleaseAge: 10080
 # Refuse packages whose trust signals (provenance, signatures) weaken between versions.
 trustPolicy: no-downgrade
+#  Known false positives. pnpm compares trust evidence by publish date, not by semver,
+# so a maintenance backport on an old major line trips the policy when the current
+# major already publishes with provenance.
+#   semver@6.3.1 (2023-07-10, signature only) vs semver@7.5.4 (2023-07-07, provenance).
+#   Pulled in transitively by @babel/core and make-dir; both pin ^6.3.1.
+trustPolicyExclude:
+  - 'semver@6.3.1'
+
+# Build-script approvals. Replaces the `pnpm.onlyBuiltDependencies` field in
+# package.json, which pnpm 11 removed and pnpm 12 no longer reads.
+allowBuilds:
+  '@biomejs/biome': true
+  '@swc/core': true
+  esbuild: true
