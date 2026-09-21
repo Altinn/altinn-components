@@ -36,7 +36,7 @@ export const useActivityLogToolbar = (): ToolbarProps => {
 
   const search = {
     name: 'q',
-    placeholder: 'Søk i aktivitetsloggen',
+    placeholder: 'Søk ...',
     value: q,
     onChange,
     onClear,

@@ -115,6 +115,7 @@ export const ToolbarFilterMenu = ({
   if (removable) {
     return (
       <Dropdown
+        useFixedPosition
         submitLabel={submitLabel}
         title={title}
         variant="drawer-dropdown"
@@ -160,6 +161,7 @@ export const ToolbarFilterMenu = ({
 
   return (
     <Dropdown
+      useFixedPosition
       size={dropdownSize}
       title={title}
       variant="drawer-dropdown"

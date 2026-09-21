@@ -8,8 +8,16 @@ export interface ActivityLogItemProps {
   datetime?: string;
   children?: ReactNode;
   summary?: ReactNode;
+  highlightWords?: string[];
 }
-export const ActivityLogItem = ({ byline, datetime, children, summary, ...props }: ActivityLogItemProps) => {
+export const ActivityLogItem = ({
+  byline,
+  datetime,
+  children,
+  summary,
+  highlightWords,
+  ...props
+}: ActivityLogItemProps) => {
   if (children) {
     return (
       <TimelineActivity byline={byline} datetime={datetime} {...props}>
@@ -20,7 +28,7 @@ export const ActivityLogItem = ({ byline, datetime, children, summary, ...props 
 
   return (
     <TimelineActivity byline={byline} datetime={datetime} {...props}>
-      <Typography>{summary}</Typography>
+      <Typography highlightWords={highlightWords}>{summary}</Typography>
     </TimelineActivity>
   );
 };
