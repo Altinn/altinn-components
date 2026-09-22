@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.75.1](https://github.com/Altinn/altinn-components/compare/v0.75.0...v0.75.1) (2026-09-22)
+
+
+### Bug Fixes
+
+* **ActivityLog:** keep item outlines from being clipped when log scrolls ([#1400](https://github.com/Altinn/altinn-components/issues/1400)) ([a8cde2d](https://github.com/Altinn/altinn-components/commit/a8cde2d0612d92ed0d1c276a2cffd48c4fa188a3))
+
 ## [0.75.0](https://github.com/Altinn/altinn-components/compare/v0.74.3...v0.75.0) (2026-09-22)
 
 
