@@ -1,3 +1,0 @@
-import{a as r}from"./attachments-4GsX8Nni.js";import{A as a}from"./AttachmentList-gVnUZxPL.js";import"./ExternalLink-DsMN7Srg.js";import"./iframe-COBbWeA3.js";import"./preload-helper-PPVm8Dsz.js";import"./AttachmentLink-CvAR02ST.js";import"./File-CepsweWe.js";import"./Badge-0q-IE2XW.js";import"./Tooltip-DupjxGOM.js";const l={title:"Typography/AttachmentList",component:a,tags:["autodocs"],parameters:{layout:"fullscreen"},args:{items:r}},t={args:{}};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
-  args: {}
-}`,...t.parameters?.docs?.source}}};const d=["Default"];export{t as Default,d as __namedExportsOrder,l as default};
