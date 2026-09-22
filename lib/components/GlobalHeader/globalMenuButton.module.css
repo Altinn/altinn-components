@@ -31,8 +31,18 @@
   right: -0.5rem;
 }
 
+/* Keep the label in the accessibility tree when it is visually hidden,
+   so the button keeps its accessible name on narrow screens. */
 @media (max-width: 479px) {
   .label {
-    display: none;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
   }
 }
