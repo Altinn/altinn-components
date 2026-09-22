@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.75.0](https://github.com/Altinn/altinn-components/compare/v0.74.3...v0.75.0) (2026-09-22)
+
+
+### Features
+
+* **activity-log:** filter, search and highlight inside ActivityLog ([#1399](https://github.com/Altinn/altinn-components/issues/1399)) ([29cf612](https://github.com/Altinn/altinn-components/commit/29cf612f29c5d57a2505b44286b6357cceafb726))
+
+
+### Bug Fixes
+
+* **GlobalMenuButton:** preserve accessible button name on narrow screens ([#1398](https://github.com/Altinn/altinn-components/issues/1398)) ([b1d84c1](https://github.com/Altinn/altinn-components/commit/b1d84c1bcd84fc2e7dc4444d4e10d9050b938aeb))
+
+
+### Miscellaneous Chores
+
+* **deps:** update dependency @vitest/coverage-v8 to v5 ([#1382](https://github.com/Altinn/altinn-components/issues/1382)) ([9cee2b9](https://github.com/Altinn/altinn-components/commit/9cee2b919920cf8b083b11794b419cf88a7dbb0b))
+* **deps:** update pnpm to v12 ([#1383](https://github.com/Altinn/altinn-components/issues/1383)) ([848c7fe](https://github.com/Altinn/altinn-components/commit/848c7fe0d2ddb00cc13fcf04f01f61608333cf52))
+
 ## [0.74.3](https://github.com/Altinn/altinn-components/compare/v0.74.2...v0.74.3) (2026-09-18)
 
 
