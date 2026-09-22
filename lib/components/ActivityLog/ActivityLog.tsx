@@ -1,7 +1,9 @@
 'use client';
+import cx from 'classnames';
 import { type CSSProperties, type ReactNode, useMemo, useState } from 'react';
 
 import { ActivityLogSegment, type ActivityLogSegmentProps, Button, Section, Timeline } from '..';
+import styles from './activityLog.module.css';
 import { activityLogQueryTerms, matchesActivityLogSegment } from './activityLogSearch';
 import { useReservedHeight } from './useReservedHeight';
 
@@ -101,7 +103,7 @@ export const ActivityLog = ({
   }
 
   return (
-    <div ref={ref} className={className} style={{ ...style, minHeight }}>
+    <div ref={ref} className={cx(styles.wrapper, className)} style={{ ...style, minHeight }}>
       {log}
     </div>
   );
