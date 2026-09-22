@@ -92,11 +92,22 @@ export const Dropdown = ({
   expanded = false,
 }: DropdownProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [portalTarget, setPortalTarget] = useState<HTMLElement | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const openRef = useRef(open);
   useEffect(() => {
     openRef.current = open;
   }, [open]);
+
+  /** A <dialog> paints in the top layer, so portalling to document.body would put
+   *  the dropdown behind the modal. Stay inside the dialog when there is one. */
+  useEffect(() => {
+    if (!useFixedPosition) {
+      setPortalTarget(null);
+      return;
+    }
+    setPortalTarget(containerRef.current?.closest('dialog') ?? document.body);
+  }, [useFixedPosition]);
 
   const [coords, setCoords] = useState<{
     yDir: string;
@@ -322,7 +333,7 @@ export const Dropdown = ({
       {backdrop && <div className={styles.backdrop} aria-hidden={!open} />}
       <div id={id + '-root'} ref={containerRef} style={{ position: 'relative', display: 'inline-block' }}>
         {trigger}
-        {useFixedPosition ? createPortal(dropdownEl, document.body) : dropdownEl}
+        {useFixedPosition && portalTarget ? createPortal(dropdownEl, portalTarget) : dropdownEl}
       </div>
     </>
   );

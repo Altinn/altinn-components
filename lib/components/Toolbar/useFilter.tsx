@@ -73,6 +73,15 @@ export const useFilter = ({ filters = [], filterState, onFilterStateChange }: Us
     });
   }, [filters, applicableFilterState]);
 
+  /** Values of radio options sharing a name, which checkboxes under that name replace. */
+  const radioValuesFor = (name: string) =>
+    new Set(
+      filters
+        .flatMap((filter) => filter.items ?? [])
+        .filter((option) => option.name === name && option.role === 'radio' && option.value !== undefined)
+        .map((option) => String(option.value)),
+    );
+
   const onFilterChange = (type: string, name: string, value: string) => {
     const values = [value];
 
@@ -81,16 +90,19 @@ export const useFilter = ({ filters = [], filterState, onFilterStateChange }: Us
         ...applicableFilterState,
         [name]: values,
       });
-    } else {
-      changeFilterState({
-        ...applicableFilterState,
-        [name]: applicableFilterState[name]
-          ? applicableFilterState[name].some((v) => values.includes(String(v)))
-            ? applicableFilterState[name].filter((v) => !(values || []).includes(String(v)))
-            : [...applicableFilterState[name], ...(values || [])]
-          : values,
-      });
+      return;
     }
+
+    /** A radio and a checkbox under one name are alternatives, never both at once. */
+    const radioValues = radioValuesFor(name);
+    const current = (applicableFilterState[name] ?? []).filter((v) => !radioValues.has(String(v)));
+
+    changeFilterState({
+      ...applicableFilterState,
+      [name]: current.some((v) => values.includes(String(v)))
+        ? current.filter((v) => !values.includes(String(v)))
+        : [...current, ...values],
+    });
   };
 
   const onFilterRemove = (name: string) => {
