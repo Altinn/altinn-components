@@ -6,7 +6,7 @@ export const simpleLetterDialog: DialogProps = {
   id: 'aksjeoppgave',
   sender: skatt,
   updatedAt: '2024-03-01 09:30',
-  updatedAtLabel: 'Sist endret: 1. mars 2024 kl 09.30',
+  updatedAtLabel: 'Sist oppdatert: 1. mars 2024 kl. 09.30',
   title: 'Aksjeoppgaven 2023',
   summary: 'Aksjeoppgaven for 2023 er klar.',
   attachments: {

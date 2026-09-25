@@ -11,7 +11,7 @@ export const inboxDrafts: DialogListProps = {
       title: 'Støtte til fjernvarme',
       status: { value: 'draft', label: 'Utkast' },
       updatedAt: '2025-03-07T23:27:37.384Z',
-      updatedAtLabel: 'Sist endret: Anna Aahjem, 8. mars 2025 kl. 00.27',
+      updatedAtLabel: 'Anna Aahjem, 8. mars 2025 kl. 00.27',
       sender: enova,
     },
     {
@@ -20,7 +20,7 @@ export const inboxDrafts: DialogListProps = {
       title: 'Dispensasjon for import av kjæledyr',
       status: { value: 'draft', label: 'Utkast' },
       updatedAt: '2024-10-18T09:40:00.000Z',
-      updatedAtLabel: 'Sist endret: Felix Horn Myhre, 18. oktober 2024 kl. 11.40',
+      updatedAtLabel: 'Felix Horn Myhre, 18. oktober 2024 kl. 11.40',
       sender: mattilsynet,
     },
   ],

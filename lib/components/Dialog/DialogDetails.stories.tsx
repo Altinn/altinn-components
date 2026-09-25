@@ -76,7 +76,7 @@ export const DialogDetails: Story = {
       <DialogHeader
         title="Rapportering av bedriftsdata"
         updatedAt="2025-02-14T23:27:37.383Z"
-        updatedAtLabel="Sist endret: 15. februar 2025 kl. 08.30"
+        updatedAtLabel="Sist oppdatert: 15. februar 2025 kl. 08.30"
         status={{
           value: 'requires-attention',
           label: 'Krever handling',

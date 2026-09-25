@@ -140,6 +140,7 @@ export function getDialogList(data: DialogDataProps[], q?: string): DialogListPr
         return {
           ...item,
           groupId: q ? 'q' : groupId,
+          tooltips: { updatedAt: 'Sist oppdatert', ...item.tooltips },
         };
       }) || [];
 

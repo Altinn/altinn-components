@@ -254,7 +254,7 @@ export const Transmissions = () => {
       <DialogHeader
         title="Rapportering av bedriftsdata"
         updatedAt="2015-03-03 12:15:00"
-        updatedAtLabel="Sist endret: 15. april 2025 kl. 14.15"
+        updatedAtLabel="Sist oppdatert: 15. april 2025 kl. 14.15"
         sentCount={3}
         receivedCount={4}
       />
@@ -289,7 +289,7 @@ export const StatusAttention = () => {
       <DialogHeader
         title="Rapportering av bedriftsdata"
         updatedAt="2015-03-03 12:15:00"
-        updatedAtLabel="Sist endret: 17. mars 2025 kl. 14.15"
+        updatedAtLabel="Sist oppdatert: 17. mars 2025 kl. 14.15"
         dueAt={{
           datetime: '2025-05-31T12:00:00Z',
           label: 'Frist: 31. mai 2025',
@@ -373,7 +373,7 @@ export const StatusTransmissions = () => {
       <DialogHeader
         title="Rapportering av bedriftsdata"
         updatedAt="2015-03-03 12:15:00"
-        updatedAtLabel="Sist endret: 17. mars 2025 kl. 14.15"
+        updatedAtLabel="Sist oppdatert: 17. mars 2025 kl. 14.15"
         status={{
           label: 'Avsluttet',
           value: 'completed',
