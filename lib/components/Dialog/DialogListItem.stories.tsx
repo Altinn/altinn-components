@@ -24,7 +24,8 @@ const meta = {
       name: 'Recipient name',
     },
     updatedAt: '2024-11-25 15:30',
-    updatedAtLabel: '25. november 2024 kl 15.30',
+    updatedAtLabel: '25. november 2024 kl. 15.30',
+    tooltips: { updatedAt: 'Sist oppdatert' },
     status: {},
   },
   decorators: [
@@ -273,6 +274,7 @@ export const WithTooltips = {
     sentCount: 1,
     receivedCount: 2,
     tooltips: {
+      updatedAt: 'Sist oppdatert',
       sent: 'Sendte meldinger',
       received: 'Meldinger mottatt',
       attachments: 'Vedlegg',
