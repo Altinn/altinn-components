@@ -8,7 +8,7 @@ const meta = {
   parameters: {},
   args: {
     updatedAt: '1999-05-26',
-    updatedAtLabel: '26. mai 1999 kl 22:45',
+    updatedAtLabel: 'Sist endret: 26. mai 1999 kl 22:45',
   },
 } satisfies Meta<typeof DialogMetadata>;
 

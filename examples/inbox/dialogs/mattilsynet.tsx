@@ -6,7 +6,7 @@ export const mattilsynetDraft = {
   title: 'Dispensasjon for import av kjæledyr',
   draftsLabel: '2 utkast',
   updatedAt: '2024-10-18T09:40:00.000Z',
-  updatedAtLabel: '18. oktober 2024 kl. 11.40',
+  updatedAtLabel: 'Sist endret: 18. oktober 2024 kl. 11.40',
   sender: mattilsynet,
   history: {
     items: [
@@ -72,7 +72,7 @@ export const mattilsynetAttention = {
   title: 'Godkjenning av dyreforsøk',
   draftsLabel: 'Utkast',
   updatedAt: '2024-08-02T09:40:00.000Z',
-  updatedAtLabel: '2. august 2024 kl. 09.00',
+  updatedAtLabel: 'Sist endret: 2. august 2024 kl. 09.00',
   summary: 'Vi trenger mer informasjon om dyreforsøket ditt.',
   status: {
     value: 'requires-attention',

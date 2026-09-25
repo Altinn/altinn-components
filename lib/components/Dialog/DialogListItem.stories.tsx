@@ -24,7 +24,7 @@ const meta = {
       name: 'Recipient name',
     },
     updatedAt: '2024-11-25 15:30',
-    updatedAtLabel: '25. november 2024 kl 15.30',
+    updatedAtLabel: 'Sist endret: 25. november 2024 kl 15.30',
     status: {},
   },
   decorators: [

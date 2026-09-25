@@ -6,7 +6,7 @@ export const metadataDialog: DialogProps = {
   sender,
   recipient: { name: 'Bergen bar' },
   updatedAt: '2024-12-01 09:30',
-  updatedAtLabel: '1. desember 2024 kl 09.30',
+  updatedAtLabel: 'Sist endret: 1. desember 2024 kl 09.30',
   title: 'Sykmelding Sander Svendsen',
   summary: 'Sander Svendsen er sykmeldt i 4 dager fra 2. juli.',
   body: (

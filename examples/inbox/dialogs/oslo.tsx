@@ -11,7 +11,7 @@ export const nabovarsel = {
   },
   summary: 'Nabovarsel for byggeplaner i for Louises gate 15, 0169 Oslo (gårdsnr. 118, bruksnr. 366).',
   updatedAt: '2025-02-18T08:54:00.000Z',
-  updatedAtLabel: '18. februar 2025 kl. 09.54',
+  updatedAtLabel: 'Sist endret: 18. februar 2025 kl. 09.54',
   attachmentsCount: 4,
   sender: { ...oslo, name: 'Skattekontoret i Oslo, avdeling Løren' },
   dueAt: undefined,

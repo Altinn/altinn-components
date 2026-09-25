@@ -6,7 +6,7 @@ export const enovaDraft = {
   title: 'Støtte til fjernvarme',
   draftsLabel: 'Utkast',
   updatedAt: '2025-01-07T23:27:37.384Z',
-  updatedAtLabel: '8. mars 2025 kl. 00.27',
+  updatedAtLabel: 'Sist endret: 8. mars 2025 kl. 00.27',
   sender: enova,
   history: {
     items: [
@@ -55,7 +55,7 @@ export const enovaSent = {
   title: 'Melding om elulykke',
   summary: 'Vi trenger mer informasjon.',
   updatedAt: '2025-02-07T22:27:37.384Z',
-  updatedAtLabel: '22. februar 2025 kl. 22.27',
+  updatedAtLabel: 'Sist endret: 22. februar 2025 kl. 22.27',
   sentCount: 1,
   status: {
     value: 'requires-attention',
@@ -111,7 +111,7 @@ export const enovaProgress = {
   status: { value: 'in-progress', label: 'Under arbeid' },
   summary: 'Søknad er sendt til behandling. Forventet behandlingstid: 2 uker.',
   updatedAt: '2025-03-07T23:27:37.384Z',
-  updatedAtLabel: '8. mars 2025 kl. 00.27',
+  updatedAtLabel: 'Sist endret: 8. mars 2025 kl. 00.27',
   sender: enova,
   sentCount: 1,
   dueAt: undefined,
