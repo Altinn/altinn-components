@@ -60,7 +60,7 @@ export const tredjepart = {
   sentCount: 4,
   receivedCount: 4,
   updatedAt: '2024-10-18T09:40:00.000Z',
-  updatedAtLabel: '18. oktober 2024 kl. 11.40',
+  updatedAtLabel: 'Sist endret: 18. oktober 2024 kl. 11.40',
   title: 'Tredjepartsopplysninger for boligselskap 2023',
   badge: { variant: 'tinted', label: 'Ulest' },
   sender: skatt,

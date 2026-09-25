@@ -5,7 +5,7 @@ export const extendedLetterDialog: DialogProps = {
   id: 'nabovarsel',
   sender: oslo,
   updatedAt: '2024-12-12 15:27',
-  updatedAtLabel: '12. desember 2024 kl 15.27',
+  updatedAtLabel: 'Sist endret: 12. desember 2024 kl 15.27',
   title: 'Nabovarsel for Wilhelms gt 10',
   summary: 'Nabovarsel for byggeplaner i for Wilhelms gate 10, 0169 Oslo (gårdsnr. 217, bruksnr. 486).',
   body: (

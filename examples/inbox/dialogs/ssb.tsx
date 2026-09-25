@@ -8,7 +8,7 @@ export const ssbAttention = {
   status: { value: 'requires-attention', label: 'Krever handling' },
   summary: 'Du må levere bedriftsdata innen 31. mai.',
   updatedAt: '2025-02-14T23:27:37.383Z',
-  updatedAtLabel: '15. februar 2025 kl. 00.27',
+  updatedAtLabel: 'Sist endret: 15. februar 2025 kl. 00.27',
   attachmentsCount: 1,
   dueAt: {
     datetime: '2025-05-31T21:59:59.999Z',
