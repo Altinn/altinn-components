@@ -1,4 +1,4 @@
-import { CheckmarkIcon, ChevronRightIcon, MinusIcon } from '@navikt/aksel-icons';
+import { ChevronRightIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import type {
   AriaAttributes,
@@ -12,6 +12,10 @@ import type {
 
 import { type AvatarGroupProps, type AvatarProps, type Color, Icon, type IconProps, type SvgElement } from '..';
 import { Badge, type BadgeProps } from '../Badge';
+import { CheckboxCheckedIcon } from '../Icon/CheckboxCheckedIcon';
+import { CheckboxUncheckedIcon } from '../Icon/CheckboxUncheckedIcon';
+import { RadioCheckedIcon } from '../Icon/RadioCheckedIcon';
+import { RadioUncheckedIcon } from '../Icon/RadioUncheckedIcon';
 import { ItemControls, ItemLabel, ItemMedia } from '../Item';
 import { pickAriaProps } from './aria.ts';
 import styles from './menuItem.module.css';
@@ -27,6 +31,8 @@ export interface MenuItemProps extends AriaAttributes {
   role?: MenuItemRole;
   /** @internal a11y context set by the parent list. In `navigation` mode the item renders without a menu role. */
   a11yMode?: 'menu' | 'combobox' | 'navigation';
+  /** @internal checkbox or radio, set by the parent list so an `option` keeps the right icon in combobox mode. */
+  checkableType?: 'checkbox' | 'radio';
   as?: ElementType;
   /** Size, default is sm */
   size?: MenuItemSize;
@@ -84,6 +90,7 @@ export const MenuItem = ({
   groupId,
   role = 'menuItem',
   a11yMode,
+  checkableType,
   as,
   href,
   onClick,
@@ -123,7 +130,10 @@ export const MenuItem = ({
     (isOption && typeof checked === 'boolean');
 
   if (isCheckableRole) {
-    const applicableIcon = icon || (checked ? CheckmarkIcon : MinusIcon);
+    const isRadio = role === 'radio' || role === 'menuitemradio' || (isOption && checkableType === 'radio');
+    const checkedIcon = isRadio ? RadioCheckedIcon : CheckboxCheckedIcon;
+    const uncheckedIcon = isRadio ? RadioUncheckedIcon : CheckboxUncheckedIcon;
+    const applicableIcon = icon || (checked ? checkedIcon : uncheckedIcon);
 
     return (
       <div

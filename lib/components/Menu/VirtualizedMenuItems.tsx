@@ -271,6 +271,7 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
                       variant={entry.itemProps?.variant || variant}
                       active={entry.active}
                       role={resolvedRole}
+                      checkableType={isCheckable ? (entry.itemProps?.role as 'checkbox' | 'radio') : undefined}
                       a11yMode={a11yMode}
                       selected={entry.itemProps?.selected}
                       aria-posinset={isCombobox ? itemPositions.positions.get(virtualRow.index) : undefined}
