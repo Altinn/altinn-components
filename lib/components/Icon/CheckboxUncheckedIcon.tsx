@@ -1,14 +1,24 @@
+import type { AriaAttributes } from 'react';
+
 export type CheckboxUncheckedIconProps = {
   title?: string;
   className?: string;
+  'aria-hidden'?: AriaAttributes['aria-hidden'];
   hover?: boolean;
 };
 
 /**
  * Checkbox for lists and list items
  */
-export const CheckboxUncheckedIcon = ({ title = 'Checkbox', className, hover = false }: CheckboxUncheckedIconProps) => {
+export const CheckboxUncheckedIcon = ({
+  title = 'Checkbox',
+  className,
+  hover = false,
+  'aria-hidden': ariaHidden,
+}: CheckboxUncheckedIconProps) => {
+  const isHidden = ariaHidden === true || ariaHidden === 'true';
   return (
+    // biome-ignore lint/a11y/noSvgWithoutTitle: title is only left out when the icon is aria-hidden
     <svg
       width="1em"
       height="1em"
@@ -16,13 +26,14 @@ export const CheckboxUncheckedIcon = ({ title = 'Checkbox', className, hover = f
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      aria-hidden={ariaHidden}
     >
-      <title>{title}</title>
+      {!isHidden && <title>{title}</title>}
       <path
         fillRule="evenodd"
         clipRule="evenodd"
         d="M21.5 2.5H2.5V21.5H21.5V2.5ZM2.5 0C1.11929 0 0 1.11929 0 2.5V21.5C0 22.8807 1.11929 24 2.5 24H21.5C22.8807 24 24 22.8807 24 21.5V2.5C24 1.11929 22.8807 0 21.5 0H2.5Z"
-        fill="black"
+        fill="currentColor"
       />
       {hover && (
         <path

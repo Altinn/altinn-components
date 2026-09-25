@@ -216,6 +216,7 @@ export const MenuItems = ({
                           variant={itemProps?.variant || groupProps?.variant || variant}
                           active={active}
                           role={resolvedRole}
+                          checkableType={isCheckable ? (itemProps.role as 'checkbox' | 'radio') : undefined}
                           a11yMode={a11yMode}
                           selected={itemProps.selected}
                           tabIndex={itemProps?.disabled || keyboardEvents ? -1 : (itemProps.tabIndex ?? 0)}
