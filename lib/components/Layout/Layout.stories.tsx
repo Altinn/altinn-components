@@ -83,6 +83,38 @@ export const Preview = (args: LayoutStoryArgs) => {
   );
 };
 
+export const ForcedFullScreenAccountSelectionWithCookieBanner = (args: LayoutStoryArgs) => {
+  const layout = useLayout(args);
+  const accountMenu = {
+    ...useAccountMenu({ accountId: 'diaspora' }),
+    virtualized: true,
+  };
+  const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
+  const accountSelector: AccountSelectorProps = {
+    accountMenu: accountMenu,
+    forceOpenFullScreen: true,
+  };
+  return (
+    <RootProvider>
+      <Layout
+        {...args}
+        {...layout}
+        header={{
+          ...layout.header,
+          accountSelector: accountSelector,
+          globalMenu: globalMenu,
+        }}
+        cookieBanner={{
+          onAccept: () => console.log('Consent granted'),
+          onReject: () => console.log('Consent denied'),
+        }}
+      >
+        {args.children}
+      </Layout>
+    </RootProvider>
+  );
+};
+
 export const LogInView = (args: LayoutStoryArgs) => {
   const layout = useLayout(args);
   const accountMenu = {

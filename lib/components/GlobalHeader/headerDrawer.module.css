@@ -23,6 +23,13 @@ html:has(dialog[open]) {
   display: none;
 }
 
+/* as we use .show() for this non-dismissable dialogs, pin the undismissable variant above the highest z-index elsewhere in this
+   library (Dropdown uses up to 9999) so other floating UI can't cover a drawer the user can't close. */
+.backdrop[data-modal="true"],
+.drawer[data-modal="true"] {
+  z-index: 10000;
+}
+
 .drawer {
   position: fixed;
   z-index: 2;
@@ -47,11 +54,6 @@ html:has(dialog[open]) {
   overflow-y: scroll;
   /* Prevent touch scroll from chaining to the page behind the modal (iOS) */
   overscroll-behavior: contain;
-}
-
-/* Only the forced fullscreen variant opens modally and has a ::backdrop; the dim is .backdrop above. */
-.drawer::backdrop {
-  background-color: transparent;
 }
 
 .drawer:not([data-open="true"]) {
