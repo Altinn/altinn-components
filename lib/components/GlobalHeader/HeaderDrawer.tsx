@@ -40,7 +40,10 @@ export const HeaderDrawer = ({
   const { languageCode } = useRootContext();
   const texts = getTexts(languageCode);
 
-  // Modal only when undismissable: showModal() makes the header inert and covers it with a ::backdrop.
+  // "Modal" here is only our own undismissable variant, not the native showModal(): that call
+  // puts the dialog in the top layer and makes the *entire rest of the document* inert, which
+  // also blocks fixed elements outside the layout, like the cookie banner. The custom .backdrop
+  // below already restricts the blocked area to below the banner, so we rely on that instead.
   const isModal = closedBy === 'none';
 
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -55,21 +58,16 @@ export const HeaderDrawer = ({
     if (open) {
       if (!dialog.open) {
         returnFocusRef.current = document.activeElement as HTMLElement | null;
-        if (isModal) {
-          dialog.showModal();
-        } else {
-          dialog.show();
-          focusInitial(dialog);
-        }
+        dialog.show();
+        focusInitial(dialog);
       }
     } else if (dialog.open) {
-      // close() restores focus for modal dialogs only, and only if focus has not already moved on.
       const active = document.activeElement;
       const focusWasInside = !active || active === document.body || dialog.contains(active);
       dialog.close();
-      if (!isModal && focusWasInside) returnFocusRef.current?.focus({ preventScroll: true });
+      if (focusWasInside) returnFocusRef.current?.focus({ preventScroll: true });
     }
-  }, [open, isModal]);
+  }, [open]);
 
   // Escape is handled by RootProvider through `open`; closing natively too would bypass the parent.
   const handleCancel = (e: React.SyntheticEvent<HTMLDialogElement>) => {
@@ -83,11 +81,17 @@ export const HeaderDrawer = ({
 
   return (
     <>
-      <div className={styles.backdrop} aria-hidden={!open} onMouseDown={open ? handleBackdropMouseDown : undefined} />
+      <div
+        className={styles.backdrop}
+        data-modal={isModal || undefined}
+        aria-hidden={!open}
+        onMouseDown={open ? handleBackdropMouseDown : undefined}
+      />
       <dialog
         id={id}
         ref={dialogRef}
         aria-modal={isModal || undefined}
+        data-modal={isModal || undefined}
         aria-labelledby={ariaLabelledby}
         data-open={open}
         data-expanded={expanded}
