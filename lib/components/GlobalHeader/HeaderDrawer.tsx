@@ -90,7 +90,6 @@ export const HeaderDrawer = ({
       <dialog
         id={id}
         ref={dialogRef}
-        aria-modal={isModal || undefined}
         data-modal={isModal || undefined}
         aria-labelledby={ariaLabelledby}
         data-open={open}
