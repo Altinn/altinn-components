@@ -53,7 +53,7 @@ export const ModalHeader = ({
             }}
           >
             <Button type="submit" variant="outline" aria-label={closeTitle ?? 'Close'} size="sm">
-              <XMarkIcon style={{ fontSize: '1.5em' }} />
+              <XMarkIcon style={{ fontSize: '1.5em' }} aria-hidden="true" />
             </Button>
           </form>
         )}
