@@ -1,3 +1,4 @@
+import { cpSync } from 'node:fs';
 import { extname, relative } from 'node:path';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -7,7 +8,6 @@ import preserveDirectives from 'rollup-preserve-directives';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import { libInjectCss } from 'vite-plugin-lib-inject-css';
-import { viteStaticCopy } from 'vite-plugin-static-copy';
 import pkg from './package.json';
 
 const dependencies = [
@@ -23,18 +23,19 @@ const dependencies = [
 export default () => {
   return defineConfig({
     plugins: [
-      viteStaticCopy({
-        targets: [
-          {
-            src: 'lib/css/*.css',
-            dest: path.resolve(__dirname, 'dist/'),
-          },
-          {
-            src: 'lib/css/tokens/design-tokens-build/theme.css',
-            dest: path.resolve(__dirname, 'dist/tokens/design-tokens-build/'),
-          },
-        ],
-      }),
+      {
+        name: 'copy-css',
+        apply: 'build',
+        writeBundle() {
+          for (const file of glob.sync('lib/css/*.css')) {
+            cpSync(file, path.resolve(__dirname, 'dist', path.basename(file)));
+          }
+          cpSync(
+            'lib/css/tokens/design-tokens-build/theme.css',
+            path.resolve(__dirname, 'dist/tokens/design-tokens-build/theme.css'),
+          );
+        },
+      },
       react(),
       libInjectCss(),
       dts({

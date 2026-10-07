@@ -8,7 +8,7 @@ export const reportingCompletedDialog: DialogProps = {
     value: 'completed',
     label: 'Avsluttet',
   },
-  updatedAtLabel: '27. november 2024 kl 10.30',
+  updatedAtLabel: 'Sist oppdatert: 27. november 2024 kl. 10.30',
   summary: 'Bedriftsdata er godkjent.',
   body: undefined,
   attachments: {
