@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.75.2](https://github.com/Altinn/altinn-components/compare/v0.75.1...v0.75.2) (2026-10-07)
+
+
+### Bug Fixes
+
+* **SkyraSurvey:** point at skyra-survey.js captured 2026-10-01 ([#1410](https://github.com/Altinn/altinn-components/issues/1410)) ([5ff585f](https://github.com/Altinn/altinn-components/commit/5ff585fb3e1dc6fda739aa2d4027770c04765b95))
+
+
+### Miscellaneous Chores
+
+* **storybook:** update last updated labels in stories ([#1406](https://github.com/Altinn/altinn-components/issues/1406)) ([0ca3112](https://github.com/Altinn/altinn-components/commit/0ca3112b82522247975450d2b07d00cd76b3d88a))
+
 ## [0.75.1](https://github.com/Altinn/altinn-components/compare/v0.75.0...v0.75.1) (2026-09-22)
 
 
