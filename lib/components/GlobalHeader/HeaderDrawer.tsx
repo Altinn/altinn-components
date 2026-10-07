@@ -40,12 +40,6 @@ export const HeaderDrawer = ({
   const { languageCode } = useRootContext();
   const texts = getTexts(languageCode);
 
-  // "Modal" here is only our own undismissable variant, not the native showModal(): that call
-  // puts the dialog in the top layer and makes the *entire rest of the document* inert, which
-  // also blocks fixed elements outside the layout, like the cookie banner. The custom .backdrop
-  // below already restricts the blocked area to below the banner, so we rely on that instead.
-  const isModal = closedBy === 'none';
-
   const dialogRef = useRef<HTMLDialogElement>(null);
   const returnFocusRef = useRef<HTMLElement | null>(null);
 
@@ -81,16 +75,10 @@ export const HeaderDrawer = ({
 
   return (
     <>
-      <div
-        className={styles.backdrop}
-        data-modal={isModal || undefined}
-        aria-hidden={!open}
-        onMouseDown={open ? handleBackdropMouseDown : undefined}
-      />
+      <div className={styles.backdrop} aria-hidden={!open} onMouseDown={open ? handleBackdropMouseDown : undefined} />
       <dialog
         id={id}
         ref={dialogRef}
-        data-modal={isModal || undefined}
         aria-labelledby={ariaLabelledby}
         data-open={open}
         data-expanded={expanded}

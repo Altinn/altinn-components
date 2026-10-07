@@ -59,7 +59,7 @@ export const GlobalHeader = ({
   const isDesktop = useIsDesktop();
 
   return (
-    <header className={styles.header} data-current-id={currentId}>
+    <header className={styles.header} data-current-id={accountSelectionOpen ? 'account' : currentId}>
       <div className={styles.container}>
         <nav className={styles.nav} aria-label="hovednavigasjon">
           <HeaderLogo {...logo} badge={badge} className={styles.logo} />

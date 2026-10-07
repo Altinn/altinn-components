@@ -6,6 +6,8 @@ export interface LayoutGridProps {
   children?: ReactNode;
   variant?: 'default' | 'narrow' | 'wide';
   color?: 'neutral' | 'person' | 'company';
+  /** Makes the content unreachable, e.g. while a forced header drawer covers it. */
+  inert?: boolean;
 }
 
 /**
@@ -14,9 +16,15 @@ export interface LayoutGridProps {
  *
  */
 
-export const LayoutGrid = ({ currentId, children, variant = 'default', color }: LayoutGridProps) => {
+export const LayoutGrid = ({ currentId, children, variant = 'default', color, inert }: LayoutGridProps) => {
   return (
-    <div className={styles.grid} data-current-id={currentId} data-variant={variant} data-color={color}>
+    <div
+      className={styles.grid}
+      data-current-id={currentId}
+      data-variant={variant}
+      data-color={color}
+      inert={inert || undefined}
+    >
       {children}
     </div>
   );
