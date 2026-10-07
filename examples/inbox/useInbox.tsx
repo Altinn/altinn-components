@@ -343,6 +343,9 @@ export const useInbox = ({
     dialogId,
     dialog: dialog && {
       ...dialog,
+      // The list shows the bare date with a tooltip; the header spells it out instead.
+      updatedAtLabel: dialog.updatedAtLabel && `Sist oppdatert: ${dialog.updatedAtLabel}`,
+      tooltips: undefined,
       contextMenu,
       contact: dialogContact,
       backButton: {

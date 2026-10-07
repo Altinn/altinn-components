@@ -123,6 +123,11 @@
 .footer {
   width: 100%;
   padding-right: 2rem;
+  /* MetaBase isolates its own stacking context, so lift the whole row above the
+     link's focus overlay to keep metadata tooltips hoverable. The item's own
+     z-index keeps this from escaping above the global header. */
+  position: relative;
+  z-index: 1;
 }
 
 .seenBy {
