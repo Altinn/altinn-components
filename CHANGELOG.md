@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.75.3](https://github.com/Altinn/altinn-components/compare/v0.75.2...v0.75.3) (2026-10-07)
+
+
+### Miscellaneous Chores
+
+* **deps:** resolve all pnpm audit findings ([#1416](https://github.com/Altinn/altinn-components/issues/1416)) ([100986e](https://github.com/Altinn/altinn-components/commit/100986edc5c9a4aa5ce00468dd337957dd2b5f17))
+
 ## [0.75.2](https://github.com/Altinn/altinn-components/compare/v0.75.1...v0.75.2) (2026-10-07)
 
 
