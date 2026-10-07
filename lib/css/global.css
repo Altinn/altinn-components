@@ -14,3 +14,9 @@
   /* Enable lowercase l with tail */
   box-sizing: border-box;
 }
+
+/* Designsystemet renders one shared tooltip bubble on <body>, so it can't be sized per
+   tooltip. Keep its text small, as it only holds short supplementary labels. */
+.ds-tooltip {
+  font-size: var(--ds-body-xs-font-size);
+}

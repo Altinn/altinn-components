@@ -13,7 +13,7 @@ export const dialogListItemsDate: DialogListItemProps[] = [
   {
     groupId: '2023-01',
     updatedAt: '2023-01-02 08:00',
-    updatedAtLabel: '2. januar 2023 kl 08.00',
+    updatedAtLabel: '2. januar 2023 kl. 08.00',
     sender: skatt,
     title: 'Tredjepartsopplysninger for boligselskap',
     summary: 'Du kan nå levere tredjepartsopplysninger.',
@@ -21,7 +21,7 @@ export const dialogListItemsDate: DialogListItemProps[] = [
   {
     groupId: '2024-05',
     updatedAt: '2024-05-02 08:00',
-    updatedAtLabel: '2. may 2024 kl 08.00',
+    updatedAtLabel: '2. mai 2024 kl. 08.00',
     sender: skatt,
     title: 'Tredjepartsopplysninger for boligselskap',
     summary: 'Du kan nå levere tredjepartsopplysninger.',
@@ -29,7 +29,7 @@ export const dialogListItemsDate: DialogListItemProps[] = [
   {
     groupId: '2025-05',
     updatedAt: '2025-05-02 08:00',
-    updatedAtLabel: '2. may 2025 kl 08.00',
+    updatedAtLabel: '2. mai 2025 kl. 08.00',
     sender: skatt,
     title: 'Tredjepartsopplysninger for boligselskap',
     summary: 'Du kan nå levere tredjepartsopplysninger.',
@@ -37,7 +37,7 @@ export const dialogListItemsDate: DialogListItemProps[] = [
   {
     groupId: '2023-10',
     updatedAt: '2023-10-15 08:00',
-    updatedAtLabel: '15. oktober 2023 kl 08.00',
+    updatedAtLabel: '15. oktober 2023 kl. 08.00',
     sender: skatt,
     title: 'Tredjepartsopplysninger for boligselskap',
     summary: 'Du må levere tredjepartsopplysninger for boligselskap.',
@@ -57,7 +57,7 @@ export const dialogListItemsRoute: DialogListItemProps[] = [
   {
     groupId: 'bin',
     updatedAt: '2023-01-02 08:00',
-    updatedAtLabel: '2. januar 2023 kl 08.00',
+    updatedAtLabel: '2. januar 2023 kl. 08.00',
     sender: skatt,
     title: 'Papirkurv - Tredjepartsopplysninger for boligselskap',
     summary: 'Du kan nå levere tredjepartsopplysninger.',
@@ -65,7 +65,7 @@ export const dialogListItemsRoute: DialogListItemProps[] = [
   {
     groupId: 'archive',
     updatedAt: '2024-05-02 08:00',
-    updatedAtLabel: '2. may 2024 kl 08.00',
+    updatedAtLabel: '2. mai 2024 kl. 08.00',
     sender: skatt,
     title: 'Arkiv - Tredjepartsopplysninger for boligselskap',
     summary: 'Du kan nå levere tredjepartsopplysninger.',
@@ -73,7 +73,7 @@ export const dialogListItemsRoute: DialogListItemProps[] = [
   {
     groupId: 'inbox',
     updatedAt: '2025-05-02 08:00',
-    updatedAtLabel: '2. may 2025 kl 08.00',
+    updatedAtLabel: '2. mai 2025 kl. 08.00',
     sender: skatt,
     title: 'Innbox - Tredjepartsopplysninger for boligselskap',
     summary: 'Du kan nå levere tredjepartsopplysninger.',
@@ -81,7 +81,7 @@ export const dialogListItemsRoute: DialogListItemProps[] = [
   {
     groupId: 'sent',
     updatedAt: '2023-10-15 08:00',
-    updatedAtLabel: '15. oktober 2023 kl 08.00',
+    updatedAtLabel: '15. oktober 2023 kl. 08.00',
     sender: skatt,
     title: 'Sendt - Tredjepartsopplysninger for boligselskap',
     summary: 'Du må levere tredjepartsopplysninger for boligselskap.',

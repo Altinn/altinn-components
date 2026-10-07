@@ -1,0 +1,9 @@
+{
+  "version": "2026-10-01",
+  "integrity": "sha384-Oov7VwIRtm8hmW5F+u1VdL4XM3A82cORtAIbMEnfHkLmwBcmgCSuLWcnBo+fYTn8",
+  "sizeBytes": 445568,
+  "capturedAt": "2026-10-01T05:07:12Z",
+  "url": "https://cdn.jsdelivr.net/gh/altinn/altinn-components@main/vendor/skyra/releases/2026-10-01/skyra-survey.js",
+  "upstreamUrl": "https://survey.skyra.no/skyra-survey.js",
+  "note": "integrity covers skyra-survey.js only. skyra-survey.pretty.js is a review aid and is never served."
+}
