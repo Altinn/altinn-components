@@ -74,7 +74,10 @@ export const Layout = ({
   const [bannerHeight, setBannerHeight] = useState(0);
   const observerRef = useRef<ResizeObserver | null>(null);
   const hasTopBar = Boolean(cookieBanner || banner);
-  const isHeaderDrawerOpen = currentId === 'account' || currentId === 'menu' || currentId === 'locale';
+  // A forced account selector can't be closed, so the page behind it is made inert (the banners stay reachable).
+  const isAccountForcedOpen = Boolean(header?.accountSelector?.forceOpenFullScreen);
+  const isHeaderDrawerOpen =
+    isAccountForcedOpen || currentId === 'account' || currentId === 'menu' || currentId === 'locale';
 
   // The header and its drawer are placed from the top of the viewport, so they need the height of
   // everything stacked above them, the cookie banner included.
@@ -123,7 +126,7 @@ export const Layout = ({
         </div>
       )}
       {header && <GlobalHeader {...header} />}
-      <LayoutGrid currentId={currentId}>
+      <LayoutGrid currentId={currentId} inert={isAccountForcedOpen}>
         {breadcrumbs && <Breadcrumbs {...breadcrumbs} />}
         <LayoutBody currentId={currentId}>
           {sidebar && (
@@ -146,7 +149,11 @@ export const Layout = ({
           </LayoutContent>
         </LayoutBody>
       </LayoutGrid>
-      {footer && <Footer {...footer} />}
+      {footer && (
+        <div inert={isAccountForcedOpen || undefined}>
+          <Footer {...footer} />
+        </div>
+      )}
     </LayoutBase>
   );
 };
