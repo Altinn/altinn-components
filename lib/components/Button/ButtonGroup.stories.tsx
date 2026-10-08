@@ -48,18 +48,6 @@ export const WithDivider = () => {
   );
 };
 
-export const ComboButton = () => {
-  return (
-    <ButtonGroup connected>
-      <Button>Button 1</Button>
-      <ButtonGroupDivider />
-      <Button>
-        <XMarkIcon />
-      </Button>
-    </ButtonGroup>
-  );
-};
-
 export const Toolbar = () => {
   return (
     <ButtonGroup size="xs">
