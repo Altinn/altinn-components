@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.76.0](https://github.com/Altinn/altinn-components/compare/v0.75.3...v0.76.0) (2026-10-08)
+
+
+### Features
+
+* **DialogActions:** render all actions as buttons and remove ComboButton ([#1418](https://github.com/Altinn/altinn-components/issues/1418)) ([0c06e46](https://github.com/Altinn/altinn-components/commit/0c06e468d4a79fb6e85a43251f1ff067e04c7dd9))
+
 ## [0.75.3](https://github.com/Altinn/altinn-components/compare/v0.75.2...v0.75.3) (2026-10-07)
 
 
