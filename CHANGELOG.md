@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.76.1](https://github.com/Altinn/altinn-components/compare/v0.76.0...v0.76.1) (2026-10-13)
+
+
+### Bug Fixes
+
+* **Footer:** use Designsystemet focus style on footer links ([#1420](https://github.com/Altinn/altinn-components/issues/1420)) ([e3add88](https://github.com/Altinn/altinn-components/commit/e3add88cd6aa90c5a9773ab82c8f2eb587cae2d6))
+
 ## [0.76.0](https://github.com/Altinn/altinn-components/compare/v0.75.3...v0.76.0) (2026-10-08)
 
 
