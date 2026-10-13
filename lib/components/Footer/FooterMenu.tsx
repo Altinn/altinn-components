@@ -20,7 +20,7 @@ export const FooterLink = ({ as, className, title, ...rest }: FooterLinkProps) =
   const Component = as || 'a';
 
   return (
-    <Component className={cx(styles.link, className)} {...rest}>
+    <Component className={cx(styles.link, 'ds-focus', className)} {...rest}>
       {title}
     </Component>
   );
