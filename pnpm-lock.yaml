@@ -46,8 +46,8 @@ importers:
         specifier: 5.2.1
         version: 5.2.1(storybook@10.4.1(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@testing-library/dom@10.4.0)(@types/react@19.1.5)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
       '@oddbird/popover-polyfill':
-        specifier: 0.7.1
-        version: 0.7.1
+        specifier: 0.7.3
+        version: 0.7.3
       '@storybook/addon-a11y':
         specifier: 10.4.1
         version: 10.4.1(storybook@10.4.1(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@testing-library/dom@10.4.0)(@types/react@19.1.5)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
@@ -650,8 +650,8 @@ packages:
   '@neoconfetti/react@1.0.0':
     resolution: {integrity: sha512-klcSooChXXOzIm+SE5IISIAn3bYzYfPjbX7D7HoqZL84oAfgREeSg5vSIaSFH+DaGzzvImTyWe1OyrJ67vik4A==}
 
-  '@oddbird/popover-polyfill@0.7.1':
-    resolution: {integrity: sha512-H3P1qJpbJiAToQt6dAjdTzWP327YPGjI286pmn+U/eSfE4krGAMHYz3OL+VYSQhwCsbSLkik9GPZGNvtdeEetQ==}
+  '@oddbird/popover-polyfill@0.7.3':
+    resolution: {integrity: sha512-uOY7RLqS1M12u+EzZHQ8vPSh3NjwDlb4qwJ1WDzQ0inZ14+47Vv0NNs+1Lh4PtX1nLiiCbfJyIxPRHsgBTvhvg==}
 
   '@oxc-parser/binding-android-arm-eabi@0.127.0':
     resolution: {integrity: sha512-0LC7ye4hvqbIKxAzThzvswgHLFu2AURKzYLeSVvLdu2TBOYWQDmHnTqPLeA597BcUCxiLqLsS4CJ5uoI5WYWCQ==}
@@ -3025,7 +3025,7 @@ snapshots:
 
   '@neoconfetti/react@1.0.0': {}
 
-  '@oddbird/popover-polyfill@0.7.1': {}
+  '@oddbird/popover-polyfill@0.7.3': {}
 
   '@oxc-parser/binding-android-arm-eabi@0.127.0':
     optional: true
