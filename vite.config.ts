@@ -44,7 +44,13 @@ export default () => {
       }),
       preserveDirectives(),
     ],
+    esbuild: {
+      // esbuild renames `forwardRef(function Button…)` to `Button2` when it shadows `const Button`; this restores `.name`
+      keepNames: true,
+    },
     build: {
+      // Keep component names readable in React DevTools. Let consumers minify in their own builds
+      minify: false,
       lib: {
         entry: [path.resolve(__dirname, 'lib/index.ts')],
         formats: ['es'],
