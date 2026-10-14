@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.76.2](https://github.com/Altinn/altinn-components/compare/v0.76.1...v0.76.2) (2026-10-14)
+
+
+### Bug Fixes
+
+* **build:** keep component names readable in React DevTools ([#1423](https://github.com/Altinn/altinn-components/issues/1423)) ([08fd569](https://github.com/Altinn/altinn-components/commit/08fd569e6f6558e3bcd3ed531c028988224de636))
+
 ## [0.76.1](https://github.com/Altinn/altinn-components/compare/v0.76.0...v0.76.1) (2026-10-13)
 
 
