@@ -1,1 +1,0 @@
-var r=Object.defineProperty;var t=(e,s)=>r(e,"name",{value:s,configurable:!0});import{a7 as n,n as d}from"./iframe-DliZ2j7V.js";const m=t(({size:e,color:s,children:a,...o})=>n.jsx(d,{...o,"data-size":e,"data-color":s,children:a}),"Legend");export{m as L};
