@@ -1,0 +1,1 @@
+var d=Object.defineProperty;var e=(i,r)=>d(i,"name",{value:r,configurable:!0});import{a7 as a}from"./iframe-ITS-2hJr.js";const o="_divider_1ismz_1",n={divider:o},v=e(({as:i,size:r,color:s="neutral"})=>{const t=i||"hr";return a.jsx(t,{"aria-hidden":"true",className:n.divider,"data-size":r,"data-color":s})},"Divider");export{v as D};

@@ -1,1 +1,0 @@
-var t=Object.defineProperty;var a=(o,r)=>t(o,"name",{value:r,configurable:!0});import{a7 as i}from"./iframe-BaqLtPTs.js";const n=a(({size:o,color:r,inline:e,children:s})=>i.jsx("div",{"data-color":r,"data-size":o,style:{display:"flex",flexDirection:e?"row":"column",rowGap:"1rem",columnGap:"1rem"},children:s}),"OptionsBase");export{n as O};
