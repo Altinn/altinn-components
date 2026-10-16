@@ -6,10 +6,8 @@ import { inboxSection } from '../../../examples';
 import { footer, header, inboxMenu, skipLink, useAccountMenu, useGlobalMenu, useLayout } from '../../../examples';
 import type { AccountSelectorProps } from '../AccountSelector';
 
-// Add custom story args interface for easier testing
-interface LayoutStoryArgs extends LayoutProps {
-  forceOpenFullScreen?: boolean | undefined;
-}
+// Add custom story args type for easier testing
+type LayoutStoryArgs = LayoutProps;
 
 const meta = {
   title: 'Layout/Layout',
@@ -42,11 +40,11 @@ const meta = {
       </Flex>
     ),
     color: 'company',
-    forceOpenFullScreen: undefined,
+    accountSelectionAsMain: undefined,
   },
   argTypes: {
     color: { control: 'select', options: ['company', 'neutral', 'person'] },
-    forceOpenFullScreen: {
+    accountSelectionAsMain: {
       control: 'select',
       options: [true, false, undefined],
     },
@@ -64,7 +62,6 @@ export const Preview = (args: LayoutStoryArgs) => {
   const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
   const accountSelector: AccountSelectorProps = {
     accountMenu: accountMenu,
-    forceOpenFullScreen: args.forceOpenFullScreen,
   };
   return (
     <RootProvider>
@@ -97,7 +94,6 @@ export const LogInView = (args: LayoutStoryArgs) => {
   const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
   const accountSelector: AccountSelectorProps = {
     accountMenu: accountMenuNotLoggedIn,
-    forceOpenFullScreen: args.forceOpenFullScreen,
   };
   const onLoginClick = () => {
     alert('Login clicked');
@@ -122,7 +118,7 @@ export const LogInView = (args: LayoutStoryArgs) => {
   );
 };
 
-export const ForcedFullScreenAccountSelection = (args: LayoutStoryArgs) => {
+export const AccountSelectionAsMain = (args: LayoutStoryArgs) => {
   const layout = useLayout(args);
   const accountMenu = {
     ...useAccountMenu({ accountId: 'diaspora' }),
@@ -131,13 +127,13 @@ export const ForcedFullScreenAccountSelection = (args: LayoutStoryArgs) => {
   const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
   const accountSelector: AccountSelectorProps = {
     accountMenu,
-    forceOpenFullScreen: true,
   };
   return (
     <RootProvider>
       <Layout
         {...args}
         {...layout}
+        accountSelectionAsMain
         header={{
           ...layout.header,
           accountSelector,
@@ -150,7 +146,7 @@ export const ForcedFullScreenAccountSelection = (args: LayoutStoryArgs) => {
   );
 };
 
-export const ForcedFullScreenAccountSelectionWithCookieBanner = (args: LayoutStoryArgs) => {
+export const AccountSelectionAsMainWithCookieBanner = (args: LayoutStoryArgs) => {
   const layout = useLayout(args);
   const accountMenu = {
     ...useAccountMenu({ accountId: 'diaspora' }),
@@ -159,13 +155,13 @@ export const ForcedFullScreenAccountSelectionWithCookieBanner = (args: LayoutSto
   const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
   const accountSelector: AccountSelectorProps = {
     accountMenu,
-    forceOpenFullScreen: true,
   };
   return (
     <RootProvider>
       <Layout
         {...args}
         {...layout}
+        accountSelectionAsMain
         cookieBanner={{
           onAccept: () => console.log('Consent granted'),
           onReject: () => console.log('Consent denied'),

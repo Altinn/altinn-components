@@ -56,6 +56,9 @@ export interface LayoutProps {
   skipLink?: SkipLinkProps;
   cookieBanner?: CookieBannerProps;
   breadcrumbs?: BreadcrumbsProps;
+  /** Render the account selector as the page's main content instead of a header dialog,
+   * forcing the user to select an account before continuing. */
+  accountSelectionAsMain?: boolean;
 }
 
 export const Layout = ({
@@ -70,13 +73,13 @@ export const Layout = ({
   skipLink,
   cookieBanner,
   breadcrumbs,
+  accountSelectionAsMain = false,
 }: LayoutProps) => {
   const { currentId } = useRootContext();
   const [bannerHeight, setBannerHeight] = useState(0);
   const observerRef = useRef<ResizeObserver | null>(null);
   const hasTopBar = Boolean(cookieBanner || banner);
   const isHeaderDrawerOpen = currentId === 'account' || currentId === 'menu' || currentId === 'locale';
-  const forceOpenFullScreen = header?.accountSelector?.forceOpenFullScreen ?? false;
 
   // The header and its drawer are placed from the top of the viewport, so they need the height of
   // everything stacked above them, the cookie banner included.
@@ -98,7 +101,7 @@ export const Layout = ({
     <LayoutBase
       color={color}
       theme={theme}
-      currentId={forceOpenFullScreen ? 'accountFullscreen' : currentId}
+      currentId={accountSelectionAsMain ? 'accountFullscreen' : currentId}
       bannerHeight={hasTopBar ? bannerHeight : 0}
     >
       {skipLink && <SkipLink {...skipLink} />}
@@ -129,8 +132,14 @@ export const Layout = ({
           )}
         </div>
       )}
-      {header && <GlobalHeader {...header} />}
-      {forceOpenFullScreen && header?.accountSelector ? (
+      {header && (
+        <GlobalHeader
+          {...header}
+          readOnlyAccountSelector={accountSelectionAsMain}
+          disableGlobalMenu={accountSelectionAsMain}
+        />
+      )}
+      {accountSelectionAsMain && header?.accountSelector ? (
         <LayoutContent id="main-content">
           <AccountSelector {...header.accountSelector} />
         </LayoutContent>

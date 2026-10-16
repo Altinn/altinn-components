@@ -27,6 +27,10 @@ export interface GlobalHeaderProps {
   logo?: HeaderLogoProps;
   /** Whether to disable account selection */
   disableAccountSelection?: boolean;
+  /** Render the account button as a read-only indicator and suppress the account selector drawer. */
+  readOnlyAccountSelector?: boolean;
+  /** Disable the global menu button. */
+  disableGlobalMenu?: boolean;
   onLoginClick?: () => void;
 }
 
@@ -39,6 +43,8 @@ export const GlobalHeader = ({
   logo = {},
   badge,
   disableAccountSelection,
+  readOnlyAccountSelector,
+  disableGlobalMenu,
   onLoginClick,
 }: GlobalHeaderProps) => {
   const { currentId, toggleId, closeAll } = useRootContext();
@@ -68,7 +74,7 @@ export const GlobalHeader = ({
               <GlobalAccountButton
                 currentAccount={accountSelector.accountMenu?.currentAccount}
                 onClick={
-                  accountSelector.forceOpenFullScreen
+                  readOnlyAccountSelector
                     ? undefined
                     : accountSelector.accountMenu?.currentAccount
                       ? onToggleAccountMenu
@@ -76,9 +82,9 @@ export const GlobalHeader = ({
                 }
                 expanded={accountSelectionOpen}
                 loading={accountSelector.loading}
-                disableAccountSelection={disableAccountSelection || accountSelector.forceOpenFullScreen}
+                disableAccountSelection={disableAccountSelection || readOnlyAccountSelector}
               />
-              {!accountSelector.forceOpenFullScreen && (
+              {!readOnlyAccountSelector && (
                 <HeaderDrawer
                   id="header-account"
                   open={accountSelectionOpen}
@@ -105,7 +111,7 @@ export const GlobalHeader = ({
               <GlobalMenuButton
                 onClick={onToggleMenu}
                 expanded={currentId === 'menu'}
-                disabled={accountSelector?.forceOpenFullScreen}
+                disabled={disableGlobalMenu}
                 label={globalMenu?.menuLabel}
               />
             }

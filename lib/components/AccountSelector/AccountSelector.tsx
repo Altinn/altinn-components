@@ -16,10 +16,6 @@ const isIOS =
 
 export interface AccountSelectorProps {
   accountMenu: AccountMenuProps;
-  /** External control of fullscreen mode. When this flag is true, the account menu will open and cannot be minimized or closed.
-   * Otherwise, open state is handled internally and the user can toggle fullscreen mode via the button below the account list.
-   */
-  forceOpenFullScreen?: boolean;
   className?: string;
   loading?: boolean;
   /** The external value of the include deleted accounts switch */
@@ -40,7 +36,6 @@ export interface AccountSelectorProps {
 
 export const AccountSelector = ({
   accountMenu,
-  forceOpenFullScreen,
   className,
   loading,
   showDeletedUnits,
@@ -49,13 +44,12 @@ export const AccountSelector = ({
   accountCount,
 }: AccountSelectorProps) => {
   const { closeAll, languageCode, currentId } = useRootContext();
-  const isOpen = currentId === 'account' || !!forceOpenFullScreen;
+  const isOpen = currentId === 'account';
 
   const showSearch = (accountCount ?? accountMenu.items.length) > MAX_ACCOUNTS_WITHOUT_SEARCH;
   const showDeletedToggle = showDeletedUnits !== undefined;
 
   const [searchString, setSearchString] = useState('');
-  const [forceOpenFullScreenState, setForceOpenFullScreenState] = useState<boolean | undefined>(forceOpenFullScreen);
 
   // Force a fresh AccountMenu (and thus a fresh @tanstack/react-virtual
   // instance) on every open. HeaderDrawer keeps children mounted inside its
@@ -83,14 +77,6 @@ export const AccountSelector = ({
     prevIsOpenRef.current = isOpen;
   }, [isOpen]);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: we want to run this effect only when forceOpenFullScreen changes
-  useEffect(() => {
-    if (!forceOpenFullScreen && forceOpenFullScreenState) {
-      closeAll();
-    }
-    setForceOpenFullScreenState(forceOpenFullScreen);
-  }, [forceOpenFullScreen]);
-
   const { searchText, heading, switchLabel } = getTexts(languageCode);
 
   // On iOS Safari, focusing an input scrolls the document so the field sits
@@ -106,7 +92,6 @@ export const AccountSelector = ({
   const onAccountSelection = (accountId: string) => {
     accountMenu.onSelectAccount?.(accountId);
     closeAll();
-    setForceOpenFullScreenState(false);
   };
 
   if (loading) {

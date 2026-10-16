@@ -41,12 +41,13 @@ In this state, clicking the button will trigger the `onLoginClick` function prov
 
 <Canvas of={HeaderStories.Login} />
 
-The header handles opening and closing of its menus internally. However, the accountSelector can be forced open by setting the `forceOpenFullScreen` prop.
+The header handles opening and closing of its menus internally. However, the account selector can be rendered as the page's main content by setting the `accountSelectionAsMain` prop on the Layout.
 While this flag is set, the AccountSelector is rendered as the page's main content instead of a dialog, so the user must select an account before continuing. Banners and the skip link stay reachable.
 Use this to force the user to select an account, for example if no valid account is chosen.
+If using this prop, we recommend reloading the page after the enduser has selected their account so the new main content can be explored by them organically (considering the main content and other contents of the page will change when the flag is no longer set - keeping accessibility in mind)
 
 <Canvas
-  of={LayoutStories.ForcedFullScreenAccountSelection}
+  of={LayoutStories.AccountSelectionAsMain}
   story={{ inline: false, height: "600px" }}
 />
 
