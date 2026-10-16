@@ -48,7 +48,9 @@ export const GlobalAccountButton = ({
 
   if (currentAccount) {
     const iconProps = {
-      className: cx(styles.icon, { [styles.hiddenIcon]: disableAccountSelection }),
+      className: cx(styles.icon, {
+        [styles.hiddenIcon]: disableAccountSelection,
+      }),
       'aria-hidden': true,
     };
     let description = currentAccount.description;
@@ -71,9 +73,9 @@ export const GlobalAccountButton = ({
         variant="ghost"
         color="company"
         className={cx(styles.accountButton, className)}
-        aria-label={expanded ? texts.close : currentAccount.name}
-        aria-haspopup="menu"
-        aria-expanded={expanded}
+        aria-label={disableAccountSelection ? currentAccount.name : expanded ? texts.close : currentAccount.name}
+        aria-haspopup={disableAccountSelection ? undefined : 'menu'}
+        aria-expanded={disableAccountSelection ? undefined : expanded}
       >
         <Avatar {...(currentAccount?.icon as AvatarProps)} className={styles.avatar} />
         {!minimized && (

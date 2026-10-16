@@ -81,24 +81,16 @@ export const DisabledAccountSelection = () => {
   return <GlobalHeader {...(header as GlobalHeaderProps)} disableAccountSelection />;
 };
 
-export const ForcedFullScreenAccountSelection = () => {
+export const ReadOnlyAccountSelector = () => {
   const { globalMenu, accountSelector, onLoginClick, locale } = useGlobalHeader({});
   return (
     <RootProvider>
       <GlobalHeader
         globalMenu={globalMenu}
-        accountSelector={
-          {
-            ...accountSelector,
-            forceOpenFullScreen: true,
-            accountMenu: {
-              ...accountSelector?.accountMenu,
-              currentAccount: undefined,
-            },
-          } as AccountSelectorProps
-        }
+        accountSelector={accountSelector as AccountSelectorProps}
         onLoginClick={onLoginClick}
         locale={locale}
+        readOnlyAccountSelector
       />
     </RootProvider>
   );
@@ -122,20 +114,16 @@ export const Loading = () => {
   );
 };
 
-export const LoadingWithForcedFullScreenAccountSelection = () => {
+export const LoadingReadOnlyAccountSelector = () => {
   const { globalMenu, accountSelector, onLoginClick, locale } = useGlobalHeader({ state: 'loading' });
   return (
     <RootProvider>
       <GlobalHeader
         globalMenu={globalMenu}
-        accountSelector={
-          {
-            ...accountSelector,
-            forceOpenFullScreen: true,
-          } as AccountSelectorProps
-        }
+        accountSelector={accountSelector as AccountSelectorProps}
         onLoginClick={onLoginClick}
         locale={locale}
+        readOnlyAccountSelector
       />
     </RootProvider>
   );

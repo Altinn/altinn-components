@@ -14,24 +14,22 @@ const meta = {
   },
   args: {
     accountMenu: undefined,
-    forceOpenFullScreen: undefined,
     loading: false,
   },
   argTypes: {
     accountMenu: { control: 'object' },
-    forceOpenFullScreen: { control: 'boolean' },
     loading: { control: 'boolean' },
   },
 } satisfies Meta<typeof AccountSelector>;
 
 export default meta;
 
-export const WithAccounts = (args: AccountSelectorProps) => {
+export const WithAccounts = () => {
   const accountSelector = useGlobalHeader({}).accountSelector as AccountSelectorProps;
 
   return (
     <RootProvider>
-      <AccountSelector {...accountSelector} forceOpenFullScreen={args.forceOpenFullScreen} />
+      <AccountSelector {...accountSelector} />
     </RootProvider>
   );
 };
@@ -88,7 +86,7 @@ const buildParties = (total: number, deletedCount = 0): AuthorizedParty[] => {
 /** Shared wiring that drives the standalone AccountSelector via the
  * useAccountSelector hook. The full-Layout equivalents live under
  * Layout/AccountSelector/In Layout. */
-const AccountSelectorDemo = ({ args, parties }: { args: AccountSelectorProps; parties: AuthorizedParty[] }) => {
+const AccountSelectorDemo = ({ parties }: { parties: AuthorizedParty[] }) => {
   const [favoriteUuids, setFavoriteUuids] = useState<string[]>([]);
   const [showDeletedAccounts, setShowDeletedAccounts] = useState(true);
   const [currentAccountUuid, setCurrentAccountUuid] = useState<string | undefined>(SELF_UUID);
@@ -113,12 +111,12 @@ const AccountSelectorDemo = ({ args, parties }: { args: AccountSelectorProps; pa
   });
   return (
     <RootProvider languageCode="nb">
-      <AccountSelector {...accountSelector} forceOpenFullScreen={args.forceOpenFullScreen} />
+      <AccountSelector {...accountSelector} />
     </RootProvider>
   );
 };
 
-export const UsingUseAccountHook = (args: AccountSelectorProps) => {
+export const UsingUseAccountHook = () => {
   const [favoriteUuids, setFavoriteUuids] = useState<string[]>([]);
   const [showDeletedAccounts, setShowDeletedAccounts] = useState(false);
   const [currentAccountUuid, setCurrentAccountUuid] = useState<string | undefined>(SELF_UUID);
@@ -144,23 +142,15 @@ export const UsingUseAccountHook = (args: AccountSelectorProps) => {
   });
   return (
     <RootProvider languageCode="nb">
-      <AccountSelector {...accountSelector} forceOpenFullScreen={args.forceOpenFullScreen} />
+      <AccountSelector {...accountSelector} />
     </RootProvider>
   );
 };
 
-export const ThreeAccounts = (args: AccountSelectorProps) => (
-  <AccountSelectorDemo args={args} parties={buildParties(3)} />
-);
+export const ThreeAccounts = () => <AccountSelectorDemo parties={buildParties(3)} />;
 
-export const FourAccountsOneDeleted = (args: AccountSelectorProps) => (
-  <AccountSelectorDemo args={args} parties={buildParties(4, 1)} />
-);
+export const FourAccountsOneDeleted = () => <AccountSelectorDemo parties={buildParties(4, 1)} />;
 
-export const SixAccountsThreeDeleted = (args: AccountSelectorProps) => (
-  <AccountSelectorDemo args={args} parties={buildParties(6, 3)} />
-);
+export const SixAccountsThreeDeleted = () => <AccountSelectorDemo parties={buildParties(6, 3)} />;
 
-export const TenAccountsNoneDeleted = (args: AccountSelectorProps) => (
-  <AccountSelectorDemo args={args} parties={buildParties(10)} />
-);
+export const TenAccountsNoneDeleted = () => <AccountSelectorDemo parties={buildParties(10)} />;
