@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.76.4](https://github.com/Altinn/altinn-components/compare/v0.76.3...v0.76.4) (2026-10-16)
+
+
+### Bug Fixes
+
+* **DialogListItem:** keep seen-by avatars inset from the item corner ([#1431](https://github.com/Altinn/altinn-components/issues/1431)) ([12ffd73](https://github.com/Altinn/altinn-components/commit/12ffd7364b3bee862c3ff5aeacd2356394aa3942))
+
 ## [0.76.3](https://github.com/Altinn/altinn-components/compare/v0.76.2...v0.76.3) (2026-10-15)
 
 
