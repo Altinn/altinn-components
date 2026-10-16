@@ -201,14 +201,12 @@ export const DialogListItem = memo(
               attachmentsLabel={attachmentsLabel}
               tooltips={tooltips}
             />
-            {seenByLog && tooltips?.seenBy ? (
+            {seenByLog && (
               <Tooltip placement="bottom" content={tooltips?.seenBy}>
                 <span className={styles.seenBy}>
                   <AvatarGroup items={seenByLog.items} />
                 </span>
               </Tooltip>
-            ) : (
-              seenByLog && <AvatarGroup items={seenByLog.items} className={styles.seenBy} />
             )}
           </div>
         </ItemLink>
