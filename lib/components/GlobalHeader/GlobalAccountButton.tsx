@@ -1,15 +1,10 @@
-import { ChevronDownIcon, EnterIcon, XMarkIcon } from "@navikt/aksel-icons";
-import cx from "classnames";
-import { isValidElement } from "react";
-import {
-  type AccountMenuItemProps,
-  Button,
-  type ButtonProps,
-  useRootContext,
-} from "..";
-import { Avatar, type AvatarProps } from "../Avatar";
+import { ChevronDownIcon, EnterIcon, XMarkIcon } from '@navikt/aksel-icons';
+import cx from 'classnames';
+import { isValidElement } from 'react';
+import { type AccountMenuItemProps, Button, type ButtonProps, useRootContext } from '..';
+import { Avatar, type AvatarProps } from '../Avatar';
 
-import styles from "./globalAccountButton.module.css";
+import styles from './globalAccountButton.module.css';
 
 export interface GlobalAccountButtonProps extends ButtonProps {
   currentAccount?: AccountMenuItemProps;
@@ -38,7 +33,7 @@ export const GlobalAccountButton = ({
     return (
       <Button
         {...buttonProps}
-        as={"button"}
+        as={'button'}
         type="button"
         variant="ghost"
         color="company"
@@ -56,18 +51,16 @@ export const GlobalAccountButton = ({
       className: cx(styles.icon, {
         [styles.hiddenIcon]: disableAccountSelection,
       }),
-      "aria-hidden": true,
+      'aria-hidden': true,
     };
     let description = currentAccount.description;
     if (
-      (currentAccount.type === "company" ||
-        currentAccount.type === "subunit") &&
-      typeof description === "string" &&
+      (currentAccount.type === 'company' || currentAccount.type === 'subunit') &&
+      typeof description === 'string' &&
       description
     ) {
-      const [orgNo] = description.split(",");
-      const suffix =
-        currentAccount.type === "company" ? texts.mainunit : texts.subunit;
+      const [orgNo] = description.split(',');
+      const suffix = currentAccount.type === 'company' ? texts.mainunit : texts.subunit;
       description = `${orgNo}, ${suffix}`;
     }
 
@@ -75,42 +68,25 @@ export const GlobalAccountButton = ({
       <Button
         {...buttonProps}
         onClick={disableAccountSelection ? undefined : buttonProps.onClick}
-        as={disableAccountSelection ? "div" : "button"}
+        as={disableAccountSelection ? 'div' : 'button'}
         type="button"
         variant="ghost"
         color="company"
         className={cx(styles.accountButton, className)}
-        aria-label={
-          disableAccountSelection
-            ? currentAccount.name
-            : expanded
-            ? texts.close
-            : currentAccount.name
-        }
-        aria-haspopup={disableAccountSelection ? undefined : "menu"}
+        aria-label={disableAccountSelection ? currentAccount.name : expanded ? texts.close : currentAccount.name}
+        aria-haspopup={disableAccountSelection ? undefined : 'menu'}
         aria-expanded={disableAccountSelection ? undefined : expanded}
       >
-        <Avatar
-          {...(currentAccount?.icon as AvatarProps)}
-          className={styles.avatar}
-        />
+        <Avatar {...(currentAccount?.icon as AvatarProps)} className={styles.avatar} />
         {!minimized && (
           <div className={styles.label}>
             <span className={styles.title}>{currentAccount.name}</span>
             <span className={styles.description}>
-              {typeof description === "string"
-                ? description
-                : isValidElement(description)
-                ? description
-                : null}
+              {typeof description === 'string' ? description : isValidElement(description) ? description : null}
             </span>
           </div>
         )}
-        {expanded ? (
-          <XMarkIcon {...iconProps} />
-        ) : (
-          <ChevronDownIcon {...iconProps} />
-        )}
+        {expanded ? <XMarkIcon {...iconProps} /> : <ChevronDownIcon {...iconProps} />}
       </Button>
     );
   }
@@ -140,26 +116,26 @@ export const GlobalAccountButton = ({
 // This is only a temporary solution for providing texts in different languages in a very simple POC
 const getTexts = (languageCode: string | undefined) => {
   switch (languageCode) {
-    case "nn":
+    case 'nn':
       return {
-        login: "Logg inn",
-        close: "Lukk kontomeny",
-        subunit: "undereining",
-        mainunit: "hovudeining",
+        login: 'Logg inn',
+        close: 'Lukk kontomeny',
+        subunit: 'undereining',
+        mainunit: 'hovudeining',
       };
-    case "en":
+    case 'en':
       return {
-        login: "Log in",
-        close: "Close Account Menu",
-        subunit: "subunit",
-        mainunit: "main unit",
+        login: 'Log in',
+        close: 'Close Account Menu',
+        subunit: 'subunit',
+        mainunit: 'main unit',
       };
     default:
       return {
-        login: "Logg inn",
-        close: "Lukk kontomeny",
-        subunit: "underenhet",
-        mainunit: "hovedenhet",
+        login: 'Logg inn',
+        close: 'Lukk kontomeny',
+        subunit: 'underenhet',
+        mainunit: 'hovedenhet',
       };
   }
 };

@@ -46,7 +46,6 @@
   --altinn-layout-background: var(--ds-color-neutral-background-tinted);
 }
 
-
 .base[data-current-id="accountFullscreen"][data-theme] {
   background-color: var(--ds-color-background-default); /* global background variable */
 }
