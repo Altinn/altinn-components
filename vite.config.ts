@@ -1,13 +1,12 @@
 import { cpSync } from 'node:fs';
-import { extname, relative } from 'node:path';
+import { dirname, extname, relative } from 'node:path';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import react from '@vitejs/plugin-react-swc';
 import { glob } from 'glob';
 import preserveDirectives from 'rollup-preserve-directives';
-import { defineConfig } from 'vite';
+import { type Plugin, type Rollup, defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
-import { libInjectCss } from 'vite-plugin-lib-inject-css';
 import pkg from './package.json';
 
 const dependencies = [
@@ -18,6 +17,29 @@ const dependencies = [
   'react',
   'react-dom',
 ];
+
+const injectCssAfterImports = (): Plugin => ({
+  name: 'inject-css-after-imports',
+  apply: (config, { command }) => command === 'build' && Boolean(config.build?.lib),
+  enforce: 'post',
+  generateBundle(_, bundle) {
+    for (const chunk of Object.values(bundle)) {
+      if (chunk.type !== 'chunk' || !chunk.viteMetadata?.importedCss.size) {
+        continue;
+      }
+      const nodes = this.parse(chunk.code).body as Rollup.AstNode[];
+      const position = Math.max(
+        0,
+        ...nodes.filter((node) => node.type === 'ImportDeclaration' || 'directive' in node).map((node) => node.end),
+      );
+      const imports = [...chunk.viteMetadata.importedCss].map((cssFileName) => {
+        const cssFilePath = relative(dirname(chunk.fileName), cssFileName).replaceAll(/[\\/]+/g, '/');
+        return `\nimport '${cssFilePath.startsWith('.') ? cssFilePath : `./${cssFilePath}`}';`;
+      });
+      chunk.code = chunk.code.slice(0, position) + imports.join('') + chunk.code.slice(position);
+    }
+  },
+});
 
 // https://vitejs.dev/config/
 export default () => {
@@ -37,7 +59,7 @@ export default () => {
         },
       },
       react(),
-      libInjectCss(),
+      injectCssAfterImports(),
       dts({
         outDirs: 'dist/types',
         entryRoot: '.',
@@ -51,6 +73,7 @@ export default () => {
     build: {
       // Keep component names readable in React DevTools. Let consumers minify in their own builds
       minify: false,
+      cssCodeSplit: true,
       lib: {
         entry: [path.resolve(__dirname, 'lib/index.ts')],
         formats: ['es'],
@@ -78,6 +101,7 @@ export default () => {
         output: {
           assetFileNames: 'assets/[name][extname]',
           entryFileNames: '[name].js',
+          hoistTransitiveImports: false,
         },
       },
     },
