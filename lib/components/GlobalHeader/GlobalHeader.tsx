@@ -59,6 +59,7 @@ export const GlobalHeader = ({
   };
 
   const accountSelectionOpen = currentId === 'account';
+  const menuOpen = currentId === 'menu' && !disableGlobalMenu;
 
   const [expanded, setExpanded] = useState(false);
 
@@ -105,12 +106,12 @@ export const GlobalHeader = ({
           )}
           <HeaderDropdown
             id="header-menu"
-            open={currentId === 'menu'}
+            open={menuOpen}
             onClose={closeAll}
             trigger={
               <GlobalMenuButton
                 onClick={onToggleMenu}
-                expanded={currentId === 'menu'}
+                expanded={menuOpen}
                 disabled={disableGlobalMenu}
                 label={globalMenu?.menuLabel}
               />
@@ -121,7 +122,7 @@ export const GlobalHeader = ({
               menu={isDesktop ? desktopMenu || globalMenu?.menu : mobileMenu || globalMenu?.menu}
               onClose={closeAll}
               localeSwitcher={locale}
-              isOpen={currentId === 'menu'}
+              isOpen={menuOpen}
             />
           </HeaderDropdown>
         </nav>
