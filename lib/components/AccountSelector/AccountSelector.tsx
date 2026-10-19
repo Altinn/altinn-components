@@ -144,6 +144,9 @@ export const AccountSelector = ({
           {...accountMenu}
           onSelectAccount={onAccountSelection}
           keyboardEvents={false}
+          // In full screen, let the list grow to its content so the page scrolls
+          // instead of the virtualizer's fixed-height inner scroll container.
+          scrollRefStyles={isFullScreen ? { maxHeight: 'none' } : accountMenu.scrollRefStyles}
           search={{
             hidden: true,
             name: '',

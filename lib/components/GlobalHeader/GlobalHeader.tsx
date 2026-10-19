@@ -99,7 +99,7 @@ export const GlobalHeader = ({
                     MIN_ITEMS_FOR_EXPANDABLE_DRAWER
                   }
                 >
-                  <AccountSelector {...accountSelector} />
+                  <AccountSelector {...accountSelector} isFullScreen={expanded} />
                 </HeaderDrawer>
               )}
             </>
