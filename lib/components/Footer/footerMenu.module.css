@@ -29,6 +29,10 @@
     margin-block-end: .5rem;
     display: block;
   }
+
+  .link {
+    word-break: normal;
+  }
 }
 
 .link {
