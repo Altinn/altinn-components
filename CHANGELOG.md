@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.76.5](https://github.com/Altinn/altinn-components/compare/v0.76.4...v0.76.5) (2026-10-19)
+
+
+### Bug Fixes
+
+* **SkyraSurvey:** point at skyra-survey.js captured 2026-10-19 ([#1433](https://github.com/Altinn/altinn-components/issues/1433)) ([b725b85](https://github.com/Altinn/altinn-components/commit/b725b85b862fceb5271ace04afedf3819a18c607))
+
+## [0.76.4](https://github.com/Altinn/altinn-components/compare/v0.76.3...v0.76.4) (2026-10-16)
+
+
+### Bug Fixes
+
+* **DialogListItem:** keep seen-by avatars inset from the item corner ([#1431](https://github.com/Altinn/altinn-components/issues/1431)) ([12ffd73](https://github.com/Altinn/altinn-components/commit/12ffd7364b3bee862c3ff5aeacd2356394aa3942))
+
 ## [0.76.3](https://github.com/Altinn/altinn-components/compare/v0.76.2...v0.76.3) (2026-10-15)
 
 
