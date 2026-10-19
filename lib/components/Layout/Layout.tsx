@@ -139,9 +139,9 @@ export const Layout = ({
           disableGlobalMenu={accountSelectionAsMain || header.disableGlobalMenu}
         />
       )}
-      {accountSelectionAsMain && header?.accountSelector ? (
+      {accountSelectionAsMain ? (
         <LayoutContent id="main-content">
-          <AccountSelector {...header.accountSelector} />
+          {header?.accountSelector && <AccountSelector {...header.accountSelector} />}
         </LayoutContent>
       ) : (
         <LayoutGrid currentId={currentId}>
