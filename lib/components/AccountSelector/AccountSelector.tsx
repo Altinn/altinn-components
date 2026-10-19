@@ -1,18 +1,18 @@
-import cx from 'classnames';
-import { useEffect, useRef, useState } from 'react';
-import { AccountMenu, type AccountMenuProps } from '../Account';
-import { DsHeading, DsSpinner } from '../DsComponents';
-import { SearchField, Switch } from '../Forms';
-import { useRootContext } from '../RootProvider';
-import styles from './accountSelector.module.css';
+import cx from "classnames";
+import { useEffect, useRef, useState } from "react";
+import { AccountMenu, type AccountMenuProps } from "../Account";
+import { DsHeading, DsSpinner } from "../DsComponents";
+import { SearchField, Switch } from "../Forms";
+import { useRootContext } from "../RootProvider";
+import styles from "./accountSelector.module.css";
 
 const MAX_ACCOUNTS_WITHOUT_SEARCH = 5;
 
 const isIOS =
-  typeof navigator !== 'undefined' &&
+  typeof navigator !== "undefined" &&
   (/iP(hone|ad|od)/.test(navigator.userAgent) ||
     // iPadOS 13+ reports itself as Mac
-    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1));
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1));
 
 export interface AccountSelectorProps {
   accountMenu: AccountMenuProps;
@@ -44,12 +44,13 @@ export const AccountSelector = ({
   accountCount,
 }: AccountSelectorProps) => {
   const { closeAll, languageCode, currentId } = useRootContext();
-  const isOpen = currentId === 'account';
+  const isOpen = currentId === "account";
 
-  const showSearch = (accountCount ?? accountMenu.items.length) > MAX_ACCOUNTS_WITHOUT_SEARCH;
+  const showSearch =
+    (accountCount ?? accountMenu.items.length) > MAX_ACCOUNTS_WITHOUT_SEARCH;
   const showDeletedToggle = showDeletedUnits !== undefined;
 
-  const [searchString, setSearchString] = useState('');
+  const [searchString, setSearchString] = useState("");
 
   // Force a fresh AccountMenu (and thus a fresh @tanstack/react-virtual
   // instance) on every open. HeaderDrawer keeps children mounted inside its
@@ -71,7 +72,7 @@ export const AccountSelector = ({
       // drawer rather than the .accountMenu element itself.
       requestAnimationFrame(() => {
         accountMenuRef.current?.scrollTo({ top: 0 });
-        rootRef.current?.closest('dialog')?.scrollTo({ top: 0 });
+        rootRef.current?.closest("dialog")?.scrollTo({ top: 0 });
       });
     }
     prevIsOpenRef.current = isOpen;
@@ -82,10 +83,15 @@ export const AccountSelector = ({
   // On iOS Safari, focusing an input scrolls the document so the field sits
   // above the keyboard. Inside the fixed <dialog> drawer this shows up as a
   // jump. The search field is sticky at the top of the drawer, so it stays
-  // visible regardless — undo the pan to keep the layout stable.
-  const preventIOSFocusScroll: React.FocusEventHandler<HTMLInputElement> = () => {
-    if (isIOS) {
-      requestAnimationFrame(() => window.scrollTo({ top: -window.scrollY, behavior: 'instant' }));
+  // visible regardless — undo the pan to keep the layout stable. Only applies
+  // inside the dialog; when rendered as main content the page may be legitimately scrolled.
+  const preventIOSFocusScroll: React.FocusEventHandler<
+    HTMLInputElement
+  > = () => {
+    if (isIOS && rootRef.current?.closest("dialog")) {
+      requestAnimationFrame(() =>
+        window.scrollTo({ top: -window.scrollY, behavior: "instant" })
+      );
     }
   };
 
@@ -95,12 +101,19 @@ export const AccountSelector = ({
   };
 
   if (loading) {
-    return <DsSpinner aria-hidden data-color="neutral" className={styles.spinner} />;
+    return (
+      <DsSpinner aria-hidden data-color="neutral" className={styles.spinner} />
+    );
   }
 
   return (
     <div ref={rootRef} className={cx(className, styles.accountSelector)}>
-      <DsHeading data-size="sm" level={2} className={styles.heading} id="account-selector-heading">
+      <DsHeading
+        data-size="sm"
+        level={2}
+        className={styles.heading}
+        id="account-selector-heading"
+      >
         {heading}
       </DsHeading>
       {(showSearch || showDeletedToggle) && (
@@ -115,7 +128,7 @@ export const AccountSelector = ({
               placeholder={searchText}
               value={searchString}
               onChange={(e) => setSearchString(e.target.value)}
-              onClear={() => setSearchString('')}
+              onClear={() => setSearchString("")}
               onBlur={preventIOSFocusScroll}
               className={styles.searchField}
             />
@@ -135,7 +148,7 @@ export const AccountSelector = ({
         className={cx(
           styles.accountMenu,
           isFullScreen && styles.fullScreen,
-          accountMenu.virtualized && styles.virtualized,
+          accountMenu.virtualized && styles.virtualized
         )}
       >
         <AccountMenu
@@ -145,7 +158,7 @@ export const AccountSelector = ({
           keyboardEvents={false}
           search={{
             hidden: true,
-            name: '',
+            name: "",
             value: searchString,
             getResultsLabel: (hits) => getHitsLabel(hits, languageCode),
           }}
@@ -159,33 +172,33 @@ export const AccountSelector = ({
 // This is only a temporary solution for providing texts in different languages in a very simple POC
 const getTexts = (languageCode: string | undefined) => {
   switch (languageCode) {
-    case 'nn':
+    case "nn":
       return {
-        searchText: 'Søk i aktørar',
-        heading: 'Kven vil du bruke Altinn på vegner av?',
-        switchLabel: 'Vis slettede',
+        searchText: "Søk i aktørar",
+        heading: "Kven vil du bruke Altinn på vegner av?",
+        switchLabel: "Vis slettede",
       };
-    case 'en':
+    case "en":
       return {
-        searchText: 'Search in actors',
-        heading: 'Who do you want to use Altinn on behalf of?',
-        switchLabel: 'Show deleted',
+        searchText: "Search in actors",
+        heading: "Who do you want to use Altinn on behalf of?",
+        switchLabel: "Show deleted",
       };
     default:
       return {
-        searchText: 'Søk i aktører',
-        heading: 'Hvem vil du bruke Altinn på vegne av?',
-        switchLabel: 'Vis slettede',
+        searchText: "Søk i aktører",
+        heading: "Hvem vil du bruke Altinn på vegne av?",
+        switchLabel: "Vis slettede",
       };
   }
 };
 
 // TODO: Technical debt, move this to i18n later
 const getHitsLabel = (hits: number, languageCode?: string): string => {
-  const isNorwegian = languageCode === 'nb' || languageCode === 'nn';
+  const isNorwegian = languageCode === "nb" || languageCode === "nn";
 
   if (hits === 0) {
-    return isNorwegian ? 'Ingen treff' : 'No hits';
+    return isNorwegian ? "Ingen treff" : "No hits";
   }
 
   if (isNorwegian) {
@@ -193,7 +206,7 @@ const getHitsLabel = (hits: number, languageCode?: string): string => {
   }
 
   if (hits === 1) {
-    return '1 hit';
+    return "1 hit";
   }
 
   return `${hits} hits`;
