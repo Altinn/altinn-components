@@ -135,8 +135,8 @@ export const Layout = ({
       {header && (
         <GlobalHeader
           {...header}
-          readOnlyAccountSelector={accountSelectionAsMain}
-          disableGlobalMenu={accountSelectionAsMain}
+          readOnlyAccountSelector={accountSelectionAsMain || header.readOnlyAccountSelector}
+          disableGlobalMenu={accountSelectionAsMain || header.disableGlobalMenu}
         />
       )}
       {accountSelectionAsMain && header?.accountSelector ? (
