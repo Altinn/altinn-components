@@ -99,7 +99,8 @@ export const GlobalAccountButton = ({
   return (
     <Button
       {...buttonProps}
-      as="button"
+      onClick={disableAccountSelection ? undefined : buttonProps.onClick}
+      as={disableAccountSelection ? 'div' : 'button'}
       type="button"
       variant="outline"
       color="company"
