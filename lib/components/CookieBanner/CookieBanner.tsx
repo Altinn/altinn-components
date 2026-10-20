@@ -41,8 +41,7 @@ export const CookieBanner = ({ onAccept, onReject, className }: CookieBannerProp
           </Button>
         </div>
         <Typography as="p" size="sm" className={styles.necessary}>
-          {texts.necessary} <Link
-           href={texts.necessaryUrl}>{texts.necessaryLink}</Link>
+          {texts.necessary} <Link href={texts.necessaryUrl}>{texts.necessaryLink}</Link>
         </Typography>
       </div>
     </section>
