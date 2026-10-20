@@ -1,1 +1,0 @@
-var n=Object.defineProperty;var t=(s,o)=>n(s,"name",{value:o,configurable:!0});import{a7 as r,a3 as c}from"./iframe-uBWg0zsp.js";const a="_controls_58885_1",l={controls:a},x=t(({className:s,children:o})=>r.jsx("span",{className:c(l.controls,s),children:o}),"ItemControls");export{x as I};
