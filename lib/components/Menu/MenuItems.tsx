@@ -3,6 +3,7 @@ import { type CSSProperties, type ElementType, Fragment, useEffect, useMemo, use
 import { MenuItem, MenuList, MenuListDivider, MenuListGroup, MenuListHeading, MenuListItem } from '../';
 import type { MenuItemProps } from '../';
 import { useMenu } from '../../hooks';
+import { MenuItemsLoading } from './MenuItemsLoading.tsx';
 import { MenuListSearch, type MenuListSearchProps } from './MenuListSearch.tsx';
 
 export interface MenuGroupProps {
@@ -28,6 +29,14 @@ export interface MenuItemsProps {
   autoFocusList?: boolean;
   resetActiveSignal?: number;
   announceNoResults?: boolean;
+  /** Render skeleton rows instead of items, e.g. while items are being fetched */
+  loading?: boolean;
+  /** Number of skeleton rows while loading, default 3 */
+  loadingCount?: number;
+  /** Group heading shown above the skeleton rows while loading */
+  loadingTitle?: string;
+  /** Announced to screen readers while loading */
+  loadingLabel?: string;
   search?: MenuListSearchProps;
   items: MenuItemProps[];
   groups?: MenuItemGroups;
@@ -51,6 +60,9 @@ export const MenuItems = ({
   autoActivateFirstItem = true,
   autoFocusList = true,
   announceNoResults = false,
+  loading = false,
+  loadingCount,
+  loadingTitle,
   search,
   items,
   groups = {},
@@ -74,13 +86,14 @@ export const MenuItems = ({
   const prevFocusOpenRef = useRef<boolean | undefined>(open);
   const [isListNavigationActive, setIsListNavigationActive] = useState(false);
 
+  /** Skeleton rows are not items, so keyboard navigation has nothing to land on while loading */
   const itemsWithIds = useMemo(
     () =>
-      items.map((item, index) => ({
+      (loading ? [] : items).map((item, index) => ({
         ...item,
         id: `${id}-item-${index}`,
       })),
-    [items, id],
+    [items, id, loading],
   );
 
   const ref = useRef<HTMLUListElement>(null);
@@ -174,8 +187,10 @@ export const MenuItems = ({
       id={listId}
       role={isCombobox ? 'listbox' : isNavigation ? 'list' : 'menu'}
       tabIndex={keyboardEvents ? -1 : undefined}
+      aria-busy={loading || undefined}
     >
       {!isCombobox && searchElement}
+      {loading && <MenuItemsLoading count={loadingCount} size={size} title={loadingTitle} />}
       {menu.map((group, groupIndex) => {
         const groupProps: MenuGroupProps = group?.props || {};
         const { title, hidden = false, divider = true } = groupProps;

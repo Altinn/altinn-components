@@ -1,9 +1,19 @@
 import { BookmarkIcon, XMarkIcon } from '@navikt/aksel-icons';
-import type { Meta } from '@storybook/react-vite';
-import { useEffect, useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useEffect, useRef, useState } from 'react';
+import { userEvent, within } from 'storybook/test';
 import { Button, DsDialog, QueryLabel } from '..';
 import { Switch } from '../Forms';
-import { Toolbar, ToolbarFilter, type ToolbarFilterProps, ToolbarMenu, type ToolbarMenuProps, ToolbarSearch } from './';
+import {
+  type FilterProps,
+  type FilterState,
+  Toolbar,
+  ToolbarFilter,
+  type ToolbarFilterProps,
+  ToolbarMenu,
+  type ToolbarMenuProps,
+  ToolbarSearch,
+} from './';
 import { inboxFilters } from './example.data';
 import { useAccountMenu, useInboxFilter, useInboxToolbar } from './example.hooks';
 
@@ -587,4 +597,94 @@ export const DebouncedQuery = () => {
       <ToolbarFilter {...removableFilter} />
     </Toolbar>
   );
+};
+
+interface FilterLoadingArgs {
+  /** Simulated response time when fetching the options, in milliseconds */
+  delay: number;
+  /** Number of skeleton rows */
+  loadingCount: number;
+  /** Show a search field above the options */
+  searchable: boolean;
+}
+
+const services = [
+  { id: 'skattemelding', title: 'Skattemelding', owner: 'Skatteetaten' },
+  { id: 'mva-melding', title: 'MVA-melding', owner: 'Skatteetaten' },
+  { id: 'a-melding', title: 'A-melding', owner: 'Skatteetaten' },
+  { id: 'inntektsmelding', title: 'Inntektsmelding', owner: 'NAV' },
+  { id: 'sykepenger', title: 'Refusjon av sykepenger', owner: 'NAV' },
+  { id: 'arsregnskap', title: 'Årsregnskap', owner: 'Brønnøysundregistrene' },
+];
+
+/**
+ * A toolbar filter that fetches its options every time it opens. `onOpenChange` tells the consumer
+ * when the filter opens, so it can start fetching and set `loading` until the options arrive.
+ */
+export const FilterLoading: StoryObj<FilterLoadingArgs> = {
+  args: {
+    delay: 2000,
+    loadingCount: 3,
+    searchable: true,
+  },
+  argTypes: {
+    delay: { control: { type: 'range', min: 500, max: 10000, step: 500 } },
+    loadingCount: { control: { type: 'range', min: 1, max: 8, step: 1 } },
+  },
+  parameters: {
+    // can't screenshot test, the result depends on a timer
+    screenshot: { skip: true },
+  },
+  render: function Render({ delay, loadingCount, searchable }) {
+    const [filterState, setFilterState] = useState<FilterState>({});
+    const [loading, setLoading] = useState(false);
+    const [loadedServices, setLoadedServices] = useState<typeof services>([]);
+    const timeoutRef = useRef<ReturnType<typeof setTimeout>>(undefined);
+    const groupTitle = 'Tjenester';
+
+    useEffect(() => () => clearTimeout(timeoutRef.current), []);
+
+    /** Stands in for the call to Dialogporten */
+    const fetchServices = () => {
+      setLoading(true);
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = setTimeout(() => {
+        setLoadedServices(services);
+        setLoading(false);
+      }, delay);
+    };
+
+    const serviceFilter: FilterProps = {
+      name: 'service',
+      label: 'Tjeneste',
+      title: 'Velg tjeneste',
+      searchable,
+      search: { name: 'service-search', placeholder: 'Søk etter tjeneste' },
+      loading,
+      loadingCount,
+      loadingTitle: groupTitle,
+      loadingLabel: 'Henter tjenester …',
+      groups: { services: { title: groupTitle } },
+      items: loadedServices.map((service) => ({
+        id: service.id,
+        groupId: 'services',
+        role: 'checkbox',
+        name: 'service',
+        value: service.id,
+        title: service.title,
+        description: service.owner,
+      })),
+      onOpenChange: (open) => open && fetchServices(),
+    };
+
+    return (
+      <Toolbar>
+        <ToolbarFilter filters={[serviceFilter]} filterState={filterState} onFilterStateChange={setFilterState} />
+      </Toolbar>
+    );
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(await canvas.findByRole('button', { name: /Tjeneste/i }));
+  },
 };
