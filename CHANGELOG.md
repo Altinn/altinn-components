@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.76.6](https://github.com/Altinn/altinn-components/compare/v0.76.5...v0.76.6) (2026-10-20)
+
+
+### Bug Fixes
+
+* **Footer:** don't let links break ([#1435](https://github.com/Altinn/altinn-components/issues/1435)) ([5d55b55](https://github.com/Altinn/altinn-components/commit/5d55b55acf718f920ee8f58af16fb39c3e22acbb))
+
 ## [0.76.5](https://github.com/Altinn/altinn-components/compare/v0.76.4...v0.76.5) (2026-10-19)
 
 
