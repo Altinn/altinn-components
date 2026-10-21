@@ -189,7 +189,7 @@ export const MenuItem = ({
   return (
     <Component
       href={href}
-      className={cx(styles.item, className)}
+      className={cx(styles.item, 'ds-focus--inset', className)}
       id={id}
       data-id={id}
       data-group-id={groupId}

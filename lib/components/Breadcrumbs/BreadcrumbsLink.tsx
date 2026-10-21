@@ -29,7 +29,7 @@ export const BreadcrumbsLink = ({
       aria-current={selected ? 'page' : undefined}
       aria-disabled={disabled}
       disabled={disabled}
-      className={cx(styles.link, className)}
+      className={cx(styles.link, 'ds-link', className)}
       {...rest}
     >
       {children || label}
