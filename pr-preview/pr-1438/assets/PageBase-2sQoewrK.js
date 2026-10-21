@@ -1,1 +1,0 @@
-var m=Object.defineProperty;var s=(o,r)=>m(o,"name",{value:r,configurable:!0});import{a7 as p}from"./iframe-CW69B4-4.js";import{F as x}from"./Flex-CcbgemcX.js";const f=s(({children:o,as:r="div",direction:a="col",spacing:e="page",...t})=>p.jsx(x,{as:r,spacing:e,direction:a,...t,children:o}),"PageBase");export{f as P};
