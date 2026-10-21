@@ -44,6 +44,10 @@ export const ToolbarFilterMenu = ({
   submitLabel,
   search,
   virtualized,
+  loading,
+  loadingCount,
+  loadingTitle,
+  loadingLabel,
   title,
   htmlTitle,
   variant: customVariant,
@@ -154,6 +158,10 @@ export const ToolbarFilterMenu = ({
           a11yMode={a11yMode}
           {...(a11yMode === 'combobox' ? { id: ctrl.menuId } : ctrl.menuA11yProps)}
           virtualized={virtualized}
+          loading={loading}
+          loadingCount={loadingCount}
+          loadingTitle={loadingTitle}
+          loadingLabel={loadingLabel}
         />
       </Dropdown>
     );
@@ -195,6 +203,10 @@ export const ToolbarFilterMenu = ({
         a11yMode={a11yMode}
         {...(a11yMode === 'combobox' ? { id: ctrl.menuId } : ctrl.menuA11yProps)}
         virtualized={virtualized}
+        loading={loading}
+        loadingCount={loadingCount}
+        loadingTitle={loadingTitle}
+        loadingLabel={loadingLabel}
       />
     </Dropdown>
   );

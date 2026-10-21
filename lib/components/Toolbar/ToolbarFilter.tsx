@@ -54,11 +54,21 @@ export const ToolbarFilter = ({
     Object.values(filterState)?.some((values) => values && values?.length > 0);
   const [openId, setOpenId] = useState<string | undefined>(undefined);
 
+  const notifyOpenChange = (id: string | undefined, open: boolean) => {
+    filters.find((filter) => filter.name === id)?.onOpenChange?.(open);
+  };
+
   const onToggle = (id: string) => {
-    setOpenId((prev) => (prev === id ? undefined : id));
+    const opening = openId !== id;
+    notifyOpenChange(openId, false);
+    if (opening) {
+      notifyOpenChange(id, true);
+    }
+    setOpenId(opening ? id : undefined);
   };
 
   const onClose = () => {
+    notifyOpenChange(openId, false);
     setOpenId(undefined);
   };
 
