@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.77.0](https://github.com/Altinn/altinn-components/compare/v0.76.6...v0.77.0) (2026-10-21)
+
+
+### Features
+
+* **ToolbarFilter:** add loading state and onOpenChange for lazy-loaded filters ([#1438](https://github.com/Altinn/altinn-components/issues/1438)) ([da2966a](https://github.com/Altinn/altinn-components/commit/da2966ad90d68c117b7815dd624f380311716df0))
+
+
+### Bug Fixes
+
+* add missing focus styling to some components ([#1437](https://github.com/Altinn/altinn-components/issues/1437)) ([18d7766](https://github.com/Altinn/altinn-components/commit/18d77664f17aa5e41bebb111ba623053e1dd4256))
+
 ## [0.76.6](https://github.com/Altinn/altinn-components/compare/v0.76.5...v0.76.6) (2026-10-20)
 
 
