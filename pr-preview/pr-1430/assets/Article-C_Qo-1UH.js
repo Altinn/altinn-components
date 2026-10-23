@@ -1,0 +1,1 @@
+var o=Object.defineProperty;var s=(r,t)=>o(r,"name",{value:t,configurable:!0});import{a7 as a}from"./iframe-C320xpwq.js";import{S as i}from"./Section-CQzKKRAw.js";const n=s(({color:r,children:t})=>a.jsx(i,{as:"article",color:r,spacing:6,children:t}),"Article");export{n as A};
