@@ -1,6 +1,11 @@
-'use client';
-import { type CSSProperties, useEffect, useMemo, useState } from 'react';
-import { Menu, type MenuItemProps, type MenuListSearchProps, type MenuProps } from '../';
+"use client";
+import { type CSSProperties, useEffect, useMemo, useState } from "react";
+import {
+  Menu,
+  type MenuItemProps,
+  type MenuListSearchProps,
+  type MenuProps,
+} from "../";
 
 export interface AccountSearchProps extends MenuListSearchProps {
   hidden?: boolean;
@@ -9,7 +14,7 @@ export interface AccountSearchProps extends MenuListSearchProps {
 
 export interface AccountMenuItemProps extends MenuItemProps {
   id: string;
-  type: 'person' | 'company' | 'group' | 'subunit';
+  type: "person" | "company" | "group" | "subunit";
   name: string;
 }
 
@@ -40,16 +45,16 @@ export const AccountMenu = ({
   const accountMenu: AccountMenuItemProps[] = items.map((item) => ({
     ...item,
     title: item?.title || item.name,
-    groupId: item.groupId || 'search',
+    groupId: item.groupId || "search",
     selected: item.selected ?? currentAccount?.id === item.id,
     // Avoid nested <button> when item controls render buttons (e.g. favorite toggle).
-    as: item.controls ? 'div' : item.as,
+    as: item.controls ? "div" : item.as,
     onClick: () => {
       !item.disabled && onSelectAccount?.(item.id);
     },
   }));
 
-  const [filterString, setFilterString] = useState<string>('');
+  const [filterString, setFilterString] = useState<string>("");
 
   // Sync filterString with external search value
   useEffect(() => {
@@ -62,7 +67,9 @@ export const AccountMenu = ({
     return (
       item?.name?.toLowerCase().includes(q.toLowerCase()) ||
       item?.description?.toString()?.toLowerCase().includes(q.toLowerCase()) ||
-      item?.searchWords?.some((word) => word.toLowerCase().includes(q.toLowerCase()))
+      item?.searchWords?.some((word) =>
+        word.toLowerCase().includes(q.toLowerCase()),
+      )
     );
   };
 
@@ -79,7 +86,7 @@ export const AccountMenu = ({
             item.id,
             {
               ...item,
-              groupId: 'search',
+              groupId: "search",
               title: item?.title || item.name,
               highlightWords: [filterString],
             },
@@ -92,21 +99,25 @@ export const AccountMenu = ({
     ? {
         search: {
           title:
-            search?.getResultsLabel?.(filteredAccountMenu.length) ?? defaultResultsLabel(filteredAccountMenu.length),
+            search?.getResultsLabel?.(filteredAccountMenu.length) ??
+            defaultResultsLabel(filteredAccountMenu.length),
         },
       }
     : groups;
 
   const defaultAccountSearch: MenuListSearchProps = {
-    name: 'account-search',
+    name: "account-search",
     value: filterString,
-    placeholder: search?.placeholder ?? 'Find account',
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => setFilterString(event.target.value),
-    onClear: () => setFilterString(''),
+    placeholder: search?.placeholder ?? "Find account",
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
+      setFilterString(event.target.value),
+    onClear: () => setFilterString(""),
   };
 
   const accountSwitcher: MenuItemProps[] = [
-    ...(filteredAccountMenu.length > 0 ? filteredAccountMenu : [{ id: 'search', groupId: 'search', hidden: true }]),
+    ...(filteredAccountMenu.length > 0
+      ? filteredAccountMenu
+      : [{ id: "search", groupId: "search", hidden: true }]),
   ];
 
   return (

@@ -1,7 +1,7 @@
-import cx from 'classnames';
-import type { ReactNode } from 'react';
-import type { LayoutColor } from './LayoutBase';
-import styles from './layoutContent.module.css';
+import cx from "classnames";
+import type { ReactNode } from "react";
+import type { LayoutColor } from "./LayoutBase";
+import styles from "./layoutContent.module.css";
 
 interface LayoutContentProps {
   color?: LayoutColor;
@@ -16,7 +16,12 @@ interface LayoutContentProps {
  *
  *
  */
-export const LayoutContent = ({ color, children, id = 'main-content', scrollable }: LayoutContentProps) => {
+export const LayoutContent = ({
+  color,
+  children,
+  id = "main-content",
+  scrollable,
+}: LayoutContentProps) => {
   return (
     <main
       className={cx(styles.content, scrollable && styles.scrollable)}

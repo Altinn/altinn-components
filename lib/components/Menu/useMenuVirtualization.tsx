@@ -1,11 +1,16 @@
-'use client';
+"use client";
 
-import { useVirtualizer } from '@tanstack/react-virtual';
-import { useLayoutEffect, useMemo, useState } from 'react';
+import { useVirtualizer } from "@tanstack/react-virtual";
+import { useLayoutEffect, useMemo, useState } from "react";
 
-export interface UseMenuVirtualizationProps<TItemProps = { [key: string]: unknown }> {
+export interface UseMenuVirtualizationProps<
+  TItemProps = { [key: string]: unknown },
+> {
   menu: Array<{
-    items: Array<{ props?: TItemProps & { hidden?: boolean }; active?: boolean }>;
+    items: Array<{
+      props?: TItemProps & { hidden?: boolean };
+      active?: boolean;
+    }>;
     props?: { title?: string; [key: string]: unknown };
   }>;
   scrollRef: React.RefObject<HTMLUListElement>;
@@ -26,13 +31,15 @@ const findScrollParent = (el: HTMLElement | null): HTMLElement | null => {
   let node = el?.parentElement ?? null;
   while (node) {
     const { overflowY } = getComputedStyle(node);
-    if (overflowY === 'auto' || overflowY === 'scroll') return node;
+    if (overflowY === "auto" || overflowY === "scroll") return node;
     node = node.parentElement;
   }
   return null;
 };
 
-export const useMenuVirtualization = <TItemProps = { [key: string]: unknown }>({
+export const useMenuVirtualization = <
+  TItemProps = { [key: string]: unknown },
+>({
   menu,
   scrollRef,
   pageScroll = false,
@@ -53,13 +60,13 @@ export const useMenuVirtualization = <TItemProps = { [key: string]: unknown }>({
     };
 
     compute();
-    window.addEventListener('resize', compute);
+    window.addEventListener("resize", compute);
 
     const ro = new ResizeObserver(() => compute());
     ro.observe(document.body);
 
     return () => {
-      window.removeEventListener('resize', compute);
+      window.removeEventListener("resize", compute);
       ro.disconnect();
     };
   }, [scrollRef]);
@@ -78,19 +85,21 @@ export const useMenuVirtualization = <TItemProps = { [key: string]: unknown }>({
       const content = contentRef?.current;
       if (parent && content) {
         const next = Math.round(
-          content.getBoundingClientRect().top - parent.getBoundingClientRect().top + parent.scrollTop,
+          content.getBoundingClientRect().top -
+            parent.getBoundingClientRect().top +
+            parent.scrollTop,
         );
         setScrollMargin((prev) => (prev === next ? prev : next));
       }
     };
 
     measure();
-    window.addEventListener('resize', measure);
+    window.addEventListener("resize", measure);
     const ro = new ResizeObserver(() => measure());
     ro.observe(document.body);
 
     return () => {
-      window.removeEventListener('resize', measure);
+      window.removeEventListener("resize", measure);
       ro.disconnect();
     };
   }, [pageScroll, scrollRef, contentRef]);
@@ -98,7 +107,11 @@ export const useMenuVirtualization = <TItemProps = { [key: string]: unknown }>({
   const flatMenu = useMemo(() => {
     return menu.flatMap((group, groupIndex) => {
       const items = group?.items?.filter((item) => !item.props?.hidden) || [];
-      const groupProps = (group?.props || {}) as { title?: string; hidden?: boolean; divider?: boolean };
+      const groupProps = (group?.props || {}) as {
+        title?: string;
+        hidden?: boolean;
+        divider?: boolean;
+      };
       const { title, hidden = false, divider = true } = groupProps;
 
       if (hidden) {
@@ -110,10 +123,10 @@ export const useMenuVirtualization = <TItemProps = { [key: string]: unknown }>({
       }
 
       return [
-        ...(groupIndex > 0 && divider ? [{ type: 'divider' as const }] : []),
-        ...(title ? [{ type: 'header' as const, title }] : []),
+        ...(groupIndex > 0 && divider ? [{ type: "divider" as const }] : []),
+        ...(title ? [{ type: "header" as const, title }] : []),
         ...items.map((item) => ({
-          type: 'item' as const,
+          type: "item" as const,
           itemProps: item.props || ({} as TItemProps),
           active: item.active,
         })),
@@ -123,19 +136,24 @@ export const useMenuVirtualization = <TItemProps = { [key: string]: unknown }>({
 
   const virtualizer = useVirtualizer({
     count: flatMenu.length,
-    getScrollElement: () => (pageScroll ? (scrollParent ?? scrollRef.current) : scrollRef.current),
+    getScrollElement: () =>
+      pageScroll ? (scrollParent ?? scrollRef.current) : scrollRef.current,
     scrollMargin: pageScroll ? scrollMargin : 0,
     useAnimationFrameWithResizeObserver: true,
     estimateSize: (index) => {
       const entry = flatMenu[index];
       switch (entry?.type) {
-        case 'divider':
+        case "divider":
           return 9;
-        case 'header':
+        case "header":
           return 36;
         default: {
-          const description = (entry?.itemProps as { description?: unknown })?.description;
-          const hasDescription = typeof description === 'string' ? description.length > 0 : description != null;
+          const description = (entry?.itemProps as { description?: unknown })
+            ?.description;
+          const hasDescription =
+            typeof description === "string"
+              ? description.length > 0
+              : description != null;
           return hasDescription ? 60 : 44;
         }
       }
@@ -144,5 +162,10 @@ export const useMenuVirtualization = <TItemProps = { [key: string]: unknown }>({
     paddingEnd: -8,
   });
 
-  return { flatMenu, virtualizer, scrollMaxHeight, scrollMargin: pageScroll ? scrollMargin : 0 };
+  return {
+    flatMenu,
+    virtualizer,
+    scrollMaxHeight,
+    scrollMargin: pageScroll ? scrollMargin : 0,
+  };
 };

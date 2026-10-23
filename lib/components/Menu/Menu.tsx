@@ -1,8 +1,8 @@
-'use client';
-import type { MenuItemProps } from './MenuItem';
-import { MenuItems, type MenuItemsProps } from './MenuItems';
-import { VirtualizedMenuItems } from './VirtualizedMenuItems';
-import { useMenuSearch } from './useMenuSearch';
+"use client";
+import type { MenuItemProps } from "./MenuItem";
+import { MenuItems, type MenuItemsProps } from "./MenuItems";
+import { VirtualizedMenuItems } from "./VirtualizedMenuItems";
+import { useMenuSearch } from "./useMenuSearch";
 
 export interface MenuProps extends MenuItemsProps {
   searchable?: boolean;
@@ -15,7 +15,7 @@ export const Menu = ({
   search,
   items = [],
   groups = {},
-  variant = 'default',
+  variant = "default",
   size,
   level = 0,
   maxLevels = 3,
@@ -23,7 +23,7 @@ export const Menu = ({
   keyboardEvents = false,
   scrollRefStyles = {},
   onActiveItemIdChange,
-  a11yMode = 'menu',
+  a11yMode = "menu",
   open,
   scrollToTopOnOpen,
   autoFocusList,
@@ -32,12 +32,19 @@ export const Menu = ({
 }: MenuProps) => {
   const autoSearch = useMenuSearch({ ...search, items, groups });
   const applicableSearch = searchable
-    ? { label: search?.label, hideLabel: search?.hideLabel, ...autoSearch.search }
+    ? {
+        label: search?.label,
+        hideLabel: search?.hideLabel,
+        ...autoSearch.search,
+      }
     : search;
-  const announceNoResults = searchable && autoSearch.hasQuery && autoSearch.resultCount === 0;
+  const announceNoResults =
+    searchable && autoSearch.hasQuery && autoSearch.resultCount === 0;
   const applicableItems = searchable ? autoSearch.items : items;
-  const applicableGroups = searchable ? { ...groups, ...autoSearch.groups } : groups;
-  const autoActivateFirstItem = a11yMode !== 'combobox';
+  const applicableGroups = searchable
+    ? { ...groups, ...autoSearch.groups }
+    : groups;
+  const autoActivateFirstItem = a11yMode !== "combobox";
 
   if (virtualized) {
     return (

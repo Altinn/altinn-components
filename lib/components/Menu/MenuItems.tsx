@@ -1,17 +1,32 @@
-'use client';
-import { type CSSProperties, type ElementType, Fragment, useEffect, useMemo, useRef, useState } from 'react';
-import { MenuItem, MenuList, MenuListDivider, MenuListGroup, MenuListHeading, MenuListItem } from '../';
-import type { MenuItemProps } from '../';
-import { useMenu } from '../../hooks';
-import { MenuListSearch, type MenuListSearchProps } from './MenuListSearch.tsx';
+"use client";
+import {
+  type CSSProperties,
+  type ElementType,
+  Fragment,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import {
+  MenuItem,
+  MenuList,
+  MenuListDivider,
+  MenuListGroup,
+  MenuListHeading,
+  MenuListItem,
+} from "../";
+import type { MenuItemProps } from "../";
+import { useMenu } from "../../hooks";
+import { MenuListSearch, type MenuListSearchProps } from "./MenuListSearch.tsx";
 
 export interface MenuGroupProps {
   title?: string;
   hidden?: boolean;
   divider?: boolean;
-  size?: MenuItemProps['size'];
-  variant?: MenuItemProps['variant'];
-  color?: MenuItemProps['color'];
+  size?: MenuItemProps["size"];
+  variant?: MenuItemProps["variant"];
+  color?: MenuItemProps["color"];
 }
 
 export type MenuItemGroups = Record<string, MenuGroupProps>;
@@ -21,7 +36,7 @@ export interface MenuItemsProps {
   level?: number;
   maxLevels?: number;
   expanded?: boolean;
-  a11yMode?: 'menu' | 'combobox' | 'navigation';
+  a11yMode?: "menu" | "combobox" | "navigation";
   open?: boolean;
   scrollToTopOnOpen?: boolean;
   autoActivateFirstItem?: boolean;
@@ -31,9 +46,9 @@ export interface MenuItemsProps {
   search?: MenuListSearchProps;
   items: MenuItemProps[];
   groups?: MenuItemGroups;
-  size?: MenuItemProps['size'];
-  variant?: MenuItemProps['variant'];
-  color?: MenuItemProps['color'];
+  size?: MenuItemProps["size"];
+  variant?: MenuItemProps["variant"];
+  color?: MenuItemProps["color"];
   as?: ElementType;
   keyboardEvents?: boolean;
   onSelect?: () => void;
@@ -47,7 +62,7 @@ export const MenuItems = ({
   level = 0,
   maxLevels,
   expanded,
-  a11yMode = 'menu',
+  a11yMode = "menu",
   open,
   scrollToTopOnOpen = false,
   autoActivateFirstItem = true,
@@ -69,8 +84,8 @@ export const MenuItems = ({
     return null;
   }
 
-  const isCombobox = a11yMode === 'combobox';
-  const isNavigation = a11yMode === 'navigation';
+  const isCombobox = a11yMode === "combobox";
+  const isNavigation = a11yMode === "navigation";
   const listId = isCombobox && id ? `${id}-listbox` : id;
   const prevOpenRef = useRef<boolean | undefined>(open);
   const prevFocusOpenRef = useRef<boolean | undefined>(open);
@@ -86,10 +101,13 @@ export const MenuItems = ({
   );
 
   const ref = useRef<HTMLUListElement>(null);
-  const { menu, setActiveIndex, activeItem } = useMenu<MenuItemProps, MenuGroupProps>({
+  const { menu, setActiveIndex, activeItem } = useMenu<
+    MenuItemProps,
+    MenuGroupProps
+  >({
     items: itemsWithIds,
     groups,
-    groupByKey: 'groupId',
+    groupByKey: "groupId",
     keyboardEvents,
     autoActivateFirstItem,
     onSelect,
@@ -122,7 +140,9 @@ export const MenuItems = ({
     }
 
     if (open && !wasOpen) {
-      requestAnimationFrame(() => ref.current?.focus?.({ preventScroll: true }));
+      requestAnimationFrame(() =>
+        ref.current?.focus?.({ preventScroll: true }),
+      );
     }
   }, [open, keyboardEvents, search]);
 
@@ -142,8 +162,12 @@ export const MenuItems = ({
       {...search}
       combobox={isCombobox}
       listId={listId}
-      aria-activedescendant={isCombobox && isListNavigationActive ? activeItem?.id : undefined}
-      onNavigate={isCombobox ? () => setIsListNavigationActive(true) : undefined}
+      aria-activedescendant={
+        isCombobox && isListNavigationActive ? activeItem?.id : undefined
+      }
+      onNavigate={
+        isCombobox ? () => setIsListNavigationActive(true) : undefined
+      }
       onChange={(e) => {
         setIsListNavigationActive(false);
         search.onChange?.(e);
@@ -157,8 +181,9 @@ export const MenuItems = ({
         search.onInput?.(e);
       }}
       onKeyDown={(e) => {
-        const isArrow = e.key === 'ArrowUp' || e.key === 'ArrowDown';
-        const isTypingKey = e.key.length === 1 || e.key === 'Backspace' || e.key === 'Delete';
+        const isArrow = e.key === "ArrowUp" || e.key === "ArrowDown";
+        const isTypingKey =
+          e.key.length === 1 || e.key === "Backspace" || e.key === "Delete";
         if (isCombobox && !isArrow && isTypingKey) {
           setIsListNavigationActive(false);
         }
@@ -174,7 +199,7 @@ export const MenuItems = ({
       ref={ref}
       style={scrollRefStyles}
       id={listId}
-      role={isCombobox ? 'listbox' : isNavigation ? 'list' : 'menu'}
+      role={isCombobox ? "listbox" : isNavigation ? "list" : "menu"}
       tabIndex={keyboardEvents ? -1 : undefined}
     >
       {!isCombobox && searchElement}
@@ -184,7 +209,7 @@ export const MenuItems = ({
         return (
           <Fragment key={groupIndex}>
             {/** Render a separator if this is a new group or a new level */}
-            {(level > 0 || groupIndex) && divider ? <MenuListDivider /> : ''}
+            {(level > 0 || groupIndex) && divider ? <MenuListDivider /> : ""}
             <MenuListGroup hidden={hidden} key={groupIndex}>
               <MenuList role="presentation">
                 {title && <MenuListHeading title={title} level={level} />}
@@ -194,13 +219,20 @@ export const MenuItems = ({
                     const { active, onMouseEnter } = item;
                     const { groupId: _, ...itemProps } = item.props || {};
                     const { expanded } = itemProps;
-                    const hasSubmenu = Array.isArray(itemProps?.items) && itemProps.items.length > 0;
-                    const isCheckable = itemProps.role === 'checkbox' || itemProps.role === 'radio';
-                    const menuCheckableRole = itemProps.role === 'radio' ? 'menuitemradio' : 'menuitemcheckbox';
+                    const hasSubmenu =
+                      Array.isArray(itemProps?.items) &&
+                      itemProps.items.length > 0;
+                    const isCheckable =
+                      itemProps.role === "checkbox" ||
+                      itemProps.role === "radio";
+                    const menuCheckableRole =
+                      itemProps.role === "radio"
+                        ? "menuitemradio"
+                        : "menuitemcheckbox";
                     const resolvedRole = isNavigation
                       ? undefined
                       : isCombobox
-                        ? 'option'
+                        ? "option"
                         : isCheckable
                           ? menuCheckableRole
                           : itemProps.role;
@@ -209,26 +241,36 @@ export const MenuItems = ({
                         key={index}
                         expanded={expanded}
                         onMouseLeave={() => setActiveIndex(-1)}
-                        role={isNavigation ? 'listitem' : 'presentation'}
+                        role={isNavigation ? "listitem" : "presentation"}
                       >
                         <MenuItem
                           {...itemProps}
                           size={itemProps?.size || groupProps?.size || size}
                           color={itemProps?.color || groupProps?.color || color}
-                          variant={itemProps?.variant || groupProps?.variant || variant}
+                          variant={
+                            itemProps?.variant || groupProps?.variant || variant
+                          }
                           active={active}
                           role={resolvedRole}
                           a11yMode={a11yMode}
                           selected={itemProps.selected}
-                          tabIndex={itemProps?.disabled || keyboardEvents ? -1 : (itemProps.tabIndex ?? 0)}
+                          tabIndex={
+                            itemProps?.disabled || keyboardEvents
+                              ? -1
+                              : (itemProps.tabIndex ?? 0)
+                          }
                           onMouseEnter={onMouseEnter}
-                          aria-haspopup={hasSubmenu && !isNavigation ? 'menu' : undefined}
+                          aria-haspopup={
+                            hasSubmenu && !isNavigation ? "menu" : undefined
+                          }
                           aria-expanded={hasSubmenu ? expanded : undefined}
-                          aria-controls={hasSubmenu ? itemProps.id + '-menu' : undefined}
+                          aria-controls={
+                            hasSubmenu ? itemProps.id + "-menu" : undefined
+                          }
                         />
                         {expanded && itemProps?.items && (
                           <MenuItems
-                            id={itemProps.id + '-menu'}
+                            id={itemProps.id + "-menu"}
                             expanded={expanded}
                             level={level + 1}
                             maxLevels={maxLevels}

@@ -1,5 +1,5 @@
-'use client';
-import { type ReactNode, useCallback, useRef, useState } from 'react';
+"use client";
+import { type ReactNode, useCallback, useRef, useState } from "react";
 import {
   LayoutBase,
   LayoutBody,
@@ -9,18 +9,18 @@ import {
   LayoutSidebar,
   type LayoutSidebarProps,
   type LayoutTheme,
-} from '.';
-import { AccountSelector } from '../AccountSelector';
-import { Banner, type BannerColor, type BannerVariant } from '../Banner';
-import { Breadcrumbs, type BreadcrumbsProps } from '../Breadcrumbs';
-import { CookieBanner, type CookieBannerProps } from '../CookieBanner';
-import { Footer, type FooterProps } from '../Footer';
-import { GlobalHeader, type GlobalHeaderProps } from '../GlobalHeader';
-import type { SvgElement } from '../Icon';
-import { Menu, type MenuProps } from '../Menu';
-import { useRootContext } from '../RootProvider';
-import { SkipLink, type SkipLinkProps } from '../SkipLink';
-import styles from './layoutBase.module.css';
+} from ".";
+import { AccountSelector } from "../AccountSelector";
+import { Banner, type BannerColor, type BannerVariant } from "../Banner";
+import { Breadcrumbs, type BreadcrumbsProps } from "../Breadcrumbs";
+import { CookieBanner, type CookieBannerProps } from "../CookieBanner";
+import { Footer, type FooterProps } from "../Footer";
+import { GlobalHeader, type GlobalHeaderProps } from "../GlobalHeader";
+import type { SvgElement } from "../Icon";
+import { Menu, type MenuProps } from "../Menu";
+import { useRootContext } from "../RootProvider";
+import { SkipLink, type SkipLinkProps } from "../SkipLink";
+import styles from "./layoutBase.module.css";
 
 interface SidebarProps extends LayoutSidebarProps {
   menu?: MenuProps;
@@ -64,7 +64,7 @@ export interface LayoutProps {
 export const Layout = ({
   banner,
   color,
-  theme = 'subtle',
+  theme = "subtle",
   header,
   footer,
   sidebar,
@@ -79,7 +79,8 @@ export const Layout = ({
   const [bannerHeight, setBannerHeight] = useState(0);
   const observerRef = useRef<ResizeObserver | null>(null);
   const hasTopBar = Boolean(cookieBanner || banner);
-  const isHeaderDrawerOpen = currentId === 'account' || currentId === 'menu' || currentId === 'locale';
+  const isHeaderDrawerOpen =
+    currentId === "account" || currentId === "menu" || currentId === "locale";
 
   // The header and its drawer are placed from the top of the viewport, so they need the height of
   // everything stacked above them, the cookie banner included.
@@ -91,7 +92,9 @@ export const Layout = ({
       return;
     }
     const observer = new ResizeObserver(([entry]) => {
-      setBannerHeight(entry.borderBoxSize[0]?.blockSize ?? entry.contentRect.height);
+      setBannerHeight(
+        entry.borderBoxSize[0]?.blockSize ?? entry.contentRect.height,
+      );
     });
     observer.observe(el);
     observerRef.current = observer;
@@ -101,12 +104,17 @@ export const Layout = ({
     <LayoutBase
       color={color}
       theme={theme}
-      currentId={accountSelectionAsMain ? 'accountFullscreen' : currentId}
+      currentId={accountSelectionAsMain ? "accountFullscreen" : currentId}
       bannerHeight={hasTopBar ? bannerHeight : 0}
     >
       {skipLink && <SkipLink {...skipLink} />}
       {hasTopBar && (
-        <div ref={measureTopBar} className={isHeaderDrawerOpen ? styles.bannerWrapperPinned : undefined}>
+        <div
+          ref={measureTopBar}
+          className={
+            isHeaderDrawerOpen ? styles.bannerWrapperPinned : undefined
+          }
+        >
           {cookieBanner && <CookieBanner {...cookieBanner} />}
           {banner && (
             <div data-color="company">
@@ -114,8 +122,12 @@ export const Layout = ({
                 title={
                   banner.link ? (
                     <>
-                      {banner.title}{' '}
-                      <a href={banner.link.href} target="_blank" rel="noreferrer">
+                      {banner.title}{" "}
+                      <a
+                        href={banner.link.href}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
                         {banner.link.label}
                       </a>
                     </>
@@ -124,7 +136,7 @@ export const Layout = ({
                   )
                 }
                 color={banner.color}
-                variant={banner.variant || 'strong'}
+                variant={banner.variant || "strong"}
                 icon={banner.icon}
                 sticky={false}
               />
@@ -135,13 +147,17 @@ export const Layout = ({
       {header && (
         <GlobalHeader
           {...header}
-          readOnlyAccountSelector={accountSelectionAsMain || header.readOnlyAccountSelector}
+          readOnlyAccountSelector={
+            accountSelectionAsMain || header.readOnlyAccountSelector
+          }
           disableGlobalMenu={accountSelectionAsMain || header.disableGlobalMenu}
         />
       )}
       {accountSelectionAsMain ? (
         <LayoutContent id="main-content" scrollable>
-          {header?.accountSelector && <AccountSelector {...header.accountSelector} isFullScreen />}
+          {header?.accountSelector && (
+            <AccountSelector {...header.accountSelector} isFullScreen />
+          )}
         </LayoutContent>
       ) : (
         <LayoutGrid currentId={currentId}>
@@ -155,7 +171,7 @@ export const Layout = ({
                 footer={sidebar?.footer}
               >
                 {sidebar?.menu && (
-                  <nav aria-label={sidebar?.ariaLabel ?? 'Sidebar'}>
+                  <nav aria-label={sidebar?.ariaLabel ?? "Sidebar"}>
                     <Menu {...sidebar?.menu} a11yMode="navigation" />
                   </nav>
                 )}
