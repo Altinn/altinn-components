@@ -1,1 +1,0 @@
-var p=Object.defineProperty;var i=(a,s)=>p(a,"name",{value:s,configurable:!0});import{a7 as r,J as k}from"./iframe-CHdTRX1S.js";const e=i(({color:a,size:s,children:o,href:t})=>r.jsx(k,{"data-color":a,"data-size":s,href:t,children:o}),"SkipLink");export{e as S};
