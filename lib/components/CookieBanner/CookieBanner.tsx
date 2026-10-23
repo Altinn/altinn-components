@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { useId } from 'react';
 import { Button } from '../Button';
 import { useRootContext } from '../RootProvider';
-import { Heading, Typography } from '../Typography';
+import { Heading, Link, Typography } from '../Typography';
 import styles from './cookieBanner.module.css';
 
 export interface CookieBannerProps {
@@ -41,7 +41,7 @@ export const CookieBanner = ({ onAccept, onReject, className }: CookieBannerProp
           </Button>
         </div>
         <Typography as="p" size="sm" className={styles.necessary}>
-          {texts.necessary} <a href={texts.necessaryUrl}>{texts.necessaryLink}</a>
+          {texts.necessary} <Link href={texts.necessaryUrl}>{texts.necessaryLink}</Link>
         </Typography>
       </div>
     </section>

@@ -1,5 +1,5 @@
 import { ChevronUpDownIcon } from '@navikt/aksel-icons';
-import { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
 import { Button, type ButtonProps } from '../Button';
 import { Dropdown, type DropdownProps } from '../Dropdown';
 import { Menu, type MenuItemProps, type MenuProps } from '../Menu/';
@@ -15,6 +15,8 @@ export interface ToolbarMenuProps extends Omit<MenuProps, 'variant'> {
   variant?: ButtonProps['variant'];
   dropdownSize?: DropdownProps['size'];
   onSelectId?: (id: string) => void;
+  /** Called when the menu opens or closes, e.g. to fetch items lazily on first open */
+  onOpenChange?: (open: boolean) => void;
 }
 
 export const ToolbarMenu = memo(
@@ -28,9 +30,17 @@ export const ToolbarMenu = memo(
     dropdownSize = 'sm',
     id = 'toolbar-menu',
     onSelectId,
+    onOpenChange,
     ...props
   }: ToolbarMenuProps) => {
     const ctrl = useDropdownMenuController({ id, returnFocusOnClose: true });
+    const prevOpenRef = useRef(ctrl.open);
+
+    useEffect(() => {
+      if (prevOpenRef.current === ctrl.open) return;
+      prevOpenRef.current = ctrl.open;
+      onOpenChange?.(ctrl.open);
+    }, [ctrl.open, onOpenChange]);
     const a11yMode = props.searchable ? 'combobox' : 'menu';
     const handleSelect = useCallback(
       (item: MenuItemProps) => {

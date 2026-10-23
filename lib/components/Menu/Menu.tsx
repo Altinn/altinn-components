@@ -1,6 +1,7 @@
 'use client';
 import type { MenuItemProps } from './MenuItem';
 import { MenuItems, type MenuItemsProps } from './MenuItems';
+import { MenuLoadingStatus } from './MenuItemsLoading';
 import { VirtualizedMenuItems } from './VirtualizedMenuItems';
 import { useMenuSearch } from './useMenuSearch';
 
@@ -27,20 +28,56 @@ export const Menu = ({
   open,
   scrollToTopOnOpen,
   autoFocusList,
+  loading = false,
+  loadingCount,
+  loadingTitle,
+  loadingLabel = 'Laster …',
   id,
 }: MenuProps) => {
   const autoSearch = useMenuSearch({ ...search, items, groups });
   const applicableSearch = searchable
     ? { label: search?.label, hideLabel: search?.hideLabel, ...autoSearch.search }
     : search;
-  const announceNoResults = searchable && autoSearch.hasQuery && autoSearch.resultCount === 0;
+  const announceNoResults = !loading && searchable && autoSearch.hasQuery && autoSearch.resultCount === 0;
   const applicableItems = searchable ? autoSearch.items : items;
   const applicableGroups = searchable ? { ...groups, ...autoSearch.groups } : groups;
   const autoActivateFirstItem = a11yMode !== 'combobox';
 
+  const loadingStatus = loading && <MenuLoadingStatus label={loadingLabel} />;
+
   if (virtualized) {
     return (
-      <VirtualizedMenuItems
+      <>
+        <VirtualizedMenuItems
+          id={id}
+          search={applicableSearch}
+          announceNoResults={announceNoResults}
+          items={applicableItems as MenuItemProps[]}
+          groups={applicableGroups}
+          variant={variant}
+          size={size}
+          level={level}
+          maxLevels={maxLevels}
+          keyboardEvents={keyboardEvents}
+          scrollRefStyles={scrollRefStyles}
+          onActiveItemIdChange={onActiveItemIdChange}
+          a11yMode={a11yMode}
+          open={open}
+          scrollToTopOnOpen={scrollToTopOnOpen}
+          autoActivateFirstItem={autoActivateFirstItem}
+          autoFocusList={autoFocusList}
+          loading={loading}
+          loadingCount={loadingCount}
+          loadingTitle={loadingTitle}
+        />
+        {loadingStatus}
+      </>
+    );
+  }
+
+  return (
+    <>
+      <MenuItems
         id={id}
         search={applicableSearch}
         announceNoResults={announceNoResults}
@@ -58,29 +95,11 @@ export const Menu = ({
         scrollToTopOnOpen={scrollToTopOnOpen}
         autoActivateFirstItem={autoActivateFirstItem}
         autoFocusList={autoFocusList}
+        loading={loading}
+        loadingCount={loadingCount}
+        loadingTitle={loadingTitle}
       />
-    );
-  }
-
-  return (
-    <MenuItems
-      id={id}
-      search={applicableSearch}
-      announceNoResults={announceNoResults}
-      items={applicableItems as MenuItemProps[]}
-      groups={applicableGroups}
-      variant={variant}
-      size={size}
-      level={level}
-      maxLevels={maxLevels}
-      keyboardEvents={keyboardEvents}
-      scrollRefStyles={scrollRefStyles}
-      onActiveItemIdChange={onActiveItemIdChange}
-      a11yMode={a11yMode}
-      open={open}
-      scrollToTopOnOpen={scrollToTopOnOpen}
-      autoActivateFirstItem={autoActivateFirstItem}
-      autoFocusList={autoFocusList}
-    />
+      {loadingStatus}
+    </>
   );
 };

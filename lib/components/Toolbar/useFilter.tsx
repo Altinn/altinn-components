@@ -23,6 +23,8 @@ export interface FilterProps extends Omit<MenuProps, 'variant'> {
   removable?: boolean;
   groups?: FilterGroups;
   items: MenuItemProps[];
+  /** Called when the filter menu opens or closes, e.g. to fetch items lazily on first open */
+  onOpenChange?: (open: boolean) => void;
 }
 
 interface UseFilterProps {

@@ -37,7 +37,7 @@ export const AttachmentLink = ({
   return (
     <span className={styles.item}>
       <span>
-        <a href={href} aria-disabled={disabled} className={styles.link} target={target} rel="noreferrer">
+        <a href={href} aria-disabled={disabled} className={`${styles.link} ds-focus`} target={target} rel="noreferrer">
           <Icon svgElement={applicableIcon} altText={iconAltText} className={styles.icon} />
           <span className={styles.label}>{label}</span>
         </a>

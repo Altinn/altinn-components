@@ -7,6 +7,7 @@ import { MenuItem, MenuList, MenuListDivider, MenuListGroup, MenuListHeading, Me
 import type { MenuItemProps } from '../';
 import { useMenu } from '../../hooks';
 import type { MenuGroupProps, MenuItemsProps } from './MenuItems';
+import { MenuItemsLoading } from './MenuItemsLoading.tsx';
 import { MenuListSearch } from './MenuListSearch.tsx';
 import { useMenuVirtualization } from './useMenuVirtualization';
 
@@ -31,6 +32,9 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
     scrollToTopOnOpen = false,
     autoActivateFirstItem = true,
     announceNoResults = false,
+    loading = false,
+    loadingCount,
+    loadingTitle,
     onActiveItemIdChange,
   } = props;
 
@@ -40,13 +44,14 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
   const prevOpenRef = useRef<boolean | undefined>(open);
   const [isListNavigationActive, setIsListNavigationActive] = useState(false);
 
+  /** Skeleton rows are not items, so keyboard navigation has nothing to land on while loading */
   const itemsWithIds = useMemo(
     () =>
-      items.map((item, index) => ({
+      (loading ? [] : items).map((item, index) => ({
         ...item,
         id: `${id}-item-${index}`,
       })),
-    [items, id],
+    [items, id, loading],
   );
 
   const { menu, activeItem, setActiveIndex, activeIndex } = useMenu<MenuItemProps, MenuGroupProps>({
@@ -208,8 +213,10 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
       expanded={expanded}
       id={listId}
       role={isCombobox ? 'listbox' : isNavigation ? 'list' : 'menu'}
+      aria-busy={loading || undefined}
     >
       {!isCombobox && searchElement}
+      {loading && <MenuItemsLoading count={loadingCount} size={size} title={loadingTitle} />}
 
       <MenuListGroup
         ref={listGroupRef}
