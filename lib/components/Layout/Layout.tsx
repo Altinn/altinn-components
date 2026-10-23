@@ -140,7 +140,7 @@ export const Layout = ({
         />
       )}
       {accountSelectionAsMain ? (
-        <LayoutContent id="main-content">
+        <LayoutContent id="main-content" scrollable>
           {header?.accountSelector && <AccountSelector {...header.accountSelector} isFullScreen />}
         </LayoutContent>
       ) : (

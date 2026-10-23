@@ -1,3 +1,4 @@
+import cx from 'classnames';
 import type { ReactNode } from 'react';
 import type { LayoutColor } from './LayoutBase';
 import styles from './layoutContent.module.css';
@@ -6,6 +7,8 @@ interface LayoutContentProps {
   color?: LayoutColor;
   children?: ReactNode;
   id?: string;
+  /** Make this the vertical scroll container (used for the fullscreen account selector). */
+  scrollable?: boolean;
 }
 
 /**
@@ -13,9 +16,14 @@ interface LayoutContentProps {
  *
  *
  */
-export const LayoutContent = ({ color, children, id = 'main-content' }: LayoutContentProps) => {
+export const LayoutContent = ({ color, children, id = 'main-content', scrollable }: LayoutContentProps) => {
   return (
-    <main className={styles.content} data-color={color} id={id} tabIndex={-1}>
+    <main
+      className={cx(styles.content, scrollable && styles.scrollable)}
+      data-color={color}
+      id={id}
+      tabIndex={-1}
+    >
       {children}
     </main>
   );

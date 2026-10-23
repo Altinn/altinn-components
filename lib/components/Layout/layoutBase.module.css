@@ -49,3 +49,9 @@
 .base[data-current-id="accountFullscreen"][data-theme] {
   background-color: var(--ds-color-background-default); /* global background variable */
 }
+
+/* Clamp to the viewport so the content region scrolls internally instead of the
+   whole document, keeping header (and cookie banner) pinned above the list. */
+.base[data-current-id="accountFullscreen"] {
+  height: 100dvh;
+}

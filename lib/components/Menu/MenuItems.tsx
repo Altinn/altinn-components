@@ -39,6 +39,8 @@ export interface MenuItemsProps {
   onSelect?: () => void;
   scrollRefStyles?: CSSProperties;
   onActiveItemIdChange?: (id: string | undefined) => void;
+  /** Scroll the nearest scrollable ancestor (page/drawer) instead of the list itself, keeping virtualization intact. */
+  pageScroll?: boolean;
 }
 
 export const MenuItems = ({

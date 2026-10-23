@@ -8,6 +8,13 @@
   margin: 0 auto;
 }
 
+/* Scroll within the content region so the header/footer stay pinned and the
+   virtualized list can window against this element's scroll. */
+.scrollable {
+  min-height: 0;
+  overflow-y: auto;
+}
+
 .content:focus-visible {
   outline: none;
 }

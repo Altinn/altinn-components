@@ -10,13 +10,37 @@ export interface UseMenuVirtualizationProps<TItemProps = { [key: string]: unknow
   }>;
   scrollRef: React.RefObject<HTMLUListElement>;
   open?: boolean;
+  /**
+   * When true, the virtualizer scrolls the nearest scrollable ancestor (e.g. a
+   * fullscreen dialog or a viewport-height content region) instead of the list
+   * element itself. This keeps the list bounded to that ancestor so windowing
+   * stays intact while the surrounding page/drawer provides the scroll.
+   */
+  pageScroll?: boolean;
+  /** The virtualized content container, used to measure its offset (scrollMargin) within the scroll ancestor. */
+  contentRef?: React.RefObject<HTMLElement | null>;
 }
+
+// Walks up from the list to the nearest ancestor that scrolls vertically.
+const findScrollParent = (el: HTMLElement | null): HTMLElement | null => {
+  let node = el?.parentElement ?? null;
+  while (node) {
+    const { overflowY } = getComputedStyle(node);
+    if (overflowY === 'auto' || overflowY === 'scroll') return node;
+    node = node.parentElement;
+  }
+  return null;
+};
 
 export const useMenuVirtualization = <TItemProps = { [key: string]: unknown }>({
   menu,
   scrollRef,
+  pageScroll = false,
+  contentRef,
 }: UseMenuVirtualizationProps<TItemProps>) => {
   const [scrollMaxHeight, setScrollMaxHeight] = useState(400);
+  const [scrollParent, setScrollParent] = useState<HTMLElement | null>(null);
+  const [scrollMargin, setScrollMargin] = useState(0);
 
   useLayoutEffect(() => {
     const el = scrollRef.current;
@@ -39,6 +63,37 @@ export const useMenuVirtualization = <TItemProps = { [key: string]: unknown }>({
       ro.disconnect();
     };
   }, [scrollRef]);
+
+  // In page-scroll mode, resolve the scrolling ancestor and the content's offset
+  // within it so the virtualizer can window against that ancestor's scroll.
+  useLayoutEffect(() => {
+    if (!pageScroll) {
+      setScrollParent(null);
+      setScrollMargin(0);
+      return;
+    }
+    const measure = () => {
+      const parent = findScrollParent(scrollRef.current);
+      setScrollParent(parent);
+      const content = contentRef?.current;
+      if (parent && content) {
+        const next = Math.round(
+          content.getBoundingClientRect().top - parent.getBoundingClientRect().top + parent.scrollTop,
+        );
+        setScrollMargin((prev) => (prev === next ? prev : next));
+      }
+    };
+
+    measure();
+    window.addEventListener('resize', measure);
+    const ro = new ResizeObserver(() => measure());
+    ro.observe(document.body);
+
+    return () => {
+      window.removeEventListener('resize', measure);
+      ro.disconnect();
+    };
+  }, [pageScroll, scrollRef, contentRef]);
 
   const flatMenu = useMemo(() => {
     return menu.flatMap((group, groupIndex) => {
@@ -68,7 +123,8 @@ export const useMenuVirtualization = <TItemProps = { [key: string]: unknown }>({
 
   const virtualizer = useVirtualizer({
     count: flatMenu.length,
-    getScrollElement: () => scrollRef.current,
+    getScrollElement: () => (pageScroll ? (scrollParent ?? scrollRef.current) : scrollRef.current),
+    scrollMargin: pageScroll ? scrollMargin : 0,
     useAnimationFrameWithResizeObserver: true,
     estimateSize: (index) => {
       const entry = flatMenu[index];
@@ -88,5 +144,5 @@ export const useMenuVirtualization = <TItemProps = { [key: string]: unknown }>({
     paddingEnd: -8,
   });
 
-  return { flatMenu, virtualizer, scrollMaxHeight };
+  return { flatMenu, virtualizer, scrollMaxHeight, scrollMargin: pageScroll ? scrollMargin : 0 };
 };

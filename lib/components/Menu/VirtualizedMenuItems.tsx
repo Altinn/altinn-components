@@ -32,6 +32,7 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
     autoActivateFirstItem = true,
     announceNoResults = false,
     onActiveItemIdChange,
+    pageScroll = false,
   } = props;
 
   const isCombobox = a11yMode === 'combobox';
@@ -58,9 +59,11 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
     ref: scrollRef,
   });
 
-  const { flatMenu, virtualizer, scrollMaxHeight } = useMenuVirtualization<MenuItemProps>({
+  const { flatMenu, virtualizer, scrollMaxHeight, scrollMargin } = useMenuVirtualization<MenuItemProps>({
     menu,
     scrollRef: scrollRef as React.RefObject<HTMLUListElement>,
+    pageScroll,
+    contentRef: listGroupRef,
   });
 
   useLayoutEffect(() => {
@@ -90,6 +93,10 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useLayoutEffect(() => {
+    // In page-scroll mode the surrounding page/drawer owns the scroll; don't let
+    // auto-activation of the first item scroll the ancestor on open.
+    if (pageScroll) return;
+
     const prev = prevIndex?.current;
     const upwards = typeof prev === 'number' ? activeFlatIndex <= prev : false;
 
@@ -161,11 +168,11 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
 
   const scrollRefStyle = {
     position: 'relative',
-    maxHeight: style?.maxHeight || scrollMaxHeight,
+    maxHeight: pageScroll ? undefined : style?.maxHeight || scrollMaxHeight,
     margin: '-0.5rem',
     padding: '0.5rem 0.5rem 1rem 0.5rem',
     minWidth: style?.minWidth ?? '20rem',
-    overflowY: 'auto',
+    overflowY: pageScroll ? 'visible' : 'auto',
     ...style,
   } as CSSProperties;
 
@@ -229,7 +236,7 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
               top: 0,
               left: 0,
               width: '100%',
-              transform: `translateY(${virtualRow.start}px)`,
+              transform: `translateY(${virtualRow.start - scrollMargin}px)`,
             };
 
             const commonProps = {

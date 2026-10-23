@@ -28,6 +28,7 @@ export const Menu = ({
   scrollToTopOnOpen,
   autoFocusList,
   id,
+  pageScroll = false,
 }: MenuProps) => {
   const autoSearch = useMenuSearch({ ...search, items, groups });
   const applicableSearch = searchable
@@ -58,6 +59,7 @@ export const Menu = ({
         scrollToTopOnOpen={scrollToTopOnOpen}
         autoActivateFirstItem={autoActivateFirstItem}
         autoFocusList={autoFocusList}
+        pageScroll={pageScroll}
       />
     );
   }
