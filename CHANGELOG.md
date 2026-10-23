@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.77.1](https://github.com/Altinn/altinn-components/compare/v0.77.0...v0.77.1) (2026-10-23)
+
+
+### Bug Fixes
+
+* **attachmentLink:** update restricted attachment links + story ([#1443](https://github.com/Altinn/altinn-components/issues/1443)) ([9d8d5a1](https://github.com/Altinn/altinn-components/commit/9d8d5a1b0a6f4f38fbd316d773b27116d70c3627))
+
 ## [0.77.0](https://github.com/Altinn/altinn-components/compare/v0.76.6...v0.77.0) (2026-10-21)
 
 
