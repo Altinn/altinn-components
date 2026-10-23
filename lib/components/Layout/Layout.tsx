@@ -141,7 +141,7 @@ export const Layout = ({
       )}
       {accountSelectionAsMain ? (
         <LayoutContent id="main-content">
-          {header?.accountSelector && <AccountSelector {...header.accountSelector} isFullScreen />}
+          {header?.accountSelector && <AccountSelector {...header.accountSelector} />}
         </LayoutContent>
       ) : (
         <LayoutGrid currentId={currentId}>
