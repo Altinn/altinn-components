@@ -32,7 +32,7 @@ export const AttachmentLink = ({
   disabled,
   target = '_blank',
 }: AttachmentLinkProps) => {
-  const applicableIcon = disabled ? FileXMarkIcon : icon || FileIcon;
+  const applicableIcon = disabled && !icon ? FileXMarkIcon : icon || FileIcon;
 
   return (
     <span className={styles.item}>
