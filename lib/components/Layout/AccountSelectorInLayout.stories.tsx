@@ -14,10 +14,8 @@ import {
 } from '../../../examples';
 import { type AuthorizedParty, useAccountSelector } from '../../hooks';
 
-// Add custom story args interface for easier testing
-interface LayoutStoryArgs extends LayoutProps {
-  forceOpenFullScreen?: boolean | undefined;
-}
+// Add custom story args type for easier testing
+type LayoutStoryArgs = LayoutProps;
 
 /**
  * AccountSelector demos rendered inside a full Layout, so you can see how the
@@ -54,11 +52,11 @@ const meta = {
       </Flex>
     ),
     color: 'company',
-    forceOpenFullScreen: undefined,
+    accountSelectionAsMain: undefined,
   },
   argTypes: {
     color: { control: 'select', options: ['company', 'neutral', 'person'] },
-    forceOpenFullScreen: {
+    accountSelectionAsMain: {
       control: 'select',
       options: [true, false, undefined],
     },
@@ -101,7 +99,13 @@ const buildParties = (total: number, deletedCount = 0): AuthorizedParty[] => {
 };
 
 /** Shared demo wiring for the account-count stories below. */
-const AccountSelectorDemo = ({ args, parties }: { args: LayoutStoryArgs; parties: AuthorizedParty[] }) => {
+const AccountSelectorDemo = ({
+  args,
+  parties,
+}: {
+  args: LayoutStoryArgs;
+  parties: AuthorizedParty[];
+}) => {
   const layout = useLayout(args);
   const globalMenu = useGlobalMenu({ accountId: 'diaspora' });
 
