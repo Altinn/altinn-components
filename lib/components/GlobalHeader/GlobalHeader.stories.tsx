@@ -81,21 +81,6 @@ export const DisabledAccountSelection = () => {
   return <GlobalHeader {...(header as GlobalHeaderProps)} disableAccountSelection />;
 };
 
-export const ReadOnlyAccountSelector = () => {
-  const { globalMenu, accountSelector, onLoginClick, locale } = useGlobalHeader({});
-  return (
-    <RootProvider>
-      <GlobalHeader
-        globalMenu={globalMenu}
-        accountSelector={accountSelector as AccountSelectorProps}
-        onLoginClick={onLoginClick}
-        locale={locale}
-        readOnlyAccountSelector
-      />
-    </RootProvider>
-  );
-};
-
 export const WithCustomBadge = () => {
   const header = useGlobalHeader({});
   return (
@@ -114,7 +99,7 @@ export const Loading = () => {
   );
 };
 
-export const LoadingReadOnlyAccountSelector = () => {
+export const LoadingDisabledAccountSelection = () => {
   const { globalMenu, accountSelector, onLoginClick, locale } = useGlobalHeader({ state: 'loading' });
   return (
     <RootProvider>
@@ -123,7 +108,7 @@ export const LoadingReadOnlyAccountSelector = () => {
         accountSelector={accountSelector as AccountSelectorProps}
         onLoginClick={onLoginClick}
         locale={locale}
-        readOnlyAccountSelector
+        disableAccountSelection
       />
     </RootProvider>
   );

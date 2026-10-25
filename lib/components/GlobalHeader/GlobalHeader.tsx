@@ -25,10 +25,8 @@ export interface GlobalHeaderProps {
   accountSelector?: AccountSelectorProps;
   badge?: BadgeProps | undefined;
   logo?: HeaderLogoProps;
-  /** Whether to disable account selection */
-  disableAccountSelection?: boolean;
   /** Render the account button as a read-only indicator and suppress the account selector drawer. */
-  readOnlyAccountSelector?: boolean;
+  disableAccountSelection?: boolean;
   /** Disable the global menu button. */
   disableGlobalMenu?: boolean;
   onLoginClick?: () => void;
@@ -43,7 +41,6 @@ export const GlobalHeader = ({
   logo = {},
   badge,
   disableAccountSelection,
-  readOnlyAccountSelector,
   disableGlobalMenu,
   onLoginClick,
 }: GlobalHeaderProps) => {
@@ -75,7 +72,7 @@ export const GlobalHeader = ({
               <GlobalAccountButton
                 currentAccount={accountSelector.accountMenu?.currentAccount}
                 onClick={
-                  readOnlyAccountSelector
+                  disableAccountSelection
                     ? undefined
                     : accountSelector.accountMenu?.currentAccount
                       ? onToggleAccountMenu
@@ -83,9 +80,9 @@ export const GlobalHeader = ({
                 }
                 expanded={accountSelectionOpen}
                 loading={accountSelector.loading}
-                disableAccountSelection={disableAccountSelection || readOnlyAccountSelector}
+                disableAccountSelection={disableAccountSelection}
               />
-              {!readOnlyAccountSelector && (
+              {!disableAccountSelection && (
                 <HeaderDrawer
                   id="header-account"
                   open={accountSelectionOpen}
