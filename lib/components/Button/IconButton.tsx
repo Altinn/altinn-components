@@ -8,7 +8,7 @@ export interface IconButtonProps extends ButtonProps {
 export const IconButton = ({ children, label, ...props }: IconButtonProps) => {
   return (
     <Button {...props} className={styles.button} icon={true} aria-label={label}>
-      {children}
+      <span aria-hidden="true">{children}</span>
     </Button>
   );
 };
