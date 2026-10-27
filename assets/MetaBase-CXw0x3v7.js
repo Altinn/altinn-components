@@ -1,0 +1,1 @@
+var o=Object.defineProperty;var a=(s,t)=>o(s,"name",{value:t,configurable:!0});import{a5 as m,a1 as c}from"./iframe-CplFPuE2.js";const n="_meta_1so2q_1",r={meta:n},p=a(({size:s="xs",className:t,children:e})=>m.jsx("section",{className:c(r.meta,t),"data-size":s,children:e}),"MetaBase");export{p as M};

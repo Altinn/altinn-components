@@ -1,1 +1,0 @@
-var l=Object.defineProperty;var n=(a,s)=>l(a,"name",{value:s,configurable:!0});import{aa as c,a7 as i,q as k}from"./iframe-DZEBeon6.js";const x="_link_1n9mi_1",m={link:x},p=c.forwardRef(n(function({as:s="a",children:t,size:r,...e},o){return i.jsx(k,{className:m.link,"data-size":r,asChild:!0,children:i.jsx(s,{...e,ref:o,children:t})})},"Link2"));export{p as L};
