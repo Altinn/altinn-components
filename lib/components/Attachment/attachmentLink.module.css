@@ -26,6 +26,7 @@
 
 .label {
   text-decoration: underline;
+  text-underline-offset: 0.24em;
 }
 
 .link:hover .label {
