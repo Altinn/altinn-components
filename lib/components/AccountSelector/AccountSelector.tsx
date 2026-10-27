@@ -101,7 +101,7 @@ export const AccountSelector = ({
 
   return (
     <div ref={rootRef} className={cx(className, styles.accountSelector)}>
-      <DsHeading data-size="sm" level={2} className={styles.heading} id="account-selector-heading">
+      <DsHeading data-size="sm" level={isFullScreen ? 1 : 2} className={styles.heading} id="account-selector-heading">
         {heading}
       </DsHeading>
       {(showSearch || showDeletedToggle) && (
