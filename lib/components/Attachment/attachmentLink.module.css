@@ -33,7 +33,8 @@
 }
 
 .link[aria-disabled="true"] .label {
-  text-decoration: line-through;
+  opacity: 0.9;
+  text-decoration: none;
 }
 
 .badge {
