@@ -1,0 +1,1 @@
+var a=Object.defineProperty;var t=(r,e)=>a(r,"name",{value:e,configurable:!0});import{a5 as o}from"./iframe-BfD7syly.js";import{S as i}from"./Select-DcvfH0JG.js";import{F as l}from"./FieldBase-fk0uyKjd.js";const n=t(({size:r="md",label:e,children:s,...m})=>o.jsx(l,{label:e,size:r,children:o.jsx(i,{...m,size:r,children:s})}),"SelectField");export{n as S};

@@ -1,0 +1,1 @@
+var r=Object.defineProperty;var o=(t,e)=>r(t,"name",{value:e,configurable:!0});import{a5 as m,y as n}from"./iframe-BfD7syly.js";const x=o(({size:t="md",color:e,children:a,...s})=>m.jsx(n,{"data-color":e,"data-size":t,...s,children:a}),"Select");export{x as S};
