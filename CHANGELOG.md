@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.77.2](https://github.com/Altinn/altinn-components/compare/v0.77.1...v0.77.2) (2026-10-28)
+
+
+### Bug Fixes
+
+* **attachmentLink:** add space between filename and underline ([#1447](https://github.com/Altinn/altinn-components/issues/1447)) ([c089b98](https://github.com/Altinn/altinn-components/commit/c089b98e591a706f83562ebc389d103b23d3f282))
+* **deps:** bump storybook, vite and vitest to resolve audit vulnerabilities ([#1448](https://github.com/Altinn/altinn-components/issues/1448)) ([a6bd816](https://github.com/Altinn/altinn-components/commit/a6bd816b57277133117ad1fa7f09be44709e132b))
+* **SkyraSurvey:** point at skyra-survey.js captured 2026-10-26 ([#1445](https://github.com/Altinn/altinn-components/issues/1445)) ([9d97502](https://github.com/Altinn/altinn-components/commit/9d975024ebc9716c6289284a97f82541872c4ef9))
+
 ## [0.77.1](https://github.com/Altinn/altinn-components/compare/v0.77.0...v0.77.1) (2026-10-23)
 
 
