@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   padding: 1rem 0;
+  width: 100%;
   max-width: 1000px;
   margin: 0 auto;
   --horizontal-padding: 0.7rem;

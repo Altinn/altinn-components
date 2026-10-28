@@ -10,6 +10,7 @@ import {
   type LayoutSidebarProps,
   type LayoutTheme,
 } from '.';
+import { AccountSelector } from '../AccountSelector';
 import { Banner, type BannerColor, type BannerVariant } from '../Banner';
 import { Breadcrumbs, type BreadcrumbsProps } from '../Breadcrumbs';
 import { CookieBanner, type CookieBannerProps } from '../CookieBanner';
@@ -55,6 +56,9 @@ export interface LayoutProps {
   skipLink?: SkipLinkProps;
   cookieBanner?: CookieBannerProps;
   breadcrumbs?: BreadcrumbsProps;
+  /** Render the account selector as the page's main content instead of a header dialog,
+   * forcing the user to select an account before continuing. */
+  accountSelectionAsMain?: boolean;
 }
 
 export const Layout = ({
@@ -69,6 +73,7 @@ export const Layout = ({
   skipLink,
   cookieBanner,
   breadcrumbs,
+  accountSelectionAsMain = false,
 }: LayoutProps) => {
   const { currentId } = useRootContext();
   const [bannerHeight, setBannerHeight] = useState(0);
@@ -93,7 +98,12 @@ export const Layout = ({
   }, []);
 
   return (
-    <LayoutBase color={color} theme={theme} currentId={currentId} bannerHeight={hasTopBar ? bannerHeight : 0}>
+    <LayoutBase
+      color={color}
+      theme={theme}
+      currentId={accountSelectionAsMain ? 'accountFullscreen' : currentId}
+      bannerHeight={hasTopBar ? bannerHeight : 0}
+    >
       {skipLink && <SkipLink {...skipLink} />}
       {hasTopBar && (
         <div ref={measureTopBar} className={isHeaderDrawerOpen ? styles.bannerWrapperPinned : undefined}>
@@ -122,30 +132,42 @@ export const Layout = ({
           )}
         </div>
       )}
-      {header && <GlobalHeader {...header} />}
-      <LayoutGrid currentId={currentId}>
-        {breadcrumbs && <Breadcrumbs {...breadcrumbs} />}
-        <LayoutBody currentId={currentId}>
-          {sidebar && (
-            <LayoutSidebar
-              sticky={sidebar?.sticky}
-              hidden={sidebar?.hidden}
-              color={sidebar?.color}
-              footer={sidebar?.footer}
-            >
-              {sidebar?.menu && (
-                <nav aria-label={sidebar?.ariaLabel ?? 'Sidebar'}>
-                  <Menu {...sidebar?.menu} a11yMode="navigation" />
-                </nav>
-              )}
-              {sidebar?.children}
-            </LayoutSidebar>
-          )}
-          <LayoutContent color={content?.color} id="main-content">
-            {children}
-          </LayoutContent>
-        </LayoutBody>
-      </LayoutGrid>
+      {header && (
+        <GlobalHeader
+          {...header}
+          disableAccountSelection={accountSelectionAsMain || header.disableAccountSelection}
+          disableGlobalMenu={accountSelectionAsMain || header.disableGlobalMenu}
+        />
+      )}
+      {accountSelectionAsMain ? (
+        <LayoutContent id="main-content">
+          {header?.accountSelector && <AccountSelector {...header.accountSelector} isFullScreen={true} />}
+        </LayoutContent>
+      ) : (
+        <LayoutGrid currentId={currentId}>
+          {breadcrumbs && <Breadcrumbs {...breadcrumbs} />}
+          <LayoutBody currentId={currentId}>
+            {sidebar && (
+              <LayoutSidebar
+                sticky={sidebar?.sticky}
+                hidden={sidebar?.hidden}
+                color={sidebar?.color}
+                footer={sidebar?.footer}
+              >
+                {sidebar?.menu && (
+                  <nav aria-label={sidebar?.ariaLabel ?? 'Sidebar'}>
+                    <Menu {...sidebar?.menu} a11yMode="navigation" />
+                  </nav>
+                )}
+                {sidebar?.children}
+              </LayoutSidebar>
+            )}
+            <LayoutContent color={content?.color} id="main-content">
+              {children}
+            </LayoutContent>
+          </LayoutBody>
+        </LayoutGrid>
+      )}
       {footer && <Footer {...footer} />}
     </LayoutBase>
   );

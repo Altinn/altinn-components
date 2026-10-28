@@ -81,29 +81,6 @@ export const DisabledAccountSelection = () => {
   return <GlobalHeader {...(header as GlobalHeaderProps)} disableAccountSelection />;
 };
 
-export const ForcedFullScreenAccountSelection = () => {
-  const { globalMenu, accountSelector, onLoginClick, locale } = useGlobalHeader({});
-  return (
-    <RootProvider>
-      <GlobalHeader
-        globalMenu={globalMenu}
-        accountSelector={
-          {
-            ...accountSelector,
-            forceOpenFullScreen: true,
-            accountMenu: {
-              ...accountSelector?.accountMenu,
-              currentAccount: undefined,
-            },
-          } as AccountSelectorProps
-        }
-        onLoginClick={onLoginClick}
-        locale={locale}
-      />
-    </RootProvider>
-  );
-};
-
 export const WithCustomBadge = () => {
   const header = useGlobalHeader({});
   return (
@@ -122,20 +99,16 @@ export const Loading = () => {
   );
 };
 
-export const LoadingWithForcedFullScreenAccountSelection = () => {
+export const LoadingDisabledAccountSelection = () => {
   const { globalMenu, accountSelector, onLoginClick, locale } = useGlobalHeader({ state: 'loading' });
   return (
     <RootProvider>
       <GlobalHeader
         globalMenu={globalMenu}
-        accountSelector={
-          {
-            ...accountSelector,
-            forceOpenFullScreen: true,
-          } as AccountSelectorProps
-        }
+        accountSelector={accountSelector as AccountSelectorProps}
         onLoginClick={onLoginClick}
         locale={locale}
+        disableAccountSelection
       />
     </RootProvider>
   );

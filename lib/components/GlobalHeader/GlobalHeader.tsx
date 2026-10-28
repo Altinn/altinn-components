@@ -25,8 +25,10 @@ export interface GlobalHeaderProps {
   accountSelector?: AccountSelectorProps;
   badge?: BadgeProps | undefined;
   logo?: HeaderLogoProps;
-  /** Whether to disable account selection */
+  /** Render the account button as a read-only indicator and suppress the account selector drawer. */
   disableAccountSelection?: boolean;
+  /** Disable the global menu button. */
+  disableGlobalMenu?: boolean;
   onLoginClick?: () => void;
 }
 
@@ -39,6 +41,7 @@ export const GlobalHeader = ({
   logo = {},
   badge,
   disableAccountSelection,
+  disableGlobalMenu,
   onLoginClick,
 }: GlobalHeaderProps) => {
   const { currentId, toggleId, closeAll } = useRootContext();
@@ -52,7 +55,8 @@ export const GlobalHeader = ({
     toggleId('menu');
   };
 
-  const accountSelectionOpen = currentId === 'account' || accountSelector?.forceOpenFullScreen || false;
+  const accountSelectionOpen = currentId === 'account';
+  const menuOpen = currentId === 'menu' && !disableGlobalMenu;
 
   const [expanded, setExpanded] = useState(false);
 
@@ -67,38 +71,45 @@ export const GlobalHeader = ({
             <>
               <GlobalAccountButton
                 currentAccount={accountSelector.accountMenu?.currentAccount}
-                onClick={accountSelector.accountMenu?.currentAccount ? onToggleAccountMenu : onLoginClick}
+                onClick={
+                  disableAccountSelection
+                    ? undefined
+                    : accountSelector.accountMenu?.currentAccount
+                      ? onToggleAccountMenu
+                      : onLoginClick
+                }
                 expanded={accountSelectionOpen}
                 loading={accountSelector.loading}
-                disabled={accountSelector.forceOpenFullScreen}
                 disableAccountSelection={disableAccountSelection}
               />
-              <HeaderDrawer
-                id="header-account"
-                open={accountSelectionOpen}
-                onClose={closeAll}
-                closedBy={accountSelector?.forceOpenFullScreen ? 'none' : 'any'}
-                ariaLabelledby="account-selector-heading"
-                expanded={accountSelector?.forceOpenFullScreen || expanded}
-                onToggle={() => setExpanded(!expanded)}
-                expandable={
-                  (accountSelector.accountCount ?? accountSelector.accountMenu.items.length) >
-                  MIN_ITEMS_FOR_EXPANDABLE_DRAWER
-                }
-              >
-                <AccountSelector {...accountSelector} forceOpenFullScreen={accountSelector.forceOpenFullScreen} />
-              </HeaderDrawer>
+              {!disableAccountSelection && (
+                <HeaderDrawer
+                  id="header-account"
+                  open={accountSelectionOpen}
+                  onClose={closeAll}
+                  closedBy="any"
+                  ariaLabelledby="account-selector-heading"
+                  expanded={expanded}
+                  onToggle={() => setExpanded(!expanded)}
+                  expandable={
+                    (accountSelector.accountCount ?? accountSelector.accountMenu.items.length) >
+                    MIN_ITEMS_FOR_EXPANDABLE_DRAWER
+                  }
+                >
+                  <AccountSelector {...accountSelector} />
+                </HeaderDrawer>
+              )}
             </>
           )}
           <HeaderDropdown
             id="header-menu"
-            open={currentId === 'menu'}
+            open={menuOpen}
             onClose={closeAll}
             trigger={
               <GlobalMenuButton
                 onClick={onToggleMenu}
-                expanded={currentId === 'menu'}
-                disabled={accountSelector?.forceOpenFullScreen}
+                expanded={menuOpen}
+                disabled={disableGlobalMenu}
                 label={globalMenu?.menuLabel}
               />
             }
@@ -108,7 +119,7 @@ export const GlobalHeader = ({
               menu={isDesktop ? desktopMenu || globalMenu?.menu : mobileMenu || globalMenu?.menu}
               onClose={closeAll}
               localeSwitcher={locale}
-              isOpen={currentId === 'menu'}
+              isOpen={menuOpen}
             />
           </HeaderDropdown>
         </nav>
