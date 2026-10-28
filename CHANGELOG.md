@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.78.0](https://github.com/Altinn/altinn-components/compare/v0.77.2...v0.78.0) (2026-10-28)
+
+
+### Features
+
+* **Layout:** Display accountSelector as main content when forceOpenFullscreen is true ([#1430](https://github.com/Altinn/altinn-components/issues/1430)) ([42d940f](https://github.com/Altinn/altinn-components/commit/42d940f9615c5a133e3c48cdecd9d1e8eeaa98a9))
+
 ## [0.77.2](https://github.com/Altinn/altinn-components/compare/v0.77.1...v0.77.2) (2026-10-28)
 
 
