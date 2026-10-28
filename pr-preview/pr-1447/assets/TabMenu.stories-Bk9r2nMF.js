@@ -1,0 +1,14 @@
+import{a5 as a}from"./iframe-zDfzPjQ-.js";import{T as m}from"./TabMenu-P9dJFqww.js";import{S as n}from"./MenuGrid-YVJRjo8W.js";import{S as d}from"./MenuHamburger-BTQ1djkk.js";import"./preload-helper-Cc2_yIPf.js";import"./MenuItem-BBg2qC2v.js";import"./ItemMedia-C2cNA_4j.js";import"./Avatar-D3LaL2hn.js";import"./AvatarGroup-CvMpJghk.js";import"./Checkmark-BOXV2bQM.js";import"./ItemLabel-CLN34YKw.js";import"./Heading-CKFRzaKs.js";import"./useHighlightedText-BKf3y1mD.js";import"./ItemControls-D2gn34WX.js";import"./Badge-aBFHXHYf.js";import"./Tooltip-B0sYZQl4.js";import"./ChevronRight-NBomJvaL.js";const _={title:"Menu/TabMenu",component:m,parameters:{},decorators:[(s,{args:o})=>{const i={backgroundColor:o?.variant==="tinted"?"var(--ds-color-background-tinted)":"",padding:".5em"};return a.jsx("div",{style:i,children:a.jsx(s,{})})}],args:{variant:"default",items:[{id:"1",icon:n,title:"Tab 1"},{id:"2",icon:d,title:"Tab 2",selected:!0}]}},r={args:{size:"lg"}},e={args:{variant:"tinted",size:"md"}},t={args:{size:"sm"}},h=["Large","MediumTinted","Small"];r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`{
+  args: {
+    size: 'lg'
+  }
+}`,...r.parameters?.docs?.source}}};e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:`{
+  args: {
+    variant: 'tinted',
+    size: 'md'
+  }
+}`,...e.parameters?.docs?.source}}};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
+  args: {
+    size: 'sm'
+  }
+}`,...t.parameters?.docs?.source}}};export{r as Large,e as MediumTinted,t as Small,h as __namedExportsOrder,_ as default};

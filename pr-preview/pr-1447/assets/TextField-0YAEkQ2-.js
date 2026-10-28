@@ -1,1 +1,0 @@
-var a=Object.defineProperty;var t=(r,s)=>a(r,"name",{value:s,configurable:!0});import{a7 as o}from"./iframe-CtXhLetY.js";import{F as p}from"./FieldBase-CnqvqYs3.js";import{I as x}from"./Input-QpxxtH2z.js";const l=t(({size:r,color:s,label:e,helperText:i,...m})=>o.jsx(p,{size:r,color:s,label:e,helperText:i,children:o.jsx(x,{...m})}),"TextField");export{l as T};
