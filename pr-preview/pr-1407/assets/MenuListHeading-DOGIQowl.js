@@ -1,1 +1,0 @@
-var i=Object.defineProperty;var s=(e,n)=>i(e,"name",{value:n,configurable:!0});import{a5 as o}from"./iframe-k-5ppgch.js";const r="_heading_1logo_1",d={heading:r},c=s(({ref:e,title:n,index:a,style:t})=>o.jsx("li",{className:d.heading,role:"presentation","data-index":a,ref:e,style:t,children:n}),"MenuListHeading");export{c as M};

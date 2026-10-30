@@ -1,1 +1,0 @@
-var r=Object.defineProperty;var e=(t,s)=>r(t,"name",{value:s,configurable:!0});import{a5 as i,l as n}from"./iframe-k-5ppgch.js";const m=e(({size:t,color:s,children:o,...a})=>i.jsx(n,{...a,"data-size":t,"data-color":s,children:o}),"Fieldset");export{m as F};

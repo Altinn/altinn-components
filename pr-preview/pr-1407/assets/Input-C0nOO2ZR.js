@@ -1,0 +1,1 @@
+var n=Object.defineProperty;var a=(t,s)=>n(t,"name",{value:s,configurable:!0});import{a5 as p,o as i}from"./iframe-CmcSEjvS.js";const m=a(({inputSize:t,size:s,color:o,ref:r,...e})=>p.jsx(i,{ref:r,size:t,"data-color":o,"data-size":s,...e}),"Input");export{m as I};
