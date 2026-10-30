@@ -1,8 +1,0 @@
-var i=Object.defineProperty;var r=(a,m)=>i(a,"name",{value:m,configurable:!0});import{a5 as o}from"./iframe-BfD7syly.js";import{D as p}from"./DatepickerFilter-Dz9ADW9D.js";import{D as s}from"./Datepicker-CNd88sPL.js";import"./preload-helper-Cc2_yIPf.js";import"./MenuListItem-DkdyT6s3.js";import"./MenuItem-yk1xWr1C.js";import"./ItemMedia-DHigLupS.js";import"./Avatar-DzXDYKXO.js";import"./AvatarGroup-x9OrqdJM.js";import"./Checkmark-DS2-cyTF.js";import"./ItemLabel-C4QOzGgW.js";import"./Heading-M_gD0nhY.js";import"./useHighlightedText-BiU1Xaf8.js";import"./ItemControls-CvMksNjC.js";import"./Badge-tM6hClJt.js";import"./Tooltip-BbiC_D-U.js";import"./ChevronRight-DeJMnotn.js";import"./ArrowUndo-C7PukArl.js";import"./MenuListDivider-VNatTLoD.js";import"./Fieldset-B79kwUcw.js";import"./Field-DGIr44pk.js";import"./Label-KYDdO5cS.js";import"./Input-BppbGARe.js";const v={title:"Datepicker/Accessibility",parameters:{a11y:{test:"error"}}},e={render:r(()=>o.jsx(s,{defaultDate:"2024-05-02",selectFrom:"2024-05-02",selectTo:"2024-05-10",onSelect:r(()=>{},"onSelect")}),"render")},t={render:r(()=>o.jsx(p,{formData:{fromDate:"2024-05-02",toDate:"2024-05-10"}}),"render")},w=["Calendar","RangeFilter"];e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:`{
-  render: () => <Datepicker defaultDate="2024-05-02" selectFrom="2024-05-02" selectTo="2024-05-10" onSelect={() => {}} />
-}`,...e.parameters?.docs?.source}}};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
-  render: () => <DatepickerFilter formData={{
-    fromDate: '2024-05-02',
-    toDate: '2024-05-10'
-  }} />
-}`,...t.parameters?.docs?.source}}};export{e as Calendar,t as RangeFilter,w as __namedExportsOrder,v as default};
