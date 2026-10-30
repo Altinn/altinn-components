@@ -16,6 +16,7 @@ export interface MenuListProps {
   style?: CSSProperties;
   tabIndex?: number;
   'aria-busy'?: boolean;
+  'aria-multiselectable'?: boolean;
   children?: ReactNode;
   onMouseEnter?: MouseEventHandler;
   onMouseLeave?: MouseEventHandler;
@@ -34,6 +35,7 @@ export const MenuList = ({
   style,
   tabIndex,
   'aria-busy': ariaBusy,
+  'aria-multiselectable': ariaMultiselectable,
   children,
   onMouseEnter,
   onMouseLeave,
@@ -52,6 +54,7 @@ export const MenuList = ({
       style={style}
       tabIndex={tabIndex}
       aria-busy={ariaBusy}
+      aria-multiselectable={ariaMultiselectable}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onBlurCapture={onBlurCapture}

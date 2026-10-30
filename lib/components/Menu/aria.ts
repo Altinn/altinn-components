@@ -5,3 +5,6 @@ export function pickAriaProps(obj: Record<string, unknown>) {
   }
   return out;
 }
+
+/** More than one option can be selected as soon as one is a checkbox, also when mixed with radios. */
+export const isMultiSelectable = (items: { role?: string }[]) => items.some((item) => item.role === 'checkbox');

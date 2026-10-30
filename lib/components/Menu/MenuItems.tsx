@@ -5,6 +5,7 @@ import type { MenuItemProps } from '../';
 import { useMenu } from '../../hooks';
 import { MenuItemsLoading } from './MenuItemsLoading.tsx';
 import { MenuListSearch, type MenuListSearchProps } from './MenuListSearch.tsx';
+import { isMultiSelectable } from './aria.ts';
 
 export interface MenuGroupProps {
   title?: string;
@@ -186,6 +187,7 @@ export const MenuItems = ({
       style={scrollRefStyles}
       id={listId}
       role={isCombobox ? 'listbox' : isNavigation ? 'list' : 'menu'}
+      aria-multiselectable={(isCombobox && isMultiSelectable(items)) || undefined}
       tabIndex={keyboardEvents ? -1 : undefined}
       aria-busy={loading || undefined}
     >
@@ -231,6 +233,7 @@ export const MenuItems = ({
                           variant={itemProps?.variant || groupProps?.variant || variant}
                           active={active}
                           role={resolvedRole}
+                          checkableType={isCheckable ? (itemProps.role as 'checkbox' | 'radio') : undefined}
                           a11yMode={a11yMode}
                           selected={itemProps.selected}
                           tabIndex={itemProps?.disabled || keyboardEvents ? -1 : (itemProps.tabIndex ?? 0)}

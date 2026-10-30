@@ -11,7 +11,6 @@ import {
   PaperclipIcon,
   TrashIcon,
 } from '@navikt/aksel-icons';
-import { nav, skatt } from '../../../examples/avatar';
 import type { AvatarProps } from '../Avatar';
 import type { FilterProps } from './useFilter';
 
@@ -21,9 +20,10 @@ export const ownerFilter: FilterProps = {
   name: 'owner',
   icon: MenuHamburgerIcon,
   title: 'Tjenesteeier ...',
+  searchable: true,
   groups: {
     1: {
-      title: 'Velg tjenesteier',
+      title: 'Velg tjenesteeier',
     },
   },
   items: [
@@ -34,7 +34,6 @@ export const ownerFilter: FilterProps = {
       name: 'owner',
       value: 'skatt',
       title: 'Skatteetaten',
-      icon: skatt,
     },
     {
       id: '2',
@@ -43,7 +42,6 @@ export const ownerFilter: FilterProps = {
       name: 'owner',
       value: 'nav',
       title: 'NAV',
-      icon: nav,
     },
   ],
 };

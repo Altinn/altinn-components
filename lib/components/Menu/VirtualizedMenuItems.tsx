@@ -9,6 +9,7 @@ import { useMenu } from '../../hooks';
 import type { MenuGroupProps, MenuItemsProps } from './MenuItems';
 import { MenuItemsLoading } from './MenuItemsLoading.tsx';
 import { MenuListSearch } from './MenuListSearch.tsx';
+import { isMultiSelectable } from './aria.ts';
 import { useMenuVirtualization } from './useMenuVirtualization';
 
 export const VirtualizedMenuItems = (props: MenuItemsProps) => {
@@ -213,6 +214,7 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
       expanded={expanded}
       id={listId}
       role={isCombobox ? 'listbox' : isNavigation ? 'list' : 'menu'}
+      aria-multiselectable={(isCombobox && isMultiSelectable(items)) || undefined}
       aria-busy={loading || undefined}
     >
       {!isCombobox && searchElement}
@@ -278,6 +280,7 @@ export const VirtualizedMenuItems = (props: MenuItemsProps) => {
                       variant={entry.itemProps?.variant || variant}
                       active={entry.active}
                       role={resolvedRole}
+                      checkableType={isCheckable ? (entry.itemProps?.role as 'checkbox' | 'radio') : undefined}
                       a11yMode={a11yMode}
                       selected={entry.itemProps?.selected}
                       aria-posinset={isCombobox ? itemPositions.positions.get(virtualRow.index) : undefined}
