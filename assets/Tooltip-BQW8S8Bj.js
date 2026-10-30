@@ -1,0 +1,1 @@
+var p=Object.defineProperty;var t=(r,o)=>p(r,"name",{value:o,configurable:!0});import{a5 as a,V as i}from"./iframe-BenRi1VF.js";const u=t(({placement:r,children:o,content:s})=>s?a.jsx(i,{content:s,placement:r,children:o}):o,"Tooltip");export{u as T};

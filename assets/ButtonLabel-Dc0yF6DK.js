@@ -1,0 +1,1 @@
+var l=Object.defineProperty;var t=(a,s)=>l(a,"name",{value:s,configurable:!0});import{a5 as n,a1 as o}from"./iframe-BenRi1VF.js";const r="_label_18rn3_1",b={label:r},m=t(({className:a,size:s,children:e})=>n.jsx("span",{className:o(b.label,a),"data-size":s,children:e}),"ButtonLabel");export{m as B};
