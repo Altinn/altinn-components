@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.79.0](https://github.com/Altinn/altinn-components/compare/v0.78.0...v0.79.0) (2026-10-30)
+
+
+### Features
+
+* **Menu:** use checkbox and radio icons for checkable menu items ([#1407](https://github.com/Altinn/altinn-components/issues/1407)) ([8d9d8ff](https://github.com/Altinn/altinn-components/commit/8d9d8ff05cfeb6f19ebed291812861617cd40d10))
+
+
+### Bug Fixes
+
+* **alert:** remove unneccessary padding ([#1452](https://github.com/Altinn/altinn-components/issues/1452)) ([372ae14](https://github.com/Altinn/altinn-components/commit/372ae141ae5c2b75e7b454016774829ec2662f2d))
+
 ## [0.78.0](https://github.com/Altinn/altinn-components/compare/v0.77.2...v0.78.0) (2026-10-28)
 
 
