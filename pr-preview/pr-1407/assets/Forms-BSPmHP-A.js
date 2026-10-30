@@ -1,7 +1,0 @@
-var d=Object.defineProperty;var i=(n,e)=>d(n,"name",{value:e,configurable:!0});import{af as t,a5 as s,q as r}from"./iframe-CmcSEjvS.js";import"./preload-helper-Cc2_yIPf.js";function o(n){const e={code:"code",h1:"h1",h2:"h2",h3:"h3",p:"p",...t(),...n.components};return s.jsxs(s.Fragment,{children:[s.jsx(r,{title:"Forms"}),`
-`,s.jsx(e.h1,{id:"using-forms-and-form-fields",children:"Using forms and form fields"}),`
-`,s.jsx(e.p,{children:"Altinn form fields are based on components from Designsystemet and can be used as is or mixed with Ds components."}),`
-`,s.jsx(e.h2,{id:"differences-from-designsystemet",children:"Differences from Designsystemet"}),`
-`,s.jsxs(e.p,{children:["While Designsystemet uses the ",s.jsx(e.code,{children:"data-"})," attributes for color and size, Altinn components use ",s.jsx(e.code,{children:"size"})," and ",s.jsx(e.code,{children:"color"})," props."]}),`
-`,s.jsx(e.h3,{id:"sizes",children:"Sizes"}),`
-`,s.jsxs(e.p,{children:["While ",s.jsx(e.code,{children:"md"})," is the default size, mose cases should use the ",s.jsx(e.code,{children:"sm"})," size. Altinn also introduces an smaller ",s.jsx(e.code,{children:"xs"})," size, to be used in toolbars and in other cases where space is limited."]})]})}i(o,"_createMdxContent");function h(n={}){const{wrapper:e}={...t(),...n.components};return e?s.jsx(e,{...n,children:s.jsx(o,{...n})}):o(n)}i(h,"MDXContent");export{h as default};
