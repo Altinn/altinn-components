@@ -1,7 +1,0 @@
-var a=Object.defineProperty;var o=(s,e)=>a(s,"name",{value:e,configurable:!0});import{af as i,a5 as n,q as c}from"./iframe-BenRi1VF.js";import"./preload-helper-Cc2_yIPf.js";function t(s){const e={code:"code",h1:"h1",h2:"h2",p:"p",...i(),...s.components};return n.jsxs(n.Fragment,{children:[n.jsx(c,{title:"Demo"}),`
-`,n.jsx(e.h1,{id:"demo-stories",children:"Demo stories"}),`
-`,n.jsx(e.p,{children:"The demos use components from this library to illustrate pages and navigation. It is based on a scenario where a user have access to several other actors, including other people and deleted accounts."}),`
-`,n.jsx(e.h2,{id:"inbox",children:"Inbox"}),`
-`,n.jsxs(e.p,{children:["The inbox demo illustrates navigation between inbox pages, selecting a dialog, switching accounts and a simple version of searching the inbox. It uses ",n.jsx(e.code,{children:"DialogList"})," and ",n.jsx(e.code,{children:"Dialog"}),"-components."]}),`
-`,n.jsx(e.h2,{id:"user-profile",children:"User profile"}),`
-`,n.jsxs(e.p,{children:["The user profile demo uses the ",n.jsx(e.code,{children:"AccountList"})," to manage accounts, and ",n.jsx(e.code,{children:"SettingsList"})," for managing alerts and settings. It also includes an activity log page based on ",n.jsx(e.code,{children:"Timeline"}),"."]})]})}o(t,"_createMdxContent");function h(s={}){const{wrapper:e}={...i(),...s.components};return e?n.jsx(e,{...s,children:n.jsx(t,{...s})}):t(s)}o(h,"MDXContent");export{h as default};
