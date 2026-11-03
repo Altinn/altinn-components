@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.79.2](https://github.com/Altinn/altinn-components/compare/v0.79.1...v0.79.2) (2026-11-03)
+
+
+### Bug Fixes
+
+* **Dropdown:** keep fixed dropdown attached to its trigger ([#1458](https://github.com/Altinn/altinn-components/issues/1458)) ([f096582](https://github.com/Altinn/altinn-components/commit/f096582de8875d0cc4233d857cf9b3601a8420dc))
+
 ## [0.79.1](https://github.com/Altinn/altinn-components/compare/v0.79.0...v0.79.1) (2026-11-03)
 
 
