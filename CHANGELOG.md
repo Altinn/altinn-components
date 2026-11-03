@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.79.1](https://github.com/Altinn/altinn-components/compare/v0.79.0...v0.79.1) (2026-11-03)
+
+
+### Bug Fixes
+
+* **Avatar:** prevent browser translation of initials ([#1456](https://github.com/Altinn/altinn-components/issues/1456)) ([f34fb7e](https://github.com/Altinn/altinn-components/commit/f34fb7e160d5dcf7c0766fc9abcfd495c8f2d7df))
+
 ## [0.79.0](https://github.com/Altinn/altinn-components/compare/v0.78.0...v0.79.0) (2026-10-30)
 
 
