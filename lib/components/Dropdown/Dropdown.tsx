@@ -152,16 +152,34 @@ export const Dropdown = ({
   useLayoutEffect(() => {
     updatePosition();
     window.addEventListener('resize', updatePosition);
-    if (useFixedPosition) {
-      window.addEventListener('scroll', updatePosition, true);
-    }
-    return () => {
-      window.removeEventListener('resize', updatePosition);
-      if (useFixedPosition) {
-        window.removeEventListener('scroll', updatePosition, true);
+    return () => window.removeEventListener('resize', updatePosition);
+  }, [updatePosition]);
+
+  /** The trigger can move without a resize, e.g. when scrolling or when content above the
+   *  toolbar changes height. Follow it every frame so the fixed dropdown stays attached. */
+  useEffect(() => {
+    if (!open || !useFixedPosition) return;
+
+    let frame: number;
+    let prev: DOMRect | undefined;
+    const follow = () => {
+      const rect = containerRef.current?.getBoundingClientRect();
+      if (
+        rect &&
+        (rect.top !== prev?.top ||
+          rect.left !== prev?.left ||
+          rect.right !== prev?.right ||
+          rect.bottom !== prev?.bottom)
+      ) {
+        updatePosition();
       }
+      prev = rect;
+      frame = requestAnimationFrame(follow);
     };
-  }, [updatePosition, useFixedPosition]);
+    frame = requestAnimationFrame(follow);
+
+    return () => cancelAnimationFrame(frame);
+  }, [open, useFixedPosition, updatePosition]);
 
   useEffect(() => {
     if (!open) return;
@@ -282,7 +300,7 @@ export const Dropdown = ({
           [coords.xDir === 'left' ? 'left' : 'right']:
             coords.xDir === 'left' ? coords.triggerRect.left : window.innerWidth - coords.triggerRect.right,
           [coords.yDir === 'bottom' ? 'top' : 'bottom']:
-            coords.yDir === 'bottom' ? coords.triggerRect.bottom + 8 : window.innerHeight - coords.triggerRect.top + 8,
+            coords.yDir === 'bottom' ? coords.triggerRect.bottom : window.innerHeight - coords.triggerRect.top,
         }
       : {
           position: 'absolute',
