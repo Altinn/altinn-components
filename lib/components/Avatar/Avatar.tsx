@@ -130,7 +130,11 @@ export const Avatar = ({
             </span>
           )}
         </div>
-        {!usingImageUrl && type !== 'system' && <span className={styles.label}>{customLabel || initials}</span>}
+        {!usingImageUrl && type !== 'system' && (
+          <span className={styles.label} translate="no">
+            {customLabel || initials}
+          </span>
+        )}
         {isDeleted && (
           <svg
             aria-hidden="true"
