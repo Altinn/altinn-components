@@ -1,0 +1,1 @@
+var r=Object.defineProperty;var e=(t,s)=>r(t,"name",{value:s,configurable:!0});import{a6 as i,m}from"./iframe-CfESZwGq.js";const p=e(({size:t,color:s,children:o,...a})=>i.jsx(m,{...a,"data-size":t,"data-color":s,children:o}),"Fieldset");export{p as F};
