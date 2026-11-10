@@ -1,1 +1,0 @@
-var e=Object.defineProperty;var r=(t,o)=>e(t,"name",{value:o,configurable:!0});import{a5 as i}from"./iframe-CQ8LzMHp.js";import{S as m}from"./Section-NN2pd56z.js";const x=r(({as:t="ul",spacing:o=2,children:s})=>i.jsx(m,{as:t,spacing:o,style:{width:"100%"},children:s}),"Timeline");export{x as T};
