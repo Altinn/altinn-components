@@ -12,7 +12,6 @@ import {
 
 const meta = {
   title: 'Inbox/Dialog/DialogDetails',
-  tags: ['beta'],
   parameters: {},
 } satisfies Meta;
 

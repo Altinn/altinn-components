@@ -6,7 +6,6 @@ import { inboxSearchResults, inboxSection } from '../../../examples';
 const meta = {
   title: 'Inbox/DialogList',
   component: DialogList,
-  tags: ['beta'],
   args: {
     ...inboxSection,
   },

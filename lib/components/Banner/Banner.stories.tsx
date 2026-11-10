@@ -10,9 +10,8 @@ import {
 } from './Banner';
 
 const meta = {
-  title: 'Banner/Banner',
+  title: 'Feedback/Banner',
   component: Banner,
-  tags: ['autodocs'],
   parameters: {},
   args: {
     sticky: true,

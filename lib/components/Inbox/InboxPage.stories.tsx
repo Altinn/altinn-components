@@ -17,7 +17,6 @@ import { type UseInboxQuery, useInbox } from '../../../examples';
 
 const meta = {
   title: 'Inbox/InboxPage',
-  tags: ['beta'],
   parameters: {
     layout: 'fullscreen',
   },

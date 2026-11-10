@@ -1,19 +1,17 @@
-import * as DialogStories from './Dialog/Dialog.stories';
-
+import { BellIcon } from '@navikt/aksel-icons';
 import { useState } from 'react';
-import { useActivityLog, useBookmarks, useFloatingDropdown, useInbox } from '../../examples';
+import { useActivityLog, useInbox } from '../../examples';
 import {
   ActivityLog,
-  BookmarkModal,
-  BookmarkSettingsList,
   Dialog,
   DialogList,
-  FloatingDropdown,
   Heading,
   Layout,
+  List,
   ModalBase,
   ModalBody,
   ModalHeader,
+  NotificationItem,
   PageBase,
   RootProvider,
   Section,
@@ -27,7 +25,6 @@ import { useConsent } from '../hooks';
 
 const meta = {
   title: 'Demo/Inbox',
-  tags: ['beta'],
   parameters: {
     layout: 'fullscreen',
   },
@@ -183,47 +180,6 @@ export const InboxEmptyPage = () => {
   );
 };
 
-/**
- * Example showing how to use the FloatingDropdown with custom options
- */
-export const InboxFloatingDropdown = () => {
-  const { layout, toolbar } = useInbox({});
-
-  // Custom handlers for the FloatingDropdown
-  const handleStartTour = () => {
-    alert('Custom tour started!');
-  };
-
-  const handleGoToHelp = () => {
-    alert('Custom help page opened!');
-  };
-
-  const handleGoBack = () => {
-    alert('Custom exit action!');
-  };
-
-  const floatingDropdownProps = useFloatingDropdown({
-    onStartTour: handleStartTour,
-    onGoToHelp: handleGoToHelp,
-    onGoBack: handleGoBack,
-    iconAltText: 'Custom help',
-    showNewFunctionalityText: "Show me what's new",
-    helpPagesText: 'Get help',
-    exitText: 'Go back',
-  });
-
-  return (
-    <Layout {...layout}>
-      <PageBase>
-        <Heading size="xl">Innboks</Heading>
-        <Toolbar {...toolbar} />
-        <EmptySection />
-        <FloatingDropdown {...floatingDropdownProps} />
-      </PageBase>
-    </Layout>
-  );
-};
-
 export const SearchPage = () => {
   const params = new URL(document.location.toString()).searchParams;
   const q = params.get('q') || 'regnskap';
@@ -331,44 +287,6 @@ export const SearchEmptyPage = () => {
   );
 };
 
-export const DraftsPage = () => {
-  const { layout, toolbar, results, dialog } = useInbox({ pageId: 'drafts' });
-
-  if (dialog) {
-    return (
-      <Layout {...layout}>
-        <Dialog {...dialog} />
-      </Layout>
-    );
-  }
-
-  return (
-    <Layout {...layout}>
-      <PageBase>
-        <Heading size="xl">Utkast</Heading>
-        <Toolbar {...toolbar} />
-        {results && (
-          <DialogList
-            groups={{
-              drafts: {
-                title: results?.items?.length + ' utkast',
-                description: (
-                  <p>
-                    Her finner du dialoger <strong>som inneholder utkast</strong>, for eksempel skjemaer du jobber med.
-                  </p>
-                ),
-              },
-            }}
-            items={results.items?.map((item) => {
-              return { ...item, groupId: 'drafts' };
-            })}
-          />
-        )}
-      </PageBase>
-    </Layout>
-  );
-};
-
 export const DraftsEmptyPage = () => {
   const { layout, toolbar } = useInbox({ pageId: 'drafts' });
   return (
@@ -377,46 +295,6 @@ export const DraftsEmptyPage = () => {
         <Heading size="xl">Utkast</Heading>
         <Toolbar {...toolbar} />
         <EmptyDraftsSection />
-      </PageBase>
-    </Layout>
-  );
-};
-
-export const SentPage = () => {
-  const { layout, toolbar, results, dialog } = useInbox({
-    pageId: 'sent',
-  });
-
-  if (dialog) {
-    return (
-      <Layout {...layout}>
-        <Dialog {...dialog} />
-      </Layout>
-    );
-  }
-
-  return (
-    <Layout {...layout}>
-      <PageBase>
-        <Heading size="xl">Sendt</Heading>
-        <Toolbar {...toolbar} />
-        {results && (
-          <DialogList
-            groups={{
-              sent: {
-                title: results?.items?.length + ' treff i sendt',
-                description: (
-                  <p>
-                    Her finner du dialoger som inneholder <strong>ting du har sendt fra deg.</strong>
-                  </p>
-                ),
-              },
-            }}
-            items={results.items?.map((item) => {
-              return { ...item, groupId: 'sent' };
-            })}
-          />
-        )}
       </PageBase>
     </Layout>
   );
@@ -436,47 +314,6 @@ export const SentEmptyPage = () => {
   );
 };
 
-export const ArchivePage = () => {
-  const { layout, toolbar, results, dialog } = useInbox({
-    pageId: 'archive',
-  });
-
-  if (dialog) {
-    return (
-      <Layout {...layout}>
-        <Dialog {...dialog} />
-      </Layout>
-    );
-  }
-
-  return (
-    <Layout {...layout}>
-      <PageBase>
-        <Heading size="xl">Arkiv</Heading>
-        {toolbar && <Toolbar {...toolbar} />}
-        {results && (
-          <DialogList
-            groups={{
-              archived: {
-                title: results?.items?.length + ' treff i arkivet',
-                description: (
-                  <p>
-                    <strong>Her finner du dialoger du har valgt å arkivere.</strong> Dette er ikke et journal- og
-                    arkivsystem. Om dialogen blir oppdatert vil du finne den igjen i innboksen.
-                  </p>
-                ),
-              },
-            }}
-            items={results.items?.map((item) => {
-              return { ...item, groupId: 'archived' };
-            })}
-          />
-        )}
-      </PageBase>
-    </Layout>
-  );
-};
-
 export const ArchiveEmptyPage = () => {
   const { layout, toolbar } = useInbox({ pageId: 'archive' });
 
@@ -491,45 +328,6 @@ export const ArchiveEmptyPage = () => {
   );
 };
 
-export const TrashPage = () => {
-  const { layout, toolbar, results, dialog } = useInbox({ pageId: 'trash' });
-
-  if (dialog) {
-    return (
-      <Layout {...layout}>
-        <Dialog {...dialog} badge={{ color: 'neutral', label: 'Papirkurv' }} />
-      </Layout>
-    );
-  }
-
-  return (
-    <Layout {...layout}>
-      <PageBase>
-        <Heading size="xl">Papirkurv</Heading>
-        {toolbar && <Toolbar {...toolbar} />}
-        {results && (
-          <DialogList
-            groups={{
-              trashed: {
-                title: results?.items?.length + ' treff i papirkurven',
-                description: (
-                  <p>
-                    <strong>Her finner du dialoger du har lagt i papirkurven.</strong> Om dialogen blir oppdatert vil du
-                    finne den igjen i innboksen.
-                  </p>
-                ),
-              },
-            }}
-            items={results.items?.map((item) => {
-              return { ...item, groupId: 'trashed' };
-            })}
-          />
-        )}
-      </PageBase>
-    </Layout>
-  );
-};
-
 export const TrashEmptyPage = () => {
   const { layout, toolbar } = useInbox({ pageId: 'trash' });
 
@@ -539,66 +337,6 @@ export const TrashEmptyPage = () => {
         <Heading size="xl">Papirkurv</Heading>
         <Toolbar {...toolbar} />
         <EmptyTrashSection />
-      </PageBase>
-    </Layout>
-  );
-};
-
-export const DialogStatusAttention = () => {
-  const { layout } = useInbox({});
-  return (
-    <Layout {...layout}>
-      <DialogStories.StatusAttention />
-    </Layout>
-  );
-};
-
-export const DialogStatusTransmissions = () => {
-  const { layout } = useInbox({});
-  return (
-    <Layout {...layout}>
-      <DialogStories.StatusTransmissions />
-    </Layout>
-  );
-};
-
-export const DialogTransmissions = () => {
-  const { layout } = useInbox({});
-  return (
-    <Layout {...layout}>
-      <DialogStories.Transmissions />
-    </Layout>
-  );
-};
-
-export const BookmarksPage = () => {
-  const { layout, toolbar } = useInbox({
-    pageId: 'bookmarks',
-  });
-  const { items, expandedId, onClose } = useBookmarks({ grouped: false });
-  const modalProps = expandedId && items.find((item) => item.id === expandedId);
-  return (
-    <Layout {...layout}>
-      <PageBase>
-        <Heading size="xl">Lagrede søk</Heading>
-        <Toolbar {...toolbar} />
-        <Heading size="lg">3 lagrede søk</Heading>
-        <BookmarkSettingsList items={items} />
-        <Heading size="xs" weight="normal">
-          Oppdatert: xxx
-        </Heading>
-        {expandedId && (
-          <BookmarkModal
-            {...modalProps}
-            title="Rediger lagret søk"
-            open={expandedId !== ''}
-            onClose={onClose}
-            buttons={[
-              { label: 'Lagre', onClick: () => onClose() },
-              { label: 'Slett', variant: 'outline', onClick: () => onClose() },
-            ]}
-          />
-        )}
       </PageBase>
     </Layout>
   );
@@ -626,5 +364,31 @@ export const InboxCookieBanner = () => {
       ))}
       <h1>{language}</h1>
     </RootProvider>
+  );
+};
+
+export const InboxNotification = () => {
+  const { layout, toolbar, results } = useInbox({});
+
+  return (
+    <Layout {...layout}>
+      <PageBase margin="page">
+        <Toolbar {...toolbar} />
+        <List>
+          <NotificationItem
+            id="alert"
+            as="a"
+            href="//vg.no"
+            icon={BellIcon}
+            iconBadge={{ label: 'Nytt innhold' }}
+            dismissable
+            title="Du har meldinger i gammel innboks"
+            description="2 dager siden"
+            variant="tinted"
+          />
+        </List>
+        {results && <DialogList items={results.items} groups={results?.groups} />}
+      </PageBase>
+    </Layout>
   );
 };

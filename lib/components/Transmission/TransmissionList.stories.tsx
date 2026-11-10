@@ -5,7 +5,6 @@ import { transmissions } from '../../../examples';
 const meta = {
   title: 'Inbox/TransmissionList',
   component: TransmissionList,
-  tags: ['beta'],
   parameters: {},
   args: {
     items: transmissions as TransmissionListProps['items'],

@@ -154,9 +154,9 @@ export const useSettings = ({
       variant: 'link',
       linkIcon: true,
       badge: {
-        label: '7 bokmerker',
+        label: '7 lagrede søk',
       },
-      summary: <p>Her kan du endre lagrede søk og andre bokmerker.</p>,
+      summary: <p>Her kan du endre lagrede søk.</p>,
     },
   ].map((item) => {
     return {
@@ -694,7 +694,7 @@ export const useSettings = ({
       title: 'Varslinger for virksomheter',
     },
     bookmarksLink: {
-      title: 'Bokmerker',
+      title: 'Lagrede søk',
     },
     accountsLink: {
       title: 'Aktørinnstillinger',

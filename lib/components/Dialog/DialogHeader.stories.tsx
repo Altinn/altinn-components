@@ -4,7 +4,6 @@ import { DialogHeader } from './DialogHeader';
 const meta = {
   title: 'Inbox/Dialog/DialogHeader',
   component: DialogHeader,
-  tags: ['beta'],
   parameters: {},
   args: {
     title: 'Title',

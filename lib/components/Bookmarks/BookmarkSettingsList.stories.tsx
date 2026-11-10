@@ -6,7 +6,6 @@ import { useBookmarks } from '../../../examples';
 const meta = {
   component: BookmarkSettingsList,
   title: 'Bookmarks/BookmarkSettingsList',
-  tags: ['beta'],
   parameters: {
     layout: 'fullscreen',
   },

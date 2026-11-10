@@ -5,7 +5,7 @@ import { categoryItems } from '../../../examples';
 const meta = {
   title: 'Page/Grid',
   component: Grid,
-  tags: ['autodocs', 'beta'],
+  tags: ['autodocs'],
   parameters: {},
   args: {
     as: 'ul',

@@ -10,12 +10,14 @@ import type { SvgElement } from '../Icon';
 import { useRootContext } from '../RootProvider';
 import styles from './floatingDropdown.module.css';
 
+/** @deprecated FloatingDropdown is deprecated and will be removed in a future release. */
 export interface FloatingDropdownItem {
   icon: SvgElement;
   title: string;
   onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
+/** @deprecated FloatingDropdown is deprecated and will be removed in a future release. */
 export interface FloatingDropdownProps {
   icon: ButtonIconProps['icon'];
   iconOpen?: ButtonIconProps['icon'];
@@ -29,6 +31,11 @@ export interface FloatingDropdownProps {
   id?: string;
 }
 
+/**
+ * A floating action button that opens a menu of actions.
+ *
+ * @deprecated FloatingDropdown is deprecated and will be removed in a future release.
+ */
 export const FloatingDropdown = ({
   variant = 'solid',
   size,

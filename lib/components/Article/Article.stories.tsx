@@ -15,7 +15,6 @@ import { skatt } from '../../../examples/avatar';
 
 const meta = {
   title: 'Page/Article',
-  tags: ['beta'],
   parameters: {},
   args: {
     breadcrumbs: [

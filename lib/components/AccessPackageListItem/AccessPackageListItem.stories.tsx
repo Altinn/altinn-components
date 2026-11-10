@@ -9,7 +9,7 @@ const testArea = areaGroups[0].areas[1];
 const meta = {
   title: 'Access/AccessPackageListItem',
   component: AccessPackageListItem,
-  tags: ['autodocs', 'beta'],
+  tags: ['autodocs'],
   args: {
     id: testArea.packages[0].id,
     name: testArea.packages[0].name,

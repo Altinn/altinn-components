@@ -6,7 +6,7 @@ import { seenByLog, transmissions } from '../../../examples';
 const meta = {
   title: 'Inbox/Dialog/DialogHistory',
   component: DialogHistory,
-  tags: ['beta', 'skip-test'],
+  tags: ['skip-test'],
   parameters: {},
   args: {
     expandLabel: 'Vis flere detaljer',

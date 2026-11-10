@@ -1,3 +1,5 @@
+import { mkdirSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
@@ -9,6 +11,21 @@ import { defineConfig } from 'vitest/config';
 const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 const screenshotMode = !!process.env.SCREENSHOT_MODE; // Enable screenshot capture and comparison
 const setupFile = screenshotMode ? '.storybook/vitest.setup.screenshots.ts' : '.storybook/vitest.setup.ts';
+
+/**
+ * On macOS 27, Playwright's Firefox uses the same data folder as a regular Firefox
+ * (~/Library/Application Support/Firefox). macOS protects that folder, so the browser never starts.
+ * Pointing CFFIXED_USER_HOME at an empty folder gives it a folder of its own.
+ * Remove when Playwright is 1.65 or newer: https://github.com/microsoft/playwright/issues/42768
+ */
+const firefoxEnv = (() => {
+  if (process.platform !== 'darwin') {
+    return undefined;
+  }
+  const home = path.join(tmpdir(), 'playwright-firefox-home');
+  mkdirSync(home, { recursive: true });
+  return { ...process.env, CFFIXED_USER_HOME: home };
+})();
 
 export default defineConfig({
   test: {
@@ -66,6 +83,7 @@ export default defineConfig({
             provider: playwright({
               launchOptions: {
                 args: ['--font-render-hinting=none', '--disable-font-subpixel-positioning'],
+                env: firefoxEnv,
               },
             }),
             instances: [{ browser: 'firefox' }],

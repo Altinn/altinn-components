@@ -4,7 +4,7 @@ import { Flex } from '../';
 const meta = {
   title: 'Page/Flex',
   component: Flex,
-  tags: ['autodocs', 'beta'],
+  tags: ['autodocs'],
   parameters: {},
   args: {
     children: (

@@ -11,6 +11,7 @@
 
 .cache/
 node_modules/
+.pnpm-store/
 .idea/
 dist/
 .DS_Store

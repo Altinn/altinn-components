@@ -102,7 +102,7 @@ export const useBookmarks = ({
   }, [q, searchableItem]);
 
   const search = {
-    placeholder: 'Søk i bokmerker',
+    placeholder: 'Søk i lagrede søk',
     value: q,
     onChange: (e: ChangeEvent<HTMLInputElement>) => setQ(e.target.value),
     collapsible: false,

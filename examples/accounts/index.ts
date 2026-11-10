@@ -13,3 +13,4 @@ export * from './accountList';
 export * from './accountSettings';
 
 export * from './accountDataFetchers';
+export * from './useAccountSelectorDemo';

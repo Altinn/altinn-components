@@ -16,7 +16,6 @@ import { useInbox } from '../../../examples';
 
 const meta = {
   title: 'Bulk/Demo',
-  tags: ['beta'],
   parameters: {
     layout: 'fullscreen',
   },

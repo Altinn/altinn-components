@@ -59,7 +59,7 @@ import {
 const meta = {
   title: 'Settings/SettingsList',
   component: SettingsList,
-  tags: ['beta', 'autodocs'],
+  tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
   },
@@ -501,7 +501,7 @@ export const BookmarkSettings = () => {
   return (
     <Layout {...layout}>
       <PageBase>
-        <Heading size="xl">Bokmerker</Heading>
+        <Heading size="xl">Lagrede søk</Heading>
         <Toolbar search={search} />
         <BookmarkSettingsList items={items} groups={groups} />
         <Heading size="xs" weight="normal">

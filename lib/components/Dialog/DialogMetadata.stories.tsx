@@ -4,7 +4,6 @@ import { DialogMetadata } from './DialogMetadata';
 const meta = {
   title: 'Inbox/Dialog/DialogMetadata',
   component: DialogMetadata,
-  tags: ['autodocsi', 'beta'],
   parameters: {},
   args: {
     updatedAt: '1999-05-26',

@@ -6,7 +6,6 @@ const transmissionProps = transmissions as TransmissionProps[];
 const meta = {
   title: 'Inbox/Transmission',
   component: Transmission,
-  tags: ['beta'],
   parameters: {},
   args: {
     ...transmissionProps[0],

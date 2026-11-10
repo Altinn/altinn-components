@@ -5,7 +5,7 @@ import { SeenByLogItem } from './SeenByLogItem';
 const meta = {
   title: 'Inbox/Dialog/SeenByLogItem',
   component: SeenByLogItem,
-  tags: ['autodocs', 'beta'],
+  tags: ['autodocs'],
   parameters: {},
   args: {
     id: '1',

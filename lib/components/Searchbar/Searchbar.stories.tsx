@@ -6,7 +6,7 @@ import { type AutocompleteItemProps, type AutocompleteProps, Searchbar, type Sea
 const meta = {
   title: 'Layout/Searchbar',
   component: Searchbar,
-  //  tags: ["autodocs"],
+  tags: ['experimental'],
   parameters: {},
   args: {
     placeholder: 'Search',

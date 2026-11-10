@@ -6,7 +6,6 @@ import { dialogBody } from '../../../examples';
 const meta = {
   title: 'Inbox/Dialog/DialogBody',
   component: DialogBody,
-  tags: ['beta'],
   args: {
     sender: {
       type: 'company',

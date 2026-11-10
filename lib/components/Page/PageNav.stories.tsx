@@ -5,7 +5,7 @@ import { ContextMenu, PageNav } from '../';
 const meta = {
   title: 'Page/PageNav',
   component: PageNav,
-  tags: ['autodocs', 'beta'],
+  tags: ['autodocs'],
   parameters: {},
   args: {
     backButton: {
