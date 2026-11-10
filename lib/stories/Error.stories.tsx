@@ -4,7 +4,6 @@ import { accountList, useLayout } from '../../examples';
 
 const meta = {
   title: 'Demo/Error',
-  tags: ['beta'],
   parameters: {
     layout: 'fullscreen',
   },

@@ -12,7 +12,7 @@ import {
 
 const meta = {
   title: 'Page/Dashboard/Dashboard',
-  tags: ['beta', 'autodocs'],
+  tags: ['autodocs'],
   parameters: {},
   args: {},
 };
@@ -127,14 +127,14 @@ export const UserDashboard = () => {
           <p>Mine aktører, favoritter og grupper.</p>
         </DashboardCard>
         <DashboardCard
-          href="/iframe.html?id=demo-profile--alerts-page"
+          href="/iframe.html?id=demo-profile--notifications"
           icon={BellIcon as DashboardCardProps['icon']}
           title="Mine varslinger"
         >
           <p>Mine varslingsadresser og varslinger per aktør.</p>
         </DashboardCard>
         <DashboardCard
-          href="/iframe.html?id=demo-profile--settings-page"
+          href="/iframe.html?id=demo-profile--profile-page"
           icon={CogIcon as DashboardCardProps['icon']}
           title="Innstillinger"
         >

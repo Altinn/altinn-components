@@ -26,7 +26,6 @@ import { categoryItems, useCategoryPage, useHomepage, useSearchResults } from '.
 
 const meta = {
   title: 'Demo/Portal',
-  tags: ['beta'],
   parameters: {
     layout: 'fullscreen',
   },

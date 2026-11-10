@@ -5,7 +5,7 @@ import { DialogAttachments } from './DialogAttachments.tsx';
 const meta = {
   title: 'Inbox/Dialog/DialogAttachments',
   component: DialogAttachments,
-  tags: ['autodocs', 'beta'],
+  tags: ['autodocs'],
   args: {
     title: '6 vedlegg',
     items: attachments,

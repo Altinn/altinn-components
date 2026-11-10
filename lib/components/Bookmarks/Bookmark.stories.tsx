@@ -4,7 +4,6 @@ import { useAccountMenu, useBookmarks, useInboxLayout, useProfileLayout } from '
 
 const meta = {
   title: 'Bookmarks/Demo',
-  tags: ['beta'],
   parameters: {
     layout: 'fullscreen',
   },
@@ -95,7 +94,7 @@ export const BookmarkSettings = () => {
   return (
     <Layout {...layout}>
       <PageBase>
-        <Heading size="xl">Bokmerker</Heading>
+        <Heading size="xl">Lagrede søk</Heading>
         <Toolbar search={search} />
         <BookmarkSettingsList items={items} groups={groups} />
         <Heading size="xs" weight="normal">

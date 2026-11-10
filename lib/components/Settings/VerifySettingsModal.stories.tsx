@@ -24,7 +24,6 @@ import {
 const meta = {
   title: 'Settings/VerifySettingsModal',
   component: SettingsModal,
-  tags: ['beta'],
   parameters: {},
   args: {
     open: true,

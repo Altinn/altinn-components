@@ -5,7 +5,6 @@ import { DialogLayout } from './DialogLayout';
 const meta = {
   title: 'Inbox/Dialog/DialogLayout',
   component: DialogLayout,
-  tags: ['beta'],
   parameters: {},
 } satisfies Meta<typeof DialogLayout>;
 

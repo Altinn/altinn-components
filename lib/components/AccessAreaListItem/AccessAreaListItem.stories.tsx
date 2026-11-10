@@ -30,7 +30,7 @@ const children = (colorTheme: Color | undefined, showBadge?: boolean) => (
 const meta = {
   title: 'Access/AccessAreaListItem',
   component: AccessAreaListItem,
-  tags: ['autodocs', 'beta'],
+  tags: ['autodocs'],
   args: {
     id: testArea.id,
     size: 'md',

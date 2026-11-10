@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Flex, type SnackbarColor, SnackbarColorEnum, SnackbarItem, type SnackbarItemProps } from '..';
 
 const meta = {
-  title: 'Layout/Snackbar/SnackbarItem',
+  title: 'Feedback/Snackbar/SnackbarItem',
   component: SnackbarItem,
   tags: ['autodocs'],
   parameters: {},

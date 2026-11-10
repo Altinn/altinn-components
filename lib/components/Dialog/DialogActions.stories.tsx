@@ -15,7 +15,6 @@ const tertiary: DialogActionButtonProps[] = [
 const meta = {
   title: 'Inbox/Dialog/DialogActions',
   component: DialogActions,
-  tags: ['autodocsi', 'beta'],
   args: {
     items: [primary, secondary],
   },

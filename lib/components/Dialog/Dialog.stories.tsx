@@ -6,7 +6,6 @@ import { dialog, dialogActivityLog, transmissionHistory } from '../../../example
 const meta: Meta<typeof Dialog> = {
   title: 'Inbox/Dialog',
   component: Dialog,
-  tags: ['autodocsi', 'beta'],
   parameters: {},
   argTypes: { children: { control: 'text' } },
   args: {

@@ -2,9 +2,9 @@ import { BellIcon } from '@navikt/aksel-icons';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { List, NotificationItem } from '..';
 const meta = {
-  title: 'Notifications/NotificationItem',
+  title: 'Feedback/NotificationItem',
   component: NotificationItem,
-  tags: ['beta', 'autodocs'],
+  tags: ['autodocs'],
   parameters: {},
   args: {
     id: 'settings',

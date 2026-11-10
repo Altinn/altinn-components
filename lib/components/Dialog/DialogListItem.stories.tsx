@@ -13,7 +13,6 @@ const sizes = ['xl', 'lg', 'md', 'sm', 'xs'] as DialogListItemSize[];
 const meta = {
   title: 'Inbox/DialogListItem',
   component: DialogListItem,
-  tags: ['autodocsi', 'beta'],
   argTypes: {},
   args: {
     title: 'Title',

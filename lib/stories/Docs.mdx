@@ -1,15 +1,54 @@
-import { Meta, Controls, Primary, Canvas } from "@storybook/addon-docs/blocks";
+import { Meta } from "@storybook/addon-docs/blocks";
 
 <Meta title="Demo" />
 
-# Demo stories
+# Demo
 
-The demos use components from this library to illustrate pages and navigation. It is based on a scenario where a user have access to several other actors, including other people and deleted accounts.
+The demos are full pages built only from components in this library. They show how the components fit together in real Altinn flows: layout, navigation, account switching, lists, dialogs and settings. Use them to see composition and behaviour across pages. For props and variants, use the component stories.
 
-## Inbox
+## The scenario
 
-The inbox demo illustrates navigation between inbox pages, selecting a dialog, switching accounts and a simple version of searching the inbox. It uses `DialogList` and `Dialog`-components.
+All demos share one scenario. A person, Mathias Dyngeland, is logged in and can act on behalf of several other actors: other people, companies and some deleted units. Switching account in the header updates menus, colours and content across the demo.
 
-## User profile
+The pages are linked. Menu items, breadcrumbs and links move between demo stories, and the selected account follows along through the `accountId` URL parameter. Open a demo in its own tab (the "Open canvas in new tab" button) to click through it like a real site.
 
-The user profile demo uses the `AccountList` to manage accounts, and `SettingsList` for managing alerts and settings. It also includes an activity log page based on `Timeline`.
+## Demos
+
+### Inbox
+
+The end user's inbox, based on `DialogList`, `Dialog` and `Toolbar`. It covers the inbox page with filters, opening a dialog, the seen-by log and activity log modals, search with highlighted hits, and the empty states for each folder. Two stories show messages on top of the inbox: one with the cookie banner and survey, and one with a notification above the dialog list.
+
+The folder pages the inbox menu links to (Drafts, Sent, Archive, Trash) live in [Inbox/InboxPage](?path=/story/inbox-inboxpage--inbox).
+
+[Open the inbox demo](?path=/story/demo-inbox--inbox-page)
+
+### Profile
+
+The end user's own profile. It covers a dashboard, accounts the user can act for (`AccountList`), notification settings and saved searches (`SettingsList`), and a personal activity log. See [Demo/Profile](?path=/docs/demo-profile--docs) for a walkthrough of each page.
+
+[Open the profile demo](?path=/story/demo-profile--dashboard-page)
+
+### Admin
+
+Administration on behalf of a company: a dashboard (`Dashboard`), users and access, settings and an activity log. Several pages are placeholders that only show the layout and heading.
+
+[Open the admin demo](?path=/story/demo-admin--dashboard-page)
+
+### Portal
+
+Public information pages: front page, search, category, topic, service and article pages. They are built with `Article`, `SearchItem` and the page layout components.
+
+[Open the portal demo](?path=/story/demo-portal--home)
+
+### Error pages
+
+Error and status pages: page not found, unknown error, down for maintenance and logged out. Some variants include contact information.
+
+[Open the error pages](?path=/story/demo-error--page-not-found)
+
+## Where the code lives
+
+- Demo stories: `lib/stories/`
+- Data and hooks that drive them (`useInbox`, `useProfile`, `useAdmin` and others): `examples/`
+
+Demo stories are not part of the screenshot tests. Visual regressions are caught in the component stories.

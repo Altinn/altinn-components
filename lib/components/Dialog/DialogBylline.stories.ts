@@ -5,7 +5,7 @@ import { DialogByline } from './DialogByline';
 const meta = {
   title: 'Inbox/Dialog/DialogByline',
   component: DialogByline,
-  tags: ['autodocsi', 'beta'],
+  tags: ['autodocs'],
   args: {
     sender: skatt,
     recipient: {

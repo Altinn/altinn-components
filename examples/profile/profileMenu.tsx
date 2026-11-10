@@ -33,7 +33,7 @@ export const profileMenuItems: MenuItemProps[] = [
     id: 'bookmarks',
     groupId: '3',
     icon: BookmarkIcon,
-    title: 'Bokmerker',
+    title: 'Lagrede søk',
   },
   /*
   {

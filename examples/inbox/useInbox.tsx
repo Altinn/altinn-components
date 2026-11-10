@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { type UseInboxQuery, useFloatingDropdown, useInboxLayout, useInboxSearch, useInboxToolbar } from '../';
-import type { FloatingDropdownProps, GlobalHeaderProps, MenuItemProps } from '../../lib';
+import { type UseInboxQuery, useInboxLayout, useInboxSearch, useInboxToolbar } from '../';
+import type { GlobalHeaderProps, MenuItemProps } from '../../lib';
 import type {
   ActivityLogProps,
   AvatarProps,
@@ -52,7 +52,6 @@ export interface UseInboxProps extends LayoutProps {
   modalId?: string;
   modal?: UseInboxModalProps;
   closeModal?: () => void;
-  floatingDropdown?: FloatingDropdownProps;
 }
 
 function getAccountIdFromUrl(): string {
@@ -74,12 +73,6 @@ export const useInbox = ({
     accountId,
     companyCount,
   });
-  const floatingDropdown = useFloatingDropdown({
-    showNewFunctionalityText: 'Show new functionality',
-    helpPagesText: 'Help pages',
-    exitText: 'Exit',
-  });
-
   const archived = dialogs.filter((item) => item?.archived).map((item) => item.id) || [];
   const trashed = dialogs.filter((item) => item?.trashed).map((item) => item.id) || [];
   const seen = dialogs.filter((item) => item?.seenByLog).map((item) => item.id) || [];
@@ -333,7 +326,6 @@ export const useInbox = ({
   const searchTitle = items?.length > 0 ? items?.length + ' treff' : 'Ingen treff';
 
   return {
-    floatingDropdown,
     modal,
     modalId,
     closeModal: () => setModalId(''),

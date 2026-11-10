@@ -4,7 +4,7 @@ import { ArticleHeader, Byline } from '..';
 const meta = {
   title: 'Page/Article/ArticleHeader',
   component: ArticleHeader,
-  tags: ['autodocs', 'beta'],
+  tags: ['autodocs'],
   parameters: {},
   args: {
     title: 'Sidetittel',

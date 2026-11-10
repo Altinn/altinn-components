@@ -2,8 +2,7 @@ import type { ReactNode } from 'react';
 import colors from '../css/tokens/design-tokens-build/semantic/color.json';
 
 const meta = {
-  title: 'Demo/Color',
-  tags: ['beta'],
+  title: 'Brand/Color',
   parameters: {
     layout: 'fullscreen',
   },
