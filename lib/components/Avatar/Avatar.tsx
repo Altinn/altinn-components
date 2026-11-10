@@ -1,5 +1,5 @@
 'use client';
-import { TenancyIcon } from '@navikt/aksel-icons';
+import { RobotSmileIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import { type CSSProperties, type ReactElement, useState } from 'react';
 import { Skeleton } from '../Skeleton';
@@ -126,7 +126,7 @@ export const Avatar = ({
           )}
           {type === 'system' && !usingImageUrl && (
             <span className={styles.icon}>
-              <TenancyIcon className={styles.svg} />
+              <RobotSmileIcon className={styles.svg} />
             </span>
           )}
         </div>
