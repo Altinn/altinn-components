@@ -9,7 +9,7 @@ import { BulkButton, type BulkButtonProps } from './BulkButton';
 
 export interface BulkHeaderProps {
   color?: Color;
-  dismissIconAltText?: string;
+  dismissLabel?: string;
   title: string;
   hidden?: boolean;
   options?: BulkButtonProps[];
@@ -22,7 +22,7 @@ export const BulkHeader = ({
   hidden = false,
   title,
   dismissable = true,
-  dismissIconAltText = 'Close',
+  dismissLabel = 'Avbryt',
   options,
   onDismiss,
 }: BulkHeaderProps) => {
@@ -64,9 +64,9 @@ export const BulkHeader = ({
           </div>
 
           {dismissable && (
-            <Button onClick={onDismiss} className={styles.dismissButton} aria-label={dismissIconAltText}>
-              <XMarkIcon style={{ fontSize: '1.5em' }} />
-              <span data-size="sm">Avbryt</span>
+            <Button onClick={onDismiss} className={styles.dismissButton}>
+              <XMarkIcon aria-hidden className={styles.dismissIcon} />
+              <span data-size="sm">{dismissLabel}</span>
             </Button>
           )}
         </ButtonGroup>

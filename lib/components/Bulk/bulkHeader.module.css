@@ -5,18 +5,23 @@
   right: 0;
   bottom: auto;
   left: 0;
+  background-color: var(--ds-color-base-default);
+  color: var(--ds-color-base-contrast-default);
+  display: flex;
+  align-items: center;
+  height: 4.5rem;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.15s;
+  transform: translateY(0);
 }
 
 .header[aria-hidden="true"] {
   transform: translateY(-100%);
 }
 
-.header {
-  background-color: var(--ds-color-base-default);
-  color: var(--ds-color-base-contrast-default);
-  display: flex;
-  align-items: center;
-  height: 4.5rem;
+.header[aria-hidden="true"] * {
+  display: none;
 }
 
 .container {
@@ -30,35 +35,19 @@
   margin: 0 auto;
 }
 
-.header {
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 0.15s;
-  transform: translateY(0);
-}
-
-.summary {
-  display: flex;
-  align-items: center;
-}
-
 .title {
   font-size: 1rem;
   font-weight: normal;
   margin: 0 0.5rem;
 }
 
-.icon {
-  font-size: 1.5rem;
-}
-
-.header[aria-hidden="true"] * {
-  display: none;
-}
-
 .dismissButton {
   border: 1px solid;
   border-color: var(--ds-color-base-contrast-subtle);
+}
+
+.dismissIcon {
+  font-size: 1.5em;
 }
 
 .options {
