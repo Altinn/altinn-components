@@ -24,7 +24,7 @@ export const useInboxLayout = ({
     admin: 'demo-admin--dashboard-page',
     profile: 'demo-profile--dashboard-page',
     accounts: 'demo-profile--accounts-page',
-    alerts: 'demo-profile--alerts-page',
+    alerts: 'demo-profile--notifications',
     inbox: 'inbox-inboxpage--inbox',
     drafts: 'inbox-inboxpage--drafts',
     archive: 'inbox-inboxpage--archive',

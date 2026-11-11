@@ -45,7 +45,6 @@ import { servicesList } from '../../../examples/services/servicesList';
 const meta = {
   title: 'Settings/SettingsModal',
   component: SettingsModal,
-  tags: ['beta'],
   parameters: {},
   args: {
     open: true,

@@ -3,11 +3,16 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { FloatingDropdown } from './FloatingDropdown';
 
 const meta: Meta<typeof FloatingDropdown> = {
-  title: 'Components/Dropdown/FloatingDropdown',
+  title: 'Components/FloatingDropdown',
   component: FloatingDropdown,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'deprecated'],
   parameters: {
     layout: 'padded',
+    docs: {
+      description: {
+        component: '**Deprecated.** FloatingDropdown will be removed in a future release.',
+      },
+    },
   },
   args: {
     icon: PlusIcon,

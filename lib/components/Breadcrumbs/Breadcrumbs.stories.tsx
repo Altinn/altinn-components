@@ -4,7 +4,7 @@ import { Breadcrumbs } from '../';
 const meta = {
   title: 'Page/Breadcrumbs',
   component: Breadcrumbs,
-  tags: ['autodocs', 'beta'],
+  tags: ['autodocs'],
   parameters: {},
   args: {
     items: [

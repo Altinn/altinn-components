@@ -18,10 +18,6 @@ export const useProfileLayout = ({ accountId = 'user', pageId = 'profile' }): Pr
     accounts: 'settings-settingslist--account-settings',
     bookmarks: 'settings-settingslist--bookmark-settings',
     alerts: 'settings-settingslist--alert-settings',
-    contact: 'demo-profile--contact-page',
-    settings: 'demo-profile--settings-page',
-    access: 'demo-profile--access-page',
-    users: 'demo-profile--users-page',
     'activity-log': 'timeline-activitylog--profile-activity-log',
   };
 

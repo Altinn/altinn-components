@@ -8,7 +8,7 @@ import { UserListItem, type UserListItemProps } from './UserListItem';
 const meta = {
   title: 'Access/UserListItem',
   component: UserListItem,
-  tags: ['autodocs', 'beta'],
+  tags: ['autodocs'],
   parameters: {},
   args: {
     id: 'user-1',

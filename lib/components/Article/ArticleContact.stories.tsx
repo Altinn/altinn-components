@@ -4,7 +4,7 @@ import { ArticleContact } from '..';
 const meta = {
   title: 'Page/Article/ArticleContact',
   component: ArticleContact,
-  tags: ['autodocs', 'beta'],
+  tags: ['autodocs'],
   parameters: {},
   args: {
     title: 'Ta kontakt',

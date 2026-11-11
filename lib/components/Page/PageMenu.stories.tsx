@@ -5,7 +5,7 @@ import { PageMenu } from './PageMenu';
 const meta: Meta<typeof PageMenu> = {
   title: 'Page/PageMenu',
   component: PageMenu,
-  tags: ['autodocs', 'beta'],
+  tags: ['autodocs'],
   parameters: {},
   args: {
     items: [

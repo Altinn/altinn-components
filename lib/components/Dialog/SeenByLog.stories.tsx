@@ -6,7 +6,7 @@ import { skatt } from '../../../examples/avatar';
 const meta = {
   title: 'Inbox/Dialog/SeenByLog',
   component: SeenByLog,
-  tags: ['autodocs', 'beta'],
+  tags: ['autodocs'],
   parameters: {},
   args: {
     title: 'Sett av deg+4',

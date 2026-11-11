@@ -17,7 +17,6 @@ import { skatt } from '../../../examples/avatar';
 const meta = {
   title: 'Timeline/Timeline',
   component: Timeline,
-  tags: ['beta'],
   parameters: {},
   args: {},
 } satisfies Meta<typeof Timeline>;

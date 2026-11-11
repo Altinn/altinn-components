@@ -5,9 +5,9 @@ import { Snackbar } from './Snackbar.tsx';
 import { useSnackbar } from './useSnackbar.tsx';
 
 const meta = {
-  title: 'Layout/Snackbar',
+  title: 'Feedback/Snackbar',
   component: Snackbar,
-  tags: ['autodocs', 'beta'],
+  tags: ['autodocs'],
   parameters: {},
   args: {},
 } satisfies Meta<typeof Snackbar>;

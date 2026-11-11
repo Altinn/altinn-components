@@ -1,4 +1,4 @@
-import { BellIcon, CogIcon, HeartIcon } from '@navikt/aksel-icons';
+import { BellIcon, HeartIcon } from '@navikt/aksel-icons';
 import * as AccountListStories from '../components/Account/AccountList.stories';
 import * as ActivityLogStories from '../components/ActivityLog/ActivityLog.stories';
 import * as SettingsStories from '../components/Settings/SettingsList.stories';
@@ -7,7 +7,6 @@ import { useAccounts, useProfile, useSettings } from '../../examples';
 import {
   DashboardHeader,
   type DashboardHeaderProps,
-  Heading,
   Layout,
   PageBase,
   type SettingsItemProps,
@@ -16,7 +15,6 @@ import {
 
 const meta = {
   title: 'Demo/Profile',
-  tags: ['beta'],
   parameters: {
     layout: 'fullscreen',
   },
@@ -47,15 +45,9 @@ export const DashboardPage = () => {
       icon: BellIcon,
       title: 'Mine varslinger',
       description: 'Varslinger og varslingsprofiler.',
-      href: '/iframe.html?id=demo-profile--alerts-page',
+      href: '/iframe.html?id=demo-profile--notifications',
       groupId: '1',
       badge: { label: '3 profiler' },
-    },
-    {
-      icon: CogIcon,
-      title: 'Flere innstillinger',
-      href: '/iframe.html?id=demo-profile--settings-page',
-      as: 'a',
     },
   ].map((item) => ({
     ...item,
@@ -96,48 +88,26 @@ export const DashboardPage = () => {
 };
 
 export const AccountsPage = () => {
-  return <AccountListStories.AccountSettings />;
-};
-
-export const AccountsPageVirtualized = () => {
   const { layout } = useProfile({ pageId: 'accounts' });
   return (
-    <Layout {...layout}>
-      <AccountListStories.Virtualized />
-    </Layout>
+    <AccountListStories.ControlledPage
+      layout={layout}
+      title="Aktørinnstillinger"
+      collapsible={true}
+      contextMenu={true}
+      virtualized={true}
+    />
   );
 };
 
-export const AlertsPage = () => {
+export const Notifications = () => {
   return <SettingsStories.AlertSettings />;
 };
 
-export const BookmarksPage = () => {
+export const SavedSearches = () => {
   return <SettingsStories.BookmarkSettings />;
 };
 
 export const ActivityLogPage = () => {
   return <ActivityLogStories.ProfileActivityLog />;
-};
-
-export const UsersPage = () => {
-  const { layout } = useProfile({ pageId: 'users' });
-  return (
-    <Layout {...layout}>
-      <PageBase color="person">
-        <Heading size="xl">Brukere med fullmakt til din profil</Heading>
-      </PageBase>
-    </Layout>
-  );
-};
-
-export const AccessPage = () => {
-  const { layout } = useProfile({ pageId: 'access' });
-  return (
-    <Layout {...layout}>
-      <PageBase>
-        <Heading size="xl">Tilganger du har gitt til andre</Heading>
-      </PageBase>
-    </Layout>
-  );
 };

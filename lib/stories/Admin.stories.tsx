@@ -7,7 +7,7 @@ import { Breadcrumbs, Heading, Layout, PageBase, Toolbar } from '../components';
 
 const meta = {
   title: 'Demo/Admin',
-  tags: ['beta', 'autodocs'],
+  tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
   },

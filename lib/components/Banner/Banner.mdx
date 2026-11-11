@@ -1,7 +1,7 @@
-import { Meta, Canvas } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
 import * as BannerStories from "./Banner.stories";
 
-<Meta title="Banner" />
+<Meta of={BannerStories} />
 
 # The Banner
 
@@ -44,3 +44,7 @@ export const BetaBanner = () => {
   );
 };
 ```
+
+## Props
+
+<ArgTypes />

@@ -5,7 +5,7 @@ import { BookmarkSettingsItem, List, SettingsItem } from '..';
 const meta = {
   title: 'Settings/SettingsItem',
   component: SettingsItem,
-  tags: ['beta', 'autodocs'],
+  tags: ['autodocs'],
   parameters: {},
   args: {
     id: 'settings',

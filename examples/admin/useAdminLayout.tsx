@@ -13,7 +13,7 @@ export const useAdminLayout = ({ accountId = 'diaspora', pageId = 'admin' }): Ad
     admin: 'demo-admin--dashboard-page',
     profile: 'demo-profile--dashboard-page',
     accounts: 'demo-profile--accounts-page',
-    alerts: 'demo-profile--alerts-page',
+    alerts: 'demo-profile--notifications',
     inbox: 'demo-inbox--inbox-page',
     settings: 'demo-admin--settings-page',
     access: 'demo-admin--access-page',

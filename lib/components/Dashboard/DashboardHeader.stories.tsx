@@ -4,7 +4,7 @@ import { DashboardHeader, type DashboardHeaderProps } from '../';
 const meta = {
   title: 'Page/Dashboard/DashboardHeader',
   component: DashboardHeader,
-  tags: ['autodocs', 'beta'],
+  tags: ['autodocs'],
   parameters: {},
   args: {},
 } satisfies Meta<typeof DashboardHeader>;

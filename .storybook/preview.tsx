@@ -37,6 +37,8 @@ export const parameters = {
       order: [
         "Docs",
         "Layout",
+        "Components",
+        "Brand",
         "Account",
         "Search",
         "Menu",
