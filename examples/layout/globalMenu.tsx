@@ -15,6 +15,7 @@ import {
 import { accountMenu } from '../';
 import type { AccountMenuProps, MenuProps } from '../../lib';
 
+/** Items that go somewhere are links: pass `href`, or `as` for a router link. */
 export const desktopMenuItems: MenuProps['items'] = [
   {
     id: 'inbox',
@@ -22,6 +23,7 @@ export const desktopMenuItems: MenuProps['items'] = [
     size: 'lg',
     icon: InboxFillIcon,
     title: 'Innboks',
+    href: '#inbox',
     badge: { label: 'Beta', color: 'neutral', variant: 'base' },
 
     selected: true,
@@ -32,6 +34,7 @@ export const desktopMenuItems: MenuProps['items'] = [
     size: 'lg',
     icon: HandshakeFillIcon,
     title: 'Fullmakter',
+    href: '#access',
   },
   {
     id: 'forms',
@@ -39,6 +42,7 @@ export const desktopMenuItems: MenuProps['items'] = [
     size: 'lg',
     icon: MenuGridIcon,
     title: 'Alle skjema',
+    href: '#forms',
   },
   {
     id: 'search',
@@ -46,6 +50,7 @@ export const desktopMenuItems: MenuProps['items'] = [
     size: 'lg',
     icon: MagnifyingGlassIcon,
     title: 'Søk i Altinn',
+    href: '#search',
   },
   {
     id: 'startup',
@@ -53,6 +58,7 @@ export const desktopMenuItems: MenuProps['items'] = [
     size: 'sm',
     icon: Buildings2Icon,
     title: 'Starte og drive bedrift',
+    href: '#start-business',
   },
   {
     id: 'help',
@@ -60,6 +66,7 @@ export const desktopMenuItems: MenuProps['items'] = [
     size: 'sm',
     icon: ChatExclamationmarkIcon,
     title: 'Trenger du hjelp?',
+    href: '#help',
   },
   {
     id: 'profile',
@@ -67,6 +74,7 @@ export const desktopMenuItems: MenuProps['items'] = [
     size: 'sm',
     icon: PersonCircleIcon,
     title: 'Min profil',
+    href: '#profile',
   },
 ];
 
@@ -94,6 +102,7 @@ const mobileMenuItems = desktopMenu.items?.map((item) => {
           groupId: '2',
           icon: DocPencilIcon,
           title: 'Utkast',
+          href: '#drafts',
           badge: {
             label: '2',
           },
@@ -103,6 +112,7 @@ const mobileMenuItems = desktopMenu.items?.map((item) => {
           groupId: '2',
           icon: FileCheckmarkIcon,
           title: 'Sendt',
+          href: '#sent',
           badge: {
             label: '3',
           },
@@ -112,6 +122,7 @@ const mobileMenuItems = desktopMenu.items?.map((item) => {
           groupId: '3',
           icon: BookmarkIcon,
           title: 'Lagrede søk',
+          href: '#saved-searches',
           badge: {
             label: '5',
           },
@@ -121,12 +132,14 @@ const mobileMenuItems = desktopMenu.items?.map((item) => {
           groupId: '4',
           icon: ArchiveIcon,
           title: 'Arkiv',
+          href: '#archive',
         },
         {
           id: 'trash',
           groupId: '4',
           icon: TrashIcon,
           title: 'Papirkurv',
+          href: '#bin',
         },
       ],
     };

@@ -1,9 +1,9 @@
 'use client';
 import { ArrowUndoIcon, CheckmarkIcon } from '@navikt/aksel-icons';
-import { useMemo, useRef } from 'react';
-import { useEnterKey } from '../../hooks/useEnterKey.ts';
+import { useMemo } from 'react';
 import { type MenuItemProps, MenuItems, type MenuOptionProps } from '../Menu';
 import { useRootContext } from '../RootProvider';
+import { getCommonTexts } from '../RootProvider/commonTexts.ts';
 
 export interface LocaleSwitcherProps {
   title?: string;
@@ -13,36 +13,27 @@ export interface LocaleSwitcherProps {
   onToggle?: () => void;
 }
 
-export const LocaleSwitcher = ({
-  title = 'Select language',
-  options,
-  onSelect,
-  onToggle,
-  backLabel,
-}: LocaleSwitcherProps) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { currentId, closeAll } = useRootContext();
-  const expanded = currentId === 'locale';
+/** Buttons, not radios, since picking one applies it and closes the menu. */
+export const LocaleSwitcher = ({ title, options, onSelect, onToggle, backLabel }: LocaleSwitcherProps) => {
+  const { closeAll, languageCode } = useRootContext();
 
   const selectedValue = useMemo(() => {
     const checkedOption = options.find((option) => option.checked);
     return checkedOption?.value ?? options[0]?.value;
   }, [options]);
 
-  const itemsWithToggle = useMemo(() => {
-    return options.map((item) => {
-      const isChecked = item.value === selectedValue;
+  const languageItems = useMemo(() => {
+    return options.map(({ type: _type, checked: _checked, name: _name, value, ...item }): MenuItemProps => {
+      const isCurrent = value === selectedValue;
       return {
         ...item,
-        id: String(item.value),
-        tabIndex: 0,
+        id: String(value),
         groupId: 'locales',
-        role: 'radio',
-        name: 'locale',
-        checked: isChecked,
-        icon: isChecked ? CheckmarkIcon : ((<span aria-hidden="true" />) as MenuItemProps['icon']),
+        selected: isCurrent,
+        'aria-current': isCurrent ? 'true' : undefined,
+        icon: isCurrent ? CheckmarkIcon : ((<span aria-hidden="true" />) as MenuItemProps['icon']),
         onClick: () => {
-          onSelect?.(String(item.value));
+          onSelect?.(String(value));
           closeAll();
         },
       };
@@ -50,35 +41,19 @@ export const LocaleSwitcher = ({
   }, [options, onSelect, closeAll, selectedValue]);
 
   const group = {
-    locales: { title: title || 'Språk/language' },
+    locales: { title: title || getCommonTexts(languageCode).selectLanguage },
   };
 
-  useEnterKey((e) => {
-    if (expanded) {
-      e.preventDefault();
-      const activeItem = ref.current?.querySelector('[data-active="true"]') as HTMLElement | null;
-      if (activeItem) {
-        const isLink = activeItem.tagName === 'A' && activeItem.hasAttribute('href');
-        if (!isLink) {
-          activeItem.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-        } else {
-          activeItem.click();
-        }
-      }
-      closeAll();
-    }
-  });
-
   return (
-    <div ref={ref} data-testid="locale-switcher" role="radiogroup">
+    <div data-testid="locale-switcher">
       <MenuItems
         variant="default"
+        a11yMode="navigation"
         groups={group}
         items={[
           { onClick: onToggle, label: backLabel, as: 'button', icon: ArrowUndoIcon, id: 'back' },
-          ...itemsWithToggle,
+          ...languageItems,
         ]}
-        keyboardEvents={false}
       />
     </div>
   );

@@ -27,6 +27,7 @@ export const Searchbar = ({
   ...search
 }: SearchbarProps) => {
   const [inputHasFocus, setInputFocus] = useState<boolean>(false);
+  const [activeSuggestionId, setActiveSuggestionId] = useState<string | undefined>(undefined);
   const { previousId, openId } = useRootContext();
   const isDesktop = useIsDesktop();
 
@@ -69,7 +70,7 @@ export const Searchbar = ({
         expanded={expanded}
         onClose={onClose}
         tabIndex={tabIndex}
-        {...(autocomplete && { controlsId: 'searchbar-autocomplete' })}
+        {...(autocomplete && { controlsId: 'searchbar-autocomplete', activeDescendantId: activeSuggestionId })}
         onFocus={(event) => {
           search?.onFocus?.(event);
           if (!inputHasFocus) {
@@ -90,6 +91,7 @@ export const Searchbar = ({
           keyboardEvents={inputHasFocus}
           onSelect={onClose}
           id="searchbar-autocomplete"
+          onActiveItemIdChange={setActiveSuggestionId}
         />
       )}
     </SearchbarBase>

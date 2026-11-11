@@ -1,5 +1,7 @@
 import { memo } from 'react';
 import { SearchField, type SearchFieldProps } from '../Forms';
+import { useRootContext } from '../RootProvider';
+import { getCommonTexts } from '../RootProvider/commonTexts.ts';
 
 export interface ToolbarSearchProps extends SearchFieldProps {
   collapsible?: boolean;
@@ -13,10 +15,10 @@ export const ToolbarSearch = memo(
     hideLabel = true,
     value,
     name,
-    placeholder = 'Search',
+    placeholder,
     loading,
     collapsible,
-    clearButtonAltText = 'Clear search',
+    clearButtonAltText,
     onChange,
     onClear,
     onKeyDown,
@@ -25,6 +27,7 @@ export const ToolbarSearch = memo(
     disabled,
     htmlTitle,
   }: ToolbarSearchProps) => {
+    const texts = getCommonTexts(useRootContext().languageCode);
     return (
       <SearchField
         size="xs"
@@ -33,7 +36,7 @@ export const ToolbarSearch = memo(
         value={value}
         name={name}
         title={htmlTitle}
-        placeholder={placeholder}
+        placeholder={placeholder ?? texts.search}
         clearButtonAltText={clearButtonAltText}
         onChange={onChange}
         onClear={onClear}

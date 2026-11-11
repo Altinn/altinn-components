@@ -1,4 +1,5 @@
 import type { Meta } from '@storybook/react-vite';
+import { expect, userEvent, waitFor, within } from 'storybook/test';
 import { Badge, Flex, RootProvider } from '..';
 import type { LayoutProps } from '../';
 import { DialogList, Heading, Layout, List, type ListItemProps, PageBase, Toolbar } from '../';
@@ -78,6 +79,68 @@ export const Preview = (args: LayoutStoryArgs) => {
       </Layout>
     </RootProvider>
   );
+};
+
+/** The sidebar is navigation: lists of links. Group headings are covered by Menu/Accessibility. */
+export const SidebarIsNavigation = {
+  // Behaviour only, the look is covered by Preview.
+  parameters: { screenshot: { skip: true } },
+  render: (args: LayoutStoryArgs) => <Preview {...args} />,
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const sidebar = within(canvasElement).getByRole('navigation', { name: 'Sidemeny' });
+
+    // Every item goes somewhere, so every item is a link, and nothing is a menu.
+    expect(within(sidebar).getByRole('link', { name: 'Innboks' })).toHaveAttribute('aria-current', 'page');
+    expect(within(sidebar).getByRole('link', { name: 'Nytt skjema' })).toHaveAttribute('href');
+    expect(within(sidebar).queryAllByRole('button')).toHaveLength(0);
+    expect(sidebar.querySelectorAll('[role="menu"], [role="menuitem"], [aria-expanded]')).toHaveLength(0);
+
+    // Each group of links is a list of its own.
+    expect(within(sidebar).getAllByRole('list').length).toBeGreaterThan(1);
+  },
+};
+
+/** On small screens the global menu covers the page. The header stays usable, the page behind does not. */
+export const MenuCoversPageOnSmallScreens = {
+  globals: {
+    viewport: { value: 'mobile1' },
+  },
+  // storycap captures after the viewport has been reset, so a baseline here would show the desktop rendering.
+  parameters: { screenshot: { skip: true } },
+  render: (args: LayoutStoryArgs) => <Preview {...args} />,
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const doc = canvasElement.ownerDocument;
+    expect(window.innerWidth).toBeLessThan(1024);
+
+    const menuButton = doc.querySelector('#header-menu-root > button') as HTMLElement;
+    const main = doc.getElementById('main-content') as HTMLElement;
+    const header = doc.querySelector('header') as HTMLElement;
+    expect(main.closest('[inert]')).toBeNull();
+
+    await userEvent.click(menuButton);
+    await waitFor(() => expect(menuButton).toHaveAttribute('aria-expanded', 'true'));
+
+    // The page below the header cannot be reached. The header, with the button that closes the menu, can.
+    expect(main.closest('[inert]')).not.toBeNull();
+    expect(header.parentElement?.querySelector(':scope > footer')?.closest('[inert]')).not.toBeNull();
+    expect(header.closest('[inert]')).toBeNull();
+    expect(doc.getElementById('header-menu-panel')).not.toHaveAttribute('aria-modal');
+
+    await userEvent.click(menuButton);
+    await waitFor(() => expect(menuButton).toHaveAttribute('aria-expanded', 'false'));
+    expect(doc.querySelectorAll('[inert]')).toHaveLength(0);
+
+    // The same goes for the account selector, which covers the page with a backdrop.
+    const accountButton = doc.querySelector('button[aria-haspopup="dialog"]') as HTMLElement;
+    await userEvent.click(accountButton);
+    await waitFor(() => expect(accountButton).toHaveAttribute('aria-expanded', 'true'));
+    expect(main.closest('[inert]')).not.toBeNull();
+    expect(header.closest('[inert]')).toBeNull();
+    expect(doc.getElementById('header-account')?.closest('[inert]')).toBeNull();
+
+    await userEvent.keyboard('{Escape}');
+    await waitFor(() => expect(main.closest('[inert]')).toBeNull());
+  },
 };
 
 export const LogInView = (args: LayoutStoryArgs) => {
@@ -426,7 +489,9 @@ export const InboxLayout = (args: LayoutStoryArgs) => {
     <RootProvider>
       <Layout {...args} {...layout} sidebar={sidebar} header={header} breadcrumbs={breadcrumbs}>
         <PageBase>
-          <Heading size="xl">Page title</Heading>
+          <Heading size="xl" as="h1">
+            Page title
+          </Heading>
           <Toolbar {...toolbar} />
           <DialogList {...inboxSection} />
         </PageBase>

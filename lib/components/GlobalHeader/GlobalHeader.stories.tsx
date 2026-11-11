@@ -1,5 +1,6 @@
 import type { Meta } from '@storybook/react-vite';
 import { useState } from 'react';
+import { expect, userEvent, waitFor, within } from 'storybook/test';
 import {
   getAuthorizedPartiesData,
   getSyntheticAuthorizedPartiesData,
@@ -65,6 +66,81 @@ export const LoggedIn = () => {
       <GlobalHeader globalMenu={globalMenu} accountSelector={accountSelector} />
     </RootProvider>
   );
+};
+
+export const MenuIsNavigation = {
+  // Behaviour only, the look is covered by the stories above.
+  parameters: { screenshot: { skip: true } },
+  render: () => {
+    const header = useGlobalHeader({ state: 'loggedIn' });
+    return (
+      <RootProvider>
+        <GlobalHeader {...(header as GlobalHeaderProps)} />
+      </RootProvider>
+    );
+  },
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const doc = canvasElement.ownerDocument;
+    const menuButton = doc.querySelector('#header-menu-root > button') as HTMLElement;
+    const panel = doc.getElementById('header-menu-panel') as HTMLElement;
+
+    // The button shows and hides navigation. It does not claim to open a menu.
+    expect(menuButton).not.toHaveAttribute('aria-haspopup');
+    expect(menuButton).toHaveAttribute('aria-expanded', 'false');
+    await userEvent.click(menuButton);
+    await waitFor(() => expect(menuButton).toHaveAttribute('aria-expanded', 'true'));
+    expect(menuButton).toHaveAttribute('aria-controls', panel.id);
+
+    // The panel has no role. Inside is a nav with plain lists, and nothing is a menu.
+    expect(panel).not.toHaveAttribute('role');
+    expect(panel).not.toHaveAttribute('aria-modal');
+    const nav = within(panel).getByRole('navigation');
+    expect(within(nav).getAllByRole('list').length).toBeGreaterThan(0);
+    expect(within(nav).getAllByRole('listitem').length).toBeGreaterThan(0);
+    expect(
+      panel.querySelectorAll(
+        '[role="menu"], [role="menuitem"], [role="menuitemradio"], [role="radiogroup"], [aria-haspopup]',
+      ),
+    ).toHaveLength(0);
+
+    // Items that go somewhere are links. The language item opens the language list in the menu, so it is a button.
+    expect(within(nav).getByRole('link', { name: 'Innboks' })).toHaveAttribute('href');
+    expect(within(nav).getByRole('link', { name: 'Min profil' })).toBeInTheDocument();
+    expect(within(nav).queryByRole('link', { name: 'Språk/language' })).toBeNull();
+    expect(within(nav).getByRole('button', { name: 'Språk/language' })).toBeInTheDocument();
+
+    // Focus stays on the button, and Tab leads into the navigation right after it.
+    expect(menuButton).toHaveFocus();
+    await userEvent.tab();
+    expect(nav.contains(doc.activeElement)).toBe(true);
+
+    // The language list replaces the menu. Focus follows to its back button.
+    await userEvent.click(within(nav).getByRole('button', { name: 'Språk/language' }));
+    const current = await within(panel).findByRole('button', { name: 'Bokmål' });
+    await waitFor(() => expect(panel.querySelector('[data-id]')).toHaveFocus());
+    expect(within(panel).getByRole('heading', { name: 'Språk/language' })).toBeInTheDocument();
+    expect(current).toHaveAttribute('aria-current', 'true');
+    expect(within(panel).getByRole('button', { name: 'English' })).not.toHaveAttribute('aria-current');
+    // Picking a language changes a setting and goes nowhere, so the languages stay buttons.
+    expect(within(panel).queryAllByRole('link')).toHaveLength(0);
+
+    // Going back, focus returns to the language item.
+    await userEvent.click(panel.querySelector('[data-id]') as HTMLElement);
+    await waitFor(() => expect(within(panel).getByRole('button', { name: 'Språk/language' })).toHaveFocus());
+
+    // Escape closes the navigation and puts focus back on the button.
+    await userEvent.keyboard('{Escape}');
+    await waitFor(() => expect(menuButton).toHaveAttribute('aria-expanded', 'false'));
+    await waitFor(() => expect(menuButton).toHaveFocus());
+
+    // The account button says what it is for, and that it opens a dialog.
+    const accountButton = within(canvasElement).getByRole('button', { name: /^Bytt aktør: \S/ });
+    expect(accountButton).toHaveAttribute('aria-haspopup', 'dialog');
+    expect(accountButton).toHaveAttribute('aria-expanded', 'false');
+    await userEvent.click(accountButton);
+    await waitFor(() => expect(accountButton).toHaveAttribute('aria-controls', 'header-account'));
+    expect(doc.getElementById('header-account')?.tagName).toBe('DIALOG');
+  },
 };
 
 export const CompanyAccount = () => {

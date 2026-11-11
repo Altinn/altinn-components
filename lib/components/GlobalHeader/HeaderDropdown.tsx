@@ -21,6 +21,8 @@ export const HeaderDropdown = ({ id, open, onClose, trigger, children }: HeaderD
       variant="drawer-dropdown"
       placement="right"
       size="md"
+      modal={false}
+      autoFocus={false}
     >
       {children}
     </Dropdown>

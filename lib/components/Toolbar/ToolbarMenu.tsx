@@ -22,9 +22,9 @@ export interface ToolbarMenuProps extends Omit<MenuProps, 'variant'> {
 export const ToolbarMenu = memo(
   ({
     disabled,
-    label = 'Label',
+    label,
     variant = 'solid',
-    title = 'Title',
+    title,
     htmlTitle,
     items = [],
     dropdownSize = 'sm',
@@ -33,7 +33,12 @@ export const ToolbarMenu = memo(
     onOpenChange,
     ...props
   }: ToolbarMenuProps) => {
-    const ctrl = useDropdownMenuController({ id, returnFocusOnClose: true });
+    const a11yMode = props.searchable ? 'combobox' : 'listbox';
+    const ctrl = useDropdownMenuController({
+      id,
+      popup: props.searchable ? 'dialog' : 'listbox',
+      variant: 'drawer-dropdown',
+    });
     const prevOpenRef = useRef(ctrl.open);
 
     useEffect(() => {
@@ -41,7 +46,6 @@ export const ToolbarMenu = memo(
       prevOpenRef.current = ctrl.open;
       onOpenChange?.(ctrl.open);
     }, [ctrl.open, onOpenChange]);
-    const a11yMode = props.searchable ? 'combobox' : 'menu';
     const handleSelect = useCallback(
       (item: MenuItemProps) => {
         onSelectId?.(item?.id ?? '');
@@ -70,9 +74,8 @@ export const ToolbarMenu = memo(
     return (
       <span className={styles.menu}>
         <Dropdown
-          id={id}
-          variant="drawer-dropdown"
-          title={title}
+          {...ctrl.dropdownProps}
+          title={title ?? label}
           size={dropdownSize}
           trigger={
             <Button
@@ -80,18 +83,16 @@ export const ToolbarMenu = memo(
               variant={variant}
               title={htmlTitle}
               onClick={ctrl.toggleMenu}
-              aria-expanded={ctrl.open}
-              aria-haspopup="menu"
-              aria-controls={ctrl.open ? ctrl.menuId : undefined}
+              {...ctrl.triggerProps}
               ref={ctrl.triggerRef as React.Ref<HTMLButtonElement>}
             >
+              {title && title !== label && <span className="ds-sr-only">{title}: </span>}
               <span className={styles.label}>{label}</span>
               <ChevronUpDownIcon aria-hidden="true" focusable="false" />
             </Button>
           }
           open={ctrl.open}
           onClose={() => ctrl.setOpen(false)}
-          {...(props?.searchable ? {} : ctrl.dropdownA11yProps)}
         >
           <Menu
             {...props}
@@ -99,8 +100,9 @@ export const ToolbarMenu = memo(
             keyboardEvents={ctrl.open}
             a11yMode={a11yMode}
             open={ctrl.open}
-            scrollToTopOnOpen={props.virtualized}
-            {...(a11yMode === 'combobox' ? { id: ctrl.menuId } : ctrl.menuA11yProps)}
+            scrollToTopOnOpen
+            {...ctrl.listProps}
+            aria-label={title}
           />
         </Dropdown>
       </span>

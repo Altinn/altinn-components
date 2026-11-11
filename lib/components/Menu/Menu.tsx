@@ -25,6 +25,10 @@ export const Menu = ({
   scrollRefStyles = {},
   onActiveItemIdChange,
   a11yMode = 'menu',
+  keyboardScope,
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledby,
+  headingLevel,
   open,
   scrollToTopOnOpen,
   autoFocusList,
@@ -43,6 +47,8 @@ export const Menu = ({
   const applicableGroups = searchable ? { ...groups, ...autoSearch.groups } : groups;
   const autoActivateFirstItem = a11yMode !== 'combobox';
 
+  /** In the page from the start, so the first change is announced. */
+  const searchStatus = searchable && <MenuLoadingStatus label={loading ? '' : autoSearch.statusText} />;
   const loadingStatus = loading && <MenuLoadingStatus label={loadingLabel} />;
 
   if (virtualized) {
@@ -62,6 +68,10 @@ export const Menu = ({
           scrollRefStyles={scrollRefStyles}
           onActiveItemIdChange={onActiveItemIdChange}
           a11yMode={a11yMode}
+          keyboardScope={keyboardScope}
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledby}
+          headingLevel={headingLevel}
           open={open}
           scrollToTopOnOpen={scrollToTopOnOpen}
           autoActivateFirstItem={autoActivateFirstItem}
@@ -70,6 +80,7 @@ export const Menu = ({
           loadingCount={loadingCount}
           loadingTitle={loadingTitle}
         />
+        {searchStatus}
         {loadingStatus}
       </>
     );
@@ -91,6 +102,10 @@ export const Menu = ({
         scrollRefStyles={scrollRefStyles}
         onActiveItemIdChange={onActiveItemIdChange}
         a11yMode={a11yMode}
+        keyboardScope={keyboardScope}
+        aria-label={ariaLabel}
+        aria-labelledby={ariaLabelledby}
+        headingLevel={headingLevel}
         open={open}
         scrollToTopOnOpen={scrollToTopOnOpen}
         autoActivateFirstItem={autoActivateFirstItem}
@@ -99,6 +114,7 @@ export const Menu = ({
         loadingCount={loadingCount}
         loadingTitle={loadingTitle}
       />
+      {searchStatus}
       {loadingStatus}
     </>
   );

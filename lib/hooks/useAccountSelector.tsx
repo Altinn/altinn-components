@@ -1,5 +1,5 @@
 import { HeartFillIcon, HeartIcon } from '@navikt/aksel-icons';
-import { useMemo, useRef } from 'react';
+import { useLayoutEffect, useMemo, useRef } from 'react';
 import { type AccountMenuItemProps, type AccountSelectorProps, Button, type MenuGroupProps } from '../components';
 import { formatDate, formatDisplayName, formatOrgNo } from '../functions';
 import { useIsDesktop } from './useIsDesktop';
@@ -327,30 +327,49 @@ export const useAccountSelector = ({
  * Reads the toggle callback from a ref at click time, so the parent memo
  * doesn't need the callback in its dependency array.
  */
+/** The favorite toggle to focus once its account has moved to another group. */
+let pendingFavoriteFocus: { partyUuid: string; isFavorite: boolean; until: number } | undefined;
+
 const FavoriteButton = ({
   partyUuid,
+  name,
   isFavorite,
   toggleFavoriteRef,
   texts,
 }: {
   partyUuid: string;
+  name?: string;
   isFavorite?: boolean;
   toggleFavoriteRef?: React.RefObject<((accountId: string) => void) | undefined>;
   texts: ReturnType<typeof getTexts>;
-}) => (
-  <Button
-    rounded
-    variant="ghost"
-    aria-label={isFavorite ? texts.remove_from_favorites : texts.add_to_favorites}
-    onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-      e.stopPropagation();
-      toggleFavoriteRef?.current?.(partyUuid);
-    }}
-    size="xs"
-  >
-    {isFavorite ? <HeartFillIcon /> : <HeartIcon />}
-  </Button>
-);
+}) => {
+  const ref = useRef<HTMLButtonElement>(null);
+
+  useLayoutEffect(() => {
+    const pending = pendingFavoriteFocus;
+    if (!pending || pending.partyUuid !== partyUuid || pending.isFavorite !== Boolean(isFavorite)) return;
+    pendingFavoriteFocus = undefined;
+    if (Date.now() > pending.until) return;
+    ref.current?.focus({ preventScroll: false });
+  }, [partyUuid, isFavorite]);
+
+  return (
+    <Button
+      ref={ref}
+      rounded
+      variant="ghost"
+      aria-label={[isFavorite ? texts.remove_from_favorites : texts.add_to_favorites, name].filter(Boolean).join(': ')}
+      onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation();
+        pendingFavoriteFocus = { partyUuid, isFavorite: !isFavorite, until: Date.now() + 10000 };
+        toggleFavoriteRef?.current?.(partyUuid);
+      }}
+      size="xs"
+    >
+      {isFavorite ? <HeartFillIcon aria-hidden="true" /> : <HeartIcon aria-hidden="true" />}
+    </Button>
+  );
+};
 
 /**
  * Converts an AuthorizedParty object into an AccountMenuItemProps object
@@ -404,6 +423,7 @@ const getAccountItemData = (
   const controls = !isSelf ? (
     <FavoriteButton
       partyUuid={party?.partyUuid}
+      name={name}
       isFavorite={isFavorite}
       toggleFavoriteRef={toggleFavoriteRef}
       texts={texts}
@@ -495,8 +515,8 @@ const getTexts = (languageCode: string | undefined) => {
         account_orgs: 'Virksomheter',
         account_persons: 'Personer',
         account_favorites: 'Favoritter',
-        add_to_favorites: 'Legg til i favorittar',
-        remove_from_favorites: 'Fjern frå favorittar',
+        add_to_favorites: 'Legg til i favoritter',
+        remove_from_favorites: 'Fjern fra favoritter',
         you: 'Deg',
         org_no: 'Org.nr',
         birthdate: 'Født',
