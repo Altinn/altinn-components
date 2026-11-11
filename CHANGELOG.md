@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.80.0](https://github.com/Altinn/altinn-components/compare/v0.79.2...v0.80.0) (2026-11-11)
+
+
+### Features
+
+* **Avatar:** Replace system user Avatar icon with RobotSmileIcon ([#1478](https://github.com/Altinn/altinn-components/issues/1478)) ([be4971b](https://github.com/Altinn/altinn-components/commit/be4971b43107925d8f95db88cc97860b645d37e5))
+
+
+### Bug Fixes
+
+* **SkyraSurvey:** point at skyra-survey.js captured 2026-11-01 ([#1454](https://github.com/Altinn/altinn-components/issues/1454)) ([d6a4a45](https://github.com/Altinn/altinn-components/commit/d6a4a45e459f2f0741a090fcd5cf013e0909244b))
+
+
+### Miscellaneous Chores
+
+* add VS Code settings to format with Biome ([#1476](https://github.com/Altinn/altinn-components/issues/1476)) ([d68a913](https://github.com/Altinn/altinn-components/commit/d68a9136156f6a9fb2b8d77e45b4b5d895083466))
+* **storybook:** clean up overlapping and outdated stories ([#1475](https://github.com/Altinn/altinn-components/issues/1475)) ([38adc66](https://github.com/Altinn/altinn-components/commit/38adc66802779887eed7ea9acad125435f282e5c))
+
 ## [0.79.2](https://github.com/Altinn/altinn-components/compare/v0.79.1...v0.79.2) (2026-11-03)
 
 
