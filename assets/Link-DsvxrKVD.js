@@ -1,1 +1,0 @@
-var l=Object.defineProperty;var a=(n,s)=>l(n,"name",{value:s,configurable:!0});import{a9 as c,a6 as i,q as k}from"./iframe-CfESZwGq.js";const x="_link_1n9mi_1",m={link:x},p=c.forwardRef(a(function({as:s="a",children:t,size:r,...e},o){return i.jsx(k,{className:m.link,"data-size":r,asChild:!0,children:i.jsx(s,{...e,ref:o,children:t})})},"Link2"));export{p as L};
