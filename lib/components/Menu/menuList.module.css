@@ -5,6 +5,10 @@
   margin: 0;
 }
 
+.list[data-menu-focus]:focus {
+  outline: none;
+}
+
 .list[data-variant="default"] {
   --dsc-item-background: var(--ds-color-surface-default);
   --dsc-item-background--hover: var(--ds-color-surface-hover);

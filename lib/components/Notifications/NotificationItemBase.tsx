@@ -84,7 +84,7 @@ export const NotificationItemBase = ({
         </ListItemLink>
         <NotificationItemControls
           className={styles.controls}
-          contextMenu={contextMenu}
+          contextMenu={contextMenu && typeof title === 'string' ? { label: title, ...contextMenu } : contextMenu}
           dismissable={dismissable}
           dismissLabel={dismissLabel}
           onDismiss={onDismiss}

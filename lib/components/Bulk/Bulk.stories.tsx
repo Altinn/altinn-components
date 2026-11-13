@@ -175,7 +175,9 @@ export const Default = ({
           onDismiss={unselectAll}
           color={maxItemsReached ? 'warning' : 'company'}
         />
-        <Heading size="xl">Innboks</Heading>
+        <Heading size="xl" as="h1">
+          Innboks
+        </Heading>
         <Toolbar {...toolbar} search={{ value: 'Skatt', collapsible: true }} disabled={bulkMode} />
         {results && <DialogList items={items} groups={results?.groups} />}
         <BulkFooter hidden={!bulkMode} actions={bulkActions} />

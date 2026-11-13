@@ -283,9 +283,12 @@ ControlledState.play = async ({ canvasElement }: { canvasElement: HTMLElement })
   // Prefer asserting ARIA state over visibility
   await waitFor(() => expect(input).toHaveAttribute('aria-expanded', 'true'));
 
-  const list = canvas.getByRole('group');
-  const items = within(list).getAllByRole('menuitem');
+  // The suggestions are options in a listbox that the search field controls.
+  const list = canvas.getByRole('listbox');
+  expect(input).toHaveAttribute('aria-controls', list.id);
+  const items = within(list).getAllByRole('option');
   expect(items.length).toBeGreaterThanOrEqual(1);
+  expect(canvasElement.querySelectorAll('[role="menuitem"], [role="menu"]')).toHaveLength(0);
 
   await user.click(canvas.getByLabelText('Skattemelding 2024'));
 
@@ -301,9 +304,11 @@ ControlledState.play = async ({ canvasElement }: { canvasElement: HTMLElement })
 
   await user.keyboard('{ArrowDown}{ArrowDown}');
 
+  // Focus stays in the field, which points out the active suggestion.
   await waitFor(() => {
     const active = canvasElement.querySelector('[data-active="true"]');
     expect(active).toBeTruthy();
+    expect(input).toHaveAttribute('aria-activedescendant', active?.id);
   });
 
   await user.keyboard('{Enter}');

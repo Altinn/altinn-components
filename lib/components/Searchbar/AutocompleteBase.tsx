@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import styles from './autocompleteBase.module.css';
 
 export interface AutocompleteBaseProps {
+  /** @deprecated No effect. */
   id?: string;
   className?: string;
   expanded?: boolean;
@@ -10,10 +11,16 @@ export interface AutocompleteBaseProps {
   ref?: React.Ref<HTMLDivElement>;
 }
 
-export const AutocompleteBase = ({ expanded, children, className, ref, id }: AutocompleteBaseProps) => {
+export const AutocompleteBase = ({ expanded, children, className, ref }: AutocompleteBaseProps) => {
   return (
-    <nav className={cx(styles.autocomplete, className)} aria-expanded={expanded} data-size="sm" ref={ref} {...{ id }}>
+    <div
+      className={cx(styles.autocomplete, className)}
+      data-expanded={expanded}
+      data-size="sm"
+      data-autocomplete="true"
+      ref={ref}
+    >
       {children}
-    </nav>
+    </div>
   );
 };

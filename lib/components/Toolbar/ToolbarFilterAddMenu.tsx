@@ -1,5 +1,4 @@
 import { PlusIcon } from '@navikt/aksel-icons';
-import { useEffect, useRef } from 'react';
 import { Button } from '../Button';
 import { Dropdown, type DropdownProps } from '../Dropdown';
 import { Menu } from '../Menu';
@@ -25,48 +24,29 @@ export const ToolbarFilterAddMenu = ({
   title,
   dropdownSize = 'sm',
 }: ToolbarFilterAddMenuProps) => {
-  const ctrl = useDropdownMenuController({ id: 'tool-filter-add' });
-  const prevOpenRef = useRef(open);
-  const lastCloseHadNestedOpenRef = useRef(false);
-  const addItems = items?.map((filter) => ({
+  const ctrl = useDropdownMenuController({ id: 'tool-filter-add', popup: 'menu', variant: 'drawer-dropdown', open });
+  const addItems = items?.map(({ items: _options, ...filter }) => ({
     linkIcon: true,
     ...filter,
     onClick: () => onAdd?.(filter?.name ?? ''),
   }));
 
-  useEffect(() => {
-    const wasOpen = prevOpenRef.current;
-    prevOpenRef.current = open;
-
-    if (wasOpen && !open) {
-      ctrl?.triggerRef?.current?.focus();
-    }
-  }, [open, ctrl.triggerRef]);
-
   if (!addItems?.length) {
     return null;
   }
 
-  const handleClose = () => {
-    const root = document.getElementById(ctrl.menuId);
-    lastCloseHadNestedOpenRef.current = Boolean(root?.querySelector('[aria-haspopup="menu"][aria-expanded="true"]'));
-    onClose();
-  };
-
   return (
     <Dropdown
-      variant="drawer-dropdown"
+      {...ctrl.dropdownProps}
       size={dropdownSize}
-      title={title}
+      title={title ?? label}
       trigger={
         <Button
           variant="secondary"
           style={{
             borderStyle: 'dashed',
           }}
-          aria-haspopup="menu"
-          aria-expanded={open}
-          aria-controls={open ? ctrl.menuId : undefined}
+          {...ctrl.triggerProps}
           onClick={onToggle}
           ref={ctrl.triggerRef as React.Ref<HTMLButtonElement>}
         >
@@ -75,10 +55,17 @@ export const ToolbarFilterAddMenu = ({
         </Button>
       }
       open={open}
-      onClose={handleClose}
-      {...ctrl.dropdownA11yProps}
+      onClose={onClose}
     >
-      <Menu groups={groups} items={addItems} maxLevels={1} keyboardEvents={open} open={open} {...ctrl.menuA11yProps} />
+      <Menu
+        groups={groups}
+        items={addItems}
+        maxLevels={1}
+        keyboardEvents={open}
+        open={open}
+        a11yMode="menu"
+        {...ctrl.listProps}
+      />
     </Dropdown>
   );
 };

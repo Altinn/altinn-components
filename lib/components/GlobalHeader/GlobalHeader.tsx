@@ -44,7 +44,7 @@ export const GlobalHeader = ({
   disableGlobalMenu,
   onLoginClick,
 }: GlobalHeaderProps) => {
-  const { currentId, toggleId, closeAll } = useRootContext();
+  const { currentId, toggleId, closeAll, languageCode } = useRootContext();
 
   const onToggleAccountMenu = () => {
     window.scrollTo(0, 0);
@@ -65,7 +65,7 @@ export const GlobalHeader = ({
   return (
     <header className={styles.header} data-current-id={currentId}>
       <div className={styles.container}>
-        <nav className={styles.nav} aria-label="hovednavigasjon">
+        <nav className={styles.nav} aria-label={getTexts(languageCode).navigation}>
           <HeaderLogo {...logo} badge={badge} className={styles.logo} />
           {accountSelector && (
             <>
@@ -81,6 +81,7 @@ export const GlobalHeader = ({
                 expanded={accountSelectionOpen}
                 loading={accountSelector.loading}
                 disableAccountSelection={disableAccountSelection}
+                aria-controls={accountSelectionOpen && !disableAccountSelection ? 'header-account' : undefined}
               />
               {!disableAccountSelection && (
                 <HeaderDrawer
@@ -111,6 +112,7 @@ export const GlobalHeader = ({
                 expanded={menuOpen}
                 disabled={disableGlobalMenu}
                 label={globalMenu?.menuLabel}
+                aria-controls={menuOpen ? 'header-menu-panel' : undefined}
               />
             }
           >
@@ -126,4 +128,17 @@ export const GlobalHeader = ({
       </div>
     </header>
   );
+};
+
+// TODO: Move to a common texts files when i18next is added
+// This is only a temporary solution for providing texts in different languages in a very simple POC
+const getTexts = (languageCode: string | undefined) => {
+  switch (languageCode) {
+    case 'nn':
+      return { navigation: 'Hovudnavigasjon' };
+    case 'en':
+      return { navigation: 'Main navigation' };
+    default:
+      return { navigation: 'Hovednavigasjon' };
+  }
 };

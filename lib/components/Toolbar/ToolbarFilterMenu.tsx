@@ -1,4 +1,4 @@
-import { type ElementType, useEffect, useRef } from 'react';
+import type { ElementType } from 'react';
 import type { ButtonProps } from '../Button';
 import { Dropdown, type DropdownProps } from '../Dropdown';
 import { Menu } from '../Menu';
@@ -53,17 +53,14 @@ export const ToolbarFilterMenu = ({
   variant: customVariant,
   dropdownSize = 'sm',
 }: ToolbarFilterMenuProps) => {
-  const prevOpenRef = useRef(open);
-  const ctrl = useDropdownMenuController({ id: `toolbar-filter-menu-${name}` });
-
-  useEffect(() => {
-    const wasOpen = prevOpenRef.current;
-    prevOpenRef.current = open;
-
-    if (wasOpen && !open) {
-      ctrl?.triggerRef?.current?.focus();
-    }
-  }, [open, ctrl.triggerRef]);
+  /** With a search field or a custom filter, the panel is a dialog. */
+  const a11yMode = searchable ? 'combobox' : 'listbox';
+  const ctrl = useDropdownMenuController({
+    id: `toolbar-filter-menu-${name}`,
+    popup: searchable || as ? 'dialog' : 'listbox',
+    variant: 'drawer-dropdown',
+    open,
+  });
 
   const onFilterItemSelect = (option: FilterProps['items'][number]) => {
     const type = option.role === 'radio' ? 'radio' : 'checkbox';
@@ -84,8 +81,7 @@ export const ToolbarFilterMenu = ({
   const isActive = filterValue.length > 0 || filterState?.[name]?.length;
   const variant = isActive ? 'tinted' : 'outline';
   const FilterMenu = as || Menu;
-  const a11yMode = searchable ? 'combobox' : 'menu';
-  const menuControlsId = !as && a11yMode === 'menu' && open ? ctrl.menuId : undefined;
+  const dropdownTitle = title ?? label;
 
   /** Remove the filter if filterState is empty or no options are checked */
 
@@ -108,7 +104,6 @@ export const ToolbarFilterMenu = ({
         removable
         variant={customVariant || variant}
         removeLabel={removeLabel}
-        open={open}
         htmlTitle={htmlTitle}
       >
         {label}
@@ -119,10 +114,9 @@ export const ToolbarFilterMenu = ({
   if (removable) {
     return (
       <Dropdown
-        useFixedPosition
+        {...ctrl.dropdownProps}
         submitLabel={submitLabel}
-        title={title}
-        variant="drawer-dropdown"
+        title={dropdownTitle}
         size={dropdownSize}
         trigger={
           <ToolbarFilterButton
@@ -132,8 +126,8 @@ export const ToolbarFilterMenu = ({
             removable
             variant={customVariant || variant}
             removeLabel={removeLabel}
-            open={open}
-            menuId={menuControlsId}
+            purpose={title}
+            triggerProps={ctrl.triggerProps}
             htmlTitle={htmlTitle}
             ref={ctrl.triggerRef as React.Ref<HTMLButtonElement>}
           >
@@ -142,7 +136,6 @@ export const ToolbarFilterMenu = ({
         }
         open={open}
         onClose={onRemovableClose}
-        {...ctrl.dropdownA11yProps}
       >
         <FilterMenu
           open={open}
@@ -155,8 +148,10 @@ export const ToolbarFilterMenu = ({
           groups={groups}
           items={filterItems}
           keyboardEvents={open}
+          scrollToTopOnOpen
           a11yMode={a11yMode}
-          {...(a11yMode === 'combobox' ? { id: ctrl.menuId } : ctrl.menuA11yProps)}
+          {...ctrl.listProps}
+          aria-label={title}
           virtualized={virtualized}
           loading={loading}
           loadingCount={loadingCount}
@@ -169,10 +164,9 @@ export const ToolbarFilterMenu = ({
 
   return (
     <Dropdown
-      useFixedPosition
+      {...ctrl.dropdownProps}
       size={dropdownSize}
-      title={title}
-      variant="drawer-dropdown"
+      title={dropdownTitle}
       submitLabel={submitLabel}
       trigger={
         <ToolbarFilterButton
@@ -180,17 +174,18 @@ export const ToolbarFilterMenu = ({
           onClick={onToggle}
           variant={customVariant || variant}
           htmlTitle={htmlTitle}
-          open={open}
-          menuId={menuControlsId}
+          purpose={title}
+          triggerProps={ctrl.triggerProps}
+          ref={ctrl.triggerRef as React.Ref<HTMLButtonElement>}
         >
           {label}
         </ToolbarFilterButton>
       }
       open={open}
       onClose={onClose}
-      {...ctrl.dropdownA11yProps}
     >
       <FilterMenu
+        open={open}
         search={search}
         name={name}
         filterState={filterState}
@@ -200,8 +195,10 @@ export const ToolbarFilterMenu = ({
         groups={groups}
         items={filterItems}
         keyboardEvents={open}
+        scrollToTopOnOpen
         a11yMode={a11yMode}
-        {...(a11yMode === 'combobox' ? { id: ctrl.menuId } : ctrl.menuA11yProps)}
+        {...ctrl.listProps}
+        aria-label={title}
         virtualized={virtualized}
         loading={loading}
         loadingCount={loadingCount}

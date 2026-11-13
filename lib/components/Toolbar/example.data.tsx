@@ -402,6 +402,7 @@ export const accountMenuItems = [
 
 export const accountMenu = {
   label: accountMenuItems[0].title,
+  title: 'Velg aktør',
   items: accountMenuItems,
   searchable: true,
   groups: {

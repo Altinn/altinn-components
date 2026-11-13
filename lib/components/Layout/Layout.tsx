@@ -1,5 +1,5 @@
 'use client';
-import { type ReactNode, useCallback, useRef, useState } from 'react';
+import { type ReactNode, useCallback, useLayoutEffect, useRef, useState } from 'react';
 import {
   LayoutBase,
   LayoutBody,
@@ -10,6 +10,7 @@ import {
   type LayoutSidebarProps,
   type LayoutTheme,
 } from '.';
+import { useIsDesktop } from '../../hooks/useIsDesktop.ts';
 import { AccountSelector } from '../AccountSelector';
 import { Banner, type BannerColor, type BannerVariant } from '../Banner';
 import { Breadcrumbs, type BreadcrumbsProps } from '../Breadcrumbs';
@@ -75,11 +76,33 @@ export const Layout = ({
   breadcrumbs,
   accountSelectionAsMain = false,
 }: LayoutProps) => {
-  const { currentId } = useRootContext();
+  const { currentId, languageCode } = useRootContext();
   const [bannerHeight, setBannerHeight] = useState(0);
   const observerRef = useRef<ResizeObserver | null>(null);
   const hasTopBar = Boolean(cookieBanner || banner);
   const isHeaderDrawerOpen = currentId === 'account' || currentId === 'menu' || currentId === 'locale';
+
+  /** Make the page below the header inert while it is covered. The header stays usable. */
+  const isDesktop = useIsDesktop();
+  const pageIsCovered = !accountSelectionAsMain && (currentId === 'account' || (!isDesktop && currentId === 'menu'));
+  const rootRef = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    const header = rootRef.current?.querySelector(':scope > header');
+    if (!pageIsCovered || !header) return;
+
+    const covered: HTMLElement[] = [];
+    for (let node = header.nextElementSibling; node; node = node.nextElementSibling) {
+      if (node instanceof HTMLElement && !node.inert) {
+        node.inert = true;
+        covered.push(node);
+      }
+    }
+    return () => {
+      for (const el of covered) {
+        el.inert = false;
+      }
+    };
+  }, [pageIsCovered]);
 
   // The header and its drawer are placed from the top of the viewport, so they need the height of
   // everything stacked above them, the cookie banner included.
@@ -99,6 +122,7 @@ export const Layout = ({
 
   return (
     <LayoutBase
+      ref={rootRef}
       color={color}
       theme={theme}
       currentId={accountSelectionAsMain ? 'accountFullscreen' : currentId}
@@ -155,7 +179,7 @@ export const Layout = ({
                 footer={sidebar?.footer}
               >
                 {sidebar?.menu && (
-                  <nav aria-label={sidebar?.ariaLabel ?? 'Sidebar'}>
+                  <nav aria-label={sidebar?.ariaLabel ?? getTexts(languageCode).sidebar}>
                     <Menu {...sidebar?.menu} a11yMode="navigation" />
                   </nav>
                 )}
@@ -171,4 +195,17 @@ export const Layout = ({
       {footer && <Footer {...footer} />}
     </LayoutBase>
   );
+};
+
+// TODO: Move to a common texts files when i18next is added
+// This is only a temporary solution for providing texts in different languages in a very simple POC
+const getTexts = (languageCode: string | undefined) => {
+  switch (languageCode) {
+    case 'nn':
+      return { sidebar: 'Sidemeny' };
+    case 'en':
+      return { sidebar: 'Side menu' };
+    default:
+      return { sidebar: 'Sidemeny' };
+  }
 };

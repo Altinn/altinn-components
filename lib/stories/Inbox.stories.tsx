@@ -44,7 +44,9 @@ export const InboxPage = () => {
         <Dialog {...dialog} />
       ) : (
         <PageBase>
-          <Heading size="xl">Innboks</Heading>
+          <Heading size="xl" as="h1">
+            Innboks
+          </Heading>
           <Toolbar {...toolbar} />
           {results && <DialogList items={results.items} groups={results?.groups} />}
         </PageBase>
@@ -172,7 +174,9 @@ export const InboxEmptyPage = () => {
   return (
     <Layout {...layout}>
       <PageBase>
-        <Heading size="xl">Innboks</Heading>
+        <Heading size="xl" as="h1">
+          Innboks
+        </Heading>
         <Toolbar {...toolbar} />
         <EmptySection />
       </PageBase>
@@ -234,7 +238,9 @@ export const SearchPage = () => {
     return (
       <Layout {...layout}>
         <PageBase>
-          <Heading size="xl">Innboks</Heading>
+          <Heading size="xl" as="h1">
+            Innboks
+          </Heading>
           <Toolbar {...toolbar} />
           <NoHitsSection query={{ q }} />
         </PageBase>
@@ -245,7 +251,9 @@ export const SearchPage = () => {
   return (
     <Layout {...layout}>
       <PageBase>
-        <Heading size="xl">Innboks</Heading>
+        <Heading size="xl" as="h1">
+          Innboks
+        </Heading>
         <Toolbar {...toolbar} />
         {results?.items?.length ? (
           <DialogList
@@ -279,7 +287,9 @@ export const SearchEmptyPage = () => {
   return (
     <Layout {...layout}>
       <PageBase>
-        <Heading size="xl">Innboks</Heading>
+        <Heading size="xl" as="h1">
+          Innboks
+        </Heading>
         <Toolbar {...toolbar} />
         <NoHitsSection query={{ q }} />
       </PageBase>
@@ -292,7 +302,9 @@ export const DraftsEmptyPage = () => {
   return (
     <Layout {...layout}>
       <PageBase>
-        <Heading size="xl">Utkast</Heading>
+        <Heading size="xl" as="h1">
+          Utkast
+        </Heading>
         <Toolbar {...toolbar} />
         <EmptyDraftsSection />
       </PageBase>
@@ -306,7 +318,9 @@ export const SentEmptyPage = () => {
   return (
     <Layout {...layout}>
       <PageBase>
-        <Heading size="xl">Sendt</Heading>
+        <Heading size="xl" as="h1">
+          Sendt
+        </Heading>
         <Toolbar {...toolbar} />
         <EmptySentSection />
       </PageBase>
@@ -320,7 +334,9 @@ export const ArchiveEmptyPage = () => {
   return (
     <Layout {...layout}>
       <PageBase>
-        <Heading size="xl">Arkiv</Heading>
+        <Heading size="xl" as="h1">
+          Arkiv
+        </Heading>
         <Toolbar {...toolbar} />
         <EmptyArchiveSection />
       </PageBase>
@@ -334,7 +350,9 @@ export const TrashEmptyPage = () => {
   return (
     <Layout {...layout}>
       <PageBase>
-        <Heading size="xl">Papirkurv</Heading>
+        <Heading size="xl" as="h1">
+          Papirkurv
+        </Heading>
         <Toolbar {...toolbar} />
         <EmptyTrashSection />
       </PageBase>
@@ -352,7 +370,9 @@ export const InboxCookieBanner = () => {
       <Layout {...layout} cookieBanner={isAnswered ? undefined : { onAccept: acceptAll, onReject: rejectAll }}>
         <SkyraSurvey consent={consent.statistics} />
         <PageBase>
-          <Heading size="xl">Innboks</Heading>
+          <Heading size="xl" as="h1">
+            Innboks
+          </Heading>
           <Toolbar {...toolbar} />
           {results && <DialogList items={results.items} groups={results?.groups} />}
         </PageBase>
@@ -362,7 +382,7 @@ export const InboxCookieBanner = () => {
           {lang}
         </button>
       ))}
-      <h1>{language}</h1>
+      <p>{language}</p>
     </RootProvider>
   );
 };

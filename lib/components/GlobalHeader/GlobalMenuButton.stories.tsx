@@ -47,10 +47,10 @@ export const NarrowScreen: Story = {
 
     // Below 479px the label is visually hidden, so this asserts we are actually
     // exercising the narrow-screen branch and not passing vacuously at desktop width.
-    const label = canvas.getByText('Menu');
+    const label = canvas.getByText('Meny');
     await expect(label.getBoundingClientRect().width).toBeLessThanOrEqual(1);
 
     // The button must still have an accessible name while the label is hidden.
-    await expect(canvas.getByRole('button', { name: 'Menu' })).toBeInTheDocument();
+    await expect(canvas.getByRole('button', { name: 'Meny' })).toBeInTheDocument();
   },
 };

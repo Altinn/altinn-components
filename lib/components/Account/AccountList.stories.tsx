@@ -272,7 +272,9 @@ export const ControlledPage = ({
   return (
     <Layout {...layout}>
       <PageBase>
-        <Heading size="xl">{title}</Heading>
+        <Heading size="xl" as="h1">
+          {title}
+        </Heading>
         <Toolbar {...toolbar}>
           <Switch label="Vis slettede" size="sm" />
         </Toolbar>

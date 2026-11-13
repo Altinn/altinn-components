@@ -13,17 +13,39 @@ export interface SelectDateFilterProps extends MenuProps {
 
 export const SelectDateFilter = ({
   name = 'time',
+  id,
+  open,
   size,
   searchable,
   keyboardEvents,
+  keyboardScope,
+  a11yMode = 'listbox',
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledby,
   items,
   groups,
   filterState = {},
   onFilterStateChange,
 }: SelectDateFilterProps) => {
+  const rootRef = useRef<HTMLDivElement>(null);
   const datepickerRef = useRef<HTMLDivElement>(null);
 
   const [datepickerOpen, setDatepickerOpen] = useState<boolean>(false);
+
+  /** Move focus when the list and the date form replace each other. */
+  const prevDatepickerOpenRef = useRef(datepickerOpen);
+  useEffect(() => {
+    if (prevDatepickerOpenRef.current === datepickerOpen) return;
+    prevDatepickerOpenRef.current = datepickerOpen;
+
+    const raf = requestAnimationFrame(() => {
+      const target = datepickerOpen
+        ? datepickerRef.current?.querySelector<HTMLElement>('button, input')
+        : rootRef.current?.querySelector<HTMLElement>('[data-menu-focus]');
+      target?.focus({ preventScroll: true });
+    });
+    return () => cancelAnimationFrame(raf);
+  }, [datepickerOpen]);
   const [fromDate, setFromDate] = useState((filterState?.fromDate?.[0] as string) || '');
   const [toDate, setToDate] = useState((filterState?.toDate?.[0] as string) || '');
 
@@ -113,6 +135,20 @@ export const SelectDateFilter = ({
   }
 
   return (
-    <Menu size={size} searchable={searchable} keyboardEvents={keyboardEvents} items={applicableItems} groups={groups} />
+    <div ref={rootRef} style={{ display: 'contents' }}>
+      <Menu
+        id={id}
+        open={open}
+        size={size}
+        searchable={searchable}
+        keyboardEvents={keyboardEvents}
+        keyboardScope={keyboardScope}
+        a11yMode={a11yMode}
+        aria-label={ariaLabel}
+        aria-labelledby={ariaLabelledby}
+        items={applicableItems}
+        groups={groups}
+      />
+    </div>
   );
 };

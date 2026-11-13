@@ -443,7 +443,9 @@ export const ControlledSettings = ({
   return (
     <Layout {...layout}>
       <PageBase>
-        <Heading size="xl">{title}</Heading>
+        <Heading size="xl" as="h1">
+          {title}
+        </Heading>
         <Toolbar {...toolbar} />
         {query?.q ? (
           <SettingsList groups={results?.groups} items={results?.items as SettingsListProps['items']} />
@@ -501,7 +503,9 @@ export const BookmarkSettings = () => {
   return (
     <Layout {...layout}>
       <PageBase>
-        <Heading size="xl">Lagrede søk</Heading>
+        <Heading size="xl" as="h1">
+          Lagrede søk
+        </Heading>
         <Toolbar search={search} />
         <BookmarkSettingsList items={items} groups={groups} />
         <Heading size="xs" weight="normal">
@@ -821,7 +825,9 @@ export const AccountSettings = ({ virtualized }: { virtualized: boolean }) => {
   return (
     <Layout {...layout}>
       <PageBase>
-        <Heading size="xl">Aktører</Heading>
+        <Heading size="xl" as="h1">
+          Aktører
+        </Heading>
         <Toolbar {...toolbar} />
         <SettingsList groups={groups} items={listItems as SettingsListProps['items']} virtualized={virtualized} />
       </PageBase>

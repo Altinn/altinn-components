@@ -48,7 +48,11 @@ export const Dialog = ({
   ...props
 }: DialogProps) => {
   return (
-    <DialogLayout backButton={backButton} contextMenu={contextMenu} pageMenu={pageMenu}>
+    <DialogLayout
+      backButton={backButton}
+      contextMenu={contextMenu && { label: title, ...contextMenu }}
+      pageMenu={pageMenu}
+    >
       {title && <DialogHeader loading={loading} {...props} title={title} />}
       {children && (
         <DialogBody loading={loading} sender={sender} seenByLog={seenByLog} {...props}>

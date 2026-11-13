@@ -2,7 +2,8 @@
 import { MagnifyingGlassIcon, XMarkIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
 import { type ChangeEventHandler, type FocusEventHandler, useRef } from 'react';
-import { Button, Icon } from '..';
+import { Button, Icon, useRootContext } from '..';
+import { getCommonTexts } from '../RootProvider/commonTexts.ts';
 import styles from './searchbarField.module.css';
 
 export interface SearchbarFieldProps {
@@ -22,6 +23,8 @@ export interface SearchbarFieldProps {
   tabIndex?: number;
   /* used to link the search input with the autocomplete */
   controlsId?: string;
+  /** Id of the active suggestion */
+  activeDescendantId?: string;
 }
 
 export const SearchbarField = ({
@@ -29,9 +32,9 @@ export const SearchbarField = ({
   expanded,
   name = 'q',
   value,
-  placeholder = 'Search',
-  closeButtonAltText = 'Close search',
-  clearButtonAltText = 'Clear search',
+  placeholder,
+  closeButtonAltText,
+  clearButtonAltText,
   onFocus,
   onBlur,
   onChange,
@@ -40,8 +43,10 @@ export const SearchbarField = ({
   onEnter,
   tabIndex,
   controlsId,
+  activeDescendantId,
 }: SearchbarFieldProps) => {
   const ref = useRef<HTMLInputElement>(null);
+  const texts = getCommonTexts(useRootContext().languageCode);
 
   const handleOnKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Escape') {
@@ -62,7 +67,7 @@ export const SearchbarField = ({
         name={name}
         value={value}
         onChange={onChange}
-        placeholder={placeholder}
+        placeholder={placeholder ?? texts.search}
         className={styles.input}
         onKeyUp={handleOnKeyUp}
         type="text"
@@ -75,6 +80,7 @@ export const SearchbarField = ({
         aria-expanded={expanded}
         data-testid="searchbar-input"
         aria-controls={controlsId}
+        aria-activedescendant={activeDescendantId}
         role="combobox"
       />
       <Icon svgElement={MagnifyingGlassIcon} className={styles.icon} />
@@ -86,7 +92,7 @@ export const SearchbarField = ({
           className={styles.clear}
           onClick={onClear}
           data-testid="search-button-clear"
-          aria-label={clearButtonAltText}
+          aria-label={clearButtonAltText ?? texts.clearSearch}
         >
           <XMarkIcon />
         </Button>
@@ -98,7 +104,7 @@ export const SearchbarField = ({
             className={styles.dismiss}
             onClick={onClose}
             data-testid="search-button-close"
-            aria-label={closeButtonAltText}
+            aria-label={closeButtonAltText ?? texts.closeSearch}
           >
             <XMarkIcon />
           </Button>
