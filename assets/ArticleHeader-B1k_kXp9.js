@@ -1,0 +1,1 @@
+var i=Object.defineProperty;var e=(r,s)=>i(r,"name",{value:s,configurable:!0});import{a6 as a}from"./iframe-CJbVApVd.js";import{S as o}from"./Section-senxxBaK.js";import{H as n}from"./Heading-DPlNKJG2.js";const x=e(({title:r,children:s})=>a.jsxs(o,{as:"header",spacing:2,children:[r&&a.jsx(n,{size:"xl",children:r}),s]}),"ArticleHeader");export{x as A};
