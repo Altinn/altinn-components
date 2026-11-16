@@ -23,7 +23,7 @@ export interface AuthEvidenceItemProps {
 }
 
 export const AuthEvidenceItem = ({ grantType, variant = 'tinted', controls, title }: AuthEvidenceItemProps) => {
-  const AuthEvidenceItem = useMemo(() => {
+  const AuthEvidenceIcon = useMemo(() => {
     switch (grantType) {
       case 'role':
         return PersonIcon;
@@ -41,7 +41,7 @@ export const AuthEvidenceItem = ({ grantType, variant = 'tinted', controls, titl
   return (
     <ItemBase as="div" className={styles.item} variant={variant}>
       <span className={styles.media}>
-        <AuthEvidenceItem className={styles.icon} aria-hidden />
+        <AuthEvidenceIcon className={styles.icon} aria-hidden />
       </span>
       <ItemLabel className={styles.label}>{title}</ItemLabel>
       {controls && <ItemControls>{controls}</ItemControls>}
