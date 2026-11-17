@@ -496,7 +496,7 @@ const getTexts = (languageCode: string | undefined) => {
         account_persons: 'Personer',
         account_favorites: 'Favoritter',
         add_to_favorites: 'Legg til i favoritter',
-        remove_from_favorites: 'Fjern frå favoritter',
+        remove_from_favorites: 'Fjern fra favoritter',
         you: 'Deg',
         org_no: 'Org.nr',
         birthdate: 'Født',
