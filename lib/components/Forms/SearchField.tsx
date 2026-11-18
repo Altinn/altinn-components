@@ -4,6 +4,8 @@ import { useId, useMemo, useState } from 'react';
 import { Button, FieldBase, type FieldBaseProps, Input, type InputProps, type MenuItemProps } from '..';
 import { TypingIcon } from '../Icon/TypingIcon';
 import { Menu, type MenuProps } from '../Menu';
+import { useRootContext } from '../RootProvider';
+import { getCommonTexts } from '../RootProvider/commonTexts.ts';
 import styles from './searchField.module.css';
 
 export interface SearchFieldMenuProps extends MenuProps {
@@ -28,18 +30,19 @@ export const SearchField = ({
   className,
   collapsible,
   loading,
-  loadingLabel = 'Loading ...',
+  loadingLabel,
   size,
   color = 'neutral',
   label,
   hideLabel,
   value,
   onClear,
-  clearButtonAltText = 'Clear search',
+  clearButtonAltText,
   menu,
   minLength,
   ...rest
 }: SearchFieldProps) => {
+  const texts = getCommonTexts(useRootContext().languageCode);
   const autoId = useId();
   const [menuOpen, setMenuOpen] = useState(false);
   const inputId = rest.id || `search-field-${autoId}`;
@@ -165,7 +168,7 @@ export const SearchField = ({
               onClear?.();
               document.getElementById(inputId)?.focus();
             }}
-            aria-label={clearButtonAltText}
+            aria-label={clearButtonAltText ?? texts.clearSearch}
             data-action="clear-input"
           >
             <XMarkIcon />

@@ -14,6 +14,23 @@
   outline: none;
 }
 
+/* Undo the browser styles for popover and dialog */
+.dropdown:is([popover], dialog) {
+  border: 0;
+  margin-inline: 0;
+  max-width: none;
+  max-height: none;
+  height: auto;
+}
+
+.dropdown[popover] {
+  inset: auto;
+}
+
+.dropdown::backdrop {
+  background: transparent;
+}
+
 .content {
   flex-grow: 1;
 }

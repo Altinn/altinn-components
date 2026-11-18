@@ -38,7 +38,9 @@ export const UsersPage = () => {
     <Layout {...layout}>
       <PageBase color={color}>
         <Breadcrumbs items={breadcrumbs} />
-        <Heading size="xl">Brukere med fullmakt til {currentAccount?.name}</Heading>
+        <Heading size="xl" as="h1">
+          Brukere med fullmakt til {currentAccount?.name}
+        </Heading>
         <Toolbar {...toolbar} />
       </PageBase>
     </Layout>
@@ -53,7 +55,9 @@ export const AccessPage = () => {
     <Layout {...layout}>
       <PageBase color={color}>
         <Breadcrumbs items={breadcrumbs} />
-        <Heading size="xl">Tilganger til {currentAccount?.name}</Heading>
+        <Heading size="xl" as="h1">
+          Tilganger til {currentAccount?.name}
+        </Heading>
         <Toolbar {...toolbar} />
       </PageBase>
     </Layout>
@@ -68,7 +72,9 @@ export const RequestsPage = () => {
     <Layout {...layout}>
       <PageBase color={color}>
         <Breadcrumbs items={breadcrumbs} />
-        <Heading size="xl">Tittel</Heading>
+        <Heading size="xl" as="h1">
+          Tittel
+        </Heading>
         <Toolbar {...toolbar} />
       </PageBase>
     </Layout>
@@ -83,7 +89,9 @@ export const ApiSettingsPage = () => {
     <Layout {...layout}>
       <PageBase color={color}>
         <Breadcrumbs items={breadcrumbs} />
-        <Heading size="xl">Tittel</Heading>
+        <Heading size="xl" as="h1">
+          Tittel
+        </Heading>
         <Toolbar {...toolbar} />
       </PageBase>
     </Layout>
@@ -98,7 +106,9 @@ export const ReverseAccessPage = () => {
     <Layout {...layout}>
       <PageBase color={color}>
         <Breadcrumbs items={breadcrumbs} />
-        <Heading size="xl">Tittel</Heading>
+        <Heading size="xl" as="h1">
+          Tittel
+        </Heading>
         <Toolbar {...toolbar} />
       </PageBase>
     </Layout>
@@ -113,7 +123,9 @@ export const ClientAdminPage = () => {
     <Layout {...layout}>
       <PageBase color={color}>
         <Breadcrumbs items={breadcrumbs} />
-        <Heading size="xl">Tittel</Heading>
+        <Heading size="xl" as="h1">
+          Tittel
+        </Heading>
         <Toolbar {...toolbar} />
       </PageBase>
     </Layout>
@@ -132,7 +144,9 @@ export const ActivityLogPage = () => {
     <Layout {...layout}>
       <PageBase color={color}>
         <Breadcrumbs items={breadcrumbs} />
-        <Heading size="xl">Aktivitetslogg</Heading>
+        <Heading size="xl" as="h1">
+          Aktivitetslogg
+        </Heading>
         <ActivityLogStories.Default />
       </PageBase>
     </Layout>

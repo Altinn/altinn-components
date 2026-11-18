@@ -81,6 +81,13 @@ div.item[data-variant="tinted"] {
   outline: 2px solid black;
 }
 
+/* Same look as before: no focus ring on top of the active outline */
+.item.item[data-active="true"]:focus-visible {
+  box-shadow: none;
+  outline: var(--dsc-item-focus-outline);
+  outline-offset: 0;
+}
+
 .item[data-selected="true"] {
   background-color: var(--dsc-item-background--active);
   --checkmark-opacity: 1;
@@ -195,4 +202,49 @@ div.item[data-variant="tinted"] {
 
 .linkIcon {
   font-size: 1.25rem;
+}
+
+/* Split row: item and controls are separate buttons */
+
+.split {
+  position: relative;
+}
+
+.splitAction {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  text-decoration: none;
+  cursor: inherit;
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.splitAction::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.splitAction ~ * {
+  position: relative;
+  z-index: 1;
+}
+
+.splitAction:focus-visible {
+  outline: none;
+}
+
+.split:has(> .splitAction:focus-visible) {
+  box-shadow: var(--dsc-focus-boxShadow-inset);
+  outline: var(--dsc-focus-outline);
+  outline-offset: calc(var(--ds-border-width-focus) * -1);
 }

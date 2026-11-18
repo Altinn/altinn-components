@@ -69,7 +69,7 @@ export const AccountListItem = ({
             isCurrentEndUser={isCurrentEndUser}
             isDeleted={isDeleted}
             onToggleFavourite={onToggleFavourite}
-            contextMenu={!expanded ? contextMenu : undefined}
+            contextMenu={!expanded && contextMenu ? { label: title || name, ...contextMenu } : undefined}
           />
         )
       }

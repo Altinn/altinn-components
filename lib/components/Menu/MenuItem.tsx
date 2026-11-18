@@ -1,5 +1,6 @@
 import { ChevronRightIcon } from '@navikt/aksel-icons';
 import cx from 'classnames';
+import { useId } from 'react';
 import type {
   AriaAttributes,
   ElementType,
@@ -30,7 +31,9 @@ export interface MenuItemProps extends AriaAttributes {
   groupId?: string;
   role?: MenuItemRole;
   /** @internal a11y context set by the parent list. In `navigation` mode the item renders without a menu role. */
-  a11yMode?: 'menu' | 'combobox' | 'navigation';
+  a11yMode?: 'menu' | 'listbox' | 'combobox' | 'navigation' | 'list';
+  /** @internal `beside` renders `controls` next to the item, so buttons are not nested. */
+  controlsPlacement?: 'inside' | 'beside';
   /** @internal checkbox or radio, set by the parent list so an `option` keeps the right icon in combobox mode. */
   checkableType?: 'checkbox' | 'radio';
   as?: ElementType;
@@ -90,6 +93,7 @@ export const MenuItem = ({
   groupId,
   role = 'menuItem',
   a11yMode,
+  controlsPlacement = 'inside',
   checkableType,
   as,
   href,
@@ -120,6 +124,15 @@ export const MenuItem = ({
 }: MenuItemProps) => {
   const applicableLabel = typeof label === 'function' ? label() : label;
   const ariaProps = pickAriaProps(attributes as Record<string, unknown>);
+
+  /** Count, description and badge are read after the title, as the description. */
+  const generatedId = useId();
+  const baseId = id ?? `menu-item-${generatedId}`;
+  const showsOwnText = Boolean(title) && !applicableLabel;
+  const countId = showsOwnText && count ? `${baseId}-count` : undefined;
+  const descriptionId = showsOwnText && description ? `${baseId}-description` : undefined;
+  const badgeId = title && badge && badge.size !== 'xs' ? `${baseId}-badge` : undefined;
+  const describedBy = [countId, descriptionId, badgeId].filter(Boolean).join(' ') || undefined;
 
   const isOption = role === 'option';
   const isCheckableRole =
@@ -152,11 +165,13 @@ export const MenuItem = ({
         aria-selected={isOption ? Boolean(checked) : undefined}
         data-selected={checked}
         aria-label={title}
+        aria-describedby={describedBy}
         title={htmlTitle}
         data-testid={dataTestId}
         onKeyUp={(e: KeyboardEvent) => {
           if (disabled) return;
-          e.target === e.currentTarget && e.key === 'Enter' && onClick?.();
+          // With tabIndex -1 the list handles Enter.
+          tabIndex !== -1 && e.target === e.currentTarget && e.key === 'Enter' && onClick?.();
           onKeyPress?.(e);
         }}
         onClick={disabled ? undefined : onClick}
@@ -169,7 +184,12 @@ export const MenuItem = ({
           highlightWords={highlightWords}
           title={
             <>
-              {title} {count && <i className={styles.count}>{count}</i>}
+              {title}{' '}
+              {count && (
+                <i className={styles.count} id={countId}>
+                  {count}
+                </i>
+              )}
             </>
           }
           titleProps={{
@@ -178,6 +198,7 @@ export const MenuItem = ({
           }}
           description={description}
           descriptionProps={{
+            id: descriptionId,
             weight: 'normal',
             variant: 'subtle',
             className: styles.description,
@@ -186,7 +207,7 @@ export const MenuItem = ({
           {applicableLabel}
         </ItemLabel>
         <ItemControls>
-          {badge && <Badge {...badge} />}
+          {badge && <Badge {...badge} id={badgeId} />}
           {!disabled && controls}
         </ItemControls>
       </div>
@@ -195,6 +216,83 @@ export const MenuItem = ({
 
   const Component = as || (href ? 'a' : 'button');
   const applicableLinkIcon = linkIcon && ChevronRightIcon;
+  const isPlainList = a11yMode === 'navigation' || a11yMode === 'list';
+  const resolvedRole = isPlainList ? undefined : role === 'menuItem' ? 'menuitem' : role;
+  const ariaCurrent = role !== 'option' && selected ? (a11yMode === 'list' ? 'true' : 'page') : undefined;
+
+  const itemLabel = (
+    <ItemLabel
+      className={styles.label}
+      highlightWords={highlightWords}
+      title={
+        <>
+          {title}{' '}
+          {count && (
+            <i className={styles.count} id={countId}>
+              {count}
+            </i>
+          )}
+        </>
+      }
+      titleProps={{
+        weight: 'medium',
+        className: styles.title,
+      }}
+      description={description}
+      descriptionProps={{
+        id: descriptionId,
+        variant: 'subtle',
+        className: styles.description,
+      }}
+    >
+      {applicableLabel}
+    </ItemLabel>
+  );
+
+  const itemControls = (
+    <ItemControls>
+      {badge && <Badge {...badge} id={badgeId} />}
+      {!disabled && controls}
+      {linkIcon && <Icon svgElement={applicableLinkIcon as SvgElement} className={styles.linkIcon} />}
+    </ItemControls>
+  );
+
+  /** Item and controls as separate buttons in a row that looks like one item. */
+  if (controlsPlacement === 'beside' && controls && !disabled) {
+    return (
+      <div
+        className={cx(styles.item, styles.split, className)}
+        data-group-id={groupId}
+        data-size={size}
+        data-variant={variant}
+        data-color={color}
+        data-active={active}
+        data-selected={selected}
+        title={htmlTitle}
+      >
+        <Component
+          href={href}
+          className={styles.splitAction}
+          id={id}
+          data-id={id}
+          aria-current={ariaCurrent}
+          aria-label={title}
+          aria-describedby={describedBy}
+          data-testid={dataTestId}
+          onClick={onClick}
+          onKeyUp={onKeyPress}
+          onMouseEnter={onMouseEnter}
+          tabIndex={tabIndex ?? 0}
+          role={resolvedRole}
+          {...ariaProps}
+        >
+          {icon && <ItemMedia icon={icon} className={styles.media} />}
+          {itemLabel}
+        </Component>
+        {itemControls}
+      </div>
+    );
+  }
 
   return (
     <Component
@@ -209,49 +307,29 @@ export const MenuItem = ({
       data-active={active}
       aria-disabled={disabled}
       {...(disabled ? { disabled } : {})}
-      aria-current={role !== 'option' && selected ? 'page' : undefined}
+      aria-current={ariaCurrent}
       aria-selected={role === 'option' ? selected : undefined}
       data-selected={selected}
       aria-label={title}
+      aria-describedby={describedBy}
       title={htmlTitle}
       data-testid={dataTestId}
       onKeyUp={(e: KeyboardEvent) => {
         if (disabled) return;
-        e.target === e.currentTarget && e.key === 'Enter' && onClick?.();
+        // Buttons and links click on Enter by themselves.
+        const clicksNatively = Component === 'button' || Component === 'a';
+        !clicksNatively && tabIndex !== -1 && e.target === e.currentTarget && e.key === 'Enter' && onClick?.();
         onKeyPress?.(e);
       }}
       onClick={onClick}
       onMouseEnter={onMouseEnter}
       tabIndex={disabled ? -1 : (tabIndex ?? 0)}
-      role={a11yMode === 'navigation' ? undefined : role === 'menuItem' ? 'menuitem' : role}
+      role={resolvedRole}
       {...ariaProps}
     >
       {icon && <ItemMedia icon={icon} className={styles.media} />}
-      <ItemLabel
-        className={styles.label}
-        highlightWords={highlightWords}
-        title={
-          <>
-            {title} {count && <i className={styles.count}>{count}</i>}
-          </>
-        }
-        titleProps={{
-          weight: 'medium',
-          className: styles.title,
-        }}
-        description={description}
-        descriptionProps={{
-          variant: 'subtle',
-          className: styles.description,
-        }}
-      >
-        {applicableLabel}
-      </ItemLabel>
-      <ItemControls>
-        {badge && <Badge {...badge} />}
-        {!disabled && controls}
-        {linkIcon && <Icon svgElement={applicableLinkIcon as SvgElement} className={styles.linkIcon} />}
-      </ItemControls>
+      {itemLabel}
+      {itemControls}
     </Component>
   );
 };

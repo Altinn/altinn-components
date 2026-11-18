@@ -5,6 +5,7 @@ import styles from './autocompleteItem.module.css';
 export type AutocompleteItemType = 'scope' | 'suggest' | 'dialog' | 'bookmark' | 'information' | 'menuitem';
 
 export interface AutocompleteItemProps extends MenuItemProps {
+  /** Kind of suggestion, not an ARIA role */
   role?: AutocompleteItemType;
   /** Badge */
   badge?: BadgeProps;
@@ -13,13 +14,15 @@ export interface AutocompleteItemProps extends MenuItemProps {
 }
 
 export const AutocompleteItem = ({
-  role = 'menuitem',
+  role: _type,
   params,
   badge,
   label,
   size = 'md',
   ...props
 }: AutocompleteItemProps) => {
+  const role = 'option';
+
   /** params is a bookmark or suggested search */
   if (params) {
     return (

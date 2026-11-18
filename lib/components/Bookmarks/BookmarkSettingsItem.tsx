@@ -47,7 +47,7 @@ export const BookmarkSettingsItem = ({
       label={
         <BookmarkSettingsItemLabel highlightWords={highlightWords} loading={loading} params={params} title={title} />
       }
-      controls={contextMenu && <ContextMenu {...contextMenu} />}
+      controls={contextMenu && <ContextMenu label={title} {...contextMenu} />}
       linkIcon
     />
   );

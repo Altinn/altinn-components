@@ -1,7 +1,8 @@
 'use client';
 
-import { useVirtualizer } from '@tanstack/react-virtual';
+import { defaultRangeExtractor, useVirtualizer } from '@tanstack/react-virtual';
 import { useLayoutEffect, useMemo, useState } from 'react';
+import { findListTitleIndex } from './aria.ts';
 
 export interface UseMenuVirtualizationProps<TItemProps = { [key: string]: unknown }> {
   menu: Array<{
@@ -10,11 +11,17 @@ export interface UseMenuVirtualizationProps<TItemProps = { [key: string]: unknow
   }>;
   scrollRef: React.RefObject<HTMLUListElement>;
   open?: boolean;
+  /** Let a single title on the first group name the whole list. */
+  allowListTitle?: boolean;
+  /** Rows to keep rendered when scrolled out of view */
+  keepRenderedRef?: React.RefObject<number[]>;
 }
 
 export const useMenuVirtualization = <TItemProps = { [key: string]: unknown }>({
   menu,
   scrollRef,
+  allowListTitle = false,
+  keepRenderedRef,
 }: UseMenuVirtualizationProps<TItemProps>) => {
   const [scrollMaxHeight, setScrollMaxHeight] = useState(400);
 
@@ -40,11 +47,22 @@ export const useMenuVirtualization = <TItemProps = { [key: string]: unknown }>({
     };
   }, [scrollRef]);
 
+  const listTitleIndex = useMemo(
+    () => (allowListTitle ? findListTitleIndex(menu.map((group) => group?.props)) : -1),
+    [menu, allowListTitle],
+  );
+  const listTitle = listTitleIndex >= 0 ? menu[listTitleIndex]?.props?.title : undefined;
+
   const flatMenu = useMemo(() => {
     return menu.flatMap((group, groupIndex) => {
       const items = group?.items?.filter((item) => !item.props?.hidden) || [];
-      const groupProps = (group?.props || {}) as { title?: string; hidden?: boolean; divider?: boolean };
-      const { title, hidden = false, divider = true } = groupProps;
+      const groupProps = (group?.props || {}) as {
+        title?: string;
+        titleAs?: 'heading' | 'text';
+        hidden?: boolean;
+        divider?: boolean;
+      };
+      const { title, titleAs = 'heading', hidden = false, divider = true } = groupProps;
 
       if (hidden) {
         return [];
@@ -54,17 +72,22 @@ export const useMenuVirtualization = <TItemProps = { [key: string]: unknown }>({
         return [];
       }
 
+      const groupTitle = groupIndex === listTitleIndex ? undefined : title || undefined;
+
       return [
-        ...(groupIndex > 0 && divider ? [{ type: 'divider' as const }] : []),
-        ...(title ? [{ type: 'header' as const, title }] : []),
+        ...(groupIndex > 0 && divider ? [{ type: 'divider' as const, groupIndex }] : []),
+        ...(title ? [{ type: 'header' as const, title, titleAs, groupIndex, groupTitle }] : []),
         ...items.map((item) => ({
           type: 'item' as const,
           itemProps: item.props || ({} as TItemProps),
           active: item.active,
+          groupIndex,
+          groupTitle,
+          titleAs,
         })),
       ];
     });
-  }, [menu]);
+  }, [menu, listTitleIndex]);
 
   const virtualizer = useVirtualizer({
     count: flatMenu.length,
@@ -86,7 +109,14 @@ export const useMenuVirtualization = <TItemProps = { [key: string]: unknown }>({
     },
     gap: 0,
     paddingEnd: -8,
+    rangeExtractor: (range) => {
+      const indexes = defaultRangeExtractor(range);
+      const keep = (keepRenderedRef?.current ?? []).filter(
+        (index) => index >= 0 && index < range.count && !indexes.includes(index),
+      );
+      return keep.length ? [...indexes, ...new Set(keep)].sort((a, b) => a - b) : indexes;
+    },
   });
 
-  return { flatMenu, virtualizer, scrollMaxHeight };
+  return { flatMenu, virtualizer, scrollMaxHeight, listTitle };
 };

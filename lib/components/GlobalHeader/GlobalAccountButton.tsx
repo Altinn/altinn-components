@@ -73,8 +73,8 @@ export const GlobalAccountButton = ({
         variant="ghost"
         color="company"
         className={cx(styles.accountButton, className)}
-        aria-label={disableAccountSelection ? currentAccount.name : expanded ? texts.close : currentAccount.name}
-        aria-haspopup={disableAccountSelection ? undefined : 'menu'}
+        aria-label={disableAccountSelection ? currentAccount.name : `${texts.change}: ${currentAccount.name}`}
+        aria-haspopup={disableAccountSelection ? undefined : 'dialog'}
         aria-expanded={disableAccountSelection ? undefined : expanded}
       >
         <Avatar {...(currentAccount?.icon as AvatarProps)} className={styles.avatar} />
@@ -120,21 +120,21 @@ const getTexts = (languageCode: string | undefined) => {
     case 'nn':
       return {
         login: 'Logg inn',
-        close: 'Lukk kontomeny',
+        change: 'Byt aktør',
         subunit: 'undereining',
         mainunit: 'hovudeining',
       };
     case 'en':
       return {
         login: 'Log in',
-        close: 'Close Account Menu',
+        change: 'Change account',
         subunit: 'subunit',
         mainunit: 'main unit',
       };
     default:
       return {
         login: 'Logg inn',
-        close: 'Lukk kontomeny',
+        change: 'Bytt aktør',
         subunit: 'underenhet',
         mainunit: 'hovedenhet',
       };

@@ -144,6 +144,7 @@ export const AccountSelector = ({
           {...accountMenu}
           onSelectAccount={onAccountSelection}
           keyboardEvents={false}
+          headingLevel={isFullScreen ? 2 : 3}
           search={{
             hidden: true,
             name: '',

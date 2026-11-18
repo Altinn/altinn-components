@@ -10,6 +10,7 @@ export interface LayoutBaseProps {
   currentId?: string;
   bannerHeight?: number;
   children?: ReactNode;
+  ref?: React.Ref<HTMLDivElement>;
 }
 
 /**
@@ -25,9 +26,10 @@ export interface LayoutBaseProps {
  *  - Footer
  *
  */
-export const LayoutBase = ({ currentId, color, theme, bannerHeight, children }: LayoutBaseProps) => {
+export const LayoutBase = ({ currentId, color, theme, bannerHeight, children, ref }: LayoutBaseProps) => {
   return (
     <div
+      ref={ref}
       className={styles.base}
       data-color={color}
       data-theme={theme}

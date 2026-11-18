@@ -42,7 +42,8 @@ export const useInboxLayout = ({
 
     return {
       ...item,
-      href,
+      // Keep the item's own link when there is no story for it.
+      href: href || item.href,
       selected: item.id === pageId,
     };
   });
@@ -57,7 +58,7 @@ export const useInboxLayout = ({
 
     return {
       ...item,
-      href,
+      href: href || item.href,
       selected: item.id === pageId,
       expanded,
       items: expanded && mobileMenuChildren,
