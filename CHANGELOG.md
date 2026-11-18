@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.80.1](https://github.com/Altinn/altinn-components/compare/v0.80.0...v0.80.1) (2026-11-18)
+
+
+### Bug Fixes
+
+* **useAccountSelector:** change bokmål spelling of 'favoritter' in account selector ([#1484](https://github.com/Altinn/altinn-components/issues/1484)) ([e2b02cf](https://github.com/Altinn/altinn-components/commit/e2b02cff199804057ddd0aa4ce2daf010caa1aa4))
+
 ## [0.80.0](https://github.com/Altinn/altinn-components/compare/v0.79.2...v0.80.0) (2026-11-16)
 
 
