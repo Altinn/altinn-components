@@ -1,18 +1,15 @@
 import { Button, Input, type InputProps } from '../';
 
-export interface ItemSelectProps extends InputProps {
-  onClick?: () => void;
-  className?: string;
-}
+export type ItemSelectProps = Omit<InputProps, 'size'>;
 
 /**
- * List item checkbox
+ * List item checkbox. Needs `aria-label` or `aria-labelledby`, as it has no visible label.
  */
 
-export const ItemSelect = ({ className, onClick, checked, onChange, ...rest }: ItemSelectProps) => {
+export const ItemSelect = ({ className, ...rest }: ItemSelectProps) => {
   return (
-    <Button className={className} size="xs" variant="ghost" icon rounded onClick={onClick}>
-      <Input {...rest} type="checkbox" size="xs" checked={checked} onChange={onChange} />
+    <Button as="label" className={className} size="xs" variant="ghost" icon rounded>
+      <Input {...rest} type="checkbox" size="xs" />
     </Button>
   );
 };
