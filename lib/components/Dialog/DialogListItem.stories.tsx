@@ -305,6 +305,7 @@ export const LongSummary = {
 interface SelectableItem {
   id: string;
   title: string;
+  summary: string;
   selected: boolean;
 }
 export const Selectable = (args: DialogListItemProps) => {
@@ -312,16 +313,19 @@ export const Selectable = (args: DialogListItemProps) => {
     '1': {
       id: '1',
       title: 'Item 1',
+      summary: 'Summary for item 1',
       selected: true,
     },
     '2': {
       id: '2',
       title: 'Item 2',
+      summary: 'Summary for item 2',
       selected: false,
     },
     '3': {
       id: '3',
       title: 'Item 2',
+      summary: 'Summary for item 3',
       selected: false,
     },
   });
@@ -345,7 +349,15 @@ export const Selectable = (args: DialogListItemProps) => {
           {...args}
           title={item.title}
           selected={item.selected}
-          controls={<ItemSelect onChange={() => onSelect(item)} checked={item?.selected} aria-label={item.id} />}
+          summary={item.summary}
+          controls={
+            <ItemSelect
+              onChange={() => onSelect(item)}
+              checked={item?.selected}
+              aria-label={item.title}
+              aria-description={item.summary}
+            />
+          }
         />
         <MetaItem as={'li'}>selected:{item.selected ? 'true' : 'false'}</MetaItem>
       </Fragment>

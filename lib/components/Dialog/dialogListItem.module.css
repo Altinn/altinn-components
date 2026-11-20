@@ -54,8 +54,8 @@
   --dsc-item-shadow: none;
 }
 
+/* Keep the dashed border on hover until the item is selected */
 .item[data-variant="select"]:not([data-selected="true"]):hover {
-  --dsc-item-border: var(--ds-color-border-default);
   --dsc-item-border-style: dashed;
   outline: none;
   box-shadow: none;
@@ -63,11 +63,17 @@
 
 .item[data-variant="select"][data-selected="true"] {
   --dsc-item-background: var(--ds-color-surface-tinted);
-  --dsc-item-border: var(--ds-color-border-default);
   --dsc-item-border-style: solid;
   --dsc-line: var(--dsc-line--hover);
-  --dsc-item-shadow: none;
   outline: 1px solid var(--ds-color-border-default);
+}
+
+/* Focus is on the checkbox, but the whole item shows the focus ring (like an outline checkbox in Designsystemet) */
+.item[data-variant="select"]:has(input[type="checkbox"]:focus-visible) {
+  box-shadow: var(--dsc-focus-boxShadow);
+  outline: var(--dsc-focus-outline);
+  outline-offset: var(--ds-border-width-focus);
+  --_ds--focus: ; /* inherited by the checkbox, hides its own focus ring */
 }
 
 /** Read vs unread */
