@@ -3,6 +3,37 @@
   flex-direction: column;
 }
 
+/* Primary (lg) items are shown as tinted cards. Nested items (e.g. inbox folders) share the parent's card. */
+.nav li:has(> [data-size="lg"]) {
+  padding: 0;
+  margin-block: 0.25rem;
+  border-radius: var(--ds-border-radius-md);
+  background-color: var(--ds-color-background-tinted);
+  overflow: hidden;
+}
+
+/* Items inside a card (the primary item and its sub-items) */
+.nav li:has(> [data-size="lg"]) [data-variant="default"] {
+  --dsc-item-background--hover: var(--ds-color-surface-active);
+  --dsc-item-background--active: var(--ds-color-surface-tinted);
+  /* Icon frame blends into the card, also when the item is selected or hovered */
+  --dsc-icon-background: transparent;
+}
+
+.nav li:has(> [data-size="lg"]) [aria-current="page"]:hover {
+  background-color: var(--dsc-item-background--hover);
+}
+
+/* Current page: indicator bar on the left and bold title.
+   aria-current is only set on navigation items, so checked options (e.g. in the locale switcher) are not affected. */
+.nav [aria-current="page"] {
+  box-shadow: inset 4px 0 0 var(--ds-color-border-strong);
+}
+
+.nav [aria-current="page"] [data-weight="medium"] {
+  font-weight: 600;
+}
+
 .footer {
   padding: 1rem 0.5rem;
   display: flex;
