@@ -19,6 +19,12 @@
   margin-bottom: 1rem;
 }
 
+/* Sub-items in a card are separated by a thin line in the page background color */
+.nav li:has(> [data-size="lg"]) li {
+  padding-block: 0;
+  border-top: 1px solid var(--ds-color-background-default);
+}
+
 /* Items inside a card (the primary item and its sub-items) */
 .nav li:has(> [data-size="lg"]) [data-variant="default"] {
   --dsc-item-background--hover: var(--ds-color-surface-active);
