@@ -13,8 +13,7 @@
   align-items: center;
   column-gap: 0.5rem;
   min-height: var(--dsc-item-height);
-  padding-left: 6px;
-  padding-right: 6px;
+  padding-inline: var(--dsc-menu-inline-padding, 6px);
   overflow: hidden;
   --dsc-item-focus-outline: 2px solid black;
   --dsc-item-hover-pointer: pointer;

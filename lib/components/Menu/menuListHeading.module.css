@@ -1,5 +1,5 @@
 .heading {
-  padding: 0.5rem;
+  padding: 0.5rem var(--dsc-menu-inline-padding, 0.5rem);
   font-size: 0.875rem;
   font-weight: normal;
   line-height: 1.25rem;

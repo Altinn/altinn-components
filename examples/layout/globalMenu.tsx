@@ -117,6 +117,7 @@ const mobileMenuItems = desktopMenu.items?.map((item) => {
         {
           id: 'drafts',
           groupId: 'inbox',
+          size: 'md',
           icon: DocPencilIcon,
           title: 'Utkast',
           badge: {
@@ -126,6 +127,7 @@ const mobileMenuItems = desktopMenu.items?.map((item) => {
         {
           id: 'sent',
           groupId: 'inbox',
+          size: 'md',
           icon: FileCheckmarkIcon,
           title: 'Sendt',
           badge: {
@@ -135,12 +137,14 @@ const mobileMenuItems = desktopMenu.items?.map((item) => {
         {
           id: 'archive',
           groupId: 'inbox',
+          size: 'md',
           icon: ArchiveIcon,
           title: 'Arkivert',
         },
         {
           id: 'trash',
           groupId: 'inbox',
+          size: 'md',
           icon: TrashIcon,
           title: 'Papirkurv',
         },
