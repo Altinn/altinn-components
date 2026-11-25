@@ -7,7 +7,13 @@ const meta = {
   title: 'Layout/GlobalMenu',
   component: GlobalMenu,
   tags: ['autodocs'],
-  parameters: {},
+  parameters: {
+    docs: {
+      description: {
+        component: 'Design reference for how the main menu should look across all Altinn 3 applications.',
+      },
+    },
+  },
   args: {
     ...globalMenu,
   },
