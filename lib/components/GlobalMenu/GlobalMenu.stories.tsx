@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { desktopMenu, globalMenu, localeSwitcher, loggedOutMenu, loginMenu, mobileMenu } from '../../../examples';
-import { globalMenuDesignReference } from '../../../examples/layout/globalMenuDesignReference';
+import { desktopMenu, globalMenu, localeSwitcher, loggedOutMenu, mobileMenu } from '../../../examples';
 import type { MenuItemProps, MenuProps } from '../Menu';
+import { Heading } from '../Typography';
 import { GlobalMenu, type GlobalMenuProps } from './GlobalMenu';
 
 const meta = {
@@ -17,25 +17,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Desktop = (args: GlobalMenuProps) => {
-  return <GlobalMenu {...args} />;
-};
-
-export const MobileMenu = (args: GlobalMenuProps) => {
-  return <GlobalMenu {...args} menu={mobileMenu} />;
-};
-
-export const Login: Story = {
-  args: {
-    menu: loginMenu,
-    logoutButton: undefined,
-  },
-};
-
-export const DesignReference = () => {
-  return <GlobalMenu {...globalMenuDesignReference} />;
-};
-
 /** Selects one item (top level or nested) by id and deselects the rest */
 const selectItem = (menu: MenuProps, id: string): MenuProps => {
   const select = (items: MenuItemProps[] = []): MenuItemProps[] =>
@@ -47,31 +28,38 @@ const selectItem = (menu: MenuProps, id: string): MenuProps => {
   return { ...menu, items: select(menu.items) };
 };
 
-/** Logged in as a person (green), desktop. Inbox folders live in the sidebar, so only primary items are shown. */
-export const LoggedInPersonDesktop: Story = {
-  globals: { theme: 'person' },
+/** Renders the menu logged in as a person (green) and as a company (blue) side by side */
+const column = { display: 'grid', alignContent: 'start', gap: '0.5rem' };
+
+const PersonAndCompany = (args: GlobalMenuProps) => (
+  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+    <div data-color="person" style={column}>
+      <Heading size="sm">Personvisning</Heading>
+      <GlobalMenu {...args} />
+    </div>
+    <div data-color="company" style={column}>
+      <Heading size="sm">Selskapsvisning</Heading>
+      <GlobalMenu {...args} />
+    </div>
+  </div>
+);
+
+/** Desktop: inbox folders live in the sidebar, so only primary items are shown. A primary item is selected. */
+export const Desktop: Story = {
   args: {
     menu: desktopMenu,
     localeSwitcher,
   },
+  render: PersonAndCompany,
 };
 
-/** Logged in as a person (green), mobile. The inbox is expanded with its folders, since there is no sidebar. */
-export const LoggedInPersonMobile: Story = {
-  globals: { theme: 'person' },
-  args: {
-    menu: mobileMenu,
-    localeSwitcher,
-  },
-};
-
-/** Logged in as a person (green), mobile. A folder in the inbox is selected. */
-export const LoggedInPersonMobileSubItemSelected: Story = {
-  globals: { theme: 'person' },
+/** Mobile: the inbox is expanded with its folders, since there is no sidebar. A folder is selected. */
+export const Mobile: Story = {
   args: {
     menu: selectItem(mobileMenu, 'sent'),
     localeSwitcher,
   },
+  render: PersonAndCompany,
 };
 
 /** Before login (grey). Same on desktop and mobile. */
