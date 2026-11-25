@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { desktopMenu, globalMenu, localeSwitcher, loggedOutMenu, mobileMenu } from '../../../examples';
 import type { MenuItemProps, MenuProps } from '../Menu';
-import { Heading } from '../Typography';
-import { GlobalMenu, type GlobalMenuProps } from './GlobalMenu';
+import { GlobalMenu } from './GlobalMenu';
 
 const meta = {
   title: 'Layout/GlobalMenu',
@@ -28,29 +27,12 @@ const selectItem = (menu: MenuProps, id: string): MenuProps => {
   return { ...menu, items: select(menu.items) };
 };
 
-/** Renders the menu logged in as a person (green) and as a company (blue) side by side */
-const column = { display: 'grid', alignContent: 'start', gap: '0.5rem' };
-
-const PersonAndCompany = (args: GlobalMenuProps) => (
-  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
-    <div data-color="person" style={column}>
-      <Heading size="sm">Personvisning</Heading>
-      <GlobalMenu {...args} />
-    </div>
-    <div data-color="company" style={column}>
-      <Heading size="sm">Selskapsvisning</Heading>
-      <GlobalMenu {...args} />
-    </div>
-  </div>
-);
-
 /** Desktop: inbox folders live in the sidebar, so only primary items are shown. A primary item is selected. */
 export const Desktop: Story = {
   args: {
     menu: desktopMenu,
     localeSwitcher,
   },
-  render: PersonAndCompany,
 };
 
 /** Mobile: the inbox is expanded with its folders, since there is no sidebar. A folder is selected. */
@@ -59,7 +41,6 @@ export const Mobile: Story = {
     menu: selectItem(mobileMenu, 'sent'),
     localeSwitcher,
   },
-  render: PersonAndCompany,
 };
 
 /** Before login (grey). Same on desktop and mobile. */
