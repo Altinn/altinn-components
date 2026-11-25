@@ -14,7 +14,7 @@ import {
   TrashIcon,
 } from '@navikt/aksel-icons';
 import { accountMenu } from '../';
-import type { AccountMenuProps, MenuProps } from '../../lib';
+import type { AccountMenuProps, MenuItemProps, MenuProps } from '../../lib';
 
 export const desktopMenuItems: MenuProps['items'] = [
   {
@@ -108,7 +108,7 @@ export const desktopMenu: MenuProps = {
   items: desktopMenuItems,
 };
 
-const mobileMenuItems = desktopMenu.items?.map((item) => {
+const mobileMenuItems = desktopMenu.items?.map((item): MenuItemProps => {
   if (item.id === 'inbox') {
     return {
       ...item,
