@@ -37,9 +37,13 @@ export const GlobalMenu = ({
     setSelectingLocale((prev) => !prev);
   }, []);
 
-  // Reset locale selection and scroll position whenever the menu toggles open/closed
+  // Reset locale selection on close, and scroll position on open.
+  // Don't reset scroll on mount, so the browser's scroll to #anchor or #:~:text= targets is kept.
   useEffect(() => {
-    if (!isOpen) setSelectingLocale(false);
+    if (!isOpen) {
+      setSelectingLocale(false);
+      return;
+    }
     let el: HTMLElement | null = navRef.current;
     while (el) {
       if (el.scrollTop > 0) el.scrollTop = 0;
