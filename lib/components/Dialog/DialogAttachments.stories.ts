@@ -18,3 +18,12 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {},
 };
+
+/** The title counts only the attachments the user can see. */
+export const WithHiddenItems: Story = {
+  args: {
+    title: `${attachments.length} vedlegg`,
+    hiddenItemsLabel: '+ 3 vedlegg du ikke har tilgang til å se.',
+    hiddenItemsTooltip: 'Be tilgangsstyrer i virksomheten om tilgang.',
+  },
+};

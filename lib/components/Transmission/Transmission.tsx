@@ -6,6 +6,7 @@ import {
   type AvatarProps,
   Badge,
   type BadgeProps,
+  Heading,
   ListItem,
   type ListItemProps,
   Section,
@@ -28,9 +29,12 @@ export interface TransmissionProps extends Omit<ListItemProps, 'children'> {
   sender?: AvatarProps;
   title?: string;
   summary?: string;
-  attachments?: AttachmentListProps;
+  /** `title` is shown above the attachments, e.g. "2 vedlegg". */
+  attachments?: AttachmentListProps & { title?: string };
   /** Transmission is seen by the end user or others */
   seenByLog?: SeenByLogProps;
+  /** Transmission is hidden from the user. Shows this text instead, and the item can't be expanded. */
+  hiddenLabel?: ReactNode;
   children?: ReactNode | (() => ReactElement);
 }
 
@@ -48,9 +52,18 @@ export const Transmission = ({
   attachments,
   children,
   seenByLog,
+  hiddenLabel,
   ...item
 }: TransmissionProps) => {
   const [expanded, setExpanded] = useState<boolean>(item.expanded || false);
+
+  if (hiddenLabel) {
+    return (
+      <li id={item.id} className={styles.hidden}>
+        {hiddenLabel}
+      </li>
+    );
+  }
 
   return (
     <ListItem
@@ -90,7 +103,16 @@ export const Transmission = ({
         <Typography size="md">
           {summary && <p>{summary}</p>}
           {expanded ? (typeof children === 'function' ? children() : children) : null}
-          {attachments?.items && <AttachmentList {...attachments} />}
+          {attachments?.items && (
+            <Section spacing={1} className={styles.attachments}>
+              {attachments.title && (
+                <Heading as="h3" size="xs" weight="normal" variant="subtle" className={styles.attachmentsTitle}>
+                  {attachments.title}
+                </Heading>
+              )}
+              <AttachmentList {...attachments} />
+            </Section>
+          )}
         </Typography>
         {seenByLog && <SeenByLog {...seenByLog} />}
       </Section>

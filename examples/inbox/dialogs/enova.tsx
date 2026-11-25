@@ -78,6 +78,7 @@ export const enovaSent = {
                 },
                 title: 'Melding om elulykke',
                 attachments: {
+                  title: '1 vedlegg',
                   items: [
                     {
                       href: '#',
@@ -131,6 +132,7 @@ export const enovaProgress = {
                 },
                 title: 'Søknad om støtte til energitiltak',
                 attachments: {
+                  title: '1 vedlegg',
                   items: [
                     {
                       href: '#',

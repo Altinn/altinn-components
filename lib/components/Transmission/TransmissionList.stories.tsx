@@ -29,3 +29,17 @@ export const Incoming: Story = {
     items: transmissions.filter((item) => item?.type?.value !== 'submission') as TransmissionListProps['items'],
   },
 };
+
+/** A transmission the user isn't allowed to see. It keeps its date, but shows only `hiddenLabel` and can't be expanded. */
+export const WithHiddenTransmission: Story = {
+  args: {
+    items: [
+      ...(transmissions.slice(0, 1) as TransmissionListProps['items']),
+      {
+        id: 'hidden',
+        byline: '4. oktober 2026 kl. 08.17',
+        hiddenLabel: 'Forsendelse du ikke har tilgang til å se.',
+      },
+    ],
+  },
+};

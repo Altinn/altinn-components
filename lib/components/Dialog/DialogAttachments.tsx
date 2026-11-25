@@ -1,12 +1,11 @@
-import { type AttachmentLinkProps, AttachmentList, Heading, Section } from '..';
+import { AttachmentList, type AttachmentListProps, Heading, Section } from '..';
 
-export interface DialogAttachmentsProps {
+export interface DialogAttachmentsProps extends Partial<AttachmentListProps> {
   title?: string;
-  items?: AttachmentLinkProps[];
 }
 
-export const DialogAttachments = ({ title = 'Attachments', items }: DialogAttachmentsProps) => {
-  if (!items?.length) {
+export const DialogAttachments = ({ title = 'Attachments', items = [], ...attachmentList }: DialogAttachmentsProps) => {
+  if (!items.length && !attachmentList.hiddenItemsLabel) {
     return null;
   }
 
@@ -15,7 +14,7 @@ export const DialogAttachments = ({ title = 'Attachments', items }: DialogAttach
       <Heading as="h2" size="xs" weight="normal" variant="subtle">
         {title}
       </Heading>
-      <AttachmentList items={items} />
+      <AttachmentList items={items} {...attachmentList} />
     </Section>
   );
 };
