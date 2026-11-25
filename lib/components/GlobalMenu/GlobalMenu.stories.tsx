@@ -53,7 +53,7 @@ export const Mobile: Story = {
 export const LoggedOut: Story = {
   globals: { theme: 'neutral' },
   args: {
-    menu: loggedOutMenu,
+    menu: selectItem(loggedOutMenu, 'forms'),
     logoutButton: undefined,
     localeSwitcher,
   },
