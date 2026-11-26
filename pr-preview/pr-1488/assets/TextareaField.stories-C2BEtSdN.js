@@ -1,3 +1,0 @@
-import{T as r}from"./TextareaField-Ch5f00RA.js";import"./iframe-Cb83cNHz.js";import"./preload-helper-Cc2_yIPf.js";import"./FieldBase-DBBKjPwf.js";import"./Typography-BPADIB9F.js";import"./useHighlightedText-DXF5vSCe.js";import"./Field-SexvxzIl.js";import"./Label-CzmEce_d.js";const i={title:"Forms/TextAreaField",component:r,tags:["autodocs"],parameters:{},args:{name:"text",label:"Label",placeholder:"Placeholder"}},e={args:{}},d=["Default"];e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:`{
-  args: {}
-}`,...e.parameters?.docs?.source}}};export{e as Default,d as __namedExportsOrder,i as default};
