@@ -23,7 +23,9 @@ export const InboxSingleAccount = () => {
   return (
     <Layout {...layout}>
       <PageBase>
-        <Heading size="xl">Lagrede søk</Heading>
+        <Heading size="xl" as="h1">
+          Lagrede søk
+        </Heading>
         <Toolbar
           accountMenu={{ label: currentAccount?.title, items: accountItems, groups: accountGroups, searchable: true }}
           search={search}
@@ -60,7 +62,9 @@ export const InboxAllAccounts = () => {
   return (
     <Layout {...layout}>
       <PageBase>
-        <Heading size="xl">Lagrede søk</Heading>
+        <Heading size="xl" as="h1">
+          Lagrede søk
+        </Heading>
         <Toolbar search={search} />
         <BookmarkSettingsList items={items} groups={groups} />
         <Heading size="xs" weight="normal">
@@ -94,7 +98,9 @@ export const BookmarkSettings = () => {
   return (
     <Layout {...layout}>
       <PageBase>
-        <Heading size="xl">Lagrede søk</Heading>
+        <Heading size="xl" as="h1">
+          Lagrede søk
+        </Heading>
         <Toolbar search={search} />
         <BookmarkSettingsList items={items} groups={groups} />
         <Heading size="xs" weight="normal">

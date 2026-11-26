@@ -11,6 +11,7 @@ export type BadgeTheme = Theme;
 export type BadgeSize = 'sm' | 'xs';
 
 export interface BadgeProps {
+  id?: string;
   label?: string | number;
   color?: BadgeColor;
   variant?: BadgeVariant;
@@ -23,6 +24,7 @@ export interface BadgeProps {
 }
 
 export const Badge = ({
+  id,
   label,
   color,
   variant = 'subtle',
@@ -37,6 +39,7 @@ export const Badge = ({
     return (
       <Tooltip content={tooltip}>
         <span
+          id={id}
           className={cx(styles.badge, className)}
           style={style}
           data-color={color}
@@ -53,6 +56,7 @@ export const Badge = ({
 
   return (
     <span
+      id={id}
       className={cx(styles.badge, className)}
       style={style}
       data-color={color}

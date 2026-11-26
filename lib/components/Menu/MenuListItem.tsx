@@ -22,6 +22,8 @@ export const MenuListItem = ({
   onMouseEnter,
   onMouseLeave,
   'aria-checked': ariaChecked,
+  'aria-posinset': ariaPosinset,
+  'aria-setsize': ariaSetsize,
 }: MenuListItemProps) => {
   const Component = as;
   return (
@@ -35,6 +37,8 @@ export const MenuListItem = ({
       data-index={index}
       aria-disabled={disabled}
       aria-checked={ariaChecked}
+      aria-posinset={ariaPosinset}
+      aria-setsize={ariaSetsize}
     >
       {children}
     </Component>

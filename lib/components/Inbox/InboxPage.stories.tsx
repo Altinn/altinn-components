@@ -70,7 +70,11 @@ export const Inbox = ({
         />
       ) : (
         <PageBase>
-          {pageTitle && <Heading size="xl">{pageTitle}</Heading>}
+          {pageTitle && (
+            <Heading size="xl" as="h1">
+              {pageTitle}
+            </Heading>
+          )}
           {toolbar && <Toolbar {...toolbar}>{controls}</Toolbar>}
           {children ||
             (results && (

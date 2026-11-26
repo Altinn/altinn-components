@@ -45,7 +45,9 @@ export const ProfileActivityLog = () => {
   return (
     <Layout {...layout}>
       <PageBase>
-        <Heading size="xl">Aktivitetslogg</Heading>
+        <Heading size="xl" as="h1">
+          Aktivitetslogg
+        </Heading>
         <Controlled />
       </PageBase>
     </Layout>

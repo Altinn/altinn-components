@@ -38,6 +38,8 @@ export const StructureAndNavigation = {
 
     // Valid combobox-with-listbox: combobox role on the input, controlling the listbox.
     expect(input.getAttribute('role')).toBe('combobox');
+    // The field has a real name, not only a placeholder.
+    expect(input).toHaveAccessibleName('Søk');
     expect(input.getAttribute('aria-controls')).toBe(listbox.id);
     // The search input is NOT inside the listbox.
     expect(listbox.querySelector('input')).toBeNull();
@@ -59,5 +61,44 @@ export const StructureAndNavigation = {
     // Enter selects the active option (useMenu dispatches a click on it).
     await userEvent.keyboard('{Enter}');
     await waitFor(() => expect(active?.textContent).toContain('NAV'));
+  },
+};
+
+/** The number of hits is announced politely while typing, from a status that is in the page from the start. */
+export const AnnouncesHits = {
+  // Behaviour only, the look is covered by StructureAndNavigation.
+  parameters: { screenshot: { skip: true } },
+  render: () => (
+    <Menu
+      id="owner-hits"
+      open
+      keyboardEvents
+      searchable
+      a11yMode="combobox"
+      search={{ name: 'owner', placeholder: 'Søk' }}
+      // biome-ignore lint/suspicious/noExplicitAny: test fixture
+      items={items as any}
+    />
+  ),
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const doc = canvasElement.ownerDocument;
+    const input = doc.querySelector('input') as HTMLInputElement;
+
+    // One polite status, present and empty before the user types.
+    const statuses = canvasElement.querySelectorAll('output, [role="status"]');
+    expect(statuses).toHaveLength(1);
+    const status = statuses[0] as HTMLElement;
+    expect(status).toBeEmptyDOMElement();
+
+    await userEvent.type(input, 'na');
+    await waitFor(() => expect(status).toHaveTextContent('1 treff'));
+
+    await userEvent.type(input, 'zzz');
+    await waitFor(() => expect(status).toHaveTextContent('Ingen treff'));
+    // Announced once, by the status. The field does not also point to the no-hits row.
+    expect(input).not.toHaveAttribute('aria-activedescendant');
+
+    await userEvent.clear(input);
+    await waitFor(() => expect(status).toBeEmptyDOMElement());
   },
 };

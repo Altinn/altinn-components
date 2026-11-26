@@ -1,7 +1,8 @@
 import { MenuHamburgerIcon, XMarkIcon } from '@navikt/aksel-icons';
 import type { ElementType } from 'react';
-import { Button, type ButtonProps } from '..';
+import { Button, type ButtonProps, useRootContext } from '..';
 import { Badge, type BadgeProps } from '../Badge';
+import { getCommonTexts } from '../RootProvider/commonTexts.ts';
 import styles from './globalMenuButton.module.css';
 
 export interface GlobalMenuButtonProps extends ButtonProps {
@@ -20,10 +21,11 @@ export const GlobalMenuButton = ({
   variant = 'solid',
   onClick,
   expanded,
-  label = 'Menu',
+  label,
   badge,
   ...buttonProps
 }: GlobalMenuButtonProps) => {
+  const { languageCode } = useRootContext();
   return (
     <Button
       {...buttonProps}
@@ -32,7 +34,6 @@ export const GlobalMenuButton = ({
       color={color}
       variant={variant}
       className={styles.button}
-      aria-haspopup="menu"
       aria-expanded={expanded}
     >
       {expanded ? (
@@ -40,7 +41,7 @@ export const GlobalMenuButton = ({
       ) : (
         <MenuHamburgerIcon className={styles.icon} aria-hidden="true" />
       )}
-      <span className={styles.label}>{label}</span>
+      <span className={styles.label}>{label ?? getCommonTexts(languageCode).menu}</span>
       {badge && <Badge {...badge} className={styles.badge} />}
     </Button>
   );

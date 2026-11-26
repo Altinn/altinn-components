@@ -225,10 +225,13 @@ export const useMenuSearch = ({
     return resultsCount ? combinedResults : combinedNoHits;
   }, [hasQuery, items, resultsCount, combinedResults, combinedNoHits]);
 
+  const statusText = hasQuery ? (resultsCount ? texts.hits(resultsCount) : texts.noResults) : '';
+
   return {
     search,
     results,
     resultCount: resultsCount,
+    statusText,
     hasQuery,
     items: displayItems,
     groups: searchGroups,

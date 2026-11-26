@@ -17,10 +17,16 @@ export interface MenuListProps {
   tabIndex?: number;
   'aria-busy'?: boolean;
   'aria-multiselectable'?: boolean;
+  'aria-label'?: string;
+  'aria-labelledby'?: string;
+  'aria-activedescendant'?: string;
+  /** Focused when a dropdown opens */
+  focusTarget?: boolean;
   children?: ReactNode;
   onMouseEnter?: MouseEventHandler;
   onMouseLeave?: MouseEventHandler;
   onBlurCapture?: React.FocusEventHandler<HTMLElement>;
+  onFocus?: React.FocusEventHandler<HTMLElement>;
   onScroll?: React.UIEventHandler<HTMLUListElement>;
 }
 
@@ -28,7 +34,7 @@ export const MenuList = ({
   ref,
   id,
   as = 'ul',
-  role = 'group',
+  role: roleProp,
   variant,
   color,
   className,
@@ -36,13 +42,19 @@ export const MenuList = ({
   tabIndex,
   'aria-busy': ariaBusy,
   'aria-multiselectable': ariaMultiselectable,
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledby,
+  'aria-activedescendant': ariaActivedescendant,
+  focusTarget,
   children,
   onMouseEnter,
   onMouseLeave,
   onBlurCapture,
+  onFocus,
   onScroll,
 }: MenuListProps) => {
   const Component = as;
+  const role = roleProp ?? (as === 'ul' ? 'group' : undefined);
   return (
     <Component
       id={id}
@@ -55,9 +67,14 @@ export const MenuList = ({
       tabIndex={tabIndex}
       aria-busy={ariaBusy}
       aria-multiselectable={ariaMultiselectable}
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledby}
+      aria-activedescendant={ariaActivedescendant}
+      data-menu-focus={focusTarget || undefined}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onBlurCapture={onBlurCapture}
+      onFocus={onFocus}
       onScroll={onScroll}
     >
       {children}

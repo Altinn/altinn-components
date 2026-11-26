@@ -11,6 +11,7 @@ import {
 import { accountMenu } from '../';
 import type { AccountMenuProps, MenuProps } from '../../lib';
 
+/** Items that go somewhere are links. «Språk/language» opens the language list, so it stays a button. */
 const designReferenceMenuItems: MenuProps['items'] = [
   {
     id: 'inbox',
@@ -18,6 +19,7 @@ const designReferenceMenuItems: MenuProps['items'] = [
     size: 'lg',
     icon: InboxFillIcon,
     title: 'Innboks',
+    href: '#inbox',
     selected: true,
     badge: { label: 'Beta', color: 'neutral', variant: 'base' },
   },
@@ -27,6 +29,7 @@ const designReferenceMenuItems: MenuProps['items'] = [
     size: 'lg',
     icon: PadlockLockedFillIcon,
     title: 'Tilgangsstyring',
+    href: '#access',
     badge: { label: 'Beta', color: 'neutral', variant: 'base' },
   },
   {
@@ -35,6 +38,7 @@ const designReferenceMenuItems: MenuProps['items'] = [
     size: 'lg',
     icon: MenuGridIcon,
     title: 'Alle skjema og tjenester',
+    href: '#forms',
   },
   {
     id: 'about',
@@ -42,6 +46,7 @@ const designReferenceMenuItems: MenuProps['items'] = [
     size: 'sm',
     icon: InformationSquareIcon,
     title: 'Om nye altinn',
+    href: '#about',
   },
   {
     id: 'startup',
@@ -49,6 +54,7 @@ const designReferenceMenuItems: MenuProps['items'] = [
     size: 'sm',
     icon: Buildings2Icon,
     title: 'Starte og drive bedrift',
+    href: '#start-business',
   },
   {
     id: 'help',
@@ -56,6 +62,7 @@ const designReferenceMenuItems: MenuProps['items'] = [
     size: 'sm',
     icon: ChatExclamationmarkIcon,
     title: 'Trenger du hjelp?',
+    href: '#help',
   },
   {
     id: 'profile',
@@ -63,6 +70,7 @@ const designReferenceMenuItems: MenuProps['items'] = [
     size: 'sm',
     icon: PersonCircleIcon,
     title: 'Din profil',
+    href: '#profile',
   },
   {
     id: 'language',

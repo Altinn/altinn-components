@@ -1,6 +1,7 @@
 'use client';
 import { type CSSProperties, useEffect, useMemo, useState } from 'react';
-import { Menu, type MenuItemProps, type MenuListSearchProps, type MenuProps } from '../';
+import { Menu, type MenuItemProps, type MenuListSearchProps, type MenuProps, useRootContext } from '../';
+import { getCommonTexts } from '../RootProvider/commonTexts.ts';
 
 export interface AccountSearchProps extends MenuListSearchProps {
   hidden?: boolean;
@@ -23,8 +24,6 @@ export interface AccountMenuProps extends MenuProps {
   keyboardEvents?: boolean;
 }
 
-const defaultResultsLabel = (hits: number) => `${hits} hits`;
-
 export const AccountMenu = ({
   items = [],
   groups = {},
@@ -35,14 +34,16 @@ export const AccountMenu = ({
   virtualized,
   keyboardEvents,
   scrollRefStyles,
+  a11yMode = 'list',
+  headingLevel,
 }: AccountMenuProps) => {
   const accountMenu: AccountMenuItemProps[] = items.map((item) => ({
     ...item,
     title: item?.title || item.name,
     groupId: item.groupId || 'search',
     selected: item.selected ?? currentAccount?.id === item.id,
-    // Avoid nested <button> when item controls render buttons (e.g. favorite toggle).
-    as: item.controls ? 'div' : item.as,
+    // In other modes the controls are inside the item, which then cannot be a <button>.
+    as: a11yMode !== 'list' && item.controls ? 'div' : item.as,
     onClick: () => {
       !item.disabled && onSelectAccount?.(item.id);
     },
@@ -87,11 +88,16 @@ export const AccountMenu = ({
     );
   }, [accountMenu, filterString, applicableFilterAccount]);
 
+  const texts = getCommonTexts(useRootContext().languageCode);
+  const resultsLabel = filterString
+    ? (search?.getResultsLabel?.(filteredAccountMenu.length) ?? texts.hits(filteredAccountMenu.length))
+    : '';
+
   const filterAccountGroups = filterString
     ? {
         search: {
-          title:
-            search?.getResultsLabel?.(filteredAccountMenu.length) ?? defaultResultsLabel(filteredAccountMenu.length),
+          title: resultsLabel,
+          titleAs: 'text' as const,
         },
       }
     : groups;
@@ -99,7 +105,7 @@ export const AccountMenu = ({
   const defaultAccountSearch: MenuListSearchProps = {
     name: 'account-search',
     value: filterString,
-    placeholder: search?.placeholder ?? 'Find account',
+    placeholder: search?.placeholder ?? texts.findAccount,
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => setFilterString(event.target.value),
     onClear: () => setFilterString(''),
   };
@@ -109,15 +115,21 @@ export const AccountMenu = ({
   ];
 
   return (
-    <Menu
-      variant="default"
-      size="md"
-      search={search && !search.hidden ? defaultAccountSearch : undefined}
-      groups={filterAccountGroups}
-      items={accountSwitcher}
-      virtualized={virtualized}
-      keyboardEvents={keyboardEvents}
-      scrollRefStyles={scrollRefStyles}
-    />
+    <>
+      {/* In the page from the start, so the first change is announced */}
+      <output className="ds-sr-only">{resultsLabel}</output>
+      <Menu
+        variant="default"
+        size="md"
+        search={search && !search.hidden ? defaultAccountSearch : undefined}
+        groups={filterAccountGroups}
+        items={accountSwitcher}
+        virtualized={virtualized}
+        keyboardEvents={keyboardEvents}
+        scrollRefStyles={scrollRefStyles}
+        a11yMode={a11yMode}
+        headingLevel={headingLevel}
+      />
+    </>
   );
 };

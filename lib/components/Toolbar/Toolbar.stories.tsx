@@ -542,7 +542,13 @@ export const AccountMenuAndSubmenu = () => {
     <Toolbar>
       <ToolbarMenu {...(accountMenu as ToolbarMenuProps)} />
       {selectedIsParent && (
-        <ToolbarMenu id="subaccounts" items={subAccountsAndAll} label={getSubAccountLabel()} virtualized />
+        <ToolbarMenu
+          id="subaccounts"
+          items={subAccountsAndAll}
+          label={getSubAccountLabel()}
+          title="Velg enheter"
+          virtualized
+        />
       )}
       <ToolbarFilter {...removableFilter} />
     </Toolbar>
