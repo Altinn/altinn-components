@@ -94,14 +94,7 @@ export const UserListItem = ({
   ) : null;
 
   return (
-    <ListItem
-      icon={icon}
-      label={label}
-      description={description}
-      loading={loading}
-      badge={deletedBadge}
-      {...props}
-    />
+    <ListItem icon={icon} label={label} description={description} loading={loading} badge={deletedBadge} {...props} />
   );
 };
 
