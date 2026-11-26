@@ -348,7 +348,7 @@ const FavoriteButton = ({
     }}
     size="xs"
   >
-    {isFavorite ? <HeartFillIcon /> : <HeartIcon />}
+    {isFavorite ? <HeartFillIcon aria-hidden /> : <HeartIcon aria-hidden />}
   </Button>
 );
 

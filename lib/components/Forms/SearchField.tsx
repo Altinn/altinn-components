@@ -168,7 +168,7 @@ export const SearchField = ({
             aria-label={clearButtonAltText}
             data-action="clear-input"
           >
-            <XMarkIcon />
+            <XMarkIcon aria-hidden />
           </Button>
         </span>
       )}
