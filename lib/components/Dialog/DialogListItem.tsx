@@ -37,9 +37,7 @@ export interface DialogListItemProps extends ItemLinkProps, DialogMetadataProps 
   recipientLabel?: string;
   /** Group recipient, show both sender and recipient avatars */
   grouped?: boolean;
-  /** Dialog description */
-  description?: string;
-  /** Dialog summary (will override description) */
+  /** Dialog summary */
   summary?: string;
   /** Dialog size */
   size?: DialogListItemSize;
@@ -119,7 +117,6 @@ export const DialogListItem = memo(
     attachmentsLabel,
     tooltips = {},
     title,
-    description,
     summary,
     highlightWords,
     id,

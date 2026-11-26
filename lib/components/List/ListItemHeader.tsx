@@ -139,7 +139,7 @@ export const ListItemHeader = ({
       >
         {interactive && <div className={styles.linkFocus} aria-hidden="true" />}
 
-        {select && <ItemSelect {...select} className={styles.select} />}
+        {select && <ItemSelect {...select} />}
         <ListItemIcon loading={loading} icon={icon} />
         <ListItemLabel
           size={size}
