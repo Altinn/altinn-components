@@ -142,7 +142,7 @@ export const DialogListItem = memo(
           <div className={styles.border}>
             <header className={styles.header}>
               <Heading
-                as="h2"
+                as="span"
                 highlightWords={highlightWords}
                 weight={unread ? 'bold' : 'normal'}
                 loading={loading}
@@ -167,7 +167,7 @@ export const DialogListItem = memo(
               />
               {summary && (
                 <Heading
-                  as="h3"
+                  as="p"
                   highlightWords={highlightWords}
                   weight="normal"
                   className={styles.summary}
