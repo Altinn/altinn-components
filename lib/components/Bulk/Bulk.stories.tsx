@@ -122,11 +122,17 @@ export const Default = ({
         received: 'Antall meldinger mottatt',
         seenBy: 'Hvem har sett dialogen?',
       },
-      tabIndex: bulkMode ? 1 : undefined,
+      tabIndex: bulkMode ? -1 : undefined,
       selected: bulkIds?.includes(id),
       onClick: () => (bulkMode ? onToggle(id) : alert('Open dialog')),
       controls: bulkMode ? (
-        <ItemSelect checked={bulkIds?.includes(id)} onClick={() => onToggle(id)} disabled={maxItemsReached} />
+        <ItemSelect
+          checked={bulkIds?.includes(id)}
+          onChange={() => onToggle(id)}
+          disabled={maxItemsReached}
+          aria-label={item.title}
+          aria-description={item.summary}
+        />
       ) : (
         <ContextMenu {...itemContextMenu} />
       ),
