@@ -24,6 +24,7 @@ export interface UserListItemProps
     | 'id'
     | 'className'
     | 'containerAs'
+    | 'ariaLabel'
   > {
   /** Unique identifier for the user item */
   id: string;
@@ -95,7 +96,6 @@ export const UserListItem = ({
   return (
     <ListItem
       icon={icon}
-      ariaLabel={name}
       label={label}
       description={description}
       loading={loading}
