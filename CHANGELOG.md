@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.80.1](https://github.com/Altinn/altinn-components/compare/v0.80.0...v0.80.1) (2026-11-26)
+
+
+### Bug Fixes
+
+* **Bulk:** single tab stop and item focus ring for checkboxes ([#1487](https://github.com/Altinn/altinn-components/issues/1487)) ([335e01e](https://github.com/Altinn/altinn-components/commit/335e01e4468ed6aff93e18115130d0ef36f11145))
+* **DialogListItem:** render title and summary as text instead of headings ([#1488](https://github.com/Altinn/altinn-components/issues/1488)) ([3feefdc](https://github.com/Altinn/altinn-components/commit/3feefdc192938a41e6d8b9c8aee43b75a3f8c715))
+* **GlobalMenu:** only reset scroll position when menu opens ([#1490](https://github.com/Altinn/altinn-components/issues/1490)) ([2e7b222](https://github.com/Altinn/altinn-components/commit/2e7b222ed464e59bd275bdb98af626bff8ca9f23))
+* **useAccountSelector:** change bokmål spelling of 'favoritter' in account selector ([#1484](https://github.com/Altinn/altinn-components/issues/1484)) ([e2b02cf](https://github.com/Altinn/altinn-components/commit/e2b02cff199804057ddd0aa4ce2daf010caa1aa4))
+
+
+### Miscellaneous Chores
+
+* remove unused description prop, dead ListItemHeader class and unused examples ([#1489](https://github.com/Altinn/altinn-components/issues/1489)) ([fdb0178](https://github.com/Altinn/altinn-components/commit/fdb017863005f0995ab5fbb76a5727e0f130b140))
+
 ## [0.80.0](https://github.com/Altinn/altinn-components/compare/v0.79.2...v0.80.0) (2026-11-16)
 
 

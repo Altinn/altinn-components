@@ -37,9 +37,7 @@ export interface DialogListItemProps extends ItemLinkProps, DialogMetadataProps 
   recipientLabel?: string;
   /** Group recipient, show both sender and recipient avatars */
   grouped?: boolean;
-  /** Dialog description */
-  description?: string;
-  /** Dialog summary (will override description) */
+  /** Dialog summary */
   summary?: string;
   /** Dialog size */
   size?: DialogListItemSize;
@@ -119,7 +117,6 @@ export const DialogListItem = memo(
     attachmentsLabel,
     tooltips = {},
     title,
-    description,
     summary,
     highlightWords,
     id,
@@ -145,7 +142,7 @@ export const DialogListItem = memo(
           <div className={styles.border}>
             <header className={styles.header}>
               <Heading
-                as="h2"
+                as="span"
                 highlightWords={highlightWords}
                 weight={unread ? 'bold' : 'normal'}
                 loading={loading}
@@ -170,7 +167,7 @@ export const DialogListItem = memo(
               />
               {summary && (
                 <Heading
-                  as="h3"
+                  as="p"
                   highlightWords={highlightWords}
                   weight="normal"
                   className={styles.summary}

@@ -88,7 +88,7 @@ export const SearchbarField = ({
           data-testid="search-button-clear"
           aria-label={clearButtonAltText}
         >
-          <XMarkIcon />
+          <XMarkIcon aria-hidden />
         </Button>
       )) ||
         (expanded && (
@@ -100,7 +100,7 @@ export const SearchbarField = ({
             data-testid="search-button-close"
             aria-label={closeButtonAltText}
           >
-            <XMarkIcon />
+            <XMarkIcon aria-hidden />
           </Button>
         ))}
     </div>

@@ -85,7 +85,7 @@ export const SnackbarItem = ({
         {dismissable && (
           <div className={styles.action}>
             <Button variant="solid" onClick={onDismiss} aria-label="close">
-              <XMarkIcon style={{ fontSize: '1.5em' }} />
+              <XMarkIcon style={{ fontSize: '1.5em' }} aria-hidden />
             </Button>
           </div>
         )}
