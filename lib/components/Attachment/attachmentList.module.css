@@ -19,18 +19,9 @@
 
 .list + .hiddenItems {
   margin-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .hiddenItems {
   padding-left: calc(1.6875rem * 5.25 / 24);
-  font-size: 0.875rem;
-  line-height: 1.6875rem;
-  font-style: italic;
-  font-weight: 400;
-  color: var(--ds-color-neutral-text-subtle);
-  opacity: 0.9;
-}
-
-.hiddenItemsTooltip {
-  cursor: help;
 }

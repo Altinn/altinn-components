@@ -1,7 +1,7 @@
 import { DialogAttachments, TransmissionList } from '../../../lib';
 import { brreg } from '../../avatar';
 
-const hiddenAttachmentsTooltip = 'Be tilgangsstyrer i virksomheten om tilgang.';
+const hiddenAttachmentsTooltip = 'Avsender har skjult disse fordi du ikke har tilgang.';
 
 export const brregCompleted = {
   id: 'regnskap-2025',
@@ -41,12 +41,30 @@ export const brregCompleted = {
                   hiddenItemsTooltip: hiddenAttachmentsTooltip,
                 },
               },
+            ]}
+          />
+        ),
+      },
+      {
+        id: '2',
+        children: (
+          <TransmissionList
+            items={[
               {
                 id: 'hidden',
                 datetime: '2025-02-28T09:05:00.000Z',
                 byline: '28. februar 2025 kl. 10.05',
                 hiddenLabel: 'Forsendelse du ikke har tilgang til å se.',
               },
+            ]}
+          />
+        ),
+      },
+      {
+        id: '3',
+        children: (
+          <TransmissionList
+            items={[
               {
                 id: '1',
                 datetime: '2025-02-21T12:17:00.000Z',

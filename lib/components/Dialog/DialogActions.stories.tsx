@@ -61,6 +61,21 @@ export const HiddenActions: Story = {
   },
 };
 
+export const WithHiddenItemsLabel: Story = {
+  args: {
+    items: [primary, { ...secondary, disabled: true }],
+    hiddenItemsLabel: '+ 2 handlinger du ikke har tilgang til.',
+    hiddenItemsTooltip: 'Avsender har skjult disse fordi du ikke har tilgang.',
+  },
+};
+
+export const OnlyHiddenItemsLabel: Story = {
+  args: {
+    items: [],
+    hiddenItemsLabel: '+ 1 handling du ikke har tilgang til.',
+  },
+};
+
 export const PrimaryDisabled: Story = {
   args: {
     items: [{ ...primary, disabled: true }, secondary, tertiary[0]],

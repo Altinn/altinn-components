@@ -64,6 +64,6 @@ export const Default: Story = {
 export const WithHiddenItems: Story = {
   args: {
     hiddenItemsLabel: '+ 3 vedlegg du ikke har tilgang til å se.',
-    hiddenItemsTooltip: 'Be tilgangsstyrer i virksomheten om tilgang.',
+    hiddenItemsTooltip: 'Avsender har skjult disse fordi du ikke har tilgang.',
   },
 };

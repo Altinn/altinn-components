@@ -21,6 +21,7 @@ export * from './Dropdown';
 export * from './Footer';
 export * from './GlobalHeader';
 export * from './GlobalMenu';
+export * from './HiddenItems';
 export * from './Logo';
 export type { GlobalHeaderProps } from './GlobalHeader'; //TO-DO: Fix conflict exports for Header and GlobalHeader
 export * from './Icon';
