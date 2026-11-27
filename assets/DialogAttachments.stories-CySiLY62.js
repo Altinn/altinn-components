@@ -1,3 +1,0 @@
-import{a as o}from"./attachments-ZhlQ9l4x.js";import{D as r}from"./DialogAttachments-BkkhAYmO.js";import"./ExternalLink-CONzGtF6.js";import"./iframe-DV7mfmQb.js";import"./preload-helper-Cc2_yIPf.js";import"./AttachmentList-BBP-xojA.js";import"./File-Bfc1A-iw.js";import"./Badge-DzF_wXJq.js";import"./Tooltip-Dnt3MX0-.js";import"./Section-BXLF8mP1.js";import"./Flex-DFf5qQ3F.js";import"./Heading-qQ_NecB3.js";import"./useHighlightedText-DBlSdXli.js";const f={title:"Inbox/Dialog/DialogAttachments",component:r,tags:["autodocs"],args:{title:"6 vedlegg",items:o}},t={args:{}},h=["Default"];t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
-  args: {}
-}`,...t.parameters?.docs?.source}}};export{t as Default,h as __namedExportsOrder,f as default};
