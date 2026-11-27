@@ -17,6 +17,8 @@ export interface ActivityHistoryEntry {
   senderType?: 'company' | 'person';
   title?: string;
   summary?: string;
+  /** `transmission` only: the user may not see it (isAuthorized=false) */
+  hidden?: boolean;
 }
 
 export const activitySourceLabels: Record<ActivitySource, string> = {
@@ -120,6 +122,15 @@ export const activityHistoryEntries: ActivityHistoryEntry[] = [
     title: 'Sak 6: deaktivert lenke (isAuthorized=true, uautorisert lenke)',
   },
   {
+    id: 't8',
+    source: 'transmission',
+    createdAt: '2024-08-15T07:00:00Z',
+    sender: 'Oslo kommune',
+    senderType: 'company',
+    title: 'Sak 5: skjult (isAuthorized=false)',
+    hidden: true,
+  },
+  {
     id: 't4',
     source: 'transmission',
     createdAt: '2024-08-15T06:00:00Z',
@@ -194,6 +205,27 @@ export const activityHistoryEntries: ActivityHistoryEntry[] = [
 /** Build a log segment from a raw entry, the way a consuming app would. */
 export const toActivityLogSegment = (entry: ActivityHistoryEntry): ActivityLogSegmentProps => {
   const date = formatActivityDate(entry.createdAt);
+
+  /** Only the date is shown, and there is nothing to search in. */
+  if (entry.source === 'transmission' && entry.hidden) {
+    return {
+      id: entry.id,
+      kind: entry.source,
+      datetime: entry.createdAt,
+      children: (
+        <TransmissionList
+          items={[
+            {
+              id: entry.id,
+              datetime: entry.createdAt,
+              byline: date,
+              hiddenLabel: 'Forsendelse du ikke har tilgang til å se.',
+            },
+          ]}
+        />
+      ),
+    };
+  }
 
   if (entry.source === 'transmission') {
     return {

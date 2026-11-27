@@ -1,6 +1,8 @@
 import { DialogAttachments, TransmissionList } from '../../../lib';
 import { brreg } from '../../avatar';
 
+const hiddenAttachmentsTooltip = 'Avsender har skjult disse fordi du ikke har tilgang.';
+
 export const brregCompleted = {
   id: 'regnskap-2025',
   title: 'Årsregnskap 2025',
@@ -30,9 +32,39 @@ export const brregCompleted = {
                   label: 'Godkjent',
                 },
                 attachments: {
-                  items: [{ href: '#', label: 'Vedtak om godkjent årsregnskap.pdf' }],
+                  title: '2 vedlegg',
+                  items: [
+                    { href: '#', label: 'Vedtak om godkjent årsregnskap.pdf' },
+                    { href: '#', label: 'Kvittering for innsendt årsregnskap.pdf' },
+                  ],
+                  hiddenItemsLabel: '+ 3 vedlegg du ikke har tilgang til å se.',
+                  hiddenItemsTooltip: hiddenAttachmentsTooltip,
                 },
               },
+            ]}
+          />
+        ),
+      },
+      {
+        id: '2',
+        children: (
+          <TransmissionList
+            items={[
+              {
+                id: 'hidden',
+                datetime: '2025-02-28T09:05:00.000Z',
+                byline: '28. februar 2025 kl. 10.05',
+                hiddenLabel: 'Forsendelse du ikke har tilgang til å se.',
+              },
+            ]}
+          />
+        ),
+      },
+      {
+        id: '3',
+        children: (
+          <TransmissionList
+            items={[
               {
                 id: '1',
                 datetime: '2025-02-21T12:17:00.000Z',
@@ -42,6 +74,7 @@ export const brregCompleted = {
                 },
                 title: 'Årsregnskapet er sendt inn',
                 attachments: {
+                  title: '1 vedlegg',
                   items: [{ href: '#', label: 'Årsregnskap 2025.pdf' }],
                 },
               },
@@ -54,7 +87,15 @@ export const brregCompleted = {
   children: (
     <>
       <p>Årsregnskapet for 2025 er godkjent.</p>
-      <DialogAttachments items={[{ href: '#', label: 'Vedtak om godkjent årsregnskap.pdf' }]} />
+      <DialogAttachments
+        title="2 vedlegg"
+        items={[
+          { href: '#', label: 'Vedtak om godkjent årsregnskap.pdf' },
+          { href: '#', label: 'Kvittering for innsendt årsregnskap.pdf' },
+        ]}
+        hiddenItemsLabel="+ 3 vedlegg du ikke har tilgang til å se."
+        hiddenItemsTooltip={hiddenAttachmentsTooltip}
+      />
     </>
   ),
 };
@@ -88,6 +129,7 @@ export const brregArchived = {
                   label: 'Godkjent',
                 },
                 attachments: {
+                  title: '1 vedlegg',
                   items: [{ href: '#', label: 'Vedtak om godkjent årsregnskap.pdf' }],
                 },
               },
@@ -100,6 +142,7 @@ export const brregArchived = {
                 },
                 title: 'Årsregnskapet er sendt inn',
                 attachments: {
+                  title: '1 vedlegg',
                   items: [{ href: '#', label: 'Årsregnskap 2024.pdf' }],
                 },
               },
@@ -146,6 +189,7 @@ export const brregTrashed = {
                   label: 'Godkjent',
                 },
                 attachments: {
+                  title: '1 vedlegg',
                   items: [{ href: '#', label: 'Vedtak om godkjent årsregnskap.pdf' }],
                 },
               },
@@ -158,6 +202,7 @@ export const brregTrashed = {
                 },
                 title: 'Årsregnskapet er sendt inn',
                 attachments: {
+                  title: '1 vedlegg',
                   items: [{ href: '#', label: 'Årsregnskap 2023.pdf' }],
                 },
               },

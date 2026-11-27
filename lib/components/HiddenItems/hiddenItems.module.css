@@ -1,0 +1,12 @@
+.hiddenItems {
+  font-size: 0.875rem;
+  line-height: 1.6875rem;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ds-color-neutral-text-subtle);
+  opacity: 0.9;
+}
+
+.tooltip {
+  cursor: help;
+}

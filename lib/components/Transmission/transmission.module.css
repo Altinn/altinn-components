@@ -16,3 +16,18 @@
 .content {
   user-select: text;
 }
+
+/* Typography gives every h3 a margin. Remove it, so the title sits as close to the list as in DialogAttachments. */
+.attachments .attachmentsTitle {
+  margin: 0;
+}
+
+.hidden {
+  list-style: none;
+  padding: 0.625rem 0.875rem 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-style: italic;
+  color: var(--ds-color-neutral-text-subtle);
+  opacity: 0.9;
+}

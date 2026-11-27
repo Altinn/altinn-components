@@ -11,6 +11,7 @@ export const transmissions: TransmissionListProps['items'] = [
     title: 'Bedriftsdata er sendt inn',
     summary: undefined,
     attachments: {
+      title: '1 vedlegg',
       items: [{ label: 'Kvittering på innsending.pdf', href: '#-0' }],
     },
   },
@@ -42,6 +43,7 @@ export const transmissions: TransmissionListProps['items'] = [
       </>
     ),
     attachments: {
+      title: '1 vedlegg',
       items: [
         {
           label: 'Bedriftsdata – godkjent innrapportering.pdf',
@@ -60,6 +62,7 @@ export const transmissions: TransmissionListProps['items'] = [
     type: { value: 'submission' },
     summary: undefined,
     attachments: {
+      title: '1 vedlegg',
       items: [{ label: 'Kvittering på innsendte data.pdf', href: '#-0' }],
     },
   },
@@ -81,6 +84,7 @@ export const transmissions: TransmissionListProps['items'] = [
       color: 'company',
     },
     attachments: {
+      title: '1 vedlegg',
       items: [
         {
           label: 'Bedriftsdata – godkjent innrapportering.pdf',

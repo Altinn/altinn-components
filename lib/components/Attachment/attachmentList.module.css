@@ -11,3 +11,17 @@
   line-height: 1.25;
   margin-top: 0.25em;
 }
+
+/* Each attachment keeps a bottom margin. Drop it on the last one so the gap to the label is exactly 8px. */
+.list:has(+ .hiddenItems) > .item:last-child > * {
+  margin-bottom: 0;
+}
+
+.list + .hiddenItems {
+  margin-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.hiddenItems {
+  padding-left: calc(1.6875rem * 5.25 / 24);
+}
