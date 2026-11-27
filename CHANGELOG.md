@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.81.0](https://github.com/Altinn/altinn-components/compare/v0.80.1...v0.81.0) (2026-11-27)
+
+
+### Features
+
+* **inbox:** show attachments and transmissions hidden from the user ([#1492](https://github.com/Altinn/altinn-components/issues/1492)) ([d487e7b](https://github.com/Altinn/altinn-components/commit/d487e7bac5026203b295a1fd1443c6c92fd26988))
+
+
+### Bug Fixes
+
+* add aria-hidden to some button child svg elements ([#1493](https://github.com/Altinn/altinn-components/issues/1493)) ([310ac44](https://github.com/Altinn/altinn-components/commit/310ac44c4599cb6e67ab4997ba31d50b7d1cafa6))
+* do not set aria-label to the same value as name prop in UserListItem ([#1494](https://github.com/Altinn/altinn-components/issues/1494)) ([b99db9f](https://github.com/Altinn/altinn-components/commit/b99db9fadd0b040f030f6505b4e567aaf1719759))
+
 ## [0.80.1](https://github.com/Altinn/altinn-components/compare/v0.80.0...v0.80.1) (2026-11-26)
 
 
