@@ -1,13 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { globalMenu, loginMenu, mobileMenu } from '../../../examples';
-import { globalMenuDesignReference } from '../../../examples/layout/globalMenuDesignReference';
-import { GlobalMenu, type GlobalMenuProps } from './GlobalMenu';
+import { desktopMenu, globalMenu, localeSwitcher, loggedOutMenu, mobileMenu } from '../../../examples';
+import type { MenuItemProps, MenuProps } from '../Menu';
+import { GlobalMenu } from './GlobalMenu';
 
 const meta = {
   title: 'Layout/GlobalMenu',
   component: GlobalMenu,
   tags: ['autodocs'],
-  parameters: {},
+  parameters: {
+    docs: {
+      description: {
+        component: 'Design reference for how the main menu should look across all Altinn 3 applications.',
+      },
+    },
+  },
   args: {
     ...globalMenu,
   },
@@ -16,21 +22,39 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Desktop = (args: GlobalMenuProps) => {
-  return <GlobalMenu {...args} />;
+/** Selects one item (top level or nested) by id and deselects the rest */
+const selectItem = (menu: MenuProps, id: string): MenuProps => {
+  const select = (items: MenuItemProps[] = []): MenuItemProps[] =>
+    items.map((item) => ({
+      ...item,
+      selected: item.id === id,
+      items: Array.isArray(item.items) ? select(item.items) : item.items,
+    }));
+  return { ...menu, items: select(menu.items) };
 };
 
-export const MobileMenu = (args: GlobalMenuProps) => {
-  return <GlobalMenu {...args} menu={mobileMenu} />;
-};
-
-export const Login: Story = {
+/** Desktop: inbox folders live in the sidebar, so only primary items are shown. A primary item is selected. */
+export const Desktop: Story = {
   args: {
-    menu: loginMenu,
-    logoutButton: undefined,
+    menu: desktopMenu,
+    localeSwitcher,
   },
 };
 
-export const DesignReference = () => {
-  return <GlobalMenu {...globalMenuDesignReference} />;
+/** Mobile: the inbox is expanded with its folders, since there is no sidebar. A folder is selected. */
+export const Mobile: Story = {
+  args: {
+    menu: selectItem(mobileMenu, 'sent'),
+    localeSwitcher,
+  },
+};
+
+/** Before login (grey). Same on desktop and mobile. */
+export const LoggedOut: Story = {
+  globals: { theme: 'neutral' },
+  args: {
+    menu: selectItem(loggedOutMenu, 'forms'),
+    logoutButton: undefined,
+    localeSwitcher,
+  },
 };

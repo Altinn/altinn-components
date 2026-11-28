@@ -1,4 +1,4 @@
-export * from './loginMenu';
+export * from './loggedOutMenu';
 export * from './globalMenu';
 export * from './localeSwitcher';
 

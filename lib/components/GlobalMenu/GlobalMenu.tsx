@@ -72,6 +72,8 @@ export const GlobalMenu = ({
     if (!localeSwitcher) return baseItems;
 
     const localeItem: MenuItemProps = {
+      // Join the last group (the info portal links) instead of rendering a separate group with its own divider
+      groupId: baseItems[baseItems.length - 1]?.groupId,
       title: 'Språk/language',
       icon: GlobeIcon,
       size: 'sm',

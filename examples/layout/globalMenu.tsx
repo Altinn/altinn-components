@@ -1,19 +1,20 @@
 import {
   ArchiveIcon,
-  BookmarkIcon,
+  BellIcon,
   Buildings2Icon,
   ChatExclamationmarkIcon,
   DocPencilIcon,
   FileCheckmarkIcon,
-  HandshakeFillIcon,
   InboxFillIcon,
   MagnifyingGlassIcon,
   MenuGridIcon,
+  PadlockLockedFillIcon,
   PersonCircleIcon,
+  PersonGroupIcon,
   TrashIcon,
 } from '@navikt/aksel-icons';
 import { accountMenu } from '../';
-import type { AccountMenuProps, MenuProps } from '../../lib';
+import type { AccountMenuProps, MenuItemProps, MenuProps } from '../../lib';
 
 export const desktopMenuItems: MenuProps['items'] = [
   {
@@ -22,16 +23,14 @@ export const desktopMenuItems: MenuProps['items'] = [
     size: 'lg',
     icon: InboxFillIcon,
     title: 'Innboks',
-    badge: { label: 'Beta', color: 'neutral', variant: 'base' },
-
     selected: true,
   },
   {
     id: 'admin',
     groupId: 'apps',
     size: 'lg',
-    icon: HandshakeFillIcon,
-    title: 'Fullmakter',
+    icon: PadlockLockedFillIcon,
+    title: 'Tilgangsstyring',
   },
   {
     id: 'forms',
@@ -45,7 +44,35 @@ export const desktopMenuItems: MenuProps['items'] = [
     groupId: 'apps',
     size: 'lg',
     icon: MagnifyingGlassIcon,
-    title: 'Søk i Altinn',
+    title: 'Søk på altinn.no',
+  },
+  {
+    id: 'profile',
+    groupId: 'profile',
+    size: 'sm',
+    icon: PersonCircleIcon,
+    title: 'Din profil',
+  },
+  {
+    id: 'actors',
+    groupId: 'profile',
+    size: 'sm',
+    icon: PersonGroupIcon,
+    title: 'Aktører og favoritter',
+  },
+  {
+    id: 'notifications',
+    groupId: 'profile',
+    size: 'sm',
+    icon: BellIcon,
+    title: 'Varslingsadresser',
+  },
+  {
+    id: 'bookmarks',
+    groupId: 'profile',
+    size: 'sm',
+    icon: MagnifyingGlassIcon,
+    title: 'Lagrede søk',
   },
   {
     id: 'startup',
@@ -61,29 +88,27 @@ export const desktopMenuItems: MenuProps['items'] = [
     icon: ChatExclamationmarkIcon,
     title: 'Trenger du hjelp?',
   },
-  {
-    id: 'profile',
-    groupId: 'profile',
-    size: 'sm',
-    icon: PersonCircleIcon,
-    title: 'Min profil',
-  },
 ];
 
 export const desktopMenu: MenuProps = {
   groups: {
-    apps: {
-      divider: true,
+    apps: {},
+    // Inbox folders (mobile) share the inbox card without dividers
+    inbox: {
+      divider: false,
     },
-    help: {},
     profile: {
       title: 'Logget inn som Mathias Dyngeland',
+      divider: false,
+    },
+    help: {
+      divider: true,
     },
   },
   items: desktopMenuItems,
 };
 
-const mobileMenuItems = desktopMenu.items?.map((item) => {
+const mobileMenuItems = desktopMenu.items?.map((item): MenuItemProps => {
   if (item.id === 'inbox') {
     return {
       ...item,
@@ -91,7 +116,8 @@ const mobileMenuItems = desktopMenu.items?.map((item) => {
       items: [
         {
           id: 'drafts',
-          groupId: '2',
+          groupId: 'inbox',
+          size: 'md',
           icon: DocPencilIcon,
           title: 'Utkast',
           badge: {
@@ -100,7 +126,8 @@ const mobileMenuItems = desktopMenu.items?.map((item) => {
         },
         {
           id: 'sent',
-          groupId: '2',
+          groupId: 'inbox',
+          size: 'md',
           icon: FileCheckmarkIcon,
           title: 'Sendt',
           badge: {
@@ -108,23 +135,16 @@ const mobileMenuItems = desktopMenu.items?.map((item) => {
           },
         },
         {
-          id: 'bookmarks',
-          groupId: '3',
-          icon: BookmarkIcon,
-          title: 'Lagrede søk',
-          badge: {
-            label: '5',
-          },
-        },
-        {
           id: 'archive',
-          groupId: '4',
+          groupId: 'inbox',
+          size: 'md',
           icon: ArchiveIcon,
-          title: 'Arkiv',
+          title: 'Arkivert',
         },
         {
           id: 'trash',
-          groupId: '4',
+          groupId: 'inbox',
+          size: 'md',
           icon: TrashIcon,
           title: 'Papirkurv',
         },

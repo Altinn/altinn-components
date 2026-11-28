@@ -1,4 +1,4 @@
-import { defaultAccounts, globalMenu, loginMenu, useAccountMenu } from '../';
+import { defaultAccounts, globalMenu, loggedOutMenu, useAccountMenu } from '../';
 import type { AccountListItemProps, MenuItemProps, MenuProps } from '../../lib';
 import type { GlobalMenuProps } from '../../lib/components/GlobalMenu';
 
@@ -19,7 +19,7 @@ export const useGlobalMenu = ({
   ...props
 }: UseGlobalMenuProps) => {
   if (!accountId) {
-    return { menu: loginMenu, menuLabel };
+    return { menu: loggedOutMenu, menuLabel };
   }
 
   const { onSelectAccount, currentAccount, ...accountMenu } = useAccountMenu({

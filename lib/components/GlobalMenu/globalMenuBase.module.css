@@ -1,6 +1,49 @@
 .nav {
   display: flex;
   flex-direction: column;
+  /* Used by menuItem, menuListHeading and menuListDivider inside GlobalMenu */
+  --dsc-menu-inline-padding: 0.75rem;
+}
+
+/* Primary (lg) items are shown as tinted cards. Nested items (e.g. inbox folders) share the parent's card. */
+.nav li:has(> [data-size="lg"]) {
+  padding: 0;
+  margin-block: 0.25rem;
+  border-radius: var(--ds-border-radius-md);
+  background-color: var(--ds-color-background-tinted);
+  overflow: hidden;
+}
+
+/* Space between the last primary item and the content below */
+.nav li:has(> [data-size="lg"]):last-child {
+  margin-bottom: 1rem;
+}
+
+/* Sub-items in a card are separated by a thin line in the page background color */
+.nav li:has(> [data-size="lg"]) li {
+  padding-block: 0;
+  border-top: 1px solid var(--ds-color-background-default);
+}
+
+/* Items inside a card (the primary item and its sub-items) */
+.nav li:has(> [data-size="lg"]) [data-variant="default"] {
+  --dsc-item-background--hover: var(--ds-color-surface-active);
+  --dsc-item-background--active: var(--ds-color-surface-tinted);
+  --dsc-icon-background: var(--ds-color-background-default);
+}
+
+.nav li:has(> [data-size="lg"]) [aria-current="page"]:hover {
+  background-color: var(--dsc-item-background--hover);
+}
+
+/* Current page: indicator bar on the left and bold title.
+   aria-current is only set on navigation items, so checked options (e.g. in the locale switcher) are not affected. */
+.nav [aria-current="page"] {
+  box-shadow: inset 4px 0 0 var(--ds-color-border-strong);
+}
+
+.nav [aria-current="page"] [data-weight="medium"] {
+  font-weight: 600;
 }
 
 .footer {
